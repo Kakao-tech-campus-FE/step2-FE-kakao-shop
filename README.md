@@ -44,8 +44,8 @@
     <th>인터페이스</th>
   </tr>
   <tr>
-    <td rowspan="4">메인</td>
-    <td rowspan="4">GNB<br />Carousel<br />전체 상품 목록 조회</td>
+    <td >메인</td>
+    <td >GNB<br />Carousel<br />전체 상품 목록 조회</td>
     <td>
       사이트에 접속했을 때 가장 먼저 보이는 화면이다. <br />GNB는 화면
       상단에 고정하여 위치하고 홈(전체 상품 목록 조회), 장바구니&결제,
@@ -53,7 +53,7 @@
       같은 이벤트를 보여주기 위해 6개의 슬라이드로 구성된다. <br />전체 상품
       목록 조회는 Carousel의 하단에 위치하고 상품 목록을 나열한다.
     </td>
-    <td><img src="./img/main.png" alt="Main Page" /></td>
+    <td><img src="./img/main.png" alt="Main Page" width="100px" /></td>
   </tr>      
 </table>
 
