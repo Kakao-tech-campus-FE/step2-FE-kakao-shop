@@ -1,46 +1,100 @@
-# Getting Started with Create React App
+# 페이지별 구성
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 로그인 페이지
 
-## Available Scripts
+- 핵심 기능: 로그인 요청 및 사용자 로그인 정보 저장
+- 기능 상세 설명
+  - 이메일과 비밀번호를 이용해 로그인 진행
+  - 버튼 클릭 혹은 엔터를 입력했을 경우 로그인 폼 Submit
+  - 로그인에 실패했을 경우 안내 문구 토스트 ui 노출
+  - 에러 발생시 입력 input 하단에 에러 메시지 출력
 
-In the project directory, you can run:
+### 메인 페이지
 
-### `npm start`
+- 핵심 기능
+  - 캐러셀
+  - GNB(최상단 네브바)
+  - 메인섹션
+    - LNB(미들 네브바)
+    - 메인 상품 카드 목록
+  - 사이드 섹션
+    - 광고 상품 카드
+    - 후기 증명 상품 카드 목록
+- 기능 상세 설명
+  - 캐러셀
+    - 좌우 버튼 클릭시 해당 방향으로 스크롤링
+    - 자동으로 3초 간격으로 스크롤링 되도록 구현
+    - 단 버튼 클릭으로 스크롤링 되었을때 timer는 초기화되어야함
+  - GNB
+    - 좌측에 로고 아이콘 표시
+    - 검색, 장바구니, 로그인 link 아이콘 표시
+  - 메인 섹션
+    - LNB
+      - 현재 카테고리인 경우에는 배경색 블루,텍스트 화이트
+      - 현재 카테고리가 아닌 경우에는 배경색 흰색, 텍스트 블랙
+      - 카테고리 클릭시 해당 탭에 맞는 상품 정보 네트워크 요청
+    - 메인 상품 카드 목록
+      - 단일카드는 제품 이미지, 제목, 가격, 구매자 수, 공유하기 아이콘, 좋아요 아이콘 노출
+      - 무한 스크롤링 구현
+  - 사이드섹션
+    - 후기증명 상품카드 목록
+      - 단일카드는 제품 이미지, 제목, 리뷰 건수, 만족도, 베스트 리뷰 내용 노출
+      - 페이지네이션 구현
+    - 광고 상품 카드
+      - 제품 이미지, 제목, 리뷰 건수, 만족도, 베스티 리뷰 내용 노출
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 제품 상세 페이지
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 핵심 기능
+  - 제품 상세 정보 전달
+  - 옵션 선택
+- 기능 상세 설명
+  - 제품 상세 정보 전달
+    - 이미지 목록
+      - 대표 이미지와 하부 이미지 리스트
+      - 하부 이미지 리스트 클릭시 대표 해당 이미지 변경
+    - 제품 제목
+    - 제품 가격
+  - 옵션 선택
+    - 상위 옵션 선택이 완료되지 않았을 경우 하위 옵션 선택시 안내 토스트ui 노출
+    - 옵션 선택 완료시 하단에 선택 옵션 컴포넌트 추가
+    - 선택된 옵션 다시 선택시 선택된 옵션 수량 +1
+    - 선택된 옵션 총 수량과 주문 금액 표시
 
-### `npm test`
+### 상품 검색 페이지
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 핵심 기능
+  - 제품 검색
+- 기능 상세 설명
+  - 검색어 입력시 입력창 하단에 추천 검색어 노출
+  - 네트워크 요청 최적화를 위해 검색어 입력시 디바운스 처리
 
-### `npm run build`
+### 장바구니 페이지
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 핵심 기능
+  - 선택된 상품 정보 전달
+  - 상품 선택, 삭제
+- 기능 상세 설명
+  - 선택된 상품 정보 전달
+    - 제품명, 이미지, 가격 등 제품 정보 전달
+  - 상품 선택, 삭제
+    - 장바구니에 담긴 상품중 주문 할 상품을 선택, 삭제
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 결제 페이지
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 핵심 기능
+  - 주문자 정보, 주문지 정보 입력
+  - 주문 상품 정보 전달
+  - 결제 방법 선택
+- 기능 상세 설명
+  - form으로 주문자 정보 및 주문지 정보를 입력 받음
+  - 부적합한 내용이 입력시 하단에 안내 문구 출력
+  - 주문 할 상품에 대한 가격, 제목, 이미지 전달
 
-### `npm run eject`
+### 결제 완료 페이지
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 핵심 기능
+  - 결제 완료 상품 정보 전달
+- 기능 상세 설명
+  - 결제가 완료 된 상품에 대한 가격, 제목, 이미지 전달
+  - 홈으로 돌아가기 버튼
