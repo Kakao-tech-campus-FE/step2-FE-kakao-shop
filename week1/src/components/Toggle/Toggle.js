@@ -6,7 +6,6 @@ const Toggle = () => {
   const ClickedToggle = () => {
     setToggleState(!toggleState);
   };
-  console.log(toggleState);
 
   return (
     <>
