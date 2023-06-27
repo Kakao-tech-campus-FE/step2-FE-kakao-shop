@@ -3,8 +3,8 @@ import "../../styles/Toggle.scss";
 const Toggle = () => {
   return (
     <>
-      <div class="toggleBox">
-        <div class="toggleButton"></div>
+      <div className="toggleBox">
+        <div className="toggleButton"></div>
       </div>
     </>
   );
