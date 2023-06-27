@@ -70,10 +70,12 @@
 
 ### 결제
 <img src="https://github.com/Jiho-Park-0/AI_Chatbot_Website/assets/79912184/5575ea51-08cc-463c-9a53-9df21b68b97a" width="300" height="300"/>
+
 ---
 
 ### 마이페이지
 <img src="https://github.com/Jiho-Park-0/AI_Chatbot_Website/assets/79912184/7534373e-933a-40d8-b74f-2dbf81b39057" width="300" height="300"/>
+
 ---
 
 ### 디렉토리 구조
