@@ -6,8 +6,7 @@
   border-radius: 0.5rem;
   flex-wrap: wrap;
   transition: 0.5s;
-
-  background-color: #00ffff;
+  box-sizing: border-box;
 
   .toggleButton {
     width: 25px;
@@ -16,11 +15,15 @@
     margin-right: 5px;
     border-radius: 9999px;
     background-color: white;
+    transition: 0.5s;
   }
 }
 
 .beforeToggle {
+  background-color: #00ffff;
 }
+
 .afterToggle {
-  justify-content: flex-end;
+  background-color: maroon;
+  padding-left: 35px;
 }
