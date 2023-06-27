@@ -53,7 +53,7 @@
       같은 이벤트를 보여주기 위해 6개의 슬라이드로 구성된다. <br />3. 전체 상품
       목록 조회는 Carousel의 하단에 위치하고 상품 목록을 나열한다.
     </td>
-    <td><img src="./img/main.png" alt="Main Page" width="200px" /></td>
+    <td><img src="./img/main.png" alt="Main Page" width="400px" /></td>
   </tr>      
 </table>
 
