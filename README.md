@@ -53,34 +53,54 @@
       같은 이벤트를 보여주기 위해 6개의 슬라이드로 구성된다. <br />3. 전체 상품
       목록 조회는 Carousel의 하단에 위치하고 상품 목록을 나열한다.
     </td>
-    <td><img src="./img/main.png" alt="Main" width="400px" /></td>
+    <td><img src="./img/main.png" alt="Main" width="500px" /></td>
   </tr>
   <tr>
-    <td>(기능 2)<br />전체 상품 목록 조회</td>
+    <td>(기능 2)<br />회원 가입</td>
+    <td>서비스 이용을 위한 회원 가입</td>
+    <td>
+      1. 가입을 위해 이메일, 이름, 비밀번호가 필요하다.<br />
+      2. 이메일 유효성 검사(영문+숫자@영문+숫자.영문+숫자)<br />
+      3. 비밀번호 유효성 검사(공백없이 영문, 특수문자, 숫자 포함 8~20자)
+    </td>
+    <td><img src="./img/signup.png" alt="Signup" width="500px" /></td>
+  </tr>
+  <tr>
+    <td>(기능 3)<br />로그인</td>
+    <td>회원 서비스를 이용하기 위한 로그인</td>
+    <td>
+      1. 이메일/비밀번호 입력 후 로그인 버튼 클릭 시, 유효성 검사<br />
+      2. 에러 발생 시 입력창 하단에 에러메시지 출력<br />
+      3. 유효한 경우 로그인
+    </td>
+    <td><img src="./img/login.png" alt="Login" width="500px" /></td>
+  </tr>
+  <tr>
+    <td>(기능 4)<br />로그아웃</td>
+    <td>로그아웃 및 회원 서비스 종료</td>
+    <td>
+      GNB의 오른쪽에 위치한 로그아웃 버튼 클릭 시, 로그아웃
+    </td>
+    <td><img src="./img/logout.png" alt="Logout" width="500px" /></td>
+  </tr>
+  <tr>
+    <td>(기능 5)<br />전체 상품 목록 조회</td>
     <td>전체 상품 조회 및 화면 출력</td>
     <td>
       1. 전체 상품 조회 API를 통해 상품 목록을 가져온다.<br />
       2. 상품 이미지, 상품명, 가격 정보를 화면에 출력한다.
     </td>
-    <td><img src="./img/items.png" alt="Items" width="400px" /></td>
+    <td><img src="./img/items.png" alt="Items" width="500px" /></td>
   </tr>
   <tr>
-    <td>(기능 3)<br />개별 상품 상세 조회</td>
+    <td>(기능 6)<br />개별 상품 상세 조회</td>
     <td>상품 선택 시, 해당 상품에 대한 정보 출력</td>
     <td>
       전체 상품 목록에서 특정 상품 카드를 클릭하면 상세 상품 조회와 옵션 조회 API를 통해 해당 상품에 대한 상세 정보와 옵션을 가져와 화면에 출력한다.
     </td>
-    <td><img src="./img/details.png" alt="Items" width="400px" /></td>
+    <td><img src="./img/details.png" alt="Items" width="500px" /></td>
   </tr>
 </table>
-
-2. 로그인 페이지
-
-- 핵심 기능: 로그인 요청 및 사용자 로그인 정보 저장
-- 기능 상세 설명: 이메일과 비밀번호를 이용해 로그인을 진행하고, 이에 대한 상태 처리를 합니다.
-- 인터페이스 요구사항: 이메일 또는 비밀번호에 들어온 값이 적합하지 않은 경우 적절한 알림을 보냅니다.
-
-3.
 
 #디렉터리 구조
 
