@@ -1,5 +1,7 @@
 import {useEffect} from "react";
 
+//delay , autohide, animation, position, icon, title, message, close button,
+
 function Toast({isOpen, setOpen, message, delay}) {
     useEffect(
         () => {
@@ -13,7 +15,6 @@ function Toast({isOpen, setOpen, message, delay}) {
         }, [isOpen, delay]
     )
 
-    //delay , autohide, animation, position, icon, title, message, close button,
     return (
         <div style={{
             display: isOpen ? 'flex' : 'none',
