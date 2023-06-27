@@ -24,7 +24,7 @@ function Toast({isOpen, setOpen, message, delay, hasProgressBar = true}) {
             right: '20px',
             border: '1px solid black',
             borderRadius: '4px',
-            minWidth: '200px',
+            minWidth: '300px',
         }}>
             <div style={{
                 display: 'flex',
