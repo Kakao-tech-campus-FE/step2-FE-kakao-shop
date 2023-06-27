@@ -29,6 +29,15 @@ button {
     border-radius: 4px;
 }
 
+@keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
 /*.App-logo {*/
 /*  height: 40vmin;*/
 /*  pointer-events: none;*/
