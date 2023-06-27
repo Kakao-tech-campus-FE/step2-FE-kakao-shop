@@ -1,15 +1,8 @@
-import './App.css';
+import "./App.css";
+import ComponentTest from "./pages/ComponentTest";
 
 function App() {
-  return (
-    <div>
-      <header>
-      </header>
-      <body>
-
-      </body>
-    </div>
-  );
+  return <ComponentTest />;
 }
 
 export default App;
