@@ -45,12 +45,29 @@
 <br /><br /><br />
 
 ### **디렉토리 구조**
--public
--src
---apis
---components
---hooks
---pages
---redux
---styles
---utils
+```
+├── public
+│
+└── src
+    │
+    ├── apis
+    │
+    │
+    ├── components
+    │
+    │
+    ├── hooks
+    │
+    │
+    ├── pages
+    │
+    │
+    ├── redux
+    │
+    │
+    ├── styles
+    │
+    │
+    ├── utils
+```
+
