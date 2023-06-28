@@ -1,0 +1,13 @@
+.breadcrumb-table {
+  display: flex;
+  align-items: baseline;
+}
+
+.breadcrumb-table span {
+  margin: 0 1rem;
+}
+
+.breadcrumb-table button {
+  margin: 0 1rem;
+  padding: .5rem;
+}

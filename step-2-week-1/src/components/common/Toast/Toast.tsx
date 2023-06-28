@@ -53,11 +53,11 @@ const Toast: FC<ToastProps> = ({
       }`}
       ref={toastRef}
     >
-      <img src={`/toast/${type}.svg`} alt="" />
+      <img src={`/toast/${type}.svg`} alt="alert" />
       <div className="title">{title}</div>
       <div className="message">{message}</div>
       <button onClick={closeEvent}>
-        <img src="/multiply.svg" alt="" />
+        <img src="/multiply.svg" alt="close" />
       </button>
     </div>
   );
