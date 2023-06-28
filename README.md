@@ -107,7 +107,8 @@
 
 ## ✅**디렉터리 구조**
 
-![Alt text](image.png)
+![image](https://github.com/Kakao-tech-campus-FE/Step-2.-Week-1/assets/56586470/26e9351c-2e49-4b24-a463-45a710543ff2)
+
 | 폴더명 | 역할 |
 | ----- | ----- |
 | public | 컴파일이 필요 없는 파일 |
