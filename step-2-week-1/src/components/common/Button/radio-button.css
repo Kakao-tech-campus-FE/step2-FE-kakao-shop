@@ -1,0 +1,13 @@
+.radio-button input {
+  display: none;
+}
+
+.radio-button label {
+  display: inline-block;
+  padding: 1rem 0.5rem;
+}
+
+.radio-button input:checked + label {
+  background-color: #0038FF;
+  color: white;
+}
