@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-interface BreadcrumbProps {
+export interface BreadcrumbProps {
   title: string;
   link: string;
 }

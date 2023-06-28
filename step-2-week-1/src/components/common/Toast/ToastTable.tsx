@@ -1,6 +1,6 @@
-import Toast, { ToastProps } from "@/components/common/Toast";
+import Toast, { ToastProps } from "@/components/common/Toast/Toast";
 import { FC } from "react";
-import "@/components/common/toast-table.css";
+import "@/components/common/Toast/toast-table.css";
 
 interface ToastTableProps {
   toasts: ToastProps[];

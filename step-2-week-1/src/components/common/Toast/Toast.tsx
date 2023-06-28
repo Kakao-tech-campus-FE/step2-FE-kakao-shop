@@ -3,11 +3,10 @@ import {
   useCallback,
   useEffect,
   useInsertionEffect,
-  useReducer,
   useRef,
   useState,
 } from "react";
-import "@/components/common/toast.css";
+import "@/components/common/Toast/toast.css";
 
 export interface ToastProps {
   title: string;

@@ -1,3 +1,4 @@
+import BreadcrumbPage from "@/pages/Breadcrumb";
 import Toast from "@/pages/Toast";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -9,6 +10,10 @@ const router = createBrowserRouter([
   {
     element: <Toast />,
     path: "/toast",
+  },
+  {
+    element: <BreadcrumbPage />,
+    path: "/breadcrumb",
   },
 ]);
 
