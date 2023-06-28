@@ -1,8 +1,8 @@
-# Step-2.-Week-1
-
 카카오 테크 캠퍼스 2단계 - FE - 1주차 클론 과제 </br>
-카카오 쇼핑하기
-</br>
+**카카오 쇼핑하기**
+<details>
+<summary>Step-2.-Week-1</summary>
+<div>
 </br>
 
 ## ✅**과제 1.**
