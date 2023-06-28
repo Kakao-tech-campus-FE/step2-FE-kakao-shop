@@ -3,10 +3,12 @@ import CheckList from './components/common/CheckList';
 import Toast from './components/common/Toast';
 import LinkBtn from './components/common/LinkBtn';
 import BreadCrumb from './components/common/BreadCrumb';
+import Toggle from './components/common/Toggle';
+import { styled } from 'styled-components';
 
 function App() {
   return (
-    <div className="App">
+    <Wrap>
       Home
       <h1>체크리스트</h1>
       <CheckList names={['test1', 'test2']} axis="column" />
@@ -21,8 +23,14 @@ function App() {
       <h1>브레드크럼</h1>
       <BreadCrumb />
       <LinkBtn to="./products" content="상품 페이지" />
-    </div>
+      <h1>토글</h1>
+      <Toggle title="토글" color="yellow" />
+    </Wrap>
   );
 }
 
 export default App;
+
+const Wrap = styled.div`
+  padding: 20px;
+`;
