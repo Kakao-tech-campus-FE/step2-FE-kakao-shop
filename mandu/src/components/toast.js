@@ -5,12 +5,18 @@ import {useEffect} from "react";
 function Toast({isOpen, setOpen, message, delay, hasProgressBar = true}) {
     useEffect(
         () => {
+            let timer;
             if (isOpen) {
-                setTimeout(
+                timer = setTimeout(
                     () => {
                         setOpen(false);
                     }, delay
                 )
+            }
+            return () => {
+                if (timer !== undefined) {
+                    clearTimeout(timer);
+                }
             }
         }, [isOpen, delay]
     )
