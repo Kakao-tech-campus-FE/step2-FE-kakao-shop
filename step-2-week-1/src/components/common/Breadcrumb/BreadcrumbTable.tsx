@@ -25,7 +25,7 @@ const BreadcrumbTable: FC<BreadcrumbTableProps> = ({ crumbs }) => {
         </div>
       ))}
       <button onClick={copy}>
-        <img src="/breadcrumb/copy.svg" alt="copy" />
+        <img src="/copy.svg" alt="copy" />
       </button>
     </div>
   );
