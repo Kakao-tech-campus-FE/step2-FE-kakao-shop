@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Toast from "./components/Toast";
+import Carousel from "@components/Carousel";
+import CheckList from "@components/CheckList";
 
 type Type = "success" | "error" | "warning";
 
@@ -23,7 +25,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div>
       <Toast toastList={toastList} setToastList={setToastList} />
       <button onClick={() => onClick("success", "This is a success toast.")}>
         Success 토스트
@@ -34,6 +36,7 @@ function App() {
       <button onClick={() => onClick("warning", "This is a warning toast.")}>
         Warning 토스트
       </button>
+      <CheckList />
     </div>
   );
 }
