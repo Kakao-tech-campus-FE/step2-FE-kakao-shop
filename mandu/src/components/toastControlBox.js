@@ -27,14 +27,14 @@ function ToastControlBox() {
                        );
                    }}
             />
-            <button
-                onClick={() => {
-                    if (toastMessage === '' || toastMessage === null || toastMessage === undefined) {
-                        alert('토스트 메세지 내용을 입력해주세요');
-                        return;
-                    }
-                    setShowToast((value) => !value);
-                }}
+            <button className="submit-btn"
+                    onClick={() => {
+                        if (toastMessage === '' || toastMessage === null || toastMessage === undefined) {
+                            alert('토스트 메세지 내용을 입력해주세요');
+                            return;
+                        }
+                        setShowToast((value) => !value);
+                    }}
             >Toast!
             </button>
             <Toast isOpen={showToast} setOpen={setShowToast} message={toastMessage} delay={delay}/>

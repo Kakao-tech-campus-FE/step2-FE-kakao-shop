@@ -21,10 +21,10 @@ function BreadcrumbControlBox() {
                     : <Breadcrumb items={breadcrumbList}/>
                 }
             </div>
-            <button
-                onClick={() => {
-                    setBreadcrumbList([]);
-                }}>🔥 모두 삭제
+            <button className="submit-btn"
+                    onClick={() => {
+                        setBreadcrumbList([]);
+                    }}>🔥 모두 삭제
             </button>
             <input type="text" placeholder="breadcrumb에 추가할 아이탬"
                    style={{width: '200px', padding: '10px', margin: '8px'}}
@@ -36,15 +36,15 @@ function BreadcrumbControlBox() {
                        );
                    }}
             />
-            <button
-                onClick={() => {
-                    if (newBreadcrumbItem === '' || newBreadcrumbItem === null || newBreadcrumbItem === undefined) {
-                        alert('아이탬 내용을 입력해주세요');
-                        return;
-                    }
-                    setBreadcrumbList((value) => [...value, newBreadcrumbItem]);
+            <button className="submit-btn"
+                    onClick={() => {
+                        if (newBreadcrumbItem === '' || newBreadcrumbItem === null || newBreadcrumbItem === undefined) {
+                            alert('아이탬 내용을 입력해주세요');
+                            return;
+                        }
+                        setBreadcrumbList((value) => [...value, newBreadcrumbItem]);
 
-                }}
+                    }}
             >🎨 추가!
             </button>
         </div>
