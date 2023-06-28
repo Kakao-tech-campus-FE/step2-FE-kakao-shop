@@ -66,7 +66,7 @@ README.md의 예시 형식입니다. 아래를 참고해 작성해주세요.
 <div align="center">
   
 ![image](https://github.com/Kakao-tech-campus-FE/Step-2.-Week-1/assets/67001905/d19efe0e-c90f-4f18-b669-5ad63be14b25)
-
+  
 </div>
 
 | 디렉터리 명   | 기능 |
