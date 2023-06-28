@@ -124,7 +124,6 @@ README.md의 예시 형식입니다. 아래를 참고해 작성해주세요.
 ### 디렉터리 구조
 
 ```
-src
 
 - /apis     : http 요청
 - /assets   : 폰트
@@ -132,6 +131,9 @@ src
 - /hooks
 - /pages
 - /utils : 날짜 변환 모듈, text converting
+- /styles
+- /DTO
+- /Routes
 - App.js
 - index.js
 ```
