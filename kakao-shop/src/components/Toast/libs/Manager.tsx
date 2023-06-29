@@ -1,6 +1,6 @@
 import type { FunctionComponent, ReactNode, ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { useTimeout } from "~/hooks/commons";
+import { useTimeout } from "../../../hooks";
 import type { Options, Toast } from "./types";
 
 const Manager = ({
@@ -19,12 +19,12 @@ const Manager = ({
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   useEffect(() => {
-    bind((content, options) =>
-      setToasts((old) => [
-        ...old,
-        { id: `${new Date().getTime()}`, content, options },
-      ])
-    );
+    bind((content, options) => {
+      setToasts((old) => {
+        if (old.length >= 3) return old;
+        return [...old, { id: `${new Date().getTime()}`, content, options }];
+      });
+    });
   }, [bind]);
 
   return (
@@ -36,11 +36,11 @@ const Manager = ({
           <DoAfterDuration
             key={id}
             options={options}
-            onDelayedAfterDone={() =>
+            onDelayedAfterDone={() => {
               setToasts((oldToasts) =>
                 oldToasts.filter((toast) => toast.id !== id)
-              )
-            }
+              );
+            }}
           >
             {({ done }) => (
               <ToastItem options={options} isShow={!done}>
@@ -60,7 +60,6 @@ const DoAfterDuration = ({
   options,
   children,
   onDelayedAfterDone,
-  onDone,
 }: {
   options: Options;
   children: (options: { done: boolean }) => ReactElement;
@@ -71,7 +70,6 @@ const DoAfterDuration = ({
 
   useTimeout(() => {
     setDone(true);
-    onDone?.();
     setTimeout(() => {
       onDelayedAfterDone?.();
     }, options.delay);

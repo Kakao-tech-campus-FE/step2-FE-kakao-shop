@@ -6,11 +6,13 @@ interface Props {
   isShow: boolean;
 }
 
-const DefaultToastItem: FunctionComponent<Props> = ({ children, isShow }) => (
-  <Container style={{ opacity: isShow ? 1 : 0 }}>{children}</Container>
-);
+export const DefaultToastItem: FunctionComponent<Props> = ({
+  children,
+  isShow,
+}) => <Container style={{ opacity: isShow ? 1 : 0 }}>{children}</Container>;
 
 const Container = styled.div`
   position: relative;
   display: flex;
   width: 450px;
+`;
