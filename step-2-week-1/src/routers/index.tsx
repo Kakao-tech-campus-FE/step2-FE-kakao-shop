@@ -2,6 +2,7 @@ import BreadcrumbPage from "@/pages/Breadcrumb";
 import CarouselPage from "@/pages/Carousel";
 import RadioButtonPage from "@/pages/RadioButton";
 import Toast from "@/pages/Toast";
+import TogglePage from "@/pages/Toggle";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     element: <RadioButtonPage />,
     path: "/radio-button",
+  },
+  {
+    element: <TogglePage />,
+    path: "/toggle",
   },
 ]);
 
