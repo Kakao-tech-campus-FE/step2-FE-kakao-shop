@@ -49,7 +49,7 @@
 - 기능 상세 설명 : 결제 금액, 주문한 상품 목록, 배송 예정 일자 등의 정보를 제공한다.
 - 인터페이스 요구사항 : 주문한 상품 목록을 클릭하면 해당 상품의 상세페이지로 이동한다.
 
-#디렉터리 구조
+#디렉터리 구조  
 my-app  
 ├── node_modules  
 ├── public  
@@ -58,7 +58,7 @@ my-app
 ├── package.json  
 └── README.md  
 
-src
+src  
  ├─ components  
  ├─ assets  
  ├─ hooks (= hoc)  
