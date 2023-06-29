@@ -2,6 +2,7 @@ import Radio from "../components/RadioButton/Radio";
 import Toggle from "../components/Toggle/Toggle";
 import CheckList from "../components/CheckList/CheckList";
 import React, { useState } from "react";
+import ProcessBar from "../components/ProcessBar/processBar";
 
 class CheckListProps {
   static title = "To Do List";
@@ -19,6 +20,7 @@ const ComponentTest = () => {
         checkedItemNum={checkedItemNum}
         setCheckedItemNum={setCheckedItemNum}
       />
+      <ProcessBar />
       <Toggle />
       <Radio />
       <div>컴포넌트 테스트 페이지</div>
