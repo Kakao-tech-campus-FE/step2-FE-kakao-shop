@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import styled from 'styled-components';   
 
 const Box = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   display: flex;
-  width: 300px;
+  align-items: center;
+  width: 500px;
+  height: 50px;
 	background-color: black;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 5px 15px;
 `;
 
 const Content = styled.span`       
 	color: white;
+  font-size: 1rem;
 `;
 
 const Undo = styled.div`

@@ -74,8 +74,7 @@ const Carousel = () => {
   }
 
   const jump = (num) => {
-    const fucn = () => setCount(num)
-    return fucn
+    return (() => setCount(num))
   }
   
   return (
