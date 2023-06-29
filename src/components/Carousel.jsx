@@ -48,7 +48,7 @@ const PageBox = styled.div`
   z-index: 3;
 `;
 
-const Page = styled.div`
+const PageIcon = styled.div`
   margin: auto;
   width: 0.4rem;
   height: 0.4rem;
@@ -59,22 +59,22 @@ const Page = styled.div`
 
 const Carousel = () => {
   // const [flow, setFlow] = useState(false)
-  const [count, setCount] = useState(1)
+  const [page, setPage] = useState(1)
 
   const prev = () => {
-    if (count > 1) {
-      setCount(count - 1)
+    if (page > 1) {
+      setPage(page - 1)
     } 
   }
 
   const next = () => {
-    if (count < banners.length) {
-      setCount(count + 1)
+    if (page < banners.length) {
+      setPage(page + 1)
     } 
   }
 
   const jump = (num) => {
-    return (() => setCount(num))
+    return (() => setPage(num))
   }
   
   return (
@@ -83,28 +83,28 @@ const Carousel = () => {
 
         <PageBox>
           {banners.map((e, index) => {
-            var page = index + 1;
+            var count = index + 1;
             return (
-              <Page key={e} onClick={jump(page)} 
+              <PageIcon key={e} onClick={jump(count)} 
                 style={count === page ? {opacity:"1"} : null}>
-              </Page>
+              </PageIcon>
             );
           })}
         </PageBox>
 
-        <Content style={ {transform: `translateX(${-500 * (count - 1)}px)`} }>
+        <Content style={ {transform: `translateX(${-500 * (page - 1)}px)`} }>
           {banners.map((element, i) => {
               return <img src={element} style={ {width:"500px"} } />;
           })}
         </Content>
 
-        {count > 1 
+        {page > 1 
         ? <Prev onClick={prev}>
             <FontAwesomeIcon icon={faAngleLeft} style={ {color:'white'} }/>
           </Prev> 
         : null}
 
-        {count < banners.length
+        {page < banners.length
         ? <Next onClick={next}> 
             <FontAwesomeIcon icon={faAngleRight} style={ {color:'white'} }/> 
           </Next> 

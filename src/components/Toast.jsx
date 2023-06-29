@@ -37,7 +37,7 @@ const hidden = {
 
 const Toast = () => {
   const [show, setShow] = useState(false)
-  const [val, setVal] = useState(false)
+  const [isUndo, setIsUndo] = useState(false)
 
   const popUp = () => {
     setShow(true)
@@ -51,7 +51,7 @@ const Toast = () => {
   }, 10000)
   
   const undo = () => {
-    setVal(true)
+    setIsUndo(true)
   }
 
   return (
@@ -68,7 +68,7 @@ const Toast = () => {
           </Undo>
         </Box>
 
-        <p> {val ? "실행취소" : null}</p>
+        <p> {isUndo ? "실행취소" : null}</p>
       </div>
     </>
   )

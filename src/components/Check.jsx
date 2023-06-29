@@ -17,6 +17,11 @@ const ProductImg = styled.div`
   margin: 0 10px;
 `;
 
+const Buy = styled.button`
+  
+`
+
+
 const initProducts = [
     {
       name: '상품1',
@@ -32,18 +37,21 @@ const initProducts = [
     },
   ];
 
+
+
 const Check = () => {
 
   const [list, setList] = useState(initProducts);
 
-  function toggledItem (obj) {
-    const newObj = obj;
-    newObj.buy = obj.buy ? false : true;
+  const toggledItem = (obj) => {
+    const newObj = { ...obj };
+    newObj.buy = newObj.buy ? false : true;
     console.log(newObj)
     return newObj
   };
 
   const toggle = (index) => {
+    setIsDone(false)
     setList(prevList => 
       prevList.map((item, idx) => 
         idx === index ? toggledItem(item) : item
@@ -51,6 +59,22 @@ const Check = () => {
     )
   };
   
+  const [isDone, setIsDone] = useState(false)
+
+  const buy = () => {
+    setIsDone(true)
+  }
+
+  const buylist = () => {
+    const arr = Array();
+    for (const item of list){
+      if (item.buy) {
+        arr.push(item.name)
+      }
+    }
+    return arr.join()
+  }
+
   return (
     <>
       {initProducts.map((item, i) => (
@@ -62,9 +86,8 @@ const Check = () => {
         )
       )}
       
-      {list.map((item, i) => 
-        (<p>{item.buy ? item.name : null}</p>)
-      )}
+      <Buy onClick={buy}>주문하기</Buy>
+      <p>{isDone ? buylist() : null}</p>
     </>
   )
 }

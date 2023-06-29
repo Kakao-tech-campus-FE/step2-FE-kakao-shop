@@ -1,26 +1,18 @@
 .App {
   text-align: center;
+  font-family: 'Pretendard';
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('./font/PretendardVariable.ttf');
+  font-weight: 400;
+  font-style: normal;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-.toast {
-  height: 100px;
-  background-color: #f1f1f1;
-	box-shadow: 0px 0px 5px rgb(199, 199, 199);
-	border-radius: 10px;
-  text-align: center;
-}
-
-.toast-header {
-  height: 50%;
-}
-
-.toast-body {
-  height: 50%;
 }
 
 @media (prefers-reduced-motion: no-preference) {

@@ -41,7 +41,7 @@ const Toggle = () => {
 
     return (
         <Container>
-            <Box style={ {backgroundColor: on ? 'skyblue' : null} }>
+            <Box onClick={toggle} style={ {backgroundColor: on ? 'skyblue' : null} }>
                 <Switch onClick={toggle}  
                 style={ {transform: `translateX(${on ? 0 : 30}px)`} }></Switch>
             </Box>
