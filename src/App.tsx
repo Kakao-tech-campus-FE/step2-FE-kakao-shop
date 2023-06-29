@@ -2,6 +2,7 @@ import { useState } from "react";
 import Toast from "./components/Toast";
 import Carousel from "@components/Carousel";
 import CheckList from "@components/CheckList";
+import Toggle from "@components/Toggle";
 
 type ToastData = {
   id: number;
@@ -34,6 +35,7 @@ function App() {
       <button onClick={() => onClick("warning", "This is a warning toast.")}>
         Warning 토스트
       </button>
+      <Toggle />
       <CheckList />
       <Carousel />
     </div>
