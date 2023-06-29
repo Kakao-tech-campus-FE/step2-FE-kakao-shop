@@ -1,8 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-const Toast = ({ text }) => {
-    const [toast, setToast] = useState(false);
-
+const Toast = ({ text, color, setToast }) => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setToast(false);
@@ -14,8 +12,8 @@ const Toast = ({ text }) => {
     }, [setToast]);
     
     return (
-        <div>
-            <p>{text}</p>
+        <div className="toast-container" {...{color}}>
+            <p className="toast-message" {...{color}}>{text}</p>
         </div>
     );
 };
