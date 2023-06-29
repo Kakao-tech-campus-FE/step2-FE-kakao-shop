@@ -122,3 +122,64 @@
 | 입력 | 출력 |
 |-|-|
 | 마이페이지 버튼 드롭다운 메뉴 (MY 쇼핑, 찜한 상품, 기프트 카드, 쿠폰함, 로그아웃)  | 메뉴 선택 시 마이페이지의 해당 하위 페이지로 이동  |
+
+
+- - -
+
+#### *디렉토리 구조*
+
+``
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── APP.js
+│   ├── assets/
+│   │    ├── images/
+│   │    └── css/
+│   ├── components/
+│   │    ├── Toast/
+│   │    ├── CheckList/
+│   │    ├── Toggle/
+│   │    ├── Radio/
+│   │    ├── BreadCrumb/
+│   |    └── Carousel/
+│   ├── pages/
+│   │   ├── MainPage/
+│   │   |     ├── mainpage.js 
+|   │   |     └── mainpage.css
+|   │   ├── SpecialExhibition/
+│   │   |     ├── special_exhibition.js 
+|   │   |     └── special_exhibition.css
+|   │   ├── SearchPage/
+│   │   |     ├── SearchPage.js 
+|   │   |     └── SearchPage.css
+|   │   ├── ProductDetails/
+│   │   |     ├── ProductDetails.js 
+|   │   |     └── ProductDetails.css
+|   │   ├── OrderProductCheck/
+│   │   |     ├── OrderProductCheck.js 
+|   │   |     └── OrderProductCheck.css
+|   │   ├── CartPage/
+│   │   |     ├── CartPage.js 
+|   │   |     └── CartPage.css
+|   │   ├── OrderPage/
+│   │   |     ├── OrderPage.js 
+|   │   |     └── OrderPage.css
+|   │   ├── OrderComplete/
+│   │   |     ├── OrderComplete.js 
+|   │   |     └── OrderComplete.css
+|   │   ├── LoginPage/
+│   │   |     ├── LoginPage.js 
+|   │   |     └── LoginPage.css
+|   │   └── MyPage/
+│   │         ├── MyPage.js 
+|   │         └── MyPage.css
+|   ├── index.js
+|   └── index.css
+| 
+| 
+├── .gitignore
+├── package.json
+└── README.md
+``
