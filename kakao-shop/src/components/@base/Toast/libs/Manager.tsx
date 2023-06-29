@@ -1,6 +1,6 @@
 import type { FunctionComponent, ReactNode, ReactElement } from "react";
 import { useEffect, useState } from "react";
-import { useTimeout } from "../../../hooks";
+import { useTimeout } from "../../../../hooks";
 import type { Options, Toast } from "./types";
 
 const Manager = ({

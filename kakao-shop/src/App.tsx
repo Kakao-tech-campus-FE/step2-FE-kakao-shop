@@ -1,6 +1,9 @@
 import type { ReactNode } from "react";
 import styled from "@emotion/styled";
-import { Toast } from "./components";
+import { Toast } from "./components/@base";
+import Checkbox from "./components/@base/CheckBox";
+import CheckBoxItem from "./components/@molecules/CheckBoxItem";
+import Pay from "./components/domains/Pay";
 
 function App() {
   const handleSomething = () => {
@@ -9,42 +12,7 @@ function App() {
 
   return (
     <div>
-      <S.Button
-        onClick={() => {
-          // 1. ReactElement를 넘길 수도 있고,
-          Toast.show(
-            <ToastContent onClick={handleSomething}>
-              옵션을 먼저 선택해주세요.
-            </ToastContent>
-          );
-        }}
-      >
-        open modal
-      </S.Button>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
+      <Pay.Agree />
     </div>
   );
 }
