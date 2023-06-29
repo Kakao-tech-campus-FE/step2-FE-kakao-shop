@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <div className='App'>
-      {isVisible && <Toast>toast</Toast>}
+      {isVisible && <Toast position='bottom-left'>toast</Toast>}
       <button type='button' onClick={handleToastButtonClick}>
         Toast Button
       </button>
