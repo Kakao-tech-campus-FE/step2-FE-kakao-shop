@@ -166,12 +166,12 @@
 
 <br />
 
-  # 디렉터리 구조
+# 디렉터리 구조
 <img alt="디렉터리 구조1" src="./readme/디렉터리구조_1.png" width=300px>
 
 
 디렉터리|역할
--|-
+:-:|:-:
 node_modules|npm 패키지
 public|non-compile 대상
 readme|README.md
@@ -180,7 +180,7 @@ src|compile 대상
 <img alt="디렉터리 구조2" src="./readme/디렉터리구조_2.png" width=300px>
 
 디렉터리|역할
--|-
+:-:|:-:
 apis|API
 assets|미디어
 components|컴포넌트
@@ -188,3 +188,46 @@ hooks|커스텀 훅
 pages|라우팅 페이지
 styles|CSS
 utils|유틸리티(상수, 함수 등)
+
+<br />
+
+# UI 컴포넌트
+
+### 기초 UI 컴포넌트
+
+명칭|형태|설명
+:-:|:-:|:-:
+button|<img alt="" src="./readme/Button.png" width=150px>|클릭
+text field|<img alt="" src="./readme/TextField.png" width=200px>|문자열 입력
+toggle|<img alt="" src="./readme/Toggle.png" width=200px>|ON/OFF 선택
+raido button|<img alt="" src="./readme/RadioButton.png" width=200px>|하나만 선택
+checkbox|<img alt="" src="./readme/Checkbox.png" width=200px>|복수 선택
+alert|<img alt="" src="./readme/Alert_1.png" width=200px><br /><img alt="" src="./readme/Alert_2.png" width=200px>|메시지 표시,<br />상호작용 후 종료
+
+### 사용 UI 컴포넌트
+
+명칭|형태|설명
+:-:|:-:|:-:
+toast|<img alt="" src="./readme/Toast.png" width=200px>|일시적인 메시지<br />작게 하단 표시
+dropdown<br />menu|<img alt="" src="./readme/DropdownMenu.png" width=200px>|클릭 시 메뉴
+carousel|<img alt="" src="./readme/Carousel.png" width=200px>|목록 수평 회전
+indicator|<img alt="" src="./readme/Indicator.png" width=250px>|목록 현재 위치 
+card|<img alt="" src="./readme/Card.png" width=200px>|정보 모음
+stepper|<img alt="" src="./readme/Stepper.png" width=150px>|숫자 증감
+
+### 추가 UI 컴포넌트
+
+명칭|형태|설명
+:-:|:-:|:-:
+accordion|<img alt="" src="./readme/Accordion_1.png" width=250px><br /><img alt="" src="./readme/Accordion_2.png" width=250px>|토글
+badge|<img alt="" src="./readme/Badge.png" width=200px>|부가 설명
+breadcrumb|<img alt="" src="./readme/Breadcrumb.png" width=200px>|페이지 경로
+
+### cf. popup
+
+구분|차이
+:-:|:-:
+window|새 창
+system<br />(alert/comfirm/prompt)|브라우저 제공
+layer<br />(modal/modaless)|레이어 덧씌우기
+toast|상호작용X
