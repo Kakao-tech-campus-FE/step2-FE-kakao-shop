@@ -48,10 +48,6 @@
   background-color: #007bff;
 }
 
-.toggle input:focus + label .slider {
-  box-shadow: 0 0 1px #007bff;
-}
-
 .toggle input:checked + label .slider::before {
   transform: translateX(2rem);
 }

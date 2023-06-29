@@ -10,4 +10,11 @@
 .breadcrumb-table button {
   margin: 0 1rem;
   padding: .5rem;
+  transition: all .2s;
+}
+
+.breadcrumb-table button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #007bffaa;
+  border-radius: .5rem;
 }
