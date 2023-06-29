@@ -54,28 +54,29 @@ my-app
 ├── node_modules  
 ├── public  
 ├── src  
-    ├─ components  
-    ├─ assets  
-    ├─ hooks (= hoc)  
-    ├─ pages  
-    ├─ constants  
-    ├─ config  
-    ├─ styles  
-    ├─ services (= api)  
-    ├─ utils  
-    ├─ contexts  
-    ├─   App.js  
-    └─ index.js  
 ├── .gitignore  
 ├── package.json  
 └── README.md  
 
-node_modules : 현재 프로젝트에 포함된 라이브러리들이 설치되어 있는 폴더로 보통 깃과 같은 저장소에 올릴 때는 이 폴더를 함께 올리지 않습니다.  
+src
+ ├─ components  
+ ├─ assets  
+ ├─ hooks (= hoc)  
+ ├─ pages  
+ ├─ constants  
+ ├─ config  
+ ├─ styles  
+ ├─ services (= api)  
+ ├─ utils  
+ ├─ contexts  
+ ├─   App.js  
+ └─ index.js  
+
+node_modules : 현재 프로젝트에 포함된 라이브러리들이 설치된 폴더로 깃과 같은 저장소에 올릴 때는 이 폴더를 함께 올리지 않습니다.  
 public : index.html과 같은 정적 파일이 포함되는 곳으로 컴파일이 필요 없는 파일들이 위치하는 폴더입니다.  
-src :	리액트 내부에서 작성하는 거의 모든 파일들이 이 폴더 내부에서 작성되며 이 폴더에 있는 파일들은 명령어에 따라 JS로 컴파일이 진행됩니다.  
+src :	리액트 내부에서 작성하는 거의 모든 파일들이 이 폴더 내부에 작성되며 이 폴더에 있는 파일들은 명령어에 따라 JS로 컴파일이 진행됩니다.  
 .gitignore : 깃에 포함하고 싶지 않은 파일의 이름 혹은 폴더등을 입력하는 파일입니다.  
-package.json : 프로젝트에 관련된 기본적인 내용(프로젝트의 이름, 버전 등)과 라이브러리들 목록이 포함되어 있습니다. 라이브러리가 설치된 node_modules 대신에 이 package.json을 깃에 포함하여 올리게 되며  
-후에 누군가가 프로젝트를 클론할 때 이 package.json에 적혀있는 라이브러리의 목록을 기준으로 npm에서 설치하게 됩니다.  
+package.json : 프로젝트에 관련된 기본적인 내용(프로젝트의 이름, 버전 등)과 라이브러리들 목록이 포함되어 있습니다. 라이브러리가 설치된 node_modules 대신에 이 package.json을 깃에 포함하여 올리게 되며 후에 누군가가 프로젝트를 클론할 때 이 package.json에 적혀있는 라이브러리의 목록을 기준으로 npm에서 설치하게 됩니다.  
 README.md	: 보통 깃과 같은 저장소에 올릴 때 프로젝트에 대한 설명을 작성하는곳으로 해당 저장소에 진입하면 가장 먼저 띄워집니다.  
   
 components : 재사용 가능한 컴포넌트들이 위치하는 폴더입니다. 컴포넌트는 많아질 수 있기 때문에 이 폴더 내부에서 하위폴더로 추가로 분류하는 경우가 많습니다.  
