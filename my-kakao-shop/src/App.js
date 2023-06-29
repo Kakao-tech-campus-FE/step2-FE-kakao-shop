@@ -1,22 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
-import Test from "./components/Test";
 import Toast from "./components/Toast";
-import RadioSet from "./components/RadioButtons";
 import RadioButtons from "./components/RadioButtons";
 import ToggleButton from "./components/ToggleButton";
 import Carousel from "./components/Carousel";
 import Accordion from "./components/Accordion";
-import accordion from "./components/Accordion";
 import {useState} from "react";
+import CheckList from "./components/CheckList";
+import Breadcrumb from "./components/Breadcrumb";
 function App() {
     const [isToggled, setIsToggled] = useState(false);
+
+    const [agreeCheckList, setAgreeCheckList] = useState([
+        {label: "이용약관 동의", checked: false},
+        {label: "개인정보 수집 및 이용 동의", checked: false},
+    ]);
+
 
   return (
     <div className="App">
         {/*<div className="test-container">*/}
         {/*    <Test/>*/}
         {/*</div>*/}
+        <span className={"check-test"}></span>
         <Carousel images={[
             "https://ssl.pstatic.net/melona/libs/1446/1446115/64d1befa4f25f5e6bc7f_20230628162103835.jpg",
             "https://ssl.pstatic.net/melona/libs/1446/1446871/737820e7320cff453d40_20230616170502750.PNG",
@@ -34,6 +39,15 @@ function App() {
         <ToggleButton isToggled={isToggled} setIsToggled={setIsToggled}/>
 
         <Toast title={"Toast Title"} message={"Toast Message"} time={3000} toggle={isToggled}/>
+        <CheckList checkList={agreeCheckList} setCheckList={setAgreeCheckList}/>
+
+        <Breadcrumb path={
+            [
+                {label: "daum", link: "https://www.daum.net/"},
+                {label: "kakao", link: "https://www.kakaocorp.com/page/"},
+                {label: "Product", link: "https://store.kakao.com/"},
+            ]
+        }/>
     </div>
   );
 }

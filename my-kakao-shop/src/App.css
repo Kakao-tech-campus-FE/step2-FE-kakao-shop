@@ -177,6 +177,7 @@
   cursor: pointer;
   z-index: 4;
   opacity: 0.6;
+  font-size: 1.4em;
 }
 
 .carousel-button-left {
@@ -198,7 +199,6 @@
 .accordion {
   width: 100%;
   border: 1px solid #333;
-  border-radius: 5px;
   display: flex;
   flex-direction: column;
 }
@@ -241,4 +241,44 @@
     padding: 0;
     overflow: hidden;
     transition: height 0.2s ease-in-out, padding 0.2s ease-in-out;
+}
+
+.check-list-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+
+.check-list-item {
+  user-select: none;
+}
+
+.breadcrumb {
+  font-size: 1.4em;
+  padding: 0.3em;
+  background-color: #333;
+  color: #fff;
+  width: 100%;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.breadcrumb a {
+  color: #88f;
+  text-decoration-line: underline;
+}
+
+.breadcrumb a:hover {
+  color: #aaf;
+  text-decoration-line: none;
+}
+
+li {
+  list-style-type: none;
 }

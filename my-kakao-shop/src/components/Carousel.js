@@ -37,7 +37,7 @@ const Carousel = ({images}) => {
             <div className="carousel-images">
                 {images.map((image, index) => {
                     return (
-                        <CarouselSlide image={image} slideState={slideState(index)}/>
+                        <CarouselSlide key={index} image={image} slideState={slideState(index)}/>
                     );
                 })}
             </div>
