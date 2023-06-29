@@ -1,16 +1,27 @@
 import React, { useState } from "react";
-import { styled } from "styled-components";
+import { styled, css } from "styled-components";
+
+type Background = {
+  offColor: string;
+  onColor: string;
+};
 
 interface CheckedProps {
   checked: boolean;
 }
-const Toggle = () => {
+
+interface Props {
+  background: Background;
+}
+
+const Toggle = ({ background }: Props) => {
   const [isChecked, setIsChecked] = useState(false);
 
   return (
     <Wrapper>
       <Check
         checked={isChecked}
+        background={background}
         onClick={() => {
           setIsChecked((prev) => !prev);
         }}
@@ -27,11 +38,11 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const Check = styled.div<CheckedProps>`
+const Check = styled.div<CheckedProps & Props>`
   width: 5em;
   height: 2em;
-  background-color: ${({ checked }) =>
-    checked ? "rgb(0, 200, 102)" : "rgb(233, 233, 234)"};
+  background-color: ${({ checked, background }) =>
+    checked ? background.onColor : background.offColor};
   border-radius: 2em;
   position: relative;
   cursor: pointer;
@@ -49,5 +60,5 @@ const Check = styled.div<CheckedProps>`
     transform: ${({ checked }) =>
       checked ? "translateX(calc(3em - 2px))" : "translateX(0)"};
   }
-  }
+};
 `;

@@ -35,7 +35,12 @@ function App() {
       <button onClick={() => onClick("warning", "This is a warning toast.")}>
         Warning 토스트
       </button>
-      <Toggle />
+      <Toggle
+        background={{
+          offColor: "rgb(233, 233, 234)",
+          onColor: "rgb(0, 200, 102)",
+        }}
+      />
       <CheckList />
       <Carousel />
     </div>
