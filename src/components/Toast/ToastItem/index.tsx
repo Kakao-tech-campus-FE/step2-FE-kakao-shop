@@ -9,6 +9,34 @@ type ToastData = {
 
 type Props = { background?: string; visible?: boolean };
 
+const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
+  const { id, message } = toastData;
+  const [visible, setVisible] = useState<boolean>(false);
+
+  useEffect(() => {
+    setVisible(true);
+    const timer = setTimeout(() => {
+      setVisible(false);
+      setTimeout(() => {
+        setToastList((prev: ToastData[]) => {
+          return prev.filter((item: ToastData) => item.id !== id);
+        });
+      }, 300);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <Toast visible={visible} background={backgroundColor}>
+      <IconWrapper>{icon}</IconWrapper>
+      {message}
+    </Toast>
+  );
+};
+
+export default ToastItem;
+
 const Toast = styled.div<Props>`
   background-color: ${({ background }) => background};
   border: 1px solid ${({ background }) => background};
@@ -37,31 +65,3 @@ const IconWrapper = styled.div`
       brightness(117%) contrast(100%);
   }
 `;
-
-const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
-  const { id, message } = toastData;
-  const [visible, setVisible] = useState<boolean>(false);
-
-  useEffect(() => {
-    setVisible(true);
-    const timer = setTimeout(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setToastList((prev: ToastData[]) => {
-          return prev.filter((item: ToastData) => item.id !== id);
-        });
-      }, 300);
-    }, 2000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <Toast visible={visible} background={backgroundColor}>
-      <IconWrapper>{icon}</IconWrapper>
-      {message}
-    </Toast>
-  );
-};
-
-export default ToastItem;
