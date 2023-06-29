@@ -1,0 +1,14 @@
+div.toast {
+    position: relative;
+    border: 1px black solid;
+}
+
+button.toast-close {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: none;
+    border: none;
+    padding: 0px;
+    color: red;
+}
