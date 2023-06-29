@@ -1,61 +1,18 @@
-import { useState } from "react";
-import Toast from "./components/Toast";
-import Carousel from "@components/Carousel";
-import CheckList from "@components/CheckList";
-import Toggle from "@components/Toggle";
-import Radio from "@components/Radio";
-
-type ToastData = {
-  id: number;
-  type: "success" | "error" | "warning";
-  message: string;
-};
+import Detail from "@pages/Detail";
+import Main from "@pages/Main";
+import Order from "@pages/Order";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
-  const [toastList, setToastList] = useState<ToastData[]>([]);
-
-  const onClick = (type: "success" | "error" | "warning", message: string) => {
-    setToastList((prev) =>
-      prev.concat({
-        id: Date.now(),
-        type,
-        message,
-      })
-    );
-  };
-
   return (
     <div>
-      <Toast toastList={toastList} setToastList={setToastList} />
-      <button onClick={() => onClick("success", "This is a success toast.")}>
-        Success 토스트
-      </button>
-      <button onClick={() => onClick("error", "This is an error toast.")}>
-        Error 토스트
-      </button>
-      <button onClick={() => onClick("warning", "This is a warning toast.")}>
-        Warning 토스트
-      </button>
-      <Toggle
-        background={{
-          offColor: "rgb(233, 233, 234)",
-          onColor: "rgb(0, 200, 102)",
-        }}
-      />
-      <Radio
-        data={{ id: "1", value: "딸기", name: "fruits", text: "딸기" }}
-        color={"#dc3545"}
-      />
-      <Radio
-        data={{ id: "2", value: "포도", name: "fruits", text: "포도" }}
-        color={"#dc3545"}
-      />
-      <Radio
-        data={{ id: "3", value: "바나나", name: "fruits", text: "바나나" }}
-        color={"#dc3545"}
-      />
-      <CheckList />
-      <Carousel />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/detail/Order" element={<Order />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
