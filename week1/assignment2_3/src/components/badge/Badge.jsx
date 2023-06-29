@@ -1,6 +1,6 @@
 const Badge = ({ text, color, fontSize = 10 }) => {
   return (
-    <span
+    <b
       style={{
         backgroundColor: color,
         color: "white",
@@ -11,7 +11,7 @@ const Badge = ({ text, color, fontSize = 10 }) => {
       }}
     >
       {text}
-    </span>
+    </b>
   );
 };
 export default Badge;
