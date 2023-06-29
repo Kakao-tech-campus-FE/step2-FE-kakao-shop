@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import "@/components/common/Button/radio-button.css";
 
 export interface RadioButtonProps {
@@ -16,7 +16,9 @@ const RadioButton: FC<RadioButtonProps> = ({
   onChange,
   checked,
 }) => {
-  const uid = Date.now().toString(36) + Math.random().toString(36).substr(2);
+  const [uid] = useState(
+    Date.now().toString(36) + Math.random().toString(36).substring(2)
+  );
 
   return (
     <div className="radio-button">
