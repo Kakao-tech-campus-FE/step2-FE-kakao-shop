@@ -1,16 +1,23 @@
 import React from 'react';
 
 import './App.css';
-import Radio from './components/radio/Radio';
 import RadioGroup from './components/radio/RadioGroup';
+import Layout from './components/layout/Layout';
+import Toggle from './components/togglebtn/ToggleBtn';
+import Badge from './components/badge/Badge';
 
 const App = () => {
     return (
         <div className="app">
-            <div className="app-header">
-            <p>Hello world!</p>
-            <RadioGroup label={'Radio Button'}/>
-            </div>
+            <Layout children={
+                <div className="app-header">
+                    <span>Hello world!</span>
+                    <Badge text={"New!"} color={"gray"}/>
+                    <RadioGroup/>
+                    <Toggle/>
+                </div>
+            }> 
+            </Layout>
         </div>
     );
 }
