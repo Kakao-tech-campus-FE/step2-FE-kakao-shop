@@ -1,7 +1,7 @@
 # 페이지 구성
 
 ### 회원 가입
-<img alt="회원 가입" src="./public/readme/회원가입.png" width=500px>
+<img alt="회원 가입" src="./readme/회원가입.png" width=500px>
 
 - **핵심기능**
   - 서비스 가입을 위한 회원 가입
@@ -18,7 +18,7 @@
   - 출력 : 로그인 페이지
 
 ### 로그인
-<img alt="로그인" src="./public/readme/로그인.png" width=500px>
+<img alt="로그인" src="./readme/로그인.png" width=500px>
 
 - **핵심기능**
   - 서비스 사용을 위한 로그인
@@ -45,8 +45,8 @@
   - 출력 : 메인 페이지
 
 ### GNB
-<img alt="GNB_로그인" src="./public/readme/GNB_1.png" width=500px><br />
-<img alt="GNB_로그아웃" src="./public/readme/GNB_2.png" width=500px>
+<img alt="GNB_로그인" src="./readme/GNB_1.png" width=500px><br />
+<img alt="GNB_로그아웃" src="./readme/GNB_2.png" width=500px>
 
 - **핵심기능**
   - 주요 페이지 이동
@@ -59,7 +59,7 @@
   - 출력 : 메인/장바구니/로그인 페이지
 
 ### 전체 상품(메인)
-<img alt="전체 상품" src="./public/readme/전체상품.png" width=500px>
+<img alt="전체 상품" src="./readme/전체상품.png" width=500px>
 
 - **핵심기능**
   - 전체 상품 표시
@@ -74,7 +74,7 @@
   - 출력 : 전체 상품, 개별 상품 페이지
 
 ### 개별 상품
-<img alt="개별 상품" src="./public/readme/개별상품.png" width=500px>
+<img alt="개별 상품" src="./readme/개별상품.png" width=500px>
 
 #### 1. 개별 상품
 - **핵심기능**
@@ -120,7 +120,7 @@
   - 출력 : 알림
 
 ### 장바구니
-<img alt="장바구니" src="./public/readme/장바구니.png" width=500px>
+<img alt="장바구니" src="./readme/장바구니.png" width=500px>
 
 - **핵심기능**
   - 장바구니 조회 및 수정
@@ -136,7 +136,7 @@
   - 출력 : 변경된 장바구니 정보, 소계/합계 가격, 주문하기 페이지
 
 ### 주문하기
-<img alt="주문하기" src="./public/readme/주문하기.png" width=500px>
+<img alt="주문하기" src="./readme/주문하기.png" width=500px>
 
 - **핵심기능**
   - 주문상품 정보 표시
@@ -153,7 +153,7 @@
   - 출력 : 주문결과 확인 페이지
 
 ### 주문 결과
-<img alt="주문 결과" src="./public/readme/주문결과.png" width=500px>
+<img alt="주문 결과" src="./readme/주문결과.png" width=500px>
 
 - **핵심기능**
   - 주문 결과 확인
