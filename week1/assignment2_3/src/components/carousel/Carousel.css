@@ -1,0 +1,46 @@
+
+.carousel {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+  background-size: cover;
+}
+.slide {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+.slide img {
+  width: 100%;
+  height: 100%;
+}
+.carousel button {
+  background-color: transparent;
+  border-color: transparent;
+  width: 180px;
+  height: 300px;
+}
+.prev-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.next-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.carousel button span{
+  display: inline-block;
+  font-size: 50px;
+  color: black;
+  opacity: 0.5;
+}
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}

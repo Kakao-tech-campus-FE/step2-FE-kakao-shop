@@ -5,6 +5,7 @@ import RadioGroup from './components/radio/RadioGroup';
 import Layout from './components/layout/Layout';
 import Toggle from './components/togglebtn/ToggleBtn';
 import Badge from './components/badge/Badge';
+import Carousel from './components/carousel/Carousel';
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
                     <Badge text={"New!"} color={"gray"}/>
                     <RadioGroup/>
                     <Toggle/>
+                    <Carousel/>
                 </div>
             }> 
             </Layout>
