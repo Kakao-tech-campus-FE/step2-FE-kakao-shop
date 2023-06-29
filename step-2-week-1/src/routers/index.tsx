@@ -1,5 +1,6 @@
 import BreadcrumbPage from "@/pages/Breadcrumb.page";
 import CarouselPage from "@/pages/Carousel.page";
+import CheckListPage from "@/pages/CheckList.page";
 import RadioButtonPage from "@/pages/RadioButton.page";
 import Toast from "@/pages/Toast.page";
 import TogglePage from "@/pages/Toggle.page";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     element: <TogglePage />,
     path: "/toggle",
+  },
+  {
+    element: <CheckListPage />,
+    path: "/check-list",
   },
 ]);
 
