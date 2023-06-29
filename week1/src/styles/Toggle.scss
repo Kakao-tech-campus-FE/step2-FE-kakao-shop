@@ -1,0 +1,29 @@
+.toggleBox {
+  width: 70px;
+  height: 30px;
+  display: flex;
+  align-content: center;
+  border-radius: 0.5rem;
+  flex-wrap: wrap;
+  transition: 0.5s;
+  box-sizing: border-box;
+
+  .toggleButton {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 9999px;
+    background-color: white;
+    transition: 0.5s;
+  }
+}
+
+.beforeToggle {
+  background-color: #00ffff;
+}
+
+.afterToggle {
+  background-color: maroon;
+  padding-left: 35px;
+}
