@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TopButton = () => {
     const [showButton, setShowButton] = useState(false);
@@ -15,14 +15,14 @@ const TopButton = () => {
             if(window.scrollY > 500) {
                 setShowButton(true);
             } 
-						else {
+			else {
                 setShowButton(false);
             }
         }
 
         window.addEventListener("scroll", handleShowButton);
         
-				return () => {
+		return () => {
             window.removeEventListener("scroll", handleShowButton);
         }
     }, []);
@@ -33,3 +33,5 @@ const TopButton = () => {
         </div>
     );
 };
+
+export default TopButton
