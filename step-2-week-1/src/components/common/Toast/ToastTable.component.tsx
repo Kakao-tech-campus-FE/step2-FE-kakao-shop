@@ -1,4 +1,4 @@
-import Toast, { ToastProps } from "@/components/common/Toast/Toast";
+import Toast, { ToastProps } from "@/components/common/Toast/Toast.component";
 import { FC } from "react";
 import "@/components/common/Toast/toast-table.css";
 

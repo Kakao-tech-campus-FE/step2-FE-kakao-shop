@@ -1,5 +1,5 @@
-import { ToastProps } from "@/components/common/Toast/Toast";
-import ToastTable from "@/components/common/Toast/ToastTable";
+import { ToastProps } from "@/components/common/Toast/Toast.component";
+import ToastTable from "@/components/common/Toast/ToastTable.component";
 import { useState } from "react";
 
 const ToastPage = () => {

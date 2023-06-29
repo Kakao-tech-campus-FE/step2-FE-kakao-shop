@@ -1,4 +1,4 @@
-import RadioGroup from "@/components/common/Button/RadioGroup";
+import RadioGroup from "@/components/common/Button/RadioGroup.component";
 
 const RadioButtonPage = () => {
   const radioButtons = [

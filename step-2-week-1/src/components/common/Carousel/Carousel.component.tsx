@@ -1,6 +1,6 @@
 import CarouselItem, {
   CarouselItemProps,
-} from "@/components/common/Carousel/CarsouelItem";
+} from "@/components/common/Carousel/CarsouelItem.component";
 import { FC, useState } from "react";
 import "@/components/common/Carousel/carousel.css";
 

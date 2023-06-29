@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import RadioButton, { RadioButtonProps } from "./RadioButton";
+import RadioButton, { RadioButtonProps } from "./RadioButton.component";
 import "@/components/common/Button/radio-group.css";
 
 interface RadioGroupProps {

@@ -1,8 +1,8 @@
-import BreadcrumbPage from "@/pages/Breadcrumb";
-import CarouselPage from "@/pages/Carousel";
-import RadioButtonPage from "@/pages/RadioButton";
-import Toast from "@/pages/Toast";
-import TogglePage from "@/pages/Toggle";
+import BreadcrumbPage from "@/pages/Breadcrumb.page";
+import CarouselPage from "@/pages/Carousel.page";
+import RadioButtonPage from "@/pages/RadioButton.page";
+import Toast from "@/pages/Toast.page";
+import TogglePage from "@/pages/Toggle.page";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
