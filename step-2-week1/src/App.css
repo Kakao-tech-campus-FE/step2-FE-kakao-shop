@@ -6,8 +6,39 @@
 .container {
   Width: 300vw;
   transform: translate(-100vw)
-  style="margin: 0"
+  /* style="margin: 0" */
 }
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 400px;
+}
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.prev-button {
+  left: 20px;
+}
+
+.next-button {
+  right: 20px;
+}
+
+
 .inner1 {
   width: 100vw;
   float: left;

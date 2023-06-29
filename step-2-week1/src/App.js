@@ -1,9 +1,11 @@
 // import logo from './logo.svg';
 import './App.css';
-import firstImage from './img/img1.png';
-import secondImage from './img/img2.png';
-import thirdImage from './img/img3.png';
+import firstImage from './img/carouselItem1.jpeg';
+import secondImage from './img/carouselItem2.jpeg';
+import thirdImage from './img/carouselItem3.jpeg';
 import React, { useEffect, useRef, useState } from 'react';
+// import components from './component/components';
+
 // // import styled from 'styled-components';
 // // import input from 'Input';
 // // import Button from 'Button';
@@ -272,22 +274,33 @@ const Breadcrumb = ({ items }) => {
   );
 };
 
-const Carousel = ({ slides }) => {
+
+const Carousel = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const goToPreviousSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? slides.length - 1 : prevIndex - 1));
+  const goToNextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
   };
 
-  const goToNextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === slides.length - 1 ? 0 : prevIndex + 1));
+  const goToPreviousSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
   };
+
+console.log(images[currentIndex]["firstImage"]);
+console.log(currentIndex);
+let myimages = [firstImage, secondImage, thirdImage]
+console.log(myimages[currentIndex])
+
 
   return (
-    <div className="carousel">
-      <button onClick={goToPreviousSlide}>Previous</button>
-      <img src={slides[currentIndex].imageUrl} alt={slides[currentIndex].caption} />
-      <button onClick={goToNextSlide}>Next</button>
+    <div className="carousel">  
+      <button className="prev-button" onClick={goToPreviousSlide}>
+        Previous
+      </button>
+      <img className="slide" src={images[currentIndex]} alt="Carousel Slide" />
+      <button className="next-button" onClick={goToNextSlide}>
+        Next
+      </button>
     </div>
   );
 };
@@ -388,13 +401,27 @@ const Checklist = ({ items, selectedItems, onToggle }) => {
 
 // import { Toast, Breadcrumb, Carousel, RadioButton, ToggleButton, Checklist} from './components/UIComponents';
 
+// class App extends React.Component{
+//   render(){
+//     return(
+//       <div className="App">
+//         <Toast></Toast>
+//         <Breadcrumb></Breadcrumb>
+//         <Carousel></Carousel>
+//         <RadioButton></RadioButton>
+//         <ToggleButton></ToggleButton>
+//         <Checklist></Checklist>
+//       </div>
+//     );
+//   }
+// }
 
 const App = () => {
   // Toast
   const [toastMessage, setToastMessage] = useState('');
 
   const showToast = () => {
-    setToastMessage('Hello, Toast!');
+    setToastMessage('까꿍');
   };
 
   // Breadcrumb
@@ -402,15 +429,29 @@ const App = () => {
     { label: 'Home', link: '/' },
     { label: 'Products', link: '/products' },
     { label: 'Category', link: '/products/category' },
-    { label: 'Current Page' }
+    { label: 'ShopCart' }
   ];
 
+
+  const images = [firstImage,secondImage,thirdImage];
+
   // Carousel
-  const carouselSlides = [
-    { imageUrl: { firstImage }, caption: 'Slide 1' },
-    { imageUrl: { secondImage }, caption: 'Slide 2' },
-    { imageUrl: { thirdImage }, caption: 'Slide 3' }
-  ];
+  // const carouselSlides = [
+  //       <div className="container">
+  //       <div className="inner1">
+  //         <img className="firtstImage" src={firstImage} alt="firstImage" class="firstImage" />
+  //       </div>
+  //       <div class="inner2">
+  //         <img className="secondImage" src={secondImage} alt="secondImage" class="secondImage" />
+  //       </div>
+  //       <div class="inner3">
+  //         <img className="thirdImage" src={thirdImage} alt="thirdImage" class="thirdImage" />
+  //       </div>
+  //       </div>
+  //   ,{ imageUrl: { firstImage }, caption: 'Slide 1' },
+  //   { imageUrl: { secondImage }, caption: 'Slide 2' },
+  //   { imageUrl: { thirdImage }, caption: 'Slide 3' }
+  // ];
 
   // RadioButton
   const radioOptions = [
@@ -446,7 +487,11 @@ const App = () => {
 
       <Breadcrumb items={breadcrumbItems} />
 
-      <Carousel slides={carouselSlides} />
+      
+      <div>
+        <h1>Carousel</h1>
+        <Carousel images={images} />
+      </div>
 
       <RadioButton
         options={radioOptions}
@@ -476,3 +521,4 @@ export {
   ToggleButton,
   Checklist
 };
+
