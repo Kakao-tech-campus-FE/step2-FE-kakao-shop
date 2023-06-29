@@ -4,7 +4,11 @@
   
 ## 카카오 테크 캠퍼스 2단계 - FE - 1주차 클론 과제
 
-</br>
+<details>
+
+<summary>과제 설명</summary>
+
+<br/><br/>
 
 ## **과제명**
 
@@ -99,6 +103,667 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 **1. PR 제목과 내용을 아래와 같이 작성 해주세요.**
 
 > - PR 제목 : 부산대FE\_라이언\_1주차 과제
+
+</br>
+</details>
+
+<style>
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+.infoTable { 
+  display: flex;
+}
+
+</style>
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 메인페이지 <td>
+        <th> 분류 </th>
+        <td>헤더</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home> </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/메인페이지-헤더.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>로그인 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>장바구니 패이지로 이동</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>주문현황, 주문내역 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>검색창을 띄운다</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>카테고리 팝업을 띄운다</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>프로모션, 라이브, 베스트, 프렌들리 페이지 이동</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>카카오 쇼핑 홈으로 이동</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>카카오 쇼핑 홈으로 이동</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>캐러셀 좌측 슬라이스</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>해당 광고 상품으로 이동</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>캐러셀 우측 슬라이스</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        장바구니, 배송현황을 클릭시 로그인 정보를 가져와 로그인이 돼있지 않은 회원은 로그인 창으로 이동시킨다.
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 메인페이지 <td>
+        <th> 분류 </th>
+        <td>검색, 카테고리</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home> </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/메인페이지-헤더2.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>상품 검색</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>스토어 탭으로 전환</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>검색 내역 삭제</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>해당 상품 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>현재 인기 키워드 나열</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>선택한 카테고리로 이동</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>선택한 상세 카테고리로 이동</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        검색 내역이 없는 경우 검색 내역 대신 '최근 검색 내역이 없습니다'라는 문구를 띄운다.
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 메인페이지 <td>
+        <th> 분류 </th>
+        <td>상품 목록</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home> </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/메인페이지-상품.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>해당 키워드 상품을 필터링해 보여준다.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>상품 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>공유하기 팝업</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>즐겨찾기 상품 등록</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>상품 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>상품 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>페이지네이션 이동</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 상품 페이지 <td>
+        <th> 분류 </th>
+        <td>헤더</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>상품 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-헤더.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>해당 스토어로 이동</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>스토어 프로파일로 이동</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>상품과 관련된 해당 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>스토어 상품 검색</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 상품 페이지 <td>
+        <th> 분류 </th>
+        <td>상품 정보</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>상품 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-상품정보.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>상품 옵션 선택</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>즐겨찾기 등록</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>장바구니에 담기</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>구매 페이지 이동</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>상품 상세 이미지 변경</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>톡딜 안내 페이지 이동</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>상품 상세 정보 보기</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>상품 리뷰 보기</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>상품 문의 보기</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 상품 페이지 <td>
+        <th> 분류 </th>
+        <td>리뷰</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>상품 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-리뷰.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>사진 리뷰 전체 보기 팝업</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>사진 리뷰 팝업</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>리뷰 유형 필터링</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>정렬 유형 선택</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>리뷰 신고 버튼</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>리뷰 공유 버튼</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>리뷰 추천 버튼</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>리뷰 펼치기</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+          로그인 된 사용자가 아닌 경우 신고하기와 리뷰 추천 기능에 대해 로그인이 우선되도록 한다.<br/><br/>
+          리뷰의 기본 정렬 순서는 추천순으로 한다.<br/><br/>
+          20자가 넘는 리뷰에 대해서 접어두기를 하고 더보기 선택시 내용 전체를 확인할 수 있도록 한다.
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 상품 페이지 <td>
+        <th> 분류 </th>
+        <td>문의</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>상품 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-문의.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>문의글 작성 팝업</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>문의 종류 필터링</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>본인 문의글만 필터링한다.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>문의글 펼쳐보기</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>문의글 신고하기</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>문의글 유형 선택 셀렉터</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>사진 추가</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>문의 내용 입력</td>
+      </tr>
+        <tr>
+        <td>9</td>
+        <td>문의글 비밀글 선택</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>문의글 프로필 사진/닉네임 공개 여부 선택</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>문의글 등록</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+          로그인 된 사용자가 아닌 경우 신고하기에 있어 로그인이 우선되도록 한다.<br/><br/>
+          문의 유형이 미선택이거나 문의 내용 5자 이하일 때 문의글 등록 버튼을 비활성화 한다.<br/><br/>
+          비밀 문의글은 작성 회원 본인과 해당 스토어 관리자만 열람 가능하도록 한다.
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 로그인 페이지 <td>
+        <th> 분류 </th>
+        <td>-</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>로그인 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/로그인페이지.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>아이디/이메일/전화번호 작성</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>비밀번호 작성</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>로그인 상태 유지여부 선택</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>로그인 버튼</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>QR코드 로그인 페이지 이동</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>회원가입 페이지 이동</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>계정 찾기 페이지 이동</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>비밀번호 찾기 페이지 이동</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+          아이디 작성 폼 선택시 'TIP 카카오메일이 있다면 메일 아이디만 입력해 보세요.' helper 텍스트 출력<br/><br/>
+          일치하는 카카오 계정 존재하지 않을 시 로그인 버튼 상단에 '카카오계정을 정확하게 입력해 주세요.' 문구 출력<br/><br/>
+          카카오 계정과 비밀번호 일치하지 않을 시 로그인 버튼 상단에 '카카오계정 혹은 비밀번호가 일치하지 않습니다. 입력한 내용을 다시 확인해 주세요.' 문구 출력
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 장바구니 페이지 <td>
+        <th> 분류 </th>
+        <td>-</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>장바구니 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/장바구니페이지.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>장바구니 전체 아이템 선택/선택해제</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>선택 아이템 삭제</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>해당 스토어 상품 전체 선택/선택 해제</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>상품 선택/선택 해제</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>상품 수량 더하기/빼기</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>주문 금액 상세 펼치기/접기</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>선택 상품 주문</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        </td>
+      </tr>
+    </table>
+</div>
+
+---
+
+<div class="container">
+    <table class= "infoTable">
+      <tr>
+        <th> Page title</th>
+        <td> 검색 페이지 <td>
+        <th> 분류 </th>
+        <td>-</td>
+      </tr>
+      <tr>
+        <th>Screen Path</th>
+        <td colspan=4>Home>검색 </td>
+      </tr>
+      <tr>
+      <td colspan=5><img src ="./assetsRM/assignment1/검색페이지.png"/></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <th colspan=2>Interaction</th>
+      </tr>
+      <tr>
+        <td >1</td>
+        <td>검색어 작성</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>검색어 삭제</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>선택한 연관 키워드 검색 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>상품 필터 선택</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>상품 정렬 기준 선택</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>상품 페이지로 이동</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>찜한 상품으로 등록</td>
+      </tr>
+      <tr>
+        <th colspan=2>Check Point</th>
+      </tr>
+      <tr>
+        <td colspan=2>
+        검색된 상품이 없는 경우 상품 목록 대신 '검색결과가 없습니다'문구와 이전 페이지로 이동 버튼 출력<br/><br/>
+        상품 필터는 중복 적용 가능하도록 한다.
+        </td>
+      </tr>
+    </table>
+</div>
 
 </br>
 
