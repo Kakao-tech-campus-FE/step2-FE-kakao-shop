@@ -163,3 +163,28 @@
 - **인터페이스 요구사항**
   - 입력 : 계속하기 버튼
   - 출력 : 주문 결과, 메인 페이지
+
+<br />
+
+  # 디렉터리 구조
+<img alt="디렉터리 구조1" src="./readme/디렉터리구조_1.png" width=300px>
+
+
+디렉터리|역할
+-|-
+node_modules|npm 패키지
+public|non-compile 대상
+readme|README.md
+src|compile 대상
+
+<img alt="디렉터리 구조2" src="./readme/디렉터리구조_2.png" width=300px>
+
+디렉터리|역할
+-|-
+apis|API
+assets|미디어
+components|컴포넌트
+hooks|커스텀 훅
+pages|라우팅 페이지
+styles|CSS
+utils|유틸리티(상수, 함수 등)
