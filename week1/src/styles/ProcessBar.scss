@@ -1,10 +1,11 @@
 .bar {
   background-color: gainsboro;
-  height: 30px;
+  height: 20px;
   border-radius: 0.5rem;
   .process {
     background-color: black;
     height: inherit;
     border-radius: 0.5rem;
+    transition: 0.5s;
   }
 }

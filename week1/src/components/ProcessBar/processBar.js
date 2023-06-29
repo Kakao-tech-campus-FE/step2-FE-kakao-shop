@@ -1,14 +1,12 @@
-import { useState } from "react";
 import "../../styles/ProcessBar.scss";
 
-const ProcessBar = () => {
-  const [process, setProcess] = useState(10);
+const ProcessBar = ({ percentage }) => {
   return (
     <div>
       <div className="bar">
-        <div className="process" style={{ width: process + "%" }}></div>
+        <div className="process" style={{ width: percentage + "%" }}></div>
       </div>
-      <div>{process}%</div>
+      <div>{percentage}%</div>
     </div>
   );
 };

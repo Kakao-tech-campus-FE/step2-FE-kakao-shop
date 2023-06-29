@@ -9,7 +9,6 @@ const CheckList = ({ title, item, checkedItemNum, setCheckedItemNum }) => {
       : setCheckedNum(checkedNum - 1);
   };
   useEffect(() => {
-    console.log(checkedNum);
     setCheckedItemNum(checkedNum);
   }, [checkedNum]);
 

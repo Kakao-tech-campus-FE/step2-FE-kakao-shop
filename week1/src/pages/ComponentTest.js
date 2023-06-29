@@ -11,7 +11,7 @@ class CheckListProps {
 
 const ComponentTest = () => {
   const [checkedItemNum, setCheckedItemNum] = useState(0);
-  console.log(CheckListProps.title);
+
   return (
     <>
       <CheckList
@@ -20,7 +20,11 @@ const ComponentTest = () => {
         checkedItemNum={checkedItemNum}
         setCheckedItemNum={setCheckedItemNum}
       />
-      <ProcessBar />
+      <ProcessBar
+        percentage={Math.floor(
+          (checkedItemNum / CheckListProps.item.length) * 100
+        )}
+      />
       <Toggle />
       <Radio />
       <div>컴포넌트 테스트 페이지</div>
