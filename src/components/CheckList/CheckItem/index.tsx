@@ -1,74 +1,69 @@
 import React from "react";
 import { styled } from "styled-components";
 
-type ContainerProps = { checked?: boolean };
-
-const Container = styled.div<ContainerProps>`
-  width: 300px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  font-weight: 700;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  background-color: ${({ checked }) => (checked ? "#b3d9ff" : "#f8f8f8")};
-
-  button {
-    position: absolute;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 18px;
-    color: #888;
-  }
-
-  p {
-    width: 240px;
-  }
-
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
-`;
-
-type Item = {
-  id: number;
-  text: string;
-  checked: boolean;
-};
-
-type Props = {
-  item: Item;
-  setItems: React.Dispatch<React.SetStateAction<Item[]>>;
-};
-
-const CheckItem = ({ item, setItems }: Props) => {
-  const { id, text, checked } = item;
-
-  const onChangeChecked = () => {
-    setItems((prev) =>
-      prev.map((item) => ({
-        ...item,
-        checked: item.id === id ? !item.checked : item.checked,
-      }))
-    );
+interface Props {
+  data: {
+    id: string;
+    value: string;
+    text: string;
   };
+  color: string;
+}
 
-  const removeItem = () => {
-    setItems((prev) => prev.filter((item) => item.id !== id));
-  };
+const CheckItem = ({ data, color }: Props) => {
+  const { id, value, text } = data;
 
   return (
-    <Container checked={checked}>
-      <input type="checkbox" checked={checked} onChange={onChangeChecked} />
-      <p>{text}</p>
-      <button onClick={removeItem}>🗑</button>
-    </Container>
+    <Label htmlFor={id}>
+      <CheckButton id={id} value={value} color={color} type="checkbox" />
+      <span>{text}</span>
+    </Label>
   );
 };
 
 export default CheckItem;
+
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  span {
+    min-width: fit-content;
+    padding: 0;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+  }
+`;
+
+const CheckButton = styled.input<{ color: string }>`
+  appearance: none;
+  margin: 0 11px 0 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid ${({ color }) => color};
+  border-radius: 25%;
+  cursor: pointer;
+  position: relative;
+  background-color: #fff;
+
+  &::before {
+    content: "✔";
+    color: white;
+    position: absolute;
+    left: 10%;
+    bottom: 60%;
+    width: 8px;
+    height: 8px;
+    visibility: hidden;
+  }
+
+  &:checked {
+    background-color: ${({ color }) => color};
+  }
+
+  &:checked::before {
+    visibility: visible;
+  }
+`;

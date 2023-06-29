@@ -1,36 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
+import { styled } from "styled-components";
 import CheckItem from "./CheckItem";
 
-type Item = {
-  id: number;
-  text: string;
-  checked: boolean;
-};
-
 const CheckList = () => {
-  const [text, setText] = useState("");
-  const [items, setItems] = useState<Item[]>([]);
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
-  const onClick = () => {
-    setItems((prev) =>
-      prev.concat({ id: Date.now(), text: text, checked: false })
-    );
-    setText("");
-  };
-
   return (
-    <div>
-      <input type="text" value={text} onChange={onChange} />
-      <button onClick={onClick}>추가</button>
-      {items.map((item) => (
-        <CheckItem key={item.id} item={item} setItems={setItems} />
-      ))}
-    </div>
+    <Wrapper>
+      <CheckItem
+        data={{ id: "4", value: "밥", text: "밥" }}
+        color={"#28a745"}
+      />
+      <CheckItem
+        data={{ id: "5", value: "빵", text: "빵" }}
+        color={"#28a745"}
+      />
+      <CheckItem
+        data={{ id: "6", value: "음료", text: "음료" }}
+        color={"#28a745"}
+      />
+    </Wrapper>
   );
 };
 
 export default CheckList;
+
+const Wrapper = styled.div`
+  display: flex;
+  gap: 20px;
+  margin: 30px;
+`;
