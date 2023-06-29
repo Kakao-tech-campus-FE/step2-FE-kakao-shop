@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>
@@ -450,5 +449,3 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 </div>
 </details>
 
-=======
->>>>>>> d62e8fd7cde8174e03c39ff985845ad80690eb47
