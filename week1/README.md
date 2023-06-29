@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+## 페이지 구성 및 각 페이지별 기능 명세
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 메인 페이지
 
-## Available Scripts
+- 검색, 배송조회, 장바구니, 로그인 버튼
+- 로그인 안되어있을 경우: 장바구니, 배송조회 버튼 클릭시 경고창
+- 메인 상품 나열
+- 광고 캐러셀
 
-In the project directory, you can run:
+2. 로그인 페이지
 
-### `npm start`
+- 아이디, 비밀번호 입력 및 로그인 처리
+- 유효성 검사
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. 검색 페이지
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 검색창
+- 추천 키워드 (인기 키워드)
 
-### `npm test`
+4. 상품 검색 결과 페이지
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 연관 키워드
+- 가격, 카테고리 등등 필터 적용
+- 관련 상품
+- 랭킹순, 신상품순, 가격순 정렬
 
-### `npm run build`
+5. 개별 상품 상세 페이지
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 상품 사진, 상품명, 브랜드명
+- 옵션 선택
+- 삼품 금액
+- 상세 정보, 리뷰, 문의
+- 해당 브랜드 인기 상품
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+6. 장바구니 페이지
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 장바구니 상품 목록
+- 체크박스
 
-### `npm run eject`
+7. 주문내역 페이지
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- 최근 6개월간 주문내역 조회
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+8. 결제 페이지
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 배송지 정보, 주문상품 정보, 결제 방식 등 입력
+- 최종 결제금액
+- 개인정보 제3자 제공 동의
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+9. 결제 완료 페이지
 
-## Learn More
+- 전체 주문 내역, 쇼핑 계속하기 버튼
+- 주문상품 정보
+- 결제금액
+- 배송지 정보, 요청사항 및 배송지 수정
+- 취소 및 교환/반품 안내
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 디렉토리 구조
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+📦src
+┣ 📂api
+┣ 📂assets
+┣ 📂components
+┃ ┣ 📜Breadcrumb.jsx
+┃ ┣ 📜Carousel.jsx
+┃ ┣ 📜CheckList.jsx
+┃ ┣ 📜RadioBtn.jsx
+┃ ┣ 📜Toast.jsx
+┃ ┗ 📜Toggle.jsx
+┣ 📂hooks
+┣ 📂pages
+┣ 📂styles
+┣ 📜.DS_Store
+┣ 📜App.css
+┣ 📜App.js
+┣ 📜index.css
+┗ 📜index.js
