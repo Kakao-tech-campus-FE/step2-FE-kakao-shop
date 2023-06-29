@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 
-function ToggleButton() {
-    const [isToggled, setIsToggled] = useState(false);
+const ToggleButton = ({isToggled, setIsToggled}) => {
 
     const handleToggle = () => {
         setIsToggled(!isToggled);
     };
 
     useEffect(() => {
-
     }, [isToggled])
 
 

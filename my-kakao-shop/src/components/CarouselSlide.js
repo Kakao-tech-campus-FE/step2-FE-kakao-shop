@@ -1,13 +1,13 @@
 const slideStateToClassName = (state) => {
     switch (state) {
         case -1:
-            return "carousel-slide--current";
+            return "carousel-slide-current";
         case 0:
-            return "carousel-slide--prev";
+            return "carousel-slide-prev";
         case 1:
-            return "carousel-slide--next";
+            return "carousel-slide-next";
         default:
-            return "carousel-slide--hide";
+            return "carousel-slide-hide";
     }
 }
 const CarouselSlide = ({image, slideState}) => {

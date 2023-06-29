@@ -1,13 +1,18 @@
 import {useEffect, useState} from "react";
 
-const Toast = ({ title, message, time }) => {
+const Toast = ({ title, message, time, toggle }) => {
   const [show, setShow] = useState(true);
 
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setShow(false);
+  //   }, time);
+  // }, [time]);
+
   useEffect(() => {
-    setTimeout(() => {
-      setShow(false);
-    }, time);
-  }, [time]);
+      toggle? setShow(true):setShow(false);
+    }, [toggle]);
+
 
   return (
       <div className={"toast "+`${show? "":"toast-hide"}`}>
