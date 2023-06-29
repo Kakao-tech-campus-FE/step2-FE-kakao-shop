@@ -4,7 +4,7 @@
     font-size: 12px;
     border-radius: 4px;
     position: absolute;
-    bottom: 15px;
+    bottom: 20px;
     left: 15px;
     color: black;
     animation: toast 0.4s ease-in-out;
