@@ -12,8 +12,8 @@ const App = () => {
         <div className="app">
             <Layout children={
                 <div className="app-header">
-                    <span>Hello world!</span>
-                    <Badge text={"New!"} color={"gray"}/>
+                    <span>Badge component</span>
+                    <Badge text={"New!"} color={"purple"}/>
                     <RadioGroup/>
                     <Toggle/>
                     <Carousel/>

@@ -1,4 +1,4 @@
-const Badge = ({ text, color, fontSize = 10 }) => {
+const Badge = ({ text, color = "teal", fontSize = 10 }) => {
   return (
     <b
       style={{
