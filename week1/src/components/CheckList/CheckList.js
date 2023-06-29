@@ -1,13 +1,29 @@
 import "../../styles/Checkbox.scss";
+import React, { useState, useEffect } from "react";
 
-const CheckList = ({ title, item }) => {
+const CheckList = ({ title, item, checkedItemNum, setCheckedItemNum }) => {
+  const [checkedNum, setCheckedNum] = useState(0);
+  const onChangeChecked = (event) => {
+    event.target.checked
+      ? setCheckedNum(checkedNum + 1)
+      : setCheckedNum(checkedNum - 1);
+  };
+  useEffect(() => {
+    console.log(checkedNum);
+    setCheckedItemNum(checkedNum);
+  }, [checkedNum]);
+
   return (
     <div className="CheckboxPaper">
       <div className="title">{title}</div>
       {item.map((key) => (
-        <div className="item">
-          <input type="checkbox" id="css" />
-          <label htmlFor="css">{key}</label>
+        <div className="item" key={key}>
+          <input
+            type="checkbox"
+            id={key}
+            onChange={(event) => onChangeChecked(event)}
+          />
+          <label htmlFor={key}>{key}</label>
         </div>
       ))}
     </div>
