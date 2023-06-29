@@ -1,25 +1,17 @@
-import logo from './logo.svg';
+import React from 'react';
+
 import './App.css';
+import Radio from './components/radio/Radio';
+import RadioGroup from './components/radio/RadioGroup';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    return (
+        <div className="app">
+            <div className="app-header">
+            <p>Hello world!</p>
+            <RadioGroup label={'Radio Button'}/>
+            </div>
+        </div>
+    );
 }
-
 export default App;
