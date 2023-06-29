@@ -128,7 +128,7 @@
 
 #### *디렉토리 구조*
 
-``
+```
 ├── public/
 │   ├── index.html
 │   └── favicon.ico
@@ -182,4 +182,4 @@
 ├── .gitignore
 ├── package.json
 └── README.md
-``
+```
