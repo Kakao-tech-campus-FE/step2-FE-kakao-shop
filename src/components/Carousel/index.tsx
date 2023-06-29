@@ -6,7 +6,7 @@ interface SideProps {
   position: string;
 }
 interface IndexProps {
-  curIndex: number;
+  curindex: number;
 }
 
 const Carousel = () => {
@@ -35,9 +35,9 @@ const Carousel = () => {
 
   return (
     <Wrapper>
-      <ImageContainer curIndex={curIndex}>
+      <ImageContainer curindex={curIndex}>
         {images.map((image, index) => (
-          <img src={image} key={index} />
+          <img src={image} key={index} alt={image} />
         ))}
       </ImageContainer>
       <Side position={"left"}>
@@ -68,7 +68,7 @@ const ImageContainer = styled.div<IndexProps>`
   width: 100%;
   height: 100%;
 
-  transform: translateX(-${({ curIndex }) => curIndex * 100}%);
+  transform: translateX(-${({ curindex }) => curindex * 100}%);
   transition: transform 0.5s ease;
 
   img {
