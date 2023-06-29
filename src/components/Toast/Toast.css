@@ -1,0 +1,12 @@
+.toast {
+  position: absolute;
+  display: flex;
+  padding: 0 3px;
+  overflow: auto;
+  align-items: center;
+  max-width: 350px;
+  min-width: 160px;
+  width: fit-content;
+  height: 30px;
+  background-color: beige;
+}
