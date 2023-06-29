@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import Toast from './components/Toast';
 import TopButton from './components/TopButton';
+import ToggleButton from './components/ToggleButton';
 
 function App() {
   const [toast, setToast] = useState(false);
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <>
+      <ToggleButton />
       <button onClick={handleClick}>버튼</button>
       {toast && <Toast text="Hello, World" color="red" setToast={setToast}/>}
       <TopButton />
