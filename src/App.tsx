@@ -3,18 +3,16 @@ import Toast from "./components/Toast";
 import Carousel from "@components/Carousel";
 import CheckList from "@components/CheckList";
 
-type Type = "success" | "error" | "warning";
-
 type ToastData = {
   id: number;
-  type: Type;
+  type: "success" | "error" | "warning";
   message: string;
 };
 
 function App() {
   const [toastList, setToastList] = useState<ToastData[]>([]);
 
-  const onClick = (type: Type, message: string) => {
+  const onClick = (type: "success" | "error" | "warning", message: string) => {
     setToastList((prev) =>
       prev.concat({
         id: Date.now(),
@@ -37,6 +35,7 @@ function App() {
         Warning 토스트
       </button>
       <CheckList />
+      <Carousel />
     </div>
   );
 }
