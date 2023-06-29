@@ -12,11 +12,6 @@ const Breadcrumb = ({ color }: Props) => {
   const historyList =
     location.pathname === "/" ? [""] : location.pathname.split("/");
 
-  useEffect(() => {
-    console.log(location);
-    console.log(historyList);
-  });
-
   return (
     <div>
       <Wrapper>
