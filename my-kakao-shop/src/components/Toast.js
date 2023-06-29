@@ -3,12 +3,6 @@ import {useEffect, useState} from "react";
 const Toast = ({ title, message, time, toggle }) => {
   const [show, setShow] = useState(true);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShow(false);
-  //   }, time);
-  // }, [time]);
-
   useEffect(() => {
       toggle? setShow(true):setShow(false);
     }, [toggle]);
