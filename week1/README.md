@@ -59,6 +59,7 @@
 
 ## 디렉토리 구조
 
+```
 📦src
 ┣ 📂api
 ┣ 📂assets
@@ -72,8 +73,8 @@
 ┣ 📂hooks
 ┣ 📂pages
 ┣ 📂styles
-┣ 📜.DS_Store
 ┣ 📜App.css
 ┣ 📜App.js
 ┣ 📜index.css
 ┗ 📜index.js
+```
