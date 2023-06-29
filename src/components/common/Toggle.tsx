@@ -1,9 +1,13 @@
 import { styled } from 'styled-components';
 
-function Toggle({ title, color }: { title: string; color: string }) {
+interface ToggleBox {
+  color: string;
+  bgColor: string;
+}
+function Toggle({ title, bgColor, color }: { title: string; bgColor: string; color: string }) {
   return (
     <Label htmlFor={title}>
-      <ToggleBox id={title} name={title} type="checkbox" role="switch" />
+      <ToggleBox id={title} name={title} type="checkbox" role="switch" color={color} bgColor={bgColor} />
       {title}
     </Label>
   );
@@ -15,7 +19,7 @@ const Label = styled.label`
   display: flex;
   align-items: center;
 `;
-const ToggleBox = styled.input`
+const ToggleBox = styled.input<ToggleBox>`
   margin-right: 5px;
   cursor: pointer;
   appearance: none;
@@ -36,13 +40,13 @@ const ToggleBox = styled.input`
     transition: 0.25s linear;
   }
   &:checked::before {
-    background-color: white;
+    background-color: ${(props) => props.color};
     transform: translateX(30px);
     transition: 0.25s linear;
   }
   &:checked {
     border: none;
-    background-color: yellow;
+    background-color: ${(props) => props.bgColor};
     transition: 0.25s linear;
   }
   &:hover {
