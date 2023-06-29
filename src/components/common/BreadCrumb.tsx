@@ -5,7 +5,6 @@ import { styled } from 'styled-components';
 function BreadCrumb() {
   const location = useLocation();
   const directory = location.pathname === '/' ? [''] : location.pathname.split('/');
-  console.log(directory);
   return (
     <div>
       {directory.map((path, index) => {
