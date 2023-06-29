@@ -36,8 +36,8 @@
 
 | 입력 | 출력 |
 |:-:|:-:|
-| input field에서 text area 속성 사용하여 검색 텍스트 입력 | 1. 검색한 특정 상품과 연관있는 상품 목록을 출력 <br> 2. 해당 컴포넌트를 화면에 출력 
-<br> - 검색 텍스트 입력하는 input field<br> - 전체 상품과 스토어 분류 tab<br> - 검색 상품의 옵션을 선택하는 Checkbox <br> - 상품의 정렬 기준 Accordion |
+| input field에서 text area 속성 사용하여 검색 텍스트 입력 | 1. 검색한 특정 상품과 연관있는 상품 목록을 출력 
+| | 2. 해당 컴포넌트를 화면에 출력 <br> - 검색 텍스트 입력하는 input field <br> - 전체 상품과 스토어 분류 tab <br> - 검색 상품의 옵션을 선택하는 Checkbox <br> - 상품의 정렬 기준 Accordion |
 
 - **개별 상품 상세 페이지**
 
