@@ -4,6 +4,7 @@ import { useState } from "react";
 import ToggleTest from "./pages/ToggleTest";
 import Home from "./pages/Home";
 import ToastTest from "./pages/ToastTest";
+import ChecklistTest from "./pages/ChecklistTest";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -23,7 +24,7 @@ function App() {
           <li onClick={() => setCurrentPage("toggle-test")}>Toggle</li>
           <li onClick={() => setCurrentPage("toggle-test")}>Breadcrumbs</li>
           <li onClick={() => setCurrentPage("toast-test")}>Toast</li>
-          <li onClick={() => setCurrentPage("toggle-test")}>Checklist</li>
+          <li onClick={() => setCurrentPage("checklist-test")}>Checklist</li>
           <li onClick={() => setCurrentPage("toggle-test")}>Radio</li>
           <li onClick={() => setCurrentPage("toggle-test")}>Carousel</li>
         </ul>
@@ -33,6 +34,7 @@ function App() {
         {currentPage === "home" && <Home />}
         {currentPage === "toggle-test" && <ToggleTest />}
         {currentPage === "toast-test" && <ToastTest />}
+        {currentPage === "checklist-test" && <ChecklistTest />}
       </div>
     </div>
   );
