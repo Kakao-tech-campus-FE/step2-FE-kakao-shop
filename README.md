@@ -1,3 +1,5 @@
+과제 내용은 각 주별 토글 안에 작성했습니다.
+
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>
@@ -117,6 +119,8 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 }
 
 </style>
+
+# 페이지별 구성
 
 <div class="container">
     <table class= "infoTable">
@@ -767,7 +771,14 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 
 </br>
 
-</div>
+# 디렉터리 구조
+
+- `public`
+- `src`
+  - `components`: 공통 컴포넌트
+  - `pages`: 페이지별 코드
+  - `styles`: css 코드
+
 </details>
 
 ---
