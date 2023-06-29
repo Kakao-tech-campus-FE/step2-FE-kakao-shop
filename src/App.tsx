@@ -11,7 +11,7 @@ function App() {
     <Wrap>
       Home
       <h1>체크리스트</h1>
-      <CheckList names={['test1', 'test2']} axis="column" />
+      <CheckList names={['test1', 'test2']} axis="column" bgColor="yellow" color="white" width={20} height={20} />
       <h1>토스트</h1>
       <Toast content="토스트 테스트" position="top-right" />
       <h1>캐러셀</h1>
