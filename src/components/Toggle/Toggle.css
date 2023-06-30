@@ -5,6 +5,10 @@
   width: 28px;
   border-radius: 9999px;
   background-color: darkgray;
+  transition: all 200ms;
+}
+.toggle-switch:checked {
+  background-color: slateblue;
 }
 .toggle-switch::before {
   content: '';
@@ -18,4 +22,8 @@
   transform: scale(0.7);
   border-radius: 50%;
   background-color: white;
+  transition: left 200ms linear;
+}
+.toggle-switch:checked::before {
+  left: 43%;
 }
