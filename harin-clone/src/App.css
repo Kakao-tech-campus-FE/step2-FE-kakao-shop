@@ -105,3 +105,16 @@
   left: 20px;
   margin-top: 10px;
 }
+
+.carousel-container {
+  height: 300px;
+  width: 500px;
+  overflow: hidden;
+}
+
+.carousel-container .each {
+  height: 300px;
+  width: 500px;
+  display: flex;
+
+}

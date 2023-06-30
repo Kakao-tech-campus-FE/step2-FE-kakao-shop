@@ -1,13 +1,4 @@
-// import { useState } from "react";
-
-
 export const ToggleButton = () => {
-  // const [isOn, setOn] = useState(false)
-  
-  // const toggleHandler = () => {
-  //   setOn(!isOn)
-  //   console.log(isOn)
-  // }
 
   return (
     <>

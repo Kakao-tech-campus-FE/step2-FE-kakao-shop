@@ -1,9 +1,11 @@
 import './App.css';
 import BreadCrumb from './Components/Breadcrumb/breadcrumb';
+import Carousel from './Components/Carousel/carousel';
 import CheckBoxList from './Components/Checklist/checklist';
 import RadiobButtonGroup from './Components/Radiobutton/radiogroup';
 import Toasty from './Components/Toast/toasty';
 import { ToggleButton } from './Components/Togglebutton/togglebutton';
+
 
 function App() {
   const style = {
@@ -28,6 +30,7 @@ function App() {
 
       <fieldset style={style}>
         <legend>Carousel</legend>
+        <Carousel />
       </fieldset>
 
       <fieldset style={style}>
