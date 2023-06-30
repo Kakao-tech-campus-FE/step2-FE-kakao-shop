@@ -13,10 +13,16 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    background-color: rgb(232, 114, 208);
+    background-color: rgb(220, 128, 202);
     transition: 0.5s
 }
 
-.toggleChecked {}
+.toggleChecked {
+    background-color: rgb(223, 92, 212);
+}
 
-.circleChecked {}
+.circleChecked {
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    left: 5.3rem;
+}
