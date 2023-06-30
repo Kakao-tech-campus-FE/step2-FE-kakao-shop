@@ -40,3 +40,20 @@
 .read-the-docs {
   color: #888;
 }
+
+.breadcrumb-container {
+  height: 300px;
+}
+.radio-button-container {
+  height: 300px;
+}
+.toggle-button-container {
+  height: 300px;
+}
+.checklist-container {
+  height: 300px;
+}
+
+.toast-container {
+  height: 500px;
+}
