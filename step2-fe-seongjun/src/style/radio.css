@@ -1,0 +1,54 @@
+
+.radio-label {
+  position: relative;
+  color: #303030;
+  font-size: 14px;
+  font-weight: 400;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.radio-input {
+  position: absolute;
+  margin: 0;
+  visibility: hidden;
+}
+
+
+
+.radio-input:checked + span {
+  border: 2px solid #2196f3;
+}
+
+
+.radio-input:checked + span:after {
+  opacity: 1;
+}
+
+
+.custom-radio {
+  position: relative;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  margin-right: 7px;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 2px solid #9a9a9a;
+  border-radius: 50%;
+}
+
+/* for inner filled circle */
+.custom-radio::after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #2196f3;
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
