@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { NavLink } from "react-router-dom";
+import "../styles/breadcrumb.css"
 
 const BreadcrumbPortal = () => (
   <nav aria-label="Breadcrumb">

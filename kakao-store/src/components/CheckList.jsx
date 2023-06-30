@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/checklist.css"
 
 const Checkbox = ({ children, disabled, value, checked, onChange }) => {
 
