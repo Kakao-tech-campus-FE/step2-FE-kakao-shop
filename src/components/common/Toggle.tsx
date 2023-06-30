@@ -1,14 +1,34 @@
 import { styled } from 'styled-components';
 
-interface ToggleBox {
+interface IToggleBox {
   color: string;
   bgColor: string;
+  width: number;
+  height: number;
 }
-function Toggle({ title, bgColor, color }: { title: string; bgColor: string; color: string }) {
+interface ToggleProps {
+  title: string;
+  bgColor: string;
+  color: string;
+  width: number;
+  height: number;
+  onChange: (e: React.ChangeEvent) => void;
+}
+function Toggle({ title, bgColor, width, height, color, onChange }: ToggleProps) {
   return (
     <Label htmlFor={title}>
-      <ToggleBox id={title} name={title} type="checkbox" role="switch" color={color} bgColor={bgColor} />
-      {title}
+      <ToggleBox
+        id={title}
+        name={title}
+        type="checkbox"
+        role="switch"
+        width={width}
+        height={height}
+        color={color}
+        bgColor={bgColor}
+        onChange={onChange}
+      />
+      <span>{title}</span>
     </Label>
   );
 }
@@ -19,37 +39,35 @@ const Label = styled.label`
   display: flex;
   align-items: center;
 `;
-const ToggleBox = styled.input<ToggleBox>`
+const ToggleBox = styled.input<IToggleBox>`
+  box-shadow: 0 0 5px gray;
   margin-right: 5px;
+  padding: 0;
   cursor: pointer;
   appearance: none;
-  border: 1px solid gray;
-  width: 50px;
-  height: 20px;
-  border-radius: 15px;
+  width: ${(props) => props.width}px;
+  height: ${(props) => props.height}px;
+  border-radius: ${(props) => props.height}px;
   position: relative;
   &:before {
     content: '';
     position: absolute;
     border-radius: 100%;
-    width: 15px;
-    height: 15px;
-    top: 2.5px;
-    left: 2.5px;
+    width: ${(props) => props.height}px;
+    height: ${(props) => props.height}px;
     background-color: gray;
     transition: 0.25s linear;
   }
   &:checked::before {
     background-color: ${(props) => props.color};
-    transform: translateX(30px);
+    transform: translateX(${(props) => props.width - props.height}px);
     transition: 0.25s linear;
   }
   &:checked {
-    border: none;
     background-color: ${(props) => props.bgColor};
     transition: 0.25s linear;
   }
   &:hover {
-    box-shadow: 0 0 5px gray;
+    opacity: 0.8;
   }
 `;
