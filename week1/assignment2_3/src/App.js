@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import './App.css';
 import RadioGroup from './components/radio/RadioGroup';
@@ -8,23 +9,40 @@ import Carousel from './components/carousel/Carousel';
 import ToggleGroup from './components/togglebtn/ToggleGroup';
 import ToastGroup from './components/toast/ToastGroup';
 import Checklist from './components/checklist/Checklist';
+import BadgeGroup from './components/badge/BadgeGroup';
 
 const App = () => {
     return (
-        <div className="app">
+        <BrowserRouter>
             <Layout children={
                 <div className="app-header">
-                    <span>Badge component</span>
-                    <Badge text={"New!"} color={"purple"}/>
-                    <RadioGroup/>
-                    <ToggleGroup/>
-                    <Carousel/>
-                    <ToastGroup/>
-                    <Checklist/>
+                    <Routes>
+                        <Route exact path='/' element={
+                            <BadgeGroup/>
+                        }/>
+                        <Route path='/badge' element={
+                            <BadgeGroup/>
+                        }/>
+                        <Route  path='/radio' element={
+                            <RadioGroup/>
+                        }/>
+                        <Route  path='/toggle' element={
+                            <ToggleGroup/>
+                        }/>
+                        <Route  path='/carousel' element={
+                            <Carousel/>
+                        }/>
+                        <Route  path='/toast' element={
+                            <ToastGroup/>
+                        }/>
+                        <Route  path='/checlist' element={
+                            <Checklist/>
+                        }/>
+                    </Routes>
                 </div>
             }> 
             </Layout>
-        </div>
+        </BrowserRouter>
     );
 }
 export default App;
