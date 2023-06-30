@@ -1,0 +1,21 @@
+.toggle-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.tg-image {
+  position: absolute;
+  margin: 20px;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.tg-image.hide {
+  opacity: 0;
+}
+.toggle-btn {
+  position: relative;
+  margin-top: 20px;
+}
