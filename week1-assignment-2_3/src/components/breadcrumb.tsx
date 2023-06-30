@@ -1,16 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 import styles from '../styles/breadcrumb.module.css';
 
 export default function Breadcrumb() {
-  const directoryTree: {
-    [key: string]: string[];
-  } = {
-    Home: ['Blog', 'Resume', 'Contact'],
-    Blog: ['Post 1', 'Post 2', 'Post 3'],
-    Resume: ['First', 'Second', 'Third'],
-    Contact: ['Email', 'Phone'],
-  };
-  const [pages, setPages] = useState<string[]>(['Home']);
+  const location = useLocation();
+  const routes = location.pathname.split('/');
 
   return (
     <div>
@@ -24,46 +18,26 @@ export default function Breadcrumb() {
         Breadcrumb
       </div>
       <nav
-        style={{
-          margin: '1rem',
-        }}
+        className={styles.breadcrumbList}
       >
-        <ul className={styles.breadcrumbList}>
-          {pages.map((page, index) => (
-            <li
-              className={styles.breadcrumb}
-              key={page}
-            >
-              {index === pages.length - 1 ? page : (
-                <a
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPages((prev) => prev.slice(0, prev.indexOf(page) + 1));
-                  }}
-                >
-                  {page}
-                </a>
-              )}
-            </li>
-          ))}
-        </ul>
-        <br />
-        <ul className={styles.links}>
-          {directoryTree[pages[pages.length - 1]] && directoryTree[pages[pages.length - 1]].map((link) => (
-            <li key={link}>
+        {routes.map((route, index) => (
+          <div
+            key={route}
+            className={styles.breadcrumb}
+          >
+            {index !== routes.length - 1 ? (
               <a
-                href="/"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPages((prev) => [...prev, link]);
-                }}
+                href={`/${routes.slice(1, index + 1).join('/')}`}
               >
-                {link}
+                {route === '' ? 'home' : route}
               </a>
-            </li>
-          ))}
-        </ul>
+            ) : (
+              <span>
+                {route}
+              </span>
+            )}
+          </div>
+        ))}
       </nav>
     </div>
   );

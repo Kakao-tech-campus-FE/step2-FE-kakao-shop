@@ -1,0 +1,6 @@
+.links {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 0.25rem;
+}

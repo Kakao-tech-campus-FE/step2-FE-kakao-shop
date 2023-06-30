@@ -9,10 +9,5 @@
 .breadcrumbList {
   display: flex;
   gap: 0.5rem;
-}
-
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  margin: 1rem;
 }

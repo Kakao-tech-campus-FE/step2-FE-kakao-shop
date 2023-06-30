@@ -1,7 +1,6 @@
 import React from 'react';
 import ToastDemo from './components/toastDemo';
 import ToastProvider from './components/toast';
-import Breadcrumb from './components/breadcrumb';
 import RadioButton from './components/radioButton';
 import ToggleButton from './components/toggleButton';
 import Checklist from './components/checklist';
@@ -15,7 +14,14 @@ function App() {
         <ToastDemo />
       </ToastProvider>
       <hr />
-      <Breadcrumb />
+      <div style={{
+        fontWeight: '700',
+        fontSize: '2rem',
+        margin: '2rem 1rem',
+      }}
+      >
+        <a href="/breadcrumb">Breadcrumb</a>
+      </div>
       <hr />
       <CarouselDemo />
       <hr />
