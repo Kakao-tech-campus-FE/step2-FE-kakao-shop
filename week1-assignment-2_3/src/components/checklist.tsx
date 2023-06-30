@@ -60,20 +60,10 @@ export default function Checklist() {
 
   return (
     <div>
-      <div
-        style={{
-          fontWeight: '700',
-          fontSize: '2rem',
-          margin: '2rem 1rem',
-        }}
-      >
+      <div className="demo-category-title">
         Checklist
       </div>
-      <div
-        style={{
-          margin: '1rem',
-        }}
-      >
+      <div className="demo-category">
         <div>
           What languages can you speak?
         </div>

@@ -8,13 +8,7 @@ export default function Breadcrumb() {
 
   return (
     <div>
-      <div
-        style={{
-          fontWeight: '700',
-          fontSize: '2rem',
-          margin: '2rem 1rem',
-        }}
-      >
+      <div className="demo-category-title">
         Breadcrumb
       </div>
       <nav

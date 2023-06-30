@@ -7,20 +7,10 @@ export default function RadioButton() {
 
   return (
     <div>
-      <div
-        style={{
-          fontWeight: '700',
-          fontSize: '2rem',
-          margin: '2rem 1rem',
-        }}
-      >
+      <div className="demo-category-title">
         Radio button
       </div>
-      <div
-        style={{
-          margin: '1rem',
-        }}
-      >
+      <div className="demo-category">
         <div>
           What is your favorite animal?
         </div>

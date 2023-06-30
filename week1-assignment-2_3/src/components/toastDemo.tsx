@@ -21,20 +21,10 @@ export default function ToastDemo() {
 
   return (
     <div>
-      <div
-        style={{
-          fontWeight: '700',
-          fontSize: '2rem',
-          margin: '2rem 1rem',
-        }}
-      >
+      <div className="demo-category-title">
         Toast
       </div>
-      <div
-        style={{
-          margin: '1rem',
-        }}
-      >
+      <div className="demo-category">
         <div>
           <button
             type="button"
@@ -43,7 +33,7 @@ export default function ToastDemo() {
             Show toast
           </button>
         </div>
-        <div style={{ fontWeight: '700', marginTop: '0.5rem' }}>
+        <div className="toast-option">
           Toast message:
           {' '}
           <input
@@ -52,10 +42,10 @@ export default function ToastDemo() {
             onChange={(e) => setToastMsg(e.target.value)}
           />
         </div>
-        <div style={{ fontWeight: '700', marginTop: '0.5rem' }}>
+        <div className="toast-option">
           Toast position
         </div>
-        <div style={{ display: 'flex', gap: '0.25rem' }}>
+        <div className="toast-option-radio">
           {toastPositionValues.map((value, index) => (
             <label
               key={`${`${value}-${index}`}`}
@@ -75,7 +65,7 @@ export default function ToastDemo() {
             </label>
           ))}
         </div>
-        <div style={{ fontWeight: '700', marginTop: '0.5rem' }}>
+        <div className="toast-option">
           Toast duration(ms):
           {' '}
           <input

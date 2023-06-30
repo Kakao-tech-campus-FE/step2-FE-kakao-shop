@@ -9,17 +9,12 @@ import './styles/app.css';
 
 function App() {
   return (
-    <div style={{ height: '3000px' }}>
+    <div className="demo-page">
       <ToastProvider>
         <ToastDemo />
       </ToastProvider>
       <hr />
-      <div style={{
-        fontWeight: '700',
-        fontSize: '2rem',
-        margin: '2rem 1rem',
-      }}
-      >
+      <div className="demo-category-title">
         <a href="/breadcrumb">Breadcrumb</a>
       </div>
       <hr />

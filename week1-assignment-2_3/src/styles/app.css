@@ -1,3 +1,28 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
+.demo-page {
+  height: 3000px;
+}
+
+.demo-category {
+  margin: 1rem;
+}
+
+.demo-category-title {
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 2rem 1rem;
+}
+
+.toast-option {
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.toast-option-radio {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}

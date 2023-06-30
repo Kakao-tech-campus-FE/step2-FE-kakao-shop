@@ -5,21 +5,13 @@ import styles from '../styles/carouselDemo.module.css';
 export default function CarouselDemo() {
   return (
     <div>
-      <div
-        style={{
-          fontWeight: '700',
-          fontSize: '2rem',
-          margin: '2rem 1rem',
-        }}
-      >
+      <div className="demo-category-title">
         Carousel
       </div>
       <Carousel>
         <div
           key={0}
-          style={{
-            padding: '1.5rem',
-          }}
+          className="demo-category"
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt turpis ac leo congue consectetur. Aenean lacinia dolor id dolor venenatis ultricies. Praesent at nulla quis lectus gravida hendrerit. Aenean sed leo vitae orci dignissim vehicula at non turpis. Sed et quam diam. Sed id facilisis dui. Maecenas id feugiat eros, at sodales odio. Curabitur eget justo interdum, efficitur mi in, maximus ante.
         </div>
