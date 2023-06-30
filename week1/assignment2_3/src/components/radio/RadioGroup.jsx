@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Radio from "./Radio";
-import "./RadioGroup.css"; // CSS 파일 경로에 맞게 수정
 
 const RadioGroup = () => {
   const [selectedValue, setSelectedValue] = useState("smile");
@@ -28,7 +27,7 @@ const RadioGroup = () => {
       }}
     >
       <img src={imgLink[selectedValue]} alt="Emoji image" />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", margin: "16px" }}>
         <Radio
           value={"smile"}
           checked={selectedValue === "smile"}
