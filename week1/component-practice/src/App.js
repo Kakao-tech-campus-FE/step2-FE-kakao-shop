@@ -5,6 +5,7 @@ import ToggleTest from "./pages/ToggleTest";
 import Home from "./pages/Home";
 import ToastTest from "./pages/ToastTest";
 import ChecklistTest from "./pages/ChecklistTest";
+import RadioTest from "./pages/RadioTest";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -25,7 +26,7 @@ function App() {
       name: "Checklist",
       component: <ChecklistTest />,
     },
-    { id: 6, route: "radio-test", name: "Radio", component: <Home /> },
+    { id: 6, route: "radio-test", name: "Radio", component: <RadioTest /> },
     { id: 7, route: "carousel-test", name: "Carousel", component: <Home /> },
   ];
 

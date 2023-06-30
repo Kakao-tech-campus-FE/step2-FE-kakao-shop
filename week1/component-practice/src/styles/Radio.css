@@ -1,49 +1,49 @@
-.checklist {
+.radio {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   justify-content: space-between;
 }
 
-.box {
+.radio-box {
   width: 1rem;
   height: 1rem;
   border: 1px solid #ccc;
   background-color: #fff;
   margin-right: 10px;
-  border-radius: 2px;
+  border-radius: 50%;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.box:hover {
+.radio-box:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.box:active {
+.radio-box:active {
   cursor: pointer;
   transform: scale(1.05);
 }
 
-.checklist .checked::after {
-  content: "✔"; /* 체크 표시 아이콘 */
+/* .radio .checked::after {
+  content: "●";
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   position: relative;
-  top: -4.5px;
+  top: -0.65rem;
   z-index: 999;
-}
+} */
 
-.checkbox {
+.radiobutton {
   display: none;
 }
 
-.checked {
-  background-color: var(--main-color);
+.radio .checked {
   border-color: var(--main-color);
+  box-shadow: 0 0 0 4px var(--main-color) inset;
 }
 
-.checklist span {
+.radio span {
   font-size: 1rem;
   color: #333;
 }
