@@ -20,22 +20,22 @@ const App = () => {
                         <Route exact path='/' element={
                             <MainPage/>
                         }/>
-                        <Route path='/badge' element={
+                        <Route path='/Badge' element={
                             <BadgeGroup/>
                         }/>
-                        <Route  path='/radio' element={
+                        <Route  path='/RadioButton' element={
                             <RadioGroup/>
                         }/>
-                        <Route  path='/toggle' element={
+                        <Route  path='/ToggleButton' element={
                             <ToggleGroup/>
                         }/>
-                        <Route  path='/carousel' element={
+                        <Route  path='/Carousel' element={
                             <Carousel/>
                         }/>
-                        <Route  path='/toast' element={
+                        <Route  path='/Toast' element={
                             <ToastGroup/>
                         }/>
-                        <Route  path='/checklist' element={
+                        <Route  path='/Checklist' element={
                             <Checklist/>
                         }/>
                     </Routes>

@@ -1,10 +1,15 @@
 .card {
+  position: relative;
   min-width: 100px;
   width: 15vw;
   height: 20vw;
   border: 1px solid black;
   border-radius: 16px;
   margin: 5vw;
+}
+.card-wrapper {
+  width: fit-content;
+  height: fit-content;
 }
 
 .card-content {
