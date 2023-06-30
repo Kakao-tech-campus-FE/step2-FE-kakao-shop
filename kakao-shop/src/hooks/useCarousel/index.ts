@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-interface CarouselOptions {
+type CarouselOptions = {
   data: any[];
   slideItemWidth: number; // 슬라이드 될 아이템 가로 길이
   slideCount: number; // 슬라이드 넘어가는 개수
-}
+};
 
 export default function useCarousel(options: CarouselOptions) {
   const { slideCount, data, slideItemWidth } = options;
@@ -13,7 +13,6 @@ export default function useCarousel(options: CarouselOptions) {
   const [currentSlide, setCurrentSlide] = useState(slideCount); // 현재 슬라이드 값
   const [isAnimation, setIsAnimaion] = useState(true); // 슬라이드 애니메이션 여부 -> 무한 슬라이드 구현 시 인덱스 초기화 시에는 에니메이션 사용X
   const [isFlowing, setIsFlowing] = useState(true); // 이 값이 true 이면 자동 슬라이드 실행
-  const [isCenterIndex, setIsCenterIndex] = useState(0); // 중앙에 있는 슬라이드 인덱스 (현재 슬라이드 값 + 처음에 초점 맞춰져 있는 슬라이드 인덱스 - 1) -> 마지막에 -1 하는 이유는 인덱스가 0부터 시작해야해서 -1 해줌
   const [dataList, setDataList] = useState(data);
   const ORIGINAL_IMAGE_LENGTH = data.length; // 원본 배열 길이
 
@@ -72,7 +71,6 @@ export default function useCarousel(options: CarouselOptions) {
   }, [currentSlide, slideCount]);
 
   useEffect(() => {
-    console.log("currentSlide", currentSlide);
     if (!slideRef.current) return;
     //현재 슬라이드가 이미지 갯수를 넘어갔을 경우 초기 상태로 몰래 바꿔치기하는 작업
     if (
@@ -82,6 +80,7 @@ export default function useCarousel(options: CarouselOptions) {
       setTimeout(() => {
         setIsAnimaion(false); // 바꿔치기할 때 animation을 잠깐 끔 (사용자에게 들키지 않기 위해 )
         if (slideRef.current) {
+          // 초기값으로 되돌려준다.
           slideRef.current.style.left = `${
             initialFocusSlideIndex * slideItemWidth * -1
           }px`;
@@ -95,6 +94,7 @@ export default function useCarousel(options: CarouselOptions) {
       }, 600);
     }
 
+    // 슬라이더 이동
     slideRef.current.style.transform = `translateX(${
       -slideItemWidth * (currentSlide - slideCount)
     }px)`;
@@ -107,23 +107,16 @@ export default function useCarousel(options: CarouselOptions) {
   ]);
 
   // 무한 슬라이드를 위해 setInterval 사용
+  // currentSlice가 변경되면 바로위 useEffect가 발생
   useEffect(() => {
     let intervalId: NodeJS.Timer;
     if (isFlowing) {
       intervalId = setInterval(() => {
         setCurrentSlide(currentSlide + slideCount);
-      }, 3500);
+      }, 3000);
     }
     return () => clearTimeout(intervalId);
   }, [isFlowing, currentSlide, slideCount]);
-
-  // 현재 슬라이드가 원본 이미지 길이를 벗어났을 때는 그대로 return 시켜주고 아닐 경우에는 center 상태에 index를 넣어줌
-  // 이렇게 하는 이유는 center Index 값을 가지고 있어야 이미지 아래에 information 정보를 보여줄 수 있음
-  useEffect(() => {
-    if (currentSlide > ORIGINAL_IMAGE_LENGTH) return;
-    if (currentSlide <= -1 * ORIGINAL_IMAGE_LENGTH + slideCount) return;
-    setIsCenterIndex(currentSlide - 1 + initialFocusSlideIndex);
-  }, [currentSlide, ORIGINAL_IMAGE_LENGTH, initialFocusSlideIndex, slideCount]);
 
   const onChangeFlowing = (value: boolean) => {
     setIsFlowing(value);
@@ -132,7 +125,6 @@ export default function useCarousel(options: CarouselOptions) {
   // 마우스 스와이프, 터치 스와이프
   const [touchStartClientX, setTouchStartClientX] = useState(0);
   const [touchEndClientX, setTouchEndClientX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
 
   // 스와이프 이동 범위 설정 -> 이동 범위 이상으로 이동해야 슬라이드가 이동됨
   const moveRange = useMemo(() => {
@@ -144,6 +136,7 @@ export default function useCarousel(options: CarouselOptions) {
     return touchEndClientX - touchStartClientX;
   }, [touchEndClientX, touchStartClientX]);
 
+  // 터치 시작
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     onChangeFlowing(false);
     setIsAnimaion(false);
@@ -151,10 +144,12 @@ export default function useCarousel(options: CarouselOptions) {
     setTouchEndClientX(e.touches[0].clientX);
   };
 
+  // 손가락이 화면에 닿여있는 상태로 움직일 떄
   const onTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchEndClientX(e.touches[0].clientX);
   };
 
+  // 손가락을 땔때
   const onTouchEnd = () => {
     onChangeFlowing(true);
     setIsAnimaion(true);
@@ -164,41 +159,11 @@ export default function useCarousel(options: CarouselOptions) {
     setTouchEndClientX(0);
   };
 
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-    onChangeFlowing(false);
-    setTouchStartClientX(e.clientX);
-    setTouchEndClientX(e.clientX);
-    setIsDragging(true);
-    setIsAnimaion(false);
-  };
-
-  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-    setTouchEndClientX(e.clientX);
-  };
-
-  const onMouseOut = () => {
-    setIsDragging(false);
-    setIsAnimaion(true);
-    setTouchEndClientX(0);
-    setTouchStartClientX(0);
-  };
-
-  const onMouseUp = () => {
-    setIsAnimaion(true);
-    if (touchMoveDistance > moveRange) onPrevSlide();
-    if (touchMoveDistance < moveRange * -1) onNextSlide();
-    setTouchStartClientX(0);
-    setTouchEndClientX(0);
-    setIsDragging(false);
-  };
-
   return {
     slideRef,
     isAnimation,
     initialFocusSlideIndex,
     dataList,
-    isCenterIndex,
     onPrevSlide,
     onNextSlide,
     onChangeFlowing,
@@ -207,9 +172,5 @@ export default function useCarousel(options: CarouselOptions) {
     onTouchMove,
     onTouchEnd,
     touchMoveDistance,
-    onMouseDown,
-    onMouseMove,
-    onMouseUp,
-    onMouseOut,
   };
 }

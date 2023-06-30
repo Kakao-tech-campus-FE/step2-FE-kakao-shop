@@ -6,18 +6,6 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import BannerImageListItem from "./BannerImageListItem";
 
-interface IButtonDirection {
-  direction: "left" | "right";
-}
-
-const getImageWidth = () => {
-  const width = window.innerWidth;
-
-  if (width >= 1920) {
-    return 1920;
-  } else return width;
-};
-
 function BannerImageList(): ReactElement {
   const [imageWidth, setImageWidth] = useState(getImageWidth());
   const { width } = useWindowDimensions(); //  window 사이즈가 변화할 때마다 변경되는 width 값
@@ -50,7 +38,6 @@ function BannerImageList(): ReactElement {
     initialFocusSlideIndex,
     dataList,
     isAnimation,
-    isCenterIndex,
     onChangeFlowing,
     onNextSlide,
     onPrevSlide,
@@ -60,12 +47,7 @@ function BannerImageList(): ReactElement {
     onTouchMove,
     onTouchStart,
     touchMoveDistance,
-    onMouseDown,
-    onMouseMove,
-    onMouseUp,
-    onMouseOut,
   } = useCarousel(carouselOption);
-
   return (
     <Wrapper>
       <BannerImageListWrapper bannerWidth={slideItemWidth}>
@@ -77,25 +59,20 @@ function BannerImageList(): ReactElement {
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           onTouchMove={onTouchMove}
-          onMouseOut={onMouseOut}
           onDragStart={(e) => {
             e.stopPropagation();
             e.preventDefault();
           }}
-          onMouseMove={onMouseMove}
-          onMouseDown={onMouseDown}
-          onMouseUp={onMouseUp}
           style={{
             left:
               slideItemWidth * -1 * initialFocusSlideIndex + touchMoveDistance,
-          }}
+          }} // 초기 슬라이더 위치 세팅
         >
           <ImageList>
             {dataList.map((image, index) => (
               <BannerImageListItem
                 key={index}
                 imageItem={image}
-                isCenter={index === isCenterIndex}
                 imageWidth={imageWidth}
                 imagePadding={slideImagePadding}
               />
@@ -126,21 +103,36 @@ function BannerImageList(): ReactElement {
     </Wrapper>
   );
 }
+
+export default BannerImageList;
+
+type IButtonDirection = {
+  direction: "left" | "right";
+};
+
+const getImageWidth = () => {
+  const width = window.innerWidth;
+
+  if (width >= 1920) return 1920;
+  else return width;
+};
+
 const Wrapper = styled.div`
   height: 300px;
 `;
 
 const BannerImageListWrapper = styled.div<{ bannerWidth: number }>`
-  width: ${({ bannerWidth }) => bannerWidth}px;
-  margin: 0 auto;
   position: relative;
+  margin: 0 auto;
+
+  width: ${({ bannerWidth }) => bannerWidth}px;
   height: 300px;
 `;
 
 const ImageListBox = styled.div<{ isAnimation: boolean }>`
-  width: 100%;
   position: absolute;
-  ${({ isAnimation }) => isAnimation && "transition: all 0.4s ease-in-out"};
+  width: 100%;
+  ${({ isAnimation }) => isAnimation && "transition: all 0.4s ease-in-out"}
 `;
 
 const ImageList = styled.div`
@@ -151,17 +143,21 @@ const ArrowButtonStyled = styled.button<IButtonDirection>`
   display: flex;
   align-items: center;
   justify-content: center;
+
   position: absolute;
   top: 145px;
-  font-size: 16px;
 
   width: 50px;
   height: 50px;
+
+  font-size: 16px;
+
   border: 1px solid rgba(255, 255, 255, 0.23);
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.04);
 
+  // 캐러셀 버튼 위치
   ${(props) =>
     props.direction === "left"
       ? css`
@@ -173,25 +169,27 @@ const ArrowButtonStyled = styled.button<IButtonDirection>`
 `;
 
 const LeftChevron = styled.span`
+  width: 9px;
+  height: 18px;
+
   font-size: 0;
+  vertical-align: top;
+
   background: url("https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg")
     no-repeat;
   background-size: 800px 500px;
-  vertical-align: top;
   background-position: -760px 0;
-
-  width: 9px;
-  height: 18px;
 `;
 
 const RightChevron = styled.span`
+  width: 9px;
+  height: 18px;
+
   font-size: 0;
+  vertical-align: top;
+
   background: url("https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg")
     no-repeat;
   background-size: 800px 500px;
-  vertical-align: top;
   background-position: -770px 0;
-  width: 9px;
-  height: 18px;
 `;
-export default BannerImageList;
