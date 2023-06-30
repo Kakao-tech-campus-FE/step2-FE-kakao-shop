@@ -21,12 +21,12 @@
   transition: all 0.2s;
 }
 
-.check-list-item input[type="checkbox"]:checked + label:before {
+.check-list-item input[type="checkbox"]:checked+label:before {
   background-color: #007bff;
   border-color: #007bff;
 }
 
-.check-list-item input[type="checkbox"]:checked + label{
+.check-list-item input[type="checkbox"]:checked+label {
   text-decoration: line-through;
 }
 

@@ -44,11 +44,11 @@
   transition: .4s;
 }
 
-.toggle input:checked + label .slider {
+.toggle input:checked+label .slider {
   background-color: #007bff;
 }
 
-.toggle input:checked + label .slider::before {
+.toggle input:checked+label .slider::before {
   transform: translateX(2rem);
 }
 

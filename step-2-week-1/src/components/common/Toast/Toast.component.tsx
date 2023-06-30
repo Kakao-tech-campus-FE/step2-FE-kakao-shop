@@ -1,4 +1,4 @@
-import { FC, useInsertionEffect, useState } from "react";
+import { FC } from "react";
 import "@/components/common/Toast/toast.css";
 import { ToastAtom } from "@/stores/toast.atom";
 import { useToast } from "@/hooks/useToast";
