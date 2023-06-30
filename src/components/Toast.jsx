@@ -45,9 +45,9 @@ const Toast = ( {message, button, buttonstyle} ) => {
     setToast(false);
   };
 
-  // const timer = setTimeout(() => {
-  //   setToast(false);
-  // }, 5000);
+  const timer = setTimeout(() => {
+    setToast(false);
+  }, 5000);
 
   return (
     <>

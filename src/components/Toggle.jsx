@@ -5,6 +5,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   margin: 30px;
+  margin-right: auto;
 `
 
 const Box = styled.div`

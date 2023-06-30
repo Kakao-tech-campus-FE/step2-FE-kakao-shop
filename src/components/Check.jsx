@@ -51,7 +51,6 @@ const initProducts = [
 const Check = () => {
 
   const [list, setList] = useState(initProducts);
-  const [isDone, setIsDone] = useState(false)
 
   const toggledItem = (obj) => {
     const newObj = { ...obj };
@@ -68,10 +67,6 @@ const Check = () => {
       )
     )
   };
-
-  const buyClick = () => {
-    setIsDone(true)
-  }
 
   const buylist = () => {
     const arr = Array();
@@ -90,7 +85,8 @@ const Check = () => {
     <Container>
       {initProducts.map((item, i) => (
         <ProductBox>
-          <input type="checkbox" defaultChecked={item.buy} onChange={() => {toggle(i)}}/>
+          <input type="checkbox" defaultChecked={item.buy} 
+          onChange={() => {toggle(i)}}/>
           <ProductImg></ProductImg>
           {item.name}
         </ProductBox>
