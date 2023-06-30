@@ -12,9 +12,15 @@ const slideStateToClassName = (state) => {
 }
 const CarouselSlide = ({image, slideState}) => {
     return (
-        <div className={"carousel-slide "+`${slideStateToClassName(slideState)
-        }`}>
-            <img src={image} alt={"carousel"}/>
+        <div
+            className={"carousel-slide "+`${slideStateToClassName(slideState)}`}
+            style={{
+                backgroundImage: `url(${image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+            }}
+        >
         </div>
     );
 }
