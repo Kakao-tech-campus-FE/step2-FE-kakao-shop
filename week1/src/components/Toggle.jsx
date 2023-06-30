@@ -15,8 +15,8 @@ const Toggle = () => {
         <>
             <h2 className={styles.h2}>5. 토글버튼 구현</h2>
             <div onClick={toggleHandler}>
-                <div className={`${styles.toggleContainer} ${styles.isOn ? "toggleChecked" : null}`} />
-                <div className={`${styles.circle} ${styles.isOn ? "circleChecked" : null}`} />
+                <div className={`${styles.toggleContainer} ${isOn ? styles.toggleChecked : null}`} />
+                <div className={`${styles.circle} ${isOn ? styles.circleChecked : null}`} />
             </div>
 
             {isOn === false ?
