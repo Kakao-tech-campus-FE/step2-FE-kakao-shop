@@ -288,12 +288,9 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 
 <br>
 
-✅**과제 2.**
+✅**과제 2, 3.**
 
-
-
-✅**과제 3.**
-
+https://www.notion.so/9e21c53c52ea401fa0f72def74e94faf?pvs=4
 
 </div>
 </details>
