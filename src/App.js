@@ -5,6 +5,7 @@ import "./App.css";
 import Toast from "./components/Toast.js";
 import Breadcrumb from "./components/Breadcrumb.js";
 import Carousel from "./components/Carousel.js";
+import RadioButton from "./components/RadioButton.js";
 
 // image
 import carouselImage1 from "./assets/images/carousel/carouselItem1.jpeg";
@@ -28,6 +29,10 @@ function App() {
       <Carousel
         images={[carouselImage1, carouselImage2, carouselImage3]}
       ></Carousel>
+      <br />
+      <br />
+      <h3>[RadioButton]</h3>
+      <RadioButton radios={["옵션1", "옵션2", "옵션3"]}></RadioButton>
     </div>
   );
 }
