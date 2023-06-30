@@ -17,7 +17,6 @@ const Slide = styled.div`
 `;
 
 const SlideItem = styled.div`
-  width: 100vw;
   height: 15rem;
   display: flex;
 `;
