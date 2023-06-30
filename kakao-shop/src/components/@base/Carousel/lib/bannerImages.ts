@@ -1,10 +1,10 @@
-export interface IBannerImageItem {
+export type IBannerImageItem = {
   id: number;
   title: string;
   description: string;
   imageUrl: string;
   link: string;
-}
+};
 
 export const bannerImages = [
   {

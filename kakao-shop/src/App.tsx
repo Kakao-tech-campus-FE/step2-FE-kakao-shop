@@ -1,8 +1,9 @@
 import { useEffect, useState, ReactElement } from 'react';
 import { Route, Routes, BrowserRouter, Outlet, useLocation, Link } from 'react-router-dom';
 
-import Breadcrumb from './components/@base/BreadCrumb';
-import { TestPage } from './pages';
+import TestPage from '@pages/testPage';
+
+import Breadcrumb from '@components/@base/BreadCrumb';
 
 function App() {
   return (

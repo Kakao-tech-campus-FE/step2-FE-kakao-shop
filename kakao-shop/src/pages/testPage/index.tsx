@@ -2,15 +2,11 @@ import styled from '@emotion/styled';
 import { ReactNode, useState } from 'react';
 import { ChangeEvent } from 'react';
 
-import { Toast, Toggle } from '../../components/@base';
-import BannerImageList from '../../components/@base/Carousel/BannerImageList';
-import BannerImageListItem from '../../components/@base/Carousel/BannerImageListItem';
-import Checkbox from '../../components/@base/CheckBox';
-import Radio from '../../components/@base/Radio';
-import CheckBoxItem from '../../components/@molecules/CheckBoxItem';
-import Pay from '../../components/domains/Pay';
+import { Toast, Toggle } from '@components/@base';
+import BannerImageList from '@components/@base/Carousel/BannerImageList';
+import Pay from '@components/domains/Pay';
 
-function App() {
+function TestPage() {
   const [value, setValue] = useState('1');
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -91,7 +87,7 @@ function App() {
   );
 }
 
-export default App;
+export default TestPage;
 
 const ToastContent = (props: { onClick: () => void; options?: any; children?: ReactNode }) => {
   return (
