@@ -21,6 +21,7 @@ const Crumb = ({ href, children }) => {
     </CrumbWrapper>
   );
 };
+
 const BreadcrumbContainer = styled.div`
   position: fixed;
   top: 0;
@@ -33,13 +34,13 @@ const BreadcrumbContainer = styled.div`
   background-color: #008080;
   z-index: 9;
 `;
+
 const BreadcrumbList = styled.ol`
   padding: 0;
   margin: 0;
   list-style-type: none;
   color: #fff;
 `;
-
 
 const CrumbWrapper = styled.li`
   font-size: 20px;
