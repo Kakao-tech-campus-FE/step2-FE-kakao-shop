@@ -13,6 +13,7 @@ const ToastGroup = () => {
         isVisible={isVisible}
         setIsVisible={setIsVisible}
         text={"This is Toast Message!!"}
+        color="#0A6EBD"
       />
     </div>
   );

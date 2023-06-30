@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import "./Toast.css";
 
-const Toast = ({ isVisible, setIsVisible, text, interval = 1500 }) => {
+const Toast = ({
+  isVisible,
+  setIsVisible,
+  text,
+  color = "cornflowerblue",
+  interval = 1500,
+}) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(false);
@@ -9,10 +15,13 @@ const Toast = ({ isVisible, setIsVisible, text, interval = 1500 }) => {
     return () => {
       clearTimeout(timer);
     };
-  }, [isVisible, interval]);
+  }, [isVisible]);
 
   return (
-    <div className={`toast ${isVisible ? "toast-show" : "toast-hide"}`}>
+    <div
+      className={`toast ${isVisible ? "toast-show" : "toast-hide"}`}
+      style={{ backgroundColor: color }}
+    >
       <span>{text}</span>
     </div>
   );
