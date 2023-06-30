@@ -11,13 +11,7 @@ function App() {
   return (
     <>
       <Breadcrumb paths={paths} />
-      <div style={{ fontSize: '2rem', padding: 30 }}>
-        <Toggle
-          // Accordion에 넘겨줄 props
-          title="카카오테크캠퍼스 2단계 과제 2 - Toggle"
-          content="박유정"
-        />
-      </div>
+      <Toggle />
       <Toast message="토스트메시지!" />
       <Carousel />
       <div style={{ padding: 30, fontSize: '20px' }}>
