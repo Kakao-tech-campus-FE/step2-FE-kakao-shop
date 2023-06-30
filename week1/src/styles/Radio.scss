@@ -1,0 +1,14 @@
+.radio-wrapper {
+  display: flex;
+  width: 500px;
+  margin: auto;
+  margin-top: 200px;
+  .radio {
+    padding-top: 50px;
+    padding-left: 50px;
+    margin-right: 50px;
+  }
+  .radio-img {
+    width: 250px;
+  }
+}
