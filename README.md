@@ -95,3 +95,19 @@
 - 인터페이스 요구사항
   - 입력 : 결제하기 버튼 클릭
   - 출력 : 메인페이지
+
+### 디렉터리 구조
+
+```
+step2-FE-kakao-shop
+└─ src
+   ├─ assets      // 정적 자원
+   ├─ pages       // 페이지
+   ├─ components  // 커스텀 컴포넌트
+   ├─ hooks       // 커스텀 훅
+   ├─ constants   // 상수
+   ├─ apis        // API 요청
+   ├─ action      // (Redux) 액션 구성
+   ├─ reducer     // (Redux) 리듀서 구성
+   └─ store       // (Redux) 미들웨어 설정
+```
