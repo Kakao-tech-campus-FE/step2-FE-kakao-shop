@@ -7,16 +7,16 @@ import Breadcrumb from './components/Breadcrumb/Breadcrumb';
 import Carousel from './components/Carousel/Carousel';
 
 const App = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isToastVisible, setIsToastVisible] = useState(false);
 
   const handleToastButtonClick = () => {
-    setIsVisible(true);
+    setIsToastVisible(true);
   };
 
   return (
     <div className='App'>
-      {isVisible && (
-        <Toast position='bottom-left' isVisible={isVisible} setIsVisible={setIsVisible}>
+      {isToastVisible && (
+        <Toast position='bottom-left' isVisible={isToastVisible} setIsVisible={setIsToastVisible}>
           toast
         </Toast>
       )}
