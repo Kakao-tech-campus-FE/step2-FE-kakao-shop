@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Toast from "./components/Toast";
+import CheckList from "./components/CheckList";
+import RadioButton from "./components/RadioButton";
+import Breadcrumb from "./components/Breadcrumb";
+import ToogleButton from "./components/ToogleButton";
+import Carousel from "./components/Carousel.jsx";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Toast children={"상품이 품절되었습니다."} />
+      <Carousel></Carousel>
+      <Breadcrumb main={"패션"}></Breadcrumb>
+      <CheckList>데일리 스크럼</CheckList>
+      <CheckList>모각코</CheckList>
+      <div></div>
+      <RadioButton name={"1번"}></RadioButton>
+      <RadioButton name={"2번"}></RadioButton>
+      <ToogleButton></ToogleButton>
+    </>
   );
 }
 
