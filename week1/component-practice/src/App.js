@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import ToastTest from "./pages/ToastTest";
 import ChecklistTest from "./pages/ChecklistTest";
 import RadioTest from "./pages/RadioTest";
+import BreadcrumbsTest from "./pages/BreadcrumbsTest";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -18,7 +19,7 @@ function App() {
       id: 4,
       route: "breadcrumbs-test",
       name: "Breadcrumbs",
-      component: <Home />,
+      component: <BreadcrumbsTest />,
     },
     {
       id: 5,
