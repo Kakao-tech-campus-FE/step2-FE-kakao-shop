@@ -1,0 +1,18 @@
+.breadcrumb::before {
+  content: "/ ";
+}
+
+.breadcrumb:first-child::before {
+  content: "";
+}
+
+.breadcrumbList {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
