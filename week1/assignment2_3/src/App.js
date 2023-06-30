@@ -3,9 +3,9 @@ import React from 'react';
 import './App.css';
 import RadioGroup from './components/radio/RadioGroup';
 import Layout from './components/layout/Layout';
-import Toggle from './components/togglebtn/ToggleBtn';
 import Badge from './components/badge/Badge';
 import Carousel from './components/carousel/Carousel';
+import ToggleGroup from './components/togglebtn/ToggleGroup';
 
 const App = () => {
     return (
@@ -15,7 +15,7 @@ const App = () => {
                     <span>Badge component</span>
                     <Badge text={"New!"} color={"purple"}/>
                     <RadioGroup/>
-                    <Toggle/>
+                    <ToggleGroup/>
                     <Carousel/>
                 </div>
             }> 
