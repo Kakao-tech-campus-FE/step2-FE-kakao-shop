@@ -19,6 +19,42 @@ const ToastPage = () => {
       >
         Click!!
       </button>
+      <button
+        onClick={() =>
+          addToast({
+            id,
+            message: "this is a error message",
+            title: "error",
+            type: "error",
+          })
+        }
+      >
+        Click!!
+      </button>
+      <button
+        onClick={() =>
+          addToast({
+            id,
+            message: "this is a info message",
+            title: "info",
+            type: "info",
+          })
+        }
+      >
+        Click!!
+      </button>
+      <button
+        onClick={() =>
+          addToast({
+            id,
+            message: "this is a warning message",
+            title: "warning",
+            type: "warning",
+          })
+        }
+      >
+        Click!!
+      </button>
       <ToastTable />
     </>
   );
