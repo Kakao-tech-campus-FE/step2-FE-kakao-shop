@@ -19,6 +19,7 @@ const Toggle = ({ setToggleValue }) => {
       >
         <div className="toggleButton"></div>
       </div>
+      <div style={{ textAlign: "center" }}>토스트용 토글</div>
     </>
   );
 };
