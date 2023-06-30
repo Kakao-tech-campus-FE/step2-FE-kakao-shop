@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ToggleBtn from "./components/ToggleBtn";
+import RadioBtn from "./components/RadioBtn";
+import CheckList from "./components/CheckList";
+import Carousel from "./components/Carousel";
+import Toast from "./components/Toast";
+import Breadcrumb from "./components/Breadcrumb";
+import "./App.css";
+
+const HomePage = () => <h1>Home Page</h1>;
+const CategoryPage = () => <h1>Category Page</h1>;
+const InfoPage = () => <h1>Info Page</h1>;
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* <ToggleBtn />
+      <RadioBtn />
+      <Toast /> */}
+      <CheckList />
+      <Carousel />
+      <Breadcrumb />
     </div>
   );
 }
