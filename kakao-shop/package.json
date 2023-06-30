@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "@craco/craco": "^7.1.0"
+    "@craco/craco": "^7.1.0",
+    "@emotion/babel-preset-css-prop": "^11.11.0"
   }
 }
