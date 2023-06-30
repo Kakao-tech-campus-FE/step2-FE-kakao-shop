@@ -1,62 +1,32 @@
-import {
-  FC,
-  useCallback,
-  useEffect,
-  useInsertionEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, useInsertionEffect, useState } from "react";
 import "@/components/common/Toast/toast.css";
+import { ToastAtom } from "@/stores/toast.atom";
+import { useToast } from "@/hooks/useToast";
 
-export interface ToastProps {
-  title: string;
-  message: string;
-  type: "info" | "success" | "error" | "warning";
-  positionY?: "top" | "bottom" | "center";
-  positionX?: "left" | "right" | "center";
-  timeout?: number;
+interface ToastProps extends Omit<ToastAtom, "timeout"> {
+  index: number;
 }
 
 const Toast: FC<ToastProps> = ({
+  id,
   title,
   message,
   type = "succes",
-  positionY = "right",
-  positionX = "top",
-  timeout = 5000,
+  index,
 }) => {
-  const [closed, setClosed] = useState<boolean>(false);
-  const closeEvent = () => setClosed(true);
-  const toastRef = useRef<HTMLDivElement>(null);
-
-  const closeByTimeout = useCallback(() => {
-    setTimeout(() => {
-      setClosed(true);
-    }, timeout);
-  }, [timeout]);
-
-  useEffect(() => {
-    closeByTimeout();
-  }, [closeByTimeout]);
-
-  useInsertionEffect(() => {
-    setTimeout(() => {
-      if (!toastRef.current) return;
-      toastRef.current.style.opacity = "1";
-    });
-  });
+  const { removeToast } = useToast();
 
   return (
     <div
-      className={`toast toast-${type} toast-y-${positionY} toast-x-${positionX} ${
-        closed ? "closed" : ""
-      }`}
-      ref={toastRef}
+      className={`toast toast-${type}`}
+      style={{
+        transform: `translateY(calc(${index * 100}% + ${index * 1}rem)`,
+      }}
     >
       <img src={`/toast/${type}.svg`} alt="alert" />
       <div className="title">{title}</div>
       <div className="message">{message}</div>
-      <button onClick={closeEvent}>
+      <button onClick={() => removeToast(id)}>
         <img src="/multiply.svg" alt="close" />
       </button>
     </div>

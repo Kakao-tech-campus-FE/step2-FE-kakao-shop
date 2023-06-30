@@ -1,21 +1,14 @@
-import Toast, { ToastProps } from "@/components/common/Toast/Toast.component";
-import { FC } from "react";
+import Toast from "./Toast.component";
 import "@/components/common/Toast/toast-table.css";
+import { useToast } from "@/hooks/useToast";
 
-interface ToastTableProps {
-  toasts: ToastProps[];
-}
+const ToastTable = () => {
+  const { toasts } = useToast();
 
-const ToastTable: FC<ToastTableProps> = ({ toasts }) => {
   return (
     <div className="toast-table">
       {toasts.map((toast, index) => (
-        <Toast
-          key={index}
-          message={toast.message}
-          title={toast.title}
-          type={toast.type}
-        />
+        <Toast key={toast.id} index={index} {...toast} />
       ))}
     </div>
   );

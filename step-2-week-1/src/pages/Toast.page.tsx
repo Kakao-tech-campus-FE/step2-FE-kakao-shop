@@ -1,27 +1,25 @@
-import { ToastProps } from "@/components/common/Toast/Toast.component";
 import ToastTable from "@/components/common/Toast/ToastTable.component";
-import { useState } from "react";
+import { useToast } from "@/hooks/useToast";
 
 const ToastPage = () => {
-  const [toasts, setToasts] = useState<ToastProps[]>([]);
-  const showToast = (toast: ToastProps) => {
-    setToasts([...toasts, toast]);
-  };
+  const { addToast } = useToast();
+  const id = Date.now().toString(36) + Math.random().toString(36).substring(2);
 
   return (
     <>
       <button
         onClick={() =>
-          showToast({
-            message: "새로운 지원서가 접수 되었습니다.",
-            title: "[개발자] 임채승 지원서 등록 완료!",
-            type: "info",
+          addToast({
+            id,
+            message: "this is a sucess message",
+            title: "success",
+            type: "success",
           })
         }
       >
-        Click!!!
+        Click!!
       </button>
-      <ToastTable toasts={toasts} />
+      <ToastTable />
     </>
   );
 };

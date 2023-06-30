@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const TogglePage = () => {
   const [checked, setChecked] = useState(false);
+
   return (
     <Toggle
       checked={checked}
