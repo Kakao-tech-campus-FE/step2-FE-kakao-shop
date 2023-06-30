@@ -7,7 +7,7 @@ type ToastData = {
   message: string;
 };
 
-type Props = { background?: string; visible?: boolean };
+type Props = { background?: string; visible?: number };
 
 const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
   const { id, message } = toastData;
@@ -28,7 +28,7 @@ const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
   }, []);
 
   return (
-    <Toast visible={visible} background={backgroundColor}>
+    <Toast visible={visible ? 1 : 0} background={backgroundColor}>
       <IconWrapper>{icon}</IconWrapper>
       {message}
     </Toast>
