@@ -9,22 +9,21 @@ import { Breadcrumb, BreadcrumbPortal } from './components/Breadcrumb';
 import Carousel from './components/Carousel';
 import CheckList from './components/CheckList';
 
-const COLOR_LIST = ['green', 'red'];
+const COLOR_LIST = {
+  false: 'red',
+  true: 'green'
+};
 
 export const RadioContent = createContext({});
 
 function App() {
   const [toast, setToast] = useState(false);
   const [radio, setRadio] = useState("Hello");
-  let colorState = false;
+  const [toggle, setToggle] = useState(false);
 
   const handleClick = (e) => {
     e.preventDefault();
     setToast(true);
-  }
-
-  const getToggle = (toggle) => {
-    colorState = toggle;
   }
 
   return (
@@ -44,9 +43,9 @@ function App() {
           World
         </RadioButton>
       </RadioButtonList>
-      <ToggleButton getToggle={getToggle}/>
+      <ToggleButton getToggle={setToggle}/>
       <button onClick={handleClick}>버튼</button>
-      {toast && <Toast text={radio} color={COLOR_LIST[colorState]} setToast={setToast}/>}
+      {toast && <Toast text={radio} color={COLOR_LIST[toggle]} setToast={setToast}/>}
       <TopButton />
     </>
   );

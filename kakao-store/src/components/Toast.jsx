@@ -13,8 +13,8 @@ const Toast = ({ text, color, setToast }) => {
     }, [setToast]);
     
     return (
-        <div className={classnames("toast-container", {color})}>
-            <p className={classnames("toast-message", {color})}>{text}</p>
+        <div className={classnames("toast-container", color)}>
+            <p className={classnames("toast-message", color)}>{text}</p>
         </div>
     );
 };
