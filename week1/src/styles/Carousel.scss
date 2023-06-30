@@ -1,0 +1,10 @@
+.carousel {
+  display: flex;
+  place-content: space-between;
+  align-items: center;
+  height: 200px;
+  padding: 0px 10px;
+  background-color: #808080;
+  background-size: cover;
+  background-image: "../assets/images/skyWithRoad.jpg";
+}

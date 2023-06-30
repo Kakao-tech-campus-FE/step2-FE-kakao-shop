@@ -4,9 +4,15 @@ import CheckList from "../components/CheckList/CheckList";
 import React, { useState } from "react";
 import ProcessBar from "../components/ProcessBar/processBar";
 import Toast from "../components/Toast/Toast";
+import Carousel from "../components/Carousel/Carousel";
+
 import oneGrayCat from "../assets/images/a_gray_cat.png";
 import twoGrayCats from "../assets/images/two_gray_cats.jpg";
 import manyGrayCats from "../assets/images/cute_gray_cats.jpg";
+
+import sky1 from "../assets/images/skyWithRoad.jpg";
+import sky2 from "../assets/images/lake.jpg";
+import sky3 from "../assets/images/violetSky.jpg";
 
 class CheckListProps {
   static title = "To Do List";
@@ -22,9 +28,10 @@ const ComponentTest = () => {
   const [checkedItemNum, setCheckedItemNum] = useState(0);
   const [radioIdx, setRadioIdx] = useState(0);
   const [toggleValue, setToggleValue] = useState(false);
-
+  const carouselImg = [sky1, sky2, sky3];
   return (
     <>
+      <Carousel background={carouselImg} />
       <Toast msg="this is a toast!" show={toggleValue} />
       <CheckList
         title={CheckListProps.title}
