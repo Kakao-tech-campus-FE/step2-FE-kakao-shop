@@ -14,9 +14,9 @@ const InfoPage = () => <h1>Info Page</h1>;
 function App() {
   return (
     <div className="App">
-      {/* <ToggleBtn />
+      <ToggleBtn />
       <RadioBtn />
-      <Toast /> */}
+      <Toast />
       <CheckList />
       <Carousel />
       <Breadcrumb />
