@@ -1,4 +1,6 @@
 .toggleBox {
+  margin: auto;
+  margin-top: 200px;
   width: 70px;
   height: 30px;
   display: flex;
@@ -20,10 +22,10 @@
 }
 
 .beforeToggle {
-  background-color: #00ffff;
+  background-color: maroon;
 }
 
 .afterToggle {
-  background-color: maroon;
+  background-color: #00ffff;
   padding-left: 35px;
 }
