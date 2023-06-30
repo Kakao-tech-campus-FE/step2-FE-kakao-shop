@@ -1,0 +1,9 @@
+.breadcrumb span::before {
+    content: ">";
+    margin: 0 10px 0 10px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: rgb(60, 60, 250);
+}

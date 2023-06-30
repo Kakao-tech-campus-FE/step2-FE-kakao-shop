@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Nav from "./components/Nav";
+import ComponentsTest from "./pages/ComponentsTest";
+import Main from "./pages/Main";
+import Breadcrumb from "./components/Breadcrumb";
+
+import './styles/App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+    <>
+        <BrowserRouter>
+            <Nav/>
+            {/* <Breadcrumb/> 추후 헤더 파트로 따로 분리 - 현재는 임시로 컴포넌트 테스팅에 포함! */}
+            <Routes>
+                <Route path="/" element={<Main/>}/>
+                <Route path="/ComponentsTest" element={<ComponentsTest/>}/>
+            </Routes>
+        </BrowserRouter>
+    </>
+    );
 }
 
 export default App;
