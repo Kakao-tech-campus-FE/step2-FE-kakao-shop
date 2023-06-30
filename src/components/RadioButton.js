@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 // css
 import "../styles/RadioButton.css";
 
-export default function Breadcrumb({ radios }) {
+export default function RadioButton({ radios }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const handleClick = (e) => {

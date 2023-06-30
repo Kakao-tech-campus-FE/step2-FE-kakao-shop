@@ -7,6 +7,7 @@ import Breadcrumb from "./components/Breadcrumb.js";
 import Carousel from "./components/Carousel.js";
 import RadioButton from "./components/RadioButton.js";
 import ToggleButton from "./components/ToggleButton.js";
+import CheckList from "./components/CheckList.js";
 
 // image
 import carouselImage1 from "./assets/images/carousel/carouselItem1.jpeg";
@@ -38,6 +39,11 @@ function App() {
       <br />
       <h3>[ToggleButton]</h3>
       <ToggleButton></ToggleButton>
+      <br />
+      <br />
+      <h3>[CheckList]</h3>
+      <CheckList list={["옵션1", "옵션2", "옵션3"]}></CheckList>
+      <br /><br /><br /><br /><br />
     </div>
   );
 }

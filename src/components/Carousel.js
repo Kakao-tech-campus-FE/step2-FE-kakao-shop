@@ -22,7 +22,6 @@ export default function Carousel({ images }) {
   useEffect(() => {
     const intervalId = setInterval(() => {
       nextImage();
-      console.log("hi");
     }, 3000);
 
     return () => {
