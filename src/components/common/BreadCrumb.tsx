@@ -5,30 +5,20 @@ import { styled } from 'styled-components';
 function BreadCrumb() {
   const location = useLocation();
   const directory = location.pathname === '/' ? [''] : location.pathname.split('/');
+  console.log(directory);
+  console.log('home', directory.slice(0, 1).join('/'));
   return (
     <div>
-      {directory.map((path, index) => {
-        if (path === '') {
-          return <StyledLink to={`/`}>Home</StyledLink>;
-        } else if (index === directory.length - 1 && directory.length === 2) {
-          return (
-            <>
-              <span>&gt;</span>
-              <StyledLink to={`${directory.slice(0, index + 1).join('/')}`}>{directory[index]}</StyledLink>
-            </>
-          );
-        } else if (index === directory.length - 1) {
-          return <StyledLink to={`${directory.slice(0, index + 1).join('/')}`}>{directory[index]}</StyledLink>;
-        } else {
-          return (
-            <>
-              <span>&gt;</span>
-              <StyledLink to={`${directory.slice(0, index + 1).join('/')}`}>{directory[index]}</StyledLink>
-              <span>&gt;</span>
-            </>
-          );
-        }
-      })}
+      {directory.map((path, index) =>
+        index === directory.length - 1 ? (
+          <span>{path === '' ? 'Home' : path}</span>
+        ) : (
+          <>
+            <StyledLink to={index === 0 ? '/' : `${directory.slice(0, index + 1).join('/')}`}>{path === '' ? 'Home' : path}</StyledLink>
+            <span>&gt;</span>
+          </>
+        )
+      )}
     </div>
   );
 }
