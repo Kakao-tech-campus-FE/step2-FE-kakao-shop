@@ -1,0 +1,17 @@
+.breadcrumb {
+  background-color: lavender;
+  padding: 4px 6px;
+  border-radius: 5px;
+  font-size: small;
+  color: dimgrey;
+}
+.route {
+  all: unset;
+}
+.route:hover {
+  color: indigo;
+  font-weight: bolder;
+}
+.route:last-child {
+  font-weight: bolder;
+}

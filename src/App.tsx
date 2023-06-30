@@ -3,6 +3,7 @@ import Toast from './components/Toast/Toast';
 import RadioGroup from './components/RadioGroup/RadioGroup';
 import CheckList from './components/CheckList/CheckList';
 import Toggle from './components/Toggle/Toggle';
+import Breadcrumb from './components/Breadcrumb/Breadcrumb';
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -20,6 +21,7 @@ const App = () => {
       <RadioGroup />
       <CheckList />
       <Toggle />
+      <Breadcrumb />
     </div>
   );
 };
