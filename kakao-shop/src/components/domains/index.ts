@@ -1,1 +1,1 @@
-export { default as Pay } from "./Pay";
+export { default as Pay } from './Pay';

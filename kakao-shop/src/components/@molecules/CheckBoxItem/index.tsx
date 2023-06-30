@@ -1,5 +1,6 @@
-import CheckBox from "../../@base/CheckBox";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from 'react';
+
+import CheckBox from '../../@base/CheckBox';
 
 const CheckBoxItem = ({ children }: PropsWithChildren) => {
   return (

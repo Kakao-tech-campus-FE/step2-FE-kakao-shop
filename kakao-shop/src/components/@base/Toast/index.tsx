@@ -1,18 +1,14 @@
-import type { ReactNode } from "react";
-import styled from "@emotion/styled";
-import { AnimatePresence, motion } from "framer-motion";
-import Toast from "./libs";
+import styled from '@emotion/styled';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import Toast from './libs';
 
 const ToastComponent = new Toast({
   ToastItem: ({ children, isShow }) => (
     <AnimatePresence>
       {isShow && (
         <>
-          <Container
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -20, opacity: 0 }}
-          >
+          <Container initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }}>
             {children}
           </Container>
         </>

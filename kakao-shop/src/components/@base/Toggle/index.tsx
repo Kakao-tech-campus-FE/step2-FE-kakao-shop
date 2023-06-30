@@ -1,5 +1,6 @@
-import styled from "@emotion/styled";
-import useToggle from "../../../hooks/useToggle";
+import styled from '@emotion/styled';
+
+import useToggle from '../../../hooks/useToggle';
 
 type Props = {
   name: string;
@@ -8,13 +9,7 @@ type Props = {
   onChange: () => void;
 };
 
-const Toggle = ({
-  name,
-  on = false,
-  disabled = false,
-  onChange,
-  ...props
-}: Props) => {
+const Toggle = ({ name, on = false, disabled = false, onChange, ...props }: Props) => {
   const [checked, toggle] = useToggle(on);
 
   const handleChange = () => {
@@ -24,13 +19,7 @@ const Toggle = ({
 
   return (
     <ToggleContainer {...props}>
-      <ToggleInput
-        type="checkbox"
-        name={name}
-        checked={checked}
-        disabled={disabled}
-        onChange={handleChange}
-      />
+      <ToggleInput type="checkbox" name={name} checked={checked} disabled={disabled} onChange={handleChange} />
       <ToggleSwitch />
     </ToggleContainer>
   );
@@ -54,7 +43,7 @@ const ToggleSwitch = styled.div`
   box-sizing: border-box;
 
   &:after {
-    content: "";
+    content: '';
     position: relative;
     left: 0;
     display: block;

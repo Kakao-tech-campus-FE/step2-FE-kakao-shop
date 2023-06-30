@@ -1,8 +1,8 @@
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { ReactNode } from "react";
-import { BsChevronRight } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { ReactNode } from 'react';
+import { BsChevronRight } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 type Props = {
   children?: ReactNode;
@@ -10,12 +10,7 @@ type Props = {
   active?: boolean;
 };
 
-const BreadcrumbItem = ({
-  children,
-  href,
-  active = false,
-  ...props
-}: Props) => {
+const BreadcrumbItem = ({ children, href, active = false, ...props }: Props) => {
   return (
     <BreadcrumbItemContainer {...props}>
       <Anchor to={href}>
@@ -39,7 +34,7 @@ const Anchor = styled(Link)`
 const Text = styled.span<{ $active: boolean }>`
   font-size: 14px;
   ${({ $active }) => css`
-    font-weight: ${$active ? "bold" : "normal"};
+    font-weight: ${$active ? 'bold' : 'normal'};
   `}
 `;
 

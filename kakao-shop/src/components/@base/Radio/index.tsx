@@ -1,17 +1,11 @@
-import { InputHTMLAttributes, PropsWithChildren } from "react";
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
+import { InputHTMLAttributes, PropsWithChildren } from 'react';
 
 const Radio = ({ id, name, children, checked, ...props }: Props) => {
   return (
     <FlexContainer>
       <StyledContainerLabel htmlFor={id}>
-        <StyledInput
-          type="radio"
-          id={id}
-          name={name}
-          {...props}
-          checked={checked}
-        />
+        <StyledInput type="radio" id={id} name={name} {...props} checked={checked} />
         {children}
       </StyledContainerLabel>
     </FlexContainer>
@@ -21,11 +15,7 @@ const Radio = ({ id, name, children, checked, ...props }: Props) => {
 Radio.Regular = function ({ id, name, children, checked, ...props }: Props) {
   return (
     <Radio id={id} name={name} checked={checked} {...props}>
-      {checked ? (
-        <StyledCheckRadio></StyledCheckRadio>
-      ) : (
-        <StyledRadio></StyledRadio>
-      )}
+      {checked ? <StyledCheckRadio></StyledCheckRadio> : <StyledRadio></StyledRadio>}
       <StyledLabel>{children}</StyledLabel>
     </Radio>
   );
@@ -34,11 +24,7 @@ Radio.Regular = function ({ id, name, children, checked, ...props }: Props) {
 Radio.Big = function ({ id, name, children, checked, ...props }: Props) {
   return (
     <Radio id={id} name={name} checked={checked} {...props}>
-      {checked ? (
-        <StyledCheckBigBlackRadio></StyledCheckBigBlackRadio>
-      ) : (
-        <StyledBigBlackRadio></StyledBigBlackRadio>
-      )}
+      {checked ? <StyledCheckBigBlackRadio></StyledCheckBigBlackRadio> : <StyledBigBlackRadio></StyledBigBlackRadio>}
       <StyledLabel>{children}</StyledLabel>
     </Radio>
   );
@@ -83,7 +69,7 @@ const StyledCheckRadio = styled.span`
   font-size: 1px;
   line-height: 0;
   color: transparent;
-  background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png')
     no-repeat;
   background-size: 150px 225px;
   background-position: -50px -100px;
@@ -99,7 +85,7 @@ const StyledRadio = styled.span`
   font-size: 1px;
   line-height: 0;
   color: transparent;
-  background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png')
     no-repeat;
   background-size: 150px 225px;
   background-position: -20px -100px;
@@ -115,7 +101,7 @@ const StyledCheckBigBlackRadio = styled.span`
   font-size: 1px;
   line-height: 0;
   color: transparent;
-  background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png')
     no-repeat;
   background-size: 210px 50px;
   background-position: -90px 0;
@@ -131,7 +117,7 @@ const StyledBigBlackRadio = styled.span`
   font-size: 1px;
   line-height: 0;
   color: transparent;
-  background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png')
     no-repeat;
   background-size: 210px 50px;
   background-position: -60px 0;

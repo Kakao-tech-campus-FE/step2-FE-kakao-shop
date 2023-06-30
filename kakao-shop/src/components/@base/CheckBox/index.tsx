@@ -1,12 +1,7 @@
-import React, { ChangeEventHandler, PropsWithChildren } from "react";
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
+import React, { ChangeEventHandler, PropsWithChildren } from 'react';
 
-const CheckBox = ({
-  handleToggle,
-  isChecked,
-  children,
-  ...Props
-}: PropsWithChildren<CheckboxProps>) => {
+const CheckBox = ({ handleToggle, isChecked, children, ...Props }: PropsWithChildren<CheckboxProps>) => {
   return (
     <CheckboxWrapper {...Props}>
       <input type="checkbox" onChange={handleToggle} checked={isChecked} />
@@ -70,7 +65,7 @@ const CheckboxMark = styled.span`
   font-size: 1px;
   line-height: 0;
   color: transparent;
-  background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png')
     no-repeat;
   background-position: -75px -45px;
   background-size: 150px 225px;
@@ -87,7 +82,7 @@ const CheckboxMark = styled.span`
     font-size: 1px;
     line-height: 0;
     color: transparent;
-    background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png")
+    background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png')
       no-repeat;
     background-size: 150px 225px;
     vertical-align: top;

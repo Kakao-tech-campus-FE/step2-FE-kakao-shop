@@ -1,10 +1,11 @@
-import useCarousel from "../../../hooks/useCarousel";
-import useWindowDimensions from "../../../hooks/useWindowDimensitons";
-import { bannerImages } from "./lib/bannerImages";
-import { ReactElement, useMemo, useState } from "react";
-import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import BannerImageListItem from "./BannerImageListItem";
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { ReactElement, useMemo, useState } from 'react';
+
+import useCarousel from '../../../hooks/useCarousel';
+import useWindowDimensions from '../../../hooks/useWindowDimensitons';
+import BannerImageListItem from './BannerImageListItem';
+import { bannerImages } from './lib/bannerImages';
 
 function BannerImageList(): ReactElement {
   const [imageWidth, setImageWidth] = useState(getImageWidth());
@@ -59,13 +60,12 @@ function BannerImageList(): ReactElement {
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           onTouchMove={onTouchMove}
-          onDragStart={(e) => {
+          onDragStart={e => {
             e.stopPropagation();
             e.preventDefault();
           }}
           style={{
-            left:
-              slideItemWidth * -1 * initialFocusSlideIndex + touchMoveDistance,
+            left: slideItemWidth * -1 * initialFocusSlideIndex + touchMoveDistance,
           }} // 초기 슬라이더 위치 세팅
         >
           <ImageList>
@@ -85,8 +85,7 @@ function BannerImageList(): ReactElement {
           onClick={onPrevSlide}
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
-          disabled={isDisabled}
-        >
+          disabled={isDisabled}>
           <LeftChevron />
         </ArrowButtonStyled>
 
@@ -95,8 +94,7 @@ function BannerImageList(): ReactElement {
           onClick={onNextSlide}
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
-          disabled={isDisabled}
-        >
+          disabled={isDisabled}>
           <RightChevron />
         </ArrowButtonStyled>
       </BannerImageListWrapper>
@@ -107,7 +105,7 @@ function BannerImageList(): ReactElement {
 export default BannerImageList;
 
 type IButtonDirection = {
-  direction: "left" | "right";
+  direction: 'left' | 'right';
 };
 
 const getImageWidth = () => {
@@ -132,7 +130,7 @@ const BannerImageListWrapper = styled.div<{ bannerWidth: number }>`
 const ImageListBox = styled.div<{ isAnimation: boolean }>`
   position: absolute;
   width: 100%;
-  ${({ isAnimation }) => isAnimation && "transition: all 0.4s ease-in-out"}
+  ${({ isAnimation }) => isAnimation && 'transition: all 0.4s ease-in-out'}
 `;
 
 const ImageList = styled.div`
@@ -158,8 +156,8 @@ const ArrowButtonStyled = styled.button<IButtonDirection>`
   box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.04);
 
   // 캐러셀 버튼 위치
-  ${(props) =>
-    props.direction === "left"
+  ${props =>
+    props.direction === 'left'
       ? css`
           left: calc((100% - 1210px) / 2);
         `
@@ -175,7 +173,7 @@ const LeftChevron = styled.span`
   font-size: 0;
   vertical-align: top;
 
-  background: url("https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
     no-repeat;
   background-size: 800px 500px;
   background-position: -760px 0;
@@ -188,7 +186,7 @@ const RightChevron = styled.span`
   font-size: 0;
   vertical-align: top;
 
-  background: url("https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg")
+  background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
     no-repeat;
   background-size: 800px 500px;
   background-position: -770px 0;

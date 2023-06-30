@@ -1,4 +1,4 @@
-import { Global, css } from "@emotion/react";
+import { Global, css } from '@emotion/react';
 
 const GlobalCss = () => {
   return (
@@ -56,10 +56,9 @@ const GlobalCss = () => {
         strong {
           margin: 0;
           padding: 0;
-          font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-            Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
-            "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
-            "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+          font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
+            'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol', sans-serif;
         }
 
         h1,

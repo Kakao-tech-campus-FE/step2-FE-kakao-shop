@@ -1,24 +1,18 @@
-import {
-  Route,
-  Routes,
-  BrowserRouter,
-  Outlet,
-  useLocation,
-  Link,
-} from "react-router-dom";
-import { TestPage } from "./pages";
-import Breadcrumb from "./components/@base/BreadCrumb";
-import { useEffect, useState, ReactElement } from "react";
+import { useEffect, useState, ReactElement } from 'react';
+import { Route, Routes, BrowserRouter, Outlet, useLocation, Link } from 'react-router-dom';
+
+import Breadcrumb from './components/@base/BreadCrumb';
+import { TestPage } from './pages';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={"/"} element={<TestPage />} />
+        <Route path={'/'} element={<TestPage />} />
 
         <Route element={<BreadcrumbTest />}>
           <Route
-            path={"/level1"}
+            path={'/level1'}
             element={
               <div>
                 level1
@@ -27,7 +21,7 @@ function App() {
             }
           />
           <Route
-            path={"/level2"}
+            path={'/level2'}
             element={
               <div>
                 level2
@@ -36,7 +30,7 @@ function App() {
             }
           />
           <Route
-            path={"/level3"}
+            path={'/level3'}
             element={
               <div>
                 level3
@@ -58,20 +52,34 @@ const BreadcrumbTest = () => {
 
   useEffect(() => {
     switch (pathname) {
-      case "/level1":
-        setItem([<Breadcrumb.Item href="/level1">level 1</Breadcrumb.Item>]);
-        break;
-      case "/level2":
+      case '/level1':
         setItem([
-          <Breadcrumb.Item href="/level1">level 1</Breadcrumb.Item>,
-          <Breadcrumb.Item href="/level2">level 2</Breadcrumb.Item>,
+          <Breadcrumb.Item key={'/level1'} href="/level1">
+            level 1
+          </Breadcrumb.Item>,
         ]);
         break;
-      case "/level3":
+      case '/level2':
         setItem([
-          <Breadcrumb.Item href="/level1">level 1</Breadcrumb.Item>,
-          <Breadcrumb.Item href="/level2">level 2</Breadcrumb.Item>,
-          <Breadcrumb.Item href="/level3">Level 3</Breadcrumb.Item>,
+          <Breadcrumb.Item key={'/level1'} href="/level1">
+            level 1
+          </Breadcrumb.Item>,
+          <Breadcrumb.Item key={'/level2'} href="/level2">
+            level 2
+          </Breadcrumb.Item>,
+        ]);
+        break;
+      case '/level3':
+        setItem([
+          <Breadcrumb.Item key={'/level1'} href="/level1">
+            level 1
+          </Breadcrumb.Item>,
+          <Breadcrumb.Item key={'/level2'} href="/level2">
+            level 2
+          </Breadcrumb.Item>,
+          <Breadcrumb.Item key={'/level3'} href="/level3">
+            Level 3
+          </Breadcrumb.Item>,
         ]);
         break;
     }
@@ -79,7 +87,7 @@ const BreadcrumbTest = () => {
 
   return (
     <div>
-      <Breadcrumb>{item.map((item) => item)}</Breadcrumb>
+      <Breadcrumb>{item.map(item => item)}</Breadcrumb>
       <Outlet />
     </div>
   );

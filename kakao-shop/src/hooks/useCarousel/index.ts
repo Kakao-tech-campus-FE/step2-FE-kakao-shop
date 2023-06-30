@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 type CarouselOptions = {
   data: any[];
@@ -36,9 +36,9 @@ export default function useCarousel(options: CarouselOptions) {
         setIsAnimaion(true);
       }, 500);
     };
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -73,17 +73,12 @@ export default function useCarousel(options: CarouselOptions) {
   useEffect(() => {
     if (!slideRef.current) return;
     //현재 슬라이드가 이미지 갯수를 넘어갔을 경우 초기 상태로 몰래 바꿔치기하는 작업
-    if (
-      currentSlide === ORIGINAL_IMAGE_LENGTH + 1 ||
-      currentSlide * -1 === ORIGINAL_IMAGE_LENGTH - 1
-    ) {
+    if (currentSlide === ORIGINAL_IMAGE_LENGTH + 1 || currentSlide * -1 === ORIGINAL_IMAGE_LENGTH - 1) {
       setTimeout(() => {
         setIsAnimaion(false); // 바꿔치기할 때 animation을 잠깐 끔 (사용자에게 들키지 않기 위해 )
         if (slideRef.current) {
           // 초기값으로 되돌려준다.
-          slideRef.current.style.left = `${
-            initialFocusSlideIndex * slideItemWidth * -1
-          }px`;
+          slideRef.current.style.left = `${initialFocusSlideIndex * slideItemWidth * -1}px`;
         }
         setCurrentSlide(slideCount);
       }, 500);
@@ -95,16 +90,8 @@ export default function useCarousel(options: CarouselOptions) {
     }
 
     // 슬라이더 이동
-    slideRef.current.style.transform = `translateX(${
-      -slideItemWidth * (currentSlide - slideCount)
-    }px)`;
-  }, [
-    currentSlide,
-    slideItemWidth,
-    slideCount,
-    ORIGINAL_IMAGE_LENGTH,
-    initialFocusSlideIndex,
-  ]);
+    slideRef.current.style.transform = `translateX(${-slideItemWidth * (currentSlide - slideCount)}px)`;
+  }, [currentSlide, slideItemWidth, slideCount, ORIGINAL_IMAGE_LENGTH, initialFocusSlideIndex]);
 
   // 무한 슬라이드를 위해 setInterval 사용
   // currentSlice가 변경되면 바로위 useEffect가 발생

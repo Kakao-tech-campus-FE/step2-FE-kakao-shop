@@ -1,8 +1,9 @@
-import styled from "@emotion/styled";
-import { Fragment, PropsWithChildren } from "react";
-import CheckBoxItem from "../../@molecules/CheckBoxItem";
-import Radio from "../../@base/Radio";
-import { ChangeEvent } from "react";
+import styled from '@emotion/styled';
+import { Fragment, PropsWithChildren } from 'react';
+import { ChangeEvent } from 'react';
+
+import Radio from '../../@base/Radio';
+import CheckBoxItem from '../../@molecules/CheckBoxItem';
 
 const Pay = ({ children }: PropsWithChildren) => {
   return <Fragment>{children}</Fragment>;
@@ -16,19 +17,16 @@ Pay.Agree = function () {
       </Agree.Header>
 
       <Agree.Body>
-        <CheckBoxItem>
-          카카오페이 결제조건 및 개인정보 제3자 제공 동의
-        </CheckBoxItem>
+        <CheckBoxItem>카카오페이 결제조건 및 개인정보 제3자 제공 동의</CheckBoxItem>
         <CheckBoxItem>개인정보 제3자 제공 동의</CheckBoxItem>
       </Agree.Body>
 
       <Agree.Footer>
         <Agree.Terms>법적 고지</Agree.Terms>
         <Agree.TermsText>
-          (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이
-          포함되어 있습니다. 개별 판매자가 판매하는 상품에 대해 (주)카카오는
-          통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송 및
-          환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
+          (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이 포함되어 있습니다. 개별 판매자가 판매하는
+          상품에 대해 (주)카카오는 통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송 및 환불 등과
+          관련한 의무와 책임은 각 판매자에게 있습니다.
         </Agree.TermsText>
       </Agree.Footer>
     </Agree.Root>
@@ -43,17 +41,12 @@ Pay.Method = function ({ payMethodData, state, onChange }: PayMethod) {
       </Method.Header>
 
       <Method.PaymentTypeList>
-        {payMethodData.map((item) => (
+        {payMethodData.map(item => (
           <li key={item.name}>
-            <Radio.Big
-              name={item.name}
-              value={item.value}
-              onChange={onChange}
-              checked={item.value === state}
-            >
+            <Radio.Big name={item.name} value={item.value} onChange={onChange} checked={item.value === state}>
               {item.name}
             </Radio.Big>
-            {item.info !== "" && <Radio.Info>{item.info}</Radio.Info>}
+            {item.info !== '' && <Radio.Info>{item.info}</Radio.Info>}
           </li>
         ))}
       </Method.PaymentTypeList>
@@ -61,21 +54,12 @@ Pay.Method = function ({ payMethodData, state, onChange }: PayMethod) {
   );
 };
 
-Pay.CashReceipt = function ({
-  payCashReceiptData,
-  state,
-  onChange,
-}: PayCashReceipt) {
+Pay.CashReceipt = function ({ payCashReceiptData, state, onChange }: PayCashReceipt) {
   return (
     <CashReceipt.Root>
-      {payCashReceiptData.map((item) => (
+      {payCashReceiptData.map(item => (
         <li key={item.name}>
-          <Radio.Regular
-            name={item.name}
-            value={item.value}
-            onChange={onChange}
-            checked={item.value === state}
-          >
+          <Radio.Regular name={item.name} value={item.value} onChange={onChange} checked={item.value === state}>
             {item.name}
           </Radio.Regular>
         </li>
@@ -98,11 +82,11 @@ type PayMethod = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-type PayCashReceiptData = Omit<PayMethodData, "info">;
+type PayCashReceiptData = Omit<PayMethodData, 'info'>;
 
 type PayCashReceipt = {
   payCashReceiptData: PayCashReceiptData[];
-} & Omit<PayMethod, "payMethodData">;
+} & Omit<PayMethod, 'payMethodData'>;
 
 const Agree = {
   Root: styled.div`
@@ -115,7 +99,7 @@ const Agree = {
       border-bottom: 1px solid #ebebeb;
       background-color: #f2f3f5;
       box-sizing: border-box;
-      content: "";
+      content: '';
     }
   `,
   Header: styled.div`
@@ -168,7 +152,7 @@ const Method = {
     font-size: 1px;
     line-height: 0;
     color: transparent;
-    background: url("https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png")
+    background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png')
       no-repeat;
     vertical-align: top;
     background-size: 210px 50px;
