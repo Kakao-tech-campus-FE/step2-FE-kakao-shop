@@ -12,6 +12,7 @@ const UnStyledLink = styled.a`
 `;
 
 const BreadCrumbNav = styled.nav`
+  margin-bottom: 0.8rem;
   > ${UnStyledLink}:not(:last-child) {
     color: gray;
   }
@@ -20,11 +21,16 @@ const BreadCrumbNav = styled.nav`
 const CategoryList = styled.div`
   .categoryList& {
     background-color: #d9d9d9;
+    padding: 0.2rem;
+  }
+
+  .categoryList& div:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
 `;
 
 const TotalDiv = styled.body`
-  margin: 4rem;
   width: 13rem;
   height: fit-content;
 `;
