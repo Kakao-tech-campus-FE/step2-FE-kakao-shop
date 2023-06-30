@@ -1,33 +1,63 @@
 import React, { useEffect, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
+import slideObj from '../../constants/slideObj';
 
-function Toast({ content, position }: { content: string; position: string }) {
-  const [visible, setVisible] = useState<boolean>(true);
+interface IToast {
+  content: string;
+  position: string;
+  bgColor: string;
+  color: string;
+  setToastContents: React.Dispatch<React.SetStateAction<{ content: string; id: number }[]>>;
+}
+
+interface ISlide {
+  position: string;
+  bgColor: string;
+  color: string;
+}
+function Toast({ content, position, bgColor, color, setToastContents }: IToast) {
+  const [slide, setSlide] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
-      setVisible(false);
+    const slideOutTimerId = setTimeout(() => {
+      setSlide(false);
+    }, 2500);
+    const removeTimerId = setTimeout(() => {
+      setToastContents((prev) => prev.slice(1));
     }, 3000);
+    return () => {
+      clearTimeout(slideOutTimerId);
+      clearTimeout(removeTimerId);
+    };
   }, []);
 
-  return visible ? <Wrap position={position}>{content}</Wrap> : null;
+  if (slide)
+    return (
+      <SlideIn bgColor={bgColor} color={color} position={position}>
+        {content}
+      </SlideIn>
+    );
+  return (
+    <SlideOut bgColor={bgColor} color={color} position={position}>
+      {content}
+    </SlideOut>
+  );
 }
 
 export default Toast;
 
-const toastFaded = keyframes`
-    from{
-        opacity:1;
-    }
-    to{
-        opacity:0;
-    }
-`;
-
-const Wrap = styled.div<{ position: string }>`
-  position: fixed;
+const Wrap = styled.div`
   padding: 10px;
-  ${(props) => props.position};
+  margin: 10px;
   border-radius: 10px;
   box-shadow: 0 0 5px gray;
-  animation: 1s linear 2s ${toastFaded};
+`;
+const SlideIn = styled(Wrap)<ISlide>`
+  background-color: ${(props) => props.bgColor};
+  color: ${(props) => props.color};
+  animation: 0.5s ${(props) => slideObj[props.position]['slide-in']};
+`;
+const SlideOut = styled(Wrap)<ISlide>`
+  background-color: ${(props) => props.bgColor};
+  color: ${(props) => props.color};
+  animation: 0.5s ${(props) => slideObj[props.position]['slide-out']};
 `;

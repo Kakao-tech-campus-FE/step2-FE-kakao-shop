@@ -1,21 +1,39 @@
+import { useState } from 'react';
 import Carousel from './components/common/Carousel';
 import CheckList from './components/common/CheckList';
-import Toast from './components/common/Toast';
+import ToastBox from './components/common/ToastBox';
+import { type IToastData } from './components/common/ToastBox';
 import LinkBtn from './components/common/LinkBtn';
 import BreadCrumb from './components/common/BreadCrumb';
 import Toggle from './components/common/Toggle';
 import { styled } from 'styled-components';
-import positionObj from './constants/position';
 import RadioInput from './components/common/RadioInput';
+import { createPortal } from 'react-dom';
 
 function App() {
+  const [toastContents, setToastContents] = useState<IToastData[]>([]);
   return (
     <Wrap>
-      Home
       <h1>체크리스트</h1>
-      <CheckList names={['test1', 'test2']} axis="column" bgColor="yellow" color="white" width={20} height={20} />
+      <CheckList
+        datas={[
+          { name: 'test', value: 'test1' },
+          { name: 'test', value: 'test2' },
+        ]}
+        axis="column"
+        bgColor="yellow"
+        color="white"
+        width={20}
+        height={20}
+      />
       <h1>토스트</h1>
-      <Toast content="토스트 테스트" position={positionObj['top-right']} />
+      <button onClick={() => setToastContents((prev) => [...prev, { content: '토스트 테스팅 컨텐츠입니다', id: Date.now() }])}>토스트 테스팅</button>
+      {toastContents.length
+        ? createPortal(
+            <ToastBox contents={toastContents} position="bottom-right" setToastContents={setToastContents} bgColor="black" color="white" />,
+            document.body
+          )
+        : null}
       <h1>캐러셀</h1>
       <Carousel
         width={300}
@@ -26,7 +44,7 @@ function App() {
       <BreadCrumb />
       <LinkBtn to="./products" content="상품 페이지" />
       <h1>토글</h1>
-      <Toggle title="토글" bgColor="yellow" color="white" />
+      <Toggle title="토글" bgColor="yellow" color="white" width={100} height={50} onChange={() => {}} />
       <h1>라디오 버튼</h1>
       <RadioInput color="white" bgColor="yellow" width={20} height={20} name="테스트버튼" value="테스트1" />
       <RadioInput color="white" bgColor="yellow" width={20} height={20} name="테스트버튼" value="테스트2" />
@@ -39,4 +57,7 @@ export default App;
 
 const Wrap = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
