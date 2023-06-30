@@ -3,7 +3,7 @@ import "./Header.css";
 const Header = () => {
   return (
     <div
-      style={{ display: "flex", backgroundColor: "#6c757d", padding: "8px" }}
+      style={{ display: "flex", backgroundColor: "#7f8a93", padding: "8px" }}
     >
       <link
         rel="stylesheet"

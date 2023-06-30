@@ -39,3 +39,17 @@
     transform: translateY(100%);
   }
 }
+
+.toast-btn {
+  background-color: #5189f1;
+  color: white;
+  border-radius: 16px;
+  border-color: white;
+  border-style: solid;
+  padding: 16px 32px;
+  margin: 3px;
+  font-size: 32px;
+}
+.toast-btn:hover {
+  background-color: #376ccf;
+}

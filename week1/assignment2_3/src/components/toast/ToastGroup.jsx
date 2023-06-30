@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Toast from "./Toast";
+import "./Toast.css";
 
 const ToastGroup = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -8,7 +9,9 @@ const ToastGroup = () => {
   };
   return (
     <div>
-      <button onClick={handleClick}>Toast!</button>
+      <button className="toast-btn" onClick={handleClick}>
+        Toast!
+      </button>
       <Toast
         isVisible={isVisible}
         setIsVisible={setIsVisible}
