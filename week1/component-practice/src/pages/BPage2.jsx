@@ -5,9 +5,14 @@ import BPage1 from "./BPage1";
 
 export default function BPage2({ onClick }) {
   const breads = [
-    { id: 0, url: "/", name: "BreadHome", component: <BHome /> },
-    { id: 1, url: "/b-page1", name: "Page1", component: <BPage1 /> },
-    { id: 2, url: "/b-page1/b-page2", name: "Page2", component: <BPage2 /> },
+    { id: 0, url: "/b-home", name: "BreadHome", component: <BHome /> },
+    { id: 1, url: "/b-home/b-page1", name: "Page1", component: <BPage1 /> },
+    {
+      id: 2,
+      url: "/b-home/b-page1/b-page2",
+      name: "Page2",
+      component: <BPage2 />,
+    },
   ];
   return (
     <>
