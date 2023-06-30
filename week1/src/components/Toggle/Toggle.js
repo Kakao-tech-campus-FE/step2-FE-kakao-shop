@@ -1,11 +1,15 @@
 import "../../styles/Toggle.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Toggle = () => {
+const Toggle = ({ setToggleValue }) => {
   const [toggleState, setToggleState] = useState(false);
   const ClickedToggle = () => {
     setToggleState(!toggleState);
   };
+
+  useEffect(() => {
+    setToggleValue(toggleState);
+  }, [toggleState]);
 
   return (
     <>

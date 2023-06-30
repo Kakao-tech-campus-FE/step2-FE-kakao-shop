@@ -21,10 +21,11 @@ class RadioProps {
 const ComponentTest = () => {
   const [checkedItemNum, setCheckedItemNum] = useState(0);
   const [radioIdx, setRadioIdx] = useState(0);
+  const [toggleValue, setToggleValue] = useState(false);
 
   return (
     <>
-      <Toast />
+      <Toast msg="this is a toast!" show={toggleValue} />
       <CheckList
         title={CheckListProps.title}
         item={CheckListProps.item}
@@ -36,7 +37,7 @@ const ComponentTest = () => {
           (checkedItemNum / CheckListProps.item.length) * 100
         )}
       />
-      <Toggle />
+      <Toggle setToggleValue={setToggleValue} />
       <Radio radios={RadioProps.item} setRadioIdx={setRadioIdx} />
       <img src={RadioProps.URL[radioIdx]} alt="grayCatPic" />
       <div>컴포넌트 테스트 페이지</div>
