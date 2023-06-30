@@ -55,8 +55,6 @@ const ComponentTest = () => {
 
       <Toggle setToggleValue={setToggleValue} />
       <Radio radios={RadioProps.item} imgURL={RadioProps.URL} />
-
-      <div>컴포넌트 테스트 페이지</div>
     </>
   );
 };
