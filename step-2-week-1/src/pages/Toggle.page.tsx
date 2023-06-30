@@ -5,11 +5,9 @@ const TogglePage = () => {
   const [checked, setChecked] = useState(false);
 
   return (
-    <Toggle
-      checked={checked}
-      onChange={() => setChecked(!checked)}
-      children={"label"}
-    />
+    <Toggle checked={checked} onChange={() => setChecked(!checked)}>
+      Toggle!
+    </Toggle>
   );
 };
 
