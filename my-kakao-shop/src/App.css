@@ -54,7 +54,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px; /* 오른 쪽에서 등장 */
-  transform: translateX(0%); /* Added: Initially move the toast to the right side */
+  transform: translateX(0%);
   background-color: var(--kakao-dark-gray);
   color: #fff;
   padding: 10px 20px;
@@ -65,7 +65,7 @@
 }
 
 .toast-hide {
-  transform: translateX(120%); /* Added: Move the toast back to its original position */
+  transform: translateX(120%);
 }
 
 .toast-title {
