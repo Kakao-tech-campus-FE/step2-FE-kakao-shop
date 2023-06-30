@@ -7,6 +7,7 @@ import ToastTest from "./pages/ToastTest";
 import ChecklistTest from "./pages/ChecklistTest";
 import RadioTest from "./pages/RadioTest";
 import BreadcrumbsTest from "./pages/BreadcrumbsTest";
+import CarouselTest from "./pages/CarouselTest";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
@@ -28,7 +29,12 @@ function App() {
       component: <ChecklistTest />,
     },
     { id: 6, route: "radio-test", name: "Radio", component: <RadioTest /> },
-    { id: 7, route: "carousel-test", name: "Carousel", component: <Home /> },
+    {
+      id: 7,
+      route: "carousel-test",
+      name: "Carousel",
+      component: <CarouselTest />,
+    },
   ];
 
   return (
