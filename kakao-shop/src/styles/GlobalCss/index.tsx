@@ -77,17 +77,6 @@ const GlobalCss = () => {
           list-style: none;
         }
 
-        body {
-          position: fixed;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-            Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
-            "Noto Sans KR", "Malgun Gothic", sans-serif;
-        }
-
         a {
           color: inherit;
           text-decoration: none;
