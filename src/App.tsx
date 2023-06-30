@@ -4,6 +4,7 @@ import RadioGroup from './components/RadioGroup/RadioGroup';
 import CheckList from './components/CheckList/CheckList';
 import Toggle from './components/Toggle/Toggle';
 import Breadcrumb from './components/Breadcrumb/Breadcrumb';
+import Carousel from './components/Carousel/Carousel';
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,6 +23,7 @@ const App = () => {
       <CheckList />
       <Toggle />
       <Breadcrumb />
+      <Carousel />
     </div>
   );
 };
