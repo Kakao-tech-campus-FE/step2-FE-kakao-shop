@@ -1,14 +1,53 @@
 div.toast {
-    position: relative;
-    border: 1px black solid;
+    display: none;
+    position: absolute;
+
+    border: 1px rgb(184, 184, 184) solid;
+    border-radius: 10px;
+
+    box-shadow: 3px 3px 10px 3px rgb(197, 197, 197);
+
+    width: 400px;
+    animation: toast-disappear 0.3 ease-in;
 }
 
-button.toast-close {
+div.toast.activate {
+    display: block;
+    animation: toast-appear 0.3s ease-in;
+}
+
+@keyframes toast-appear {
+    0% {
+        display: block;
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+div.toast > button.toast-close {
     position: absolute;
-    top: 0px;
-    right: 0px;
+    top: 3px;
+    right: 3px;
     background: none;
     border: none;
     padding: 0px;
-    color: red;
+    color: rgb(255, 118, 118);
+}
+
+div.toast > div.toast_title {
+    padding: 5px;
+    text-align: center;
+    color: rgb(99, 99, 99);
+    border-bottom: 1px solid rgb(218, 218, 218);
+
+    font-size: 1.5rem;
+}
+
+div.toast > div.toast_content {
+    color: rgb(148, 148, 148);
+    padding: 5px;
 }

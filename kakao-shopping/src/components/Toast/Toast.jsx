@@ -1,27 +1,25 @@
-import React from 'react'
-import './Toast.css';
+import React from "react";
+import "./Toast.css";
 
-const Toast = ( {title, children} ) =>  {
-    const [active, setCheck] = React.useState(false);
+const Toast = ({ title, children, style, activateState }) => {
+    const [activate, setActivate] = activateState;
 
     const handleClose = () => {
-        setCheck((prev) => !prev)
-    }
-
-    const Title = () => {
-
-    }
+        setActivate((prev) => !prev);
+    };
 
     return (
-        <div className="toast">
-            <button class="material-symbols-outlined toast-close"
-                onClick={handleClose}>
-                    close
+        <div className={`toast ${activate ? "activate" : ""}`} style={style}>
+            <button
+                className="material-symbols-outlined toast-close"
+                onClick={handleClose}
+            >
+                close
             </button>
-            <div>{title}</div>
-            <div>{children}</div>
+            {title ? <div className="toast_title">{title}</div> : ""}
+            <div className="toast_content">{children}</div>
         </div>
     );
-}
+};
 
 export default Toast;
