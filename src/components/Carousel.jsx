@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'   
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -58,45 +58,52 @@ const PageIcon = styled.div`
 `
 
 const Carousel = () => {
-  // const [flow, setFlow] = useState(false)
   const [page, setPage] = useState(1)
+  const timeslide = useRef(true)
+
+  const timer = setTimeout(() => {
+    if (timeslide.current === true && page < banners.length) {
+      setPage(page + 1)
+    }
+  }, 3000);
+  
 
   const prev = () => {
+    timeslide.current = false
     if (page > 1) {
       setPage(page - 1)
     } 
   }
 
   const next = () => {
+    timeslide.current = false
     if (page < banners.length) {
       setPage(page + 1)
     } 
   }
 
   const jump = (num) => {
-    return (() => setPage(num))
+    timeslide.current = false
+    setPage(num)
   }
   
   return (
     <>
       <Frame>
 
-        <PageBox>
-          {banners.map((e, index) => {
-            var count = index + 1;
-            return (
-              <PageIcon key={e} onClick={jump(count)} 
-                style={count === page ? {opacity:"1"} : null}>
-              </PageIcon>
-            );
-          })}
-        </PageBox>
-
         <Content style={ {transform: `translateX(${-500 * (page - 1)}px)`} }>
-          {banners.map((element, i) => {
-              return <img src={element} style={ {width:"500px"} } />;
-          })}
+          {banners.map((item, i) => (
+              <img src={item} style={ {width:"500px"} } />
+          ))}
         </Content>
+
+        <PageBox>
+          {banners.map((item, i) => (
+            <PageIcon onClick={() => jump(i + 1)} 
+              style={i + 1 === page ? {opacity:"1"} : null}>
+            </PageIcon> )
+          )}
+        </PageBox>
 
         {page > 1 
         ? <Prev onClick={prev}>

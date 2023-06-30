@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   align-items: center;
+  margin: 30px;
 `
 
 const Box = styled.div`
@@ -28,8 +29,7 @@ const Switch = styled.div`
 `
 
 const Text = styled.div`
-
-  font-size: 10px;
+  font-size: 12px;
   margin: 5px;
 `
 

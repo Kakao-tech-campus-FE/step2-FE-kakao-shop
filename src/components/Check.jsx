@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components';
+import Toast from "./Toast";
 
+const Container = styled.div`
+  width: 300px;
+  justify-content: middle;
+`
 const ProductBox = styled.div`
   display: flex;
   box-shadow: 0px 0px 5px rgb(199, 199, 199);
-  width: 300px;
   border-radius: 10px;
   padding: 10px;
   margin: 5px;
@@ -17,10 +21,16 @@ const ProductImg = styled.div`
   margin: 0 10px;
 `;
 
-const Buy = styled.button`
-  
-`
-
+const BuyBtn = {
+  width: "300px",
+  height: "30px",
+  backgroundColor: "yellow",
+  borderRadius: "10px",
+  border:"none",
+  textAlign: "center",
+  fontFamily: 'Pretendard',
+  margin: '5px 0'
+}
 
 const initProducts = [
     {
@@ -38,10 +48,10 @@ const initProducts = [
   ];
 
 
-
 const Check = () => {
 
   const [list, setList] = useState(initProducts);
+  const [isDone, setIsDone] = useState(false)
 
   const toggledItem = (obj) => {
     const newObj = { ...obj };
@@ -51,17 +61,15 @@ const Check = () => {
   };
 
   const toggle = (index) => {
-    setIsDone(false)
+    // setIsDone(false)
     setList(prevList => 
       prevList.map((item, idx) => 
         idx === index ? toggledItem(item) : item
       )
     )
   };
-  
-  const [isDone, setIsDone] = useState(false)
 
-  const buy = () => {
+  const buyClick = () => {
     setIsDone(true)
   }
 
@@ -72,23 +80,30 @@ const Check = () => {
         arr.push(item.name)
       }
     }
-    return arr.join()
+    if (arr.length === 0) {
+      return "선택한 상품이 없습니다."
+    }
+    return arr.join(" ")
   }
 
   return (
-    <>
+    <Container>
       {initProducts.map((item, i) => (
-          <ProductBox>
-            <input type="checkbox" defaultChecked={item.buy} onChange={() => {toggle(i)}}/>
-            <ProductImg></ProductImg>
-            {item.name}
-          </ProductBox>
+        <ProductBox>
+          <input type="checkbox" defaultChecked={item.buy} onChange={() => {toggle(i)}}/>
+          <ProductImg></ProductImg>
+          {item.name}
+        </ProductBox>
         )
       )}
       
-      <Buy onClick={buy}>주문하기</Buy>
-      <p>{isDone ? buylist() : null}</p>
-    </>
+      <Toast
+        button="주문하기"
+        buttonstyle={ BuyBtn }
+        message={buylist()}
+      ></Toast>
+
+    </Container>
   )
 }
 

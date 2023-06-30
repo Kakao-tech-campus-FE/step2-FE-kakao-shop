@@ -7,7 +7,7 @@ const Box = styled.div`
   border: 1px solid lightgray;
   width: 300px;
   padding: 10px;
-  margin: 50px;
+
   background-color: white;
 `;
 
@@ -20,7 +20,6 @@ const Radio = () => {
   const [select, setSelect] = useState(options[0]);
   
   const check = (item) => {
-    console.log(item, select)
     setSelect(item)
   };
 

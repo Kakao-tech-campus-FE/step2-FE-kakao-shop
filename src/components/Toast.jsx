@@ -7,9 +7,9 @@ const Box = styled.div`
   right: 10px;
   display: flex;
   align-items: center;
-  width: 500px;
+  width: 300px;
   height: 50px;
-	background-color: black;
+	background-color: rgb(0, 0, 0, 0.7);
   border-radius: 10px;
   padding: 5px 15px;
 `;
@@ -21,7 +21,7 @@ const Content = styled.span`
 
 const Undo = styled.div`
   margin-left: auto;
-  color: red;
+  color: yellow;
 `
 
 const active = {
@@ -35,42 +35,34 @@ const hidden = {
   transition: "opacity 500ms , visibility 500ms",
 }
 
-const Toast = () => {
-  const [show, setShow] = useState(false)
-  const [isUndo, setIsUndo] = useState(false)
+const Toast = ( {message, button, buttonstyle} ) => {
+  const [toast, setToast] = useState(false);
 
-  const popUp = () => {
-    setShow(true)
-  }
-  const close = () => {
-    setShow(false)
-  }
+  const btnClick = () => {
+    setToast(true);
+  };
+  const toastClick = () => {
+    setToast(false);
+  };
 
-  setTimeout(()=> {
-    setShow(false)
-  }, 10000)
-  
-  const undo = () => {
-    setIsUndo(true)
-  }
+  // const timer = setTimeout(() => {
+  //   setToast(false);
+  // }, 5000);
 
   return (
     <>
-      <div>
-        <button onClick={popUp}>토스트</button>
-
-        <Box onClick={close} style={show ? active : hidden}>
-          <Content>
-            장바구니에서 삭제되었습니다.
-          </Content>
-          <Undo onClick={undo}>
-            실행 취소
-          </Undo>
-        </Box>
-
-        <p> {isUndo ? "실행취소" : null}</p>
-      </div>
-    </>
+    <button onClick={btnClick} style={buttonstyle}>{button}</button>
+    {toast ? (
+      <Box onClick={toastClick}>
+        <Content>
+          {message}
+        </Content>
+        <Undo>
+          실행 취소
+        </Undo>
+      </Box>
+      ) : null}
+  </>
   )
 }
 

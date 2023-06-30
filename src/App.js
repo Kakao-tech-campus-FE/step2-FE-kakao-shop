@@ -4,12 +4,16 @@ import Carousel from "./components/Carousel";
 import Check from "./components/Check";
 import Toggle from "./components/Toggle";
 import Radio from "./components/Radio";
-import React from "react";
+import React, { useState } from "react";
 
 function App() {
   return (
     <div style={{ margin: "10px" }}>
-      <Toast></Toast>
+      <Toast
+        button="토스트"
+        buttonstyle={{ backgroundColor: "yellow" }}
+        message={"토스트"}
+      ></Toast>
       <Carousel></Carousel>
       <Check></Check>
       <Toggle></Toggle>
