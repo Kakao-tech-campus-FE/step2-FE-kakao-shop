@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const Radio = ({ radios, setRadioIdx }) => {
+const Radio = ({ radios, imgURL }) => {
   const defaultSelection = useRef([]);
+  const [radioIdx, setRadioIdx] = useState(0);
+
   const OnChange = (e) => {
     setRadioIdx(e.target.value);
   };
@@ -28,6 +30,7 @@ const Radio = ({ radios, setRadioIdx }) => {
           <label htmlFor={key}>{key}</label>
         </div>
       ))}
+      <img src={imgURL[radioIdx]} alt="grayCatPic" />
     </div>
   );
 };

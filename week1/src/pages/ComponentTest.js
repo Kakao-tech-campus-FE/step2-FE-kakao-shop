@@ -27,7 +27,7 @@ class RadioProps {
 
 const ComponentTest = () => {
   const [checkedItemNum, setCheckedItemNum] = useState(0);
-  const [radioIdx, setRadioIdx] = useState(0);
+
   const [toggleValue, setToggleValue] = useState(false);
   const carouselImg = [sky1, sky2, sky3];
   const route = ["home", "shop", "item"];
@@ -49,8 +49,8 @@ const ComponentTest = () => {
         )}
       />
       <Toggle setToggleValue={setToggleValue} />
-      <Radio radios={RadioProps.item} setRadioIdx={setRadioIdx} />
-      <img src={RadioProps.URL[radioIdx]} alt="grayCatPic" />
+      <Radio radios={RadioProps.item} imgURL={RadioProps.URL} />
+
       <div>컴포넌트 테스트 페이지</div>
     </>
   );
