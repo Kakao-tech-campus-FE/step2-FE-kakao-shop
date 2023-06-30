@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import classnames from 'classnames';
 
 const Toast = ({ text, color, setToast }) => {
     useEffect(() => {
@@ -12,8 +13,8 @@ const Toast = ({ text, color, setToast }) => {
     }, [setToast]);
     
     return (
-        <div className={classnames("toast-container", {color: true})}>
-            <p className={classnames("toast-message", {color: true})}>{text}</p>
+        <div className={classnames("toast-container", {color})}>
+            <p className={classnames("toast-message", {color})}>{text}</p>
         </div>
     );
 };
