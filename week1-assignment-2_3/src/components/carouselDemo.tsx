@@ -11,7 +11,7 @@ export default function CarouselDemo() {
       <Carousel>
         <div
           key={0}
-          className="demo-category"
+          className={styles.carouselParagraph}
         >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt turpis ac leo congue consectetur. Aenean lacinia dolor id dolor venenatis ultricies. Praesent at nulla quis lectus gravida hendrerit. Aenean sed leo vitae orci dignissim vehicula at non turpis. Sed et quam diam. Sed id facilisis dui. Maecenas id feugiat eros, at sodales odio. Curabitur eget justo interdum, efficitur mi in, maximus ante.
         </div>
