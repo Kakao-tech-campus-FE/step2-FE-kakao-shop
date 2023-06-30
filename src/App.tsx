@@ -15,6 +15,7 @@ const App = () => {
 
   return (
     <div className='App'>
+      <p>토스트</p>
       {isToastVisible && (
         <Toast position='bottom-left' isVisible={isToastVisible} setIsVisible={setIsToastVisible}>
           toast
@@ -23,10 +24,20 @@ const App = () => {
       <button type='button' onClick={handleToastButtonClick}>
         Toast Button
       </button>
+
+      <p>라디오버튼</p>
       <RadioGroup />
+
+      <p>체크리스트</p>
       <CheckList />
+
+      <p>토글버튼</p>
       <Toggle />
+
+      <p>브래드크럼</p>
       <Breadcrumb />
+
+      <p>캐러셀</p>
       <Carousel />
     </div>
   );
