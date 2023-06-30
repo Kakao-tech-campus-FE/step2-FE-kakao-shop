@@ -1,10 +1,31 @@
-.carousel {
+$carouselSize: 800px;
+
+.wrapper {
   display: flex;
   place-content: space-between;
   align-items: center;
   height: 200px;
-  padding: 0px 10px;
+  width: $carouselSize;
   background-color: #808080;
-  background-size: cover;
-  background-image: "../assets/images/skyWithRoad.jpg";
+  margin-top: 200px;
+  //overflow: hidden;
+
+  .arrowLeft {
+    position: absolute;
+    left: 10px;
+  }
+  .arrowRight {
+    position: absolute;
+    right: 10px;
+  }
+
+  .carousels {
+    display: flex;
+    height: inherit;
+    left: -$carouselSize;
+    transition: 0.5s;
+    .image {
+      width: $carouselSize;
+    }
+  }
 }
