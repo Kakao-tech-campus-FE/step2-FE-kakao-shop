@@ -1,11 +1,16 @@
-.bar {
-  background-color: gainsboro;
-  height: 20px;
-  border-radius: 0.5rem;
-  .process {
-    background-color: black;
-    height: inherit;
+.processbar-wrapper {
+  margin: auto;
+  margin-top: 10px;
+  width: 300px;
+  .bar {
+    background-color: gainsboro;
+    height: 15px;
     border-radius: 0.5rem;
-    transition: 0.5s;
+    .process {
+      background-color: black;
+      height: inherit;
+      border-radius: 0.5rem;
+      transition: 0.5s;
+    }
   }
 }

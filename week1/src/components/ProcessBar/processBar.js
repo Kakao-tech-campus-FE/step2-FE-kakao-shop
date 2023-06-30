@@ -2,11 +2,11 @@ import "../../styles/ProcessBar.scss";
 
 const ProcessBar = ({ percentage }) => {
   return (
-    <div>
+    <div className="processbar-wrapper">
       <div className="bar">
         <div className="process" style={{ width: percentage + "%" }}></div>
       </div>
-      <div>{percentage}%</div>
+      <label>{percentage}%</label>
     </div>
   );
 };

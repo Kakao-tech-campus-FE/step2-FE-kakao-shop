@@ -37,17 +37,22 @@ const ComponentTest = () => {
       <BreadCrumb route={route} />
       <Carousel background={carouselImg} />
       <Toast msg="this is a toast!" show={toggleValue} />
-      <CheckList
-        title={CheckListProps.title}
-        item={CheckListProps.item}
-        checkedItemNum={checkedItemNum}
-        setCheckedItemNum={setCheckedItemNum}
-      />
-      <ProcessBar
-        percentage={Math.floor(
-          (checkedItemNum / CheckListProps.item.length) * 100
-        )}
-      />
+      <div>
+        <CheckList
+          title={CheckListProps.title}
+          item={CheckListProps.item}
+          checkedItemNum={checkedItemNum}
+          setCheckedItemNum={setCheckedItemNum}
+          className="checkList"
+        />
+        <ProcessBar
+          className="processBar"
+          percentage={Math.floor(
+            (checkedItemNum / CheckListProps.item.length) * 100
+          )}
+        />
+      </div>
+
       <Toggle setToggleValue={setToggleValue} />
       <Radio radios={RadioProps.item} imgURL={RadioProps.URL} />
 
