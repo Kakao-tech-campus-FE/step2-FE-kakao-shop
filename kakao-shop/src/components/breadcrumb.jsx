@@ -11,7 +11,7 @@ const UnStyledLink = styled.a`
   }
 `;
 
-const BreadCrumbDiv = styled.div`
+const BreadCrumbNav = styled.nav`
   > ${UnStyledLink}:not(:last-child) {
     color: gray;
   }
@@ -46,10 +46,10 @@ const Breadcrumb = ({ main }) => {
 
   return (
     <TotalDiv>
-      <BreadCrumbDiv>
+      <BreadCrumbNav>
         <UnStyledLink href={main}>{main} ></UnStyledLink>
         <UnStyledLink href={selectedItem}>{selectedItem}</UnStyledLink>
-      </BreadCrumbDiv>
+      </BreadCrumbNav>
       <CategoryList className="categoryList">
         {breadCrumbArr.map((item, index) => (
           <div key={index} onClick={() => handleItemClick(item)}>
