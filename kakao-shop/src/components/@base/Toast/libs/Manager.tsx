@@ -1,5 +1,5 @@
 import type { FunctionComponent, ReactNode, ReactElement } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 
 import useTimeout from '@hooks/useTimeout';
 
@@ -28,7 +28,7 @@ const Manager = ({
   }, [bind]);
 
   return (
-    <>
+    <Fragment>
       {toasts.map(({ content, id, options }) => {
         const Content = content;
 
@@ -47,7 +47,7 @@ const Manager = ({
           </DoAfterDuration>
         );
       })}
-    </>
+    </Fragment>
   );
 };
 
@@ -72,5 +72,5 @@ const DoAfterDuration = ({
     }, options.delay);
   }, options.duration);
 
-  return <>{children({ done })}</>;
+  return <Fragment>{children({ done })}</Fragment>;
 };

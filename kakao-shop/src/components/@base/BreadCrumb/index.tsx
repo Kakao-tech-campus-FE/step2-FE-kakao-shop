@@ -1,13 +1,10 @@
 import styled from '@emotion/styled';
 import { Children, cloneElement, ReactElement, ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
 import BreadcrumbItem from './BreadcrumbItem';
 
-interface Props {
-  children?: ReactNode;
-}
-
-const Breadcrumb = ({ children }: Props) => {
+const Breadcrumb = ({ children }: PropsWithChildren) => {
   const items = Children.toArray(children).map((item, index, elements) => {
     const element = item as ReactElement;
 

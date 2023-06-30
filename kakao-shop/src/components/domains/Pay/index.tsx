@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import { Fragment, PropsWithChildren } from 'react';
-import { ChangeEvent } from 'react';
+import { Fragment, PropsWithChildren, ChangeEvent } from 'react';
 
 import Radio from '@components/@base/Radio';
 import CheckBoxItem from '@components/@molecules/CheckBoxItem';

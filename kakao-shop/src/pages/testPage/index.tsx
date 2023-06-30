@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-import { ReactNode, useState } from 'react';
-import { ChangeEvent } from 'react';
+import { ReactNode, useState, ChangeEvent, Fragment } from 'react';
 
 import { Toast, Toggle } from '@components/@base';
 import BannerImageList from '@components/@base/Carousel/BannerImageList';
@@ -91,10 +90,10 @@ export default TestPage;
 
 const ToastContent = (props: { onClick: () => void; options?: any; children?: ReactNode }) => {
   return (
-    <>
+    <Fragment>
       {props.children}
       {/* <S.Button onClick={props.onClick}>something</S.Button> */}
-    </>
+    </Fragment>
   );
 };
 

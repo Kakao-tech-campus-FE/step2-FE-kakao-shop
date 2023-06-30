@@ -1,6 +1,10 @@
 import styled from '@emotion/styled';
 import { InputHTMLAttributes, PropsWithChildren } from 'react';
 
+type Props = {
+  name: string;
+} & PropsWithChildren<InputHTMLAttributes<HTMLInputElement>>;
+
 const Radio = ({ id, name, children, checked, ...props }: Props) => {
   return (
     <FlexContainer>
@@ -39,10 +43,6 @@ Radio.Info = function ({ children }: PropsWithChildren) {
 };
 
 export default Radio;
-
-type Props = {
-  name: string;
-} & PropsWithChildren<InputHTMLAttributes<HTMLInputElement>>;
 
 const FlexContainer = styled.div`
   display: flex;

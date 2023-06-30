@@ -1,6 +1,12 @@
 import styled from '@emotion/styled';
 import React, { ChangeEventHandler, PropsWithChildren } from 'react';
 
+type CheckboxProps = {
+  handleToggle?: ChangeEventHandler<HTMLInputElement>;
+  disabled?: boolean;
+  isChecked?: boolean;
+} & React.LabelHTMLAttributes<HTMLLabelElement>;
+
 const CheckBox = ({ handleToggle, isChecked, children, ...Props }: PropsWithChildren<CheckboxProps>) => {
   return (
     <CheckboxWrapper {...Props}>
@@ -20,12 +26,6 @@ CheckBox.BigText = function ({ children }: PropsWithChildren) {
 };
 
 export default CheckBox;
-
-type CheckboxProps = {
-  handleToggle?: ChangeEventHandler<HTMLInputElement>;
-  disabled?: boolean;
-  isChecked?: boolean;
-} & React.LabelHTMLAttributes<HTMLLabelElement>;
 
 const CheckboxWrapper = styled.label`
   position: relative;

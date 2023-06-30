@@ -1,9 +1,6 @@
 export type IBannerImageItem = {
   id: number;
-  title: string;
-  description: string;
   imageUrl: string;
-  link: string;
 };
 
 export const bannerImages = [
@@ -35,7 +32,7 @@ export const bannerImages = [
   {
     id: 6,
     imageUrl:
-      'https://st.kakaocdn.net/thumb/C1920x300/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fmain_top_banner_pc%2F20230628095743_36afe555200843838bbdd6708caa1fe5.png',
+      'https://st.kakaocdn.net/thumb/C1920x300/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fmain_top_banner_pc%2F20230629102932_23bb79559a394d2d8f9bffdbef7639c7.png',
   },
   {
     id: 7,

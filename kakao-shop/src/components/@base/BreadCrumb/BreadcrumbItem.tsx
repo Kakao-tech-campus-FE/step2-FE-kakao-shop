@@ -4,13 +4,13 @@ import { ReactNode } from 'react';
 import { BsChevronRight } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 
-type Props = {
+type BreadcrumbItemProps = {
   children?: ReactNode;
   href: string;
   active?: boolean;
 };
 
-const BreadcrumbItem = ({ children, href, active = false, ...props }: Props) => {
+const BreadcrumbItem = ({ children, href, active = false, ...props }: BreadcrumbItemProps) => {
   return (
     <BreadcrumbItemContainer {...props}>
       <Anchor to={href}>

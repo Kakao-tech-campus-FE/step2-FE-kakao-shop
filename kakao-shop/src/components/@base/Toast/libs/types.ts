@@ -6,7 +6,7 @@ export type Toast = {
   options: Options;
 };
 
-export interface Options {
+export type Options = {
   duration: number;
   delay: number;
-}
+};

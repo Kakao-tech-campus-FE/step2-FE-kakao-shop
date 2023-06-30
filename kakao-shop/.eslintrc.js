@@ -70,7 +70,7 @@ module.exports = {
     ],
     'react/react-in-jsx-scope': 'off',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['warn'],
+    '@typescript-eslint/no-use-before-define': 'off',
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': ['warn'],
     'import/named': 'warn',
@@ -85,6 +85,7 @@ module.exports = {
     ecmaVersion: 2021,
     sourceType: 'module',
     project: ['./tsconfig.json'],
+    createDefaultProgram: true,
   },
   settings: {
     'import/extensions': ['.js', '.ts'],
