@@ -1,0 +1,30 @@
+.toggleButton {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 2px;
+  width: 2.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.toggleTrue {
+  background-color: #3f6cff;
+}
+
+.toggleFalse {
+  background-color: #d9e2ff;
+}
+
+.toggleSwitch {
+  background-color: #ffffff;
+  border-radius: 9999px;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 200ms;
+}
+
+.toggleTrue .toggleSwitch {
+  transform: translateX(1.25rem);
+}
