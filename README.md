@@ -93,6 +93,10 @@ README.md의 예시 형식입니다. 아래를 참고해 작성해주세요.
 작성된 코드는 레퍼지토리에 업로드하여 멘토님에게 전달해주세요.
 ```
 
+```
+$ src - components에 각 컴포넌트에 대한 코드가 작성되어 있습니다!
+```
+
 </br>
 
 ✅**과제 3.**
@@ -103,7 +107,7 @@ README.md의 예시 형식입니다. 아래를 참고해 작성해주세요.
 ```
 
 ```
-https://shoppingtest.pages.dev/
+임시 배포 주소 : https://shoppingtest.pages.dev/
 ```
 
 </br>
