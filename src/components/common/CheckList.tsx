@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+interface IData {
+  name: string;
+  value: string;
+}
 interface ICheckList {
-  names: string[];
+  datas: IData[];
   axis: 'column' | 'row';
   bgColor: string;
   color: string;
@@ -14,13 +18,22 @@ interface ICheckBox {
   width: number;
   height: number;
 }
-function CheckList({ names, axis, bgColor, color, width, height }: ICheckList) {
+function CheckList({ datas, axis, bgColor, color, width, height }: ICheckList) {
   return (
     <Wrap axis={axis}>
-      {names.map((name) => (
-        <Label htmlFor={name} key={name}>
-          {name}
-          <CheckBox id={name} name={name} bgColor={bgColor} color={color} width={width} height={height} type="checkbox" />
+      {datas.map((data) => (
+        <Label htmlFor={data.value} key={data.value}>
+          {data.value}
+          <CheckBox
+            id={data.value}
+            name={data.name}
+            value={data.value}
+            bgColor={bgColor}
+            color={color}
+            width={width}
+            height={height}
+            type="checkbox"
+          />
         </Label>
       ))}
     </Wrap>
