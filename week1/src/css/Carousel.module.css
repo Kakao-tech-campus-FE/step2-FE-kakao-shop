@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.carouselUl li {
+    padding: 4rem 10rem;
+
+    background-color: rgb(166, 255, 255);
+
+}
+
+.carouselUl {
+    display: flex;
+    overflow: hidden;
+    width: 20rem;
+    margin-bottom: 2rem;
+}
+
+.carouselDiv button {
+    margin: 1rem;
+}
