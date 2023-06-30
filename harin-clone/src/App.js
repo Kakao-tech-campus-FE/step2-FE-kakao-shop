@@ -14,6 +14,7 @@ function App() {
 
   return (
     <form>
+      <h2>[1주차 과제] 부산대 FE 민하린</h2>
 
       <fieldset style={style}>
         <legend>Toast</legend>
