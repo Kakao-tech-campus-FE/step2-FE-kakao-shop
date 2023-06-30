@@ -3,24 +3,23 @@ import styled from 'styled-components';
 
 const Radiobox = styled.div`
   position: relative;
-  top:200px;
-  left:40%;
+  top:230px;
+  left:30%;
   label{
-    border: 1px solid black;
+    border: 1px solid #fff;
     padding: 10px 15px;
+    margin-left:40px;
+    border-radius:4px;
+    background-color:lightseagreen;
+    color: #fff;
   }
   input{
     margin-top:20px;
   }
-  h3{
-    color: green;
+  .result{
+    color: lightseagreen;
+    margin:30px 0 40px 100px;
   }
-`
-const Desc = styled.h2`
-  position:relative;
-  top:200px;
-  left:0;
-  text-align: center;
 `
 
 export default function Radio() {
@@ -34,8 +33,9 @@ export default function Radio() {
 
   return (
     <>
-    <Desc><h2> 좋아하는 과일 하나만 선택해봐 </h2></Desc>
     <Radiobox>
+    <h1>[ Radio ] </h1>
+    <h1>좋아하는 과일 하나만 선택해봐</h1>
       <label>
         <input
           type='radio'
@@ -60,7 +60,7 @@ export default function Radio() {
           onChange={handleChange}/>
           Cherry
       </label>
-      <h3 className='result'>선택하신 과일은 {selectedValue}입니다</h3>
+      <h3 className='result'>선택하신 과일은 {selectedValue}입니다.</h3>
     </Radiobox>
 
     </>

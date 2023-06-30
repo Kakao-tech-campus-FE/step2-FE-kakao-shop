@@ -15,20 +15,39 @@ const CheckedItems = styled.table`
     width:150px;
   }
 `
-const Desc = styled.h2`
-  position:absolute;
 
-  top:200px;
-  left:40%;
+const Desc = styled.h1.attrs((props) => ({
+  left: props.left,
+  top: props.top
+}))`
+  position:absolute;
+  top:${(props)=>props.top};
+  left:${(props)=>props.left};
   text-align: center;
 `
 const Btn = styled.button`
+  border: none;
+  background-color: #fff;
+  position:relative;
+  top:16em;
+  left:40%;
+  background: lightseagreen;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 20px;
+
+ &:hover {
+  background: darkcyan;
+}
+`
+const List = styled.div`
   position:relative;
   top: 220px;
-  left: 45%;
-  .list{
-    text-align:center;
-  }
+  left: 40%;
 `
 const data = [
   {id:1,name:'apple'},
@@ -60,7 +79,8 @@ export default function Checkbox() {
 
   return (
     <>
-    <Desc><h2>좋아하는거 다 골라~</h2></Desc>
+    <Desc top='170px' left='40%'>[ Checkbox ]</Desc>
+    <Desc top='220px' left='40%'>좋아하는거 다 골라~</Desc>
     <CheckedItems>
       <tbody>
         {data?.map((data,key)=>(
@@ -80,23 +100,21 @@ export default function Checkbox() {
         ))}
       </tbody>
     </CheckedItems>
-    <Btn>
-    <button onClick={toggleShowSelected}>
+
+    <Btn onClick={toggleShowSelected}>
       {showSelected? '숨기기':'장바구니'}
-    </button>
+    </Btn>
     {showSelected && (
-      <div className='list'>
+      <List>
       <h3>장바구니:</h3>
-      <ul>
         {checkedItems.map(Item => (
           // item.id = data 배열의 각 요소의 id 속성
           // id = 이전에 map에서 사용한 변수, 선택된 요소의 식별자 
-          <li key={Item}>{data.find(item => item.id === Item)?.name}</li>
+          <div className='aa' key={Item}>{data.find(item => item.id === Item)?.name}</div>
         ))}
-      </ul>
-    </div>
+      </List>
     )}
-    </Btn>
+
     </>
   )
 }
