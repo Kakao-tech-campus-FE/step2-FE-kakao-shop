@@ -4,6 +4,15 @@
 ## 페이지 별 구성
 쇼핑 웹사이트를 구현하는데 필수적으로 필요한 페이지와 이에 대한 기능 및 인터페이스 요구 사항입니다.
 
+### 로그인 페이지
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/3b8c8361-7639-4eeb-8a11-0b9f2c55f43d)
+#### 핵심 기능
+사용자가 ID, Password를 입력하여 카카오 계정으로 로그인합니다.
+#### 기능 상세 설명
+- 로그인 : 알맞은 ID, Password를 입력받으면, 이를 확인후 로그인합니다.
+#### 인터페이스 요구 사항
+- ID/Password가 올바르지 않다면 오류 메세지를 출력합니다.
+
 ### 상품 목록 페이지
 ![image](https://github.com/0BackFlash0/Kakao-Shopping/assets/53032619/18241da5-4c1b-4931-9504-d492f8edbc8c)
 #### 핵심 기능
@@ -91,3 +100,49 @@
 #### 인터페이스 요구 사항
 - 배송 정보는 실시간으로 갱신되어야 합니다.
 - 주문의 취소/교환/반품은 주문 후 일정 기간이 지나면 불가능합닌다.
+
+## 디렉토리 구조
+쇼핑 웹 사이트를 디자인하는데 필요한 디렉토리입니다.
+- assets : 이미지, 폰트 등의 파일을 저장하는 디렉토리
+- components : 재사용 가능한 컴포넌트 들이 위치하는 디렉토리
+- pages : 라우팅에 적용할 페이지 컴포넌트를 저장하는 디렉토리
+- hooks : 커스텀 훅을 저장하는 디렉토리
+- states : 전역 상태를 관리하는 디렉토리
+
+
+## UI 컴포넌트 구현
+
+### 토글
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/9d4afb40-311d-4b4f-938e-4e4b245ce2cf)
+- 클릭시 상태가 변하는 버튼입니다.
+- On/Off 상태를 가지고 있습니다.
+
+### 토스트
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/e5f89899-77c6-499c-9231-e60e3c31ac7d)
+- 홈페이지 위에 나타나는 작은 알람 창입니다.
+- 사용자에게 정보를 알려줍니다.
+
+### 체크리스트
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/40c72c48-4111-471f-8c94-c5c86b3f48a0)
+- 여러개의 체크 박스가 모인 리스트 입니다.
+- 일괄 선택이 가능합니다.
+
+### 라디오
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/4cdec20b-3e2d-469b-8648-ac107fe72818)
+- 여러 선택지 중 하나를 선택합니다.
+- 반드시 하나만 선택해야 합니다.
+
+### 캐러셀
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/b9c4385f-01f5-4f0c-bf17-5c9438f7927c)
+- 얀속된 슬라이드를 보여줍니다.
+- 버튼을 통해 앞/뒤로 넘길 수 있습니다.
+
+### 브래드크럼
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/50143c52-8173-4f1c-9bbf-e112179ceeb8)
+- 사용자의 현재 웹상의 경로를 알려줍니다.
+- 이전 경로를 누를 시, 해당 경로로 이동합니다.
+
+
+## UI 컴포넌트 테스트
+![image](https://github.com/0BackFlash0/step2-FE-kakao-shop/assets/53032619/180d3a9f-87f4-48f7-9957-6976ed61a75a)
+npm start를 통해 테스트할 수 있습니다.
