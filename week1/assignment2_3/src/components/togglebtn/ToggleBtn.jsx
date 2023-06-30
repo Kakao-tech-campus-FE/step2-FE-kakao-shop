@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ToggleBtn.css";
 
-const Toggle = () => {
+const Toggle = ({ handleToggle }) => {
   const [toggleVal, setToggleVal] = useState(false);
 
   return (
@@ -11,6 +11,7 @@ const Toggle = () => {
         value={toggleVal}
         onClick={() => {
           setToggleVal(!toggleVal);
+          handleToggle(toggleVal);
         }}
       />
       <span className="slider round"></span>
