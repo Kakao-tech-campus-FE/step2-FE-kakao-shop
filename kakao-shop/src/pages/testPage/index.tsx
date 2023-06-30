@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { ReactNode, useState, ChangeEvent, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Toast, Toggle } from '@components/@base';
 import BannerImageList from '@components/@base/Carousel/BannerImageList';
@@ -41,47 +42,34 @@ function TestPage() {
 
   return (
     <div>
+      <BigText>캐로셀</BigText>
       <TopBannerBlock>
         <BannerImageList></BannerImageList>
       </TopBannerBlock>
-      <Pay.Method payMethodData={payMethodData} state={value} onChange={onChangeHandler} />
 
-      <Pay.CashReceipt payCashReceiptData={payCashReceiptData} state={value} onChange={onChangeHandler} />
-
-      <Pay.Agree />
-
-      <Toggle name="토글" onChange={() => {}}></Toggle>
+      <BigText>Toast</BigText>
       <S.Button
         onClick={() => {
           // 1. ReactElement를 넘길 수도 있고,
           Toast.show(<ToastContent onClick={handleSomething}>옵션을 먼저 선택해주세요.</ToastContent>);
         }}>
-        open modal
+        토스트 생성
       </S.Button>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
-      <BigText>안녕하세요 뒤의 내용입니다.</BigText>
+
+      <BigText>라디오 버튼</BigText>
+      <Pay.Method payMethodData={payMethodData} state={value} onChange={onChangeHandler} />
+      <Pay.CashReceipt payCashReceiptData={payCashReceiptData} state={value} onChange={onChangeHandler} />
+
+      <BigText>체크 리스트</BigText>
+      <Pay.Agree />
+
+      <BigText>토글</BigText>
+      <Toggle name="토글" onChange={() => {}}></Toggle>
+
+      <BigText>브레드크럼</BigText>
+      <LinkContainer>
+        <LinkButton to="/level1">브레드크럼 가기</LinkButton>
+      </LinkContainer>
     </div>
   );
 }
@@ -122,9 +110,21 @@ const S = {
 
 const BigText = styled.div`
   font-size: 30px;
+  margin-top: 20px;
+  margin-left: 5px;
 `;
 
 const TopBannerBlock = styled.div`
   width: 100%;
   overflow: hidden;
+`;
+
+const LinkContainer = styled.div`
+  display: flex;
+`;
+const LinkButton = styled(Link)`
+  margin: 20px 0;
+  margin-left: 5px;
+  padding: 10px 20px;
+  background-color: #ffe812;
 `;

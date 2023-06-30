@@ -17,7 +17,12 @@ function App() {
             element={
               <div>
                 level1
-                <Link to="/level2">level2</Link>
+                <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to="/level2">
+                  level2
+                </Link>
+                <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
+                  홈
+                </Link>
               </div>
             }
           />
@@ -26,7 +31,12 @@ function App() {
             element={
               <div>
                 level2
-                <Link to="/level3">level3</Link>
+                <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to="/level3">
+                  level3
+                </Link>
+                <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
+                  홈
+                </Link>
               </div>
             }
           />
@@ -35,7 +45,12 @@ function App() {
             element={
               <div>
                 level3
-                <Link to="/level1">level1</Link>
+                <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to="/level1">
+                  level1
+                </Link>
+                <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
+                  홈
+                </Link>
               </div>
             }
           />
