@@ -1,0 +1,15 @@
+.card {
+  width: 15vw;
+  height: 20vw;
+  border: 1px solid black;
+  border-radius: 16px;
+  margin: 5vw;
+}
+
+.card-content {
+  height: 15vw;
+}
+
+.card-title {
+  border-top: 1px solid black;
+}
