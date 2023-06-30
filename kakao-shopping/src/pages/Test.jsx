@@ -24,7 +24,7 @@ const Test = () => {
             <Toast
                 title="토스트 제목"
                 activateState={[toast, setToast]}
-                style={{ bottom: "10px", left: "10px" }}
+                style={{ top: "10px", left: "10px" }}
             >
                 토스트 내용
             </Toast>
