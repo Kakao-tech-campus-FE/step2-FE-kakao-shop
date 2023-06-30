@@ -149,6 +149,6 @@ step2-FE-kakao-shop
 - my-kakao-shop
   - public
   - src
-    
-- README_IMG
+    - components
+    - images
 ```
