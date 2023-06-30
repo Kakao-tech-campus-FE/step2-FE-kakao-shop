@@ -1,19 +1,19 @@
 import { useEffect } from "react";
+import "./Toast.css";
 
-const Toast = ({ setToast, text, interval = 1500 }) => {
+const Toast = ({ isVisible, setIsVisible, text, interval = 1500 }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
-      setToast(false);
+      setIsVisible(false);
     }, interval);
-    console.log(setToast);
     return () => {
       clearTimeout(timer);
     };
-  }, [setToast]);
+  }, [isVisible, interval]);
 
   return (
-    <div>
-      <p>{text}</p>
+    <div className={`toast ${isVisible ? "toast-show" : "toast-hide"}`}>
+      <span>{text}</span>
     </div>
   );
 };

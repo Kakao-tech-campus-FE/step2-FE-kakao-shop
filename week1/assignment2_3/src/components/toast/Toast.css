@@ -1,0 +1,42 @@
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+
+  border: 1px solid rgb(36, 120, 189);
+  border-radius: 15px;
+  padding: 10px;
+
+  color: white;
+  background-color: cornflowerblue;
+
+  transition: all 0.3s ease;
+}
+
+.toast-show {
+  opacity: 1;
+  animation: slideUp 0.3s forwards;
+}
+
+.toast-hide {
+  opacity: 0;
+  animation: slideDown 0.3s forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

@@ -9,11 +9,11 @@ const ToastGroup = () => {
   return (
     <div>
       <button onClick={handleClick}>Toast!</button>
-      {isVisible ? (
-        <Toast setToast={setIsVisible} text={"This is Toast Message!!"} />
-      ) : (
-        false
-      )}
+      <Toast
+        isVisible={isVisible}
+        setIsVisible={setIsVisible}
+        text={"This is Toast Message!!"}
+      />
     </div>
   );
 };
