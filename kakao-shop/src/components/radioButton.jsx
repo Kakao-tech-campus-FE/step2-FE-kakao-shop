@@ -3,6 +3,7 @@ import { useState } from "react";
 
 const Container = styled.div`
   position: relative;
+  display: inline-block;
   width: 6.5rem;
 `;
 
@@ -23,11 +24,9 @@ const Radio = styled.input`
 
 const Label = styled.label`
   position: absolute;
-  top: 25%;
-  left: 25%;
-  width: 3rem;
-  height: 3rem;
-  transform: scale(0.8);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const RadioButton = ({ name }) => {
