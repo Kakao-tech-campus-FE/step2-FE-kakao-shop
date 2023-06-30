@@ -19,7 +19,7 @@ export const RadioContent = createContext({});
 function App() {
   const [toast, setToast] = useState(false);
   const [radio, setRadio] = useState("Hello");
-  const [toggle, setToggle] = useState(false);
+  const [toggle, setToggle] = useState(true);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -31,8 +31,8 @@ function App() {
       <header>
         <BreadcrumbPortal />
       </header>
-      <Breadcrumb to="/one">One</Breadcrumb>
-      <Breadcrumb to="/two">Two</Breadcrumb>
+      <Breadcrumb to="/one">url1</Breadcrumb>
+      <Breadcrumb to="/two">url2</Breadcrumb>
       <Carousel></Carousel>
       <CheckList></CheckList>
       <RadioButtonList label="메세지" value={radio} onChange={setRadio}>

@@ -1,20 +1,19 @@
 import { useState } from "react";
+import "../styles/togglebutton.css"
+import classNames from "classnames";
 
 const ToggleButton = ({getToggle}) => {
     const [toggle, setToggle] = useState(false);
     
-    const handleClickToggle = (e) => {
-        // e.preventDefault();
+    const handleClickToggle = () => {
         setToggle(!toggle);
-
         getToggle(toggle);
     }
 
     return (
         <div className="toggle-container">
-            <input className="toggle-checkbox" type="checkbox" onClick={handleClickToggle}/>
-            <div className="toggle-track">
-                <div className="toggle-ball"></div>
+            <div className={classNames("toggle-track", {checked: toggle})} onClick={handleClickToggle}>
+                <div className={classNames("toggle-ball", {checked: toggle})}></div>
             </div>
         </div>
     );

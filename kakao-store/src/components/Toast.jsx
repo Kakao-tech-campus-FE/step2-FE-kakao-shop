@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import classnames from 'classnames';
+import "../styles/toast.css"
 
-const Toast = ({ text, color, setToast }) => {
+const Toast = ({ text, color, setToast }) => {    
     useEffect(() => {
         const timer = setTimeout(() => {
             setToast(false);
