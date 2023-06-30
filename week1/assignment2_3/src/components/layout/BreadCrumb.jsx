@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import "./BreadCrumb.css";
 
 const Breadcrumb = () => {
   const location = useLocation();
@@ -7,7 +8,9 @@ const Breadcrumb = () => {
 
   return (
     <div className="breadcrumb">
-      <Link to="/">Home</Link>
+      <Link className="breadcrumb-link" to="/">
+        Home
+      </Link>
       <span>
         {pathnames[pathnames.length - 1]
           ? ` > ${pathnames[pathnames.length - 1]}`

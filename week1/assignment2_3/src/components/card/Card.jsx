@@ -4,7 +4,7 @@ import "./Card.css";
 const Card = ({ url, content = "Content", title = "Title" }) => {
   return (
     <div className="card-wrapper">
-      <Link to={url}>
+      <Link className="card-link" to={url}>
         <div className="card">
           <div className="card-content">{content}</div>
           <div className="card-title">{title}</div>
