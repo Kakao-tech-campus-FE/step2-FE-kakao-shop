@@ -1,0 +1,115 @@
+.toast {
+  position: relative;
+  background-color: #d9e2ff;
+  border-radius: 0.25rem;
+  box-shadow: 2px 2px 1rem 0 rgba(0, 0, 0, 0.2);
+  width: 16rem;
+  z-index: 12;
+  transition: transform 200ms;
+}
+
+.toastContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+}
+
+.toastMsgContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: 1.25rem;
+}
+
+.topLeft {
+  transform: translateX(-20rem);
+  top: 0;
+  left: 0;
+}
+
+.topRight {
+  transform: translateX(20rem);
+  top: 0;
+  right: 0;
+}
+
+.bottomLeft {
+  transform: translateX(-20rem);
+  bottom: 0;
+  left: 0;
+}
+
+.bottomRight {
+  transform: translateX(20rem);
+  bottom: 0;
+  right: 0;
+}
+
+/* .topCenter {
+
+}
+
+.bottomCenter {
+
+} */
+
+.topLeft .toastShowing,
+.bottomLeft .toastShowing {
+  transform: translateX(20rem);
+}
+
+.topRight .toastShowing,
+.bottomRight .toastShowing {
+  transform: translateX(-20rem);
+}
+
+.toastMsg {
+  overflow-wrap: break-word;
+  word-break: break-all;
+  margin-right: 1.25rem;
+}
+
+.toastCloseButton {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  opacity: 0.3;
+  display: flex;
+  flex-shrink: 1;
+  background-color: inherit;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  cursor: pointer;
+}
+
+.toastCloseButton:hover {
+  opacity: 1;
+}
+
+.toastProgressBar {
+  height: 0.25rem;
+  background-color: #567ace;
+  border-radius: 0 0 0 0.25rem;
+  animation: linear toastProgress;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes toastProgress {
+  from {
+    width: 100%;
+  } to {
+    width: 0%;
+  }
+}
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  } to {
+    width: 0%;
+  }
+}
