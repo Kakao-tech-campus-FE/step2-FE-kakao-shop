@@ -23,7 +23,7 @@ const SlideItem = styled.div`
 `;
 
 const Button = styled.button`
-  .first& {
+  .prevbtn& {
     all: unset;
     position: absolute;
     color: white;
@@ -31,7 +31,7 @@ const Button = styled.button`
     left: 5%;
     font-size: 1.5rem;
   }
-  .second& {
+  .nextbtn& {
     all: unset;
     position: absolute;
     color: white;
@@ -71,10 +71,10 @@ const Carousel = () => {
             <img src={images03} alt="2" />
           </SlideItem>
         </Slide>
-        <Button className="first" onClick={handlePrevSlide}>
+        <Button className="prevbtn" onClick={handlePrevSlide}>
           {"<"}
         </Button>
-        <Button className="second" onClick={handleNextSlide}>
+        <Button className="nextbtn" onClick={handleNextSlide}>
           >
         </Button>
       </Window>
