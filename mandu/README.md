@@ -7,6 +7,21 @@
 - [X] 토글버튼
 - [X] 체크리스트
 
+# 디렉터리 구조
+- apis
+- assets
+  - fonts
+  - images
+- components : 공용적으로 쓰는 컴포넌트.
+- pages : ui부분
+  - component
+  - home.js 전체 페이지부분.
+- model
+- states
+  - hook
+  - redux
+- utils
+- const
 
 # 카카오 쇼핑하기 화면 명세서 작성
 ## 1. 로그인 페이지
