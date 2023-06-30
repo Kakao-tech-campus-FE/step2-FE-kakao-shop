@@ -1,0 +1,21 @@
+.toggle-switch {
+  appearance: none;
+  position: relative;
+  height: 16px;
+  width: 28px;
+  border-radius: 9999px;
+  background-color: darkgray;
+}
+.toggle-switch::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 16px;
+  height: 16px;
+  transform: scale(0.7);
+  border-radius: 50%;
+  background-color: white;
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Toast from './components/Toast/Toast';
 import RadioGroup from './components/RadioGroup/RadioGroup';
 import CheckList from './components/CheckList/CheckList';
+import Toggle from './components/Toggle/Toggle';
 
 const App = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -18,6 +19,7 @@ const App = () => {
       </button>
       <RadioGroup />
       <CheckList />
+      <Toggle />
     </div>
   );
 };
