@@ -90,15 +90,4 @@
 
 ### 디렉터리 구조
 
-**public**
-**src**
-
-- apis
-- assets
-- components
-- context
-- pages
-- utils
-- styles
-- App.js
-- index.js
+<img src="./imgs/directory-structure.png" width="230">
