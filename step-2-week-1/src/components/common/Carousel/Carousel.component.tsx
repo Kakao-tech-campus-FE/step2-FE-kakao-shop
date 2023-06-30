@@ -19,7 +19,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
   };
 
   return (
-    <div className="carousel" style={{ width: "1920px", height: "1080px" }}>
+    <div className="carousel">
       {carouselItems.map((item, index) => (
         <CarouselItem
           key={index}
