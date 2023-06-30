@@ -88,29 +88,39 @@
 
 #디렉터리 구조
 
-- public
-  -src
-  --assets
-  ---images
-  ---styles
-  --components
-  ---common
-  ---pages
-  ----home
-  ----cart
-  ----product
-  ---ui
-  ----carousel
-  ----toggle
-  ----....
-  ---hooks
-  --services
-  ---api
-  --utility
-  ---hooks
-  -config
-  -scripts
-  -Readme
+src
+├── assets
+│ ├── images
+│ ├── styles
+│ └── fonts
+├── components
+│ ├── common
+│ ├── pages
+│ │ ├── home
+│ │ ├── cart
+│ │ └── product
+│ └── ui
+│ ├── carousel
+│ ├── toggle
+│ └── ...
+├── hooks
+│ ├── componentHooks
+│ └── customHooks
+├── services
+│ └── api
+├── utility
+│ └── hooks
+├── lib
+│ ├── externalLib1
+│ ├── externalLib2
+│ └── ...
+├── router
+│ ├── routes.js
+│ └── PrivateRoute.js
+└── store
+├── actions
+├── reducers
+└── store.js
 
 </br>
 
