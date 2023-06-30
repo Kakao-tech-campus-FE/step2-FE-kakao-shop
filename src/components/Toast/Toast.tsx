@@ -4,7 +4,7 @@ import './Toast.css';
 interface ToastProps {
   children: React.ReactNode;
   duration?: number;
-  position: 'top-left' | 'top-right' | 'top-center' | 'bottom-left' | 'bottom-right' | 'bottom-center';
+  position: string;
   isVisible: boolean;
   setIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -8,6 +8,9 @@ import Carousel from './components/Carousel/Carousel';
 
 const App = () => {
   const [isToastVisible, setIsToastVisible] = useState(false);
+  const [selectedToastPosition, setSelectedToastPosition] = useState('top-left');
+
+  const toastPositionList = ['top-left', 'top-right', 'top-center', 'bottom-left', 'bottom-right', 'bottom-center'];
 
   const handleToastButtonClick = () => {
     setIsToastVisible(true);
@@ -17,16 +20,20 @@ const App = () => {
     <div className='App'>
       <p>토스트</p>
       {isToastVisible && (
-        <Toast position='bottom-left' isVisible={isToastVisible} setIsVisible={setIsToastVisible}>
-          toast
+        <Toast position={selectedToastPosition} isVisible={isToastVisible} setIsVisible={setIsToastVisible}>
+          {selectedToastPosition} 토스트입니다.
         </Toast>
       )}
       <button type='button' onClick={handleToastButtonClick}>
         Toast Button
       </button>
 
-      <p>라디오버튼</p>
-      <RadioGroup />
+      <p>라디오버튼 (토스트 위치 제어)</p>
+      <RadioGroup
+        radioGroupList={toastPositionList}
+        selectedValue={selectedToastPosition}
+        setSelectedValue={setSelectedToastPosition}
+      />
 
       <p>체크리스트</p>
       <CheckList />

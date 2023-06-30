@@ -10,7 +10,7 @@
   height: 30px;
   background-color: beige;
 }
-.toast .top-left {
+.toast.top-left {
   top: 3px;
   left: 3px;
 }

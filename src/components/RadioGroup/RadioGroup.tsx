@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import Radio from './Radio';
 
-const RadioGroup = () => {
-  const [selectedValue, setSelectedValue] = useState('가');
+interface RadioGroupProps {
+  radioGroupList: string[];
+  selectedValue: string;
+  setSelectedValue: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const radioList = ['가', '나', '다', '라'];
-
+const RadioGroup = ({ radioGroupList, selectedValue, setSelectedValue }: RadioGroupProps) => {
   const handleRadioButtonClick: React.ChangeEventHandler<HTMLInputElement> = (e) => {
     setSelectedValue(e.target.value);
   };
 
   return (
     <div>
-      {radioList.map((value) => (
+      {radioGroupList.map((value) => (
         <Radio key={value} value={value} onRadioButtonClick={handleRadioButtonClick} selectedValue={selectedValue} />
       ))}
     </div>
