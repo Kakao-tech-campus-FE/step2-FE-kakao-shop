@@ -22,13 +22,6 @@ const Carousel = () => {
     setClickR(!isClickR)
   }
 
-
-  const Images = [
-    'https://cdn.pixabay.com/photo/2020/11/19/15/33/purple-lights-5758893_1280.jpg',
-    'https://cdn.pixabay.com/photo/2020/09/24/17/44/sunset-5599335_1280.jpg',
-    'https://cdn.pixabay.com/photo/2023/05/29/15/58/sea-8026428_1280.jpg'
-  ]
-
   return (
     <>
       <div>

@@ -18,35 +18,34 @@ function App() {
     <form>
       <h2>[1주차 과제] 부산대 FE 민하린</h2>
 
-      <fieldset style={style}>
-        <legend>Toast</legend>
+
+        <h3>Toast</h3>
         <Toasty />
-      </fieldset>
 
-      <fieldset style={style}>
-        <legend>Breadcrumb</legend>
+ 
+        <h3>Breadcrumb</h3>
         <BreadCrumb />
-      </fieldset>
 
-      <fieldset style={style}>
-        <legend>Carousel</legend>
+
+
+        <h3>Carousel</h3>
         <Carousel />
-      </fieldset>
 
-      <fieldset style={style}>
-        <legend>Radio Button</legend>
+
+
+        <h3>Radio Button</h3>
         <RadiobButtonGroup />
-      </fieldset>
 
-      <fieldset style={style}>
-        <legend>Toggle Button</legend>
+
+
+        <h3>Toggle Button</h3>
         <ToggleButton />
-      </fieldset>
+
       
-      <fieldset style={style}>
-        <legend>Check List</legend>
+
+        <h3>Check List</h3>
         <CheckBoxList />
-      </fieldset>
+
     </form>
 
   );

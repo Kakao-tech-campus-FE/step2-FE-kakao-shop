@@ -107,14 +107,16 @@
 }
 
 .carousel-container {
-  height: 300px;
-  width: 500px;
+  width: 300vw;
   overflow: hidden;
+
 }
 
-.carousel-container .each {
-  height: 300px;
-  width: 500px;
-  display: flex;
+.each {
+  width: 100vw;
+  float: left;
+}
 
+.each img {
+  width: 100%;
 }
