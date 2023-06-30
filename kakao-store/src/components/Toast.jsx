@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import classnames from 'classnames';
-import "../styles/toast.css"
+import { useEffect, useState } from "react";
 
-const Toast = ({ text, color, setToast }) => {    
+const Toast = ({ text }) => {
+    const [toast, setToast] = useState(false);
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setToast(false);
@@ -14,8 +14,8 @@ const Toast = ({ text, color, setToast }) => {
     }, [setToast]);
     
     return (
-        <div className={classnames("toast-container", color)}>
-            <p className={classnames("toast-message", color)}>{text}</p>
+        <div>
+            <p>{text}</p>
         </div>
     );
 };
