@@ -1,45 +1,75 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const Toggle = ({ title, content }) => {
-  const [isCheck, setCheck] = useState(false);
+const Toggle = () => {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleToggle = () => {
+    setIsChecked(!isChecked);
+  };
 
   return (
-    <>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          padding: '10px',
-          boxSizing: 'border-box',
-          backgroundColor: 'gray',
-          width: '100%',
-          height: '60px',
-          color: '#fff',
-        }}
-      >
-        <button
-          onClick={() => {
-            setCheck((e) => !e);
-          }}
-        >
-          {isCheck ? '▼' : '▶︎'}
-        </button>
-        <h1 style={{ fontSize: '30px', padding: '10px' }}>{title}</h1>
-      </div>
-      {isCheck && (
-        <p
-          style={{
-            margin: '0',
-            backgroundColor: 'skyblue',
-            color: '#fff',
-            padding: '10px 50px',
-          }}
-        >
-          {content}
-        </p>
-      )}
-    </>
+    <Container>
+      <ToggleSwitch>
+        <SwitchInput type="checkbox" checked={isChecked} onChange={handleToggle} />
+        <SwitchSlider>
+          <SliderHandle checked={isChecked} />
+        </SwitchSlider>
+      </ToggleSwitch>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ToggleSwitch = styled.label`
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+`;
+
+const SwitchInput = styled.input`
+  opacity: 0;
+  width: 0;
+  height: 0;
+
+  &:checked + span {
+    background-color: pink;
+  }
+
+  &:checked + span::before {
+    transform: translateX(26px);
+  }
+`;
+
+const SwitchSlider = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #bbb;
+  border-radius: 17px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+`;
+
+const SliderHandle = styled.span`
+  text-align: center;
+  position: absolute;
+  content: '';
+  width: 32px;
+  height: 32px;
+  top: 1px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  transform: ${(props) => (props.checked ? 'translateX(26px)' : 'translateX(0)')};
+`;
 
 export default Toggle;
