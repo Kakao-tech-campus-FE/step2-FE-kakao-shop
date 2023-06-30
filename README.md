@@ -1,6 +1,6 @@
 ### 쇼핑몰 페이지 구성
 
-test
+test2
 [카카오 스토어](https://store.kakao.com)에 접속해서 참고하여 작성했습니다.
 
 
