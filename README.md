@@ -90,37 +90,38 @@
 
 src
 ├── assets
-│ ├── images
-│ ├── styles
-│ └── fonts
+│   ├── images
+│   ├── styles
+│   └── fonts
 ├── components
-│ ├── common
-│ ├── pages
-│ │ ├── home
-│ │ ├── cart
-│ │ └── product
-│ └── ui
-│ ├── carousel
-│ ├── toggle
-│ └── ...
+│   ├── common
+│   ├── pages
+│   │   ├── home
+│   │   ├── cart
+│   │   └── product
+│   └── ui
+│       ├── carousel
+│       ├── toggle
+│       └── ...
 ├── hooks
-│ ├── componentHooks
-│ └── customHooks
+│   ├── componentHooks
+│   └── customHooks
 ├── services
-│ └── api
+│   └── api
 ├── utility
-│ └── hooks
+│   └── hooks
 ├── lib
-│ ├── externalLib1
-│ ├── externalLib2
-│ └── ...
+│   ├── externalLib1
+│   ├── externalLib2
+│   └── ...
 ├── router
-│ ├── routes.js
-│ └── PrivateRoute.js
+│   ├── routes.js
+│   └── PrivateRoute.js
 └── store
-├── actions
-├── reducers
-└── store.js
+    ├── actions
+    ├── reducers
+    └── store.js
+
 
 </br>
 
