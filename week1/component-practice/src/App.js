@@ -13,7 +13,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("home");
 
   const pages = [
-    { id: 1, route: "Home", name: "Home", component: <Home /> },
+    { id: 1, route: "home", name: "Home", component: <Home /> },
     { id: 2, route: "toggle-test", name: "Toggle", component: <ToggleTest /> },
     { id: 3, route: "toast-test", name: "Toast", component: <ToastTest /> },
     {
