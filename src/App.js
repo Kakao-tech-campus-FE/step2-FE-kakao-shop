@@ -24,7 +24,11 @@ function App() {
         <Carousel></Carousel>
         <Toast
           button="토스트"
-          buttonstyle={{ backgroundColor: "yellow", width: "100px" }}
+          buttonStyle={{
+            backgroundColor: "yellow",
+            width: "100px",
+            margin: "30px",
+          }}
           message={"토스트"}
         ></Toast>
       </>

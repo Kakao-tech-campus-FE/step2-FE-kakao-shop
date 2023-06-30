@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React from 'react'
 import styled from 'styled-components';   
-import { Router, Route, Routes, Link, BrowserRouter } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 
 const Container = styled.div`
@@ -18,21 +18,51 @@ const Container = styled.div`
 const Text = styled.div`
   margin: 10px;
 `
+
+const aText = {
+  textDecoration:"none", 
+  color: "black",
+}
+
 const hidden = {
   opacity:"0"
 }
 
+const routeTree = {
+  name: "메인",
+  path: "/",
+  sub: [
+    {
+      name: "장바구니",
+      path: "cart",
+      sub: [
+        {
+          name: "결제",
+          path: "pay",
+          sub : null,
+        }
+      ],
+    }
+  ],
+};
+
 const Bread = () => {
+
 
   return (
     <Container>
-        <Link to="/">
+
+        <Link style={aText} to="/">
             <Text>메인</Text>
-        </Link> //
-        <Link to="/cart">
+        </Link> 
+        
+        {">"}
+        <Link style={aText} to="/cart">
             <Text>장바구니</Text>
-        </Link> //
-        <Link to="/cart/pay">
+        </Link> 
+        
+        {">"}
+        <Link style={aText} to="/cart/pay">
             <Text>결제</Text>
         </Link>
 

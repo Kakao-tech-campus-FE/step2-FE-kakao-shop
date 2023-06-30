@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components';   
 
 const Box = styled.div`
@@ -12,6 +12,7 @@ const Box = styled.div`
 	background-color: rgb(0, 0, 0, 0.7);
   border-radius: 10px;
   padding: 5px 15px;
+  transition: all 0.2s ease-out;
 `;
 
 const Content = styled.span`       
@@ -24,41 +25,34 @@ const Undo = styled.div`
   color: yellow;
 `
 
-const active = {
-  opacity: "0.7",
-  transition: "opacity 500ms",
-}
-
-const hidden = {
-  opacity: "0",
-  visibility: "hidden",
-  transition: "opacity 500ms , visibility 500ms",
-}
-
-const Toast = ( {message, button, buttonstyle} ) => {
+const Toast = ( {message, button, buttonStyle} ) => {
   const [toast, setToast] = useState(false);
+  const timeout = useRef(false);
+
+  const close = () => {
+    setToast(val => false);
+  }
 
   const btnClick = () => {
-    setToast(true);
-  };
-  const toastClick = () => {
-    setToast(false);
+    setToast(true)
+    console.log(toast)
+    const timer = setTimeout(close, 3000);
   };
 
-  const timer = setTimeout(() => {
-    setToast(false);
-  }, 5000);
+  const toastClick = () => {
+    setToast(val => false);
+  };
 
   return (
     <>
-    <button onClick={btnClick} style={buttonstyle}>{button}</button>
+    <button onClick={btnClick} style={buttonStyle}>{button}</button>
     {toast ? (
       <Box onClick={toastClick}>
         <Content>
           {message}
         </Content>
         <Undo>
-          실행 취소
+          닫기
         </Undo>
       </Box>
       ) : null}
