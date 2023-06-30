@@ -4,6 +4,7 @@ import { styled } from "styled-components";
 interface Props {
   data: {
     id: string;
+    name: string;
     value: string;
     text: string;
   };
@@ -11,11 +12,17 @@ interface Props {
 }
 
 const CheckItem = ({ data, color }: Props) => {
-  const { id, value, text } = data;
+  const { id, name, value, text } = data;
 
   return (
     <Label htmlFor={id}>
-      <CheckButton id={id} value={value} color={color} type="checkbox" />
+      <CheckButton
+        id={id}
+        name={name}
+        value={value}
+        color={color}
+        type="checkbox"
+      />
       <span>{text}</span>
     </Label>
   );

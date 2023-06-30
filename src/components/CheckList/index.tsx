@@ -6,15 +6,15 @@ const CheckList = () => {
   return (
     <Wrapper>
       <CheckItem
-        data={{ id: "4", value: "밥", text: "밥" }}
+        data={{ id: "4", name: "food", value: "밥", text: "밥" }}
         color={"#28a745"}
       />
       <CheckItem
-        data={{ id: "5", value: "빵", text: "빵" }}
+        data={{ id: "5", name: "food", value: "빵", text: "빵" }}
         color={"#28a745"}
       />
       <CheckItem
-        data={{ id: "6", value: "음료", text: "음료" }}
+        data={{ id: "6", name: "food", value: "음료", text: "음료" }}
         color={"#28a745"}
       />
     </Wrapper>
