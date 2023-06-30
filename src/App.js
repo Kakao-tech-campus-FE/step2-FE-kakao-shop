@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import ComponentsTest from "./pages/ComponentsTest";
 import Main from "./pages/Main";
-import Breadcrumb from "./components/Breadcrumb";
+// import Breadcrumb from "./components/Breadcrumb";
 
 import './styles/App.css';
 
