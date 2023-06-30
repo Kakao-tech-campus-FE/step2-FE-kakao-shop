@@ -50,10 +50,6 @@
     width: 70%;
 }
 
-.testDuplicate {
-  color: blue;
-}
-
 .toast {
   position: fixed;
   bottom: 20px;
@@ -111,6 +107,7 @@
   border: 2px solid var(--kakao-dark-gray);
   cursor: pointer;
 }
+
 
 .toggle-button.active {
   background-color: var(--kakao-yellow);
@@ -245,6 +242,10 @@
     transition: height 0.2s ease-in-out, padding 0.2s ease-in-out;
 }
 
+li {
+  list-style-type: none;
+}
+
 .check-list-container {
   display: flex;
   flex-direction: column;
@@ -268,6 +269,14 @@
   background-color: var(--kakao-yellow);
   user-select: none;
   padding: 0.4em;
+}
+
+input.check-box {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+input.check-box:checked {
 }
 
 .breadcrumb {
@@ -295,6 +304,3 @@
   text-decoration-line: none;
 }
 
-li {
-  list-style-type: none;
-}
