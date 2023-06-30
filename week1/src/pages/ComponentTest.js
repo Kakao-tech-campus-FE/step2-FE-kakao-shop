@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import ProcessBar from "../components/ProcessBar/processBar";
 import Toast from "../components/Toast/Toast";
 import Carousel from "../components/Carousel/Carousel";
+import BreadCrumb from "../components/BreadCrumb/BreadCrumb";
 
 import oneGrayCat from "../assets/images/a_gray_cat.png";
 import twoGrayCats from "../assets/images/two_gray_cats.jpg";
@@ -29,8 +30,11 @@ const ComponentTest = () => {
   const [radioIdx, setRadioIdx] = useState(0);
   const [toggleValue, setToggleValue] = useState(false);
   const carouselImg = [sky1, sky2, sky3];
+  const route = ["home", "shop", "item"];
+
   return (
     <>
+      <BreadCrumb route={route} />
       <Carousel background={carouselImg} />
       <Toast msg="this is a toast!" show={toggleValue} />
       <CheckList

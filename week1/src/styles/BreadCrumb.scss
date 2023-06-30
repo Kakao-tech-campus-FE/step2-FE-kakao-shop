@@ -1,0 +1,9 @@
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  .breadcrumb-item:nth-child(n + 2) {
+    &:before {
+      content: ">";
+    }
+  }
+}
