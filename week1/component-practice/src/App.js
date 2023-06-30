@@ -9,6 +9,26 @@ import ChecklistTest from "./pages/ChecklistTest";
 function App() {
   const [currentPage, setCurrentPage] = useState("home");
 
+  const pages = [
+    { id: 1, route: "Home", name: "Home", component: <Home /> },
+    { id: 2, route: "toggle-test", name: "Toggle", component: <ToggleTest /> },
+    { id: 3, route: "toast-test", name: "Toast", component: <ToastTest /> },
+    {
+      id: 4,
+      route: "breadcrumbs-test",
+      name: "Breadcrumbs",
+      component: <Home />,
+    },
+    {
+      id: 5,
+      route: "checklist-test",
+      name: "Checklist",
+      component: <ChecklistTest />,
+    },
+    { id: 6, route: "radio-test", name: "Radio", component: <Home /> },
+    { id: 6, route: "carousel-test", name: "Carousel", component: <Home /> },
+  ];
+
   return (
     <div style={{ padding: "4rem", textAlign: "center", width: "500px" }}>
       <nav style={{ marginBottom: "3rem" }}>
@@ -20,21 +40,21 @@ function App() {
             fontSize: "0.8rem",
           }}
         >
-          <li onClick={() => setCurrentPage("home")}>Home</li>
-          <li onClick={() => setCurrentPage("toggle-test")}>Toggle</li>
-          <li onClick={() => setCurrentPage("toggle-test")}>Breadcrumbs</li>
-          <li onClick={() => setCurrentPage("toast-test")}>Toast</li>
-          <li onClick={() => setCurrentPage("checklist-test")}>Checklist</li>
-          <li onClick={() => setCurrentPage("toggle-test")}>Radio</li>
-          <li onClick={() => setCurrentPage("toggle-test")}>Carousel</li>
+          {pages.map((page) => (
+            <li key={page.id} onClick={() => setCurrentPage(page.route)}>
+              {page.name}
+            </li>
+          ))}
         </ul>
       </nav>
 
       <div style={{ margin: "0 3rem" }}>
-        {currentPage === "home" && <Home />}
-        {currentPage === "toggle-test" && <ToggleTest />}
-        {currentPage === "toast-test" && <ToastTest />}
-        {currentPage === "checklist-test" && <ChecklistTest />}
+        {pages.map(
+          (page) =>
+            currentPage === page.route && (
+              <div key={page.id}>{page.component}</div>
+            )
+        )}
       </div>
     </div>
   );
