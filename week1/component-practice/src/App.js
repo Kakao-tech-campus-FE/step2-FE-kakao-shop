@@ -26,7 +26,7 @@ function App() {
       component: <ChecklistTest />,
     },
     { id: 6, route: "radio-test", name: "Radio", component: <Home /> },
-    { id: 6, route: "carousel-test", name: "Carousel", component: <Home /> },
+    { id: 7, route: "carousel-test", name: "Carousel", component: <Home /> },
   ];
 
   return (
@@ -41,7 +41,11 @@ function App() {
           }}
         >
           {pages.map((page) => (
-            <li key={page.id} onClick={() => setCurrentPage(page.route)}>
+            <li
+              key={page.id}
+              onClick={() => setCurrentPage(page.route)}
+              className={currentPage === page.route ? "current" : ""}
+            >
               {page.name}
             </li>
           ))}

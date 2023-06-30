@@ -39,8 +39,8 @@
 }
 
 .checked {
-  background-color: #19ffe8;
-  border-color: #19ffe8;
+  background-color: var(--main-color);
+  border-color: var(--main-color);
 }
 
 .checklist span {

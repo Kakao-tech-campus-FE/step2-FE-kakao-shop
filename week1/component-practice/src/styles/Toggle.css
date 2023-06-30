@@ -9,8 +9,8 @@
 }
 
 .on .toggle-container {
-  border: 0.15rem solid gold;
-  background-color: gold;
+  border: 0.15rem solid var(--main-color);
+  background-color: var(--main-color);
 }
 
 .toggle-circle {
