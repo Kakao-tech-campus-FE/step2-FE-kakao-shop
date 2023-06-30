@@ -1,10 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import "../styles/Checklist.css";
 
-export default function Checklist({ item }) {
+export default function Checklist({ item, onChange }) {
+  const handleCheckboxChange = () => {
+    onChange(item.id);
+  };
+
   return (
     <>
-      <label key={item.id}>
-        <input type="checkbox" />
+      <label key={item.id} className="checklist" style={{ width: "200px" }}>
+        <div className={`box ${item.checked ? "checked" : ""}`}></div>
+        <input
+          type="checkbox"
+          className="checkbox"
+          checked={item.checked}
+          onChange={handleCheckboxChange}
+        />
         <span>{item.text}</span>
         <br></br>
       </label>
