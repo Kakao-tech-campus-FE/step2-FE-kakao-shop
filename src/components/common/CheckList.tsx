@@ -48,6 +48,7 @@ const Wrap = styled.div<{ axis: 'column' | 'row' }>`
   justify-content: center;
 `;
 const Label = styled.label`
+  margin: 5px;
   display: flex;
   align-items: center;
 `;

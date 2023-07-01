@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import styled from 'styled-components';
+import useThrottling from '../../hooks/useThrottling';
 
 interface CarouselProps {
   width: number;
@@ -12,42 +13,55 @@ interface ViewerProps {
 }
 interface ContainerProps extends ViewerProps {
   index: number;
+  transition: number;
 }
 interface BtnProps extends ViewerProps {
   direction: 'left' | 'right';
 }
 export default function Carousel({ width, height, images }: CarouselProps) {
-  const [curIndex, setCurIndex] = useState(0);
+  const carouselImages = useMemo(() => [images[images.length - 1], ...images, images[0]], [images]);
+  const [curIndex, setCurIndex] = useState(1);
+  const [transition, setTransition] = useState(300);
+
   const movePrev = () => {
-    if (curIndex === 0) {
-      setCurIndex(images.length - 1);
-    } else {
-      setCurIndex((prev) => prev - 1);
+    setTransition(300);
+    setCurIndex((prev) => prev - 1);
+    if (curIndex <= 1) {
+      setTimeout(() => {
+        setTransition(0);
+        setCurIndex(carouselImages.length - 2);
+      }, 300);
     }
   };
   const moveNext = () => {
-    if (curIndex === images.length - 1) {
-      setCurIndex(0);
-    } else {
-      setCurIndex((prev) => prev + 1);
+    setTransition(300);
+    setCurIndex((prev) => prev + 1);
+    if (curIndex >= carouselImages.length - 2) {
+      setTimeout(() => {
+        setTransition(0);
+        setCurIndex(1);
+      }, 300);
     }
   };
+
+  const prev = useThrottling(movePrev, 300);
+  const next = useThrottling(moveNext, 300);
   useEffect(() => {
     const timerId = setTimeout(() => {
-      moveNext();
+      next();
     }, 3000);
     return () => clearTimeout(timerId);
   }, [curIndex]);
 
   return (
     <Viewer width={width} height={height}>
-      <Container width={width} height={height} index={curIndex}>
-        {images.map((image, index) => (
+      <Container transition={transition} className="isLast" width={width} height={height} index={curIndex}>
+        {carouselImages.map((image, index) => (
           <img key={image + index} src={image} width={width} height={height} alt="캐러셀 이미지" />
         ))}
       </Container>
-      <CarouselBtn width={width} height={height} direction="left" onClick={movePrev} />
-      <CarouselBtn width={width} height={height} direction="right" onClick={moveNext} />
+      <CarouselBtn width={width} height={height} direction="left" onClick={prev} />
+      <CarouselBtn width={width} height={height} direction="right" onClick={next} />
     </Viewer>
   );
 }
@@ -61,7 +75,7 @@ const Viewer = styled.div<ViewerProps>`
 const Container = styled.div<ContainerProps>`
   display: flex;
   transform: translateX(${(props) => -(props.width * props.index)}px);
-  transition: 0.2s;
+  transition: ${(props) => props.transition}ms;
 `;
 const CarouselBtn = styled.button<BtnProps>`
   border-radius: 100%;
