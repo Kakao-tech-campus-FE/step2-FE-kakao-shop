@@ -1,0 +1,69 @@
+.radio-indicator {
+  display: none;
+}
+
+.radio-indicator-label {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+.radio-indicator:checked+.radio-indicator-label {
+  background-color: coral;
+}
+
+.carousel-img {
+  width: 100%;
+  position: relative;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-button {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.carousel-button:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.carousel-button.prev {
+  left: 10px;
+}
+
+.carousel-button.next {
+  right: 10px;
+}
+
+.carousel-slider-container {
+  width: 100%;
+  display: flex;
+}
+
+.radio-indicator-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
