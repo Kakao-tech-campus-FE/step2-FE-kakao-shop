@@ -2,19 +2,19 @@ import { styled } from 'styled-components';
 
 interface IToggleBox {
   color: string;
-  bgColor: string;
+  bgcolor: string;
   width: number;
   height: number;
 }
 interface ToggleProps {
   title: string;
-  bgColor: string;
+  bgcolor: string;
   color: string;
   width: number;
   height: number;
   onChange: (e: React.ChangeEvent) => void;
 }
-function Toggle({ title, bgColor, width, height, color, onChange }: ToggleProps) {
+function Toggle({ title, bgcolor, width, height, color, onChange }: ToggleProps) {
   return (
     <Label htmlFor={title}>
       <ToggleBox
@@ -25,7 +25,7 @@ function Toggle({ title, bgColor, width, height, color, onChange }: ToggleProps)
         width={width}
         height={height}
         color={color}
-        bgColor={bgColor}
+        bgcolor={bgcolor}
         onChange={onChange}
       />
       <span>{title}</span>
@@ -64,7 +64,7 @@ const ToggleBox = styled.input<IToggleBox>`
     transition: 0.25s linear;
   }
   &:checked {
-    background-color: ${(props) => props.bgColor};
+    background-color: ${(props) => props.bgcolor};
     transition: 0.25s linear;
   }
   &:hover {

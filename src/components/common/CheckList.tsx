@@ -7,18 +7,18 @@ interface IData {
 interface ICheckList {
   datas: IData[];
   axis: 'column' | 'row';
-  bgColor: string;
+  bgcolor: string;
   color: string;
   width: number;
   height: number;
 }
 interface ICheckBox {
-  bgColor: string;
+  bgcolor: string;
   color: string;
   width: number;
   height: number;
 }
-function CheckList({ datas, axis, bgColor, color, width, height }: ICheckList) {
+function CheckList({ datas, axis, bgcolor, color, width, height }: ICheckList) {
   return (
     <Wrap axis={axis}>
       {datas.map((data) => (
@@ -28,7 +28,7 @@ function CheckList({ datas, axis, bgColor, color, width, height }: ICheckList) {
             id={data.value}
             name={data.name}
             value={data.value}
-            bgColor={bgColor}
+            bgcolor={bgcolor}
             color={color}
             width={width}
             height={height}
@@ -61,7 +61,7 @@ const CheckBox = styled.input<ICheckBox>`
   position: relative;
   &:checked {
     border: none;
-    background-color: ${(props) => props.bgColor};
+    background-color: ${(props) => props.bgcolor};
   }
   &:checked::before {
     content: 'L';

@@ -21,7 +21,7 @@ function App() {
           { name: 'test', value: 'test2' },
         ]}
         axis="column"
-        bgColor="yellow"
+        bgcolor="yellow"
         color="white"
         width={20}
         height={20}
@@ -30,7 +30,7 @@ function App() {
       <button onClick={() => setToastContents((prev) => [...prev, { content: '토스트 테스팅 컨텐츠입니다', id: Date.now() }])}>토스트 테스팅</button>
       {toastContents.length
         ? createPortal(
-            <ToastBox contents={toastContents} position="bottom-right" setToastContents={setToastContents} bgColor="black" color="white" />,
+            <ToastBox contents={toastContents} position="bottom-right" setToastContents={setToastContents} bgcolor="black" color="white" />,
             document.body
           )
         : null}
@@ -44,11 +44,11 @@ function App() {
       <BreadCrumb />
       <LinkBtn to="./products" content="상품 페이지" />
       <h1>토글</h1>
-      <Toggle title="토글" bgColor="yellow" color="white" width={100} height={50} onChange={() => {}} />
+      <Toggle title="토글" bgcolor="yellow" color="white" width={100} height={50} onChange={() => {}} />
       <h1>라디오 버튼</h1>
-      <RadioInput color="white" bgColor="yellow" width={20} height={20} name="테스트버튼" value="테스트1" />
-      <RadioInput color="white" bgColor="yellow" width={20} height={20} name="테스트버튼" value="테스트2" />
-      <RadioInput color="white" bgColor="yellow" width={20} height={20} name="테스트버튼" value="테스트3" />
+      <RadioInput color="white" bgcolor="yellow" width={20} height={20} name="테스트버튼" value="테스트1" />
+      <RadioInput color="white" bgcolor="yellow" width={20} height={20} name="테스트버튼" value="테스트2" />
+      <RadioInput color="white" bgcolor="yellow" width={20} height={20} name="테스트버튼" value="테스트3" />
     </Wrap>
   );
 }

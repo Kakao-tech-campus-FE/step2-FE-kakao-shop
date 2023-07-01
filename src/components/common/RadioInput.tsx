@@ -3,17 +3,17 @@ import { styled } from 'styled-components';
 
 interface IRadioInput {
   color: string;
-  bgColor: string;
+  bgcolor: string;
   width: number;
   height: number;
   name: string;
   value: string;
 }
-function RadioInput({ color, bgColor, width, height, name, value }: IRadioInput) {
+function RadioInput({ color, bgcolor, width, height, name, value }: IRadioInput) {
   return (
     <Label>
       {value}
-      <Radio type="radio" value={value} name={name} color={color} bgColor={bgColor} width={width} height={height} />
+      <Radio type="radio" value={value} name={name} color={color} bgcolor={bgcolor} width={width} height={height} />
     </Label>
   );
 }
@@ -34,7 +34,7 @@ const Radio = styled.input<IRadioInput>`
   position: relative;
   &:checked {
     border: none;
-    background-color: ${(props) => props.bgColor};
+    background-color: ${(props) => props.bgcolor};
   }
   &:checked::before {
     content: '';

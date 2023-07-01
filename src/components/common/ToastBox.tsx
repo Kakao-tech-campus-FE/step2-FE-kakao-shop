@@ -9,15 +9,15 @@ export interface IToastData {
 interface ToastBoxProps {
   contents: { content: string; id: number }[];
   position: 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left';
-  bgColor: string;
+  bgcolor: string;
   color: string;
   setToastContents: React.Dispatch<React.SetStateAction<IToastData[]>>;
 }
-function ToastBox({ contents, position, bgColor, color, setToastContents }: ToastBoxProps) {
+function ToastBox({ contents, position, bgcolor, color, setToastContents }: ToastBoxProps) {
   return (
     <Wrapper position={position}>
       {contents.map((content) => (
-        <Toast content={content.content} key={content.id} setToastContents={setToastContents} position={position} bgColor={bgColor} color={color} />
+        <Toast content={content.content} key={content.id} setToastContents={setToastContents} position={position} bgcolor={bgcolor} color={color} />
       ))}
     </Wrapper>
   );

@@ -9,10 +9,12 @@ function BreadCrumb() {
     <div>
       {directory.map((path, index) =>
         index === directory.length - 1 ? (
-          <span>{path === '' ? 'Home' : path}</span>
+          <span key="path">{path === '' ? 'Home' : path}</span>
         ) : (
           <>
-            <StyledLink to={index === 0 ? '/' : `${directory.slice(0, index + 1).join('/')}`}>{path === '' ? 'Home' : path}</StyledLink>
+            <StyledLink key="path" to={index === 0 ? '/' : `${directory.slice(0, index + 1).join('/')}`}>
+              {path === '' ? 'Home' : path}
+            </StyledLink>
             <span>&gt;</span>
           </>
         )
