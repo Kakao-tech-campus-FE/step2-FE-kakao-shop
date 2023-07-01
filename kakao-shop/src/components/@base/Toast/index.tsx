@@ -6,6 +6,7 @@ import Toast from './libs';
 
 const ToastComponent = new Toast({
   ToastItem: ({ children, isShow }) => (
+    // AnimatePresence의 경우 토스트 컴포넌트가 unmount 될때 exit 애니메이션을 발생시킨다.
     <AnimatePresence>
       {isShow && (
         <Fragment>

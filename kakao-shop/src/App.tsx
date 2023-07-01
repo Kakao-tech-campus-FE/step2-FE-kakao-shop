@@ -12,48 +12,9 @@ function App() {
         <Route path={'/'} element={<TestPage />} />
 
         <Route element={<BreadcrumbTest />}>
-          <Route
-            path={'/level1'}
-            element={
-              <div>
-                level1
-                <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to="/level2">
-                  level2
-                </Link>
-                <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
-                  홈
-                </Link>
-              </div>
-            }
-          />
-          <Route
-            path={'/level2'}
-            element={
-              <div>
-                level2
-                <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to="/level3">
-                  level3
-                </Link>
-                <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
-                  홈
-                </Link>
-              </div>
-            }
-          />
-          <Route
-            path={'/level3'}
-            element={
-              <div>
-                level3
-                <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to="/level1">
-                  level1
-                </Link>
-                <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
-                  홈
-                </Link>
-              </div>
-            }
-          />
+          <Route path={'/level1'} element={NavElement('level1', 'level2')} />
+          <Route path={'/level2'} element={NavElement('level2', 'level3')} />
+          <Route path={'/level3'} element={NavElement('level3', 'level1')} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -61,6 +22,20 @@ function App() {
 }
 
 export default App;
+
+const NavElement = (prev: string, next: string) => {
+  return (
+    <div>
+      {prev}
+      <Link style={{ fontWeight: 'bold', marginLeft: '10px', color: 'tomato' }} to={`/${next}`}>
+        {next}
+      </Link>
+      <Link to="/" style={{ fontWeight: 'bold', marginLeft: '10px', color: '#0067a3' }}>
+        홈
+      </Link>
+    </div>
+  );
+};
 
 const BreadcrumbTest = () => {
   const { pathname } = useLocation();
