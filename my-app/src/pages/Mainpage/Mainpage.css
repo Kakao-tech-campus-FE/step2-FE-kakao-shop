@@ -1,0 +1,66 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: white;
+}
+.toast {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 4px;
+  z-index: 9999;
+  width: 280px;
+  height: 110px;
+  display: flex;
+  flex-direction: column;
+}
+.costTxt {
+  display: flex;
+  padding: 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  justify-content: space-between;
+  border: 1px solid #f2f2f2;
+}
+.payRadio {
+  background-color: rgb(255, 235, 0);
+  padding: 20px 10px;
+  line-height: 3rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.receiptRadio {
+  padding: 20px 10px;
+  display: flex;
+  font-weight: bold;
+  width: 40%;
+  justify-content: space-between;
+}
+#cashReceiptInput {
+  padding: 8px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+}
+.conditionCheckBox {
+  padding: 10px;
+  line-height: 2rem;
+}
+.payBtn {
+  background-color: rgb(255, 235, 0);
+  height: 50px;
+  border: 0px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.toggle-text {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  padding-left: 30px;
+}
