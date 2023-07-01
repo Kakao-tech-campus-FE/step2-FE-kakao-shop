@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';   
 
 const Box = styled.div`
@@ -27,7 +27,6 @@ const Undo = styled.div`
 
 const Toast = ( {message, button, buttonStyle} ) => {
   const [toast, setToast] = useState(false);
-  const timeout = useRef(false);
 
   const close = () => {
     setToast(val => false);
@@ -35,7 +34,6 @@ const Toast = ( {message, button, buttonStyle} ) => {
 
   const btnClick = () => {
     setToast(true)
-    console.log(toast)
     const timer = setTimeout(close, 3000);
   };
 

@@ -95,7 +95,7 @@ const Check = () => {
       
       <Toast
         button="주문하기"
-        buttonstyle={ BuyBtn }
+        buttonStyle={ BuyBtn }
         message={buylist()}
       ></Toast>
 
