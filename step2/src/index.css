@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  margin-bottom: 1rem;
+}
+
+input, button {
+  
+}
+
+
+.example {
+  background-color: whitesmoke;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.example-header {
+  font-weight: bold;
+}
