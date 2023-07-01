@@ -49,6 +49,10 @@ function BannerImageList(): ReactElement {
     onTouchMove,
     onTouchStart,
     touchMoveDistance,
+    onMouseDown,
+    onMouseMove,
+    onMouseUp,
+    onMouseOut,
   } = useCarousel(carouselOption);
   return (
     <Wrapper>
@@ -61,10 +65,14 @@ function BannerImageList(): ReactElement {
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
           onTouchMove={onTouchMove}
+          onMouseOut={onMouseOut}
           onDragStart={e => {
             e.stopPropagation();
             e.preventDefault();
           }}
+          onMouseMove={onMouseMove}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
           style={{
             left: slideItemWidth * -1 * initialFocusSlideIndex + touchMoveDistance,
           }} // 초기 슬라이더 위치 세팅

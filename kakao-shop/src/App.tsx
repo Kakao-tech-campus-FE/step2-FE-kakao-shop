@@ -78,7 +78,7 @@ const BreadcrumbTest = () => {
 
   return (
     <div>
-      <Breadcrumb>{item.map(item => item)}</Breadcrumb>
+      <Breadcrumb>{item.map(element => element)}</Breadcrumb>
       <Outlet />
     </div>
   );

@@ -112,6 +112,7 @@ export default function useCarousel(options: CarouselOptions) {
   // 마우스 스와이프, 터치 스와이프
   const [touchStartClientX, setTouchStartClientX] = useState(0);
   const [touchEndClientX, setTouchEndClientX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   // 스와이프 이동 범위 설정 -> 이동 범위 이상으로 이동해야 슬라이드가 이동됨
   const moveRange = useMemo(() => {
@@ -146,6 +147,36 @@ export default function useCarousel(options: CarouselOptions) {
     setTouchEndClientX(0);
   };
 
+  // 마우스 스와이프를 위한 아래의 4가지 함수
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    onChangeFlowing(false);
+    setTouchStartClientX(e.clientX);
+    setTouchEndClientX(e.clientX);
+    setIsDragging(true);
+    setIsAnimaion(false);
+  };
+
+  const onMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setTouchEndClientX(e.clientX);
+  };
+
+  const onMouseOut = () => {
+    setIsDragging(false);
+    setIsAnimaion(true);
+    setTouchEndClientX(0);
+    setTouchStartClientX(0);
+  };
+
+  const onMouseUp = () => {
+    setIsAnimaion(true);
+    if (touchMoveDistance > moveRange) onPrevSlide();
+    if (touchMoveDistance < moveRange * -1) onNextSlide();
+    setTouchStartClientX(0);
+    setTouchEndClientX(0);
+    setIsDragging(false);
+  };
+
   return {
     slideRef,
     isAnimation,
@@ -159,5 +190,9 @@ export default function useCarousel(options: CarouselOptions) {
     onTouchMove,
     onTouchEnd,
     touchMoveDistance,
+    onMouseDown,
+    onMouseMove,
+    onMouseUp,
+    onMouseOut,
   };
 }
