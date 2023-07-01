@@ -1,5 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import styled from 'styled-components';   
+import styled, { keyframes } from 'styled-components';   
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const Container = styled.div`
+  animation: ${fadeIn} 0.3s ease-out;
+`
 
 const Box = styled.div`
   position: absolute;
@@ -11,8 +24,7 @@ const Box = styled.div`
   height: 50px;
 	background-color: rgb(0, 0, 0, 0.7);
   border-radius: 10px;
-  padding: 5px 15px;
-  transition: all 0.2s ease-out;
+  padding: 5px 20px;
 `;
 
 const Content = styled.span`       
@@ -28,12 +40,14 @@ const Undo = styled.div`
 const Toast = ( {message, button, buttonStyle} ) => {
   const [toast, setToast] = useState(false);
 
-  useEffect(() => {
+  const timeEffect = () => {
     const timer = setTimeout(() => {
       setToast(false);
     }, 3000)
     return () => { clearTimeout(timer) }
-  }, [toast])
+  }
+
+  useEffect(timeEffect, [toast])
 
   const btnClick = () => {
     setToast(true)
@@ -47,14 +61,16 @@ const Toast = ( {message, button, buttonStyle} ) => {
     <>
     <button onClick={btnClick} style={buttonStyle}>{button}</button>
     {toast ? (
-      <Box onClick={toastClick}>
-        <Content>
-          {message}
-        </Content>
-        <Undo>
-          닫기
-        </Undo>
-      </Box>
+      <Container onClick={toastClick}>
+        <Box>
+          <Content>
+            {message}
+          </Content>
+          <Undo>
+            닫기
+          </Undo>
+        </Box>
+      </Container>
       ) : null}
   </>
   )
