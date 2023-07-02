@@ -13,7 +13,7 @@ const Breadcrumb = () => {
         <div>
             <h2 className={styles.h2}>2. Breadcrumb 구현</h2>
 
-            <p> 리스트 클릭 시 경로가 표시됩니다.</p>
+            <p> 리스트 클릭 시 경로가 표시됩니다..</p>
             <ul className={styles.ulTag}>
                 <li>{Bread}</li>
                 <li onClick={onClick} data-id="경로1번">경로1번</li>

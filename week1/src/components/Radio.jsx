@@ -20,7 +20,7 @@ const Radio = () => {
     };
     return (
         <div>
-            <h2 className={styles.h2}>4. 라디오버튼 구현</h2>
+            <h2 className={styles.h2}>4.. 라디오버튼 구현</h2>
             {checkBoxList.map((item) => (
                 <div>
                     <input type="radio" id={item} onChange={handleCheckboxChange}

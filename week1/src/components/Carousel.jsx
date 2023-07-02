@@ -31,7 +31,7 @@ const Carousel = () => {
 
     return (
         <div className={styles.carouselDiv}>
-            <h2 className={styles.h2}>3. 캐러셀 구현</h2>
+            <h2 className={styles.h2}>3.. 캐러셀 구현</h2>
             <ul className={styles.carouselUl}>
                 <li className={`${styles.carouselSlide} ${Carousel === 1 ? styles.active : ''}`}>1</li>
                 <li className={`${styles.carouselSlide} ${Carousel === 2 ? styles.active : ''}`}>2</li>
