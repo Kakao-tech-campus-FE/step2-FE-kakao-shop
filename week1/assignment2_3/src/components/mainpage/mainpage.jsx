@@ -6,7 +6,11 @@ import "./mainpage.css";
 const MainPage = () => {
   return (
     <div className="main">
-      <Card url={"/Badge"} title="Badge" content={<Badge text={"New!"} />} />
+      <Card
+        url={"/Badge"}
+        title="Badge"
+        content={<Badge text={"New!"} fontSize={13} />}
+      />
       <Card
         url={"/RadioButton"}
         title="Radio Button"

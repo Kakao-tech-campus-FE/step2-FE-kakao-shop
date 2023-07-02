@@ -41,6 +41,9 @@ const Checklist = () => {
         onChange={(e) => setInputValue(e.target.value)}
         value={inputValue}
         placeholder="Input your Todo!"
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleAdd();
+        }}
       ></input>
       <button onClick={handleAdd}>+</button>
       <ul>

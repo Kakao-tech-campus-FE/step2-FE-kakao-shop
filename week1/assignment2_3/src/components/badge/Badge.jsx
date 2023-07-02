@@ -4,9 +4,9 @@ const Badge = ({ text, color = "teal", fontSize = 10 }) => {
       style={{
         backgroundColor: color,
         color: "white",
-        borderRadius: "8px",
-        padding: "4.5px",
-        margin: "3px",
+        borderRadius: `${fontSize * 0.7}px`,
+        padding: `${fontSize * 0.2}px ${fontSize * 0.3}px`,
+        margin: `${fontSize * 0.2}px`,
         fontSize: fontSize,
       }}
     >
