@@ -31,7 +31,7 @@ const App = () => {
                             <Frame children={<ToggleGroup/>}/>
                         }/>
                         <Route  path='/Carousel' element={
-                            <Frame children={<Carousel/>}/>
+                            <Frame children={<Carousel/>} paddingVal={60}/>
                         }/>
                         <Route  path='/Toast' element={
                             <Frame children={<ToastGroup/>}/>
