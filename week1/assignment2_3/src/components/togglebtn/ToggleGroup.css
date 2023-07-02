@@ -1,5 +1,4 @@
 .toggle-group {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,21 +6,19 @@
 }
 
 .img-wrapper {
-  position: relative; 
   margin-bottom: 20px;
 }
 
 .tg-image {
-  position: absolute; 
-  transform: translate(-50%, -50%);
   opacity: 1;
   transition: opacity 0.5s ease;
+  transform: translateX(50%);
 }
 
 .tg-image.hide {
   opacity: 0;
 }
 
-.toggle-btn {
-  margin: 100px;
+.full-moon {
+  transform: translateX(-50%);
 }

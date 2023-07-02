@@ -18,12 +18,12 @@ const ToggleGroup = () => {
       <div className="img-wrapper">
         <img
           className={`tg-image ${isToggled ? "hide" : ""}`}
-          src={imgLink.full_moon}
+          src={imgLink.new_moon}
           alt="Moon image"
         />
         <img
-          className={`tg-image ${isToggled ? "" : "hide"}`}
-          src={imgLink.new_moon}
+          className={`tg-image full-moon ${isToggled ? "" : "hide"}`}
+          src={imgLink.full_moon}
           alt="Moon image"
         />
       </div>
