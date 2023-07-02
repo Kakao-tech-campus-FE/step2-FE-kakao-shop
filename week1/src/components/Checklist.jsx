@@ -16,7 +16,7 @@ const Checklist = () => {
     };
     return (
         <div>
-            <h2 className={styles.h2}>6. 체크리스트 구현</h2>
+            <h2 className={styles.h2}>6.. 체크리스트 구현</h2>
             {checkBoxList.map((item) => (
                 <div>
                     <input type="checkbox" id={item} onChange={handleCheckboxChange}

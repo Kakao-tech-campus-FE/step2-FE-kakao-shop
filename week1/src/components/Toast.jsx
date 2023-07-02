@@ -17,7 +17,7 @@ const Toast = () => {
     const [toast, setToast] = useState(false);
     return (
         <div>
-            <h2 className={styles.h2}>1. 토스트 구현</h2>
+            <h2 className={styles.h2}>1.. 토스트 구현</h2>
             <button className={styles.Button} onClick={onClick}>Toast BTN</button>
             {toast === true ? <PopUp /> : null}
 
