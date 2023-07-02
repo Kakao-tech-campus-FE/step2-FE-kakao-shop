@@ -5,7 +5,7 @@ const Toast = ({
   isVisible,
   setIsVisible,
   text,
-  color = "cornflowerblue",
+  color = "royalblue",
   interval = 1500,
 }) => {
   useEffect(() => {
