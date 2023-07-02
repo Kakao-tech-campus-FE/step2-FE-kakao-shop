@@ -10,10 +10,12 @@ const Carousel = () => {
 
     const nextBtn = () => {
         setCarousel(() => {
-            if (list === 3) {
+            if (list === 4) {
+                list = 0;
                 return 0;
             } else {
-                return list + 1;
+                list += 1;
+                return list;
             }
         });
     };
@@ -21,8 +23,10 @@ const Carousel = () => {
     const prevBtn = () => {
         setCarousel(() => {
             if (list === 0) {
-                return list - 1;
+
+                return 0;
             } else {
+                list += 1;
                 return list - 1;
             }
         });
@@ -31,11 +35,11 @@ const Carousel = () => {
 
     return (
         <div className={styles.carouselDiv}>
-            <h2 className={styles.h2}>3.. 캐러셀 구현</h2>
+            <h2 className={styles.h2}>3. 캐러셀 구현</h2>
             <ul className={styles.carouselUl}>
-                <li className={`${styles.carouselSlide} ${Carousel === 1 ? styles.active : ''}`}>1</li>
-                <li className={`${styles.carouselSlide} ${Carousel === 2 ? styles.active : ''}`}>2</li>
-                <li className={`${styles.carouselSlide} ${Carousel === 3 ? styles.active : ''}`}>3</li>
+                <li className={`${styles.carouselSlide} ${Carousel === 1 ? styles.active : ''} ${Carousel === 2 ? styles.active2 : ''} ${Carousel === 3 ? styles.active3 : ''}`}>1</li>
+                <li className={`${styles.carouselSlide} ${Carousel === 1 ? styles.active : ''} ${Carousel === 2 ? styles.active2 : ''} ${Carousel === 3 ? styles.active3 : ''}`}>2</li>
+                <li className={`${styles.carouselSlide} ${Carousel === 1 ? styles.active : ''} ${Carousel === 2 ? styles.active2 : ''} ${Carousel === 3 ? styles.active3 : ''}`}>3</li>
             </ul>
             <div className={styles.carouselBtn}>
                 <button onClick={prevBtn}>prev</button>
