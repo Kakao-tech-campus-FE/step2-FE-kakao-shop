@@ -10,6 +10,7 @@ import ToastGroup from './components/toast/ToastGroup';
 import Checklist from './components/checklist/Checklist';
 import BadgeGroup from './components/badge/BadgeGroup';
 import MainPage from './components/mainpage/mainpage';
+import Frame from './components/frame/Frame';
 
 const App = () => {
     return (
@@ -21,22 +22,22 @@ const App = () => {
                             <MainPage/>
                         }/>
                         <Route path='/Badge' element={
-                            <BadgeGroup/>
+                            <Frame children={<BadgeGroup/>}/>
                         }/>
                         <Route  path='/RadioButton' element={
-                            <RadioGroup/>
+                            <Frame children={<RadioGroup/>}/>
                         }/>
                         <Route  path='/ToggleButton' element={
-                            <ToggleGroup/>
+                            <Frame children={<ToggleGroup/>}/>
                         }/>
                         <Route  path='/Carousel' element={
-                            <Carousel/>
+                            <Frame children={<Carousel/>}/>
                         }/>
                         <Route  path='/Toast' element={
-                            <ToastGroup/>
+                            <Frame children={<ToastGroup/>}/>
                         }/>
                         <Route  path='/Checklist' element={
-                            <Checklist/>
+                            <Frame children={<Checklist/>}/>
                         }/>
                     </Routes>
                 </div>

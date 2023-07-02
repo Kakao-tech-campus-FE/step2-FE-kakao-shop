@@ -1,0 +1,8 @@
+.frame {
+  position: absolute;
+  padding: 40px;
+  
+  background-color: white;
+  border: 2px solid gainsboro;
+  border-radius: 16px;
+}
