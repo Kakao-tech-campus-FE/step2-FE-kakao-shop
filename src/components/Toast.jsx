@@ -10,10 +10,6 @@ const fadeIn = keyframes`
   }
 `;
 
-const Container = styled.div`
-  animation: ${fadeIn} 0.3s ease-out;
-`
-
 const Box = styled.div`
   position: absolute;
   bottom: 10px;
@@ -25,6 +21,7 @@ const Box = styled.div`
 	background-color: rgb(0, 0, 0, 0.7);
   border-radius: 10px;
   padding: 5px 20px;
+  animation: ${fadeIn} .3s ease-out;
 `;
 
 const Content = styled.span`       
@@ -61,17 +58,15 @@ const Toast = ( {message, button, buttonStyle} ) => {
     <>
     <button onClick={btnClick} style={buttonStyle}>{button}</button>
     {toast ? (
-      <Container onClick={toastClick}>
-        <Box>
-          <Content>
-            {message}
-          </Content>
-          <Undo>
-            닫기
-          </Undo>
-        </Box>
-      </Container>
-      ) : null}
+      <Box onClick={toastClick}>
+        <Content>
+          {message}
+        </Content>
+        <Undo>
+          닫기
+        </Undo>
+      </Box>
+    ) : null}
   </>
   )
 }

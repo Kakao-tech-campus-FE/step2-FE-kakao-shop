@@ -19,52 +19,40 @@ const Text = styled.div`
   margin: 10px;
 `
 
-const aText = {
+const linkStyle = {
   textDecoration:"none", 
   color: "black",
 }
 
-const hidden = {
-  opacity:"0"
-}
+const pageName = {
+  "" : "메인",
+  "cart" : "장바구니",
+  "pay" : "결제",
+} 
 
-const routeTree = {
-  name: "메인",
-  path: "/",
-  sub: [
-    {
-      name: "장바구니",
-      path: "cart",
-      sub: [
-        {
-          name: "결제",
-          path: "pay",
-          sub : null,
-        }
-      ],
-    }
-  ],
-};
 
 const Bread = () => {
-
+  
+  // nowDir(routeTree , pageName, [])
+  const location = useLocation().pathname.split("/")
+  if (location.at(-1) === "") {
+    location.pop()
+  }
+  var string = "";
 
   return (
     <Container>
-
-        <Link style={aText} to="/">
-            <Text>메인</Text>
-        </Link> 
-        
-        {">"}
-        <Link style={aText} to="/cart">
-            <Text>장바구니</Text>
-        </Link> 
-        
-        {">"}
-        <Link style={aText} to="/cart/pay">
-            <Text>결제</Text>
-        </Link>
+        {location.map((e,i) => {
+          string += e + "/";
+          return (
+            <>
+              {i !== 0 ? ">" : null}
+              <Link style={linkStyle} to={string}>
+                  <Text>{pageName[e]}</Text>
+              </Link> 
+            </>
+          )
+        })}
 
     </Container>
   )

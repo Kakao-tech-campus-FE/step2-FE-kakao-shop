@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { styled } from 'styled-components';
 import Toast from "./Toast";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 300px;
@@ -20,6 +21,10 @@ const ProductImg = styled.div`
   background-color: black;
   margin: 0 10px;
 `;
+
+const CheckBtn = styled.input`
+  accent-color: yellow;
+`
 
 const BuyBtn = {
   width: "300px",
@@ -85,7 +90,7 @@ const Check = () => {
     <Container>
       {initProducts.map((item, i) => (
         <ProductBox>
-          <input type="checkbox" defaultChecked={item.buy} 
+          <CheckBtn type="checkbox" defaultChecked={item.buy} 
           onChange={() => {toggle(i)}}/>
           <ProductImg></ProductImg>
           {item.name}
@@ -93,11 +98,11 @@ const Check = () => {
         )
       )}
       
-      <Toast
-        button="주문하기"
-        buttonStyle={ BuyBtn }
-        message={buylist()}
-      ></Toast>
+      <Link to="/cart/pay">
+        <button button style={ BuyBtn }> 주문하기 </button>
+      </Link>
+      
+      <p>{buylist()}</p>
 
     </Container>
   )

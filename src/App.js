@@ -31,6 +31,8 @@ function App() {
           }}
           message={"토스트"}
         ></Toast>
+
+        <Link to="/cart">장바구니</Link>
       </>
     );
   };
