@@ -1,5 +1,9 @@
 import "./Frame.css";
-const Frame = ({ children }) => {
-  return <div className="frame">{children}</div>;
+const Frame = ({ children, paddingVal = 40 }) => {
+  return (
+    <div className="frame" style={{ padding: `${paddingVal}px` }}>
+      {children}
+    </div>
+  );
 };
 export default Frame;
