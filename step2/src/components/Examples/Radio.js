@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { RadioContext } from "../contexts/RadioContext";
+import { RadioContext } from "../../contexts/RadioContext";
 
 export const Radio = ({ children, value, name, defaultChecked, disabled }) => {
   const group = useContext(RadioContext);
