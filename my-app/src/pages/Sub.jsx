@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import RadioBtnGroup from '../components/RadioBtnGroup';
-import CheckList from '../components/CheckList';
-import ToggleBtn from '../components/ToggleBtn';
-import Toast from '../components/Toast';
+import RadioBtnGroup from '../molecules/RadioBtnGroup';
+import CheckList from '../molecules/CheckList';
+import ToggleBtn from '../atoms/ToggleBtn';
+import Toast from '../molecules/Toast';
 
 const Sub = () => {
   const inputStyle = { 

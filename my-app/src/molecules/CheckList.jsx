@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import CheckBox from './CheckBox';
+import CheckBox from '../atoms/CheckBox';
 
 const CheckList = ({style, setCount, setChecked }) => {
   const [dailyList, setDailyList] = useState([

@@ -1,4 +1,4 @@
-import RadioBtn from './RadioBtn';
+import RadioBtn from '../atoms/RadioBtn';
 import { useEffect } from "react"
 
 const RadioBtnGroup = ({ style, setMinValue }) => {

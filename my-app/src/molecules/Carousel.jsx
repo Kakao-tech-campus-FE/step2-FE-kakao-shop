@@ -1,5 +1,5 @@
 import { useState } from "react"
-import CarouselItem from "./CarouselItem"
+import CarouselItem from "../atoms/CarouselItem"
 import '../styles/Carousel.css'
 import { useNavigate } from 'react-router-dom'
 
