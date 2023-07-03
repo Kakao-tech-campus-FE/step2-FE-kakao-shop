@@ -89,7 +89,7 @@
 
 ## 과제 1 . 디렉토리 구조
 ```
-create-react-app을 통해 만들어진 간단한 구조로 index.HTML을 베이스로 App.js, App.css 외의 파일을 추가해 만들 예정.
+
 ```
 
 
