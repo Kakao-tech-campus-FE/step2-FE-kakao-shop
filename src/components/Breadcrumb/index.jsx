@@ -34,6 +34,7 @@ const categories = {
 
 export default function Breadcrumb() {
   const [locations, setLocations] = useState(["뷰티"]);
+  const currentLocation = locations[locations.length - 1];
 
   const handleCategoryClick = (e) => {
     setLocations((prevLocations) => [...prevLocations, e.target.innerText]);
@@ -55,7 +56,7 @@ export default function Breadcrumb() {
         ))}
       </Location>
       <Category>
-        {categories[locations[locations.length - 1]]?.map((category) => (
+        {categories[currentLocation]?.map((category) => (
           <p key={category} onClick={handleCategoryClick}>
             {category}
           </p>

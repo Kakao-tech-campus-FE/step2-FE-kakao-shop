@@ -1,19 +1,15 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { ToggleButton, ToggleLabel, ToggleMessage } from "./style";
 
 export default function Toggle() {
-  const [toggleOption, setToggleOption] = useState(false);
-
-  const handleOptionChange = () => {
-    setToggleOption((prev) => !prev);
-  };
+  const [toggleOption, setToggleOption] = useReducer((prev) => !prev, false);
   return (
     <>
       <ToggleLabel>
         <ToggleButton
           type="checkbox"
           checked={toggleOption}
-          onChange={handleOptionChange}
+          onChange={setToggleOption}
         />
         로그인 상태 유지
       </ToggleLabel>

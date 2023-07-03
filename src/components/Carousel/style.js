@@ -1,10 +1,10 @@
 import { styled } from "styled-components";
 
 export const CarouselWindow = styled.div`
-  position: relative;
-  margin: 10px;
-  width: 800px;
   overflow: hidden;
+  position: relative;
+  width: 800px;
+  margin: 10px;
 `;
 
 export const CarouselContainer = styled.div`
@@ -18,15 +18,15 @@ export const CarouselContainer = styled.div`
 `;
 
 export const CarouselButton = styled.button`
-  z-index: 1;
-  color: white;
-  font-size: 30px;
-  border: 0.5px solid white;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 1;
   width: 55px;
   height: 55px;
+  border: 0.5px solid white;
   border-radius: 55px;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 30px;
+  color: white;
   cursor: pointer;
 
   &:hover {
@@ -34,13 +34,13 @@ export const CarouselButton = styled.button`
   }
 
   &:first-child {
-    left: 30px;
     top: 50%;
+    left: 30px;
     transform: translateY(-50%);
   }
   &:last-child {
-    right: 30px;
     top: 50%;
+    right: 30px;
     transform: translateY(-50%);
   }
 `;

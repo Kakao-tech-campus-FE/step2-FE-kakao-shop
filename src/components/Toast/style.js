@@ -11,29 +11,29 @@ const fadeIn = keyframes`
 `;
 
 export const ToastButton = styled.button`
-  color: black;
-  font-size: 18px;
+  margin-left: 10px;
+  padding: 15px 40px;
+  border: 0;
   border-radius: 5px;
   background-color: #ffeb00;
-  border: 0;
-  padding: 15px 40px;
-  margin-left: 10px;
+  font-size: 18px;
+  color: black;
   cursor: pointer;
 `;
 
 export const ToastContainer = styled.div`
-  position: absolute;
-  color: white;
   display: flex;
   align-items: center;
-  width: 700px;
-  height: 70px;
-  border-radius: 5px;
-  padding: auto;
-  background-color: rgb(51, 51, 51);
+  position: absolute;
   bottom: 30px;
   left: 50%;
-  transform: translateX(-50%);
+  width: 700px;
+  height: 70px;
+  padding: auto;
   padding-left: 20px;
+  border-radius: 5px;
+  background-color: rgb(51, 51, 51);
+  color: white;
+  transform: translateX(-50%);
   animation: ${fadeIn} 0.3s ease-in;
 `;

@@ -11,10 +11,10 @@ export default function Radio() {
   return (
     <div
       style={{
-        border: "1px solid lightgray",
         width: "800px",
-        padding: "10px",
         marginLeft: "10px",
+        padding: "10px",
+        border: "1px solid lightgray",
       }}
     >
       <RadioLabel>
@@ -43,9 +43,9 @@ export default function Radio() {
         <>
           <div
             style={{
-              backgroundColor: "rgb(242,242,242)",
-              padding: "15px",
               marginTop: "10px",
+              padding: "15px",
+              backgroundColor: "rgb(242,242,242)",
             }}
           >
             <span style={{ fontWeight: "700" }}>개인소득공제(휴대폰)</span>{" "}
