@@ -21,7 +21,7 @@ export default function Toast({ isShow, handleToast, text }) {
       }`}
     >
       <span>{text}</span>
-      {isShow && <ProgressBar />}
+      {isShow === true ? <ProgressBar /> : null}
       <IoCloseSharp
         className="absolute top-0 bottom-0 my-auto right-2 text-2xl cursor-pointer text-gray-400 hover:text-gray-200"
         onClick={handleToast}
