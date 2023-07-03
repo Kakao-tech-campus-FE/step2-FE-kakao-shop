@@ -59,7 +59,7 @@ const CheckButton = styled.input<Pick<Props, "color">>`
     content: "✔";
     position: absolute;
     left: 10%;
-    bottom: 60%;
+    bottom: 5%;
     color: white;
     visibility: hidden;
   }
