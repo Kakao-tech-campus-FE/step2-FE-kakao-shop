@@ -14,12 +14,12 @@ interface Props {
 
 const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
   const { id, message } = toastData;
-  const [visible, setVisible] = useState<boolean>(false);
+  const [visible, setVisible] = useState(0);
 
   useEffect(() => {
-    setVisible(true);
+    setVisible(1);
     const timer = setTimeout(() => {
-      setVisible(false);
+      setVisible(0);
       setTimeout(() => {
         setToastList((prev: ToastData[]) => {
           return prev.filter((item: ToastData) => item.id !== id);
@@ -31,7 +31,7 @@ const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
   }, []);
 
   return (
-    <Toast visible={visible ? 1 : 0} background={backgroundColor}>
+    <Toast visible={visible} background={backgroundColor}>
       <IconWrapper>{icon}</IconWrapper>
       {message}
     </Toast>
@@ -52,7 +52,7 @@ const Toast = styled.div<Props>`
   color: #fff;
   font-size: 14px;
   box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  opacity: ${({ visible }) => visible};
   transform: translateY(${({ visible }) => (visible ? "0%" : "-50%")});
   transition: opacity 300ms, transform 300ms;
 `;
