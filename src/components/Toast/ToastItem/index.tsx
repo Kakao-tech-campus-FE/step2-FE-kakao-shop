@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
-type ToastData = {
+interface ToastData {
   id: number;
   type: "success" | "error" | "warning";
   message: string;
-};
+}
 
-type Props = { background?: string; visible?: number };
+interface Props {
+  background?: string;
+  visible?: number;
+}
 
 const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
   const { id, message } = toastData;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
-type Background = {
+interface Background {
   offColor: string;
   onColor: string;
-};
+}
 
 interface CheckedProps {
   checked: boolean;

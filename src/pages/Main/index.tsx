@@ -7,11 +7,11 @@ import Radio from "@components/Radio";
 import Breadcrumb from "@components/Breadcrumb";
 import { Link } from "react-router-dom";
 
-type ToastData = {
+interface ToastData {
   id: number;
   type: "success" | "error" | "warning";
   message: string;
-};
+}
 
 function Main() {
   const [toastList, setToastList] = useState<ToastData[]>([]);

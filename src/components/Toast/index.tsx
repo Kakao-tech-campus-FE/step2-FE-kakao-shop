@@ -3,16 +3,16 @@ import styled from "styled-components";
 import ToastItem from "./ToastItem";
 import { ErrorIcon, SuccessIcon, WarningIcon } from "@components/Icons";
 
-type ToastData = {
+interface ToastData {
   id: number;
   type: "success" | "error" | "warning";
   message: string;
-};
+}
 
-type Props = {
+interface Props {
   toastList: ToastData[];
   setToastList: React.Dispatch<React.SetStateAction<ToastData[]>>;
-};
+}
 
 const Toast = ({ toastList, setToastList }: Props) => {
   return (
