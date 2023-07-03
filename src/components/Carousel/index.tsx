@@ -13,11 +13,11 @@ const Carousel = () => {
   const images = [marvel, marvel, marvel, marvel, marvel];
   const [curIndex, setCurIndex] = useState(0);
 
-  const Prev = () => {
+  const prev = () => {
     setCurIndex((prevIndex) => (prevIndex === 0 ? 0 : prevIndex - 1));
   };
 
-  const Next = () => {
+  const next = () => {
     setCurIndex((prevIndex) =>
       prevIndex === images.length - 1 ? images.length - 1 : prevIndex + 1
     );
@@ -41,12 +41,12 @@ const Carousel = () => {
         ))}
       </ImageContainer>
       <Side position={"left"}>
-        <button onClick={Prev} type="button">
+        <button onClick={prev} type="button">
           &lt;
         </button>
       </Side>
       <Side position={"right"}>
-        <button onClick={Next} type="button">
+        <button onClick={next} type="button">
           &gt;
         </button>
       </Side>
