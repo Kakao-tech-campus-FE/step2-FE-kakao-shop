@@ -3,16 +3,6 @@ import styled from "styled-components";
 import ToastItem from "./ToastItem";
 import { ErrorIcon, SuccessIcon, WarningIcon } from "@components/Icons";
 
-const Wrapper = styled.div`
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  z-index: 10;
-  gap: 12px;
-`;
-
 type ToastData = {
   id: number;
   type: "success" | "error" | "warning";
@@ -62,3 +52,13 @@ const Toast = ({ toastList, setToastList }: Props) => {
 };
 
 export default Toast;
+
+const Wrapper = styled.div`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  gap: 12px;
+`;

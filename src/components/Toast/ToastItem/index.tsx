@@ -38,17 +38,17 @@ const ToastItem = ({ setToastList, toastData, backgroundColor, icon }: any) => {
 export default ToastItem;
 
 const Toast = styled.div<Props>`
-  background-color: ${({ background }) => background};
-  border: 1px solid ${({ background }) => background};
-  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
-  width: 280px;
-  height: 50px;
-  color: #fff;
-  border-radius: 5px;
   display: flex;
   align-items: center;
-  font-size: 14px;
+  width: 280px;
+  height: 50px;
   padding-left: 10px;
+  border: 1px solid ${({ background }) => background};
+  border-radius: 5px;
+  background-color: ${({ background }) => background};
+  color: #fff;
+  font-size: 14px;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transform: translateY(${({ visible }) => (visible ? "0%" : "-50%")});
   transition: opacity 300ms, transform 300ms;

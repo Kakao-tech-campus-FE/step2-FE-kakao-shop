@@ -49,13 +49,16 @@ const PageLink = styled(Link)<Pick<Props, "color">>`
   text-decoration: none;
   color: #3c3c3c;
   font-size: 20px;
+
   &:not(:last-child) {
     margin-right: 10px;
   }
+
   &:not(:last-child)::after {
     margin-left: 10px;
     content: ">";
   }
+
   &:last-child {
     color: ${({ color }) => color};
   }

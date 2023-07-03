@@ -38,12 +38,12 @@ const Wrapper = styled.div`
 `;
 
 const Check = styled.div<CheckedProps & Props>`
+  position: relative;
   width: 5em;
   height: 2em;
+  border-radius: 2em;
   background-color: ${({ checked, background }) =>
     checked ? background.onColor : background.offColor};
-  border-radius: 2em;
-  position: relative;
   cursor: pointer;
 
   &::before {

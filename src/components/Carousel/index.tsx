@@ -53,13 +53,13 @@ const Carousel = () => {
 export default Carousel;
 
 const Wrapper = styled.div`
+  position: relative;
+  display: flex;
   width: 700px;
   height: 400px;
   background-color: skyblue;
-  display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
 `;
 
@@ -115,14 +115,5 @@ const Side = styled.div<SideProps>`
     {
       opacity: 1;
     }
-  }
-`;
-
-const Bullets = styled.div`
-  display: flex;
-`;
-const Bullet = styled.div`
-  &::before {
-    content: "●";
   }
 `;

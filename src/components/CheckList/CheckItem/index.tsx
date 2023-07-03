@@ -46,23 +46,21 @@ const Label = styled.label`
 
 const CheckButton = styled.input<{ color: string }>`
   appearance: none;
-  margin: 0 11px 0 0;
+  position: relative;
   width: 18px;
   height: 18px;
+  margin: 0 11px 0 0;
   border: 2px solid ${({ color }) => color};
   border-radius: 25%;
-  cursor: pointer;
-  position: relative;
   background-color: #fff;
+  cursor: pointer;
 
   &::before {
     content: "✔";
-    color: white;
     position: absolute;
     left: 10%;
     bottom: 60%;
-    width: 8px;
-    height: 8px;
+    color: white;
     visibility: hidden;
   }
 
