@@ -37,7 +37,7 @@ const Carousel = () => {
     <Wrapper>
       <ImageContainer curindex={curIndex}>
         {images.map((image, index) => (
-          <img src={image} key={index} alt={image} />
+          <img src={image} key={image + index} alt={image} />
         ))}
       </ImageContainer>
       <Side position={"left"}>
