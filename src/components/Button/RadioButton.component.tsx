@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import "@/components/common/Button/radio-button.css";
+import "@/components/Button/radio-button.css";
 
 export interface RadioButtonProps {
   label: string;

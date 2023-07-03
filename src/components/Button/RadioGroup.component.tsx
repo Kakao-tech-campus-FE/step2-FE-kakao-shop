@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import RadioButton, { RadioButtonProps } from "./RadioButton.component";
-import "@/components/common/Button/radio-group.css";
+import "@/components/Button/radio-group.css";
 
 interface RadioGroupProps {
   radioButtons: Omit<RadioButtonProps, "name" | "checked" | "onChange">[];

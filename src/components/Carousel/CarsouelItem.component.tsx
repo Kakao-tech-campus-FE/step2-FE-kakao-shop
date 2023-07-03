@@ -1,4 +1,4 @@
-import "@/components/common/Carousel/carousel-item.css";
+import "@/components/Carousel/carousel-item.css";
 import { FC } from "react";
 
 export interface CarouselItemProps {

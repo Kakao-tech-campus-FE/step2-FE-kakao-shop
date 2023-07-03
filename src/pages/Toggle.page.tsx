@@ -1,4 +1,4 @@
-import Toggle from "@/components/common/Button/Toggle.component";
+import Toggle from "@/components/Button/Toggle.component";
 import { useState } from "react";
 
 const TogglePage = () => {

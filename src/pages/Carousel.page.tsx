@@ -1,4 +1,4 @@
-import Carousel from "@/components/common/Carousel/Carousel.component";
+import Carousel from "@/components/Carousel/Carousel.component";
 
 const CarouselPage = () => {
   return (

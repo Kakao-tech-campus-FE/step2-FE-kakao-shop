@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "@/components/common/Toast/toast.css";
+import "@/components/Toast/toast.css";
 import { ToastAtom } from "@/stores/toast.atom";
 import { useToast } from "@/hooks/useToast";
 

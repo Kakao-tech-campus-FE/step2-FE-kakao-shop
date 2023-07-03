@@ -1,5 +1,5 @@
 import { FC, ReactNode, useState } from "react";
-import "@/components/common/Button/toggle.css";
+import "@/components/Button/toggle.css";
 
 interface ToggleProps {
   checked: boolean;

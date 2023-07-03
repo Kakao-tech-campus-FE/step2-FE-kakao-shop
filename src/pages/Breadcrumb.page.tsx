@@ -1,5 +1,5 @@
-import { BreadcrumbProps } from "@/components/common/Breadcrumb/Breadcrumb.component";
-import BreadcrumbTable from "@/components/common/Breadcrumb/BreadcrumbTable..component";
+import { BreadcrumbProps } from "@/components/Breadcrumb/Breadcrumb.component";
+import BreadcrumbTable from "@/components/Breadcrumb/BreadcrumbTable.component";
 import { useState } from "react";
 
 const BreadcrumbPage = () => {
