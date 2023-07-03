@@ -41,10 +41,14 @@ const Carousel = () => {
         ))}
       </ImageContainer>
       <Side position={"left"}>
-        <button onClick={Prev}>&lt;</button>
+        <button onClick={Prev} type="button">
+          &lt;
+        </button>
       </Side>
       <Side position={"right"}>
-        <button onClick={Next}>&gt;</button>
+        <button onClick={Next} type="button">
+          &gt;
+        </button>
       </Side>
     </Wrapper>
   );
