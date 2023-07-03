@@ -45,7 +45,7 @@ const Wrapper = styled.div`
   padding: 10px;
 `;
 
-const PageLink = styled(Link)<{ color: string }>`
+const PageLink = styled(Link)<Pick<Props, "color">>`
   text-decoration: none;
   color: #3c3c3c;
   font-size: 20px;
