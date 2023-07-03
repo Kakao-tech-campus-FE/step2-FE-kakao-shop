@@ -4,11 +4,11 @@ const Carousel = ({ images }) => {
   const [currentImage, setCurrentImage] = useState(0);
 
   const nextImage = () => {
-    setCurrentImage((prevImage) => (prevImage === images.length - 1 ? 0 : prevImage + 1));
+    setCurrentImage((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const prevImage = () => {
-    setCurrentImage((prevImage) => (prevImage === 0 ? images.length - 1 : prevImage - 1));
+    setCurrentImage((prevIndex) => (prevIndex + images.length - 1) % images.length);
   };
 
   return (
