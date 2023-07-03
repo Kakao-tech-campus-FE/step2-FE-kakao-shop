@@ -15,35 +15,42 @@ interface Props {
 }
 
 const Toast = ({ toastList, setToastList }: Props) => {
+  const getBackgroundColor = (type: string) => {
+    switch (type) {
+      case "success":
+        return "#28a745";
+      case "error":
+        return "#dc3545";
+      case "warning":
+        return "#f0ad4e";
+      default:
+        return "";
+    }
+  };
+
+  const getIcon = (type: string) => {
+    switch (type) {
+      case "success":
+        return <SuccessIcon />;
+      case "error":
+        return <ErrorIcon />;
+      case "warning":
+        return <WarningIcon />;
+      default:
+        return "";
+    }
+  };
+
   return (
     <Wrapper>
-      {toastList.map((item: ToastData, index: number) => {
-        let backgroundColor: string;
-        let icon;
-
-        switch (item.type) {
-          case "success":
-            backgroundColor = "#28a745";
-            icon = <SuccessIcon />;
-            break;
-          case "error":
-            backgroundColor = "#dc3545";
-            icon = <ErrorIcon />;
-            break;
-          case "warning":
-            backgroundColor = "#f0ad4e";
-            icon = <WarningIcon />;
-            break;
-          default:
-            backgroundColor = "";
-        }
+      {toastList.map((item: ToastData) => {
         return (
           <ToastItem
             key={item.id}
             setToastList={setToastList}
             toastData={item}
-            backgroundColor={backgroundColor}
-            icon={icon}
+            backgroundColor={getBackgroundColor(item.type)}
+            icon={getIcon(item.type)}
           />
         );
       })}
