@@ -44,7 +44,7 @@ const Label = styled.label`
   }
 `;
 
-const CheckButton = styled.input<{ color: string }>`
+const CheckButton = styled.input<Pick<Props, "color">>`
   appearance: none;
   position: relative;
   width: 18px;

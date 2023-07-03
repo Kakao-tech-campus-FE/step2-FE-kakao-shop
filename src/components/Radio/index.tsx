@@ -44,7 +44,7 @@ const Label = styled.label`
   }
 `;
 
-const RadioButton = styled.input<{ color: string }>`
+const RadioButton = styled.input<Pick<Props, "color">>`
   appearance: none;
   position: relative;
   width: 18px;
