@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import '../styles/Toast.css';
+import '../../styles/Toast.css';
 
 const Toast = () => {
     const [showToast, setShowToast] = useState(false);
