@@ -2,8 +2,11 @@ import React from "react";
 import cartImage from "../../assets/cart.png";
 import Button from "../atoms/Button";
 import LinkedIcon from "./LinkedIcon";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
+  const navigate = useNavigate();
+
   return (
     <nav className="flex items-center">
       <LinkedIcon to="/" alt="mycart" width="w-icon">
@@ -14,6 +17,7 @@ export default function NavBar() {
         padding="px-4 py-1"
         color="transparent"
         before={true}
+        onClick={() => navigate("/login")}
       >
         로그인
       </Button>
