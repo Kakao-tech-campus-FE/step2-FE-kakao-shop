@@ -147,30 +147,37 @@ const Method = {
   `,
   Header: styled.div`
     position: relative;
+
     height: 60px;
   `,
   Logo: styled.span`
     position: absolute;
     top: 20px;
     left: 15px;
+
+    overflow: hidden;
+
     width: 52px;
     height: 16px;
+
     background-position: 0 0;
-    overflow: hidden;
+    background-size: 210px 50px;
+    background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png')
+      no-repeat;
+
     font-size: 1px;
     line-height: 0;
     color: transparent;
-    background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png')
-      no-repeat;
     vertical-align: top;
-    background-size: 210px 50px;
   `,
   PaymentTypeList: styled.ul`
-    background-color: #ffeb00;
     padding: 0 15px 15px 15px;
+
+    background-color: #ffeb00;
 
     & > li {
       position: relative;
+
       padding: 13px 0 15px;
     }
 
@@ -185,6 +192,7 @@ const CashReceipt = {
   Root: styled.div`
     display: flex;
     gap: 18px;
+
     padding: 15px 16px;
   `,
 };
