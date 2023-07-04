@@ -160,10 +160,10 @@ const Method = {
     width: 52px;
     height: 16px;
 
-    background-position: 0 0;
-    background-size: 210px 50px;
     background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/pay_icon_200401.4e2af07d62fbb994.png')
       no-repeat;
+    background-size: 210px 50px;
+    background-position: 0 0;
 
     font-size: 1px;
     line-height: 0;
