@@ -1,4 +1,4 @@
-import SignUpForm from "@/components/Form/SignupForm.component";
+import SignUpForm from "@/components/Form/SignUpForm.component";
 import { useState } from "react";
 
 const SignUpPage = () => {
@@ -10,15 +10,19 @@ const SignUpPage = () => {
   return (
     <div className="flex justify-center items-center w-screen h-screen">
       <SignUpForm
-        email={{ value: email, onChange: (e) => setEmail(e.target.value) }}
-        name={{ value: name, onChange: (e) => setName(e.target.value) }}
-        password={{
+        emailProps={{ value: email, onChange: (e) => setEmail(e.target.value) }}
+        nameProps={{ value: name, onChange: (e) => setName(e.target.value) }}
+        passwordProps={{
           value: password,
           onChange: (e) => setPassword(e.target.value),
         }}
-        passwordConfirm={{
+        passwordConfirmProps={{
           value: passwordConfirm,
           onChange: (e) => setPasswordConfirm(e.target.value),
+        }}
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log(email, name, password, passwordConfirm);
         }}
       />
     </div>

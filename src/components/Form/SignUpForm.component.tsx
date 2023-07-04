@@ -1,56 +1,68 @@
 import { FC } from "react";
-import ButtonFormItem from "../FormItem/ButtonFormItem.component";
-import InputFormItem from "../FormItem/InputFormItem.component";
+import ButtonFormItem from "@/components/Form/FormItem/ButtonFormItem.component";
+import InputFormItem from "@/components/Form/FormItem/InputFormItem.component";
 
 interface SignUpProps {
-  email: {
+  emailProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
-  name: {
+  nameProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
-  password: {
+  passwordProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
-  passwordConfirm: {
+  passwordConfirmProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 const SignUpForm: FC<SignUpProps> = ({
-  email,
-  name,
-  password,
-  passwordConfirm,
+  emailProps,
+  nameProps,
+  passwordProps,
+  passwordConfirmProps,
+  onSubmit,
 }) => {
   return (
-    <form className="flex flex-col gap-4 w-[40rem]">
+    <form
+      className="flex flex-col gap-4 w-[40rem] last:mt-12"
+      onSubmit={onSubmit}
+    >
       <InputFormItem
         label="이메일 (아이디)"
         placeholder="이메일"
         type="email"
-        {...email}
+        {...emailProps}
       />
-      <InputFormItem label="이름" placeholder="이름" type="text" {...name} />
+      <InputFormItem
+        label="이름"
+        placeholder="이름"
+        type="text"
+        {...nameProps}
+      />
       <InputFormItem
         label="비밀번호"
         placeholder="비밀번호"
         type="password"
-        {...password}
+        {...passwordProps}
       />
       <InputFormItem
         label="비밀번호 확인"
         placeholder="비밀번호 확인"
         type="password"
-        {...passwordConfirm}
+        {...passwordConfirmProps}
       />
-      <ButtonFormItem color="primary" type="submit">
-        회원가입
-      </ButtonFormItem>
+      <div className="w-full mt-8">
+        <ButtonFormItem color="primary" type="submit">
+          회원가입
+        </ButtonFormItem>
+      </div>
     </form>
   );
 };

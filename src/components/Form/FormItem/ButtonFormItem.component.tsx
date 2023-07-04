@@ -36,7 +36,7 @@ const ButtonFormItem: FC<ButtonFormItemProps> = ({
     <button
       type={type}
       onClick={onClick}
-      className={`rounded-lg py-4 px-8 ${colors[color]}`}
+      className={`rounded-lg py-4 px-8 w-full ${colors[color]}`}
     >
       {children}
     </button>
