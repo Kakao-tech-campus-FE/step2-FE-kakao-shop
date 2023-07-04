@@ -1,4 +1,4 @@
-import "../../styles/BreadCrumb.scss";
+import '../../styles/BreadCrumb.scss';
 
 const BreadCrumb = ({ route }) => {
   return (
