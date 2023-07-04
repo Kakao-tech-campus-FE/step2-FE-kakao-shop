@@ -1,12 +1,14 @@
-import { useRoutes } from "react-router-dom";
-import ComponentTest from "../pages/ComponentTest";
+import { useRoutes } from 'react-router-dom';
+import React from 'react';
+import ComponentTest from '../pages/ComponentTest';
 
 const mainRouter = () =>
   useRoutes([
     {
-      path: "/",
+      path: '/',
       element: <ComponentTest />,
       children: [],
     },
   ]);
+
 export default mainRouter;

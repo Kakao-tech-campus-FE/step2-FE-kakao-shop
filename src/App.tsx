@@ -1,10 +1,10 @@
-import ComponentTest from "./pages/ComponentTest";
-import mainRouter from "./router/mainRouter";
+import mainRouter from '@router/mainRouter';
+import React from 'react';
 
-function App() {
+const App = () => {
   const routes = mainRouter();
 
   return <div>{routes}</div>;
-}
+};
 
 export default App;
