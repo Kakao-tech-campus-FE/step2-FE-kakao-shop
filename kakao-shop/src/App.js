@@ -1,13 +1,15 @@
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/organisms/Header";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
     </div>
   );
 }
