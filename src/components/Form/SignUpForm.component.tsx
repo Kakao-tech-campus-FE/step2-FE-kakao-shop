@@ -2,7 +2,7 @@ import { FC } from "react";
 import ButtonFormItem from "../FormItem/ButtonFormItem.component";
 import InputFormItem from "../FormItem/InputFormItem.component";
 
-interface LoginFormProps {
+interface SignUpProps {
   email: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,7 +21,7 @@ interface LoginFormProps {
   };
 }
 
-const LoginForm: FC<LoginFormProps> = ({
+const SignUpForm: FC<SignUpProps> = ({
   email,
   name,
   password,
@@ -53,4 +53,4 @@ const LoginForm: FC<LoginFormProps> = ({
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
