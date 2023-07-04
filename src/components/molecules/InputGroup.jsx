@@ -1,7 +1,7 @@
 import Input from "../atoms/Input";
-import Box from "../atoms/Button";
 import Label from "../atoms/Label";
-
+import Box from "../atoms/Box";
+import LoginForm from "../organisms/LoginForm";
 const InputGroup = ({
                         id,
                         name,
@@ -12,11 +12,10 @@ const InputGroup = ({
                         placeholder
                     }) => {
     return (
-        <Box className={className}>
+        <LoginForm>
             <Label htmlFor={id}>{label}</Label>
             <Input name={name} id={id} type={type} value={value} onChange={onChange} className={className} placehoder={placeholder}/>
-        </Box>
+        </LoginForm>
     );
 }
-export default class InputGroup {
-}
+export default InputGroup;

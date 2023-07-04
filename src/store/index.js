@@ -11,8 +11,7 @@
 //
 
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slice/userSlice";
-
+import userReducer from "./slices/userSlice";
 const store = configureStore({
     reducer: {
         // User reducer : email

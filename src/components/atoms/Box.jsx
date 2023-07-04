@@ -1,6 +1,3 @@
-import "../../styles/atoms/box.scss"
-
-
 const Box = ({children, className=""}) => {
     return (
         <div className={`box ${className}`}>
@@ -8,3 +5,5 @@ const Box = ({children, className=""}) => {
         </div>
     );
 }
+
+export default Box;
