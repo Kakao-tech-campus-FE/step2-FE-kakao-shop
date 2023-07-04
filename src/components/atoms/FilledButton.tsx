@@ -2,12 +2,12 @@ import React, { ReactNode } from 'react';
 
 interface FilledButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  child?: ReactNode;
+  children?: ReactNode;
 }
-const FilledButton = ({ onClick, child }: FilledButtonProps) => {
+const FilledButton = ({ onClick, children }: FilledButtonProps) => {
   return (
     <button type="button" onClick={onClick}>
-      {child}
+      {children}
     </button>
   );
 };
