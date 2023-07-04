@@ -8,8 +8,10 @@ module.exports = {
       },
       width: {
         logo: "100px",
+        kakaoTest: "120px",
         icon: "36px",
         before: "1px",
+        input: "440px",
       },
     },
   },
