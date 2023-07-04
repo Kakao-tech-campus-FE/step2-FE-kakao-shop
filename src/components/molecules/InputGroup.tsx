@@ -3,8 +3,8 @@ import Input from '@components/atoms/Input';
 import Label from '@components/atoms/Label';
 
 interface InputGroupProps {
-  inputName: string;
-  labelName: string;
+  inputName?: string;
+  labelName?: string;
 }
 
 const InputGroup = ({ inputName, labelName }: InputGroupProps) => {
