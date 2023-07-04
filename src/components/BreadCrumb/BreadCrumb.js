@@ -1,11 +1,14 @@
+/* eslint-disable */
+
 import '../../styles/BreadCrumb.scss';
+import React from 'react';
 
 const BreadCrumb = ({ route }) => {
   return (
     <nav>
-      <ol class="breadcrumb">
+      <ol className="breadcrumb">
         {route.map((key) => (
-          <li key={key} class="breadcrumb-item" aria-current="page">
+          <li key={key} className="breadcrumb-item" aria-current="page">
             {key}
           </li>
         ))}

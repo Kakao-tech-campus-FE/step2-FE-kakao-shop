@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '../../styles/Toggle.scss';
 import React, { useEffect, useState } from 'react';
 

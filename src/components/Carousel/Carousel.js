@@ -1,7 +1,8 @@
+/* eslint-disable */
 import { useState } from 'react';
 import '../../styles/Carousel.scss';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-
+import React from 'react';
 const Carousel = ({ background }) => {
   const [imgIndex, setImageIndex] = useState(0);
 

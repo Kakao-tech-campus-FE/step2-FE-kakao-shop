@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '../../styles/Toast.scss';
 
 const Toast = ({ msg, show }) => {

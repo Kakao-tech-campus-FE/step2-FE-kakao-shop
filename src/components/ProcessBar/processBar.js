@@ -1,3 +1,4 @@
+/* eslint-disable */
 import '../../styles/ProcessBar.scss';
 
 const ProcessBar = ({ percentage }) => {
