@@ -1,7 +1,6 @@
 import { FC } from "react";
 import ButtonFormItem from "@/components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@/components/Form/FormItem/InputFormItem.component";
-import { canPassword, isEmail } from "@/functions/validator";
 
 interface SignUpProps {
   emailProps: {
@@ -39,10 +38,7 @@ const SignUpForm: FC<SignUpProps> = ({
   onSubmit,
 }) => {
   return (
-    <form
-      className="flex flex-col gap-4 w-[40rem] last:mt-12"
-      onSubmit={onSubmit}
-    >
+    <form className="flex flex-col gap-4 w-[40rem] " onSubmit={onSubmit}>
       <InputFormItem
         label="이메일 (아이디)"
         placeholder="이메일"

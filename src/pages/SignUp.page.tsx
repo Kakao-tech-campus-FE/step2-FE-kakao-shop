@@ -46,8 +46,6 @@ const SignUpPage = () => {
             passwordConfirm: false,
           });
 
-          console.log(isWrongs);
-
           if (!isEmail(email)) {
             setIsWrongs((prev) => Object.create({ ...prev, email: true }));
             return;

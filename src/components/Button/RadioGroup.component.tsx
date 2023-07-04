@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import RadioButton, { RadioButtonProps } from "./RadioButton.component";
-import "@/components/Button/radio-group.css";
 
 interface RadioGroupProps {
   radioButtons: Omit<RadioButtonProps, "name" | "checked" | "onChange">[];
@@ -10,7 +9,7 @@ const RadioGroup: FC<RadioGroupProps> = ({ radioButtons, name }) => {
   const [value, onChange] = useState(radioButtons[0].value);
 
   return (
-    <div className="radio-group">
+    <div className="flex w-fit items-baseline rounded-xl border border-[#0038FF]">
       {radioButtons.map((radioButton, index) => (
         <RadioButton
           key={index}
