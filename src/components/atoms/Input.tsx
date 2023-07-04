@@ -1,11 +1,11 @@
 import React from 'react';
 
 interface inputProps {
-  type: string;
-  value: string;
-  id: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
-  placeholder: string;
+  type?: string;
+  value?: string;
+  id?: string;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  placeholder?: string;
 }
 
 const Input = ({ type, value, id, onChange, placeholder }: inputProps) => {
