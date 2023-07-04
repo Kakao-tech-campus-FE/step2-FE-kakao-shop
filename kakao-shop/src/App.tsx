@@ -1,6 +1,7 @@
 import { useEffect, useState, ReactElement } from 'react';
 import { Route, Routes, BrowserRouter, Outlet, useLocation, Link } from 'react-router-dom';
 
+import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import TestPage from '@pages/testPage';
 
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path={'/'} element={<TestPage />} />
         <Route path={'/signup'} element={<SignUp />} />
+        <Route path={'/login'} element={<Login />} />
         <Route element={<BreadcrumbTest />}>
           <Route path={'/level1'} element={NavElement('level1', 'level2')} />
           <Route path={'/level2'} element={NavElement('level2', 'level3')} />

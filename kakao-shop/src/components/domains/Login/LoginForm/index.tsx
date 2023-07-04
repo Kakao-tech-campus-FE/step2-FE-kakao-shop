@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
@@ -14,6 +15,7 @@ const LoginForm = () => {
           </RegularInput.HiddenLabel>
         ))}
         <Button css={S.ButtonStyle}>로그인</Button>
+        <S.Link to="/signup">회원가입</S.Link>
       </S.Container>
     </S.Root>
   );
@@ -86,5 +88,16 @@ const S = {
     font-size: 16px;
     line-height: 51px;
     color: #191919;
+  `,
+  Link: styled(Link)`
+    display: inline-block;
+
+    width: 100%;
+
+    margin-top: 20px;
+
+    text-align: center;
+    color: #333;
+    font-size: 14px;
   `,
 };
