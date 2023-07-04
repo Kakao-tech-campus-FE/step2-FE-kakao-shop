@@ -1,5 +1,6 @@
 import Label from "../atoms/Label";
 import Input from "../atoms/Input";
+import Box from "../atoms/Box";
 
 const InputGroup = ({
   className,
@@ -26,3 +27,5 @@ const InputGroup = ({
     </Box>
   );
 };
+
+export default InputGroup;

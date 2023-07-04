@@ -1,5 +1,12 @@
+import InputGroup from "../components/molecules/InputGroup";
+
 const LoginPage = () => {
-  return <div>로그인 페이지</div>;
+  return (
+    <div>
+      <image src="/logoKakaoText.png" alt="kakao" />
+      <InputGroup id="email" type="email" placeholder="이메일" label="이메일" />
+    </div>
+  );
 };
 
 export default LoginPage;
