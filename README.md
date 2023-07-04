@@ -135,7 +135,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home> </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/메인페이지-헤더.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/메인페이지-헤더.png"/></td>
       </tr>
     </table>
     <table>
@@ -212,7 +212,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home> </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/메인페이지-헤더2.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/메인페이지-헤더2.png"/></td>
       </tr>
     </table>
     <table>
@@ -273,7 +273,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home> </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/메인페이지-상품.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/메인페이지-상품.png"/></td>
       </tr>
     </table>
     <table>
@@ -333,7 +333,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>상품 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-헤더.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/상품페이지-헤더.png"/></td>
       </tr>
     </table>
     <table>
@@ -381,7 +381,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>상품 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-상품정보.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/상품페이지-상품정보.png"/></td>
       </tr>
     </table>
     <table>
@@ -449,7 +449,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>상품 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-리뷰.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/상품페이지-리뷰.png"/></td>
       </tr>
     </table>
     <table>
@@ -516,7 +516,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>상품 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/상품페이지-문의.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/상품페이지-문의.png"/></td>
       </tr>
     </table>
     <table>
@@ -595,7 +595,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>로그인 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/로그인페이지.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/로그인페이지.png"/></td>
       </tr>
     </table>
     <table>
@@ -662,7 +662,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>장바구니 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/장바구니페이지.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/장바구니페이지.png"/></td>
       </tr>
     </table>
     <table>
@@ -722,7 +722,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
         <td colspan=4>Home>검색 </td>
       </tr>
       <tr>
-      <td colspan=5><img src ="./assetsRM/assignment1/검색페이지.png"/></td>
+      <td colspan=5><img src =".src/assets/images/assetsRM/assignment1/검색페이지.png"/></td>
       </tr>
     </table>
     <table>
