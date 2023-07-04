@@ -1,6 +1,6 @@
-const Container = ({children}) => { // 내용 텍스트
+const Container = ({className, children}) => { // 클래스명, 내용 텍스트
   return (
-    <div className="container">
+    <div className={className}>
       {children}
     </div>
   )
