@@ -1,6 +1,7 @@
 import { useEffect, useState, ReactElement } from 'react';
 import { Route, Routes, BrowserRouter, Outlet, useLocation, Link } from 'react-router-dom';
 
+import SignUp from '@pages/SignUp';
 import TestPage from '@pages/testPage';
 
 import Breadcrumb from '@components/@base/BreadCrumb';
@@ -10,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={'/'} element={<TestPage />} />
-
+        <Route path={'/signup'} element={<SignUp />} />
         <Route element={<BreadcrumbTest />}>
           <Route path={'/level1'} element={NavElement('level1', 'level2')} />
           <Route path={'/level2'} element={NavElement('level2', 'level3')} />
