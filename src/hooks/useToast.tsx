@@ -1,10 +1,16 @@
-import { ToastAtom, toastsAtom } from "@/stores/toast.atom";
-import { useAtom } from "jotai";
+import { useState } from "react";
+export interface Toast {
+  id: string;
+  title: string;
+  message: string;
+  type: "info" | "success" | "error" | "warning";
+  timeout?: number;
+}
 
 export const useToast = () => {
-  const [toasts, setToasts] = useAtom(toastsAtom);
+  const [toasts, setToasts] = useState<Toast[]>([]);
 
-  const addToast = (toast: ToastAtom) => {
+  const addToast = (toast: Toast) => {
     setToasts([...toasts, toast]);
   };
 

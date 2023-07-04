@@ -12,6 +12,30 @@ interface InputFormItemProps {
   maxlength?: number;
 }
 
+/**
+ * InputFormItem component
+ * @param {string} label - input의 라벨
+ * @param {string} type - input의 타입
+ * @param {string} placeholder - input의 placeholder
+ * @param {string} value - input의 값
+ * @param {function} onChange - input의 값이 변경될 때 실행되는 함수
+ * @param {boolean} isWrong - input의 값이 잘못되었는지 여부
+ * @param {string} wrongMessage - input의 값이 잘못되었을 때 보여줄 메시지
+ * @param {number} minlength - input의 최소 길이
+ * @param {number} maxlength - input의 최대 길이
+ * @returns {JSX.Element} - InputFormItem component
+ * @constructor
+ * @example
+ * <InputFormItem
+ * label="이메일"
+ * type="email"
+ * placeholder="이메일을 입력해주세요."
+ * value={email}
+ * onChange={(e) => setEmail(e.target.value)}
+ * isWrong={isEmailWrong}
+ * wrongMessage="이메일 형식이 잘못되었습니다."
+ * />
+ */
 const InputFormItem: FC<InputFormItemProps> = ({
   label,
   type,
