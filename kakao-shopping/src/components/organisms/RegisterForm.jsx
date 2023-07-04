@@ -4,6 +4,7 @@ import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import { register } from "../../apis/api";
+import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const [value, handleOnChange] = useInput({
     username:"",
@@ -11,6 +12,8 @@ const RegisterForm = () => {
     password:"",
     passwordConfirm:"",
   })
+
+  const navigate = useNavigate();
   return (
     <Container>
       <Title>회원가입 페이지</Title>
@@ -20,6 +23,7 @@ const RegisterForm = () => {
       <InputGroup id="passwordConfirm" type="password" placeholder="비밀번호 확인"  label="비밀번호 확인" value={value.passwordConfirm} onChange={handleOnChange}/>
       <Button
         onClick={() => {
+          navigate('/main')
           register({
             email:value.email,
             username: value.username,

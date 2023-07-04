@@ -11,6 +11,7 @@ const LogoutButton = () => {
         onClick={() => {
           dispatch(logout());
           localStorage.removeItem('isLoggedIn');
+          localStorage.removeItem('userInfo');
         }}>로그아웃</Button>
     </Container>
   );

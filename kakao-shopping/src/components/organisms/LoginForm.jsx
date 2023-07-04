@@ -14,7 +14,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   return (
     <Container>
-      <Title>로그인 페이지</Title>
+      <Title>로그인</Title>
       <InputGroup id="email" type="email" placeholder="이메일" label="이메일" value={value.email} onChange={handleOnChange}/>
       <InputGroup id="password" type="password" placeholder="비밀번호"  label="비밀번호" value={value.password} onChange={handleOnChange}/>
       <Button

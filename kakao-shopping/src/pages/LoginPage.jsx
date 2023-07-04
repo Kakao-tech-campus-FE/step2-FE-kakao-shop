@@ -2,7 +2,6 @@ import LoginForm from "../components/organisms/LoginForm";
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {loginSuccess } from '../actions/authActions';
-import LogoutButton from "../components/molecules/LogoutButton";
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
@@ -18,18 +17,11 @@ const LoginPage = () => {
   console.log(isLoggedIn);
 
   const navigate = useNavigate();
-  if(isLoggedIn) {
+  if(isLoggedIn) { //로그인 후 메인페이지로 이동
     navigate('/main');
   }
   return (
-  isLoggedIn ? (
-    <>
-      <LogoutButton />
-      {localStorage.getItem('userInfo') || 'No user information available'}
-    </>
-  ) : (
     <LoginForm />
-  )
   )
 }
 
