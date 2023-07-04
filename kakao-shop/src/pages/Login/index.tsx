@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
+import LoginForm from '@components/domains/Login/LoginForm';
 import Footer from '@components/domains/SignUp/Footer';
-import SignUpForm from '@components/domains/SignUp/SignUpForm';
 import Title from '@components/domains/SignUp/Title';
 
-const SignUp = () => {
+const Login = () => {
   return (
     <S.Root>
       <Title />
-      <SignUpForm />
+      <LoginForm />
       <Footer />
     </S.Root>
   );
 };
 
-export default SignUp;
+export default Login;
 
 const S = {
   Root: styled.div`

@@ -19,7 +19,7 @@ const Radio = ({ id, name, children, checked, ...props }: Props) => {
 Radio.Regular = function ({ id, name, children, checked, ...props }: Props) {
   return (
     <Radio id={id} name={name} checked={checked} {...props}>
-      {checked ? <StyledCheckRadio></StyledCheckRadio> : <StyledRadio></StyledRadio>}
+      {checked ? <StyledCheckRadio /> : <StyledRadio />}
       <StyledLabel>{children}</StyledLabel>
     </Radio>
   );
@@ -28,7 +28,7 @@ Radio.Regular = function ({ id, name, children, checked, ...props }: Props) {
 Radio.Big = function ({ id, name, children, checked, ...props }: Props) {
   return (
     <Radio id={id} name={name} checked={checked} {...props}>
-      {checked ? <StyledCheckBigBlackRadio></StyledCheckBigBlackRadio> : <StyledBigBlackRadio></StyledBigBlackRadio>}
+      {checked ? <StyledCheckBigBlackRadio /> : <StyledBigBlackRadio />}
       <StyledLabel>{children}</StyledLabel>
     </Radio>
   );

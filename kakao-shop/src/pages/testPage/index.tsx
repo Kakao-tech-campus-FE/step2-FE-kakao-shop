@@ -44,7 +44,7 @@ function TestPage() {
     <div>
       <BigText>캐로셀</BigText>
       <TopBannerBlock>
-        <BannerImageList></BannerImageList>
+        <BannerImageList />
       </TopBannerBlock>
 
       <BigText>Toast</BigText>
@@ -64,7 +64,7 @@ function TestPage() {
       <Pay.Agree />
 
       <BigText>토글</BigText>
-      <Toggle name="토글" onChange={() => {}}></Toggle>
+      <Toggle name="토글" onChange={() => {}} />
 
       <BigText>브레드크럼</BigText>
       <LinkContainer>

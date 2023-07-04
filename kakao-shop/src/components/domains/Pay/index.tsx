@@ -36,7 +36,7 @@ Pay.Method = function ({ payMethodData, state, onChange }: PayMethod) {
   return (
     <Method.Root>
       <Method.Header>
-        <Method.Logo></Method.Logo>
+        <Method.Logo />
       </Method.Header>
 
       <Method.PaymentTypeList>

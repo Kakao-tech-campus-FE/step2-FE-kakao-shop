@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Children, cloneElement, ReactElement, ReactNode } from 'react';
+import { Children, cloneElement, ReactElement } from 'react';
 import type { PropsWithChildren } from 'react';
 
 import BreadcrumbItem from './BreadcrumbItem';
