@@ -13,6 +13,14 @@ const RegisterForm = () => {
     passwordConfirm:"",
   })
 
+  const validateCheck = () => {
+    return (
+      /^[a-zA-Z0-9]{4,12}$/.test(value.username) &&
+      /^[a-zA-Z0-9]+@[a-zA-Z]+\.com$/.test(value.email) &&
+      /^[a-zA-Z0-9]{4,12}$/.test(value.password) &&
+      value.password === value.passwordConfirm
+    )
+  }
   const navigate = useNavigate();
   return (
     <Container>
@@ -23,6 +31,8 @@ const RegisterForm = () => {
       <InputGroup id="passwordConfirm" type="password" placeholder="비밀번호 확인"  label="비밀번호 확인" value={value.passwordConfirm} onChange={handleOnChange}/>
       <Button
         onClick={() => {
+          if(!validateCheck())
+            return
           navigate('/main')
           register({
             email:value.email,

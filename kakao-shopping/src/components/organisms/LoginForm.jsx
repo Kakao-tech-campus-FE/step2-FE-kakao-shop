@@ -12,6 +12,12 @@ const LoginForm = () => {
     password:"",
   })
   const dispatch = useDispatch();
+  const validateCheck = () => {
+    return (
+      /^[a-zA-Z0-9]+@[a-zA-Z]+\.com$/.test(value.email) &&
+      /^[a-zA-Z0-9]{4,12}$/.test(value.password) //알파벳, 숫자로 구성된 4 ~ 12자
+    )
+  }
   return (
     <Container>
       <Title>로그인</Title>
@@ -19,6 +25,8 @@ const LoginForm = () => {
       <InputGroup id="password" type="password" placeholder="비밀번호"  label="비밀번호" value={value.password} onChange={handleOnChange}/>
       <Button
         onClick={() => {
+          if(!validateCheck()) 
+            return;
           dispatch(loginSuccess());
           dispatch(login());
           loginApi({
@@ -29,5 +37,4 @@ const LoginForm = () => {
     </Container>
   );
 }
-
 export default LoginForm;
