@@ -1,20 +1,18 @@
 const Breadcrumb = ({ labelList }) => {
-    const separator = ">";
+    const separator = '>';
 
-    return(
+    return (
         <>
             {labelList.map((element, idx) => {
-                return(
+                return (
                     <>
                         <span> {element} </span>
-                        {idx < labelList.length - 1 && <span>{separator}</span> }
+                        {idx < labelList.length - 1 && <span>{separator}</span>}
                     </>
-                )
-                
+                );
             })}
         </>
-    )
-
-}
+    );
+};
 
 export default Breadcrumb;
