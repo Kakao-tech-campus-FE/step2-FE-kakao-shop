@@ -28,7 +28,7 @@ const SignUpForm: FC<SignUpProps> = ({
   passwordConfirm,
 }) => {
   return (
-    <form>
+    <form className="flex flex-col gap-4 w-[40rem]">
       <InputFormItem
         label="이메일 (아이디)"
         placeholder="이메일"
@@ -48,7 +48,9 @@ const SignUpForm: FC<SignUpProps> = ({
         type="password"
         {...passwordConfirm}
       />
-      <ButtonFormItem label="회원가입" type="submit" />
+      <ButtonFormItem color="primary" type="submit">
+        회원가입
+      </ButtonFormItem>
     </form>
   );
 };

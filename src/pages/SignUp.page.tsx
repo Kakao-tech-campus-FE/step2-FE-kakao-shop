@@ -8,18 +8,20 @@ const SignUpPage = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   return (
-    <SignUpForm
-      email={{ value: email, onChange: (e) => setEmail(e.target.value) }}
-      name={{ value: name, onChange: (e) => setName(e.target.value) }}
-      password={{
-        value: password,
-        onChange: (e) => setPassword(e.target.value),
-      }}
-      passwordConfirm={{
-        value: passwordConfirm,
-        onChange: (e) => setPasswordConfirm(e.target.value),
-      }}
-    />
+    <div className="flex justify-center items-center w-screen h-screen">
+      <SignUpForm
+        email={{ value: email, onChange: (e) => setEmail(e.target.value) }}
+        name={{ value: name, onChange: (e) => setName(e.target.value) }}
+        password={{
+          value: password,
+          onChange: (e) => setPassword(e.target.value),
+        }}
+        passwordConfirm={{
+          value: passwordConfirm,
+          onChange: (e) => setPasswordConfirm(e.target.value),
+        }}
+      />
+    </div>
   );
 };
 

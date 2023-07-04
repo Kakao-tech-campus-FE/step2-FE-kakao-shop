@@ -18,8 +18,14 @@ const InputFormItem: FC<InputFormItemProps> = ({
   const uid = useId();
   return (
     <>
-      <label htmlFor={uid}>{label}</label>
+      <label
+        className="block text-gray-700 text-sm font-bold mb-2"
+        htmlFor={uid}
+      >
+        {label}
+      </label>
       <input
+        className="rounded-lg py-4 px-8 bg-gray-100 hover:bg-gray-200"
         id={uid}
         type={type}
         placeholder={placeholder}
