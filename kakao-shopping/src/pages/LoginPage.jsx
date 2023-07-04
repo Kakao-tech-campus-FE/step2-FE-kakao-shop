@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {loginSuccess } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
+import Title from "../components/atoms/Title";
+import Container from "../components/atoms/Container";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -21,7 +23,10 @@ const LoginPage = () => {
     navigate('/main');
   }
   return (
+    <Container className="border bg-slate-100 border-slate-500 border-solid rounded-md flex flex-col items-center justify-center">
+    <Title className="-mx-3 m-3 block bg-slate-200 rounded-lg px-3 py-2 text-base font-semibold leading-7">로그인 페이지</Title>
     <LoginForm />
+    </Container>
   )
 }
 
