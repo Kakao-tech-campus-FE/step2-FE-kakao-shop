@@ -1,0 +1,10 @@
+.navbar {
+  width: 100%;
+  padding: 15px 0px;
+  text-align: right;
+}
+
+.navbarMenu {
+  margin: 8px;
+  text-decoration: none;
+}
