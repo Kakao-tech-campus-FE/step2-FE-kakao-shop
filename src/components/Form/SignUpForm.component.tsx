@@ -1,11 +1,14 @@
 import { FC } from "react";
 import ButtonFormItem from "@/components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@/components/Form/FormItem/InputFormItem.component";
+import { canPassword, isEmail } from "@/functions/validator";
 
 interface SignUpProps {
   emailProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isWrong?: boolean;
+    wrongMessage?: string;
   };
   nameProps: {
     value: string;
@@ -14,10 +17,16 @@ interface SignUpProps {
   passwordProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    minLength?: number;
+    maxLength?: number;
+    isWrong?: boolean;
+    wrongMessage?: string;
   };
   passwordConfirmProps: {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    isWrong?: boolean;
+    wrongMessage?: string;
   };
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
@@ -37,7 +46,7 @@ const SignUpForm: FC<SignUpProps> = ({
       <InputFormItem
         label="이메일 (아이디)"
         placeholder="이메일"
-        type="email"
+        type="text"
         {...emailProps}
       />
       <InputFormItem
