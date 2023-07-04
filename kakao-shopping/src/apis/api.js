@@ -29,9 +29,9 @@ export const register = (data) => {
   });
 };
 
-export const login = (data) => {
+export const loginApi = (data) => {
   const {email, password} = data;
   return {
-    
+
   }
 }
