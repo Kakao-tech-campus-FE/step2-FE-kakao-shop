@@ -10,13 +10,17 @@ import SignupPage from "./pages/SignupPage";
 
 const router = createBrowserRouter([
   {
-    index: "/",
+    path: "/",
     element: <App />,
-    children: [
-      { index: true, element: <HomePage /> },
-      { path: "/login", element: <LoginPage /> },
-      { path: "/signup", element: <SignupPage /> },
-    ],
+    children: [{ index: true, element: <HomePage /> }],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />,
   },
 ]);
 
