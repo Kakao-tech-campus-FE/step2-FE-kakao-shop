@@ -28,9 +28,8 @@ const BannerImageListItemBlock = styled.div<IBannerImageItemStyled>`
   width: ${props => props.imageWidth}px;
   height: 100%;
 
-  padding: 0 ${props => props.imagePadding}px;
-
   box-sizing: content-box; // gloabl border-box 제거
+  padding: 0 ${props => props.imagePadding}px;
 `;
 
 const ItemImage = styled.img<{ imageWidth: number }>`

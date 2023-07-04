@@ -92,31 +92,39 @@ const Agree = {
     background-color: #fff;
 
     &::before {
+      content: '';
+
       display: block;
+
       height: 12px;
+
+      box-sizing: border-box;
+
       border-top: 1px solid #ebebeb;
       border-bottom: 1px solid #ebebeb;
       background-color: #f2f3f5;
-      box-sizing: border-box;
-      content: '';
     }
   `,
   Header: styled.div`
     padding: 19px 16px;
+
     border-bottom: 1px solid #ebebeb;
   `,
   Body: styled.div`
     display: flex;
     flex-direction: column;
     gap: 16px;
+
     padding: 16px;
+
     color: #111;
   `,
   Footer: styled.div`
     padding: 16px;
+
+    background: #fafafa;
     border-top: 1px solid #ebebeb;
     border-bottom: 1px solid #ebebeb;
-    background: #fafafa;
   `,
   Terms: styled.div`
     font-weight: 600;
@@ -126,6 +134,7 @@ const Agree = {
   `,
   TermsText: styled.div`
     padding-top: 6px;
+
     font-size: 13px;
     line-height: 20px;
     color: #666;

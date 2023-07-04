@@ -11,7 +11,9 @@ export const DefaultToastItem: FunctionComponent<Props> = ({ children, isShow })
 );
 
 const Container = styled.div`
-  position: relative;
   display: flex;
+
+  position: relative;
+
   width: 450px;
 `;

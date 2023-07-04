@@ -179,24 +179,24 @@ const LeftChevron = styled.span`
   width: 9px;
   height: 18px;
 
-  font-size: 0;
-  vertical-align: top;
-
   background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
     no-repeat;
   background-size: 800px 500px;
   background-position: -760px 0;
+
+  font-size: 0;
+  vertical-align: top;
 `;
 
 const RightChevron = styled.span`
   width: 9px;
   height: 18px;
 
-  font-size: 0;
-  vertical-align: top;
-
   background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
     no-repeat;
   background-size: 800px 500px;
   background-position: -770px 0;
+
+  font-size: 0;
+  vertical-align: top;
 `;

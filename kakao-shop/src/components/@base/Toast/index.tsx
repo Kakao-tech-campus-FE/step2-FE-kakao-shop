@@ -22,9 +22,11 @@ const ToastComponent = new Toast({
 export default ToastComponent;
 
 const Container = styled(motion.div)`
-  padding: 16px 30px;
-  background-color: #1e1e1e;
   margin: 0 16px 16px 16px;
-  color: #ffffff;
+  padding: 16px 30px;
+
+  background-color: #1e1e1e;
   border-radius: 10px;
+
+  color: #ffffff;
 `;

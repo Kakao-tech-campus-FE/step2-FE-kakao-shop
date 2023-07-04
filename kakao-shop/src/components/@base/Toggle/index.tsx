@@ -29,6 +29,7 @@ export default Toggle;
 
 const ToggleContainer = styled.label`
   display: inline-block;
+
   cursor: pointer;
   user-select: none;
 `;
@@ -36,21 +37,28 @@ const ToggleContainer = styled.label`
 const ToggleSwitch = styled.div`
   width: 54px;
   height: 30px;
-  padding: 3px;
-  border-radius: 15px;
-  background-color: #ccc;
-  transition: background-color 150ms;
+
   box-sizing: border-box;
+  padding: 3px;
+
+  background-color: #ccc;
+  border-radius: 15px;
+
+  transition: background-color 150ms;
 
   &:after {
     content: '';
+    display: block;
+
     position: relative;
     left: 0;
-    display: block;
+
     width: 25px;
     height: 25px;
-    border-radius: 50%;
+
     background-color: white;
+    border-radius: 50%;
+
     transition: left 150ms;
   }
 `;
