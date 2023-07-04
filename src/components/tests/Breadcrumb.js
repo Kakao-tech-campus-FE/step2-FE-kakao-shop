@@ -1,5 +1,5 @@
 // css
-import "../styles/Breadcrumb.css";
+import "../../styles/tests/Breadcrumb.css";
 
 export default function Breadcrumb({ paths }) {
   return (

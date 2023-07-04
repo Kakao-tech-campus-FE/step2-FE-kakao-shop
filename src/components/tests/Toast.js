@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 // css
-import "../styles/Toast.css";
+import "../../styles/tests/Toast.css";
 
 // image
-import cart_white from "../assets/images/icon/cart_white.png";
+import cart_white from "../../assets/images/icon/cart_white.png";
 
 export default function Toast() {
   const [visible, setVisible] = useState(false);

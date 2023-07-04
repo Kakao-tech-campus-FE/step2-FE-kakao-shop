@@ -1,12 +1,12 @@
 import React from "react";
 
 // component
-import Toast from "../components/Toast.js";
-import Breadcrumb from "../components/Breadcrumb.js";
-import Carousel from "../components/Carousel.js";
-import RadioList from "../components/RadioList.js";
-import ToggleButton from "../components/ToggleButton.js";
-import CheckList from "../components/CheckList.js";
+import Toast from "../components/tests/Toast.js";
+import Breadcrumb from "../components/tests/Breadcrumb.js";
+import Carousel from "../components/tests/Carousel.js";
+import RadioList from "../components/tests/RadioList.js";
+import ToggleButton from "../components/tests/ToggleButton.js";
+import CheckList from "../components/tests/CheckList.js";
 
 // image
 import carouselImage1 from "../assets/images/carousel/carouselItem1.jpeg";
