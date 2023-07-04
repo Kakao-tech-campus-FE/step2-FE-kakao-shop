@@ -1,0 +1,5 @@
+/* GNB.css */
+.gnb {
+  display: flex;
+  align-items: center;
+}
