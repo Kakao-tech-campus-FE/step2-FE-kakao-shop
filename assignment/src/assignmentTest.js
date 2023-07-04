@@ -1,12 +1,12 @@
 import React from 'react';
-import Toast from './toast/Toast.js';
-import Breadcrumb from './breadcrumb/Breadcrumb.js';
-import Carousel from './carousel/Carousel.js';
-import RadioButton from './radio/RadioButton.js';
-import ToggleButton from './toggle/ToggleButton.js';
-import Checklist from './checklist/Checklist.js';
+import Toast from './UI/toast/Toast.js';
+import Breadcrumb from './UI/breadcrumb/Breadcrumb.js';
+import Carousel from './UI/carousel/Carousel.js';
+import RadioButton from './UI/radio/RadioButton.js';
+import ToggleButton from './UI/toggle/ToggleButton.js';
+import Checklist from './UI/checklist/Checklist.js';
 
-const App = () => {
+const assignment1 = () => {
   return (
     <div>
       <Toast message="안녕하세요!" duration={3000} />
@@ -20,4 +20,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default assignment1;
