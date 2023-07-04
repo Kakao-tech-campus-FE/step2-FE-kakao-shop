@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import { styled } from "styled-components";
-
-interface ToastData {
-  id: number;
-  type: "success" | "error" | "warning";
-  message: string;
-}
+import { ToastData } from "..";
 
 interface Props {
   background?: string;

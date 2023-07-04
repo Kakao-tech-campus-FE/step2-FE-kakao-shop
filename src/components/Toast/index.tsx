@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ToastItem from "./ToastItem";
 import { ErrorIcon, SuccessIcon, WarningIcon } from "@components/Icons";
 
-interface ToastData {
+export interface ToastData {
   id: number;
   type: "success" | "error" | "warning";
   message: string;

@@ -1,17 +1,11 @@
 import { useState } from "react";
-import Toast from "@components/Toast";
+import Toast, { ToastData } from "@components/Toast";
 import Carousel from "@components/Carousel";
 import CheckList from "@components/CheckList";
 import Toggle from "@components/Toggle";
 import Radio from "@components/Radio";
 import Breadcrumb from "@components/Breadcrumb";
 import { Link } from "react-router-dom";
-
-interface ToastData {
-  id: number;
-  type: "success" | "error" | "warning";
-  message: string;
-}
 
 function Main() {
   const [toastList, setToastList] = useState<ToastData[]>([]);
