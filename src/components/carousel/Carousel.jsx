@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -55,53 +55,61 @@ const Dot = styled.button`
   }
 `;
 
-function Carousel({ width, time, arrowButton, dotButton }) {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const SLIDE_EXAMPLE = [
+  {
+    src: carouselItem1,
+  },
+  {
+    src: carouselItem2,
+  },
+  {
+    src: carouselItem3,
+  },
+];
+
+function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const slideRef = useRef();
-  const TOTAL_SLIDES = 2;
 
   const handleNextSlide = () => {
-    if (currentSlide >= TOTAL_SLIDES) {
-      setCurrentSlide(0);
+    if (currentSlideIndex >= slideArray.length - 1) {
+      setCurrentSlideIndex(0);
     } else {
-      setCurrentSlide((currentSlide) => currentSlide + 1);
+      setCurrentSlideIndex((prevIndex) => prevIndex + 1);
     }
   };
 
   const handlePrevSlide = () => {
-    if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
+    if (currentSlideIndex === 0) {
+      setCurrentSlideIndex(slideArray.length - 1);
     } else {
-      setCurrentSlide((currentSlide) => currentSlide - 1);
+      setCurrentSlideIndex((prevIndex) => prevIndex - 1);
     }
   };
 
   useEffect(() => {
     slideRef.current.style.transition = "all 0.5s ease-in-out";
-    slideRef.current.style.transform = `translate(-${currentSlide}00%)`;
+    slideRef.current.style.transform = `translate(-${currentSlideIndex}00%)`;
 
-    const timer = setTimeout(() => {
-      handleNextSlide();
-    }, time);
-
+    const timer = setTimeout(handleNextSlide, time);
     return () => clearTimeout(timer);
-  }, [currentSlide, time]);
+  }, [currentSlideIndex, time, handleNextSlide]);
 
   return (
     <Container style={{ width }}>
       <SliderContainer ref={slideRef}>
-        <Slide src={carouselItem1} />
-        <Slide src={carouselItem2} />
-        <Slide src={carouselItem3} />
+        {slideArray.map((item, index) => (
+          <Slide key={index} src={item.src} />
+        ))}
       </SliderContainer>
 
       {dotButton && (
         <DotContainer>
-          {Array.from({ length: TOTAL_SLIDES + 1 }, (v, i) => i).map((num) => (
+          {slideArray.map((item, index) => (
             <Dot
-              key={num}
-              className={num === currentSlide && "active"}
-              onClick={() => setCurrentSlide(num)}
+              key={index}
+              className={index === currentSlideIndex && "active"}
+              onClick={() => setCurrentSlideIndex(index)}
             >
               ●
             </Dot>
@@ -112,10 +120,16 @@ function Carousel({ width, time, arrowButton, dotButton }) {
       {arrowButton && (
         <>
           <Button onClick={handlePrevSlide} style={{ left: 0 }}>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAfElEQVR4nO2XMQqAMBAEh1Ms9C/6AittlXxB/IL+3yYBG8HGbJAbSD3LkhwX+DG1SmzAChxAn1teAQE445mU8g1oc9YebvId6Fz+Nea14xcOf2p5GFXjtZgAphw4CQ+R8CYS3kTCmyiqiUq5lj+FmBFgwBK/ZgNCGqX8NRevhSysSiahIgAAAABJRU5ErkJggg==" />
+            <img
+              alt="previous"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAfElEQVR4nO2XMQqAMBAEh1Ms9C/6AittlXxB/IL+3yYBG8HGbJAbSD3LkhwX+DG1SmzAChxAn1teAQE445mU8g1oc9YebvId6Fz+Nea14xcOf2p5GFXjtZgAphw4CQ+R8CYS3kTCmyiqiUq5lj+FmBFgwBK/ZgNCGqX8NRevhSysSiahIgAAAABJRU5ErkJggg=="
+            />
           </Button>
           <Button onClick={handleNextSlide} style={{ right: 0 }}>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAe0lEQVR4nO2XMQqAMBAEBxWLe4z4ASuxVAQ/YP6g/xckgo1lPCW7kHqH5e7Iwk9UeZo3wAZMQOEB0AN7fDNQvg1gQPgCxHqDWASBkkAzcUrbcUlJPJ3tjpwAzPM2mMxR7Gjg0suyXrXg+S0fvDtBG6vZ6FXNAGov4+Q6AC9HLK6rbqMeAAAAAElFTkSuQmCC" />
+            <img
+              alt="next"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAe0lEQVR4nO2XMQqAMBAEBxWLe4z4ASuxVAQ/YP6g/xckgo1lPCW7kHqH5e7Iwk9UeZo3wAZMQOEB0AN7fDNQvg1gQPgCxHqDWASBkkAzcUrbcUlJPJ3tjpwAzPM2mMxR7Gjg0suyXrXg+S0fvDtBG6vZ6FXNAGov4+Q6AC9HLK6rbqMeAAAAAElFTkSuQmCC"
+            />
           </Button>
         </>
       )}
@@ -128,6 +142,7 @@ Carousel.propTypes = {
   time: PropTypes.number,
   arrowButton: PropTypes.bool,
   dotButton: PropTypes.bool,
+  slideArray: PropTypes.array,
 };
 
 Carousel.defaultProps = {
@@ -135,6 +150,7 @@ Carousel.defaultProps = {
   time: 2000,
   arrowButton: true,
   dotButton: true,
+  slideArray: SLIDE_EXAMPLE,
 };
 
 export default Carousel;
