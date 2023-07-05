@@ -1,15 +1,40 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { checkEmail, signUp } from "@/store/signAction";
+import { EmailCheckResDto } from "@/dtos/response.dto";
 
-interface SignState {
+interface SignInState {
   loading: boolean;
   error: string | null;
   success: boolean;
   isLogin: boolean;
+  isWarning: {
+    email: boolean;
+    password: boolean;
+    passwordConfirm: boolean;
+    response: boolean;
+  };
+  data: {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+    username: string;
+  };
 }
 
-const initialState: SignState = {
+const initialState: SignInState = {
   isLogin: localStorage.getItem("isLogin") === "true" ? true : false,
+  isWarning: {
+    email: false,
+    password: false,
+    passwordConfirm: false,
+    response: false,
+  },
+  data: {
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    username: "",
+  },
   loading: false,
   error: null,
   success: false,
@@ -18,7 +43,34 @@ const initialState: SignState = {
 export const signSlice = createSlice({
   name: "sign",
   initialState,
-  reducers: {},
+  reducers: {
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
+    setEmail: (state, action: PayloadAction<string>) => {
+      state.data.email = action.payload;
+    },
+    setPassword: (state, action: PayloadAction<string>) => {
+      state.data.password = action.payload;
+    },
+    setPasswordConfirm: (state, action: PayloadAction<string>) => {
+      state.data.passwordConfirm = action.payload;
+    },
+    setUsername: (state, action: PayloadAction<string>) => {
+      state.data.username = action.payload;
+    },
+    setWarning: (
+      state,
+      action: PayloadAction<{
+        email: boolean;
+        password: boolean;
+        passwordConfirm: boolean;
+        response: boolean;
+      }>
+    ) => {
+      state.isWarning = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(checkEmail.pending, (state) => {
@@ -30,7 +82,8 @@ export const signSlice = createSlice({
       })
       .addCase(checkEmail.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message as string;
+        state.error =
+          (action.payload as EmailCheckResDto["error"])?.message ?? "";
       })
       .addCase(signUp.pending, (state) => {
         state.loading = true;
@@ -41,9 +94,19 @@ export const signSlice = createSlice({
       })
       .addCase(signUp.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message as string;
+        state.error =
+          (action.payload as EmailCheckResDto["error"])?.message ?? "";
       });
   },
 });
+
+export const {
+  setError,
+  setEmail,
+  setPassword,
+  setPasswordConfirm,
+  setUsername,
+  setWarning,
+} = signSlice.actions;
 
 export default signSlice.reducer;

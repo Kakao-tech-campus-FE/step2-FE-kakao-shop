@@ -1,28 +1,52 @@
+import { EmailCheckResDto, SignUpResDto } from "@/dtos/response.dto";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const checkEmail = createAsyncThunk(
   "sign/checkEmail",
-  async (email: string) => {
-    console.log(email);
+  async (email: string, { rejectWithValue, fulfillWithValue }) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_KAKAO_STORE_URL + "check",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      const resData = new EmailCheckResDto(await response.json());
+
+      if (resData.error) {
+        return rejectWithValue(resData.error);
+      }
+      return fulfillWithValue(resData);
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
 );
 
 export const signUp = createAsyncThunk(
   "sign/signup",
-  async (data: { email: string; name: string; password: string }, thunkAPI) => {
-    console.log(data);
-
+  async (
+    data: { email: string; username: string; password: string },
+    thunkAPI
+  ) => {
     try {
       const response = await fetch(
-        import.meta.env.VITE_KAKAO_STORE_URL + "/join",
+        import.meta.env.VITE_KAKAO_STORE_URL + "join",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         }
       );
-      const resData = await response.json();
-      return thunkAPI.fulfillWithValue(resData);
+
+      const resData = new SignUpResDto(await response.json());
+      if (resData.error) {
+        return thunkAPI.rejectWithValue(resData.error);
+      }
+      return thunkAPI.fulfillWithValue(resData.success);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
