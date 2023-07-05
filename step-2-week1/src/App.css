@@ -5,7 +5,7 @@
 
 .container {
   Width: 300vw;
-  transform: translate(-100vw)
+  /* transform: translate(-100vw) */
   /* style="margin: 0" */
 }
 .carousel {
