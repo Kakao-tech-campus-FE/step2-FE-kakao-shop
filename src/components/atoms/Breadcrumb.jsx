@@ -19,12 +19,12 @@ const BreadCrumbNav = styled.nav`
 `;
 
 const CategoryList = styled.div`
-  .categoryList& {
+  .categoryList {
     background-color: #d9d9d9;
     padding: 0.2rem;
   }
 
-  .categoryList& div:hover {
+  .categoryList div:hover {
     cursor: pointer;
     text-decoration: underline;
   }

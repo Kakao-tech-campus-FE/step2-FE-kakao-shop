@@ -22,7 +22,7 @@ const SlideItem = styled.div`
 `;
 
 const Button = styled.button`
-  .prevbtn& {
+  .prevbtn {
     all: unset;
     position: absolute;
     color: white;
@@ -30,7 +30,7 @@ const Button = styled.button`
     left: 5%;
     font-size: 1.5rem;
   }
-  .nextbtn& {
+  .nextbtn {
     all: unset;
     position: absolute;
     color: white;

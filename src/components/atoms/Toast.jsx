@@ -41,8 +41,8 @@ const Toast = ({ children }) => {
     };
   }, []);
 
-  let today = new Date();
-  let todayTime = today.toLocaleTimeString();
+  const today = new Date();
+  const todayTime = today.toLocaleTimeString();
 
   return (
     <ToastDiv isShowing={isShowing}>
