@@ -1,19 +1,16 @@
 import React from 'react';
+import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
 
 const RegisterForm = () => {
-  const form = {
+  const { values, handleChange } = useForm({
     username: '',
     email: '',
     password: '',
     passwordConfirm: '',
-  }; // TODO
-
-  const handleInputChange = () => {
-    // TODO
-  };
+  });
 
   const handleSignUpBtnClick = () => {
     // TODO
@@ -27,8 +24,8 @@ const RegisterForm = () => {
         type='text'
         placeholder='사용자 이름을 입력해주세요.'
         label='이름'
-        value={form.username}
-        onChange={handleInputChange}
+        value={values.username}
+        onChange={handleChange}
       />
       <InputGroup
         id='email'
@@ -36,8 +33,8 @@ const RegisterForm = () => {
         type='email'
         placeholder='이메일을 입력해주세요.'
         label='이메일'
-        value={form.email}
-        onChange={handleInputChange}
+        value={values.email}
+        onChange={handleChange}
       />
       <InputGroup
         id='password'
@@ -45,8 +42,8 @@ const RegisterForm = () => {
         type='password'
         placeholder='비밀번호를 입력해주세요.'
         label='비밀번호'
-        value={form.password}
-        onChange={handleInputChange}
+        value={values.password}
+        onChange={handleChange}
       />
       <InputGroup
         id='passwordConfirm'
@@ -54,8 +51,8 @@ const RegisterForm = () => {
         type='password'
         placeholder='비밀번호를 다시 한 번 입력해주세요.'
         label='비밀번호 확인'
-        value={form.passwordConfirm}
-        onChange={handleInputChange}
+        value={values.passwordConfirm}
+        onChange={handleChange}
       />
       <Button onClick={handleSignUpBtnClick}>회원가입</Button>
     </FormContainer>

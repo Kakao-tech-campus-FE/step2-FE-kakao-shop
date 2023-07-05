@@ -1,17 +1,14 @@
 import React from 'react';
+import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
 
 const LoginForm = () => {
-  const form = {
+  const { values, handleChange } = useForm({
     email: '',
     password: '',
-  }; // TODO
-
-  const handleInputChange = () => {
-    // TODO
-  };
+  });
 
   const handleSignInBtnClick = () => {
     // TODO
@@ -25,8 +22,8 @@ const LoginForm = () => {
         type='email'
         placeholder='이메일을 입력해주세요.'
         label='이메일'
-        value={form.email}
-        onChange={handleInputChange}
+        value={values.email}
+        onChange={handleChange}
       />
       <InputGroup
         id='password'
@@ -34,8 +31,8 @@ const LoginForm = () => {
         type='password'
         placeholder='비밀번호를 입력해주세요.'
         label='비밀번호'
-        value={form.password}
-        onChange={handleInputChange}
+        value={values.password}
+        onChange={handleChange}
       />
       <Button onClick={handleSignInBtnClick}>로그인</Button>
     </FormContainer>
