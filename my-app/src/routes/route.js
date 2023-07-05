@@ -1,14 +1,18 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom'
-import Home from '../pages/Home';
-import Sub from '../pages/Sub';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import SignInPage from "../pages/SignInPage";
+import SignUpPage from "../pages/SignUpPage";
 
 const AppRoutes = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/home/subpage" element={<Sub />} />
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
