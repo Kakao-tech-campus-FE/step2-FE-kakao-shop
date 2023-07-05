@@ -1,25 +1,27 @@
+import {
+  FormState, UseFormGetFieldState, UseFormRegister, UseFormResetField,
+} from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import LoginForm from '../organisms/loginForm';
+import { ILoginData } from '../../types/formData';
 
 interface ILoginTemplateProps {
-  // User informations for login
-  email: string;
-  password: string;
-
-  // Control input values
-  handleChange: React.ChangeEventHandler<HTMLInputElement>;
-  resetValue: React.MouseEventHandler<HTMLButtonElement>;
-
   // Request login
   handleLogin: React.FormEventHandler<HTMLFormElement>;
+
+  // react-hook-form properties
+  register: UseFormRegister<ILoginData>;
+  resetField: UseFormResetField<ILoginData>;
+  formState: FormState<ILoginData>;
+  getFieldState: UseFormGetFieldState<ILoginData>;
 }
 
 export default function LoginTemplate({
-  email,
-  password,
-  handleChange,
-  resetValue,
   handleLogin,
+  register,
+  resetField,
+  formState,
+  getFieldState,
 }: ILoginTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
@@ -28,11 +30,11 @@ export default function LoginTemplate({
           sm:w-[40rem] sm:self-center sm:rounded-sm sm:border sm:border-stone-300"
       >
         <LoginForm
-          email={email}
-          password={password}
-          handleChange={handleChange}
-          resetValue={resetValue}
           handleLogin={handleLogin}
+          register={register}
+          resetField={resetField}
+          formState={formState}
+          getFieldState={getFieldState}
         />
         <div className="my-4 text-center">
           <LinkButton href="/register">

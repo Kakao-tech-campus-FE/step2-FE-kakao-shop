@@ -1,30 +1,39 @@
+import { forwardRef } from 'react';
+import { ChangeHandler } from 'react-hook-form';
+
 interface IInputProps {
   inputType: string;
   id: string;
-  name: string;
-  value: string;
   placeholder?: string;
-  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+
+  // react-hook-form register properties
+  onChange?: ChangeHandler;
+  onBlur?: ChangeHandler;
+  name?: string;
 }
 
-export default function Input({
-  inputType,
-  id,
-  name,
-  value,
-  placeholder = '',
-  handleChange,
-}: IInputProps) {
-  return (
-    <input
-      className="w-full border-b border-b-stone-400 py-3 outline-none
+const Input = forwardRef<HTMLInputElement, IInputProps>((
+  {
+    inputType,
+    id,
+    placeholder = '',
+    onChange,
+    onBlur,
+    name,
+  }: IInputProps,
+  ref,
+) => (
+  <input
+    className="w-full border-b border-b-stone-400 py-3 outline-none
       focus:border-b-blue-950"
-      type={inputType}
-      id={id}
-      name={name}
-      value={value}
-      onChange={handleChange}
-      placeholder={placeholder}
-    />
-  );
-}
+    type={inputType}
+    id={id}
+    onChange={onChange}
+    onBlur={onBlur}
+    ref={ref}
+    name={name}
+    placeholder={placeholder}
+  />
+));
+
+export default Input;

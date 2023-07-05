@@ -1,29 +1,31 @@
+import {
+  FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormTrigger,
+} from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import RegisterForm from '../organisms/registerForm';
+import { IRegisterData } from '../../types/formData';
 
 interface IRegisterTemplateProps {
-  // User informations for register
-  email: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
-
-  // Control input values
-  handleChange: React.ChangeEventHandler<HTMLInputElement>;
-  resetValue: React.MouseEventHandler<HTMLButtonElement>;
-
   // Request registration
   handleRegister: React.FormEventHandler<HTMLFormElement>;
+
+  // react-hook-form properties
+  register: UseFormRegister<IRegisterData>;
+  resetField: UseFormResetField<IRegisterData>;
+  getValues: UseFormGetValues<IRegisterData>;
+  formState: FormState<IRegisterData>;
+  getFieldState: UseFormGetFieldState<IRegisterData>;
+  trigger: UseFormTrigger<IRegisterData>;
 }
 
 export default function RegisterTemplate({
-  email,
-  username,
-  password,
-  confirmPassword,
-  handleChange,
-  resetValue,
   handleRegister,
+  register,
+  resetField,
+  getValues,
+  formState,
+  getFieldState,
+  trigger,
 }: IRegisterTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
@@ -32,13 +34,13 @@ export default function RegisterTemplate({
           sm:w-[40rem] sm:self-center sm:rounded-sm sm:border sm:border-stone-300"
       >
         <RegisterForm
-          email={email}
-          username={username}
-          password={password}
-          confirmPassword={confirmPassword}
-          handleChange={handleChange}
-          resetValue={resetValue}
           handleRegister={handleRegister}
+          register={register}
+          resetField={resetField}
+          getValues={getValues}
+          formState={formState}
+          getFieldState={getFieldState}
+          trigger={trigger}
         />
       </div>
       <div className="text-center">

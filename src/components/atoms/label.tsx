@@ -11,12 +11,10 @@ export default function Label({
 }: ILabelProps) {
   return (
     <label htmlFor={htmlFor}>
-      <div className="my-8">
-        <div className="px-2 text-sm">
-          {description}
-        </div>
-        {children}
+      <div className="px-2 text-sm">
+        {description}
       </div>
+      {children}
     </label>
   );
 }

@@ -1,5 +1,5 @@
 interface IXButtonProps {
-  name: string;
+  name?: string;
   show?: boolean;
   handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }

@@ -1,58 +1,88 @@
+import {
+  FormState, UseFormGetFieldState, UseFormRegister, UseFormResetField,
+} from 'react-hook-form';
+import { ILoginData } from '../../types/formData';
 import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
+import { LOGIN_ERROR_MSG } from '../../utils/errorMsg';
+import { LOGIN_VALID_REGEX } from '../../utils/regex';
 
 interface ILoginFormProps {
-  // User informations for login
-  email: string;
-  password: string;
-
-  // Control input values
-  handleChange: React.ChangeEventHandler<HTMLInputElement>;
-  resetValue: React.MouseEventHandler<HTMLButtonElement>;
-
   // Request login
   handleLogin: React.FormEventHandler<HTMLFormElement>;
+
+  // react-hook-form properties
+  register: UseFormRegister<ILoginData>;
+  resetField: UseFormResetField<ILoginData>;
+  formState: FormState<ILoginData>;
+  getFieldState: UseFormGetFieldState<ILoginData>;
 }
 
 export default function LoginForm({
-  email,
-  password,
-  handleChange,
-  resetValue,
   handleLogin,
+  register,
+  resetField,
+  formState,
+  getFieldState,
 }: ILoginFormProps) {
   return (
     <form onSubmit={handleLogin}>
       <div>
-        <Label
-          htmlFor="email"
-          description="이메일"
-        >
-          <InputBox
-            inputType="email"
-            id="email"
-            name="email"
-            value={email}
-            handleChange={handleChange}
-            resetValue={resetValue}
-            placeholder="이메일을 입력하세요"
-          />
-        </Label>
-        <Label
-          htmlFor="password"
-          description="비밀번호"
-        >
-          <InputBox
-            inputType="password"
-            id="password"
-            name="password"
-            value={password}
-            handleChange={handleChange}
-            resetValue={resetValue}
-            placeholder="비밀번호를 입력하세요"
-          />
-        </Label>
+        <div className="my-8">
+          <Label
+            htmlFor="email"
+            description="이메일"
+          >
+            <InputBox
+              inputType="email"
+              id="email"
+              resetValue={() => resetField('email')}
+              placeholder="이메일을 입력하세요 (example@example.com)"
+              isDirty={getFieldState('email', formState).isDirty}
+              {...register('email', {
+                pattern: {
+                  value: LOGIN_VALID_REGEX.email,
+                  message: LOGIN_ERROR_MSG.email.INVALID_FORMAT,
+                },
+                required: LOGIN_ERROR_MSG.email.EMPTY,
+              })}
+            />
+          </Label>
+          <div className="px-2 text-sm text-red-500">
+            {formState.errors.email?.message}
+          </div>
+        </div>
+        <div className="my-8">
+          <Label
+            htmlFor="password"
+            description="비밀번호"
+          >
+            <InputBox
+              inputType="password"
+              id="password"
+              resetValue={() => resetField('password')}
+              placeholder="비밀번호를 입력하세요"
+              isDirty={getFieldState('password', formState).isDirty}
+              {...register('password', {
+                validate: {
+                  isValidLength: (value) => (
+                    LOGIN_VALID_REGEX.password_length.test(value)
+                      || LOGIN_ERROR_MSG.password.INVALID_LENGTH
+                  ),
+                  isValidFormat: (value) => (
+                    LOGIN_VALID_REGEX.password_format.test(value)
+                      || LOGIN_ERROR_MSG.password.INVALID_FORMAT
+                  ),
+                },
+                required: LOGIN_ERROR_MSG.password.EMPTY,
+              })}
+            />
+          </Label>
+          <div className="px-2 text-sm text-red-500">
+            {formState.errors.password?.message}
+          </div>
+        </div>
       </div>
       <div>
         <Button isSubmitType>

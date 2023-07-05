@@ -1,55 +1,39 @@
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import RegisterTemplate from '../templates/registerTemplate';
-
-interface IRegisterData {
-  email: string;
-  username: string;
-  password: string;
-  confirmPassword: string;
-}
+import { IRegisterData } from '../../types/formData';
 
 export default function RegisterPage() {
-  const [registerData, setRegisterData] = useState<IRegisterData>({
-    email: '',
-    username: '',
-    password: '',
-    confirmPassword: '',
+  const {
+    register,
+    handleSubmit,
+    resetField,
+    getValues,
+    formState,
+    getFieldState,
+    trigger,
+  } = useForm<IRegisterData>({
+    mode: 'all',
+    defaultValues: {
+      email: '',
+      username: '',
+      password: '',
+      confirmPassword: '',
+    },
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const { name, value } = e.currentTarget;
-
-    setRegisterData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const resetValue = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const { name } = e.currentTarget;
-
-    setRegisterData((prev) => ({
-      ...prev,
-      [name]: '',
-    }));
-  };
-
-  const handleRegister = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(registerData);
+  const handleRegister = () => {
+    console.log('register');
   };
 
   return (
     <RegisterTemplate
-      email={registerData.email}
-      username={registerData.username}
-      password={registerData.password}
-      confirmPassword={registerData.confirmPassword}
-      handleChange={handleChange}
-      resetValue={resetValue}
-      handleRegister={handleRegister}
+      handleRegister={handleSubmit(handleRegister)}
+      register={register}
+      resetField={resetField}
+      getValues={getValues}
+      formState={formState}
+      getFieldState={getFieldState}
+      trigger={trigger}
     />
   );
 }
