@@ -15,7 +15,7 @@ const InputGroup = ({
   placeholder, // input의 placeholder
 }) => {
   return (
-    <Box className={`${className} `}>
+    <Box className={className}>
       <Label htmlFor={id}>{label}</Label>
       <Input
         className="w-4/5"
