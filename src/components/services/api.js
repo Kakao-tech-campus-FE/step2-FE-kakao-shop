@@ -16,7 +16,7 @@ instance.interceptors.request.use((config) => {
         config.headers["Authorization"] = `${token}`;
     }
     return config;
-})
+});
 
 // response 단에서 error의 처리
 // 2개의 파라미터 - 정상 처리 & 에러 처리

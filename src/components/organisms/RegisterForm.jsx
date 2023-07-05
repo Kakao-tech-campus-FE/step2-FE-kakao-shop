@@ -4,7 +4,7 @@ import Button from "./../atoms/Button";
 import useInput from "./../../hooks/useInput";
 
 import { register } from "../services/api";
-import { useEffect } from "react"; // useEffect는 오류가 발생하는 구간을 확인하는데 유용하다.
+// import { useEffect } from "react"; // useEffect는 오류가 발생하는 구간을 확인하는데 유용하다.
 
 const RegisterForm = () => {
   const [value, handleOnChange] = useInput({

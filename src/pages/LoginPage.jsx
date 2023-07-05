@@ -4,7 +4,7 @@ import LoginForm from '../components/organisms/LoginForm';
 const LoginPage = () => {
     return (
         <div className="loginPage">
-            <LoginForm></LoginForm>
+            <LoginForm />
         </div>
     );
 };
