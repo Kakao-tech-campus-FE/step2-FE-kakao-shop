@@ -1,11 +1,18 @@
 import "./App.css";
-import Counter from "./features/counter/Counter";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
-    <>
-      <Counter></Counter>
-    </>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/signup" element={<RegisterPage />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
