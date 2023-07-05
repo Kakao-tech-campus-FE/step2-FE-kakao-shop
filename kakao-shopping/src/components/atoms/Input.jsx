@@ -5,16 +5,16 @@ const Input = ({
   placeholder, // placeholder
   className,   // 클래스 이름
   id,          // input 요소의 id인 동시에, label과 연결된 id
-  name,
+  autocomplete,// 자동완성
 }) => {
   return <input
-            name={name} 
             type={type}
             id={id}
             className={className} 
             value={value} 
             onChange={onChange} 
             placeholder={placeholder}
+            autoComplete={autocomplete}
              />;
 }
 export default Input;

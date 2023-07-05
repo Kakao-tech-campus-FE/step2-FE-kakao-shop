@@ -6,9 +6,7 @@ const Button = ({
   return (
   <button 
     className={className}
-    onClick={(e) => {
-      e.preventDefault();
-      onClick();}}>
+    onClick={onClick}>
     {children}
   </button>
   )
