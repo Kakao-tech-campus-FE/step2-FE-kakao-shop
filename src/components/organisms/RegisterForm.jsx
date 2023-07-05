@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { register } from "../../services/api";
+// import Box from "../atoms/Box";
+import useInputError from "../../hooks/useInputError";
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -13,9 +15,9 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
-  useEffect(() => {
-    console.log(value.username);
-  }, [value.username]);
+  const { errorMsg, handleOnBlur } = useInputError("");
+
+  // useEffect(() => {}, [value.email]);
 
   return (
     <Container>
@@ -27,6 +29,7 @@ const RegisterForm = () => {
         label="이름"
         value={value.username}
         onChange={handleOnChange}
+        onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -37,6 +40,7 @@ const RegisterForm = () => {
         label="이메일"
         value={value.email}
         onChange={handleOnChange}
+        onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -47,6 +51,7 @@ const RegisterForm = () => {
         label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
+        onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -57,19 +62,24 @@ const RegisterForm = () => {
         label="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
+        onBlur={handleOnBlur}
       />
 
       <Button
         onClick={() => {
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          });
+          // API 요청 보내기 전 검사
+          if (errorMsg === "") {
+            register({
+              email: value.email,
+              password: value.password,
+              username: value.username,
+            });
+          }
         }}
       >
         회원가입
       </Button>
+      <>{errorMsg}</>
     </Container>
   );
 };
