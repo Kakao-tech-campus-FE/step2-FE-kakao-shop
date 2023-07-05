@@ -2,27 +2,18 @@ import Container from "../atoms/Container"
 import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button"
 import useInput from "../../hooks/useInput"
-import { register } from "../../services/api"
+import { login } from "../../services/api"
+import Title from "../atoms/Title"
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const {value, handleOnChange} = useInput({
-    username:"",
     email:"",
     password:"",
-    passwordConfirm:""
   }) 
   
   return (
     <Container>
-      <InputGroup 
-        id="username"
-        type="text" 
-        name="username"
-        placeholder="사용자의 이름을 입력해주세요" 
-        label="이름"
-        value={value.username}
-        onChange={handleOnChange}
-      />
+      <Title>로그인</Title>
       <InputGroup 
         id="email" 
         type="email" 
@@ -41,28 +32,17 @@ const RegisterForm = () => {
         value={value.password}
         onChange={handleOnChange}
       />
-      <InputGroup 
-        id="passwordConfirm" 
-        type="password" 
-        name="passwardConfirm"
-        placeholder="******" 
-        label="비밀번호 확인"
-        value={value.passwordConfirm}
-        onChange={handleOnChange}
-      />
       <Button
         onClick={()=>{
           //api 요청 
-          // register(value) 로 보내면 passwordConfirm 이라는 불필요한 값까지 섞여있음
-          register({
+          login({
             email: value.email,
             password: value.password,
-            username: value.username
           })
         }}
-      >회원가입</Button>
+      >로그인 </Button>
     </Container>
   )
 }
 
-export default RegisterForm
+export default LoginForm

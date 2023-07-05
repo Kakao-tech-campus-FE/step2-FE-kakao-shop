@@ -1,4 +1,5 @@
-const Input = ({type, value,name, onChange, placeholder, className="", id}) => {
+// css를 위한 className
+const Input = ({type, value, name, onChange, placeholder, className="", id}) => {
   return (
     <input 
       id={id}
