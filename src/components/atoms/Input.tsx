@@ -9,7 +9,16 @@ interface inputProps {
 }
 
 const Input = ({ type, value, id, onChange, placeholder }: inputProps) => {
-  return <input type={type} id={id} placeholder={placeholder} value={value} onChange={onChange} />;
+  return (
+    <input
+      type={type}
+      id={id}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className="h-[40px] rounded px-2 bg-subGray"
+    />
+  );
 };
 
 export default Input;

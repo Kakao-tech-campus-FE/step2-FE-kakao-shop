@@ -1,8 +1,12 @@
+import LoginForm from '@components/molecules/LoginForm';
 import React from 'react';
 
 const LoginPage = () => {
-  console.log('로그인페이지');
-  return <div>로그인 페이지</div>;
+  return (
+    <div className="w-[250px] mx-auto my-[100px]">
+      <LoginForm />
+    </div>
+  );
 };
 
 export default LoginPage;
