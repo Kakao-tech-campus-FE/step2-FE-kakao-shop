@@ -34,3 +34,11 @@ export const register = (data) => {
     username,
   });
 };
+
+export const login = (data) => {
+  const { email, password } = data;
+  return instance.post("/login", {
+    email,
+    password,
+  });
+}
