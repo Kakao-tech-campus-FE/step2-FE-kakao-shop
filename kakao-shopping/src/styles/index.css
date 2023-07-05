@@ -9,14 +9,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-
-/* BreadCrumbs */
-
-.breadcrumbs .crumb:after {
-  content: '>';
-  margin: 0 5px;
-}
-.breadcrumbs .crumb:last-child:after {
-  display:none;
-}
