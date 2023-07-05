@@ -1,14 +1,20 @@
-
+import { loginApi } from "../apis/api";
 export const login = (username, password) => async dispatch => {
   // 로그인 API 호출 등 로그인 처리 로직 작성
-  const user = { id: 1, username: "exampleUser" };
 	try {
-		/* 이 부분에 await API 호출이 들어오고, 성공하면 SUCCESS, 
-			 실패하면 ERROR 발생으로 FAILED.               */
-		dispatch(loginSuccess(user));
-    localStorage.setItem('isLoggedIn', calculateTomorrowTime());
-    localStorage.setItem('userInfo', user.username);
-    console.log(calculateTomorrowTime());
+    const response = await loginApi({email: username, password: password}); 
+    
+      const user = { id: 1, username: "exampleUser" };
+    // 응답 처리
+    if(response.data.success) {
+      dispatch(loginSuccess(user.user));
+      localStorage.setItem('isLoggedIn', calculateTomorrowTime());
+      localStorage.setItem('userInfo', user.username);
+    } else {
+      //로그인 실패 처리
+      dispatch(logout());
+    }
+
     // setCookie('isLoggedIn', 'true', 1); // 1일 동안 유지되는 쿠키
     // setCookie('username', username, 1);
 	} catch (error) {
