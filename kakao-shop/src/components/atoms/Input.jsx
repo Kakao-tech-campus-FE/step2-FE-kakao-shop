@@ -6,16 +6,20 @@ const Input = ({
   value,
   placeholder = "",
   onChange,
+  onFocus,
+  onBlur,
 }) => {
   return (
     <input
-      className={className}
+      className={`input focus:outline-none ${className}`}
       type={type}
       name={name}
       id={id}
-      value={value}
+      defaultValue={value}
       placeholder={placeholder}
       onChange={onChange}
+      onFocus={onFocus}
+      onBlur={onBlur}
     />
   );
 };
