@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import useTimeoutFn from '@hooks/useTimeoutFn';
+import { useTimeoutFn } from '@hooks/@common';
 
 const useTimeout = (fn: () => void, ms: number) => {
   const [run, clear] = useTimeoutFn(fn, ms);

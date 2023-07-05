@@ -1,7 +1,7 @@
 import type { FunctionComponent, ReactNode, ReactElement } from 'react';
 import { useEffect, useState, Fragment } from 'react';
 
-import useTimeout from '@hooks/useTimeout';
+import { useTimeout } from '@hooks/@common';
 
 import type { Options, Toast } from './types';
 

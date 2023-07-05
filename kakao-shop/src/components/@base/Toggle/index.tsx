@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import useToggle from '@hooks/useToggle';
+import useToggle from '@hooks/@common/useToggle';
 
 type Props = {
   name: string;

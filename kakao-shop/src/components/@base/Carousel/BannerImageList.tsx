@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReactElement, useMemo, useState } from 'react';
 
-import useCarousel from '@hooks/useCarousel';
-import useWindowDimensions from '@hooks/useWindowDimentions';
+import useCarousel from '@hooks/@common/useCarousel';
+import useWindowDimensions from '@hooks/@common/useWindowDimentions';
 
 import BannerImageListItem from './BannerImageListItem';
 import { bannerImages } from './lib/bannerImages';
