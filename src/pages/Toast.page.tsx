@@ -1,4 +1,4 @@
-import ToastTable from "@/components/Toast/ToastTable.component";
+import ToastTable from "@components/Toast/ToastTable.component";
 import { useToast } from "@/hooks/useToast";
 
 const ToastPage = () => {

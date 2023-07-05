@@ -1,8 +1,7 @@
 import { FC } from "react";
-import "@/components/Toast/toast.css";
-import { Toast, useToast } from "@/hooks/useToast";
+import { Toast as ToastType, useToast } from "@/hooks/useToast";
 
-interface ToastProps extends Omit<Toast, "timeout"> {
+interface ToastProps extends Omit<ToastType, "timeout"> {
   index: number;
 }
 

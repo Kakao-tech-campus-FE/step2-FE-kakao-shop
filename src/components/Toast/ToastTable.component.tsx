@@ -1,5 +1,4 @@
 import Toast from "./Toast.component";
-import "@/components/Toast/toast-table.css";
 import { useToast } from "@/hooks/useToast";
 
 const ToastTable = () => {

@@ -1,6 +1,8 @@
-import SignUpForm from "@/components/Form/SignUpForm.component";
+import SignUpForm from "@components/Form/SignUpForm.component";
 import { canPassword, isEmail } from "@/functions/validator";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUp } from "@/store/signSlice";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
@@ -12,6 +14,44 @@ const SignUpPage = () => {
     password: false,
     passwordConfirm: false,
   });
+
+  const dispatch = useDispatch();
+
+  const onSignUp = () =>
+    dispatch(
+      signUp({
+        email,
+        name,
+        password,
+      })
+    );
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    setIsWrongs({
+      email: false,
+      password: false,
+      passwordConfirm: false,
+    });
+
+    if (!isEmail(email)) {
+      setIsWrongs((prev) => Object({ ...prev, email: true }));
+      return;
+    }
+
+    if (!canPassword(password)) {
+      setIsWrongs((prev) => Object({ ...prev, password: true }));
+      return;
+    }
+
+    if (password !== passwordConfirm) {
+      setIsWrongs((prev) => Object({ ...prev, passwordConfirm: true }));
+      return;
+    }
+
+    onSignUp();
+  };
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
@@ -37,32 +77,7 @@ const SignUpPage = () => {
           isWrong: isWrongs.passwordConfirm,
           wrongMessage: "비밀번호가 일치하지 않습니다.",
         }}
-        onSubmit={(e) => {
-          e.preventDefault();
-
-          setIsWrongs({
-            email: false,
-            password: false,
-            passwordConfirm: false,
-          });
-
-          if (!isEmail(email)) {
-            setIsWrongs((prev) => Object.create({ ...prev, email: true }));
-            return;
-          }
-
-          if (!canPassword(password)) {
-            setIsWrongs((prev) => Object.create({ ...prev, password: true }));
-            return;
-          }
-
-          if (password !== passwordConfirm) {
-            setIsWrongs((prev) =>
-              Object.create({ ...prev, passwordConfirm: true })
-            );
-            return;
-          }
-        }}
+        onSubmit={onSubmit}
       />
     </div>
   );

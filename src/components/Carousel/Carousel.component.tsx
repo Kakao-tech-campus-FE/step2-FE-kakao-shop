@@ -1,8 +1,8 @@
 import CarouselItem, {
   CarouselItemProps,
-} from "@/components/Carousel/CarsouelItem.component";
+} from "@components/Carousel/CarsouelItem.component";
 import { FC, useState } from "react";
-import "@/components/Carousel/carousel.css";
+import "@components/Carousel/carousel.css";
 
 interface CarouselProps {
   carouselItems: Omit<CarouselItemProps, "position">[];
