@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
@@ -67,7 +67,7 @@ const LoginForm = () => {
         />
       </div>
 
-      <Button>로그인</Button>
+      <Button color="kakao">로그인</Button>
     </Container>
   );
 };
