@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-decoration: none;
-    letter-spacing: -0.017em;
   }
   
   html, body {
@@ -32,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+
 `;
 
 export default GlobalStyle;
