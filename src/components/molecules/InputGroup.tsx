@@ -9,7 +9,7 @@ interface InputGroupProps {
 
 const InputGroup = ({ inputName, labelName }: InputGroupProps) => {
   return (
-    <div>
+    <div className="flex flex-col space-y-1">
       <Label htmlFor={inputName}>{labelName}</Label>
       <Input type="text" id={inputName} />
     </div>

@@ -4,11 +4,13 @@ import React from 'react';
 
 const RegisterForm = () => {
   return (
-    <div>
+    <div className="space-y-3">
       <InputGroup inputName="email" labelName="email" />
       <InputGroup inputName="password" labelName="password" />
       <InputGroup inputName="username" labelName="username" />
-      <FilledButton>제출</FilledButton>
+      <div className="">
+        <FilledButton>제출</FilledButton>
+      </div>
     </div>
   );
 };
