@@ -1,7 +1,15 @@
 import React from 'react';
+import SubContainer from '../components/atoms/SubContainer';
+import KaKaoLogo from '../components/atoms/KaKaoLogo';
+import LoginForm from '../components/organisms/LoginForm';
 
 const LoginPage = () => {
-  return <div>로그인페이지</div>;
+  return (
+    <SubContainer>
+      <KaKaoLogo />
+      <LoginForm />
+    </SubContainer>
+  );
 };
 
 export default LoginPage;
