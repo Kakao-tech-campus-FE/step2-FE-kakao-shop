@@ -1,0 +1,18 @@
+.check-list {
+
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 0.5rem;
+}
+
+.check-list>button {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+
+.check-list>button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #007bffaa;
+  border-radius: 0.5rem;
+}
