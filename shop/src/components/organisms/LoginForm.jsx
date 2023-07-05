@@ -4,16 +4,39 @@ import Button from "../atoms/Button"
 import useInput from "../../hooks/useInput"
 import { login } from "../../services/api"
 import Title from "../atoms/Title"
+import { useDispatch,userSelector } from "react-redux"
+import { setEmail } from "../../store/slices/userSlice"
 
 const LoginForm = () => {
+  const dispatch = useDispatch()
+  const email = userSelector((state) => state.user.email)
   const {value, handleOnChange} = useInput({
     email:"",
     password:"",
   }) 
   
+  const loginReq = () =>{
+    login({
+      emial: value.email, 
+      password: value.password
+    })
+      .then((res)=>{ //정상 
+        console.log(res)
+        dispatch(
+          setEmail({
+            email: value.email
+          })
+        )
+      })
+      .catch((err)=>{ // 에러 
+        console.log("err",err)
+      })
+  }
+
   return (
     <Container>
       <Title>로그인</Title>
+      <span>{email}</span>
       <InputGroup 
         id="email" 
         type="email" 
@@ -35,10 +58,7 @@ const LoginForm = () => {
       <Button
         onClick={()=>{
           //api 요청 
-          login({
-            email: value.email,
-            password: value.password,
-          })
+          loginReq()
         }}
       >로그인 </Button>
     </Container>
