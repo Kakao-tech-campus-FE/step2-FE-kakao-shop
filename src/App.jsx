@@ -5,13 +5,14 @@ import GlobalStyle from "./styles/GlobalStyle.js";
 
 import routes from "./constants/routes.js";
 import theme from "./styles/theme.js";
+import SignIn from "./pages/SignIn.jsx";
 
 function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path={routes.home} element={<div>home</div>} />
-        <Route path={routes.signIn} element={<div>로그인</div>} />
+        <Route path={routes.signIn} element={<SignIn />} />
         <Route path={routes.signUp} element={<div>회원가입</div>} />
       </Routes>
     </BrowserRouter>
