@@ -1,8 +1,8 @@
 import SignUpForm from "@components/Form/SignUpForm.component";
 import { canPassword, isEmail } from "@/functions/validator";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { signUp } from "@/store/signSlice";
+import { signUp } from "@/store/signAction";
+import { useAppDispatch } from "@/hooks";
 
 const SignUpPage = () => {
   const [email, setEmail] = useState("");
@@ -15,16 +15,11 @@ const SignUpPage = () => {
     passwordConfirm: false,
   });
 
-  const dispatch = useDispatch();
+  // const { error, loading, success, userInfo } = useSelector(
+  //   (state: RootState) => state.signSlice
+  // );
 
-  const onSignUp = () =>
-    dispatch(
-      signUp({
-        email,
-        name,
-        password,
-      })
-    );
+  const dispatch = useAppDispatch();
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -50,7 +45,7 @@ const SignUpPage = () => {
       return;
     }
 
-    onSignUp();
+    dispatch(signUp({ email, name, password }));
   };
 
   return (

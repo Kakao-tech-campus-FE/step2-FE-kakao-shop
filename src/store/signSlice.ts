@@ -1,44 +1,49 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { PayloadAction } from "@reduxjs/toolkit";
+import { checkEmail, signUp } from "@/store/signAction";
 
 interface SignState {
+  loading: boolean;
+  error: string | null;
+  success: boolean;
   isLogin: boolean;
-  email: string;
-  name: string;
-  password: string;
 }
 
 const initialState: SignState = {
-  isLogin: false,
-  email: "",
-  name: "",
-  password: "",
+  isLogin: localStorage.getItem("isLogin") === "true" ? true : false,
+  loading: false,
+  error: null,
+  success: false,
 };
 
 export const signSlice = createSlice({
   name: "sign",
   initialState,
-  reducers: {
-    signIn: (
-      state,
-      action: PayloadAction<{ email: string; password: string }>
-    ) => {
-      state.isLogin = true;
-      state.email = action.payload.email;
-      state.password = action.payload.password;
-    },
-    signUp: (
-      state,
-      action: PayloadAction<{ email: string; name: string; password: string }>
-    ) => {
-      console.log(action.payload);
-
-      state.email = action.payload.email;
-      state.name = action.payload.name;
-      state.password = action.payload.password;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkEmail.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(checkEmail.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(checkEmail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+      })
+      .addCase(signUp.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signUp.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(signUp.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message as string;
+      });
   },
 });
 
-export const { signIn, signUp } = signSlice.actions;
-export default signSlice;
+export default signSlice.reducer;
