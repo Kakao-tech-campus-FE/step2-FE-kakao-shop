@@ -1,0 +1,31 @@
+.toggle-container {
+    display: inline-block;
+    position: relative;
+    width: 70px; 
+    height: 40px;
+    border-radius: 20px;
+    background-color: gray;
+    overflow: hidden;
+    transition: 0.5s;
+}
+.toggle-container.toggle-on {
+    background-color: #5A96E3;
+}
+
+.toggle-circle {
+    display: inline-block;
+    position: absolute;
+    left: 30px;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 10px;
+    font-weight: bold;
+    transition: 0.5s;
+    text-align: center;
+} 
+.toggle-circle.toggle-on {
+    left: 0;
+}

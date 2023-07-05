@@ -1,0 +1,21 @@
+.toast {
+    display: inline-block;
+    position: fixed;
+    bottom: -200px;
+    right: 0;
+    width: 30%;
+    margin: 10px;
+    padding: 0;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    transition: 0.5s ease-in-out;
+    background: linear-gradient(to top, #0A6EBD 50%, #5A96E3, #A1C2F1 100%);
+    opacity: 0.7;
+    visibility: hidden;
+}
+
+.toast-message {
+    font-family: "paybooc-Light", sans-serif;
+    text-align: center;
+}
