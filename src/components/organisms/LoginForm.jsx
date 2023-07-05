@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import { Link } from "react-router-dom";
 import Box from "../atoms/Box";
 import useLoginValidation from "../../hooks/useLoginValidation";
+import useInput from "../../hooks/useInput";
 
 const initialState = { email: "", password: "" };
 
@@ -17,13 +18,9 @@ const ERROR_MSG = {
 export default function LoginForm() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const [form, setForm] = useState(initialState);
+  const [form, handleChange] = useInput(initialState);
   const { error, setError, checkRegex } = useLoginValidation({ form });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({ ...prevForm, [name]: value }));
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
 

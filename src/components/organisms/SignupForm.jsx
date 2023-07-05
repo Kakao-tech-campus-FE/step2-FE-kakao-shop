@@ -1,10 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import useSignupValidation from "../../hooks/useSignupValidation";
+import useInput from "../../hooks/useInput";
 
-const initailState = {
+const initialState = {
   email: "",
   nickname: "",
   password: "",
@@ -26,13 +27,9 @@ export default function SignupForm() {
   const nicknameRef = useRef(null);
   const passwordRef = useRef(null);
   const conformPasswordRef = useRef(null);
-  const [form, setForm] = useState(initailState);
+  const [form, handleChange] = useInput(initialState);
   const { error, setError, checkRegex } = useSignupValidation({ form });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prevForm) => ({ ...prevForm, [name]: value }));
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
