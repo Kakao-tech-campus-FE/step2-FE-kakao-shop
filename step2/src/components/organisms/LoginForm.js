@@ -2,23 +2,22 @@ import useInput from '../../hooks/useInput';
 import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
-import { login } from '../services/api';
 
 const LoginForm = () => {
-  const { value, handleOnChange } = useInput({
-    username: "",
+  const { value, handleOnChange, handleOnClick } = useInput({
+    email: "",
     password: "",
   });
 
   return (
     <Container>
       <InputGroup
-        id="username"
+        id="email"
         type="text"
-        name="username"
-        placeholder="사용자 이름"
-        label="이름"
-        value={value.username}
+        name="email"
+        placeholder="이메일"
+        label="이메일"
+        value={value.email}
         onChange={handleOnChange}
       />
       <InputGroup
@@ -32,10 +31,7 @@ const LoginForm = () => {
       />
       <Button
         onClick={() => {
-        login({
-          username: value.username,
-          password: value.password,
-        });
+          handleOnClick("login", value)
         }}>로그인</Button>
     </Container>
   );

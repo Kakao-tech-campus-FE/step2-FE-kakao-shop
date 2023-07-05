@@ -6,12 +6,11 @@ import GNB from './components/organisms/GNB';
 
 const App = () => {
 
-
   return (
     <BrowserRouter>
       <GNB />
       <Router />
-      {/* <Examples /> */}
+      <Examples />
     </BrowserRouter>
   );
 };

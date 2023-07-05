@@ -2,10 +2,9 @@ import useInput from '../../hooks/useInput';
 import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
-import { signup } from '../services/api';
 
 const SignupForm = () => {
-  const { value, handleOnChange } = useInput({
+  const { value, handleOnChange, handleOnClick } = useInput({
     username: "",
     email: "",
     password: "",
@@ -52,11 +51,7 @@ const SignupForm = () => {
       />
       <Button
         onClick={() => {
-        signup({
-          email: value.email,
-          username: value.username,
-          password: value.password,
-        });
+          handleOnClick("signup", value)
         }}>회원가입</Button>
     </Container>
   );
