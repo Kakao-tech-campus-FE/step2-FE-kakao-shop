@@ -6,6 +6,7 @@ import { PropsWithChildren, InputHTMLAttributes } from 'react';
 import { Input, Label } from '@components/@base';
 
 type Props = {
+  RootClassName?: SerializedStyles;
   LabelClassName?: SerializedStyles;
   InputClassName?: SerializedStyles;
 } & InputHTMLAttributes<HTMLInputElement>;
@@ -14,12 +15,13 @@ const RegularInput = ({
   children,
   id,
   type = 'text',
+  RootClassName,
   LabelClassName,
   InputClassName,
   ...props
 }: PropsWithChildren<Props>) => {
   return (
-    <S.Root>
+    <S.Root css={RootClassName}>
       <Label id={id} css={LabelClassName}>
         {children}
       </Label>
@@ -32,12 +34,12 @@ RegularInput.HiddenLabel = function ({
   children,
   id,
   type = 'text',
+  RootClassName,
   InputClassName,
   ...props
 }: PropsWithChildren<Props>) {
-  console.log(props);
   return (
-    <S.Root>
+    <S.Root css={RootClassName}>
       <Label id={id} css={hideWithA11y}>
         {children}
       </Label>

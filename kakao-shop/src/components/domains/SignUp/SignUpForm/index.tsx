@@ -4,13 +4,19 @@ import { Link } from 'react-router-dom';
 
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
+import EmailCheckForm from '@components/domains/SignUp/EmailCheckForm';
 
 const SignUpForm = () => {
   return (
     <S.Root>
       <S.Container>
+        <EmailCheckForm />
         {data.map(item => (
-          <RegularInput.HiddenLabel key={item.content} placeholder={item.placeholder} css={S.InputStyle}>
+          <RegularInput.HiddenLabel
+            type={item.type}
+            key={item.content}
+            placeholder={item.placeholder}
+            css={S.InputStyle}>
             {item.content}
           </RegularInput.HiddenLabel>
         ))}
@@ -24,10 +30,9 @@ const SignUpForm = () => {
 export default SignUpForm;
 
 const data = [
-  { content: '이메일 (아이디)', placeholder: '이메일' },
-  { content: '이름', placeholder: '이름' },
-  { content: '비밀번호', placeholder: '비밀번호' },
-  { content: '비밀번호 확인', placeholder: '비밀번호 확인' },
+  { content: '이름', placeholder: '이름', type: 'text' },
+  { content: '비밀번호', placeholder: '비밀번호', type: 'password' },
+  { content: '비밀번호 확인', placeholder: '비밀번호 확인', type: 'password' },
 ];
 
 const S = {
@@ -50,6 +55,40 @@ const S = {
     box-sizing: border-box;
     padding: 55px 0 50px;
   `,
+  EmailCheckContainer: styled.div<{ isEmailCheckContainerFocus: boolean }>`
+    margin-bottom: 12px;
+
+    ${({ isEmailCheckContainerFocus }) =>
+      isEmailCheckContainerFocus
+        ? css`
+            border: solid #191919;
+            border-width: 0 0 2px;
+          `
+        : css`
+            border: solid #ccc;
+            border-width: 0 0 2px;
+          `}
+  `,
+  EmailCheckInputStyle: css`
+    position: relative;
+
+    width: 100%;
+    min-height: 45px;
+
+    box-sizing: border-box;
+    padding: 10px 0 6px;
+
+    border: none;
+    background-color: transparent;
+
+    font-size: 18px;
+    line-height: 25px;
+    color: #191919;
+    letter-spacing: 0;
+
+    caret-color: #191919; // input focus 커서 색상
+  `,
+
   InputStyle: css`
     position: relative;
 
