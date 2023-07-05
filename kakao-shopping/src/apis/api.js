@@ -31,7 +31,10 @@ export const register = (data) => {
 
 export const loginApi = (data) => {
   const {email, password} = data;
-  return {
-
-  }
+  return (
+    instance.post("/login", {
+      email,
+      password
+    })
+  )
 }
