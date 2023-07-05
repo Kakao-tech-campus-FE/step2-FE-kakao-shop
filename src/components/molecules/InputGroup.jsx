@@ -1,6 +1,7 @@
 import React from "react";
 import Label from "../atoms/Label";
 import Input from "../atoms/Input";
+import Box from "../atoms/Box";
 
 export default function InputGroup({
   children,
@@ -12,7 +13,7 @@ export default function InputGroup({
   onChange,
 }) {
   return (
-    <div className="flex flex-col">
+    <Box className="flex flex-col">
       <Label htmlFor={id}>{children}</Label>
       <Input
         type={type}
@@ -21,6 +22,6 @@ export default function InputGroup({
         placeholder={placeholder}
         onChange={onChange}
       />
-    </div>
+    </Box>
   );
 }

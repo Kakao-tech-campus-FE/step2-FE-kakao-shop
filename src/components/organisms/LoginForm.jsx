@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import { Link } from "react-router-dom";
+import Box from "../atoms/Box";
 
 const initialState = { email: "", password: "" };
 
@@ -37,14 +38,14 @@ export default function LoginForm() {
       >
         로그인
       </Button>
-      <div className="mt-4">
+      <Box className="mt-4">
         <Link
           to="/signup"
           className="p-1 text-xs font-semibold hover:underline"
         >
           회원가입
         </Link>
-      </div>
+      </Box>
     </form>
   );
 }
