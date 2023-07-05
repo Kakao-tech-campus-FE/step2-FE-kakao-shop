@@ -1,13 +1,16 @@
 {
   "extends": [
     "airbnb",
-    "airbnb-typescript"
+    "airbnb-typescript",
+    "plugin:tailwindcss/recommended"
   ],
   "parserOptions": {
     "project": "./**/tsconfig.json"
   },
   "rules": {
     "import/prefer-default-export": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off"
   }
 }
