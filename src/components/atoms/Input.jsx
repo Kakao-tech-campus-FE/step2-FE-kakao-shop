@@ -1,13 +1,23 @@
 import React from "react";
 
-export default function Input({ type, value, name, placeholder, onChange }) {
+export default function Input({
+  inputRef,
+  type,
+  value,
+  name,
+  placeholder,
+  autoFocus,
+  onChange,
+}) {
   return (
     <input
-      className="w-input mb-4 px-4 py-1 text-lg border rounded-md"
+      ref={inputRef}
+      className="w-input mb-4 px-4 py-1 text-lg border rounded-md outline-none"
       type={type}
       value={value}
       name={name}
       placeholder={placeholder}
+      autoFocus={autoFocus}
       onChange={onChange}
     />
   );

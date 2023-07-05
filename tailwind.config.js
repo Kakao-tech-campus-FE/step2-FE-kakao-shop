@@ -13,6 +13,9 @@ module.exports = {
         before: "1px",
         input: "440px",
       },
+      fontSize: {
+        errorMessage: "13px",
+      },
     },
   },
   plugins: [],

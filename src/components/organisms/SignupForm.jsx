@@ -24,6 +24,7 @@ export default function SignupForm() {
         value={form.email}
         name="email"
         placeholder="이메일"
+        autoFocus={true}
         onChange={handleChange}
       >
         이메일 (아이디)

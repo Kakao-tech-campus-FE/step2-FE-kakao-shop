@@ -10,6 +10,7 @@ export default function InputGroup({
   value,
   name,
   placeholder,
+  autoFocus,
   onChange,
 }) {
   return (
@@ -20,6 +21,7 @@ export default function InputGroup({
         value={value}
         name={name}
         placeholder={placeholder}
+        autoFocus={autoFocus}
         onChange={onChange}
       />
     </Box>
