@@ -1,0 +1,26 @@
+.breadcrumb-items {
+    list-style: none;
+  }
+  
+  .breadcrumb-items li {
+    display: inline-block;
+    font-weight: bold;
+  }
+  
+  .breadcrumb-items li::after {
+    content: " > ";
+  }
+  
+  .breadcrumb-items li:last-child::after {
+    content: "";
+  }
+  
+  .breadcrumb-items a {
+    font-weight: normal;
+    text-decoration: none;
+  }
+  
+  .breadcrumb-items a:hover {
+    text-decoration: underline;
+  }
+  
