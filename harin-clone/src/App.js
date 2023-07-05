@@ -10,16 +10,14 @@ import Navigation from "./Components/Molecules/navigation";
 function App() {
   return (
       <BrowserRouter>
-        <Navigation />
-        <hr />
-        <main>
-          <Routes>          
-              <Route exact path='/mainpage' Component={MainPage} />
+          <Routes>   
+            <Route exact path='/' Component={Navigation}>
+              <Route path='/:mainpage' Component={MainPage} />
               <Route Component={PageNotFound} />
+            </Route>
               <Route path='/loginpage' Component={LoginPage} />
               <Route path='/registerpage' Component={RegisterPage} />
           </Routes>
-        </main>
       </BrowserRouter>  
 
   )

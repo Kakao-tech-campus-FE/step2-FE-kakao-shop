@@ -9,9 +9,9 @@ import Navigation from "../Components/Molecules/navigation";
 const MainPage = ( ) => {
 
   return (
-    <>
+    <div className="text-center p-3 mt-12 font-semibold text-yellow-600">
       메인 페이지에요...
-    </>    
+    </div>    
   )
 
 }

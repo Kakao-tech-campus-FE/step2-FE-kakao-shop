@@ -10,10 +10,12 @@ const Navigation = () => {
   return (
     <>
       <header>
-        <h1 className='text-3xl text-center m-3 p-3'>clone_Kakao</h1>
-        <Link to='/mainpage' className={styleButton}>Main</Link>
-        <Link to='/loginpage' className={styleButton}>Login</Link>
-        <Link to='/registerpage' className={styleButton}>Register</Link>
+        <div className='text-3xl text-center m-3 p-3'>clone_Kakao</div>
+        <div className='flex justify-center mt-12'>
+          <div><Link to='/mainpage' className={styleButton}>Main</Link></div>
+          <div><Link to='/loginpage' className={styleButton}>Login</Link></div>
+          <div><Link to='/registerpage' className={styleButton}>Register</Link></div>
+        </div>
       </header>
       <Outlet />
     </>
