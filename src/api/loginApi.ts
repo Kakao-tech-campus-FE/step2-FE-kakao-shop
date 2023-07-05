@@ -11,7 +11,7 @@ const instance = axios.create({
 });
 
 const login = (data: LoginData) => {
-  const { id, password } = data;
+  const { email, password } = data;
   return instance.post('/login', data);
 };
 
