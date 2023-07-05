@@ -6,8 +6,11 @@ import Button from "../atoms/Button";
 
 import useInput from "../../hooks/useInput";
 import { signup } from "../../services/api";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const [username, setUsername, isValidUsername, usernameMessage] = useInput(
     "",
     (value) => /^[a-zA-Z가-힣]{1,}$/.test(value)
@@ -81,6 +84,7 @@ const SignUpForm = () => {
           disabled={!isFormValid}
           onClick={() => {
             signup({ username, email, password });
+            navigate("/");
           }}
         >
           회원가입

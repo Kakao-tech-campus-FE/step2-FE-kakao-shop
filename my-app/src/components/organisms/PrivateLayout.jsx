@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import Title from "../atoms/Title";
-import Nav from "../molecules/Nav";
+import PrivateNav from "../molecules/PrivateNav";
 
 const Header = styled.header`
   position: sticky;
@@ -14,13 +14,13 @@ const Header = styled.header`
   align-items: center;
 `;
 
-const GlobalNavBar = () => {
+const PrivateLayout = () => {
   return (
     <Header>
       <Title>글로벌 내비게이션 바</Title>
-      <Nav />
+      <PrivateNav />
     </Header>
   );
 };
 
-export default GlobalNavBar;
+export default PrivateLayout;

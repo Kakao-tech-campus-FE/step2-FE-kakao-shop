@@ -1,16 +1,16 @@
 import { styled } from "styled-components";
-import GlobalNavBar from "../organisms/GlobalNavBar";
+import PrivateLayout from "../organisms/PrivateLayout";
+import PublicLayout from "../organisms/PublicLayout";
+import { useSelector } from "react-redux";
 
 const Box = styled.div`
   height: 3000px;
 `;
 
 const HomePage = () => {
-  return (
-    <Box>
-      <GlobalNavBar />
-    </Box>
-  );
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  return <Box>{isLoggedIn ? <PrivateLayout /> : <PublicLayout />}</Box>;
 };
 
 export default HomePage;

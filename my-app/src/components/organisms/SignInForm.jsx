@@ -4,9 +4,15 @@ import Title from "../atoms/Title";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { signin } from "../../services/api";
+
+import { useDispatch } from "react-redux";
+import { signinRequest } from "../../store/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const [email, setEmail, isValidEmail, emailMessage] = useInput("", (value) =>
     /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/.test(value)
   );
@@ -45,7 +51,8 @@ const SignInForm = () => {
         <Button
           disabled={!isFormValid}
           onClick={() => {
-            signin({ email, password });
+            dispatch(signinRequest({ email, password }));
+            navigate("/");
           }}
         >
           로그인

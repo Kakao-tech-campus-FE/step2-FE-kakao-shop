@@ -3,8 +3,10 @@ import SignInPage from "./components/pages/SignInPage";
 import HomePage from "./components/pages/HomePage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { checkTokenExpiration } from "./store/slices/userSlice";
 
 function App() {
+  checkTokenExpiration();
   return (
     <BrowserRouter>
       <Routes>
