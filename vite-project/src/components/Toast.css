@@ -1,0 +1,14 @@
+.toast-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 9999;
+}
+.toast-message {
+  margin-bottom: 5px;
+}
