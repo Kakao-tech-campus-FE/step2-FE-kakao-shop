@@ -2,8 +2,6 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useinput";
-import { useEffect } from "react";
-//api.js에서 register를 가져
 import { login } from "../../services/api";
 import Title from "../atoms/Title";
 
@@ -20,7 +18,7 @@ const LoginForm = () => {
         id="email"
         type="email"
         name="email"
-        placeholder="이메일(아이디)를 입력하세요"
+        placeholder="카카오톡메일 아이디, 이메일, 전화번호"
         label="이메일 "
         value={value.email}
         onChange={handleOnChange}
@@ -29,7 +27,7 @@ const LoginForm = () => {
         id="password"
         type="password"
         name="password"
-        placeholder="********"
+        placeholder="비밀번호"
         label="비밀번호 "
         value={value.password}
         onChange={handleOnChange}
@@ -43,7 +41,7 @@ const LoginForm = () => {
           });
         }}
       >
-        회원가입
+        로그인
       </Button>
     </Container>
   );

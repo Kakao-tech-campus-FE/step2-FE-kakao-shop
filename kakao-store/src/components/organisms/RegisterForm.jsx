@@ -5,6 +5,7 @@ import useInput from "../../hooks/useinput";
 import { useEffect } from "react";
 //api.js에서 register를 가져옴
 import { register } from "../../services/api";
+import Title from "../atoms/Title";
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -26,6 +27,7 @@ const RegisterForm = () => {
 
   return (
     <Container>
+      <Title>회원가입</Title>
       <InputGroup
         id="username"
         type="text"
