@@ -1,8 +1,9 @@
+import LogInForm from "../components/organisms/LogInForm.js";
+
 export default function LogIn() {
   return (
     <>
-      <h1>LogIn</h1>
+      <LogInForm />
     </>
   );
 }
-;
