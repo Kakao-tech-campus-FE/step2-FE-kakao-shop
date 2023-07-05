@@ -1,7 +1,53 @@
-// import Input from '../atoms/Input';
-// import Button from '../atoms/Button';
+import Container from '../atoms/Container';
+import Title from '../atoms/Title';
+import useInput from '../../hooks/useInput';
+import InputGroup from '../molecules/InputGroup';
+import Button from '../atoms/Button';
+import { login } from '../../services/api';
 
-// const LoginForm = () => {
+const LoginForm = () => {
+  const { value, handleOnChange } = useInput({
+    email: '',
+    password: '',
+  });
+
+  return (
+    <Container>
+      <Title>로그인</Title>
+      <InputGroup
+        id="email"
+        name="email"
+        type="email"
+        value={value.email}
+        onChange={handleOnChange}
+        placeholder="이메일"
+        className="border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md"
+        label="이메일"
+      />
+      <InputGroup
+        id="password"
+        name="password"
+        type="password"
+        value={value.password}
+        onChange={handleOnChange}
+        placeholder="비밀번호"
+        className="border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md"
+        label="비밀번호"
+      />
+      <Button
+        onClick={() => {
+          // api 로그인 요청
+          login({
+            email: value.email,
+            password: value.password,
+          });
+        }}
+      >
+        로그인
+      </Button>
+    </Container>
+  );
+};
 //   return (
 //     <div className="flex justify-center items-center min-h-screen">
 //       <div className="max-w-md w-full">
@@ -33,4 +79,4 @@
 //   );
 // };
 
-// export default LoginForm;
+export default LoginForm;

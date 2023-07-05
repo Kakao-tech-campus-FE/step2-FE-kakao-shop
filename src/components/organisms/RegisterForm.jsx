@@ -21,7 +21,7 @@ const RegisterForm = () => {
         value={value.username}
         onChange={handleOnChange}
         placeholder="사용자 이름"
-        className="border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md"
+        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
         label="이름"
       />
       <InputGroup

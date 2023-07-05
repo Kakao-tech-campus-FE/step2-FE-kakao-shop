@@ -2896,11 +2896,6 @@ axobject-query@^3.1.1:
   dependencies:
     dequal "^2.0.3"
 
-axois@^0.0.1-security:
-  version "0.0.1-security"
-  resolved "https://registry.npmjs.org/axois/-/axois-0.0.1-security.tgz"
-  integrity sha512-8Nui4fwwyxHfjAfpDlg3Jt66EJA4i1D1eJch3D+wM/Oe+qhpyp7yfiszko/O5/adYu20wc37RG9/Eg8QIJHcvA==
-
 babel-jest@^27.4.2, babel-jest@^27.5.1:
   version "27.5.1"
   resolved "https://registry.npmjs.org/babel-jest/-/babel-jest-27.5.1.tgz"

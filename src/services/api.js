@@ -8,6 +8,15 @@ const instance = axios.create({
   },
 });
 
+instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers['Authorization'] = `${token}`;
+  }
+  return config;
+});
+
+// middleware
 instance.interceptors.response.use(
   (response) => {
     return console.log(response.data);
@@ -21,4 +30,9 @@ export const register = (data) => {
   const { email, password, username } = data;
   // console.log('Request URL:', instance.defaults.baseURL + '/join');
   return instance.post('/join', { email, password, username });
+};
+
+export const login = (data) => {
+  const { email, password } = data;
+  return instance.post('/login', { email, password });
 };
