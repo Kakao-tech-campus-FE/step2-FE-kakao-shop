@@ -3,26 +3,22 @@ import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import { Link } from "react-router-dom";
 import Box from "../atoms/Box";
+import useLoginValidation from "../../hooks/useLoginValidation";
 
 const initialState = { email: "", password: "" };
-
-const EMAIL_REGEX = new RegExp(
-  "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-);
-const PW_REGEX = new RegExp("^[a-zA-Z0-9]{8,16}$");
 
 const ERROR_MSG = {
   requiredEmail: "이메일을 입력해 주세요.",
   requiredPw: "비밀번호를 입력해 주세요.",
   invalidEmail: "이메일을 정확하게 입력해 주세요.",
-  invalidPw: "비밀번호가 올바르지 않습니다.(8~16자/영문자/숫자)",
+  invalidPw: "비밀번호가 올바르지 않습니다.(8~20자/영문자/숫자/특수문자)",
 };
 
 export default function LoginForm() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
-  const [error, setError] = useState("");
   const [form, setForm] = useState(initialState);
+  const { error, setError, checkRegex } = useLoginValidation({ form });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,28 +26,11 @@ export default function LoginForm() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errorResult = checkRegex();
+
+    const [errorResult, formType] = checkRegex();
     setError(errorResult);
-  };
-
-  const checkRegex = () => {
-    const { email, password } = form;
-
-    if (email.length === 0) {
-      emailRef.current.focus();
-      return "requiredEmail";
-    } else if (!EMAIL_REGEX.test(email)) {
-      emailRef.current.focus();
-      return "invalidEmail";
-    } else if (password.length === 0) {
-      passwordRef.current.focus();
-      return "requiredPw";
-    } else if (!PW_REGEX.test(password)) {
-      passwordRef.current.focus();
-      return "invalidPw";
-    } else {
-      return true;
-    }
+    if (formType === "email") emailRef.current.focus();
+    else if (formType === "password") passwordRef.current.focus();
   };
 
   return (

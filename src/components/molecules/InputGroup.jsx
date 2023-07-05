@@ -5,6 +5,7 @@ import Box from "../atoms/Box";
 
 export default function InputGroup({
   children,
+  inputRef,
   id,
   type,
   value,
@@ -17,6 +18,8 @@ export default function InputGroup({
     <Box className="flex flex-col">
       <Label htmlFor={id}>{children}</Label>
       <Input
+        inputRef={inputRef}
+        id={id}
         type={type}
         value={value}
         name={name}

@@ -2,6 +2,7 @@ import React from "react";
 
 export default function Input({
   inputRef,
+  id,
   type,
   value,
   name,
@@ -12,6 +13,7 @@ export default function Input({
   return (
     <input
       ref={inputRef}
+      id={id}
       className="w-input mb-4 px-4 py-1 text-lg border rounded-md outline-none"
       type={type}
       value={value}
