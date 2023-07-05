@@ -1,10 +1,14 @@
-import InputGroup from "../components/molecules/InputGroup";
+import LoginForm from "../components/organisms/LoginForm";
 
 const LoginPage = () => {
   return (
     <div>
-      <image src="/logoKakaoText.png" alt="kakao" />
-      <InputGroup id="email" type="email" placeholder="이메일" label="이메일" />
+      <img
+        src="/logoKakaoText.png"
+        alt="kakao-shopping"
+        className="w-32 mx-auto mt-32 mb-10"
+      />
+      <LoginForm />
     </div>
   );
 };
