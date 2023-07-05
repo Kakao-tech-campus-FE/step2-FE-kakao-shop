@@ -3,17 +3,26 @@ import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";
 
-export default function LogInForm() {
+export default function SignUpForm() {
   return (
     <Container>
       <LabeledInput
-        type="text"
-        id="id"
+        type="email"
+        id="email"
         onChange={(e) => {
           console.log(e.target.value);
         }}
         label="이메일"
         placeholder="이메일"
+      />
+      <LabeledInput
+        type="text"
+        id="name"
+        onChange={(e) => {
+          console.log(e.target.value);
+        }}
+        label="이름"
+        placeholder="이름"
       />
       <LabeledInput
         type="password"
@@ -24,13 +33,15 @@ export default function LogInForm() {
         label="비밀번호"
         placeholder="비밀번호"
       />
-      <Button
-        onClick={(e) => {
-          console.dir(e.target.innerHTML);
+      <LabeledInput
+        type="password"
+        id="confirmPw"
+        onChange={(e) => {
+          console.log(e.target.value);
         }}
-      >
-        로그인
-      </Button>
+        label="비밀번호 확인"
+        placeholder="비밀번호 확인"
+      />
       <Button
         onClick={(e) => {
           console.dir(e.target.innerHTML);
