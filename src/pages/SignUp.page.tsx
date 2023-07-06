@@ -1,6 +1,6 @@
 import SignUpForm from "@components/Form/SignUpForm.component";
 import { canPassword, isEmail } from "@/functions/validator";
-import { useAppDispatch, useAppSelector } from "@/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
 import {
   setEmail,
@@ -65,6 +65,8 @@ const SignUpPage = () => {
       dispatch(setWarning({ ...resetWarning, response: true }));
       return;
     }
+
+    location.href = "/";
   };
 
   return (
