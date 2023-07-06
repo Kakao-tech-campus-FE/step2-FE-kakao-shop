@@ -5,7 +5,5 @@ import ImageLink from "../molecules/ImageLink.js";
 import logoKakaoText from "../../assets/images/icon/logoKakaoText.png";
 
 export default function KakaoLink() {
-  return (
-    <ImageLink to="/" src={logoKakaoText} alt="logoKakaoText"/>
-  );
+  return <ImageLink to="/" src={logoKakaoText} alt="logoKakaoText" />;
 }

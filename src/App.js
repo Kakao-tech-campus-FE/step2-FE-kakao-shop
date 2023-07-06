@@ -19,7 +19,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Test />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/" element={<Products />} />
@@ -27,6 +26,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
           <Route path="/result/:orderId" element={<Result />} />
+          <Route path="/test" element={<Test />} />
           {/* 잘못된 경로 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
