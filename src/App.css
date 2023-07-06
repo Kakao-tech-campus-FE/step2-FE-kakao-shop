@@ -1,0 +1,19 @@
+.box {
+  width: 300px;
+}
+
+input {
+  height: 20px;
+  width: 300px;
+}
+
+.container{
+  position: fixed;
+  margin-top: 150px;
+  margin-left: 450px;
+}
+
+button {
+  position: relative;
+  bottom: -20px;
+}
