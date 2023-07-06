@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import useFocus from "../../hooks/useFocus";
+import useInput from "../../hooks/useInput";
 
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
@@ -9,8 +10,10 @@ import Container from "../atoms/Container";
 import Link from "../atoms/Link";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { value, handleOnChange } = useInput({
+    email: "",
+    password: "",
+  });
 
   const [isEmailFocus, onFocusEmail, onBlurEmail] = useFocus();
   const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
@@ -24,17 +27,17 @@ const LoginForm = () => {
       <InputGroup
         id="email"
         type="email"
-        value={email}
+        value={value.email}
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         label=""
         className={`${inputBoxStyle} ${
           isEmailFocus ? "border-black" : "border-gray-300"
         }`}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={handleOnChange}
         onFocus={onFocusEmail}
         onBlur={onBlurEmail}
       />
-      {(isEmailFocus || email) && (
+      {(isEmailFocus || value.email) && (
         <p className="text-xs mb-5">
           <span className="text-red-500 font-bold">TIP</span> 카카오메일이
           있다면 메일 아이디만 입력해 보세요.
@@ -44,13 +47,13 @@ const LoginForm = () => {
       <InputGroup
         id="password"
         type="password"
-        value={password}
+        value={value.password}
         placeholder="비밀번호"
         label=""
         className={`${inputBoxStyle} ${
           isPasswordFocus ? "border-black" : "border-gray-300"
         }`}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={handleOnChange}
         onFocus={onFocusPassword}
         onBlur={onBlurPassword}
       />
