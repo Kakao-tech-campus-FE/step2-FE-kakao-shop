@@ -22,7 +22,6 @@ const RegisterForm = () => {
   const [errors, setErrors] = useState([]);
 
   const handleRegister = () => {
-    // const validationErrors = validateForm(value);
     const validationErrors = validateForm(value);
 
     if (!validationErrors) {

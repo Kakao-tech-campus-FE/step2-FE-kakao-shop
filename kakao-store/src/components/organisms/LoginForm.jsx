@@ -3,13 +3,20 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useinput";
 import Title from "../atoms/Title";
+import logo from "../../images/logoKakaoText.png";
+
 import { login } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { validateForm } from "../atoms/VaildationLogin";
 import { useState } from "react";
-import logo from "../../images/logoKakaoText.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setEmailandPassword } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user.email); // user 안에 email에 접근
+  const password = useSelector((state) => state.user.password); // user 안에 password에 접근
+
   const navigate = useNavigate();
 
   const { value, handleOnChange } = useInput({
@@ -18,12 +25,31 @@ const LoginForm = () => {
   });
   const [errors, setErrors] = useState([]);
 
+  const loginreq = () => {
+    login({
+      email: value.email,
+      password: value.password,
+    })
+      .then((res) => {
+        // 정상
+        console.log(res);
+        dispatch(
+          setEmailandPassword({
+            email: value.email,
+            password: value.password,
+          })
+        );
+      })
+      .catch((err) => {
+        // 에러
+        console.log(err);
+      });
+  };
   const handleRegister = () => {
-    // const validationErrors = validateForm(value);
     const validationErrors = validateForm(value);
 
     if (!validationErrors) {
-      login({
+      loginreq({
         email: value.email,
         password: value.password,
       });
@@ -36,6 +62,8 @@ const LoginForm = () => {
     <Container>
       <Title>
         <img src={logo} alt="logo" />
+        <span>{email}</span>
+        <span>{password}</span>
       </Title>
 
       <InputGroup

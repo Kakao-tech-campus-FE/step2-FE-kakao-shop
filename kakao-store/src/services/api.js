@@ -26,17 +26,17 @@ instance.interceptors.response.use(
   (error) => {
     if (error.response.status === 400) {
       localStorage.removeItem('token');
-      
-      window.location.href = '/signup';
       console.log(error.response.data.error.message);
+      //window.location.href = '/signup';
       return Promise.resolve();
     }
-    // if (error.response.status === 401) {
-    //   localStorage.removeItem('token');
-    //   window.location.href = '/login';
-    //   return Promise.resolve();
-    // }
-    // return Promise.reject(error.response);
+    if (error.response.status === 401) {
+      localStorage.removeItem('token');
+      console.log(error.response.data.error.message);
+      //window.location.href = '/login';
+      return Promise.resolve();
+    }
+    return Promise.reject(error.response);
   }
 );
 
