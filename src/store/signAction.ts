@@ -81,7 +81,6 @@ export const signIn = createAsyncThunk(
           "Authorization",
           response.headers.get("Authorization")?.split("Bearer ")[1] ?? ""
         );
-        localStorage.set("isLogin", true);
       }
 
       return thunkAPI.fulfillWithValue(resData.success);

@@ -7,10 +7,11 @@ import SignInPage from "@/pages/SignIn.page";
 import SignUpPage from "@/pages/SignUp.page";
 import Toast from "@/pages/Toast.page";
 import TogglePage from "@/pages/Toggle.page";
+import HomePage from "@/pages/Home.page";
 
 const router = createBrowserRouter([
   {
-    element: <h1>hello world</h1>,
+    element: <HomePage />,
     path: "/",
   },
   {

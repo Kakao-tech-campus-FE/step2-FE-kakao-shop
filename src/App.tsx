@@ -4,15 +4,13 @@ import ErrorBoundary from "@components/common/ErrorBoundray.component";
 import { Provider } from "react-redux";
 import store from "@/store";
 import { useEffect } from "react";
-import { jwtDecode } from "@/functions/jwt";
+import { isExpired } from "@/functions/jwt";
 import { localStorage } from "@/functions/localstorage";
 
 const App = () => {
   useEffect(() => {
-    const jwtPayload = jwtDecode(localStorage.get("Authorization") ?? "");
-    if (jwtPayload && jwtPayload.exp < Date.now() / 1000) {
+    if (isExpired(localStorage.get("Authorization") ?? "")) {
       localStorage.remove("Authorization");
-      localStorage.remove("isLogin");
     }
   }, []);
 

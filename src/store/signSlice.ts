@@ -5,12 +5,14 @@ import {
   SignInResDto,
   SignUpResDto,
 } from "@/dtos/response.dto";
+import { isExpired } from "@/functions/jwt";
+import { localStorage } from "@/functions/localstorage";
 
 interface SignInState {
   loading: boolean;
   error: string | null;
   success: boolean;
-  isLogin: boolean;
+  isSignIn: boolean;
   isWarning: {
     email: boolean;
     password: boolean;
@@ -26,7 +28,7 @@ interface SignInState {
 }
 
 const initialState: SignInState = {
-  isLogin: localStorage.getItem("isLogin") === "true" ? true : false,
+  isSignIn: !isExpired(localStorage.get("Authorization") ?? ""),
   isWarning: {
     email: false,
     password: false,
@@ -74,6 +76,9 @@ export const signSlice = createSlice({
     ) => {
       state.isWarning = action.payload;
     },
+    setSignOut: (state) => {
+      state.isSignIn = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -106,6 +111,7 @@ export const signSlice = createSlice({
       .addCase(signIn.fulfilled, (state) => {
         state.loading = false;
         state.success = true;
+        state.isSignIn = true;
       })
       .addCase(signIn.rejected, (state, action) => {
         state.loading = false;
@@ -121,6 +127,7 @@ export const {
   setPasswordConfirm,
   setUsername,
   setWarning,
+  setSignOut,
 } = signSlice.actions;
 
 export default signSlice.reducer;

@@ -6,3 +6,12 @@ export const jwtDecode = (token: string): JwtPayload => {
     return { exp: 0, id: 0, role: "", sub: "" };
   }
 };
+
+export const isExpired = (token: string): boolean => {
+  try {
+    const decoded = jwtDecode(token);
+    return decoded.exp < Date.now() / 1000;
+  } catch (error) {
+    return true;
+  }
+};
