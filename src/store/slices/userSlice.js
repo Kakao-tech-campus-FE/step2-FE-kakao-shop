@@ -3,9 +3,10 @@ import { login } from "../../services/api";
 
 const initialState = {
   email: null,
-  loading: false, // 요청을 보냈을 때는 true, 아닌 경우: 요청이 없었거나, 실패했거나 성공했을 때 false
-  error: null, // 에러가 있는 경우 error.message 담는다.
+  loading: false,
+  error: null,
   token: null,
+  isLoggedIn: false,
 };
 
 const userSlice = createSlice({
@@ -14,6 +15,11 @@ const userSlice = createSlice({
   reducers: {
     setEmail: (state, action) => {
       state.email = action.payload.email;
+    },
+    logout: (state, action) => {
+      state.email = null;
+      state.token = null;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {
@@ -25,6 +31,7 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       localStorage.setItem("token", action.payload.token);
       state.token = action.payload.token;
+      state.isLoggedIn = true;
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
@@ -46,14 +53,13 @@ export const loginRequest = createAsyncThunk(
     if (typeof password !== "string") {
       throw new Error("비밀번호 형식이 올바르지 않습니다.");
     }
-
     return {
       email: email,
-      token: response.headers.authorization,
+      token: response.token,
     };
   }
 );
 
-export const { setEmail } = userSlice.actions;
+export const { setEmail, logout } = userSlice.actions;
 
 export default userSlice.reducer;

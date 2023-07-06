@@ -4,6 +4,8 @@ import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import { register } from "../../services/api";
 import { useState } from "react";
+import Title from "../atoms/Title";
+import Gnb from "../molecules/Gnb";
 
 const RegisterForm = () => {
   const [nameError, setNameError] = useState("");
@@ -41,14 +43,18 @@ const RegisterForm = () => {
     }
   };
 
+  const validateName = (name) => {
+    if (!name) {
+      return "사용자 이름을 입력하세요.";
+    }
+    return "";
+  };
+
   const handleNameBlur = (event) => {
     const name = event.target.value;
     handleOnChange(event);
-    if (!name) {
-      setNameError("사용자 이름을 입력하세요.");
-    } else {
-      setNameError("");
-    }
+    const nameError = validateName(name);
+    setNameError(nameError);
   };
 
   const handleEmailBlur = () => {
@@ -78,71 +84,83 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container>
-      <InputGroup
-        id="username"
-        name="username"
-        type="text"
-        value={value.username}
-        onChange={handleOnChange}
-        placeholder="사용자 이름"
-        className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-          nameError ? "border-red-500" : ""
-        }`}
-        label="이름"
-        error={nameError}
-        onBlur={handleNameBlur}
-      />
-      {nameError && <p className="text-red-500 mb-2">{nameError}</p>}
-      <InputGroup
-        id="email"
-        name="email"
-        type="email"
-        value={value.email}
-        onChange={handleOnChange}
-        placeholder="이메일"
-        className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-          emailError ? "border-red-500" : ""
-        }`}
-        label="이메일(아이디)"
-        error={emailError}
-        onBlur={handleEmailBlur}
-      />
-      {emailError && <p className="text-red-500 mb-2">{emailError}</p>}
-      <InputGroup
-        id="password"
-        name="password"
-        type="password"
-        value={value.password}
-        onChange={handleOnChange}
-        placeholder="비밀번호"
-        className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-          passwordError ? "border-red-500" : ""
-        }`}
-        label="비밀번호"
-        error={passwordError}
-        onBlur={handlePasswordBlur}
-      />
-      {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
-      <InputGroup
-        id="passwordConfirm"
-        name="passwordConfirm"
-        type="password"
-        value={value.passwordConfirm}
-        onChange={handleOnChange}
-        placeholder="비밀번호 확인"
-        className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-          passwordConfirmError ? "border-red-500" : ""
-        }`}
-        label="비밀번호 확인"
-        error={passwordConfirmError}
-        onBlur={handlePasswordConfirmBlur}
-      />
-      {passwordConfirmError && (
-        <p className="text-red-500 mb-2">{passwordConfirmError}</p>
-      )}
-      <Button onClick={handleRegister}>회원가입</Button>
-    </Container>
+    <div className="mt-32">
+      <Title>
+        <Gnb />
+      </Title>
+      <Container>
+        <InputGroup
+          id="username"
+          name="username"
+          type="text"
+          value={value.username}
+          onChange={handleOnChange}
+          placeholder="사용자 이름"
+          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
+            nameError ? "border-red-500" : ""
+          }`}
+          label="이름"
+          error={nameError}
+          onBlur={handleNameBlur}
+        />
+        {nameError && <p className="text-red-500 mb-2">{nameError}</p>}
+        <InputGroup
+          id="email"
+          name="email"
+          type="email"
+          value={value.email}
+          onChange={handleOnChange}
+          placeholder="이메일"
+          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
+            emailError ? "border-red-500" : ""
+          }`}
+          label="이메일(아이디)"
+          error={emailError}
+          onBlur={handleEmailBlur}
+        />
+        {emailError && <p className="text-red-500 mb-2">{emailError}</p>}
+        <InputGroup
+          id="password"
+          name="password"
+          type="password"
+          value={value.password}
+          onChange={handleOnChange}
+          placeholder="비밀번호"
+          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
+            passwordError ? "border-red-500" : ""
+          }`}
+          label="비밀번호"
+          error={passwordError}
+          onBlur={handlePasswordBlur}
+        />
+        {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
+        <InputGroup
+          id="passwordConfirm"
+          name="passwordConfirm"
+          type="password"
+          value={value.passwordConfirm}
+          onChange={handleOnChange}
+          placeholder="비밀번호 확인"
+          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
+            passwordConfirmError ? "border-red-500" : ""
+          }`}
+          label="비밀번호 확인"
+          error={passwordConfirmError}
+          onBlur={handlePasswordConfirmBlur}
+        />
+        {passwordConfirmError && (
+          <p className="text-red-500 mb-2">{passwordConfirmError}</p>
+        )}
+      </Container>
+      <div className="text-center">
+        <Button
+          onClick={handleRegister}
+          className="inline-block border border-solid border-amber-300 rounded-md p-4 mb-4 bg-amber-300 shadow-md"
+        >
+          회원가입
+        </Button>
+      </div>
+    </div>
   );
 };
 

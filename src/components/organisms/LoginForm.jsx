@@ -3,93 +3,110 @@ import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-// import { login } from "../../services/api";
+import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import Gnb from "../molecules/Gnb";
 
 const LoginForm = () => {
-  const dispatch = useDispatch();
-  const email = useSelector((state) => state.user.email);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const { value, handleOnChange } = useInput({
+  const dispatch = useDispatch();
+
+  const { value, handleOnChange, reset } = useInput({
     email: "",
     password: "",
   });
 
-  // const loginReq = () => {
-  //   loginRequest();
-  // };
+  const handleLogin = async () => {
+    try {
+      dispatch(
+        loginRequest({
+          email: value.email,
+          password: value.password,
+        })
+      );
+      reset();
+    } catch {
+      console.log("login fail....");
+    }
+  };
+
+  const validateValue = (value, validationRegex, errorMessage) => {
+    if (!validationRegex.test(value)) {
+      return errorMessage;
+    }
+    return "";
+  };
+
+  const handleEmailBlur = () => {
+    const emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
+    const errorMessage = "유효한 이메일을 입력해주세요. (예: kakao@kakao.com)";
+    const emailError = validateValue(value.email, emailRegex, errorMessage);
+    setEmailError(emailError);
+  };
+
+  const handlePasswordBlur = () => {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,20}$/;
+    const errorMessage =
+      "비밀번호는 영문, 숫자, 특수문자를 포함하고, 공백 없이 8~20자여야 합니다.";
+    const passwordError = validateValue(
+      value.password,
+      passwordRegex,
+      errorMessage
+    );
+    setPasswordError(passwordError);
+  };
 
   return (
-    <Container>
-      <Title>로그인</Title>
-      <span>{email}</span>
-      <InputGroup
-        id="email"
-        name="email"
-        type="email"
-        value={value.email}
-        onChange={handleOnChange}
-        placeholder="이메일"
-        className="border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md"
-        label="이메일"
-      />
-      <InputGroup
-        id="password"
-        name="password"
-        type="password"
-        value={value.password}
-        onChange={handleOnChange}
-        placeholder="비밀번호"
-        className="border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md"
-        label="비밀번호"
-      />
-      <Button
-        onClick={() => {
-          // api 로그인 요청
-          // loginReq();
-          dispatch(
-            loginRequest({
-              email: value.email,
-              password: value.password,
-            })
-          );
-        }}
-      >
-        로그인
-      </Button>
-    </Container>
+    <div className="mt-32">
+      <Title>
+        <Gnb />
+      </Title>
+      <Container>
+        <InputGroup
+          id="email"
+          name="email"
+          type="email"
+          value={value.email}
+          onChange={handleOnChange}
+          placeholder="이메일"
+          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
+            emailError ? "border-red-500" : ""
+          }`}
+          label="이메일(아이디)"
+          error={emailError}
+          onBlur={handleEmailBlur}
+        />
+        {emailError && <p className="text-red-500 mb-2">{emailError}</p>}
+        <InputGroup
+          id="password"
+          name="password"
+          type="password"
+          value={value.password}
+          onChange={handleOnChange}
+          placeholder="비밀번호"
+          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
+            passwordError ? "border-red-500" : ""
+          }`}
+          label="비밀번호"
+          error={passwordError}
+          onBlur={handlePasswordBlur}
+        />
+        {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
+      </Container>
+      <div className="text-center">
+        <Button
+          onClick={handleLogin}
+          className="inline-block border border-solid border-amber-300 rounded-md p-4 mb-4 bg-amber-300 shadow-md"
+        >
+          로그인
+        </Button>
+      </div>
+    </div>
   );
 };
-//   return (
-//     <div className="flex justify-center items-center min-h-screen">
-//       <div className="max-w-md w-full">
-//         <div className="mb-4">
-//           <label className="block text-gray-700"></label>
-//           <Input
-//             type="email"
-//             placeholder="이메일"
-//             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label className="block text-gray-700"></label>
-//           <Input
-//             type="password"
-//             placeholder="비밀번호"
-//             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
-//           />
-//         </div>
-//         <div>
-//           <button className="w-full px-4 py-2 bg-yellow-300 rounded-md focus:outline-none">
-//             로그인
-//           </button>
-//           <button className="px-3 py-4 text-zinc-900 text-xs focus:outline-none">회원가입</button>
-//           <Button onClick={() => {}}>로그인</Button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
 
 export default LoginForm;

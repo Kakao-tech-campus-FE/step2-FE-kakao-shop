@@ -1,15 +1,23 @@
 import { configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
+import { combineReducers } from "redux";
 import userReducer from "./slices/userSlice";
-// import productReducer from "./slices/productSlice";
-// import createSagaMiddleware from "redux-saga";
 
-const store = configureStore({
-  reducer: {
-    // User reducer: email
-    user: userReducer,
-    // Products reducer: products
-    // product: productReducer,
-  },
+const rootReducer = combineReducers({
+  user: userReducer,
 });
 
-export default store;
+const persistConfig = {
+  key: "root",
+  storage,
+  whitelist: ["user"],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
+});
