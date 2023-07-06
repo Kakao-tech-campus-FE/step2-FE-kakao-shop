@@ -6,7 +6,8 @@
       "@components/*": ["src/components/*"],
       "@router/*": ["src/router/*"],
       "@assets/*": ["src/assets/*"],
-      "@api/*": ["src/api/*"]
+      "@api/*": ["src/api/*"],
+      "@hooks/*": ["src/hooks/*"]
     }
   }
 }
