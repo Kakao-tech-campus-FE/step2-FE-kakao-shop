@@ -1,17 +1,16 @@
 import { useState } from "react";
 
 const useInput = (initialValue) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(initialValue);
 
   const handleOnChange = (e) => {
-    setLoading(true);
     const { name, value } = e.target;
-    setValue({ ...value, [name]: value });
-    setLoading(false);
+    setValue((prev) => ({...prev, [name]: value}));
+    // setLoading(false);
   };
-  const handleOnClick = () => {};
-  return { value, handleOnChange, handleOnClick, loading };
+  // const handleOnClick = () => {};
+  return [ value, handleOnChange ];
 };
 
 export default useInput;
