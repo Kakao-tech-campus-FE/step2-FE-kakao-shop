@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<Title>어서오십쇼</Title>} />
+        <Route path="/" element={<Title>메인 페이지</Title>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/carousel" element={<Carousel />} />

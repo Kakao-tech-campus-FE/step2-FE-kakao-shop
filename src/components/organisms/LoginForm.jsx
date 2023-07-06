@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import { register, login } from "../../services/api";
+import { login } from "../../services/api";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest, setEmail } from "../../store/slices/userSlice";
-import useInputError from "../../hooks/useInputError";
+import { setEmail } from "../../store/slices/userSlice";
+import { useNavigate } from 'react-router-dom'
+// import useInputError from "../../hooks/useInputError";
 
 const LoginForm = () => {
   // global state 변경할 때
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // global state 가져올 때
   // state는 /src/store/index.js 안에 선언된 state임
@@ -22,15 +24,37 @@ const LoginForm = () => {
     password: "",
   });
 
-  const { errorMsg, handleOnBlur } = useInputError("");
+  // const { errorMsg, handleOnBlur } = useInputError("");
+  const [errorMsg, setErrorMsg] = useState("");
+  
+  const [loginState, setLoginState] = useState(false);
+
+  const loginReq = () => {
+    login({
+      email: value.email,
+      password: value.password,
+    })
+      // 정상적인 로그인 시
+      .then((res) => {
+        dispatch(
+          setEmail({
+            email: value.email,
+          })
+        );
+        setLoginState(true);
+        navigate("/");
+      })
+      // 에러 났을 시
+      .catch((error) => {
+        setLoginState(false);
+        setErrorMsg(error.message);
+      });
+  };
 
   return (
     <Container>
       <Title>로그인</Title>
-
-      {/* global state인 email 가져오기 */}
       <span>{email}</span>
-
       <InputGroup
         id="email"
         type="email"
@@ -39,7 +63,7 @@ const LoginForm = () => {
         label="이메일"
         value={value.email}
         onChange={handleOnChange}
-        onBlur={handleOnBlur}
+        // onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -50,20 +74,13 @@ const LoginForm = () => {
         label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
-        onBlur={handleOnBlur}
+        // onBlur={handleOnBlur}
       />
 
       <Button
         onClick={() => {
           // API 요청 보내기 전 검사
-          if (errorMsg === "") {
-            dispatch(
-              loginRequest({
-                email: value.email,
-                password: value.password,
-              })
-            );
-          }
+          loginReq();
         }}
       >
         로그인

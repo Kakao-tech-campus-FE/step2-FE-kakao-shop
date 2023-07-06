@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Route, redirect } from "react-router-dom";
 
-const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; 
+const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 const passwordReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*-=])(?=.*[0-9]).{8,20}$/;
 
 // AXIOS 인스턴스 선언
@@ -14,17 +14,9 @@ const instance = axios.create({
 });
 
 // 인터셉터: 요청/응답을 보내거나 받기 전에 가로채서 처리하는 역할
-// 요청에 대한 인터셉터 추가
 instance.interceptors.request.use(
   (config) => {
-    config.headers.Authorization = localStorage.getItem("token");
-    console.log("request:");
-    console.log(config.data.email);
-    // if(emailReg.test(config.data.email) == false)
-    //   alert("이메일 형식으로 작성해주세요.");
-    // else if(passwordReg.test(config.data.password) == false)
-    //   alert("영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다.");
-
+    // 여기서 요청을 취소할 수 없어 비워둠
     return config;
   },
   (error) => {
@@ -36,15 +28,10 @@ instance.interceptors.request.use(
 // response.use는 middleware를 의미할 가능성이 높음
 instance.interceptors.response.use(
   (response) => {
-    console.log("response: ");
-    // 루트로 이동
-    // window.location.href = '/';
-    console.log(response);
     return response;
   },
   (error) => {
-    console.log("response error: ");
-    console.log(error);
+    throw new Error(error.response.data.error.message);
   }
 );
 
