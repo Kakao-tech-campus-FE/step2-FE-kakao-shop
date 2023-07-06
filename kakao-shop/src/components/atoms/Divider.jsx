@@ -1,12 +1,8 @@
-export default function Divider({ type = "horizontal", size }) {
+export default function Divider({ type = "horizontal" }) {
   const typeObj = {
-    horizontal: "w-full h-0.5",
-    vertical: "w-0.5 h-4",
+    horizontal: "w-full h-px",
+    vertical: "w-px h-full",
   };
 
-  return (
-    <div
-      className={`inline-block self-center bg-gray-200 ${typeObj[type]}`}
-    ></div>
-  );
+  return <div className={`bg-gray-200 ${typeObj[type]}`}></div>;
 }
