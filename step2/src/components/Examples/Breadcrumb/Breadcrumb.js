@@ -19,9 +19,7 @@ const Router = () => (
 
 export const Breadcrumb = () => {
   const location = useLocation();
-  console.log("pathname.split: ", location.pathname.split("/"));
   const crumbArray = crumbs(location.pathname.split("/"))
-  console.log("crumbsStr: ", crumbArray);
 
   return (
     <div>

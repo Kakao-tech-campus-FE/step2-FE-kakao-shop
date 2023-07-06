@@ -44,11 +44,6 @@ const Examples = () => {
 
   return (
     <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
       <h1>커스텀 컴포넌트</h1>
       {/* 토스트 예제 */}
       <div className="example">
