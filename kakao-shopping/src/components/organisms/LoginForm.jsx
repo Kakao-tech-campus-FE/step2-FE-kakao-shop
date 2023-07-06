@@ -29,8 +29,8 @@ const LoginForm = () => {
       await dispatch(login({email: value.email, password:value.password}));
       console.log("로그인 성공");
     } catch (error) {
-      console.error(error);
-      setLoginFailed('로그인 실패');
+      console.error(error.response.data.error.message);
+      setLoginFailed(error.response.data.error.message);
     }
   };
 

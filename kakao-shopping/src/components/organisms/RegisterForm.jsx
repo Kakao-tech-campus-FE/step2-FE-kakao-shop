@@ -39,8 +39,8 @@ const RegisterForm = () => {
         setduplicateEmail(true);
       }
     } catch (error) {
-      setRegisterFailed(true);
-      console.log(error);
+      setRegisterFailed(error.response.data.error.message);
+      console.log(error.response.data.error.message);
     }
   }
   
@@ -106,7 +106,7 @@ const RegisterForm = () => {
           )}
         </Container>
       </form>
-      <span className="h-2 text-red-500 text-xs">{registerFailed ? "회원가입 실패" : ''}</span>
+      <span className="h-2 text-red-500 text-xs">{registerFailed}</span>
       {everythingIsValid ? 
       <Button
         className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md mb-10"
