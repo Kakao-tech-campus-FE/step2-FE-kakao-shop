@@ -1,0 +1,33 @@
+.breadcrumb {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .breadcrumb-item {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+  
+  .breadcrumb-item:last-child {
+    font-weight: bold;
+  }
+  
+  .breadcrumb-item:last-child span {
+    cursor: default;
+  }
+  
+  .breadcrumb-item:not(:last-child)::after {
+    content: '›';
+    margin-left: 0.5rem;
+    color: #777a7c;
+  }
+  
+  .breadcrumb-item:not(:last-child) a {
+    color: #0A6EBD;
+    text-decoration: none;
+  }
+  
+  .breadcrumb-item:not(:last-child) a:hover {
+    text-decoration: underline;
+  }
+  
