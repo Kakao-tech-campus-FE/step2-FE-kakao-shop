@@ -8,18 +8,28 @@ import './Breadcrumb.css';
 
 import { crumbs } from './Constants';
 
-const Router = () => (
-  <Routes>
-    <Route path="" element={<Link to="store">상품 목록</Link>} />
-    <Route path="/store" element={<CategoryList />} />
-    <Route path="/store/:categoryId" element={<ProductList />} />
-    <Route path="/store/:categoryId/:productId" element={<ProductDetail />} />
-  </Routes>
-);
+
+const content = (pathnames) => {
+  console.log("pathname.split:", pathnames);
+  console.log("len:", pathnames.length);
+  const depth = pathnames.length;
+
+  switch (depth) {
+    case 4: return <ProductDetail categoryId={Number(pathnames[2])} productId={Number(pathnames[3])}/>
+    case 3: return <ProductList categoryId={Number(pathnames[2])}/>
+    default: {
+      if (pathnames.includes("store"))
+        return <CategoryList />
+      else return <Link to="store">상품 목록</Link>
+    }
+  }
+}
 
 export const Breadcrumb = () => {
   const location = useLocation();
-  const crumbArray = crumbs(location.pathname.split("/"))
+  const crumbArray = crumbs(location.pathname.split("/"));
+
+  console.log("location:", location.pathname);
 
   return (
     <div>
@@ -28,7 +38,7 @@ export const Breadcrumb = () => {
 
           {crumbArray.map((crumb, index) => (
             <li className="breadcrumb-item" key={index}>
-              {index !== crumbArray.length -1 ? (
+              {index !== crumbArray.length - 1 ? (
                 <Link to={crumb.path}>{crumb.label}</Link>
               ) : (
                 <span className="bread-item--active">{crumb.label}</span>
@@ -37,7 +47,7 @@ export const Breadcrumb = () => {
           ))}
         </ol>
       </nav>
-      <Router />
+      {content(location.pathname.split("/"))}
     </div>
   );
 };

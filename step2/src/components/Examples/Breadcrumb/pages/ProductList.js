@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, useParams} from 'react-router-dom';
 import { getProducts, getCategoryName } from '../Constants';
 
-export const ProductList = () => {
-  const { categoryId } = useParams();
+export const ProductList = ( {categoryId} ) => {
+  //const { categoryId } = useParams();
 
   return (
     <div>
@@ -11,7 +11,7 @@ export const ProductList = () => {
       <p>카테고리: {getCategoryName(categoryId)}</p>
       <ul>
       {getProducts(categoryId).map((product, index) => (
-          <li><Link to={""+product.id}>{product.name}</Link></li>
+          <li><Link to={"store/" + categoryId + "/" + product.id}>{product.name}</Link></li>
         ))}
       </ul>
     </div>

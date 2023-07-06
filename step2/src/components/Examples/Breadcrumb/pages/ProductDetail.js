@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { getCategoryName, getProductName } from '../Constants';
 
-export const ProductDetail = () => {
-  const { categoryId, productId } = useParams();
+export const ProductDetail = ( {categoryId, productId} ) => {
+  // const { categoryId, productId } = useParams();
 
   return (
     <div>
