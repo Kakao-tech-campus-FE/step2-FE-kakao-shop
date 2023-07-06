@@ -5,7 +5,12 @@ import { useRef, useState } from 'react';
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
 
-const EmailCheckForm = () => {
+type Props = {
+  email: string;
+  onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const EmailCheckForm = ({ email, onChangeEmail }: Props) => {
   const divRef = useRef<HTMLFormElement>(null);
   const [isEmailCheckContainerFocus, setIsEmailCheckContainerFocus] = useState(false);
 
@@ -27,7 +32,9 @@ const EmailCheckForm = () => {
         key={'이메일 (아이디)'}
         placeholder={'이메일'}
         RootClassName={S.InputRootStyle}
-        InputClassName={S.EmailCheckInputStyle}>
+        InputClassName={S.EmailCheckInputStyle}
+        value={email}
+        onChange={onChangeEmail}>
         {'이메일 (아이디)'}
       </RegularInput.HiddenLabel>
       <Button css={S.ButtonStyle}>중복확인</Button>

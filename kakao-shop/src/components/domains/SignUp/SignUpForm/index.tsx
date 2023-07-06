@@ -6,21 +6,52 @@ import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
 import EmailCheckForm from '@components/domains/SignUp/EmailCheckForm';
 
+import useSignUpForm from '@hooks/ui/useSignUpForm';
+
 const SignUpForm = () => {
+  const {
+    state: { email, nickname, password, confirmPassword, errorMessage },
+    handler: { onChangeEmail, onChangeNickname, onChangePassword, onChangeConfirmPassword, onSubmit },
+  } = useSignUpForm();
+
   return (
     <S.Root>
-      <S.Container>
-        <EmailCheckForm />
-        {data.map(item => (
-          <RegularInput.HiddenLabel
-            type={item.type}
-            key={item.content}
-            placeholder={item.placeholder}
-            css={S.InputStyle}>
-            {item.content}
-          </RegularInput.HiddenLabel>
-        ))}
+      <S.Container onSubmit={onSubmit}>
+        <EmailCheckForm email={email} onChangeEmail={onChangeEmail} />
+
+        <RegularInput.HiddenLabel
+          key={'이름'}
+          placeholder={'이름'}
+          css={S.InputStyle}
+          value={nickname}
+          onChange={onChangeNickname}>
+          {'이름'}
+        </RegularInput.HiddenLabel>
+
+        <RegularInput.HiddenLabel
+          type={'password'}
+          key={'비밀번호'}
+          placeholder={'비밀번호'}
+          css={S.InputStyle}
+          value={password}
+          onChange={onChangePassword}>
+          {'비밀번호'}
+        </RegularInput.HiddenLabel>
+
+        <RegularInput.HiddenLabel
+          type={'password'}
+          key={'비밀번호 확인'}
+          placeholder={'비밀번호 확인'}
+          css={S.InputStyle}
+          value={confirmPassword}
+          onChange={onChangeConfirmPassword}>
+          {'비밀번호 확인'}
+        </RegularInput.HiddenLabel>
+
+        {errorMessage !== '' && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
+
         <Button css={S.ButtonStyle}>회원가입</Button>
+
         <S.Link to="/login">로그인</S.Link>
       </S.Container>
     </S.Root>
@@ -28,12 +59,6 @@ const SignUpForm = () => {
 };
 
 export default SignUpForm;
-
-const data = [
-  { content: '이름', placeholder: '이름', type: 'text' },
-  { content: '비밀번호', placeholder: '비밀번호', type: 'password' },
-  { content: '비밀번호 확인', placeholder: '비밀번호 확인', type: 'password' },
-];
 
 const S = {
   Root: styled.section`
@@ -140,5 +165,15 @@ const S = {
     text-align: center;
     color: #333;
     font-size: 14px;
+  `,
+  ErrorMessage: styled.p`
+    margin-top: 10px;
+    padding: 20px;
+
+    background-color: #f0f0f0;
+
+    font-size: 14px;
+    line-height: 20px;
+    color: #e65f3e;
   `,
 };
