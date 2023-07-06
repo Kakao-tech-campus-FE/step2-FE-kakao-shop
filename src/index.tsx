@@ -6,6 +6,7 @@ import './tailwind.css';
 import Router from './Router';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.timeout = 1000;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
