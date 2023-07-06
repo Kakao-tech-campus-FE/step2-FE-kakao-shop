@@ -1,5 +1,7 @@
 import Button from "../atoms/Button";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import routes from "../../routes.js";
 
 const GnbOrganism = styled.div`
   overflow: hidden;
@@ -14,12 +16,14 @@ const GnbOrganism = styled.div`
   }
 `;
 const Gnb = () => {
+  const navigate = useNavigate();
   return (
     <>
       <GnbOrganism>
         <Button
           className="home"
           type="click"
+          onClick={() => navigate(routes.home)}
           styles={{
             width: "5rem",
             margin: "1rem",
@@ -31,6 +35,7 @@ const Gnb = () => {
         <Button
           className="login"
           type="click"
+          onClick={() => navigate(routes.login)}
           styles={{
             width: "5rem",
             margin: "1rem",
