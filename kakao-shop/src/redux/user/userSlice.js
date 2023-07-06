@@ -15,10 +15,6 @@ export const userSlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload.token;
     },
-    reset: (state) => {
-      state.email = null;
-      state.token = null;
-    },
   },
 });
 

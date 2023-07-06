@@ -7,9 +7,14 @@ import { SlMenu } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
 import { NavLink } from "react-router-dom";
+import { persistor } from "../..";
 
 export default function InnerHead() {
   const email = useSelector((state) => state.user.email);
+  const purge = async () => {
+    window.location.reload();
+    await persistor.purge();
+  };
 
   return (
     <div className="flex justify-between items-center min-w-[740px]">
@@ -45,7 +50,9 @@ export default function InnerHead() {
           {email ? (
             <div>
               <span className="mr-2 text-sm text-gray-500">{email}님</span>
-              <span className="cursor-pointer">로그아웃</span>
+              <span className="cursor-pointer" onClick={async () => purge()}>
+                로그아웃
+              </span>
             </div>
           ) : (
             <Link to="/login">로그인</Link>
