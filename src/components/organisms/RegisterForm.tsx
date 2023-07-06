@@ -1,6 +1,6 @@
 import FilledButton from '@components/atoms/FilledButton';
 import InputGroup from '@components/molecules/InputGroup';
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 
@@ -9,6 +9,9 @@ interface RegisterFromProps {
 }
 
 const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
+  const [usernameHT, setUsernameHT] = useState('ㅤ');
+  const [emailHT, setEmailHT] = useState('ㅤ');
+  const [passwordHT, setPasswordHT] = useState('ㅤ');
   const { value: inputInfo, handleOnChange } = useInput({
     initialValue: {
       username: '',
@@ -18,15 +21,29 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
     },
   });
 
-  useEffect(() => {
-    console.log(inputInfo);
-  }, [inputInfo]);
-
   return (
     <div className="space-y-3">
-      <InputGroup inputName="username" labelName="username" value={inputInfo.username} onChange={handleOnChange} />
-      <InputGroup inputName="email" labelName="email" value={inputInfo.email} onChange={handleOnChange} />
-      <InputGroup inputName="password" labelName="password" value={inputInfo.password} onChange={handleOnChange} />
+      <InputGroup
+        inputName="username"
+        labelName="username"
+        value={inputInfo.username}
+        helperText={usernameHT}
+        onChange={handleOnChange}
+      />
+      <InputGroup
+        inputName="email"
+        labelName="email"
+        value={inputInfo.email}
+        helperText={emailHT}
+        onChange={handleOnChange}
+      />
+      <InputGroup
+        inputName="password"
+        labelName="password"
+        value={inputInfo.password}
+        helperText={passwordHT}
+        onChange={handleOnChange}
+      />
       <div className="">
         <FilledButton
           onClick={() => {
