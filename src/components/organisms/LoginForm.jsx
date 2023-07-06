@@ -8,13 +8,6 @@ import useInput from "../../hooks/useInput";
 
 const initialState = { email: "", password: "" };
 
-const ERROR_MSG = {
-  requiredEmail: "이메일을 입력해 주세요.",
-  requiredPw: "비밀번호를 입력해 주세요.",
-  invalidEmail: "이메일을 정확하게 입력해 주세요.",
-  invalidPw: "비밀번호가 올바르지 않습니다.(8~20자/영문자/숫자/특수문자)",
-};
-
 export default function LoginForm() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -31,7 +24,10 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="flex flex-col mt-6 p-16 border" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col mt-6 p-16 w-input border"
+      onSubmit={handleSubmit}
+    >
       <Input
         inputRef={emailRef}
         type="text"
@@ -54,7 +50,7 @@ export default function LoginForm() {
           error ? "mt-1 mb-3 p-5" : ""
         } text-errorMessage text-red-500 font-semibold bg-gray-100`}
       >
-        {error ? ERROR_MSG[error] : null}
+        {error ? error : null}
       </Box>
       <Button
         margin="mt-8"

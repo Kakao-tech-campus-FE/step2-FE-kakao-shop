@@ -11,7 +11,7 @@ const RADIUS = {
   lg: "rounded-full",
 };
 
-const TESTSIZE = {
+const TEXTSIZE = {
   sm: "text-sm",
   lg: "text-lg",
 };
@@ -21,8 +21,10 @@ const beforeContentStyle =
 
 export default function Button({
   children,
+  type,
   margin,
   padding,
+  height,
   textsize,
   color,
   radius = "",
@@ -31,9 +33,10 @@ export default function Button({
 }) {
   return (
     <button
-      className={`${padding} ${margin} ${TESTSIZE[textsize]} ${COLOR[color]} ${
-        RADIUS[radius]
-      } ${before ? beforeContentStyle : ""} text-lg`}
+      type={type}
+      className={`${padding} ${margin} ${height} ${TEXTSIZE[textsize]} ${
+        COLOR[color]
+      } ${RADIUS[radius]} ${before ? beforeContentStyle : ""}`}
       onClick={onClick}
     >
       {children}

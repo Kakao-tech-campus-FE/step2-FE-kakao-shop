@@ -11,7 +11,10 @@ module.exports = {
         kakaoTest: "120px",
         icon: "36px",
         before: "1px",
-        input: "440px",
+        input: "570px",
+      },
+      height: {
+        confirmButton: "38px",
       },
       fontSize: {
         errorMessage: "13px",

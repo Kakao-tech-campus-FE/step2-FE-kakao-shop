@@ -15,7 +15,7 @@ export default function InputGroup({
   onChange,
 }) {
   return (
-    <Box className="flex flex-col">
+    <Box className="flex flex-col grow">
       <Label htmlFor={id}>{children}</Label>
       <Input
         inputRef={inputRef}

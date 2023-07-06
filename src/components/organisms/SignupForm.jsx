@@ -4,6 +4,8 @@ import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import useSignupValidation from "../../hooks/useSignupValidation";
 import useInput from "../../hooks/useInput";
+import { checkEmail, signUp } from "../../apis/auth";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   email: "",
@@ -12,25 +14,19 @@ const initialState = {
   passwordConfirm: "",
 };
 
-const ERROR_MSG = {
-  requiredEmail: "이메일을 입력해 주세요.",
-  requiredUsername: "이름을 입력해 주세요.",
-  requiredPw: "비밀번호를 입력해 주세요.",
-  requiredConfirmPw: "비밀번호 확인을 입력해 주세요.",
-  invalidEmail: "이메일을 정확하게 입력해 주세요.",
-  invalidPw: "비밀번호가 올바르지 않습니다.(8~20자/영문자/숫자/특수문자)",
-  invalidConfirmPw: "비밀번호가 일치하지 않습니다.",
-};
-
 export default function SignupForm() {
+  // useRef 배열로 한번에 관리?
   const emailRef = useRef(null);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const conformPasswordRef = useRef(null);
-  const [form, handleChange] = useInput(initialState);
-  const { error, setError, checkRegex } = useSignupValidation({ form });
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+  const [form, handleChange] = useInput(initialState);
+  const { error, setError, checkEmailValidation, checkRegex } =
+    useSignupValidation({ form });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const [errorResult, formType] = checkRegex();
@@ -39,22 +35,73 @@ export default function SignupForm() {
     else if (formType === "username") usernameRef.current.focus();
     else if (formType === "password") passwordRef.current.focus();
     else if (formType === "confirmPw") conformPasswordRef.current.focus();
+
+    if (!errorResult) {
+      try {
+        await signUp({
+          email: form.email,
+          username: form.username,
+          password: form.password,
+        });
+        navigate("/");
+      } catch (error) {
+        const errorResponse = error.response.data.error.message;
+        setError(getErrorMessage(errorResponse));
+        // 중복된 이메일인 경우를 제외한 에러는 API를 호출하기 전에 확인
+        emailRef.current.focus();
+      }
+    }
+  };
+
+  const handleCheck = async () => {
+    const errorResult = checkEmailValidation()[0];
+    if (errorResult !== false) {
+      setError(errorResult);
+      emailRef.current.focus();
+    } else {
+      try {
+        await checkEmail(form.email);
+        setError(false);
+        // 비어있는 칸으로 이동하게 할 수 있을까
+        usernameRef.current.focus();
+      } catch (error) {
+        const errorResponse = error.response.data.error.message;
+        setError(getErrorMessage(errorResponse));
+      }
+    }
   };
 
   return (
-    <form className="flex flex-col mt-6 p-16 border" onSubmit={handleSubmit}>
-      <InputGroup
-        inputRef={emailRef}
-        id="email"
-        type="text"
-        value={form.email}
-        name="email"
-        placeholder="이메일"
-        autoFocus={true}
-        onChange={handleChange}
-      >
-        이메일 (아이디)
-      </InputGroup>
+    <form
+      className="flex flex-col mt-6 p-16 w-input border"
+      onSubmit={handleSubmit}
+    >
+      <Box className="flex items-end">
+        <InputGroup
+          inputRef={emailRef}
+          id="email"
+          type="text"
+          value={form.email}
+          name="email"
+          placeholder="이메일"
+          autoFocus={true}
+          onChange={handleChange}
+        >
+          이메일 (아이디)
+        </InputGroup>
+        <Button
+          type="button"
+          margin="ml-2 mb-4"
+          padding="px-3 py-1"
+          height="h-confirmButton"
+          textsize="sm"
+          color="yellow"
+          radius="sm"
+          onClick={handleCheck}
+        >
+          중복확인
+        </Button>
+      </Box>
       <InputGroup
         inputRef={usernameRef}
         id="username"
@@ -93,7 +140,7 @@ export default function SignupForm() {
           error ? "mt-1 mb-3 p-5" : ""
         } text-errorMessage text-red-500 font-semibold bg-gray-100`}
       >
-        {error ? ERROR_MSG[error] : null}
+        {error ? error : null}
       </Box>
       <Button
         margin="mt-8"
@@ -107,3 +154,7 @@ export default function SignupForm() {
     </form>
   );
 }
+
+const getErrorMessage = (message) => {
+  return message.split(":")[0].trim() + ".";
+};

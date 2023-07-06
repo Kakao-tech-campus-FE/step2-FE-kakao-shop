@@ -14,7 +14,7 @@ export default function Input({
     <input
       ref={inputRef}
       id={id}
-      className="w-input mb-4 px-4 py-1 text-lg border rounded-md outline-none"
+      className="mb-4 px-4 py-1 text-lg border rounded-md outline-none"
       type={type}
       value={value}
       name={name}
