@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 1000,
   headers: {
@@ -19,15 +19,13 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use(
   (response) => {
     return response;
+  },
+  (error) => {
+    if (error.response.status === 400) {
+      return Promise.reject(error.response.data.error.message);
+    }
+    return Promise.reject(error.response);
   }
-  // (error) => {
-  //   if (error.response.status === 401) {
-  //     localStorage.removeItem("token");
-  //     window.location.href = "/login";
-  //     return Promise.resolve();
-  //   }
-  //   return Promise.reject(error.response);
-  // }
 );
 
 export const signup = (data) => {
@@ -38,4 +36,9 @@ export const signup = (data) => {
 export const signin = (data) => {
   const { email, password } = data;
   return instance.post("/login", { email, password });
+};
+
+export const checkDuplication = (data) => {
+  const { email } = data;
+  return instance.post("/check", { email });
 };

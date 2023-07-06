@@ -20,6 +20,9 @@ const StyledButton = styled.button`
   }
 `;
 
+// disabled: 유효성 검사를 통과했을 때 false, 통과하지 못하면 true
+// onClick: 클릭했을 때 실행할 함수
+
 const Button = ({ children, disabled, onClick }) => {
   return (
     <StyledButton

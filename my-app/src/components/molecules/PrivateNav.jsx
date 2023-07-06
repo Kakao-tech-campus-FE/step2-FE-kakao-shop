@@ -32,7 +32,15 @@ const Nav = () => {
           <StyledLink to="/">홈</StyledLink>
         </Li>
         <Li>
-          <StyledLink to="/">로그아웃</StyledLink>
+          <StyledLink
+            to="/"
+            onClick={() => {
+              localStorage.removeItem("token");
+              window.location.reload();
+            }}
+          >
+            로그아웃
+          </StyledLink>
         </Li>
       </Ul>
     </nav>

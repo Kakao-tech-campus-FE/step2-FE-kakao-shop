@@ -11,6 +11,8 @@ const StyledInput = styled.input`
   box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff;
 `;
 
+// onChange: input의 값이 바뀔 때마다 실행할 함수
+
 const Input = ({ id, name, placeholder, type, value, onChange }) => {
   return (
     <StyledInput
