@@ -1,6 +1,5 @@
 import axios from "axios"
 
-// http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/
 const instance = axios.create({
     baseURL : process.env.REACT_APP_API_URL, // production level 에서는 env에서 넣어주어야함(보안 관련)
     timeout : 1000, // 타임아웃이 없으면 무한정 wait가 걸려버릴 수도 있다!

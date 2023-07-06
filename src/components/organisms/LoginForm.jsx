@@ -8,8 +8,6 @@ import { loginRequest } from "../../store/slices/userSlice";
 // import { login } from "../services/api";
 // import { loginRequest, setEmail } from "../../store/slices/userSlice";
 
-// import { useEffect } from "react"; // useEffect는 오류가 발생하는 구간을 확인하는데 유용하다.
-
 const LoginForm = () => {
   // reducer 함수를 호출하기 위해서는 dispatch를 호출해야한다!(규칙)
   const dispatch = useDispatch();
