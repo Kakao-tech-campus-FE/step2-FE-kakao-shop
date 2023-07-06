@@ -24,6 +24,53 @@ const RegisterForm = () => {
   });
   const navigate = useNavigate();
 
+  const handleCheck = async () => {
+    try {
+      await postCheck(inputValue.email);
+      setEmailError((prev) => ({ ...prev, isError: false }));
+    } catch (err) {
+      setEmailError((prev) => ({
+        ...prev,
+        isError: true,
+        message: err as string,
+      }));
+    }
+  };
+
+  const handleRegister = () => {
+    if (
+      !inputValue.email ||
+      !inputValue.name ||
+      !inputValue.password ||
+      !inputValue.passwordConfirm
+    ) {
+      setRegisterError({
+        isError: true,
+        message: "빈칸이 존재합니다.",
+      });
+      return;
+    }
+    if (emailError.isError) {
+      setRegisterError({
+        isError: true,
+        message: "이메일 중복 검사를 해주세요.",
+      });
+      return;
+    }
+    if (!passwordError && !confirmError) {
+      try {
+        postRegister({
+          email: inputValue.email,
+          password: inputValue.password,
+          username: inputValue.name,
+        });
+        navigate("/login");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   return (
     <AuthContainer width={"580px"} margin={"40px auto 42px"}>
       <Wrapper>
@@ -43,9 +90,7 @@ const RegisterForm = () => {
             width={"60px"}
             height={"40px"}
             background={"#ebebeb"}
-            onClick={() => {
-              postCheck(inputValue.email, setEmailError);
-            }}
+            onClick={handleCheck}
           >
             확인
           </Button>
@@ -109,35 +154,7 @@ const RegisterForm = () => {
           <Button
             height={"50px"}
             background={"#fee500"}
-            onClick={() => {
-              if (
-                !inputValue.email ||
-                !inputValue.name ||
-                !inputValue.password ||
-                !inputValue.passwordConfirm
-              ) {
-                setRegisterError({
-                  isError: true,
-                  message: "빈칸이 존재합니다.",
-                });
-                return;
-              }
-              if (emailError.isError) {
-                setRegisterError({
-                  isError: true,
-                  message: "이메일 중복 검사를 해주세요.",
-                });
-                return;
-              }
-              if (!passwordError && !confirmError) {
-                postRegister({
-                  email: inputValue.email,
-                  password: inputValue.password,
-                  username: inputValue.name,
-                });
-                navigate("/login");
-              }
-            }}
+            onClick={handleRegister}
           >
             회원가입
           </Button>
