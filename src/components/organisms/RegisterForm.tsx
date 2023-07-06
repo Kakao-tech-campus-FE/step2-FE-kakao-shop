@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
+import registerApi from '../../apis/registerApi';
 
 const RegisterForm = () => {
   const { values, handleChange } = useForm({
@@ -13,7 +14,13 @@ const RegisterForm = () => {
   });
 
   const handleSignUpBtnClick = () => {
-    // TODO
+    const { username, email, password } = values;
+
+    registerApi.signUp({
+      username,
+      email,
+      password,
+    });
   };
 
   return (
