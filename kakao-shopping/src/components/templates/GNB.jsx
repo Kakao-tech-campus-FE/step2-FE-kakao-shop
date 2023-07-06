@@ -13,9 +13,13 @@ const GNB = () => {
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     const storedUser = localStorage.getItem('userInfo');
-    if(storedIsLoggedIn) {
-      dispatch(loginSuccess(storedUser));
+
+    if(storedIsLoggedIn > calculateTime()) { // 로그인 1일 미만 경과시
+      dispatch(loginSuccess(storedUser)); // 로그인
     }
+    console.log(storedIsLoggedIn);
+    console.log(calculateTime());
+    console.log(storedUser);
   },[dispatch]);
 
   // 로그아웃
@@ -27,6 +31,17 @@ const GNB = () => {
 
   const isLoggedIn = useSelector((state) => state.authReducer.isLoggedIn);
 
+  const calculateTime = () => {
+    const currentDate = new Date();
+    currentDate.getDate();
+    const year = currentDate.getFullYear().toString().padStart(4, '0');
+    const month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = currentDate.getDate().toString().padStart(2, '0');
+    const hours = currentDate.getHours().toString().padStart(2, '0');
+    const minutes = currentDate.getMinutes().toString().padStart(2, '0');
+    const formattedTime = year + month + day + hours + minutes;
+    return formattedTime;
+  }
   // 삼항 연산자로 로그인 상태일 때는 로그아웃만 보이도록
   return (
     <Container>

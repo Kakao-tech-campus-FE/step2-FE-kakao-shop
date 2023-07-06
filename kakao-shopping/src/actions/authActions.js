@@ -4,17 +4,17 @@ export const login = ({email, password}) => async dispatch => {
 	try {
     console.log(email);
     const response = await loginApi({email, password}); 
-    const user = { id: 1, username: "exampleUser" };
+    const user = { username: email };
     // 응답 처리
     if(response && response.data.success) {
       dispatch(loginSuccess(user));
+      console.log(response.headers.authorization);
       localStorage.setItem('isLoggedIn', calculateTomorrowTime());
-      localStorage.setItem('userInfo', user.username);
+      localStorage.setItem('userInfo', response.headers.authorization);
     } else {
       //로그인 실패 처리
       dispatch(logout());
     }
-
     // setCookie('isLoggedIn', 'true', 1); // 1일 동안 유지되는 쿠키
     // setCookie('username', username, 1);
 	} catch (error) {
