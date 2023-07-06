@@ -1,0 +1,28 @@
+.container {
+  width: 300px;
+  margin: auto;
+  height: 400px;
+  overflow: hidden;
+}
+
+.sliderContainer {
+    margin-bottom: 1em;
+    display: flex;
+}
+
+.button {
+  all: unset;
+  padding: 0.5em 1em;
+  margin: 1em 1em;
+  color: burlywood;
+  border-radius: 10px;
+  border: 1px solid burlywood;
+  &:hover {
+    background-color: burlywood;
+    color: #fff;
+  }
+}
+
+.center {
+    text-align: center;
+}
