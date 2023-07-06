@@ -1,13 +1,15 @@
+import { useSelector } from "react-redux";
+
+import { NavLink } from "react-router-dom";
+
+import { persistor } from "../..";
+
 import Divider from "../atoms/Divider";
 import Link from "../atoms/Link";
-
-import { useSelector } from "react-redux";
 
 import { SlMenu } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
-import { NavLink } from "react-router-dom";
-import { persistor } from "../..";
 
 export default function InnerHead() {
   const email = useSelector((state) => state.user.email);

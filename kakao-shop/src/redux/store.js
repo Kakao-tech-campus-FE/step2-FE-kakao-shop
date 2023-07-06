@@ -1,8 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-
-import storage from "redux-persist/lib/storage";
 import { persistReducer, PERSIST, PURGE } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
 import userSlice from "./user/userSlice";
+
 import logger from "redux-logger";
 
 const reducers = combineReducers({
@@ -21,7 +22,6 @@ const persistedReducer = persistReducer(persistConfig, reducers);
 const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    //미들웨어 작성시 에러 주의
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [PERSIST, PURGE],
