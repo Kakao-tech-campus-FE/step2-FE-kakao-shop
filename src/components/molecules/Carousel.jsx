@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-import banner1 from '../assets/banner1.png'
-import banner2 from '../assets/banner2.png'
-import banner3 from '../assets/banner3.png'
+import banner1 from '../../assets/banner1.png'
+import banner2 from '../../assets/banner2.png'
+import banner3 from '../../assets/banner3.png'
 
 const banners = [banner1, banner2, banner3]
 
