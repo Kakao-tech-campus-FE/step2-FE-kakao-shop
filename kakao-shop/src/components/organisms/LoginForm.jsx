@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
 
 import { login } from "../../apis/api";
-
 import { validateEmail, validatePassword } from "../../utils/validate";
+import { setEmail, setToken } from "../../redux/user/userSlice";
 
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
@@ -27,6 +28,8 @@ const LoginForm = () => {
   const [isKeepLog, setIsKeepLog] = useState(false);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user.email);
 
   const handleLogin = async () => {
     if (!validateEmail(value.email)) {
@@ -43,10 +46,17 @@ const LoginForm = () => {
     }
 
     try {
-      await login({
+      const response = await login({
         email: value.email,
         password: value.password,
       });
+      console.log(response);
+      console.log(response.config.data);
+      dispatch(
+        setEmail({ email: value.email, token: response.headers.authorization })
+      );
+      dispatch(setToken({ token: response.headers.authorization }));
+
       navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
@@ -73,6 +83,7 @@ const LoginForm = () => {
   const inputBoxStyle = `border-b border-solid py-1 mb-2 font-bold`;
   return (
     <Container className="w-440 border border-solid border-gray-300 p-16 mx-auto w-[570px]">
+      <span>{email}</span>
       <InputGroup
         id="email"
         type="email"

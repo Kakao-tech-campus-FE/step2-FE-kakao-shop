@@ -1,12 +1,16 @@
 import Divider from "../atoms/Divider";
 import Link from "../atoms/Link";
 
+import { useSelector } from "react-redux";
+
 import { SlMenu } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
 import { NavLink } from "react-router-dom";
 
 export default function InnerHead() {
+  const email = useSelector((state) => state.user.email);
+
   return (
     <div className="flex justify-between items-center min-w-[740px]">
       <div className="flex gap-4 items-center h-14 font-bold mx-12">
@@ -14,7 +18,7 @@ export default function InnerHead() {
         <nav className="gnb">
           <ul className="flex justify-between w-48">
             <li>
-              <NavLink exact to="/" className="border-b-2 border-solid pb-1">
+              <NavLink to="/" className="border-b-2 border-solid pb-1">
                 홈
               </NavLink>
             </li>
@@ -34,11 +38,20 @@ export default function InnerHead() {
           <span className="ml-2">카테고리</span>
         </div>
       </div>
-      <div className="mr-12 w-32">
+      <div className="mr-12">
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
           <GoGift size="20" />
-          <Link to="/login">로그인</Link>
+          {email ? (
+            <div>
+              <span className="mr-2 text-sm text-gray-500">{email}님</span>
+              <span className="cursor-pointer">로그아웃</span>
+            </div>
+          ) : (
+            <Link to="/login">로그인</Link>
+          )}
+          {/* <Link to="/login">로그인</Link>
+          <span>{email}</span> */}
         </div>
       </div>
     </div>
