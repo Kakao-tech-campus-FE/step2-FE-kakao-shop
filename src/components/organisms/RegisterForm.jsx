@@ -32,17 +32,20 @@ const RegisterForm = () => {
   const [validation, setValidation] = useState({
     email: true,
     password: true,
+    pwConfirm: true,
   });
   const handleRequest = () => {
     const isEmailValid = emailValidCheck(value.email);
     const isPwValid = pwValidCheck(value.password);
+    const isPwCheckValid = value.password === value.passwordConfirm;
 
     setValidation({
       email: isEmailValid,
       password: isPwValid,
+      pwConfirm: isPwCheckValid,
     });
 
-    if (isEmailValid && isPwValid) {
+    if (isEmailValid && isPwValid && isPwCheckValid) {
       // 유효성 검사 통과, 로그인 요청
       dispatch(
         registerRequest({
@@ -105,11 +108,7 @@ const RegisterForm = () => {
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
-      <div>
-        {value.password === value.passwordConfirm
-          ? ""
-          : "비밀번호가 일치하지 않습니다."}
-      </div>
+      <div>{validation.pwConfirm ? "" : "비밀번호가 일치하지 않습니다."}</div>
       <Button
         onClick={
           handleRequest
