@@ -30,16 +30,19 @@ const RegisterForm = () => {
 
   //LoginForm에서의 validation과 코드 중복, 리팩토링 필요
   const [validation, setValidation] = useState({
+    username: true,
     email: true,
     password: true,
     pwConfirm: true,
   });
   const handleRequest = () => {
+    const existUsername = Boolean(value.username);
     const isEmailValid = emailValidCheck(value.email);
     const isPwValid = pwValidCheck(value.password);
     const isPwCheckValid = value.password === value.passwordConfirm;
 
     setValidation({
+      username: existUsername,
       email: isEmailValid,
       password: isPwValid,
       pwConfirm: isPwCheckValid,
@@ -75,6 +78,7 @@ const RegisterForm = () => {
         value={value.username}
         onChange={handleOnChange}
       />
+      <div>{validation.username ? "" : "사용자 이름을 입력해 주세요."}</div>
       <InputGroup
         id={"email"}
         type={"email"}
