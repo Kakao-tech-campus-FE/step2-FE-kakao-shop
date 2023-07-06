@@ -50,6 +50,6 @@ export const logout = () => {
 export const loginSuccess = (user) => {
 	return {
 		type: "LOGIN_SUCCESS",
-		user: user
+		user
 	};
 };
