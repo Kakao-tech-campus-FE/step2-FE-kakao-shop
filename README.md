@@ -45,19 +45,28 @@
 ├── README.md
 ├── .gitignore
 ├── /public
-├ └── /assets
+│ └── /assets
+│   └── /images
 └── /src
+  ├── /actions
   ├── /apis
   ├── /components
+  │ └── /atoms
+  │ └── /molecules
+  │ └── /organisms
+  │ └── /templates
   ├── /styles
   ├── /hooks
   ├── /pages
+  ├── /reducers
   ├── App.js
   └── index.js
 ```
++ actions: Redux 액션
 + apis: API 요청
 + assets: 이미지, 폰트 등
 + components: 재사용 가능한 컴포넌트들
 + styles: css 파일들 포함
 + hooks: 커스텀 훅
 + pages: 페이지
++ reducers: Redux 리듀서
