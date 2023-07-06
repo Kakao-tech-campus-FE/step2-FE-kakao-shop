@@ -6,24 +6,48 @@ import Footer from "../atoms/Footer";
 import LinkText from "../atoms/LinkText";
 import * as Link from '../../styles/atoms/Link';
 import {useNavigate} from 'react-router-dom';
+import { register } from "../../apis/api";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
+import Msg from "../atoms/Msg";
 
 const RegisterForm = () => {
-    const {value, handleOnChange, invalidCheck} = useInput({
+    const dispatch = useDispatch();
+    const [error, setError] = useState('');
+    const {value, handleOnChange, handleOnCheck, invalidCheck} = useInput({
         username: "",
         email: "",
         password: "",
         passwordConfirm: "",
     });
 
+    const registerReq = () => {
+        register({
+            email: value.email,
+            password: value.password,
+            username: value.username,
+        })
+        .then((res) => {
+            console.log(res);
+            setError('');
+            dispatch(setEmail({
+                email: value.email,
+            }));
+            navigate("/");
+        })
+        .catch((err) => {
+            console.log(err.request.response);
+            const errObject = JSON.parse(err.request.response);
+            setError(errObject.error.message)
+        });
+    };
+
     const navigate = useNavigate();
 
     const isValid = Object.values(invalidCheck).every(
             (value) => value === true
     );
-
-    // useEffect(() => {
-    //     console.log(value.email);
-    // },[value.email]);
 
     return(
         <>
@@ -38,6 +62,7 @@ const RegisterForm = () => {
                     label="이메일 (아이디)" 
                     value={value.email}
                     onChange={handleOnChange}
+                    onBlur={handleOnCheck}
                     invalid={invalidCheck}/>
                 <InputGroup 
                     id="username" 
@@ -47,6 +72,7 @@ const RegisterForm = () => {
                     label="이름"
                     value={value.username}
                     onChange={handleOnChange}
+                    onBlur={handleOnCheck}
                     invalid={invalidCheck}/>
                 <InputGroup 
                     id="password" 
@@ -56,6 +82,7 @@ const RegisterForm = () => {
                     label="비밀번호"
                     value={value.password}
                     onChange={handleOnChange}
+                    onBlur={handleOnCheck}
                     invalid={invalidCheck}/>
                 <InputGroup 
                     id="passwordConfirm" 
@@ -65,16 +92,12 @@ const RegisterForm = () => {
                     label="비밀번호 확인"
                     value={value.passwordConfirm}
                     onChange={handleOnChange}
+                    onBlur={handleOnCheck}
                     invalid={invalidCheck}/>
+                {error !== '' ? <Msg message={error} className="login-error"/> : null}
                 <Form.Button onClick={() => {
                 // api 회원 가입 요청
-                // register({
-                //     email: value.email,
-                //     password: value.password,
-                //     username: value.username,
-                // });
-                console.log('회원가입');
-                navigate("/");
+                registerReq();
                 }} disabled={isValid === true ? "" : "disabled"}>회원가입</Form.Button>
                 <Link.Login>
                 <LinkText to="/login" text="로그인"/>
