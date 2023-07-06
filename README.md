@@ -99,4 +99,13 @@
 
 
 ### 🟡 디렉터리 구조
-
+```
+-/ public
+-/ src
+---/ components
+---/ apis
+---/ assets
+---/ hooks
+---/ styles
+---/ pages
+```
