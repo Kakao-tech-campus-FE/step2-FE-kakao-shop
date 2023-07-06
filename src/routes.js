@@ -1,6 +1,6 @@
 const routes = {
   home: "/",
-  join: "/join",
+  register: "/register",
   login: "/login",
 };
 
