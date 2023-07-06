@@ -1,22 +1,22 @@
 import {
   FormState, UseFormGetFieldState, UseFormRegister, UseFormResetField,
 } from 'react-hook-form';
-import { ILoginData } from '../../types/formData';
+import { LoginData } from '../../types/formData';
 import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
 import { LOGIN_ERROR_MSG } from '../../utils/errorMsg';
 import { LOGIN_VALID_REGEX } from '../../utils/regex';
 
-interface ILoginFormProps {
+interface LoginFormProps {
   // Request login
   handleLogin: React.FormEventHandler<HTMLFormElement>;
 
   // react-hook-form properties
-  register: UseFormRegister<ILoginData>;
-  resetField: UseFormResetField<ILoginData>;
-  formState: FormState<ILoginData>;
-  getFieldState: UseFormGetFieldState<ILoginData>;
+  register: UseFormRegister<LoginData>;
+  resetField: UseFormResetField<LoginData>;
+  formState: FormState<LoginData>;
+  getFieldState: UseFormGetFieldState<LoginData>;
 
   // Loading
   isLoading: boolean;
@@ -29,7 +29,7 @@ export default function LoginForm({
   formState,
   getFieldState,
   isLoading,
-}: ILoginFormProps) {
+}: LoginFormProps) {
   return (
     <form onSubmit={handleLogin}>
       <div>

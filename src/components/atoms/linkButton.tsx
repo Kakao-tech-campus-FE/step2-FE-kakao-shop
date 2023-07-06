@@ -1,4 +1,4 @@
-interface ILinkButtonProps {
+interface LinkButtonProps {
   children: React.ReactNode;
   href: string;
 }
@@ -6,7 +6,7 @@ interface ILinkButtonProps {
 export default function LinkButton({
   children,
   href,
-}: ILinkButtonProps) {
+}: LinkButtonProps) {
   return (
     <span className="text-sm opacity-50
       hover:opacity-100"

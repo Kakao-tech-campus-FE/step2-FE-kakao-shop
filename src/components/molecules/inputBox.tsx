@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import Input from '../atoms/input';
 import XButton from '../atoms/xButton';
 
-interface IInputBoxProps {
+interface InputBoxProps {
   // Input props
   inputType: string;
   id: string;
@@ -19,7 +19,7 @@ interface IInputBoxProps {
   isDirty: boolean;
 }
 
-const InputBox = forwardRef<HTMLInputElement, IInputBoxProps>((
+const InputBox = forwardRef<HTMLInputElement, InputBoxProps>((
   {
     inputType,
     id,
@@ -29,7 +29,7 @@ const InputBox = forwardRef<HTMLInputElement, IInputBoxProps>((
     onBlur,
     name,
     isDirty,
-  }: IInputBoxProps,
+  }: InputBoxProps,
   ref,
 ) => (
   <div className="flex flex-row px-2 pb-1 align-middle">

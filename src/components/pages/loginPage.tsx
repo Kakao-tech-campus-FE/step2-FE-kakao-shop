@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginTemplate from '../templates/loginTemplate';
-import { ILoginData } from '../../types/formData';
+import { LoginData } from '../../types/formData';
 import { loginUser } from '../../apis/axios';
 
 export default function LoginPage() {
@@ -13,7 +13,7 @@ export default function LoginPage() {
     formState,
     getFieldState,
     getValues,
-  } = useForm<ILoginData>({
+  } = useForm<LoginData>({
     mode: 'onChange',
   });
 

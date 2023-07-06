@@ -3,19 +3,19 @@ import {
 } from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import RegisterForm from '../organisms/registerForm';
-import { IRegisterFormData } from '../../types/formData';
+import { RegisterFormData } from '../../types/formData';
 
-interface IRegisterTemplateProps {
+interface RegisterTemplateProps {
   // Request registration
   handleRegister: React.FormEventHandler<HTMLFormElement>;
 
   // react-hook-form properties
-  register: UseFormRegister<IRegisterFormData>;
-  resetField: UseFormResetField<IRegisterFormData>;
-  getValues: UseFormGetValues<IRegisterFormData>;
-  formState: FormState<IRegisterFormData>;
-  getFieldState: UseFormGetFieldState<IRegisterFormData>;
-  trigger: UseFormTrigger<IRegisterFormData>;
+  register: UseFormRegister<RegisterFormData>;
+  resetField: UseFormResetField<RegisterFormData>;
+  getValues: UseFormGetValues<RegisterFormData>;
+  formState: FormState<RegisterFormData>;
+  getFieldState: UseFormGetFieldState<RegisterFormData>;
+  trigger: UseFormTrigger<RegisterFormData>;
 
   // Email validation
   isEmailDuplicated: boolean;
@@ -40,7 +40,7 @@ export default function RegisterTemplate({
   setIsEmailDuplicated,
   isLoading,
   resultMsg,
-}: IRegisterTemplateProps) {
+}: RegisterTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
       <h1 className="mt-8 py-4 text-center text-3xl">회원 가입</h1>

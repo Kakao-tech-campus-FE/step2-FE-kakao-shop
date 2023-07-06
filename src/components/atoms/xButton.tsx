@@ -1,4 +1,4 @@
-interface IXButtonProps {
+interface XButtonProps {
   name?: string;
   show?: boolean;
   handleClick: React.MouseEventHandler<HTMLButtonElement>;
@@ -8,7 +8,7 @@ export default function XButton({
   name,
   show = true,
   handleClick,
-}: IXButtonProps) {
+}: XButtonProps) {
   return (
     <button
       className={`${show ? 'visible' : 'invisible'}`}

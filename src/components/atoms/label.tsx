@@ -1,4 +1,4 @@
-interface ILabelProps {
+interface LabelProps {
   children: React.ReactNode;
   htmlFor: string;
   description: string;
@@ -8,7 +8,7 @@ export default function Label({
   children,
   htmlFor,
   description,
-}: ILabelProps) {
+}: LabelProps) {
   return (
     <label htmlFor={htmlFor}>
       <div className="px-2 text-sm">

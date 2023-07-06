@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ILoginData, IRegisterFormData } from '../types/formData';
+import { LoginData, RegisterFormData } from '../types/formData';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_KAKAO_API_URL,
@@ -19,7 +19,7 @@ export async function checkEmail(email: string) {
   }
 }
 
-export async function registerUser({ email, password, username }: IRegisterFormData) {
+export async function registerUser({ email, password, username }: RegisterFormData) {
   try {
     const response = await axiosInstance.post('/join', {
       email,
@@ -33,7 +33,7 @@ export async function registerUser({ email, password, username }: IRegisterFormD
   }
 }
 
-export async function loginUser({ email, password }: ILoginData) {
+export async function loginUser({ email, password }: LoginData) {
   try {
     const response = await axiosInstance.post('/login', {
       email,

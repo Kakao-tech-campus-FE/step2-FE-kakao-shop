@@ -1,4 +1,4 @@
-interface IButtonProps {
+interface ButtonProps {
   children: React.ReactNode;
   isSubmitType: boolean;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
@@ -10,7 +10,7 @@ export default function Button({
   isSubmitType,
   handleClick,
   disabled = false,
-}: IButtonProps) {
+}: ButtonProps) {
   return (
     <button
       className="w-full rounded-sm bg-yellow-300 p-2 text-sm font-normal

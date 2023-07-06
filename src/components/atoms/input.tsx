@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { ChangeHandler } from 'react-hook-form';
 
-interface IInputProps {
+interface InputProps {
   inputType: string;
   id: string;
   placeholder?: string;
@@ -12,7 +12,7 @@ interface IInputProps {
   name?: string;
 }
 
-const Input = forwardRef<HTMLInputElement, IInputProps>((
+const Input = forwardRef<HTMLInputElement, InputProps>((
   {
     inputType,
     id,
@@ -20,7 +20,7 @@ const Input = forwardRef<HTMLInputElement, IInputProps>((
     onChange,
     onBlur,
     name,
-  }: IInputProps,
+  }: InputProps,
   ref,
 ) => (
   <input

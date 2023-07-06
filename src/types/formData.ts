@@ -1,17 +1,17 @@
-export interface IRegisterFormData {
+export interface RegisterFormData {
   email: string;
   username: string;
   password: string;
   confirmPassword: string;
 }
 
-export interface IRegisterData {
+export interface RegisterData {
   email: string;
   username: string;
   password: string;
 }
 
-export interface ILoginData {
+export interface LoginData {
   email: string;
   password: string;
 }

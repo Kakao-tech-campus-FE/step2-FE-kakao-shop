@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterTemplate from '../templates/registerTemplate';
-import { IRegisterFormData } from '../../types/formData';
+import { RegisterFormData } from '../../types/formData';
 import { registerUser } from '../../apis/axios';
 
 export default function RegisterPage() {
@@ -14,7 +14,7 @@ export default function RegisterPage() {
     formState,
     getFieldState,
     trigger,
-  } = useForm<IRegisterFormData>({
+  } = useForm<RegisterFormData>({
     mode: 'onChange',
     defaultValues: {
       email: '',

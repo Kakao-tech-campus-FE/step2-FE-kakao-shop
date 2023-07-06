@@ -2,7 +2,7 @@ import React from 'react';
 import Breadcrumb from './breadcrumb';
 import styles from '../styles/breadcrumbDemo.module.css';
 
-interface IBreadcrumbDemoProps {
+interface BreadcrumbDemoProps {
   currentDirectory: string;
 }
 
@@ -16,7 +16,7 @@ const directoryTree: {
   post: ['1', '2', '3'],
 };
 
-export default function BreadcrumbDemo({ currentDirectory }: IBreadcrumbDemoProps) {
+export default function BreadcrumbDemo({ currentDirectory }: BreadcrumbDemoProps) {
   const parsed = currentDirectory.split('/');
 
   return (

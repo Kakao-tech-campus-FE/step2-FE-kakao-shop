@@ -7,13 +7,13 @@ type TypeActionData = {
   checked: boolean;
 };
 
-interface IChecklistData {
+interface ChecklistData {
   id: number;
   checked: boolean;
   value: string;
 }
 
-function checklistReducer(checklist: IChecklistData[], action: TypeActionData) {
+function checklistReducer(checklist: ChecklistData[], action: TypeActionData) {
   switch (action.type) {
     case 'checked': {
       return checklist.map((checkbox) => {
@@ -34,7 +34,7 @@ function checklistReducer(checklist: IChecklistData[], action: TypeActionData) {
   }
 }
 
-const checklistInitialValues: IChecklistData[] = [
+const checklistInitialValues: ChecklistData[] = [
   {
     id: 1,
     checked: false,

@@ -4,23 +4,23 @@ import {
 import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
-import { IRegisterFormData } from '../../types/formData';
+import { RegisterFormData } from '../../types/formData';
 import { REGISTER_VALID_REGEX } from '../../utils/regex';
 import { REGISTER_ERROR_MSG } from '../../utils/errorMsg';
 import { debounce } from '../../utils/debounce';
 import { checkEmail } from '../../apis/axios';
 
-interface IRegisterFormProps {
+interface RegisterFormProps {
   // Request registration
   handleRegister: React.FormEventHandler<HTMLFormElement>;
 
   // react-hook-form properties
-  register: UseFormRegister<IRegisterFormData>;
-  resetField: UseFormResetField<IRegisterFormData>;
-  getValues: UseFormGetValues<IRegisterFormData>;
-  formState: FormState<IRegisterFormData>;
-  getFieldState: UseFormGetFieldState<IRegisterFormData>;
-  trigger: UseFormTrigger<IRegisterFormData>;
+  register: UseFormRegister<RegisterFormData>;
+  resetField: UseFormResetField<RegisterFormData>;
+  getValues: UseFormGetValues<RegisterFormData>;
+  formState: FormState<RegisterFormData>;
+  getFieldState: UseFormGetFieldState<RegisterFormData>;
+  trigger: UseFormTrigger<RegisterFormData>;
 
   // Email validation
   isEmailDuplicated: boolean;
@@ -41,7 +41,7 @@ export default function RegisterForm({
   isEmailDuplicated,
   setIsEmailDuplicated,
   isLoading,
-}: IRegisterFormProps) {
+}: RegisterFormProps) {
   return (
     <form onSubmit={handleRegister}>
       <div>

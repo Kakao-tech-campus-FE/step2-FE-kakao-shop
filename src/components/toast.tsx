@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import styles from '../styles/toast.module.css';
 
-const ToastContext = createContext<IToastData[] | null>(null);
+const ToastContext = createContext<ToastData[] | null>(null);
 const ToastDispatchContext = createContext<React.Dispatch<TypeActionData> | null>(null);
 
 export function useToastContext() {
@@ -20,14 +20,14 @@ export function useToastContext() {
   return { toasts, toastDispatch };
 }
 
-interface IToastData {
+interface ToastData {
   id: number;
   toastPosition: string;
   toastMsg: string;
   duration: number;
 }
 
-interface IToastProps {
+interface ToastProps {
   id: number;
   toastMsg: string;
   duration: number;
@@ -37,7 +37,7 @@ function Toast({
   id,
   toastMsg,
   duration,
-}: IToastProps) {
+}: ToastProps) {
   const { toastDispatch } = useToastContext();
   const [closeTimer, setCloseTimer] = useState(duration);
   const [showing, setShowing] = useState(false);
@@ -114,7 +114,7 @@ type TypeActionData = {
   id: number;
 };
 
-function toastReducer(toasts: IToastData[], action: TypeActionData) {
+function toastReducer(toasts: ToastData[], action: TypeActionData) {
   switch (action.type) {
     case 'added': {
       return [...toasts, {

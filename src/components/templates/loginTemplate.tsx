@@ -3,17 +3,17 @@ import {
 } from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import LoginForm from '../organisms/loginForm';
-import { ILoginData } from '../../types/formData';
+import { LoginData } from '../../types/formData';
 
-interface ILoginTemplateProps {
+interface LoginTemplateProps {
   // Request login
   handleLogin: React.FormEventHandler<HTMLFormElement>;
 
   // react-hook-form properties
-  register: UseFormRegister<ILoginData>;
-  resetField: UseFormResetField<ILoginData>;
-  formState: FormState<ILoginData>;
-  getFieldState: UseFormGetFieldState<ILoginData>;
+  register: UseFormRegister<LoginData>;
+  resetField: UseFormResetField<LoginData>;
+  formState: FormState<LoginData>;
+  getFieldState: UseFormGetFieldState<LoginData>;
 
   // Loading
   isLoading: boolean;
@@ -30,7 +30,7 @@ export default function LoginTemplate({
   getFieldState,
   isLoading,
   resultMsg,
-}: ILoginTemplateProps) {
+}: LoginTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
       <h1 className="mt-8 py-4 text-center text-3xl">로그인</h1>
