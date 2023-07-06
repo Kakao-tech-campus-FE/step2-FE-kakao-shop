@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { register } from "../../apis/api";
 
@@ -29,6 +30,8 @@ const RegisterForm = () => {
     passwordConfirm: "",
     required: "",
   });
+
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (!value.email || !value.password || !value.passwordConfirm) {
@@ -70,7 +73,7 @@ const RegisterForm = () => {
         password: value.password,
         username: value.username,
       });
-      console.log("회원가입 성공");
+      navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
 

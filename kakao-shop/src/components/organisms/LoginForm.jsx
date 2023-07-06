@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
@@ -25,6 +26,8 @@ const LoginForm = () => {
   const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
   const [isKeepLog, setIsKeepLog] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleLogin = async () => {
     if (!validateEmail(value.email)) {
       const errorMessage = "카카오계정을 정확하게 입력해 주세요.";
@@ -44,8 +47,7 @@ const LoginForm = () => {
         email: value.email,
         password: value.password,
       });
-      // 성공적인 로그인 처리
-      console.log("로그인 성공");
+      navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
       if (error.response && error.response.status === 401) {
