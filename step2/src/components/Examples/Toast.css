@@ -1,0 +1,39 @@
+.toast-message {
+  background-color: #7f5066;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0 0.5rem 1rem #00000026;
+  height: 50px;
+  width: 250px;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+.toast-message div {
+  margin: 0;
+}
+
+.progress-bar {
+  height: 8px;
+  background-color: #fff4f0;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  background-color: #f60;
+  transition: width 0.2s ease;
+}
