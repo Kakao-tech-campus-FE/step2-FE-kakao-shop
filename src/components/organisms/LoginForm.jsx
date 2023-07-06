@@ -6,20 +6,43 @@ import Footer from "../atoms/Footer";
 import {useNavigate} from 'react-router-dom';
 import LinkText from "../atoms/LinkText";
 import * as Link from '../../styles/atoms/Link';
+import {login} from '../../apis/api';
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
+import { useState } from "react";
+import Msg from "../atoms/Msg";
+import { setLocalStorageWithExp } from "../../utils/localStorage";
 
 const LoginForm = () => {
-    const {value, handleOnChange, invalidCheck} = useInput({
-        username: "",
+    const dispatch = useDispatch();
+    // const email = useSelector((state) => state.user.email);
+    const [error, setError] = useState('');
+    const {value, handleOnChange, handleOnCheck, invalidCheck} = useInput({
         email: "",
         password: "",
-        passwordConfirm: "",
     });
 
-    const navigate = useNavigate();
+    const loginReq = () => {
+        login({
+            email: value.email,
+            password: value.password,
+        })
+        .then((res) => {
+            setError('');
+            dispatch(setEmail({
+                email: value.email,
+            }));
+            setLocalStorageWithExp("email", value.email, 1000 * 1440);
+            navigate("/");
+        })
+        .catch((err) => {
+            console.log(err.request.response);
+            const errObject = JSON.parse(err.request.response);
+            setError(errObject.error.message)
+        });
+    };
 
-    // useEffect(() => {
-    //     console.log(value.email);
-    // },[value.email]);
+    const navigate = useNavigate();
 
     const isValid = invalidCheck['email'] === true && invalidCheck['password'] === true;
 
@@ -36,6 +59,7 @@ const LoginForm = () => {
                     label="이메일 (아이디)" 
                     value={value.email}
                     onChange={handleOnChange}
+                    onBlur={handleOnCheck}
                     invalid={invalidCheck}/>
                 <InputGroup 
                     id="password" 
@@ -45,16 +69,12 @@ const LoginForm = () => {
                     label="비밀번호"
                     value={value.password}
                     onChange={handleOnChange}
+                    onBlur={handleOnCheck}
                     invalid={invalidCheck}/>
+                    {error !== '' ? <Msg message={error} className="login-error"/> : null}
                 <Form.Button onClick={() => {
-                // api 회원 가입 요청
-                // register({
-                //     email: value.email,
-                //     password: value.password,
-                //     username: value.username,
-                // });
-                console.log('로그인');
-                navigate("/");
+                // api 로그인 요청
+                loginReq();
                 }} disabled={isValid === true ? "" : "disabled"}>로그인</Form.Button>
                 <Link.SignUp>
                 <LinkText to="/signup" text="회원가입"/>
