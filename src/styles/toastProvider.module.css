@@ -1,0 +1,32 @@
+.toastContainer {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  gap: 1rem;
+  z-index: 12;
+}
+
+.topLeft {
+  transform: translateX(-20rem);
+  top: 0;
+  left: 0;
+}
+
+.topRight {
+  transform: translateX(20rem);
+  top: 0;
+  right: 0;
+}
+
+.bottomLeft {
+  transform: translateX(-20rem);
+  bottom: 0;
+  left: 0;
+}
+
+.bottomRight {
+  transform: translateX(20rem);
+  bottom: 0;
+  right: 0;
+}

@@ -1,31 +1,8 @@
 import React, {
-  createContext, useContext, useEffect, useReducer, useState,
+  useEffect, useState,
 } from 'react';
 import styles from '../styles/toast.module.css';
-
-const ToastContext = createContext<ToastData[] | null>(null);
-const ToastDispatchContext = createContext<React.Dispatch<TypeActionData> | null>(null);
-
-export function useToastContext() {
-  const toasts = useContext(ToastContext);
-  if (!toasts) {
-    throw new Error('Cannot find ToastProvider!');
-  }
-
-  const toastDispatch = useContext(ToastDispatchContext);
-  if (!toastDispatch) {
-    throw new Error('Cannot find ToastProvider!');
-  }
-
-  return { toasts, toastDispatch };
-}
-
-interface ToastData {
-  id: number;
-  toastPosition: string;
-  toastMsg: string;
-  duration: number;
-}
+import { useToastContext } from './toastContext';
 
 interface ToastProps {
   id: number;
@@ -33,7 +10,7 @@ interface ToastProps {
   duration: number;
 }
 
-function Toast({
+export default function Toast({
   id,
   toastMsg,
   duration,
@@ -100,100 +77,5 @@ function Toast({
         }}
       />
     </div>
-  );
-}
-
-type TypeActionData = {
-  type: 'added';
-  id: number;
-  toastPosition: string;
-  toastMsg: string;
-  duration: number;
-} | {
-  type: 'deleted';
-  id: number;
-};
-
-function toastReducer(toasts: ToastData[], action: TypeActionData) {
-  switch (action.type) {
-    case 'added': {
-      return [...toasts, {
-        id: action.id,
-        toastPosition: action.toastPosition,
-        toastMsg: action.toastMsg,
-        duration: action.duration,
-      }];
-    }
-
-    case 'deleted': {
-      return toasts.filter((t) => t.id !== action.id);
-    }
-
-    default: {
-      throw Error('Unknown action');
-    }
-  }
-}
-
-export default function ToastProvider({ children }: { children: React.ReactNode; }) {
-  const [toasts, dispatch] = useReducer(
-    toastReducer,
-    [],
-  );
-
-  return (
-    <ToastContext.Provider value={toasts}>
-      <ToastDispatchContext.Provider value={dispatch}>
-        {children}
-        <div className={`${styles.toastContainer} ${styles.topLeft}`}>
-          {toasts.map((toast) => (
-            toast.toastPosition === 'top-left' && (
-            <Toast
-              key={toast.id}
-              id={toast.id}
-              toastMsg={toast.toastMsg}
-              duration={toast.duration}
-            />
-            )
-          ))}
-        </div>
-        <div className={`${styles.toastContainer} ${styles.topRight}`}>
-          {toasts.map((toast) => (
-            toast.toastPosition === 'top-right' && (
-            <Toast
-              key={toast.id}
-              id={toast.id}
-              toastMsg={toast.toastMsg}
-              duration={toast.duration}
-            />
-            )
-          ))}
-        </div>
-        <div className={`${styles.toastContainer} ${styles.bottomLeft}`}>
-          {toasts.map((toast) => (
-            toast.toastPosition === 'bottom-left' && (
-            <Toast
-              key={toast.id}
-              id={toast.id}
-              toastMsg={toast.toastMsg}
-              duration={toast.duration}
-            />
-            )
-          ))}
-        </div>
-        <div className={`${styles.toastContainer} ${styles.bottomRight}`}>
-          {toasts.map((toast) => (
-            toast.toastPosition === 'bottom-right' && (
-            <Toast
-              key={toast.id}
-              id={toast.id}
-              toastMsg={toast.toastMsg}
-              duration={toast.duration}
-            />
-            )
-          ))}
-        </div>
-      </ToastDispatchContext.Provider>
-    </ToastContext.Provider>
   );
 }

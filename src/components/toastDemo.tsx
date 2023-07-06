@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useToastContext } from './toast';
+import { useToastContext } from './toastContext';
 import styles from '../styles/toastDemo.module.css';
 
 export default function ToastDemo() {
