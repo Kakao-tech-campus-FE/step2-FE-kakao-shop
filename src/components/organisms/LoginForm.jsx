@@ -7,6 +7,7 @@ import { loginRequest } from "../../store/slices/userSlice";
 import { useDispatch } from "react-redux";
 import { emailValidCheck, pwValidCheck } from "../../utils/validationCheck";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
   // 사용자 정보를 store에 저장 : dispatch를 사용하기 위해 useDispatch;
@@ -78,8 +79,8 @@ const LoginForm = () => {
         ///
         className={
           isFocus[0]
-            ? "border-b-2 border-neutral-500 m-5"
-            : "border-b-2 border-neutral-300 m-5"
+            ? "border-b-2 border-neutral-500 m-5 mb-2"
+            : "border-b-2 border-neutral-300 m-5 mb-2"
         }
         inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
         onFocus={() => {
@@ -89,7 +90,7 @@ const LoginForm = () => {
           setIsFocus([false, isFocus[1]]);
         }}
       />
-      <div className="m-2 text-red-500">
+      <div className="m-2 text-red-500 pl-3">
         {validation.email ? "" : "잘못된 이메일 형식입니다."}
       </div>
       <InputGroup
@@ -103,8 +104,8 @@ const LoginForm = () => {
         ///
         className={
           isFocus[1]
-            ? "border-b-2 border-neutral-500 m-5"
-            : "border-b-2 border-neutral-300 m-5"
+            ? "border-b-2 border-neutral-500 m-5 mb-2"
+            : "border-b-2 border-neutral-300 m-5 mb-2"
         }
         inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
         onFocus={() => {
@@ -115,7 +116,7 @@ const LoginForm = () => {
           setIsFocus([isFocus[0], false]);
         }}
       />
-      <div className="m-2 text-red-500">
+      <div className="m-2 text-red-500 pl-3">
         {validation.password
           ? ""
           : "영문, 숫자, 특수문자가 포함되며, 8에서 20자 이내여야 합니다."}
@@ -128,6 +129,9 @@ const LoginForm = () => {
       >
         로그인
       </Button>
+      <Link to={"/signup"} className="inline-block my-6 mx-3">
+        회원가입
+      </Link>
     </Container>
   );
 };

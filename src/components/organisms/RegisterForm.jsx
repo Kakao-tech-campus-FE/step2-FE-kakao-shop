@@ -63,8 +63,8 @@ const RegisterForm = () => {
   const [isFocus, setIsFocus] = useState([false, false, false, false]);
   const getInputGroupClass = (index) => {
     return isFocus[index]
-      ? "border-b-2 border-neutral-500 m-5"
-      : "border-b-2 border-neutral-300 m-5";
+      ? "border-b-2 border-neutral-500 m-5 mb-2"
+      : "border-b-2 border-neutral-300 m-5 mb-2";
   };
   const handleFocus = (index, value) => {
     setIsFocus((prevIsFocus) => {
@@ -104,7 +104,7 @@ const RegisterForm = () => {
           handleFocus(0, false);
         }}
       />
-      <div className="m-2 text-red-500">
+      <div className="m-2 text-red-500 pl-3">
         {validation.username ? "" : "사용자 이름을 입력해 주세요."}
       </div>
       <InputGroup
@@ -125,7 +125,7 @@ const RegisterForm = () => {
           handleFocus(1, false);
         }}
       />
-      <div className="m-2 text-red-500">
+      <div className="m-2 text-red-500 pl-3">
         {validation.email ? "" : "잘못된 이메일 형식입니다."}
       </div>
       <InputGroup
@@ -146,7 +146,7 @@ const RegisterForm = () => {
           handleFocus(2, false);
         }}
       />
-      <div className="m-2 text-red-500">
+      <div className="m-2 text-red-500 pl-3">
         {validation.password
           ? ""
           : "영문, 숫자, 특수문자가 포함되며, 8에서 20자 이내여야 합니다."}
@@ -169,7 +169,7 @@ const RegisterForm = () => {
           handleFocus(3, false);
         }}
       />
-      <div className="m-2 text-red-500">
+      <div className="m-2 text-red-500 pl-3">
         {validation.pwConfirm ? "" : "비밀번호가 일치하지 않습니다."}
       </div>
       <Button
