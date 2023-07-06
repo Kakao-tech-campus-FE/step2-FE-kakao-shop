@@ -25,17 +25,26 @@ export const register = (data) => {
     });
 };
 
-// middleware
-// instance.interceptors.response.use(
-//     (response) => {
-//         return response;
-//     },
-//     (error) => {
-//         if(error.response.status === 401) {
-//             localStorage.removeItem("token");
-//             window.location.href = "/login";
-//             return Promise.resolve();
-//         }
-//         return Promise.reject(error.response);
-//     }
-// )
+export const login = (data) => {
+    const {email, password} = data;
+    return instance.post("/login", {
+        email,
+        password,
+    });
+};
+
+//middleware
+instance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    (error) => {
+        // if(error.response.status === 401) {
+        //     //localStorage.removeItem("token");
+        //     //window.location.href = "/login";
+        //     //return Promise.resolve();
+
+        // }
+        return Promise.reject(error.response);
+    }
+)
