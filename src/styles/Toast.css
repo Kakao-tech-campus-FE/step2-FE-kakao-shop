@@ -1,0 +1,22 @@
+.toast_box {
+    background-color: rgb(242, 214, 178);
+    padding: 0.5rem;
+    font-size: 12px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    color: black;
+    animation: toast 0.4s ease-in-out;
+}
+
+@keyframes toast {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}

@@ -1,0 +1,20 @@
+.Radio-container {
+    width: 300px;
+    margin: 3em auto;
+    padding: 2em;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.Radio-head {
+    font-size: 1.3em;
+    margin-bottom: 1em;
+}
+
+.Radio-content {
+margin-top: 1.3em;
+}
+
+.radio-label {
+    margin-right: 1em;
+}
