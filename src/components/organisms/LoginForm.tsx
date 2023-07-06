@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
@@ -10,14 +11,19 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
 
   const handleSignInBtnClick = () => {
     const { email, password } = values;
 
-    loginApi.login({
-      email,
-      password,
-    });
+    loginApi
+      .login({
+        email,
+        password,
+      })
+      .then(() => {
+        navigate('/');
+      });
   };
 
   return (
