@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {loginSuccess } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
 import Container from "../components/atoms/Container";
+import MainLogo from "../components/molecules/MainLogo";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ const LoginPage = () => {
   },[dispatch, isLoggedIn]);
 
   return (
-    <Container className="h-screen border border-slate-500 border-solid rounded-md flex flex-col justify-center">
-      <Container>
+    <Container className="h-screen relative border border-slate-500 border-solid rounded-md flex flex-col justify-center items-center">
+      <MainLogo className="absolute w-40 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
+      <Container className="w-fit border border-solid rounded-lg border-gray">
         <LoginForm />
       </Container>
     </Container>

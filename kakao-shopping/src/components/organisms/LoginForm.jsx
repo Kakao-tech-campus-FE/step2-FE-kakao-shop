@@ -5,14 +5,14 @@ import useInput from "../../hooks/useInput";
 import { login } from "../../actions/authActions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 const LoginForm = () => {
 
   const [value, handleOnChange] = useInput({
     email:"",
-    emailIsValid: '',
+    emailIsValid: false,
     password:"",
-    passwordIsValid: '',
+    passwordIsValid: false,
   });
   const [LoginFailed, setLoginFailed] = useState('');
   const dispatch = useDispatch();
@@ -33,8 +33,10 @@ const LoginForm = () => {
     }
   };
 
+  const everythingIsValid = value.emailIsValid && value.passwordIsValid;
+
   return (
-    <Container className='rounded-md flex flex-col items-center justify-center h-48'>
+    <Container className='relative rounded-md flex flex-col items-center m-5 my-10'>
       <form>
         <Container>
         <InputGroup inputClassName={`w-96 p-2 h-8 border-solid border-gray-300 ${value.email && (value.emailIsValid ? '': 'border-red-500')} border rounded-lg mt-2 mb-1`} id="email" type="email" placeholder="이메일" autocomplete="email" value={value.email} onChange={handleOnChange}/>
@@ -63,10 +65,21 @@ const LoginForm = () => {
 
       <span className="text-red-500 text-xs block h-2">{LoginFailed}</span>
       
+      {everythingIsValid ? 
       <Button
-        className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md"
-        onClick={handleLogin}
-        >로그인</Button>
+        className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md mb-10"
+        onClick={handleLogin}>
+          로그인
+      </Button> :
+        
+      <Button
+        className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 text-gray-400 cursor-default rounded-md mb-10"
+        >
+          로그인
+      </Button>}
+    <div className="absolute left-2 bottom-0">
+      <Link to='/register'><span className="text-sm">회원가입</span></Link>
+      </div>
     </Container>
   );
 }

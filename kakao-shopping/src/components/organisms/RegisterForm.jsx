@@ -5,6 +5,7 @@ import useInput from "../../hooks/useInput";
 import { register, checkDuplicateEmail } from "../../apis/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const [value, handleOnChange] = useInput({
@@ -42,8 +43,10 @@ const RegisterForm = () => {
     }
   }
   
+  const everythingIsValid = value.usernameIsValid && value.emailIsValid && value.passwordIsValid && value.passwordConfirm == value.password;
+
   return (
-    <Container className='rounded-md flex flex-col items-center justify-center'>
+    <Container className='relative rounded-md flex flex-col items-center justify-center p-5'>
       <form>
         <Container>
           <span>이메일(아이디)</span>
@@ -103,9 +106,21 @@ const RegisterForm = () => {
         </Container>
       </form>
       <span className="h-2 text-red-500 text-xs">{registerFailed ? "회원가입 실패" : ''}</span>
+      {everythingIsValid ? 
       <Button
-        className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md"
-        onClick={handleRegisterClick}>회원가입</Button>
+        className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md mb-10"
+        onClick={handleRegisterClick}>
+          로그인
+      </Button> :
+        
+      <Button
+        className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 text-gray-400 cursor-default rounded-md mb-10"
+        >
+          회원가입
+      </Button>}
+    <div className="absolute left-4 bottom-0 m-3">
+      <Link to='/login'><span className="text-sm">로그인</span></Link>
+      </div>
     </Container>
   );
 }

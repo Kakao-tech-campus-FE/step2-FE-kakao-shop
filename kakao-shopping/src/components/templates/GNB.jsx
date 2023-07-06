@@ -37,7 +37,7 @@ const GNB = () => {
             <Link to='/'><img className="w-8" src="/assets/cart.png" alt="cart"/></Link>
             <span className="px-4">|</span>
               {isLoggedIn ?
-            <Button className="text-sm mr-4" onClick={handleLogoutClick}>로그아웃</Button> :
+            <Button className="text-sm" onClick={handleLogoutClick}>로그아웃</Button> :
               <Link className="text-sm mr-4" to='/login'>로그인</Link>
               }
           </div>
