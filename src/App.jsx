@@ -6,12 +6,14 @@ import CartPage from "./pages/CartPage";
 
 const App = () => {
   return(
-    <Routes>
-      <Route path="/signup" element={<RegisterPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/" element={<MainPage />} />
-      <Route path="/cart" element={<CartPage />} />
-    </Routes>
+    <div>
+        <Routes>
+          <Route path="/signup" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+    </div>
   );
 };
 
