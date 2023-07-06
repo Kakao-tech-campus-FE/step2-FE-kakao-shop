@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
+
+import { login } from "../../apis/api";
 
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
@@ -20,6 +22,10 @@ const LoginForm = () => {
 
   const [isKeepLog, setIsKeepLog] = useState(false);
 
+  useEffect(() => {
+    console.log(value.email);
+  }, [value.email]);
+
   const inputBoxStyle = `border-b border-solid py-1 mb-2 font-bold`;
 
   return (
@@ -27,6 +33,7 @@ const LoginForm = () => {
       <InputGroup
         id="email"
         type="email"
+        name="email"
         value={value.email}
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         label=""
@@ -47,6 +54,7 @@ const LoginForm = () => {
       <InputGroup
         id="password"
         type="password"
+        name="password"
         value={value.password}
         placeholder="비밀번호"
         label=""
@@ -72,7 +80,17 @@ const LoginForm = () => {
         />
       </div>
 
-      <Button color="kakao">로그인</Button>
+      <Button
+        color="kakao"
+        onClick={() => {
+          login({
+            email: value.email,
+            password: value.password,
+          });
+        }}
+      >
+        로그인
+      </Button>
 
       <div className="mt-8 text-xs">
         <Link to="/register">회원가입</Link>
