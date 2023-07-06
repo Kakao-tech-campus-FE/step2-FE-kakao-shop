@@ -1,4 +1,4 @@
-import Axiosinstance from "@utils/Instance";
+import AxiosInstance from "@utils/Instance";
 
 interface userData {
   email: string;
@@ -9,10 +9,10 @@ interface userData {
 export const postRegister = async (data: userData) => {
   const { email, password, username } = data;
 
-  const response = await Axiosinstance.post("/join", {
+  const response = await AxiosInstance.post("/join", {
     email,
     password,
     username,
   });
-  console.log(response);
+  return response;
 };
