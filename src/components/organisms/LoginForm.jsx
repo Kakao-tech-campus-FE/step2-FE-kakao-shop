@@ -5,6 +5,7 @@ import useInput from "./../../hooks/useInput";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
+import Swal from 'sweetalert2'
 // import { login } from "../services/api";
 // import { loginRequest, setEmail } from "../../store/slices/userSlice";
 
@@ -18,9 +19,15 @@ const LoginForm = () => {
   const email = useSelector((state) => state.user.email);
 
   const [value, handleOnChange] = useInput({
-    email: "",
-    password: "",
+    email: "test222@naver.com",
+    password: "test123!",
   });
+
+  // 이메일 : 이메일 형식으로 작성
+  // 비밀번호 : 영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없음, 8에서 20자 이내
+  // eslint-disable-next-line
+  const emailValidation = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+  const pwValidation = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,16}$/;
 
   // const loginReq = () => {
   //   login({
@@ -66,13 +73,31 @@ const LoginForm = () => {
         />
         <Button
           onClick={() => {
-            // api 로그인 요청 - fetch 혹은 axios
-            dispatch(
-              loginRequest({
-                email: value.email,
-                password: value.password,
+            if(!pwValidation.test(value.password)) {
+              Swal.fire({
+                icon:'error',
+                title:'비밀번호가 올바르지 않습니다!',
+                text:'비밀번호는 영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없으며, 8에서 20자 이내로 작성해주세요!',
+                confirmButtonText:'확인',
               })
-            )
+            }
+            if(!emailValidation.test(value.email)) {
+              Swal.fire({
+                icon:'error',
+                title:'이메일이 올바르지 않습니다!',
+                text:'이메일을 이메일에 맞는 올바른 형식으로 작성해주세요!',
+                confirmButtonText:'확인',
+              })
+            }
+            if(emailValidation.test(value.email) && pwValidation.test(value.password)) {
+              // api 로그인 요청 - fetch 혹은 axios
+              dispatch(
+                loginRequest({
+                  email: value.email,
+                  password: value.password,
+                })
+              )
+            }
           }}
         >
           로그인
