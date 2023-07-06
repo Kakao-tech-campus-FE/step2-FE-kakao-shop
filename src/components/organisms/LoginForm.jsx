@@ -2,10 +2,12 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { login } from "../../services/api";
+//import { login } from "../../services/api"; //loadingRequest에서 처리했음
 import Title from "../atoms/Title";
-import { setEmail } from "../../store/slices/userSlice";
+import { loginRequest } from "../../store/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { emailValidCheck, pwValidCheck } from "../../utils/validationCheck";
+import { useState } from "react";
 
 const LoginForm = () => {
   // 사용자 정보를 store에 저장 : dispatch를 사용하기 위해 useDispatch;
@@ -18,25 +20,49 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
+  const [validation, setValidation] = useState({
+    email: true,
+    password: true,
+  });
+  const handleLogin = () => {
+    const isEmailValid = emailValidCheck(value.email);
+    const isPwValid = pwValidCheck(value.password);
 
-  const loginReq = () => {
-    login({
-      email: value.email,
-      password: value.password,
-    })
-      .then((res) => {
-        console.log(res);
-        // dispatch를 이용하여 store에 email을 저장
-        dispatch(
-          setEmail({
-            email: value.email,
-          })
-        );
-      })
-      .catch((err) => {
-        console.log("Error", err);
-      });
+    setValidation({
+      email: isEmailValid,
+      password: isPwValid,
+    });
+
+    if (isEmailValid && isPwValid) {
+      // 유효성 검사 통과, 로그인 요청
+      dispatch(
+        loginRequest({
+          email: value.email,
+          password: value.password,
+        })
+      );
+    }
   };
+
+  //redux-thunk 사용 이전 비동기 처리 코드, 이래의 버튼 onClick의 dispatch(loginRequest)로 대체됨
+  // const loginReq = () => {
+  //   login({
+  //     email: value.email,
+  //     password: value.password,
+  //   })
+  //     .then((res) => {
+  //       //console.log(res);
+  //       // dispatch를 이용하여 store에 email을 저장
+  //       dispatch(
+  //         setEmail({
+  //           email: value.email,
+  //         })
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error", err);
+  //     });
+  // };
 
   return (
     <Container>
@@ -51,6 +77,7 @@ const LoginForm = () => {
         value={value.email}
         onChange={handleOnChange}
       />
+      <div>{validation.email ? "" : "잘못된 이메일 형식입니다."}</div>
       <InputGroup
         id={"password"}
         type={"password"}
@@ -60,14 +87,12 @@ const LoginForm = () => {
         value={value.password}
         onChange={handleOnChange}
       />
-      <Button
-        onClick={() => {
-          // api 로그인 요청
-          loginReq();
-        }}
-      >
-        로그인
-      </Button>
+      <div>
+        {validation.password
+          ? ""
+          : "영문, 숫자, 특수문자가 포함되며, 8에서 20자 이내여야 합니다."}
+      </div>
+      <Button onClick={handleLogin}>로그인</Button>
     </Container>
   );
 };
