@@ -14,7 +14,7 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
       <Input placeholder="비밀번호" type="password" />
       <FilledButton
         onClick={() => {
-          onSubmit({ email: 'asdf', password: 'asdfdsfad' });
+          onSubmit({ email: 'ssar@nate.com', password: 'meta1234!' }).catch((err) => console.log(err));
         }}
       >
         로그인
