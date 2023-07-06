@@ -4,7 +4,7 @@ export const login = (username, password) => async dispatch => {
 	try {
     const response = await loginApi({email: username, password: password}); 
     
-      const user = { id: 1, username: "exampleUser" };
+    const user = { id: 1, username: "exampleUser" };
     // 응답 처리
     if(response.data.success) {
       dispatch(loginSuccess(user.user));
