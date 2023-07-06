@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postCheck } from "@apis/postCheck";
 import { postRegister } from "@apis/postRegister";
 import AuthContainer from "@components/atoms/AuthContainer";
@@ -17,6 +18,11 @@ const RegisterForm = () => {
       passwordConfirm: "",
     });
   const [emailError, setEmailError] = useState({ isError: false, message: "" });
+  const [registerError, setRegisterError] = useState({
+    isError: false,
+    message: "",
+  });
+  const navigate = useNavigate();
 
   return (
     <AuthContainer width={"580px"} margin={"40px auto 42px"}>
@@ -94,16 +100,43 @@ const RegisterForm = () => {
             입력한 비밀번호와 재입력한 비밀번호가 일치하지 않습니다.
           </ErrorMessage>
         )}
+        {registerError.isError && (
+          <ErrorWrapper>
+            <ErrorMessage>{registerError.message}</ErrorMessage>
+          </ErrorWrapper>
+        )}
         <ButtonWrapper>
           <Button
             height={"50px"}
             background={"#fee500"}
             onClick={() => {
-              postRegister({
-                email: inputValue.email,
-                password: inputValue.password,
-                username: inputValue.name,
-              });
+              if (
+                !inputValue.email ||
+                !inputValue.name ||
+                !inputValue.password ||
+                !inputValue.passwordConfirm
+              ) {
+                setRegisterError({
+                  isError: true,
+                  message: "빈칸이 존재합니다.",
+                });
+                return;
+              }
+              if (emailError.isError) {
+                setRegisterError({
+                  isError: true,
+                  message: "이메일 중복 검사를 해주세요.",
+                });
+                return;
+              }
+              if (!passwordError && !confirmError) {
+                postRegister({
+                  email: inputValue.email,
+                  password: inputValue.password,
+                  username: inputValue.name,
+                });
+                navigate("/login");
+              }
             }}
           >
             회원가입
@@ -133,4 +166,8 @@ const CheckButton = styled.div`
 
 const ButtonWrapper = styled.div`
   padding-top: 30px;
+`;
+
+const ErrorWrapper = styled.div`
+  transform: translateY(30px);
 `;
