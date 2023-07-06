@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../services/api";
+import { login, register } from "../../services/api";
 
 // 슬라이스를 만들때 주의할 점 : initial state를 꼭 만들어 줘야 한다
 const initialState = {
@@ -18,20 +18,38 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    /* loginRequest */
     // Promise의 pending(대기) 상태 : 이행하지도, 거부하지도 않은 초기 상태
     builder.addCase(loginRequest.pending, (state, action) => {
       state.loading = true;
-      console.log("State.loading", state.loading)
     });
     // Promise의 fulfilled(이행) 상태: 연산이 성공적으로 완료됨.
     builder.addCase(loginRequest.fulfilled, (state, action) => {
       state.loading = false;
+      console.log("action.payload.email",action.payload)
       state.email = action.payload.email; // loginRequest의 return 값이 들어가게 됨
+      console.log("State.email", state.email)
     });
     // Promise의ㅣ rejected(거부): 연산이 실패함
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
+      alert(action.error.message)
       //state.error = action.payload.error.message; //이런 식으로 에러를 담을 수도 있다.
+    });
+
+    /* registerRequest */
+    builder.addCase(registerRequest.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(registerRequest.fulfilled, (state, action) => {
+      state.loading = false;
+      console.log("action.payload.email",action.payload)
+      state.email = action.payload.email; 
+      console.log("State.email", state.email)
+    });
+    builder.addCase(registerRequest.rejected, (state, action) => {
+      state.loading = false;
+      alert(action.error.message)
     });
   }
 })
@@ -45,7 +63,15 @@ export const loginRequest = createAsyncThunk(
     // return {
     //   email: email,
     //   token: response.headers.authorization,
-    // }; // 이런식으로 받아줘도 상관은 없다.
+    // }; // 이런식으로 받아줘도 된다.
+  }
+);
+export const registerRequest = createAsyncThunk(
+  "user/join",
+  async (data) => {
+    const {email, password, username} = data;
+    const response = await register({email, password, username});
+    return response.data
   }
 );
 

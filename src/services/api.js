@@ -29,17 +29,22 @@ instance.interceptors.response.use(
   // interceptor의 response에서 사용되는 use는 2개의 파라미터가 들어가는데
   // 1. 정상 콜백
   (response) => {
+    window.location.href = "/"; // HomePage로 리디렉션
     return response;
   },
   // 2. 에러가 일어났을때 콜백
   (error) => {
     // 아래와 같은 방법으로 에러 처리를 한다~~ 참고하래
-    // if(error.response.status === 401) {
-    //   localStorage.removeItem("token");
-    //   window.location.href = "/login";
-    //   return Promise.resolve();
-    // }
-    // return Promise.reject(error.response);
+    const errorStatus = error.response.status;
+    
+    if(errorStatus === 400 || errorStatus === 401) {
+      // localStorage.removeItem("token");
+      // window.location.href = "/login";
+      console.log("status 400, 401")
+      return Promise.reject(error.response.data.error);
+    }
+    console.log("status ELSE!!!!!!!!")
+    return Promise.reject(error);
   }
 )
 

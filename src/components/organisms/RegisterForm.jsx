@@ -2,7 +2,10 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/api";
+import { useState } from "react";
+import { emailValidCheck, pwValidCheck } from "../../utils/validationCheck";
+import { registerRequest } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const RegisterForm = () => {
   // RegisterForm의 상태 관리
@@ -22,6 +25,34 @@ const RegisterForm = () => {
     password: "",
     passwordConfirm: "",
   });
+
+  const dispatch = useDispatch();
+
+  //LoginForm에서의 validation과 코드 중복, 리팩토링 필요
+  const [validation, setValidation] = useState({
+    email: true,
+    password: true,
+  });
+  const handleRequest = () => {
+    const isEmailValid = emailValidCheck(value.email);
+    const isPwValid = pwValidCheck(value.password);
+
+    setValidation({
+      email: isEmailValid,
+      password: isPwValid,
+    });
+
+    if (isEmailValid && isPwValid) {
+      // 유효성 검사 통과, 로그인 요청
+      dispatch(
+        registerRequest({
+          email: value.email,
+          password: value.password,
+          username: value.username,
+        })
+      );
+    }
+  };
 
   return (
     <Container>
@@ -50,6 +81,7 @@ const RegisterForm = () => {
         value={value.email}
         onChange={handleOnChange}
       />
+      <div>{validation.email ? "" : "잘못된 이메일 형식입니다."}</div>
       <InputGroup
         id={"password"}
         type={"password"}
@@ -59,6 +91,11 @@ const RegisterForm = () => {
         value={value.password}
         onChange={handleOnChange}
       />
+      <div>
+        {validation.password
+          ? ""
+          : "영문, 숫자, 특수문자가 포함되며, 8에서 20자 이내여야 합니다."}
+      </div>
       <InputGroup
         id={"passwordConfirm"}
         type={"password"}
@@ -68,17 +105,27 @@ const RegisterForm = () => {
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
+      <div>
+        {value.password === value.passwordConfirm
+          ? ""
+          : "비밀번호가 일치하지 않습니다."}
+      </div>
       <Button
-        onClick={() => {
-          // API 회원가입 요청
-          // register 함수에 필요없는 passwordConfirm은 전달하지 않게 하기 위해 객체로 전달
-          // 깔끔하진 않겠지만 value를 통으로 전달해도 기능은 한다. register에서 처리하기 떄문
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          });
-        }}
+        onClick={
+          handleRequest
+          // registerRequest 사용 이전 코드
+          //   () => {
+          //   // API 회원가입 요청
+          //   // register 함수에 필요없는 passwordConfirm은 전달하지 않게 하기 위해 객체로 전달
+          //   // 깔끔하진 않겠지만 value를 통으로 전달해도 기능은 한다. register에서 처리하기 떄문
+          //   register({
+          //     email: value.email,
+          //     password: value.password,
+          //     username: value.username,
+          //   }
+          //   );
+          // }
+        }
       >
         회원가입
       </Button>

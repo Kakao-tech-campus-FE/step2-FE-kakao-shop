@@ -20,6 +20,8 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
+
+  //RegisterForm에서의 validation과 코드 중복, 리팩토링 필요
   const [validation, setValidation] = useState({
     email: true,
     password: true,
