@@ -7,14 +7,14 @@ import useInput from "../../hooks/useInput";
 
 const initialState = {
   email: "",
-  nickname: "",
+  username: "",
   password: "",
   passwordConfirm: "",
 };
 
 const ERROR_MSG = {
   requiredEmail: "이메일을 입력해 주세요.",
-  requiredNickname: "이름을 입력해 주세요.",
+  requiredUsername: "이름을 입력해 주세요.",
   requiredPw: "비밀번호를 입력해 주세요.",
   requiredConfirmPw: "비밀번호 확인을 입력해 주세요.",
   invalidEmail: "이메일을 정확하게 입력해 주세요.",
@@ -24,7 +24,7 @@ const ERROR_MSG = {
 
 export default function SignupForm() {
   const emailRef = useRef(null);
-  const nicknameRef = useRef(null);
+  const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const conformPasswordRef = useRef(null);
   const [form, handleChange] = useInput(initialState);
@@ -36,7 +36,7 @@ export default function SignupForm() {
     const [errorResult, formType] = checkRegex();
     setError(errorResult);
     if (formType === "email") emailRef.current.focus();
-    else if (formType === "nickname") nicknameRef.current.focus();
+    else if (formType === "username") usernameRef.current.focus();
     else if (formType === "password") passwordRef.current.focus();
     else if (formType === "confirmPw") conformPasswordRef.current.focus();
   };
@@ -56,11 +56,11 @@ export default function SignupForm() {
         이메일 (아이디)
       </InputGroup>
       <InputGroup
-        inputRef={nicknameRef}
-        id="nickname"
+        inputRef={usernameRef}
+        id="username"
         type="text"
-        value={form.nickname}
-        name="nickname"
+        value={form.username}
+        name="username"
         placeholder="이름"
         onChange={handleChange}
       >

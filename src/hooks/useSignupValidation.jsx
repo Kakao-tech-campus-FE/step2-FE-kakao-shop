@@ -9,7 +9,7 @@ export default function useSignupValidation({ form }) {
   const [error, setError] = useState("");
 
   const checkRegex = () => {
-    const { email, nickname, password, passwordConfirm } = form;
+    const { email, username, password, passwordConfirm } = form;
 
     let result;
     let type;
@@ -19,8 +19,8 @@ export default function useSignupValidation({ form }) {
     } else if (!EMAIL_REGEX.test(email)) {
       result = "invalidEmail";
       type = "email";
-    } else if (nickname.length === 0) {
-      result = "requiredNickname";
+    } else if (username.length === 0) {
+      result = "requiredUsername";
       type = "nickname";
     } else if (password.length === 0) {
       result = "requiredPw";
