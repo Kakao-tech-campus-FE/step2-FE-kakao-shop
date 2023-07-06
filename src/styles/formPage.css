@@ -1,0 +1,10 @@
+.form-page {
+    font-family: 'PT Mono', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+

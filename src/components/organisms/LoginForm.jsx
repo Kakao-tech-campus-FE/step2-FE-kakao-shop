@@ -14,7 +14,6 @@ const LoginForm = () => {
     });
 
     const loginReq = () => {
-        console.log(value)
         login({
                 email: value.email,
                 password: value.password
@@ -25,15 +24,17 @@ const LoginForm = () => {
                     res.data.email
                 ));
                 dispatch(reducerLogin());
+                window.location.href = "/";
             }
         ).catch(err => {
-                console.log(err);
+                console.log(err.response.data.error.message)
+                alert(err.response.data.error.message)
             }
         );
     };
 
     return (
-        <Container className={`login-form`}>
+        <Container className={`form`}>
             <InputGroup
                 id="email"
                 type="text"
@@ -53,6 +54,14 @@ const LoginForm = () => {
             <Button
                 className="login-button"
                 onClick={() => {
+                    if (value.email.length === 0) {
+                        alert("이메일을 입력해주세요.");
+                        return;
+                    }
+                    if (value.password.length === 0) {
+                        alert("비밀번호를 입력해주세요.");
+                        return;
+                    }
                     loginReq();
                 }}>
                 로그인

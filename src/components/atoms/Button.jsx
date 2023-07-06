@@ -1,8 +1,12 @@
-const Button = ({children, onClick}) => (
-    <button onClick={(e) => {
-        e.preventDefault();
-        onClick();
-    }}>
+import "../../styles/button.css"
+
+const Button = ({children, className, onClick}) => (
+    <button
+        className={`button ${className}`}
+        onClick={(e) => {
+            e.preventDefault();
+            onClick();
+        }}>
         {children}
     </button>);
 

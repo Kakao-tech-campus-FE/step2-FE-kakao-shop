@@ -3,6 +3,8 @@ import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import {register} from "../../services/api";
+import {useEffect, useState} from "react";
+import "../../styles/form.css";
 
 // 비밀번호 조건 : 8~20자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
 const PW_REGEX = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
@@ -11,7 +13,6 @@ const NAME_REGEX = new RegExp("^[가-힣]{2,}$");
 
 const ERROR_MSG = {
     required: "필수 입력사항입니다.",
-    invalidId: "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.",
     invalidPw: "8~20자 영문 대 소문자, 특수문자(!@#$%^*+=-)를 사용하세요.",
     invalidPwCheck: "비밀번호가 일치하지 않습니다.",
     invalidEmail: "이메일 형식이 올바르지 않습니다.",
@@ -27,6 +28,14 @@ const RegisterForm = () => {
             passwordConfirm: ""
         }
     );
+    const [errorFromBE, setErrorFromBE] = useState(null);
+    useEffect(() => {
+        if (errorFromBE) {
+            alert(errorFromBE);
+            setErrorFromBE(null);
+        }
+    }, [errorFromBE]);
+
 
     const FORM_CONSTRAINTS = {
         username: {
@@ -48,7 +57,7 @@ const RegisterForm = () => {
     };
 
     return (
-        <Container className={`register-form`}>
+        <Container className={`form`}>
             <InputGroup
                 id="email"
                 type="text"
@@ -89,6 +98,8 @@ const RegisterForm = () => {
                 error={ERROR_MSG.invalidPwCheck}
                 constraint={FORM_CONSTRAINTS.passwordConfirm.constraint}
             />
+
+
             <Button
                 className="register-button"
                 onClick={() => {
@@ -100,7 +111,18 @@ const RegisterForm = () => {
                             email: value.email,
                             password: value.password,
                             username: value.username
-                        })
+                        }).then(
+                            res => {
+                                console.log(res);
+                                alert("회원가입이 완료되었습니다. 로그인해주세요.");
+                                window.location.href = "/login";
+                            }
+                        ).catch(
+                            err => {
+                                console.log(err);
+                                setErrorFromBE(err.response.data.error.message);
+                            }
+                        )
                 }}
             >
                 회원가입

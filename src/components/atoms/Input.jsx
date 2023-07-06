@@ -1,6 +1,9 @@
+import "../../styles/input.css";
 const Input = ({
-                   id, type, value, placeholder, onChange
-               }) => (<input
+                   id, type, value, placeholder, onChange, onBlur = () => {
+    }
+               }) => (
+    <input
         id={id}
         type={type}
         placeholder={placeholder}
@@ -8,6 +11,8 @@ const Input = ({
         onChange={(e) => {
             onChange(e);
         }}
+        onBlur={onBlur}
+        className={`input ${id}`}
     />);
 
 export default Input;
