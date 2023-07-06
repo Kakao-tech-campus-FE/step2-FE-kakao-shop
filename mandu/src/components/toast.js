@@ -31,6 +31,8 @@ function Toast({isOpen, setOpen, message, delay, hasProgressBar = true}) {
             border: '1px solid black',
             borderRadius: '4px',
             minWidth: '300px',
+            backgroundColor: 'white',
+            opacity: 0.85,
         }}>
             <div style={{
                 display: 'flex',
