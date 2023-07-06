@@ -10,10 +10,11 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (response) => {
-        //jwt있으면 처리를 요기서 할예정
         return response;
     },
     (error) => {
         return Promise.reject(new Error(error));
     }
 );
+
+export default api;
