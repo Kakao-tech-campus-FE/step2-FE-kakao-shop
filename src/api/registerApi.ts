@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { LoginData } from './dto';
+import { RegisterData } from './dto';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  timeout: 1000,
+  // timeout: 1000,
   headers: {
     'Content-Type': 'applicatoin/json',
   },
@@ -25,23 +25,14 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // console.log(error.response);
-    console.log(error.response.data.error.message);
-    return Promise.reject(error.reponse.data.error.status);
-    // if (error.response.status === '401') {
-    //   localStorage.removeItem('token');
-    //   window.location.href = '/login';
-    //   return Promise.resolve();
-    // }
+    console.log(error);
     // return Promise.reject(error.reponse);
-    // console.error('An error occurred:', error);
-    // throw error;
   },
 );
 
-const login = (data: LoginData) => {
-  const { email, password } = data;
-  return instance.post('/login', { email, password });
+const register = (data: RegisterData) => {
+  const { email, password, username } = data;
+  return instance.post('/join', { email, password, username });
 };
 
-export default login;
+export default register;
