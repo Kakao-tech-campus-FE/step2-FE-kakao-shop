@@ -11,7 +11,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     if(token) {
-        config.headers["Authorization"] = `Bearer ${token}`;
+        config.headers["Authorization"] = token;
     }
     return config;
 });
@@ -31,7 +31,7 @@ instance.interceptors.response.use(
     }
 )
 
-const register = (data) => {
+export const register = (data) => {
     const { email, password, username } = data;
     return instance.post("/join", {
         email,
@@ -40,7 +40,7 @@ const register = (data) => {
     })
 }
 
-const login = (data) => {
+export const login = (data) => {
     const { email, password } = data;
     return instance.post("/login", {
         email,
@@ -48,4 +48,6 @@ const login = (data) => {
     })
 }
 
-export { register, login }
+export const fetchProducts = (page = 0) => {
+    return instance.get(`/products?page=${page}`);
+}

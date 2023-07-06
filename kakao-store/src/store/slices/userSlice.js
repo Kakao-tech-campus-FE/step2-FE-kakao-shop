@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login } from "../../apis/api";
 
 const initialState = {
-    email: null,
+    email: null,    // user email 값 저장.
+    loading: false, // loading 중이라면 true, 아니면 false.
 };
 
 const userSlice = createSlice({
@@ -13,6 +14,19 @@ const userSlice = createSlice({
             state.email = action.payload.email;
         },
     },
+    extraReducers: (builder) => {
+        builder.addCase(loginRequest.pending, (state, action) => {
+            state.loading = true;
+        })
+        builder.addCase(loginRequest.fulfilled, (state, action) => {
+            state.loading = false;
+            state.email = action.payload.email;
+            localStorage.setItem("token", action.payload.token);
+        })
+        builder.addCase(loginRequest.rejected, (state, action) => {
+            state.loading = false;
+        })
+    }
 });
 
 export const loginRequest = createAsyncThunk(
@@ -20,8 +34,11 @@ export const loginRequest = createAsyncThunk(
     async (data) => {
         const { email, password } = data;
         const response = await login({ email, password });
-        return response.data;
+        return {
+            email,
+            token: response.headers.authorization,
+        };
     }
 )
 export const { setEmail } = userSlice.actions;
-export default userSlice.reducer
+export default userSlice.reducer;
