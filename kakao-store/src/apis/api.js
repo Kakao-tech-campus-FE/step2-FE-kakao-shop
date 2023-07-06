@@ -40,4 +40,12 @@ const register = (data) => {
     })
 }
 
-export { register }
+const login = (data) => {
+    const { email, password } = data;
+    return instance.post("/login", {
+        email,
+        password,
+    })
+}
+
+export { register, login }
