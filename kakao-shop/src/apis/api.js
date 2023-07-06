@@ -17,13 +17,12 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-// middleware -- use를 사용하는 것들은 대개 미들웨어처럼 동작한다
 instance.interceptors.response.use(
   (response) => {
     return response;
   },
   (error) => {
-    //
+    return Promise.reject(error);
   }
 );
 
