@@ -2,6 +2,7 @@ import { useRoutes } from 'react-router-dom';
 import React from 'react';
 import LoginPage from '@pages/LoginPage';
 import ComponentTest from '@pages/ComponentTest';
+import RegisterPage from '@pages/RegisterPage';
 
 const mainRouter = () =>
   useRoutes([
@@ -12,6 +13,10 @@ const mainRouter = () =>
     {
       path: 'login',
       element: <LoginPage />,
+    },
+    {
+      path: 'register',
+      element: <RegisterPage />,
     },
   ]);
 
