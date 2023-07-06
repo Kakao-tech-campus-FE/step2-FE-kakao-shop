@@ -78,8 +78,8 @@ const LoginForm = () => {
         ///
         className={
           isFocus[0]
-            ? "border-b-2 border-neutral-500"
-            : "border-b-2 border-neutral-300"
+            ? "border-b-2 border-neutral-500 m-5"
+            : "border-b-2 border-neutral-300 m-5"
         }
         inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
         onFocus={() => {
@@ -103,8 +103,8 @@ const LoginForm = () => {
         ///
         className={
           isFocus[1]
-            ? "border-b-2 border-neutral-500"
-            : "border-b-2 border-neutral-300"
+            ? "border-b-2 border-neutral-500 m-5"
+            : "border-b-2 border-neutral-300 m-5"
         }
         inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
         onFocus={() => {
@@ -122,7 +122,7 @@ const LoginForm = () => {
       </div>
       <Button
         className={
-          "block w-full h-12 rounded bg-yellow-300 hover:bg-yellow-400"
+          "block w-full h-12 mt-10 rounded bg-yellow-300 hover:bg-yellow-400"
         }
         onClick={handleLogin}
       >

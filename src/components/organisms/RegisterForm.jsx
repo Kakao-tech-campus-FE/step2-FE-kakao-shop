@@ -60,14 +60,31 @@ const RegisterForm = () => {
     }
   };
 
+  const [isFocus, setIsFocus] = useState([false, false, false, false]);
+  const getInputGroupClass = (index) => {
+    return isFocus[index]
+      ? "border-b-2 border-neutral-500 m-5"
+      : "border-b-2 border-neutral-300 m-5";
+  };
+  const handleFocus = (index, value) => {
+    setIsFocus((prevIsFocus) => {
+      const newIsFocus = [...prevIsFocus];
+      newIsFocus[index] = value;
+      return newIsFocus;
+    });
+  };
+
   return (
-    <Container>
+    <Container className="border-neutral-300 border px-16 py-14 w-[660px] min-w-fit h-full my-10 mx-auto">
+      <div className="text-center font-normal text-3xl mx-auto my-10">
+        가입을 시작합니다!
+      </div>
       <InputGroup
         id={"username"}
         type={"text"}
         name={"username"}
         placeholder={"사용자 이름"}
-        label={"이름"}
+        //label={"이름"}
         // 커스텀 훅 사용 이전 코드
         // value={form.username}
         // onChange={(e) => {
@@ -77,28 +94,59 @@ const RegisterForm = () => {
         // // 그래서 input에 name 속성을 주고 이를 e.target.name으로 받아와서 이용한다
         value={value.username}
         onChange={handleOnChange}
+        ///
+        className={getInputGroupClass(0)}
+        inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
+        onFocus={() => {
+          handleFocus(0, true);
+        }}
+        onBlur={() => {
+          handleFocus(0, false);
+        }}
       />
-      <div>{validation.username ? "" : "사용자 이름을 입력해 주세요."}</div>
+      <div className="m-2 text-red-500">
+        {validation.username ? "" : "사용자 이름을 입력해 주세요."}
+      </div>
       <InputGroup
         id={"email"}
         type={"email"}
         name={"email"}
         placeholder={"이메일(아이디)"}
-        label={"이메일"}
+        //label={"이메일"}
         value={value.email}
         onChange={handleOnChange}
+        ///
+        className={getInputGroupClass(1)}
+        inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
+        onFocus={() => {
+          handleFocus(1, true);
+        }}
+        onBlur={() => {
+          handleFocus(1, false);
+        }}
       />
-      <div>{validation.email ? "" : "잘못된 이메일 형식입니다."}</div>
+      <div className="m-2 text-red-500">
+        {validation.email ? "" : "잘못된 이메일 형식입니다."}
+      </div>
       <InputGroup
         id={"password"}
         type={"password"}
         name={"password"}
-        placeholder={"********"}
-        label={"비밀번호"}
+        placeholder={"비밀번호"}
+        //label={"비밀번호"}
         value={value.password}
         onChange={handleOnChange}
+        ///
+        className={getInputGroupClass(2)}
+        inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
+        onFocus={() => {
+          handleFocus(2, true);
+        }}
+        onBlur={() => {
+          handleFocus(2, false);
+        }}
       />
-      <div>
+      <div className="m-2 text-red-500">
         {validation.password
           ? ""
           : "영문, 숫자, 특수문자가 포함되며, 8에서 20자 이내여야 합니다."}
@@ -107,13 +155,27 @@ const RegisterForm = () => {
         id={"passwordConfirm"}
         type={"password"}
         name={"passwordConfirm"}
-        placeholder={"********"}
-        label={"비밀번호 확인"}
+        placeholder={"비밀번호 확인"}
+        //label={"비밀번호 확인"}
         value={value.passwordConfirm}
         onChange={handleOnChange}
+        ///
+        className={getInputGroupClass(3)}
+        inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
+        onFocus={() => {
+          handleFocus(3, true);
+        }}
+        onBlur={() => {
+          handleFocus(3, false);
+        }}
       />
-      <div>{validation.pwConfirm ? "" : "비밀번호가 일치하지 않습니다."}</div>
+      <div className="m-2 text-red-500">
+        {validation.pwConfirm ? "" : "비밀번호가 일치하지 않습니다."}
+      </div>
       <Button
+        className={
+          "block w-full h-12 mt-10 rounded bg-yellow-300 hover:bg-yellow-400"
+        }
         onClick={
           handleRequest
           // registerRequest 사용 이전 코드
