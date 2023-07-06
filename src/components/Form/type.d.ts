@@ -32,3 +32,5 @@ interface SignUpProps {
   passwordConfirmProps: passwordConfirmProps;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }
+
+type SignInProps = Omit<SignUpProps, "nameProps" | "passwordConfirmProps">;

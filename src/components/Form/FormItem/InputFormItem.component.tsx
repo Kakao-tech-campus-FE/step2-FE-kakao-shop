@@ -1,7 +1,7 @@
 import { FC, useId } from "react";
 
 interface InputFormItemProps {
-  label: string;
+  label?: string;
   type: "text" | "number" | "email" | "password";
   placeholder?: string;
   value: string;
@@ -37,7 +37,7 @@ interface InputFormItemProps {
  * />
  */
 const InputFormItem: FC<InputFormItemProps> = ({
-  label,
+  label = "",
   type,
   placeholder = "",
   value,
@@ -57,7 +57,7 @@ const InputFormItem: FC<InputFormItemProps> = ({
         {label}
       </label>
       {isWrong && (
-        <p className="text-red-500 text-sm mb-2 absolute right-0 -top-1">
+        <p className="text-red-500 text-sm mb-2 absolute right-0 translate-y-[-100%]">
           {wrongMessage ?? "잘못된 형식입니다."}
         </p>
       )}

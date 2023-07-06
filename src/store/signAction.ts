@@ -52,3 +52,27 @@ export const signUp = createAsyncThunk(
     }
   }
 );
+
+export const signIn = createAsyncThunk(
+  "sign/signin",
+  async (data: { email: string; password: string }, thunkAPI) => {
+    try {
+      const response = await fetch(
+        import.meta.env.VITE_KAKAO_STORE_URL + "login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+
+      const resData = new SignUpResDto(await response.json());
+      if (resData.error) {
+        return thunkAPI.rejectWithValue(resData.error);
+      }
+      return thunkAPI.fulfillWithValue(resData.success);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);

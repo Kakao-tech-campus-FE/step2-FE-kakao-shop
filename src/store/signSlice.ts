@@ -1,6 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { checkEmail, signUp } from "@/store/signAction";
-import { EmailCheckResDto } from "@/dtos/response.dto";
+import { checkEmail, signIn, signUp } from "@/store/signAction";
+import {
+  EmailCheckResDto,
+  SignInResDto,
+  SignUpResDto,
+} from "@/dtos/response.dto";
 
 interface SignInState {
   loading: boolean;
@@ -10,14 +14,14 @@ interface SignInState {
   isWarning: {
     email: boolean;
     password: boolean;
-    passwordConfirm: boolean;
+    passwordConfirm?: boolean;
     response: boolean;
   };
   data: {
     email: string;
     password: string;
-    passwordConfirm: string;
-    username: string;
+    passwordConfirm?: string;
+    username?: string;
   };
 }
 
@@ -64,7 +68,7 @@ export const signSlice = createSlice({
       action: PayloadAction<{
         email: boolean;
         password: boolean;
-        passwordConfirm: boolean;
+        passwordConfirm?: boolean;
         response: boolean;
       }>
     ) => {
@@ -94,8 +98,18 @@ export const signSlice = createSlice({
       })
       .addCase(signUp.rejected, (state, action) => {
         state.loading = false;
-        state.error =
-          (action.payload as EmailCheckResDto["error"])?.message ?? "";
+        state.error = (action.payload as SignUpResDto["error"])?.message ?? "";
+      })
+      .addCase(signIn.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(signIn.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+      })
+      .addCase(signIn.rejected, (state, action) => {
+        state.loading = false;
+        state.error = (action.payload as SignInResDto["error"])?.message ?? "";
       });
   },
 });

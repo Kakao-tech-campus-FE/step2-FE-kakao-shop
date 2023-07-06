@@ -1,4 +1,13 @@
-export class EmailCheckResDto {
+interface responseDefault {
+  success: boolean;
+  response: null;
+  error: {
+    message: string;
+    status: number;
+  } | null;
+}
+
+class DefaultResDto {
   success: boolean;
   response: null;
   error: {
@@ -6,38 +15,27 @@ export class EmailCheckResDto {
     status: number;
   } | null;
 
-  constructor(data: {
-    success: boolean;
-    response: null;
-    error: {
-      message: string;
-      status: number;
-    } | null;
-  }) {
+  constructor(data: responseDefault) {
     this.success = data.success;
     this.response = data.response;
     this.error = data.error;
   }
 }
 
-export class SignUpResDto {
-  success: boolean;
-  response: null;
-  error: {
-    message: string;
-    status: number;
-  } | null;
+export class EmailCheckResDto extends DefaultResDto {
+  constructor(data: responseDefault) {
+    super(data);
+  }
+}
 
-  constructor(data: {
-    success: boolean;
-    response: null;
-    error: {
-      message: string;
-      status: number;
-    } | null;
-  }) {
-    this.success = data.success;
-    this.response = data.response;
-    this.error = data.error;
+export class SignUpResDto extends DefaultResDto {
+  constructor(data: responseDefault) {
+    super(data);
+  }
+}
+
+export class SignInResDto extends DefaultResDto {
+  constructor(data: responseDefault) {
+    super(data);
   }
 }

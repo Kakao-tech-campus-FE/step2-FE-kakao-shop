@@ -1,21 +1,14 @@
-import SignUpForm from "@components/Form/SignUpForm.component";
 import { canPassword, isEmail } from "@/functions/validator";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
-import {
-  setEmail,
-  setError,
-  setPassword,
-  setPasswordConfirm,
-  setUsername,
-  setWarning,
-} from "@/store/signSlice";
-import { checkEmail, signUp } from "@/store/signAction";
+import { setEmail, setError, setPassword, setWarning } from "@/store/signSlice";
+import { signIn } from "@/store/signAction";
+import SignInForm from "@/components/Form/SignInForm.component";
 
-const SignUpPage = () => {
+const SignInPage = () => {
   const {
     error,
-    data: { email, password, passwordConfirm, username },
+    data: { email, password },
     isWarning,
   } = useAppSelector((state: RootState) => state.signSlice);
 
@@ -26,7 +19,6 @@ const SignUpPage = () => {
     const resetWarning = {
       email: false,
       password: false,
-      passwordConfirm: false,
       response: false,
     };
 
@@ -42,22 +34,10 @@ const SignUpPage = () => {
       return;
     }
 
-    if (password !== passwordConfirm) {
-      dispatch(setError("비밀번호가 일치하지 않습니다."));
-      dispatch(setWarning({ ...resetWarning, passwordConfirm: true }));
-      return;
-    }
-
-    const checkEmailResult = await dispatch(checkEmail(email));
-    if (checkEmailResult.meta.requestStatus === "rejected") {
-      dispatch(setWarning({ ...resetWarning, email: true }));
-      return;
-    }
     const checkSignUpResult = await dispatch(
-      signUp({
-        email,
-        username: username ?? "",
-        password,
+      signIn({
+        email: email,
+        password: password,
       })
     );
     if (checkSignUpResult.meta.requestStatus === "rejected") {
@@ -70,16 +50,12 @@ const SignUpPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen">
-      <SignUpForm
+      <SignInForm
         emailProps={{
           value: email,
           onChange: (e) => dispatch(setEmail(e.target.value)),
           isWrong: isWarning.email,
           wrongMessage: error ?? "",
-        }}
-        nameProps={{
-          value: username ?? "",
-          onChange: (e) => dispatch(setUsername(e.target.value)),
         }}
         passwordProps={{
           value: password,
@@ -87,12 +63,6 @@ const SignUpPage = () => {
           minLength: 8,
           maxLength: 20,
           isWrong: isWarning.password,
-          wrongMessage: error ?? "",
-        }}
-        passwordConfirmProps={{
-          value: passwordConfirm ?? "",
-          onChange: (e) => dispatch(setPasswordConfirm(e.target.value)),
-          isWrong: isWarning.passwordConfirm,
           wrongMessage: error ?? "",
         }}
         onSubmit={onSubmit}
@@ -106,4 +76,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignInPage;
