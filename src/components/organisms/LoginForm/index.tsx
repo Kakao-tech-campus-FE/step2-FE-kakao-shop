@@ -54,6 +54,7 @@ const LoginForm = () => {
           <CheckBox
             data={{ id: "4", name: "food", value: "밥" }}
             color={"#fee500"}
+            label={"로그인 상태 유지"}
           />
         </BoxWrapper>
         {loginError.isError && (

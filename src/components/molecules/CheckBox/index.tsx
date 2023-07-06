@@ -8,9 +8,10 @@ interface Props {
     value: string;
   };
   color: string;
+  label?: string;
 }
 
-const CheckBox = ({ data, color }: Props) => {
+const CheckBox = ({ data, color, label }: Props) => {
   const { id, name, value } = data;
   return (
     <Wrapper>
@@ -22,7 +23,7 @@ const CheckBox = ({ data, color }: Props) => {
         type="checkbox"
       />
       <Label color={"rgba(0,0,0,.7)"} htmlFor={id}>
-        로그인 상태 유지
+        {label}
       </Label>
     </Wrapper>
   );
