@@ -1,0 +1,16 @@
+.scroll_container{
+    position: fixed;
+    left: 680px;
+    bottom: 20px;
+}
+
+#top{
+    font-weight: bold;
+    font-size: 15px;
+    padding :15px 15px;
+    background-color: #000;
+    color:#fff;
+    border-radius: 50%;
+    cursor: pointer;
+}
+

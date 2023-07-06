@@ -1,0 +1,17 @@
+.toast-message {
+    margin: 10px;
+
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+.red .toast-message {
+    color: red;
+    border: 1px solid red;
+}
+
+.green .toast-message {
+    color: green;
+    border: 1px solid green;
+}

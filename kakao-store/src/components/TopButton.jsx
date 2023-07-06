@@ -1,8 +1,6 @@
-import { useState } from "react";
+import "../styles/topButton.css"
 
 const TopButton = () => {
-    const [showButton, setShowButton] = useState(false);
-
     const scrollToTop = () => {
         window.scroll({
             top: 0,
@@ -10,26 +8,11 @@ const TopButton = () => {
         })
     };
 
-    useEffect( () => {
-        const handleShowButton = () => {
-            if(window.scrollY > 500) {
-                setShowButton(true);
-            } 
-						else {
-                setShowButton(false);
-            }
-        }
-
-        window.addEventListener("scroll", handleShowButton);
-        
-				return () => {
-            window.removeEventListener("scroll", handleShowButton);
-        }
-    }, []);
-
-    return showButton && (
+    return (
         <div className="scroll_container">
-            <button id="top" onClick={scrollToTop} type="button" >위로</button>
+            <button id="top" onClick={scrollToTop} type="button" >↑</button>
         </div>
     );
 };
+
+export default TopButton
