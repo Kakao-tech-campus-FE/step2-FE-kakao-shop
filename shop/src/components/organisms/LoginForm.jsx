@@ -48,8 +48,8 @@ const LoginForm = () => {
       .catch((err)=>{ // 에러 
         console.log("err",err)
         // 로그인 실패 시 에러 처리
-        if (err.response && err.response.data && err.response.data.error){
-          setError(err.response.data.error); // API에서 받아온 오류 메시지 설정
+        if (err.data && err.data.error && err.data.error.message){
+          setError(err.data.error.message); // API에서 받아온 오류 메시지 설정
         } else {
           setError("로그인에 실패했습니다."); // 기본 오류 메시지 설정
         }
