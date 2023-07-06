@@ -20,14 +20,6 @@ instance.interceptors.response.use (
   }
 );
 
-export const register = (data) => {
-  const {email, password, username} = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  });
-};
 
 export const loginApi = (data) => {
   const {email, password} = data;
@@ -36,5 +28,21 @@ export const loginApi = (data) => {
       email,
       password
     })
-  )
-}
+  );
+};
+
+export const checkDuplicateEmail = (data) => {
+  const {email} = data;
+  return instance.post("/check", {
+    email
+  });
+};
+
+export const register = (data) => {
+  const {email, password, username} = data;
+  return instance.post("/join", {
+    email,
+    password,
+    username
+  });
+};
