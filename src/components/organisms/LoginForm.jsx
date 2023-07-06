@@ -1,26 +1,46 @@
 import React, { useRef } from "react";
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 import useLoginValidation from "../../hooks/useLoginValidation";
 import useInput from "../../hooks/useInput";
+import { login } from "../../apis/auth";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
 
 const initialState = { email: "", password: "" };
 
 export default function LoginForm() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [form, handleChange] = useInput(initialState);
   const { error, setError, checkRegex } = useLoginValidation({ form });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const [errorResult, formType] = checkRegex();
     setError(errorResult);
     if (formType === "email") emailRef.current.focus();
     else if (formType === "password") passwordRef.current.focus();
+
+    if (!errorResult) {
+      try {
+        await login({
+          email: form.email,
+          password: form.password,
+        });
+        dispatch(setEmail({ email: form.email }));
+        localStorage.setItem("user", JSON.stringify(form.email));
+        navigate("/");
+      } catch (error) {
+        setError("잘못된 요청입니다.");
+      }
+    }
   };
 
   return (

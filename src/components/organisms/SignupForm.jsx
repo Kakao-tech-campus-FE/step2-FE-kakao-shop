@@ -43,7 +43,7 @@ export default function SignupForm() {
           username: form.username,
           password: form.password,
         });
-        navigate("/");
+        navigate("/login");
       } catch (error) {
         const errorResponse = error.response.data.error.message;
         setError(getErrorMessage(errorResponse));
