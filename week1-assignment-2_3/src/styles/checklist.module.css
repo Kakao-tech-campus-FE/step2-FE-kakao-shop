@@ -1,0 +1,33 @@
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+.checkbox {
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid #888888;
+  border-radius: 0.5rem;
+  margin: 2px 4px;
+}
+
+.checkbox:checked {
+  /* License: MIT. Made by Gitlab: https://gitlab.com/gitlab-org/gitlab-svgs?ref=iconduck.com */
+  background-image: url("data:image/svg+xml,%3Csvg width='100px' height='100px' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ffffff' fill-rule='evenodd' d='M13.7071,4.29289 C14.0976,4.68342 14.0976,5.31658 13.7071,5.70711 L7.70711,11.7071 C7.31658,12.0976 6.68342,12.0976 6.29289,11.7071 L3.29289,8.70711 C2.90237,8.31658 2.90237,7.68342 3.29289,7.29289 C3.68342,6.90237 4.31658,6.90237 4.70711,7.29289 L7,9.58579 L12.2929,4.29289 C12.6834,3.90237 13.3166,3.90237 13.7071,4.29289 Z'/%3E%3C/svg%3E");
+  /* ====== */
+
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #3f6cff;
+}
+
+.selectedChecklist::before {
+  content: ", ";
+}
+
+.selectedChecklist:first-child::before {
+  content: "";
+}

@@ -1,0 +1,13 @@
+.breadcrumb::before {
+  content: "/ ";
+}
+
+.breadcrumb:first-child::before {
+  content: "";
+}
+
+.breadcrumbList {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem;
+}
