@@ -1,6 +1,6 @@
 .App {
   margin-left: 20px;
-  /* overflow: scroll; */
+  overflow: scroll !important;
 }
 
 /* ToggleBtn */
