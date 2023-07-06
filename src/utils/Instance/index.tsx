@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const Axiosinstance = axios.create({
+const AxiosInstance = axios.create({
   baseURL:
     "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com",
   timeout: 2000,
@@ -9,7 +9,20 @@ const Axiosinstance = axios.create({
   },
 });
 
-Axiosinstance.interceptors.response.use(
+AxiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+AxiosInstance.interceptors.response.use(
   (response) => {
     return response;
   },
@@ -18,11 +31,12 @@ Axiosinstance.interceptors.response.use(
       config,
       response: { status, data },
     } = error;
-    if (status === 400) {
+    if (status === 400 || status === 401) {
       const { message } = data.error;
       return Promise.reject(message);
     }
+    return Promise.reject(error);
   }
 );
 
-export default Axiosinstance;
+export default AxiosInstance;
