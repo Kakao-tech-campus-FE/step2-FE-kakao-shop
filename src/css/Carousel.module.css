@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+
+}
+
+.carouselUl li {
+
+    padding: 4rem 10rem;
+    background-color: rgb(166, 255, 255);
+    margin: 0;
+
+
+}
+
+
+
+.carouselUl {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    width: 20rem;
+    margin-bottom: 2rem;
+}
+
+.carouselDiv button {
+    margin: 1rem;
+}
+
+.carouselSlide.active {
+    transform: translateX(-22rem);
+    transition: all 0.2s ease-out;
+
+}
+
+.carouselSlide.active2 {
+    transform: translateX(-44rem);
+    transition: all 0.2s ease-out;
+
+}
+
+.carouselSlide.active3 {
+    transform: translateX(-66rem);
+    transition: all 0.2s ease-out;
+
+}
