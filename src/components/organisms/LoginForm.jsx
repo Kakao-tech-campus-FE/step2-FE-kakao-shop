@@ -27,8 +27,6 @@ const LoginForm = () => {
   // const { errorMsg, handleOnBlur } = useInputError("");
   const [errorMsg, setErrorMsg] = useState("");
   
-  const [loginState, setLoginState] = useState(false);
-
   const loginReq = () => {
     login({
       email: value.email,
@@ -39,14 +37,13 @@ const LoginForm = () => {
         dispatch(
           setEmail({
             email: value.email,
+            loggedInAt: new Date().getTime(),
           })
         );
-        setLoginState(true);
         navigate("/");
       })
-      // 에러 났을 시
+      // 에러 발생 시
       .catch((error) => {
-        setLoginState(false);
         setErrorMsg(error.message);
       });
   };

@@ -4,13 +4,15 @@ import "../../styles/NavBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../atoms/Button";
 import { setEmail } from "../../store/slices/userSlice";
+import Timer from "./Timer";
 
 const NavBar = () => {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
+  const timeout = 10000;
 
   const setLoginStateNull = () => {
-    dispatch(setEmail({ email: null }));
+    dispatch(setEmail({ email: null, loggedInAt: null }));
   };
 
   return (
@@ -38,7 +40,8 @@ const NavBar = () => {
         if (email) {
           return (
             <>
-              <span>{email}</span>
+              <Timer timeout={timeout}></Timer>
+              <span> {email} </span>
               <Button children="로그아웃" onClick={setLoginStateNull}></Button>
             </>
           );

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   email: null,
+  loggedInAt: null,
 };
 
 const userSlice = createSlice({
@@ -13,6 +14,7 @@ const userSlice = createSlice({
     // payload는 dispatch(setEmail(payload)) 안에 들어가는 payload 값임
     setEmail: (state, action) => {
       state.email = action.payload.email;
+      state.loggedInAt = action.payload.loggedInAt;
     },
   },
 });
