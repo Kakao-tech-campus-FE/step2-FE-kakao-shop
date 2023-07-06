@@ -1,6 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { logInReq } from "../../apis/api.js";
 
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice.js";
+
 // components
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
@@ -8,6 +11,8 @@ import LabeledInput from "../molecules/LabeledInput.js";
 
 export default function LogInForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <Container>
       <LabeledInput
@@ -39,13 +44,14 @@ export default function LogInForm() {
               navigate("/");
             })
             .catch((err) => {});
+          dispatch(setEmail({ email: "email" }));
+          navigate("/");
         }}
       >
         로그인
       </Button>
       <Button
-        onClick={(e) => {
-          console.dir(e.target.innerHTML);
+        onClick={() => {
           navigate("/signup");
         }}
       >

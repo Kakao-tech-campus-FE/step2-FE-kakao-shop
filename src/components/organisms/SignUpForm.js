@@ -8,6 +8,7 @@ import { emailCheckReq, signUpReq } from "../../apis/api.js";
 
 export default function SignUpForm() {
   const navigate = useNavigate();
+
   return (
     <Container>
       <LabeledInput
@@ -57,9 +58,10 @@ export default function SignUpForm() {
             })
               .then((res) => {
                 console.log(res);
-                navigate("/");
+                navigate("/login");
               })
               .catch((err) => {});
+            navigate("/login");
           });
         }}
       >
