@@ -5,14 +5,12 @@ const Btn = styled.button`
   text-align: center;
   cursor: pointer;
 
-  width: ${(props) => props.styles.width};
+  width: ${(props) => props.styles.width || 0};
   padding: ${(props) => props.styles.padding || 0};
 
   border-radius: ${(props) => props.styles.borderRadius || 0};
-
   background-color: ${(props) => colors[props.styles.backgroundColor]};
-
-  font-weight: ${(props) => props.styles.fontWeight};
+  font-weight: ${(props) => props.styles.fontWeight || "400"};
 `;
 
 const colors = {
