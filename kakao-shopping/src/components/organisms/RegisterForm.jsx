@@ -27,7 +27,7 @@ const RegisterForm = () => {
       return
     
     try {
-      const duplicateEmailResponse = await checkDuplicateEmail({data: value.email});
+      const duplicateEmailResponse = await checkDuplicateEmail({email: value.email});
       if(duplicateEmailResponse.data.success) {
         const registerResponse = await register ({
           email: value.email,
@@ -40,6 +40,7 @@ const RegisterForm = () => {
       }
     } catch (error) {
       setRegisterFailed(true);
+      console.log(error);
     }
   }
   

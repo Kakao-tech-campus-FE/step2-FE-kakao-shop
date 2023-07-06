@@ -9,17 +9,6 @@ const instance = axios.create({
   }
 });
 
-instance.interceptors.response.use (
-  response => {
-    return response;
-  },
-  error => {
-    if(error.response.status === 401) {
-      localStorage.removeItem("token");
-    }
-  }
-);
-
 
 export const loginApi = (data) => {
   const {email, password} = data;
@@ -31,8 +20,7 @@ export const loginApi = (data) => {
   );
 };
 
-export const checkDuplicateEmail = (data) => {
-  const {email} = data;
+export const checkDuplicateEmail = ({email}) => {
   return instance.post("/check", {
     email
   });

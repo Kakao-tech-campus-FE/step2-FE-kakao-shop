@@ -10,7 +10,7 @@ const useInput = (initialValue) => {
     if(id === 'email') {
       validateCheck = /^[a-zA-Z0-9]+@[a-zA-Z]+\.com$/.test(value);
     } else if(id === 'password') {
-      validateCheck = /^[a-zA-Z0-9]{4,12}$/.test(value);
+      validateCheck = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[~!@##$%^&*])[a-zA-Z0-9~!@##$%^&*]{8,20}$/.test(value);
     } else if(id === 'username') {
       validateCheck = /^[a-zA-Z0-9]{4,12}$/.test(value);
     }
