@@ -9,6 +9,7 @@ import { REGISTER_VALID_REGEX } from '../../utils/regex';
 import { REGISTER_ERROR_MSG } from '../../utils/errorMsg';
 import { debounce } from '../../utils/debounce';
 import { checkEmail } from '../../apis/axios';
+import { DEBOUNCE_TIMEOUT } from '../../utils/common';
 
 interface RegisterFormProps {
   // Request registration
@@ -71,7 +72,7 @@ export default function RegisterForm({
                       setIsEmailDuplicated(true);
                     }
                   }
-                }, 1000),
+                }, DEBOUNCE_TIMEOUT),
               })}
             />
           </Label>

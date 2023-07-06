@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import styles from '../styles/toast.module.css';
 import { useToastContext } from './toastContext';
+import { TOAST_DELETE_TIMEOUT, TOAST_TIMER_INTERVAL } from '../utils/common';
 
 interface ToastProps {
   id: number;
@@ -18,16 +19,31 @@ export default function Toast({
   const { toastDispatch } = useToastContext();
   const [closeTimer, setCloseTimer] = useState(duration);
   const [showing, setShowing] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setShowing(true);
-  }, []);
+    if (!isMounted) {
+      setShowing(true);
+      setIsMounted(true);
+    } else if (!showing) {
+      const timeoutId = setTimeout(() => {
+        toastDispatch({
+          type: 'deleted',
+          id,
+        });
+      }, TOAST_DELETE_TIMEOUT);
+
+      return () => clearTimeout(timeoutId);
+    }
+
+    return () => {};
+  }, [showing]);
 
   useEffect(() => {
     if (closeTimer > 0) {
       const intervalId = setInterval(() => {
-        setCloseTimer((prev) => prev - 100);
-      }, 100);
+        setCloseTimer((prev) => prev - TOAST_TIMER_INTERVAL);
+      }, TOAST_TIMER_INTERVAL);
 
       return () => clearInterval(intervalId);
     }
@@ -36,21 +52,6 @@ export default function Toast({
 
     return () => {};
   }, [closeTimer]);
-
-  useEffect(() => {
-    if (!showing) {
-      const timeoutId = setTimeout(() => {
-        toastDispatch({
-          type: 'deleted',
-          id,
-        });
-      }, 200);
-
-      return () => clearTimeout(timeoutId);
-    }
-
-    return () => {};
-  }, [showing]);
 
   return (
     <div className={`${styles.toast} ${showing ? styles.toastShowing : ''}`}>

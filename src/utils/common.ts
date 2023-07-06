@@ -1,0 +1,3 @@
+export const TOAST_TIMER_INTERVAL = 100;
+export const TOAST_DELETE_TIMEOUT = 200;
+export const DEBOUNCE_TIMEOUT = 1000;

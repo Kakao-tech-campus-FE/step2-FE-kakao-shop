@@ -3,7 +3,11 @@ import styles from '../styles/radioButton.module.css';
 
 export default function RadioButton() {
   const [selected, setSelected] = useState('Rabbit');
-  const radioValues = ['Rabbit', 'Dog', 'Cat'];
+  const radioValues = [
+    { id: 1, name: 'Rabbit' },
+    { id: 2, name: 'Dog' },
+    { id: 3, name: 'Cat' },
+  ];
 
   return (
     <div>
@@ -16,22 +20,22 @@ export default function RadioButton() {
         </div>
         <br />
         <div>
-          {radioValues.map((radioValue, index) => (
+          {radioValues.map(({ id, name }) => (
             <label
-              key={`${`${radioValue}-${index}`}`}
+              key={id}
               className={styles.radioLabel}
-              htmlFor={`radio-${index}`}
+              htmlFor={`radio-${id}`}
             >
               <input
                 type="radio"
                 className={styles.radioButton}
-                id={`radio-${index}`}
+                id={`radio-${id}`}
                 name="favorite-animals"
-                value={radioValue}
+                value={name}
                 onChange={(e) => setSelected(e.target.value)}
-                defaultChecked={index === 0}
+                defaultChecked={id === 1}
               />
-              {radioValue}
+              {name}
             </label>
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Breadcrumb from './breadcrumb';
+// import Breadcrumb from './breadcrumb';
 import styles from '../styles/breadcrumbDemo.module.css';
 
 interface BreadcrumbDemoProps {
@@ -21,7 +21,7 @@ export default function BreadcrumbDemo({ currentDirectory }: BreadcrumbDemoProps
 
   return (
     <>
-      <Breadcrumb />
+      {/* <Breadcrumb /> */}
       <ul className={styles.links}>
         {directoryTree[parsed[parsed.length - 1]]
         && directoryTree[parsed[parsed.length - 1]].map((linkName) => (
