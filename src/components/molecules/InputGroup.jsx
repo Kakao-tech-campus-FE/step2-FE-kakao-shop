@@ -1,11 +1,25 @@
-import Box from '../atoms/Box';
-import Label from '../atoms/Label';
-import Input from '../atoms/input';
+import Box from "../atoms/Box";
+import Label from "../atoms/Label";
+import Input from "../atoms/input";
 
-const InputGroup = ({ id, name, type, value, onChange, placeholder, className, label }) => {
+const InputGroup = ({
+  id,
+  name,
+  type,
+  value,
+  onChange,
+  placeholder,
+  className,
+  label,
+  error,
+  onBlur,
+}) => {
   return (
     <Box className={className}>
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id}>
+        {label}
+        <br />
+      </Label>
       <Input
         id={id}
         name={name}
@@ -13,6 +27,8 @@ const InputGroup = ({ id, name, type, value, onChange, placeholder, className, l
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        error={error}
+        onBlur={onBlur}
       />
     </Box>
   );
