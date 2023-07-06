@@ -3,9 +3,8 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 //import { login } from "../../services/api"; //loadingRequest에서 처리했음
-import Title from "../atoms/Title";
 import { loginRequest } from "../../store/slices/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { emailValidCheck, pwValidCheck } from "../../utils/validationCheck";
 import { useState } from "react";
 
@@ -14,7 +13,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   // 사용자 정보를 store로 부터 불러오기 : useSelector를 사용하기 위해
   // 아래 코드의 state는 글로벌 상태를 모두 담고 있는 최상위 state
-  const email = useSelector((state) => state.user.email);
+  //const email = useSelector((state) => state.user.email);
 
   const { value, handleOnChange } = useInput({
     email: "",
@@ -65,36 +64,70 @@ const LoginForm = () => {
   //       console.log("Error", err);
   //     });
   // };
-
+  const [isFocus, setIsFocus] = useState([false, false]);
   return (
-    <Container>
-      <Title>로그인</Title>
-      <span>{email}</span>
+    <Container className="border-neutral-300 border px-16 py-14 w-[560px] min-w-fit h-full my-10 mx-auto">
       <InputGroup
         id={"email"}
         type={"email"}
         name={"email"}
         placeholder={"이메일(아이디)"}
-        label={"이메일"}
+        //label={"이메일"}
         value={value.email}
         onChange={handleOnChange}
+        ///
+        className={
+          isFocus[0]
+            ? "border-b-2 border-neutral-500"
+            : "border-b-2 border-neutral-300"
+        }
+        inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
+        onFocus={() => {
+          setIsFocus([true, isFocus[1]]);
+        }}
+        onBlur={() => {
+          setIsFocus([false, isFocus[1]]);
+        }}
       />
-      <div>{validation.email ? "" : "잘못된 이메일 형식입니다."}</div>
+      <div className="m-2 text-red-500">
+        {validation.email ? "" : "잘못된 이메일 형식입니다."}
+      </div>
       <InputGroup
         id={"password"}
         type={"password"}
         name={"password"}
-        placeholder={"********"}
-        label={"비밀번호"}
+        placeholder={"비밀번호"}
+        //label={"비밀번호"}
         value={value.password}
         onChange={handleOnChange}
+        ///
+        className={
+          isFocus[1]
+            ? "border-b-2 border-neutral-500"
+            : "border-b-2 border-neutral-300"
+        }
+        inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
+        onFocus={() => {
+          console.log(isFocus);
+          setIsFocus([isFocus[0], true]);
+        }}
+        onBlur={() => {
+          setIsFocus([isFocus[0], false]);
+        }}
       />
-      <div>
+      <div className="m-2 text-red-500">
         {validation.password
           ? ""
           : "영문, 숫자, 특수문자가 포함되며, 8에서 20자 이내여야 합니다."}
       </div>
-      <Button onClick={handleLogin}>로그인</Button>
+      <Button
+        className={
+          "block w-full h-12 rounded bg-yellow-300 hover:bg-yellow-400"
+        }
+        onClick={handleLogin}
+      >
+        로그인
+      </Button>
     </Container>
   );
 };

@@ -14,19 +14,27 @@ const InputGroup = ({
   className,
   label,
   placeholder,
+  inputClass,
+  onFocus,
+  onBlur,
 }) => {
   return (
-    <Box className={className}>
-      <Label htmlFor={id}>{label}</Label>
-      <Input
-        id={id}
-        name={name}
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-      />
-    </Box>
+    <label>
+      <Box className={className}>
+        <Label htmlFor={id}>{label}</Label>
+        <Input
+          className={inputClass}
+          id={id}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </Box>
+    </label>
   );
 };
 
