@@ -17,6 +17,7 @@ instance.interceptors.request.use(
   (error) => {
     console.err(`[API REQEST ERROR] ${error}`);
     console.log(error);
+    return Promise.reject(error);
   }
 );
 
@@ -27,6 +28,7 @@ instance.interceptors.response.use(
   (error) => {
     console.log(`[API RESPONSE ERROR] ${error}`);
     console.log(error.response.data);
+    return Promise.reject(error);
   }
 );
 

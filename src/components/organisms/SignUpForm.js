@@ -50,14 +50,16 @@ export default function SignUpForm() {
         onClick={(e) => {
           emailCheckReq({ email: "jsh1147@naver.com" }).then((res) => {
             console.log(res.data);
-          });
-          signUpReq({
-            email: "email",
-            password: "password",
-            username: "username",
-          }).then((res) => {
-            console.log(res.data);
-            navigate("/");
+            signUpReq({
+              email: "email",
+              password: "password",
+              username: "username",
+            })
+              .then((res) => {
+                console.log(res);
+                navigate("/");
+              })
+              .catch((err) => {});
           });
         }}
       >

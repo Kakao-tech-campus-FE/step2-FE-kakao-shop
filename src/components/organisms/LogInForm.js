@@ -33,10 +33,12 @@ export default function LogInForm() {
           logInReq({
             email: "email",
             password: "password",
-          }).then((res) => {
-            console.log(res.data);
-            navigate("/");
-          });
+          })
+            .then((res) => {
+              console.log(res.data);
+              navigate("/");
+            })
+            .catch((err) => {});
         }}
       >
         로그인
