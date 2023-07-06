@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL:
-    "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
+  baseURL: process.env.REACT_APP_API_URL,
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -20,11 +19,9 @@ instance.interceptors.request.use((config) => {
 // middleware
 instance.interceptors.response.use(
   (response) => {
-    console.log(response.data); // API로부터 객체 형태의 응답
     return response;
   },
   (error) => {
-    console.log(error.data);
     return Promise.reject(error);
   }
 );
@@ -36,6 +33,11 @@ export const register = (data) => {
     password,
     username,
   });
+};
+
+export const checkEmail = (data) => {
+  const email = data.email;
+  return instance.post("/check", { email });
 };
 
 export const login = (data) => {

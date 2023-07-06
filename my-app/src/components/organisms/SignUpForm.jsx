@@ -1,9 +1,11 @@
 import Container from "../atoms/Container";
 import SignUpInputGroup from "../molecules/SignUpInputGroup";
 import Button from "../atoms/Button";
+import Modal from "../molecules/Modal";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/loginAPI";
-import { useEffect } from "react";
+import { checkEmail, register } from "../../services/loginAPI";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   const { value, handleOnChange } = useInput({
@@ -12,13 +14,30 @@ const SignUpForm = () => {
     password: "",
     passwordConfirm: "",
   });
+  const [modalOpen, setModalOpen] = useState(false);
+  const [title, setTitle] = useState("");
+  const [des, setDes] = useState("");
+  const [isValid, setIsValid] = useState(false);
+  const navigate = useNavigate();
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    if (isValid) {
+      setModalOpen(false);
+      navigate("/login");
+    } else {
+      setModalOpen(false);
+    }
+  };
 
   return (
     <Container>
       <SignUpInputGroup
         id="username"
         type="text"
-        placeholder="사용자 이름을 입력해주세요."
+        placeholder="이름"
         label="이름"
         value={value.username}
         onChange={handleOnChange}
@@ -26,14 +45,34 @@ const SignUpForm = () => {
       <SignUpInputGroup
         id="email"
         type="email"
-        placeholder="이메일(아이디)를 입력해주세요."
-        label="이메일"
+        placeholder="이메일"
+        label="이메일 (아이디)"
         value={value.email}
         onChange={handleOnChange}
       />
       <Button
         onClick={() => {
-          console.log("email");
+          let title = "";
+          let description = "";
+          checkEmail({ email: value.email })
+            .then((res) => res.data)
+            .then((data) => {
+              if (data.success) {
+                title = "이 이메일을 사용할 수 있습니다.";
+                description = "사용하시겠습니까?";
+                setTitle(title);
+                setDes(description);
+                openModal();
+              }
+            })
+            .catch((err) => {
+              title = err.response.data.error.message;
+              title = title.slice(0, title.indexOf(":") - 1);
+              description = "다른 이메일을 사용해주세요.";
+              setTitle(title);
+              setDes(description);
+              openModal();
+            });
         }}
       >
         이메일 확인
@@ -41,7 +80,7 @@ const SignUpForm = () => {
       <SignUpInputGroup
         id="password"
         type="password"
-        placeholder="**"
+        placeholder="비밀번호"
         label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
@@ -49,23 +88,49 @@ const SignUpForm = () => {
       <SignUpInputGroup
         id="passwordConfirm"
         type="password"
-        placeholder="**"
+        placeholder="비밀번호 확인"
         label="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
       <Button
         onClick={() => {
+          let title = "";
+          let description = "";
           // 회원가입 요청
           register({
             email: value.email,
             password: value.password,
             username: value.username,
-          });
+          })
+            .then((res) => res.data)
+            .then((data) => {
+              if (data.success) {
+                setTitle("회원가입 완료");
+                setDes("로그인 화면으로 이동하시겠습니까?");
+                setIsValid(true);
+                openModal();
+              }
+            })
+            .catch((err) => {
+              description = err.response.data.error.message;
+              description = description.slice(0, description.indexOf(":") - 1);
+              title = "다시 작성해주세요.";
+              setTitle(title);
+              setDes(description);
+              openModal();
+            });
         }}
       >
         회원가입
       </Button>
+      <Modal
+        id="SignInModal"
+        open={modalOpen}
+        close={closeModal}
+        title={title}
+        description={des}
+      />
     </Container>
   );
 };
