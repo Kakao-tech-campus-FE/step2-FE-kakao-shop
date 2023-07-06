@@ -2,9 +2,7 @@ import PropTypes from "prop-types";
 
 const Box = ({ children, className = "" }) => {
   return (
-    <div
-      className={`box mb-4 rounded-md border border-gray-300 bg-white p-4 shadow-md ${className}`}
-    >
+    <div className={`box mb-4 rounded-md  bg-white p-1 ${className}`}>
       {children}
     </div>
   );

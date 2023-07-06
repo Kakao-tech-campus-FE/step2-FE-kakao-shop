@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const Title = ({ children }) => {
-  return <h1 className="m-3">{children}</h1>;
+  return <h1 className="m-3 flex justify-center">{children}</h1>;
 };
 
 Title.prototyps = {

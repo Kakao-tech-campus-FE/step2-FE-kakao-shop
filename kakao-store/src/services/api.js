@@ -24,6 +24,13 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error.response.status === 400) {
+      localStorage.removeItem('token');
+      
+      window.location.href = '/signup';
+      console.log(error.response.data.error.message);
+      return Promise.resolve();
+    }
     // if (error.response.status === 401) {
     //   localStorage.removeItem('token');
     //   window.location.href = '/login';

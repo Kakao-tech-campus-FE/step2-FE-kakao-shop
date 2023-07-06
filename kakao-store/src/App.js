@@ -8,6 +8,7 @@ function App() {
   <div className="App">
       <BrowserRouter>
         {/* 단독 레이아웃 */}
+
         <Label>카카오스토어</Label>
         <Link to='/'>메인</Link>
         <Link to='/login'>로그인</Link>
