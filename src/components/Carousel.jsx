@@ -61,7 +61,7 @@ const Carousel = () => {
             key={photo.id}
             className={`dot ${index === currentIndex && 'active'}`}
             onClick={() => setCurrentIndex(index)}
-          ></span>
+         />
         ))}
       </div>
     </>
