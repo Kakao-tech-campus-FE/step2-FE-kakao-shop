@@ -1,0 +1,28 @@
+.header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 50px;
+}
+
+nav {
+    overflow: hidden;
+}
+
+nav > div {
+    text-align: center;
+    float: left;
+    width: 14.2%;
+    line-height: 50px;
+}
+
+.active {
+    text-decoration: none;
+    color: red;
+}
+
+.pending {
+    text-decoration: none;
+    color: black;
+}
