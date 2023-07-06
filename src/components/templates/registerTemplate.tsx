@@ -3,19 +3,29 @@ import {
 } from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import RegisterForm from '../organisms/registerForm';
-import { IRegisterData } from '../../types/formData';
+import { IRegisterFormData } from '../../types/formData';
 
 interface IRegisterTemplateProps {
   // Request registration
   handleRegister: React.FormEventHandler<HTMLFormElement>;
 
   // react-hook-form properties
-  register: UseFormRegister<IRegisterData>;
-  resetField: UseFormResetField<IRegisterData>;
-  getValues: UseFormGetValues<IRegisterData>;
-  formState: FormState<IRegisterData>;
-  getFieldState: UseFormGetFieldState<IRegisterData>;
-  trigger: UseFormTrigger<IRegisterData>;
+  register: UseFormRegister<IRegisterFormData>;
+  resetField: UseFormResetField<IRegisterFormData>;
+  getValues: UseFormGetValues<IRegisterFormData>;
+  formState: FormState<IRegisterFormData>;
+  getFieldState: UseFormGetFieldState<IRegisterFormData>;
+  trigger: UseFormTrigger<IRegisterFormData>;
+
+  // Email validation
+  isEmailDuplicated: boolean;
+  setIsEmailDuplicated: React.Dispatch<React.SetStateAction<boolean>>;
+
+  // Loading
+  isLoading: boolean;
+
+  // Result message
+  resultMsg: string;
 }
 
 export default function RegisterTemplate({
@@ -26,6 +36,10 @@ export default function RegisterTemplate({
   formState,
   getFieldState,
   trigger,
+  isEmailDuplicated,
+  setIsEmailDuplicated,
+  isLoading,
+  resultMsg,
 }: IRegisterTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
@@ -41,7 +55,15 @@ export default function RegisterTemplate({
           formState={formState}
           getFieldState={getFieldState}
           trigger={trigger}
+          isEmailDuplicated={isEmailDuplicated}
+          setIsEmailDuplicated={setIsEmailDuplicated}
+          isLoading={isLoading}
         />
+        {resultMsg !== '' ? (
+          <div className="my-4 text-center text-sm text-red-500">
+            {resultMsg}
+          </div>
+        ) : null}
       </div>
       <div className="text-center">
         <LinkButton href="/">

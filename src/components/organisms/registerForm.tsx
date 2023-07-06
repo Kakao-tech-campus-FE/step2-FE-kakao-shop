@@ -4,21 +4,30 @@ import {
 import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
-import { IRegisterData } from '../../types/formData';
+import { IRegisterFormData } from '../../types/formData';
 import { REGISTER_VALID_REGEX } from '../../utils/regex';
 import { REGISTER_ERROR_MSG } from '../../utils/errorMsg';
+import { debounce } from '../../utils/debounce';
+import { checkEmail } from '../../apis/axios';
 
 interface IRegisterFormProps {
   // Request registration
   handleRegister: React.FormEventHandler<HTMLFormElement>;
 
   // react-hook-form properties
-  register: UseFormRegister<IRegisterData>;
-  resetField: UseFormResetField<IRegisterData>;
-  getValues: UseFormGetValues<IRegisterData>;
-  formState: FormState<IRegisterData>;
-  getFieldState: UseFormGetFieldState<IRegisterData>;
-  trigger: UseFormTrigger<IRegisterData>;
+  register: UseFormRegister<IRegisterFormData>;
+  resetField: UseFormResetField<IRegisterFormData>;
+  getValues: UseFormGetValues<IRegisterFormData>;
+  formState: FormState<IRegisterFormData>;
+  getFieldState: UseFormGetFieldState<IRegisterFormData>;
+  trigger: UseFormTrigger<IRegisterFormData>;
+
+  // Email validation
+  isEmailDuplicated: boolean;
+  setIsEmailDuplicated: React.Dispatch<React.SetStateAction<boolean>>;
+
+  // Loading
+  isLoading: boolean;
 }
 
 export default function RegisterForm({
@@ -29,6 +38,9 @@ export default function RegisterForm({
   formState,
   getFieldState,
   trigger,
+  isEmailDuplicated,
+  setIsEmailDuplicated,
+  isLoading,
 }: IRegisterFormProps) {
   return (
     <form onSubmit={handleRegister}>
@@ -50,11 +62,23 @@ export default function RegisterForm({
                   message: REGISTER_ERROR_MSG.email.INVALID_FORMAT,
                 },
                 required: REGISTER_ERROR_MSG.email.EMPTY,
+                onChange: debounce(async () => {
+                  if (!getFieldState('email', formState).invalid) {
+                    const value = getValues('email');
+                    if (await checkEmail(value)) {
+                      setIsEmailDuplicated(false);
+                    } else {
+                      setIsEmailDuplicated(true);
+                    }
+                  }
+                }, 1000),
               })}
             />
           </Label>
           <div className="px-2 text-sm text-red-500">
             {formState.errors.email?.message}
+            {!getFieldState('email', formState).invalid && isEmailDuplicated
+              ? <div>{REGISTER_ERROR_MSG.email.DUPLICATE}</div> : null}
           </div>
         </div>
         <div className="my-8">
@@ -139,8 +163,11 @@ export default function RegisterForm({
         </div>
       </div>
       <div className="px-2">
-        <Button isSubmitType>
-          가입하기
+        <Button
+          isSubmitType
+          disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
+        >
+          {isLoading ? '처리 중' : '가입하기'}
         </Button>
       </div>
     </form>

@@ -14,6 +14,12 @@ interface ILoginTemplateProps {
   resetField: UseFormResetField<ILoginData>;
   formState: FormState<ILoginData>;
   getFieldState: UseFormGetFieldState<ILoginData>;
+
+  // Loading
+  isLoading: boolean;
+
+  // Result message
+  resultMsg: string;
 }
 
 export default function LoginTemplate({
@@ -22,6 +28,8 @@ export default function LoginTemplate({
   resetField,
   formState,
   getFieldState,
+  isLoading,
+  resultMsg,
 }: ILoginTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
@@ -35,7 +43,13 @@ export default function LoginTemplate({
           resetField={resetField}
           formState={formState}
           getFieldState={getFieldState}
+          isLoading={isLoading}
         />
+        {resultMsg !== '' ? (
+          <div className="my-4 text-center text-sm text-red-500">
+            {resultMsg}
+          </div>
+        ) : null}
         <div className="my-4 text-center">
           <LinkButton href="/register">
             회원가입

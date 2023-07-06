@@ -17,6 +17,9 @@ interface ILoginFormProps {
   resetField: UseFormResetField<ILoginData>;
   formState: FormState<ILoginData>;
   getFieldState: UseFormGetFieldState<ILoginData>;
+
+  // Loading
+  isLoading: boolean;
 }
 
 export default function LoginForm({
@@ -25,6 +28,7 @@ export default function LoginForm({
   resetField,
   formState,
   getFieldState,
+  isLoading,
 }: ILoginFormProps) {
   return (
     <form onSubmit={handleLogin}>
@@ -85,8 +89,11 @@ export default function LoginForm({
         </div>
       </div>
       <div>
-        <Button isSubmitType>
-          로그인
+        <Button
+          isSubmitType
+          disabled={!formState.isDirty || !formState.isValid || isLoading}
+        >
+          {isLoading ? '처리 중' : '로그인'}
         </Button>
       </div>
     </form>
