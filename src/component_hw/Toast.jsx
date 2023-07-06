@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import styled, {keyframes} from "styled-components"
 
 function Toast({ children }) {

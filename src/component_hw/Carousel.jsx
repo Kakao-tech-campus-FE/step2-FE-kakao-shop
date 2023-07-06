@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { styled } from 'styled-components'
 import left_button from '../assets/img/left_button.png'
 import right_button from '../assets/img/right_button.png'
