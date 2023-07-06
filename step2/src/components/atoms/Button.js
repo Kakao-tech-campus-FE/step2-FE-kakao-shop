@@ -1,11 +1,8 @@
-const Button = ({ children, onClick }) => {
+const Button = ({ children, onClick = () => {} }) => {
   return (
     <button
       className="btn_g highlight"
-      onClick={(e) => {
-        e.preventDefault();
-        onClick();
-      }}
+      onClick={() => { onClick(); }}
     >
       {children}
     </button>
