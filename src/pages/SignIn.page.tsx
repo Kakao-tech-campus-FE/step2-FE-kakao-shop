@@ -45,7 +45,7 @@ const SignInPage = () => {
       return;
     }
 
-    location.href = "/";
+    // location.href = "/";
   };
 
   return (
