@@ -1,19 +1,20 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { SignUpInfo } from '../dto/registerDto';
 
-const signUp = ({ email, password, username }: SignUpInfo) => {
-  return axios
-    .post('/join', {
+const signUp = async ({ email, password, username }: SignUpInfo) => {
+  try {
+    const response = await axios.post('/join', {
       email,
       password,
       username,
-    })
-    .then((response) => {
-      // TODO
-    })
-    .catch((error) => {
-      // TODO
     });
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return error; // TODO
+    }
+    return error;
+  }
 };
 
 export default { signUp };

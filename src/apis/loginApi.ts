@@ -1,18 +1,20 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { loginInfo } from '../dto/loginDto';
 
-const login = ({ email, password }: loginInfo) => {
-  return axios
-    .post('/login', {
+const login = async ({ email, password }: loginInfo) => {
+  try {
+    const response = await axios.post('/login', {
       email,
       password,
-    })
-    .then((response) => {
-      // TODO
-    })
-    .catch((error) => {
-      // TODO
     });
+
+    return response.data;
+  } catch (error) {
+    if (error instanceof AxiosError) {
+      return error; // TODO
+    }
+    return error;
+  }
 };
 
 export default { login };
