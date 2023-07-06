@@ -18,16 +18,18 @@ const GlobalNavBar = () => {
             <Container className={"gnb-buttons"}>
                 {user.isLogin ?
                     <>
-                        <Box className={"user-info"}>userData.email</Box>
+                        <Box className={"user-info"}>{user.email}</Box>
                         <Button className={"logout-button"}
                                 onClick={
-                                    dispatch(reducerLogout())
+                                    () => {
+                                        dispatch(reducerLogout())}
                                 }>로그아웃
                         </Button>
                     </>
                     :
                     <>
-                        <Button className={"login-button"} onClick={() => window.location.href = "/login"}>로그인</Button>
+                        <Button className={"login-button"}
+                                onClick={() => window.location.href = "/login"}>로그인</Button>
                         <Button className={"register-button"}
                                 onClick={() => window.location.href = "/signup"}>회원가입</Button>
                     </>

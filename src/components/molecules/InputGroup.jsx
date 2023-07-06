@@ -1,7 +1,7 @@
 import Label from "../atoms/Label";
 import Input from "../atoms/Input";
 import Box from "../atoms/Box";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Container from "../atoms/Container";
 import "../../styles/inputGroup.css"
 

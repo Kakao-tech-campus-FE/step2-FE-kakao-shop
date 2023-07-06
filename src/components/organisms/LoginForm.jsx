@@ -4,10 +4,11 @@ import useInput from "../../hooks/useInput";
 import Button from "../atoms/Button";
 import {login} from "../../services/api";
 import {reducerLogin, setEmail} from "../../store/userSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const [value, handleOnChange] = useInput({
         email: "",
         password: "",
@@ -24,11 +25,12 @@ const LoginForm = () => {
                     res.data.email
                 ));
                 dispatch(reducerLogin());
+                alert(user.email + "님 환영합니다.")
                 window.location.href = "/";
             }
         ).catch(err => {
-                console.log(err.response.data.error.message)
-                alert(err.response.data.error.message)
+                console.log(err.response)
+                alert(err.response)
             }
         );
     };

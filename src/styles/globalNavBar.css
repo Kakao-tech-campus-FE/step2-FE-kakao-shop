@@ -13,11 +13,15 @@
     padding: 5px;
 }
 
-.gnb-buttons {
+.gnb-buttons{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 200px;
     margin-right: 20px;
+}
+
+.gnb-buttons .button{
+    cursor: pointer;
+    width: 120px;
 }

@@ -24,16 +24,14 @@ instance.interceptors.response.use(
     (response) => {
         return response;
     },
-    async (error) => {
-        console.log(error)
+    (error) => {
         if (error.response.status === 401) {
             localStorage.removeItem("token");
-            window.location.href = "/login";
-            return Promise.resolve()
         }
         return Promise.reject(error);
+
     }
-)
+);
 
 export const register = (data) => {
     const { email, username, password } = data;
