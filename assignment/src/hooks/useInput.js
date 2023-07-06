@@ -10,7 +10,7 @@ const useInput = (initialValue) => {
     // setLoading(false);
   };
   // const handleOnClick = () => {};
-  return [ value, handleOnChange ];
+  return { value, handleOnChange };
 };
 
 export default useInput;
