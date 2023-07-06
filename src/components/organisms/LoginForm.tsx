@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
+import loginApi from '../../apis/loginApi';
 
 const LoginForm = () => {
   const { values, handleChange } = useForm({
@@ -11,7 +12,12 @@ const LoginForm = () => {
   });
 
   const handleSignInBtnClick = () => {
-    // TODO
+    const { email, password } = values;
+
+    loginApi.login({
+      email,
+      password,
+    });
   };
 
   return (
