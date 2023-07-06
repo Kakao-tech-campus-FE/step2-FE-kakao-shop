@@ -1,25 +1,43 @@
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import useInput from "../../hooks/useinput";
-import { login } from "../../services/api";
+import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { useDispatch, useSelector } from "react-redux";
-import { loginRequest, setEmail } from "../../store/slices/userSlice";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../services/api";
+import { setUser } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const email = useSelector((state) => state.user.email);
+  const navigate = useNavigate();
 
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
+
+  const handleLogin = async (data) => {
+    const { email, password } = data;
+    try {
+      const response = await login({ email, password });
+      const user = response.data;
+      const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+      user.expirationTime = expirationTime;
+
+      dispatch(setUser(user));
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/");
+    } catch (error) {
+      setError("로그인에 실패했습니다.");
+    }
+  };
 
   return (
     <Container>
       <Title>로그인</Title>
-      <span>{email}</span>
       <InputGroup
         id="email"
         type="email"
@@ -40,16 +58,15 @@ const LoginForm = () => {
       />
       <Button
         onClick={() => {
-          dispatch(
-            loginRequest({
-              email: value.email,
-              password: value.password,
-            })
-          );
+          handleLogin({
+            email: value.email,
+            password: value.password,
+          });
         }}
       >
         로그인
       </Button>
+      {error && <p>{error}</p>}
     </Container>
   );
 };

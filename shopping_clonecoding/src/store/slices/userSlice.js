@@ -1,41 +1,23 @@
-import {createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import {login} from "../../services/api";
+import {createSlice} from "@reduxjs/toolkit";
+
 const initialState = {
   email : null,
-  loading : false,
-  error : null,
+  isLoggedIn : false,
 };
 
 const userSlice = createSlice({
   name : "user",
   initialState,
   reducers : {
-    setEmail: (state, action) =>{
-      state.email = action.payload.email;
-    }},
-    extraReducers:(builder)=>{
-      builder.addCase(loginRequest.pending, (state, action)=>{
-        state.loading = true;
-      });
-      builder.addCase(loginRequest.fulfilled, (state, action) =>{
-        state.loading = false;
-        state.email = action.payload.email;
-      });
-      builder.addCase(loginRequest.rejected, (state, action) =>{
-        state.loading = false;
-      });
-    }
+    setUser: (state, action) =>{
+      state.user = action.payload;
+      state.isLoggedIn = true;
+    },
+    clearUser : (state) =>{
+      state.user = null;
+      state.isLoggedIn = false;
+    },
+  },
 });
-
-export const loginRequest = createAsyncThunk(
-  "user/loginRequest",
-  async(data) =>{
-    const{email, password} = data;
-    const response = await login({email, password});
-    return response.data;
-  }
-);
-
-export const { setEmail } = userSlice.actions;
-
+export const {setUser, clearUser} = userSlice.actions;
 export default userSlice.reducer;
