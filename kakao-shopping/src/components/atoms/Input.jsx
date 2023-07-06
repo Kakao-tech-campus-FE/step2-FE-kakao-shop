@@ -1,22 +1,25 @@
 const Input = ({
-    type,
-    value,
-    onChange,
-    placeholder,
-    className,
-    id
+    type, // Input 타입
+    value, // Input 값
+    name, // Input name
+    onChange, // Input의 값이 바뀌었을 때의 handler
+    placeholder, // Input의 placeholder
+    className, // class
+    id, // id
+    style, // style
 }) => {
     return (
         <input
             type={type}
             value={value}
+            name={name}
             onChange={onChange}
             placeholder={placeholder}
-            className={className}
-            id={id}>
-
-        </input>
+            className={`input ${className}`}
+            id={id}
+            style={style}
+        ></input>
     );
-}
+};
 
-export default Input
+export default Input;

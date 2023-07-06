@@ -1,12 +1,10 @@
-import './App.css';
-import Test from './pages/Test';
+import "./App.css";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import Test from "./pages/Test";
 
 function App() {
-  return (
-    <Test>
-      
-    </Test>
-  );
+    return <RegisterPage />;
 }
 
 export default App;

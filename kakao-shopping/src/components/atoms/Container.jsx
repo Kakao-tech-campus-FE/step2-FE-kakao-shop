@@ -5,11 +5,7 @@ const Box = ({
     style, // style
 }) => {
     return (
-        <div
-            className={`box border rounded p-1 m-1 ${className}`}
-            id={id}
-            style={style}
-        >
+        <div className={`container ${className}`} id={id} style={style}>
             {children}
         </div>
     );
