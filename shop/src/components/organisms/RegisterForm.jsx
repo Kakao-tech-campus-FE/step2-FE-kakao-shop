@@ -44,7 +44,7 @@ const RegisterForm = () => {
         console.log("err",err)
         // 회원가입 실패 시 에러 처리
         if (err.data && err.data.error && err.data.error.message){
-          setError(err.data.error.message); // API에서 받아온 오류 메시지 설정
+          setError(`[Error 발생] ${err.data.error.message} :(`); // API에서 받아온 오류 메시지 설정
         } else {
           setError("회원가입에 실패했습니다."); // 기본 오류 메시지 설정
         }
@@ -99,7 +99,7 @@ const RegisterForm = () => {
         <div>비밀번호와 비밀번호 확인이 일치하지 않습니다.</div>
       )}
       
-      <div>{error}</div>
+      <div className="mt-10 text-lg font-semibold text-red-400"> {error} </div>
 
 
       <Button
