@@ -15,7 +15,7 @@ const LogoutButton = () => {
   return (
     <Container className="flex flex-col h-48 justify-center">
       <Button
-        className="m-2 p-1 pr-6 pl-6 bg-slate-300 hover:bg-slate-400 rounded-md"
+        className="m-2 p-1 pr-6 pl-6 hover:bg-slate-400 rounded-md"
         onClick={handleLogoutClick}>로그아웃</Button>
     </Container>
   );

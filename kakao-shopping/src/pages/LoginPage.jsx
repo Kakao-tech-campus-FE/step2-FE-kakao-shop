@@ -3,9 +3,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {loginSuccess } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
-import Title from "../components/atoms/Title";
 import Container from "../components/atoms/Container";
-import BreadCrumb from "../components/BreadCrumb";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -25,10 +23,8 @@ const LoginPage = () => {
   },[dispatch, isLoggedIn]);
 
   return (
-    <Container className="border bg-slate-100 border-slate-500 border-solid rounded-md flex flex-col justify-center">
-      <BreadCrumb />
-      <Container className="flex flex-col items-center">
-        <Title className="-mx-3 m-3 w-96 block text-center bg-slate-200 rounded-lg px-3 py-2 text-base font-semibold leading-7">로그인 페이지</Title>
+    <Container className="h-screen border border-slate-500 border-solid rounded-md flex flex-col justify-center">
+      <Container>
         <LoginForm />
       </Container>
     </Container>

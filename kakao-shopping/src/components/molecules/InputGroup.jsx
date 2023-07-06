@@ -3,7 +3,8 @@ import Input from "../atoms/Input"
 import Label from "../atoms/Label"
 
 const InputGroup = ({
-  className,  // Box 컴포넌트의 Tailwind CSS 사용 위한 class
+  boxClassName,  // Box 컴포넌트의 Tailwind CSS 사용 위한 class
+  inputClassName,// Input 컴포넌트의 class
   id,         // id
   type,       // input type
   value,      // input 값
@@ -12,9 +13,9 @@ const InputGroup = ({
   autocomplete// 자동완성
 }) => {
   return (
-    <Box className={className}>
+    <Box className={boxClassName}>
       <Label htmlFor={id} />
-      <Input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} autocomplete={autocomplete}/>
+      <Input className={inputClassName} id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} autocomplete={autocomplete}/>
     </Box>
   )
 }
