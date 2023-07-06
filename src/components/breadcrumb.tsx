@@ -1,11 +1,15 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
 import styles from '../styles/breadcrumb.module.css';
+import { BreadcrumbData } from '../types/breadcrumbData';
 
-export default function Breadcrumb() {
-  const location = useLocation();
-  const routes = location.pathname.split('/');
+interface BreadcrumbProps {
+  path: BreadcrumbData[];
+  currentPath?: BreadcrumbData;
+}
 
+export default function Breadcrumb({
+  path,
+  currentPath,
+}: BreadcrumbProps) {
   return (
     <div>
       <div className="demo-category-title">
@@ -14,24 +18,24 @@ export default function Breadcrumb() {
       <nav
         className={styles.breadcrumbList}
       >
-        {routes.map((route, index) => (
+        {path.map(({ id, label, link }) => (
           <div
-            key={route}
+            key={id}
             className={styles.breadcrumb}
           >
-            {index !== routes.length - 1 ? (
-              <a
-                href={`/${routes.slice(1, index + 1).join('/')}`}
-              >
-                {route === '' ? 'home' : route}
-              </a>
-            ) : (
-              <span>
-                {route}
-              </span>
-            )}
+            <a href={link}>
+              {label}
+            </a>
           </div>
         ))}
+        {currentPath !== undefined
+          ? (
+            <div className={styles.breadcrumb}>
+              <a href={currentPath.link}>
+                {currentPath.label}
+              </a>
+            </div>
+          ) : null}
       </nav>
     </div>
   );
