@@ -1,4 +1,4 @@
-export const ToggleButton = () => {
+const ToggleButton = () => {
 
   return (
     <>
@@ -13,3 +13,5 @@ export const ToggleButton = () => {
     </>
   )
 }
+
+export default ToggleButton

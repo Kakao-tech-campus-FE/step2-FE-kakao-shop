@@ -17,6 +17,7 @@ const Navigation = () => {
           <div><Link to='/registerpage' className={styleButton}>Register</Link></div>
         </div>
       </header>
+      <Link to='/week1' className={styleButton}>week1</Link>
       <Outlet />
     </>
 
