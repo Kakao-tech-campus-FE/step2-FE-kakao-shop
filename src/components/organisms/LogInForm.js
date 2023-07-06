@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
+import { logInReq } from "../../apis/api.js";
+
 // components
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";
 
 export default function LogInForm() {
+  const navigate = useNavigate();
   return (
     <Container>
       <LabeledInput
@@ -25,8 +29,14 @@ export default function LogInForm() {
         placeholder="비밀번호"
       />
       <Button
-        onClick={(e) => {
-          console.dir(e.target.innerHTML);
+        onClick={() => {
+          logInReq({
+            email: "email",
+            password: "password",
+          }).then((res) => {
+            console.log(res.data);
+            navigate("/");
+          });
         }}
       >
         로그인
@@ -34,6 +44,7 @@ export default function LogInForm() {
       <Button
         onClick={(e) => {
           console.dir(e.target.innerHTML);
+          navigate("/signup");
         }}
       >
         회원가입

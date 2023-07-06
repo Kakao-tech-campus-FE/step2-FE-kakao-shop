@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 // components
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";
+import { emailCheckReq, signUpReq } from "../../apis/api.js";
 
 export default function SignUpForm() {
+  const navigate = useNavigate();
   return (
     <Container>
       <LabeledInput
@@ -44,7 +48,17 @@ export default function SignUpForm() {
       />
       <Button
         onClick={(e) => {
-          console.dir(e.target.innerHTML);
+          emailCheckReq({ email: "jsh1147@naver.com" }).then((res) => {
+            console.log(res.data);
+          });
+          signUpReq({
+            email: "email",
+            password: "password",
+            username: "username",
+          }).then((res) => {
+            console.log(res.data);
+            navigate("/");
+          });
         }}
       >
         회원가입
