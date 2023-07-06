@@ -1,10 +1,14 @@
 import Button from "@components/atoms/Button";
 import { styled } from "styled-components";
 
-const ConfirmButton = () => {
+interface Props {
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const ConfirmButton = ({ onClick }: Props) => {
   return (
     <Wrapper>
-      <Button height={"50px"} background={"#fee500"}>
+      <Button height={"50px"} background={"#fee500"} onClick={onClick}>
         로그인
       </Button>
       <OrText>
