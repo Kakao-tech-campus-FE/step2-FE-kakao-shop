@@ -8,3 +8,7 @@ export const validatePassword = (password) => {
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
   return passwordRegex.test(password);
 };
+
+export const validatePasswordConfirm = (password, passwordConfirm) => {
+  return password === passwordConfirm;
+};
