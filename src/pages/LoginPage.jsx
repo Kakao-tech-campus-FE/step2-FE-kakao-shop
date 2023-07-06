@@ -1,5 +1,7 @@
+import LoginForm from "../components/organisms/LoginForm";
+
 const LoginPage = () => {
-  return;
+  return <LoginForm />;
 };
 
 export default LoginPage;

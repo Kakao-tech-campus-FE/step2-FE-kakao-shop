@@ -1,9 +1,13 @@
 import React from "react";
 
-const Button = ({ onClick, children }) => {
+const Button = ({ valid, onClick, children }) => {
+  const allVaild = Object.values(valid).every((value) => value === true);
   return (
     <button
-      className="mt-10 rounded-lg bg-kakao p-4"
+      disabled={!allVaild}
+      className={`mt-10 rounded-md p-3 ${
+        allVaild ? "bg-kakao" : "bg-gray-100"
+      }`}
       onClick={(e) => {
         e.preventDefault();
         onClick();

@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        kakao: "#ffeb00",
+        kakao: "#ffe342",
         lightgray: "rgb(51, 51, 51)",
       },
       keyframes: {
