@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
 
 const RegisterForm = () => {
-  const { value, handleOnchange } = useInput({
+  const { value, handleOnChange } = useInput({
     username: "",
     email: "",
     password: "",
@@ -18,7 +18,7 @@ const RegisterForm = () => {
         placeholder="사용자 이름을 입력해주세요"
         label="이름"
         value={value.username}
-        onChange={handleOnchange}
+        onChange={handleOnChange}
       />
 
       <InputGroup
@@ -27,21 +27,21 @@ const RegisterForm = () => {
         placeholder="이메일(아이디) 입력해주세요"
         label="이메일"
         value={value.email}
-        onChange={handleOnchange} />
+        onChange={handleOnChange} />
       <InputGroup
         id="password"
         type="password"
         placeholder="**********"
         label="비밀번호"
         value={value.password}
-        onChange={handleOnchange} />
+        onChange={handleOnChange} />
       <InputGroup
         id="passwordConfirm"
         type="password"
         placeholder="**********"
         label="비밀번호 확인"
         value={value.passwordConfirm}
-        onChange={handleOnchange} />
+        onChange={handleOnChange} />
       <Button onClick={() => {
         // api 요청
       }}>회원가입</Button>
