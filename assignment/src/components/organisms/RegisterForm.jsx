@@ -2,6 +2,7 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
+import register from '../../services/api'
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -43,7 +44,11 @@ const RegisterForm = () => {
         value={value.passwordConfirm}
         onChange={handleOnChange} />
       <Button onClick={() => {
-        // api 요청
+        register({
+          email: value.email,
+          password: value.password,
+          username: value.username,
+        })
       }}>회원가입</Button>
     </Container>
   )
