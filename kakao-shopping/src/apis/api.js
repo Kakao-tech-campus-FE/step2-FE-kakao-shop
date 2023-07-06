@@ -9,6 +9,16 @@ const instance = axios.create({
   }
 });
 
+instance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    console.log(error);
+    console.log(error.response.data.error.message);
+    throw error;
+  }
+);
 
 export const loginApi = (data) => {
   const {email, password} = data;
