@@ -13,10 +13,13 @@ const InputGroup = ({
   onBlur, // input의 onBlur
   type, // input의 type
   placeholder, // input의 placeholder
+  labelClassName = "", // 라벨에 적용될 클래스. 라벨 스타일링을 할 필요성 느껴서 추가함.
 }) => {
   return (
     <Box className={className}>
-      <Label htmlFor={id}>{label}</Label>
+      <Label className={labelClassName} htmlFor={id}>
+        {label}
+      </Label>
       <Input
         className="w-4/5"
         id={id}

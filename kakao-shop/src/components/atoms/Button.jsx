@@ -1,4 +1,4 @@
-const Button = ({ type, onClick, children, color }) => {
+const Button = ({ type, onClick, children, color, className }) => {
   const colorObj = {
     kakao: "bg-kakao-yellow",
     gray: "bg-gray-300",
@@ -6,7 +6,7 @@ const Button = ({ type, onClick, children, color }) => {
 
   return (
     <button
-      className={`btn w-full h-12 rounded-md font-bold ${colorObj[color]}`}
+      className={`btn w-full h-12 rounded-md font-bold ${colorObj[color]} ${className}`}
       onClick={(e) => {
         e.preventDefault();
         onClick();

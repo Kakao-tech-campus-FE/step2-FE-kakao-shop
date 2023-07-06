@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 
+import useFocus from "../../hooks/useFocus";
+
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
 import Button from "../atoms/Button";
 import Container from "../atoms/Container";
-import useFocus from "../../hooks/useFocus";
+import Link from "../atoms/Link";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
@@ -68,6 +70,10 @@ const LoginForm = () => {
       </div>
 
       <Button color="kakao">로그인</Button>
+
+      <div className="mt-8 text-xs">
+        <Link to="/register">회원가입</Link>
+      </div>
     </Container>
   );
 };
