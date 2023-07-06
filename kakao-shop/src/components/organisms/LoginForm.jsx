@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
 
 import { login } from "../../apis/api";
+
+import { validateEmail, validatePassword } from "../../utils/validate";
 
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
@@ -22,17 +24,6 @@ const LoginForm = () => {
   const [isEmailFocus, onFocusEmail, onBlurEmail] = useFocus();
   const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
   const [isKeepLog, setIsKeepLog] = useState(false);
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePassword = (password) => {
-    const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
-    return passwordRegex.test(password);
-  };
 
   const handleLogin = async () => {
     if (!validateEmail(value.email)) {
