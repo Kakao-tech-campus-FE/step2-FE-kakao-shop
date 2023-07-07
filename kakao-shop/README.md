@@ -20,3 +20,12 @@
 	<img src="https://img.shields.io/badge/github-181717?style=flat&logo=github&logoColor=white" />
 </div>
 
+### Pages 📄
+| main page
+![image](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/8752f1a4-b3db-4361-b021-c0f5f21e6769)
+
+| login page
+![image](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/77f6a857-c813-48d4-866c-22f0c41f4a60)
+
+| register page
+![image](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/884a02cd-c141-4126-9d67-d2ec632152e2)
