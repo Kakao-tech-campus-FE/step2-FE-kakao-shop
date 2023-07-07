@@ -10,14 +10,26 @@ import useSignUpForm from '@hooks/ui/useSignUpForm';
 
 const SignUpForm = () => {
   const {
-    state: { email, nickname, password, confirmPassword, errorMessage },
-    handler: { onChangeEmail, onChangeNickname, onChangePassword, onChangeConfirmPassword, onSubmit },
+    state: { email, nickname, password, confirmPassword, errorMessage, isUniqueEmail },
+    handler: {
+      onChangeEmail,
+      onChangeNickname,
+      onChangePassword,
+      onChangeConfirmPassword,
+      onSignUpSubmit,
+      onEmailDuplicateCheck,
+    },
   } = useSignUpForm();
 
   return (
     <S.Root>
-      <S.Container onSubmit={onSubmit}>
-        <EmailCheckForm email={email} onChangeEmail={onChangeEmail} />
+      <S.Container onSubmit={onSignUpSubmit}>
+        <EmailCheckForm
+          email={email}
+          isUniqueEmail={isUniqueEmail}
+          onChangeEmail={onChangeEmail}
+          onEmailDuplicateCheck={onEmailDuplicateCheck}
+        />
 
         <RegularInput.HiddenLabel
           key={'이름'}

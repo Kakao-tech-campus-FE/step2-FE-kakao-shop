@@ -1,17 +1,19 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useRef, useState } from 'react';
+import { MouseEventHandler, useRef, useState } from 'react';
 
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
 
 type Props = {
   email: string;
+  isUniqueEmail: boolean;
   onChangeEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onEmailDuplicateCheck: MouseEventHandler<HTMLButtonElement>;
 };
 
-const EmailCheckForm = ({ email, onChangeEmail }: Props) => {
-  const divRef = useRef<HTMLFormElement>(null);
+const EmailCheckForm = ({ email, onChangeEmail, onEmailDuplicateCheck, isUniqueEmail }: Props) => {
+  const divRef = useRef<HTMLDivElement>(null);
   const [isEmailCheckContainerFocus, setIsEmailCheckContainerFocus] = useState(false);
 
   const handleFocus = () => {
@@ -38,9 +40,15 @@ const EmailCheckForm = ({ email, onChangeEmail }: Props) => {
         tabIndex={0}>
         {'이메일 (아이디)'}
       </RegularInput.HiddenLabel>
-      <Button tabIndex={0} css={S.ButtonStyle}>
-        중복확인
-      </Button>
+      {isUniqueEmail ? (
+        <Button disabled tabIndex={0} css={S.DisableButtonStyle}>
+          중복확인
+        </Button>
+      ) : (
+        <Button tabIndex={0} css={S.ButtonStyle} onClick={onEmailDuplicateCheck}>
+          중복확인
+        </Button>
+      )}
     </S.EmailCheckContainer>
   );
 };
@@ -48,7 +56,7 @@ const EmailCheckForm = ({ email, onChangeEmail }: Props) => {
 export default EmailCheckForm;
 
 const S = {
-  EmailCheckContainer: styled.form<{ isEmailCheckContainerFocus: boolean }>`
+  EmailCheckContainer: styled.div<{ isEmailCheckContainerFocus: boolean }>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,6 +108,29 @@ const S = {
     margin-left: 6px;
 
     background-color: #fee500;
+    border-radius: 4px;
+
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 51px;
+    color: #191919;
+
+    &:focus {
+      border: 2px solid #0047ab;
+    }
+  `,
+
+  DisableButtonStyle: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 70px;
+    height: 40px;
+
+    margin-left: 6px;
+
+    background-color: #f0f0f0;
     border-radius: 4px;
 
     font-weight: 400;

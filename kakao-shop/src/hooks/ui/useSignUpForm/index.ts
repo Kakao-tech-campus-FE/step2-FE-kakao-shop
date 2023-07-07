@@ -1,5 +1,5 @@
-import { signUpRequest } from '@store/SignUp/reducers';
-import { FormEventHandler } from 'react';
+import { signUpRequest, emailDuplicateCheckRequest } from '@store/SignUp/reducers';
+import { FormEventHandler, MouseEventHandler, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,8 +13,9 @@ const useSignUpForm = () => {
   const [password, onChangePassword] = useInput('');
   const [confirmPassword, onChangeConfirmPassword] = useInput('');
   const [errorMessage, , setErrorMessage] = useInput('');
+  const [isUniqueEmail, setIsUniqueEmail] = useState(false);
 
-  const onSubmit: FormEventHandler<HTMLFormElement> = e => {
+  const onSignUpSubmit: FormEventHandler<HTMLFormElement> = e => {
     e.preventDefault();
 
     if (/^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email) === false) {
@@ -35,6 +36,17 @@ const useSignUpForm = () => {
     dispatch(signUpRequest({ email, password, username: nickname, navigate }));
   };
 
+  const onEmailDuplicateCheck: MouseEventHandler<HTMLButtonElement> = e => {
+    e.preventDefault();
+
+    if (/^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(email) === false) {
+      setErrorMessage('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+
+    dispatch(emailDuplicateCheckRequest({ email, setErrorMessage, setIsUniqueEmail }));
+  };
+
   return {
     state: {
       email,
@@ -42,13 +54,15 @@ const useSignUpForm = () => {
       password,
       confirmPassword,
       errorMessage,
+      isUniqueEmail,
     },
     handler: {
       onChangeEmail,
       onChangeNickname,
       onChangePassword,
       onChangeConfirmPassword,
-      onSubmit,
+      onSignUpSubmit,
+      onEmailDuplicateCheck,
     },
   };
 };
@@ -60,4 +74,10 @@ export type SignUpRequest = {
   password: string;
   username: string;
   navigate: any;
+};
+
+export type EmailDuplicateCheckRequest = {
+  email: string;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+  setIsUniqueEmail: React.Dispatch<React.SetStateAction<boolean>>;
 };
