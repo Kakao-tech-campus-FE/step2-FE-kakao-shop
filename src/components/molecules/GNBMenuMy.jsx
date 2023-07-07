@@ -7,9 +7,10 @@ import logOut from "../../services/logout";
 // 로그인 상태 시 로그아웃 버튼이 활성화 되도록 수정
 const GNBMenuMy = ({ className = "" }) => {
   const userInfo = useSelector((state) => state.user);
+  console.log("userinfo: ", userInfo);
   return (
     <Box className={className}>
-      {userInfo.email !== null && userInfo.token !== null ? (
+      {userInfo.email && userInfo.token ? (
         <Button
           onClick={() => {
             // 아래 두 줄은 시행착오...

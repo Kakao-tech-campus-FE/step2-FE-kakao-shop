@@ -21,6 +21,10 @@ const userSlice = createSlice({
     logout: (state, action) => {
       state.email = null;
       state.token = null;
+    },
+    setUserInfo: (state, action) => {
+      state.email = action.payload.email;
+      state.token = action.payload.token;
     }
   },
   extraReducers: (builder) => {
@@ -82,6 +86,6 @@ export const registerRequest = createAsyncThunk(
 );
 
 //만든 userSlice의 reducer를 export (reducer들은 .actions에 담겨있다.)
-export const { logout, setEmail } = userSlice.actions
+export const { logout, setUserInfo, setEmail } = userSlice.actions
 // src/store/index.js는 export default로 userReducer를 받게 해놨으므로 userSlice의 리듀서도 export
 export default userSlice.reducer;
