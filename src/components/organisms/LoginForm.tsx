@@ -1,10 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
 import loginApi from '../../apis/loginApi';
+import { selectEmail, setEmail } from '../../store/slices/userSlices';
 
 const LoginForm = () => {
   const { values, handleChange } = useForm({
@@ -12,6 +14,7 @@ const LoginForm = () => {
     password: '',
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSignInBtnClick = () => {
     const { email, password } = values;
@@ -22,6 +25,7 @@ const LoginForm = () => {
         password,
       })
       .then(() => {
+        dispatch(setEmail({ email }));
         navigate('/');
       });
   };
