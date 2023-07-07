@@ -31,7 +31,7 @@ export const register = (data) => {
   return instance.post("/join", {
     email,
     password,
-    username,
+    // username,
   });
 };
 

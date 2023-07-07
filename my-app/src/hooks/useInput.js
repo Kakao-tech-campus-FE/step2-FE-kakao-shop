@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -7,10 +7,6 @@ const useInput = (initialValue) => {
     const { name, value } = e.target;
     setValue((prev) => ({ ...prev, [name]: value }));
   };
-
-  // useEffect(() => {
-  //   console.log(value);
-  // }, [value]);
 
   return { value, handleOnChange };
 };

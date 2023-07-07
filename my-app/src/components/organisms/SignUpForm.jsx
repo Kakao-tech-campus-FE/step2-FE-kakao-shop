@@ -18,6 +18,7 @@ const SignUpForm = () => {
   const [title, setTitle] = useState("");
   const [des, setDes] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [correct, setCorrect] = useState(true);
   const navigate = useNavigate();
 
   const openModal = () => {
@@ -67,7 +68,7 @@ const SignUpForm = () => {
             })
             .catch((err) => {
               title = err.response.data.error.message;
-              title = title.slice(0, title.indexOf(":") - 1);
+              title = title.slice(0, title.indexOf(":"));
               description = "다른 이메일을 사용해주세요.";
               setTitle(title);
               setDes(description);
@@ -121,10 +122,7 @@ const SignUpForm = () => {
               })
               .catch((err) => {
                 description = err.response.data.error.message;
-                description = description.slice(
-                  0,
-                  description.indexOf(":") - 1
-                );
+                description = description.slice(0, description.indexOf(":"));
                 title = "다시 작성해주세요.";
                 setTitle(title);
                 setDes(description);

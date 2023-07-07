@@ -5,14 +5,13 @@ import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import { login } from "../../services/loginAPI";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setUserInfo } from "../../store/slices/userSlice";
 import { useState } from "react";
 import Label from "../atoms/Label";
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  const userInfo = useSelector((state) => state.user.isLogined); // 전역변수를 가져다 쓸 때 사용
   const navigate = useNavigate();
   const [correct, setCorrect] = useState(true);
   const [message, setMessage] = useState("");
@@ -28,7 +27,6 @@ const SignInForm = () => {
       password: value.password,
     })
       .then((res) => {
-        console.log(res);
         setCorrect(true);
         setMessage("");
         dispatch(
@@ -42,7 +40,6 @@ const SignInForm = () => {
         navigate("/");
       })
       .catch((err) => {
-        console.log(err.response.data.error.message);
         let errorMessage = err.response.data.error.message;
         errorMessage = errorMessage.slice(0, errorMessage.indexOf(":"));
         setMessage(errorMessage);
