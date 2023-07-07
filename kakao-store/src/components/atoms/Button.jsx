@@ -1,6 +1,6 @@
-const Button = ({ onClick, children }) => {
+const Button = ({ onClick, children, className }) => {
 	return (
-		<button
+		<button className={className}
 			onClick={(e) => {
 				e.preventDefault();
 				onClick();

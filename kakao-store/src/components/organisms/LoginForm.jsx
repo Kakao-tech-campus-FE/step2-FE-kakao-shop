@@ -16,12 +16,19 @@ const LoginForm = () => {
 
 	return (
 		<Container>
-			<Title>로그인</Title>
-			<InputGroup id="email" type="email" name="email" placeholder="이메일(아이디)" label="이메일" value={value.email}
-				onChange={handleOnChange}/>
-			<InputGroup id="password" type="password" name="password" placeholder="비밀번호" label="비밀번호" value={value.password}
-				onChange={handleOnChange}/>
-			<Button
+			<Container className="flex items-center justify-center mt-10">
+				<Title>
+					<img src="/img/logoKakaoText.png" width="88px" height="27px"/>
+				</Title>
+			</Container>
+			<Container className="flex flex-col items-center justify-center w-2/5 p-10 mx-auto mt-10 border border-gray-400">
+				<InputGroup className="py-2 m-2 border-b border-gray-500" 
+					id="email" type="email" name="email" placeholder="카카오메일 아이디, 이메일, 전화번호" value={value.email}
+					onChange={handleOnChange}/>
+				<InputGroup className="py-2 m-2 border-b border-gray-500" 
+					id="password" type="password" name="password" placeholder="비밀번호" value={value.password}
+					onChange={handleOnChange}/>
+				<Button className="px-40 py-3 m-3 text-black bg-yellow-300 hover:bg-yellow-400"
 					onClick={() => {
 						dispatch(
 							loginRequest({
@@ -29,8 +36,9 @@ const LoginForm = () => {
 								password: value.password,
 							})
 						)
-				}}
-			>로그인</Button>
+					}}
+				>로그인</Button>
+			</Container>
 		</Container>
 	);
 }
