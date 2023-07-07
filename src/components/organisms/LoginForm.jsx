@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { emailValidCheck, pwValidCheck } from "../../utils/validationCheck";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { getUserCookie } from "../../services/cookie";
 
 const LoginForm = () => {
   // 사용자 정보를 store에 저장 : dispatch를 사용하기 위해 useDispatch;
@@ -27,6 +28,7 @@ const LoginForm = () => {
     password: true,
   });
   const handleLogin = () => {
+    console.log(getUserCookie());
     const isEmailValid = emailValidCheck(value.email);
     const isPwValid = pwValidCheck(value.password);
 
