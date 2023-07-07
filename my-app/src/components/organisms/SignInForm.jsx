@@ -16,6 +16,17 @@ const SignInForm = () => {
   const [correct, setCorrect] = useState(true);
   const [message, setMessage] = useState("");
 
+  const style = {
+    backgroundColor: "#ffe342",
+    border: "none",
+    borderRadius: "8px",
+    textAlign: "center",
+    padding: "10px",
+    width: "100%",
+    display: "inline-block",
+    margin: "10px 0px",
+  };
+
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
@@ -74,14 +85,15 @@ const SignInForm = () => {
         onChange={handleOnChange}
       />
       <Button
+        style={style}
         onClick={() => {
-          // 회원가입 요청
           loginReq();
         }}
       >
         로그인
       </Button>
       <Button
+        style={style}
         onClick={() => {
           navigate("/signup");
         }}

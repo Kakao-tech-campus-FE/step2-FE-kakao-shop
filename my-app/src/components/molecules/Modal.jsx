@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "../atoms/Button";
 import "../../styles/Modal.css";
 

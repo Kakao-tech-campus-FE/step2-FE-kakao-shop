@@ -18,8 +18,17 @@ const SignUpForm = () => {
   const [title, setTitle] = useState("");
   const [des, setDes] = useState("");
   const [isValid, setIsValid] = useState(false);
-  const [correct, setCorrect] = useState(true);
+  // const [correct, setCorrect] = useState(true);
   const navigate = useNavigate();
+
+  const style = {
+    backgroundColor: "#ffe342",
+    border: "none",
+    borderRadius: "8px",
+    textAlign: "center",
+    padding: "10px",
+    width: "100px",
+  };
 
   const openModal = () => {
     setModalOpen(true);
@@ -36,15 +45,8 @@ const SignUpForm = () => {
   return (
     <Container>
       <SignUpInputGroup
-        id="username"
-        type="text"
-        placeholder="이름"
-        label="이름"
-        value={value.username}
-        onChange={handleOnChange}
-      />
-      <SignUpInputGroup
         id="email"
+        className="email"
         type="email"
         placeholder="이메일"
         label="이메일 (아이디)"
@@ -52,6 +54,8 @@ const SignUpForm = () => {
         onChange={handleOnChange}
       />
       <Button
+        className="check"
+        style={style}
         onClick={() => {
           let title = "";
           let description = "";
@@ -79,7 +83,17 @@ const SignUpForm = () => {
         이메일 확인
       </Button>
       <SignUpInputGroup
+        id="username"
+        className="username"
+        type="text"
+        placeholder="이름"
+        label="이름"
+        value={value.username}
+        onChange={handleOnChange}
+      />
+      <SignUpInputGroup
         id="password"
+        className="password"
         type="password"
         placeholder="비밀번호"
         label="비밀번호"
@@ -88,6 +102,7 @@ const SignUpForm = () => {
       />
       <SignUpInputGroup
         id="passwordConfirm"
+        className="passwordConfirm"
         type="password"
         placeholder="비밀번호 확인"
         label="비밀번호 확인"
@@ -95,6 +110,8 @@ const SignUpForm = () => {
         onChange={handleOnChange}
       />
       <Button
+        style={style}
+        className="register"
         onClick={() => {
           let title = "";
           let description = "";
