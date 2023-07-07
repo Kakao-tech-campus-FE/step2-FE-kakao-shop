@@ -1,10 +1,11 @@
-import Container from "../atoms/Container"
-import InputGroup from "../molecules/InputGroup"
-import Button from "../atoms/Button"
-import { useEffect, useState } from "react"
-import useInput from "../../hooks/useInput"
-import { register } from "../../services/api"
-import GNB from "../molecules/Gnb"
+import Container from "../atoms/Container";
+import InputGroup from "../molecules/InputGroup";
+import Button from "../atoms/Button";
+import { useEffect, useState } from "react";
+import useInput from "../../hooks/useInput";
+import { register } from "../../services/api";
+import GNB from "../molecules/Gnb";
+import Alert from "../atoms/Alert";
 
 const RegisterForm = () => {
     const { value, handleOnChange } = useInput({
@@ -12,11 +13,49 @@ const RegisterForm = () => {
         email: "",
         password: "",
         passwordConfirm: "",
-    })
+    });
+    const [emailError, setEmailError] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
+    const validateEmail = () => {
+        const emailPattern = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
+        if (!emailPattern.test(value.email)) {
+            setEmailError("이메일 형식이 올바르지 않습니다.");
+            return false;
+        }
+        setEmailError("");
+        return true;
+    };
+
+    const validatePassword = () => {
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+        if (!passwordPattern.test(value.password)) {
+            setPasswordError("비밀번호 형식이 올바르지 않습니다.");
+            return false;
+        }
+        setPasswordError("");
+        return true;
+    };
+
+    const handleRegister = () => {
+        const isEmailValid = validateEmail();
+        const isPasswordValid = validatePassword();
+
+        if (isEmailValid && isPasswordValid) {
+            // 회원가입 요청
+            register({
+                email: value.email,
+                password: value.password,
+                username: value.username,
+            });
+        }
+    };
 
     return (
         <Container>
-            <GNB showRegisterButton={false}></GNB>
+            <GNB showRegisterButton={false} />
+            {emailError && <Alert message={emailError} />}
+            {passwordError && <Alert message={passwordError} />}
             <InputGroup
                 id="username"
                 name="username"
@@ -24,19 +63,8 @@ const RegisterForm = () => {
                 placeholder="사용자 이름을 입력해주세요"
                 label="이름"
                 value={value.username}
-                onChange={handleOnChange}>
-            </InputGroup>
-            {/*
-        Props:
-        - id: Input 요소의 ID (string)
-        - name: Input 요소의 name (string)
-        - type: Input 요소의 타입 (string)
-        - placeholder: Input 필드에 표시되는 안내 텍스트 (string)
-        - label: Input 필드 옆에 표시되는 라벨 텍스트 (string)
-        - value: Input 필드의 현재 값 (string)
-        - onChange: Input 값이 변경될 때 실행되는 콜백 함수 (function)
-      */}
-
+                onChange={handleOnChange}
+            />
             <InputGroup
                 id="email"
                 name="email"
@@ -44,9 +72,8 @@ const RegisterForm = () => {
                 placeholder="이메일(아이디)를 입력해주세요"
                 label="이메일"
                 value={value.email}
-                onChange={handleOnChange}>
-            </InputGroup>
-
+                onChange={handleOnChange}
+            />
             <InputGroup
                 id="password"
                 name="password"
@@ -54,9 +81,8 @@ const RegisterForm = () => {
                 placeholder="***********"
                 label="비밀번호"
                 value={value.password}
-                onChange={handleOnChange}>
-            </InputGroup>
-
+                onChange={handleOnChange}
+            />
             <InputGroup
                 id="passwordConfirm"
                 name="passwordConfirm"
@@ -64,24 +90,11 @@ const RegisterForm = () => {
                 placeholder="***********"
                 label="비밀번호 확인"
                 value={value.passwordConfirm}
-                onChange={handleOnChange}>
-            </InputGroup>
-
-            <Button
-                onClick={() => {
-                    //회원가입 요청
-                    register({
-                        email: value.email,
-                        password: value.password,
-                        username: value.username,
-                    })
-                }}>회원가입</Button>
-            {/* 
-        Props:
-        - onClick: 버튼이 클릭되었을 때 실행되는 콜백 함수 (function)
-      */}
+                onChange={handleOnChange}
+            />
+            <Button onClick={handleRegister}>회원가입</Button>
         </Container>
-    )
-}
+    );
+};
 
 export default RegisterForm;
