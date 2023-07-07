@@ -20,6 +20,12 @@ import Button from "../atoms/Button";
 import Container from "../atoms/Container";
 import Link from "../atoms/Link";
 
+/**
+ * 로그인 폼 컴포넌트
+ * 이메일과 비밀번호를 입력받아 로그인을 시도하는 컴포넌트
+ *
+ * @returns {JSX.Element} - 로그인 폼 컴포넌트의 JSX 요소
+ */
 const LoginForm = () => {
   const { value, handleOnChange } = useInput({
     email: "",

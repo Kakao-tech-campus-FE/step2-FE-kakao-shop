@@ -1,5 +1,10 @@
 import LoginForm from "../components/organisms/LoginForm";
 
+/**
+ * 로그인 페이지
+ *
+ * @returns {JSX.Element} - 로그인 페이지의 JSX 요소
+ */
 const LoginPage = () => {
   return (
     <div>

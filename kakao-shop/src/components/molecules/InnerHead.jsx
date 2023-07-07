@@ -12,6 +12,12 @@ import { SlMenu } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
 
+/**
+ * 선물하기 헤더의 내부 헤더 컴포넌트
+ * 로고, GNB, 카테고리, 유틸 영역을 보여줌
+ *
+ * @returns {JSX.Element} - InnerHead 컴포넌트의 JSX 요소
+ */
 export default function InnerHead() {
   let userEmail = useSelector((state) => state.user.email);
   if (!userEmail) {

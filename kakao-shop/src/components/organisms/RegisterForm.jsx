@@ -14,6 +14,12 @@ import Button from "../atoms/Button";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 
+/**
+ * 회원가입 폼 컴포넌트
+ * 이메일, 이름, 비밀번호, 비밀번호 확인을 입력받아 회원가입을 시도하는 컴포넌트
+ *
+ * @returns {JSX.Element} - 회원가입 폼 컴포넌트의 JSX 요소
+ */
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
     email: "",
