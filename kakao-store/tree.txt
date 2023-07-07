@@ -1,0 +1,25 @@
+├─node_modules
+├─public
+│  └─img
+└─src
+    ├─apis
+    │  └─api.js - axios 사용 함수
+    ├─components
+    │  ├─atoms
+    │  │  ├─badge.jsx
+    │  │  ├─Box.jsx
+    │  │  ├─badge.jsx
+    │  │  ├─badge.jsx
+    │  │  ├─badge.jsx
+    │  │  ├─badge.jsx
+    │  │  ├─badge.jsx
+    │  │  ├─badge.jsx
+    │  ├─molecules
+    │  ├─organisms
+    │  └─templates
+    ├─hooks
+    ├─pages
+    └─store
+       └─slices
+           └─saga
+    
