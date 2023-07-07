@@ -21,7 +21,13 @@
     margin-right: 20px;
 }
 
-.gnb-buttons .button{
-    cursor: pointer;
+.global-nav-bar .button{
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
     width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

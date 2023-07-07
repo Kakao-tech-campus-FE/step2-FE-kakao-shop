@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {reducerLogout} from "../../store/userSlice";
 import "../../styles/globalNavBar.css"
 import Container from "../atoms/Container";
+import {Link} from "react-router-dom";
 
 const GlobalNavBar = () => {
     const user = useSelector(state => state.user);
@@ -12,8 +13,7 @@ const GlobalNavBar = () => {
     return (
         <div className={"global-nav-bar"}>
             <Container className={"logo"}>
-                <Button className={"logo"}
-                        onClick={() => window.location.href = "/"}>Home</Button>
+                <Link className={"logo button"} to={"/"}>Home</Link>
             </Container>
             <Container className={"gnb-buttons"}>
                 {user.isLogin ?
@@ -22,16 +22,15 @@ const GlobalNavBar = () => {
                         <Button className={"logout-button"}
                                 onClick={
                                     () => {
-                                        dispatch(reducerLogout())}
+                                        dispatch(reducerLogout())
+                                    }
                                 }>로그아웃
                         </Button>
                     </>
                     :
                     <>
-                        <Button className={"login-button"}
-                                onClick={() => window.location.href = "/login"}>로그인</Button>
-                        <Button className={"register-button"}
-                                onClick={() => window.location.href = "/signup"}>회원가입</Button>
+                        <Link to={"/login"} className={"button"}>로그인</Link>
+                        <Link to={"/signup"} className={"button"}>회원가입</Link>
                     </>
                 }
             </Container>

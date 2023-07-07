@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
 import Button from "../atoms/Button";
 import {login} from "../../services/api";
-import {reducerLogin, setEmail} from "../../store/userSlice";
+import {reducerLogin} from "../../store/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const LoginForm = () => {
@@ -21,12 +21,9 @@ const LoginForm = () => {
             }
         ).then(res => {
                 console.log(res);
-                dispatch(setEmail(
-                    res.data.email
-                ));
-                dispatch(reducerLogin());
+                dispatch(reducerLogin(res.data.email));
                 alert(user.email + "님 환영합니다.")
-                window.location.href = "/";
+                // window.location.href = "/";
             }
         ).catch(err => {
                 console.log(err.response)

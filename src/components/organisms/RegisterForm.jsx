@@ -19,7 +19,6 @@ const ERROR_MSG = {
     invalidName: "이름은 2자 이상이어야 합니다.",
 };
 
-
 const RegisterForm = () => {
     const [value, handleOnChange] = useInput({
             username: "",
