@@ -1,15 +1,16 @@
 const Button = ({ onClick, children }) => {
   return (
     <button
-      onClick={(e)  => {
+      onClick={(e) => {
         e.preventDefault();
         onClick();
       }}
     >
-    {children}  
+      {children}
     </button>
   );
 };
 
 export default Button;
+
 
