@@ -19,18 +19,17 @@ instance.interceptors.request.use((config) => {
 // middleware
 instance.interceptors.response.use(
     (response) => {
-        alert('로그인 되었습니다.')
         window.location.href = "/";
         return response
     },
     (error) => {
         if(error.response.status === 401) {
             localStorage.removeItem("token");
-            alert(error.response.message);
+            alert(error.response.data.error.message);
             return Promise.resolve();
         }
         if(error.response.status === 400) {
-            alert(error.response.message);
+            alert(error.response.data.error.message);
             return Promise.resolve();
         }
         return Promise.reject(error.response);

@@ -22,6 +22,7 @@ const userSlice = createSlice({
             state.loading = false;
             state.email = action.payload.email;
             localStorage.setItem("token", action.payload.token);
+            localStorage.setItem("Time", new Date().getTime());
         })
         builder.addCase(loginRequest.rejected, (state, action) => {
             state.loading = false;

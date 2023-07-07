@@ -2,12 +2,23 @@ import { useEffect, useState } from "react";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
 import { NavLink } from "react-router-dom";
+import Button from "../atoms/Button";
 
 const Gnb = () => {
-    const {loginState, setLoginState} = useState(false);
+    const [loginState, setLoginState] = useState(false);
     
     useEffect(() => {
+        const currentTime = new Date().getTime();
+        const previousTime = localStorage.getItem('Time');
 
+        if(currentTime - previousTime < 1000 * 60 * 60 * 24) {
+            setLoginState(true);
+        }
+        else {
+            localStorage.removeItem('token');
+            localStorage.removeItem('Time');
+            setLoginState(false);
+        }
     }, []);
 
     return (
@@ -18,9 +29,21 @@ const Gnb = () => {
                         <img src="/img/logoKakao.png" width="100px"/>
                     </Box>
                     <Box className="flex items-center space-x-4">
-                        <NavLink to="/login"> 
-                            로그인
-                        </NavLink>
+                        {loginState === false &&
+                            <NavLink to="/login"> 
+                                로그인
+                            </NavLink>
+                        }
+                        {loginState === true &&
+                            <Button onClick={() => {
+                                localStorage.removeItem('Time');
+                                localStorage.removeItem('token');
+                                alert('로그아웃 되었습니다.');
+                                window.location.href = '/';
+                            }}>
+                                로그아웃
+                            </Button>
+                        }
                         <NavLink to="/signup">
                             회원가입
                         </NavLink>
