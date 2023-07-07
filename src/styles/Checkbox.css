@@ -1,32 +1,32 @@
 .checkbox-input {
     appearance: none;
-    width: 1.25em;
-    height: 1.25em;
+    width: 2em;
+    height: 2em;
     background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 0.25em;
-    border-color: white;
-    /* display:relative; */
+    border-radius: 50%;
+    border: solid 2px gray;
+    position: relative;
+    cursor: pointer;
 }
 .checkbox-input::before {
     content:"L";
     display: absolute;
+    
     display:inline-block;
-    transform: rotateY(180deg) rotate(-45deg);
+    transform: translateX(80%) translateY(10%) rotateY(180deg) rotate(-45deg);
     font-weight: 800;
     visibility: hidden;
 }
+.checkbox-input:checked {
+    background-color: #fee500;
+    border-color: #fee500;
+}
 .checkbox-input:checked::before {
     visibility: visible;
-    /* background-image: url("../assets/icons/checkmark.png");
-    background-size: contain; */
-}
-.checkbox-input:hover {
-    background-color: #A1C2F1;
-    transition: 0.2s;
 }
 .checkbox-label {
     margin: 0 20px;
     opacity: 0.5;
     color: black;
-    font-size: 0.9em;
+    cursor: pointer;
 }
