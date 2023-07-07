@@ -5,9 +5,5 @@ export interface AuthResponse {
     message: string;
     status: number;
   } | null;
-}
-
-export interface LoginResponse {
-  data: AuthResponse;
-  token: string;
+  token?: string;
 }

@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import reset from '../../../utils/reset';
 import ErrorMessageBox from '../atoms/ErrorMessageBox';
 import InputBox from '../../common/atoms/InputBox';
-import { LoginResponse } from '../../../types/Auth';
+import { AuthResponse } from '../../../types/Auth';
 import { styled } from 'styled-components';
 import colors from '../../../constants/colors';
 import { login } from '../../../modules/auth';
@@ -34,12 +34,11 @@ function LoginForm() {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       };
-      const response: LoginResponse = await instance.post('/login', JSON.stringify(loginData));
-      if (response.data.success) {
-        dispatch(login(response.token));
-        navigate('/');
+      const response: AuthResponse = await instance.post('/login', JSON.stringify(loginData));
+      if (response.success) {
+        if (response.token && dispatch(login(response.token))) navigate('/');
       } else {
-        setErrorMessage(response.data.error?.message);
+        setErrorMessage(response.error?.message);
       }
     }
   };
