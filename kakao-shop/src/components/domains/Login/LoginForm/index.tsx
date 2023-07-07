@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
 
-import useLoginForm from '@hooks/ui/useSignInForm';
+import useLoginForm from '@hooks/ui/useLoginForm';
 
 const LoginForm = () => {
   const {
