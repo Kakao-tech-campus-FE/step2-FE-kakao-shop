@@ -15,7 +15,6 @@ const LoginPage = () => {
         password: "",
     }
     const onSubmit = async (value) => {
-
         const response = await signIn({
                 email: value.id,
                 password: value.password,

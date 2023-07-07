@@ -1,3 +1,5 @@
+import Input from "../atoms/customInput";
+
 const InputField = ({id, label, type, placeholder, value, onChange, error, name, className, children}) => {
 
 
@@ -5,12 +7,11 @@ const InputField = ({id, label, type, placeholder, value, onChange, error, name,
         <div className={className}>
             {label && <label className="my-0.5 block" htmlFor={id}>{label}</label>}
             <div className="flex w-full items-center space-x-2">
-                <input
+                <Input
                     name={name}
                     id={id}
                     type={type}
                     placeholder={placeholder}
-                    className="border-2 p-2 rounded flex-grow"
                     value={value}
                     onChange={onChange}
                 />

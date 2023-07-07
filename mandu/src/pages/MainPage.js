@@ -1,8 +1,9 @@
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import cookie from "react-cookies";
 import {useSelector, useDispatch} from 'react-redux';
 import {setId} from "../redux/userSlice";
+import Button from "../components/atoms/customButton";
 
 const MainPage = () => {
     const navigate = useNavigate();
@@ -25,12 +26,12 @@ const MainPage = () => {
             <h1 className="m-2 p-2 text-lg">Main Page</h1>
             {userId
                 ? <div>{`유저 id : ${userId}`}</div> : (<>
-                    <button className="bg-emerald-400 m-2 p-2 rounded" onClick={() => navigate('/login')}>Go to Login
+                    <Button onClick={() => navigate('/login')}>로그인
                         Page
-                    </button>
-                    <button className="bg-emerald-400 m-2 p-2 rounded" onClick={() => navigate('/signup')}>Go to Sign Up
+                    </Button>
+                    <Button onClick={() => navigate('/signup')}>회원가입
                         Page
-                    </button>
+                    </Button>
                 </>)}
         </div>
     );
