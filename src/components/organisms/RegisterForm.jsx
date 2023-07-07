@@ -7,10 +7,11 @@ import LinkText from "../atoms/LinkText";
 import * as Link from '../../styles/atoms/Link';
 import {useNavigate} from 'react-router-dom';
 import { register } from "../../apis/api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { setUser } from "../../store/slices/userSlice";
 import Msg from "../atoms/Msg";
+import { setLocalStorageWithExp } from "../../utils/localStorage";
 
 const RegisterForm = () => {
     const dispatch = useDispatch();
@@ -29,11 +30,11 @@ const RegisterForm = () => {
             username: value.username,
         })
         .then((res) => {
-            console.log(res);
             setError('');
-            dispatch(setEmail({
-                email: value.email,
+            dispatch(setUser({
+                user: value.user,
             }));
+            setLocalStorageWithExp("user", res.headers.authorization, 1000 * 1440);
             navigate("/");
         })
         .catch((err) => {
