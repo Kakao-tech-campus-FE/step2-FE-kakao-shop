@@ -3,7 +3,7 @@ import logoKakaoText from "../../assets/imgs/logoKakaoText.png";
 const Title = () => {
   return (
     <img
-      className="mx-auto mb-10 w-[100px]"
+      className="mx-auto mt-[60px] w-[110px]"
       src={logoKakaoText}
       alt="logoKakaoText"
     />

@@ -1,13 +1,30 @@
 import { useState } from "react";
+import { check } from "../apis/api";
 
-const useValid = (initialValue, formValue) => {
+// 유효성 검사 커스텀 훅
+const useValid = (initialValue, formValue, setModal) => {
   const [valid, setValid] = useState(initialValue);
 
+  // onBlur 핸들러
   const handleOnBlur = (e) => {
     const { name, value } = e.target;
     checkRegex(name, value);
   };
 
+  // 이메일 중복 검사 핸들러
+  const handleOnClick = () => {
+    check({ email: formValue.email }).then((res) => {
+      if (res === "duplicateEmail") {
+        setModal(res);
+        setValid((prev) => ({ ...prev, email: "duplicateEmail" }));
+      } else if (res === true) {
+        setModal("goodEmail");
+        setValid((prev) => ({ ...prev, email: true }));
+      }
+    });
+  };
+
+  // 유효성 검사
   const checkRegex = (name, value) => {
     const EMAIL_REGEX = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
     const PW_REGEX =
@@ -18,7 +35,7 @@ const useValid = (initialValue, formValue) => {
     } else {
       switch (name) {
         case "email":
-          result = EMAIL_REGEX.test(value) ? true : "invalidEmail";
+          result = EMAIL_REGEX.test(value) ? "notConfirmed" : "invalidEmail";
           break;
         case "username":
           result = true;
@@ -36,7 +53,7 @@ const useValid = (initialValue, formValue) => {
     }
     setValid((prev) => ({ ...prev, [name]: result }));
   };
-  return { valid, handleOnBlur };
+  return { valid, handleOnBlur, handleOnClick };
 };
 
 export default useValid;

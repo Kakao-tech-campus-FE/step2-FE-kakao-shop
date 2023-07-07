@@ -1,7 +1,12 @@
 import React from "react";
 
-const Box = ({ children, className }) => {
-  return <div className={`flex flex-col ${className}`}>{children}</div>;
+const Box = ({
+  children,
+  className, // style 재사용
+}) => {
+  return (
+    <div className={`relative flex flex-col ${className}`}>{children}</div>
+  );
 };
 
 export default Box;

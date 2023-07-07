@@ -3,57 +3,74 @@ import InputGroup from "../moleclules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { register } from "../../apis/api";
+import { register, login } from "../../apis/api";
 import useValid from "../../hooks/useValid";
 import Modal from "../moleclules/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { setUser } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
+// 유효성 검사의 에러 메세지
 const ERROR_MSG = {
   required: "필수 정보입니다.",
   invalidEmail: "이메일 형식이 올바르지 않습니다.",
   invalidPw: "8~20자 영문, 숫자, 특수문자를 사용하세요.",
   invalidPwConfirm: "비밀번호가 일치하지 않습니다.",
+  duplicateEmail: "이미 사용 중인 이메일입니다.",
+  notConfirmed: "이메일 중복확인을 해주세요.",
 };
 
 const RegisterForm = () => {
+  // 모달 상태
+  const [modal, setModal] = useState("");
+
+  // form value state
   const { value, handleOnChange } = useInput({
     email: "",
     username: "",
     password: "",
     passwordConfirm: "",
   });
-  const { valid, handleOnBlur } = useValid(
+
+  // 유효성 검사 상태 -
+  const { valid, handleOnBlur, handleOnClick } = useValid(
     {
       email: "",
       username: "",
       password: "",
       passwordConfirm: "",
     },
-    value
+    value,
+    setModal
   );
-  const [modal, setModal] = useState("");
+  // 모든 유효성 검사 통과했는지 -> 버튼 활성화
   const allValid = Object.values(valid).every((value) => value === true);
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // 회원가입 API 요청
   const handleRegister = () => {
     register({
       email: value.email,
       password: value.password,
       username: value.username,
     }).then((res) => {
-      switch (res) {
-        case "complete":
-          setModal("complete");
-          break;
-        case "duplicateEmail":
-          setModal("duplicateEmail");
-          break;
-        default:
-          return;
+      // 회원가입 성공시
+      if (res === "complete") {
+        setModal("complete");
+        // 회원가입 성공시, 자동으로 로그인
+        login({
+          email: value.email,
+          password: value.password,
+        }).then((res) => {
+          dispatch(setUser({ email: value.email, token: res.token }));
+        });
       }
     });
   };
+  // 상태에 따라 다른 모달창 출력
   const changeModal = () => {
     switch (modal) {
       case "complete":
@@ -84,6 +101,18 @@ const RegisterForm = () => {
             setModal={setModal}
           ></Modal>
         );
+      case "goodEmail":
+        return (
+          <Modal
+            titleText={"사용 가능한 이메일입니다."}
+            buttonText={"확인"}
+            onClick={() => {
+              setModal("");
+            }}
+            type={modal}
+            setModal={setModal}
+          ></Modal>
+        );
 
       default:
         return;
@@ -92,8 +121,8 @@ const RegisterForm = () => {
 
   return (
     <>
+      <Title></Title>
       <Container>
-        <Title></Title>
         <InputGroup
           id="email"
           name="email"
@@ -104,8 +133,12 @@ const RegisterForm = () => {
           errorMsg={ERROR_MSG}
           valid={valid}
           value={value.email}
-          onChange={handleOnChange}
+          onChange={(e) => {
+            handleOnChange(e);
+            handleOnBlur(e);
+          }}
           onBlur={handleOnBlur}
+          onClick={handleOnClick}
         ></InputGroup>
         <InputGroup
           id="username"
@@ -143,8 +176,10 @@ const RegisterForm = () => {
           errorMsg={ERROR_MSG}
           valid={valid}
           value={value.passwordConfirm}
-          onChange={handleOnChange}
-          onBlur={handleOnBlur}
+          onChange={(e) => {
+            handleOnChange(e);
+            handleOnBlur(e);
+          }}
         ></InputGroup>
         <Button valid={allValid} className={"mt-10"} onClick={handleRegister}>
           회원가입

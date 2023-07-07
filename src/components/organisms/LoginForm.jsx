@@ -7,34 +7,53 @@ import Title from "../atoms/Title";
 import InputGroup from "../moleclules/InputGroup";
 import Box from "../atoms/Box";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
+  // form value state
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
-
+  // 로그인 에러 state
   const [loginStatus, setLoginStatus] = useState("");
-  const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // 엔터키로 로그인 가능하도록하는 핸들러
+  const handleOnKeyPress = (e) => {
+    if (e.key === "Enter") {
+      loginReq();
+    }
+  };
+
+  // 로그인 API 요청
+  const loginReq = () => {
+    // 이메일이 빈 상태
     if (value.email === "") {
       setLoginStatus("emptyEmail");
-    } else if (value.password === "") {
+    }
+    // 비밀번호가 빈 상태
+    else if (value.password === "") {
       setLoginStatus("emptyPw");
     } else {
       login({
         email: value.email,
         password: value.password,
       }).then((res) => {
-        setLoginStatus(res);
-        if (res === "complete") {
+        setLoginStatus(res.message);
+        // 로그인에 성공한 경우
+        if (res.message === "complete") {
+          dispatch(setUser({ email: value.email, token: res.token }));
           navigate("/", { replace: true });
         }
       });
     }
   };
 
+  // 로그인 상태에 따른 에러 메세지 출력
   const statusBox = () => {
     let statusMessage = "";
     if (loginStatus === "emptyEmail") {
@@ -54,36 +73,40 @@ const LoginForm = () => {
     );
   };
   return (
-    <Container>
+    <>
       <Title></Title>
-      <InputGroup
-        id="email"
-        name="email"
-        type="email"
-        placeholder="이메일"
-        label="이메일(아이디)"
-        form="login"
-        value={value.email}
-        onChange={handleOnChange}
-      ></InputGroup>
-      <InputGroup
-        id="password"
-        name="password"
-        type="password"
-        placeholder="비밀번호"
-        label="비밀번호"
-        form="login"
-        value={value.password}
-        onChange={handleOnChange}
-      ></InputGroup>
-      {statusBox()}
-      <Button className={"mt-10"} onClick={handleLogin}>
-        로그인
-      </Button>
-      <Link to="/signup" className="mt-5 text-xs ">
-        회원가입
-      </Link>
-    </Container>
+      <Container>
+        <InputGroup
+          id="email"
+          name="email"
+          type="email"
+          placeholder="이메일"
+          label="이메일(아이디)"
+          form="login"
+          value={value.email}
+          onChange={handleOnChange}
+          onKeyPress={handleOnKeyPress}
+        ></InputGroup>
+        <InputGroup
+          id="password"
+          name="password"
+          type="password"
+          placeholder="비밀번호"
+          label="비밀번호"
+          form="login"
+          value={value.password}
+          onChange={handleOnChange}
+          onKeyPress={handleOnKeyPress}
+        ></InputGroup>
+        {statusBox()}
+        <Button className={"mt-10"} onClick={loginReq}>
+          로그인
+        </Button>
+        <Link to="/signup" className="mt-5 text-xs ">
+          회원가입
+        </Link>
+      </Container>
+    </>
   );
 };
 
