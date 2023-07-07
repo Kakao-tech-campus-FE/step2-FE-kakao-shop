@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import LinkButton from '../atoms/linkButton';
 import { RootState } from '../../store';
 import Button from '../atoms/button';
 import { login, logout } from '../../store/slices/userSlice';
@@ -39,7 +38,7 @@ export default function NavigationBar() {
   };
 
   return (
-    <div className="my-4 text-center">
+    <div className="flex items-center justify-end gap-4 border border-b-stone-300 px-6 py-4">
       {user.isLogin ? (
         <>
           <div>
@@ -55,9 +54,14 @@ export default function NavigationBar() {
           </div>
         </>
       ) : (
-        <LinkButton href="/login">
-          로그인
-        </LinkButton>
+        <div>
+          <Button handleClick={() => {
+            navigator('/login');
+          }}
+          >
+            로그인
+          </Button>
+        </div>
       )}
     </div>
   );
