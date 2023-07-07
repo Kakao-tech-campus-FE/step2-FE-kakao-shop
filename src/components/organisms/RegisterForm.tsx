@@ -25,7 +25,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
   });
 
   const validationCheck = () => {
-    setUsernameHT(checkUsername(inputInfo.username));
+    if (inputInfo.username) setUsernameHT(checkUsername(inputInfo.username));
     setEmailHT(checkEmail(inputInfo.email));
     setPasswordHT(checkPassword(inputInfo.password));
 
@@ -75,7 +75,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
       <div className="">
         <FilledButton
           onClick={() => {
-            if (validationCheck())
+            if (inputInfo.username && validationCheck())
               onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username });
           }}
         >
