@@ -59,9 +59,9 @@ const Carousel = () => {
         {photos.map((photo, index) => (
           <span
             key={photo.id}
-            className={index === currentIndex ? 'dot active' : 'dot'}
+            className={`dot ${index === currentIndex && 'active'}`}
             onClick={() => setCurrentIndex(index)}
-          ></span>
+         />
         ))}
       </div>
     </>
