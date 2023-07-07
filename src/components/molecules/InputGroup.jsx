@@ -2,7 +2,18 @@ import Input from '../atoms/Input';
 import Box from '../atoms/Box';
 import Label from '../atoms/Label';
 
-const InputGroup = ({
+/**
+ * InputGroup component
+ * id: id attribute
+ * name: name attribute
+ * type: type attribute
+ * value: value attribute
+ * onChange: event handler
+ * placeholder: text inside input
+ * className: custom class name
+ * label: label text
+ */
+export default function InputGroup({
   id,
   name,
   type,
@@ -11,7 +22,7 @@ const InputGroup = ({
   className,
   label,
   placeholder,
-}) => {
+}) {
   return (
     <Box className={className}>
       <Label htmlFor={id}>{label}</Label>
@@ -25,6 +36,4 @@ const InputGroup = ({
       />
     </Box>
   );
-};
-
-export default InputGroup;
+}

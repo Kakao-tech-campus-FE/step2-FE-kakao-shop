@@ -1,7 +1,6 @@
+import React from 'react';
 import LoginForm from '../components/organisms/LoginForm';
 
-const LoginPage = () => {
+export default function LoginPage() {
   return <LoginForm />;
-};
-
-export default LoginPage;
+}

@@ -5,7 +5,7 @@ import useInput from '../../hooks/useInput';
 import { register } from '../../services/api';
 import { useEffect } from 'react';
 
-const RegisterForm = () => {
+export default function RegisterForm() {
   const { value, handleOnChange } = useInput({
     username: '',
     email: '',
@@ -69,6 +69,4 @@ const RegisterForm = () => {
       </Button>
     </Container>
   );
-};
-
-export default RegisterForm;
+}

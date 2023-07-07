@@ -1,4 +1,9 @@
-const Button = ({ onClick, children }) => {
+/**
+ * Button component
+ * onClick: event handler
+ * children: text inside button
+ */
+export default function Button({ onClick, children }) {
   return (
     <button
       onClick={(e) => {
@@ -9,6 +14,4 @@ const Button = ({ onClick, children }) => {
       {children}
     </button>
   );
-};
-
-export default Button;
+}

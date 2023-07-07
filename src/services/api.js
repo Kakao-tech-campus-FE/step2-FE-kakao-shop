@@ -21,7 +21,9 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {}
+  (error) => {
+    return Promise.reject(error.response);
+  }
 );
 
 export const register = (data) => {
