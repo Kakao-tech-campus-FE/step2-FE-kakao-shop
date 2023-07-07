@@ -5,13 +5,12 @@ import LinkedIcon from "./LinkedIcon";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
-import { useCookies } from "react-cookie";
+import { getCookie, removeCookie } from "../../utils/cookie";
 
 export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
-  const [cookies, , removeCookie] = useCookies(["user"]);
 
   const handleLoginClick = () => {
     if (!user) {
@@ -23,9 +22,9 @@ export default function NavBar() {
   };
 
   useEffect(() => {
-    const user = !!cookies.accessToken;
+    const user = !!getCookie("accessToken");
     dispatch(setUser({ user }));
-  }, [cookies.accessToken, dispatch]);
+  }, [dispatch]);
 
   return (
     <nav className="flex items-center">

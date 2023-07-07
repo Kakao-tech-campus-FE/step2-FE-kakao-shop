@@ -8,7 +8,7 @@ import useInput from "../../hooks/useInput";
 import { login } from "../../apis/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
-import { useCookies } from "react-cookie";
+import { setCookie } from "../../utils/cookie";
 
 const initialState = { email: "", password: "" };
 
@@ -20,7 +20,6 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const [form, handleChange] = useInput(initialState);
   const { error, setError, checkRegex } = useLoginValidation({ form });
-  const [, setCookie] = useCookies(["accessToken"]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -37,11 +36,9 @@ export default function LoginForm() {
           password: form.password,
         });
         const accessToken = response.headers["authorization"];
-        dispatch(setUser({ user: true }));
 
-        const expires = new Date();
-        expires.setDate(expires.getDate() + 1);
-        setCookie("accessToken", accessToken, { expires });
+        dispatch(setUser({ user: true }));
+        setCookie("accessToken", accessToken, 1000 * 60 * 60 * 24);
         navigate("/");
       } catch (error) {
         setError("잘못된 요청입니다.");
