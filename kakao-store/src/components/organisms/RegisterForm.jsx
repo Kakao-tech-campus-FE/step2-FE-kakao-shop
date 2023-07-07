@@ -5,6 +5,14 @@ import useInput from "../../hooks/useInput";
 import { register } from "../../apis/api";
 import Title from "../atoms/Title";
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
+
+const USERNAME_MESSAGE = "올바르지 않는 이름입니다.";
+const EMAIL_MESSAGE = "이메일을 확인해주세요.";
+const PASSWORD_MESSAGE = "비밀번호를 확인해주세요.";
+const PASSWORD_CONFIRM_MESSAGE = "비밀번호가 일치하지 않습니다.";
+
 const RegisterForm = () => {
     const { value, handleOnChange } = useInput({
         username: "",
@@ -35,12 +43,18 @@ const RegisterForm = () => {
                     onChange={handleOnChange}/>
 				<Button className="w-full py-3 m-3 text-black bg-yellow-300 hover:bg-yellow-400"
                     onClick={() => {
+                        if(value.username === "") alert(USERNAME_MESSAGE); 
+                        else if(EMAIL_REGEX.test(value.email) === false) alert(EMAIL_MESSAGE);
+                        else if(PASSWORD_REGEX.test(value.password) === false) alert(PASSWORD_MESSAGE);
+                        else if(value.password !== value.passwordConfirm) alert(PASSWORD_CONFIRM_MESSAGE);
                         // api 회원 가입 요청
-                        register({
-                            email: value.email,
-                            password: value.password,
-                            username: value.username,
-                        })
+                        else {
+                            register({
+                                email: value.email,
+                                password: value.password,
+                                username: value.username,
+                            });
+                        }
                     }}
                 >회원가입</Button>
             </Container>

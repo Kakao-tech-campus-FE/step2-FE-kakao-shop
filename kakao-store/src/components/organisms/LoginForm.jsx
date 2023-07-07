@@ -6,6 +6,12 @@ import Title from "../atoms/Title";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
+
+const EMAIL_MESSAGE = "이메일을 확인해주세요.";
+const PASSWORD_MESSAGE = "비밀번호를 확인해주세요.";
+
 const LoginForm = () => {
 	const dispatch = useDispatch();
 
@@ -30,11 +36,15 @@ const LoginForm = () => {
 					onChange={handleOnChange}/>
 				<Button className="w-full py-3 m-3 text-black bg-yellow-300 hover:bg-yellow-400"
 					onClick={() => {
-						dispatch(
-							loginRequest({
-								email: value.email,
-								password: value.password,
-							})
+						if(EMAIL_REGEX.test(value.email) === false) alert(EMAIL_MESSAGE);
+						else if(PASSWORD_REGEX.test(value.password) === false) alert(PASSWORD_MESSAGE);
+						else (
+							dispatch(
+								loginRequest({
+									email: value.email,
+									password: value.password,
+								})
+							)
 						)
 					}}
 				>로그인</Button>
