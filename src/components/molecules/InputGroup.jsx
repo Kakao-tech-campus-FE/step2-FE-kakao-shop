@@ -15,7 +15,7 @@ const InputGroup = ({
   onBlur,
 }) => {
   return (
-    <Box className={className}>
+    <Box className="mb-4">
       <Label htmlFor={id}>
         {label}
         <br />
@@ -29,6 +29,7 @@ const InputGroup = ({
         placeholder={placeholder}
         error={error}
         onBlur={onBlur}
+        className={className}
       />
     </Box>
   );

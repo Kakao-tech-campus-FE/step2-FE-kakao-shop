@@ -6,6 +6,7 @@ import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Gnb from "../molecules/Gnb";
 
 const LoginForm = () => {
@@ -81,9 +82,7 @@ const LoginForm = () => {
           value={value.email}
           onChange={handleOnChange}
           placeholder="이메일"
-          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-            emailError ? "border-red-500" : ""
-          }`}
+          className={`${emailError ? "border-red-500" : ""}`}
           label="이메일(아이디)"
           error={emailError}
           onBlur={handleEmailBlur}
@@ -96,23 +95,27 @@ const LoginForm = () => {
           value={value.password}
           onChange={handleOnChange}
           placeholder="비밀번호"
-          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-            passwordError ? "border-red-500" : ""
-          }`}
+          className={`${passwordError ? "border-red-500" : ""}`}
           label="비밀번호"
           error={passwordError}
           onBlur={handlePasswordBlur}
         />
         {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
-      </Container>
-      <div className="text-center">
+        <div className="text-right mt-2 pr-4">
+          <Link
+            to="/signup"
+            className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
+          >
+            회원가입
+          </Link>
+        </div>
         <Button
           onClick={handleLogin}
-          className="inline-block border border-solid border-amber-300 rounded-md p-4 mb-4 bg-amber-300 shadow-md"
+          className="block bg-amber-300 text-white font-semibold rounded-lg w-full h-10 mt-4"
         >
           로그인
         </Button>
-      </div>
+      </Container>
     </div>
   );
 };

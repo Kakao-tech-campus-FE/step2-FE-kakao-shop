@@ -31,30 +31,32 @@ const Gnb = () => {
   };
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-1000 px-32 h-20 border-b-2 border-gray-300 bg-white">
-      <div className="flex w-1280 h-79 mx-auto items-center justify-between">
-        <Link to="/">
-          <img
-            src={logoImage}
-            alt="Navigation Logo"
-            className="text-2xl w-20 h-15 mx-5 my-6 py-1.5"
-          />
-        </Link>
-        {isLogoutButtonDisabled || !isLoggedIn ? (
-          <Link to="/login" className="">
-            로그인
+    <>
+      <div className="fixed left-0 right-0 top-0 z-1000 px-32 h-20 border-b-2 border-gray-300 bg-white">
+        <div className="flex w-1280 h-79 mx-auto items-center justify-between">
+          <Link to="/">
+            <img
+              src={logoImage}
+              alt="Navigation Logo"
+              className="text-2xl w-20 h-15 mx-5 my-6 py-1.5"
+            />
           </Link>
-        ) : (
-          <>
-            <span>{email}</span>
-            <button onClick={handleLogout} disabled={isLogoutButtonDisabled}>
-              로그아웃
-            </button>
-          </>
-        )}
-        <Link to="/signup">회원가입</Link>
+          {isLogoutButtonDisabled || !isLoggedIn ? (
+            <Link to="/login" className="">
+              로그인
+            </Link>
+          ) : (
+            <>
+              <span>{email}</span>
+              <button onClick={handleLogout} disabled={isLogoutButtonDisabled}>
+                로그아웃
+              </button>
+            </>
+          )}
+          <Link to="/signup">회원가입</Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

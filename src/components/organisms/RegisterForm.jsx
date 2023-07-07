@@ -97,9 +97,7 @@ const RegisterForm = () => {
           value={value.username}
           onChange={handleOnChange}
           placeholder="사용자 이름"
-          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-            nameError ? "border-red-500" : ""
-          }`}
+          className={`${nameError ? "border-red-500" : ""}`}
           label="이름"
           error={nameError}
           onBlur={handleNameBlur}
@@ -112,9 +110,7 @@ const RegisterForm = () => {
           value={value.email}
           onChange={handleOnChange}
           placeholder="이메일"
-          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-            emailError ? "border-red-500" : ""
-          }`}
+          className={`${emailError ? "border-red-500" : ""}`}
           label="이메일(아이디)"
           error={emailError}
           onBlur={handleEmailBlur}
@@ -127,9 +123,7 @@ const RegisterForm = () => {
           value={value.password}
           onChange={handleOnChange}
           placeholder="비밀번호"
-          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-            passwordError ? "border-red-500" : ""
-          }`}
+          className={`${passwordError ? "border-red-500" : ""}`}
           label="비밀번호"
           error={passwordError}
           onBlur={handlePasswordBlur}
@@ -142,9 +136,7 @@ const RegisterForm = () => {
           value={value.passwordConfirm}
           onChange={handleOnChange}
           placeholder="비밀번호 확인"
-          className={`border border-solid border-gray-300 rounded-md p-4 mb-4 bg-white shadow-md ${
-            passwordConfirmError ? "border-red-500" : ""
-          }`}
+          className={`${passwordConfirmError ? "border-red-500" : ""}`}
           label="비밀번호 확인"
           error={passwordConfirmError}
           onBlur={handlePasswordConfirmBlur}
@@ -152,15 +144,13 @@ const RegisterForm = () => {
         {passwordConfirmError && (
           <p className="text-red-500 mb-2">{passwordConfirmError}</p>
         )}
-      </Container>
-      <div className="text-center">
         <Button
           onClick={handleRegister}
-          className="inline-block border border-solid border-amber-300 rounded-md p-4 mb-4 bg-amber-300 shadow-md"
+          className="block bg-amber-300 text-white font-semibold rounded-lg w-full h-10 mt-8"
         >
           회원가입
         </Button>
-      </div>
+      </Container>
     </div>
   );
 };
