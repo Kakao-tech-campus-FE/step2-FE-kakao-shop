@@ -20,6 +20,7 @@ const userSlice = createSlice({
       state.email = null;
       state.token = null;
       state.isLoggedIn = false;
+      state.logoutTimerId = null;
     },
   },
   extraReducers: (builder) => {
@@ -32,6 +33,7 @@ const userSlice = createSlice({
       localStorage.setItem("token", action.payload.token);
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      // startLogoutTimer(state);
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
@@ -40,6 +42,22 @@ const userSlice = createSlice({
     });
   },
 });
+
+// const startLogoutTimer = (state) => {
+//   const timer = 6000;
+//   if (state.logoutTimerId) {
+//     clearTimeout(state.logoutTimerId);
+//   }
+//   state.logoutTimerId = setTimeout(() => {
+//     console.log("일정 시간이 지나 로그아웃되었습니다.");
+//     dispatch(logout());
+//   }, timer);
+// };
+
+// state.email = null;
+// state.token = null;
+// state.isLoggedIn = false;
+// state.logoutTimerId = null;
 
 export const loginRequest = createAsyncThunk(
   "user/loginRequest",
@@ -53,6 +71,7 @@ export const loginRequest = createAsyncThunk(
     if (typeof password !== "string") {
       throw new Error("비밀번호 형식이 올바르지 않습니다.");
     }
+
     return {
       email: email,
       token: response.token,

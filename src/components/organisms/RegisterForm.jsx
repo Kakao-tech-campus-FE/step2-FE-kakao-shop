@@ -13,7 +13,7 @@ const RegisterForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
-  const { value, handleOnChange } = useInput({
+  const { value, handleOnChange, reset } = useInput({
     username: "",
     email: "",
     password: "",
@@ -38,6 +38,7 @@ const RegisterForm = () => {
         password: value.password,
         username: value.username,
       });
+      reset();
     } catch (error) {
       console.error(error);
     }

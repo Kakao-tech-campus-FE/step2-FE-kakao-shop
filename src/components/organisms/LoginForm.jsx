@@ -12,6 +12,7 @@ const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  // const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
 
   const { value, handleOnChange, reset } = useInput({
@@ -21,7 +22,7 @@ const LoginForm = () => {
 
   const handleLogin = async () => {
     try {
-      dispatch(
+      await dispatch(
         loginRequest({
           email: value.email,
           password: value.password,
@@ -33,6 +34,12 @@ const LoginForm = () => {
     }
   };
 
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     dispatch(startLogoutTimer());
+  //   }
+  // }, [dispatch, isLoggedIn]);
+
   const validateValue = (value, validationRegex, errorMessage) => {
     if (!validationRegex.test(value)) {
       return errorMessage;
@@ -42,7 +49,8 @@ const LoginForm = () => {
 
   const handleEmailBlur = () => {
     const emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
-    const errorMessage = "유효한 이메일을 입력해주세요. (예: kakao@kakao.com)";
+    const errorMessage =
+      "유효한 이메일을 입력해주세요. (예: example@example.com)";
     const emailError = validateValue(value.email, emailRegex, errorMessage);
     setEmailError(emailError);
   };
