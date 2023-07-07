@@ -2,6 +2,8 @@ import { produce, Draft } from 'immer';
 
 import { SignInRequest } from '@hooks/ui/useLoginForm';
 
+import { getCookie, deleteCookie } from '@utils/cookie';
+
 export const SIGN_IN_REQUEST = 'signIn/SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'signIn/SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'signIn/SIGN_IN_FAILURE';
@@ -28,6 +30,7 @@ export const signOutRequest = (): SignOutAction => ({
 });
 
 export const initialState: SignInState = {
+  isLogin: !!getCookie('accessToken'),
   success: false,
   response: null,
   error: null,
@@ -36,6 +39,7 @@ export const initialState: SignInState = {
 export const signInReducer = produce((draft: Draft<SignInState>, action: SignInAction | SignOutAction) => {
   switch (action.type) {
     case SIGN_IN_SUCCESS:
+      draft.isLogin = !!getCookie('accessToken');
       draft.success = action.payload.success;
       draft.response = action.payload.response;
       draft.error = action.payload.error;
@@ -45,6 +49,11 @@ export const signInReducer = produce((draft: Draft<SignInState>, action: SignInA
       draft.success = action.payload.success;
       draft.response = action.payload.response;
       draft.error = action.payload.error;
+      break;
+
+    case SIGN_OUT_REQUEST:
+      draft.isLogin = false;
+      deleteCookie('accessToken');
       break;
 
     default:
@@ -58,6 +67,7 @@ export type FetchSignInAction = {
 };
 
 export type SignInState = {
+  isLogin: Boolean;
   success: Boolean;
   response: null;
   error: ErrorType | null;
