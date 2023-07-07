@@ -4,8 +4,12 @@ import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
 import { register } from '../../services/api'
 
+import {useNavigate} from 'react-router-dom';
+// import { BrowserRouter as Redirect } from 'react-router-dom';
+
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const { value, handleOnChange, emailError, passwordError, handlePwChange, handleEmailChange, isAllOk} = useInput({
     username: "",
     email: "",
@@ -60,6 +64,7 @@ const RegisterForm = () => {
           })
           .then((res) => {
             alert('성공')
+            navigate('/');
             })
           .catch((error) => {
             alert(error.response.data.error.message);
