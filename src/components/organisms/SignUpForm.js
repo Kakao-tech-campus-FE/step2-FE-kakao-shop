@@ -24,6 +24,7 @@ export default function SignUpForm() {
       <LabeledInput
         type="email"
         id="email"
+        name="email"
         onChange={handleChange}
         label="이메일"
         placeholder="이메일"
@@ -32,6 +33,7 @@ export default function SignUpForm() {
       <LabeledInput
         type="text"
         id="name"
+        name="name"
         onChange={handleChange}
         label="이름"
         placeholder="이름"
@@ -39,7 +41,8 @@ export default function SignUpForm() {
       />
       <LabeledInput
         type="password"
-        id="pw"
+        id="password"
+        name="password"
         onChange={handleChange}
         label="비밀번호"
         placeholder="비밀번호"
@@ -48,6 +51,7 @@ export default function SignUpForm() {
       <LabeledInput
         type="password"
         id="confirmPassword"
+        name="confirmPassword"
         onChange={handleChange}
         label="비밀번호 확인"
         placeholder="비밀번호 확인"
@@ -55,20 +59,22 @@ export default function SignUpForm() {
       />
       <Button
         onClick={(e) => {
-          emailCheckReq({ email: inputValue.email }).then((res) => {
-            console.log(res.data);
-            signUpReq({
-              email: inputValue.email,
-              password: inputValue.password,
-              username: inputValue.name,
-            })
-              .then((res) => {
-                console.log(res);
-                navigate("/login");
+          emailCheckReq({ email: inputValue.email })
+            .then((res) => {
+              console.log(res.data);
+              signUpReq({
+                email: inputValue.email,
+                password: inputValue.password,
+                username: inputValue.name,
               })
-              .catch((err) => {});
-            navigate("/login");
-          });
+                .then((res) => {
+                  console.log(res);
+                  navigate("/login");
+                })
+                .catch((err) => {});
+              navigate("/login");
+            })
+            .catch((err) => {});
         }}
       >
         회원가입
