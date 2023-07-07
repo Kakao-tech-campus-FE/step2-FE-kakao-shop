@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 interface useInputProps {
   initialValue: {
-    username: string;
+    username?: string;
     email: string;
     password: string;
-    passwordConfirm: string;
+    passwordConfirm?: string;
   };
 }
 

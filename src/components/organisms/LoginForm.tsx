@@ -14,10 +14,8 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
   const [passwordHT, setPasswordHT] = useState('');
   const { value: inputInfo, handleOnChange } = useInput({
     initialValue: {
-      username: '',
       email: '',
       password: '',
-      passwordConfirm: '',
     },
   });
 
