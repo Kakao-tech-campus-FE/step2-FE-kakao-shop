@@ -5,15 +5,34 @@ import { Link } from 'react-router-dom';
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
 
+import useLoginForm from '@hooks/ui/useSignInForm';
+
 const LoginForm = () => {
+  const {
+    state: { email, password, errorMessage },
+    handler: { onChangeEmail, onChangePassword, onSubmit },
+  } = useLoginForm();
   return (
     <S.Root>
-      <S.Container>
-        {data.map(item => (
-          <RegularInput.HiddenLabel key={item.content} placeholder={item.placeholder} css={S.InputStyle}>
-            {item.content}
-          </RegularInput.HiddenLabel>
-        ))}
+      <S.Container onSubmit={onSubmit}>
+        <RegularInput.HiddenLabel
+          value={email}
+          onChange={onChangeEmail}
+          key={'이메일 (아이디)'}
+          placeholder={'이메일'}
+          css={S.InputStyle}>
+          {'이메일 (아이디)'}
+        </RegularInput.HiddenLabel>
+        <RegularInput.HiddenLabel
+          value={password}
+          onChange={onChangePassword}
+          key={'비밀번호'}
+          placeholder={'비밀번호'}
+          type={'password'}
+          css={S.InputStyle}>
+          {'비밀번호'}
+        </RegularInput.HiddenLabel>
+        {errorMessage !== '' && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
         <Button css={S.ButtonStyle}>로그인</Button>
         <S.Link to="/signup">회원가입</S.Link>
       </S.Container>
@@ -22,11 +41,6 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
-
-const data = [
-  { content: '이메일 (아이디)', placeholder: '이메일' },
-  { content: '비밀번호', placeholder: '비밀번호' },
-];
 
 const S = {
   Root: styled.section`
@@ -99,5 +113,15 @@ const S = {
     text-align: center;
     color: #333;
     font-size: 14px;
+  `,
+  ErrorMessage: styled.p`
+    margin-top: 10px;
+    padding: 20px;
+
+    background-color: #f0f0f0;
+
+    font-size: 14px;
+    line-height: 20px;
+    color: #e65f3e;
   `,
 };
