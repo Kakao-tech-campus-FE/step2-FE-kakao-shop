@@ -26,4 +26,5 @@ const Wrap = styled.button`
   border: none;
   border-radius: 5px;
   background-color: ${colors.yellow};
+  cursor: pointer;
 `;
