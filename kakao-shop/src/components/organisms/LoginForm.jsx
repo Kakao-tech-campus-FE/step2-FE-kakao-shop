@@ -1,7 +1,7 @@
 // hooks
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
@@ -38,11 +38,8 @@ const LoginForm = () => {
   const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
   const [isKeepLog, setIsKeepLog] = useState(false);
 
-  // const [cookies, setCookie] = useCookies(["userEmail", "token"]);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const email = useSelector((state) => state.user.email);
 
   const handleLogin = async () => {
     if (!validateEmail(value.email)) {
@@ -62,8 +59,6 @@ const LoginForm = () => {
         email: value.email,
         password: value.password,
       });
-      console.log(response);
-      console.log(response.config.data);
 
       // 로그인 성공 시 로그인 유지를 체크했다면 로컬에 영구 저장(redux-persist)
       if (isKeepLog) {
@@ -87,7 +82,6 @@ const LoginForm = () => {
       // 메인페이지로 이동. 뒤로가기 시 로그인 페이지 못 돌아오게함
       navigate("/", { replace: true });
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.status === 401) {
         const errorMessage =
           "카카오계정 혹은 비밀번호가 일치하지 않습니다. 입력한 내용을 다시 확인해 주세요.";
@@ -110,8 +104,7 @@ const LoginForm = () => {
 
   const inputBoxStyle = `border-b border-solid py-1 mb-2 font-bold`;
   return (
-    <Container className="w-440 border border-solid border-gray-300 p-16 mx-auto w-[570px]">
-      <span>{email}</span>
+    <Container className="loginform-container border border-solid border-gray-300 p-16 mx-auto w-[570px]">
       <InputGroup
         id="email"
         type="email"
@@ -132,7 +125,6 @@ const LoginForm = () => {
           있다면 메일 아이디만 입력해 보세요.
         </p>
       )}
-
       <InputGroup
         id="password"
         type="password"
@@ -166,11 +158,9 @@ const LoginForm = () => {
           {errorMessage}
         </div>
       )}
-
       <Button color="kakao" onClick={handleLogin}>
         로그인
       </Button>
-
       <div className="mt-8 text-xs">
         <Link to="/register">회원가입</Link>
       </div>

@@ -81,8 +81,6 @@ const RegisterForm = () => {
       });
       navigate("/", { replace: true });
     } catch (error) {
-      console.log(error);
-
       // 중복 이메일
       if (
         error.response &&
@@ -100,7 +98,7 @@ const RegisterForm = () => {
   const errorStyle = `text-red-500 text-sm whitespace-pre-line`;
 
   return (
-    <Container className="border border-solid border-gray-300 p-16 mx-auto w-[570px]">
+    <Container className="registerform-container border border-solid border-gray-300 p-16 mx-auto w-[570px]">
       <InputGroup
         id="email"
         type="email"

@@ -7,7 +7,7 @@ import LoginForm from "../components/organisms/LoginForm";
  */
 const LoginPage = () => {
   return (
-    <div>
+    <div className="login-page">
       <img
         src="/logoKakaoText.png"
         alt="kakao-shopping"

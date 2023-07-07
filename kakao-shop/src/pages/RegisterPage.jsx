@@ -7,7 +7,7 @@ import RegisterForm from "../components/organisms/RegisterForm";
  */
 const RegisterPage = () => {
   return (
-    <div>
+    <div className="register-page">
       <img
         src="/logoKakaoText.png"
         alt="kakao-shopping"

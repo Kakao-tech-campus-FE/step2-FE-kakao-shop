@@ -32,8 +32,8 @@ export default function InnerHead() {
   };
 
   return (
-    <div className="flex justify-between items-center min-w-[740px]">
-      <div className="flex gap-4 items-center h-14 font-bold mx-12">
+    <div className="innerhead flex justify-between items-center min-w-[740px]">
+      <div className="innerhead-left flex gap-4 items-center h-14 font-bold mx-12">
         <img src="/logoGift.png" alt="kakao-shopping" className="w-20 mr-12" />
         <nav className="gnb">
           <ul className="flex justify-between w-48">
@@ -50,24 +50,25 @@ export default function InnerHead() {
             </li>
           </ul>
         </nav>
-        <div className="h-[14px] mx-4">
+        <div className="divider-container h-[14px] mx-4">
           <Divider type="vertical" />
         </div>
-        <div className="text-blue-500 flex items-center">
+        {/* 카테고리 동작 구현 시 Link나 button으로 변경 */}
+        <div className="category-container text-blue-500 flex items-center">
           <SlMenu size="20" />
           <span className="ml-2">카테고리</span>
         </div>
       </div>
-      <div className="mr-12">
+      <div className="innerhead-right mr-12">
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
           <GoGift size="20" />
           {userEmail ? (
             <div>
               <span className="mr-2 text-sm text-gray-500">{userEmail}님</span>
-              <span className="cursor-pointer" onClick={async () => logout()}>
+              <button className="" onClick={async () => logout()}>
                 로그아웃
-              </span>
+              </button>
             </div>
           ) : (
             <Link to="/login">로그인</Link>
