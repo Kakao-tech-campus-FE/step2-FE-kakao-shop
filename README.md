@@ -212,7 +212,7 @@ npm start
 ---
 
 <details>
-<summary>Step-2.-Week-2</summary>
+<summary>Step-2.-Week-2 [과제설명]</summary>
 <div>
 
 ## 카카오 테크 캠퍼스 2단계 - FE - 2주차 클론 과제
@@ -294,6 +294,7 @@ npm start
 <details>
 <summary>Step-2.-Week-2 [과제수행]</summary>
 <div>
+  
 # Step-2.-Week-2
 
 카카오 테크 캠퍼스 2단계 - FE - 2주차 클론 과제
