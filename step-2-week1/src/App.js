@@ -1,16 +1,32 @@
-// import logo from './logo.svg';
-import './App.css';
-import firstImage from './img/carouselItem1.jpeg';
-import secondImage from './img/carouselItem2.jpeg';
-import thirdImage from './img/carouselItem3.jpeg';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect,  useState } from 'react';
 // 회원가입 용 import (아래)
 import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from './pages/HomePage';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 
 function App() {
-  return <RegisterPage />;
-}
+
+  return (
+  <Provider store={store}>
+    
+    <BrowserRouter>
+      {/* 단독 레이아웃 */}
+      <Routes>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/signup" element={<RegisterPage />}></Route>   
+        {/* 공통 레이아웃 */}
+        <Route path="/" element={<HomePage />}></Route>
+      </Routes>
+    </BrowserRouter>
+    
+    </Provider>
+
+  );
+};
 
 
 export default App;
