@@ -13,6 +13,24 @@ const testPassword = (value) => {
   }
 };
 
+const testUsername = (value) => {
+  if (value.username.length < 2) {
+    return "이름은 2글자 이상이어야 합니다.";
+  } else {
+    return false;
+  }
+};
+
+const testPasswordConfirm = (value) => {
+  if (value.passwordConfirm === "") {
+    return "비밀번호 확인을 입력해주세요.";
+  } else if (value.password !== value.passwordConfirm) {
+    return "비밀번호가 일치하지 않습니다.";
+  } else {
+    return false;
+  }
+};
+
 const testEmail = (value) => {
   const emailRegex =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // Regular expression for email validation
@@ -31,10 +49,22 @@ export const validateForm = (value) => {
 
   if (testEmail(value)) {
     errors.push(testEmail(value));
+    return errors;
+  }
+
+  if (testUsername(value)) {
+    errors.push(testUsername(value));
+    return errors;
   }
 
   if (testPassword(value)) {
     errors.push(testPassword(value));
+    return errors;
+  }
+  
+  if (testPasswordConfirm(value)) {
+    errors.push(testPasswordConfirm(value));
+    return errors;
   }
 
   if (errors.length === 0) {
@@ -42,5 +72,4 @@ export const validateForm = (value) => {
   } else {
     return errors;
   }
-
 };

@@ -1,11 +1,12 @@
+import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Label from './components/atoms/Label';
 import Title from './components/atoms/Title';
+import MainPage from './pages/MainPage'; // Import MainPage component
 import { useSelector, useDispatch } from 'react-redux';
 import { setEmailandPassword, logout } from './store/slices/userSlice';
-import { useEffect } from 'react';
 
 function App() {
   const email = useSelector((state) => state.user.email);
@@ -48,24 +49,16 @@ function App() {
         </Label>
 
         {isLoggedIn ? (
-          <div>
-            <div>Email: {email}</div>
-            <div>Password: {password}</div>
-            <button onClick={handleLogout}>Logout</button>
-          </div>
+          <MainPage /> // Render MainPage component if logged in
         ) : null}
-
-        
 
         <Routes>
           <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
           <Route path='/signup' element={<RegisterPage />} />
-          {/* 공통 레이아웃 */}
-          {/* <Route path='/main' element={<MainPage />} /></Route> */}
         </Routes>
       </BrowserRouter>
     </div>
-  )
+  );
 }
 
 export default App;

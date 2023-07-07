@@ -7,7 +7,7 @@ import logo from "../../images/logoKakaoText.png";
 
 import { login } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-import { validateForm } from "../atoms/VaildationLogin";
+import { validateForm } from "../../utils/VaildationLogin";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmailandPassword } from "../../store/slices/userSlice";

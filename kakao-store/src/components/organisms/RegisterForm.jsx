@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useinput";
 import Title from "../atoms/Title";
-import { validateForm } from "../atoms/VaildationSignup";
+import { validateForm } from "../../utils/VaildationSignup";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/api";
 import { useState } from "react";
