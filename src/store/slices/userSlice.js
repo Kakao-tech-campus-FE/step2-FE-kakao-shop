@@ -1,7 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { login } from "../../apis/auth";
+import { getCookie } from "../../utils/cookie";
+
+const user = !!getCookie("accessToken");
 
 const initialState = {
-  user: false,
+  user,
 };
 
 export const userSlice = createSlice({
@@ -13,6 +17,20 @@ export const userSlice = createSlice({
       state.user = action.payload.user;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(loginRequest.fulfilled, (state) => {
+      state.user = true;
+    });
+  },
+});
+
+export const loginRequest = createAsyncThunk("user/login", async (data) => {
+  const { email, password } = data;
+  const response = await login({ email, password });
+
+  return {
+    accessToken: response.headers.authorization,
+  };
 });
 
 export const { setUser } = userSlice.actions;

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "../utils/cookie";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -9,12 +10,19 @@ const instance = axios.create({
   },
 });
 
+instance.interceptors.request.use((config) => {
+  const accessToken = getCookie("accessToken");
+  if (accessToken) {
+    config.headers["Authorization"] = accessToken;
+  }
+  return config;
+});
+
 // instance.interceptors.response.use(
 //   (response) => {
 //     return response;
 //   },
 //   (error) => {
-//     console.log(error.response.data.error.message);
 //     return Promise.reject(error.response.data.error.message);
 //   }
 // );

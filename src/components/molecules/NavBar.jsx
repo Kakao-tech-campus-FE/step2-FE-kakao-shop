@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import cartImage from "../../assets/cart.png";
 import Button from "../atoms/Button";
 import LinkedIcon from "./LinkedIcon";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
-import { getCookie, removeCookie } from "../../utils/cookie";
+import { removeCookie } from "../../utils/cookie";
+import Container from "../atoms/Container";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -21,13 +22,8 @@ export default function NavBar() {
     }
   };
 
-  useEffect(() => {
-    const user = !!getCookie("accessToken");
-    dispatch(setUser({ user }));
-  }, [dispatch]);
-
   return (
-    <nav className="flex items-center">
+    <Container className="flex items-center">
       <LinkedIcon to="/" alt="mycart" width="w-icon">
         {cartImage}
       </LinkedIcon>
@@ -40,6 +36,6 @@ export default function NavBar() {
       >
         {user ? "로그아웃" : "로그인"}
       </Button>
-    </nav>
+    </Container>
   );
 }

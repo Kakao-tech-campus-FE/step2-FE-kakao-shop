@@ -5,9 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 import useLoginValidation from "../../hooks/useLoginValidation";
 import useInput from "../../hooks/useInput";
-import { login } from "../../apis/auth";
 import { useDispatch } from "react-redux";
-import { setUser } from "../../store/slices/userSlice";
+import { loginRequest } from "../../store/slices/userSlice";
 import { setCookie } from "../../utils/cookie";
 
 const initialState = { email: "", password: "" };
@@ -31,13 +30,13 @@ export default function LoginForm() {
 
     if (!errorResult) {
       try {
-        const response = await login({
-          email: form.email,
-          password: form.password,
-        });
-        const accessToken = response.headers["authorization"];
-
-        dispatch(setUser({ user: true }));
+        const response = await dispatch(
+          loginRequest({
+            email: form.email,
+            password: form.password,
+          })
+        );
+        const accessToken = response.payload.accessToken;
         setCookie("accessToken", accessToken, 1000 * 60 * 60 * 24);
         navigate("/");
       } catch (error) {
