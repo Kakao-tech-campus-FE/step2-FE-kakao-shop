@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  // baseURL: process.env.REACT_APP_API_URL, -> 이렇게 하니까 인식을 못하는 것 같은데... 왜 그럴까...?
+  baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/", 
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -21,7 +22,9 @@ instance.interceptors.response.use(
   (response) => {
     return response
   },
-  (error) => {}
+  (error) => {
+    return error
+  }
 );
 
 export const register = (data) => {
@@ -35,5 +38,12 @@ export const login = (data) => {
   const { email, password } = data
   return instance.post('/login', {
     email, password
+  })
+};
+
+export const checkEmail = (data) => {
+  const { email } = data
+  return instance.post('/check', {
+    email
   })
 };

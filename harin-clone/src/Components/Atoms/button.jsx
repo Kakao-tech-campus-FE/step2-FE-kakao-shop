@@ -1,4 +1,4 @@
-const Button = ({ onClick, children, className }) => {
+const Button = ({ onClick, children, className, disabled }) => {
   return (
     <div className="justify-center">
       <button
@@ -7,6 +7,7 @@ const Button = ({ onClick, children, className }) => {
           e.preventDefault();
           onClick();
         }}
+        disabled={disabled}
       >
         {children}
       </button>
