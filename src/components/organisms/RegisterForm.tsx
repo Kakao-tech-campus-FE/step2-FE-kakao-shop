@@ -49,8 +49,6 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
       onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
           dispatch(login({ email: inputInfo.email }));
-          localStorage.clear();
-          localStorage.setItem('token', res.headers.authorization);
           navigate('/');
         })
         .catch((err) => {

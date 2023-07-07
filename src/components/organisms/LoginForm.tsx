@@ -29,8 +29,6 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
     onSubmit({ email: inputInfo.email, password: inputInfo.password })
       .then((res) => {
         dispatch(login({ email: inputInfo.email }));
-        localStorage.clear();
-        localStorage.setItem('token', res.headers.authorization);
         navigate('/');
       })
       .catch((err) => {
