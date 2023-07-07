@@ -1,16 +1,15 @@
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from "react-redux"
+import { loginRequest, setUser } from "../../store/slices/userSlice"
+import { useNavigate } from "react-router-dom"
 import Container from "../atoms/Container"
 import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button"
 import useInput from "../../hooks/useInput"
 import Title from "../atoms/Title"
-import { useDispatch, useSelector } from "react-redux"
-import { loginRequest } from "../../store/slices/userSlice"
 
 const LoginForm = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const email = useSelector((state) => state.user.email)
 
   const { value, handleOnChange } = useInput({
     email: "",
@@ -27,18 +26,18 @@ const LoginForm = () => {
       .unwrap()
       .then((response) => {
         if (response.success) {
-          navigate('/') // 로그인 성공 시 홈페이지로 리다이렉트
+          dispatch(setUser(response.user)); // 사용자 정보 상태 업데이트
+          navigate("/") // 로그인 성공 시 홈페이지로 리다이렉트
         }
       })
       .catch((error) => {
-        console.log('로그인 실패:', error)
+        console.log("로그인 실패:", error)
       });
   };
 
   return (
     <Container>
       <Title>로그인</Title>
-      <span>{email}</span>
       <InputGroup
         id="email"
         type="email"
@@ -59,7 +58,7 @@ const LoginForm = () => {
       />
       <Button onClick={handleLogin}>로그인</Button>
     </Container>
-  );
-};
+  )
+}
 
-export default LoginForm;
+export default LoginForm
