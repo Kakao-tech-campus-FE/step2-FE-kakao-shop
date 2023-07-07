@@ -3,6 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const initialState = {
   email : null,
   isLoggedIn : false,
+  expirationTime : null,
 };
 
 const userSlice = createSlice({
@@ -10,11 +11,13 @@ const userSlice = createSlice({
   initialState,
   reducers : {
     setUser: (state, action) =>{
-      state.user = action.payload;
+      state.email = action.payload.email;
+      state.expirationTime = action.payload.expirationTime;
       state.isLoggedIn = true;
     },
     clearUser : (state) =>{
-      state.user = null;
+      state.email = null;
+      state.expirationTime = null;
       state.isLoggedIn = false;
     },
   },

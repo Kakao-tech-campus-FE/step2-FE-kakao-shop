@@ -5,7 +5,7 @@ import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../services/api";
+import { register, duplicate } from "../../services/api";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -17,12 +17,30 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
+  const handleDuplicate = async () => {
+    const email = value.email;
+    const response = await duplicate(email);
+    console.log(response);
+    if (response.request.status === 400) {
+      setError((prevState) => ({
+        ...prevState,
+        duplicate: "동일한 이메일이 존재합니다.",
+      }));
+    }
+    if (response.request.status === 200) {
+      setError((prevState) => ({
+        ...prevState,
+        duplicate: "이 이메일을 사용할 수 있습니다.",
+      }));
+    }
+  };
+
   const handleRegister = async (data) => {
     try {
       const { email, password, username } = data;
       const response = await register({ email, password, username });
-      const regiuser = response.data;
-      navigate("./login");
+      console.log(response);
+      navigate("/login");
     } catch (errors) {
       setError("회원가입에 실패했습니다.");
     }
@@ -117,6 +135,8 @@ const RegisterForm = () => {
         value={value.email}
         onChange={handleOnChange}
       />
+      <Button onClick={handleDuplicate}>중복체크</Button>
+      {errors.duplicate && <div>{errors.duplicate}</div>}
       {errors.email && <div>{errors.email}</div>}
 
       <InputGroup

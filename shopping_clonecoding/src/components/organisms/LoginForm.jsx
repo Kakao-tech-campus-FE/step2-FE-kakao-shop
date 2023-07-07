@@ -24,8 +24,9 @@ const LoginForm = () => {
     try {
       const response = await login({ email, password });
       const user = response.data;
-      const expirationTime = new Date().getTime() + 24 * 60 * 60 * 1000;
+      const expirationTime = new Date().getTime() + 1 * 30 * 1000;
       user.expirationTime = expirationTime;
+      user.email = value.email;
 
       dispatch(setUser(user));
       localStorage.setItem("user", JSON.stringify(user));

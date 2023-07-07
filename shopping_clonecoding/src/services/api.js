@@ -44,3 +44,10 @@ export const login = (data)=>{
     password,
   });
 }
+
+export const duplicate = (data)=>{
+  const email = data;
+  return instance.post("/check", {
+    email,
+  });
+}
