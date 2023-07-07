@@ -5,7 +5,7 @@ const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   timeout: 1000,
   headers: {
-    'Content-Type': 'applicatoin/json',
+    'Content-Type': 'application/json',
   },
 });
 
@@ -25,17 +25,7 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // console.log(error.response);
     console.log(error.response.data.error.message);
-    return Promise.reject(error.reponse.data.error.status);
-    // if (error.response.status === '401') {
-    //   localStorage.removeItem('token');
-    //   window.location.href = '/login';
-    //   return Promise.resolve();
-    // }
-    // return Promise.reject(error.reponse);
-    // console.error('An error occurred:', error);
-    // throw error;
   },
 );
 
