@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { logInReq } from "../../apis/api.js";
 // redux
 import { useDispatch } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice.js";
+import { setEmail, setExpire } from "../../store/slices/userSlice.js";
+
 import { isValidLogIn } from "../../utils/validate.js";
 
 // hook
@@ -52,9 +53,14 @@ export default function LogInForm() {
             email: inputValue.email,
             password: inputValue.password,
           })
-            .then((res) => {
-              console.log(res.data);
+            .then(() => {
               dispatch(setEmail({ email: inputValue.email }));
+              dispatch(setExpire({ expire: new Date().getTime() }));
+              setTimeout(() => {
+                dispatch(setEmail({ email: null }));
+                dispatch(setExpire({ expire: null }));
+                navigate("/");
+              }, 1000*60*60*24);
               navigate("/");
             })
             .catch((err) => {

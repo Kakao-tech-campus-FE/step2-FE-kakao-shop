@@ -1,20 +1,22 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice";
+import userReducer from "./slices/userSlice.js";
 
-const savedLogInState = localStorage.getItem("logInState");
+const savedLogInState = localStorage.getItem("userState");
 const preloadedState = savedLogInState
   ? { user: JSON.parse(savedLogInState) }
   : {};
-localStorage.removeItem("logInState");
+
+localStorage.removeItem("userState");
 
 export const store = configureStore({
   reducer: {
-    user: userReducer, // email용
+    user: userReducer,
   },
   preloadedState,
 });
 
 window.addEventListener("beforeunload", () => {
-  const logInState = store.getState().user;
-  localStorage.setItem("logInState", JSON.stringify(logInState));
+  const userState = store.getState().user;
+  if (Object.values(userState).every((val) => val !== null))
+    localStorage.setItem("userState", JSON.stringify(userState));
 });

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice.js";
+import { setEmail, setExpire } from "../../store/slices/userSlice.js";
 
 // components
 import Box from "../atoms/Box.js";
@@ -20,6 +20,7 @@ export default function GNB() {
           <Link
             onClick={() => {
               dispatch(setEmail({ email: null }));
+              dispatch(setExpire({ expire: null }));
             }}
             to="/"
           >

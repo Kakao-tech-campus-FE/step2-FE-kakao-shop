@@ -63,20 +63,17 @@ export default function SignUpForm() {
         onClick={() => {
           // validation
           if (!isValidSignUp(inputValue)) return;
-          
+
           // email check
           emailCheckReq({ email: inputValue.email })
-            .then((res) => {
-              console.log(res.data);
-
+            .then(() => {
               // sign up
               signUpReq({
                 email: inputValue.email,
                 password: inputValue.password,
                 username: inputValue.name,
               })
-                .then((res) => {
-                  console.log(res);
+                .then(() => {
                   navigate("/login");
                 })
                 .catch((err) => {
