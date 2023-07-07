@@ -33,17 +33,18 @@ export default function RegisterPage() {
   const handleRegister = async () => {
     setIsLoading(true);
 
-    const result = await requestUserRegistration(getValues());
-    if (result) {
-      alert('회원가입이 정상적으로 완료되었습니다.');
-      navigator('/');
-    } else {
-      setResultMsg('회원가입에 실패하였습니다.');
-    }
+    requestUserRegistration(getValues())
+      .then((response) => {
+        console.log(response);
+        alert('회원가입이 정상적으로 완료되었습니다.');
+        navigator('/');
+      })
+      .catch((error) => {
+        console.log(error);
+        setResultMsg('회원가입에 실패하였습니다.');
+      });
 
     setIsLoading(false);
-
-    return null;
   };
 
   return (

@@ -1,12 +1,12 @@
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import LoginTemplate from '../templates/loginTemplate';
 import { LoginData } from '../../types/formData';
-import { requestUserLogin } from '../../apis/axios';
-import { login } from '../../store/slices/userSlice';
-import { LOCALSTORAGE_KEY_USERINFO } from '../../utils/common';
+import { loginRequest } from '../../store/slices/userSlice';
+import { RootState } from '../../store';
+import { useUserDispatch } from '../../hooks/store';
 
 export default function LoginPage() {
   const {
@@ -20,30 +20,23 @@ export default function LoginPage() {
     mode: 'onChange',
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [resultMsg, setResultMsg] = useState('');
-
+  const user = useSelector((state: RootState) => state.user);
+  const dispatch = useUserDispatch();
   const navigator = useNavigate();
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (user.isLogin) {
+      navigator('/');
+    }
+  }, [user.isLogin]);
 
   const handleLogin = async () => {
-    setIsLoading(true);
     const { email, password } = getValues();
 
-    const result = await requestUserLogin({ email, password });
-    if (result) {
-      dispatch(login({
-        isLogin: true,
-        email,
-      }));
-      localStorage.setItem(LOCALSTORAGE_KEY_USERINFO, JSON.stringify({ email }));
-      navigator('/');
-    } else {
-      setResultMsg('로그인에 실패하였습니다.');
-    }
-
-    setIsLoading(false);
+    await dispatch(loginRequest({
+      email,
+      password,
+    }));
   };
 
   return (
@@ -53,8 +46,8 @@ export default function LoginPage() {
       setValue={setValue}
       formState={formState}
       getFieldState={getFieldState}
-      isLoading={isLoading}
-      resultMsg={resultMsg}
+      isLoading={user.isLoading}
+      errorMessage={user.errorMessage}
     />
   );
 }

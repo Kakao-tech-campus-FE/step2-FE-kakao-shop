@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../../store';
 import Button from '../atoms/button';
 import { login, logout } from '../../store/slices/userSlice';
 import { getItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO } from '../../utils/common';
+import { useUserDispatch, useUserSelector } from '../../hooks/store';
 
 export default function NavigationBar() {
-  const user = useSelector((state: RootState) => state.user);
-  const dispatch = useDispatch();
+  const user = useUserSelector((state) => state.user);
+  const dispatch = useUserDispatch();
   const navigator = useNavigate();
 
   useEffect(() => {

@@ -1,9 +1,15 @@
 import axios from 'axios';
 import { LoginData, RegisterFormData } from '../types/formData';
-import { LOCALSTORAGE_KEY_TOKEN, TOKEN_EXPIRE_DATE } from '../utils/common';
-import { setItemWithExpireDate } from '../utils/localStorage';
 
-const axiosInstance = axios.create({
+const axiosRegisterInstance = axios.create({
+  baseURL: process.env.REACT_APP_KAKAO_API_URL,
+  timeout: 3000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+const axiosLoginInstance = axios.create({
   baseURL: process.env.REACT_APP_KAKAO_API_URL,
   timeout: 3000,
   headers: {
@@ -13,7 +19,7 @@ const axiosInstance = axios.create({
 
 export async function checkEmail(email: string) {
   try {
-    const response = await axiosInstance.post('/check', { email });
+    const response = await axiosRegisterInstance.post('/check', { email });
 
     return response.data.success === true;
   } catch (error) {
@@ -21,35 +27,28 @@ export async function checkEmail(email: string) {
   }
 }
 
-export async function requestUserRegistration({ email, password, username }: RegisterFormData) {
-  try {
-    const response = await axiosInstance.post('/join', {
-      email,
-      password,
-      username,
-    });
-
-    return response.data.success === true;
-  } catch (error) {
-    return false;
-  }
+export function requestUserRegistration({ email, password, username }: RegisterFormData) {
+  return axiosRegisterInstance.post('/join', {
+    email,
+    password,
+    username,
+  });
 }
 
-export async function requestUserLogin({ email, password }: LoginData) {
-  try {
-    const response = await axiosInstance.post('/login', {
-      email,
-      password,
-    });
+export function requestUserLogin({ email, password }: LoginData) {
+  return axiosLoginInstance.post('/login', {
+    email,
+    password,
+  });
+}
 
-    const result = response.data.success === true;
-
-    if (result) {
-      setItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN, response.headers.authorization, TOKEN_EXPIRE_DATE);
+axiosLoginInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401) {
+      return Promise.resolve(error.response);
     }
 
-    return result;
-  } catch (error) {
-    return false;
-  }
-}
+    return Promise.reject(error);
+  },
+);

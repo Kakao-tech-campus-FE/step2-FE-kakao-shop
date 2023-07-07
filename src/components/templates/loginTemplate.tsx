@@ -19,7 +19,7 @@ interface LoginTemplateProps {
   isLoading: boolean;
 
   // Result message
-  resultMsg: string;
+  errorMessage: string | null;
 }
 
 export default function LoginTemplate({
@@ -29,7 +29,7 @@ export default function LoginTemplate({
   formState,
   getFieldState,
   isLoading,
-  resultMsg,
+  errorMessage,
 }: LoginTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
@@ -45,9 +45,9 @@ export default function LoginTemplate({
           getFieldState={getFieldState}
           isLoading={isLoading}
         />
-        {resultMsg !== '' ? (
+        {errorMessage !== null ? (
           <div className="my-4 text-center text-sm text-red-500">
-            {resultMsg}
+            {errorMessage}
           </div>
         ) : null}
         <div className="my-4 text-center">
