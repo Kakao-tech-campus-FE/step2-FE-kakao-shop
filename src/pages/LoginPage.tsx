@@ -1,4 +1,4 @@
-import LoginForm from '@components/molecules/LoginForm';
+import LoginForm from '@components/organisms/LoginForm';
 import React from 'react';
 import login from '@api/loginApi';
 
