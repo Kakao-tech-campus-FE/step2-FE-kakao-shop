@@ -55,7 +55,7 @@ function SignupForm() {
         return;
       }
 
-      if (passwordCheckRef.current.value === passwordRef.current.value) {
+      if (passwordCheckRef.current.value !== passwordRef.current.value) {
         passwordCheckRef.current.focus();
         setErrorMessage('비밀번호와 비밀번호 확인이 일치하지않습니다.');
         return;
