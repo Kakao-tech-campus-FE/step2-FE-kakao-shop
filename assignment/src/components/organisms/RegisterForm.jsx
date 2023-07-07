@@ -5,7 +5,7 @@ import useInput from '../../hooks/useInput';
 import { register } from '../../services/api'
 
 const RegisterForm = () => {
-  const { value, handleOnChange } = useInput({
+  const { value, handleOnChange, emailError, passwordError, handlePwChange, handleEmailChange, isAllOk} = useInput({
     username: "",
     email: "",
     password: "",
@@ -21,6 +21,7 @@ const RegisterForm = () => {
         label="이름"
         value={value.username}
         onChange={handleOnChange}
+
       />
 
       <InputGroup
@@ -30,7 +31,9 @@ const RegisterForm = () => {
         placeholder="이메일(아이디) 입력해주세요"
         label="이메일"
         value={value.email}
-        onChange={handleOnChange} />
+        onChange={handleEmailChange} 
+        message = {emailError}/>
+        
       <InputGroup
         id="password"
         type="password"
@@ -38,7 +41,8 @@ const RegisterForm = () => {
         placeholder="**********"
         label="비밀번호"
         value={value.password}
-        onChange={handleOnChange} />
+        onChange={handlePwChange} 
+        message = {passwordError}/>
       <InputGroup
         id="passwordConfirm"
         type="password"
@@ -59,7 +63,7 @@ const RegisterForm = () => {
         catch (error) {
           console.error(error.response.data.error.message)
           }
-      }}>회원가입</Button>
+      }} disabled = {!isAllOk} >회원가입</Button>
     </Container>
   )
 }
