@@ -100,7 +100,7 @@ const SignInForm = () => {
       >
         회원가입
       </Button>
-      <Label>{message}</Label>
+      <Label style={{ color: "red" }}>{message}</Label>
     </Container>
   );
 };
