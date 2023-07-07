@@ -3,7 +3,7 @@ import { ChangeHandler } from 'react-hook-form';
 
 interface InputProps {
   inputType: string;
-  id: string;
+  id?: string;
   placeholder?: string;
 
   // react-hook-form register properties
