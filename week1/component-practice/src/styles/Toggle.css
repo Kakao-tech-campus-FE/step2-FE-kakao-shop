@@ -1,0 +1,35 @@
+.toggle-container {
+  background-color: rgb(179, 179, 179);
+  border: 0.15rem solid rgb(179, 179, 179);
+  width: 4.5rem;
+  height: 2rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.on .toggle-container {
+  border: 0.15rem solid var(--main-color);
+  background-color: var(--main-color);
+}
+
+.toggle-circle {
+  width: 1.9rem;
+  height: 1.9rem;
+  background-color: white;
+  position: relative;
+  border: none;
+  border-radius: 50%;
+}
+
+.on .toggle-circle {
+  left: 2.5rem;
+  box-shadow: -2px 1px 0.2rem 0px rgba(0, 0, 0, 0.2);
+  transition: ease-out 0.2s;
+}
+
+.off .toggle-circle {
+  left: 0.1rem;
+  box-shadow: 2px 1px 0.2rem 0px rgba(0, 0, 0, 0.2);
+  transition: ease-out 0.2s;
+}

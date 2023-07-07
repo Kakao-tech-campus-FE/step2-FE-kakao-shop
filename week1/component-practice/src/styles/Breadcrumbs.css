@@ -1,0 +1,30 @@
+.separator {
+  margin: 0 0.5rem;
+  color: gray;
+}
+
+.breadcrumbs .path {
+  text-decoration: none;
+  color: #5f5f5f;
+  display: inline;
+}
+
+.breadcrumbs {
+  background-color: rgba(232, 250, 242, 0.658);
+  padding: 0 5px;
+  display: inline-block;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.next-btn {
+  border: 2px solid var(--main-color);
+  width: 80px;
+  margin: 0 auto;
+  border-radius: 3px;
+  color: white;
+  background-color: var(--main-color);
+  margin-top: 3rem;
+  cursor: pointer;
+  text-align: center;
+}

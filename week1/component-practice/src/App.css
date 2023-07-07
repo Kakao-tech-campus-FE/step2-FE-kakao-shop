@@ -1,0 +1,8 @@
+li {
+  cursor: pointer;
+}
+
+.current {
+  font-weight: bolder;
+  color: var(--main-color);
+}
