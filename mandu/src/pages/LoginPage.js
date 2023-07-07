@@ -1,11 +1,11 @@
-import InputField from "../components/molecules/inputField";
+import InputField from "../components/molecules/InputField";
 import useForm from "../hook/useForm";
 import {signIn} from "../services/userApi";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {useDispatch} from "react-redux";
 import {setId} from "../redux/userSlice";
-import Button from "../components/atoms/customButton";
+import Button from "../components/atoms/MyButton";
 
 const LoginPage = () => {
     const navigate = useNavigate();

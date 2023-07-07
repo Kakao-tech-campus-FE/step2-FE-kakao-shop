@@ -1,9 +1,9 @@
-import InputField from "../components/molecules/inputField";
+import InputField from "../components/molecules/InputField";
 import useForm from "../hook/useForm";
 import {userValidation} from "../util/validation";
 import {checkDuplicateEmail, signUp} from "../services/userApi";
 import {useNavigate} from "react-router-dom";
-import Button from "../components/atoms/customButton";
+import Button from "../components/atoms/MyButton";
 
 const SignUpPage = () => {
     const navigate = useNavigate();

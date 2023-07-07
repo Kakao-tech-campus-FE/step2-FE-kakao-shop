@@ -3,7 +3,7 @@ import {useEffect} from "react";
 import cookie from "react-cookies";
 import {useSelector, useDispatch} from 'react-redux';
 import {setId} from "../redux/userSlice";
-import Button from "../components/atoms/customButton";
+import Button from "../components/atoms/MyButton";
 
 const MainPage = () => {
     const navigate = useNavigate();
