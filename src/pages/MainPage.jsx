@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, logoutUser } from "../store/userSlice";
+import AutoLogout from "../components/autoLogout";
 import { useEffect } from "react";
 
 const MainPage = () => {
@@ -31,6 +32,7 @@ const MainPage = () => {
         <>
           <p>{user}</p>
           <button onClick={handleLogout}>로그아웃</button>
+          <AutoLogout />
         </>
       ) : (
         <>
