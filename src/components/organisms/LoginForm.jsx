@@ -12,7 +12,6 @@ const LoginForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const {state} = useLocation();
 
     const handleLogin = async () => {
         try {
