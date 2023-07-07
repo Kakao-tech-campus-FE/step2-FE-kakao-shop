@@ -11,8 +11,8 @@ const InputGroup = ({
                         type,       // 해당 input의 input type
                         placeholder,// 해당 input의 placeholder
                         onChange,   // 해당 input의 onChange
-                        errorMsg,   // 해당 input의 errorMsg
-                        onBlur    // 해당 input의 onBlur
+                        errorMsg="",   // 해당 input의 errorMsg
+                        onBlur=()=>{}    // 해당 input의 onBlur
                     }) => {
     return (
         <Box className={`input-group ${id}`}>
