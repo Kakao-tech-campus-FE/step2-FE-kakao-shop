@@ -1,8 +1,8 @@
 import { styled } from 'styled-components';
 
-const SubmitButton = ({ children, className = '', onClick }) => {
+const SubmitButton = ({ children, className = '' }) => {
     return (
-        <StyledButton className={className} onClick={onClick} type="button">
+        <StyledButton className={className} type="submit">
             {children}
         </StyledButton>
     );
