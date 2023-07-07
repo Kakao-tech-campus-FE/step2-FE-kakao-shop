@@ -20,8 +20,14 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
 
   return (
     <div className="flex flex-col space-y-2">
-      <InputGroup id="emali" labelName="이메일" value={inputInfo.email} onChange={handleOnChange} />
-      <InputGroup labelName="비밀번호" inputType="password" value={inputInfo.password} onChange={handleOnChange} />
+      <InputGroup inputName="email" labelName="이메일" value={inputInfo.email} onChange={handleOnChange} />
+      <InputGroup
+        inputName="password"
+        labelName="비밀번호"
+        inputType="password"
+        value={inputInfo.password}
+        onChange={handleOnChange}
+      />
       <FilledButton
         onClick={() => {
           onSubmit({ email: inputInfo.email, password: inputInfo.password });
