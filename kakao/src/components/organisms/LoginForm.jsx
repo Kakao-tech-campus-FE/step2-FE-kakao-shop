@@ -39,6 +39,8 @@ const LoginForm = () => {
     })
       .then((res) => {
         console.log(res);
+        const token = res.data.token;
+        localStorage.setItem("token", token);
         dispatch(
           setEmail({
             email: value.email,
@@ -48,6 +50,7 @@ const LoginForm = () => {
       })
       .catch((err) => {
         console.log("err", err);
+
         if (err.data && err.data.error && err.data.error.message) {
           setError(err.data.error.message);
         } else {
