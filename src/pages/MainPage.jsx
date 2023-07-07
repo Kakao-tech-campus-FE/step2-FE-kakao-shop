@@ -2,19 +2,19 @@ import MainShop from "../components/organisms/MainShop";
 import { getLocalStorage } from "../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { setEmail } from "../store/slices/userSlice";
+import { setUser } from "../store/slices/userSlice";
 
 const MainPage = () => {
     const dispatch = useDispatch();
-    const email = useSelector((state) => state.user.email);
+    const user = useSelector((state) => state.user.user);
     useEffect(() => {
-        const isLogin = JSON.parse(getLocalStorage("email"));
+        const isLogin = JSON.parse(getLocalStorage("user"));
         if(isLogin) {
-            dispatch(setEmail({
-                email: isLogin.value,
+            dispatch(setUser({
+                user: isLogin.value,
             }));
         };
-    }, [email]);
+    }, [user, dispatch]);
 
     return(
         <MainShop />
