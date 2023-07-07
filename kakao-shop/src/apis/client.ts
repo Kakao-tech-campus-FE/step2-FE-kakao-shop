@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { getCookie } from '@utils/cookie';
+
 export const BASE_URL = process.env.REACT_APP_PUBLIC_URL;
 
 export const client = axios.create({
@@ -8,4 +10,12 @@ export const client = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
+});
+
+client.interceptors.request.use(config => {
+  const accessToken = getCookie('accessToken');
+  if (accessToken) {
+    config.headers['Authorization'] = accessToken;
+  }
+  return config;
 });
