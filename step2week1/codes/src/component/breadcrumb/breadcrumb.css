@@ -1,0 +1,36 @@
+.breadcrumb {
+  background-color: #f5f5f5;
+  padding: 10px;
+  text-decoration: none;      /*링크 색 바뀌는 것 삭제*/
+  border-collapse: collapse;  /*모든 밑줄 뜨는 것 삭제*/
+}
+
+.breadcrumb ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;      /*링크 색 바뀌는 것 삭제*/
+  border-collapse: collapse;  /*모든 밑줄 뜨는 것 삭제*/
+}
+
+.breadcrumb li {
+  display: inline-block;
+  text-decoration: none;      /*링크 색 바뀌는 것 삭제*/
+  border-collapse: collapse;  /*모든 밑줄 뜨는 것 삭제*/
+}
+
+.breadcrumb li:not(:last-child):after {
+  content: '/';
+  margin: 0 5px;
+}
+
+.breadcrumb li:last-child {
+  font-weight: bold;
+  color: #555;
+}
+
+.breadcrumb li:last-child a {
+  color: #555;
+  pointer-events: none;
+  text-decoration: none;
+}
