@@ -3,6 +3,10 @@ import Label from "../atoms/Label";
 import Input from "../atoms/Input";
 import Box from "../atoms/Box";
 
+/*
+ * inputRef: focus를 주기 위해 ref 설정을 위한 props
+ * autoFocus: 페이지에 들어오면 포커스를 주기 위한 props
+ */
 export default function InputGroup({
   children,
   inputRef,

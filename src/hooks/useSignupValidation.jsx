@@ -21,44 +21,38 @@ export default function useSignupValidation({ form }) {
   const checkEmailValidation = () => {
     const { email } = form;
 
-    let result;
     if (email.length === 0) {
-      result = "requiredEmail";
-    } else if (!EMAIL_REGEX.test(email)) {
-      result = "invalidEmail";
-    } else {
-      return [false, ""];
+      return [ERROR_MSG.requiredEmail, "email"];
     }
-    return [ERROR_MSG[result], "email"];
+    if (!EMAIL_REGEX.test(email)) {
+      return [ERROR_MSG.invalidEmail, "email"];
+    }
+    return [false, ""];
   };
 
   const checkRegex = () => {
     const { username, password, passwordConfirm } = form;
 
-    let result;
-    let type;
     const resultOfEmail = checkEmailValidation();
     if (resultOfEmail[0] !== false) {
       return resultOfEmail;
-    } else if (username.length === 0) {
-      result = "requiredUsername";
-      type = "nickname";
-    } else if (password.length === 0) {
-      result = "requiredPw";
-      type = "password";
-    } else if (!PW_REGEX.test(password)) {
-      result = "invalidPw";
-      type = "password";
-    } else if (passwordConfirm.length === 0) {
-      result = "requiredConfirmPw";
-      type = "confirmPw";
-    } else if (password !== passwordConfirm) {
-      result = "invalidConfirmPw";
-      type = "confirmPw";
-    } else {
-      return [false, ""];
     }
-    return [ERROR_MSG[result], type];
+    if (username.length === 0) {
+      return [ERROR_MSG.requiredUsername, "nickname"];
+    }
+    if (password.length === 0) {
+      return [ERROR_MSG.requiredPw, "password"];
+    }
+    if (!PW_REGEX.test(password)) {
+      return [ERROR_MSG.invalidPw, "password"];
+    }
+    if (passwordConfirm.length === 0) {
+      return [ERROR_MSG.requiredConfirmPw, "confirmPw"];
+    }
+    if (password !== passwordConfirm) {
+      return [ERROR_MSG.invalidConfirmPw, "confirmPw"];
+    }
+    return [false, ""];
   };
 
   return { error, setError, checkEmailValidation, checkRegex };

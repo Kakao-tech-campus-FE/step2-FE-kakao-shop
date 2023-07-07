@@ -1,13 +1,14 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/organisms/Header";
+import Container from "./components/atoms/Container";
 
 function App() {
   return (
     <>
       <Header />
-      <div className="w-full h-full pt-20">
+      <Container className="w-full h-full pt-20">
         <Outlet />
-      </div>
+      </Container>
     </>
   );
 }

@@ -15,7 +15,6 @@ const initialState = {
 };
 
 export default function SignupForm() {
-  // useRef 배열로 한번에 관리?
   const emailRef = useRef(null);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -55,6 +54,7 @@ export default function SignupForm() {
 
   const handleCheck = async () => {
     const errorResult = checkEmailValidation()[0];
+
     if (errorResult !== false) {
       setError(errorResult);
       emailRef.current.focus();
@@ -62,7 +62,6 @@ export default function SignupForm() {
       try {
         await checkEmail(form.email);
         setError(false);
-        // 비어있는 칸으로 이동하게 할 수 있을까
         usernameRef.current.focus();
       } catch (error) {
         const errorResponse = error.response.data.error.message;

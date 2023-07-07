@@ -3,7 +3,6 @@ import { login } from "../../apis/auth";
 import { getCookie } from "../../utils/cookie";
 
 const user = !!getCookie("accessToken");
-
 const initialState = {
   user,
 };

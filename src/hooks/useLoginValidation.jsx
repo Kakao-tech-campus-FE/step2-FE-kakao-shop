@@ -18,24 +18,19 @@ export default function useLoginValidation({ form }) {
   const checkRegex = () => {
     const { email, password } = form;
 
-    let result;
-    let type;
     if (email.length === 0) {
-      result = "requiredEmail";
-      type = "email";
-    } else if (!EMAIL_REGEX.test(email)) {
-      result = "invalidEmail";
-      type = "email";
-    } else if (password.length === 0) {
-      result = "requiredPw";
-      type = "password";
-    } else if (!PW_REGEX.test(password)) {
-      result = "invalidPw";
-      type = "password";
-    } else {
-      return [false, ""];
+      return [ERROR_MSG.requiredEmail, "email"];
     }
-    return [ERROR_MSG[result], type];
+    if (!EMAIL_REGEX.test(email)) {
+      return [ERROR_MSG.invalidEmail, "email"];
+    }
+    if (password.length === 0) {
+      return [ERROR_MSG.requiredPw, "password"];
+    }
+    if (!PW_REGEX.test(password)) {
+      return [ERROR_MSG.invalidPw, "password"];
+    }
+    return [false, ""];
   };
 
   return { error, setError, checkRegex };
