@@ -52,7 +52,6 @@ const LoginForm = () => {
     <>
       <Container>
         <Title></Title>
-        <span>{email}</span>
         <InputGroup
           id="email"
           type="email"

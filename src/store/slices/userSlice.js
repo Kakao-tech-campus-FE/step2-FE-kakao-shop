@@ -2,6 +2,7 @@
 // createSlice를 통해 slice를 만든다
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { login } from "../../components/services/api";
+import Swal from 'sweetalert2'
 
 const initialState = {
     email: null,
@@ -53,11 +54,23 @@ export const loginRequest = createAsyncThunk(
     async (data) => {
         const { email, password } = data;
         const response = await login({ email, password });
-        return response.data; // (일반적인 경우)
-        // return {
-        //     email: email,
-        //     token: response.headers.authorization,
-        // }
+        console.log(response)
+        // 로그인 성공
+        if(response.status === 200) {
+            Swal.fire({
+                title:'로그인 완료!',
+                text: `안녕하세요 ${email}님! 
+                저희 사이트에 오신 것을 환영합니다😊`,
+                confirmButtonText:'확인',
+            }).then(() => {
+                window.location.href = "/";
+            })
+            return {
+                email: email,
+                token: response.headers.authorization,
+            }
+        }
+        // return response.data; // (일반적인 경우)
     }
 )
 

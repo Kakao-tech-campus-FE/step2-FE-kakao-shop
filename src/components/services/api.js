@@ -31,8 +31,28 @@ instance.interceptors.response.use(
         // 401 error : 인증되지 않음 - 로그인 화면으로 이동
         if (error.response.status === 401) {
             localStorage.removeItem("token");
-            window.location.href = "/login";
+            Swal.fire({
+                icon: 'error',
+                title: '내용을 다시 확인해 주세요!',
+                text: error.response.data.error.message,
+                confirmButtonText: '확인',
+            })
+            .then(() => {
+                window.location.href = "/login";
+            })
             return Promise.resolve();
+        }
+
+        // 401외의 다른 error
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: '내용을 다시 확인해 주세요!',
+                text: error.response.data.error.message,
+                confirmButtonText: '확인',
+            })
+            // return Promise.resolve();
+            return Promise.reject(error.response); // Promise.resolve()와의 차이점?
         }
 
         // 400 error : 유효하지 않은 요청 메시지 or 서버가 클라이언트 요청 이해 x
@@ -44,8 +64,6 @@ instance.interceptors.response.use(
         //         confirmButtonText: 'Confirm',
         //       });
         // }
-        
-        return Promise.reject(error.response);
     }
 )
 
@@ -82,7 +100,8 @@ export const register = (data) => {
 
 export const login = (data) => {
     const { email, password } = data;
-    return instance.post("/login", {
+    return instance
+    .post("/login", {
         email,
         password
     });
