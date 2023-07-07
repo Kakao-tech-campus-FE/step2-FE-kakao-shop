@@ -1,5 +1,3 @@
-용;
-
 /** @type { import('@storybook/react').Preview } */
 
 import { ThemeProvider } from "styled-components";

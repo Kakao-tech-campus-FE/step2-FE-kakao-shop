@@ -2,6 +2,8 @@ const theme = {
   color: {
     bg: "#ffffff",
     black: "#111111",
+    alert: "#f65b3d",
+    highlight: "#4684e9",
   },
 
   fontFamily: {

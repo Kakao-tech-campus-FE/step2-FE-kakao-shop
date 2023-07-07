@@ -1,7 +1,7 @@
 import Label from "./Label.jsx";
 
 export default {
-  title: "components/atoms/Label",
+  title: "atoms/Label",
   tags: ["autodocs"],
   component: Label,
   argTypes: {
