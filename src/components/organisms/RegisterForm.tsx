@@ -1,6 +1,6 @@
 import FilledButton from '@components/atoms/FilledButton';
 import InputGroup from '@components/molecules/InputGroup';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 
@@ -26,25 +26,32 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
   });
 
   const validationCheck = () => {
-    // 동일한 이메일 확인
     if (inputInfo.username.length <= 0) {
       setUsernameHT('필수 항목입니다.');
-    } else {
-      setUsernameHT('ㅤ');
-    }
+    } else setUsernameHT('ㅤ');
 
     if (!emailFormPattern.test(inputInfo.email)) {
       setEmailHT('이메일 형식을 따라야 합니다.');
-    } else {
-      setEmailHT('ㅤ');
-    }
+    } else setEmailHT('ㅤ');
+
+    if (!passwordLenthPattern.test(inputInfo.password)) {
+      setPasswordHT('8-25자로 작성해주세요');
+    } else if (!passwordPattern.test(inputInfo.password)) {
+      setPasswordHT('영문, 숫자, 특수문자가 포함되어야 합니다.');
+    } else setPasswordHT('ㅤ');
 
     if (inputInfo.password !== inputInfo.passwordConfirm) {
       setPasswordConfirmHT('비밀번호가 동일하지 않습니다.');
-    } else {
-      setPasswordConfirmHT('ㅤ');
+      return false;
     }
+    setPasswordConfirmHT('ㅤ');
+
+    return true;
   };
+
+  useEffect(() => {
+    validationCheck();
+  }, [inputInfo]);
 
   return (
     <div className="space-y-3">
@@ -79,7 +86,8 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
       <div className="">
         <FilledButton
           onClick={() => {
-            onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username });
+            if (validationCheck())
+              onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username });
           }}
         >
           제출
