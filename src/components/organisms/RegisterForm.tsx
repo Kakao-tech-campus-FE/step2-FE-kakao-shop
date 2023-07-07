@@ -3,19 +3,18 @@ import InputGroup from '@components/molecules/InputGroup';
 import React, { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
+import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
 
 interface RegisterFromProps {
   onSubmit: (data: { email: string; password: string; username: string }) => Promise<AxiosResponse>;
 }
 
 const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
-  const [usernameHT, setUsernameHT] = useState('ㅤ');
-  const [emailHT, setEmailHT] = useState('ㅤ');
-  const [passwordHT, setPasswordHT] = useState('ㅤ');
-  const [passwordConfirmHT, setPasswordConfirmHT] = useState('ㅤ');
-  const passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,20}$/;
-  const emailFormPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordLenthPattern = /^[^].{8,25}$/;
+  const [usernameHT, setUsernameHT] = useState('');
+  const [emailHT, setEmailHT] = useState('');
+  const [passwordHT, setPasswordHT] = useState('');
+  const [passwordConfirmHT, setPasswordConfirmHT] = useState('');
+
   const { value: inputInfo, handleOnChange } = useInput({
     initialValue: {
       username: '',
@@ -26,25 +25,15 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
   });
 
   const validationCheck = () => {
-    if (inputInfo.username.length <= 0) {
-      setUsernameHT('필수 항목입니다.');
-    } else setUsernameHT('ㅤ');
-
-    if (!emailFormPattern.test(inputInfo.email)) {
-      setEmailHT('이메일 형식을 따라야 합니다.');
-    } else setEmailHT('ㅤ');
-
-    if (!passwordLenthPattern.test(inputInfo.password)) {
-      setPasswordHT('8-25자로 작성해주세요');
-    } else if (!passwordPattern.test(inputInfo.password)) {
-      setPasswordHT('영문, 숫자, 특수문자가 포함되어야 합니다.');
-    } else setPasswordHT('ㅤ');
+    setUsernameHT(checkUsername(inputInfo.username));
+    setEmailHT(checkEmail(inputInfo.email));
+    setPasswordHT(checkPassword(inputInfo.password));
 
     if (inputInfo.password !== inputInfo.passwordConfirm) {
       setPasswordConfirmHT('비밀번호가 동일하지 않습니다.');
       return false;
     }
-    setPasswordConfirmHT('ㅤ');
+    setPasswordConfirmHT('');
 
     return true;
   };
