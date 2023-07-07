@@ -8,15 +8,15 @@ import "../../styles/form.css";
 
 // 비밀번호 조건 : 8~20자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
 const PW_REGEX = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
-const EMAIL_REGEX = new RegExp("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$");
+const EMAIL_REGEX = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
 const NAME_REGEX = new RegExp("^[가-힣]{2,}$");
 
 const ERROR_MSG = {
     required: "필수 입력사항입니다.",
-    invalidPw: "8~20자 영문 대 소문자, 특수문자(!@#$%^*+=-)를 사용하세요.",
-    invalidPwCheck: "비밀번호가 일치하지 않습니다.",
-    invalidEmail: "이메일 형식이 올바르지 않습니다.",
-    invalidName: "이름은 2자 이상이어야 합니다.",
+    password: "8~20자 영문 대 소문자, 특수문자(!@#$%^*+=-)를 사용하세요.",
+    passwordConfirm: "비밀번호가 일치하지 않습니다.",
+    email: "이메일 형식이 올바르지 않습니다.",
+    username: "이름은 2자 이상이어야 합니다.",
 };
 
 const RegisterForm = () => {
@@ -27,6 +27,62 @@ const RegisterForm = () => {
             passwordConfirm: ""
         }
     );
+
+    const [errorStatus, setErrorStatus] = useState({
+        email: {
+            errorMsg: "",
+            constraint: (input) => EMAIL_REGEX.test(input),
+            isError: true
+        },
+        username: {
+            errorMsg: "",
+            constraint: (input) => NAME_REGEX.test(input),
+            isError: true
+        },
+        password: {
+            errorMsg: "",
+            constraint: (input) => PW_REGEX.test(input),
+            isError: true
+        },
+        passwordConfirm: {
+            errorMsg: "",
+            constraint: () => value.password === value.passwordConfirm,
+            isError: true
+        },
+    });
+
+    const validationCheck = (id) => {
+        if (value[id].length === 0) {
+            setErrorStatus({
+                ...errorStatus,
+                [id]: {
+                    ...errorStatus[id],
+                    errorMsg: ERROR_MSG.required,
+                    isError: true
+                }
+            });
+        } else if (!errorStatus[id].constraint(value[id])) {
+            setErrorStatus({
+                ...errorStatus,
+                [id]: {
+                    ...errorStatus[id],
+                    errorMsg: ERROR_MSG[id],
+                    isError: true
+                }
+            });
+        } else {
+            setErrorStatus({
+                ...errorStatus,
+                [id]: {
+                    ...errorStatus[id],
+                    errorMsg: "",
+                    isError: false
+                }
+            });
+        }
+        return !errorStatus[id].isError;
+    }
+
     const [errorFromBE, setErrorFromBE] = useState(null);
     useEffect(() => {
         if (errorFromBE) {
@@ -35,25 +91,6 @@ const RegisterForm = () => {
         }
     }, [errorFromBE]);
 
-
-    const FORM_CONSTRAINTS = {
-        username: {
-            constraint: () => NAME_REGEX.test(value.username),
-            error: ERROR_MSG.invalidName,
-        },
-        email: {
-            constraint: () => EMAIL_REGEX.test(value.email),
-            error: ERROR_MSG.invalidEmail,
-        },
-        password: {
-            constraint: () => PW_REGEX.test(value.password),
-            error: ERROR_MSG.invalidPw,
-        },
-        passwordConfirm: {
-            constraint: () => value.password === value.passwordConfirm,
-            error: ERROR_MSG.invalidPwCheck,
-        },
-    };
 
     return (
         <Container className={`form`}>
@@ -64,8 +101,8 @@ const RegisterForm = () => {
                 label="이메일 (아이디)"
                 placeholder="이메일"
                 onChange={handleOnChange}
-                error={ERROR_MSG.invalidEmail}
-                constraint={FORM_CONSTRAINTS.email.constraint}
+                errorMsg={errorStatus.email.errorMsg}
+                onBlur={validationCheck.bind(this, "email")}
             />
             <InputGroup
                 id="username"
@@ -74,8 +111,8 @@ const RegisterForm = () => {
                 label="이름"
                 placeholder="이름"
                 onChange={handleOnChange}
-                error={ERROR_MSG.invalidName}
-                constraint={FORM_CONSTRAINTS.username.constraint}
+                errorMsg={errorStatus.username.errorMsg}
+                onBlur={validationCheck.bind(this, "username")}
             />
             <InputGroup
                 id="password"
@@ -84,8 +121,8 @@ const RegisterForm = () => {
                 label="비밀번호"
                 placeholder="비밀번호"
                 onChange={handleOnChange}
-                error={ERROR_MSG.invalidPw}
-                constraint={FORM_CONSTRAINTS.password.constraint}
+                errorMsg={errorStatus.password.errorMsg}
+                onBlur={validationCheck.bind(this, "password")}
             />
             <InputGroup
                 id="passwordConfirm"
@@ -94,18 +131,20 @@ const RegisterForm = () => {
                 label="비밀번호 확인"
                 placeholder="비밀번호 확인"
                 onChange={handleOnChange}
-                error={ERROR_MSG.invalidPwCheck}
-                constraint={FORM_CONSTRAINTS.passwordConfirm.constraint}
+                errorMsg={errorStatus.passwordConfirm.errorMsg}
+                onBlur={validationCheck.bind(this, "passwordConfirm")}
             />
 
 
             <Button
                 className="register-button"
                 onClick={() => {
-                    if (FORM_CONSTRAINTS.username.constraint(value.username) &&
-                        FORM_CONSTRAINTS.email.constraint(value.email) &&
-                        FORM_CONSTRAINTS.password.constraint(value.password) &&
-                        FORM_CONSTRAINTS.passwordConfirm.constraint(value.passwordConfirm))
+                    if (
+                        validationCheck("email") &&
+                        validationCheck("username") &&
+                        validationCheck("password") &&
+                        validationCheck("passwordConfirm")
+                    )
                         register({
                             email: value.email,
                             password: value.password,
@@ -114,7 +153,7 @@ const RegisterForm = () => {
                             res => {
                                 console.log(res);
                                 alert("회원가입이 완료되었습니다. 로그인해주세요.");
-                                window.location.href = "/login";
+                                window.location.href = "/";
                             }
                         ).catch(
                             err => {

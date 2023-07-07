@@ -5,6 +5,17 @@ import Button from "../atoms/Button";
 import {login} from "../../services/api";
 import {reducerLogin} from "../../store/userSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+
+
+const EMAIL_REGEX = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
+const PW_REGEX = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
+
+const ERROR_MSG = {
+    required: "필수 입력사항입니다.",
+    password: "8~20자 영문 대 소문자, 특수문자(!@#$%^*+=-)를 사용하세요.",
+    email: "이메일 형식이 올바르지 않습니다.",
+};
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -13,6 +24,55 @@ const LoginForm = () => {
         email: "",
         password: "",
     });
+
+    const [errorStatus, setErrorStatus] = useState({
+            email: {
+                errorMsg: "",
+                constraint: (input) => EMAIL_REGEX.test(input),
+                isError: true
+            },
+            password: {
+                errorMsg: "",
+                constraint: (input) => PW_REGEX.test(input),
+                isError: true
+            }
+        }
+    );
+
+    const checkValidation = (id) => {
+        if (value[id].length === 0) {
+            setErrorStatus({
+                ...errorStatus,
+                [id]: {
+                    ...errorStatus[id],
+                    errorMsg: ERROR_MSG.required,
+                    isError: true
+                }
+            });
+        }
+        else if (!errorStatus[id].constraint(value[id])) {
+            setErrorStatus({
+                ...errorStatus,
+                [id]: {
+                    ...errorStatus[id],
+                    errorMsg: ERROR_MSG[id],
+                    isError: true
+                }
+            });
+        }
+        else {
+            setErrorStatus({
+                ...errorStatus,
+                [id]: {
+                    ...errorStatus[id],
+                    errorMsg: "",
+                    isError: false
+                }
+            });
+        }
+        return !errorStatus[id].isError;
+    }
+
 
     const loginReq = () => {
         login({
@@ -23,7 +83,7 @@ const LoginForm = () => {
                 console.log(res);
                 dispatch(reducerLogin(res.data.email));
                 alert(user.email + "님 환영합니다.")
-                // window.location.href = "/";
+                window.location.href = "/";
             }
         ).catch(err => {
                 console.log(err.response)
@@ -41,6 +101,8 @@ const LoginForm = () => {
                 label="이메일 (아이디)"
                 placeholder="이메일"
                 onChange={handleOnChange}
+                errorMsg={errorStatus.email.errorMsg}
+                onBlur={() => checkValidation("email")}
             />
             <InputGroup
                 id="password"
@@ -49,19 +111,14 @@ const LoginForm = () => {
                 label="비밀번호"
                 placeholder="비밀번호"
                 onChange={handleOnChange}
+                errorMsg={errorStatus.password.errorMsg}
+                onBlur={() => checkValidation("password")}
             />
             <Button
                 className="login-button"
                 onClick={() => {
-                    if (value.email.length === 0) {
-                        alert("이메일을 입력해주세요.");
-                        return;
-                    }
-                    if (value.password.length === 0) {
-                        alert("비밀번호를 입력해주세요.");
-                        return;
-                    }
-                    loginReq();
+                    if (checkValidation("email") && checkValidation("password"))
+                        loginReq();
                 }}>
                 로그인
             </Button>
