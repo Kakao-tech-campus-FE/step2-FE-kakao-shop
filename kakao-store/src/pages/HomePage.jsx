@@ -1,8 +1,8 @@
-import LoginForm from "../components/organisms/LoginForm";
+import Gnb from "../components/organisms/Gnb";
 
 const HomePage = () => {
 	return (
-		<LoginForm />
+        <Gnb />
 	)
 }
 

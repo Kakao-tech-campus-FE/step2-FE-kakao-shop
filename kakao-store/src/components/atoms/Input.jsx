@@ -2,7 +2,7 @@ const Input = ({type, value, onChange, placeholder, className, id, name}) => {
 	return (
 		<input 
 			id={id} 
-			className={`w-96 outline-none ${className}`} 
+			className={`w-full outline-none ${className}`} 
 			type={type} 
 			name={name}
 			value={value}
