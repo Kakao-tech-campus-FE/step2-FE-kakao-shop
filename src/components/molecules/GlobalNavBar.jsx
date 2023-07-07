@@ -1,0 +1,55 @@
+import React from "react";
+import Container from "../atoms/Container";
+import Button from "../atoms/Button";
+import Logo from "../atoms/Logo";
+import logoKakao from "../../assets/icons/logoKakao.png";
+import { LogOut } from "../../store/slices/userSlice";
+import cart from "../../assets/icons/cart.png";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+/**
+ * 글로벌네비게이션바
+ * @ Home Logo + 회원가입/로그인 버튼
+ * @returns
+ */
+export default function GlobalNavBar() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLogged = useSelector((state) => state.login.isLogged);
+  const handleLoginStatus = () => {
+    // 로그인된 상태
+    if (isLogged) {
+      dispatch(LogOut());
+      localStorage.removeItem("loginExpirationTime");
+    } // 로그아웃인 상태
+    else {
+      navigate("/login");
+    }
+  };
+
+  return (
+    <Container className=" fixed w-3/4 flex items-center place-content-between border-solid p-3 border-y-1 border-x-0 border-slate-300 mt-10 h-14">
+      <Logo src={logoKakao} alt="logoKakao" className="w-28" />
+      <Container className="flex items-center">
+        <Logo src={cart} alt="cart" className="w-8" />
+        {!isLogged && (
+          <Button
+            onClick={() => {
+              navigate("/signup");
+            }}
+            className=" cursor-pointer border-0 bg-white border-l-2 "
+          >
+            회원가입
+          </Button>
+        )}
+        <Button
+          onClick={handleLoginStatus}
+          className=" cursor-pointer border-0 bg-white border-l-2 "
+        >
+          {isLogged ? "로그아웃" : "로그인"}
+        </Button>
+      </Container>
+    </Container>
+  );
+}
