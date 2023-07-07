@@ -4,6 +4,7 @@ import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
 import { register } from '../../services/api'
 
+
 const RegisterForm = () => {
   const { value, handleOnChange, emailError, passwordError, handlePwChange, handleEmailChange, isAllOk} = useInput({
     username: "",
@@ -52,17 +53,17 @@ const RegisterForm = () => {
         value={value.passwordConfirm}
         onChange={handleOnChange} />
       <Button onClick={() => {
-        try{
-        register({
-          email: value.email,
-          password: value.password,
-          username: value.username
-        })
-        console.log('회원가입 완료')
-      }
-        catch (error) {
-          console.error(error.response.data.error.message)
-          }
+          register({
+            email: value.email,
+            password: value.password,
+            username: value.username
+          })
+          .then((res) => {
+            alert('성공')
+            })
+          .catch((error) => {
+            alert(error.response.data.error.message);
+          });
       }} disabled = {!isAllOk} >회원가입</Button>
     </Container>
   )
