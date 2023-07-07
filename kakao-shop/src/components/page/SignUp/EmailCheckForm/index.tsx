@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MouseEventHandler, useRef, useState } from 'react';
 
-import { Button } from '@components/@base';
-import { RegularInput } from '@components/@molecules';
+import { Button } from '@components/atom';
+import { RegularInput } from '@components/molecules';
 
 type Props = {
   email: string;

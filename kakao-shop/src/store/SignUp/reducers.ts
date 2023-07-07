@@ -1,6 +1,6 @@
 import { produce, Draft } from 'immer';
 
-import { SignUpRequest, EmailDuplicateCheckRequest } from '@hooks/ui/useSignUpForm';
+import { SignUpRequest, EmailDuplicateCheckRequest } from '@hooks/page/SignUp/useSignUpForm';
 
 export const SIGN_UP_REQUEST = 'signUp/SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'signUp/SIGN_UP_SUCCESS';

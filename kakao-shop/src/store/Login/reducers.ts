@@ -1,6 +1,6 @@
 import { produce, Draft } from 'immer';
 
-import { SignInRequest } from '@hooks/ui/useLoginForm';
+import { SignInRequest } from '@hooks/page/Login/useLoginForm';
 
 import { getCookie, deleteCookie } from '@utils/cookie';
 

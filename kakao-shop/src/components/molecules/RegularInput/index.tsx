@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import hideWithA11y from '@styles/a11y';
 import { PropsWithChildren, InputHTMLAttributes } from 'react';
 
-import { Input, Label } from '@components/@base';
+import { Input, Label } from '@components/atom';
 
 type Props = {
   RootClassName?: SerializedStyles;

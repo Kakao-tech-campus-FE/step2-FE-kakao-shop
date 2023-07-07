@@ -1,6 +1,6 @@
 import { client } from '@apis/client';
 
-import { SignUpRequest, EmailDuplicateCheckRequest } from '@hooks/ui/useSignUpForm';
+import { SignUpRequest, EmailDuplicateCheckRequest } from '@hooks/page/SignUp/useSignUpForm';
 
 export const signUp = async ({ email, password, username }: Omit<SignUpRequest, 'navigate'>) => {
   const res = await client.post('/join', { email, password, username });

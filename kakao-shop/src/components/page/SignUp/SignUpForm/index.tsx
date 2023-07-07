@@ -2,11 +2,11 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Button } from '@components/@base';
-import { RegularInput } from '@components/@molecules';
-import EmailCheckForm from '@components/domains/SignUp/EmailCheckForm';
+import { Button } from '@components/atom';
+import { RegularInput } from '@components/molecules';
+import EmailCheckForm from '@components/page/SignUp/EmailCheckForm';
 
-import useSignUpForm from '@hooks/ui/useSignUpForm';
+import useSignUpForm from '@hooks/page/SignUp/useSignUpForm';
 
 const SignUpForm = () => {
   const {

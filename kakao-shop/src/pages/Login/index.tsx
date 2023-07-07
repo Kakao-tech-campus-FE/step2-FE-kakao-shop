@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import LoginForm from '@components/domains/Login/LoginForm';
-import Footer from '@components/domains/SignUp/Footer';
-import Title from '@components/domains/SignUp/Title';
+import LoginForm from '@components/page/Login/LoginForm';
+import Footer from '@components/page/SignUp/Footer';
+import Title from '@components/page/SignUp/Title';
 
 const Login = () => {
   return (

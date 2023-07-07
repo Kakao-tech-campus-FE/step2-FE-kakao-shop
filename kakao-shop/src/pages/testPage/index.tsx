@@ -2,10 +2,10 @@ import styled from '@emotion/styled';
 import { ReactNode, useState, ChangeEvent, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Toast, Toggle } from '@components/@base';
-import BannerImageList from '@components/@base/Carousel/BannerImageList';
-import Header from '@components/@molecules/Header';
-import Pay from '@components/domains/Pay';
+import { Toast, Toggle } from '@components/atom';
+import BannerImageList from '@components/atom/Carousel/BannerImageList';
+import Header from '@components/molecules/Header';
+import Pay from '@components/page/Pay';
 
 function TestPage() {
   const [value, setValue] = useState('1');

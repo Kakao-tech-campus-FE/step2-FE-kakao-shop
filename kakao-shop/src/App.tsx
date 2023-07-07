@@ -5,7 +5,7 @@ import Login from '@pages/Login';
 import SignUp from '@pages/SignUp';
 import TestPage from '@pages/testPage';
 
-import Breadcrumb from '@components/@base/BreadCrumb';
+import Breadcrumb from '@components/atom/BreadCrumb';
 
 function App() {
   return (

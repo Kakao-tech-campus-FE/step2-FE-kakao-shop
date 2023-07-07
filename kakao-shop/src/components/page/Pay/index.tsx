@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import { Fragment, PropsWithChildren, ChangeEvent } from 'react';
 
-import Radio from '@components/@base/Radio';
-import CheckBoxItem from '@components/@molecules/CheckBoxItem';
+import Radio from '@components/atom/Radio';
+import CheckBoxItem from '@components/molecules/CheckBoxItem';
 
 const Pay = ({ children }: PropsWithChildren) => {
   return <Fragment>{children}</Fragment>;

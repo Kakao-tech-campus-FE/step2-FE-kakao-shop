@@ -2,10 +2,10 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 
-import { Button } from '@components/@base';
-import { RegularInput } from '@components/@molecules';
+import { Button } from '@components/atom';
+import { RegularInput } from '@components/molecules';
 
-import useSignInForm from '@hooks/ui/useLoginForm';
+import useSignInForm from '@hooks/page/Login/useLoginForm';
 
 const LoginForm = () => {
   const {

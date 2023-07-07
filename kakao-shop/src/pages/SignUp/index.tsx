@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
-import Footer from '@components/domains/SignUp/Footer';
-import SignUpForm from '@components/domains/SignUp/SignUpForm';
-import Title from '@components/domains/SignUp/Title';
+import Footer from '@components/page/SignUp/Footer';
+import SignUpForm from '@components/page/SignUp/SignUpForm';
+import Title from '@components/page/SignUp/Title';
 
 const SignUp = () => {
   return (
