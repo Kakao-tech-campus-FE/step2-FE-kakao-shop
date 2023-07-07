@@ -14,7 +14,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   // 사용자 정보를 store로 부터 불러오기 : useSelector를 사용하기 위해
   // 아래 코드의 state는 글로벌 상태를 모두 담고 있는 최상위 state
-  //const email = useSelector((state) => state.user.email);
+  // const email = useSelector((state) => state.user);
 
   const { value, handleOnChange } = useInput({
     email: "",

@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login, register } from "../../services/api";
+import { setUserCookie } from "../../utils/cookie";
 
 // 슬라이스를 만들때 주의할 점 : initial state를 꼭 만들어 줘야 한다
 const initialState = {
   email: null,
   loading: false, // 요청을 보냈을 때는 true, 아닌 경우: 요청이 없었거나, 실패했거나, 성공했을 때 false
   //error: null, // 만약에 에러가 있는 경우에 error.message 값을 담는다. 이런식으로 에러를 처리할 수 있다. 아래 extraReducer의 rejected에서 이용
+  token: null
 }
 
 const userSlice = createSlice({
@@ -25,10 +27,12 @@ const userSlice = createSlice({
     });
     // Promise의 fulfilled(이행) 상태: 연산이 성공적으로 완료됨.
     builder.addCase(loginRequest.fulfilled, (state, action) => {
+      const [tempEmail, tempToken] = [action.payload.email, action.payload.token]
       state.loading = false;
-      console.log("action.payload.email",action.payload)
-      state.email = action.payload.email; // loginRequest의 return 값이 들어가게 됨
-      console.log("State.email", state.email)
+      state.email = tempEmail; // loginRequest의 return 값이 들어가게 됨
+      state.token = tempToken;
+      // add cookie - email, token 
+      setUserCookie({email: tempEmail, token: tempToken})
     });
     // Promise의ㅣ rejected(거부): 연산이 실패함
     builder.addCase(loginRequest.rejected, (state, action) => {
@@ -43,9 +47,7 @@ const userSlice = createSlice({
     });
     builder.addCase(registerRequest.fulfilled, (state, action) => {
       state.loading = false;
-      console.log("action.payload.email",action.payload)
-      state.email = action.payload.email; 
-      console.log("State.email", state.email)
+      alert("회원가입이 완료되었습니다.")
     });
     builder.addCase(registerRequest.rejected, (state, action) => {
       state.loading = false;
@@ -59,11 +61,11 @@ export const loginRequest = createAsyncThunk(
   async (data) => {
     const {email, password} = data;
     const response = await login({email, password});
-    return response.data
-    // return {
-    //   email: email,
-    //   token: response.headers.authorization,
-    // }; // 이런식으로 받아줘도 된다.
+    //return response.data
+    return {
+      email: email,
+      token: response.headers.authorization,
+    }; // 이런식으로 받아줘도 된다.
   }
 );
 export const registerRequest = createAsyncThunk(
