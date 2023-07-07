@@ -11,7 +11,7 @@ const login = async ({ email, password }: loginInfo) => {
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
-      return error; // TODO
+      return error?.response?.data;
     }
     return error;
   }

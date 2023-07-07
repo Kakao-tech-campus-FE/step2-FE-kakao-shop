@@ -24,6 +24,7 @@ const RegisterForm = () => {
     isValid: true,
     message: '',
   });
+  const [serverValidateMsg, setServerValidateMsg] = useState('');
 
   const { values, handleChange } = useForm({
     username: '',
@@ -63,8 +64,12 @@ const RegisterForm = () => {
         email,
         password,
       })
-      .then(() => {
-        navigate('/');
+      .then((data) => {
+        if (data.success) {
+          navigate('/');
+        } else {
+          setServerValidateMsg(data.error.message);
+        }
       });
   };
 
@@ -123,6 +128,7 @@ const RegisterForm = () => {
         onChange={handleChange}
         onBlur={handleBlur}
       />
+      <p className='mt-1 text-sm text-red-500'>{serverValidateMsg}</p>
       <Button onClick={handleSignUpBtnClick}>회원가입</Button>
     </FormContainer>
   );

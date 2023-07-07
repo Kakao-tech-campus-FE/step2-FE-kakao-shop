@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
 import loginApi from '../../apis/loginApi';
-import { selectEmail, setEmail } from '../../store/slices/userSlices';
+import { setEmail } from '../../store/slices/userSlices';
 import { isEmpty } from '../../utils/checkValidation';
 
 const LoginForm = () => {
@@ -18,6 +18,7 @@ const LoginForm = () => {
     isValid: true,
     message: '',
   });
+  const [serverValidateMsg, setServerValidateMsg] = useState('');
 
   const { values, handleChange } = useForm({
     email: '',
@@ -44,9 +45,13 @@ const LoginForm = () => {
         email,
         password,
       })
-      .then(() => {
-        dispatch(setEmail({ email }));
-        navigate('/');
+      .then((data) => {
+        if (data.success) {
+          dispatch(setEmail({ email }));
+          navigate('/');
+        } else {
+          setServerValidateMsg(data.error.message);
+        }
       });
   };
 
@@ -86,6 +91,7 @@ const LoginForm = () => {
           }
         }}
       />
+      <p className='mt-1 text-sm text-red-500'>{serverValidateMsg}</p>
       <Button onClick={handleSignInBtnClick}>로그인</Button>
     </FormContainer>
   );
