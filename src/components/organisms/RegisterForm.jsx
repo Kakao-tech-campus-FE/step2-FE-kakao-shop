@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import {register} from "../../services/api";
 import { useState } from "react";
 import Title  from "../atoms/Title";
-
+import {useLocation, useNavigate} from "react-router-dom";
 
 const RegisterForm = (props) => {
     // const { value, handleOnChange } = useInput({   username: "",   email: "",
@@ -17,7 +17,26 @@ const RegisterForm = (props) => {
     const [idError, setIdError] = useState("");
     // const [pwError, setPwError] = useState('');
     // const [pwCheckError, setPwCheckError] = useState('');
+    const navigate = useNavigate();
 
+    const handleRegister = async () => {
+        try {
+          const response = await register({ email: email, password: password, username: name });
+          if (response.data.success === true) {
+            // 성공적으로 로그인한 경우 메인 페이지로 이동
+            navigate("/main");
+          } else {
+            // 로그인 실패 처리
+            console.error("sign up failed");
+          }
+        } catch (error) {
+          // 오류 처리
+          console.error(error);
+          // 로그인 요청 실패 처리
+          console.error("register request failed");
+        }
+      };
+      
 
     const onEmailHandler = (e) => {
         setEmail(e.currentTarget.value);
@@ -109,11 +128,7 @@ const RegisterForm = (props) => {
                 onBlur ={handlePWCHECK}
                 name="passwordCheck"/>
             <Button
-                onClick={() => {
-                    register(
-                        {email: email, password: password, username: name}
-                    );
-                }}>
+                onClick={handleRegister}>
                 회원가입
             </Button>
         </Container>
