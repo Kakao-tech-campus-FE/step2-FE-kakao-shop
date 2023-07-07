@@ -18,7 +18,6 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   function (response) {
-    // const currentState = useSelector((state) => state.user.currentState);
     const successMessage = response.config.url.includes("/join")
       ? "회원가입 성공!"
       : "로그인 성공!";
