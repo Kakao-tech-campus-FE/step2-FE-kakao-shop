@@ -1,0 +1,16 @@
+.error-message {
+  color: red;
+  margin: 10px;
+  font-size: 14px;
+}
+
+.form-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.InputGroups {
+  margin: 5px;
+}
