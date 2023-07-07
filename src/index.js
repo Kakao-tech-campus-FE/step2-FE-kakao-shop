@@ -3,22 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './styles/index.css';
 import App from './App';
 import reportWebVitals from './utils/reportWebVitals';
-<<<<<<< HEAD
 import { Provider } from "react-redux";
 import store from "./store";
-=======
->>>>>>> 557f56a88f1cdbc76d800f690d46347612cf8d34
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-<<<<<<< HEAD
     <Provider store={store}>
       <App />
     </Provider>
-=======
-    <App />
->>>>>>> 557f56a88f1cdbc76d800f690d46347612cf8d34
   </React.StrictMode>
 );
 
