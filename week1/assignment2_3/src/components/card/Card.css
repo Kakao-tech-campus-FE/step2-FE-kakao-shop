@@ -1,0 +1,36 @@
+.card-wrapper {
+  margin: 5vw;
+}
+
+.card-link {
+  color: black;
+  text-decoration: none;
+  outline: none;
+}
+
+.card {
+  position: relative;
+  min-width: 100px;
+  width: 15vw;
+  height: 20vw;
+  border: 1px solid gray;
+  border-radius: 16px;
+
+  overflow: hidden;
+}
+
+.card-content {
+  height: 15vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  height: 5vw;
+  border-top: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aliceblue;
+}
