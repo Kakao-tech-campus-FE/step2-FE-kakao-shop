@@ -1,1 +1,2 @@
-export * from "./UseInput";
+export * from "./useInput";
+export * from "./useSelectedUser";

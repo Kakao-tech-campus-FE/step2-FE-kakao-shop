@@ -1,7 +1,7 @@
 import { passwordRegex } from "@utils/regex";
 import { useState } from "react";
 
-export const UseInput = ({ initValue = "" }: any) => {
+export const useInput = ({ initValue = "" }: any) => {
   const [inputValue, setInputValue] = useState(initValue);
   const [passwordError, setPasswordError] = useState(false);
   const [confirmError, setConfirmError] = useState(false);

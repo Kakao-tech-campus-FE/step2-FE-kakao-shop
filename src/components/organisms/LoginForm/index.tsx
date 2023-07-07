@@ -5,19 +5,20 @@ import Input from "@components/atoms/Input";
 import AuthLink from "@components/molecules/AuthLink";
 import CheckBox from "@components/molecules/CheckBox";
 import ConfirmButton from "@components/molecules/ConfirmButton";
-import { UseInput } from "@hooks/UseInput";
+import { useInput } from "@hooks/useInput";
 import { styled } from "styled-components";
 import { postLogin } from "@apis/postLogin";
 import ErrorMessage from "@components/atoms/ErrorMessage";
 
 const LoginForm = () => {
-  const { inputValue, onChange } = UseInput({ email: "", password: "" });
+  const { inputValue, onChange } = useInput({ email: "", password: "" });
   const [loginError, setLoginError] = useState({ isError: false, message: "" });
   const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
       const res = await postLogin(inputValue);
+      localStorage.setItem("timeStamp", new Date().getTime().toString());
       localStorage.setItem("token", res.headers.authorization);
       setLoginError((prev) => ({ ...prev, isError: false }));
       navigate("/");

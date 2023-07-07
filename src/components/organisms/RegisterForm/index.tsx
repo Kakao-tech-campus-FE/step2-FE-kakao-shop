@@ -6,12 +6,12 @@ import AuthContainer from "@components/atoms/AuthContainer";
 import Button from "@components/atoms/Button";
 import ErrorMessage from "@components/atoms/ErrorMessage";
 import InputGroup from "@components/molecules/InputGroup";
-import { UseInput } from "@hooks/UseInput";
+import { useInput } from "@hooks/useInput";
 import { styled } from "styled-components";
 
 const RegisterForm = () => {
   const { inputValue, passwordError, confirmError, onChange, onBlur } =
-    UseInput({
+    useInput({
       email: "",
       name: "",
       password: "",
