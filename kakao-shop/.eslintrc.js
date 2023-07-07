@@ -61,13 +61,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/dot-notation': 'off',
-    '@typescript-eslint/naming-convention': [
-      'warn',
-      {
-        selector: 'variable',
-        format: ['camelCase', 'snake_case', 'PascalCase'],
-      },
-    ],
+    '@typescript-eslint/default-param-last': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
