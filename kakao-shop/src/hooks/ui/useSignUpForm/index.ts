@@ -33,6 +33,11 @@ const useSignUpForm = () => {
       return;
     }
 
+    if (!isUniqueEmail) {
+      setErrorMessage('이메일 중복확인이 필요합니다.');
+      return;
+    }
+
     dispatch(signUpRequest({ email, password, username: nickname, navigate }));
   };
 
