@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest } from "../../store/slices/userSlice";
+import { loginRequest, setLogin } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { emailExp, passwordExp } from "../../exp";
 
@@ -60,6 +60,7 @@ const LoginForm = () => {
               <Button
                 onClick={() => {
                   new Promise((resolve, reject) => {
+                    //프론트 엔드에서 진행하는 유효성 검사 프로미스
                     if (!emailExp(value.email))
                       reject("이메일 형식이 올바르지 않습니다.");
                     else if (!passwordExp(value.password))
@@ -67,6 +68,7 @@ const LoginForm = () => {
                     resolve(1);
                   })
                     .then(() => {
+                      //유효성 검사 완료 후 api 요청
                       dispatch(
                         loginRequest({
                           email: value.email,
@@ -74,7 +76,9 @@ const LoginForm = () => {
                         })
                       ).then((res) => {
                         if (res.payload.success) {
-                          gohome("/"); //성공 시 홈페이지 이ㅇ
+                          //로그인 성공시
+                          dispatch(setLogin(true)); //로그인이 됐다면 바로 (로그아웃)으로 버튼이 뜰 수 있게 상태 설정
+                          gohome("/"); //성공 시 홈페이지 이동
                         }
                       });
                     })
@@ -92,39 +96,3 @@ const LoginForm = () => {
   );
 };
 export default LoginForm;
-
-/*
-<Container>
-      <Title classNameName="container mx-auto">로그인</Title>
-      <InputGroup
-        id="email"
-        type="email"
-        placeholder="이메일을 입력해주세요"
-        label="이메일"
-        name="email"
-        value={value.email}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        name="password"
-        placeholder="********"
-        label="비밀번호"
-        value={value.password}
-        onChange={handleOnChange}
-      />
-      <Button
-        onClick={() => {
-          //api 로그인 요청
-          login({
-            email: value.email,
-            password: value.password,
-          });
-        }}
-      >
-        로그인
-      </Button>
-    </Container>
-  );
-  */

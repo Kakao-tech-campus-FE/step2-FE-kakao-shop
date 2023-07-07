@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   error: null,
   loginCheck: !!token,
+  logined: false,
 };
 const userSlice = createSlice({
   name: "user",
@@ -19,15 +20,20 @@ const userSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload.error;
     },
+    setLogin: (state, action) => {
+      //로그인 후 메인 페이지 로딩 시 로그인 버튼 -> 로그아웃 버튼으로 리렌더링 없이 하기 위해 만들었는데 로그아웃에 반영이 안됨..
+      console.log(action);
+      state.logined = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginRequest.pending, (state, action) => {
       state.loading = true;
     });
     builder.addCase(loginRequest.fulfilled, (state, action) => {
+      //로그인 성공 시 상태에 이메일 추가
       state.loading = false;
       state.email = action.meta.arg.email;
-      console.log(action, state);
       state.error = null;
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
@@ -45,7 +51,6 @@ const userSlice = createSlice({
     });
     builder.addCase(registerRequest.rejected, (state, action) => {
       state.loading = false;
-      console.log(action);
       state.error = action.payload.error.message;
       alert(`${state.error}`);
     });
@@ -72,10 +77,7 @@ export const registerRequest = createAsyncThunk(
   "user/registerRequest",
   async (data, { rejectWithValue }) => {
     try {
-      const { username, email, password, passwordConfirm } = data;
-      if (password !== passwordConfirm) {
-        //throw new Error(rejectWithValue());
-      }
+      const { username, email, password } = data;
       const response = await register({ username, email, password });
       alert("sign up success");
       return response.data;
@@ -85,5 +87,5 @@ export const registerRequest = createAsyncThunk(
   }
 );
 
-export const { setEmail, setError } = userSlice.actions;
+export const { setEmail, setError, setLogin } = userSlice.actions;
 export default userSlice.reducer;

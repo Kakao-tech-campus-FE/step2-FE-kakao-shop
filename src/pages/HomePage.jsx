@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Title from "../components/atoms/Title";
 import { deleteCookie } from "../store/cookies";
+import { setLogin } from "../store/slices/userSlice";
 const HomePage = () => {
   const movePage = useNavigate();
+  const loginedUser = useSelector((state) => state.user.logined);
   const loginCheck = useSelector((state) => state.user.loginCheck);
   function gohome(url) {
     movePage(url);
@@ -16,17 +18,17 @@ const HomePage = () => {
       <Title>{"환영합니다."}</Title>
       <Button
         onClick={() => {
-          console.log(loginCheck);
           let url = "/login";
-          if (loginCheck) {
-            deleteCookie("token");
+          if (loginedUser) {
+            setLogin(false); //로그아웃 상태로 만듦
+            deleteCookie("token"); //유효시간 관리하는 토큰 쿠키 삭제
             alert("logout");
             url = "/";
           }
           gohome(url);
         }}
       >
-        {loginCheck === true ? "로그아웃" : "로그인"}
+        {loginedUser ? "로그아웃" : "로그인"}
       </Button>
       <Button
         onClick={() => {
