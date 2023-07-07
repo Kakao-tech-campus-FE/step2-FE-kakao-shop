@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+    position: relative;
+    background-color: #F9F9F9;
+
+}
+
 li {
     list-style: none;
 }

@@ -1,5 +1,5 @@
 import { useState, React } from "react";
-import styles from "../css/Toast.module.css";
+import styles from "../../css/Toast.module.css";
 
 const PopUp = () => {
     return (
