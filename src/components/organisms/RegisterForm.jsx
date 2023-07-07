@@ -36,6 +36,7 @@ const RegisterForm = () => {
       <InputGroup
       id="password"
       type="password"
+      name="password"
       placeholder="***********"
       label="비밀번호"
       value={value.password}
@@ -44,6 +45,7 @@ const RegisterForm = () => {
       <InputGroup
       id="passwordConfirm"
       type="password"
+      name="passwordConfirm"
       placeholder="***********"
       label="비밀번호 확인"
       value={value.passwordConfirm}
