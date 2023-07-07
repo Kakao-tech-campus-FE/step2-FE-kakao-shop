@@ -2,7 +2,6 @@
 import { useNavigate } from "react-router-dom";
 // axios
 import { emailCheckReq, signUpReq } from "../../apis/api.js";
-
 // hook
 import useInput from "../../hooks/useInput.js";
 // components
@@ -58,10 +57,45 @@ export default function SignUpForm() {
         value={inputValue.confirmPassword}
       />
       <Button
-        onClick={(e) => {
+        onClick={() => {
+          // validation
+          if (!Object.values(inputValue).every((val) => val !== "")) {
+            alert("비어 있을 수 없습니다.");
+            return;
+          }
+          if (
+            !RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/).test(
+              inputValue.email
+            )
+          ) {
+            alert("이메일 형식으로 작성해주세요.");
+            return;
+          }
+          if (!RegExp(/^.{8,20}$/).test(inputValue.password)) {
+            alert("비밀번호는 8에서 20자 이내여야 합니다.");
+            return;
+          }
+          if (
+            !RegExp(
+              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[^ ]+$/
+            ).test(inputValue.password)
+          ) {
+            alert(
+              "비밀번호는 영문, 숫자, 특수문자가 포함되어야 하고 공백이 포함될 수 없습니다."
+            );
+            return;
+          }
+
+          if (inputValue.confirmPassword !== inputValue.password) {
+            alert("비밀번호와 비밀번호 확인이 같아야 합니다.");
+            return;
+          }
+          // email check
           emailCheckReq({ email: inputValue.email })
             .then((res) => {
               console.log(res.data);
+
+              // sign up
               signUpReq({
                 email: inputValue.email,
                 password: inputValue.password,
@@ -71,10 +105,13 @@ export default function SignUpForm() {
                   console.log(res);
                   navigate("/login");
                 })
-                .catch((err) => {});
-              navigate("/login");
+                .catch((err) => {
+                  alert(err.response.data.error.message);
+                });
             })
-            .catch((err) => {});
+            .catch((err) => {
+              alert(err.response.data.error.message);
+            });
         }}
       >
         회원가입

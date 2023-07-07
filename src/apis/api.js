@@ -41,11 +41,11 @@ export async function emailCheckReq(data) {
 }
 
 export async function signUpReq(data) {
-  const { email, name, password } = data;
+  const { email, username, password } = data;
   return await instance.post("/join", {
     email: email,
     password: password,
-    username: name,
+    username: username,
   });
 }
 

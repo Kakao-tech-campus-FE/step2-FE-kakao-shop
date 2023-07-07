@@ -16,7 +16,7 @@ export default function GNB() {
       <CartLink />
       {email ? (
         <>
-          {email}
+          {RegExp(/[^@]*/).exec(email)}
           <Link
             onClick={() => {
               dispatch(setEmail({ email: null }));
