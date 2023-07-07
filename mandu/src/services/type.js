@@ -9,5 +9,4 @@ function ErrorType({message, status}) {
     this.status = Number(status) ?? 520;
 }
 
-
 export {ResponseType, ErrorType};

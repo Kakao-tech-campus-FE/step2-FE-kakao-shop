@@ -1,7 +1,7 @@
-const Button = ({children, ...props}) => (
+const Button = ({children, className, ...props}) => (
 
     <button
-        className="bg-amber-300 w-full mt-8 p-2 rounded-md"
+        className={`bg-amber-300 w-full p-2 rounded-md ${className}`}
         {...props}
     >
         {children}

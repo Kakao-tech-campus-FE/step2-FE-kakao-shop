@@ -4,10 +4,10 @@ const passwordValidation = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+
 export const userValidation = (values) => {
 
     let errors = {};
+    //undefined는 객체에서 해당 key 값이 없는 경우니 이럴 경우 에러를 추가할 필요없으니 제외시켰다.
 
     //아이디
     if (values.id !== undefined) {
-        //undefined는 객체에서 해당 key 값이 없는 경우니 이럴 경우 에러를 추가할 필요없으니 제외시켰다.
         if (!values.id) {
             errors.id = "아이디를 입력해주세요";
         } else if (!emailValidation.test(values.id)) {
@@ -31,9 +31,7 @@ export const userValidation = (values) => {
         } else if (values.password !== values.checkPassword) {
             errors.checkPassword = "비밀번호가 일치하지 않습니다.";
         }
-
     }
-
 
     return errors;
 }

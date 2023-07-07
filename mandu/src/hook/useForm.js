@@ -4,7 +4,6 @@ const useForm = (initialValue, onSubmit, validate) => {
     //initialValue:{key,value}
     //onSubmit: function //can be null
     //validate: function(values) => errors //can be null
-
     const [values, setValues] = useState(initialValue);
     const [errors, setErrors] = useState({});
     const [submitting, setSubmitting] = useState(false);
@@ -17,16 +16,13 @@ const useForm = (initialValue, onSubmit, validate) => {
         }));
 
     }
-
-
     const handleSubmit = (e) => {
         console.log("handleSubmit")
         setSubmitting(true);
         e.preventDefault();
         setErrors(validate?.(values) ?? {});
     }
-
-
+    
     useEffect(() => {
         if (submitting) {
             if (Object.keys(errors).length === 0) {
@@ -35,7 +31,6 @@ const useForm = (initialValue, onSubmit, validate) => {
             setSubmitting(false);
         }
     }, [errors]);
-
 
     return {
         values,

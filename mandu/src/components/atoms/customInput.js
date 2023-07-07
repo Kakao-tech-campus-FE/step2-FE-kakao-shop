@@ -1,21 +1,16 @@
-const Input = ({style, ...props}) => {
+const Input = ({style, className, ...props}) => {
 
-    let className = "border-2 p-2flex-grow";
+    let InputStyle = "border-2 p-2 flex-grow";
     switch (style) {
         case "round":
-            className = "border-2 p-2 rounded flex-grow";
+            InputStyle = "border-2 p-2 rounded flex-grow";
             break;
     }
 
     return (
         <input
-            name={props.name}
-            id={props.id}
-            type={props.type}
-            placeholder={props.placeholder}
-            className={className}
-            value={props.value}
-            onChange={props.onChange}
+            className={InputStyle + " " + className}
+            {...props}
         />
     );
 }

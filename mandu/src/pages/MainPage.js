@@ -16,16 +16,16 @@ const MainPage = () => {
             dispatch(setId(cookieUserId));
         }
     }
+
     useEffect(() => {
         checkValidUser();
     }, []);
 
-
     return (
         <div className="max-w-md text-center m-auto">
-            <h1 className="m-2 p-2 text-lg ">Main Page</h1>
+            <h1 className="m-4 p-2 text-lg ">Main Page</h1>
             {userId
-                ? <div>{`유저 id : ${userId}`}</div> : (<div>
+                ? <div className="my-2">{`유저 id : ${userId}`}</div> : (<div className="space-y-8">
                     <Button onClick={() => navigate('/login')}>로그인
                         Page
                     </Button>

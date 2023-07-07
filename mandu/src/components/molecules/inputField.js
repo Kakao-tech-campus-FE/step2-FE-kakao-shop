@@ -1,8 +1,6 @@
 import Input from "../atoms/customInput";
 
 const InputField = ({id, label, type, placeholder, value, onChange, error, name, className, children}) => {
-
-
     return (
         <div className={className}>
             {label && <label className="my-0.5 block" htmlFor={id}>{label}</label>}

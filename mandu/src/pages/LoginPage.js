@@ -5,6 +5,7 @@ import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {useDispatch} from "react-redux";
 import {setId} from "../redux/userSlice";
+import Button from "../components/atoms/customButton";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -20,22 +21,22 @@ const LoginPage = () => {
                 password: value.password,
             }
         );
-        if (response.success) {
-            const expires = new Date();
-            expires.setDate(expires.getDate() + 1);
-            cookie.save('user_id', value.id, {
-                path: '/',
-                expires,
-            });
-            dispatch(setId(value.id));
-            alert("로그인이 완료되었습니다!")
-            navigate("/");
-        } else {
-            alert(response.error.message ?? "로그인에 실패했습니다!");
-
-        }
+        response.success ? onLoginSuccess(value.id) : onLoginFail(response.error.message);
     }
-
+    const onLoginSuccess = (id) => {
+        const expires = new Date();
+        expires.setDate(expires.getDate() + 1);
+        cookie.save('user_id', id, {
+            path: '/',
+            expires,
+        });
+        dispatch(setId(id));
+        alert("로그인이 완료되었습니다!")
+        navigate("/");
+    }
+    const onLoginFail = (message) => {
+        alert(message ?? "로그인에 실패했습니다!");
+    }
 
     const {
         values,
@@ -44,7 +45,6 @@ const LoginPage = () => {
         handleChange,
         handleSubmit
     } = useForm(initialValue, onSubmit,)
-
 
     return (
         <div className="min-h-screen flex justify-center">
@@ -71,11 +71,10 @@ const LoginPage = () => {
                             placeholder="비밀번호를 입력하세요"
                         />
                     </div>
-                    <button type="submit" disabled={submitting} className="bg-amber-300 w-full mt-8 p-2 rounded-md">로그인
-                    </button>
+                    <Button className="mt-8" type="submit" disabled={submitting}>
+                        로그인
+                    </Button>
                 </form>
-
-
             </div>
         </div>
 
