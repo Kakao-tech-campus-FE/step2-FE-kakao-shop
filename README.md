@@ -110,6 +110,7 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 <details>
 <summary>Step-2.-Week-1 [과제수행]</summary>
 <div>
+  
 # Step-2.-Week-1
 
 카카오 테크 캠퍼스 2단계 - FE - 1주차 클론 과제
