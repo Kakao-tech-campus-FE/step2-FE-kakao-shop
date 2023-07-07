@@ -22,7 +22,7 @@ const useForm = (initialValue, onSubmit, validate) => {
         e.preventDefault();
         setErrors(validate?.(values) ?? {});
     }
-    
+
     useEffect(() => {
         if (submitting) {
             if (Object.keys(errors).length === 0) {

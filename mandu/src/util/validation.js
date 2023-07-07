@@ -35,4 +35,3 @@ export const userValidation = (values) => {
 
     return errors;
 }
-

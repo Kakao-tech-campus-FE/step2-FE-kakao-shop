@@ -31,3 +31,5 @@ const useFetch = (api) => {
         loading,
     }
 }
+
+export default useFetch;
