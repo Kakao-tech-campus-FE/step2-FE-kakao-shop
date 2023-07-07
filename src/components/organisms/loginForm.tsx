@@ -1,5 +1,5 @@
 import {
-  FormState, UseFormGetFieldState, UseFormRegister, UseFormResetField,
+  FormState, UseFormGetFieldState, UseFormRegister, UseFormSetValue,
 } from 'react-hook-form';
 import { LoginData } from '../../types/formData';
 import Button from '../atoms/button';
@@ -14,7 +14,7 @@ interface LoginFormProps {
 
   // react-hook-form properties
   register: UseFormRegister<LoginData>;
-  resetField: UseFormResetField<LoginData>;
+  setValue: UseFormSetValue<LoginData>;
   formState: FormState<LoginData>;
   getFieldState: UseFormGetFieldState<LoginData>;
 
@@ -25,7 +25,7 @@ interface LoginFormProps {
 export default function LoginForm({
   handleLogin,
   register,
-  resetField,
+  setValue,
   formState,
   getFieldState,
   isLoading,
@@ -41,7 +41,7 @@ export default function LoginForm({
             <InputBox
               inputType="email"
               id="email"
-              resetValue={() => resetField('email')}
+              resetValue={() => setValue('email', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이메일을 입력하세요 (example@example.com)"
               isDirty={getFieldState('email', formState).isDirty}
               {...register('email', {
@@ -65,7 +65,7 @@ export default function LoginForm({
             <InputBox
               inputType="password"
               id="password"
-              resetValue={() => resetField('password')}
+              resetValue={() => setValue('password', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 입력하세요"
               isDirty={getFieldState('password', formState).isDirty}
               {...register('password', {

@@ -1,5 +1,5 @@
 import {
-  FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormTrigger,
+  FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormTrigger,
 } from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import RegisterForm from '../organisms/registerForm';
@@ -11,7 +11,7 @@ interface RegisterTemplateProps {
 
   // react-hook-form properties
   register: UseFormRegister<RegisterFormData>;
-  resetField: UseFormResetField<RegisterFormData>;
+  setValue: UseFormSetValue<RegisterFormData>;
   getValues: UseFormGetValues<RegisterFormData>;
   formState: FormState<RegisterFormData>;
   getFieldState: UseFormGetFieldState<RegisterFormData>;
@@ -31,7 +31,7 @@ interface RegisterTemplateProps {
 export default function RegisterTemplate({
   handleRegister,
   register,
-  resetField,
+  setValue,
   getValues,
   formState,
   getFieldState,
@@ -50,7 +50,7 @@ export default function RegisterTemplate({
         <RegisterForm
           handleRegister={handleRegister}
           register={register}
-          resetField={resetField}
+          setValue={setValue}
           getValues={getValues}
           formState={formState}
           getFieldState={getFieldState}

@@ -1,5 +1,5 @@
 import {
-  FormState, UseFormGetFieldState, UseFormRegister, UseFormResetField,
+  FormState, UseFormGetFieldState, UseFormRegister, UseFormSetValue,
 } from 'react-hook-form';
 import LinkButton from '../atoms/linkButton';
 import LoginForm from '../organisms/loginForm';
@@ -11,7 +11,7 @@ interface LoginTemplateProps {
 
   // react-hook-form properties
   register: UseFormRegister<LoginData>;
-  resetField: UseFormResetField<LoginData>;
+  setValue: UseFormSetValue<LoginData>;
   formState: FormState<LoginData>;
   getFieldState: UseFormGetFieldState<LoginData>;
 
@@ -25,7 +25,7 @@ interface LoginTemplateProps {
 export default function LoginTemplate({
   handleLogin,
   register,
-  resetField,
+  setValue,
   formState,
   getFieldState,
   isLoading,
@@ -40,7 +40,7 @@ export default function LoginTemplate({
         <LoginForm
           handleLogin={handleLogin}
           register={register}
-          resetField={resetField}
+          setValue={setValue}
           formState={formState}
           getFieldState={getFieldState}
           isLoading={isLoading}

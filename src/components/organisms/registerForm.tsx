@@ -1,5 +1,5 @@
 import {
-  FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormResetField, UseFormTrigger,
+  FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormTrigger,
 } from 'react-hook-form';
 import Button from '../atoms/button';
 import Label from '../atoms/label';
@@ -17,7 +17,7 @@ interface RegisterFormProps {
 
   // react-hook-form properties
   register: UseFormRegister<RegisterFormData>;
-  resetField: UseFormResetField<RegisterFormData>;
+  setValue: UseFormSetValue<RegisterFormData>;
   getValues: UseFormGetValues<RegisterFormData>;
   formState: FormState<RegisterFormData>;
   getFieldState: UseFormGetFieldState<RegisterFormData>;
@@ -34,7 +34,7 @@ interface RegisterFormProps {
 export default function RegisterForm({
   handleRegister,
   register,
-  resetField,
+  setValue,
   getValues,
   formState,
   getFieldState,
@@ -54,7 +54,7 @@ export default function RegisterForm({
             <InputBox
               inputType="email"
               id="email"
-              resetValue={() => resetField('email')}
+              resetValue={() => setValue('email', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이메일을 입력하세요 (example@example.com)"
               isDirty={getFieldState('email', formState).isDirty}
               {...register('email', {
@@ -90,7 +90,7 @@ export default function RegisterForm({
             <InputBox
               inputType="text"
               id="username"
-              resetValue={() => resetField('username')}
+              resetValue={() => setValue('username', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이름을 입력하세요"
               isDirty={getFieldState('username', formState).isDirty}
               {...register('username', {
@@ -114,7 +114,7 @@ export default function RegisterForm({
             <InputBox
               inputType="password"
               id="password"
-              resetValue={() => resetField('password')}
+              resetValue={() => setValue('password', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 입력하세요"
               isDirty={getFieldState('password', formState).isDirty}
               {...register('password', {
@@ -145,7 +145,7 @@ export default function RegisterForm({
             <InputBox
               inputType="password"
               id="confirm-password"
-              resetValue={() => resetField('confirmPassword')}
+              resetValue={() => setValue('confirmPassword', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 다시 입력하세요"
               isDirty={getFieldState('confirmPassword', formState).isDirty}
               {...register('confirmPassword', {
