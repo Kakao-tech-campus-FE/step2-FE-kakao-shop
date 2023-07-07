@@ -43,7 +43,3 @@ export const login = (data) => {
     password,
   });
 };
-
-export const fetchProducts = (page) => {
-  return instance.get("/products" + "?page=" + "page");
-};

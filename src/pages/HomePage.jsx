@@ -1,10 +1,9 @@
 import Button from "../components/atoms/Button";
 import Container from "../components/atoms/Container";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../store/slices/userSlice";
+import { useSelector } from "react-redux";
 import Title from "../components/atoms/Title";
-import { deleteCookie, setCookie } from "../store/cookies";
+import { deleteCookie } from "../store/cookies";
 const HomePage = () => {
   const movePage = useNavigate();
   const loginCheck = useSelector((state) => state.user.loginCheck);

@@ -6,6 +6,7 @@ import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { registerRequest } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { emailExp, nameExp, passwordExp } from "../../exp";
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -20,7 +21,6 @@ const RegisterForm = () => {
   }
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user.error);
-  error = null;
   return (
     <Container>
       <Title className="text-3xl font-bold">회원가입</Title>
@@ -63,16 +63,32 @@ const RegisterForm = () => {
       />
       <Button
         onClick={() => {
-          dispatch(
-            registerRequest({
-              email: value.email,
-              username: value.username,
-              passwordConfirm: value.passwordConfirm,
-              password: value.password,
+          new Promise((resolve, reject) => {
+            if (!nameExp(value.username))
+              reject("이름은 비어있을 수 없습니다.");
+            else if (!emailExp(value.email))
+              reject("이메일 형식이 올바르지 않습니다.");
+            else if (value.password !== value.passwordConfirm)
+              reject("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+            else if (!passwordExp(value.password))
+              reject("비밀번호는 8~20글자로 특수문자 하나를 포함합니다.");
+            resolve(1);
+          })
+            .then(() => {
+              dispatch(
+                registerRequest({
+                  email: value.email,
+                  username: value.username,
+                  passwordConfirm: value.passwordConfirm,
+                  password: value.password,
+                })
+              ).then((res) => {
+                if (res.payload.success) gohome("/"); //성공 시 홈페이지 이ㅇ
+              });
             })
-          ).then((res) => {
-            if (res.payload.success) gohome("/"); //성공 시 홈페이지 이ㅇ
-          });
+            .catch((err) => {
+              alert(err);
+            });
         }}
       >
         Sign Up

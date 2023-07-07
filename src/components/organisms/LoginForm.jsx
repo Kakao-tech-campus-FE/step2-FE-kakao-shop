@@ -6,6 +6,7 @@ import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { emailExp, passwordExp } from "../../exp";
 
 const LoginForm = () => {
   const navigator = useNavigate();
@@ -58,16 +59,26 @@ const LoginForm = () => {
             <Container className="mt-8 flex justify-center text-lg text-black">
               <Button
                 onClick={() => {
-                  dispatch(
-                    loginRequest({
-                      email: value.email,
-                      password: value.password,
+                  new Promise((resolve, reject) => {
+                    if (!emailExp(value.email))
+                      reject("이메일 형식이 올바르지 않습니다.");
+                    else if (!passwordExp(value.password))
+                      reject("비밀번호 형식이 올바르지 않습니다.");
+                    resolve(1);
+                  })
+                    .then(() => {
+                      dispatch(
+                        loginRequest({
+                          email: value.email,
+                          password: value.password,
+                        })
+                      ).then((res) => {
+                        if (res.payload.success) {
+                          gohome("/"); //성공 시 홈페이지 이ㅇ
+                        }
+                      });
                     })
-                  ).then((res) => {
-                    if (res.payload.success) {
-                      gohome("/"); //성공 시 홈페이지 이ㅇ
-                    }
-                  });
+                    .catch((error) => alert(error));
                 }}
                 className="rounded-3xl bg-yellow-400 bg-yellow-50 px-10 py-2 text-white shadow-xl backdrop-yellow-md transition-colors duration-300 hover:bg-yellow-600"
               >
