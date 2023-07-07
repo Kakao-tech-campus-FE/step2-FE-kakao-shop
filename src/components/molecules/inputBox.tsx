@@ -44,7 +44,7 @@ const InputBox = forwardRef<HTMLInputElement, InputBoxProps>((
     />
     <div className="my-auto flex">
       <XButton
-        handleClick={resetValue}
+        onClick={resetValue}
         show={isDirty}
       />
     </div>

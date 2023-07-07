@@ -47,14 +47,14 @@ export default function NavigationBar() {
             !
           </div>
           <div>
-            <Button handleClick={handleLogout}>
+            <Button onClick={handleLogout}>
               로그아웃
             </Button>
           </div>
         </>
       ) : (
         <div>
-          <Button handleClick={() => {
+          <Button onClick={() => {
             navigator('/login');
           }}
           >

@@ -1,14 +1,14 @@
 interface ButtonProps {
   children: React.ReactNode;
   isSubmitType?: boolean;
-  handleClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 }
 
 export default function Button({
   children,
   isSubmitType = false,
-  handleClick,
+  onClick,
   disabled = false,
 }: ButtonProps) {
   return (
@@ -17,7 +17,7 @@ export default function Button({
         hover:bg-amber-300
         disabled:bg-stone-300"
       type={isSubmitType ? 'submit' : 'button'}
-      onClick={isSubmitType ? undefined : handleClick}
+      onClick={isSubmitType ? undefined : onClick}
       disabled={disabled}
     >
       {children}
