@@ -3,13 +3,19 @@ import InputGroup from '@components/molecules/InputGroup';
 import React, { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
+import { login } from '@store/slices/userSlice';
+import { RootState } from 'src/store';
+import { useDispatch } from 'react-redux';
 import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
+import { useNavigate } from 'react-router-dom';
 
 interface RegisterFromProps {
   onSubmit: (data: { email: string; password: string; username: string }) => Promise<AxiosResponse>;
 }
 
 const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [usernameHT, setUsernameHT] = useState('');
   const [emailHT, setEmailHT] = useState('');
   const [passwordHT, setPasswordHT] = useState('');
@@ -36,6 +42,20 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
     setPasswordConfirmHT('');
 
     return true;
+  };
+
+  const registerReq = () => {
+    if (inputInfo.username && validationCheck())
+      onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
+        .then((res) => {
+          dispatch(login({ email: inputInfo.email }));
+          localStorage.clear();
+          localStorage.setItem('token', res.headers.authorization);
+          navigate('/');
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   useEffect(() => {
@@ -75,8 +95,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
       <div className="">
         <FilledButton
           onClick={() => {
-            if (inputInfo.username && validationCheck())
-              onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username });
+            registerReq();
           }}
         >
           제출
