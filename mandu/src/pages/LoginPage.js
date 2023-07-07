@@ -1,20 +1,49 @@
-import InputField from "../components/atoms/inputField";
+import InputField from "../components/molecules/inputField";
 import useForm from "../hook/useForm";
+import {signIn} from "../services/userApi";
+import {useNavigate} from "react-router-dom";
+import cookie from "react-cookies";
 
 const LoginPage = () => {
+    const navigate = useNavigate();
+
     const initialValue = {
         id: "",
         password: "",
     }
+    const onSubmit = async (value) => {
+
+        const response = await signIn({
+                email: value.id,
+                password: value.password,
+            }
+        );
+
+        alert(response.success ? "로그인이 완료되었습니다!" : response.error.message);
+        const token = response.headers['authorization']
+        if (token) {
+            const expires = new Date();
+            expires.setDate(expires.getDate() + 1);
+            cookie.save('access_token', token, {
+                path: '/',
+                expires,
+            });
+            cookie.save('user_id', value.id, {
+                path: '/',
+                expires,
+            });
+        }
+        navigate("/");
+    }
+
+
     const {
         values,
         errors,
         submitting,
         handleChange,
         handleSubmit
-    } = useForm(initialValue, (value) => {
-        console.log("ㅋㅋ", value)
-    },)
+    } = useForm(initialValue, onSubmit,)
 
 
     return (
