@@ -68,6 +68,9 @@ const LoginForm = () => {
   const [isFocus, setIsFocus] = useState([false, false]);
   return (
     <Container className="border-neutral-300 border px-16 py-14 w-[560px] min-w-fit h-full my-10 mx-auto">
+      <div className="text-center font-normal text-3xl mx-auto my-10">
+        로그인
+      </div>
       <InputGroup
         id={"email"}
         type={"email"}

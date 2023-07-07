@@ -79,6 +79,11 @@ const RegisterForm = () => {
       <div className="text-center font-normal text-3xl mx-auto my-10">
         가입을 시작합니다!
       </div>
+      <div className="text-center font-normal text-lg text-gray-400 mx-auto my-10">
+        <span>카카오계정 하나로</span>
+        <br />
+        <span>다양한 서비스를 편리하게 이용해 보세요.</span>
+      </div>
       <InputGroup
         id={"username"}
         type={"text"}
