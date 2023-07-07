@@ -2,6 +2,7 @@ import Button from "../atoms/Button";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
+import { useDispatch, useSelector } from "react-redux";
 
 const GnbOrganism = styled.div`
   overflow: hidden;
@@ -15,8 +16,20 @@ const GnbOrganism = styled.div`
     float: right;
   }
 `;
-const Gnb = () => {
+
+const Gnb = ({ children }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const state = useSelector((state) => state);
+
+  const handleLogout = () => {
+    state === "false"
+      ? navigate(routes.login)
+      : dispatch({ type: "changeState" }) &&
+        window.localStorage.removeItem("userInfo") &&
+        window.location.replace("/");
+  };
+
   return (
     <>
       <GnbOrganism>
@@ -35,13 +48,13 @@ const Gnb = () => {
         <Button
           className="login"
           type="click"
-          onClick={() => navigate(routes.login)}
+          onClick={handleLogout}
           styles={{
             width: "5rem",
             margin: "1rem",
           }}
         >
-          로그인
+          {children}
         </Button>
       </GnbOrganism>
     </>
