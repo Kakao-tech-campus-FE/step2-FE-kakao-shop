@@ -17,3 +17,5 @@ export const nameExp = (name) => {
   if (name.length !== 0) return true;
   return false;
 };
+
+//이메일. 이름. 비밀번호 유효성 검사 정규 표현식
