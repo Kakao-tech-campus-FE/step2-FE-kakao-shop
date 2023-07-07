@@ -6,21 +6,21 @@ import { removeLocalStorageItem } from "../../utils/localStorage";
 
 const MainShop = () => {
     const dispatch = useDispatch();
-    const email = useSelector((state) => state.user.email);
+    const user = useSelector((state) => state.user.user);
 
     const onClick = () => {
-        if(email) {
+        if(user) {
             dispatch(setEmail({
-                email: null,
+                user: null,
             }));
-            removeLocalStorageItem("email");
+            removeLocalStorageItem("user");
             window.location.reload();
         };
     };
 
     return(
         <>
-            <Header email={email} onClick={onClick}/>
+            <Header user={user} onClick={onClick}/>
         </>
     );
 };
