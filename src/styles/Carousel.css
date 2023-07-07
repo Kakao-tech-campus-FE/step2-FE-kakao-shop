@@ -1,0 +1,22 @@
+.carousel {
+  display: inline-flex;
+  overflow: hidden;
+  width: 500px;
+}
+
+img {
+  width: 500px;
+  transition: .5s;
+}
+
+.dots {
+  display: inline-flex;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: gray;
+}
