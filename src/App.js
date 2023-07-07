@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />}> </Route>
         <Route path="/signup" element={<RegisterPage />}> </Route>
-        <Route path="/main" element={<MainPage />}> </Route>
+        <Route path="/" element={<MainPage />}> </Route>
         {/*공통 레이아웃*/}
         {/* <Route path="/" element={<HomePage />}> </Route> */}
       </Routes>
