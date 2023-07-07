@@ -13,6 +13,10 @@ const EMAIL_MESSAGE = "이메일을 확인해주세요.";
 const PASSWORD_MESSAGE = "비밀번호를 확인해주세요.";
 const PASSWORD_CONFIRM_MESSAGE = "비밀번호가 일치하지 않습니다.";
 
+/**
+ * 회원가입 폼 컴포넌트 생성
+ * @returns 회원가입 폼 컴포넌트
+ */
 const RegisterForm = () => {
     const { value, handleOnChange } = useInput({
         username: "",

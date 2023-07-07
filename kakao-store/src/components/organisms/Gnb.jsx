@@ -4,13 +4,19 @@ import Container from "../atoms/Container";
 import { NavLink } from "react-router-dom";
 import Button from "../atoms/Button";
 
+/**
+ * GNB 컴포넌트 생성
+ * @returns GNB 컴포넌트
+ */
 const Gnb = () => {
+    // 현재 로그인 상태 관리
     const [loginState, setLoginState] = useState(false);
     
     useEffect(() => {
         const currentTime = new Date().getTime();
         const previousTime = localStorage.getItem('Time');
 
+        // 시간 비교 : 1일
         if(currentTime - previousTime < 1000 * 60 * 60 * 24) {
             setLoginState(true);
         }

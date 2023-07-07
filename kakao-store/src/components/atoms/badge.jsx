@@ -1,3 +1,9 @@
+/**
+ * 뱃지 컴포넌트 생성
+ * @param {string} style - 색(white, red, ...)
+ * @param {React.ReactNode} children
+ * @returns 뱃지 컴포넌트
+ */
 const Badge = ({ style, children }) => {
 	const styleObj = {
 		white: "bg-gray-50 text-gray-600 ring-gray-500/10",
