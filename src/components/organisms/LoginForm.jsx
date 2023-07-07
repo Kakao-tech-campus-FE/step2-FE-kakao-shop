@@ -7,7 +7,7 @@ import useLoginValidation from "../../hooks/useLoginValidation";
 import useInput from "../../hooks/useInput";
 import { login } from "../../apis/auth";
 import { useDispatch } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { setUser } from "../../store/slices/userSlice";
 import { useCookies } from "react-cookie";
 
 const initialState = { email: "", password: "" };
@@ -20,7 +20,7 @@ export default function LoginForm() {
   const dispatch = useDispatch();
   const [form, handleChange] = useInput(initialState);
   const { error, setError, checkRegex } = useLoginValidation({ form });
-  const [, setCookie] = useCookies(["user"]);
+  const [, setCookie] = useCookies(["accessToken"]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,14 +32,16 @@ export default function LoginForm() {
 
     if (!errorResult) {
       try {
-        await login({
+        const response = await login({
           email: form.email,
           password: form.password,
         });
-        dispatch(setEmail({ email: form.email }));
+        const accessToken = response.headers["authorization"];
+        dispatch(setUser({ user: true }));
+
         const expires = new Date();
-        expires.setMinutes(expires.getMinutes() + 1);
-        setCookie("user", form.email, { expires });
+        expires.setDate(expires.getDate() + 1);
+        setCookie("accessToken", accessToken, { expires });
         navigate("/");
       } catch (error) {
         setError("잘못된 요청입니다.");

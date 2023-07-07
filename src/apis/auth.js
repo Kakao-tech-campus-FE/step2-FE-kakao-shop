@@ -14,7 +14,8 @@ const instance = axios.create({
 //     return response;
 //   },
 //   (error) => {
-//     console.log(error);
+//     console.log(error.response.data.error.message);
+//     return Promise.reject(error.response.data.error.message);
 //   }
 // );
 

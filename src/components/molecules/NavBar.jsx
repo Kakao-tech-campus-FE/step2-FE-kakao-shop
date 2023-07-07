@@ -4,27 +4,28 @@ import Button from "../atoms/Button";
 import LinkedIcon from "./LinkedIcon";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { setUser } from "../../store/slices/userSlice";
 import { useCookies } from "react-cookie";
 
 export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.email);
+  const user = useSelector((state) => state.user.user);
   const [cookies, , removeCookie] = useCookies(["user"]);
 
   const handleLoginClick = () => {
     if (!user) {
       navigate("/login");
     } else {
-      removeCookie("user");
-      dispatch(setEmail({ email: null }));
+      removeCookie("accessToken");
+      dispatch(setUser({ user: false }));
     }
   };
 
   useEffect(() => {
-    dispatch(setEmail({ email: cookies.user }));
-  }, [cookies.user, dispatch]);
+    const user = !!cookies.accessToken;
+    dispatch(setUser({ user }));
+  }, [cookies.accessToken, dispatch]);
 
   return (
     <nav className="flex items-center">
