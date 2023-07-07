@@ -7,9 +7,14 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register, duplicate } from "../../services/api";
 
+import "../../styles/organisms/RegisterForm.css";
+
 const RegisterForm = () => {
   const navigate = useNavigate();
+
+  // validation errors value
   const [errors, setError] = useState({});
+
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
@@ -17,6 +22,7 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
+  //Duplicate check handle
   const handleDuplicate = async () => {
     const email = value.email;
     const response = await duplicate(email);
@@ -24,7 +30,7 @@ const RegisterForm = () => {
     if (response.request.status === 400) {
       setError((prevState) => ({
         ...prevState,
-        duplicate: "동일한 이메일이 존재합니다.",
+        duplicate: "동일한 이메일이 존재하거나 올바르지 않은 입력입니다",
       }));
     }
     if (response.request.status === 200) {
@@ -35,6 +41,7 @@ const RegisterForm = () => {
     }
   };
 
+  //Register request handle
   const handleRegister = async (data) => {
     try {
       const { email, password, username } = data;
@@ -46,6 +53,7 @@ const RegisterForm = () => {
     }
   };
 
+  //Email validation check
   const validateEmail = () => {
     const emailRange = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
     if (!emailRange.test(value.email)) {
@@ -63,6 +71,7 @@ const RegisterForm = () => {
     return true;
   };
 
+  //Password validation check
   const validatePassword = () => {
     const passwordRange =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
@@ -82,6 +91,7 @@ const RegisterForm = () => {
     return true;
   };
 
+  // check Password = Passwordconfirm
   const validateConfirm = () => {
     if (value.password !== value.passwordConfirm) {
       setError((prevState) => ({
@@ -98,6 +108,7 @@ const RegisterForm = () => {
     return true;
   };
 
+  // meet all requirements then send register request
   const handleOnSubmit = () => {
     const isValidEmail = validateEmail();
     const isValidPassword = validatePassword();
@@ -136,8 +147,8 @@ const RegisterForm = () => {
         onChange={handleOnChange}
       />
       <Button onClick={handleDuplicate}>중복체크</Button>
-      {errors.duplicate && <div>{errors.duplicate}</div>}
-      {errors.email && <div>{errors.email}</div>}
+      {errors.duplicate && <div className="error">{errors.duplicate}</div>}
+      {errors.email && <div className="error">{errors.email}</div>}
 
       <InputGroup
         id="password"
@@ -148,7 +159,7 @@ const RegisterForm = () => {
         value={value.password}
         onChange={handleOnChange}
       />
-      {errors.password && <div>{errors.password}</div>}
+      {errors.password && <div className="error">{errors.password}</div>}
 
       <InputGroup
         id="passwordConfirm"
@@ -159,7 +170,9 @@ const RegisterForm = () => {
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
-      {errors.passwordConfirm && <div>{errors.passwordConfirm}</div>}
+      {errors.passwordConfirm && (
+        <div className="error">{errors.passwordConfirm}</div>
+      )}
       <Button onClick={handleOnSubmit}>회원가입</Button>
     </Container>
   );

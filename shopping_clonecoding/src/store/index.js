@@ -1,7 +1,7 @@
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
 
-
+//make redux store, parameter reducer object : userReducer
 const store = configureStore({
   reducer : {
     // User reducer : email

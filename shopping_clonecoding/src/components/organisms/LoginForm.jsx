@@ -9,28 +9,34 @@ import { useDispatch } from "react-redux";
 import { login } from "../../services/api";
 import { setUser } from "../../store/slices/userSlice";
 
+import "../../styles/organisms/LoginForm.css";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // use customhook : (useInput)
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
+
+  // login error value
   const [error, setError] = useState("");
 
+  // handle for login
   const handleLogin = async (data) => {
     const { email, password } = data;
     try {
-      const response = await login({ email, password });
+      const response = await login({ email, password }); //use apis and recieve response
       const user = response.data;
-      const expirationTime = new Date().getTime() + 1 * 30 * 1000;
+      const expirationTime = new Date().getTime() + 60 * 60 * 1000; //expiration time setting, 60min
       user.expirationTime = expirationTime;
       user.email = value.email;
 
-      dispatch(setUser(user));
-      localStorage.setItem("user", JSON.stringify(user));
-      navigate("/");
+      dispatch(setUser(user)); // redux, exec setUser , store expirationTime, email
+      localStorage.setItem("user", JSON.stringify(user)); // save at localStorage
+      navigate("/"); // login success then go to home
     } catch (error) {
       setError("로그인에 실패했습니다.");
     }

@@ -1,12 +1,13 @@
+//custom hook
 import {useState} from "react"
 const useInput = (initialValue) =>{
 
   const [value, setValue] = useState(initialValue);
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e) => { // onChange occur then extract name and value
 
-    const {name, value} = e.target;
-    setValue((prev) =>({ ...prev, [name] : value}));
+    const {name, value} = e.target; // 
+    setValue((prev) =>({ ...prev, [name] : value}));  //and update value
 
   };
 
