@@ -26,7 +26,7 @@ export default function RegisterPage() {
 
   const [isEmailDuplicated, setIsEmailDuplicated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [resultMsg, setResultMsg] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const navigator = useNavigate();
 
@@ -34,14 +34,12 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     requestUserRegistration(getValues())
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         alert('회원가입이 정상적으로 완료되었습니다.');
         navigator('/');
       })
-      .catch((error) => {
-        console.log(error);
-        setResultMsg('회원가입에 실패하였습니다.');
+      .catch(() => {
+        setErrorMessage('회원가입에 실패하였습니다.');
       });
 
     setIsLoading(false);
@@ -59,7 +57,7 @@ export default function RegisterPage() {
       isEmailDuplicated={isEmailDuplicated}
       setIsEmailDuplicated={setIsEmailDuplicated}
       isLoading={isLoading}
-      resultMsg={resultMsg}
+      errorMessage={errorMessage}
     />
   );
 }

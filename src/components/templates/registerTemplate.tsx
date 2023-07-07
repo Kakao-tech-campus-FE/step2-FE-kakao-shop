@@ -25,7 +25,7 @@ interface RegisterTemplateProps {
   isLoading: boolean;
 
   // Result message
-  resultMsg: string;
+  errorMessage: string;
 }
 
 export default function RegisterTemplate({
@@ -39,7 +39,7 @@ export default function RegisterTemplate({
   isEmailDuplicated,
   setIsEmailDuplicated,
   isLoading,
-  resultMsg,
+  errorMessage,
 }: RegisterTemplateProps) {
   return (
     <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
@@ -59,9 +59,9 @@ export default function RegisterTemplate({
           setIsEmailDuplicated={setIsEmailDuplicated}
           isLoading={isLoading}
         />
-        {resultMsg !== '' ? (
+        {errorMessage !== '' ? (
           <div className="my-4 text-center text-sm text-red-500">
-            {resultMsg}
+            {errorMessage}
           </div>
         ) : null}
       </div>
