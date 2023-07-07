@@ -29,6 +29,11 @@ const LoginForm = () => {
       dispatch(setEmail({
         user: value.email,
       }));
+      const item = {
+        value : res.headers.authorization,
+        expiration : Date.now() + 6000
+      }
+      localStorage.setItem('user', JSON.stringify(item));
       alert('로그인 성공!');
       navigate("/");
     })
