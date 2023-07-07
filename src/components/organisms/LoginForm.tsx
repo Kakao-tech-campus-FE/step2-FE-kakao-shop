@@ -6,7 +6,6 @@ import { checkEmail, checkPassword } from '@utils/validationUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { setEmail } from '@store/slices/userSlice';
 import { RootState } from 'src/store';
-import { useCookies } from 'react-cookie';
 import InputGroup from '../molecules/InputGroup';
 
 interface LoginFromProps {
@@ -18,7 +17,6 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
   const email = useSelector((state: RootState) => state.user.email);
   const [emailHT, setEmailHT] = useState('');
   const [passwordHT, setPasswordHT] = useState('');
-  const [cookies, setCookies] = useCookies(['id']);
   const { value: inputInfo, handleOnChange } = useInput({
     initialValue: {
       email: '',
@@ -29,7 +27,6 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
     onSubmit({ email: inputInfo.email, password: inputInfo.password })
       .then((res) => {
         console.log(res);
-        setCookies('id', res.headers.authorization);
         dispatch(setEmail({ email: inputInfo.email }));
       })
       .catch((err) => {
