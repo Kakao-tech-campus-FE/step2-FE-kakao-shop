@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 import { checkEmail, checkPassword } from '@utils/validationUtils';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEmail } from '@store/slices/userSlice';
+import { RootState } from 'src/store';
 import InputGroup from '../molecules/InputGroup';
 
 interface LoginFromProps {
@@ -10,6 +13,8 @@ interface LoginFromProps {
 }
 
 const LoginForm = ({ onSubmit }: LoginFromProps) => {
+  const dispatch = useDispatch();
+  const email = useSelector((state: RootState) => state.user.email);
   const [emailHT, setEmailHT] = useState('');
   const [passwordHT, setPasswordHT] = useState('');
   const { value: inputInfo, handleOnChange } = useInput({
@@ -18,6 +23,16 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
       password: '',
     },
   });
+  const loginReq = () => {
+    onSubmit({ email: inputInfo.email, password: inputInfo.password })
+      .then((res) => {
+        console.log(res);
+        dispatch(setEmail({ email: inputInfo.email }));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const validationCheck = () => {
     setEmailHT(checkEmail(inputInfo.email));
@@ -30,6 +45,7 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
 
   return (
     <div className="flex flex-col space-y-2">
+      <span>{email}</span>
       <InputGroup
         inputName="email"
         labelName="이메일"
@@ -47,7 +63,7 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
       />
       <FilledButton
         onClick={() => {
-          onSubmit({ email: inputInfo.email, password: inputInfo.password });
+          loginReq();
         }}
       >
         로그인
