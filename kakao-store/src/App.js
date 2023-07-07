@@ -44,7 +44,7 @@ function App() {
           <div className="flex justify-center">
             <Link to="/" className="mr-4">Main</Link>
             {isLoggedIn ? null : <Link to="/login" className="mr-4">Login</Link>}
-            <Link to='/signup'>Sign up</Link>
+            <Link to='/signup'>Sign up!</Link>
           </div>
         </Label>
 

@@ -15,7 +15,7 @@ const InputGroup = ({
 }) => {
   return (
     <Box className={className}>
-      <Label htmlfor={id}>{label}</Label>
+      <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
         type={type}

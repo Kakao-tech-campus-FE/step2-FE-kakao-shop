@@ -22,6 +22,7 @@ const LoginForm = () => {
   const email = useSelector((state) => state.user.email); // user 안에 email에 접근
   const password = useSelector((state) => state.user.password); // user 안에 password에 접근
   const timeoutId = useSelector((state) => state.user.clearTimeoutId); // user 안에 clearTimeoutId에 접근
+  const time = 20 * 1000;
 
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const LoginForm = () => {
     if (timeoutId) {
       const timeout = setTimeout(() => {
         dispatch(logout());
-      }, 1000); // Set timeout for 10 minutes (600000 milliseconds)
+      }, time);
 
       return () => {
         clearTimeout(timeout);
@@ -63,7 +64,7 @@ const LoginForm = () => {
         }
         const newTimeoutId = setTimeout(() => {
           dispatch(logout());
-        }, 1000);
+        }, time);
         dispatch(setTimeoutId(newTimeoutId));
       })
       .catch((err) => {
