@@ -1,5 +1,5 @@
 import { loginApi } from "../apis/api";
-export const login = ({email, password}) => async dispatch => {
+export const login = ({email, password}) => async (dispatch, getState) => {
   // 로그인 API 호출 등 로그인 처리 로직 작성
 	try {
     console.log(email);
