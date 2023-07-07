@@ -4,6 +4,11 @@ import { RootState } from "@/store";
 import { setEmail, setError, setPassword, setWarning } from "@/store/signSlice";
 import { signIn } from "@/store/signAction";
 import SignInForm from "@/components/Form/SignInForm.component";
+import {
+  EMAIL_ERROR,
+  PASSWORD_ERROR,
+  FORM_ERROR,
+} from "@/assets/error.ko.json";
 
 const SignInPage = () => {
   const {
@@ -23,13 +28,13 @@ const SignInPage = () => {
     };
 
     if (!isEmail(email)) {
-      dispatch(setError("이메일 형식이 올바르지 않습니다."));
+      dispatch(setError(EMAIL_ERROR));
       dispatch(setWarning({ ...resetWarning, email: true }));
       return;
     }
 
     if (!canPassword(password)) {
-      dispatch(setError("비밀번호는 8자 이상 20자 이하입니다."));
+      dispatch(setError(PASSWORD_ERROR));
       dispatch(setWarning({ ...resetWarning, password: true }));
       return;
     }
@@ -68,9 +73,7 @@ const SignInPage = () => {
         onSubmit={onSubmit}
       />
       {isWarning.response && (
-        <p className="text-red-500 text-sm my-2">
-          {error ?? "잘못된 형식입니다."}
-        </p>
+        <p className="text-red-500 text-sm my-2">{error ?? FORM_ERROR}</p>
       )}
     </div>
   );

@@ -4,6 +4,7 @@ import { RootState } from "@/store";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { localStorage } from "@/functions/localstorage";
 import { setSignOut } from "@/store/signSlice";
+import { SIGN_IN, SIGN_OUT } from "@/assets/nav.ko.json";
 
 const NavbarSignItem: FC<Omit<NavbarItemProps, "children" | "link">> = ({
   className,
@@ -16,7 +17,7 @@ const NavbarSignItem: FC<Omit<NavbarItemProps, "children" | "link">> = ({
     dispatch(setSignOut());
   };
 
-  const signString = isSignIn ? "로그아웃" : "로그인";
+  const signString = isSignIn ? SIGN_OUT : SIGN_IN;
   const linkString = isSignIn ? "SIGN_OUT" : "SIGN_IN";
 
   return (

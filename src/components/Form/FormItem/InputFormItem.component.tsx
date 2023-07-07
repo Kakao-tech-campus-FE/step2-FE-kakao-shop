@@ -1,4 +1,5 @@
 import { FC, useId } from "react";
+import { FORM_ERROR } from "@/assets/error.ko.json";
 
 interface InputFormItemProps {
   label?: string;
@@ -58,7 +59,7 @@ const InputFormItem: FC<InputFormItemProps> = ({
       </label>
       {isWrong && (
         <p className="text-red-500 text-sm mb-2 absolute right-0 translate-y-[-100%]">
-          {wrongMessage ?? "잘못된 형식입니다."}
+          {wrongMessage ?? FORM_ERROR}
         </p>
       )}
       <input
