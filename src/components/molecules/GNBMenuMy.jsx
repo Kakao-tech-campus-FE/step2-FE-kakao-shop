@@ -4,7 +4,6 @@ import Button from "../atoms/Button";
 import { useSelector } from "react-redux";
 import logOut from "../../services/logout";
 
-// 로그인 상태 시 로그아웃 버튼이 활성화 되도록 수정
 const GNBMenuMy = ({ className = "" }) => {
   const userInfo = useSelector((state) => state.user);
   // console.log("userinfo: ", userInfo);
