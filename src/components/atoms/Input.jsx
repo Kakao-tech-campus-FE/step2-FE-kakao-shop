@@ -7,15 +7,14 @@ const InputStyle = styled.input`
 
 `
 
-  const Input = ( { id, className, value, type, placeholder, onChange } ) => {
+  const Input = ( props ) => {
     return (
         <InputStyle 
-          id={id}
-          className={className} 
-          value={value} 
-          type={type} 
-          placeholder={placeholder}
-          onChange={onChange}
+          id={props.id}
+          value={props.value} 
+          type={props.type} 
+          placeholder={props.placeholder}
+          onChange={props.onChange}
           />
     );
 };

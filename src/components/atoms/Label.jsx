@@ -5,12 +5,12 @@ const LabelStyle = styled.label`
     min-width: 120px;
 `
 
-  const Label = ( { htmlFor, className, children } ) => {
+  const Label = ( props ) => {
     return (
         <LabelStyle 
-            htmlFor={htmlFor}
-            className={className}>
-        {children}
+            htmlFor={props.htmlFor}
+            className={props.className}>
+        {props.children}
         </LabelStyle>
     );
 };

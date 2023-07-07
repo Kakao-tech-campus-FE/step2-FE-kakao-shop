@@ -12,9 +12,9 @@ const Div = styled.div`
     padding: 10px 0;
 `
 
-const RegiContainer = ( {id, children}) => {
+const RegiContainer = (props) => {
     return (
-        <Div id={id}>{children}</Div>
+        <Div id={props.id}>{props.children}</Div>
     );
 };
 

@@ -8,9 +8,9 @@ const ContainerStyle = styled.div`
     padding: 10px 0;
 `
 
-const ContentContainer = ( {children}) => {
+const ContentContainer = (props) => {
     return (
-        <ContainerStyle>{children}</ContainerStyle>
+        <ContainerStyle>{props.children}</ContainerStyle>
     );
 };
 

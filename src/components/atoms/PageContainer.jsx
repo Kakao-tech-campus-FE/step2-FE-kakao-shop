@@ -4,9 +4,9 @@ import styled from 'styled-components';
 const ContainerStyle = styled.div`
 `
 
-const PageContainer = ( {children}) => {
+const PageContainer = (props) => {
     return (
-        <ContainerStyle>{children}</ContainerStyle>
+        <ContainerStyle>{props.children}</ContainerStyle>
     );
 };
 

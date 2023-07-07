@@ -3,7 +3,6 @@ import Box from "../atoms/Box"
 import Label from "../atoms/Label"
 import Input from "../atoms/Input"
 import ErrorMessage from "../atoms/ErrorMessage"
-import EmailCheck from '../atoms/EmailCheck'
 import UnderInputBox from '../atoms/UnderInputBox'
 
 

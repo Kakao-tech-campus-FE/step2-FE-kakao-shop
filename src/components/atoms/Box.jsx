@@ -10,9 +10,9 @@ const BoxStyle = styled.div`
 
 // input 박스 + 라벨 1세트를 감싸는 투명 박스
 
-const Box = ( { children} ) => {
+const Box = (props) => {
     return (
-        <BoxStyle>{children}</BoxStyle>
+        <BoxStyle>{props.children}</BoxStyle>
     );
 };
 

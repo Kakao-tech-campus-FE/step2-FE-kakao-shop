@@ -14,12 +14,12 @@ const UnderBtn = styled.div`
 const SubmitGroup = (props) => {
   return (
     <>
-    <Button type="submit"
-          active={props.active} 
-          onClick={props.active ? props.onClick : null}>
-      {props.children}
-    </Button>
-    <UnderBtn>{props.message}</UnderBtn>
+      <Button type="submit"
+            active={props.active} 
+            onClick={props.active ? props.onClick : null}>
+        {props.children}
+      </Button>
+      <UnderBtn>{props.message}</UnderBtn>
     </>
   )
 }
