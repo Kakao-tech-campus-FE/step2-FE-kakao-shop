@@ -1,13 +1,8 @@
-import '../styles/Toggle.css';
-import React, { useState, useEffect, useRef } from "react";
+import './Toggle.module.css';
+import React, { useState  } from "react";
 
-function Toggle() {
-    const [toggleOn, setToggleOn] = useState(true);
-    const toggleRef = useRef();
-    
-    useEffect(() => {
-        console.log("toggle effect");
-    }, [toggleOn]);
+function Toggle({ defaultValue=true }) {
+    const [toggleOn, setToggleOn] = useState(defaultValue);
 
     return (
         <>

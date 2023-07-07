@@ -1,4 +1,4 @@
-import '../styles/Carousel.css';
+import '../../styles/Carousel.css';
 import React, { useState, useEffect } from "react";
 
 function Carousel({items}) {
@@ -9,7 +9,7 @@ function Carousel({items}) {
     for(let i=0; i<N; i++){
         carousel_items[i] = (
         <div className="carousel-item">
-            <img src={items[i]}></img>
+            <img src={items[i]} key={i}></img>
         </div>
         );
     }
@@ -21,11 +21,7 @@ function Carousel({items}) {
         );
     }
 
-    useEffect(() => {
-
-    }, [current])
-
-    console.log(carousel_items);
+    // console.log(carousel_items);
     return (
         <>
             <div className="carousel-container">

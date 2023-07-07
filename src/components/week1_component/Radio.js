@@ -1,4 +1,4 @@
-import '../styles/Radio.css';
+import '../../styles/Radio.css';
 
 function Radio({id, name, value, labelChild}) {
     return (
