@@ -23,6 +23,15 @@ api.interceptors.request.use(
 api.interceptors.response.use(
     (response) => {
         console.log("success", response);
+        const token = response?.headers['authorization']
+        if (token) {
+            const expires = new Date();
+            expires.setDate(expires.getDate() + 1);
+            cookie.save('access_token', token, {
+                path: '/',
+                expires,
+            });
+        }
         return Promise.resolve(new ResponseType(response.data));
     },
     (error) => {

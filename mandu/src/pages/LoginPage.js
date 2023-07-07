@@ -21,15 +21,9 @@ const LoginPage = () => {
                 password: value.password,
             }
         );
-        const token = response.headers['authorization']
-
-        if (response.success && token) {
+        if (response.success) {
             const expires = new Date();
             expires.setDate(expires.getDate() + 1);
-            cookie.save('access_token', token, {
-                path: '/',
-                expires,
-            });
             cookie.save('user_id', value.id, {
                 path: '/',
                 expires,
