@@ -82,12 +82,11 @@ export const loginRequest = createAsyncThunk(
     }
 )
 
-export const checkTokenExpiration = () => {
+export const isTokenExpiration = () => {
     const tokenData = localStorage.getItem("tokenExpiration");
     if (tokenData) {
         // 현재 시각이 만료 시각보다 넘거가게 될 경우 모든 토큰정보 삭제(자동 로그아웃)
-        // 다만, 별도로 새로고침을 시도하지 않을경우 로그인이 유지되는 것 처럼 보임(실제로 데이터는 없어짐)
-        // 이 부분을 해결하기 위해 reload도 넣어보았으나 아쉽게도 의도대로 되지는 않음..
+        // 다만, 별도로 새로고침을 시도하지 않을경우 로그인이 계속해서 유지됨...
         if (tokenData && new Date().getTime() > tokenData) {
         localStorage.removeItem("token");
         localStorage.removeItem("email");
