@@ -38,17 +38,22 @@ api.interceptors.response.use(
         console.log("error", error)
         let message = error.response?.data?.error?.message;
         let status = error.response?.status;
+        if (status === 401) {
+            cookie.remove('access_token', {path: '/'});
+            cookie.remove('user_id', {path: '/'});
+        }
+
         if (!message) {
-            if (status === 401) {
-                message = "다시 로그인 해주세요"
-                cookie.remove('access_token', {path: '/'});
-                cookie.remove('user_id', {path: '/'});
-            }
-            if (status === 500) {
-                message = "서버에 문제가 발생했습니다.";
-            }
-            if (status === 501) {
-                message = "잘못된 접근입니다.";
+            switch (status) {
+                case 401:
+                    message = "로그인이 필요합니다.";
+                    break;
+                case 500:
+                    message = "서버에 문제 발생했습니다.";
+                    break;
+                case 501:
+                    message = "잘못된 접근입니다.";
+                    break;
             }
         }
 
@@ -62,7 +67,6 @@ api.interceptors.response.use(
                 },
             })
         );
-
     }
 );
 
