@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/organisms/Header";
+import Header from "./components/templates/Header";
 import Container from "./components/atoms/Container";
 
 function App() {

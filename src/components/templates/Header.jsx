@@ -1,6 +1,6 @@
 import React from "react";
 import logoImage from "../../assets/logoKakao.png";
-import NavBar from "../molecules/NavBar";
+import NavBar from "../organisms/NavBar";
 import LinkedIcon from "../molecules/LinkedIcon";
 
 export default function Header() {

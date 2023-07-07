@@ -18,15 +18,6 @@ instance.interceptors.request.use((config) => {
   return config;
 });
 
-// instance.interceptors.response.use(
-//   (response) => {
-//     return response;
-//   },
-//   (error) => {
-//     return Promise.reject(error.response.data.error.message);
-//   }
-// );
-
 export const checkEmail = (email) => {
   return instance.post("/check", { email });
 };

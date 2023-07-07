@@ -1,7 +1,7 @@
 import React from "react";
 import cartImage from "../../assets/cart.png";
 import Button from "../atoms/Button";
-import LinkedIcon from "./LinkedIcon";
+import LinkedIcon from "../molecules/LinkedIcon";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
