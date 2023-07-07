@@ -3,9 +3,12 @@ import useForm from "../hook/useForm";
 import {signIn} from "../services/userApi";
 import {useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
+import {useDispatch} from "react-redux";
+import {setId} from "../redux/userSlice";
 
 const LoginPage = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const initialValue = {
         id: "",
@@ -18,10 +21,9 @@ const LoginPage = () => {
                 password: value.password,
             }
         );
-
-        alert(response.success ? "로그인이 완료되었습니다!" : response.error.message);
         const token = response.headers['authorization']
-        if (token) {
+
+        if (response.success && token) {
             const expires = new Date();
             expires.setDate(expires.getDate() + 1);
             cookie.save('access_token', token, {
@@ -32,8 +34,13 @@ const LoginPage = () => {
                 path: '/',
                 expires,
             });
+            dispatch(setId(value.id));
+            alert("로그인이 완료되었습니다!")
+            navigate("/");
+        } else {
+            alert(response.error.message ?? "로그인에 실패했습니다!");
+
         }
-        navigate("/");
     }
 
 
