@@ -1,8 +1,13 @@
+import { signUpRequest } from '@store/SignUp/reducers';
 import { FormEventHandler } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import useInput from '@hooks/@common/useInput';
 
 const useSignUpForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, onChangeEmail] = useInput('');
   const [nickname, onChangeNickname] = useInput('');
   const [password, onChangePassword] = useInput('');
@@ -26,6 +31,8 @@ const useSignUpForm = () => {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
       return;
     }
+
+    dispatch(signUpRequest({ email, password, username: nickname, navigate }));
   };
 
   return {
