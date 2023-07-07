@@ -2,10 +2,11 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
-// import { login } from '../../services/api';
+import {useNavigate} from 'react-router-dom';
+import { login } from '../../services/api';
 import Title from '../atoms/Title';
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest } from "../../store/slices/userSlice";
+import { setEmail } from "../../store/slices/userSlice";
 
 
 const LoginForm = () => {
@@ -18,8 +19,24 @@ const LoginForm = () => {
     email: "",
     password: "",
   })
-
-
+  const navigate = useNavigate();
+  const loginReq = () => {
+    login({
+      email:value.email,
+      password:value.password
+    })
+    .then((res) => {
+      dispatch(setEmail({
+        user: value.email,
+      }));
+      alert('로그인 성공!');
+      navigate("/");
+    })
+    .catch((err) => {
+      console.log(err.request.response);
+      alert(err.request.response);
+    })
+  }
   return (
     <Container>
       <Title>
@@ -45,13 +62,8 @@ const LoginForm = () => {
         onChange={handleOnChange} />
       <Button 
         onClick={() => {
-          dispatch(
-            loginRequest({
-              email: value.email,
-              password: value.password,
-            })
-          )
-      }}
+          loginReq();
+            }}
       >
         로그인
         </Button>

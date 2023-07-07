@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import '../styles/pages/Homepage.css';
 
 
-const HomePage = () => {
+const HomePage = ({handleLogout}) => {
   return (
     <div className="link-container">
       <div className="logo-wrapper">
