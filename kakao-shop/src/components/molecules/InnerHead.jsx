@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import { persistor } from "../..";
+import { getCookie, removeCookie } from "../../storage/Cookie";
 
 import Divider from "../atoms/Divider";
 import Link from "../atoms/Link";
@@ -12,10 +13,16 @@ import { IoSearchOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
 
 export default function InnerHead() {
-  const email = useSelector((state) => state.user.email);
-  const purge = async () => {
-    window.location.reload();
+  let userEmail = useSelector((state) => state.user.email);
+  if (!userEmail) {
+    userEmail = getCookie("userEmail");
+  }
+
+  const logout = async () => {
     await persistor.purge();
+    removeCookie("userEmail");
+    removeCookie("token");
+    window.location.reload();
   };
 
   return (
@@ -49,18 +56,16 @@ export default function InnerHead() {
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
           <GoGift size="20" />
-          {email ? (
+          {userEmail ? (
             <div>
-              <span className="mr-2 text-sm text-gray-500">{email}님</span>
-              <span className="cursor-pointer" onClick={async () => purge()}>
+              <span className="mr-2 text-sm text-gray-500">{userEmail}님</span>
+              <span className="cursor-pointer" onClick={async () => logout()}>
                 로그아웃
               </span>
             </div>
           ) : (
             <Link to="/login">로그인</Link>
           )}
-          {/* <Link to="/login">로그인</Link>
-          <span>{email}</span> */}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+// hooks
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -5,11 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
 
+// functions
 import { login } from "../../apis/api";
 import { validateEmail, validatePassword } from "../../utils/validate";
 
 import { setEmail, setToken } from "../../redux/user/userSlice";
+import { setCookie } from "../../storage/Cookie";
 
+// components
 import InputGroup from "../molecules/InputGroup";
 import CheckboxGroup from "../molecules/CheckboxGroup";
 import Button from "../atoms/Button";
@@ -28,6 +32,8 @@ const LoginForm = () => {
   const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
   const [isKeepLog, setIsKeepLog] = useState(false);
 
+  // const [cookies, setCookie] = useCookies(["userEmail", "token"]);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
@@ -40,7 +46,6 @@ const LoginForm = () => {
     }
 
     if (!validatePassword(value.password)) {
-      console.log("비번 이상");
       const errorMessage = "비밀번호가 올바르지 않습니다.";
       setErrorMessage(errorMessage);
       return;
@@ -53,11 +58,27 @@ const LoginForm = () => {
       });
       console.log(response);
       console.log(response.config.data);
-      dispatch(
-        setEmail({ email: value.email, token: response.headers.authorization })
-      );
-      dispatch(setToken({ token: response.headers.authorization }));
 
+      // 로그인 성공 시 로그인 유지를 체크했다면 로컬에 영구 저장(redux-persist)
+      if (isKeepLog) {
+        dispatch(
+          setEmail({
+            email: value.email,
+            token: response.headers.authorization,
+          })
+        );
+        dispatch(setToken({ token: response.headers.authorization }));
+      }
+
+      // 체크하지 않았다면 쿠키에 30분(1800s)만 저장
+      // (체크했더라도 쿠키에 함께 넣어준다)
+      setCookie("userEmail", value.email, { path: "/", maxAge: 1800 });
+      setCookie("token", response.headers.authorization, {
+        path: "/",
+        maxAge: 1800,
+      });
+
+      // 메인페이지로 이동. 뒤로가기 시 로그인 페이지 못 돌아오게함
       navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
