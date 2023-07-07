@@ -24,7 +24,7 @@ const MainPage = () => {
         <div>
             <h1 className="m-2 p-2 text-lg">Main Page</h1>
             {userId
-                ? <div></div> : (<>
+                ? <div>{`유저 id : ${userId}`}</div> : (<>
                     <button className="bg-emerald-400 m-2 p-2 rounded" onClick={() => navigate('/login')}>Go to Login
                         Page
                     </button>
