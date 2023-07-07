@@ -1,3 +1,4 @@
+import { Reset } from 'styled-reset'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterPage from "./components/pages/RegisterPage";
 import LoginPage from "./components/pages/LoginPage";
@@ -7,6 +8,7 @@ import HomePage from "./components/pages/HomePage"
 function App() {
   return (
     <>
+      <Reset />
       <BrowserRouter> 
         <Routes>
           <Route path="/login" element={<LoginPage/>}></Route>    

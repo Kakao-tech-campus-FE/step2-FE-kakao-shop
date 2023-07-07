@@ -3,12 +3,14 @@ import React from 'react'
 function Button({
   onClick,
   children,
+  disabled,
+  style,
 }) {
   return (
-    <button onClick={(e) => {
+    <button style = {style} onClick={(e) => {
       e.preventDefault()
       onClick()
-    }}>
+    }} disabled={disabled}>
       {children}
     </button>
   )

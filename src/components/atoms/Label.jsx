@@ -3,9 +3,10 @@ import React from 'react'
 function Label({
   children,
   htmlFor,
+  style
 }) {
   return (
-    <label htmlFor={htmlFor}>
+    <label htmlFor={htmlFor} style={style}>
       {children}
     </label>
   )

@@ -8,6 +8,7 @@ function Input(
     onChange,
     placeholder,
     name,
+    style,
   }
 ) {
   return (
@@ -17,7 +18,9 @@ function Input(
       value={value} 
       onChange={onChange} 
       placeholder={placeholder}
-      name={name}/>
+      name={name}
+      style={style}
+      />
   )
 }
 

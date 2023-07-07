@@ -2,7 +2,6 @@ import axios from "axios";
 
 
 const instance = axios.create({
-  url: '/join',
   baseURL: process.env.REACT_APP_API_URL,
   method: 'POST',
   timeout: 1000,
@@ -12,10 +11,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config)=>{
-  const token = localStorage.getItem('token')
-  if (token) {
-    config.headers["Authorization"] = token
-  }
+
   return config;
 })
 
@@ -24,7 +20,7 @@ instance.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log(error)
+    return Promise.reject(error)
     }
   )
 
@@ -45,3 +41,9 @@ export const register = (data) => {
     })
   }
 
+
+  export const emailCheck = (email) => {
+    return instance.post("/check",{
+      email,
+    })
+  }

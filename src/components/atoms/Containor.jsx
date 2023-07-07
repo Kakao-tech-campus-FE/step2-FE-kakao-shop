@@ -3,9 +3,10 @@ import { styled } from 'styled-components'
 
 function Containor({
   children,
+  style,
 }) {
   return (
-    <ContainovrDiv>{children}</ContainovrDiv>
+    <ContainovrDiv style={style}>{children}</ContainovrDiv>
   )
 }
 
