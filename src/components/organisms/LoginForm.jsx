@@ -1,0 +1,91 @@
+// src/components/organisms/LoginForm.jsx
+import React, { useState, useEffect } from "react";
+import Container from "../atoms/Container";
+import InputGroup from "../molecules/InputGroup";
+import Button from "../atoms/Button";
+import useInput from "../../hooks/useInput";
+import Title from "../atoms/Title";
+import { useDispatch, useSelector } from "react-redux";
+import { loginRequest, setEmail } from "../../store/slices/userSlice";
+import { useNavigate } from "react-router-dom";
+
+const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { email } = useSelector((state) => state.user);
+  const { loading } = useSelector((state) => state.user);
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [value, handleOnChange] = useInput({
+    email: "",
+    password: "",
+  });
+
+  const handleLogin = () => {
+    if (value.email.trim() === "" || value.password.trim() === "") {
+      setErrorMessage("이메일과 비밀번호를 입력해주세요.");
+      return;
+    }
+
+    dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
+      .then(() => {
+        console.log("로그인이 완료되었습니다.");
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("로그인에 실패하였습니다.", error);
+        setErrorMessage("로그인에 실패하였습니다.");
+      });
+  };
+
+  useEffect(() => {
+    if (email) {
+      dispatch(setEmail({ email }));
+      navigate("/");
+    }
+  }, [dispatch, email, navigate]);
+
+  const handleRegister = () => {
+    navigate("/signup");
+  };
+
+  return (
+    <Container>
+      <Title>로그인</Title>
+      <InputGroup
+        id="email"
+        type="email"
+        name="email"
+        placeholder=" 이메일"
+        label="이메일(아이디) "
+        value={value.email}
+        onChange={handleOnChange}
+      />
+      <InputGroup
+        id="password"
+        type="password"
+        name="password"
+        placeholder="  비밀번호"
+        label="비밀번호 "
+        value={value.password}
+        onChange={handleOnChange}
+      />
+      <Button onClick={handleLogin} disabled={loading}>
+        {loading ? "로딩 중 " : "로그인"}
+      </Button>
+      {errorMessage && <p>{errorMessage}</p>}
+      <p>
+        <a href="#" onClick={handleRegister}>
+          회원가입
+        </a>
+      </p>
+    </Container>
+  );
+};
+
+export default LoginForm;
