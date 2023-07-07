@@ -1,33 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { styled } from 'styled-components'
-import { useNavigate } from 'react-router-dom';
-
-const GNBContainer = styled.div`
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0px 0px 5px rgb(199, 199, 199);
-  background-color: white;
-  margin-bottom: 20px;
-`
-
-const InnerContainer = styled.div`
-  width: 1500px;
-  display: flex;
-  align-items: center;
-  padding: 0 15px;
-`
+import { useNavigate, Link } from 'react-router-dom';
+import GNBContainer from '../atoms/GNBContainer'
+import GNBInnerBox from '../atoms/GNBInnerBox'
+import GNBButton from '../atoms/GNBButton'
+import GNBMyGroup from '../molecules/GNBMyGroup';
+import GNBMainGroup from '../molecules/GNBMainGroup';
 
 const TextBox = styled.div`
   margin: 0 10px;
 `
-
-const LoginBox = styled(TextBox)`
-    margin-left: auto;
-`
-
-
+const Logobox = styled.div`
+  margin: 0 10px;
+  width: 30px; 
+  height: 30px;
+  background-image: url("https://blog.kakaocdn.net/dn/daL0ub/btsmROiKTyk/t2CmD7jf13LjIkJ3vrLjcK/tfile.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+` 
 const GNB = (props) => {
   const navigate = useNavigate()
 
@@ -44,21 +34,30 @@ const GNB = (props) => {
 
   return (
     <GNBContainer>
-      <InnerContainer>
-        <TextBox onClick={()=>{navigate("/")}}>메인</TextBox> 
-        {
-          (props.login)
-          ? <LoginBox onClick={logout}>
-              로그아웃
-            </LoginBox>
-          : 
-          <>
-            <LoginBox onClick={()=>{navigate("/login")}}>로그인</LoginBox>
-            <TextBox onClick={()=>{navigate("/signin")}}>회원가입</TextBox>
-          </>
+        <GNBInnerBox>
+          
+            <GNBMainGroup>
+                <Link to ="/">
+                    <Logobox />
+                </Link>
+            </GNBMainGroup>
 
-        }
-        </InnerContainer>
+            <GNBMyGroup>
+                <GNBButton>장바구니</GNBButton> 
+                {
+                  (props.login)
+                  ? <TextBox onClick={logout}>
+                      로그아웃
+                    </TextBox>
+                  : 
+                  <>
+                    <GNBButton onClick={()=>{navigate("/login")}}>로그인</GNBButton>
+                    <GNBButton onClick={()=>{navigate("/signin")}}>회원가입</GNBButton>
+                  </>
+                }
+
+            </GNBMyGroup>
+        </GNBInnerBox>
     </GNBContainer>
   )
 }

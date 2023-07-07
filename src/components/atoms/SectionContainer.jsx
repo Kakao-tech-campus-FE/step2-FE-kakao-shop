@@ -1,17 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';   
 
-const ContainerStyle = styled.div`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px 0;
 `
 
-const ContentContainer = (props) => {
+const SectionContainer = (props) => {
     return (
-        <ContainerStyle>{props.children}</ContainerStyle>
+        <Container>{props.children}</Container>
     );
 };
 
-export default ContentContainer;
+export default SectionContainer;

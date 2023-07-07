@@ -1,8 +1,8 @@
 import React from 'react'
-import Button from "../atoms/Button"
+import FormButton from "../../atoms/form/FormButton"
 import { styled } from 'styled-components';
 
-const UnderBtn = styled.div`
+const ErrorMessage = styled.div`
   text-align: center;
 `
 
@@ -14,12 +14,12 @@ const UnderBtn = styled.div`
 const SubmitGroup = (props) => {
   return (
     <>
-      <Button type="submit"
+      <FormButton type="submit"
             active={props.active} 
             onClick={props.active ? props.onClick : null}>
         {props.children}
-      </Button>
-      <UnderBtn>{props.message}</UnderBtn>
+      </FormButton>
+      <ErrorMessage>{props.message}</ErrorMessage>
     </>
   )
 }

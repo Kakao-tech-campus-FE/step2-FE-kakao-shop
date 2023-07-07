@@ -1,12 +1,12 @@
 import React from 'react'
 import Carousel from '../components/molecules/Carousel'
-import ContentContainer from '../components/atoms/ContentContainer'
+import SectionContainer from '../components/atoms/SectionContainer'
 
 const MainPage = () => {
     return (
-      <ContentContainer>
+      <SectionContainer>
         <Carousel></Carousel>
-      </ContentContainer>
+      </SectionContainer>
     );
   };
 

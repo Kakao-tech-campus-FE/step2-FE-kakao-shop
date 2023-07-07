@@ -1,13 +1,13 @@
 import React from 'react'
 import LoginForm from "../components/organisms/LoginForm"
 
-import ContentContainer from '../components/atoms/ContentContainer'
+import SectionContainer from '../components/atoms/SectionContainer'
 
 const LoginPage = () => {
   return (
-    <ContentContainer>
+    <SectionContainer>
       <LoginForm></LoginForm>
-    </ContentContainer>
+    </SectionContainer>
   )
 }
 

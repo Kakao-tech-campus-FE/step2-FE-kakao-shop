@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import RegiContainer from "../atoms/FormContainer"
-import InputGroup from "../molecules/InputGroup"
-import SubmitGroup from "../molecules/SubmitGroup"
+import FormContainer from "../atoms/form/FormContainer"
+import InputGroup from "../molecules/form/InputGroup"
+import SubmitGroup from "../molecules/form/SubmitGroup"
 import postLogin from "../../api/login"
 import { useNavigate } from 'react-router-dom';
 import checkValid from '../../utils/checkForm'
@@ -47,12 +47,15 @@ const LoginForm = (props) => {
   const click = () => {
     postLogin(user)
       .then((response) => {
-        // 토큰, 이메일 로컬스토리지에 등록, 로그인실패횟수 초기화, 메인으로 이동
+        // 토큰, 이메일 로컬스토리지에 등록
+        // 로그인실패횟수 초기화
         localStorage.setItem("token", response.headers.authorization);
         localStorage.setItem("email", user.email);
         localStorage.setItem("loginTime", Date.now());
         localStorage.removeItem("failCnt")
         navigate("/")
+
+        // 새로고침 안해주면 상태가 안바껴서... 강제새로고침
         window.location.reload()
       })
       .catch((error) => {
@@ -66,7 +69,7 @@ const LoginForm = (props) => {
 
 
   return (
-    <RegiContainer>
+    <FormContainer>
 
       <InputGroup 
         id="email" 
@@ -92,7 +95,7 @@ const LoginForm = (props) => {
         />
         
         {/* Props
-          onChange : user 상태에서 email 객체를 입력값으로 업데이트 
+          onChange : 상태 객체 user에서 password 값을 입력값으로
           message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
         */}
 
@@ -104,12 +107,13 @@ const LoginForm = (props) => {
         </SubmitGroup>        
         
         {/* Props
+          active : 버튼 활성화 여부 (양식이 맞을 때 활성화, 활성화되면 색이 바뀜)
           onClick : 제출시 동작
           message : 실패시 버튼밑에 출력할 메세지
         */}
 
 
-    </RegiContainer>
+    </FormContainer>
   )
 }
 

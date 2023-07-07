@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';   
 
-const Div = styled.div`
+const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -9,13 +9,13 @@ const Div = styled.div`
     border-radius: 5px;
     width: 420px;
     margin: 15px;
-    padding: 10px 0;
+    padding: 15px;
 `
 
-const RegiContainer = (props) => {
+const FormContainer = (props) => {
     return (
-        <Div id={props.id}>{props.children}</Div>
+        <Container id={props.id}>{props.children}</Container>
     );
 };
 
-export default RegiContainer;
+export default FormContainer;

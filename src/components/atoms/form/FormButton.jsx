@@ -12,7 +12,7 @@ const BtnStyle = styled.button`
     background-color: ${props=>props.bgcolor};
 `
 
-const Button = (props) => {
+const FormButton = (props) => {
   return (
     <BtnStyle 
       type="submit"
@@ -23,4 +23,4 @@ const Button = (props) => {
   );
 };
 
-  export default Button;
+  export default FormButton;

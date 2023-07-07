@@ -1,12 +1,12 @@
 import React from 'react'
 import RegisterForm from '../components/organisms/RegisterForm'
-import ContentContainer from '../components/atoms/ContentContainer'
+import SectionContainer from '../components/atoms/SectionContainer'
 
 const RegisterPage = () => {
   return (
-    <ContentContainer>
+    <SectionContainer>
       <RegisterForm></RegisterForm>
-      </ContentContainer>
+      </SectionContainer>
   )
 }
 

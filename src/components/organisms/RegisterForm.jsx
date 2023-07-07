@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import RegiContainer from "../atoms/FormContainer"
-import SubmitGroup from "../molecules/SubmitGroup"
-import InputGroup from "../molecules/InputGroup"
+import FormContainer from "../atoms/form/FormContainer"
+import SubmitGroup from "../molecules/form/SubmitGroup"
+import InputGroup from "../molecules/form/InputGroup"
 import {postCheck, postJoin} from "../../api/register"
 import { useNavigate } from 'react-router-dom';
 import checkValid from '../../utils/checkForm'
@@ -14,14 +14,16 @@ const RegisterForm = () => {
     passwordCheck: "",
   })
 
-  const [duple, setDuple] = useState(false);
-
   const inputChange = ( event, key ) => {
     setUser(prevObj => {
       return {...prevObj, [key]: event.target.value};
     })
   }
 
+  // 이메일 중복 여부
+  const [duple, setDuple] = useState(false);
+
+  // 이메일 형식이 맞으면 input에 값 입력할때마다 중복 체크 요청 보냄
   useEffect(() => {
     if (checkValid(user.email, 'email')) {
       postCheck(user)
@@ -36,14 +38,13 @@ const RegisterForm = () => {
 
   const navigate = useNavigate();
 
+  // 가입 성공시 메인으로 이동, 알림 띄우기
   const click = () => {
     postJoin(user)
       .then((response) => {
         navigate("/")
-        window.location.reload()
       })
       .then(() => {
-
         alert("가입완료")
       })
       .catch((error) => {
@@ -53,7 +54,7 @@ const RegisterForm = () => {
 
 
   return (
-    <RegiContainer>
+    <FormContainer>
 
       <InputGroup 
         id="username" 
@@ -99,6 +100,10 @@ const RegisterForm = () => {
           ? "비밀번호가 일치하지 않습니다" : null } 
         />
 
+      {/* Props
+          onChange : 상태 객체 user에서 passwordCheck 값을 입력값으로
+          message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
+      */}
 
       <SubmitGroup
         active={
@@ -110,9 +115,13 @@ const RegisterForm = () => {
         >
         가입하기
       </SubmitGroup>       
+      
+      {/* Props
+          active : 버튼 활성화 여부 (양식이 맞을 때 활성화, 활성화되면 색이 바뀜)
+          onClick : 제출시 동작
+      */}
 
-
-    </RegiContainer>
+    </FormContainer>
   )
 }
 
