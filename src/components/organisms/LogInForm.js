@@ -5,6 +5,7 @@ import { logInReq } from "../../apis/api.js";
 // redux
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice.js";
+import { isValidLogIn } from "../../utils/validate.js";
 
 // hook
 import useInput from "../../hooks/useInput.js";
@@ -43,33 +44,10 @@ export default function LogInForm() {
       />
       <Button
         onClick={() => {
-          if (!Object.values(inputValue).every((val) => val !== "")) {
-            alert("비어 있을 수 없습니다.");
-            return;
-          }
-          if (
-            !RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/).test(
-              inputValue.email
-            )
-          ) {
-            alert("이메일 형식으로 작성해주세요.");
-            return;
-          }
-          if (!RegExp(/^.{8,20}$/).test(inputValue.password)) {
-            alert("비밀번호는 8에서 20자 이내여야 합니다.");
-            return;
-          }
-          if (
-            !RegExp(
-              /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[^ ]+$/
-            ).test(inputValue.password)
-          ) {
-            alert(
-              "비밀번호는 영문, 숫자, 특수문자가 포함되어야 하고 공백이 포함될 수 없습니다."
-            );
-            return;
-          }
-          console.log(inputValue.password);
+          // validation
+          if (!isValidLogIn(inputValue)) return;
+
+          // log in
           logInReq({
             email: inputValue.email,
             password: inputValue.password,
