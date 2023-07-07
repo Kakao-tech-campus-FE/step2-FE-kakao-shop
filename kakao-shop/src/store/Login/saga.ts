@@ -9,7 +9,7 @@ import { SIGN_IN_REQUEST, FetchSignInAction, signInSuccess, SignInResponse, sign
 export function* fetchSignInRequest({ payload }: FetchSignInAction) {
   try {
     const response: AxiosResponse<SignInResponse> = yield call(signIn, payload);
-    setCookie({ name: 'accessToken', value: response.headers.authorization, maxAge: 36000 });
+    setCookie({ name: 'accessToken', value: response.headers.authorization, maxAge: 3600 });
     yield put(signInSuccess(response.data));
     payload.navigate('/');
   } catch (error: any) {
