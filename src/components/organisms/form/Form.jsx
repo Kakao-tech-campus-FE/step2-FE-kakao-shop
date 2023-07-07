@@ -54,6 +54,7 @@ Form.propTypes = {
       id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
+      placeholder: PropTypes.string,
       validation: PropTypes.object,
       requireMsg: PropTypes.string,
     })

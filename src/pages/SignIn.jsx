@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
+import AuthTemplate from "../components/templates/auth-template/AuthTemplate.jsx";
 import Form from "../components/organisms/form/Form.jsx";
+import Button from "../components/atoms/button/Button.jsx";
+
 import FORM_INFO from "../constants/FORM_INFO.js";
 import FORM_DEFAULT from "../constants/FORM_DEFAULT.js";
-import AuthTemplate from "../components/templates/auth-template/AuthTemplate.jsx";
-import Button from "../components/atoms/button/Button.jsx";
-import styled from "styled-components";
 import routes from "../constants/routes.js";
 import authAPI from "../api/authAPI.js";
+import { useSetAtom } from "jotai";
+import isLoggedInAtom from "../storage/common/isLoggedIn.atom.js";
 
 const Styled = {
   SignUsBtnContainer: styled.div`
@@ -27,26 +30,30 @@ const Styled = {
     }
   `,
 };
+
 function SignIn() {
   const navigate = useNavigate();
+  const setIsLoggedIn = useSetAtom(isLoggedInAtom);
 
   const onSignInSubmit = async (data) => {
     try {
       const { response } = await authAPI.signIn(data);
       localStorage.setItem("accessToken", response.token);
       localStorage.setItem("accessTokenDate", new Date().toString());
+      setIsLoggedIn(true);
       navigate(routes.home);
     } catch (e) {
       alert(e.error.message);
     }
   };
+
   return (
     <AuthTemplate title="로그인">
       <Form
         style={{ width: "100%", maxWidth: "440px" }}
         defaultValues={FORM_DEFAULT.SIGN_IN}
         inputInformations={FORM_INFO.SIGN_IN}
-        onError={(e) => console.log(e)}
+        onError={(e) => alert(e)}
         onSubmit={onSignInSubmit}
       >
         <Button
