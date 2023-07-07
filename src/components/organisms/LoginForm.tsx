@@ -40,6 +40,9 @@ const LoginForm = () => {
         label='이메일'
         value={values.email}
         onChange={handleChange}
+        onBlur={() => {
+          // TODO
+        }}
       />
       <InputGroup
         id='password'
@@ -49,6 +52,9 @@ const LoginForm = () => {
         label='비밀번호'
         value={values.password}
         onChange={handleChange}
+        onBlur={() => {
+          // TODO
+        }}
       />
       <Button onClick={handleSignInBtnClick}>로그인</Button>
     </FormContainer>
