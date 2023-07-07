@@ -46,3 +46,10 @@
   - 새로고침 상태유지: redux-persist
   - 로그인 만료 시간 설정: 로컬스토리지
   - 로그인, 로그아웃 상태 초기화 및 조건부 렌더링: redux toolkit
+
+</br>
+
+https://github.com/kimchanho97/step2-FE-kakao-shop/assets/104095041/6a93ce3c-9585-4d5f-9cd3-226935890694
+
+
+
