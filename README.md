@@ -360,7 +360,6 @@ https://www.notion.so/9e21c53c52ea401fa0f72def74e94faf?pvs=4
 
 </br>
 
-<<<<<<< HEAD
 **2. PR 내용 :**
 
 >- 코드 작성하면서 어려웠던 점
@@ -627,8 +626,6 @@ https://www.notion.so/9e21c53c52ea401fa0f72def74e94faf?pvs=4
 
 </br>
 
-=======
->>>>>>> parent of 6359e6f (Merge branch 'feat-KimSeonghyeon' of https://github.com/Kakao-tech-campus-FE/step2-FE-kakao-shop into feat-KimSeonghyeon)
 **2. PR 내용 :**
 
 >- 코드 작성하면서 어려웠던 점
