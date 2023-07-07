@@ -64,8 +64,11 @@ export const loginRequest = createAsyncThunk(
                 confirmButtonText:'확인',
             })
             .then(() => {
+                const expirationDate = new Date().getTime() + 10000; // 10초 세팅
+
                 localStorage.setItem("email", email);
                 localStorage.setItem("token", response.headers.authorization);
+                localStorage.setItem("tokenExpiration", expirationDate);
             })
             .then(() => {
                 window.location.href = "/";
@@ -78,6 +81,21 @@ export const loginRequest = createAsyncThunk(
         // return response.data; // (일반적인 경우)
     }
 )
+
+export const checkTokenExpiration = () => {
+    const tokenData = localStorage.getItem("tokenExpiration");
+    if (tokenData) {
+        // 현재 시각이 만료 시각보다 넘거가게 될 경우 모든 토큰정보 삭제(자동 로그아웃)
+        // 다만, 별도로 새로고침을 시도하지 않을경우 로그인이 유지되는 것 처럼 보임(실제로 데이터는 없어짐)
+        // 이 부분을 해결하기 위해 reload도 넣어보았으나 아쉽게도 의도대로 되지는 않음..
+        if (tokenData && new Date().getTime() > tokenData) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        localStorage.removeItem("tokenExpiration");
+        window.location.reload();
+        }
+    }
+};
 
 // slice를 만들면 actions이 return 된다.
 // actions 안에는 reducers 안의 내용물들이 있다.

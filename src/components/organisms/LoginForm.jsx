@@ -19,7 +19,7 @@ const LoginForm = () => {
   const email = useSelector((state) => state.user.email);
 
   const [value, handleOnChange] = useInput({
-    email: "test222@naver.com",
+    email: "test@naver.com",
     password: "test123!",
   });
 

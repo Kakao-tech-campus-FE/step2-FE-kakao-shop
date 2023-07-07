@@ -9,6 +9,7 @@ const Nav = () => {
     const logOut = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("email");
+        localStorage.removeItem("tokenExpiration");
         Swal.fire({
             title:'로그아웃 완료!',
             text:'우리 다음에 또 만나요 :) ',

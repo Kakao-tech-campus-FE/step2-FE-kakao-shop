@@ -9,7 +9,7 @@ import Swal from 'sweetalert2'
 const RegisterForm = () => {
   const [value, handleOnChange] = useInput({
     username: "테스터",
-    email: "test222@naver.com",
+    email: "test@naver.com",
     password: "test123!",
     passwordConfirm: "test123!",
   });
