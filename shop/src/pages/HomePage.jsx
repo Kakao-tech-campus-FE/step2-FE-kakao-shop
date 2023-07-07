@@ -3,6 +3,7 @@ import Button from '../components/atoms/Button'
 import { useNavigate } from "react-router-dom"
 import { useSelector,useDispatch } from "react-redux"
 import { setEmail } from "../store/slices/userSlice"
+import logo from "../img/logo_talkshopping.png"
 
 const HomePage = () => {
   // 로그인 상태 확인
@@ -10,19 +11,12 @@ const HomePage = () => {
   const loginTime = useSelector((state) => state.user.loginTime)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const handleLogin = () => {
-    // 클릭하면 로그인 페이지로 넘어감
-    navigate("/login")
-  }
-  const handleReg = () => {
-    // 클릭하면 회원가입 페이지로 넘어감
-    navigate("/signup")
-  }
   // 로그아웃 버튼 클릭 시 상태 초기화
   const handleLogout = () => {
     dispatch(setEmail({ email: "" }))
     localStorage.removeItem("email") // 로컬 스토리지에서도 제거
     localStorage.removeItem("loginTime")
+    navigate("/")
   }
 
   // 페이지 로드 시 이메일 상태를 로컬 스토리지에서 가져옴
@@ -34,7 +28,7 @@ const HomePage = () => {
     if (savedTime && savedEmail) {
       const currentTime = Date.now()
       const elapsedTime = currentTime - parseInt(savedTime)
-      const maxLoginTime = 3000
+      const maxLoginTime = 86400000
 
       // 24시간(86400000밀리초) 이상 경과한 경우 로그인 상태 초기화
       if (elapsedTime >= maxLoginTime) {
@@ -53,39 +47,49 @@ const HomePage = () => {
     }
   }, [email, loginTime])
 
-  // 로그인 상태인 경우 홈페이지 내용 대신 다른 내용을 렌더링
-  if (email) {
-    return (
-      <div className="container">
-        <h2 className="title">
-          HomePage
-        </h2>
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <h2 className='title bg-indigo-500/30 text-indigo-800'>{email}님, 반갑습니다.</h2>
-          <Button onClick={handleLogout}>로그아웃</Button>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="container">
-      <h2 className="title">
-        HomePage
-      </h2>
-
-      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-      <h3 className='mb-3 font-bold text-indigo-800'> 기존 회원이라면 ? </h3>
-        <Button className="" onClick={handleLogin}>
+  // 로그인 상태에 따라 로그인 또는 로그아웃 링크 반환
+  const renderAuthLink = () => {
+    if (email) {
+      return (
+        <button className="text-black text-xl hover:underline text-black-200" onClick={handleLogout}>
+          로그아웃
+        </button>
+      );
+    } else {
+      return (
+        <>
+        <a href="/login" className="text-black text-xl hover:underline text-black-200">
           로그인
-        </Button>
-        <h3 className='mt-20 font-bold text-indigo-800'> 기존 회원이 아니라면 ? </h3>
-        <Button className="mt-3 " onClick={handleReg}>
-          회원가입
-        </Button>
+        </a>
+        <a href="/signup" class="text-black text-xl hover:underline text-black-200">회원가입</a>
+        </>
+      );
+    }
+  };
+  return (
+    <nav className="fixed top-0 left-0 p-5 bg-white  md:flex md:items-center inner">
+      <img className="h-12 inline cursor-pointer" src={logo} alt="logo"/>
+      <ul className = "md:flex md:items-center space-x-4">
+        <li>
+        <a href="/" class="text-black text-xl hover:underline text-black-200">홈</a>
+        </li>
+        <li>
+        <a href="#" class="text-black text-xl hover:underline text-black-200">브랜드데이</a>
+        </li>
+        <li>
+        <a href="#" class="text-black text-xl hover:underline text-black-200">베스트</a>
+        </li>
+        <li>
+        <a href="#" class="text-black text-xl hover:underline text-black-200">라이브</a>
+        </li>
+        <li>
+        <a href="#" class="text-black text-xl hover:underline text-black-200">기획전</a>
+        </li>
+      </ul>
+      <div className="ml-auto space-x-4 mr-4">
+        {renderAuthLink()}
       </div>
-
-    </div>
+    </nav>
   )
 }
 

@@ -58,41 +58,44 @@ const LoginForm = () => {
 
   return (
     <Container>
-      <Title>로그인</Title>
-      <span>{email}</span>
-      <InputGroup 
-        id="email" 
-        type="email" 
-        name="email"
-        placeholder="이메일을 입력해주세요" 
-        label="이메일"
-        value={value.email}
-        onChange={handleOnChange}
-        onBlur={validateEmail}
-      />
-      {emailErr && <div>{emailErr}</div>}
-      <InputGroup 
-        id="password" 
-        type="password" 
-        name="password"
-        placeholder="******" 
-        label="비밀번호"
-        value={value.password}
-        onChange={handleOnChange}
-        onBlur={validPassword}
-      />
-      {pwErr && <div>{pwErr}</div>}
+      <div className="w-max p-52 bg-white shadow">
+        <Title>로그인</Title>
+        <span>{email}</span>
+        <InputGroup 
+          id="email" 
+          type="email" 
+          name="email"
+          placeholder="이메일을 입력해주세요" 
+          label="이메일"
+          value={value.email}
+          onChange={handleOnChange}
+          onBlur={validateEmail}
+        />
+        {emailErr && <div className="mb-5">{emailErr}</div>}
+        <InputGroup 
+          id="password" 
+          type="password" 
+          name="password"
+          placeholder="******" 
+          label="비밀번호"
+          value={value.password}
+          onChange={handleOnChange}
+          onBlur={validPassword}
+        />
+        {pwErr && <div className="mb-5">{pwErr}</div>}
 
-        <div className="mt-10 text-lg font-semibold text-red-400">{error}</div>
+        <div className="mt-5 text-lg font-semibold text-red-400">{error}</div>
 
-      <Button
-        className="mt-20 "
-        disabled={isError}
-        onClick={()=>{
-          //api 요청 
-          loginReq()
-        }}
-      >로그인 </Button>
+        <Button
+          className="mt-20 "
+          disabled={isError}
+          onClick={()=>{
+            //api 요청 
+            loginReq()
+          }}>
+          로그인
+        </Button>
+      </div>
     </Container>
   )
 }
