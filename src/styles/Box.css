@@ -1,0 +1,15 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    max-width: 500px;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 5%;
+    align-content: center;
+    margin-bottom: 10px;
+    background-color: #fff;
+    stroke-width: 3px;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
+}
