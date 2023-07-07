@@ -4,6 +4,7 @@ import Button from "../atoms/Button"
 import { useEffect, useState } from "react"
 import useInput from "../../hooks/useInput"
 import { register } from "../../services/api"
+import GNB from "../molecules/Gnb"
 
 const RegisterForm = () => {
     const { value, handleOnChange } = useInput({
@@ -15,6 +16,7 @@ const RegisterForm = () => {
 
     return (
         <Container>
+            <GNB showRegisterButton={false}></GNB>
             <InputGroup
                 id="username"
                 name="username"

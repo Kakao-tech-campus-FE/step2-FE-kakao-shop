@@ -6,6 +6,7 @@ import useInput from "../../hooks/useInput"
 import { login } from "../../services/api"
 import { useDispatch, useSelector } from "react-redux"
 import { loginRequest, setEmail } from "../../store/slices/userSlice"
+import GNB from "../molecules/Gnb"
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const LoginForm = () => {
 
     return (
         <Container>
+            <GNB showRegisterButton={true}></GNB>
             <Title>
                 로그인
             </Title>
