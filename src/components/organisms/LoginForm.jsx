@@ -109,7 +109,6 @@ const LoginForm = () => {
         }
         inputClass={"focus:outline-0 focus:bt-black w-full m-3"}
         onFocus={() => {
-          console.log(isFocus);
           setIsFocus([isFocus[0], true]);
         }}
         onBlur={() => {
