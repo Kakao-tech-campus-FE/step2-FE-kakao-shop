@@ -11,6 +11,10 @@ import instance from "../../services/api";
 import { login } from "../../store/slices/authSlice";
 import AlertBox from "../molecules/AlertBox";
 
+/** 로그인 폼
+ *
+ * @return {JSX.Element}
+ */
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();

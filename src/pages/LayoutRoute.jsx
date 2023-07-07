@@ -4,6 +4,10 @@ import MainPage from "./MainPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
 
+/** 레이아웃 라우트
+ *
+ * @return {JSX.Element}
+ */
 const LayoutRoute = () => {
   return (
     <BrowserRouter>

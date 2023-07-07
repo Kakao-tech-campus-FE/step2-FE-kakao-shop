@@ -9,6 +9,10 @@ import Box from "../atoms/Box";
 import instance from "../../services/api";
 import AlertBox from "../molecules/AlertBox";
 
+/** 회원가입 폼
+ *
+ * @return {JSX.Element}
+ */
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();

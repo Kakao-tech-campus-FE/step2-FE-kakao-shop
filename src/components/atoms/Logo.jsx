@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 
+/** 로고 버튼
+ *
+ * @param {string} to - 이동할 경로 "/"
+ * @param {string} className - 로고에 적용할 스타일
+ * @return {JSX.Element}
+ */
 const Logo = ({ to = "/", className = "" }) => {
   return (
     <Link to={to} className={`logo ${className}`}>

@@ -4,6 +4,10 @@ import Logo from "../atoms/Logo";
 import LinkButton from "../atoms/LinkButton";
 import { logout } from "../../store/slices/authSlice";
 
+/** 헤더
+ *
+ * @return {JSX.Element}
+ */
 const HeaderForm = () => {
   const dispatch = useDispatch();
   const { isLogin } = useSelector((state) => state.authReducer);
