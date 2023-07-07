@@ -8,16 +8,15 @@ interface LoginFromProps {
   onSubmit: (data: { email: string; password: string }) => Promise<AxiosResponse>;
 }
 
-const { value: inputInfo, handleOnChange } = useInput({
-  initialValue: {
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  },
-});
-
 const LoginForm = ({ onSubmit }: LoginFromProps) => {
+  const { value: inputInfo, handleOnChange } = useInput({
+    initialValue: {
+      username: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    },
+  });
   return (
     <div className="flex flex-col space-y-2">
       <InputGroup labelName="이메일" value={inputInfo.email} onChange={handleOnChange} />
