@@ -8,17 +8,18 @@ interface InputGroupProps {
   labelName?: string;
   value?: string;
   helperText?: string;
+  inputType?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
-const InputGroup = ({ inputName, labelName, value, helperText, onChange }: InputGroupProps) => {
+const InputGroup = ({ inputName, labelName, value, helperText, inputType, onChange }: InputGroupProps) => {
   return (
     <div className="flex flex-col space-y-1">
       <div className="flex space-x-4">
         <Label htmlFor={inputName}>{labelName}</Label>
         <HelperText className="text-subRed">{helperText}</HelperText>
       </div>
-      <Input type="text" id={inputName} value={value} onChange={onChange} />
+      <Input type={inputType} id={inputName} value={value} onChange={onChange} />
     </div>
   );
 };
