@@ -62,7 +62,12 @@ export const loginRequest = createAsyncThunk(
                 text: `안녕하세요 ${email}님! 
                 저희 사이트에 오신 것을 환영합니다😊`,
                 confirmButtonText:'확인',
-            }).then(() => {
+            })
+            .then(() => {
+                localStorage.setItem("email", email);
+                localStorage.setItem("token", response.headers.authorization);
+            })
+            .then(() => {
                 window.location.href = "/";
             })
             return {
