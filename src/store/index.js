@@ -10,4 +10,5 @@ const store = configureStore({
     //products: productsReducer
   }
 });
+
 export default store;

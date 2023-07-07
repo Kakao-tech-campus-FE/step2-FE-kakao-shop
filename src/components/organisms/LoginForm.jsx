@@ -28,7 +28,6 @@ const LoginForm = () => {
     password: true,
   });
   const handleLogin = () => {
-    console.log(getUserCookie());
     const isEmailValid = emailValidCheck(value.email);
     const isPwValid = pwValidCheck(value.password);
 

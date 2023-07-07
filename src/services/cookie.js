@@ -7,7 +7,6 @@ const getExpirationTime = () => {
   const expirationTime = new Date();
   //expirationTime.setMinutes(expirationTime.getMinutes() + 1 ); // 만료 시간 1분
   expirationTime.setDate(expirationTime.getDate() + 1 ); // 만료 시간 1일
-  console.log(expirationTime)
   return expirationTime;
 }
 
@@ -18,7 +17,6 @@ const getExpirationTime = () => {
 
 export const setUserCookie = ({email, token}) => {
   const expTime = getExpirationTime();
-  console.log("setUserCookie", email, token)
   cookies.set("email", email, { path: '/', expires: expTime})
   cookies.set("token", token, { path: '/', expires: expTime})
 }
