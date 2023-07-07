@@ -6,3 +6,8 @@ export interface AuthResponse {
     status: number;
   } | null;
 }
+
+export interface LoginResponse {
+  data: AuthResponse;
+  token: string;
+}
