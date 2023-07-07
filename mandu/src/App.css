@@ -1,0 +1,65 @@
+.App {
+    margin: 20px;
+}
+
+
+.breadcrumb li + li:before {
+    content: ">";
+    margin-right: 10px;
+}
+
+.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+    list-style-type: none;
+    padding: 0 5px;
+
+
+}
+
+hr {
+    margin-top: 32px;
+}
+
+button.submit-btn {
+    padding: 12px;
+    background-color: #393646;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button {
+    background-color: white;
+    border: none;
+}
+
+
+@keyframes progress {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48;
+    color: #393646;
+}
+
+.checked-box {
+    color: #5BD35F;
+}
+
+label.toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
