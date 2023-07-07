@@ -369,7 +369,152 @@ https://www.notion.so/9e21c53c52ea401fa0f72def74e94faf?pvs=4
 </div>
 </details>
 
+<br>
+
+<details>
+<summary>부산대FE_김성현_2주차 과제</summary>
+<div>
+<br>
+
+✅**과제 1.**
+```
+projct
+├─node_modules
+├─public
+│  └─img
+└─src
+    ├─apis
+    │  └─api.js - axios 사용 함수
+    ├─components
+    │  ├─atoms
+    │  │  ├─Badge.jsx
+    │  │  ├─Box.jsx
+    │  │  ├─Button.jsx
+    │  │  ├─Container.jsx
+    │  │  ├─Input.jsx
+    │  │  ├─Label.jsx
+    │  │  └─Title.jsx
+    │  ├─molecules
+    │  │  └─InputGroup.jsx
+    │  ├─organisms
+    │  │  ├─Gnb.jsx
+    │  │  ├─LoginForm.jsx
+    │  │  └─RegisterForm.jsx
+    │  └─templates
+    ├─hooks
+    │  └─useInput.js
+    ├─pages
+    │  ├─HomePage.jsx - 기본 페이지
+    │  ├─LoginPage.jsx - 로그인 페이지
+    │  └─RegisterPage.jsx - 회원가입 페이지
+    └─store
+       ├─slices
+       │   ├─saga
+       │   │  └─products.js
+       │   ├─productSlice.js    
+       │   └─userSlice.js
+       └─index.js
+```
+
+<br>
+
+✅**과제 2.**
+
+```
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
+
+const EMAIL_MESSAGE = "이메일을 확인해주세요.";
+const PASSWORD_MESSAGE = "비밀번호를 확인해주세요.";
+```
+
+정규 표현식을 만족하는 경우에만 api를 요청을 하고,
+그렇지 않다면 해당하는 메시지를 alert 했다.
+
+```
+// middleware
+instance.interceptors.response.use(
+    (response) => {
+        window.location.href = "/";
+        return response
+    },
+    (error) => {
+        if(error.response.status === 401) {
+            localStorage.removeItem("token");
+            alert(error.response.data.error.message);
+            return Promise.resolve();
+        }
+        if(error.response.status === 400) {
+            alert(error.response.data.error.message);
+            return Promise.resolve();
+        }
+        return Promise.reject(error.response);
+    }
+)
+```
+로그인과 회원가입이 정상적으로 이루어진다면,
+메인페이지로 이동한다.
+
+실패한 경우에는 반환된 에러메시지를 alert로 표시한다.
+
+
+<br>
+
+✅**과제 3.**
+
+```
+{loginState === false &&
+    <NavLink to="/login"> 
+        로그인
+    </NavLink>
+}
+{loginState === true &&
+    <Button onClick={() => {
+        localStorage.removeItem('Time');
+        localStorage.removeItem('token');
+        alert('로그아웃 되었습니다.');
+        window.location.href = '/';
+    }}>
+        로그아웃
+    </Button>
+}
+```
+현재 상태를 loginState에 저장하여,
+true일 경우 로그아웃 버튼이, 아니면 로그인 버튼이 렌더링되도록 했다.
+
+로그아웃 버튼을 누르게 된다면, 토큰과 시각 데이터가 로컬 스토리지에서 삭제되고, 새로고침된다.
+
+```
+// 현재 로그인 상태 관리
+const [loginState, setLoginState] = useState(false);
+
+useEffect(() => {
+    const currentTime = new Date().getTime();
+    const previousTime = localStorage.getItem('Time');
+
+    // 시간 비교 : 1일
+    if(currentTime - previousTime < 1000 * 60 * 60 * 24) {
+        setLoginState(true);
+    }
+    else {
+        localStorage.removeItem('token');
+        localStorage.removeItem('Time');
+        setLoginState(false);
+    }
+}, []);
+```
+
+Gnd 컴포넌트가 렌더링될 때, 로컬 스토리지에 저장된 시각 데이터와 현재 시각을 비교한다. 만약 차이가 1일 미만일 경우, 로그인 상태를 true로 하고, 만료되었을 경우 토큰과 시각 데이터를 제거한다.
+
+
+<br>
+
+</div>
+</details>
+
+
 ---
+
 
 <details>
 <summary>Step-2.-Week-3</summary>
