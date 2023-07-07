@@ -15,7 +15,7 @@ const Input = ({
             name={name}
             onChange={onChange}
             placeholder={placeholder}
-            className={`input ${className}`}
+            className={`input py-2 ${className}`}
             id={id}
             style={style}
         ></input>

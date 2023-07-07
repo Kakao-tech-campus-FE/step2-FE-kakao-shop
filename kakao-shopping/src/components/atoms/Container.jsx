@@ -1,4 +1,4 @@
-const Box = ({
+const Container = ({
     className, // class
     id, // id
     children, // 자식 Component
@@ -11,4 +11,4 @@ const Box = ({
     );
 };
 
-export default Box;
+export default Container;

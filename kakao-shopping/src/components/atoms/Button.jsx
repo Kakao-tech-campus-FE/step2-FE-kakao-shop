@@ -7,13 +7,13 @@ const Button = ({
 }) => {
     return (
         <button
-            className={`button ${className}`}
+            className={`button border-0 ${className}`}
             id={id}
             onClick={(e) => {
                 e.preventDefault();
                 onClick();
             }}
-            style={style}
+            style={{ backgroundColor: "rgb(254,229,0)", ...style }}
         >
             {children}
         </button>

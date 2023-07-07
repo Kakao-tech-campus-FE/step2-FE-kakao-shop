@@ -5,7 +5,6 @@ const useInput = (initialValue) => {
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
         setInputValue({ ...inputValue, [name]: value });
     };
 
