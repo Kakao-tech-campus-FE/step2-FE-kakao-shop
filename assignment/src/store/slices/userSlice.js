@@ -11,6 +11,8 @@ import { login } from '../../services/api';
 const initialState = {
     email : null,
     loading:false, // 요청을 보냈을 때 : true 아닌 경우 : 요청이 없거나, 실패, 성공 : false
+    // 작동테스트
+    token:null,
 }
 
 const userSlice = createSlice({
@@ -36,10 +38,15 @@ const userSlice = createSlice({
         builder.addCase(loginRequest.fulfilled, (state, action)=> {
             state.loading= false;
             state.email = action.payload.email;
+            localStorage.setItem("token", action.payload.token);
+            state.token = action.payload.token;
+            alert('로그인 성공!');
         });
         // rejected 되는 경우
         builder.addCase(loginRequest.rejected, (state, action)=> {
             state.loading= false;
+            alert('로그인 실패!');
+            console.log(action.error.message);
         });
     }
 });
@@ -51,22 +58,13 @@ const userSlice = createSlice({
 // + 중간데이터 상태를 Reducer에서 관리할 수 있다.
 export const loginRequest = createAsyncThunk(
     "user/login",
-    // 
     async (data) => {
         const {email, password} = data;
-        // 이미 axios 요청을 만들어놨음
-        // post  요청 : 데이터 생성, 조회 보안이 필요할 경우 post요청을 쏜다.
-        // 에러catching
-        // rejected 안에서 관리가 가능하다.
-        // if(typeof email !== 'string'){
-        //     throw new Error('이메일 형식이 올바르지 않습니다.');
-        // }
-        // if(typeof password !== 'string'){
-        //     throw new Error('비밀번호 형식이 올바르지 않습니다.')
-        // }
-
         const response = await login({email, password});
-        return response.data;
+        return {
+            email,
+            token : response.headers.authorization,
+        }
     }
 )
 // createSlice를 통해 slice를 만든다.
@@ -79,3 +77,14 @@ export default userSlice.reducer;
 
 
 // redux saga + react -redux 이거쓰는 사람도 있으니까 필요하면 고고
+
+// 이미 axios 요청을 만들어놨음
+        // post  요청 : 데이터 생성, 조회 보안이 필요할 경우 post요청을 쏜다.
+        // 에러catching
+        // rejected 안에서 관리가 가능하다.
+        // if(typeof email !== 'string'){
+        //     throw new Error('이메일 형식이 올바르지 않습니다.');
+        // }
+        // if(typeof password !== 'string'){
+        //     throw new Error('비밀번호 형식이 올바르지 않습니다.')
+        // }

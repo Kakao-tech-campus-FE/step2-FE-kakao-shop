@@ -13,7 +13,7 @@ const instance = axios.create({
 // instance.interceptors.request.use((config) => {
 //     const token = localStorage.getItem("token");
 //     if (token) {
-//       config.headers["Authorization"] = `${token}`;
+//       config.headers["Authorization"] = token;
 
 //     }
 //     return config;
@@ -57,3 +57,7 @@ export const login = (data) => {
         password
     });
 }
+
+// export const fetchProducts = (page=0) => {
+//   return instance.get("/products" + "?page=" + page);
+// }
