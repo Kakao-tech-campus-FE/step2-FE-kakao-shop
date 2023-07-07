@@ -1,6 +1,14 @@
 import { FC } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
+import {
+  EMAIL,
+  PASSWORD,
+  PASSWORD_CONFIRM,
+  USERNAME,
+  EMAIL_WITH_ID,
+  SIGN_UP,
+} from "@/assets/sign.ko.json";
 
 /**
  * SignUpForm component
@@ -22,32 +30,32 @@ const SignUpForm: FC<SignUpProps> = ({
   return (
     <form className="flex flex-col gap-4 w-[40rem] " onSubmit={onSubmit}>
       <InputFormItem
-        label="이메일 (아이디)"
-        placeholder="이메일"
+        label={EMAIL_WITH_ID}
+        placeholder={EMAIL}
         type="text"
         {...emailProps}
       />
       <InputFormItem
-        label="이름"
-        placeholder="이름"
+        label={USERNAME}
+        placeholder={USERNAME}
         type="text"
         {...nameProps}
       />
       <InputFormItem
-        label="비밀번호"
-        placeholder="비밀번호"
+        label={PASSWORD}
+        placeholder={PASSWORD}
         type="password"
         {...passwordProps}
       />
       <InputFormItem
-        label="비밀번호 확인"
-        placeholder="비밀번호 확인"
+        label={PASSWORD_CONFIRM}
+        placeholder={PASSWORD_CONFIRM}
         type="password"
         {...passwordConfirmProps}
       />
       <div className="w-full mt-8">
         <ButtonFormItem color="primary" type="submit">
-          회원가입
+          {SIGN_UP}
         </ButtonFormItem>
       </div>
     </form>

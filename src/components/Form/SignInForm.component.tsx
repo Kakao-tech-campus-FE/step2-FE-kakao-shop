@@ -1,7 +1,7 @@
 import { FC } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
-
+import { EMAIL, PASSWORD } from "@/assets/sign.ko.json";
 /**
  * SignUpForm component
  * @param {emailProps} emailProps - 이메일 input의 props
@@ -17,9 +17,9 @@ const SignInForm: FC<SignInProps> = ({
 }) => {
   return (
     <form className="flex flex-col gap-4 w-[40rem] " onSubmit={onSubmit}>
-      <InputFormItem placeholder="이메일" type="text" {...emailProps} />
+      <InputFormItem placeholder={EMAIL} type="text" {...emailProps} />
       <InputFormItem
-        placeholder="비밀번호"
+        placeholder={PASSWORD}
         type="password"
         {...passwordProps}
       />
