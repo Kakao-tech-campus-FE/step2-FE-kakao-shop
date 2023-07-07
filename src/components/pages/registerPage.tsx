@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterTemplate from '../templates/registerTemplate';
 import { RegisterFormData } from '../../types/formData';
-import { registerUser } from '../../apis/axios';
+import { requestUserRegistration } from '../../apis/axios';
 
 export default function RegisterPage() {
   const {
     register,
     handleSubmit,
-    resetField,
+    setValue,
     getValues,
     formState,
     getFieldState,
@@ -33,7 +33,7 @@ export default function RegisterPage() {
   const handleRegister = async () => {
     setIsLoading(true);
 
-    const result = await registerUser(getValues());
+    const result = await requestUserRegistration(getValues());
     if (result) {
       alert('회원가입이 정상적으로 완료되었습니다.');
       navigator('/');
@@ -50,7 +50,7 @@ export default function RegisterPage() {
     <RegisterTemplate
       handleRegister={handleSubmit(handleRegister)}
       register={register}
-      resetField={resetField}
+      setValue={setValue}
       getValues={getValues}
       formState={formState}
       getFieldState={getFieldState}

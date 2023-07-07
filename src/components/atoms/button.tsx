@@ -1,13 +1,13 @@
 interface ButtonProps {
   children: React.ReactNode;
-  isSubmitType: boolean;
+  isSubmitType?: boolean;
   handleClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 }
 
 export default function Button({
   children,
-  isSubmitType,
+  isSubmitType = false,
   handleClick,
   disabled = false,
 }: ButtonProps) {

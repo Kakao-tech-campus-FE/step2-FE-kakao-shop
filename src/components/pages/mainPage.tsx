@@ -1,11 +1,7 @@
-import LinkButton from '../atoms/linkButton';
+import NavigationBar from './navigationBar';
 
 export default function MainPage() {
   return (
-    <div className="my-4 text-center">
-      <LinkButton href="/login">
-        로그인
-      </LinkButton>
-    </div>
+    <NavigationBar />
   );
 }

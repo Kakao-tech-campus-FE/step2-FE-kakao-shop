@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { LoginData, RegisterFormData } from '../types/formData';
+import { LOCALSTORAGE_KEY_TOKEN, TOKEN_EXPIRE_DATE } from '../utils/common';
+import { setItemWithExpireDate } from '../utils/localStorage';
 
 const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_KAKAO_API_URL,
@@ -19,7 +21,7 @@ export async function checkEmail(email: string) {
   }
 }
 
-export async function registerUser({ email, password, username }: RegisterFormData) {
+export async function requestUserRegistration({ email, password, username }: RegisterFormData) {
   try {
     const response = await axiosInstance.post('/join', {
       email,
@@ -33,14 +35,20 @@ export async function registerUser({ email, password, username }: RegisterFormDa
   }
 }
 
-export async function loginUser({ email, password }: LoginData) {
+export async function requestUserLogin({ email, password }: LoginData) {
   try {
     const response = await axiosInstance.post('/login', {
       email,
       password,
     });
 
-    return response.data.success === true;
+    const result = response.data.success === true;
+
+    if (result) {
+      setItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN, response.headers.authorization, TOKEN_EXPIRE_DATE);
+    }
+
+    return result;
   } catch (error) {
     return false;
   }
