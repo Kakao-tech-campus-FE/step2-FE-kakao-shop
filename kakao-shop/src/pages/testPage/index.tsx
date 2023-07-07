@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { Toast, Toggle } from '@components/@base';
 import BannerImageList from '@components/@base/Carousel/BannerImageList';
+import Header from '@components/@molecules/Header';
 import Pay from '@components/domains/Pay';
 
 function TestPage() {
@@ -42,6 +43,7 @@ function TestPage() {
 
   return (
     <div>
+      <Header />
       <BigText>캐로셀</BigText>
       <TopBannerBlock>
         <BannerImageList />
