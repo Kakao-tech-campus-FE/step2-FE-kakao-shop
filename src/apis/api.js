@@ -18,12 +18,40 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    return response;
+    const url = response.config.url;
+    const statusCode = response.status;
+    // 회원가입 관련 처리
+    if (url === "/join") {
+      if (statusCode === 200) {
+        return "complete";
+      }
+    }
+    // 로그인 관련 처리
+    else if (url === "/login") {
+      if (statusCode === 200) {
+        return "complete";
+      }
+    }
   },
-  (error) => {}
+  (error) => {
+    const url = error.config.url;
+    const errorCode = error.response.status;
+    const errorMessage = error.response.data.error.message;
+    if (url === "/join") {
+      if (errorCode === 400) {
+        if (errorMessage.includes("동일한 이메일이 존재합니다")) {
+          return "duplicateEmail";
+        }
+      }
+    } else if (url === "/login") {
+      if (errorCode === 400 || errorCode === 401) {
+        return "notVerified";
+      }
+    }
+  }
 );
 
-export const register = (data) => {
+export const register = async (data) => {
   // 요청에 맞지 않는 데이터가 들어오는 것을 방지하기 위한 구조분해할당
   const { email, password, username } = data;
   return instance.post("/join", { email, password, username });

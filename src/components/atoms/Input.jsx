@@ -13,7 +13,7 @@ const Input = ({
   return (
     <input
       className={`my-1 border-b-[1.5px]  py-1.5 focus:border-b-[1.5px]  focus:outline-none ${
-        valid[name] === true || valid[name] === ""
+        valid === undefined || valid[name] === true || valid[name] === ""
           ? "border-gray-300 focus:border-black"
           : "border-red-400  focus:border-red-400"
       }`}

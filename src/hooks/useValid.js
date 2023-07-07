@@ -25,7 +25,6 @@ const useValid = (initialValue, formValue) => {
           break;
         case "password":
           result = PW_REGEX.test(value) ? true : "invalidPw";
-          console.log(value);
           checkRegex("passwordConfirm", formValue["passwordConfirm"]);
           break;
         case "passwordConfirm":

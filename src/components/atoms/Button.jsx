@@ -1,13 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Button = ({ valid, onClick, children }) => {
-  const allVaild = Object.values(valid).every((value) => value === true);
+const Button = ({ valid = true, className, onClick, children }) => {
   return (
     <button
-      disabled={!allVaild}
-      className={`mt-10 rounded-md p-3 ${
-        allVaild ? "bg-kakao" : "bg-gray-100"
-      }`}
+      disabled={!valid}
+      className={`rounded-md p-3 ${
+        !valid || valid === "gray" ? "bg-gray-100" : "bg-kakao"
+      } ${className}`}
       onClick={(e) => {
         e.preventDefault();
         onClick();
