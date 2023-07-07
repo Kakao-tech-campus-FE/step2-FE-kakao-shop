@@ -6,18 +6,30 @@ const Footer = () => {
     <S.Root>
       <S.Strong>서비스 이용정보</S.Strong>
       <S.Info>
-        <S.Link to="/">이용약관</S.Link>
-        <S.Link to="/">
-          <strong>개인정보처리방침</strong>
+        <S.Link to="/" tabIndex={0}>
+          <span>이용약관</span>
         </S.Link>
-        <S.Link to="/">운영정책</S.Link>
-        <S.Link to="/">고객센터</S.Link>
-        <S.Link to="/">공지사항</S.Link>
+        <S.Link to="/" tabIndex={0}>
+          <span>
+            <strong>개인정보처리방침</strong>
+          </span>
+        </S.Link>
+        <S.Link to="/" tabIndex={0}>
+          <span>운영정책</span>
+        </S.Link>
+        <S.Link to="/" tabIndex={0}>
+          <span>고객센터</span>
+        </S.Link>
+        <S.Link to="/" tabIndex={0}>
+          <span>공지사항</span>
+        </S.Link>
       </S.Info>
       <S.Small>
         Copyright ©
-        <Link to="/">
-          <b> Kakao Corp.</b>
+        <Link to="/" tabIndex={0}>
+          <span>
+            <b> Kakao Corp.</b>
+          </span>
         </Link>{' '}
         All rights reserved.
       </S.Small>
@@ -48,6 +60,8 @@ const S = {
     text-indent: -9999px;
   `,
   Info: styled.div`
+    box-sizing: border-box;
+
     &:first-of-type {
       margin-left: 0;
     }
@@ -58,6 +72,14 @@ const S = {
 
     font-size: 14px;
     color: #4c4c4c;
+
+    & > span {
+      border: 2px solid transparent;
+    }
+
+    &:focus > span {
+      border: 2px solid #0047ab;
+    }
   `,
   Small: styled.small`
     display: flex;

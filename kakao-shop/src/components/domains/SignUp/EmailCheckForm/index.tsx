@@ -34,10 +34,13 @@ const EmailCheckForm = ({ email, onChangeEmail }: Props) => {
         RootClassName={S.InputRootStyle}
         InputClassName={S.EmailCheckInputStyle}
         value={email}
-        onChange={onChangeEmail}>
+        onChange={onChangeEmail}
+        tabIndex={0}>
         {'이메일 (아이디)'}
       </RegularInput.HiddenLabel>
-      <Button css={S.ButtonStyle}>중복확인</Button>
+      <Button tabIndex={0} css={S.ButtonStyle}>
+        중복확인
+      </Button>
     </S.EmailCheckContainer>
   );
 };
@@ -103,5 +106,9 @@ const S = {
     font-size: 12px;
     line-height: 51px;
     color: #191919;
+
+    &:focus {
+      border: 2px solid #0047ab;
+    }
   `,
 };

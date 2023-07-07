@@ -24,7 +24,8 @@ const SignUpForm = () => {
           placeholder={'이름'}
           css={S.InputStyle}
           value={nickname}
-          onChange={onChangeNickname}>
+          onChange={onChangeNickname}
+          tabIndex={0}>
           {'이름'}
         </RegularInput.HiddenLabel>
 
@@ -34,7 +35,8 @@ const SignUpForm = () => {
           placeholder={'비밀번호'}
           css={S.InputStyle}
           value={password}
-          onChange={onChangePassword}>
+          onChange={onChangePassword}
+          tabIndex={0}>
           {'비밀번호'}
         </RegularInput.HiddenLabel>
 
@@ -44,15 +46,20 @@ const SignUpForm = () => {
           placeholder={'비밀번호 확인'}
           css={S.InputStyle}
           value={confirmPassword}
-          onChange={onChangeConfirmPassword}>
+          onChange={onChangeConfirmPassword}
+          tabIndex={0}>
           {'비밀번호 확인'}
         </RegularInput.HiddenLabel>
 
         {errorMessage !== '' && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
 
-        <Button css={S.ButtonStyle}>회원가입</Button>
+        <Button css={S.ButtonStyle} tabIndex={0}>
+          회원가입
+        </Button>
 
-        <S.Link to="/login">로그인</S.Link>
+        <S.Link to="/login" tabIndex={0}>
+          로그인
+        </S.Link>
       </S.Container>
     </S.Root>
   );
@@ -165,6 +172,10 @@ const S = {
     text-align: center;
     color: #333;
     font-size: 14px;
+
+    &:focus {
+      border: 2px solid #0047ab;
+    }
   `,
   ErrorMessage: styled.p`
     margin-top: 10px;

@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@components/@base';
 import { RegularInput } from '@components/@molecules';
 
-import useLoginForm from '@hooks/ui/useLoginForm';
+import useSignInForm from '@hooks/ui/useLoginForm';
 
 const LoginForm = () => {
   const {
     state: { email, password, errorMessage },
     handler: { onChangeEmail, onChangePassword, onSubmit },
-  } = useLoginForm();
+  } = useSignInForm();
   return (
     <S.Root>
       <S.Container onSubmit={onSubmit}>
@@ -34,7 +34,9 @@ const LoginForm = () => {
         </RegularInput.HiddenLabel>
         {errorMessage !== '' && <S.ErrorMessage>{errorMessage}</S.ErrorMessage>}
         <Button css={S.ButtonStyle}>로그인</Button>
-        <S.Link to="/signup">회원가입</S.Link>
+        <S.Link tabIndex={0} to="/signup">
+          <span>회원가입</span>
+        </S.Link>
       </S.Container>
     </S.Root>
   );
@@ -113,6 +115,10 @@ const S = {
     text-align: center;
     color: #333;
     font-size: 14px;
+
+    &:focus > span {
+      border: 2px solid #0047ab;
+    }
   `,
   ErrorMessage: styled.p`
     margin-top: 10px;
