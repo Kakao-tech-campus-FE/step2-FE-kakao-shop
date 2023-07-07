@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "../src/styles/theme.js";
 import { withThemeFromJSXProvider } from "@storybook/addon-styling";
 import GlobalStyle from "../src/styles/GlobalStyle.js";
+import { HelmetProvider } from "react-helmet-async";
 
 const preview = {
   parameters: {
@@ -24,6 +25,11 @@ export const decorators = [
     Provider: ThemeProvider,
     GlobalStyles: GlobalStyle,
   }),
+  (Story) => (
+    <HelmetProvider>
+      <Story />
+    </HelmetProvider>
+  ),
 ];
 
 export default preview;
