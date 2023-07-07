@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 import { checkEmail, checkPassword } from '@utils/validationUtils';
 import { useDispatch, useSelector } from 'react-redux';
-import { setEmail } from '@store/slices/userSlice';
+import { login } from '@store/slices/userSlice';
 import { RootState } from 'src/store';
 import { useNavigate } from 'react-router-dom';
 import InputGroup from '../molecules/InputGroup';
@@ -29,7 +29,7 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
     onSubmit({ email: inputInfo.email, password: inputInfo.password })
       .then((res) => {
         console.log(res.headers.authorization);
-        dispatch(setEmail({ email: inputInfo.email }));
+        dispatch(login({ email: inputInfo.email }));
         localStorage.clear();
         localStorage.setItem('id', res.headers.authorization);
         navigate('/');
