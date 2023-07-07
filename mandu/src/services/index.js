@@ -1,4 +1,5 @@
 import axios from "axios";
+import cookie from 'react-cookies';
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -9,11 +10,13 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(
-    (response) => {
-        return response;
-    },
-    (error) => {
-        return Promise.reject(new Error(error));
+    (config) => {
+        console.log("request", config);
+        const token = cookie.load('access_token');
+        if (token) {
+            config.headers['authorization'] = token;
+        }
+        return config;
     }
 );
 
