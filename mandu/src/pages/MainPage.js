@@ -22,17 +22,17 @@ const MainPage = () => {
 
 
     return (
-        <div>
-            <h1 className="m-2 p-2 text-lg">Main Page</h1>
+        <div className="max-w-md text-center m-auto">
+            <h1 className="m-2 p-2 text-lg ">Main Page</h1>
             {userId
-                ? <div>{`유저 id : ${userId}`}</div> : (<>
+                ? <div>{`유저 id : ${userId}`}</div> : (<div>
                     <Button onClick={() => navigate('/login')}>로그인
                         Page
                     </Button>
                     <Button onClick={() => navigate('/signup')}>회원가입
                         Page
                     </Button>
-                </>)}
+                </div>)}
         </div>
     );
 }
