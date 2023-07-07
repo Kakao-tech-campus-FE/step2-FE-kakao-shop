@@ -22,7 +22,9 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {}
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
 // 백엔드 요청

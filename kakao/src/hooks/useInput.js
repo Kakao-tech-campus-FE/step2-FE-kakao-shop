@@ -24,7 +24,7 @@ const useInput = (initialValue) => {
 
   const validatePassword = () => {
     const passwordRegex =
-      /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()\-=_+{};:,.<>?])[a-zA-Z\d!@#$%^&*()\-=_+{};:,.<>?]+$/;
     if (!passwordRegex.test(value.password)) {
       setPwError("비밀번호는 8자 이상, 영문,숫자,특수문자를 포함해야 합니다.");
     } else {

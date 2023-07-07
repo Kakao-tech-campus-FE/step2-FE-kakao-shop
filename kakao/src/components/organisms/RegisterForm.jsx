@@ -6,6 +6,7 @@ import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import { useNavigate } from "react-router-dom";
 import "../../styles/organisms/Form.css";
+import React, { useState } from "react";
 
 //hook으로
 const RegisterForm = () => {
@@ -27,6 +28,8 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleRegister = () => {
     if (emailError || pwError || pwConfirmError) {
       return;
@@ -39,8 +42,13 @@ const RegisterForm = () => {
       .then((res) => {
         navigate("/"); //회원가입 성공하면 메인 페이지로 리다이렉트
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        console.log("err", err);
+        if (err.data && err.data.error && err.data.error.message) {
+          setError(err.data.error.message);
+        } else {
+          setError("회원가입 실패");
+        }
       });
   };
 
@@ -90,6 +98,7 @@ const RegisterForm = () => {
           onBlur={validatePasswordConfirm}
         />
         {pwError && <p className="error-message">{pwConfirmError}</p>}
+        <>{error}</>
         <Button onClick={handleRegister}>회원가입</Button>
       </Container>
     </div>

@@ -7,12 +7,15 @@ import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 // hook으로
 const LoginForm = () => {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
   const navigate = useNavigate();
+
+  const [error, setError] = useState("");
 
   const {
     value,
@@ -45,6 +48,11 @@ const LoginForm = () => {
       })
       .catch((err) => {
         console.log("err", err);
+        if (err.data && err.data.error && err.data.error.message) {
+          setError(err.data.error.message);
+        } else {
+          setError("인증되지 않은 로그인");
+        }
       });
   };
 
@@ -76,6 +84,7 @@ const LoginForm = () => {
             onBlur={validatePassword}
           />
           {pwError && <p className="error-message">{pwError}</p>}
+          <>{error}</>
         </div>
         <Button
           onClick={() => {
