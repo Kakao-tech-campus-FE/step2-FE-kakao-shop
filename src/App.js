@@ -1,60 +1,36 @@
 import "./App.css";
-import Toast from "./components/molecules/Toast";
-import Carousel from "./components/molecules/Carousel";
-import Check from "./components/molecules/Check";
-import Toggle from "./components/molecules/Toggle";
-import Radio from "./components/molecules/Radio";
-import Bread from "./components/molecules/Bread";
-import styled from "styled-components";
-import RegisterForm from "./components/organisms/RegisterForm";
+import MainPage from "./pages/MainPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import GNB from "./components/organisms/GNB";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-
-// const Container = styled.div`
-//   margin: 10px;
-//   display: flex;
-//   position: absolute;
-//   flex-direction: column;
-//   align-items: center;
-//   width: 600px;
-// `;
+import PageContainer from "./components/atoms/PageContainer";
+import React, { useEffect, useState } from "react";
+import { faGalacticSenate } from "@fortawesome/free-brands-svg-icons";
 
 function App() {
-  return <RegisterForm id="register"></RegisterForm>;
-  // const Main = () => {
-  //   return (
-  //     <>
+  const [login, setLogin] = useState(localStorage.getItem("email") !== null);
 
-  //       <Carousel></Carousel>
-  //       <Toast
-  //         button="토스트"
-  //         buttonStyle={{
-  //           backgroundColor: "yellow",
-  //           width: "100px",
-  //           margin: "30px",
-  //         }}
-  //         message={"토스트"}
-  //       ></Toast> */
+  useEffect(() => {
+    if (localStorage.getItem("email") !== null) {
+      setLogin((prev) => true);
+    } else {
+      setLogin((prev) => false);
+    }
+  }, [localStorage.getItem("email")]);
 
-  //       <Link to="/cart">장바구니</Link>
-  //     </>
-  //   );
-  // };
-
-  // return (
-  //   <BrowserRouter>
-  //     <Container>
-  //       <Bread></Bread>
-
-  //       <Routes>
-  //         <Route path="*" element={<Main />} />
-  //         <Route path="/cart" element={<Check />} />
-  //         <Route path="/cart/pay" element={<Radio />} />
-  //       </Routes>
-
-  //       <Toggle></Toggle>
-  //     </Container>
-  //   </BrowserRouter>
-  // );
+  return (
+    <BrowserRouter>
+      <PageContainer>
+        <GNB login={login}></GNB>
+        <Routes>
+          <Route path="*" element={<MainPage />} />
+          <Route path="/signin" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </PageContainer>
+    </BrowserRouter>
+  );
 }
 
 export default App;

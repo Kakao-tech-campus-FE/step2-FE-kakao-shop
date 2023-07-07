@@ -1,13 +1,17 @@
 import instance from "./instance";
 
-const postCheck = (props) => {
-  instance
-    .post(`/check`, {
-      email: props.email,
-    })
-    .then((response) => {
-      console.log(response);
-    });
+const postCheck = (user) => {
+  return instance.post(`/check`, {
+    email: user.email,
+  });
 };
 
-export default postCheck;
+const postJoin = (user) => {
+  return instance.post(`/join`, {
+    email: user.email,
+    password: user.password,
+    username: user.username,
+  });
+};
+
+export { postCheck, postJoin };

@@ -5,14 +5,14 @@ const BoxStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: stretch;
-    border-top: 1px solid black;
     padding: 10px 20px;
 `
 
-const Box = ({ children, style}) => {
+// input 박스 + 라벨 1세트를 감싸는 투명 박스
+
+const Box = ( { children} ) => {
     return (
-        <BoxStyle style={ style }>{children}
-        </BoxStyle>
+        <BoxStyle>{children}</BoxStyle>
     );
 };
 

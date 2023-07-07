@@ -5,9 +5,9 @@ const Div = styled.div`
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    border: 1px solid black;
-    max-width: 420px;
-    border-radius: 15px;
+    box-shadow: 0px 0px 5px rgb(199, 199, 199);
+    border-radius: 5px;
+    width: 420px;
     margin: 15px;
     padding: 10px 0;
 `

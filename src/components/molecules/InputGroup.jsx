@@ -2,18 +2,28 @@ import React from 'react'
 import Box from "../atoms/Box"
 import Label from "../atoms/Label"
 import Input from "../atoms/Input"
+import ErrorMessage from "../atoms/ErrorMessage"
+import EmailCheck from '../atoms/EmailCheck'
+import UnderInputBox from '../atoms/UnderInputBox'
 
-const InputGroup = ( { id, className, value, type, label, style, onChange } ) => {
+
+// input 박스 + 라벨 + 에러메세지 1세트
+
+const InputGroup = ( props ) => {
   return (
-    <Box className={className} style={style}>
-        <Label htmlFor={id}>{label}</Label>
-        <Input id={id} 
-          className={className} 
-          value={value} 
-          type={type} 
-          placeholder={label} 
-        onChange={onChange}></Input>
-    </Box>
+    <>
+      <Box>
+          <Label htmlFor={props.id}>{props.label}</Label>
+          <Input id={props.id} 
+            value={props.value} 
+            type={props.type} 
+            placeholder={props.label} 
+            onChange={props.onChange}></Input>
+      </Box>
+      <UnderInputBox>
+        <ErrorMessage>{props.message}</ErrorMessage>
+      </UnderInputBox>
+    </>
   )
 }
 
