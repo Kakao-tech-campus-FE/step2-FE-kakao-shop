@@ -327,18 +327,17 @@ ii. 로그인 페이지 및 에러캐칭
 
 | 기본 화면 | 유효성 검사 | 이메일 중복 |
 | ----- | ----- | ----------- |
-|  <img width="558" alt="스크린샷 2023-07-07 오후 10 49 31" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/9b841bfb-2c98-4b8c-bf1d-de825df843bf">|   <img width="584" alt="스크린샷 2023-07-07 오후 10 51 23" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/bad8cb0a-f6c9-4a8a-9c83-704c59b1ba3f"> |            |
-
+| <img width="552" alt="스크린샷 2023-07-07 오후 10 58 40" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/7094d241-36fb-46fd-ac18-6bcf8a26153d"> |   <img width="584" alt="스크린샷 2023-07-07 오후 10 51 23" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/bad8cb0a-f6c9-4a8a-9c83-704c59b1ba3f"> |        <img width="491" alt="스크린샷 2023-07-07 오후 10 51 16" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/099d461b-020c-4c2c-b7cd-da3be83cb9c7"> |
 
 
 ### ii. 로그인 페이지 및 에러캐칭
 
 | 기본 화면 | 빈 입력값 | 로그인 실패 |
 | ----- | ----- | ------- |
-|       |       |         |
-
+|   <img width="558" alt="스크린샷 2023-07-07 오후 10 49 31" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/1dca319b-ecf0-4174-bb09-eabc406c9b95">|   <img width="577" alt="스크린샷 2023-07-07 오후 10 59 45" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/6d08f100-0fbf-4fe2-8805-a7bff44b3fb3">   |   <img width="564" alt="스크린샷 2023-07-07 오후 11 00 16" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/746fdb2b-93bd-46f3-91a8-b3ec6a4e014f">    |
 
 </br>
+
 
 </br>
 
@@ -352,6 +351,7 @@ redux-toolkit 사용
 
 ### ii. 로그인 상태 유지
 
+<img width="311" alt="스크린샷 2023-07-07 오후 10 53 27" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/88426878-a60e-4fbf-b7e7-daa70ca004b8">
 
 
 </div>
