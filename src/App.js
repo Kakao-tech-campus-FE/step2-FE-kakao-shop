@@ -3,10 +3,9 @@ import MainPage from "./pages/MainPage";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import GNB from "./components/organisms/GNB";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageContainer from "./components/atoms/PageContainer";
 import React, { useEffect, useState } from "react";
-import { faGalacticSenate } from "@fortawesome/free-brands-svg-icons";
 
 function App() {
   const [login, setLogin] = useState(localStorage.getItem("email") !== null);

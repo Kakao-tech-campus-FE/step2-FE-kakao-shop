@@ -16,7 +16,7 @@ const SubmitGroup = (props) => {
     <>
     <Button type="submit"
           active={props.active} 
-          onClick={props.onClick}>
+          onClick={props.active ? props.onClick : null}>
       {props.children}
     </Button>
     <UnderBtn>{props.message}</UnderBtn>

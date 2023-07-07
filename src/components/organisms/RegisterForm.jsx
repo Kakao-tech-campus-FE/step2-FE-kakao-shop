@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import RegiContainer from "../atoms/FormContainer"
-import Button from "../atoms/Button"
+import SubmitGroup from "../molecules/SubmitGroup"
 import InputGroup from "../molecules/InputGroup"
 import {postCheck, postJoin} from "../../api/register"
 import { useNavigate } from 'react-router-dom';
 import checkValid from '../../utils/checkForm'
 
-//id, className, value, type, placeholder, onChange, label
 const RegisterForm = () => {
   const [user, setUser] = useState({
     username: "",
@@ -15,9 +14,7 @@ const RegisterForm = () => {
     passwordCheck: "",
   })
 
-  const [validMail, setValidMail] = useState(false);
   const [duple, setDuple] = useState(false);
-  const [valid, setVaild] = useState(false)
 
   const inputChange = ( event, key ) => {
     setUser(prevObj => {
@@ -25,57 +22,44 @@ const RegisterForm = () => {
     })
   }
 
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    if (!validMail 
-      || checkValid(user.password, 'password')
-      || user.passwordCheck !== user.password) {
-      setVaild(prev => false)
-    } else {
-      setVaild(prev => true)
-    }
-  }, [user, validMail])
-
-
   useEffect(() => {
     if (checkValid(user.email, 'email')) {
       postCheck(user)
       .then((response) => {
-        setValidMail(prev => true)
         setDuple(prev => false)
       })
       .catch((error) => {
-        setValidMail(prev => false)
         setDuple(prev => true)
       });
     }
-    else{
-      setValidMail(prev => false)
-    }
   }, [user.email])
 
+  const navigate = useNavigate();
+
   const click = () => {
-    if (valid){
     postJoin(user)
       .then((response) => {
-        console.log(response)
-        navigate("./")
+        navigate("/")
+        window.location.reload()
+      })
+      .then(() => {
+
+        alert("가입완료")
       })
       .catch((error) => {
         console.log(error)
-      }) }
+      }) 
   }
 
 
   return (
     <RegiContainer>
+
       <InputGroup 
         id="username" 
         type="text" 
         label="아이디" 
         onChange={event => inputChange(event, 'username')}
-        style={ {borderTop:"none"} } 
         />
       
       
@@ -112,19 +96,22 @@ const RegisterForm = () => {
         label="비밀번호 확인"
         onChange={event => inputChange(event, 'passwordCheck')}
         message={user.passwordCheck && user.passwordCheck !== user.password 
-          ? "비밀번호가 일치하지 않습니다" : null } />
-      
-      { valid ? 
-          <Button 
-            active={valid} 
-            onClick={click}>
-            가입하기
-          </Button>
+          ? "비밀번호가 일치하지 않습니다" : null } 
+        />
 
-        : <Button
-            active={valid} >가입하기</Button>
-      }
-      
+
+      <SubmitGroup
+        active={
+            !duple
+            && checkValid(user.password, 'password')
+            && user.passwordCheck === user.password
+            } 
+        onClick={click}
+        >
+        가입하기
+      </SubmitGroup>       
+
+
     </RegiContainer>
   )
 }

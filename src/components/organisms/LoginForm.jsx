@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import checkValid from '../../utils/checkForm'
 
 
-//id, className, value, type, placeholder, onChange, label
 const LoginForm = (props) => {
 
   const navigate = useNavigate();
@@ -51,6 +50,7 @@ const LoginForm = (props) => {
         // 토큰, 이메일 로컬스토리지에 등록, 로그인실패횟수 초기화, 메인으로 이동
         localStorage.setItem("token", response.headers.authorization);
         localStorage.setItem("email", user.email);
+        localStorage.setItem("loginTime", Date.now());
         localStorage.removeItem("failCnt")
         navigate("/")
         window.location.reload()

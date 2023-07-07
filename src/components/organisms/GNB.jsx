@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from "react-router-dom";
 import { styled } from 'styled-components'
 import { useNavigate } from 'react-router-dom';
 
@@ -31,18 +30,25 @@ const LoginBox = styled(TextBox)`
 
 const GNB = (props) => {
   const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem('email')
+    localStorage.removeItem('token')
+    navigate("./")
+    window.location.reload()
+  }
+  
+  if (props.login && Date.now() > localStorage.getItem("loginTime") + 3600 * 24) {
+    logout();
+  }
+
   return (
     <GNBContainer>
       <InnerContainer>
         <TextBox onClick={()=>{navigate("/")}}>메인</TextBox> 
         {
           (props.login)
-          ? <LoginBox onClick={() => {
-              localStorage.removeItem('email')
-              localStorage.removeItem('token')
-              navigate("./")
-              window.location.reload()
-              }}>
+          ? <LoginBox onClick={logout}>
               로그아웃
             </LoginBox>
           : 
