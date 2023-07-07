@@ -8,14 +8,20 @@ import logo from "../../images/logoKakaoText.png";
 import { login } from "../../services/api";
 import { useNavigate } from "react-router-dom";
 import { validateForm } from "../../utils/VaildationLogin";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmailandPassword } from "../../store/slices/userSlice";
+import {
+  setEmailandPassword,
+  logout,
+  setTimeoutId,
+  clearTimeoutId,
+} from "../../store/slices/userSlice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email); // user 안에 email에 접근
   const password = useSelector((state) => state.user.password); // user 안에 password에 접근
+  const timeoutId = useSelector((state) => state.user.clearTimeoutId); // user 안에 clearTimeoutId에 접근
 
   const navigate = useNavigate();
 
@@ -24,6 +30,19 @@ const LoginForm = () => {
     password: "",
   });
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    if (timeoutId) {
+      const timeout = setTimeout(() => {
+        dispatch(logout());
+      }, 1000); // Set timeout for 10 minutes (600000 milliseconds)
+
+      return () => {
+        clearTimeout(timeout);
+        dispatch(clearTimeoutId());
+      };
+    }
+  }, [dispatch, timeoutId]);
 
   const loginreq = () => {
     login({
@@ -39,6 +58,13 @@ const LoginForm = () => {
             password: value.password,
           })
         );
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        const newTimeoutId = setTimeout(() => {
+          dispatch(logout());
+        }, 1000);
+        dispatch(setTimeoutId(newTimeoutId));
       })
       .catch((err) => {
         // 에러
