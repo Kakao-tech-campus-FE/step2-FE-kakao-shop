@@ -1,6 +1,13 @@
 import LabeledInput from "../../molecules/labled-input/LabeledInput.jsx";
 import { useForm, FormProvider } from "react-hook-form";
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const Styled = {
+  Form: styled.form`
+    padding: 0 0.5rem;
+  `,
+};
 
 function Form({
   onSubmit,
@@ -18,21 +25,21 @@ function Form({
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit, onError)} style={style}>
+      <Styled.Form onSubmit={handleSubmit(onSubmit, onError)} style={style}>
         {inputInformations.map((input) => (
           <LabeledInput
             key={input.id}
             id={input.id}
             label={input.label}
             type={input.type}
+            placeholder={input.placeholder}
             validation={input.validation}
             errorMsg={errors?.[input.id]?.message}
             requireMsg={input?.requireMsg}
           />
         ))}
         {children}
-        <button type="submit">submit</button>
-      </form>
+      </Styled.Form>
     </FormProvider>
   );
 }

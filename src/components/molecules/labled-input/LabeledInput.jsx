@@ -13,12 +13,13 @@ const Styled = {
     padding: 0.75rem;
     margin-top: 0.4rem;
 
+    color: ${({ theme }) => theme.color.black};
     font-family: ${({ theme }) => theme.fontFamily.main};
     font-size: 0.9rem;
 
+    background-color: white;
     border: 1px solid #ebebeb;
     border-radius: 0.1rem;
-
     outline: none;
 
     &::placeholder {
