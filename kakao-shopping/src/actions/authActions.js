@@ -7,18 +7,18 @@ export const login = ({email, password}) => async dispatch => {
     const user = { username: email };
     // 응답 처리
     if(response && response.data.success) {
-      dispatch(loginSuccess(user));
+      await dispatch(loginSuccess(user));
       console.log(response.headers.authorization);
       localStorage.setItem('isLoggedIn', calculateTomorrowTime());
       localStorage.setItem('userInfo', response.headers.authorization);
     } else {
       //로그인 실패 처리
-      dispatch(logout());
+      await dispatch(logout());
     }
     // setCookie('isLoggedIn', 'true', 1); // 1일 동안 유지되는 쿠키
     // setCookie('username', username, 1);
 	} catch (error) {
-			dispatch(logout());
+			await dispatch(logout());
 			throw error;
 	}
 };

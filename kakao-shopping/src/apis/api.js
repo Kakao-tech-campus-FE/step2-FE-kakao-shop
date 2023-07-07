@@ -9,17 +9,6 @@ const instance = axios.create({
   }
 });
 
-instance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {
-    console.log(error);
-    console.log(error.response.data.error.message);
-    throw error;
-  }
-);
-
 export const loginApi = (data) => {
   const {email, password} = data;
   return (
@@ -36,11 +25,16 @@ export const checkDuplicateEmail = ({email}) => {
   });
 };
 
-export const register = (data) => {
+export const register = async (data) => {
   const {email, password, username} = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username
-  });
+  try {
+    const response = await instance.post("/join", {
+      email,
+      password,
+      username
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };

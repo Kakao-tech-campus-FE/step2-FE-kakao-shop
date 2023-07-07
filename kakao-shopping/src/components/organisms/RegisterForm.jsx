@@ -44,7 +44,7 @@ const RegisterForm = () => {
     }
   }
   
-  const everythingIsValid = value.usernameIsValid && value.emailIsValid && value.passwordIsValid && value.passwordConfirm == value.password;
+  const everythingIsValid = value.usernameIsValid && value.emailIsValid && value.passwordIsValid && value.passwordConfirm === value.password;
 
   return (
     <Container className='relative rounded-md flex flex-col items-center justify-center p-5'>
@@ -120,7 +120,7 @@ const RegisterForm = () => {
           회원가입
       </Button>}
     <div className="absolute left-4 bottom-0 m-3">
-      <Link to='/login'><span className="text-sm">로그인</span></Link>
+      <Link to='/login'><span className="text-sm">회원가입</span></Link>
       </div>
     </Container>
   );
