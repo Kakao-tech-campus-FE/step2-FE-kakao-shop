@@ -1,8 +1,8 @@
-import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
-import { login } from '../../apis/api';
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    email: null
+    email: null,
+    user: null
 };
 
 const userSlice = createSlice({
@@ -11,6 +11,9 @@ const userSlice = createSlice({
     reducers: { 
         setEmail: (state, action) => { // setState의 역할
             state.email = action.payload.email;
+        },
+        setUser: (state, action) => {
+            state.user = action.payload.user;
         },
     },
 });
@@ -25,6 +28,6 @@ const userSlice = createSlice({
 //     },
 // );
 
-export const {setEmail} = userSlice.actions;
+export const {setEmail, setUser} = userSlice.actions;
 
 export default userSlice.reducer;
