@@ -31,3 +31,10 @@ const useLoginForm = () => {
 };
 
 export default useLoginForm;
+
+export type SignInRequest = {
+  email: string;
+  password: string;
+  navigate: any;
+  setErrorMessage: any;
+};

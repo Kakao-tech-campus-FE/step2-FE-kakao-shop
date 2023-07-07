@@ -47,3 +47,10 @@ const useSignUpForm = () => {
 };
 
 export default useSignUpForm;
+
+export type SignUpRequest = {
+  email: string;
+  password: string;
+  username: string;
+  navigate: any;
+};
