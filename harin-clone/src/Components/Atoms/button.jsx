@@ -1,4 +1,4 @@
-const Button = ({ onClick, children, className, disabled }) => {
+const Button = ({ onClick, children, className, disabled}) => { // 버튼: 온클릭, 버튼에 적힐 내용, 속성, 활성화 여부
   return (
     <div className="justify-center">
       <button

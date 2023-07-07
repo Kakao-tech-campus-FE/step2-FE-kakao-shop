@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  // baseURL: process.env.REACT_APP_API_URL, -> 이렇게 하니까 인식을 못하는 것 같은데... 왜 그럴까...?
+  // baseURL: process.env.REACT_APP_API_URL, -> 이렇게 하니까 인식을 못하는 것 같은데...?
   baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/", 
   timeout: 1000,
   headers: {
@@ -41,7 +41,7 @@ export const login = (data) => {
   })
 };
 
-export const checkEmail = (data) => {
+export const checkUnique = (data) => {
   const { email } = data
   return instance.post('/check', {
     email

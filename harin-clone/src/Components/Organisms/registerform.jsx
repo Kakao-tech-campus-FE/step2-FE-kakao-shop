@@ -1,12 +1,13 @@
 import Container from "../Atoms/container";
 import Button from "../Atoms/button";
 import InputGroup from "../Molecules/inputgroup";
-import { register, checkEmail } from "../../api";
+import { register, checkUnique } from "../../api";
 import useInput from "../../Hooks/useinput";
 import Box from "../Atoms/box";
 import { setEmail } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const RegisterForm = ( ) => {
@@ -21,8 +22,7 @@ const RegisterForm = ( ) => {
     passwordConfirm: "",
   });
 
-  const [isValid, setValid] = useState(false)
-
+  const [isClicked, setClicked] = useState(false)
 
 
   const validPw = (password) => {
@@ -59,15 +59,17 @@ const RegisterForm = ( ) => {
 
 
   const checkReq = () => {
-    checkEmail({
+    checkUnique({
       email:value.email
     })
       .then((res) => {
-        return <p className="font-green">사용할 수 있는 이메일입니다.</p>
+        // return <p className="text-green-400">사용할 수 있는 이메일입니다.</p>
+        // alert('사용할 수 있는 이메일입니다')
       })
 
       .catch((err) => {
-        return <p className="font-red">{err.name}</p>
+        // return <p className="text-red-400">{err.name}</p>
+        alert(err.response)
       })
   }
 
@@ -80,19 +82,15 @@ const RegisterForm = ( ) => {
     })
       .then((res) => {
         console.log(res);
-        dispatch(
-          setEmail({
-            email: value.email,
-          })
-        ) //payload
-        return <p>사용할 수 있는 이메일입니다.</p>
+        // alert('회원가입이 완료되었습니다')
       })
       .catch((err) => {
         console.log('err', err);
-        return <p>{err.name}</p>
+        alert(err.response)
       })
   }
 
+  const backToMain = useNavigate("../mainpage")
 
 
   return (
@@ -118,7 +116,7 @@ const RegisterForm = ( ) => {
           value={value.email}
           onChange={(e) => {
             handleOnChange(e)
-            return checkReq()
+            checkReq()
           }}
           className={inputStyle} 
         />
@@ -149,10 +147,13 @@ const RegisterForm = ( ) => {
         <Box className="m-3">
           <Button 
             onClick={() => {
+              setClicked(!isClicked)
               registerReq()
+              backToMain()            
             }}
             disabled={validAll(value)}
-            className="items-center text-center w-full h-12 mt-4 rounded bg-amber-300"
+            className={validAll(value) ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
+                        : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"}
           >
           회원가입
           </Button>

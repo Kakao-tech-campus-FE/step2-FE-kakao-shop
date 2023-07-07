@@ -1,24 +1,29 @@
 import Container from "../Atoms/container";
 import Button from "../Atoms/button";
 import InputGroup from "../Molecules/inputgroup";
-import { login, checkEmail } from "../../api";
+import { login, checkUnique } from "../../api";
 import useInput from "../../Hooks/useinput";
 import Box from "../Atoms/box";
 import { setEmail } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ( ) => {
   const dispatch = useDispatch()
-  const email = useSelector((state => state.user.email))
 
   const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
+  const backToMain = useNavigate("/main")
 
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
-  });
+  }); 
 
-
+  const validAll = (props) => {
+    if (props.email && props.password) {
+      return false
+    } else { return true }
+  }
 
   const loginReq = () => {
     login({
@@ -27,19 +32,18 @@ const LoginForm = ( ) => {
     })
       .then((res) => {
         console.log(res);
-        dispatch(
-          setEmail({
-            email: value.email,
-          })
-        ) //payload
+        dispatch(setEmail({
+          email: value.email
+        }))
+        console.log('로그인했음')
+        backToMain()
       })
       .catch((err) => {
         console.log('err', err);
-
+        alert(err.name)
       })
   }
 
- 
 
 
 
@@ -70,9 +74,12 @@ const LoginForm = ( ) => {
         <Box className="m-3">
           <Button 
             onClick={() => {
+
               loginReq()
             }}
-            className="items-center text-center w-full h-12 mt-4 rounded bg-amber-300"
+            disabled={validAll(value)}
+            className={validAll(value) ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
+                        : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"}
           >
           로그인
           </Button>

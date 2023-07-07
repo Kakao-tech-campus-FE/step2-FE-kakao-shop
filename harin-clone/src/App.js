@@ -6,6 +6,7 @@ import RegisterPage from './Pages/registerpage';
 import PageNotFound from './Pages/pagenotfound';
 import Navigation from "./Components/Molecules/navigation";
 import Week1 from './Pages/Week1';
+import { Navigate } from 'react-router-dom';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
               <Route path='/loginpage' Component={LoginPage} />
               <Route path='/registerpage' Component={RegisterPage} />
               <Route path='/week1' Component={Week1} />
+              <Route path="/loginpage" element={<Navigate replace to="/mainpage" />} />
           </Routes>
       </BrowserRouter>  
 

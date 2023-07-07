@@ -1,4 +1,4 @@
-const Input = ({ type, value, onChange, placeholder, className, id, name }) => {
+const Input = ({ type, value, onChange, placeholder, className, id, name }) => { // 인풋: 
   return (
     <input 
       type={type} 
