@@ -8,7 +8,7 @@ import LinkText from "../atoms/LinkText";
 import * as Link from '../../styles/atoms/Link';
 import {login} from '../../apis/api';
 import { useDispatch } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { setUser } from "../../store/slices/userSlice";
 import { useState } from "react";
 import Msg from "../atoms/Msg";
 import { setLocalStorageWithExp } from "../../utils/localStorage";
@@ -29,10 +29,11 @@ const LoginForm = () => {
         })
         .then((res) => {
             setError('');
-            dispatch(setEmail({
-                email: value.email,
+            dispatch(setUser({
+                user: value.user,
             }));
-            setLocalStorageWithExp("email", value.email, 1000 * 1440);
+            //console.log(res.headers.authorization);
+            setLocalStorageWithExp("user", res.headers.authorization, 1000 * 1440);
             navigate("/");
         })
         .catch((err) => {
