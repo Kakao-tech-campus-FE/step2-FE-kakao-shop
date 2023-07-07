@@ -5,6 +5,7 @@ import {register} from "../../services/api";
 import { useState } from "react";
 import Title  from "../atoms/Title";
 
+
 const RegisterForm = (props) => {
     // const { value, handleOnChange } = useInput({   username: "",   email: "",
     // password: "",   passwordCheck: "", });
@@ -13,6 +14,10 @@ const RegisterForm = (props) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordCheck, setPasswordCheck] = useState("");
+    const [idError, setIdError] = useState("");
+    // const [pwError, setPwError] = useState('');
+    // const [pwCheckError, setPwCheckError] = useState('');
+
 
     const onEmailHandler = (e) => {
         setEmail(e.currentTarget.value);
@@ -26,6 +31,44 @@ const RegisterForm = (props) => {
     const onPasswordCheckHandler = (e) => {
       setPasswordCheck(e.currentTarget.value);
     }
+
+    const ID_REGEX = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+
+    const handleID = (e) => {
+   
+        if(e.currentTarget.value.length === 0){
+            console.log("필수 정보입니다. ")
+        }
+        else if (ID_REGEX.test(e.currentTarget.value)){
+            console.log("good")
+        }
+        else console.log("이메일 형식으로 입력해주세요. ")
+      };
+
+      const PW_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+
+      const handlePW = (e) => {
+  
+        if(e.currentTarget.value.length === 0){
+            console.log("필수 정보입니다. ")
+        }
+        else if (PW_REGEX.test(e.currentTarget.value)){
+            console.log("good")
+        }
+        else console.log("8에서 20자 이내로 영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다")
+      };
+
+
+      const handlePWCHECK = (e) => {
+
+        if(e.currentTarget.value.length === 0){
+            console.log("필수 정보입니다. ")
+        }
+        else if (e.currentTarget.value !== password){
+            console.log("비밀번호가 일치하지 않습니다. ")
+        }
+      };
+        
 
     return (
         <Container>
@@ -45,6 +88,7 @@ const RegisterForm = (props) => {
                 label="아이디"
                 value={email}
                 onChange={onEmailHandler}
+                onBlur ={handleID}
                 name="email"/>
             <InputGroup
                 id="password"
@@ -53,6 +97,7 @@ const RegisterForm = (props) => {
                 label="비밀번호"
                 value={password}
                 onChange={onPasswordHandler}
+                onBlur ={handlePW}
                 name="password"/>
             <InputGroup
                 id="passwordCheck"
@@ -61,6 +106,7 @@ const RegisterForm = (props) => {
                 label="비밀번호 확인"
                 value={passwordCheck}
                 onChange={onPasswordCheckHandler}
+                onBlur ={handlePWCHECK}
                 name="passwordCheck"/>
             <Button
                 onClick={() => {
