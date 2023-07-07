@@ -1,4 +1,5 @@
 import LabeledInput from "./LabeledInput.jsx";
+import { useForm, FormProvider } from "react-hook-form";
 
 export default {
   title: "molecules/Labeled Input",
@@ -15,6 +16,16 @@ export default {
       control: "text",
     },
   },
+  decorators: [
+    (Story) => {
+      const methods = useForm({ mode: "onChange" });
+      return (
+        <FormProvider {...methods}>
+          <Story />
+        </FormProvider>
+      );
+    },
+  ],
 };
 
 export const Default = {

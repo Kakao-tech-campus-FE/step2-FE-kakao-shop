@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import Label from "../../atoms/label/Label.jsx";
+import { useFormContext } from "react-hook-form";
 
 const Styled = {
-  Container: styled.div``,
+  Container: styled.div`
+    height: 84px;
+    margin: 1rem 0;
+  `,
   Input: styled.input`
     width: 100%;
     padding: 0.75rem;
@@ -14,6 +18,8 @@ const Styled = {
 
     border: 1px solid #ebebeb;
     border-radius: 0.1rem;
+
+    outline: none;
 
     &::placeholder {
       color: #757575;
@@ -47,9 +53,11 @@ function LabeledInput({
   placeholder,
   errorMsg,
   requireMsg,
-  value,
+  validation,
   ...props
 }) {
+  const { register, getValues } = useFormContext();
+
   return (
     <Styled.Container>
       <Label htmlFor={id}>{label}</Label>
@@ -58,12 +66,13 @@ function LabeledInput({
         type={type}
         placeholder={placeholder}
         className={errorMsg && "error"}
+        {...register(id, validation)}
         {...props}
       />
       {errorMsg ? (
         <Styled.Message className="error-message">{errorMsg}</Styled.Message>
       ) : (
-        !value && (
+        !getValues(id) && (
           <Styled.Message className="require-message">
             {requireMsg}
           </Styled.Message>
@@ -81,7 +90,6 @@ LabeledInput.propTypes = {
   validation: PropTypes.object,
   errorMsg: PropTypes.string,
   requireMsg: PropTypes.string,
-  value: PropTypes.string,
 };
 
 LabeledInput.defaultProps = {
