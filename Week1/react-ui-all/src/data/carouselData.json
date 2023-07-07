@@ -1,0 +1,16 @@
+{
+  "slides":[
+    {
+      "src" : "https://www.shutterstock.com/image-illustration/different-types-ssd-disk-drive-600w-1613613763.jpg",
+      "alt" : "Image 1 for carousel"
+    },
+    {
+      "src" : "https://www.shutterstock.com/image-illustration/hard-disk-drive-hdd-solid-600w-1648888813.jpg",
+      "alt" : "Image 2 for carousel"
+    },
+    {
+      "src" : "https://www.shutterstock.com/image-photo/pair-black-golden-ssd-solid-600w-1715677042.jpg",
+      "alt" : "Image 3 for carousel"
+    }
+  ]
+}
