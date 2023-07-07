@@ -3,8 +3,8 @@ import Button from "../atoms/Button";
 import styled from "styled-components";
 import { register } from "../../services/api.js";
 import useInput from "../../hooks/useInput";
-import { useState, useEffect } from "react";
-import ErrorMsg from "../atoms/ErrorMsg";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   display: flex;
@@ -20,7 +20,7 @@ const Form = styled.form`
 const emailRegEx =
   /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
 
-const passwordRegEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+const passwordRegEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-])[^\s]{8,}$/;
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -69,6 +69,22 @@ const RegisterForm = () => {
     const confirmPw = e.target.value;
     setConfirmPw(confirmPw);
     setConfirmPwErrorMsg(correctPwCheck(confirmPw));
+  };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    register({
+      email: value.email,
+      password: value.password,
+      username: value.username,
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          navigate("/");
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -132,13 +148,7 @@ const RegisterForm = () => {
             fontWeight: "bold",
             borderRadius: "6px",
           }}
-          onClick={() => {
-            register({
-              email: value.email,
-              password: value.password,
-              username: value.username,
-            });
-          }}
+          onClick={() => {}}
         >
           회원가입
         </Button>
