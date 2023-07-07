@@ -1,3 +1,5 @@
+import { JwtPayload } from "@/dtos/jwt.dto";
+
 export const jwtDecode = (token: string): JwtPayload => {
   try {
     const decoded = token.split(".")[1];

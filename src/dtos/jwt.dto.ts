@@ -1,4 +1,4 @@
-class JwtPayload {
+export class JwtPayload {
   sub: string;
   role: string;
   id: number;
