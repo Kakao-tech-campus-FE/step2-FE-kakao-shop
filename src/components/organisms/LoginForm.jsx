@@ -3,17 +3,16 @@ import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
+import Gnb from "../molecules/Gnb";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Gnb from "../molecules/Gnb";
 
 const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  // const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
 
   const { value, handleOnChange, reset } = useInput({
@@ -35,12 +34,7 @@ const LoginForm = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     dispatch(startLogoutTimer());
-  //   }
-  // }, [dispatch, isLoggedIn]);
-
+  // 유효성 검사 에러 캐칭
   const validateValue = (value, validationRegex, errorMessage) => {
     if (!validationRegex.test(value)) {
       return errorMessage;

@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const useInput = (initialValue) => {
-  // const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(initialValue);
 
   const handleOnChange = (e) => {
