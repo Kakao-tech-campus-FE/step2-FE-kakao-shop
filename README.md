@@ -309,8 +309,7 @@ i. 아토믹 패턴 컴포넌트
 
 ### i. 아토믹 패턴 컴포넌트
 
-![loading-ag-9258](../../images/README/60e751607b20d2b77d627d6886dc8598ef61754f.png)
-
+<img width="182" alt="스크린샷 2023-07-07 오후 10 46 54" src="https://github.com/monsta-zo/step2-FE-kakao-shop/assets/83194164/74f94d09-488a-43b0-a399-c1263b0d13cc">
 
 
 </br>
