@@ -1,48 +1,16 @@
-header {
-  background-color: #E7CEA6;
-  padding: 20px 50px;
-}
-header nav {
-  display: flex;
-  gap: 16px;
-  justify-content: end;
-  margin: 0 auto;
-}
-
-header nav h1 {
-  margin-right: auto;
-}
-
-header nav a {
-  padding: 6px;
-  font-size: 2em;
-  font-weight: bold;
-  color: white;
-}
-header nav a.active {
-  color: #5A96E3;
+App {
+  width: 80%;
 }
 
 main {
   margin: 0 auto;
 }
 
-a {
-  font-size: 2em;
-  font-weight: bold;
-}
 .help-layout nav {
   display: flex;
   justify-content: center;
   gap: 30px;
   margin: 30px 0;
-}
-
-.faq, .contact{
-  background: rgba(0, 0, 0, 0.2);
-  padding: 5px 20px;
-  border-radius: 4px;
-  margin: 20px 0;
 }
 
 .breadcrumbs {
