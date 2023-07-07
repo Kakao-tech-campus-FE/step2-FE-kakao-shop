@@ -4,7 +4,7 @@ import login from '@api/loginApi';
 
 const LoginPage = () => {
   return (
-    <div className="w-[250px] mx-auto my-[100px]">
+    <div className="w-[400px] mx-auto my-[100px]">
       <LoginForm onSubmit={login} />
     </div>
   );
