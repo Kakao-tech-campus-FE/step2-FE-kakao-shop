@@ -1,0 +1,11 @@
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  margin-top: 200px;
+  .breadcrumb-item:nth-child(n + 2) {
+    &:before {
+      content: ">";
+    }
+  }
+}

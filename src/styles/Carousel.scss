@@ -1,0 +1,33 @@
+$carouselSize: 800px;
+
+.wrapper {
+  display: flex;
+  position: relative;
+  place-content: space-between;
+  align-items: center;
+  height: 200px;
+  width: $carouselSize;
+  background-color: #808080;
+  margin: auto;
+  margin-top: 200px;
+  overflow: hidden;
+
+  .arrowLeft {
+    position: absolute;
+    width: $carouselSize;
+    left: -350px;
+  }
+  .arrowRight {
+    position: absolute;
+    width: $carouselSize;
+    right: -350px;
+  }
+
+  .image {
+    position: absolute;
+    height: inherit;
+    transition: 0.5s;
+    width: $carouselSize;
+    background-size: cover;
+  }
+}
