@@ -1,12 +1,22 @@
+// router
 import { useNavigate } from "react-router-dom";
+// axios
+import { emailCheckReq, signUpReq } from "../../apis/api.js";
 
+// hook
+import useInput from "../../hooks/useInput.js";
 // components
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";
-import { emailCheckReq, signUpReq } from "../../apis/api.js";
 
 export default function SignUpForm() {
+  const { inputValue, handleChange } = useInput({
+    email: "",
+    name: "",
+    password: "",
+    confirmPassword: "",
+  });
   const navigate = useNavigate();
 
   return (
@@ -14,47 +24,43 @@ export default function SignUpForm() {
       <LabeledInput
         type="email"
         id="email"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        onChange={handleChange}
         label="이메일"
         placeholder="이메일"
+        value={inputValue.email}
       />
       <LabeledInput
         type="text"
         id="name"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        onChange={handleChange}
         label="이름"
         placeholder="이름"
+        value={inputValue.name}
       />
       <LabeledInput
         type="password"
         id="pw"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        onChange={handleChange}
         label="비밀번호"
         placeholder="비밀번호"
+        value={inputValue.password}
       />
       <LabeledInput
         type="password"
-        id="confirmPw"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        id="confirmPassword"
+        onChange={handleChange}
         label="비밀번호 확인"
         placeholder="비밀번호 확인"
+        value={inputValue.confirmPassword}
       />
       <Button
         onClick={(e) => {
-          emailCheckReq({ email: "jsh1147@naver.com" }).then((res) => {
+          emailCheckReq({ email: inputValue.email }).then((res) => {
             console.log(res.data);
             signUpReq({
-              email: "email",
-              password: "password",
-              username: "username",
+              email: inputValue.email,
+              password: inputValue.password,
+              username: inputValue.name,
             })
               .then((res) => {
                 console.log(res);

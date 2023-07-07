@@ -1,15 +1,23 @@
+// router
 import { useNavigate } from "react-router-dom";
+// axios
 import { logInReq } from "../../apis/api.js";
-
+// redux
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice.js";
 
+// hook
+import useInput from "../../hooks/useInput.js";
 // components
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";
 
 export default function LogInForm() {
+  const { inputValue, handleChange } = useInput({
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,34 +25,35 @@ export default function LogInForm() {
     <Container>
       <LabeledInput
         type="text"
-        id="id"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        id="email"
+        name="email"
+        onChange={handleChange}
         label="이메일"
         placeholder="이메일"
+        value={inputValue.email}
       />
       <LabeledInput
         type="password"
-        id="pw"
-        onChange={(e) => {
-          console.log(e.target.value);
-        }}
+        id="password"
+        name="password"
+        onChange={handleChange}
         label="비밀번호"
         placeholder="비밀번호"
+        value={inputValue.password}
       />
       <Button
         onClick={() => {
           logInReq({
-            email: "email",
-            password: "password",
+            email: inputValue.email,
+            password: inputValue.password,
           })
             .then((res) => {
               console.log(res.data);
+              dispatch(setEmail({ email: inputValue.email }));
               navigate("/");
             })
             .catch((err) => {});
-          dispatch(setEmail({ email: "email" }));
+          dispatch(setEmail({ email: inputValue.email }));
           navigate("/");
         }}
       >

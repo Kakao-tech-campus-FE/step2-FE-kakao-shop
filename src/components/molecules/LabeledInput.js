@@ -6,9 +6,11 @@ import Input from "../atoms/Input.js";
 export default function LabeledInput({
   type,
   id,
+  name,
   onChange,
   label,
   placeholder,
+  value,
 }) {
   return (
     <Box>
@@ -16,8 +18,10 @@ export default function LabeledInput({
       <Input
         type={type}
         id={id}
+        name={name}
         onChange={onChange}
         placeholder={placeholder}
+        value={value}
       />
     </Box>
   );
