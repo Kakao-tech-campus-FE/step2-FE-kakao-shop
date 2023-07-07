@@ -5,7 +5,7 @@ import { register } from "../../services/api.js";
 import useInput from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import routes from "../../routes.js";
 const Form = styled.form`
   display: flex;
   height: 80vh;
@@ -81,7 +81,7 @@ const RegisterForm = () => {
     })
       .then((response) => {
         if (response.status === 200) {
-          navigate("/");
+          navigate(routes.home);
         }
       })
       .catch((error) => console.log(error));
@@ -148,7 +148,7 @@ const RegisterForm = () => {
             fontWeight: "bold",
             borderRadius: "6px",
           }}
-          onClick={() => {}}
+          onClick={handleSubmit}
         >
           회원가입
         </Button>
