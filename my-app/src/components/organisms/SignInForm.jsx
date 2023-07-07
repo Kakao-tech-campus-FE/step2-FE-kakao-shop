@@ -5,13 +5,56 @@ import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import { login } from "../../services/loginAPI";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserInfo } from "../../store/slices/userSlice";
+import { useState } from "react";
+import Label from "../atoms/Label";
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const userInfo = useSelector((state) => state.user.isLogined); // 전역변수를 가져다 쓸 때 사용
+  const navigate = useNavigate();
+  const [correct, setCorrect] = useState(true);
+  const [message, setMessage] = useState("");
+
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
-  const navigate = useNavigate();
+
+  const loginReq = () => {
+    login({
+      email: value.email,
+      password: value.password,
+    })
+      .then((res) => {
+        console.log(res);
+        setCorrect(true);
+        setMessage("");
+        dispatch(
+          setUserInfo({
+            email: value.email,
+            isLogined: true,
+          })
+        );
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err.response.data.error.message);
+        let errorMessage = err.response.data.error.message;
+        errorMessage = errorMessage.slice(0, errorMessage.indexOf(":"));
+        setMessage(errorMessage);
+        setCorrect(false);
+        dispatch(
+          setUserInfo({
+            email: value.email,
+            isLogined: false,
+          })
+        );
+      });
+  };
 
   return (
     <Container>
@@ -23,6 +66,7 @@ const SignInForm = () => {
         label=""
         value={value.email}
         onChange={handleOnChange}
+        className={correct ? "black" : "red"}
       />
       <SignInInputGroup
         id="password"
@@ -35,10 +79,7 @@ const SignInForm = () => {
       <Button
         onClick={() => {
           // 회원가입 요청
-          login({
-            email: value.email,
-            password: value.password,
-          });
+          loginReq();
         }}
       >
         로그인
@@ -50,6 +91,7 @@ const SignInForm = () => {
       >
         회원가입
       </Button>
+      <Label>{message}</Label>
     </Container>
   );
 };

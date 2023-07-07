@@ -13,7 +13,6 @@ const SignInInputGroup = ({
 }) => {
   return (
     <Box className={className}>
-      <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
         name={id}
@@ -22,6 +21,7 @@ const SignInInputGroup = ({
         onChange={onChange}
         placeholder={placeholder}
       />
+      <Label htmlFor={id}>{label}</Label>
     </Box>
   );
 };

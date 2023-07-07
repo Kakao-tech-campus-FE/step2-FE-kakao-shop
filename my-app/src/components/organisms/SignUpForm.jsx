@@ -97,29 +97,40 @@ const SignUpForm = () => {
         onClick={() => {
           let title = "";
           let description = "";
-          // 회원가입 요청
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          })
-            .then((res) => res.data)
-            .then((data) => {
-              if (data.success) {
-                setTitle("회원가입 완료");
-                setDes("로그인 화면으로 이동하시겠습니까?");
-                setIsValid(true);
-                openModal();
-              }
+          // 회원가입 요청 -> API에 비밀번호 확인 기능이 없어서 계정 등록 전에 확인 후 등록하도록 만들었음
+          if (value.password !== value.passwordConfirm) {
+            setTitle("비밀번호가 다릅니다.");
+            setDes("비밀번호 확인란을 다시 입력해주세요");
+            console.log("false");
+            setIsValid(false);
+            openModal();
+          } else {
+            register({
+              email: value.email,
+              password: value.password,
+              username: value.username,
             })
-            .catch((err) => {
-              description = err.response.data.error.message;
-              description = description.slice(0, description.indexOf(":") - 1);
-              title = "다시 작성해주세요.";
-              setTitle(title);
-              setDes(description);
-              openModal();
-            });
+              .then((res) => res.data)
+              .then((data) => {
+                if (data.success) {
+                  setTitle("회원가입 완료");
+                  setDes("로그인 화면으로 이동하시겠습니까?");
+                  setIsValid(true);
+                  openModal();
+                }
+              })
+              .catch((err) => {
+                description = err.response.data.error.message;
+                description = description.slice(
+                  0,
+                  description.indexOf(":") - 1
+                );
+                title = "다시 작성해주세요.";
+                setTitle(title);
+                setDes(description);
+                openModal();
+              });
+          }
         }}
       >
         회원가입
