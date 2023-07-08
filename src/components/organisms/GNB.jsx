@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { clearUserReducer } from '../../reducers/loginSlice'
+
 import GNBContainer from '../atoms/GNBContainer'
 import GNBInnerBox from '../atoms/GNBInnerBox'
 import GNBButton from '../atoms/GNBButton'
 import GNBMyGroup from '../molecules/GNBMyGroup';
 import GNBMainGroup from '../molecules/GNBMainGroup';
-import { clearUserReducer } from '../../reducers/loginSlice'
 
 const Logobox = styled.div`
   margin: 0 10px;
@@ -17,7 +18,7 @@ const Logobox = styled.div`
   background-size: contain;
   background-repeat: no-repeat;
 ` 
-const GNB = (props) => {
+const GNB = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
@@ -35,10 +36,15 @@ const GNB = (props) => {
     dispatch(clearUserReducer())
   }
   
-  // 로그인 시간 만료
-  if (loginState.loginTime > 0 && Date.now() > Number(loginState.loginTime) + 3600 * 24) {
-    logout();
-  }
+  useEffect(()=>{
+    console.log("체크")
+    // 로그인 시간 만료
+    if (loginState.islogin && Date.now() > Number(loginState.loginTime) + 3600 * 24) {
+      logout();
+      alert("로그인 시간이 만료되었습니다.")
+    }
+  }, [])
+  
 
   return (
     <GNBContainer>
@@ -59,21 +65,22 @@ const GNB = (props) => {
           </GNBButton> 
           {
             loginState.email
-            ? <>
-                <GNBButton>
-                  {loginState.email}
-                </GNBButton>
-                <GNBButton onClick={logout}>
-                  로그아웃
-                </GNBButton>
+            ? 
+              <>
+                  <GNBButton>
+                    {loginState.email}
+                  </GNBButton>
+                  <GNBButton onClick={logout}>
+                    로그아웃
+                  </GNBButton>
               </>
             : 
-            <>
-              <GNBButton onClick={()=>{navigate("/login")}}>로그인</GNBButton>
-              <GNBButton onClick={()=>{navigate("/signup")}}>회원가입</GNBButton>
-            </>
+              <>
+                <GNBButton onClick={()=>{navigate("/login")}}>로그인</GNBButton>
+                <GNBButton onClick={()=>{navigate("/signup")}}>회원가입</GNBButton>
+              </>
           }
-      </GNBMyGroup>
+        </GNBMyGroup>
       </GNBInnerBox>
     </GNBContainer>
   )

@@ -31,7 +31,9 @@ const RegisterForm = () => {
         setDuple(prev => false)
       })
       .catch((error) => {
-        setDuple(prev => true)
+        if (error.response && error.response.status === 400) {
+          setDuple(prev => true)
+        }
       })
     }
   }, [user.email])

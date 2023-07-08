@@ -6,7 +6,7 @@ const RegisterPage = () => {
   return (
     <SectionContainer>
       <RegisterForm></RegisterForm>
-      </SectionContainer>
+    </SectionContainer>
   )
 }
 

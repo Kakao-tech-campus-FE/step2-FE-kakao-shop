@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setUserReducer } from '../../reducers/loginSlice'
 
 
-const LoginForm = (props) => {
+const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -69,10 +69,11 @@ const LoginForm = (props) => {
       })
       .catch((error) => {
         // 로그인 실패 시 실패횟수 +1, 실패 상태 true
-        if (error.status === 401) {
+        if (error.response && error.response.status === 401) {
           setFailCnt(prev => prev + 1)
           setWrong(prev => true)
         }
+        
       }) 
   }
 

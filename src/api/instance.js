@@ -26,7 +26,10 @@ instance.interceptors.response.use(
     return config;
   },
   (error) => {
-    return Promise.reject(error.response);
+    if (error.code == "ECONNABORTED") {
+      alert("timeout : 네트워크 오류");
+    }
+    return Promise.reject(error);
   }
 );
 
