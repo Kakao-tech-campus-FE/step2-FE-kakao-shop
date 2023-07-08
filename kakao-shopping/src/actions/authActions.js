@@ -2,13 +2,11 @@ import { loginApi } from "../apis/api";
 export const login = ({email, password}) => async (dispatch, getState) => {
   // 로그인 API 호출 등 로그인 처리 로직 작성
 	try {
-    console.log(email);
     const response = await loginApi({email, password}); 
     const user = { username: email };
     // 응답 처리
     if(response && response.data.success) {
       await dispatch(loginSuccess(user));
-      console.log(response.headers.authorization);
       localStorage.setItem('isLoggedIn', calculateTomorrowTime());
       localStorage.setItem('userInfo', response.headers.authorization);
     } else {
