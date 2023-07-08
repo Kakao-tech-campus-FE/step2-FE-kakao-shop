@@ -5,26 +5,16 @@ import LoginPage from "./pages/LoginPage";
 import GNB from "./components/organisms/GNB";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PageContainer from "./components/atoms/PageContainer";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 function App() {
-  const [login, setLogin] = useState(localStorage.getItem("email") !== null);
-
-  useEffect(() => {
-    if (localStorage.getItem("email") !== null) {
-      setLogin((prev) => true);
-    } else {
-      setLogin((prev) => false);
-    }
-  }, [localStorage.getItem("email")]);
-
   return (
     <BrowserRouter>
       <PageContainer>
-        <GNB login={login}></GNB>
+        <GNB></GNB>
         <Routes>
           <Route path="*" element={<MainPage />} />
-          <Route path="/signin" element={<RegisterPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
       </PageContainer>

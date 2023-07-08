@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import GNBContainer from '../atoms/GNBContainer'
 import GNBInnerBox from '../atoms/GNBInnerBox'
 import GNBButton from '../atoms/GNBButton'
 import GNBMyGroup from '../molecules/GNBMyGroup';
 import GNBMainGroup from '../molecules/GNBMainGroup';
+import { clearUserReducer } from '../../reducers/loginSlice'
 
 const TextBox = styled.div`
   margin: 0 10px;
@@ -20,44 +22,59 @@ const Logobox = styled.div`
 ` 
 const GNB = (props) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const storeState = useSelector((state) => state.login);  
 
   const logout = () => {
+    // 1. 로컬스토리지 로그아웃
     localStorage.removeItem('email')
     localStorage.removeItem('token')
+    localStorage.removeItem('islogin')
+    localStorage.removeItem('loginTime')
     navigate("./")
-    window.location.reload()
+
+    // 2. REDUX 로그아웃
+    dispatch(clearUserReducer())
   }
   
-  if (props.login && Date.now() > localStorage.getItem("loginTime") + 3600 * 24) {
+  if (props.login && Date.now() > Number(localStorage.getItem("loginTime")) + 3600 * 24) {
     logout();
   }
 
+  const loginState = useSelector((state) => state.login);
+
   return (
     <GNBContainer>
-        <GNBInnerBox>
+      <GNBInnerBox>
+        
+        <GNBMainGroup>
+          <Link to ="/">
+            <Logobox />
+          </Link>
+        </GNBMainGroup>
+
+        <GNBMyGroup>
           
-            <GNBMainGroup>
-                <Link to ="/">
-                    <Logobox />
-                </Link>
-            </GNBMainGroup>
-
-            <GNBMyGroup>
-                <GNBButton>장바구니</GNBButton> 
-                {
-                  (props.login)
-                  ? <TextBox onClick={logout}>
-                      로그아웃
-                    </TextBox>
-                  : 
-                  <>
-                    <GNBButton onClick={()=>{navigate("/login")}}>로그인</GNBButton>
-                    <GNBButton onClick={()=>{navigate("/signin")}}>회원가입</GNBButton>
-                  </>
-                }
-
-            </GNBMyGroup>
-        </GNBInnerBox>
+          <GNBButton>장바구니</GNBButton> 
+          {
+            (loginState.islogin)
+            ? <>
+                <TextBox>
+                  {loginState.email}
+                </TextBox>
+                <TextBox onClick={logout}>
+                  로그아웃
+                </TextBox>
+              </>
+            : 
+            <>
+              <GNBButton onClick={()=>{navigate("/login")}}>로그인</GNBButton>
+              <GNBButton onClick={()=>{navigate("/signup")}}>회원가입</GNBButton>
+            </>
+          }
+      </GNBMyGroup>
+      </GNBInnerBox>
     </GNBContainer>
   )
 }

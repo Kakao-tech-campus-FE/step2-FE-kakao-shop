@@ -1,7 +1,8 @@
 import { combineReducers } from "redux";
+import { loginSlice } from "./loginSlice";
 
 const rootReducer = combineReducers({
-  //내용
+  login: loginSlice.reducer,
 });
 
 export default rootReducer;
