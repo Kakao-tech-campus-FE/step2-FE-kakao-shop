@@ -48,3 +48,13 @@ export const getProducts = async () => {
     throw error;
   }
 };
+
+export const getIdProduct = async (id) => {
+  try {
+    const response = await instance.get(`/products/${id}`, {
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
