@@ -6,7 +6,7 @@ import MainProductsTemplate from '../components/templates/MainProductsTemplate';
 import { useQuery } from 'react-query';
 import { getProducts } from '../apis/api';
 
-const HomePage = () => {
+const Main = () => {
   const { data, isLoading, isError, error } = useQuery("products", getProducts);
   
   return (
@@ -17,4 +17,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Main;
