@@ -6,7 +6,7 @@ import Button from "../atoms/Button";
 import Container from "../atoms/Container";
 import Skeleton from "../molecules/Skeleton";
 
-const MainProductsForm = () => {
+const MainProducts = () => {
   const [page, setPage] = useState(0);
 
   const { data, isLoading, isError, error } = useQuery("products", getProducts);
@@ -49,4 +49,4 @@ const MainProductsForm = () => {
   );
 }
 
-export default MainProductsForm;
+export default MainProducts;
