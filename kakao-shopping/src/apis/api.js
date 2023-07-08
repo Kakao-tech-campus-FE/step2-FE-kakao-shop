@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useQuery } from "react-query";
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -32,6 +33,15 @@ export const register = async (data) => {
       email,
       password,
       username
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getProducts = async () => {
+  try {
+    const response = await instance.get("/products", {
     });
     return response;
   } catch (error) {
