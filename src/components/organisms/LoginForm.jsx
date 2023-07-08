@@ -25,16 +25,15 @@ const LoginForm = (props) => {
     })
   }  
 
-
   // 실패상태 : 로그인 시도 실패했을 때 실패 메세지 나옴
   const [wrongTry, setWrong] = useState(false)
 
-  // 입력값 바뀌면 실패상태 취소됨 (실패 메세지 사라짐)
+  // 실패상태 : 입력값 바뀌면 실패상태 사라짐 (실패 메세지 사라짐)
   useEffect(()=>{
     setWrong(prev => false)
   }, [user])
 
-  // 로그인 실패 횟수 : 로컬스토리지에 저장하고 최초 로딩시 초기값으로 불러오기
+  // (과제X) 로그인 실패 횟수 : 로컬스토리지에 저장하고 최초 로딩시 초기값으로 불러오기
   const [failCnt, setFailCnt] = useState(() => {
     if (localStorage.getItem("failCnt") === undefined) {
       return  0
@@ -42,7 +41,7 @@ const LoginForm = (props) => {
     return Number(localStorage.getItem("failCnt"))
   })
   
-  // 실패횟수 늘어나면 로컬스토리지에 저장
+  // (과제X) 실패횟수 늘어나면 로컬스토리지에 저장
   useEffect(()=>{
     localStorage.setItem("failCnt", failCnt)
   }, [failCnt])

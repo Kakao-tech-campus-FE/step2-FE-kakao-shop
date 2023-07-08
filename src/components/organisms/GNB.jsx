@@ -9,9 +9,6 @@ import GNBMyGroup from '../molecules/GNBMyGroup';
 import GNBMainGroup from '../molecules/GNBMainGroup';
 import { clearUserReducer } from '../../reducers/loginSlice'
 
-const TextBox = styled.div`
-  margin: 0 10px;
-`
 const Logobox = styled.div`
   margin: 0 10px;
   width: 30px; 
@@ -23,6 +20,8 @@ const Logobox = styled.div`
 const GNB = (props) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const loginState = useSelector((state) => state.login)
 
   const logout = () => {
     // 1. 로컬스토리지 로그아웃
@@ -37,7 +36,7 @@ const GNB = (props) => {
   }
   
   // 로그인 시간 만료
-  if (props.login && Date.now() > Number(localStorage.getItem("loginTime")) + 3600 * 24) {
+  if (loginState.loginTime > 0 && Date.now() > Number(loginState.loginTime) + 3600 * 24) {
     logout();
   }
 
@@ -53,16 +52,20 @@ const GNB = (props) => {
 
         <GNBMyGroup>
           
-          <GNBButton>장바구니</GNBButton> 
+          <GNBButton>
+            {`로컬 : ${localStorage.getItem("loginTime")}`}
+            <br/>
+            {`세선 : ${loginState.loginTime}`}
+          </GNBButton> 
           {
-            localStorage.getItem("email") !== null
+            loginState.email
             ? <>
-                <TextBox>
-                  {localStorage.getItem("email")}
-                </TextBox>
-                <TextBox onClick={logout}>
+                <GNBButton>
+                  {loginState.email}
+                </GNBButton>
+                <GNBButton onClick={logout}>
                   로그아웃
-                </TextBox>
+                </GNBButton>
               </>
             : 
             <>

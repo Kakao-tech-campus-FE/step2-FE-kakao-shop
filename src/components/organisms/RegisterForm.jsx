@@ -23,7 +23,7 @@ const RegisterForm = () => {
   // 이메일 중복 여부
   const [duple, setDuple] = useState(false);
 
-  // 이메일 형식이 맞으면 input에 값 입력할때마다 중복 체크 요청 보냄
+  // 이메일 형식이 맞으면 email 칸에 값 입력할때마다 중복 체크 요청 보냄
   useEffect(() => {
     if (checkValid(user.email, 'email')) {
       postCheck(user)
@@ -32,7 +32,7 @@ const RegisterForm = () => {
       })
       .catch((error) => {
         setDuple(prev => true)
-      });
+      })
     }
   }, [user.email])
 
@@ -48,6 +48,7 @@ const RegisterForm = () => {
         alert("가입완료")
       })
       .catch((error) => {
+        alert("가입실패 : 네트워크오류")
         console.log(error)
       }) 
   }
