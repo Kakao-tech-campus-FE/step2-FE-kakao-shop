@@ -3,7 +3,7 @@ import Button from "../atoms/Button";
 
 const MainProducts = ({slicedData}) => {
   return (
-    <Container className="flex flex-wrap w-280">
+    <Container className="flex flex-wrap w-240">
     {slicedData.map((product) => (
       <div key={product.productName} className="w-60 m-10">
         <div className="flex flex-col">
