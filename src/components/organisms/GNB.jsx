@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { styled } from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,8 +24,6 @@ const GNB = (props) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const storeState = useSelector((state) => state.login);  
-
   const logout = () => {
     // 1. 로컬스토리지 로그아웃
     localStorage.removeItem('email')
@@ -38,11 +36,10 @@ const GNB = (props) => {
     dispatch(clearUserReducer())
   }
   
+  // 로그인 시간 만료
   if (props.login && Date.now() > Number(localStorage.getItem("loginTime")) + 3600 * 24) {
     logout();
   }
-
-  const loginState = useSelector((state) => state.login);
 
   return (
     <GNBContainer>
@@ -58,10 +55,10 @@ const GNB = (props) => {
           
           <GNBButton>장바구니</GNBButton> 
           {
-            (loginState.islogin)
+            localStorage.getItem("email") !== null
             ? <>
                 <TextBox>
-                  {loginState.email}
+                  {localStorage.getItem("email")}
                 </TextBox>
                 <TextBox onClick={logout}>
                   로그아웃
@@ -79,5 +76,5 @@ const GNB = (props) => {
   )
 }
 
-/* abcdef abcdef@naver.com aaaa1111! */
+/* a@naver.com qqqq111! */
 export default GNB
