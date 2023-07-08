@@ -22,7 +22,7 @@ const LogoStyle = styled.h1`
     font-weight: 800;
 `
 
-const ResisterForm = () => {
+const LoginForm = () => {
     const navigate = useNavigate();
     const { valueInit, handleOnChange } = useInput(
         {
@@ -38,7 +38,7 @@ const ResisterForm = () => {
     const [isPassword, setIsPassword] = useState(true);
     const loginCheck = (data) => {
         login(data).then((res) => {
-            localStorage.setItem('jwt', res.token);
+            localStorage.setItem('jwt', res.headers.get("Authorization"));
             alert("로그인 성공!");
             navigate(routes.home);
         })
@@ -103,4 +103,4 @@ const ResisterForm = () => {
     );
 };
 
-export default ResisterForm;
+export default LoginForm;
