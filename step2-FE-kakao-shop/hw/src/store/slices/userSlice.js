@@ -5,6 +5,7 @@ const initialState = {
   email: null,
   // 요청 보냈을 때는 true, 아닌경우: 요청X, 실패, 성공시 false
   loading: false,
+  isLogin: false,
 };
 
 const userSlice = createSlice({
@@ -15,6 +16,15 @@ const userSlice = createSlice({
     // setEmail 부분이 setter 느낌
     setEmail: (state, action) => {
       state.email = action.payload.email;
+      state.isLogin = action.payload.isLogin;
+      localStorage.setItem("email", action.payload.email);
+      localStorage.setItem("isLogin", action.payload.isLogin);
+    },
+    logOut: (state, action) => {
+      state.email = null;
+      state.isLogin = false;
+      localStorage.removeItem("email");
+      localStorage.removeItem("isLogin");
     },
     extraReducers: (builder) => {
       builder.addCase(loginRequest.pending, (state, action) => {
@@ -22,6 +32,7 @@ const userSlice = createSlice({
       });
       builder.addCase(loginRequest.fulfilled, (state, action) => {
         state.loading = false;
+        state.loggedIn = true;
         // createAsyncThunk한게 다 페이로드에 담김
         state.email = action.payload.email;
         localStorage.setItem("token", action.payload.token);
@@ -45,6 +56,8 @@ export const loginRequest = createAsyncThunk(
   }
 );
 
-export const { setEmail } = userSlice.actions;
+export const { setEmail, logOut } = userSlice.actions;
+
+export const selectUser = (state) => state.user.user;
 
 export default userSlice.reducer;

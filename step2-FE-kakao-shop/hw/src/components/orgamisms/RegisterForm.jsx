@@ -18,26 +18,22 @@ const RegisterForm = () => {
   });
 
   // 유효성 검사
-  const [usernameMsg, setUsernameMsg] = useState("");
+  const EMAIL_REG = new RegExp("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$");
+  const PASSWORD_REG = new RegExp(
+    "^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$"
+  );
+
   const [emailMsg, setEmailMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
   const [passwordConfirmMsg, setPasswordConfirmMsg] = useState("");
 
-  const onChangeUsername = (e) => {
-    const USERNAME_REG = new RegExp("^[a-z0-9]{5,20}$");
-    handleOnChange(e);
-    console.log(value.username);
-    if (USERNAME_REG.test(value.username) === false) {
-      setUsernameMsg("5에서 20자리 영어 소문자, 숫자만 사용가능합니다.");
-    } else {
-      setUsernameMsg("");
-    }
-  };
+  const validEmail = EMAIL_REG.test(value.email);
+  const validPassword = PASSWORD_REG.test(value.password);
+  const validPasswordConfirm = value.password === value.passwordConfirm;
 
   const onChangeEmail = (e) => {
-    const EMAIL_REG = new RegExp("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$");
     handleOnChange(e);
-    if (EMAIL_REG.test(value.email) === false) {
+    if (validEmail === false) {
       setEmailMsg("이메일 형식으로 입력하세요.");
     } else {
       setEmailMsg("");
@@ -45,11 +41,8 @@ const RegisterForm = () => {
   };
 
   const onChangePassword = (e) => {
-    const PASSWORD_REG = new RegExp(
-      "^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$"
-    );
     handleOnChange(e);
-    if (PASSWORD_REG.test(value.password) === false) {
+    if (validPassword === false) {
       setPasswordMsg("8에서 20자리 영문, 숫자, 특수기호가 포함되어야 합니다.");
     } else {
       setPasswordMsg("");
@@ -58,7 +51,7 @@ const RegisterForm = () => {
 
   const onChangePasswordConfirm = (e) => {
     handleOnChange(e);
-    if (value.password !== value.passwordConfirm) {
+    if (!validPasswordConfirm) {
       setPasswordConfirmMsg("비밀번호가 일치하지 않습니다.");
     } else {
       setPasswordConfirmMsg("");
@@ -70,6 +63,7 @@ const RegisterForm = () => {
       <Link to="/">
         <Title>Main page로</Title>
       </Link>
+      <Title>회원가입</Title>
       <InputGroup
         id="username"
         type="text"
@@ -77,10 +71,8 @@ const RegisterForm = () => {
         placeholder="사용자 이름을 입력해주세요"
         label="이름"
         value={value.username}
-        onChange={onChangeUsername}
+        onChange={handleOnChange}
       />
-
-      <div>{usernameMsg}</div>
 
       <InputGroup
         id="email"
@@ -119,6 +111,7 @@ const RegisterForm = () => {
       <div>{passwordConfirmMsg}</div>
 
       <Button
+        disabled={!validEmail || !validPassword || !validPasswordConfirm}
         onClick={() => {
           // api 회원가입 요청
           register({
@@ -130,6 +123,13 @@ const RegisterForm = () => {
         }}
       >
         회원가입
+      </Button>
+      <Button
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        로그인
       </Button>
     </Container>
   );

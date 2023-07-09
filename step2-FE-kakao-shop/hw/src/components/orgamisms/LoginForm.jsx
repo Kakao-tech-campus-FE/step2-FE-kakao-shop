@@ -3,10 +3,11 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
 import { login } from "../../services/api";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest, setEmail } from "../../store/slices/userSlice";
+import { loginRequest, setEmail, logOut } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -14,10 +15,32 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   // 이메일 가져오기
   const email = useSelector((state) => state.user.email);
+
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
+
+  const loginReq = () => {
+    login({
+      email: value.email,
+      password: value.password,
+      loggedIn: true,
+    })
+      .then((res) => {
+        console.log(res);
+        dispatch(
+          setEmail({
+            email: value.email,
+            isLogin: true,
+          })
+        );
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
 
   return (
     <Container>
@@ -47,16 +70,24 @@ const LoginForm = () => {
       <Button
         onClick={() => {
           // api 로그인 요청
-          dispatch(
-            loginRequest({
-              email: value.email,
-              password: value.password,
-            })
-          );
-          navigate("/");
+          loginReq();
         }}
       >
         로그인
+      </Button>
+      <Button
+        onClick={() => {
+          navigate("/signup");
+        }}
+      >
+        회원가입
+      </Button>
+      <Button
+        onClick={() => {
+          dispatch(logOut());
+        }}
+      >
+        임시로 로컬스토리지 지우는 버튼
       </Button>
     </Container>
   );
