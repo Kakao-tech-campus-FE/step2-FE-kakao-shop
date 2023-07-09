@@ -1,7 +1,7 @@
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>
-test
+  
 ## 카카오 테크 캠퍼스 2단계 - FE - 1주차 클론 과제
 
 </br>
