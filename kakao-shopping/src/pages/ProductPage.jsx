@@ -29,7 +29,7 @@ const ProductPage = () => {
   const product = data.data.response;
   console.log(product)
   return (
-    <div className="flex">
+    <div className="flex justify-around">
       <ProductDetail product={product} />
       <div className="h-200 border-l"/>
       <ProductOptions product={product} />
