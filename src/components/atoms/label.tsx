@@ -1,7 +1,7 @@
 interface LabelProps {
   children: React.ReactNode;
   htmlFor: string;
-  description: string;
+  description: string; // Label description will be placed above children
 }
 
 export default function Label({

@@ -1,17 +1,17 @@
 interface XButtonProps {
   name?: string;
-  show?: boolean;
+  isShow?: boolean; // X button visibility
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function XButton({
   name,
-  show = true,
+  isShow = true,
   onClick,
 }: XButtonProps) {
   return (
     <button
-      className={`${show ? 'visible' : 'invisible'}`}
+      className={`${isShow ? 'visible' : 'invisible'}`}
       name={name}
       type="button"
       onClick={onClick}

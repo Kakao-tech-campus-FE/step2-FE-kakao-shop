@@ -1,6 +1,6 @@
 interface ButtonProps {
   children: React.ReactNode;
-  isSubmitType?: boolean;
+  isSubmitType?: boolean; // true: button type="submit", false: button type="button"
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 }
