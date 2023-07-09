@@ -16,7 +16,7 @@
 //     'carouselItem2.jpeg',
 //     'carouselItem3.jpeg',
 //   ];
-  
+
 //   return (
 //     <>
 //     <div className="App">
@@ -46,17 +46,28 @@
 //   )
 // }
 
-
-
 // export default App
 
 // week1 내용은 우선 주석 처리해두었습니다.
 
-
-import RegisterPage from "./pages/RegisterPage";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
-  return <RegisterPage />;
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" index element={<LoginPage />}></Route>
+
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/signup" element={<RegisterPage />}></Route>
+          {/* <Route path="/signup" element={<HomePage />}></Route> */}
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
 }
- 
+
 export default App;
