@@ -7,7 +7,6 @@ export const RadioIndicator = ({ index, currentSlide, onClick }) => {
       <input
         type="radio"
         className="radio-indicator"
-        id={`radio-indicator-${index}`}
         checked={index === currentSlide}
         onChange={() => onClick(index)}
       />
@@ -55,14 +54,16 @@ export const Carousel = (props) => {
     }
   };
 
+  const dragThreshold = 100;
+
   const handleMouseUp = () => {
     if (dragging) {
       setDragging(false);
       const dragDistance = endDrag - startDrag;
 
-      if (dragDistance > 100) {
+      if (dragDistance > dragThreshold) {
         prevSlide();
-      } else if (dragDistance < -100) {
+      } else if (dragDistance < -dragThreshold) {
         nextSlide();
       }
     }
