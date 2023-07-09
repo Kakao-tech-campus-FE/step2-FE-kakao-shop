@@ -1,24 +1,15 @@
 import Container from "../atoms/Container";
 import Button from "../atoms/Button";
-import { getIdProduct } from "../../apis/api";
-import { useQuery } from "react-query";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const MainProducts = ({slicedData}) => {
 
-  const [productData, setProductData] = useState({});
-
   const navigate = useNavigate();
 
-  const handleProductClick = async (id) => {
+  const handleProductClick = (id) => {
     navigate(`/product/${id}`);
-    setProductData( await getIdProduct(id));
   };
-
-  useEffect(() => {
-    console.log(productData.data);
-  }, [productData]);
   
   return (
     <Container className="flex flex-wrap w-240">
