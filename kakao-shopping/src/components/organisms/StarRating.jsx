@@ -8,8 +8,8 @@ const StarRating = ({starCount}) => {
 
   return (
     <div className="flex">
-    {stars.map((star) => (
-      <div>{star}</div>
+    {stars.map((star, index) => (
+      <div key={index}>{star}</div>
     ))}
     </div>
   )
