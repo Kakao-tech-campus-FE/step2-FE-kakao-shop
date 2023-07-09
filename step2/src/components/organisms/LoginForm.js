@@ -31,7 +31,9 @@ const LoginForm = () => {
         value={value.password}
         onChange={handleOnChange}
       />
-      <Button onClick={() => { handleOnClick("login") }}>
+      <Button
+        className="primary"
+        onClick={() => { handleOnClick("login") }}>
         로그인
       </Button>
       <Link to="/signup">

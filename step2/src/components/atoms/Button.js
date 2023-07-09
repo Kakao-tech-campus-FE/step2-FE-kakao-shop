@@ -1,7 +1,7 @@
-const Button = ({ children, onClick = () => {} }) => {
+const Button = ({ className="", children, onClick = () => {} }) => {
   return (
     <button
-      className="btn_g highlight"
+      className={`btn ${className}`}
       onClick={() => { onClick(); }}
     >
       {children}
