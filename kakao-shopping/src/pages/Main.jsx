@@ -7,7 +7,11 @@ import { useQuery } from 'react-query';
 import { getProducts } from '../apis/api';
 
 const Main = () => {
-  const { data, isLoading, isError, error } = useQuery("products", getProducts);
+  const { data, isLoading, isError, error } = useQuery("products", getProducts, {
+    onError: (error) => {
+      console.log(error);
+    }
+  });
   
   return (
     <Container>
