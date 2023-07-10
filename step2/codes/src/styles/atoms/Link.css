@@ -1,0 +1,7 @@
+.link{
+    text-decoration: none;      /*링크 색 바뀌는 것 삭제*/
+    border-collapse: collapse;  /*모든 밑줄 뜨는 것 삭제*/
+    background-color: rgb(255, 255, 38);
+    border-radius: 5px;
+    border: 1px solid black;
+}

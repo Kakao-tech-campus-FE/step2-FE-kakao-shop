@@ -1,32 +1,22 @@
-import TToast from "./component/toast/TToast";
-import Carousel from "./component/carousel/carousel";
-import Toggle from "./component/toggle/Toggle";
-import Checklist from "./component/checklist/Checklist";
-import RadioButton from "./component/radiobutton/radiobutton";
-import Breadcrumb from "./component/breadcrumb/breadcrumb";
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
-  const breadcrumbItems = [
-    { label: '홈', url: '/' },
-    { label: '제품', url: '/products' },
-    { label: '카테고리', url: '/products/category' },
-    { label: '제품 상세', url: '/products/category/product' }
-  ];
-
-  const WantedImg = ["/img/forcarousel/red.png","/img/forcarousel/orange.png","/img/forcarousel/yellow.png","/img/forcarousel/green.png","/img/forcarousel/blue.png"];
-
-  return (
-    <div>
-      <Breadcrumb items={breadcrumbItems}/>
-      <TToast />
-      <Carousel images = {WantedImg}/>
-      <Toggle />
-      <Checklist/>
-      <RadioButton/>
-    </div>
-
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                {/*단독 레이아웃*/}
+                <Routes>
+                    <Route path="/login" element={<LoginPage />}></Route>
+                    <Route path="/signup" element={<RegisterPage />}></Route>
+                    {/*공통 레이아웃*/}
+                    <Route path="/" element={<HomePage />}></Route>
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;

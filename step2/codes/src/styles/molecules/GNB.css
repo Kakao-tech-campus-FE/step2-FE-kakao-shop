@@ -1,0 +1,42 @@
+.title.gnb{
+    margin-left: 50px;   
+}
+
+.box.gnb{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    /* border-bottom: 1px solid black; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.box.gnb_inner{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    width: 1600px;
+    height: 30px;
+}
+
+.button.gnb{
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border: white;
+    border-left: 1px solid rgb(172, 172, 172);
+}
+
+.buttoncover{
+    width: 1450px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.link.gnb{
+    background-color: white;
+    border: white;
+    padding: 10px;
+    font-size: 16px;
+    
+}
+
