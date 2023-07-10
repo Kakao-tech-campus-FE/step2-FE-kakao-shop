@@ -10,8 +10,6 @@ import { crumbs } from './Constants';
 
 
 const content = (pathnames) => {
-  console.log("pathname.split:", pathnames);
-  console.log("len:", pathnames.length);
   const depth = pathnames.length;
 
   switch (depth) {
@@ -28,8 +26,6 @@ const content = (pathnames) => {
 export const Breadcrumb = () => {
   const location = useLocation();
   const crumbArray = crumbs(location.pathname.split("/"));
-
-  console.log("location:", location.pathname);
 
   return (
     <div>
