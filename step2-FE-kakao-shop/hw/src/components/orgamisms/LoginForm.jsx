@@ -22,19 +22,13 @@ const LoginForm = () => {
   });
 
   const loginReq = () => {
-    login({
-      email: value.email,
-      password: value.password,
-      loggedIn: true,
-    })
-      .then((res) => {
-        console.log(res);
-        dispatch(
-          setEmail({
-            email: value.email,
-            isLogin: true,
-          })
-        );
+    dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
+      .then(() => {
         navigate("/");
       })
       .catch((err) => {

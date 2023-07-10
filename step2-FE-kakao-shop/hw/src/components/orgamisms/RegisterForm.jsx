@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const navigate = useNavigate();
 
+  // 값 입력하면 여기에 담김
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
@@ -17,20 +18,23 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
-  // 유효성 검사
+  // 유효성 조건들
   const EMAIL_REG = new RegExp("^[a-zA-Z0-9]+@[a-zA-Z0-9]+.[A-Za-z]+$");
   const PASSWORD_REG = new RegExp(
     "^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$"
   );
 
+  // 에러 메시지들
   const [emailMsg, setEmailMsg] = useState("");
   const [passwordMsg, setPasswordMsg] = useState("");
   const [passwordConfirmMsg, setPasswordConfirmMsg] = useState("");
 
+  // 유효성 검사
   const validEmail = EMAIL_REG.test(value.email);
   const validPassword = PASSWORD_REG.test(value.password);
   const validPasswordConfirm = value.password === value.passwordConfirm;
 
+  // 유효성해서 틀리면 메시지 세팅
   const onChangeEmail = (e) => {
     handleOnChange(e);
     if (validEmail === false) {
@@ -39,7 +43,6 @@ const RegisterForm = () => {
       setEmailMsg("");
     }
   };
-
   const onChangePassword = (e) => {
     handleOnChange(e);
     if (validPassword === false) {
@@ -48,7 +51,6 @@ const RegisterForm = () => {
       setPasswordMsg("");
     }
   };
-
   const onChangePasswordConfirm = (e) => {
     handleOnChange(e);
     if (!validPasswordConfirm) {
@@ -58,12 +60,14 @@ const RegisterForm = () => {
     }
   };
 
+  // 여기부터 리턴
   return (
     <Container>
       <Link to="/">
         <Title>Main page로</Title>
       </Link>
       <Title>회원가입</Title>
+
       <InputGroup
         id="username"
         type="text"

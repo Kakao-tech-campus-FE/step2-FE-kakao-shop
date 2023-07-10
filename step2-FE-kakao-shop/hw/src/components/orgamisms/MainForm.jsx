@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Title from "../atoms/Title";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +9,13 @@ const MainForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.user.isLogin);
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (email) {
+      dispatch(setEmail({ email }));
+    }
+  }, [dispatch, loggedIn]);
 
   return (
     <div>

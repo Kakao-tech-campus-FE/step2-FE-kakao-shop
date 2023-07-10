@@ -16,31 +16,33 @@ const userSlice = createSlice({
     // setEmail 부분이 setter 느낌
     setEmail: (state, action) => {
       state.email = action.payload.email;
-      state.isLogin = action.payload.isLogin;
+      state.isLogin = true;
       localStorage.setItem("email", action.payload.email);
-      localStorage.setItem("isLogin", action.payload.isLogin);
     },
     logOut: (state, action) => {
       state.email = null;
       state.isLogin = false;
       localStorage.removeItem("email");
       localStorage.removeItem("isLogin");
+      localStorage.removeItem("token");
     },
-    extraReducers: (builder) => {
-      builder.addCase(loginRequest.pending, (state, action) => {
-        state.loading = true;
-      });
-      builder.addCase(loginRequest.fulfilled, (state, action) => {
-        state.loading = false;
-        state.loggedIn = true;
-        // createAsyncThunk한게 다 페이로드에 담김
-        state.email = action.payload.email;
-        localStorage.setItem("token", action.payload.token);
-      });
-      builder.addCase(loginRequest.rejected, (state, action) => {
-        state.loading = false;
-      });
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginRequest.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(loginRequest.fulfilled, (state, action) => {
+      state.loading = false;
+      state.isLogin = true;
+      // createAsyncThunk한게 다 페이로드에 담김
+      state.email = action.payload.email;
+      localStorage.setItem("email", action.payload.email);
+      localStorage.setItem("isLogin", true);
+      localStorage.setItem("token", action.payload.token);
+    });
+    builder.addCase(loginRequest.rejected, (state, action) => {
+      state.loading = false;
+    });
   },
 });
 
@@ -50,7 +52,7 @@ export const loginRequest = createAsyncThunk(
     const { email, password } = data;
     const response = await login({ email, password }); // post 요청: 데이터 생성, 데이터 조회 보안이 필요한 경우
     return {
-      email,
+      email: email,
       token: response.headers.authorization,
     };
   }
