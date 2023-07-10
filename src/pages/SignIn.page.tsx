@@ -53,23 +53,7 @@ const SignInPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen">
-      <SignInForm
-        emailProps={{
-          value: email,
-          onChange: (e) => dispatch(setEmail(e.target.value)),
-          isWrong: isWarning.email,
-          wrongMessage: error ?? "",
-        }}
-        passwordProps={{
-          value: password,
-          onChange: (e) => dispatch(setPassword(e.target.value)),
-          minLength: 8,
-          maxLength: 20,
-          isWrong: isWarning.password,
-          wrongMessage: error ?? "",
-        }}
-        onSubmit={onSubmit}
-      />
+      <SignInForm onSubmit={onSubmit} />
       {isWarning.response && (
         <p className="text-red-500 text-sm my-2">{error ?? FORM_ERROR}</p>
       )}

@@ -2,9 +2,21 @@ import { FC } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
 import { SIGN } from "@/assets/sign.ko";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { RootState } from "@/store";
+import {
+  setEmail,
+  setPassword,
+  setPasswordConfirm,
+  setUsername,
+} from "@/store/signSlice";
 
 const { EMAIL, EMAIL_WITH_ID, USERNAME, PASSWORD, PASSWORD_CONFIRM, SIGN_UP } =
   SIGN;
+
+interface SignUpProps {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
 
 /**
  * SignUpForm component
@@ -16,38 +28,50 @@ const { EMAIL, EMAIL_WITH_ID, USERNAME, PASSWORD, PASSWORD_CONFIRM, SIGN_UP } =
  * @returns {JSX.Element} - SignUpForm component
  * @constructor
  */
-const SignUpForm: FC<SignUpProps> = ({
-  emailProps,
-  nameProps,
-  passwordProps,
-  passwordConfirmProps,
-  onSubmit,
-}) => {
+const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
+  const { error, isWarning } = useAppSelector(
+    (state: RootState) => state.signSlice
+  );
+  const { data } = useAppSelector((state: RootState) => state.signSlice);
+  const { email, username, password, passwordConfirm } = data;
+
+  const dispatch = useAppDispatch();
+
   return (
     <form className="flex flex-col gap-4 w-[40rem] " onSubmit={onSubmit}>
       <InputFormItem
         label={EMAIL_WITH_ID}
         placeholder={EMAIL}
         type="text"
-        {...emailProps}
+        value={email}
+        onChange={(e) => dispatch(setEmail(e.target.value))}
+        isWrong={isWarning.email}
+        wrongMessage={error ?? ""}
       />
       <InputFormItem
         label={USERNAME}
         placeholder={USERNAME}
         type="text"
-        {...nameProps}
+        value={username ?? ""}
+        onChange={(e) => dispatch(setUsername(e.target.value))}
       />
       <InputFormItem
         label={PASSWORD}
         placeholder={PASSWORD}
         type="password"
-        {...passwordProps}
+        value={password}
+        onChange={(e) => dispatch(setPassword(e.target.value))}
+        isWrong={isWarning.password}
+        wrongMessage={error ?? ""}
       />
       <InputFormItem
         label={PASSWORD_CONFIRM}
         placeholder={PASSWORD_CONFIRM}
         type="password"
-        {...passwordConfirmProps}
+        value={passwordConfirm ?? ""}
+        onChange={(e) => dispatch(setPasswordConfirm(e.target.value))}
+        isWrong={isWarning.passwordConfirm}
+        wrongMessage={error ?? ""}
       />
       <div className="w-full mt-8">
         <ButtonFormItem color="primary" type="submit">

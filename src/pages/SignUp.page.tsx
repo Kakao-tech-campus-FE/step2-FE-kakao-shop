@@ -2,14 +2,7 @@ import SignUpForm from "@components/Form/SignUpForm.component";
 import { canPassword, isEmail } from "@/functions/validator";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
-import {
-  setEmail,
-  setError,
-  setPassword,
-  setPasswordConfirm,
-  setUsername,
-  setWarning,
-} from "@/store/signSlice";
+import { setError, setWarning } from "@/store/signSlice";
 import { checkEmail, signUp } from "@/store/signAction";
 import { ERROR } from "@/assets/error.ko";
 
@@ -74,33 +67,7 @@ const SignUpPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen">
-      <SignUpForm
-        emailProps={{
-          value: email,
-          onChange: (e) => dispatch(setEmail(e.target.value)),
-          isWrong: isWarning.email,
-          wrongMessage: error ?? "",
-        }}
-        nameProps={{
-          value: username ?? "",
-          onChange: (e) => dispatch(setUsername(e.target.value)),
-        }}
-        passwordProps={{
-          value: password,
-          onChange: (e) => dispatch(setPassword(e.target.value)),
-          minLength: 8,
-          maxLength: 20,
-          isWrong: isWarning.password,
-          wrongMessage: error ?? "",
-        }}
-        passwordConfirmProps={{
-          value: passwordConfirm ?? "",
-          onChange: (e) => dispatch(setPasswordConfirm(e.target.value)),
-          isWrong: isWarning.passwordConfirm,
-          wrongMessage: error ?? "",
-        }}
-        onSubmit={onSubmit}
-      />
+      <SignUpForm onSubmit={onSubmit} />
       {isWarning.response && (
         <p className="text-red-500 text-sm my-2">{error ?? FORM_ERROR}</p>
       )}
