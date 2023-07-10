@@ -4,11 +4,30 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from './store/store';
-
+import { setUser, clearUser } from './store/slices/userSlice';
 
 function App() {
+
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  const dispatch = useDispatch();
+  // 새로 고침 시 사용자 정보 유지
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user) {
+      const currentTime = new Date().getTime();
+      const expirationTime = user.expirationTime;
+
+      if (currentTime < expirationTime) {
+        dispatch(setUser(user));
+      } else {
+        dispatch(clearUser());
+      }
+    }
+  }, [dispatch]);
 
   return (
   <Provider store={store}>
@@ -17,9 +36,9 @@ function App() {
       {/* 단독 레이아웃 */}
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/signup" element={<RegisterPage />}></Route>   
+        <Route path="/register" element={<RegisterPage />}></Route>   
         {/* 공통 레이아웃 */}
-        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
       </Routes>
     </BrowserRouter>
     

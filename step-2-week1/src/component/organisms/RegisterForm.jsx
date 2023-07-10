@@ -7,14 +7,50 @@ import { emailDuplicateCheck, PasswordCheck, register } from "../../services/api
 import { useEffect } from "react";
 import instance from "../../services/api";
 import HomePage from "../../pages/HomePage";
+import { useNavigate } from "react-router-dom";
+
+
 
 const RegisterForm = () => {
+
+  const navigate = useNavigate();
+
+  const [errors, setError] = useState({});
+
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
+
+  // 이 부분부터 안되면 빼기
+
+  // const handleDuplicate = async () => {
+  //   const email = value.email;
+  //   const response = await duplicate(email);
+  //   console.log(response);
+  //   if (response.request.status === 400) {
+  //     setError((prevState) => ({
+  //       ...prevState,
+  //       duplicate: "동일한 이메일이 존재하거나 올바르지 않은 이메일입니다."
+  //     }
+
+  //     ));
+  //   }
+  //   if (response.request.status === 200) {
+  //     setError((prevState) => ({
+  //       ...prevState,
+  //       duplicate: "이 이메일을 사용할 수 있습니다.",
+  //     }));
+  //   }
+  // };
+
+  // const handleRegister = async (data) => {
+  //   try {
+  //     const { email, password, username } = data;
+  //   }
+  // }
 
   useEffect(() => {
     console.log(value.username);

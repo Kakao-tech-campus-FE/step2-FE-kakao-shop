@@ -1,12 +1,31 @@
-.navigation-bar {
+
+
+.nav .container {
   display: flex;
   justify-content: space-between;
+  /* margin : 5px; */
+  /* padding-left: 20px; */
+  align-items: center;
+  padding : 20px 0;
 }
 
-.navigation-bar {
+.nav a{
+  display: flex;
+  padding : 5px 15px;
+  align-items: center;
+}
+
+.nav a:hover {
+  color: green;
+  font-weight: bold;
+}
+
+
+
+.NavigationBar {
   margin-right: 20px;
 }
 
-.navigation-bar :last-child {
+.NavigationBar :child {
   margin-right: 0;;
 }
