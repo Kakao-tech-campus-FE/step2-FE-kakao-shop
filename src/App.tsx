@@ -5,12 +5,12 @@ import { Provider } from "react-redux";
 import store from "@/store";
 import { useEffect } from "react";
 import { isExpired } from "@/functions/jwt";
-import { localStorage } from "@/functions/localstorage";
+import { getAuth, removeAuth } from "@/functions/auth";
 
 const App = () => {
   useEffect(() => {
-    if (isExpired(localStorage.get("Authorization") ?? "")) {
-      localStorage.remove("Authorization");
+    if (isExpired(getAuth() ?? "")) {
+      removeAuth();
     }
   }, []);
 

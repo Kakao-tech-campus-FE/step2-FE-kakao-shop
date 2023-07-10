@@ -1,4 +1,5 @@
 import { EmailCheckResDto, SignUpResDto } from "@/dtos/response.dto";
+import { getAuth, setAuth } from "@/functions/auth";
 import { jwtDecode } from "@/functions/jwt";
 import { localStorage } from "@/functions/localstorage";
 import { createAsyncThunk } from "@reduxjs/toolkit";
@@ -74,11 +75,10 @@ export const signIn = createAsyncThunk(
       }
 
       if (
-        jwtDecode(localStorage.get("Authorization")).exp <=
+        jwtDecode(getAuth()).exp <=
         jwtDecode(response.headers.get("Authorization") ?? "").exp
       ) {
-        localStorage.set(
-          "Authorization",
+        setAuth(
           response.headers.get("Authorization")?.split("Bearer ")[1] ?? ""
         );
       }

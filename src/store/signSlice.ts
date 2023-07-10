@@ -6,7 +6,7 @@ import {
   SignUpResDto,
 } from "@/dtos/response.dto";
 import { isExpired } from "@/functions/jwt";
-import { localStorage } from "@/functions/localstorage";
+import { getAuth } from "@/functions/auth";
 
 interface SignInState {
   loading: boolean;
@@ -28,7 +28,7 @@ interface SignInState {
 }
 
 const initialState: SignInState = {
-  isSignIn: !isExpired(localStorage.get("Authorization") ?? ""),
+  isSignIn: !isExpired(getAuth()),
   isWarning: {
     email: false,
     password: false,

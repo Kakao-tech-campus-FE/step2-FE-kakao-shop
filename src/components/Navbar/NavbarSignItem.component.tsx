@@ -2,9 +2,9 @@ import { FC } from "react";
 import NavbarItem, { NavbarItemProps } from "./NavbarItem.component";
 import { RootState } from "@/store";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { localStorage } from "@/functions/localstorage";
 import { setSignOut } from "@/store/signSlice";
 import { SIGN } from "@/assets/sign.ko";
+import { removeAuth } from "@/functions/auth";
 
 const { SIGN_IN, SIGN_OUT } = SIGN;
 
@@ -15,7 +15,7 @@ const NavbarSignItem: FC<Omit<NavbarItemProps, "children" | "link">> = ({
   const dispatch = useAppDispatch();
 
   const signOut = () => {
-    localStorage.remove("Authorization");
+    removeAuth();
     dispatch(setSignOut());
   };
 
