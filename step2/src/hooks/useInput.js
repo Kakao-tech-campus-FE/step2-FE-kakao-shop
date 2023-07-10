@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setLoggedIn } from "../modules/isLoggedIn";
 
 import { validateSignup, validateLogin } from '../constants/validate';
-import { signup, login } from "../components/services/api";
+import { signup, login } from "../services/api";
 import { setCookie } from "../constants/cookie";
 
 const useInput = (initialValue) => {
