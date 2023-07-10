@@ -7,7 +7,7 @@ interface responseDefault {
   } | null;
 }
 
-class DefaultResDto {
+export class DefaultResDto {
   success: boolean;
   response: null;
   error: {
@@ -19,23 +19,5 @@ class DefaultResDto {
     this.success = data.success;
     this.response = data.response;
     this.error = data.error;
-  }
-}
-
-export class EmailCheckResDto extends DefaultResDto {
-  constructor(data: responseDefault) {
-    super(data);
-  }
-}
-
-export class SignUpResDto extends DefaultResDto {
-  constructor(data: responseDefault) {
-    super(data);
-  }
-}
-
-export class SignInResDto extends DefaultResDto {
-  constructor(data: responseDefault) {
-    super(data);
   }
 }

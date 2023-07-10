@@ -1,7 +1,6 @@
-import { EmailCheckResDto, SignUpResDto } from "@/dtos/response.dto";
+import { DefaultResDto } from "@/dtos/response.dto";
 import { getAuth, setAuth } from "@/functions/auth";
 import { jwtDecode } from "@/functions/jwt";
-import { localStorage } from "@/functions/localstorage";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const checkEmail = createAsyncThunk(
@@ -17,7 +16,7 @@ export const checkEmail = createAsyncThunk(
         }
       );
 
-      const resData = new EmailCheckResDto(await response.json());
+      const resData = new DefaultResDto(await response.json());
 
       if (resData.error) {
         return rejectWithValue(resData.error);
@@ -45,7 +44,7 @@ export const signUp = createAsyncThunk(
         }
       );
 
-      const resData = new SignUpResDto(await response.json());
+      const resData = new DefaultResDto(await response.json());
       if (resData.error) {
         return thunkAPI.rejectWithValue(resData.error);
       }
@@ -69,7 +68,7 @@ export const signIn = createAsyncThunk(
         }
       );
 
-      const resData = new SignUpResDto(await response.json());
+      const resData = new DefaultResDto(await response.json());
       if (resData.error) {
         return thunkAPI.rejectWithValue(resData.error);
       }
