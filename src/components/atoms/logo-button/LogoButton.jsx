@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import routes from "../../../constants/routes.js";
 
 const Styled = {
   Container: styled.div`
@@ -15,10 +13,9 @@ const Styled = {
   `,
 };
 
-function LogoButton() {
-  const navigate = useNavigate();
+function LogoButton({ ...props }) {
   return (
-    <Styled.Container onClick={() => navigate(routes.home)}>
+    <Styled.Container {...props}>
       <Styled.Logo
         src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230707/130532/assets/images/pc/pc_logo.png"
         alt="톡쇼핑하기"

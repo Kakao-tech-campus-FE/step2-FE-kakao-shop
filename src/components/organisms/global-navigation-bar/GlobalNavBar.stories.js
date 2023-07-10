@@ -6,6 +6,9 @@ export default {
   tags: ["autodocs"],
   component: GlobalNavBar,
   decorators: [withRouter],
+  args: {
+    isStorybookMode: true,
+  },
 };
 
 export const Default = {};
