@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   method: 'POST',
@@ -16,8 +15,9 @@ instance.interceptors.request.use((config)=>{
 })
 
 instance.interceptors.response.use(
-  (response) => {
-    return response
+  (res) => {
+    localStorage.setItem("token",res.headers.authorization)
+    return res
   },
   (error) => {
     return Promise.reject(error)

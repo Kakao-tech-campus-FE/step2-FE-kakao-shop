@@ -13,8 +13,10 @@ function Containor({
 export default Containor
 
 const ContainovrDiv = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
 `

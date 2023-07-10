@@ -1,4 +1,4 @@
-import Gnb from '../organisms/Gnb'
+import Header from '../organisms/Header'
 
 
 
@@ -6,7 +6,7 @@ function HomePage() {
 
   return (
     <>
-      <Gnb/>   
+      <Header/>   
     </>
   )
 }
