@@ -1,9 +1,13 @@
-import { DefaultResDto } from "@/dtos/response.dto";
+import { DefaultResDto, responseError } from "@/dtos/response.dto";
 import { getAuth, setAuth } from "@/functions/auth";
 import { jwtDecode } from "@/functions/jwt";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const checkEmail = createAsyncThunk(
+export const checkEmail = createAsyncThunk<
+  DefaultResDto,
+  string,
+  { rejectValue: responseError }
+>(
   "sign/checkEmail",
   async (email: string, { rejectWithValue, fulfillWithValue }) => {
     try {
@@ -23,17 +27,24 @@ export const checkEmail = createAsyncThunk(
       }
       return fulfillWithValue(resData);
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue({ message: String(error), status: 400 });
     }
   }
 );
 
-export const signUp = createAsyncThunk(
+type signUpData = {
+  email: string;
+  username: string;
+  password: string;
+};
+
+export const signUp = createAsyncThunk<
+  DefaultResDto,
+  { email: string; username: string; password: string },
+  { rejectValue: responseError }
+>(
   "sign/signup",
-  async (
-    data: { email: string; username: string; password: string },
-    thunkAPI
-  ) => {
+  async (data: signUpData, { rejectWithValue, fulfillWithValue }) => {
     try {
       const response = await fetch(
         import.meta.env.VITE_KAKAO_STORE_URL + "join",
@@ -46,18 +57,27 @@ export const signUp = createAsyncThunk(
 
       const resData = new DefaultResDto(await response.json());
       if (resData.error) {
-        return thunkAPI.rejectWithValue(resData.error);
+        return rejectWithValue(resData.error);
       }
-      return thunkAPI.fulfillWithValue(resData.success);
+      return fulfillWithValue(resData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return rejectWithValue({ message: String(error), status: 400 });
     }
   }
 );
 
-export const signIn = createAsyncThunk(
+type signInData = {
+  email: string;
+  password: string;
+};
+
+export const signIn = createAsyncThunk<
+  DefaultResDto,
+  { email: string; password: string },
+  { rejectValue: responseError }
+>(
   "sign/signin",
-  async (data: { email: string; password: string }, thunkAPI) => {
+  async (data: signInData, { rejectWithValue, fulfillWithValue }) => {
     try {
       const response = await fetch(
         import.meta.env.VITE_KAKAO_STORE_URL + "login",
@@ -70,7 +90,7 @@ export const signIn = createAsyncThunk(
 
       const resData = new DefaultResDto(await response.json());
       if (resData.error) {
-        return thunkAPI.rejectWithValue(resData.error);
+        return rejectWithValue(resData.error);
       }
 
       if (
@@ -82,9 +102,9 @@ export const signIn = createAsyncThunk(
         );
       }
 
-      return thunkAPI.fulfillWithValue(resData.success);
+      return fulfillWithValue(resData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return rejectWithValue({ message: String(error), status: 400 });
     }
   }
 );
