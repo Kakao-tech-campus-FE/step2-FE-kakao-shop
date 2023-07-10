@@ -1,6 +1,7 @@
-import { FC } from "react";
+import { ComponentPropsWithoutRef, FC } from "react";
 
-interface ButtonFormItemProps {
+type ButtonProps = ComponentPropsWithoutRef<"button">;
+interface ButtonFormItemProps extends ButtonProps {
   children: React.ReactNode;
   type: "button" | "submit" | "reset";
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
@@ -35,6 +36,7 @@ const ButtonFormItem: FC<ButtonFormItemProps> = ({
   type,
   onClick,
   color,
+  ...props
 }) => {
   const colors = {
     primary: "bg-blue-500 hover:bg-blue-600",
@@ -52,6 +54,7 @@ const ButtonFormItem: FC<ButtonFormItemProps> = ({
       type={type}
       onClick={onClick}
       className={`rounded-lg py-4 px-8 w-full ${colors[color]}`}
+      {...props}
     >
       {children}
     </button>
