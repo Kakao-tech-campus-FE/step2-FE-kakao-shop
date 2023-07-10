@@ -50,7 +50,10 @@ const SIGN_UP = [
           try {
             await authAPI.checkEmailDuplicate(value);
           } catch (e) {
-            return "중복된 이메일입니다";
+            console.log(e);
+            if (e.response.data.error.status === 400) {
+              return "중복된 이메일입니다";
+            }
           }
         },
       },

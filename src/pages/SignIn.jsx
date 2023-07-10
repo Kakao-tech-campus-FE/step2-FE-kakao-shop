@@ -37,13 +37,13 @@ function SignIn() {
 
   const onSignInSubmit = async (data) => {
     try {
-      const { response } = await authAPI.signIn(data);
-      localStorage.setItem("accessToken", response.token);
+      const response = await authAPI.signIn(data);
+      localStorage.setItem("accessToken", response.headers.authorization);
       localStorage.setItem("accessTokenDate", new Date().toString());
       setIsLoggedIn(true);
       navigate(routes.home);
     } catch (e) {
-      alert(e.error.message);
+      alert(e.response.data.error.message);
     }
   };
 
@@ -53,7 +53,7 @@ function SignIn() {
         style={{ width: "100%", maxWidth: "440px" }}
         defaultValues={FORM_DEFAULT.SIGN_IN}
         inputInformations={FORM_INFO.SIGN_IN}
-        onError={(e) => alert(e)}
+        onError={(e) => console.log(e)}
         onSubmit={onSignInSubmit}
       >
         <Button

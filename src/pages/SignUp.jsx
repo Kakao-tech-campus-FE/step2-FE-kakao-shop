@@ -17,7 +17,7 @@ function SignUp() {
       await authAPI.signUp(data);
       navigate(routes.home);
     } catch (e) {
-      alert(e.err.message);
+      alert(e.response.data.error.message);
     }
   };
   return (
@@ -26,14 +26,14 @@ function SignUp() {
         style={{ width: "100%", maxWidth: "440px" }}
         defaultValues={FORM_DEFAULT.SIGN_UP}
         inputInformations={FORM_INFO.SIGN_UP}
-        onError={(e) => alert(e)}
+        onError={(e) => console.log(e)}
         onSubmit={onSignUpSubmit}
       >
         <Button
           type="submit"
           style={{ width: "100%", margin: "0.5rem 0 1rem" }}
         >
-          로그인
+          회원가입
         </Button>
       </Form>
     </AuthTemplate>
