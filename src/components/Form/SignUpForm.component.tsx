@@ -1,14 +1,10 @@
 import { FC } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
-import {
-  EMAIL,
-  PASSWORD,
-  PASSWORD_CONFIRM,
-  USERNAME,
-  EMAIL_WITH_ID,
-  SIGN_UP,
-} from "@/assets/sign.ko.json";
+import { SIGN } from "@/assets/sign.ko";
+
+const { EMAIL, EMAIL_WITH_ID, USERNAME, PASSWORD, PASSWORD_CONFIRM, SIGN_UP } =
+  SIGN;
 
 /**
  * SignUpForm component

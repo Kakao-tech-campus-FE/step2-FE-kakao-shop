@@ -4,11 +4,9 @@ import { RootState } from "@/store";
 import { setEmail, setError, setPassword, setWarning } from "@/store/signSlice";
 import { signIn } from "@/store/signAction";
 import SignInForm from "@/components/Form/SignInForm.component";
-import {
-  EMAIL_ERROR,
-  PASSWORD_ERROR,
-  FORM_ERROR,
-} from "@/assets/error.ko.json";
+import { ERROR } from "@/assets/error.ko";
+
+const { EMAIL_ERROR, PASSWORD_ERROR, FORM_ERROR } = ERROR;
 
 const SignInPage = () => {
   const {

@@ -11,19 +11,17 @@ import {
   setWarning,
 } from "@/store/signSlice";
 import { checkEmail, signUp } from "@/store/signAction";
-import {
-  EMAIL_ERROR,
-  PASSWORD_ERROR,
-  PASSWORD_CONFIRM_ERROR,
-  FORM_ERROR,
-} from "@/assets/error.ko.json";
+import { ERROR } from "@/assets/error.ko";
+
+const { EMAIL_ERROR, PASSWORD_ERROR, PASSWORD_CONFIRM_ERROR, FORM_ERROR } =
+  ERROR;
 
 const SignUpPage = () => {
-  const {
-    error,
-    data: { email, password, passwordConfirm, username },
-    isWarning,
-  } = useAppSelector((state: RootState) => state.signSlice);
+  const { error, isWarning } = useAppSelector(
+    (state: RootState) => state.signSlice
+  );
+  const { data } = useAppSelector((state: RootState) => state.signSlice);
+  const { email, username, password, passwordConfirm } = data;
 
   const dispatch = useAppDispatch();
 

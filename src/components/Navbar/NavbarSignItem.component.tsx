@@ -4,7 +4,9 @@ import { RootState } from "@/store";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { localStorage } from "@/functions/localstorage";
 import { setSignOut } from "@/store/signSlice";
-import { SIGN_IN, SIGN_OUT } from "@/assets/sign.ko.json";
+import { SIGN } from "@/assets/sign.ko";
+
+const { SIGN_IN, SIGN_OUT } = SIGN;
 
 const NavbarSignItem: FC<Omit<NavbarItemProps, "children" | "link">> = ({
   className,

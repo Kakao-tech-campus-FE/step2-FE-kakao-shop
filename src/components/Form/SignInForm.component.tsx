@@ -1,7 +1,9 @@
 import { FC } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
-import { EMAIL, PASSWORD } from "@/assets/sign.ko.json";
+import { SIGN } from "@/assets/sign.ko";
+
+const { EMAIL, PASSWORD } = SIGN;
 /**
  * SignUpForm component
  * @param {emailProps} emailProps - 이메일 input의 props

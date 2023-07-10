@@ -1,6 +1,6 @@
 import { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
-import URLS from "@/assets/url.ko.json";
+import { URL } from "@/assets/url.ko";
 
 interface NavbarItem {
   link: string;
@@ -19,7 +19,7 @@ const NavbarItem: FC<NavbarItemProps> = ({
   onClick,
 }) => (
   <Link
-    to={URLS[link as keyof typeof URLS].link}
+    to={URL[link as keyof typeof URL].link}
     className={`p-4 ${className}`}
     onClick={() => {
       if (typeof onClick !== "function") return;

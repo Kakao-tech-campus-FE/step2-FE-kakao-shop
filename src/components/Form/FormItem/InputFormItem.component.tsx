@@ -1,6 +1,7 @@
 import { FC, useId } from "react";
-import { FORM_ERROR } from "@/assets/error.ko.json";
+import { ERROR } from "@/assets/error.ko";
 
+const { FORM_ERROR } = ERROR;
 interface InputFormItemProps {
   label?: string;
   type: "text" | "number" | "email" | "password";
