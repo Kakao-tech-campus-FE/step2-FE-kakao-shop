@@ -1,9 +1,9 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import MainPage from '../pages/MainPage';
-import SignupPage from '../pages/SignupPage';
-import LoginPage from '../pages/LoginPage';
+import MainPage from '../components/pages/MainPage';
+import SignupPage from '../components/pages/SignupPage';
+import LoginPage from '../components/pages/LoginPage';
 
 const Router = () => (
   <>

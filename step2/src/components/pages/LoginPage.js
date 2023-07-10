@@ -1,4 +1,4 @@
-import LoginForm from "../components/organisms/LoginForm";
+import LoginForm from "../organisms/LoginForm";
 
 const LoginPage = () => {
   return <>

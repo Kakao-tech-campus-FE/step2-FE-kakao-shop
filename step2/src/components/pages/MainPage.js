@@ -1,5 +1,5 @@
-import GNB from "../components/organisms/GNB";
-import Examples from "../Examples";
+import GNB from "../organisms/GNB";
+import Examples from "../Examples/Examples";
 
 const MainPage = () => {
   return <>
