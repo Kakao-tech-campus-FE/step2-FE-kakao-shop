@@ -1,11 +1,11 @@
-// package
-import { useState } from "react";
-
-// css
-import "../styles/ToggleButton.css";
+import { useState, useEffect } from "react";
 
 export default function ToggleButton() {
   const [isToggled, setIsToggled] = useState(false);
+
+  useEffect(() => {
+    console.log("ToggleButton: " + isToggled);
+  }, [isToggled]);
 
   const handleClick = () => {
     setIsToggled((prevToggled) => !prevToggled);
