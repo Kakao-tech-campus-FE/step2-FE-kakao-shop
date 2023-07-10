@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
 import Button from "../atoms/Button";
 import {login} from "../../services/api";
-import {reducerLogin} from "../../store/userSlice";
+import {reducerLogin} from "../../store/slice/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 

@@ -1,7 +1,7 @@
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import {useDispatch, useSelector} from "react-redux";
-import {reducerLogout} from "../../store/userSlice";
+import {reducerLogout} from "../../store/slice/userSlice";
 import "../../styles/globalNavBar.css"
 import Container from "../atoms/Container";
 import {Link} from "react-router-dom";
