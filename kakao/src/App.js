@@ -12,10 +12,6 @@ import HomePage from "./pages/HomePage";
 // import Toast from "./components/Toast";
 // import Breadcrumb from "./components/Breadcrumb";
 
-// const HomePage = () => <h1>Home Page</h1>;
-// const CategoryPage = () => <h1>Category Page</h1>;
-// const InfoPage = () => <h1>Info Page</h1>;
-
 function App() {
   return (
     <div className="App">
