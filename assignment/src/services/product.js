@@ -1,4 +1,4 @@
-import {instance} from "./index"
+import instance from "./index"
 
 // 상품을 가져오는 fetch API
 export const fetchProducts = (page=0) => {
