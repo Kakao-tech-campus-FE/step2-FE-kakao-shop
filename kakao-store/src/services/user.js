@@ -9,7 +9,6 @@ export const register = (data) => {
   });
 };
 
-
 export const login = (data) => {
   const { email, password } = data;
   return instance.post('/login', {
@@ -17,3 +16,7 @@ export const login = (data) => {
     password,
   });
 };
+
+export const profile = () => {
+  return instance.get('/profile'); // header에 token이 포함되어 있음
+}
