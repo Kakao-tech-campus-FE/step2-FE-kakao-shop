@@ -2,26 +2,41 @@ import { useSelector, useDispatch } from "react-redux";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { Suspense } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getProducts } from "../../redux/product/productSlice";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
+
   const products = useSelector((state) => state.product.products);
+  const loading = useSelector((state) => state.product.loading);
+  const error = useSelector((state) => state.product.error);
+  const isEnd = useSelector((state) => state.product.isEnd);
+
   const dispatch = useDispatch();
   const bottomObserver = useRef(null);
 
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // 페이지를 증가시키는 액션
-          setPage((page) => page + 1);
+        if (
+          !loading &&
+          entry.isIntersecting &&
+          bottomObserver.current &&
+          !isEnd
+        ) {
+          setPage(page + 1);
         }
       });
     },
     {
-      threshold: 0.5,
+      threshold: 1,
     }
   );
+
+  useEffect(() => {
+    io.observe(bottomObserver.current);
+  }, []);
 
   useEffect(() => {
     dispatch(getProducts(page));
@@ -31,7 +46,8 @@ const MainProductTemplate = () => {
     <Container>
       <Suspense fallback={<div>Loading...</div>}>
         <ProductGrid products={products} />
-        <div ref={bottomObserver}></div> // 하단이 될 빈 div
+        {/* 하단이 될 빈 div */}
+        <div ref={bottomObserver}></div>
       </Suspense>
     </Container>
   );

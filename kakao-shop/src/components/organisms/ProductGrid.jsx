@@ -1,10 +1,9 @@
-const ProductGrid = ({ products }) => {
-  // loading state
-  // error state
+import ProductCard from "../molecules/ProductCard";
 
+const ProductGrid = ({ products }) => {
   // presentational component: 데이터를 단순히 표기만 하는 용도
   return (
-    <div className="product-grid">
+    <div className="product-grid grid grid-cols-1">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

@@ -1,5 +1,4 @@
-import Link from "./Link";
-
+import { Link } from "react-router-dom";
 /**
  * 카드 컴포넌트
  */

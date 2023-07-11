@@ -1,10 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from "../../apis/product";
+import _ from "lodash";
 
 const initialState = {
   products: [],
   loading: false,
   error: null,
+  isEnd: false,
 };
 
 const productsSlice = createSlice({
@@ -17,9 +19,16 @@ const productsSlice = createSlice({
         state.loading = true;
       })
       .addCase(getProducts.fulfilled, (state, action) => {
-        // Promise.resolve()
+        if (action.payload.response.length < 9) {
+          console.log("isEnd true");
+          state.isEnd = true;
+        }
+
+        state.products = _.uniqBy(
+          [...state.products, ...action.payload.response],
+          "id"
+        );
         state.loading = false;
-        state.products = action.payload.response;
         state.error = action.payload.error;
       })
       .addCase(getProducts.rejected, (state, action) => {
@@ -33,6 +42,7 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (page) => {
     // 비동기 콜백함수
+
     const response = await fetchProducts(page);
     return response.data; // action.payload에 들어간다
   }

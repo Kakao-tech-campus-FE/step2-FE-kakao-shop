@@ -68,6 +68,7 @@ const LoginForm = () => {
           })
         );
         dispatch(setToken({ token: response.headers.authorization }));
+        localStorage.setItem("token", response.headers.authorization);
       }
 
       // 체크하지 않았다면 쿠키에 30분(1800s)만 저장
