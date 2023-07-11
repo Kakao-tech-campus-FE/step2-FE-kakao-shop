@@ -3,18 +3,12 @@ export interface responseError {
   status: number;
 }
 
-interface responseDefault {
-  success: boolean;
-  response: null;
-  error: responseError | null;
-}
-
 export class DefaultResDto {
   success: boolean;
   response: null;
   error: responseError | null;
 
-  constructor(data: responseDefault) {
+  constructor(data: DefaultResDto) {
     this.success = data.success;
     this.response = data.response;
     this.error = data.error;
