@@ -1,22 +1,25 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import { setEmail, setExpire } from "../../store/slices/userSlice.js";
 
-// components
 import Box from "../atoms/Box.js";
-import ShopingLink from "../organisms/ShopingLink.js";
-import CartLink from "../organisms/CartLink.js";
+import ImageLink from "../molecules/ImageLink.js";
+
+import logoKakao from "../../assets/images/icon/logoKakao.png";
+import cart from "../../assets/images/icon/cart.png";
+
 
 export default function GNB() {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
   return (
     <Box>
-      <ShopingLink />
-      <CartLink />
+      <ImageLink to="/" src={logoKakao} alt="logoKakao" />
+      <ImageLink to="/cart" src={cart} alt="cart" />
       {email ? (
         <>
-          {RegExp(/[^@]*/).exec(email)}
+          {/[^@]*/.exec(email)}
           <Link
             onClick={() => {
               dispatch(setEmail({ email: null }));

@@ -1,3 +1,4 @@
-export default function Box({ className = "", children }) {
-  return <div className={className}>{children}</div>;
+// props: children
+export default function Box({ className = "", ...props }) {
+  return <div className={className} {...props} />;
 }

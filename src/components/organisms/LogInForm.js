@@ -1,16 +1,11 @@
-// router
 import { useNavigate } from "react-router-dom";
-// axios
-import { logInReq } from "../../apis/api.js";
-// redux
 import { useDispatch } from "react-redux";
+
+import { logInReq } from "../../apis/api.js";
 import { setEmail, setExpire } from "../../store/slices/userSlice.js";
-
 import { isValidLogIn } from "../../utils/validate.js";
-
-// hook
 import useInput from "../../hooks/useInput.js";
-// components
+
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";

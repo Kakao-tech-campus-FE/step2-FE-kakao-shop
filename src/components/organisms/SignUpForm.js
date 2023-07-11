@@ -1,13 +1,9 @@
-// router
 import { useNavigate } from "react-router-dom";
-// axios
+
 import { emailCheckReq, signUpReq } from "../../apis/api.js";
-// hook
 import useInput from "../../hooks/useInput.js";
-// util
 import { isValidSignUp } from "../../utils/validate.js";
 
-// components
 import Container from "../atoms/Container.js";
 import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";

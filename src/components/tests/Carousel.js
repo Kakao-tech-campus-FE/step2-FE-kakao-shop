@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// css
 import "../../styles/tests/Carousel.css";
 
 export default function Carousel({ images }) {

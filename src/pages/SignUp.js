@@ -1,10 +1,12 @@
-import KakaoLink from "../components/organisms/KakaoLink.js";
+import ImageLink from "../components/molecules/ImageLink.js";
 import SignUpForm from "../components/organisms/SignUpForm.js";
+
+import logoKakaoText from "../assets/images/icon/logoKakaoText.png";
 
 export default function SignUp() {
   return (
     <>
-      <KakaoLink />
+      <ImageLink to="/" src={logoKakaoText} alt="logoKakaoText" />
       <SignUpForm />
     </>
   );

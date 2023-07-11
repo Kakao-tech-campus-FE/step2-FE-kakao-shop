@@ -1,7 +1,4 @@
-export default function Label({ htmlFor, className = "", children }) {
-  return (
-    <label htmlFor={htmlFor} className={className}>
-      {children}
-    </label>
-  );
+// props: children, htmlFor
+export default function Label({ className = "", ...props }) {
+  return <label className={className} {...props} />;
 }

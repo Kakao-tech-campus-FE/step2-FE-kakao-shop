@@ -1,28 +1,13 @@
-// components
 import Box from "../atoms/Box.js";
 import Label from "../atoms/Label.js";
 import Input from "../atoms/Input.js";
 
-export default function LabeledInput({
-  type,
-  id,
-  name,
-  onChange,
-  label,
-  placeholder,
-  value,
-}) {
+// props: type, name, onChange, placeholder, value
+export default function LabeledInput({ id, label, ...props }) {
   return (
     <Box>
       <Label htmlFor={id}>{label}</Label>
-      <Input
-        type={type}
-        id={id}
-        name={name}
-        onChange={onChange}
-        placeholder={placeholder}
-        value={value}
-      />
+      <Input id={id} {...props} />
     </Box>
   );
 }
