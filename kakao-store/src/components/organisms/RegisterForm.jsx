@@ -5,10 +5,10 @@ import useInput from "../../hooks/useinput";
 import Title from "../atoms/Title";
 import { validateForm } from "../../utils/VaildationSignup";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../services/api";
+import { register } from "../../services/user";
 import { useState } from "react";
 import logo from "../../images/logoKakaoText.png";
-import useRegister from "../../hooks/useRegister";
+// import useRegister from "../../hooks/useRegister";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -20,6 +20,7 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
+  // const { errors, handleRegister  } = useRegister();
   const [errors, setErrors] = useState([]);
 
   const handleRegister = () => {
@@ -36,11 +37,6 @@ const RegisterForm = () => {
       setErrors(validationErrors);
     }
   };
-  // const [username, setUsername] = useState()
-  // const [email, setEmail] = useState()
-  // const [password, setPassword] = useState()
-  // const [passwordConfirm, setPasswordConfirm] = useState()
-  // 등 4개가 있어야 하는걸 hook을 사용하여 1개로 줄임
 
   return (
     <Container>

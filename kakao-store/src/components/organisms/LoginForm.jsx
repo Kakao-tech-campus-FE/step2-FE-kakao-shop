@@ -5,7 +5,7 @@ import useInput from "../../hooks/useinput";
 import Title from "../atoms/Title";
 import logo from "../../images/logoKakaoText.png";
 
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 import { useNavigate } from "react-router-dom";
 import { validateForm } from "../../utils/VaildationLogin";
 import { useState, useEffect } from "react";

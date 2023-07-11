@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { register } from "../api/auth";
-import { validateForm } from "../utils/validate";
+import { register } from "../services/api";
+import { validateForm } from "../utils/VaildationSignup";
 
 function useRegister() {
   const [errors, setErrors] = useState([]);
