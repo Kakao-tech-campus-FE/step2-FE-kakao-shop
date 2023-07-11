@@ -6,7 +6,7 @@ import useInput from "../../hooks/useInput";
 import styled from "styled-components";
 import routes from '../../routes'
 import { useNavigate } from 'react-router-dom';
-import { register, doubleCheck } from "../../services/api";
+import { register, doubleCheck } from "../../services";
 import Question from "../atoms/Question";
 import { useState, useEffect } from "react";
 import DoubleCheck from '../atoms/DoubleCheck';

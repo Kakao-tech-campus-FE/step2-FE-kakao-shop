@@ -6,7 +6,7 @@ import useInput from "../../hooks/useInput";
 import styled from "styled-components";
 import routes from '../../routes'
 import { useNavigate } from 'react-router-dom';
-import { login } from "../../services/api";
+import { login } from "../../services";
 import Question from "../atoms/Question";
 import { useState, useEffect } from "react";
 import { emailCheck, passwordCheck } from "../../services/regex";
@@ -36,6 +36,7 @@ const LoginForm = () => {
     const [isEmail, setIsEmail] = useState(true);
     const [whatEmail, setWhatEmail] = useState("");
     const [isPassword, setIsPassword] = useState(true);
+
     const loginCheck = (data) => {
         login(data).then((res) => {
             localStorage.setItem('jwt', res.headers.get("Authorization"));
@@ -43,7 +44,6 @@ const LoginForm = () => {
             navigate(routes.home);
         })
             .catch((e) => {
-
                 alert("인증되지 않았습니다.");
             });
     };

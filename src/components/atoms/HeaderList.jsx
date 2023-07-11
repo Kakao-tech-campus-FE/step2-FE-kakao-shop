@@ -8,7 +8,6 @@ const HeaderListStyle = styled.div`
 `
 
 
-
 const HeaderList = ({ name, onClick, slash }) => {
     return (<>
 

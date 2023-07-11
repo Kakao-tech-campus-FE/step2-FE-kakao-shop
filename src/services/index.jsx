@@ -24,7 +24,7 @@ instance.interceptors.request.use((config) => {
 // use 는 middleware 일 경우가 많음
 // midleware 는 중간에 처리 해주는 프록스 서버 같은 것
 
-instance.interceptors.request.use(
+instance.interceptors.response.use(
     (response) => {
         return response;
         //요청 전달되기 전에 작업 수행
@@ -34,12 +34,12 @@ instance.interceptors.request.use(
         if (error.response.status === 401) {
             localStorage.removeItem("token");
             window.location.href = `${routes.home}`;
-            return Promise.resolve();
+            return Promise.resolve(error.response.data.error.message);
         }
         return Promise.reject(error.response);
     }
 )
-//401 에러 캐치
+//401 에러 캐치(jwt 만료)
 
 
 export const register = (data) => {
