@@ -1,16 +1,8 @@
 const URL = {
-  HOME: {
-    link: "/",
-  },
-  SIGN_UP: {
-    link: "/signup",
-  },
-  SIGN_IN: {
-    link: "/signin",
-  },
-  SIGN_OUT: {
-    link: "/",
-  },
+  HOME: "/",
+  SIGN_UP: "/signup",
+  SIGN_IN: "/signin",
+  SIGN_OUT: "/",
 };
 
 export { URL };

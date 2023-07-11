@@ -19,7 +19,7 @@ const NavbarItem: FC<NavbarItemProps> = ({
   onClick,
 }) => (
   <Link
-    to={URL[link as keyof typeof URL].link}
+    to={URL[link as keyof typeof URL]}
     className={`p-4 ${className}`}
     onClick={() => {
       if (typeof onClick !== "function") return;
