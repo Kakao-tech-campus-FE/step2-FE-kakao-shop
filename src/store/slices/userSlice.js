@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "../../services/api";
+import { login, register } from "../../services/api/user";
 import { setUserCookie } from "../../services/cookie";
 
 // 슬라이스를 만들때 주의할 점 : initial state를 꼭 만들어 줘야 한다
