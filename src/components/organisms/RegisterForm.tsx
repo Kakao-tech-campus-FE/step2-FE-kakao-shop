@@ -55,7 +55,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
           navigate('/');
         })
         .catch((err) => {
-          checkEmailDup(inputInfo.email).catch(() => setEmailHT('이미 존재하는 이메일 입니다.'));
+          setEmailHT('이미 존재하는 이메일 입니다.');
         });
   };
 
