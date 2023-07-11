@@ -3,6 +3,7 @@ import NavBar from "../molecules/NavBar";
 
 const StyledHeader = styled.header`
   border-bottom: 1px solid black;
+  padding: 0 20px;
   background-color: #fff;
   height: 80px;
   z-index: 9;
