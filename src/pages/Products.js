@@ -1,4 +1,4 @@
-import GNB from "../components/templates/GNB";
+import GNB from "components/templates/GNB";
 
 export default function Products() {
   return (

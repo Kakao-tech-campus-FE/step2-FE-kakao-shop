@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "../../styles/tests/Carousel.css";
+import "styles/tests/Carousel.css";
 
 export default function Carousel({ images }) {
   const [selectedIndex, setSelectedIndex] = useState(0);

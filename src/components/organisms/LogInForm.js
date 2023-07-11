@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { logInReq } from "../../apis/api.js";
-import { setEmail, setExpire } from "../../store/slices/userSlice.js";
-import { isValidLogIn } from "../../utils/validate.js";
-import useInput from "../../hooks/useInput.js";
+import { logInReq } from "apis/api.js";
+import { setEmail, setExpire } from "store/slices/userSlice.js";
+import { isValidLogIn } from "utils/validate.js";
+import useInput from "hooks/useInput.js";
 
-import Container from "../atoms/Container.js";
-import Button from "../atoms/Button.js";
-import LabeledInput from "../molecules/LabeledInput.js";
+import Container from "components/atoms/Container.js";
+import Button from "components/atoms/Button.js";
+import LabeledInput from "components/molecules/LabeledInput.js";
 
 export default function LogInForm() {
   const { inputValue, handleInputChange } = useInput({

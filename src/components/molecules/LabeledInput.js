@@ -1,6 +1,6 @@
-import Box from "../atoms/Box.js";
-import Label from "../atoms/Label.js";
-import Input from "../atoms/Input.js";
+import Box from "components/atoms/Box.js";
+import Label from "components/atoms/Label.js";
+import Input from "components/atoms/Input.js";
 
 // props: type, name, onChange, placeholder, value
 export default function LabeledInput({ id, label, ...props }) {

@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-import { emailCheckReq, signUpReq } from "../../apis/api.js";
-import useInput from "../../hooks/useInput.js";
-import { isValidSignUp } from "../../utils/validate.js";
+import { emailCheckReq, signUpReq } from "apis/api.js";
+import useInput from "hooks/useInput.js";
+import { isValidSignUp } from "utils/validate.js";
 
-import Container from "../atoms/Container.js";
-import Button from "../atoms/Button.js";
-import LabeledInput from "../molecules/LabeledInput.js";
+import Container from "components/atoms/Container.js";
+import Button from "components/atoms/Button.js";
+import LabeledInput from "components/molecules/LabeledInput.js";
 
 export default function SignUpForm() {
   const { inputValue, handleInputChange } = useInput({

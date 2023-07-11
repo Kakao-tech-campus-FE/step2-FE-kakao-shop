@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Test from "./pages/Test.js";
-import LogIn from "./pages/LogIn.js";
-import SignUp from "./pages/SignUp.js";
-import Products from "./pages/Products.js";
-import Product from "./pages/Product.js";
-import Cart from "./pages/Cart.js";
-import Order from "./pages/Order.js";
-import Result from "./pages/Result.js";
-import NotFound from "./pages/NotFound.js";
+import Test from "pages/Test.js";
+import LogIn from "pages/LogIn.js";
+import SignUp from "pages/SignUp.js";
+import Products from "pages/Products.js";
+import Product from "pages/Product.js";
+import Cart from "pages/Cart.js";
+import Order from "pages/Order.js";
+import Result from "pages/Result.js";
+import NotFound from "pages/NotFound.js";
 
-import "./App.css";
+import "App.css";
 
 function App() {
   return (

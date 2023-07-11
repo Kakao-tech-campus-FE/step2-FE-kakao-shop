@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setEmail, setExpire } from "../../store/slices/userSlice.js";
+import { setEmail, setExpire } from "store/slices/userSlice.js";
 
-import Box from "../atoms/Box.js";
-import ImageLink from "../molecules/ImageLink.js";
+import Box from "components/atoms/Box.js";
+import ImageLink from "components/molecules/ImageLink.js";
 
-import logoKakao from "../../assets/images/icon/logoKakao.png";
-import cart from "../../assets/images/icon/cart.png";
+import logoKakao from "assets/images/icon/logoKakao.png";
+import cart from "assets/images/icon/cart.png";
 
 export default function GNB() {
   const dispatch = useDispatch();
