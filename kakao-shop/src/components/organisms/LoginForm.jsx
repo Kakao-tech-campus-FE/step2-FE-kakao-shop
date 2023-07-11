@@ -7,7 +7,7 @@ import useFocus from "../../hooks/useFocus";
 import useInput from "../../hooks/useInput";
 
 // functions
-import { login } from "../../apis/api";
+import { login } from "../../apis/user";
 import { validateEmail, validatePassword } from "../../utils/validate";
 
 import { setEmail, setToken } from "../../redux/user/userSlice";
@@ -65,7 +65,6 @@ const LoginForm = () => {
         dispatch(
           setEmail({
             email: value.email,
-            token: response.headers.authorization,
           })
         );
         dispatch(setToken({ token: response.headers.authorization }));

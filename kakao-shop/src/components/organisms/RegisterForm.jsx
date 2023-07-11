@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { register } from "../../apis/api";
+import { register } from "../../apis/user";
 
 import {
   validateEmail,
@@ -73,6 +73,7 @@ const RegisterForm = () => {
       setErrorMessage((prev) => ({ ...prev, passwordConfirm: "" }));
     }
 
+    // 이런 캐칭 좋지 않다! 나중에 처리해야함
     try {
       await register({
         email: value.email,

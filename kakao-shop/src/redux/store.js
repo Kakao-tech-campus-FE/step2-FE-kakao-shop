@@ -3,6 +3,7 @@ import { persistReducer, PERSIST, PURGE } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import userSlice from "./user/userSlice";
+import productSlice from "./product/productSlice";
 
 import logger from "redux-logger";
 
