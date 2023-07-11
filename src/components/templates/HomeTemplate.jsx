@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import GlobalNavBar from "../organisms/GlobalNavBar";
-import Products from "../organisms/Products";
+import ProductGrid from "../organisms/ProductGrid";
 
 const Container = styled.div`
   width: 1200px;
@@ -13,7 +13,7 @@ const HomeTemplate = () => {
     <>
       <GlobalNavBar />
       <Container>
-        <Products />
+        <ProductGrid />
       </Container>
     </>
   );
