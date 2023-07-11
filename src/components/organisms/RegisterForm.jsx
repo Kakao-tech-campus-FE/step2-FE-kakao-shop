@@ -6,14 +6,16 @@ import {register} from "../../services/api";
 import {useEffect, useState} from "react";
 
 import "../../styles/form.css";
-
-import {useDispatch, useSelector} from "react-redux";
-import {setEmail, setUsername, setPassword, setPasswordConfirm, validate} from "../../store/slice/registerSlice";
+import useInput from "../../hooks/useInput";
 
 const RegisterForm = () => {
 
-    const errorStatus = useSelector(state => state.registerForm);
-    const dispatch = useDispatch();
+    const {value, handleOnChange, errorMsg, validateInput} = useInput({
+        email: "",
+        username: "",
+        password: "",
+        passwordConfirm: ""
+    });
 
     const [errorFromBE, setErrorFromBE] = useState(null);
 
@@ -29,59 +31,55 @@ const RegisterForm = () => {
             <InputGroup
                 id="email"
                 type="text"
-                value={errorStatus.email.value}
+                value={value.email}
                 label="이메일 (아이디)"
                 placeholder="이메일"
-                onChange={(event) => dispatch(setEmail(event.target.value))}
-                errorMsg={errorStatus.email.errorMsg}
-                onBlur={() => {
-                    dispatch(validate({id: "email"}))
-                }}
+                onChange={handleOnChange}
+                errorMsg={errorMsg.email}
+                onBlur={() => validateInput("email")}
             />
             <InputGroup
                 id="username"
                 type="text"
-                value={errorStatus.username.value}
+                value={value.username}
                 label="이름"
                 placeholder="이름"
-                onChange={(event) => dispatch(setUsername(event.target.value))}
-                errorMsg={errorStatus.username.errorMsg}
-                onBlur={() => dispatch(validate({id: "username"}))}
+                onChange={handleOnChange}
+                errorMsg={errorMsg.username}
+                onBlur={() => validateInput("username")}
             />
             <InputGroup
                 id="password"
                 type="password"
-                value={errorStatus.password.value}
+                value={value.password}
                 label="비밀번호"
                 placeholder="비밀번호"
-                onChange={(event) => dispatch(setPassword(event.target.value))}
-                errorMsg={errorStatus.password.errorMsg}
-                onBlur={() => dispatch(validate({id: "password"}))}
+                onChange={handleOnChange}
+                errorMsg={errorMsg.password}
+                onBlur={() => validateInput("password")}
             />
             <InputGroup
                 id="passwordConfirm"
                 type="password"
-                value={errorStatus.passwordConfirm.value}
+                value={value.passwordConfirm}
                 label="비밀번호 확인"
                 placeholder="비밀번호 확인"
-                onChange={(event) => dispatch(setPasswordConfirm(event.target.value))}
-                errorMsg={errorStatus.passwordConfirm.errorMsg}
-                onBlur={() => dispatch(validate({id: "passwordConfirm"}))}
+                onChange={handleOnChange}
+                errorMsg={errorMsg.passwordConfirm}
+                onBlur={() => validateInput("passwordConfirm")}
             />
 
             <Button
                 className="register-button"
                 onClick={() => {
                     if (
-                        !Object.keys(errorStatus).find(
-                            (key) => {
-                                dispatch(validate({id: key}));
-                                return !errorStatus[key].isValid
-                            }))
+                        !Object.keys(value).find(
+                            (key) => validateInput(key) === false
+                        ))
                         register({
-                            email: errorStatus.email.value,
-                            password: errorStatus.password.value,
-                            username: errorStatus.username.value
+                            email: value.email,
+                            password: value.password,
+                            username: value.username
                         }).then(
                             res => {
                                 console.log(res);

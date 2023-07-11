@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useState} from "react";
 
 
-const EMAIL_REGEX = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
+const EMAIL_REGEX = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
 const PW_REGEX = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
 
 const ERROR_MSG = {
@@ -20,7 +20,7 @@ const ERROR_MSG = {
 const LoginForm = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const [value, handleOnChange] = useInput({
+    const {value, handleOnChange, validateInput, errorMsg} = useInput({
         email: "",
         password: "",
     });
@@ -86,8 +86,8 @@ const LoginForm = () => {
                 window.location.href = "/";
             }
         ).catch(err => {
-                console.log(err.response)
-                alert(err.response)
+                console.log(err.error.message)
+                alert(err.error.message)
             }
         );
     };
