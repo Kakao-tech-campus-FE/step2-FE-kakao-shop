@@ -31,3 +31,20 @@ export const passwordComparisonErrorMessage = {
     text:'다시 한 번 입력해주세요',
     confirmButtonText:'확인',
 }
+export const logoutMessage = {
+    title:'로그아웃 완료!',
+    text:'우리 다음에 또 만나요 :) ',
+    confirmButtonText:'확인',
+    confirmButtonColor:'#3085d6',
+}
+export const registerWelcomeMessage = {
+    title:'회원가입 완료!',
+    text: '저희 사이트에 오신 것을 환영합니다😊',
+    confirmButtonText:'확인',
+}
+
+export const clearTokens = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("tokenExpiration");
+}

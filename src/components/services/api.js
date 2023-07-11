@@ -1,5 +1,6 @@
 import axios from "axios"
 import Swal from 'sweetalert2'
+import { registerWelcomeMessage, clearTokens } from "../../utils/constants";
 
 const instance = axios.create({
     baseURL : process.env.REACT_APP_API_URL, // production level 에서는 env에서 넣어주어야함(보안 관련)
@@ -10,7 +11,7 @@ const instance = axios.create({
 }); 
 
 // request - 요청
-// 인스턴스가 create 되면서 토큰을 발급하면 잘 안먹히는 경우가 있어서, request 단에서 받는다.
+// 인스턴스가 create 되면서 토큰을 발급하면 잘 안먹히는 경우가 있어서, request단에서 처리한다.
 instance.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -29,11 +30,12 @@ instance.interceptors.response.use(
     },
     (error) => {
         // 401 error : 인증되지 않음 - 로그인 화면으로 이동
+        // token은 백엔드에서 유효하지 않다면 401(Unauthorized) Http code를 보내주기에, 이에따라 처리
         if (error.response.status === 401) {
-            localStorage.removeItem("token");
+            clearTokens();
             Swal.fire({
                 icon: 'error',
-                title: '내용을 다시 확인해 주세요!',
+                title: '로그인을 진행해주세요!',
                 text: error.response.data.error.message,
                 confirmButtonText: '확인',
             })
@@ -51,19 +53,10 @@ instance.interceptors.response.use(
                 text: error.response.data.error.message,
                 confirmButtonText: '확인',
             })
-            // return Promise.resolve();
-            return Promise.reject(error.response); // Promise.resolve()와의 차이점?
+            // 성공인지 실패인지 여부에 따라 resolve, reject 처리
+            // response를 제대로 받아도 만약 특정 데이터가 없을때 에러로 처리하고 싶다면 reject 처리
+            return Promise.reject(error.response);
         }
-
-        // 400 error : 유효하지 않은 요청 메시지 or 서버가 클라이언트 요청 이해 x
-        // if (error.response.status === 400) {
-        //     Swal.fire({
-        //         icon: 'error',
-        //         title: 'An error occurred!',
-        //         text: error.response.data.message,
-        //         confirmButtonText: 'Confirm',
-        //       });
-        // }
     }
 )
 
@@ -79,12 +72,9 @@ export const register = (data) => {
         password,
         username
     })
-    .then((response) => {
-        Swal.fire({
-            title:'회원가입 완료!',
-            text: '저희 사이트에 오신 것을 환영합니다😊',
-            confirmButtonText:'확인',
-        }).then(() => {
+    .then(() => {
+        Swal.fire(registerWelcomeMessage)
+        .then(() => {
             window.location.href = "/";
         })
     })

@@ -1,21 +1,14 @@
-import { Link } from "react-router-dom";
-import React from "react";
 import Swal from 'sweetalert2'
+import { logoutMessage, clearTokens } from '../../utils/constants';
+import { Link } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 
 import "../../styles/Nav.css";
 
 const Nav = () => {
-    const logOut = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("email");
-        localStorage.removeItem("tokenExpiration");
-        Swal.fire({
-            title:'로그아웃 완료!',
-            text:'우리 다음에 또 만나요 :) ',
-            confirmButtonText:'확인',
-            confirmButtonColor:'#3085d6'
-        })
+    const logout = () => {
+        clearTokens();
+        Swal.fire(logoutMessage)
         .then(() => {
             window.location.href = "/";
         })
@@ -37,7 +30,7 @@ const Nav = () => {
         <Link className="navbarMenu" to={"/ComponentsPage"}>컴포넌트 테스팅</Link>
         <Link className="navbarMenu" to={"/register"}>회원가입</Link>
         {token 
-        ? <Link className="navbarMenu" onClick={logOut}>로그아웃</Link> 
+        ? <Link className="navbarMenu" onClick={logout}>로그아웃</Link> 
         : <Link className="navbarMenu" to={"/login"}>로그인</Link>}
       </div>
     </>
