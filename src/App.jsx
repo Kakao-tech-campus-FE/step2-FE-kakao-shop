@@ -3,6 +3,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import CartPage from "./pages/CartPage";
+import MainLayout from "./components/layouts/MainLayout";
 
 const App = () => {
   return(
@@ -10,9 +11,12 @@ const App = () => {
         <Routes>
           <Route path="/signup" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/" element={<MainPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<MainPage />} />
+          </Route>
           <Route path="/cart" element={<CartPage />} />
         </Routes>
+
     </div>
   );
 };
