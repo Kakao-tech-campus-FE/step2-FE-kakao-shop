@@ -32,7 +32,7 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
         navigate('/');
       })
       .catch((err) => {
-        console.log(err);
+        setEmailHT('아이디를 잘못 입력했습니다.');
       });
   };
 
