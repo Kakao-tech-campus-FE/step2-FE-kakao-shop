@@ -48,20 +48,16 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
   };
 
   const registerReq = () => {
-    if (inputInfo.username && validationCheck()) {
-      checkEmailDup(inputInfo.email)
+    if (inputInfo.username)
+      onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
-          onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
-            .then((res) => {
-              dispatch(login({ email: inputInfo.email }));
-              navigate('/');
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+          dispatch(login({ email: inputInfo.email }));
+          navigate('/');
         })
-        .catch((err) => setEmailHT('이미 존재하는 이메일 입니다.'));
-    }
+        .catch((err) => {
+          validationCheck();
+        });
+    checkEmailDup(inputInfo.email).catch((err) => setEmailHT('이미 존재하는 이메일 입니다.'));
   };
 
   useEffect(() => {
