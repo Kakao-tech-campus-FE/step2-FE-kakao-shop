@@ -1,9 +1,9 @@
-import GlobalNavBar from "../components/organisms/global-navigation-bar/GlobalNavBar.jsx";
+import GlobalTemplate from "../components/templates/global-template/GlobalTemplate.jsx";
 
 function Home() {
   return (
     <>
-      <GlobalNavBar />
+      <GlobalTemplate>hi</GlobalTemplate>
     </>
   );
 }
