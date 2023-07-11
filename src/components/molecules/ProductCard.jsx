@@ -2,16 +2,24 @@ import React from "react";
 import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
+import Box from "../atoms/Box";
 
 export default function ProductCard({ product }) {
   const { id, productName, image, price } = product;
 
   return (
-    <li>
+    <li className="mx-auto w-full">
       <Card to={`/product/${id}`}>
-        <Photo width="w-72" heigth='h-40' src={image} alt={productName} />
-        <h3>{productName}</h3>
-        <p>{comma(price)}</p>
+        <Box className="mb-3 rounded-lg overflow-hidden">
+          <Photo
+            className="w-full h-40"
+            src={image}
+            alt={productName}
+            hover={true}
+          />
+        </Box>
+        <h3 className="mb-1 text-sm line-clamp-2">{productName}</h3>
+        <p className="text-xl font-bold">{comma(price)}원</p>
       </Card>
     </li>
   );

@@ -1,9 +1,15 @@
 import React from "react";
 
-export default function Photo({ width, heigth, src, alt }) {
+export default function Photo({ className, src, alt, hover }) {
   return (
-    <picture className={`${width} ${heigth}`}>
-      <img className="w-inherit h-inherit object-cover" src={src} alt={alt} />
+    <picture className={className}>
+      <img
+        className={`w-inherit h-inherit object-cover ${
+          hover ? "hover:scale-105 duration-200" : ""
+        }`}
+        src={src}
+        alt={alt}
+      />
     </picture>
   );
 }
