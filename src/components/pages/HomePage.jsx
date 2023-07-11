@@ -1,9 +1,7 @@
-import GlobalNavBar from "../organisms/GlobalNavBar";
-
 const HomePage = () => {
     return (
         <>
-            <GlobalNavBar/>
+            <div>안녕하세요</div>
         </>
     );
 }
