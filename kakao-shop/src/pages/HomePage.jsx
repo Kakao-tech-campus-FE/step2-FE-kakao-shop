@@ -8,7 +8,8 @@ import Header from "../components/organisms/Header";
 const HomePage = () => {
   return (
     <div className="home-page">
-      <Header />
+      <h1>Home page</h1>
+      {/* <Header /> */}
       {/* 메인 컨텐츠 */}
       {/* 푸터 */}
     </div>
