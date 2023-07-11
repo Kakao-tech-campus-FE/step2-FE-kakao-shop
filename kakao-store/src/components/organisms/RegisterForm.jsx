@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { register } from "../../services/api";
 import { useState } from "react";
 import logo from "../../images/logoKakaoText.png";
+import useRegister from "../../hooks/useRegister";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
