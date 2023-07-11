@@ -8,6 +8,7 @@ import { RootState } from 'src/store';
 import { useDispatch } from 'react-redux';
 import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
 import { useNavigate } from 'react-router-dom';
+import { checkEmailDup } from '@api/registerApi';
 
 interface RegisterFromProps {
   onSubmit: (data: { email: string; password: string; username: string }) => Promise<AxiosResponse>;
@@ -32,7 +33,9 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
 
   const validationCheck = () => {
     if (inputInfo.username) setUsernameHT(checkUsername(inputInfo.username));
+
     setEmailHT(checkEmail(inputInfo.email));
+
     setPasswordHT(checkPassword(inputInfo.password));
 
     if (inputInfo.password !== inputInfo.passwordConfirm) {
@@ -45,15 +48,20 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
   };
 
   const registerReq = () => {
-    if (inputInfo.username && validationCheck())
-      onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
+    if (inputInfo.username && validationCheck()) {
+      checkEmailDup(inputInfo.email)
         .then((res) => {
-          dispatch(login({ email: inputInfo.email }));
-          navigate('/');
+          onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
+            .then((res) => {
+              dispatch(login({ email: inputInfo.email }));
+              navigate('/');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => setEmailHT('이미 존재하는 이메일 입니다.'));
+    }
   };
 
   useEffect(() => {

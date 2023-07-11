@@ -1,4 +1,4 @@
-import register from '@api/registerApi';
+import { register } from '@api/registerApi';
 import RegisterForm from '@components/organisms/RegisterForm';
 import React from 'react';
 

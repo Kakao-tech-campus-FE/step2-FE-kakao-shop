@@ -15,17 +15,17 @@ instance.interceptors.request.use((config) => {
   if (token) {
     configuration.headers.Authorization = `Bearer ${token}`;
   }
-  console.log(configuration);
   return configuration;
 });
 
 instance.interceptors.response.use(
   (response) => {
-    console.log(response);
+    console.log('response', response);
     return response;
   },
   (error) => {
     console.log(error.response.data.error.message);
+    throw new Error();
   },
 );
 
@@ -34,4 +34,8 @@ const register = (data: RegisterData) => {
   return instance.post('/join', { email, password, username });
 };
 
-export default register;
+const checkEmailDup = (email: string) => {
+  return instance.post('/check', email);
+};
+
+export { register, checkEmailDup };
