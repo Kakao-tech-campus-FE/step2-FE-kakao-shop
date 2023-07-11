@@ -1,5 +1,4 @@
 import axios from "axios"
-// import Swal from 'sweetalert2'
 
 const instance = axios.create({
     baseURL : process.env.REACT_APP_API_URL, // production level 에서는 env에서 넣어주어야함(보안 관련)
@@ -9,15 +8,16 @@ const instance = axios.create({
     }
 }); 
 
-// 인스턴스가 create 되면서 토큰을 발급하면 잘 안먹히는 경우가 있어서, request 단에서 받는다.
-// instance.interceptors.request.use((config) => {
-//     const token = localStorage.getItem("token");
-//     if (token) {
-//       config.headers["Authorization"] = token;
+instance.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers["Authorization"] = token;
 
-//     }
-//     return config;
-// });
+    }
+    return config;
+});
+
+export default instance;
 
 // // response 단에서 error의 처리
 // // 2개의 파라미터 - 정상 처리 & 에러 처리
@@ -28,11 +28,6 @@ const instance = axios.create({
 //         return response;
 //     },
 //     (error) => {
-//         if (error.response.status === 401) {
-//             localStorage.removeItem("token");
-//             window.location.href = "/login";
-//             return Promise.resolve();
-//         }
 //         return Promise.reject(error.response);
 //     }
 // )
@@ -40,24 +35,6 @@ const instance = axios.create({
 // 백엔드 요청!
 // 데이터 객체를 정확히 명시해주면 좋다. 데이터가 무엇을 의미하는지 알 수 있게!
 // 데이터 객체에 엉뚱한 내용이 들어가는것을 방지할 수 있다.
-export const register = (data) => {
-    const { email, password, username } = data;
-    return instance
-    .post("/join", {
-        email,
-        password,
-        username
-    })
-}
 
-export const login = (data) => {
-    const { email, password } = data;
-    return instance.post("/login", {
-        email,
-        password
-    });
-}
 
-// export const fetchProducts = (page=0) => {
-//   return instance.get("/products" + "?page=" + page);
-// }
+

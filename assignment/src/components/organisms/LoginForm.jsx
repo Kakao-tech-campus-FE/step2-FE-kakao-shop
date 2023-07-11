@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
 import {useNavigate} from 'react-router-dom';
-import { login } from '../../services/api';
+import { login } from '../../services/user';
 import Title from '../atoms/Title';
 import { useDispatch, useSelector } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";

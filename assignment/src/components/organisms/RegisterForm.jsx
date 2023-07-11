@@ -2,7 +2,7 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from '../../hooks/useInput';
-import { register } from '../../services/api'
+import { register } from '../../services/user'
 
 import {useNavigate} from 'react-router-dom';
 // import { BrowserRouter as Redirect } from 'react-router-dom';
