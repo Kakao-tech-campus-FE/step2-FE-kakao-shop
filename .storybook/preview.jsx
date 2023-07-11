@@ -5,6 +5,7 @@ import theme from "../src/styles/theme.js";
 import { withThemeFromJSXProvider } from "@storybook/addon-styling";
 import GlobalStyle from "../src/styles/GlobalStyle.js";
 import { HelmetProvider } from "react-helmet-async";
+import { withRouter } from "storybook-addon-react-router-v6";
 
 const preview = {
   parameters: {
@@ -30,6 +31,7 @@ export const decorators = [
       <Story />
     </HelmetProvider>
   ),
+  withRouter,
 ];
 
 export default preview;
