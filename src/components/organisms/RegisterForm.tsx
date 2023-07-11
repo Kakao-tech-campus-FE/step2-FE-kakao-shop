@@ -61,7 +61,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
   }, [inputInfo]);
 
   return (
-    <div className="space-y-3">
+    <div className="flex flex-col space-y-3">
       <InputGroup
         inputName="username"
         labelName="username"
@@ -90,15 +90,13 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
         helperText={passwordConfirmHT}
         onChange={handleOnChange}
       />
-      <div className="">
-        <FilledButton
-          onClick={() => {
-            registerReq();
-          }}
-        >
-          제출
-        </FilledButton>
-      </div>
+      <FilledButton
+        onClick={() => {
+          registerReq();
+        }}
+      >
+        제출
+      </FilledButton>
     </div>
   );
 };
