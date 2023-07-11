@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { isTokenExpiration } from "./store/slices/userSlice";
+import { useEffect } from "react";
 import Nav from "./components/organisms/Nav";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -12,9 +13,12 @@ import './styles/App.css';
 
 function App() {
     // 최상단에서 토큰 관련 로그인을 관리할 수 있게 App에서 import 하여 사용
-    if (localStorage.getItem("token")) {
-        isTokenExpiration();
-    }
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            isTokenExpiration();
+        }
+    },[])
+    
     return (
     <>
         <BrowserRouter>
