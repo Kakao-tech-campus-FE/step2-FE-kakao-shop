@@ -2,13 +2,14 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { logInReq } from "apis/api.js";
-import { setEmail, setExpire } from "store/slices/userSlice.js";
+import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 import { isValidLogIn } from "utils/validate.js";
 import useInput from "hooks/useInput.js";
 
 import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
 import LabeledInput from "components/molecules/LabeledInput.js";
+import { expireTime } from "utils/constants";
 
 export default function LogInForm() {
   const { inputValue, handleInputChange } = useInput({
@@ -28,13 +29,15 @@ export default function LogInForm() {
       password: inputValue.password,
     })
       .then(() => {
+        const CurrentTime = new Date().getTime();
         dispatch(setEmail({ email: inputValue.email }));
-        dispatch(setExpire({ expire: new Date().getTime() }));
+        dispatch(setLogInTime({ logInTime: CurrentTime }));
         setTimeout(() => {
           dispatch(setEmail({ email: null }));
-          dispatch(setExpire({ expire: null }));
-          navigate("/");
-        }, 1000 * 60 * 60 * 24);
+          dispatch(setLogInTime({ logInTime: null }));
+          alert("로그인이 만료되었습니다.");
+          window.location.href = "/";
+        }, expireTime);
         navigate("/");
       })
       .catch((err) => {
