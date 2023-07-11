@@ -1,0 +1,39 @@
+import { useDispatch, useSelector } from "react-redux";
+import Container from "../atoms/Container";
+import ProductGrid from "../organisms/ProductGrid";
+import React from "react";
+import { getProducts } from "../../store/productSlice";
+
+const MainProductTemplate = () => {
+    const [page, setPage] = useStaet(0);
+    const bottomObserver = useRef(null);
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.product.products);
+    const loading = useSelector((state) => state.product.loading);
+    const error = useSelector((state) => state.product.error);
+
+    const io = new IntersectionObserver((entires, observer) => {
+        entires.foreach((entry) => {
+            if (entry.isIntersecting) {
+                setPage((page) => page + 1);
+            }
+        });
+    });
+
+    React.useEffect(() => {
+        if (loading) {
+            io.observe(bottomObserver.current);
+        }
+    }, [loading, page]);
+
+    React.useEffect(() => {
+        dispatch(getProducts(page));
+    }, [dispatch, page]); // 빈 배열 -> 처음에만 호출
+
+    return (
+        <Container>
+            <ProductGrid products={products} />
+            <div ref={bottomObserver}></div>
+        </Container>
+    );
+};

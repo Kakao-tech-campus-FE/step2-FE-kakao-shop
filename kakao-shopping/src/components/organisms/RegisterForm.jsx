@@ -92,7 +92,7 @@ const RegisterForm = ({
                 setDescription({ ["passwordConfirm"]: "일치하지 않습니다." });
             }
         }
-    }, [value.passwordConfirm, value.password]);
+    }, [value.passwordConfirm]);
 
     return (
         <Container
