@@ -12,7 +12,7 @@ import Box from "../atoms/Box";
 import InputGroup from "../molecules/InputGroup";
 
 // request function
-import { login } from "../../apis/api";
+import { login } from "../../services/user";
 
 const StyledContainer = styled(Container)`
     padding: 84px 0;
@@ -109,6 +109,18 @@ const LoginForm = ({ errorMsg="" }) => {
         })
     }
 
+    const onSubmit = () => {
+        if(Object.values(isValid).every(Boolean)){
+            loginReq(); // login 요청
+        }
+        else if(!isValid.email){
+            checkEmailValid(form.email);
+        }
+        else if(!isValid.password){
+            checkPasswordValid(form.password);
+        }
+    }
+
     return (
         <StyledContainer>
             <Title>로그인</Title>
@@ -138,18 +150,7 @@ const LoginForm = ({ errorMsg="" }) => {
             />
             <ValidMsgBox className={`${validMsg==="" ? "hidden" : "show"}`}>{validMsg}</ValidMsgBox>
             <Button
-                onClick={() => {
-                    if(isValid.email && isValid.password){
-                        loginReq(); // login 요청
-                    }
-                    else if(!isValid.email){
-                        checkEmailValid(form.email);
-                    }
-                    else if(!isValid.password){
-                        checkPasswordValid(form.password);
-                    }
-                    
-                }}
+                onClick={() => { onSubmit() }}
             >로그인</Button>
             <UserInfo>
                 <JoinLink href="register">회원가입</JoinLink>

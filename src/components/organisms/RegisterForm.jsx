@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import useValid from "../../hooks/useValid";
 
 
 // components
@@ -12,7 +11,7 @@ import InputGroup from "../molecules/InputGroup";
 
 
 // request function
-import { register } from "../../apis/api";
+import { register } from "../../services/user";
 
 const StyledContainer = styled(Container)`
     padding: 44px 0;
@@ -110,6 +109,24 @@ export default function RegisterForm(){
         })
     }
 
+    const onSubmit = () => {                    
+            if(Object.values(isValid).every(Boolean)){
+                registerReq(); // 회원가입 요청
+            }
+            else if(!isValid.email){
+                checkEmailValid(form.email);
+            }
+            else if(!isValid.username){
+                checkUsernameValid(form.username);
+            }
+            else if(!isValid.password){
+                checkPasswordValid(form.password);
+            }
+            else if(!isValid.passwordCofirm){
+                checkPasswordConfirmValid(form.passwordConfirm);
+            }
+    }
+
     return (
         <StyledContainer>
             <Title>회원가입</Title>
@@ -168,26 +185,7 @@ export default function RegisterForm(){
             <ValidMsgBox className={`${validMsg==="" ? "hidden" : "show"}`}>{validMsg}</ValidMsgBox>
             <div style={{marginTop: "30px"}}>
             <Button
-                onClick={() => {
-                    // 유효성 검사
-                    
-                    if(isValid.email && isValid.username && isValid.password && isValid.passwordCofirm){
-                        registerReq(); // 회원가입 요청
-                    }
-                    else if(!isValid.email){
-                        checkEmailValid(form.email);
-                    }
-                    else if(!isValid.username){
-                        checkUsernameValid(form.username);
-                    }
-                    else if(!isValid.password){
-                        checkPasswordValid(form.password);
-                    }
-                    else if(!isValid.passwordCofirm){
-                        checkPasswordConfirmValid(form.passwordConfirm);
-                    }
-                        
-                }}
+                onClick={() => {onSubmit()}}
             >회원가입</Button>
             </div>
             
