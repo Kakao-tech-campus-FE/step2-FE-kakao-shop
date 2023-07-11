@@ -1,31 +1,37 @@
+.nav {
+  float: right;
+}
 
 
-.nav .container {
+.header .container {
   display: flex;
   justify-content: space-between;
   /* margin : 5px; */
   /* padding-left: 20px; */
-  align-items: center;
+  /* align-items: center; */
   padding : 20px 0;
+  
+  
 }
 
-.nav a{
+.header a{
   display: flex;
   padding : 5px 15px;
-  align-items: center;
+  
+  float: left;
 }
 
-.nav a:hover {
+.header a:hover {
   color: green;
   font-weight: bold;
 }
 
 
 
-.NavigationBar {
+.navigation a {
   margin-right: 20px;
 }
 
-.NavigationBar :child {
+.navigation :child {
   margin-right: 0;;
 }

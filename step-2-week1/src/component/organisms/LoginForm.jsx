@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 // import { useState } from "react";
 import useInput from "../../hooks/useInput";
-import { emailDuplicateCheck, login } from "../../services/api";
+import { login } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, setEmail } from "../../store/slices/userSlice";
@@ -54,7 +54,6 @@ const LoginForm = () => {
     <Title>
       로그인
     </Title>
-    <span>{email}</span>
     <InputGroup 
       id="email" 
       type="email" 

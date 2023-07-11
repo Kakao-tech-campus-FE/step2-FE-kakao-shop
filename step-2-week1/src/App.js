@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage';
 import { Provider, useDispatch, useSelector } from 'react-redux';
 import { store } from './store/store';
 import { setUser, clearUser } from './store/slices/userSlice';
+import MainLayout from "./layouts/MainLayout";
+import GNB from './component/atoms/GNB';
 
 function App() {
 
@@ -30,19 +32,19 @@ function App() {
   }, [dispatch]);
 
   return (
-  <Provider store={store}>
     
     <BrowserRouter>
       {/* 단독 레이아웃 */}
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>   
-        {/* 공통 레이아웃 */}
-        <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
+        {/* 공통 레이아웃 GNB, Footer */}
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<GNB />}>isLoggedIn={isLoggedIn}</Route>
+        </Route>
       </Routes>
     </BrowserRouter>
     
-    </Provider>
 
   );
 };
