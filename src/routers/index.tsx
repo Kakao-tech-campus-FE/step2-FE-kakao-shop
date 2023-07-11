@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import BreadcrumbPage from "@/pages/Breadcrumb.page";
-import CarouselPage from "@/pages/Carousel.page";
-import CheckListPage from "@/pages/CheckList.page";
-import RadioButtonPage from "@/pages/RadioButton.page";
-import SignInPage from "@/pages/SignIn.page";
-import SignUpPage from "@/pages/SignUp.page";
-import Toast from "@/pages/Toast.page";
-import TogglePage from "@/pages/Toggle.page";
-import HomePage from "@/pages/Home.page";
+import BreadcrumbPage from "@/pages/test/Breadcrumb.page";
+import SignInPage from "@/pages/Sign/SignIn.page";
+import SignUpPage from "@/pages/Sign/SignUp.page";
+import HomePage from "@/pages/Home/Home.page";
+import Toast from "@/pages/test/Toast.page";
+import CarouselPage from "@/pages/test/Carousel.page";
+import RadioButtonPage from "@/pages/test/RadioButton.page";
+import TogglePage from "@/pages/test/Toggle.page";
+import CheckListPage from "@/pages/test/CheckList.page";
 
 const router = createBrowserRouter([
   {

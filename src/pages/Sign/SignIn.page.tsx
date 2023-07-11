@@ -2,9 +2,6 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
 import { signIn } from "@/store/signAction";
 import SignInForm from "@/components/Form/SignInForm.component";
-import { ERROR } from "@/assets/error.ko";
-
-const { FORM_ERROR } = ERROR;
 
 const SignInPage = () => {
   const {

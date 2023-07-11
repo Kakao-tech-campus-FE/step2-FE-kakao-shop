@@ -28,7 +28,7 @@ const Badge: FC<PropsWithChildren<BadgeProps>> = ({
   color = "secondary",
 }) => {
   return (
-    <span className={`py-[2px] px-1 rounded-md ${COLORS[color]}`}>
+    <span className={`py-[2px] px-1 text-xs rounded-md ${COLORS[color]}`}>
       {children}
     </span>
   );

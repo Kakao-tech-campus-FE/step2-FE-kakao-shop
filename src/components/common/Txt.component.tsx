@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes } from "react";
 
 interface TxtProps extends HTMLAttributes<HTMLSpanElement> {
-  typograph?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  typograph?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "sm";
   color?:
     | "primary"
     | "secondary"
@@ -20,6 +20,7 @@ const TYPOGRAPH = {
   h5: "text-lg font-bold",
   h6: "text-base font-bold",
   p: "text-base font-normal",
+  sm: "text-sm font-normal",
 } as const;
 
 const COLOR = {
