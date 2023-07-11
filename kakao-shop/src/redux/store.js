@@ -8,6 +8,7 @@ import logger from "redux-logger";
 
 const reducers = combineReducers({
   user: userSlice,
+  product: productSlice,
 });
 
 const persistConfig = {
@@ -28,5 +29,9 @@ const store = configureStore({
       },
     }).concat(logger),
 });
+
+// redux + redux-thunk
+// redux toolkit
+// redux + saga
 
 export default store;
