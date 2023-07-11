@@ -1,5 +1,9 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "../../../../Downloads/step2-FE-kakao-shop-week1/week-1/ui-components/src/index.css";
+import { Provider } from "jotai";
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <Provider>
+    <App />
+  </Provider>
+);

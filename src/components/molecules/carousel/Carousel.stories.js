@@ -1,7 +1,7 @@
 import Carousel from "./Carousel.jsx";
-import carouselItem1 from "../../assets/carouselItem1.jpeg";
-import carouselItem2 from "../../assets/carouselItem2.jpeg";
-import carouselItem3 from "../../assets/carouselItem3.jpeg";
+import carouselItem1 from "../../../assets/carouselItem1.jpeg";
+import carouselItem2 from "../../../assets/carouselItem2.jpeg";
+import carouselItem3 from "../../../assets/carouselItem3.jpeg";
 
 const SLIDE_EXAMPLE = [
   {

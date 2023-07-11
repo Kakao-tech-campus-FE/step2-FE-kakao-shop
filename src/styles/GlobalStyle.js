@@ -1,5 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
+import theme from "./theme.js";
 
 const GlobalStyle = createGlobalStyle`
   ${reset}
@@ -9,16 +10,17 @@ const GlobalStyle = createGlobalStyle`
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     text-decoration: none;
-    letter-spacing: -0.017em;
   }
   
   html, body {
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     font-weight: 400;
     font-size: 16px;
+    color: ${theme.color.black};
     max-width: 100%;
     min-height: calc(var(--vh, 1vh) * 100);
     overflow-x: hidden;
+    background-color: white;
   }
   
   button {
@@ -32,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: inherit;
   }
+
 `;
 
 export default GlobalStyle;
