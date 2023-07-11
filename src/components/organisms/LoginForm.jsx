@@ -51,7 +51,7 @@ const LoginForm = () => {
   return (
     <>
       <Container>
-        <Title></Title>
+        <Title>{email}</Title>
         <InputGroup
           id="email"
           type="email"

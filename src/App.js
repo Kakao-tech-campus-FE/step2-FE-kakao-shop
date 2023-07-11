@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { isTokenExpiration } from "./store/slices/userSlice";
-import Nav from "./components/samples/Nav";
+import Nav from "./components/organisms/Nav";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import ComponentsPage from "./pages/ComponentsPage";

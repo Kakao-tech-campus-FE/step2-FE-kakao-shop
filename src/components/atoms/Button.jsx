@@ -1,5 +1,7 @@
 import React from 'react';
 
+// onClick : 사용자의 클릭 이벤트에 대한 감지 기능
+// children : Button 내부에 표시할 내용을 전달받음
 const Button = ({onClick, children}) => {
     return (
         <>
