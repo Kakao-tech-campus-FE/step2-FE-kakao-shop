@@ -13,6 +13,8 @@ const StyledButton = styled.button`
     background-color: #fee500;
 `;
 
+// onClick : button의 submit 대신 사용할 click 이벤트 핸들러
+// children : button의 내용으로 사용할 요소
 const Button = ({ onClick, children }) => {
     return (
         <StyledButton 

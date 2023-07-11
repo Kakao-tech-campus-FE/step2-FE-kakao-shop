@@ -24,8 +24,8 @@ const Input = ({ type, value, name, onChange, onBlur, placeholder, className="",
             className={className}
             type={type}
             value={value}
-            onChange={onChange}
-            onBlur={onBlur}
+            onChange={onChange} // Change 이벤트 리스너
+            onBlur={onBlur} // FocusOut 이벤트 리스너
             placeholder={placeholder}
         />
     )

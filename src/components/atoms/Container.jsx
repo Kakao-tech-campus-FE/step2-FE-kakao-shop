@@ -6,6 +6,7 @@ const StyledDiv = styled.div`
     margin: 0 auto;
 `;
 
+// children : container에 삽입할 요소
 const Container = ({ children, className="" }) => {
     return <StyledDiv className={`container ${className}`}>{children}</StyledDiv>
 }
