@@ -1,0 +1,13 @@
+picture.card {
+  width: 200px;
+}
+
+/*부모 엘리먼트 */
+picture > img {
+  width: inherit;
+}
+
+img.card {
+  width: 100%;
+  max-width: 360px;
+}

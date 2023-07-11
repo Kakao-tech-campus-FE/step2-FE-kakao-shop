@@ -5,7 +5,7 @@ const instance = axios.create({
   timeout: 1000,
   haeders: {
     "Content-Type": "application/json",
-  }
+  },
 });
 
 instance.interceptors.request.use((config) => {
@@ -21,28 +21,5 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {
-    
-  }
+  (error) => {}
 );
-
-export const register = (data) => {
-  const { email, password, username } = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  });
-};
-
-export const login = (data) => {
-  const { email, password } = data;
-  return instance.post("/login", {
-    email,
-    password,
-  });
-}
-
-export const fetchProducts = (page = 0) => {
-  return instance.get(`/products?page=${page}`);
-};
