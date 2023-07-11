@@ -11,12 +11,36 @@ import Button from "../atoms/Button.js";
 import LabeledInput from "../molecules/LabeledInput.js";
 
 export default function LogInForm() {
-  const { inputValue, handleChange } = useInput({
+  const { inputValue, handleInputChange } = useInput({
     email: "",
     password: "",
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const handleButtonClick = () => {
+    // validation
+    if (!isValidLogIn(inputValue)) return;
+
+    // log in
+    logInReq({
+      email: inputValue.email,
+      password: inputValue.password,
+    })
+      .then(() => {
+        dispatch(setEmail({ email: inputValue.email }));
+        dispatch(setExpire({ expire: new Date().getTime() }));
+        setTimeout(() => {
+          dispatch(setEmail({ email: null }));
+          dispatch(setExpire({ expire: null }));
+          navigate("/");
+        }, 1000 * 60 * 60 * 24);
+        navigate("/");
+      })
+      .catch((err) => {
+        alert(err.response.data.error.message);
+      });
+  };
 
   return (
     <Container>
@@ -24,7 +48,7 @@ export default function LogInForm() {
         type="text"
         id="email"
         name="email"
-        onChange={handleChange}
+        onChange={handleInputChange}
         label="이메일"
         placeholder="이메일"
         value={inputValue.email}
@@ -33,38 +57,12 @@ export default function LogInForm() {
         type="password"
         id="password"
         name="password"
-        onChange={handleChange}
+        onChange={handleInputChange}
         label="비밀번호"
         placeholder="비밀번호"
         value={inputValue.password}
       />
-      <Button
-        onClick={() => {
-          // validation
-          if (!isValidLogIn(inputValue)) return;
-
-          // log in
-          logInReq({
-            email: inputValue.email,
-            password: inputValue.password,
-          })
-            .then(() => {
-              dispatch(setEmail({ email: inputValue.email }));
-              dispatch(setExpire({ expire: new Date().getTime() }));
-              setTimeout(() => {
-                dispatch(setEmail({ email: null }));
-                dispatch(setExpire({ expire: null }));
-                navigate("/");
-              }, 1000*60*60*24);
-              navigate("/");
-            })
-            .catch((err) => {
-              alert(err.response.data.error.message);
-            });
-        }}
-      >
-        로그인
-      </Button>
+      <Button onClick={handleButtonClick}>로그인</Button>
       <Button
         onClick={() => {
           navigate("/signup");

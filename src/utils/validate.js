@@ -7,7 +7,7 @@ const isValidEmpty = (values) => {
 };
 
 const isValidEmail = (email) => {
-  if (!RegExp(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/).test(email)) {
+  if (!/^[a-zA-Z0-9]+@[a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+$/.test(email)) {
     alert("이메일 형식으로 작성해주세요.");
     return false;
   }
@@ -15,7 +15,7 @@ const isValidEmail = (email) => {
 };
 
 const isValidPasswordLength = (password) => {
-  if (!RegExp(/^.{8,20}$/).test(password)) {
+  if (!/^.{8,20}$/.test(password)) {
     alert("비밀번호는 8에서 20자 이내여야 합니다.");
     return false;
   }
@@ -24,9 +24,9 @@ const isValidPasswordLength = (password) => {
 
 const isValidPasswordChar = (password) => {
   if (
-    !RegExp(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[^ ]+$/
-    ).test(password)
+    !/^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[^ ]+$/.test(
+      password
+    )
   ) {
     alert(
       "비밀번호는 영문, 숫자, 특수문자가 포함되어야 하고 공백이 포함될 수 없습니다."

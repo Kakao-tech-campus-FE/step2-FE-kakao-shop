@@ -9,10 +9,15 @@ import ImageLink from "../molecules/ImageLink.js";
 import logoKakao from "../../assets/images/icon/logoKakao.png";
 import cart from "../../assets/images/icon/cart.png";
 
-
 export default function GNB() {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
+
+  const handleLinkClick = () => {
+    dispatch(setEmail({ email: null }));
+    dispatch(setExpire({ expire: null }));
+  };
+
   return (
     <Box>
       <ImageLink to="/" src={logoKakao} alt="logoKakao" />
@@ -20,13 +25,7 @@ export default function GNB() {
       {email ? (
         <>
           {/[^@]*/.exec(email)}
-          <Link
-            onClick={() => {
-              dispatch(setEmail({ email: null }));
-              dispatch(setExpire({ expire: null }));
-            }}
-            to="/"
-          >
+          <Link to="/" onClick={handleLinkClick}>
             로그아웃
           </Link>
         </>
