@@ -1,25 +1,21 @@
-import React, {Component} from "react";
-import ReactDOM from 'react-dom';
-import CheckList from "./components/CheckList";
-import Radio from "./components/Radio";
-import Toggle from "./components/Toggle";
-import Toast from "./components/Toast";
-import BreadCrumb from "./components/BreadCrumb";
-import Carousel from "./components/Carousel";
+import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegisterPage from './pages/RegisterPage';
+import LoginPage  from './pages/LoginPage';
+import MainPage from './pages/MainPage'
 
-class App extends Component {
-  render() {
-        return (
-          <>
-          <CheckList />
-          <Radio />
-          <Toggle />
-          <Toast />
-          {/* <BreadCrumb /> */}
-          {/* <Carousel /> */}
-          </>
-       );
-    }
-  }
+function App() {
+  return (
+    <div className='App'>
+      <BrowserRouter>
+      <Routes>
+      <Route path="/login" element={<LoginPage />}></Route>
+      <Route path="/signup" element={<RegisterPage />}></Route>
+      <Route path="/main" element={<MainPage />}></Route>
+      </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
 
 export default App;

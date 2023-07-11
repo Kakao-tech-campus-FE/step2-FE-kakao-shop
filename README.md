@@ -225,9 +225,94 @@
 ## **과제 설명**
 
 ✅**과제 1. 아토믹 컴포넌트 디자인 패턴 사용** 
+
 ```
-- 회원가입, 로그인 페이지 개발에 필요한 컴포넌트를 아토믹 디자인 패턴을 사용해 작성하세요.
-- 작성한 컴포넌트는 사용의 편의성을 위해 Props에 적절한 주석을 달아주세요.
+├── public/
+│   ├── index.html
+│   └── favicon.ico
+├── src/
+│   ├── APP.js
+│   ├── assets/
+│   │    ├── images/
+│   │    └── css/
+│   ├── components/
+│   │    ├── atoms/
+│   │    │    ├── Radio/
+│   │    │    ├── Card/
+│   │    │    ├── Tab/
+│   │    │    ├── Toggle/
+│   │    │    └── Checkbutton/
+│   │    ├── molecules/
+│   │    │    ├── CheckList/
+│   │    │    ├── BreadCrumb/
+│   |    │    ├── Carousel/
+│   │    │    └── Toast/
+│   │    ├── organisms/
+│   │    │    ├──GNB/
+│   │    │    ├── main banner /
+│   |    │    ├── content/
+│   |    │    ├── sidebar/
+│   │    │    └── footer/
+│   ├── pages/
+│   │   ├── MainPage/
+│   │   |     ├── mainpage.js 
+|   │   |     └── mainpage.css
+|   │   ├── SpecialExhibition/
+│   │   |     ├── special_exhibition.js 
+|   │   |     └── special_exhibition.css
+|   │   ├── SearchPage/
+│   │   |     ├── SearchPage.js 
+|   │   |     └── SearchPage.css
+|   │   ├── ProductDetails/
+│   │   |     ├── ProductDetails.js 
+|   │   |     └── ProductDetails.css
+|   │   ├── OrderProductCheck/
+│   │   |     ├── OrderProductCheck.js 
+|   │   |     └── OrderProductCheck.css
+|   │   ├── CartPage/
+│   │   |     ├── CartPage.js 
+|   │   |     └── CartPage.css
+|   │   ├── OrderPage/
+│   │   |     ├── OrderPage.js 
+|   │   |     └── OrderPage.css
+|   │   ├── OrderComplete/
+│   │   |     ├── OrderComplete.js 
+|   │   |     └── OrderComplete.css
+|   │   ├── LoginPage/
+│   │   |     ├── LoginPage.js 
+|   │   |     └── LoginPage.css
+|   │   └── MyPage/
+│   │         ├── MyPage.js 
+|   │         └── MyPage.css
+|   ├── index.js
+|   └── index.css
+| 
+| 
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+
+#### *회원가입과 로그인 페이지(2주차 과제) 컴포넌트*
+
+```
+│   ├── components/
+│   │    ├── atoms/
+│   │    │    ├── Box.jsx
+│   │    │    ├── Button.jsx
+│   │    │    ├── Container.jsx
+│   │    │    ├── Input.jsx
+│   │    │    └── Label.jsx
+│   │    ├── molecules/
+│   │    │    └── InputGroup.jsx
+│   │    ├── organisms/
+│   │    │    ├── RegisterForm.jsx
+│   │    │    └── LoginForm.jsx
+│   ├── pages/
+│   ├── RegisterPage.jsx
+│   └── LoginPage.jsx
+
 ```
 
 </br>
@@ -546,5 +631,4 @@
 
 </div>
 </details>
-
 
