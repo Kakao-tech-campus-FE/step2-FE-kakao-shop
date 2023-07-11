@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
 import Button from "../atoms/Button";
 import {login} from "../../services/api";
-import {reducerLogin} from "../../store/slice/userSlice";
+import {reducerLogin, setExpirationTime} from "../../store/slice/userSlice";
 import {useDispatch} from "react-redux";
 
 const EMAIL_REGEX = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
@@ -35,7 +35,10 @@ const LoginForm = () => {
             }
         ).then(res => {
                 console.log(res)
+                const today = new Date();
+                const tomorrow = new Date(today.setDate(today.getDate() + 1));
                 dispatch(reducerLogin(value.email));
+                dispatch(setExpirationTime(tomorrow))
                 alert(value.email + "님 환영합니다.")
                 window.location.href = "/";
             }

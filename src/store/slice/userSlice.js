@@ -2,6 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
     email: "",
+    expirationTime: null,
     isLogin: false
 }
 
@@ -15,9 +16,14 @@ const userSlice = createSlice({
         },
         reducerLogout: (state) => {
             state.isLogin = false;
+            state.expirationTime = null;
+            state.email = "";
+        },
+        setExpirationTime: (state, action) => {
+            state.expirationTime = action.payload;
         }
     }
 })
 
-export const {reducerLogin, reducerLogout} = userSlice.actions;
+export const {reducerLogin, reducerLogout, setExpirationTime} = userSlice.actions;
 export default userSlice.reducer;

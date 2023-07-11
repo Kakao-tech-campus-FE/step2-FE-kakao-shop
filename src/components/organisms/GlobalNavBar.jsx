@@ -5,10 +5,19 @@ import {reducerLogout} from "../../store/slice/userSlice";
 import "../../styles/globalNavBar.css"
 import Container from "../atoms/Container";
 import {Link} from "react-router-dom";
+import {useEffect} from "react";
 
 const GlobalNavBar = () => {
     const user = useSelector(state => state.user);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (!user.isLogin) return;
+        const today = new Date();
+        if (today > new Date(user.expirationTime)) {
+            dispatch(reducerLogout());
+        }
+    }, []);
 
     return (
         <div className={"global-nav-bar"}>

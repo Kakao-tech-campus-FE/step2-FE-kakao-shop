@@ -4,15 +4,31 @@ import Box from "../atoms/Box";
 import Container from "../atoms/Container";
 import "../../styles/inputGroup.css"
 
+// @ts-check
+
+/**
+ *
+ * @param id 해당 요소의 id, input입력에 사용되어 유일해야 합니다.
+ * @param value 해당 요소의 value, input입력에 사용됩니다.
+ * @param label 해당 요소의 label
+ * @param type 해당 input의 input type
+ * @param placeholder 해당 input의 placeholder
+ * @param onChange 해당 input의 onChange, handler을 이용하여, 해당 input의 value를 변경하는 함수를 넣어주세요.
+ * @param errorMsg 해당 요소의 input 입력에 대한 에러 메시지
+ * @param onBlur 해당 요소의 input 입력에 대한 onBlur, value를 감지 후 에러 메시지를 띄우는 함수를 넣어주세요.
+ * @returns {JSX.Element} InputGroup
+ * @constructor
+ */
+
 const InputGroup = ({
-                        id,         // 해당 요소의 id
-                        value,      // 해당 요소의 value
-                        label,      // 해당 요소의 label
-                        type,       // 해당 input의 input type
-                        placeholder,// 해당 input의 placeholder
-                        onChange,   // 해당 input의 onChange
-                        errorMsg="",   // 해당 input의 errorMsg
-                        onBlur=()=>{}    // 해당 input의 onBlur
+                        id,
+                        value,
+                        label,
+                        type,
+                        placeholder,
+                        onChange,
+                        errorMsg="",
+                        onBlur=()=>{}
                     }) => {
     return (
         <Box className={`input-group ${id}`}>
