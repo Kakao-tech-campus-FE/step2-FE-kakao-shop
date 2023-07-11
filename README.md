@@ -57,7 +57,7 @@
       2. Carousel은 GNB의 하단에 위치하고 특가와 같은 이벤트를 보여주기 위해 6개의 슬라이드로 구성된다.<br />
       3. 전체 상품 목록 조회는 Carousel의 하단에 위치하고 상품 목록을 나열한다.
     </td>
-    <td><img src="./img/main.png" alt="Main" width="500px" /></td>
+    <td><img src="./ReadmeImg/main.png" alt="Main" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 2)<br />회원 가입</td>
@@ -67,7 +67,7 @@
       2. 이메일 유효성 검사(영문+숫자@영문+숫자.영문+숫자)<br />
       3. 비밀번호 유효성 검사(공백없이 영문, 특수문자, 숫자 포함 8~20자)
     </td>
-    <td><img src="./img/signup.png" alt="Signup" width="500px" /></td>
+    <td><img src="./ReadmeImg/signup.png" alt="Signup" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 3)<br />로그인</td>
@@ -77,7 +77,7 @@
       2. 에러 발생 시 입력창 하단에 에러메시지 출력<br />
       3. 유효한 경우 로그인
     </td>
-    <td><img src="./img/login.png" alt="Login" width="500px" /></td>
+    <td><img src="./ReadmeImg/login.png" alt="Login" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 4)<br />로그아웃</td>
@@ -85,7 +85,7 @@
     <td>
       1. GNB의 오른쪽에 위치한 로그아웃 버튼 클릭 시, 로그아웃
     </td>
-    <td><img src="./img/logout.png" alt="Logout" width="500px" /></td>
+    <td><img src="./ReadmeImg/logout.png" alt="Logout" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 5)<br />전체 상품 목록 조회</td>
@@ -94,7 +94,7 @@
       1. 전체 상품 조회 API를 통해 상품 목록을 가져온다.<br />
       2. 상품 이미지, 상품명, 가격 정보를 화면에 출력한다.
     </td>
-    <td><img src="./img/items.png" alt="Items" width="500px" /></td>
+    <td><img src="./ReadmeImg/items.png" alt="Items" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 6)<br />개별 상품 상세 조회</td>
@@ -102,7 +102,7 @@
     <td>
       1. 전체 상품 목록에서 특정 상품 카드를 클릭하면 상세 상품 조회와 옵션 조회 API를 통해 해당 상품에 대한 상세 정보와 옵션을 가져와 화면에 출력한다.
     </td>
-    <td><img src="./img/details.png" alt="Details" width="500px" /></td>
+    <td><img src="./ReadmeImg/details.png" alt="Details" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 7)<br />옵션 선택</td>
@@ -112,7 +112,7 @@
       2. 선택된 옵션을 다시 선택할 수 없다.(수량으로 조절)<br />
       3. 여러 옵션을 선택할 수 있다.
     </td>
-    <td><img src="./img/options.png" alt="Options" width="500px" /></td>
+    <td><img src="./ReadmeImg/options.png" alt="Options" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 8)<br />옵션 확인</td>
@@ -122,7 +122,7 @@
       2. 옵션별 -/+ 버튼을 통해 수량을 조절할 수 있다.<br />
       3. 옵션과 수량에 따라 금액이 출력된다.
     </td>
-    <td><img src="./img/check.png" alt="Check" width="500px" /></td>
+    <td><img src="./ReadmeImg/check.png" alt="Check" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 9)<br />장바구니 담기</td>
@@ -131,7 +131,7 @@
       1. 옵션/수량 선택 후 장바구니 담기 클릭 시, 데이터를 서버에 전달하고 장바구니에 저장한다.<br />
       2. "장바구니에 담겼습니다." 문구를 팝업으로 안내한다.
     </td>
-    <td><img src="./img/check.png" alt="Check" width="500px" /></td>
+    <td><img src="./ReadmeImg/check.png" alt="Check" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 10)<br />장바구니 보기</td>
@@ -141,7 +141,7 @@
       2. 옵션과 수량을 변경할 수 있으며 그에 따른 가격을 출력한다.<br />
       3. 주문하기 버튼 클릭 시, 주문/결제 화면으로 이동한다.
     </td>
-    <td><img src="./img/basket.png" alt="Basket" width="500px" /></td>
+    <td><img src="./ReadmeImg/basket.png" alt="Basket" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 11)<br />주문 및 결제</td>
@@ -151,7 +151,7 @@
       2. 구매 조건 확인 및 결제 진행 동의, 개인정보 제3자 제공 동의를 체크박스로 입력받는다.<br />
       3. 결제하기 버튼 클릭 시, 실제 결제 절차 없이 상품을 주문한 것으로 처리한다.
     </td>
-    <td><img src="./img/pay.png" alt="Pay" width="500px" /></td>
+    <td><img src="./ReadmeImg/pay.png" alt="Pay" width="500px" /></td>
   </tr>
   <tr>
     <td>(기능 12)<br />주문 결과 확인</td>
@@ -160,7 +160,7 @@
       1. 주문 상품 정보(상품명, 주문번호, 옵션, 수량, 가격)을 출력한다.<br />
       2. 구매 조건 확인 및 결제 진행 동의, 개인정보 제3자 제공 동의를 체크박스로 입력받는다.
     </td>
-    <td><img src="./img/done.png" alt="Done" width="500px" /></td>
+    <td><img src="./ReadmeImg/done.png" alt="Done" width="500px" /></td>
   </tr>
 </table>
 
