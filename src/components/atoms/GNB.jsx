@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import logoKakao from "../../assets/imgs/logoKakao.png";
-import cart from "../../assets/imgs/cart.png";
 import { useSelector, useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
+import Photo from "./Photo";
 
 // import ProductSection from "../components/templates/ProductSection";
 
@@ -11,22 +10,29 @@ const GNB = () => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      <div className="flex items-center justify-between border-b border-gray-300 px-10">
-        <Link className="my-7 w-[90px]" to="/" replace={true}>
-          <img src={logoKakao} alt="" />
+    <header>
+      <div className="flex items-center justify-between border-b border-gray-300 px-20 py-5">
+        <Link to="/" replace={true}>
+          <Photo
+            src={"/logoKakao.png"}
+            alt="logoKakao"
+            className={"w-[100px]"}
+          ></Photo>
         </Link>
-        <div className="relative flex">
-          <Link className="w-[40px] after:absolute after:left-[56px] after:top-[7px] after:h-7 after:w-[1px] after:bg-gray-300 after:content-['']">
-            <img src={cart} alt="" />
+        <div className="flex items-center justify-evenly">
+          <Link>
+            <Photo src={"/cart.png"} alt="cart" className={"w-[40px]"} />
           </Link>
+          <span className="ml-5 mr-6 text-[20px] text-[rgba(34,34,34,.2)]">
+            |
+          </span>
           {!email ? (
-            <Link className="ml-10 mt-[7px] text-[14px]" to="/login">
+            <Link className="text-[13px]" to="/login">
               로그인
             </Link>
           ) : (
             <Link
-              className="ml-10 mt-[7px] text-[14px]"
+              className="text-[13px]"
               to="/"
               onClick={() => {
                 dispatch(setEmail(null));
@@ -37,7 +43,7 @@ const GNB = () => {
           )}
         </div>
       </div>
-    </>
+    </header>
   );
 };
 

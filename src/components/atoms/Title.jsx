@@ -1,12 +1,12 @@
-import logoKakaoText from "../../assets/imgs/logoKakaoText.png";
+import Photo from "./Photo";
 
 const Title = () => {
   return (
-    <img
-      className="mx-auto mt-[60px] w-[110px]"
-      src={logoKakaoText}
+    <Photo
+      src={"./logoKakaoText.png"}
       alt="logoKakaoText"
-    />
+      className={"mx-auto mt-[50px] block w-[110px]"}
+    ></Photo>
   );
 };
 
