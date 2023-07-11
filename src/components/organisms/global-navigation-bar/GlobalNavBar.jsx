@@ -8,11 +8,11 @@ import PropTypes from "prop-types";
 import LogoButton from "../../atoms/logo-button/LogoButton.jsx";
 
 const Styled = {
-  Container: styled.div`
+  Container: styled.nav`
     position: ${({ isStorybookMode }) => !isStorybookMode && "fixed"};
 
     min-width: 80rem;
-    height: 5rem;
+    height: 4rem;
     padding: 0 calc((100vw - 80rem) / 2);
     box-sizing: content-box;
 
@@ -22,7 +22,7 @@ const Styled = {
   `,
   ButtonBox: styled.div``,
   AuthButton: styled.button`
-    padding: 0.5rem 0 0.5rem 1.25rem;
+    padding: 0.4rem 0 0.4rem 1.25rem;
     background-color: white;
     font-size: 0.9rem;
     color: ${({ theme }) => theme.color.black};
@@ -30,7 +30,7 @@ const Styled = {
   `,
 };
 
-function GlobalNavBar({ isStorybookMode }) {
+function GlobalNavBar({ isStorybookMode = false }) {
   const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
   const navigate = useNavigate();
 
