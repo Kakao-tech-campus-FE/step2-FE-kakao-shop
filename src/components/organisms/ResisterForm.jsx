@@ -7,7 +7,7 @@ import styled from "styled-components";
 import routes from '../../routes'
 import { useNavigate } from 'react-router-dom';
 import { register, doubleCheck } from "../../services";
-import Question from "../atoms/Question";
+import Question from "../atoms/question";
 import { useState, useEffect } from "react";
 import DoubleCheck from '../atoms/DoubleCheck';
 import { emailCheck, passwordCheck, passwordReCheck } from "../../services/regex";
