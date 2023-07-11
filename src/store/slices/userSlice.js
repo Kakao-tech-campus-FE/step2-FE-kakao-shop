@@ -1,49 +1,74 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { login } from "../../apis/user";
 
-// 로그인 유효시간 확인
-const isExpired =
-  Date.now() > JSON.parse(localStorage.getItem("user"))?.expDate;
-
-// 유효시간 지날 시, localStorage 데이터 삭제
+//// 로그인 만료
+// DURATION : 만료 기간 (일 단위)
+// isExpired : 만료 기간이 지나면 localStorage에서 삭제
+const DURATION = 1;
+const isExpired = Date.now() > JSON.parse(localStorage.getItem("user"))?.date;
 if (isExpired) {
   localStorage.removeItem("user");
 }
 
-// 초기 상태: localStorage 값이 있다면 가져오고 없다면 null
-// email : 유저 이메일
-// token : 로그인시 발급받는 JWT 토큰
-// expDate : 로그인 유지 만료시간
 const initialState = {
   email: JSON.parse(localStorage.getItem("user"))?.email || null,
   token: JSON.parse(localStorage.getItem("user"))?.token || null,
-  expDate: JSON.parse(localStorage.getItem("user"))?.expDate || null,
+  loading: false,
+  error: false,
 };
 
-// userSlice
 const userSlice = createSlice({
-  // name -> 구분자
   name: "user",
   initialState,
   reducers: {
-    // 로그인 시 : 전역 상태와 로컬스토리지 모두에 저장
-    setUser: (state, action) => {
-      // 로그인 유지시간, 밀리초 단위
-      const duration = 1440 * 60 * 1000; // 하루 (1day)
+    setEmail: (state, action) => {
+      if (action.payload === null) {
+        localStorage.removeItem("user");
+        state.email = null;
+        state.token = null;
+      } else {
+        state.email = action.payload.email;
+      }
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginRequest.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(loginRequest.fulfilled, (state, action) => {
+      state.loading = false;
       state.email = action.payload.email;
       state.token = action.payload.token;
-      state.expDate = Date.now() + duration;
-      localStorage.setItem("user", JSON.stringify(state));
-    },
-    // 로그아웃 시
-    logout: (state) => {
-      state.email = null;
-      state.token = null;
-      state.expDate = null;
-      localStorage.removeItem("user");
-    },
+      state.error = false;
+      // 로컬스토리지에 이메일, 토큰, 만료기간 함께 저장
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          email: action.payload.email,
+          token: action.payload.token,
+          date: Date.now() + DURATION * 1440 * 60 * 1000,
+        })
+      );
+    });
+    builder.addCase(loginRequest.rejected, (state, action) => {
+      state.loading = false;
+      state.error = true;
+    });
   },
 });
 
-export const { setUser, logout } = userSlice.actions;
+export const loginRequest = createAsyncThunk(
+  "user/loginRequest",
+  async (data) => {
+    const { email, password } = data;
+    const response = await login({ email, password });
+    return {
+      email,
+      token: response.headers.authorization,
+    };
+  }
+);
+
+export const { setEmail } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -5,7 +5,6 @@ export default function Radio() {
   const [cashOption, setCashOption] = useState(true);
 
   const handleOption = (e) => {
-    console.log(e.target.value);
     setCashOption(e.target.value === "apply");
   };
   return (

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { check } from "../apis/api";
+import { check } from "../apis/user";
 
 // 유효성 검사 커스텀 훅
 const useValid = (initialValue, formValue, setModal) => {
@@ -13,15 +13,20 @@ const useValid = (initialValue, formValue, setModal) => {
 
   // 이메일 중복 검사 핸들러
   const handleOnClick = () => {
-    check({ email: formValue.email }).then((res) => {
-      if (res === "duplicateEmail") {
-        setModal(res);
-        setValid((prev) => ({ ...prev, email: "duplicateEmail" }));
-      } else if (res === true) {
-        setModal("goodEmail");
-        setValid((prev) => ({ ...prev, email: true }));
-      }
-    });
+    check({ email: formValue.email })
+      .then((res) => {
+        if (res.status === 200) {
+          setModal("goodEmail");
+          setValid((prev) => ({ ...prev, email: true }));
+        }
+      })
+      .catch((err) => {
+        const errorMessage = err.response.data.error.message;
+        if (errorMessage.includes("동일한 이메일이")) {
+          setModal("duplicateEmail");
+          setValid((prev) => ({ ...prev, email: "duplicateEmail" }));
+        }
+      });
   };
 
   // 유효성 검사
