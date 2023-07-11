@@ -26,7 +26,6 @@ const useInput = (initialValue) => {
 
     const validateInput = (id) => {
         const input = value;
-        console.log(input)
         if (input[id] === "") {
             setErrorMsg((prev) => {
                 return {...prev, [id]: ERROR_MSG.required}

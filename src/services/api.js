@@ -4,7 +4,7 @@ const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     timeout: 1000 * 5,
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json;charset=UTF-8"
     }
 });
 
@@ -13,6 +13,7 @@ export default instance;
 instance.interceptors.request.use(
     async (config) => {
         const token = localStorage.getItem("token");
+        console.log("token", token)
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
@@ -25,6 +26,7 @@ instance.interceptors.response.use(
         return response;
     },
     (error) => {
+        console.log(error)
         if (error.response.status === 401) {
             localStorage.removeItem("token");
         }

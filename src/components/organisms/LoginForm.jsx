@@ -34,14 +34,13 @@ const LoginForm = () => {
                 password: value.password
             }
         ).then(res => {
-                console.log(res);
                 dispatch(reducerLogin(res.data.email));
                 alert(res.data.email + "님 환영합니다.")
                 window.location.href = "/";
             }
         ).catch(err => {
-                console.log(err.error.message)
-                alert(err.error.message)
+                // console.log(err)
+                // alert(err)
             }
         );
     };
