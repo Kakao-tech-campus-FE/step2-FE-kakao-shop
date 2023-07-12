@@ -9,6 +9,8 @@ import { store } from './store/store';
 import { setUser, clearUser } from './store/slices/userSlice';
 import MainLayout from "./layouts/MainLayout";
 import GNB from './component/atoms/GNB';
+import ProductGrid from './component/organisms/ProductGrid';
+import MainLayout from './services';
 
 function App() {
 
@@ -40,7 +42,8 @@ function App() {
         <Route path="/register" element={<RegisterPage />}></Route>   
         {/* 공통 레이아웃 GNB, Footer */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<GNB />}>isLoggedIn={isLoggedIn}</Route>
+          <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
+          <Route path="product" element={<ProductGrid />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
