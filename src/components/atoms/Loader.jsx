@@ -2,9 +2,9 @@ import React from "react";
 import { RotatingLines } from "react-loader-spinner";
 import Container from "./Container";
 
-export default function Loader() {
+export default function Loader({ height }) {
   return (
-    <Container className="flex justify-center items-center w-full h-full">
+    <Container className={`flex justify-center items-center w-full ${height}`}>
       <RotatingLines
         strokeColor="grey"
         strokeWidth="4"

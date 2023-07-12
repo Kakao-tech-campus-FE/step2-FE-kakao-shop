@@ -1,8 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/templates/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { Suspense } from "react";
-import Loader from "./components/atoms/Loader";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,9 +16,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Header />
       <div className="w-full h-full pt-20">
-        <Suspense fallback={<Loader />}>
-          <Outlet />
-        </Suspense>
+        <Outlet />
       </div>
     </QueryClientProvider>
   );

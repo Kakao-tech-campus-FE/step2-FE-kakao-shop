@@ -1,23 +1,13 @@
-import React, { useRef } from "react";
-import { fetchProducts } from "../apis/product";
+import React, { Suspense } from "react";
 import ProductGrid from "../components/organisms/ProductGrid";
-import useInfinieScroll from "../hooks/useInfinieScroll";
+import ProductsGridSkeleton from "../components/organisms/ProductsGridSkeleton";
 
 export default function MainPage() {
-  const bottomObserver = useRef(null);
-  const { error, data } = useInfinieScroll({
-    queryKey: "/products",
-    observeEl: bottomObserver,
-    fetchFunction: fetchProducts,
-  });
-
-  if (error) {
-    return <span>Error: {error.message}</span>;
-  }
   return (
-    <main className="mx-auto px-10 max-w-7xl">
-      <ProductGrid allProducts={data.pages} />
-      <div ref={bottomObserver}></div>
+    <main className="relative mx-auto px-10 max-w-7xl">
+      <Suspense fallback={<ProductsGridSkeleton />}>
+        <ProductGrid />
+      </Suspense>
     </main>
   );
 }

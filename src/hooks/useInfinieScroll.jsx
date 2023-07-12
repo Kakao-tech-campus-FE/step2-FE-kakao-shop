@@ -6,18 +6,19 @@ export default function useInfinieScroll({
   observeEl,
   fetchFunction,
 }) {
-  const { error, data, hasNextPage, fetchNextPage } = useInfiniteQuery(
-    [queryKey],
-    ({ pageParam = 0 }) => fetchFunction(pageParam),
-    {
-      // lastPage: useInfiniteQuery를 이용해 호출된 가장 마지막에 있는 페이지 데이터
-      // allPages: useInfiniteQuery를 이용해 호출된 모든 페이지 데이터를 의미합니다.
-      getNextPageParam: (lastPage, allPages) => {
-        const nextPage = allPages.length;
-        return lastPage.length !== 0 ? nextPage : undefined;
-      },
-    }
-  );
+  const { error, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery(
+      [queryKey],
+      ({ pageParam = 0 }) => fetchFunction(pageParam),
+      {
+        // lastPage: useInfiniteQuery를 이용해 호출된 가장 마지막에 있는 페이지 데이터
+        // allPages: useInfiniteQuery를 이용해 호출된 모든 페이지 데이터
+        getNextPageParam: (lastPage, allPages) => {
+          const nextPage = allPages.length;
+          return lastPage.length !== 0 ? nextPage : undefined;
+        },
+      }
+    );
 
   const handleObserver = useCallback(
     (entries) => {
@@ -38,7 +39,7 @@ export default function useInfinieScroll({
     io.observe(observerEl);
 
     return () => io.unobserve(observerEl);
-  }, [fetchNextPage, hasNextPage, handleObserver, observeEl]);
+  }, [handleObserver, observeEl]);
 
-  return { error, data };
+  return { error, data, hasNextPage, isFetchingNextPage };
 }

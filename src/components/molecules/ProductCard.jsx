@@ -10,7 +10,7 @@ export default function ProductCard({ product }) {
   return (
     <li className="mx-auto w-full">
       <Card to={`/product/${id}`}>
-        <Box className="mb-3 rounded-lg overflow-hidden">
+        <Box className="rounded-lg overflow-hidden">
           <Photo
             className="w-full h-40"
             src={image}
@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
             hover={true}
           />
         </Box>
-        <h3 className="mb-1 text-sm line-clamp-2">{productName}</h3>
+        <h3 className="mb-1 mt-3 text-sm line-clamp-2">{productName}</h3>
         <p className="text-xl font-bold">{comma(price)}원</p>
       </Card>
     </li>
