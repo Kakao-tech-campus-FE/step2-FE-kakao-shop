@@ -1,12 +1,12 @@
-import Header from '../organisms/Header'
-
+import GNB from '../organisms/GNB'
+import MainProductTemplate from '../templates/MainProductTemplate'
 
 
 function HomePage() {
 
   return (
-    <>
-      <Header/>   
+    <> 
+      <MainProductTemplate/>
     </>
   )
 }

@@ -4,13 +4,14 @@ import { useEffect, useState, } from 'react'
 import { useNavigate } from "react-router-dom";
 
 function LoginMenu({style, }) {
-  const token = localStorage.getItem('token')
   const [ loginCheck, setLoginCheck ] = useState(false)
   const navigate = useNavigate()
 
   useEffect(()=>{
-    if(token === 'null')
+    const token = localStorage.getItem('token')
+    if(token === "null"){
       setLoginCheck(false)
+    }
     else{
       setLoginCheck(true)
       setTimeout(()=>{
@@ -23,27 +24,28 @@ function LoginMenu({style, }) {
 
   return (
     <Menu style={style}>
-      {!loginCheck ? <LinkTo to={'/login'} style={{
+      {loginCheck ? <LinkTo to={'/'} style={{
+      textDecoration: 'none',
+      display: 'block',
+      padding: '12px 0',
+      fontSize: '14px',
+      lineHeight: '30px',
+      color: '#000',
+    }} onClick={()=>{
+      setLoginCheck(false)
+      localStorage.removeItem('token')
+      }}>로그아웃</LinkTo> :
+      <LinkTo to={'/login'} style={{
         textDecoration: 'none',
         display: 'block',
         padding: '12px 0',
         fontSize: '14px',
         lineHeight: '30px',
         color: '#000',
-      }}>로그인</LinkTo> :
-      <LinkTo to={'/'} style={{
-        textDecoration: 'none',
-        display: 'block',
-        padding: '12px 0',
-        fontSize: '14px',
-        lineHeight: '30px',
-        color: '#000',
-      }} onClick={()=>{
-        console.log("123")
-        setLoginCheck(false)
-      }}>로그아웃</LinkTo>}
+      }}>로그인</LinkTo>}
     </Menu>
   )
 }
 
 export default LoginMenu
+

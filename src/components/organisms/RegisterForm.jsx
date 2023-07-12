@@ -3,7 +3,7 @@ import InputGroup from '../molecules/InputGroup'
 import Button from '../atoms/Button'
 import Warning from '../atoms/Warning'
 import useInput from '../../hooks/useInput'
-import { register, emailCheck } from '../../services/api'
+import { register, emailCheck } from '../../services/user'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 

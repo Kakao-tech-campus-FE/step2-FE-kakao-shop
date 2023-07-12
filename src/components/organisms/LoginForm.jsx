@@ -4,12 +4,11 @@ import Button from '../atoms/Button'
 import Title from '../atoms/Title'
 import Warning from '../atoms/Warning'
 import useInput from '../../hooks/useInput'
-import { login } from '../../services/api'
+import { login } from '../../services/user'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { setEmail } from '../../store/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import Label from '../atoms/Label'
 
 
 function LoginForm() {
@@ -29,7 +28,7 @@ function LoginForm() {
   const navigate = useNavigate()
 
   useEffect(()=>{
-    console.log(form.username)
+    // console.log(form.username)
   },[form])
 
   return (
@@ -115,7 +114,6 @@ function LoginForm() {
         }
 
         if(form.password===""){
-          console.log(form.password)
           setValid(false)
           setErrorMsg("비밀번호를 정확하게 입력해주세요.")
           return
@@ -129,6 +127,7 @@ function LoginForm() {
             email: form.email,
             password: form.password,
           }).then((res)=>{
+            localStorage.setItem("token",res.headers.authorization)
               dispatch(
                 setEmail({
                 email: form.email
@@ -137,7 +136,8 @@ function LoginForm() {
               navigate("/")
           }).catch((error)=>{
             setValid(false)
-            setErrorMsg(error.response.data.error.message)
+            console.log(error)
+            // setErrorMsg(error.data.error.message)
           })
         }}>
         로그인</Button>

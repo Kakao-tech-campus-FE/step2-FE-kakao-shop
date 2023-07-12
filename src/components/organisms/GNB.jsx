@@ -5,14 +5,12 @@ import Box from '../atoms/Box'
 import logoKakao from '../../assets/img/logoKakao.png'
 import Navigation from '../molecules/Navigation';
 import SelectContainor from '../atoms/SelectContainor';
-import LinkTo from '../atoms/LinkTo';
-import MenuUtil from '../molecules/MenuUtil';
 import FontToLink from '../molecules/FontToLink';
 import { faMagnifyingGlass, faTruckFast, faCartShopping, faBars } from "@fortawesome/free-solid-svg-icons";
 
-function Header({ }) {
+function GNB({ }) {
   return (
-    <Containor>
+    <Containor style={{height:'20%', width:'100%', position:'relative'}}>
         <Containor style={
         {
           position: 'fixed', 
@@ -142,10 +140,11 @@ function Header({ }) {
           }}></LoginMenu>
         </Containor>
       </Containor>
+
     </Containor>
   )
 }
 
-export default Header
+export default GNB
 
 
