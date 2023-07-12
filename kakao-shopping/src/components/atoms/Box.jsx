@@ -1,8 +1,8 @@
 const Box = ({
-    className, // class
-    id, // id
+    className = "", // class
+    id = "", // id
+    style = {}, // style
     children, // 자식 Component
-    style, // style
 }) => {
     return (
         <div

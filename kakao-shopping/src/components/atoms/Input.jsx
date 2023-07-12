@@ -4,17 +4,17 @@ const Input = ({
     name, // Input name
     onChange, // Input의 값이 바뀌었을 때의 handler
     placeholder, // Input의 placeholder
-    className, // class
-    id, // id
-    style, // style
+    className = "", // class
+    id = "", // id
+    style = {}, // style
 }) => {
     return (
         <input
-            type={type}
-            value={value}
-            name={name}
+            type={type ? type : ""}
+            value={value ? value : ""}
+            name={name ? name : ""}
             onChange={onChange}
-            placeholder={placeholder}
+            placeholder={placeholder ? placeholder : ""}
             className={`input py-2 ${className}`}
             id={id}
             style={style}

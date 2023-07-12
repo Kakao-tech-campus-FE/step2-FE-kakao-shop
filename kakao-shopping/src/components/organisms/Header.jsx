@@ -2,6 +2,9 @@ import React from "react";
 import Label from "../atoms/Label";
 import Container from "../atoms/Container";
 import Button from "../atoms/Button";
+import Anchor from "../atoms/Anchor";
+import Line from "../atoms/Line";
+import Icon from "../atoms/Icon"
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../store/userSlice";
@@ -19,27 +22,39 @@ const Header = ({
     };
     return (
         <Container
-            className={`d-flex flex-column align-items-center p-5 border ${className}`}
-        >
-            <Label>{user.user}</Label>
-            {user.isLogin ? (
-                <Button
-                    onClick={async () => {
-                        dispatch(userLogout());
-                        setTimeout(() => puerge(), 200);
-                    }}
-                >
-                    로그아웃
-                </Button>
-            ) : (
-                <Button
-                    onClick={() => {
-                        navigate("/login");
-                    }}
-                >
-                    로그인
-                </Button>
-            )}
+            className={`GNB d-flex flex-row align-items-center justify-content-between w-100 px-5 m-0 border ${className}`}
+            style={{height:'80px',}}>
+            <div
+            className={`Left-GNB flex-grow-0`}>
+                <Label>Kakao 쇼핑</Label>
+            </div>
+            <div
+            className={`Right-GNB d-flex flex-row align-items-center`}>
+                <Icon className="fs-1" icon="shopping_cart"/>
+                <Icon className="fs-1" icon="search"/>
+                <Icon className="fs-1" icon="local_shipping"/>
+                <Line />
+                    {user.isLogin ? (
+                        <>
+                            <Label>{user.user}</Label>
+                            <Button
+                                onClick={async () => {
+                                    dispatch(userLogout());
+                                    setTimeout(() => puerge(), 200);
+                                }}
+                            >
+                                로그아웃
+                            </Button>
+                        </>
+                    ) : (
+                        <Anchor
+                            to="/login"
+                        >
+                            로그인
+                        </Anchor>
+                    )}
+            </div>
+            
         </Container>
     );
 };

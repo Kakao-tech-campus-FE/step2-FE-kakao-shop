@@ -1,7 +1,7 @@
-import { instance } from "./index";
+import { instance } from "./api";
 
 export const fetchProducts = (page = 0) => {
-    return instance, get("/products" + "?page=" + page);
+    return instance.get("/products" + "?page=" + page);
 };
 
 export const getProductById = (id) => {
