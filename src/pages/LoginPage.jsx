@@ -6,7 +6,7 @@ import SectionContainer from '../components/atoms/SectionContainer'
 const LoginPage = () => {
   return (
     <SectionContainer>
-      <LoginForm></LoginForm>
+      <LoginForm />
     </SectionContainer>
   )
 }

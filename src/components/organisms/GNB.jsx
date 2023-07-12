@@ -61,7 +61,7 @@ const GNB = () => {
           <GNBButton>
             {`로컬 : ${localStorage.getItem("loginTime")}`}
             <br/>
-            {`세선 : ${loginState.loginTime}`}
+            {`세션 : ${loginState.loginTime}`}
           </GNBButton> 
           {
             loginState.email

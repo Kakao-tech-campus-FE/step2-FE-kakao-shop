@@ -11,6 +11,12 @@ const Box = styled.div`
   margin-bottom: 20px;
 `
 
+/**
+ * GNB 전체를 감싸는 컨테이너
+ * @param {Object} props
+ * @param {*} props.children - 내용 (InnerBox)
+ * @returns {*}
+ */
 const GNBContainer = (props) => {
   return (
       <Box>{props.children}</Box>

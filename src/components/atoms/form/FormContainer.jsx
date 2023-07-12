@@ -11,10 +11,15 @@ const Container = styled.div`
     margin: 15px;
     padding: 15px;
 `
-
+/**
+ * 입력 폼 컨테이너
+ * @param {object} props 
+ * @param {*} props.children - 폼 내용 
+ * @returns {*}
+ */
 const FormContainer = (props) => {
     return (
-        <Container id={props.id}>{props.children}</Container>
+        <Container>{props.children}</Container>
     );
 };
 

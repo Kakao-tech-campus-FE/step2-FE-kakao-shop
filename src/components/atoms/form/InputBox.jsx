@@ -8,8 +8,12 @@ const Box = styled.div`
     padding: 10px 20px;
 `
 
-// input 박스 + 라벨 1세트를 감싸는 투명 박스
-
+/**
+ * input + 라벨 1세트를 감싸는 박스
+ * @param {*} props
+ * @param {*} props.children - 박스 내용 (input + 라벨 1세트)
+ * @returns {*}
+ */
 const InputBox = (props) => {
     return (
         <Box>{props.children}</Box>

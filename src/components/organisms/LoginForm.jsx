@@ -4,7 +4,7 @@ import InputGroup from "../molecules/form/InputGroup"
 import SubmitGroup from "../molecules/form/SubmitGroup"
 import postLogin from "../../api/login"
 import { useNavigate } from 'react-router-dom';
-import checkValid from '../../utils/checkForm'
+import { emailValidate, passwordValidate } from '../../utils/validator'
 import { useDispatch } from 'react-redux';
 import { setUserReducer } from '../../reducers/loginSlice'
 
@@ -33,18 +33,13 @@ const LoginForm = () => {
     setWrong(prev => false)
   }, [user])
 
-  // (과제X) 로그인 실패 횟수 : 로컬스토리지에 저장하고 최초 로딩시 초기값으로 불러오기
+  // 로그인 실패 횟수 : 로컬스토리지에 저장하고 최초 로딩시 초기값으로 불러오기
   const [failCnt, setFailCnt] = useState(() => {
     if (localStorage.getItem("failCnt") === undefined) {
       return  0
     } 
     return Number(localStorage.getItem("failCnt"))
   })
-  
-  // (과제X) 실패횟수 늘어나면 로컬스토리지에 저장
-  useEffect(()=>{
-    localStorage.setItem("failCnt", failCnt)
-  }, [failCnt])
     
   // 버튼 클릭시 axios로 post 요청 
   const click = () => {
@@ -53,8 +48,8 @@ const LoginForm = () => {
         // 1. 로컬스토리지에 저장 
         localStorage.setItem("token", response.headers.authorization);
         localStorage.setItem("email", user.email);
-        localStorage.setItem("loginTime", Date.now());
-        localStorage.setItem("islogin", true);
+        localStorage.setItem("loginTime", `${Date.now()}`);
+        localStorage.setItem("islogin", `${true}`);
         
         // 2. Redux store에 상태 저장
         dispatch(setUserReducer( {
@@ -70,10 +65,12 @@ const LoginForm = () => {
       .catch((error) => {
         // 로그인 실패 시 실패횟수 +1, 실패 상태 true
         if (error.response && error.response.status === 401) {
-          setFailCnt(prev => prev + 1)
-          setWrong(prev => true)
+          setFailCnt(prev => {
+            localStorage.setItem('failCnt', prev + 1)
+            setWrong(prev => true)
+            return (prev + 1)
+          })
         }
-        
       }) 
   }
 
@@ -87,7 +84,7 @@ const LoginForm = () => {
         label="이메일"
         onChange={event => inputChange(event, 'email')} 
         message={
-          ( user.email && !checkValid(user.email, 'email') )
+          ( user.email && !emailValidate(user.email) )
               ? "이메일 형식으로 입력해주세요"
               : null
           }
@@ -99,7 +96,7 @@ const LoginForm = () => {
         label="비밀번호" 
         onChange={event => inputChange(event, 'password')} 
         message={
-          ( user.password && !checkValid(user.password, 'password') )
+          ( user.password && !passwordValidate(user.password) )
           ? "영문, 숫자, 특수문자 포함 8~20자" 
           : null }
         />
@@ -110,14 +107,14 @@ const LoginForm = () => {
         */}
 
         <SubmitGroup
-          active={checkValid(user.email, 'email') && checkValid(user.password, 'password')} 
+          disabled={!emailValidate(user.email) || !passwordValidate(user.password)} 
           onClick={click}
           message={wrongTry && failCnt > 0 ? `실패 : 로그인 시도 ${failCnt}회` : null}>
           로그인
         </SubmitGroup>        
         
         {/* Props
-          active : 버튼 활성화 여부 (양식이 맞을 때 활성화, 활성화되면 색이 바뀜)
+          disabled : 버튼 비활성화 여부 (양식이 맞을 때 활성화)
           onClick : 제출시 동작
           message : 실패시 버튼밑에 출력할 메세지
         */}
