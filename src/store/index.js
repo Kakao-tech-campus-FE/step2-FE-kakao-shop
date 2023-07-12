@@ -9,9 +9,19 @@ const store = configureStore({
     reducer: {
         //유저 정보 글로벌로 저장
         //로그인 하면 유저 이메일 받게 함.
-        user: useReducer
+        user: { useReducer }
         //보통 툴킷은 슬라이스 파일을 이용해 리듀서들 관리
-    }
+    },
 });
+
+// {
+//     user:{
+//         email
+//         reducer:{
+//             login:()=>{}
+//         }
+
+//     }
+// }
 
 export default store;
