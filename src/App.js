@@ -1,55 +1,23 @@
 import "./App.css";
-import Toast from "./components/Toast";
-import Carousel from "./components/Carousel";
-import Check from "./components/Check";
-import Toggle from "./components/Toggle";
-import Radio from "./components/Radio";
-import Bread from "./components/Bread";
-import styled from "styled-components";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-
-const Container = styled.div`
-  margin: 10px;
-  display: flex;
-  position: absolute;
-  flex-direction: column;
-  align-items: center;
-  width: 600px;
-`;
+import MainPage from "./pages/MainPage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import GNB from "./components/organisms/GNB";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PageContainer from "./components/atoms/PageContainer";
+import React from "react";
 
 function App() {
-  const Main = () => {
-    return (
-      <>
-        <Carousel></Carousel>
-        <Toast
-          button="토스트"
-          buttonStyle={{
-            backgroundColor: "yellow",
-            width: "100px",
-            margin: "30px",
-          }}
-          message={"토스트"}
-        ></Toast>
-
-        <Link to="/cart">장바구니</Link>
-      </>
-    );
-  };
-
   return (
     <BrowserRouter>
-      <Container>
-        <Bread></Bread>
-
+      <PageContainer>
+        <GNB></GNB>
         <Routes>
-          <Route path="*" element={<Main />} />
-          <Route path="/cart" element={<Check />} />
-          <Route path="/cart/pay" element={<Radio />} />
+          <Route path="*" element={<MainPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
-
-        <Toggle></Toggle>
-      </Container>
+      </PageContainer>
     </BrowserRouter>
   );
 }

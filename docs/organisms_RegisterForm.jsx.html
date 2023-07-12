@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: organisms/RegisterForm.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: organisms/RegisterForm.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useEffect, useState } from 'react'
+import FormContainer from "../atoms/form/FormContainer"
+import SubmitGroup from "../molecules/form/SubmitGroup"
+import InputGroup from "../molecules/form/InputGroup"
+import {postCheck, postJoin} from "../../api/register"
+import { useNavigate } from 'react-router-dom';
+import { emailValidate, passwordValidate } from '../../utils/validator'
+import CheckGroup from "../molecules/CheckGroup"
+
+const RegisterForm = () => {
+
+  /** 현재 입력 상태 */
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    passwordCheck: "",
+  })
+
+  /**
+   * 입력값 바뀔 때마다 user 객체를 변경
+   * @param {object} event 
+   * @param {string} key 
+   */
+  const inputChange = ( event, key ) => {
+    setUser(prevObj => {
+      return {...prevObj, [key]: event.target.value};
+    })
+  }
+
+  /** 이메일 중복 여부 상태 */
+  const [duple, setDuple] = useState(false);
+
+  /** 이메일 형식이 맞으면 email 칸에 값 입력할때마다 중복 체크 요청 보냄 */
+  useEffect(() => {
+    if (emailValidate(user.email)) {
+      postCheck(user)
+      .then((response) => {
+        setDuple(prev => false)
+      })
+      .catch((error) => {
+        if (error.response &amp;&amp; error.response.status === 400) {
+          setDuple(prev => true)
+        }
+      })
+    }
+  }, [user.email])
+
+  const navigate = useNavigate();
+
+  /**
+   * 가입 성공시 메인으로 이동, 알림 띄우기
+   */
+  const click = () => {
+    postJoin(user)
+      .then((response) => {
+        navigate("/")
+      })
+      .then(() => {
+        alert("가입완료")
+      })
+      .catch((error) => {
+        alert("가입실패 : 네트워크오류")
+        console.log(error)
+      }) 
+  }
+
+  /** 동의 여부 상태 */
+  const [agree, setAgree] = useState(
+      [
+        {name:'동의1', isChecked: false}, 
+        {name:'동의2', isChecked: false},
+      ]
+    )
+
+  const [checklist, setChecklist] = useState([])
+
+  return (
+    &lt;FormContainer>
+
+      &lt;InputGroup 
+        id="username" 
+        type="text" 
+        label="아이디" 
+        onChange={event => inputChange(event, 'username')}
+        />
+      
+      
+      &lt;InputGroup 
+        id="email" 
+        type="email" 
+        label="이메일"
+        onChange={event => inputChange(event, 'email')} 
+        message={
+          (!user.email) 
+            ? null 
+            : (emailValidate(user.email) 
+              ? (duple 
+                ? "이미 사용중인 메일입니다 "
+                : null)
+              : "형식이 올바르지 않습니다.")
+          }
+        />
+      
+      &lt;InputGroup 
+        id="password" 
+        type="password" 
+        label="비밀번호" 
+        onChange={event => inputChange(event, 'password')} 
+        message={( user.password &amp;&amp; !passwordValidate(user.password) )
+        ? "영문, 숫자, 특수문자 포함 8~20자" 
+        : null }
+        />
+      
+
+      &lt;InputGroup 
+        id="passwordCheck" 
+        type="password" 
+        label="비밀번호 확인"
+        onChange={event => inputChange(event, 'passwordCheck')}
+        message={user.passwordCheck &amp;&amp; user.passwordCheck !== user.password 
+          ? "비밀번호가 일치하지 않습니다" : null } 
+        />
+
+      {/* Props
+          onChange : 상태 객체 user에서 passwordCheck 값을 입력값으로
+          message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
+      */}
+
+      {
+        agree.map((item, i)=>(
+          &lt;CheckGroup 
+            style={ { boxShadow: "unset" } }
+            state={ agree }
+            setState={ setAgree }
+            checklist={ checklist }
+            setChecklist={ setChecklist } 
+            index={ i }
+            key={ agree[i].name } 
+          >
+            &lt;div> {agree[i].name} &lt;/div>
+          &lt;/CheckGroup>
+        ))
+      }
+
+      &lt;SubmitGroup
+        disabled={
+            duple
+            || !passwordValidate(user.password)
+            || user.passwordCheck !== user.password
+            } 
+        onClick={click}
+        message={null}
+        >
+        가입하기
+      &lt;/SubmitGroup>       
+      
+
+      {/* Props
+          active : 버튼 활성화 여부 (양식이 맞을 때 활성화, 활성화되면 색이 바뀜)
+          onClick : 제출시 동작
+      */}
+
+    &lt;/FormContainer>
+  )
+}
+
+/* abcdef abcdef@naver.com aaaa1111!*/
+
+
+export default RegisterForm</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Carousel">Carousel</a></li><li><a href="global.html#CheckGroup">CheckGroup</a></li><li><a href="global.html#FormContainer">FormContainer</a></li><li><a href="global.html#FormatCheck">FormatCheck</a></li><li><a href="global.html#FormatCheckBox">FormatCheckBox</a></li><li><a href="global.html#GNBContainer">GNBContainer</a></li><li><a href="global.html#GNBInnerBox">GNBInnerBox</a></li><li><a href="global.html#GNBMainGroup">GNBMainGroup</a></li><li><a href="global.html#GNBMyGroup">GNBMyGroup</a></li><li><a href="global.html#Input">Input</a></li><li><a href="global.html#InputBox">InputBox</a></li><li><a href="global.html#InputGroup">InputGroup</a></li><li><a href="global.html#Label">Label</a></li><li><a href="global.html#SectionContainer">SectionContainer</a></li><li><a href="global.html#SubmitButton">SubmitButton</a></li><li><a href="global.html#SubmitGroup">SubmitGroup</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Jul 12 2023 05:13:29 GMT+0900 (대한민국 표준시)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
