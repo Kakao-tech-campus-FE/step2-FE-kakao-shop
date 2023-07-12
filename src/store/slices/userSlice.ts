@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { LoginData } from '../../types/formData';
-import { requestUserLogin } from '../../apis/axios';
+import { requestUserLogin } from '../../apis/user';
 import { setItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO, TOKEN_EXPIRE_DATE } from '../../utils/common';
 
