@@ -24,12 +24,21 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // if (error.response.status === 401) {
-    //   localStorage.removeItem('token');
-    //   window.location.href = '/login';
-    //   return Promise.resolve();
-    // }
-    // return Promise.reject(error.response);
+    if (error.response.status === 400) {
+      localStorage.removeItem('token');
+      const errorMessage = error.response.data.error.message;
+      alert(errorMessage);
+      window.location.href = '/signup';
+      return Promise.resolve();
+    }
+    if (error.response.status === 401) {
+      localStorage.removeItem('token');
+      const errorMessage = error.response.data.error.message;
+      alert(errorMessage);
+
+      return Promise.resolve();
+    }
+    return Promise.reject(error.response);
   }
 );
 

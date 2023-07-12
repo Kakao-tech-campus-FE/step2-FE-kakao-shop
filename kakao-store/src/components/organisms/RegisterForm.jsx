@@ -2,77 +2,98 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useinput";
-import { useEffect } from "react";
-//api.js에서 register를 가져옴
+import Title from "../atoms/Title";
+import { validateForm } from "../../utils/VaildationSignup";
+import { useNavigate } from "react-router-dom";
 import { register } from "../../services/api";
+import { useState } from "react";
+import logo from "../../images/logoKakaoText.png";
+import useRegister from "../../hooks/useRegister";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
+
+  const [errors, setErrors] = useState([]);
+
+  const handleRegister = () => {
+    const validationErrors = validateForm(value);
+
+    if (!validationErrors) {
+      register({
+        email: value.email,
+        password: value.password,
+        username: value.username,
+      });
+      navigate("/");
+    } else {
+      setErrors(validationErrors);
+    }
+  };
   // const [username, setUsername] = useState()
   // const [email, setEmail] = useState()
   // const [password, setPassword] = useState()
   // const [passwordConfirm, setPasswordConfirm] = useState()
   // 등 4개가 있어야 하는걸 hook을 사용하여 1개로 줄임
 
-  //에러 체크 -> 객체안의 값이 모두 존재하는지 확인
-  // useEffect(() => {
-  //   console.log(value.username);
-  // }, [value.username]);
-
   return (
     <Container>
-      <InputGroup
-        id="username"
-        type="text"
-        name="username"
-        placeholder="사용자 이름을 입력하세요"
-        label="이름 "
-        value={value.username}
-        onChange={handleOnChange}
-      />
+      <Title>
+        <img src={logo} alt="logo" />
+      </Title>
       <InputGroup
         id="email"
         type="email"
         name="email"
-        placeholder="이메일(아이디)를 입력하세요"
-        label="이메일 "
+        placeholder="이메일"
+        label="이메일 (아이디)"
         value={value.email}
+        onChange={handleOnChange}
+      />
+
+      <InputGroup
+        id="username"
+        type="text"
+        name="username"
+        placeholder="이름"
+        label="이름 "
+        value={value.username}
         onChange={handleOnChange}
       />
       <InputGroup
         id="password"
         type="password"
         name="password"
-        placeholder="********"
-        label="비밀번호 "
+        placeholder="비밀번호"
+        label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
       />
       <InputGroup
         id="passwordConfirm"
         type="password"
-        placeholder="********"
-        label="비밀번호 확인 "
+        name="passwordConfirm"
+        placeholder="비밀번호 확인"
+        label="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
-      <Button
-        onClick={() => {
-          // api 회원 가입 요천
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          });
-        }}
-      >
-        회원가입
-      </Button>
+
+      {errors.map((error, index) => (
+        <div className="bg-gray-50 p-2">
+          <p className=" text-sm font-medium text-red-500" key={index}>
+            {error}
+          </p>
+        </div>
+      ))}
+
+      <Button onClick={handleRegister}>회원가입</Button>
     </Container>
   );
 };

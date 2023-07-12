@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue)
@@ -7,10 +7,6 @@ const useInput = (initialValue) => {
     const {name, value} = e.target;
     setValue((prev) => ({ ...prev, [name]: value })); //이렇게 쓰는게 더 좋음
   };
-
-  useEffect(() => {
-    console.log("value: ", value);
-  }, [value]);
 
   return { value, handleOnChange };
   // 배열과 객체의 차이는
