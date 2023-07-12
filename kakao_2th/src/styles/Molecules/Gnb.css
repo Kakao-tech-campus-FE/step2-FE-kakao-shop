@@ -1,0 +1,27 @@
+.gnb {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 10px 20px;
+  }
+  
+  .gnb__left a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  .gnb__right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .gnb__right span {
+    margin-right: 10px;
+  }
+  
+  .gnb__right button {
+    margin-right: 5px;
+  }
+  
