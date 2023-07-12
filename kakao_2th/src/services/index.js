@@ -25,6 +25,3 @@ instance.interceptors.response.use(
     }
 );
 
-export const fetchProducts = (page = 0) => {
-    return instance.get("/products" + "?page=" + page);
-}
