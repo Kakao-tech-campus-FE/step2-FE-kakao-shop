@@ -3,7 +3,7 @@ import InputGroup from '@components/molecules/InputGroup';
 import React, { useState, useEffect } from 'react';
 import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
-import { login } from '@store/slices/userSlice';
+import { loginStore } from '@store/slices/userSlice';
 import { RootState } from 'src/store';
 import { useDispatch } from 'react-redux';
 import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
@@ -51,7 +51,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
     if (inputInfo.username)
       onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
-          dispatch(login({ email: inputInfo.email }));
+          dispatch(loginStore({ email: inputInfo.email }));
           navigate('/');
         })
         .catch((err) => {

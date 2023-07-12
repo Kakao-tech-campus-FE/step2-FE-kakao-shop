@@ -4,16 +4,13 @@ import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 import { checkEmail, checkPassword } from '@utils/validationUtils';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '@store/slices/userSlice';
+import { loginStore } from '@store/slices/userSlice';
 import { RootState } from 'src/store';
 import { useNavigate } from 'react-router-dom';
+import login from '@api/loginApi';
 import InputGroup from '../molecules/InputGroup';
 
-interface LoginFromProps {
-  onSubmit: (data: { email: string; password: string }) => Promise<AxiosResponse>;
-}
-
-const LoginForm = ({ onSubmit }: LoginFromProps) => {
+const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useSelector((state: RootState) => state.user.email);
@@ -26,9 +23,9 @@ const LoginForm = ({ onSubmit }: LoginFromProps) => {
     },
   });
   const loginReq = () => {
-    onSubmit({ email: inputInfo.email, password: inputInfo.password })
+    login({ email: inputInfo.email, password: inputInfo.password })
       .then((res) => {
-        dispatch(login({ email: inputInfo.email }));
+        dispatch(loginStore({ email: inputInfo.email }));
         navigate('/');
       })
       .catch((err) => {
