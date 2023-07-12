@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Carousel.css';
 
+// import image1 from "../../../images/carouselItem1.jpeg";
+// import image2 from "../../../images/carouselItem2.jpeg";
+// import image3 from "../../../images/carouselItem3.jpeg";
+
 export const RadioIndicator = ({ index, currentSlide, onClick }) => {
   return (
     <span>
@@ -33,9 +37,14 @@ export const Slide = ({ img }) => {
   );
 };
 
-const TOTAL_SLIDES = 2;
+export const Carousel = () => {
+  const images = [
+    "/images/carouselItem1.jpeg",
+    "/images/carouselItem2.jpeg",
+    "/images/carouselItem3.jpeg"
+  ];
+  const LAST_SLIDE_INDEX = images.length - 1;
 
-export const Carousel = (props) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slideRef = useRef(null);
 
@@ -70,7 +79,7 @@ export const Carousel = (props) => {
   };
 
   const nextSlide = () => {
-    if (currentSlide >= TOTAL_SLIDES) {
+    if (currentSlide >= LAST_SLIDE_INDEX) {
       setCurrentSlide(0);
     } else {
       setCurrentSlide(currentSlide + 1);
@@ -79,7 +88,7 @@ export const Carousel = (props) => {
 
   const prevSlide = () => {
     if (currentSlide === 0) {
-      setCurrentSlide(TOTAL_SLIDES);
+      setCurrentSlide(LAST_SLIDE_INDEX);
     } else {
       setCurrentSlide(currentSlide - 1);
     }
@@ -100,21 +109,15 @@ export const Carousel = (props) => {
   return (
     <div className="carousel-container">
       <div className="radio-indicator-container">
-        <RadioIndicator
-          index={0}
-          currentSlide={currentSlide}
-          onClick={() => setCurrentSlide(0)}
-        />
-        <RadioIndicator
-          index={1}
-          currentSlide={currentSlide}
-          onClick={() => setCurrentSlide(1)}
-        />
-        <RadioIndicator
-          index={2}
-          currentSlide={currentSlide}
-          onClick={() => setCurrentSlide(2)}
-        />
+        {
+          images.map((_, index) => (
+            <RadioIndicator
+              index={index}
+              currentSlide={currentSlide}
+              onClick={() => setCurrentSlide(index)}
+            />
+          ))
+        }
       </div>
       <div
         ref={slideRef}
@@ -123,9 +126,11 @@ export const Carousel = (props) => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
       >
-        {props.images.map((image, _) => (
-          <Slide img={image} />
-        ))}
+        {
+          images.map((image, _) => (
+            <Slide img={image} />
+          ))
+        }
       </div>
       <button className="carousel-button prev" onClick={prevSlide}>
         &lt;

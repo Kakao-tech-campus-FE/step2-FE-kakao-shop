@@ -3,10 +3,6 @@ import React, { useState } from 'react';
 import { Toast } from './Toast';
 import { Breadcrumb } from './Breadcrumb/Breadcrumb';
 import { Carousel } from './Carousel/Carousel';
-import image1 from "../../images/carouselItem1.jpeg";
-import image2 from "../../images/carouselItem2.jpeg";
-import image3 from "../../images/carouselItem3.jpeg";
-
 import { RadioGroup } from './RadioGroup';
 import { Radio } from './Radio';
 
@@ -19,13 +15,6 @@ const Examples = () => {
   // 토스트용 useState
   const [toastState, setToastState] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
-
-  // 캐러셀용 이미지
-  const images = [
-    image1,
-    image2,
-    image3,
-  ];
 
   // 라디오 useState
   const [radioValue, setRadioValue] = useState("A");
@@ -64,7 +53,7 @@ const Examples = () => {
       {/* 캐러셀 예제 */}
       <div className="example">
         <h3 className="example-header"> 캐러셀 </h3>
-        <Carousel images={images} />
+        <Carousel/>
       </div>
 
       {/* 라디오 버튼 */}
