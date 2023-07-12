@@ -3,13 +3,9 @@ import { persistReducer } from "redux-persist";
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import userReducer from "./slices/userSlice";
-import productReducer from "./slices/productSlice";
-// import detailReducer from "./slices/detailSlice";
 
 const rootReducer = combineReducers({
   user: userReducer,
-  // product: productReducer,
-  // detail: detailReducer,
 });
 
 const persistConfig = {

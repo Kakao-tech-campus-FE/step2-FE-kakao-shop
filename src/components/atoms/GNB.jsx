@@ -35,7 +35,7 @@ function GNB() {
 
   return (
     <header className="header">
-      <div className="fixed left-0 right-0 top-0 z-1000 px-32 h-20 border-b-2 border-gray-300 bg-white">
+      <div className="fixed left-0 right-0 top-0 z-40 px-32 h-20 border-b-2 border-gray-300 bg-white">
         <div className="flex w-1280 h-79 mx-auto justify-between">
           <Link to="/">
             <img
