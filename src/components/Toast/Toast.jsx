@@ -1,6 +1,7 @@
 import React from "react";
 import "./Toast.css";
 
+// 내가 만든 것을 dialog 컴포넌트
 function Toast(props) {
   return (
     <div className="toast-container">
