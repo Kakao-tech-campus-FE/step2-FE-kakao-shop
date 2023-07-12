@@ -1,7 +1,7 @@
 import {instance} from "./index";
 
-export const fetchProducts = () => {
-    const result = instance.get("/products").then(response => response.data);
+export const fetchProducts = (page = 0) => {
+    const result = instance.get(`/products?page=${page}`).then(response => response.data);
     return result;
 };
 
