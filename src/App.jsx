@@ -1,28 +1,22 @@
-import './App.css';
-import Breadcrumb from './components/Breadcrumb';
-import Carousel from './components/Carousel';
-import Checklist from './components/Checkbox';
-import RadioBtn from './components/RadioBtn';
-import Toast from './components/Toast';
-import ToggleBtn from './components/ToggleBtn';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
 
-function App() {
-  const options = ['Option 1', 'Option 2', 'Option 3'];
+export default function App() {
   return (
-    <>
-      <Breadcrumb />
-      <div style={{ border: '1px solid #ededed', margin: '2rem' }}></div>
-      <Carousel />
-      <div style={{ border: '1px solid #ededed', margin: '2rem' }}></div>
-      <Checklist />
-      <div style={{ border: '1px solid #ededed', margin: '2rem' }}></div>
-      <RadioBtn />
-      <div style={{ border: '1px solid #ededed', margin: '2rem' }}></div>
-      <Toast />
-      <div style={{ border: '1px solid #ededed', margin: '2rem' }}></div>
-      <ToggleBtn />
-    </>
+    <div className='App'>
+      <BrowserRouter>
+        {/* 단독 레이아웃 */}
+        <Routes>
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<RegisterPage />} />
+          <Route path='/' element={<MainPage />} />
+          {/* 공통 레이아웃 */}
+          {/* <Route path="/" element={<HomePage />}/> */}
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
-
-export default App;
