@@ -9,6 +9,9 @@ module.exports = {
         subGray: '#F0F0F0',
         subRed: '#dc3232',
       },
+      spacing: {
+        header: '100px',
+      },
     },
   },
   plugins: [],
