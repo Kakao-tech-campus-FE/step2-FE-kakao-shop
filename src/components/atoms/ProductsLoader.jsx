@@ -1,14 +1,19 @@
-import { GridLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners";
+import { styled } from "styled-components";
 
-const override = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-};
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+`;
 
 const ProductsLoader = () => {
-  return <GridLoader color="#bbb" cssOverride={override} size={30} />;
+  return (
+    <Container>
+      <PulseLoader color="#bbb" size={10} />
+    </Container>
+  );
 };
 
 export default ProductsLoader;

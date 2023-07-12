@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from "react";
 
 const Container = styled.div`
   position: relative;
-  min-width: 1400px;
   width: 1400px;
-  height: 300px;
+  height: inherit;
+  margin: 0 auto;
   overflow: hidden;
 `;
 

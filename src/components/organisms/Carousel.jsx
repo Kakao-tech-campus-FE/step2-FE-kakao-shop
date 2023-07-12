@@ -8,9 +8,6 @@ const Container = styled.div`
   border-bottom: 1px solid #bbb;
   position: relative;
   top: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 
 const CAROUSEL_IMAGES = [

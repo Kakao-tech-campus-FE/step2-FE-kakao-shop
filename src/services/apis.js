@@ -17,6 +17,6 @@ export const instance = axios.create({
 //   return config;
 // });
 
-export const fetchProducts = () => {
-  return instance.get("/products");
+export const fetchProductsByPage = ({ page }) => {
+  return instance.get(`/products?page=${page}`);
 };
