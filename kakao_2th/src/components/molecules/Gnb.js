@@ -2,15 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../atoms/Button";
 import { useSelector, useDispatch } from "react-redux";
+import { setToken } from "../../store/slices/userSlice";
 import { setEmail } from "../../store/slices/userSlice";
 import "../../styles/Molecules/Gnb.css";
 
 const GNB = ({ showRegisterButton }) => {
     const dispatch = useDispatch();
     const email = useSelector((state) => state.user.email);
+    const token = useSelector((state) => state.user.token)
+
 
     const handleLogout = () => {
-        // 로그아웃 처리 로직
+        localStorage.removeItem("token")
+        dispatch(setToken(null))
+        alert("정상적으로 로그아웃되었습니다.")
     };
 
     const handleRegister = () => {

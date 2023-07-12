@@ -16,3 +16,7 @@ export const login = (data) => {
         password,
     })
 }
+
+export const profile = () => {
+    return instance.get("/profile")
+}

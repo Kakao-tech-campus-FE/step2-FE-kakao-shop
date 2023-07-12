@@ -13,6 +13,10 @@ const userSlice = createSlice({
         setEmail: (state, action) => {
             state.email = action.payload.email;
         },
+        setToken: (state, action) => {
+            state.token = action.payload.token;
+
+        }
     },
     extraReducers: (builder) => {
         builder.addCase(loginRequest.pending, (state, action) => {
