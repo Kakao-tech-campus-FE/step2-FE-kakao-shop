@@ -1,0 +1,10 @@
+.breadcrumb-active,
+.breadcrumb-not-active {
+  text-decoration: none; /* 텍스트에 밑줄 제거 */
+  color: black;
+}
+
+.arrow {
+  margin-left: 10px;
+  margin-right: 10px;
+}
