@@ -2,7 +2,7 @@ import { Product } from "@/dtos/product.dto";
 import ProductCard from "./ProductCard.component";
 import { commonAxios } from "@/functions/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Fragment, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import ProductSkeleton from "@/components/Product/ProductSkeleton.component";
 import _ from "lodash/";
 import { PRODUCT } from "@/assets/product.ko";
@@ -83,7 +83,7 @@ const ProductGroup = () => {
             ))}
         {isFetching && _.range(9).map((i) => <ProductSkeleton key={i} />)}
       </div>
-      {!hasNextPage && (
+      {!isFetching && !hasNextPage && (
         <div className="flex w-full justify-center my-4">
           <p className="text-gray-400">{NO_PRODUCT}</p>
         </div>
