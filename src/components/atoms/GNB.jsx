@@ -53,3 +53,5 @@ function GNB() {
     </header>
   );
 }
+
+export default GNB;

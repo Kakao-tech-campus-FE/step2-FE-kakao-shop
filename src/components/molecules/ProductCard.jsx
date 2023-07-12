@@ -1,5 +1,6 @@
 import { comma } from "../../utils/convert";
 import Card from "../atoms/Card";
+import Photo from "../atoms/Photo";
 
 const ProductCard = ({ product }) => {
   return (
