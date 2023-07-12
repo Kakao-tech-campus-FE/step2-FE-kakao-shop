@@ -6,23 +6,20 @@ import ProductsLoader from "../atoms/ProductsLoader";
 import { useEffect, useRef } from "react";
 
 const Container = styled.main`
-  height: 500px;
-  border: 2px solid red;
-  position: relative;
+  margin-top: 20px;
 `;
 
 const ProductsList = styled.section`
-  border: 10px solid green;
   padding: 10px;
   width: 100%;
   display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `;
 
 const ProductGrid = () => {
   const {
     isLoading,
+    isFetching,
     data: products,
     fetchNextPage,
     hasNextPage,
@@ -31,10 +28,15 @@ const ProductGrid = () => {
     ({ pageParam = 0 }) => fetchProductsByPage({ page: pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
+        console.log(allPages);
         if (lastPage?.data?.response.length === 0) {
           return undefined;
         }
         return allPages.length;
+      },
+      onError: (error) => {
+        console.error("Failed to fetch products:", error);
+        fetchNextPage();
       },
     }
   );
@@ -74,7 +76,11 @@ const ProductGrid = () => {
               <ProductCard key={product.id} product={product} />
             ))
           )}
-          <div style={{ height: "400px" }} ref={bottomObserverRef}></div>
+          {isFetching ? (
+            <ProductsLoader />
+          ) : (
+            <div ref={bottomObserverRef}></div>
+          )}
         </ProductsList>
       )}
     </Container>
