@@ -1,6 +1,5 @@
 import FilledButton from '@components/atoms/FilledButton';
 import React, { useState, useEffect } from 'react';
-import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 import { checkEmail, checkPassword } from '@utils/validationUtils';
 import { useDispatch, useSelector } from 'react-redux';

@@ -1,14 +1,11 @@
 import FilledButton from '@components/atoms/FilledButton';
 import InputGroup from '@components/molecules/InputGroup';
 import React, { useState, useEffect } from 'react';
-import { AxiosResponse } from 'axios';
 import useInput from '@hooks/useInput';
 import { loginStore } from '@store/slices/userSlice';
-import { RootState } from 'src/store';
 import { useDispatch } from 'react-redux';
 import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
 import { useNavigate } from 'react-router-dom';
-import { checkEmailDup } from '@api/registerApi';
 import { register } from '@api/registerApi';
 
 const RegisterForm = () => {
