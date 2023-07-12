@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 interface LinkButtonProps {
   children: React.ReactNode;
   href: string;
@@ -11,9 +13,9 @@ export default function LinkButton({
     <span className="text-sm opacity-50
       hover:opacity-100"
     >
-      <a href={href}>
+      <Link to={href}>
         {children}
-      </a>
+      </Link>
     </span>
   );
 }
