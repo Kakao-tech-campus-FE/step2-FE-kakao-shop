@@ -1,6 +1,7 @@
 import { forwardRef } from 'react';
 import ProductList from '../organisms/productList';
 import { ProductData } from '../../types/product';
+import Loader from '../atoms/loader';
 
 interface MainProductListTemplateProps {
   products: ProductData[] | undefined;
@@ -15,7 +16,9 @@ const MainProductListTemplate = forwardRef<HTMLDivElement, MainProductListTempla
     <ProductList productData={products} />
     {isFetchingNextPage
       ? (
-        <div>Loading...</div>
+        <div className="text-center">
+          <Loader />
+        </div>
       ) : (
         <div ref={ref} />
       )}
