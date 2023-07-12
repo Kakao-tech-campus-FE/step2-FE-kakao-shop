@@ -7,6 +7,7 @@ const SIGN = {
   SIGN_IN: "로그인",
   SIGN_OUT: "로그아웃",
   SIGN_UP: "회원가입",
+  NO_ACCOUNT: "계정이 없으신가요?",
 };
 
 export { SIGN };

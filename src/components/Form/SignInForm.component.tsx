@@ -9,7 +9,7 @@ import { ERROR } from "@/assets/error.ko";
 
 const { EMAIL_ERROR, PASSWORD_ERROR } = ERROR;
 
-const { EMAIL, PASSWORD } = SIGN;
+const { EMAIL, PASSWORD, SIGN_IN } = SIGN;
 const resetWarning = {
   email: false,
   password: false,
@@ -73,7 +73,7 @@ const SignInForm: FC<SignInProps> = ({ onSubmit }) => {
       />
       <div className="w-full mt-8">
         <ButtonFormItem color="primary" type="submit">
-          로그인
+          {SIGN_IN}
         </ButtonFormItem>
       </div>
     </form>
