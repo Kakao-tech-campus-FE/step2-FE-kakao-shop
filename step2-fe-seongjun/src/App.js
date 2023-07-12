@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+import {BrowserRouter, Routes, Route}from 'react-router-dom';
+import RegisterPage from './pages/RegisterPage';
+import LoginPage from './pages/LoginPage';
+import HomePage from './pages/HomePage';
+
+function App() {
+  return (
+    <div className='App'>
+      <BrowserRouter>
+        {/* 단독 레이아웃 */}
+        <Routes>
+          <Route path='/login' element={<LoginPage />}></Route>
+          <Route path='/signup' element={<RegisterPage/>}></Route>
+          {/* 공통 레이아웃 : GNB, Footer */}
+          <Route path='/' element = {<HomePage/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
+=======
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Toggle from "./components/toggle";
@@ -148,7 +168,12 @@ function App() {
         </div>
       </div>
     </Router>
+>>>>>>> 7bf19b80f574afd860fc4c6967796b480b45ec0a
   );
 }
 
 export default App;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7bf19b80f574afd860fc4c6967796b480b45ec0a
