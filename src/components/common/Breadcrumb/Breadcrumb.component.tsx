@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "@components/Breadcrumb/breadcrumb.css";
+import "@components/common/Breadcrumb/breadcrumb.css";
 
 export interface BreadcrumbProps {
   title: string;

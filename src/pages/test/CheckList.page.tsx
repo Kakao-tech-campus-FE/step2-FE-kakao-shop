@@ -1,4 +1,4 @@
-import CheckList from "@components/CheckList/CheckList.component";
+import CheckList from "@components/common/CheckList/CheckList.component";
 import { useState } from "react";
 
 const CheckListPage = () => {

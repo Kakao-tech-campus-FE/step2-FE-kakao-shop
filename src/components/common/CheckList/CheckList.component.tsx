@@ -1,8 +1,8 @@
 import { FC } from "react";
 import CheckListItem, {
   CheckListItemProps,
-} from "@components/CheckList/CheckListItem.component";
-import "@components/CheckList/check-list.css";
+} from "@components/common/CheckList/CheckListItem.component";
+import "@components/common/CheckList/check-list.css";
 interface CheckListProps {
   items: Omit<CheckListItemProps, "onChange" | "onItemRemove">[];
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;

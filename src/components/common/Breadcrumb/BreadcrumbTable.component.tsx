@@ -1,8 +1,8 @@
 import { FC } from "react";
 import Breadcrumb, {
   BreadcrumbProps,
-} from "@components/Breadcrumb/Breadcrumb.component";
-import "@components/Breadcrumb/breadcrumb-table.css";
+} from "@/components/common/Breadcrumb/Breadcrumb.component";
+import "@components/common/Breadcrumb/breadcrumb-table.css";
 
 interface BreadcrumbTableProps {
   crumbs: BreadcrumbProps[];

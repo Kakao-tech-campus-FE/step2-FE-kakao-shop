@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "@components/CheckList/check-list-item.css";
+import "@components/common/CheckList/check-list-item.css";
 
 export interface CheckListItemProps {
   id: number;

@@ -12,7 +12,6 @@ import {
 } from "@/store/signSlice";
 import { canPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
-import { Link } from "react-router-dom";
 
 const { EMAIL, EMAIL_WITH_ID, USERNAME, PASSWORD, PASSWORD_CONFIRM, SIGN_UP } =
   SIGN;

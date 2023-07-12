@@ -12,6 +12,8 @@ const App = () => {
     if (isExpired(getAuth() ?? "")) {
       removeAuth();
     }
+
+    document.querySelector(".lds-ring")?.remove();
   }, []);
 
   return (
