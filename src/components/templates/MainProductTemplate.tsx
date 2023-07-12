@@ -7,7 +7,7 @@ const MainProductTemplate = () => {
   const { data: products, isSuccess } = useGetProductsQuery({ page: 0 });
 
   return (
-    <Container className='pb-28 pt-8'>
+    <Container className='pb-28 pt-20'>
       <div>{isSuccess && products && <ProductGrid products={products} />}</div>
     </Container>
   );
