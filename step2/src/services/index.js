@@ -29,12 +29,4 @@ instance.interceptors.response.use(
   }
 );
 
-export const signup = ( {email, username, password} ) => {
-  console.log("회원가입 요청", email, username, password);
-  return instance.post("/join", { "email": email, "username": username, "password": password });
-};
-
-export const login = ( {email, password }) => {
-  console.log("로그인 요청", email, password);
-  return instance.post("/login", { "email": email, "password": password });
-};
+export default instance;
