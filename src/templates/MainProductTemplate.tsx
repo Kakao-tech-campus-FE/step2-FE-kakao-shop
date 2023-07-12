@@ -1,11 +1,16 @@
 import React from 'react';
-/* import useGetProductsQuery from '../apis/productApi'; */
+import useGetProductsQuery from '../apis/productApi';
+import ProductGrid from '../components/organisms/ProductGrid';
+import Container from '../components/atoms/Container';
 
 const MainProductTemplate = () => {
-  /* const { data: products } = useGetProductsQuery({ page: 0 });
+  const { data: products, isSuccess } = useGetProductsQuery({ page: 0 });
 
-  console.log(products); */
-  return <div>전체 상품 조회</div>;
+  return (
+    <Container className='pb-28 pt-8'>
+      <div>{isSuccess && products && <ProductGrid products={products} />}</div>
+    </Container>
+  );
 };
 
 export default MainProductTemplate;
