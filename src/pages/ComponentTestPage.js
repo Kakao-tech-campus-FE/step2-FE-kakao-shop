@@ -26,7 +26,7 @@ class RadioProps {
   static URL = [oneGrayCat, twoGrayCats, manyGrayCats];
 }
 
-const ComponentTest = () => {
+const ComponentTestPage = () => {
   const [checkedItemNum, setCheckedItemNum] = useState(0);
 
   const [toggleValue, setToggleValue] = useState(false);
@@ -58,4 +58,4 @@ const ComponentTest = () => {
   );
 };
 
-export default ComponentTest;
+export default ComponentTestPage;
