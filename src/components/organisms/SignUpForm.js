@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import { emailCheckReq, signUpReq } from "apis/api.js";
+import { checkEmailReq, signUpReq } from "apis/user.js";
 import useInput from "hooks/useInput.js";
 import { isValidSignUp } from "utils/validate.js";
 
@@ -22,7 +22,7 @@ export default function SignUpForm() {
     if (!isValidSignUp(inputValue)) return;
 
     // email check
-    emailCheckReq({ email: inputValue.email })
+    checkEmailReq({ email: inputValue.email })
       .then(() => {
         // sign up
         signUpReq({

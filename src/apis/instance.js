@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // instance
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   headers: { "Content-Type": "application/json" },
   timeout: 1000 * 5,
@@ -32,28 +32,3 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
-// export
-export async function emailCheckReq(data) {
-  const { email } = data;
-  return await instance.post("/check", {
-    email: email,
-  });
-}
-
-export async function signUpReq(data) {
-  const { email, username, password } = data;
-  return await instance.post("/join", {
-    email: email,
-    password: password,
-    username: username,
-  });
-}
-
-export async function logInReq(data) {
-  const { email, password } = data;
-  return await instance.post("/login", {
-    email: email,
-    password: password,
-  });
-}

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { logInReq } from "apis/api.js";
+import { logInReq } from "apis/user.js";
 import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 import { isValidLogIn } from "utils/validate.js";
 import useInput from "hooks/useInput.js";
