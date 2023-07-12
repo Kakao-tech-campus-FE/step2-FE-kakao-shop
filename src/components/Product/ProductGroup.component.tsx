@@ -5,15 +5,18 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { Fragment, useEffect, useRef } from "react";
 import ProductSkeleton from "@/components/Product/ProductSkeleton.component";
 import _ from "lodash/";
+import { PRODUCT } from "@/assets/product.ko";
+
+const { NO_PRODUCT } = PRODUCT;
 
 interface getProductResult {
   result: Product[];
   nextPage: number;
-  hasNextPage?: boolean;
 }
 
 const ProductGroup = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   const getProducts = async (pageData: { pageParam?: number }) => {
     const pageParam = pageData?.pageParam ?? 0;
@@ -23,9 +26,9 @@ const ProductGroup = () => {
       setTimeout(() => {
         resolve({
           result: data.response,
-          nextPage: data.response.length < 10 ? pageParam + 1 : undefined,
+          nextPage: pageParam + 1,
         });
-      }, 3000);
+      }, 1000);
     });
 
     return lazyReturn as getProductResult;
@@ -39,24 +42,25 @@ const ProductGroup = () => {
   const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["products"],
     queryFn: getProducts,
-    getNextPageParam: (lastPage) => lastPage.nextPage,
+    getNextPageParam: (lastPage) =>
+      lastPage.nextPage < 2 ? lastPage.nextPage : undefined,
   });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(
+        (entry) => {
           if (entry.isIntersecting) {
             if (!hasNextPage) return;
             fetchNextPage();
           }
-        });
-      },
-      { threshold: 0.4 }
-    );
+        },
+        { root: productsRef.current }
+      );
+    });
 
-    if (productsRef.current) {
-      observer.observe(productsRef.current);
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
     }
 
     return () => {
@@ -65,17 +69,26 @@ const ProductGroup = () => {
   }, [hasNextPage, fetchNextPage]);
 
   return (
-    <div className="grid grid-cols-4 gap-6" ref={productsRef}>
-      {data &&
-        data.pages.map((group, i) => (
-          <Fragment key={i}>
-            {group.result.map((product: Product) => (
-              <ProductCard key={product.id} product={product} />
+    <>
+      <div className="grid grid-cols-3 gap-6">
+        {data &&
+          data.pages
+            .flatMap((pages) => pages.result)
+            .map((product: Product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                cardRef={cardRef}
+              />
             ))}
-          </Fragment>
-        ))}
-      {isFetching && _.range(8).map((_, i) => <ProductSkeleton key={i} />)}
-    </div>
+        {isFetching && _.range(9).map((i) => <ProductSkeleton key={i} />)}
+      </div>
+      {!hasNextPage && (
+        <div className="flex w-full justify-center my-4">
+          <p className="text-gray-400">{NO_PRODUCT}</p>
+        </div>
+      )}
+    </>
   );
 };
 

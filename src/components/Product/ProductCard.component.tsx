@@ -5,11 +5,12 @@ import { pointByThree } from "@/functions/utils";
 
 interface ProductCardProps {
   product: Product;
+  cardRef: React.Ref<HTMLDivElement>;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, cardRef }: ProductCardProps) => {
   return (
-    <div className="h-fit cursor-pointer flex flex-col gap-2">
+    <div className="h-fit cursor-pointer flex flex-col gap-2" ref={cardRef}>
       <div className="w-full overflow-hidden h-[62.5%]">
         <picture>
           <img
