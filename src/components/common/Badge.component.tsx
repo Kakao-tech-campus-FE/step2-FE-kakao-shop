@@ -10,6 +10,7 @@ interface BadgeProps {
     | "info"
     | "light"
     | "dark";
+  className: string;
 }
 
 const COLORS = {
@@ -26,9 +27,12 @@ const COLORS = {
 const Badge: FC<PropsWithChildren<BadgeProps>> = ({
   children,
   color = "secondary",
+  className,
 }) => {
   return (
-    <span className={`py-[2px] px-1 text-xs rounded-md ${COLORS[color]}`}>
+    <span
+      className={`py-[2px] px-1 text-xs rounded-md ${COLORS[color]} ${className}`}
+    >
       {children}
     </span>
   );
