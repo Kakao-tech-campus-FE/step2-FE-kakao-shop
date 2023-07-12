@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 import HomeTemplate from "../components/templates/HomeTemplate";
 
 const Container = styled.div`
-  height: 3000px;
+  height: 500px;
 `;
 
 const HomePage = () => {

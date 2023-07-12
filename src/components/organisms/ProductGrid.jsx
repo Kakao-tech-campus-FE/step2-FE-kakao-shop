@@ -2,15 +2,17 @@ import { styled } from "styled-components";
 import { useQuery } from "react-query";
 import { fetchProducts } from "../../services/apis";
 import ProductCard from "../molecules/ProductCard";
+import ProductsLoader from "../atoms/ProductsLoader";
 
 const Container = styled.main`
-  height: 1000px;
+  height: 500px;
   border: 2px solid red;
 `;
 
 const ProductsList = styled.section`
   border: 10px solid green;
   padding: 10px;
+  width: 100%;
   display: grid;
   gap: 12px;
   grid-template-columns: 1fr 1fr 1fr;
@@ -24,7 +26,7 @@ const ProductGrid = () => {
   return (
     <Container>
       {isLoading ? (
-        <div>Loading...</div>
+        <ProductsLoader />
       ) : (
         <ProductsList>
           {productsArr.map((product) => (
