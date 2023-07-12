@@ -1,12 +1,13 @@
 // slices : 각각의 reducer에 해당하는 파일들
 // createSlice를 통해 slice를 만든다
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { login } from "../../components/services/api";
+import { login } from "../../components/services/user";
 import Swal from 'sweetalert2'
 
 const initialState = {
     email: null,
     loading: false, // 요청을 보냈을 때는 true & 요청이 없거나 실패 혹은 성공 시 false
+    token: null,
     // error: null, // 만약 에러가 있는 경우 error.message 값을 담는다!
 }
 
@@ -21,6 +22,9 @@ const userSlice = createSlice({
         setEmail: (state, action) => {
             state.email = action.payload.email;
         },
+        setToken: (state, action) => {
+            state.token = action.payload.token;
+        },
     },
 
     // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
@@ -32,10 +36,13 @@ const userSlice = createSlice({
         // Promise가 정상적으로 resolve되면 fulfilled state로 넘어가게 된다.
         // -> 로딩이 정상적으로 되었다!
         builder.addCase(loginRequest.fulfilled, (state, action) => {
+            console.log(action.payload);
+
             state.loading = false;
             // LoginForm의 setEmail 처리를 여기서 해버릴 수도 있음
             // 아래 loginRequest의 response.data가 payload에 담기게 된다!
-            state.email = action.payload.email; 
+            state.email = action.payload.email;
+            state.token = action.payload.token;
         });
         builder.addCase(loginRequest.rejected, (state, action) => {
             state.loading = false; // rejected 되는 경우에는 loading만 false로!
@@ -98,8 +105,8 @@ export const isTokenExpiration = () => {
 
 // slice를 만들면 actions이 return 된다.
 // actions 안에는 reducers 안의 내용물들이 있다.
-// 아래 구문은 userSlice의 reducers 중에 setEmail만 가져와서 사용하는 것이다.
-export const { setEmail } = userSlice.actions;
+// 아래 구문은 userSlice의 reducers 중에 setEmail, setToken들을 가져와서 사용하는 것이다.
+export const { setEmail, setToken } = userSlice.actions;
 
 // reducer 자체도 export 해주어야 한다!
 export default userSlice.reducer;

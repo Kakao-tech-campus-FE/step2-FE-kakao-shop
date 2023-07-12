@@ -4,7 +4,7 @@ import Button from "./../atoms/Button";
 import useInput from "./../../hooks/useInput";
 import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage, usernameErrorMessage, passwordComparisonErrorMessage } from "../../utils/constants";
-import { register } from "../services/api";
+import { register } from "../services/user";
 // import { useEffect } from "react"; // useEffect는 오류가 발생하는 구간을 확인하는데 유용하다.
 
 const RegisterForm = () => {
