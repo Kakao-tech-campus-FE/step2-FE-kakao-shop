@@ -1,10 +1,11 @@
 import React from 'react'
 import SectionContainer from '../components/atoms/SectionContainer'
+import ProductsList from '../components/organisms/ProductsList';
 
 const MainPage = () => {
     return (
       <SectionContainer>
-        라이언쇼핑 메인페이지
+        <ProductsList></ProductsList>
       </SectionContainer>
     );
   };

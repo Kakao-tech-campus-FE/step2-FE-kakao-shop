@@ -4,9 +4,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUserReducer } from '../../reducers/loginSlice'
 
-import GNBContainer from '../atoms/GNBContainer'
-import GNBInnerBox from '../atoms/GNBInnerBox'
-import GNBButton from '../atoms/GNBButton'
+import GNBContainer from '../atoms/GNB/GNBContainer'
+import GNBInnerBox from '../atoms/GNB/GNBInnerBox'
+import GNBButton from '../atoms/GNB/GNBButton'
 import GNBMyGroup from '../molecules/GNBMyGroup';
 import GNBMainGroup from '../molecules/GNBMainGroup';
 
@@ -54,15 +54,11 @@ const GNB = () => {
           <Link to ="/">
             <Logobox />
           </Link>
+          <GNBButton onClick={()=>{navigate("/products")}}>상품목록</GNBButton>
         </GNBMainGroup>
 
         <GNBMyGroup>
           
-          <GNBButton>
-            {`로컬 : ${localStorage.getItem("loginTime")}`}
-            <br/>
-            {`세션 : ${loginState.loginTime}`}
-          </GNBButton> 
           {
             loginState.email
             ? 

@@ -6,6 +6,7 @@ const Container = styled.section`
     flex-direction: column;
     align-items: center;
     padding: 10px 0;
+    
 `
 
 /**

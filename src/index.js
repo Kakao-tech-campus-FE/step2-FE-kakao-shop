@@ -10,18 +10,24 @@ import { configureStore } from "@reduxjs/toolkit";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 const store = configureStore({
   reducer: rootReducer,
 });
-
 const persistor = persistStore(store);
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          {/* <ReactQueryDevtools initialIsOpen={true} /> */}
+          <App />
+        </QueryClientProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>
