@@ -1,4 +1,4 @@
-import Button from "../atoms/Button";
+import LinkButton from "../atoms/LinkButton";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
@@ -33,7 +33,7 @@ const Gnb = ({ children }) => {
   return (
     <>
       <GnbOrganism>
-        <Button
+        <LinkButton
           className="home"
           type="click"
           onClick={() => navigate(routes.home)}
@@ -44,8 +44,8 @@ const Gnb = ({ children }) => {
           }}
         >
           쇼핑하기
-        </Button>
-        <Button
+        </LinkButton>
+        <LinkButton
           className="login"
           type="click"
           onClick={handleLogout}
@@ -55,7 +55,7 @@ const Gnb = ({ children }) => {
           }}
         >
           {children}
-        </Button>
+        </LinkButton>
       </GnbOrganism>
     </>
   );
