@@ -4,11 +4,11 @@ import Label from '@components/atoms/Label';
 import HelperText from '@components/atoms/HelperText';
 
 interface InputGroupProps {
-  inputName?: string;
-  labelName?: string;
-  value?: string;
-  helperText?: string;
-  inputType?: string;
+  inputName?: string; // input 태그 name 속성
+  labelName?: string; // label에 적힐 내용
+  value?: string; // input value
+  helperText?: string; // 헬퍼텍스트 내용
+  inputType?: string; // input type
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
 }
 
