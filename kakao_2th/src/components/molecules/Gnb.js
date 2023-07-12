@@ -23,30 +23,67 @@ const GNB = ({ showRegisterButton }) => {
     };
 
     return (
-        <nav className="gnb">
-            <div className="gnb__left">
-                <Link to="/">카카오 쇼핑</Link>
-            </div>
-            <div className="gnb__right">
-                <Button onClick={handleLogout}>장바구니</Button>
-                {email ? (
-                    <Button onClick={handleLogout}>로그아웃</Button>
-                ) : (
-                    <>
-                        {showRegisterButton && (
-                            <Link to="/signup">
-                                <Button onClick={handleRegister}>회원가입</Button>
+        <header className="header">
+            <div className="contents">
+                <Link to="/">
+                    <img src={"/logoKakao.png"} alt="logoKakao.png" height={30} />
+                </Link>
+                <nav>
+                    <div className="navigation">
+                        <span>
+                            <Link to="/cart">
+                                <img src={"/cart.png"} alt="cart.png" height={30} />
                             </Link>
-                        )}
-                        {!showRegisterButton && (
-                            <Link to="/login">
-                                <Button>로그인</Button>
-                            </Link>
-                        )}
-                    </>
-                )}
+                        </span>
+                        <span>|</span>
+                        <span>
+                            {email ? (
+                                <Link
+                                    to="/login"
+                                    onClick={handleLogout}
+                                    style={{ textDecoration: "none", color: "black" }}
+                                >
+                                    {" "}
+                                    로그아웃{" "}
+                                </Link>
+                            ) : (
+                                <Link
+                                    to="/login"
+                                    style={{ textDecoration: "none", color: "black" }}
+                                >
+                                    {" "}
+                                    로그인{" "}
+                                </Link>
+                            )}
+                        </span>
+                    </div>
+                </nav>
             </div>
-        </nav>
+        </header>
+        // <nav className="gnb">
+        //     <div className="gnb__left">
+        //         <Link to="/">카카오 쇼핑</Link>
+        //     </div>
+        //     <div className="gnb__right">
+        //         <Button onClick={handleLogout}>장바구니</Button>
+        //         {email ? (
+        //             <Button onClick={handleLogout}>로그아웃</Button>
+        //         ) : (
+        //             <>
+        //                 {showRegisterButton && (
+        //                     <Link to="/signup">
+        //                         <Button onClick={handleRegister}>회원가입</Button>
+        //                     </Link>
+        //                 )}
+        //                 {!showRegisterButton && (
+        //                     <Link to="/login">
+        //                         <Button>로그인</Button>
+        //                     </Link>
+        //                 )}
+        //             </>
+        //         )}
+        //     </div>
+        // </nav>
     );
 };
 
