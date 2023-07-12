@@ -1,15 +1,15 @@
 import React from "react";
-import ToggleButton from "../components/Togglebutton";
-import Breadcrumb from "../components/Breadcrumb";
-import Carousel from "../components/Carousel";
-import Radiobutton from "../components/Radiobutton";
-import Toast from "../components/Toast";
-import Checklist from "../components/Checklist";
+import ToggleButton from "../components/samples/Togglebutton";
+import Breadcrumb from "../components/samples/Breadcrumb";
+import Carousel from "../components/samples/Carousel";
+import Radiobutton from "../components/samples/Radiobutton";
+import Toast from "../components/samples/Toast";
+import Checklist from '../components/samples/Checklist';
 
-const ComponentTest = () => {
+const ComponentsPage = () => {
     return (
         <>
-            <div style={{textAlign:"center", justifyContent: "center", alignItems: "center",  marginTop: "150px"}}>
+            <div className="componentsPage">
                 <h1>UI Components Testing</h1>
                 <h1>Toast</h1>
                     <Toast />
@@ -28,4 +28,4 @@ const ComponentTest = () => {
     )
 }
 
-export default ComponentTest
+export default ComponentsPage

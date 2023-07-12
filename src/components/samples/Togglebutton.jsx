@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import "../styles/Togglebutton.css"
+import "../../styles/Togglebutton.css"
 
 // 조건부 렌더링을 통해 토글 버튼 기능 구현
 const ToggleButton = () => {

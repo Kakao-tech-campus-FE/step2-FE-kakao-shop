@@ -8,11 +8,12 @@
     z-index: 10;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .navbarMenu {
-    text-decoration: none;
     color: black;
-    margin-right: 10px;
+    margin-right: 50px;
+    font-size: 20px;
+    text-decoration: none;
 }
