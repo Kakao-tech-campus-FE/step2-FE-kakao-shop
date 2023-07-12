@@ -3,7 +3,7 @@ import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { fetchProducts } from "../../apis/product";
 import { useInfiniteQuery } from "react-query";
-import CardLoader from "../atoms/CardLoader";
+import CardSkeleton from "../atoms/CardSkeleton";
 import { useInView } from "react-intersection-observer";
 
 const MainProductTemplate = () => {
@@ -32,10 +32,10 @@ const MainProductTemplate = () => {
     
     return(
         <Container>
-            <Suspense fallback={<CardLoader />}>
-                {isLoading ? (<CardLoader />) :  <ProductGrid products={products.pages.flatMap(page => page.response)}/>}
+            <Suspense fallback={<CardSkeleton />}>
+                {isLoading ? (<CardSkeleton />) :  <ProductGrid products={products.pages.flatMap(page => page.response)}/>}
                 <div ref={ref}></div>
-                {isFetchingNextPage && <CardLoader />}
+                {isFetchingNextPage && <CardSkeleton />}
             </Suspense>
         </Container>
     );
