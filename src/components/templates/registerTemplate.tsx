@@ -42,10 +42,10 @@ export default function RegisterTemplate({
   errorMessage,
 }: RegisterTemplateProps) {
   return (
-    <div className="flex min-w-[20rem] flex-col justify-center text-blue-950">
+    <div className="flex min-w-[20rem] flex-col justify-center">
       <h1 className="mt-8 py-4 text-center text-3xl">회원 가입</h1>
       <div className="my-4 p-8 pb-16
-          sm:w-[40rem] sm:self-center sm:rounded-sm sm:border sm:border-stone-300"
+          md:w-[40rem] md:self-center md:rounded-sm md:border md:border-stone-300"
       >
         <RegisterForm
           handleRegister={handleRegister}
