@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login } from "../../services"
+import { login } from "../../services/user"
 
 const initialState = {
     email: null,
@@ -42,6 +42,6 @@ export const loginRequest = createAsyncThunk(
 )
 
 
-export const { setEmail } = userSlice.actions;
+export const { setEmail, setToken } = userSlice.actions;
 
 export default userSlice.reducer

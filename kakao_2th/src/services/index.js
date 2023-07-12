@@ -6,7 +6,7 @@ const instance = axios.create({
     headers: {
         "Content-Type": "application/json",
     }
-})
+});
 
 instance.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
@@ -14,14 +14,24 @@ instance.interceptors.request.use((config) => {
         config.headers["Authorization"] = token;
     }
     return config;
-})
+});
 
 instance.interceptors.response.use(
     (response) => {
-        return response
+        return response;
     },
     (error) => {
-        return Promise.reject(error.response)
+        return Promise.reject(error.response);
     }
 );
 
+export const register = (data) => {
+    const { email, password, username } = data;
+    return instance.post("/join", {
+        email,
+        password,
+        username,
+    });
+};
+
+export default instance;
