@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 const Container = styled.div`
   position: relative;
   min-width: 1400px;
-  max-width: 1400px;
+  width: 1400px;
   height: 300px;
   overflow: hidden;
 `;
@@ -32,7 +32,6 @@ const CarouselList = ({ images }) => {
   }, [images]);
 
   useEffect(() => {
-    console.log(carouselRef);
     if (carouselRef.current !== null) {
       carouselRef.current.style.transform = `translateX(-${currentIndex}00%)`;
     }

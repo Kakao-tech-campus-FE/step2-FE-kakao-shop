@@ -5,6 +5,7 @@ const ProductImg = styled.img`
   border-radius: 10px;
   z-index: 1;
   transition: 0.2s all ease-in-out;
+  width: 250px;
 
   &:hover {
     transform: scale(1.1);
@@ -26,7 +27,6 @@ const ProductCard = ({ product }) => {
       <ProductImg
         src={`../../../assets${product.image}`}
         alt={product.productName}
-        width={250}
       />
       <ProductName>{product.productName}</ProductName>
       <ProductPrice>{`${product.price.toLocaleString()}원`}</ProductPrice>

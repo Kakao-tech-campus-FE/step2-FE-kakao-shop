@@ -9,6 +9,7 @@ const Container = styled.main`
 `;
 
 const ProductsList = styled.section`
+  border: 10px solid green;
   padding: 10px;
   display: grid;
   gap: 12px;

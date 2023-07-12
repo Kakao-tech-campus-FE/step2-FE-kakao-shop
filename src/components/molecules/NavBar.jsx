@@ -3,6 +3,7 @@ import Nav from "../atoms/Nav";
 import { Link } from "react-router-dom";
 
 const Container = styled.nav`
+  min-width: 600px;
   width: 1200px;
   margin: 0 auto;
   display: flex;
