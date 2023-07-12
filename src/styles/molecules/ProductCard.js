@@ -15,9 +15,6 @@ export const Title = styled.div`
     display: inline-block;
     font-size: 1em;
     color: black;
-    @media screen and (max-width: 700px) {
-        font-size: 0.6em;
-    }
 `
 
 export const TalkPriceText = styled.span`
@@ -35,7 +32,4 @@ export const PriceTextContainer = styled.div`
     text-decoration: none;
     display: inline-block;
     font-size: 1.1em;
-    @media screen and (max-width: 700px) {
-        font-size: 0.9em;
-    }
 `
