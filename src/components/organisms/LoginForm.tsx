@@ -39,6 +39,11 @@ const LoginForm = () => {
     validationCheck();
   }, [inputInfo]);
 
+  useEffect(() => {
+    setEmailHT('');
+    setPasswordHT('');
+  }, []);
+
   return (
     <div className="flex flex-col space-y-2">
       <InputGroup

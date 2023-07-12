@@ -45,6 +45,7 @@ const RegisterForm = () => {
     if (inputInfo.username)
       register({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
+          console.log(res);
           dispatch(loginStore({ email: inputInfo.email }));
           navigate('/');
         })
@@ -56,6 +57,13 @@ const RegisterForm = () => {
   useEffect(() => {
     validationCheck();
   }, [inputInfo]);
+
+  useEffect(() => {
+    setEmailHT('');
+    setPasswordHT('');
+    setUsernameHT('');
+    setPasswordConfirmHT('');
+  }, []);
 
   return (
     <div className="flex flex-col space-y-3">
