@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 
-// props: src
-export default function ImageLink({ to, className = "", alt, ...props }) {
+import Photo from "components/atoms/Photo";
+
+export default function ImageLink({ to, className = "", alt, src }) {
   return (
     <Link to={to}>
-      <img className={className} alt={alt} {...props} />
+      <Photo className={className} src={src} alt={alt} />
     </Link>
   );
 }
