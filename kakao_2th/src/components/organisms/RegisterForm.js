@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { useEffect, useState } from "react";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/api";
+import { register } from "../../services/index";
 import GNB from "../molecules/Gnb";
 import Alert from "../atoms/Alert";
 
