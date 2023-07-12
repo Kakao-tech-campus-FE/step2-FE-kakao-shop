@@ -7,7 +7,7 @@ const MenuAccount = () => {
   const isLoggedIn = useSelector(state => state.isLoggedIn.isLoggedIn);
 
   return (
-    <div>
+    <div className="menu_account">
       {
         isLoggedIn ? <Logout /> : <Login />
       }
