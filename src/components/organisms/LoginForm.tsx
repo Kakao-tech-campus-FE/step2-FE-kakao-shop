@@ -5,14 +5,13 @@ import { checkEmail, checkPassword } from '@utils/validationUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginStore } from '@store/slices/userSlice';
 import { RootState } from 'src/store';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import login from '@api/loginApi';
 import InputGroup from '../molecules/InputGroup';
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const email = useSelector((state: RootState) => state.user.email);
   const [emailHT, setEmailHT] = useState('');
   const [passwordHT, setPasswordHT] = useState('');
   const { value: inputInfo, handleOnChange } = useInput({
@@ -43,7 +42,6 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col space-y-2">
-      <span>{email}</span>
       <InputGroup
         inputName="email"
         labelName="이메일"
@@ -59,6 +57,9 @@ const LoginForm = () => {
         helperText={passwordHT}
         onChange={handleOnChange}
       />
+      <Link to="/register" className="text-sm text-[#979797]">
+        회원가입 페이지로
+      </Link>
       <FilledButton
         onClick={() => {
           loginReq();

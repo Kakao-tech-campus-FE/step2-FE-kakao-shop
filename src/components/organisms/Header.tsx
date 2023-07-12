@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { RootState } from 'src/store';
 
 const Header = () => {
@@ -7,9 +8,9 @@ const Header = () => {
   return (
     <div className="w-full bg-subGray h-[100px] flex items-center">
       {!isLoggedIn && (
-        <a href="login" className="absolute right-[10px]">
+        <Link to="/login" className="absolute right-[10px]">
           로그인
-        </a>
+        </Link>
       )}
     </div>
   );
