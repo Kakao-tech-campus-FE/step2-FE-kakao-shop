@@ -10,7 +10,7 @@ export const fetchProductFromCursor = (cursor) => {
 
 export const getProductById = (id) => {
   if (!id) {
-    throw Error("id가 없습니다.");
+    throw Error("id가 필요합니다.");
   }
   return instance.get("/products/" + id);
 };
