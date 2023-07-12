@@ -15,17 +15,14 @@ instance.interceptors.request.use((config) => {
   if (token) {
     configuration.headers.Authorization = `Bearer ${token}`;
   }
-  console.log(configuration);
   return configuration;
 });
 
 instance.interceptors.response.use(
   (response) => {
-    console.log(response);
     return response;
   },
   (error) => {
-    console.log(error.response.data.error.message);
     throw new Error();
   },
 );

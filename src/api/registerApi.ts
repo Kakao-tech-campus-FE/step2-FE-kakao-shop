@@ -20,11 +20,9 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    console.log('response', response);
     return response;
   },
   (error) => {
-    console.log(error.response.data.error.message);
     throw new Error();
   },
 );
