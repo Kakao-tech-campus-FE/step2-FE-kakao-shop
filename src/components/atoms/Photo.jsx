@@ -1,8 +1,18 @@
-const Photo = ({ src, alt, className }) => {
+const Photo = ({ src, alt, className, imgAnimation = "" }) => {
   return (
     <picture className={className}>
       <source srcSet={src} />
-      <img src={src} alt={alt} style={{ width: "inherit" }} />
+      <img
+        className={imgAnimation}
+        src={src}
+        alt={alt}
+        style={{
+          width: "inherit",
+          height: "inherit",
+          objectFit: "cover",
+          borderRadius: "inherit",
+        }}
+      />
     </picture>
   );
 };

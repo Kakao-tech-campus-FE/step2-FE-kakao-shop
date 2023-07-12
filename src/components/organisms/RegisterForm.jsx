@@ -64,7 +64,7 @@ const RegisterForm = () => {
   return (
     <>
       <Title></Title>
-      <Container>
+      <Container type={"form"}>
         <InputGroup
           id="email"
           name="email"
