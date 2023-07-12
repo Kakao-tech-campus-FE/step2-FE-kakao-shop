@@ -1,7 +1,7 @@
 import React from 'react';
-import useGetProductsQuery from '../apis/productApi';
-import ProductGrid from '../components/organisms/ProductGrid';
-import Container from '../components/atoms/Container';
+import useGetProductsQuery from '../../apis/productApi';
+import ProductGrid from '../organisms/ProductGrid';
+import Container from '../atoms/Container';
 
 const MainProductTemplate = () => {
   const { data: products, isSuccess } = useGetProductsQuery({ page: 0 });

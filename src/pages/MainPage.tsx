@@ -1,5 +1,5 @@
 import React from 'react';
-import MainProductTemplate from '../templates/MainProductTemplate';
+import MainProductTemplate from '../components/templates/MainProductTemplate';
 
 const MainPage = () => {
   return (
