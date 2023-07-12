@@ -5,7 +5,7 @@ import storage from 'redux-persist/lib/storage';
 import userReducer from './slices/userSlice';
 
 const persistStore = {
-  key: 'isLoggedIn',
+  key: 'user',
   storage,
   transforms: [
     expireReducer('user', {
