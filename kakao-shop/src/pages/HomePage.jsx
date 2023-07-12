@@ -8,8 +8,17 @@ import MainProductTemplate from "../components/templates/MainProductTemplate";
 const HomePage = () => {
   return (
     <div className="home-page">
-      <h1>Home page</h1>
-      <MainProductTemplate />
+      <section className="main-content">
+        <div className="my-10">
+          <h2 className="text-center text-4xl font-extrabold">
+            오늘의 추천 아이템
+          </h2>
+          <p className="mt-2 text-center text-lg text-gray-500">
+            카카오의 추천 아이템을 특가로 만나보세요
+          </p>
+        </div>
+        <MainProductTemplate />
+      </section>
     </div>
   );
 };

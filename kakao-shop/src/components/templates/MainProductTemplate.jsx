@@ -43,7 +43,7 @@ const MainProductTemplate = () => {
   }, [dispatch, page]);
 
   return (
-    <Container>
+    <Container className="whitespace-break-spaces mx-auto w-5/6">
       <Suspense fallback={<div>Loading...</div>}>
         <ProductGrid products={products} />
         {/* 하단이 될 빈 div */}

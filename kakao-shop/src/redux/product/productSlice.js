@@ -20,7 +20,6 @@ const productsSlice = createSlice({
       })
       .addCase(getProducts.fulfilled, (state, action) => {
         if (action.payload.response.length < 9) {
-          console.log("isEnd true");
           state.isEnd = true;
         }
 
