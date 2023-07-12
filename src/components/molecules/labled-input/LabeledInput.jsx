@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Label from "../../atoms/label/Label.jsx";
+import Label from "@/components/atoms/label/Label.jsx";
 import { useFormContext } from "react-hook-form";
 
 const Styled = {

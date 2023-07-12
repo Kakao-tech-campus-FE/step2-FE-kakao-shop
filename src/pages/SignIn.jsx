@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-import AuthTemplate from "../components/templates/auth-template/AuthTemplate.jsx";
-import Form from "../components/organisms/form/Form.jsx";
-import Button from "../components/atoms/button/Button.jsx";
+import AuthTemplate from "@/components/templates/auth-template/AuthTemplate.jsx";
+import Form from "@/components/organisms/form/Form.jsx";
+import Button from "@/components/atoms/button/Button.jsx";
 
-import FORM_INFO from "../constants/FORM_INFO.js";
-import FORM_DEFAULT from "../constants/FORM_DEFAULT.js";
-import routes from "../constants/routes.js";
-import authAPI from "../api/authAPI.js";
+import FORM_INFO from "@/constants/FORM_INFO.js";
+import FORM_DEFAULT from "@/constants/FORM_DEFAULT.js";
+import routes from "@/constants/routes.js";
+import authAPI from "@/api/authAPI.js";
 import { useSetAtom } from "jotai";
-import isLoggedInAtom from "../storage/common/isLoggedIn.atom.js";
+import isLoggedInAtom from "@/storage/common/isLoggedIn.atom.js";
 
 const Styled = {
   SignUsBtnContainer: styled.div`
@@ -38,6 +38,7 @@ function SignIn() {
   const onSignInSubmit = async (data) => {
     try {
       const response = await authAPI.signIn(data);
+      console.log(response);
       localStorage.setItem("accessToken", response.headers.authorization);
       localStorage.setItem("accessTokenDate", new Date().toString());
       setIsLoggedIn(true);

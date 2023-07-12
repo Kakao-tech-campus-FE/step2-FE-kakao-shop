@@ -9,7 +9,7 @@ import LogoButton from "../../atoms/logo-button/LogoButton.jsx";
 
 const Styled = {
   Container: styled.nav`
-    position: ${({ isStorybookMode }) => !isStorybookMode && "fixed"};
+    position: ${({ isStorybookMode }) => isStorybookMode || "fixed"};
 
     min-width: 80rem;
     height: 4rem;
@@ -30,7 +30,7 @@ const Styled = {
   `,
 };
 
-function GlobalNavBar({ isStorybookMode = false }) {
+function GlobalNavBar({ isStorybookMode }) {
   const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
   const navigate = useNavigate();
 

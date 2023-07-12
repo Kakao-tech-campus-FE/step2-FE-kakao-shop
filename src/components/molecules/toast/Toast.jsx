@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import CreatePortal from "../../CreatePortal.jsx";
+import Portal from "@/components/atoms/portal/Portal.jsx";
 
 const Button = styled.button`
   padding: 0.5rem 1rem;
@@ -84,14 +84,14 @@ function Toast({ label, notification, time, position, color }) {
         {label}
       </Button>
       {isOpen && (
-        <CreatePortal>
+        <Portal>
           <ToastContainer
             className={setPositionStyle(position)}
             style={{ backgroundColor: color }}
           >
             <Note>{notification}</Note>
           </ToastContainer>
-        </CreatePortal>
+        </Portal>
       )}
     </>
   );

@@ -2,9 +2,9 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import carouselItem1 from "../../../assets/carouselItem1.jpeg";
-import carouselItem2 from "../../../assets/carouselItem2.jpeg";
-import carouselItem3 from "../../../assets/carouselItem3.jpeg";
+import carouselItem1 from "@/assets/carouselItem1.jpeg";
+import carouselItem2 from "@/assets/carouselItem2.jpeg";
+import carouselItem3 from "@/assets/carouselItem3.jpeg";
 
 const Container = styled.div`
   position: relative;

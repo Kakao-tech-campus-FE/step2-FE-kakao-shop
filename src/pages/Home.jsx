@@ -1,4 +1,4 @@
-import GlobalTemplate from "../components/templates/global-template/GlobalTemplate.jsx";
+import GlobalTemplate from "@/components/templates/global-template/GlobalTemplate.jsx";
 
 function Home() {
   return (

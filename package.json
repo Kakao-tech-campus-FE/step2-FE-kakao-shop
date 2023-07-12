@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint week-1/ui-components/src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -18,7 +18,7 @@
     "react-dom": "^18.2.0",
     "react-helmet-async": "^1.3.0",
     "react-hook-form": "^7.45.1",
-    "react-router-dom": "^6.14.1",
+    "react-router-dom": "6.14.1",
     "styled-components": "^6.0.1",
     "styled-reset": "^4.5.1"
   },

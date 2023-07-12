@@ -1,7 +1,7 @@
-import GlobalNavBar from "../../organisms/global-navigation-bar/GlobalNavBar.jsx";
 import styled from "styled-components";
 import { Helmet } from "react-helmet-async";
 import PropTypes from "prop-types";
+import GlobalNavBar from "@/components/organisms/global-navigation-bar/GlobalNavBar.jsx";
 
 const Styled = {
   Container: styled.main`
@@ -15,7 +15,7 @@ const Styled = {
   `,
 };
 
-function GlobalTemplate({ title, children, isStorybookMode = false }) {
+function GlobalTemplate({ title, children, isStorybookMode }) {
   return (
     <>
       <Helmet>

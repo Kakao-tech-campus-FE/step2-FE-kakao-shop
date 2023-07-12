@@ -1,7 +1,7 @@
-import LabeledInput from "../../molecules/labled-input/LabeledInput.jsx";
 import { useForm, FormProvider } from "react-hook-form";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import LabeledInput from "@/components/molecules/labled-input/LabeledInput.jsx";
 
 const Styled = {
   Form: styled.form`
