@@ -61,21 +61,21 @@ const RegisterForm = () => {
     <div className="flex flex-col space-y-3">
       <InputGroup
         inputName="username"
-        labelName="username"
+        labelName="이름"
         value={inputInfo.username}
         helperText={usernameHT}
         onChange={handleOnChange}
       />
       <InputGroup
         inputName="email"
-        labelName="email"
+        labelName="이메일"
         value={inputInfo.email}
         helperText={emailHT}
         onChange={handleOnChange}
       />
       <InputGroup
         inputName="password"
-        labelName="password"
+        labelName="비밀번호"
         value={inputInfo.password}
         helperText={passwordHT}
         onChange={handleOnChange}
