@@ -11,7 +11,8 @@ const Main = () => {
     return (
         <>
             <div className='mainPage'>
-                메인페이지입니다.
+                홈페이지입니다.
+                <br></br>
                 <button onClick={logEmail}>이메일 있나?</button>
                 <button onClick={logToken}>토큰 있나?</button>
             </div>
