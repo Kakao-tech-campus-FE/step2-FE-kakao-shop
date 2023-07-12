@@ -7,6 +7,10 @@ interface CardProps {
 }
 
 const Card = ({ to, children }: CardProps) => {
-  return <Link to={to}>{children}</Link>;
+  return (
+    <Link className='mb-10' to={to}>
+      {children}
+    </Link>
+  );
 };
 export default Card;
