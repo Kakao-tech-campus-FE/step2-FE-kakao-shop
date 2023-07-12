@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useSetAtom } from "jotai";
 
 import AuthTemplate from "@/components/templates/auth-template/AuthTemplate.jsx";
 import Form from "@/components/organisms/form/Form.jsx";
@@ -9,8 +10,7 @@ import FORM_INFO from "@/constants/FORM_INFO.js";
 import FORM_DEFAULT from "@/constants/FORM_DEFAULT.js";
 import routes from "@/constants/routes.js";
 import authAPI from "@/api/authAPI.js";
-import { useSetAtom } from "jotai";
-import isLoggedInAtom from "@/storage/common/isLoggedIn.atom.js";
+import accessTokenAtom from "@/storage/common/accessToken.atom.js";
 
 const Styled = {
   SignUsBtnContainer: styled.div`
@@ -33,15 +33,13 @@ const Styled = {
 
 function SignIn() {
   const navigate = useNavigate();
-  const setIsLoggedIn = useSetAtom(isLoggedInAtom);
+  const setAccessToken = useSetAtom(accessTokenAtom);
 
   const onSignInSubmit = async (data) => {
     try {
       const response = await authAPI.signIn(data);
-      console.log(response);
-      localStorage.setItem("accessToken", response.headers.authorization);
+      setAccessToken(response.headers.authorization);
       localStorage.setItem("accessTokenDate", new Date().toString());
-      setIsLoggedIn(true);
       navigate(routes.home);
     } catch (e) {
       alert(e.response.data.error.message);

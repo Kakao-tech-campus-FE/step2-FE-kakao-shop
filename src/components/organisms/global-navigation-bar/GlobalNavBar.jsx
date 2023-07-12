@@ -1,11 +1,12 @@
+import { useEffect } from "react";
 import styled from "styled-components";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
-
-import isLoggedInAtom from "../../../storage/common/isLoggedIn.atom.js";
-import routes from "../../../constants/routes.js";
 import PropTypes from "prop-types";
-import LogoButton from "../../atoms/logo-button/LogoButton.jsx";
+
+import accessTokenAtom from "@/storage/common/accessToken.atom.js";
+import routes from "@/constants/routes.js";
+import LogoButton from "@/components/atoms/logo-button/LogoButton.jsx";
 
 const Styled = {
   Container: styled.nav`
@@ -31,18 +32,21 @@ const Styled = {
 };
 
 function GlobalNavBar({ isStorybookMode }) {
-  const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const navigate = useNavigate();
 
   const onAuthButtonClick = () => {
-    if (isLoggedIn) {
-      localStorage.removeItem("accessToken");
+    if (accessToken) {
+      setAccessToken("");
       localStorage.removeItem("accessTokenDate");
-      setIsLoggedIn(false);
       return;
     }
     navigate(routes.signIn);
   };
+
+  useEffect(() => {
+    console.log(accessToken);
+  }, [accessToken]);
 
   return (
     <Styled.Container isStorybookMode={isStorybookMode}>
@@ -54,7 +58,7 @@ function GlobalNavBar({ isStorybookMode }) {
 
       <Styled.ButtonBox>
         <Styled.AuthButton onClick={onAuthButtonClick}>
-          {isLoggedIn ? "로그아웃" : "로그인"}
+          {accessToken ? "로그아웃" : "로그인"}
         </Styled.AuthButton>
       </Styled.ButtonBox>
     </Styled.Container>
