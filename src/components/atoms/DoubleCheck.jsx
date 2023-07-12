@@ -19,7 +19,8 @@ const DoubleCheckStyle = styled.button`
 
     
 `
-
+//중복확인 버튼 스타일을 주기 위한 컴포넌트.
+//onClick 이벤트 발생 시 실행할 함수를 넘겨준다.
 const DoubleCheck = ({ onClick }) => {
     return (
         <DoubleCheckStyle onClick={onClick}>

@@ -11,8 +11,7 @@ const ContainerCss = styled.div`
 
 `
 
-
-
+//inputGroup들 전체를 감싸는 컴포넌트.
 const Container = ({ children }) => {
     return (
 

@@ -15,7 +15,8 @@ const Btn = styled.button`
     font-size: 16px;
 
 `
-
+//회원가입,로그인 폼을 제출하는 버튼.
+//onClick 프롭은 클릭 이벤트 발생 시 실행할 함수를 받는다.
 const Button = ({ onClick, children }) => {
     return (
         <Btn onClick={(e) => {

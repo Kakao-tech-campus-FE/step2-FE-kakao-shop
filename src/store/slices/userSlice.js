@@ -18,6 +18,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
         }
     },
+    // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
     extraReducers: (builder) => {
         builder.addCase(loginRequest.pending, (state, action) => {
             state.loading = true;
@@ -44,13 +45,27 @@ export const loginRequest = createAsyncThunk(
         //if (typeof email !== 'string' {throw new Error('이메일 형식 틀림')})
 
         const response = await login({ email, password });
-        return {
-            email: email,
-            token: response.headers.authorization,
-        };
 
-    }
-)//로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
+        if (response.status === 200) {
+            alert('로그인성공')
+                .then(() => {
+
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("token", response.headers.authorization);
+
+                })
+                .then(() => {
+                    window.location.href = "/home";
+                })
+
+            return {
+                email: email,
+                token: response.headers.authorization,
+            };
+
+        }
+    })
+//로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
 
 export const { setEmail } = userSlice.actions;
-export default userSlice.reducers;
+export default userSlice.reducer;

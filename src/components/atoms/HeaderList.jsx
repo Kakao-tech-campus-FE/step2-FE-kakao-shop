@@ -7,7 +7,9 @@ const HeaderListStyle = styled.div`
 
 `
 
-
+//홈화면에 로그인,회원가입 버튼을 보여주고, 로그인 시 로그아웃 버튼을 보여준다.
+//name 은 들어갈 이름, onClick 은 클릭 시 들어갈 함수(navigate 가 들어간다.)
+//slash는 로그인 하기 전에 true 값, 로그인 후 false 값이 들어간다.
 const HeaderList = ({ name, onClick, slash }) => {
     return (<>
 
