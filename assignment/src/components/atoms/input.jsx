@@ -6,21 +6,30 @@
 // placeholder : input요소에 표시되는 힌트텍스트
 // id : Input 요소의 고유한 식별자 id : 레이블과 연결할 때 사용
 import '../../styles/atoms/Input.css'
-const Input = ({ type, value, name, className, onChange, placeholder, id, message }) => {
-    return (
-        <>
-        <input
-            id={id}
-            name={name}
-            className={className}
-            type={type}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-        />
-        <span>{message}</span>
-        </>
-    );
+const Input = ({
+  type,
+  value,
+  name,
+  className,
+  onChange,
+  placeholder,
+  id,
+  message,
+}) => {
+  return (
+    <>
+      <input
+        id={id}
+        name={name}
+        className={className}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+      />
+      <span>{message}</span>
+    </>
+  )
 }
 
-export default Input;
+export default Input

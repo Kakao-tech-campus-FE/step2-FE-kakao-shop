@@ -4,9 +4,10 @@
 // className : 스타일링
 
 const Label = ({ children, htmlFor, className }) => {
-    return (
-        <label htmlFor={htmlFor} className={className}>{children}
-        </label>
-    )
+  return (
+    <label htmlFor={htmlFor} className={className}>
+      {children}
+    </label>
+  )
 }
-export default Label;
+export default Label
