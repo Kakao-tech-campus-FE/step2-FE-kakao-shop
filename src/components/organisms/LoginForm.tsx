@@ -59,13 +59,7 @@ const LoginForm = () => {
       <Link to="/register" className="text-sm text-[#979797]">
         회원가입 페이지로
       </Link>
-      <FilledButton
-        onClick={() => {
-          loginReq();
-        }}
-      >
-        로그인
-      </FilledButton>
+      <FilledButton onClick={loginReq}>로그인</FilledButton>
     </div>
   );
 };

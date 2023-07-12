@@ -87,13 +87,7 @@ const RegisterForm = () => {
         helperText={passwordConfirmHT}
         onChange={handleOnChange}
       />
-      <FilledButton
-        onClick={() => {
-          registerReq();
-        }}
-      >
-        제출
-      </FilledButton>
+      <FilledButton onClick={registerReq}>제출</FilledButton>
     </div>
   );
 };
