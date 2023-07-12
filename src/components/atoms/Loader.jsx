@@ -1,6 +1,8 @@
+import * as LoadComponent from '../../styles/atoms/Loader';
+
 const Loader = () => {
     return(
-        <>
+        <LoadComponent.LoaderContainer>
             <div className="loader loader--style5" title="4">
                 <svg 
                 version="1.1" 
@@ -49,7 +51,7 @@ const Loader = () => {
                     </rect>
                 </svg>
             </div>
-        </>
+        </LoadComponent.LoaderContainer>
     );
 };
 
