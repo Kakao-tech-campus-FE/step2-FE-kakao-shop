@@ -11,6 +11,7 @@ import Link from "../atoms/Link";
 import { SlMenu } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { GoGift } from "react-icons/go";
+import Photo from "../atoms/Photo";
 
 /**
  * 선물하기 헤더의 내부 헤더 컴포넌트
@@ -34,7 +35,11 @@ export default function InnerHead() {
   return (
     <div className="innerhead flex justify-between items-center min-w-[740px]">
       <div className="innerhead-left flex gap-4 items-center h-14 font-bold mx-12">
-        <img src="/logoGift.png" alt="kakao-shopping" className="w-20 mr-12" />
+        <Photo
+          src="/logoGift.jpg"
+          alt="kakao-shopping"
+          className="w-20 mr-12 h-fit"
+        />
         <nav className="gnb">
           <ul className="flex justify-between w-48">
             <li>
