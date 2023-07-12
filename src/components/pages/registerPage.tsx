@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterTemplate from '../templates/registerTemplate';
 import { RegisterFormData } from '../../types/formData';
-import { requestUserRegistration } from '../../apis/axios';
+import { requestUserRegistration } from '../../apis/user';
 
 export default function RegisterPage() {
   const {

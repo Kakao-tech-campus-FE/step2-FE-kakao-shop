@@ -8,7 +8,7 @@ import { RegisterFormData } from '../../types/formData';
 import { REGISTER_VALID_REGEX } from '../../utils/regex';
 import { REGISTER_ERROR_MSG } from '../../utils/errorMsg';
 import { debounce } from '../../utils/debounce';
-import { checkEmail } from '../../apis/axios';
+import { checkEmail } from '../../apis/user';
 import { DEBOUNCE_TIMEOUT } from '../../utils/common';
 
 interface RegisterFormProps {
