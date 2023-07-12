@@ -4,7 +4,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { register } from "../../services/api";
+import { register } from "../../services/user";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "../../styles/organisms/RegisterForm.css"

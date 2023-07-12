@@ -8,18 +8,16 @@ import { setEmail } from "../../store/slices/userSlice";
 import { setLogin } from "../../store/slices/loginSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux"
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import authReducer from "../../store/reducers"
 
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();  //redux 의 액션을 발생시키는 함수!!
     const email = useSelector((state) => state.user.email) // 최상위 state에서 데이터 가져오기
-    const store = createStore(authReducer, applyMiddleware(thunk));
 
     const {
         value,
@@ -50,7 +48,7 @@ const LoginForm = () => {
                 dispatch(setLogin({
                     login: true,
                 }));
-                localStorage.setItem("email", value.email);
+                localStorage.setItem("email", value.email); // 새로고침하면 로그인이 풀리는 걸 방지하기 위해, 로컬스토리지에 로그인 상태 저장
             navigate("/");// 홈페이지로 리다이렉트
         })
             .catch((err) => {

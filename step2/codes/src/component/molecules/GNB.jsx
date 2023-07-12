@@ -10,7 +10,7 @@ import "../../styles/molecules/GNB.css";
 const GNB = ({ children }) => {
 
     const dispatch = useDispatch();
-    const loginState = useSelector(state => state.login.loginState);
+    const email = useSelector(state => state.user.email);
     // const email = useSelector(state => state.user.email);
 
     const logOut =() => {
@@ -19,7 +19,7 @@ const GNB = ({ children }) => {
       }));
     }
 
-    if (loginState) {
+    if (email) {
     return <Container className={"gnb"}>
       <Box className={"gnb"}>
       <Box className={"gnb_inner"}>

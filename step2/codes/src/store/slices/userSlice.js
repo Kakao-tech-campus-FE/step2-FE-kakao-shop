@@ -1,6 +1,6 @@
 // 슬라이스: 각각의 리듀서에 해당하는 파일을 관리
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 
 const initialState = {
     email: localStorage.getItem("email"),
