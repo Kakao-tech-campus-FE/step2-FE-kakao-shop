@@ -32,4 +32,4 @@ interface ProductDetailResponse {
   error: null | Error;
 }
 
-export type { ProductListResponse, ProductDetailResponse };
+export type { ProductListResponse, ProductDetailResponse, Product };

@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Spinner from './components/common/atoms/Spinner';
+import SkeletonList from './components/common/molecules/SkeletonList';
 
 const MainPage = lazy(() => import('./pages/Main'));
 const LoginPage = lazy(() => import('./pages/Login'));
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
       {
         path: '',
         element: (
-          <Suspense fallback={<Spinner width={60} height={60} />}>
+          <Suspense fallback={<SkeletonList count={15} />}>
             <MainPage />
           </Suspense>
         ),
