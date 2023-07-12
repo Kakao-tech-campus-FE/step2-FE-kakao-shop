@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Container from '../atoms/Container';
 
 const Footer = () => {
   return (
-    <div className='fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-slate-50'>
-      <div className='m-auto flex max-w-[1280px] py-4'>
+    <div className='h-44 border-t border-gray-200 bg-slate-50'>
+      <Container className='flex py-4'>
         <Link to='/'>
           <img
             width='144'
@@ -39,7 +40,7 @@ const Footer = () => {
             배송 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
           </p>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };
