@@ -34,9 +34,9 @@ const MainSection = () => {
 
   return (
     <Container className="product-section">
-      {loading && <p>Loading...</p>}
       {error && <p>Error</p>}
-      <ProductGrid products={products} />
+      <ProductGrid products={products} loading={loading} />
+
       <div ref={bottomObserver}></div>
     </Container>
   );
