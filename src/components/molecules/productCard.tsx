@@ -1,15 +1,23 @@
 import Photo from '../atoms/photo';
+import ProductCardSkeleton from '../atoms/productCardSkeleton';
 
 interface ProductCardprops {
   productName: string;
   description: string;
   image: string;
   price: number;
+  isLoading?: boolean;
 }
 
 export default function ProductCard({
-  productName, description, image, price,
+  productName, description, image, price, isLoading = false,
 }: ProductCardprops) {
+  if (isLoading) {
+    return (
+      <ProductCardSkeleton />
+    );
+  }
+
   return (
     <div className="flex h-80 w-80 flex-col rounded-lg p-3
     hover:bg-stone-200"
