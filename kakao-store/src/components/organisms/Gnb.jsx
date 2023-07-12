@@ -3,27 +3,31 @@ import Box from "../atoms/Box";
 import Container from "../atoms/Container";
 import { NavLink } from "react-router-dom";
 import Button from "../atoms/Button";
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
 
 /**
  * GNB 컴포넌트 생성
  * @returns GNB 컴포넌트
  */
 const Gnb = () => {
+    // const email = useSelector((state) => state.user.email);
     // 현재 로그인 상태 관리
-    const [loginState, setLoginState] = useState(false);
+    const [isLogin, setIsLogin] = useState(false);
+    const dispatch = useDispatch();    
     
     useEffect(() => {
         const currentTime = new Date().getTime();
         const previousTime = localStorage.getItem('Time');
 
         // 시간 비교 : 1일
-        if(currentTime - previousTime < 1000 * 60 * 60 * 24) {
-            setLoginState(true);
+        if(currentTime - previousTime < 1000 * 60 * 60 * 24 && localStorage.getItem("token") != null) {
+            setIsLogin(true);
         }
         else {
             localStorage.removeItem('token');
             localStorage.removeItem('Time');
-            setLoginState(false);
+            setIsLogin(false);
         }
     }, []);
 
@@ -35,15 +39,16 @@ const Gnb = () => {
                         <img src="/img/logoKakao.png" width="100px"/>
                     </Box>
                     <Box className="flex items-center space-x-4">
-                        {loginState === false &&
+                        {isLogin === false &&
                             <NavLink to="/login"> 
                                 로그인
                             </NavLink>
                         }
-                        {loginState === true &&
+                        {isLogin === true &&
                             <Button onClick={() => {
                                 localStorage.removeItem('Time');
                                 localStorage.removeItem('token');
+                                dispatch(setEmail(null));
                                 alert('로그아웃 되었습니다.');
                                 window.location.href = '/';
                             }}>
