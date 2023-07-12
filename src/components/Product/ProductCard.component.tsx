@@ -1,20 +1,15 @@
 import { Product } from "@/dtos/product.dto";
 import Badge from "@/components/common/Badge.component";
 import Txt from "@/components/common/Txt.component";
-import SkeletonLoading from "@/components/common/SkeletonLoading.component";
 import { pointByThree } from "@/functions/utils";
 
 interface ProductCardProps {
   product: Product;
-  isLoading?: boolean;
 }
 
-const ProductCard = ({ product, isLoading }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <SkeletonLoading
-      className="h-fit cursor-pointer flex flex-col gap-2"
-      isLoading={isLoading}
-    >
+    <div className="h-fit cursor-pointer flex flex-col gap-2">
       <div className="w-full overflow-hidden h-[62.5%]">
         <picture>
           <img
@@ -35,7 +30,7 @@ const ProductCard = ({ product, isLoading }: ProductCardProps) => {
         <Txt typograph="h5"> {pointByThree(product.price)} </Txt>
         <Txt typograph="h5">원 부터~</Txt>
       </div>
-    </SkeletonLoading>
+    </div>
   );
 };
 
