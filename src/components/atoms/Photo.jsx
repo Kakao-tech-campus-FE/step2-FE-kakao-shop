@@ -1,3 +1,5 @@
+import "../../styles/productCard.css"
+
 const Photo = ({ className, src, alt }) => {
     return (
         <picture className={className}>
@@ -6,3 +8,5 @@ const Photo = ({ className, src, alt }) => {
         </picture>
     )
 }
+
+export default Photo;

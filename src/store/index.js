@@ -1,5 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./slice/userSlice";
+import productReducer from "./slice/productSlice";
 import storage from 'redux-persist/lib/storage';
 import {persistReducer, persistStore} from "redux-persist";
 
@@ -12,7 +13,8 @@ const persistedReducer = persistReducer(persistConfig, userReducer);
 
 const store = configureStore({
         reducer: {
-            user: persistedReducer
+            user: persistedReducer,
+            product: productReducer
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware({
             serializableCheck: false

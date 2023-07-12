@@ -1,0 +1,15 @@
+.product-grid{
+    width : 80%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    margin: 0 2rem;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+@media screen and (max-width: 768px){
+    .product-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

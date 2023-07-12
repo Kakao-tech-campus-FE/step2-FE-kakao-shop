@@ -7,7 +7,7 @@ const MainLayout = () => {
     return (
         <>
             <GlobalNavBar/>
-            <Outlet />
+            <Outlet/>
             <Footer/>
         </>
     );
