@@ -1,13 +1,10 @@
 import React from 'react';
-import ComponentsPage from './pages/ComponentsPage';
+// import ComponentsPage from './pages/ComponentsPage';
+import RegisterPage from './pages/RegisterPage';
 
-const App = () => {
-  return (
-    <div>
-      <h1>Assignment3</h1>
-      <ComponentsPage />
-    </div>
-  );
-};
+
+function App() {
+  return <RegisterPage />;
+}
 
 export default App;
