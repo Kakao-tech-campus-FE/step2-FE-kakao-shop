@@ -3,12 +3,22 @@ import Button from "../atoms/Button";
 
 const SelectedOption = ({ selectedOption, setSumOptionCount, setSumOptionPrice, className }) => {
   const [optionCount, setOptionCount] = useState(1);
-
+  const [buttonValid, setButtonValid] = useState(false);
   const handleCountClick = (count) => {
-    if(count === -5 && optionCount === 1) return;
-    setOptionCount(prev => prev + count);
-    setSumOptionCount(prev => prev + count);
-    setSumOptionPrice(prev => prev + count * selectedOption.price);
+    if(count === -1 && optionCount === 1) {
+      setButtonValid(false);
+      return;
+    } else if(count === -1 && optionCount === 2) {
+      setButtonValid(false);
+      setOptionCount(prev => prev + count);
+      setSumOptionCount(prev => prev + count);
+      setSumOptionPrice(prev => prev + count * selectedOption.price);  
+    } else {
+      setButtonValid(true);
+      setOptionCount(prev => prev + count);
+      setSumOptionCount(prev => prev + count);
+      setSumOptionPrice(prev => prev + count * selectedOption.price);
+    }
   }
 
   return (
@@ -21,7 +31,7 @@ const SelectedOption = ({ selectedOption, setSumOptionCount, setSumOptionPrice, 
           <div className="flex my-2 items-center">
             <Button 
               onClick={() => handleCountClick(-1)}
-              className="border mx-1 bg-gray-100 border-gray-500 rounded-md w-5 h-5 flex justify-center items-center"
+              className={`${buttonValid ? '' : 'text-gray-200'} border mx-1 bg-gray-100 border-gray-500 rounded-md w-5 h-5 flex justify-center items-center`}
             >
               <div>-</div>
             </Button>

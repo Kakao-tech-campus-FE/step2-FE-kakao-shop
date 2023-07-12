@@ -9,7 +9,7 @@ const instance = axios.create({
     
   }
 });
-
+console.log(instance);
 export const loginApi = (data) => {
   const {email, password} = data;
   return (

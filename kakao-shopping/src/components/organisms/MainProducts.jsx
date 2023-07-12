@@ -1,7 +1,7 @@
 import Container from "../atoms/Container";
 import Button from "../atoms/Button";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 
 const MainProducts = ({slicedData}) => {
 
@@ -13,7 +13,7 @@ const MainProducts = ({slicedData}) => {
   
   return (
     <Container className="flex flex-wrap w-240">
-    {slicedData.map((product) => (
+    {slicedData?.map((product) => (
       <div key={product.productName} className="w-60 m-10">
       <Button onClick={() => handleProductClick(product.id)}>
         <div className="flex flex-col">

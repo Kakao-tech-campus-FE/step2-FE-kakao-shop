@@ -82,6 +82,7 @@ const LoginForm = () => {
       <Link to='/register'><span className="text-sm">회원가입</span></Link>
       </div>
     </Container>
+
   );
 }
 export default LoginForm;
