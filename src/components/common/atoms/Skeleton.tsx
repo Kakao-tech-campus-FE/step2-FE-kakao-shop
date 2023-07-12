@@ -29,6 +29,7 @@ to{
 
 const Wrap = styled.div`
   padding: 10px;
+  margin: 10px;
   background-color: ${colors.white};
   border-radius: 10px;
   box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.2);
