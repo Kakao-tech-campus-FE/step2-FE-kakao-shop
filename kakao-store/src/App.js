@@ -8,9 +8,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />}></Route>
+          {/* 단독 레이아웃 */}
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
+          {/* 공통 레이아웃 */}
+          <Route path="/" element={<HomePage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
