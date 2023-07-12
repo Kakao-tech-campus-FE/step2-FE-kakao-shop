@@ -9,12 +9,9 @@ import { useDispatch } from 'react-redux';
 import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
 import { useNavigate } from 'react-router-dom';
 import { checkEmailDup } from '@api/registerApi';
+import { register } from '@api/registerApi';
 
-interface RegisterFromProps {
-  onSubmit: (data: { email: string; password: string; username: string }) => Promise<AxiosResponse>;
-}
-
-const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
+const RegisterForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [usernameHT, setUsernameHT] = useState('');
@@ -49,7 +46,7 @@ const RegisterForm = ({ onSubmit }: RegisterFromProps) => {
 
   const registerReq = () => {
     if (inputInfo.username)
-      onSubmit({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
+      register({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
           dispatch(loginStore({ email: inputInfo.email }));
           navigate('/');
