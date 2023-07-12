@@ -1,0 +1,7 @@
+picture.card {
+  width: 200px;
+}
+
+picture > img {
+  width: inherit;
+}

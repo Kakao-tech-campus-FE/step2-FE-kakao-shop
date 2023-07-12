@@ -3,7 +3,7 @@ import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import Gnb from "../molecules/Gnb";
+import GNB from "../atoms/GNB";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useState } from "react";
@@ -39,7 +39,7 @@ const LoginForm = () => {
     if (!validationRegex.test(value)) {
       return errorMessage;
     }
-    return "";
+    return null;
   };
 
   const handleEmailBlur = () => {
@@ -66,7 +66,7 @@ const LoginForm = () => {
   return (
     <div className="mt-32">
       <Title>
-        <Gnb />
+        <GNB />
       </Title>
       <Container>
         <InputGroup

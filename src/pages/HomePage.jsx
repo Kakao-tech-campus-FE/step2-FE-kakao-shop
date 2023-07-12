@@ -1,7 +1,11 @@
-import Gnb from "../components/molecules/Gnb";
-
+import MainProductTemplate from "../components/templates/MainProductTemplate";
 const HomePage = () => {
-  return <Gnb />;
+  return (
+    <div>
+      <h1>Home Page</h1>
+      <MainProductTemplate />
+    </div>
+  );
 };
 
 export default HomePage;

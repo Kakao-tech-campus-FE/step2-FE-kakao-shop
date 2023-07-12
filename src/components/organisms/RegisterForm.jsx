@@ -3,8 +3,8 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import Gnb from "../molecules/Gnb";
-import { register } from "../../services/api";
+import GNB from "../atoms/GNB";
+import { register } from "../../services/user";
 import { useState } from "react";
 
 const RegisterForm = () => {
@@ -87,7 +87,7 @@ const RegisterForm = () => {
   return (
     <div className="mt-32">
       <Title>
-        <Gnb />
+        <GNB />
       </Title>
       <Container>
         <InputGroup

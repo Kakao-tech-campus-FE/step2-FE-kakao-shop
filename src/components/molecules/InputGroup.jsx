@@ -1,6 +1,6 @@
 import Box from "../atoms/Box";
 import Label from "../atoms/Label";
-import Input from "../atoms/input";
+import Input from "../atoms/Input";
 
 const InputGroup = ({
   id,
