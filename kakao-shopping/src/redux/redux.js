@@ -15,7 +15,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginSuccess, logout, rejected } = authSlice.actions;
+export const { loginSuccess, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 // Redux Toolkit으로 리팩토링 하기 전의 코드
