@@ -1,8 +1,9 @@
-import Input from "../atoms/Input";
-import Box from "../atoms/Box";
-import Label from "../atoms/Label";
+import React from 'react';
+import Input from '../atoms/Input';
+import Box from '../atoms/Box';
+import Label from '../atoms/Label';
 
-const InputGroup = ({
+function InputGroup({
   id,
   type,
   value,
@@ -12,7 +13,7 @@ const InputGroup = ({
   label,
   placeholder,
   message,
-}) => {
+}) {
   return (
     <Box className={className}>
       <Label htmlFor={id}>{label}</Label>
@@ -27,6 +28,6 @@ const InputGroup = ({
       />
     </Box>
   );
-};
+}
 
 export default InputGroup;

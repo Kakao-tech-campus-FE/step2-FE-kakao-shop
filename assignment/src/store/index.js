@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice";
-import productsReducer from "./slices/productSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import userReducer from './slices/userSlice';
+import productsReducer from './slices/productSlice';
 
 const store = configureStore({
   // 우리는 이메일 정보를 글로벌로 저장할거임

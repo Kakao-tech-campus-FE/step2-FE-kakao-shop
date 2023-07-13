@@ -1,21 +1,20 @@
 .link-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .link-container .logo {
-    width: 130px; /* 이미지의 크기를 조정 */
-    height: auto;
-    margin : 20px;
-  }
-  
-  .link-container div {
-    margin: 0 20px;
-    order: 2;
-  }
-  
-  .link-container a {
-    margin-left: 10px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link-container .logo {
+  width: 130px; /* 이미지의 크기를 조정 */
+  height: auto;
+  margin: 20px;
+}
+
+.link-container div {
+  margin: 0 20px;
+  order: 2;
+}
+
+.link-container a {
+  margin-left: 10px;
+}

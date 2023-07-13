@@ -8,7 +8,7 @@
 }
 
 .toggle.on {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .toggle.off {
@@ -33,4 +33,3 @@
 .switch.off {
   transform: translateX(0);
 }
-

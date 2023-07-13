@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 const useInput = (initialValue) => {
   // const [loading, setLoading] = useState(false);
   const [value, setValue] = useState(initialValue);
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [isPwOk, setIsPwOk] = useState(false);
   const [isEmailOk, setIsEmailOk] = useState(false);
   const [isAllOk, setIsAllOk] = useState(false);
@@ -23,8 +23,8 @@ const useInput = (initialValue) => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    console.log("name", name);
-    console.log("value", value);
+    console.log('name', name);
+    console.log('value', value);
 
     setValue((prev) => ({ ...prev, [name]: value }));
     // setLoading(false);
@@ -34,13 +34,13 @@ const useInput = (initialValue) => {
     const { name, value } = e.target;
     if (!validatePassword(value)) {
       setPasswordError(
-        " 비밀번호는 영문, 숫자, 특수문자를 포함하여 8~20자로 입력해주세요."
+        ' 비밀번호는 영문, 숫자, 특수문자를 포함하여 8~20자로 입력해주세요.',
       );
       setIsPwOk(false);
     } else {
-      setPasswordError("");
+      setPasswordError('');
       setIsPwOk(true);
-      console.log("실행체크");
+      console.log('실행체크');
     }
     setValue((prev) => ({ ...prev, [name]: value }));
     // setLoading(false);
@@ -49,10 +49,10 @@ const useInput = (initialValue) => {
   const handleEmailChange = (e) => {
     const { name, value } = e.target;
     if (!validateEmail(value)) {
-      setEmailError(" 올바른 이메일 형식이 아닙니다.");
+      setEmailError(' 올바른 이메일 형식이 아닙니다.');
       setIsEmailOk(false);
     } else {
-      setEmailError("");
+      setEmailError('');
       setIsEmailOk(true);
     }
 

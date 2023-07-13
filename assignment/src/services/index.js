@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL, // production level 에서는 env에서 넣어주어야함(보안 관련)
@@ -6,17 +6,17 @@ const instance = axios.create({
   headers: {
     'Content-Type': 'application/json', // 서버단에서 이런 형태를 많이써서, 프론트단에서 쏴줄 때 이렇게 많이 쓴다.
   },
-})
+});
 
-instance.interceptors.request.use(config => {
-  const token = localStorage.getItem('token')
+instance.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
   if (token) {
-    config.headers['Authorization'] = token
+    config.headers.Authorization = token;
   }
-  return config
-})
+  return config;
+});
 
-export default instance
+export default instance;
 
 // // response 단에서 error의 처리
 // // 2개의 파라미터 - 정상 처리 & 에러 처리

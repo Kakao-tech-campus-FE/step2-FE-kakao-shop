@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchProducts } from "../../services/product";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchProducts } from '../../services/product';
 
 // redux- thunk를 활용한 비동기 처리
 
@@ -11,7 +11,7 @@ const initialState = {
 // createAsync Thunk을 하려면 extra Reducer를 쓴다.
 
 const productsSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   extraReducers: (builder) => {
     // 로딩시작
@@ -34,12 +34,12 @@ const productsSlice = createSlice({
 });
 
 export const getProducts = createAsyncThunk(
-  "products/getProducts",
+  'products/getProducts',
   async (page) => {
     // page에 따라 product를 불러오게 된다.
     const response = await fetchProducts(page);
     return response.data; // action.payload 안에 담기는 값 정의
-  }
+  },
 );
 
 export default productsSlice.reducer;

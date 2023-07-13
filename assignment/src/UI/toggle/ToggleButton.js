@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ToggleButton.css';
 
-const Toggle = () => {
+function Toggle() {
   const [isToggled, setIsToggled] = useState(false);
 
   const handleToggle = () => {
@@ -9,8 +9,11 @@ const Toggle = () => {
   };
 
   return (
-    <div className={`toggle ${isToggled ? 'on' : 'off'}`} onClick={handleToggle}>
-      <div className={`switch ${isToggled ? 'on' : 'off'}`}></div>
+    <div
+      className={`toggle ${isToggled ? 'on' : 'off'}`}
+      onClick={handleToggle}
+    >
+      <div className={`switch ${isToggled ? 'on' : 'off'}`} />
     </div>
   );
 }

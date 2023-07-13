@@ -1,6 +1,8 @@
 // Button
 // onClick : 기본내장되어있는 업데이트를 막도록 설정
 // children : 무슨버튼인지
+import React from 'react';
+
 function Button({ onClick, children, disabled }) {
   return (
     <button

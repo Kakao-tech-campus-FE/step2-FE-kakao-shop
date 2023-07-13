@@ -1,7 +1,8 @@
-import { Outlet } from 'react-router-dom'
-import GNB from '../src/components/atoms/GNB'
+import { Outlet } from 'react-router-dom';
+import React from 'react';
+import GNB from '../src/components/atoms/GNB';
 
-const MainLayout = () => {
+function MainLayout() {
   return (
     <>
       {/* 로그인 버튼, 장바구니 버튼, 메인로고 */}
@@ -10,7 +11,7 @@ const MainLayout = () => {
       <Outlet />
       {/* 푸터 영역 */}
     </>
-  )
+  );
 }
 
-export default MainLayout
+export default MainLayout;
