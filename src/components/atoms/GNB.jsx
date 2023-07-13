@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import cookies from "react-cookies";
-import "../../App.css"
 import { useDispatch, useSelector } from "react-redux";
 import { removeToken } from "../../store/slices/userSlice";
+import styles from "./GNB.module.css";
 
 const GNB = () => {
     const token = useSelector((state) => state.user.token);
@@ -15,41 +15,34 @@ const GNB = () => {
         window.location.reload();
     }
     return (
-        <header className="header">
-            <div className="contents">
-                <Link to="/">
-                    <img src={`${process.env.PUBLIC_URL}\logoKakao.png`} alt="logoKakao.png" height={30} />
-                </Link>
-                <nav>
-                    <span>
-                        {/* 장바구니 버튼 */}
-                        <Link to="/cart">
-                            <img src={`${process.env.PUBLIC_URL}\cart.png`} height={30} />
-                        </Link>
-                    </span>
-                </nav>
-                <span>
-                    { token ? (
-                        <Link 
-                            to="/"
-                            onClick={handleLogout}
-                            style={{ textDecoration: "none", color: "black" }}
-                        >
-                            {"  "}
-                            로그아웃{"  "}
-                        </Link>
-                    ) : (
-                        <Link
-                            to="/login"
-                            style={{ textDecoration: "none", color: "black" }}
-                        >
-                            {"  "}
-                            로그인{"  "}
-                        </Link>
-                    )}
-                </span>
+        <>
+        <header className={styles.head}>
+            <div className={styles.inner}>
+                <div className={styles.contents}>
+                    <Link className={styles.link_logo} to="/">
+                        <img className={styles.img_logo} src={`${process.env.PUBLIC_URL}\logoKakao.png`} alt="logoKakao.png" />
+                    </Link>
+                    <nav className={styles.utils}>
+                        <div className={styles.cart}>
+                            {/* 장바구니 버튼 */}
+                            <Link className={styles.link_cart} to="/cart">
+                                <img className={styles.img_cart} src={`${process.env.PUBLIC_URL}\cart.png`} />
+                            </Link>
+                        </div>
+                    </nav>
+                    <span className={styles.partition}></span>
+                    <div className={styles.user_menu}>
+                        { token ? 
+                            <Link to="/" onClick={handleLogout}>로그아웃</Link>
+                            :
+                            <Link className={styles.link_login} to="/login">로그인</Link>
+                        }
+                    </div>
+                </div>
             </div>
         </header>
+        <div className={styles.space}></div>
+        </>
     )
 }
 
