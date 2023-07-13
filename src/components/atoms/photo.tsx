@@ -9,7 +9,12 @@ export default function Photo({
   return (
     <picture className="h-[inherit] w-[inherit] rounded-[inherit]">
       <source srcSet={src} />
-      <img className="h-[inherit] w-[inherit] rounded-[inherit] object-cover" src={src} alt={alt} />
+      <img
+        className="h-[inherit] w-[inherit] rounded-[inherit] object-cover"
+        src={src}
+        alt={alt}
+        loading="lazy"
+      />
     </picture>
   );
 }
