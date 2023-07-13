@@ -5,9 +5,9 @@
  * @returns 컨테이너 컴포넌트 생성
  */
 
-const Container = ({ children }) => {
+const Container = ({ children, className="" }) => {
     return (
-        <div className="container">
+        <div className={`container ${className}`}>
             {children}
         </div>
     );

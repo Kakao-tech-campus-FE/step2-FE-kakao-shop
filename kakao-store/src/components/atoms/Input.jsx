@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /**
  * 입력 컴포넌트 생성
  * @param {string} type - 입력 타입
@@ -11,14 +10,12 @@
  * @returns 입력 컴포넌트 생성
  */
 const Input = ({type, value, onChange, placeholder, className, id, name}) => {
-=======
-const Input = ({type, value, onChange, placeholder, className, id}) => {
->>>>>>> parent of 1f837820 (fix: Fix Register Page)
 	return (
 		<input 
 			id={id} 
 			className={`w-full outline-none ${className}`} 
 			type={type} 
+			name={name}
 			value={value}
 			onChange={onChange}
 			placeholder={placeholder}>
