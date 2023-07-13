@@ -15,7 +15,7 @@ const detailSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(getDetail.pending, (state, action) => {
             state.loading = true;
-            state.error = nill;
+            state.error = null;
         }); //pending
         builder.addCase(getDetail.fulfilled, (state, action) => {
             state.loading = false;
@@ -36,7 +36,7 @@ export const getDetail = createAsyncThunk(
             const response = await getProductById(id);
             return response.data; // action.payload
         } catch (e) {
-            return thunkAPI.
+            return thunkAPI.data;
         }
     }
 );

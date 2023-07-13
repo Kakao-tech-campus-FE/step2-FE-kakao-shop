@@ -1,13 +1,13 @@
 const Label = ({
     htmlFor, // for
+    id = "", // id
+    className = "", // class
+    style = {}, // style
     children, // 자식 Component
-    id, // id
-    className, // class
-    style, // style
 }) => {
     return (
         <label
-            htmlFor={htmlFor}
+            htmlFor={htmlFor ? htmlFor : ""}
             className={`label ${className}`}
             id={id}
             style={style}
