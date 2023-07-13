@@ -11,14 +11,19 @@ const MainProductTemplate = () => {
     const products = useSelector((state) => state.product.products);
     const loading = useSelector((state) => state.product.loading);
     const error = useSelector((state) => state.product.error);
+    const isEnd = useSelector((state) => state.product.isEnd);
 
     const io = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
-            if(entry.isIntersecting) {
+            if(entry.isIntersecting && !isEnd) {
                 setPage((page) => page + 1);
             }
         })
-    }, {threshold: 0.5})
+    }, {threshold: 1})
+
+    useEffect(() => {
+        io.observe(bottomObserver.current);
+    }, [])
 
     useEffect(() => {
         dispatch(getProducts(page));
@@ -28,6 +33,7 @@ const MainProductTemplate = () => {
         <Container>
             <Suspense fallback={<Loader />}>
                 <ProductGrid products={products} />
+                <div ref={bottomObserver}></div>
             </Suspense>
         </Container>
     );
