@@ -16,7 +16,13 @@ const Main = () => {
   return (
     <Container>
       <GNB />
-      <Carousel />
+      <Carousel images={
+        [
+          '/assets/carouselItem1.jpeg',
+          '/assets/carouselItem2.jpeg',
+          '/assets/carouselItem3.jpeg',
+        ]
+      }/>
       <MainProductsTemplate isLoading={isLoading} error={error} isError={isError} data={data}/>
     </Container>
   );

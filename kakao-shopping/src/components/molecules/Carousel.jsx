@@ -1,12 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const images = [
-  '/assets/carouselItem1.jpeg',
-  '/assets/carouselItem2.jpeg',
-  '/assets/carouselItem3.jpeg',
-];
-
-const Carousel = () => {
+const Carousel = ({images}) => {
   const currentIndex = useRef(0);
   // eslint-disable-next-line 
   const [render, renderSet] = useState(0);
@@ -36,7 +30,7 @@ const Carousel = () => {
       renderSet((prev) => prev + 1);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
 
   const transformStyle = {
