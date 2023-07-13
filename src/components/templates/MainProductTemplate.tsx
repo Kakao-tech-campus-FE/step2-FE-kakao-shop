@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { RootState } from '@store/index';
 import { useSelector } from 'react-redux';
 import ProductGrid from '@components/organisms/ProductGrid';
+import Loader from '@components/atoms/Loader';
 
 const MainPRoductTemplate = () => {
   const products = useSelector((state: RootState) => state.product.products);
@@ -9,9 +10,9 @@ const MainPRoductTemplate = () => {
   const error = useSelector((state: RootState) => state.product.error);
 
   return (
-    <div>
+    <Suspense fallback={<Loader />}>
       <ProductGrid products={products} />
-    </div>
+    </Suspense>
   );
 };
 
