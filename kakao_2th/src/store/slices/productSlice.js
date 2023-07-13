@@ -33,6 +33,7 @@ const productsSlice = createSlice({
     }
 })
 
+export const { setPage } = productsSlice.actions;
 export const getProducts = createAsyncThunk(
     "products/getProducts",
     async (page) => {

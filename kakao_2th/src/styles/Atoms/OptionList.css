@@ -1,0 +1,26 @@
+.option-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #e1e1e1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .option:hover {
+    background-color: #f7f7f7;
+  }
+  
+  .name {
+    flex-grow: 1;
+  }
+  
+  .price {
+    margin-left: 10px;
+  }
+  

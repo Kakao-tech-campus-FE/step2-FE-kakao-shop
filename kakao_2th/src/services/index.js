@@ -5,7 +5,7 @@ const instance = axios.create({
     timeout: 1000,
     headers: {
         "Content-Type": "application/json",
-    }
+    },
 });
 
 instance.interceptors.request.use((config) => {
@@ -21,9 +21,8 @@ instance.interceptors.response.use(
         return response;
     },
     (error) => {
-        return Promise.reject(error.response);
-    }
-);
+        return Promise.reject(error); // error.response 대신 error를 반환하도록 수정
+    });
 
 export const register = (data) => {
     const { email, password, username } = data;

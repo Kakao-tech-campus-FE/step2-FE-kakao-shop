@@ -1,4 +1,5 @@
 import OptionList from "../atoms/OptionList"
+import "../../styles/Molecules/OptionColumn.css"
 
 const OptionColumn = ({ product }) => {
     return (

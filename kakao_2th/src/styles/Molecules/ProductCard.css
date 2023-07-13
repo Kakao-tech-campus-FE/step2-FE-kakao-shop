@@ -1,0 +1,19 @@
+.product-card {
+    border: 1px solid #e1e1e1;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .product-name {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .product-price {
+    margin-top: 5px;
+  }
+  

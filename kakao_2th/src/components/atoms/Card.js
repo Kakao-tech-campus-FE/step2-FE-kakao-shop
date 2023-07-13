@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import "../../styles/Atoms/Card.css"
 
 const Card = ({ to, children }) => {
     return (

@@ -7,15 +7,29 @@ import { login } from "../../services"
 import { useDispatch, useSelector } from "react-redux"
 import { loginRequest, setEmail } from "../../store/slices/userSlice"
 import GNB from "../molecules/Gnb"
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
     const dispatch = useDispatch();
     const email = useSelector((state) => state.user.email)
+    const navigate = useNavigate();
 
     const { value, handleOnChange } = useInput({
         email: "",
         password: "",
     })
+
+    const handleLogin = () => {
+        dispatch(
+            loginRequest({
+                email: value.email,
+                password: value.password,
+            })
+        );
+
+        // 로그인 성공 시 홈페이지로 이동
+        navigate("/home");
+    };
 
     return (
         <Container>
