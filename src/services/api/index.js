@@ -29,7 +29,6 @@ instance.interceptors.response.use(
   // interceptor의 response에서 사용되는 use는 2개의 파라미터가 들어가는데
   // 1. 정상 콜백
   (response) => {
-    window.location.href = "/"; // HomePage로 리디렉션
     return response;
   },
   // 2. 에러가 일어났을때 콜백

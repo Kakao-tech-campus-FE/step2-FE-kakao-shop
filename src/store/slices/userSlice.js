@@ -41,6 +41,7 @@ const userSlice = createSlice({
       state.token = tempToken;
       // add cookie - email, token 
       setUserCookie({email: tempEmail, token: tempToken})
+      window.location.href = "/"; // HomePage로 리디렉션
     });
     // Promise의ㅣ rejected(거부): 연산이 실패함
     builder.addCase(loginRequest.rejected, (state, action) => {
@@ -55,6 +56,7 @@ const userSlice = createSlice({
     });
     builder.addCase(registerRequest.fulfilled, (state, action) => {
       state.loading = false;
+      window.location.href = "/"; // HomePage로 리디렉션
       alert("회원가입이 완료되었습니다.")
     });
     builder.addCase(registerRequest.rejected, (state, action) => {

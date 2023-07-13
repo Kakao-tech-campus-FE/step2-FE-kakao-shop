@@ -3,6 +3,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         {/* 공통 레이아웃 */}
         <Route element ={<MainLayout/>} >
           <Route exact path = "/" element = {<HomePage />}></Route>
+          <Route exact path = "/product/:id" element = {<ProductDetailPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
