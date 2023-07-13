@@ -43,4 +43,4 @@ export const getProducts = createAsyncThunk(
   }
 );
 
-export default productsSlice.reducer;
+export default productsSlice;

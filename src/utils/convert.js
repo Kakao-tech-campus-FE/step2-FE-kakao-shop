@@ -1,4 +1,5 @@
 export const comma = (num) => {
+  //comma(10000)을 사용하면 10,000이 반환됨
   if (num === undefined || num === null) {
     return 0;
   }

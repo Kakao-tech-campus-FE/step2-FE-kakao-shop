@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
@@ -6,11 +6,13 @@ import { setEmail } from "../../store/slices/userSlice";
 function GNB() {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch(setEmail(null));
     alert("정상적으로 로그아웃 되었습니다.");
+    navigate("/");
   };
 
   return (

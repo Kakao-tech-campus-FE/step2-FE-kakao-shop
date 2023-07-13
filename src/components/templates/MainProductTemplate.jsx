@@ -8,9 +8,7 @@ const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const loading = useSelector((state) => state.product.loading);
-  const error = useSelector((state) => state.product.error);
+  const { products, loading, error } = useSelector((state) => state.product);
 
   const io = new IntersectionObserver(
     (entires, observer) => {

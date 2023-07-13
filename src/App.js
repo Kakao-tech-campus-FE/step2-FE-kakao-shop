@@ -5,18 +5,23 @@ import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
+const LOGIN_PATH = "/login";
+const SIGNUP_PATH = "/signup";
+const HOME_PATH = "/";
+const PRODUCT_DETAIL_PATH = "/product/:id";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           {/*단독 레이아웃 */}
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<RegisterPage />}></Route>
+          <Route path={LOGIN_PATH} element={<LoginPage />} />
+          <Route path={SIGNUP_PATH} element={<RegisterPage />} />
           {/*공통 레이아웃: GNB, Footer */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path={HOME_PATH} element={<HomePage />} />
+            <Route path={PRODUCT_DETAIL_PATH} element={<ProductDetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
