@@ -1,36 +1,117 @@
-// import Input from '../atoms/Input';
-// import Button from '../atoms/Button';
+import Container from "../atoms/Container";
+import Title from "../atoms/Title";
+import useInput from "../../hooks/useInput";
+import InputGroup from "../molecules/InputGroup";
+import Button from "../atoms/Button";
+import Gnb from "../molecules/Gnb";
+import { useDispatch } from "react-redux";
+import { loginRequest } from "../../store/slices/userSlice";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-// const LoginForm = () => {
-//   return (
-//     <div className="flex justify-center items-center min-h-screen">
-//       <div className="max-w-md w-full">
-//         <div className="mb-4">
-//           <label className="block text-gray-700"></label>
-//           <Input
-//             type="email"
-//             placeholder="이메일"
-//             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
-//           />
-//         </div>
-//         <div className="mb-4">
-//           <label className="block text-gray-700"></label>
-//           <Input
-//             type="password"
-//             placeholder="비밀번호"
-//             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-400"
-//           />
-//         </div>
-//         <div>
-//           <button className="w-full px-4 py-2 bg-yellow-300 rounded-md focus:outline-none">
-//             로그인
-//           </button>
-//           <button className="px-3 py-4 text-zinc-900 text-xs focus:outline-none">회원가입</button>
-//           <Button onClick={() => {}}>로그인</Button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
+const LoginForm = () => {
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-// export default LoginForm;
+  const dispatch = useDispatch();
+
+  const { value, handleOnChange, reset } = useInput({
+    email: "",
+    password: "",
+  });
+
+  const handleLogin = async () => {
+    try {
+      await dispatch(
+        loginRequest({
+          email: value.email,
+          password: value.password,
+        })
+      );
+      reset();
+    } catch {
+      console.log("login fail....");
+    }
+  };
+
+  // 유효성 검사 에러 캐칭
+  const validateValue = (value, validationRegex, errorMessage) => {
+    if (!validationRegex.test(value)) {
+      return errorMessage;
+    }
+    return "";
+  };
+
+  const handleEmailBlur = () => {
+    const emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
+    const errorMessage =
+      "유효한 이메일을 입력해주세요. (예: example@example.com)";
+    const emailError = validateValue(value.email, emailRegex, errorMessage);
+    setEmailError(emailError);
+  };
+
+  const handlePasswordBlur = () => {
+    const passwordRegex =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,20}$/;
+    const errorMessage =
+      "비밀번호는 영문, 숫자, 특수문자를 포함하고, 공백 없이 8~20자여야 합니다.";
+    const passwordError = validateValue(
+      value.password,
+      passwordRegex,
+      errorMessage
+    );
+    setPasswordError(passwordError);
+  };
+
+  return (
+    <div className="mt-32">
+      <Title>
+        <Gnb />
+      </Title>
+      <Container>
+        <InputGroup
+          id="email"
+          name="email"
+          type="email"
+          value={value.email}
+          onChange={handleOnChange}
+          placeholder="이메일"
+          className={`${emailError ? "border-red-500" : ""}`}
+          label="이메일(아이디)"
+          error={emailError}
+          onBlur={handleEmailBlur}
+        />
+        {emailError && <p className="text-red-500 mb-2">{emailError}</p>}
+        <InputGroup
+          id="password"
+          name="password"
+          type="password"
+          value={value.password}
+          onChange={handleOnChange}
+          placeholder="비밀번호"
+          className={`${passwordError ? "border-red-500" : ""}`}
+          label="비밀번호"
+          error={passwordError}
+          onBlur={handlePasswordBlur}
+        />
+        {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
+        <div className="text-right mt-2 pr-4">
+          <Link
+            to="/signup"
+            className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
+          >
+            회원가입
+          </Link>
+        </div>
+        <Button
+          onClick={handleLogin}
+          className="block bg-amber-300 text-white font-semibold rounded-lg w-full h-10 mt-4"
+        >
+          로그인
+        </Button>
+      </Container>
+    </div>
+  );
+};
+
+export default LoginForm;
