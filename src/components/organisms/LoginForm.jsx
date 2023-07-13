@@ -7,7 +7,7 @@ import Title from "../atoms/Title";
 import Box from "../atoms/Box";
 import InputGroup from "../molecules/InputGroup";
 import useForm from "../../hooks/useForm";
-import instance from "../../services/api";
+import instance from "../../api";
 import { login } from "../../store/slices/authSlice";
 import AlertBox from "../molecules/AlertBox";
 

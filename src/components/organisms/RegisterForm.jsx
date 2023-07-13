@@ -6,7 +6,7 @@ import Button from "../atoms/Button";
 import useForm from "../../hooks/useForm";
 import Title from "../atoms/Title";
 import Box from "../atoms/Box";
-import instance from "../../services/api";
+import instance from "../../api";
 import AlertBox from "../molecules/AlertBox";
 
 /** 회원가입 폼
