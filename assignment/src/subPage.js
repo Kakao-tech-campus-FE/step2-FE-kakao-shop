@@ -1,5 +1,5 @@
 import React from 'react';
-import Breadcrumb from './breadcrumb/Breadcrumb.js';
+import Breadcrumb from './UI/breadcrumb/Breadcrumb.js';
 function Page1() {
   return (
     <div>
