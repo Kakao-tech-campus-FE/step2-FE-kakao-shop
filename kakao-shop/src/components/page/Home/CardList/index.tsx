@@ -17,6 +17,16 @@ export const CardList = ({ products }: Props) => {
   );
 };
 
+CardList.Skeleton = function () {
+  return (
+    <S.Root>
+      {Array.from({ length: 9 }).map((_, index) => (
+        <CardItem.Skeleton key={index} />
+      ))}
+    </S.Root>
+  );
+};
+
 const S = {
   Root: styled.div`
     display: grid;
