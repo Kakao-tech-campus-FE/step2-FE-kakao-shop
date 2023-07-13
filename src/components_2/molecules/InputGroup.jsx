@@ -1,29 +1,31 @@
-import React from 'react';
+import Input from "../atoms/Input";
+import Box from "../atoms/Box";
+import Label from "../atoms/Label";
 
 const InputGroup = ({
   id,
-  type,
   name,
-  placeholder,
-  label,
+  type,
   value,
   onChange,
+  placeholder,
+  label,
+  onBlur,
 }) => {
   return (
-    <div>
-      <label htmlFor={id}>{label}</label>
-      <input
+    <Box>
+      <Label htmlFor={id}>{label}</Label>
+      <Input
         id={id}
         type={type}
         name={name}
-        placeholder={placeholder}
         value={value}
+        placeholder={placeholder}
         onChange={onChange}
+        onBlur={onBlur}
       />
-    </div>
+    </Box>
   );
 };
 
 export default InputGroup;
-
-

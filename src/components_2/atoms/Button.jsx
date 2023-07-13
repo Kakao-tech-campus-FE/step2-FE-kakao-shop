@@ -1,6 +1,8 @@
-const Button = ({ onClick, children }) => {
+const Button = ({ children, onClick, disabled, className }) => {
   return (
     <button
+      className={`btn-primary ${className}}`}
+      disabled={disabled}
       onClick={(e) => {
         e.preventDefault();
         onClick();
@@ -12,5 +14,3 @@ const Button = ({ onClick, children }) => {
 };
 
 export default Button;
-
-
