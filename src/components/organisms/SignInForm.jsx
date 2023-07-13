@@ -71,7 +71,6 @@ const SignInForm = () => {
       <InputGroup
         id="password"
         title="비밀번호"
-        name="password"
         type="password"
         placeholder="비밀번호"
         register={register("password", {

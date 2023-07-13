@@ -17,15 +17,13 @@ const StyledInput = styled.input`
   }
 `;
 
-const Input = ({ id, name, type, placeholder, register }) => {
+// id: label을 위한 id값
+// type: input의 타입을 결정
+// placeholder: placeholder에 들어갈 텍스트
+// register: react-hook-form의 register를 받는 props
+const Input = ({ id, type, placeholder, register }) => {
   return (
-    <StyledInput
-      id={id}
-      name={name}
-      type={type}
-      placeholder={placeholder}
-      {...register}
-    />
+    <StyledInput id={id} type={type} placeholder={placeholder} {...register} />
   );
 };
 

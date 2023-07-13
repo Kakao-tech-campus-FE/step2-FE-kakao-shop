@@ -8,13 +8,13 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const InputGroup = ({ id, title, name, type, placeholder, register }) => {
+// title: label의 텍스트
+const InputGroup = ({ id, title, type, placeholder, register }) => {
   return (
     <Container>
       <Label id={id}>{title}</Label>
       <Input
         id={id}
-        name={name}
         type={type}
         placeholder={placeholder}
         register={register}

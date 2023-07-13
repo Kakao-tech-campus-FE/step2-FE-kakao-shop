@@ -199,7 +199,6 @@ const SignUpForm = () => {
       <InputGroup
         id="password"
         title="비밀번호"
-        name="password"
         type="password"
         placeholder="비밀번호"
         register={register("password", {
@@ -219,7 +218,6 @@ const SignUpForm = () => {
       <InputGroup
         id="passwordConfirm"
         title="비밀번호 확인"
-        name="passwordConfirm"
         type="password"
         placeholder="비밀번호 확인"
         register={register("passwordConfirm", {
