@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import "../../styles/Radio.scss";
+/* eslint-disable */
+import React, { useEffect, useRef, useState } from 'react';
+import '../../styles/Radio.scss';
 
 const Radio = ({ radios, imgURL }) => {
   const defaultSelection = useRef([]);
@@ -11,7 +12,7 @@ const Radio = ({ radios, imgURL }) => {
 
   useEffect(() => {
     setRadioIdx(0);
-    defaultSelection.current[0].checked = "checked";
+    defaultSelection.current[0].checked = 'checked';
   }, []);
 
   return (
