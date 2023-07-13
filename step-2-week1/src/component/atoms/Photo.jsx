@@ -1,3 +1,4 @@
+import '../../styles/atoms/Photo.css';
 
 const Photo = ({ className, src, alt }) => {
   return (
