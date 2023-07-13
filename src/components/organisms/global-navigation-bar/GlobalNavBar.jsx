@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
@@ -46,10 +45,6 @@ function GlobalNavBar({ isStorybookMode }) {
     }
     navigate(routes.signIn);
   };
-
-  useEffect(() => {
-    console.log(accessToken);
-  }, [accessToken]);
 
   return (
     <Styled.Container isStorybookMode={isStorybookMode}>

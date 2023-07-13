@@ -4,5 +4,10 @@ const AUTH = {
   JOIN: "join",
 };
 
+const PRODUCT = {
+  PRODUCTS: "products",
+};
+
 Object.freeze(AUTH);
-export default { AUTH };
+Object.freeze(PRODUCT);
+export default { AUTH, PRODUCT };
