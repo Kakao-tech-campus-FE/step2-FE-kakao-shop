@@ -1,5 +1,5 @@
-import { fetchProducts } from '@api/product';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { fetchProducts } from '@api/productApi';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
@@ -20,6 +20,19 @@ const productsSlice = createSlice({
     builder.addCase(getProducts.pending, (state, action) => {
       const newState = state;
       newState.loading = true;
+    });
+    builder.addCase(getProducts.fulfilled, (state, action) => {
+      // Promise.resolve() 되었을때
+      const newState = state;
+      newState.loading = false;
+      newState.products = action.payload.response;
+      newState.error = action.payload.error;
+    });
+    builder.addCase(getProducts.rejected, (state, action: PayloadAction<any>) => {
+      // Promise.reject() 되었을 떄
+      const newState = state;
+      newState.loading = false;
+      newState.error = action.payload.error;
     });
   },
 });

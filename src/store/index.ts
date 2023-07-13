@@ -3,6 +3,7 @@ import { persistReducer } from 'redux-persist';
 import expireReducer from 'redux-persist-expire';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './slices/userSlice';
+import productReducer from './slices/productSlice';
 
 const persistConfig = {
   key: 'user',
@@ -20,6 +21,7 @@ const persistedReducer = persistReducer(persistConfig, userReducer);
 const store = configureStore({
   reducer: {
     user: persistedReducer,
+    product: productReducer,
   },
 });
 
