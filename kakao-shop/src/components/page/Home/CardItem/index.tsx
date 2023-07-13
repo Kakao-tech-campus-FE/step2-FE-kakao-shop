@@ -3,6 +3,8 @@ import styled from '@emotion/styled';
 import { Product } from '@store/Home/reducers';
 
 import { Photo } from '@components/atom';
+import Skeleton from '@components/atom/Skeleton';
+
 import { comma } from '@utils/comma';
 
 const CardItem = ({ productName, image, price }: Product) => {
@@ -26,6 +28,17 @@ const CardItem = ({ productName, image, price }: Product) => {
   );
 };
 
+CardItem.Skeleton = function () {
+  return (
+    <S.SkeletonRoot>
+      <Skeleton.Box width={285} height={160} />
+      <Skeleton.Box width={45} height={22} />
+      <Skeleton.Paragraph widthPercent={90} fontSize={14} lineHeight={17} />
+      <Skeleton.Paragraph widthPercent={70} fontSize={24} lineHeight={27} />
+    </S.SkeletonRoot>
+  );
+};
+
 export default CardItem;
 
 const S = {
@@ -46,6 +59,8 @@ const S = {
 
     padding-bottom: 56.25%; // 16/9 비율
     border-radius: 8px;
+
+    cursor: pointer;
   `,
 
   ImgStyle: css`
@@ -59,6 +74,8 @@ const S = {
   Info: styled.div`
     padding-top: 12px;
     padding-bottom: 9px;
+
+    cursor: pointer;
   `,
 
   Delivery: styled.span`
@@ -106,5 +123,12 @@ const S = {
       font-size: 22px;
       vertical-align: top;
     }
+  `,
+
+  // Skeleton
+  SkeletonRoot: styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   `,
 };
