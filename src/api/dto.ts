@@ -20,4 +20,5 @@ export interface ProductInfoData {
 export interface ProductData {
   success: boolean;
   response: ProductInfoData[];
+  error: string;
 }
