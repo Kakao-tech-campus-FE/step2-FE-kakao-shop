@@ -1,12 +1,12 @@
 import React from 'react'
-import SectionContainer from '../components/atoms/SectionContainer'
-import ProductsList from '../components/organisms/ProductsList';
+import ProductsListTemplate from '../components/templates/ProductsListTemplate';
+import MainContainer from '../components/atoms/MainContainer';
 
 const MainPage = () => {
     return (
-      <SectionContainer>
-        <ProductsList></ProductsList>
-      </SectionContainer>
+      <MainContainer>
+        <ProductsListTemplate />
+      </MainContainer>
     );
   };
 

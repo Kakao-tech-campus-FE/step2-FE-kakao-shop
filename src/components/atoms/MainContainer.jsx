@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';   
 
-const Container = styled.section`
+const Container = styled.main`
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 10px 0;
-    
+    margin: 0 auto;
+    max-width: 1200px;
 `
 
 /**
@@ -15,10 +14,10 @@ const Container = styled.section`
  * @param {*} props.children - section 태그 속 내용
  * @returns {*}
  */
-const SectionContainer = (props) => {
+const MainContainer = (props) => {
     return (
         <Container>{props.children}</Container>
     );
 };
 
-export default SectionContainer;
+export default MainContainer;

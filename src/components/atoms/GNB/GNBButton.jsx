@@ -2,8 +2,12 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 const Box = styled.div`
+  display : flex;
+  align-items : center;
+  
   text-decoration: none;
   margin: 0 10px;
+
   cursor: pointer;
 `
 

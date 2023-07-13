@@ -9,6 +9,7 @@ import GNBInnerBox from '../atoms/GNB/GNBInnerBox'
 import GNBButton from '../atoms/GNB/GNBButton'
 import GNBMyGroup from '../molecules/GNBMyGroup';
 import GNBMainGroup from '../molecules/GNBMainGroup';
+import Loader from '../molecules/Loader';
 
 const Logobox = styled.div`
   margin: 0 10px;
@@ -54,7 +55,7 @@ const GNB = () => {
           <Link to ="/">
             <Logobox />
           </Link>
-          <GNBButton onClick={()=>{navigate("/products")}}>상품목록</GNBButton>
+          <GNBButton onClick={()=>{navigate("/")}}>상품목록</GNBButton>
         </GNBMainGroup>
 
         <GNBMyGroup>
@@ -62,7 +63,7 @@ const GNB = () => {
           {
             loginState.email
             ? 
-              <>
+              <>  
                   <GNBButton>
                     {loginState.email}
                   </GNBButton>

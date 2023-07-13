@@ -1,7 +1,7 @@
 import instance from "./instance";
 
-const getProducts = () => {
-  return instance.get("/products");
+const getProducts = (p = 0) => {
+  return instance.get(`/products?page=${p}`);
 };
 
 export default getProducts;

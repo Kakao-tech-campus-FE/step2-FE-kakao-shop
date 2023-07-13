@@ -4,4 +4,4 @@ const getDetail = (id) => {
   return instance.get(`/products/${id}`);
 };
 
-export { getDetail };
+export default getDetail;

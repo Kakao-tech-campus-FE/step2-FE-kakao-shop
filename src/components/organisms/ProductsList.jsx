@@ -1,36 +1,29 @@
 import React from 'react'
-import { useQuery } from 'react-query';
-import { Route } from "react-router-dom";
 import strPrice from '../../utils/price';
-import getProducts from '../../api/getProducts';
-import ItemGroup from '../molecules/ItemGroup';
+import ProductCard from '../molecules/ProductCard';
 import ListContainer from '../atoms/productsList/ListContainer';
+import ProductCardSkeleton from '../molecules/ProductCardSkeleton'
 
-const ProductsList = ( {match} ) => {
-    const { data: obj, error, isError } = useQuery(
-        "products",
-        getProducts
-    )
-  
-  if (!obj) {
-    return (
-      <div> 에러 </div>
-    ) 
-  }
-  
+
+const ProductsList = (props) => {
+
   return (
-    <ListContainer>
-      {obj.data.response.map(( item ) => (
-        <ItemGroup 
-          link={`/products/${item.id}`}
-          image={item.image} 
-          productName={item.productName} 
-          key={item.productName}
-          price={strPrice(item.price)}
-          />
-        )
-      )}
-    </ListContainer>
+      <ListContainer>
+        
+        {
+          props.obj?.pages.map(( pageData ) => (
+            pageData?.data.response.map((item) => (
+              <ProductCard 
+                link={`/products/${item.id}`}
+                image={item.image} 
+                productName={item.productName} 
+                key={item.productName}
+                price={strPrice(item.price)}
+              />
+            ))
+          ))
+        }
+      </ListContainer>
   )
 }
 
