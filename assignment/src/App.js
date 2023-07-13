@@ -5,6 +5,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 // import HomePage from './pages/Homepage'
 import NewHomePage from './pages/NewHomePage';
+import MainLayout from './layouts/MainLayout';
 
 function App() {
   return (
@@ -16,7 +17,12 @@ function App() {
           <Route path="/signup" element={<RegisterPage />} />
           {/* 공통 레이아웃 : GNB , Footer */}
           {/* <Route path ="/" element = {<HomePage/>}></Route> */}
-          <Route path="/" element={<NewHomePage />} />
+          {/* 레이아웃 같은건 별도의 path를 선언하지 않음(path attribute가 없다.) */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<NewHomePage />}>
+              {' '}
+            </Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
