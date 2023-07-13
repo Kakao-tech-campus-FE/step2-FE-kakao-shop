@@ -33,9 +33,30 @@ const productsSlice = createSlice({
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
-      if (!!state.error) {
-        state.statusCode = action.payload.error.status;
-        console.log("데이터 실패, 에러 발생!", `${state.statusCode}`);
+      state.statusCode = action.payload.error.status;
+
+      switch (state.statusCode) {
+        case "400":
+          console.log("Bad Request");
+          break;
+        case "404":
+          console.log("Not Found");
+          break;
+        case "405":
+          console.log("Method not allowed");
+          break;
+        case "415":
+          console.log("서버가 요청에 대한 승인을 거부한 오류");
+          break;
+        case "500":
+          console.log("서버 내부 오류");
+          break;
+        case "505":
+          console.log("HTTP Version Not Supported");
+          break;
+        default:
+          console.log("데이터 처리 오류가 발생했습니다.", state.statusCode);
+          break;
       }
     });
   },
