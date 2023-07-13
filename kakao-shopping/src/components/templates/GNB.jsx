@@ -12,7 +12,6 @@ const GNB = () => {
   // 새로고침해도 로그인 지속
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem('userInfo'));
-    console.log(storedUser);
     if(storedUser.expirationTime > Date.now()) {
       dispatch(loginSuccess(storedUser));
     } else {
@@ -22,7 +21,6 @@ const GNB = () => {
 
   const handleLogoutClick = () => {
     dispatch(logout());                     // 상태 초기화
-    localStorage.removeItem('isLoggedIn');  // 로그인 유지 삭제
     localStorage.removeItem('userInfo');    // 로그인 유지 삭제
   }
 

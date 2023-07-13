@@ -4,7 +4,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     userInfo: null,
-    rejectMessage: null,
   },
   reducers: {
     loginSuccess: (state, action) => {

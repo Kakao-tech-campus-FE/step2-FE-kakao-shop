@@ -11,10 +11,11 @@ const instance = axios.create({
 export const loginApi = async (data) => {
   const {email, password} = data;
   try {
-    await instance.post("/login", {
+    const response = await instance.post("/login", {
       email,
       password
     })
+    return response;
   } catch (error) {
     throw error;
   }

@@ -27,11 +27,11 @@ const LoginForm = () => {
     }
 
     try {
-      console.log(value.email);
-      await (loginApi({email: value.email, password:value.password}));
-      dispatch(loginSuccess({email: value.email, password:value.password}));
-      console.log("로그인 성공");
-      localStorage.setItem('userInfo', JSON.stringify({email: value.email, password:value.password, expirationTime: Date.now() + 1000 * 60 * 60 * 24}));
+      const response = await (loginApi({email: value.email, password:value.password}));
+      
+      const token = response.headers.authorization;
+      dispatch(loginSuccess({token: token}));
+      localStorage.setItem('userInfo', JSON.stringify({token: token, expirationTime: Date.now() + 1000 * 60 * 60 * 24}));
       navigate('/');
     } catch (error) {
       setLoginFailed(error.response.data.error.message);
