@@ -4,6 +4,7 @@ import { login } from "../../services/user"
 const initialState = {
     email: null,
     loading: false,
+    token: null
 }
 
 const userSlice = createSlice({
@@ -15,7 +16,6 @@ const userSlice = createSlice({
         },
         setToken: (state, action) => {
             state.token = action.payload.token;
-
         }
     },
     extraReducers: (builder) => {
@@ -25,9 +25,11 @@ const userSlice = createSlice({
         builder.addCase(loginRequest.fulfilled, (state, action) => {
             state.loading = false;
             state.email = action.payload.email;
+            localStorage.setItem("token", action.payload.token)
+            state.token = action.payload.token
         });
         builder.addCase(loginRequest.rejected, (state, action) => {
-            state.loading = true;
+            state.loading = false;
         });
     }
 })
