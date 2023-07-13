@@ -15,7 +15,7 @@ const AppRoutes = () => {
         <Route path="/signup" element={<SignUpPage />} />
         {/* 공통 레이아웃 */}
         <Route element={<MainLayout />}>
-          <Route path="/home" element={<HomePage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />
         </Route>
       </Routes>

@@ -1,5 +1,7 @@
+import Loader from "./Loader";
+
 const Footer = () => {
-  return <div>abc</div>;
+  return <div>abac</div>;
 };
 
 export default Footer;

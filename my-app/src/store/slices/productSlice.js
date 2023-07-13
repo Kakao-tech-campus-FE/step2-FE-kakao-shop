@@ -15,7 +15,6 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state, action) => {
       state.loading = true;
-      console.log("지금은 처리중");
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
       // 10개보다 작다면 더이상 데이터를 불러오지 않도록 제어
@@ -29,7 +28,6 @@ const productsSlice = createSlice({
         [...state.products, ...action.payload.response],
         "id"
       );
-      console.log("가져오기 완료");
     });
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;

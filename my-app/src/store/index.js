@@ -17,10 +17,7 @@ const loadStateFromLocalStorage = () => {
 const saveStateToLocalStorage = (state) => {
   try {
     localStorage.setItem("userInfo", JSON.stringify(state));
-    console.log("state save success");
-  } catch (err) {
-    console.log("state save error: ", err);
-  }
+  } catch (err) {}
 };
 
 const store = configureStore({
