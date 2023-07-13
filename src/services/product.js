@@ -1,4 +1,5 @@
 import instance from "./api";
+import _ from "lodash";
 
 export const fetchProductsByPage = (page) => {
     return instance.get(`/products?page=${page}`);
