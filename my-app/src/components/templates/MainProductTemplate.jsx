@@ -7,7 +7,6 @@ import Loader from "../atoms/Loader";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
-  const [over, setOver] = useState(false);
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);

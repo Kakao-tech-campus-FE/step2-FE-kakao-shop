@@ -5,8 +5,9 @@ import _ from "lodash";
 const initialState = {
   products: [],
   loading: false,
-  error: null, // {message, status}
+  error: null,
   isEnd: false,
+  statusCode: null,
 };
 
 const productsSlice = createSlice({
@@ -17,22 +18,25 @@ const productsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      // 10개보다 작다면 더이상 데이터를 불러오지 않도록 제어
       if (action.payload.response.length < 10) {
         state.isEnd = true;
       }
       state.loading = false;
       state.products.concat(action.payload.response);
-      // 중복을 빼내는 과정 => [20, 19, ..., 11], [10, 9, ..., 1]
       state.products = _.uniqBy(
         [...state.products, ...action.payload.response],
         "id"
       );
+      state.statusCode = "200";
+      console.log("데이터 처리 완료", `${state.statusCode}`);
     });
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.error;
-      console.log("에러 발생: ", state.error);
+      if (!!state.error) {
+        state.statusCode = action.payload.error.status;
+        console.log("데이터 실패, 에러 발생!", `${state.statusCode}`);
+      }
     });
   },
 });
