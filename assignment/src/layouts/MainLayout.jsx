@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import React from 'react';
-import GNB from '../src/components/atoms/GNB';
+import GNB from '../components/atoms/GNB';
 
 function MainLayout() {
   return (

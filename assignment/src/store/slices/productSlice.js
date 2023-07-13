@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import _ from 'lodash';
 import { fetchProducts } from '../../services/product';
 
 // redux- thunk를 활용한 비동기 처리
@@ -28,7 +29,10 @@ const productsSlice = createSlice({
       }
       state.loading = false;
       // {success, response, error} 셋중 response, 최대 10개 요소
-      state.products = action.payload.response;
+      state.products = _.uniqBy(
+        [...state.products, ...action.payload.response],
+        'id',
+      );
       state.error = action.payload.error;
     });
     // Promise.reject()
