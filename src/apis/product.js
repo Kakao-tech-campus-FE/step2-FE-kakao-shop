@@ -1,6 +1,7 @@
 import { instance } from "./index";
 
 export const fetchProducts = (page = 0) => {
+  console.log("here");
   return instance.get("/products" + "?page=" + page);
 };
 
