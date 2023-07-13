@@ -7,8 +7,10 @@ const MainLayout = () => {
   return (
     <div>
       <GNB />
-      <div className='pt-14'>
-        <Outlet />
+      <div className='flex h-full min-h-screen flex-col pt-14'>
+        <div className='grow'>
+          <Outlet />
+        </div>
         <Footer />
       </div>
     </div>
