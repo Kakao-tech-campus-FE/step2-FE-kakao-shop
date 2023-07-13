@@ -1,6 +1,6 @@
 import instance from "./api";
 
-export const fetchProducts = (page) => {
+export const fetchProductsByPage = (page) => {
     return instance.get(`/products?page=${page}`);
 }
 

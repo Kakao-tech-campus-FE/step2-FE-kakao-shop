@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {fetchProductFromCursor} from "../../services/product";
+import {fetchProductsByPage} from "../../services/product";
 import _ from "lodash";
 
 const initialState = {
@@ -46,8 +46,8 @@ const productSlice = createSlice({
 })
 export const getProduct = createAsyncThunk(
     'product/getProduct',
-    async (cursor) => {
-        const response = await fetchProductFromCursor(cursor);
+    async (page) => {
+        const response = await fetchProductsByPage(page);
         return response.data;
     }
 )
