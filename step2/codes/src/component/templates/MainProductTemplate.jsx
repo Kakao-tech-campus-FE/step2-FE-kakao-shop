@@ -1,44 +1,63 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../store/slices/productSlice";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useQuery } from "react-query";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
+import { getProducts } from "../../store/slices/productSlice";
+import "../../styles/templates/MainProductTemplate.css"
 
-const MainProductTemplate =() => {
-    const [page, setPage] = useState(0);
-    const bottomObsever = useRef(null);
-    const dispatch = useDispatch();
-    const products = useSelector((state) => state.product.products);
-    // const loading = useSelector((state) => state.product.loading);
-    // const error = useSelector((state) => state.product.error);
-    const isEnd = useSelector((state) => state.product.isEnd);
+const MainProductTemplate = () => {
+  const [page, setPage] = useState(0);
+  const dispatch = useDispatch();
+  const { data: products, isLoading } = useQuery(
+    [`products/page`, page],
+    () => dispatch(getProducts(page)),
+  );
+
+  const loadPrevPage = () => {
+      setPage((prevPage) => prevPage - 1);
+    };
     
-    const io = new IntersectionObserver((entries, observer) => {
-            entries.forEach((entrie) => {
-                if (entrie.isIntersecting && !isEnd) { 
-                    setPage((page) => page + 1)
-                }
-            })
-        }, {threshold: 1}
-    );
-
-    useEffect(() => {
-        io.observe(bottomObsever.current);
-    }, []) //최초 렌더링 마운트 1회만 선언
-
-
-    // 컨텐츠 하단에 다다르면(감지) 추가적으로 데이터로드 | page > 의존성 배열에 들어가야 함
+    const loadNextPage = () => {
+        setPage((prevPage) => prevPage + 1);
+    };
+    const productArray = products?.payload?.response || [];
+    
     useEffect(() => {
         dispatch(getProducts(page));
-    }, [dispatch, page])
+      }, [dispatch, page]);
+  
 
-    return (
-    <Container>
-        <ProductGrid products={products}/>
-        <div ref={bottomObsever}></div>
-    </Container>
-    )
-}
 
+  return (
+    <Container className="productsView">
+        {isLoading ? (
+            <>
+            <ProductGrid isLoading="true" products={productArray} />
+          <div className="changePage">
+                <button className="changePageButton" onClick={loadPrevPage} disabled={page === 0}>
+                    &lt;
+                </button>
+                <button className="changePageButton" onClick={loadNextPage} disabled={page === 1}>
+                    &gt;
+                </button>
+            </div>
+            </>
+        ) : (
+            <>
+            <ProductGrid products={productArray} />
+            <div className="changePage">
+                <button className="changePageButton" onClick={loadPrevPage} disabled={page === 0}>
+                    &lt;
+                </button>
+                <button className="changePageButton" onClick={loadNextPage} disabled={page === 1}>
+                    &gt;
+                </button>
+            </div>
+            </>
+        )}
+        </Container>
+  );
+};
 
 export default MainProductTemplate;

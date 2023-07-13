@@ -9,9 +9,9 @@ export const register = (data) => {
     });
 };
 
-export const login = (data) => {
+export const login = async (data) => {
     const { email, password } = data;
-    return instance.post("/login", {
+    return await instance.post("/login", {
         email,
         password,
     });

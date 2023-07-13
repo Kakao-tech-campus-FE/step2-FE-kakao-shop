@@ -45,10 +45,7 @@ const LoginForm = () => {
                 dispatch(setEmail({
                     email: value.email, //객체 형태로 넣어야함. payload라서
                 }));
-                dispatch(setLogin({
-                    login: true,
-                }));
-                localStorage.setItem("email", value.email); // 새로고침하면 로그인이 풀리는 걸 방지하기 위해, 로컬스토리지에 로그인 상태 저장
+                localStorage.setItem("email", value.email);
             navigate("/");// 홈페이지로 리다이렉트
         })
             .catch((err) => {
@@ -87,10 +84,10 @@ const LoginForm = () => {
             {passwordError && <div>{passwordError}</div>}
         <Button
             disabled={isLoginError}
-            onClick = {() => {
+            onClick = {
                 //api 요청
-                loginReq()
-            }}
+                loginReq
+            }
             >
             로그인</Button>
             {apiErr && <div>{apiErr}</div>}

@@ -1,10 +1,10 @@
 import '../../styles/atoms/Button.css';
 
-const Button = ({ className, disabled = true, onClick, children} ) => {
+const Button = ({ className, disabled = false, onClick, children} ) => {
 
     return <button className={`button ${className}`} disabled={disabled} onClick={(e)=>{
         e.preventDefault();
-        onClick();
+        onClick(e);
     }}>
         {children}</button>
 };

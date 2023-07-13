@@ -23,7 +23,7 @@ const productSlice = createSlice({
             }
             state.loading = false;
             state.products = _.uniqBy([...state.products, ...action.payload.response], 'id');
-            state.error = action.payload.error;  // success, response:[], error 세 개가 payload에 저장됨. 여기서 error만
+            state.error = null;  // success, response:[], error 세 개가 payload에 저장됨. 여기서 error만
         });
         //Promise.rejected()
         builder.addCase(getProducts.rejected, (state, action) => {

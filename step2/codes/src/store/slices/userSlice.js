@@ -13,8 +13,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setEmail: (state, action) => {
-            // login은 setLogin의 역할
-            state.email = action.payload.email;
+            state.email = localStorage.getItem("email");
         },
         extraReducer: (builder) => {
             //객체가 아니라 함수 | loading 부분을 가능하게 해줌
