@@ -1,0 +1,77 @@
+.skeleton-card {
+  margin: auto;
+  width: 250px;
+  height: 200px;
+  border: 5px solid #eeeeee;
+  border-radius: 10px;
+}
+
+.skeleton-photo {
+  overflow: hidden;
+  position: relative;
+  width: 94%;
+  height: 50%;
+  margin: 4% 3% 0%;
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.skeleton-photo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, #eee, #ddd, #eee);
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-h3 {
+  overflow: hidden;
+  position: relative;
+  width: 95%;
+  height: 12%;
+  margin: 8% auto 4%;
+  background-color: #eee;
+}
+
+.skeleton-h3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, #eee, #ddd, #eee);
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+.skeleton-p {
+  overflow: hidden;
+  position: relative;
+  width: 95%;
+  height: 12%;
+  margin: 0% auto 4%;
+  background-color: #eee;
+}
+
+.skeleton-p::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  background: linear-gradient(to right, #eee, #ddd, #eee);
+  animation: loading 1.5s ease-in-out infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(500%);
+  }
+}
