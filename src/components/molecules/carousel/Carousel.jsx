@@ -67,7 +67,14 @@ const SLIDE_EXAMPLE = [
   },
 ];
 
-function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
+function Carousel({
+  width,
+  time,
+  arrowButton,
+  dotButton,
+  slideArray,
+  ...props
+}) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const slideRef = useRef();
 
@@ -96,10 +103,10 @@ function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
   }, [currentSlideIndex, time, handleNextSlide]);
 
   return (
-    <Container style={{ width }}>
+    <Container style={{ width }} {...props}>
       <SliderContainer ref={slideRef}>
         {slideArray.map((item, index) => (
-          <Slide key={index} src={item.src} />
+          <Slide key={index} src={item.src} alt={item.alt} />
         ))}
       </SliderContainer>
 
