@@ -1,7 +1,6 @@
 import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
 
 const MainProducts = ({slicedData}) => {
 

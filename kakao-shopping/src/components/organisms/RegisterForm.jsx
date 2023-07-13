@@ -29,7 +29,7 @@ const RegisterForm = () => {
     try {
       const duplicateEmailResponse = await checkDuplicateEmail({email: value.email});
       if(duplicateEmailResponse.data.success) {
-        const registerResponse = await register ({
+        await register ({
           email: value.email,
           username: value.username,
           password: value.password
