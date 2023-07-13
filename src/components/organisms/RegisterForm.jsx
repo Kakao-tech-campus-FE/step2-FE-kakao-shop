@@ -62,7 +62,7 @@ function RegisterForm() {
         .catch((error)=>{
           const token = localStorage.getItem("token")
           console.log(token)
-          alert(error.response.data.error.message)
+          alert(error.data.error.message)
         })
       }}>이메일 중복 확인</Button>
       <InputGroup id="username" type="text" placeholder="사용자 이름를 입력해주세요!" label="이름" name= "username" onChange={handleOnChange}
@@ -170,7 +170,7 @@ function RegisterForm() {
         }).then((res)=>{
             navigate("/")
         }).catch(error=>{setValid(false)
-          setErrorMsg(error.response.data.error.message)})
+          setErrorMsg(error.data.error.message)})
       }}>
       회원 가입</Button>
     </Containor>

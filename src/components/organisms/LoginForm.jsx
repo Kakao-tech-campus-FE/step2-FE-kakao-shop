@@ -136,8 +136,7 @@ function LoginForm() {
               navigate("/")
           }).catch((error)=>{
             setValid(false)
-            console.log(error)
-            // setErrorMsg(error.data.error.message)
+            setErrorMsg(error.data.error.message)
           })
         }}>
         로그인</Button>

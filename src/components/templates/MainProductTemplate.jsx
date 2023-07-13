@@ -5,7 +5,8 @@ import { useQuery, QueryClient, useQueryClient } from 'react-query'
 import { getProductById, fetchProducts} from '../../services/product'
 import ProductGrid from '../organisms/ProductGrid'
 import { useInfinite } from '../../hooks/useInfinite'
-
+import { isError } from 'lodash'
+import Toast from '../molecules/Toast'
 
 
 function MainProductTemplate() {
@@ -21,18 +22,23 @@ function MainProductTemplate() {
       }
     })
   },{
-    threshold: 0.3,
+    threshold: 0.1,
   })
 
   // const {isLoading, data, error, isError} = useQuery(['/products',page], () => {return fetchProducts('/products',page)})
-  const {productData,isLoading,end,reRender} = useInfinite(page)
+  const {productData,isLoading,end,reRender,isError, errorMessage} = useInfinite(page)
 
 
   useEffect(()=>{
-    if(!isLoading && !end){
+    if(!isLoading && !end && !isError){
       io.observe(bottomObserver.current)
     }
 },[isLoading]) // 최초 렌더링 마운트 1회만 선언 
+
+
+
+
+  console.log(isError)
 
   return (
     <Containor>
@@ -40,8 +46,8 @@ function MainProductTemplate() {
         <ProductGrid products={data.data.response}/> 
       </Suspense>
       {isError ? console.log(error) : "?" } */}
-      {isLoading && !reRender ? <Loader/> : <ProductGrid products={productData}/> }
-      <div ref={bottomObserver}></div>
+      {isError ? <Toast>{errorMessage}</Toast> : isLoading && !reRender ? <Loader/> : <ProductGrid products={productData}/>}
+      {isError ? ' ' : <div ref={bottomObserver}></div> }
     </Containor>
     
   )
