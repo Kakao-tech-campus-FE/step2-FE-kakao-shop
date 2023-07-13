@@ -1,4 +1,4 @@
-import "../../styles/Box.css";
+import "../../styles/atoms/Box.css";
 // children: Box에 감싸진 자식 요소
 // className: style 적용을 위한 부분
 const Box = ({ children, className = "" }) => {

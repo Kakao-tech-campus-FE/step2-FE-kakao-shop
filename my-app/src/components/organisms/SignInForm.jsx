@@ -3,10 +3,9 @@ import SignInInputGroup from "../molecules/SignInInputGroup";
 import Button from "../atoms/Button";
 import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
-import { login } from "../../services/loginAPI";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setUserInfo } from "../../store/slices/userSlice";
+import { loginRequest, setUserInfo } from "../../store/slices/userSlice";
 import { useState } from "react";
 import Label from "../atoms/Label";
 
@@ -25,44 +24,13 @@ const SignInForm = () => {
     width: "100%",
     display: "inline-block",
     margin: "10px 0px",
+    cursor: "pointer",
   };
 
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
-
-  const loginReq = () => {
-    login({
-      email: value.email,
-      password: value.password,
-    })
-      .then((res) => {
-        setCorrect(true);
-        setMessage("");
-        dispatch(
-          setUserInfo({
-            email: value.email,
-            isLogined: true,
-          })
-        );
-      })
-      .then(() => {
-        navigate("/");
-      })
-      .catch((err) => {
-        let errorMessage = err.response.data.error.message;
-        errorMessage = errorMessage.slice(0, errorMessage.indexOf(":"));
-        setMessage(errorMessage);
-        setCorrect(false);
-        dispatch(
-          setUserInfo({
-            email: value.email,
-            isLogined: false,
-          })
-        );
-      });
-  };
 
   return (
     <Container>
@@ -87,7 +55,12 @@ const SignInForm = () => {
       <Button
         style={style}
         onClick={() => {
-          loginReq();
+          dispatch(
+            loginRequest({
+              email: value.email,
+              password: value.password,
+            })
+          );
         }}
       >
         로그인

@@ -3,7 +3,7 @@ import SignUpInputGroup from "../molecules/SignUpInputGroup";
 import Button from "../atoms/Button";
 import Modal from "../molecules/Modal";
 import useInput from "../../hooks/useInput";
-import { checkEmail, register } from "../../services/loginAPI";
+import { checkEmail, register } from "../../services/user";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -18,7 +18,6 @@ const SignUpForm = () => {
   const [title, setTitle] = useState("");
   const [des, setDes] = useState("");
   const [isValid, setIsValid] = useState(false);
-  // const [correct, setCorrect] = useState(true);
   const navigate = useNavigate();
 
   const style = {
@@ -28,6 +27,7 @@ const SignUpForm = () => {
     textAlign: "center",
     padding: "10px",
     width: "100px",
+    cursor: "pointer",
   };
 
   const openModal = () => {

@@ -1,5 +1,4 @@
-import Button from "../atoms/Button";
-import "../../styles/Header.css";
+import "../../styles/molecules/Header.css";
 
 // children: GNB 영역에 있는 구성요소들
 // onClick: 버튼의 클릭 핸들러
