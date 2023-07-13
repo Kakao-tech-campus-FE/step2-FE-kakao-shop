@@ -1,4 +1,5 @@
 import MainProductTemplate from "../components/templates/MainProductTemplate";
+import TestMain from "../components/templates/TestMain";
 
 /**
  * 선물하기 사이트의 메인 페이지
@@ -17,7 +18,8 @@ const HomePage = () => {
             카카오의 추천 아이템을 특가로 만나보세요
           </p>
         </div>
-        <MainProductTemplate />
+        {/* <MainProductTemplate /> */}
+        <TestMain />
       </section>
     </div>
   );

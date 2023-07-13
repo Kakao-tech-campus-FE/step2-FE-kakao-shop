@@ -1,7 +1,14 @@
 import { instance } from "./index";
 
-export const fetchProducts = (page = 0) => {
-  return instance.get(`/products?page=${page}`);
+export const fetchProducts = async (page = 0, isEnd = false) => {
+  if (isEnd) return []; // 마지막 데이터까지 불러왔으면 다음부턴 요청이 가지 않도록
+
+  try {
+    const response = await instance.get(`/products?page=${page}`);
+    return response.data.response || [];
+  } catch (error) {
+    throw new Error("Failed to fetch products");
+  }
 };
 
 export const getProductById = (id) => {
