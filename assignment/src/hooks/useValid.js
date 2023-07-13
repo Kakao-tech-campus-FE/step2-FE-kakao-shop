@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-
-const useInput = (initialValue) => {
-  // const [loading, setLoading] = useState(false);
-  const [value, setValue] = useState(initialValue);
+const useValid = (initialValue) => {
   const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [pwError, setPwError] = useState("");
+
   const [isPwOk, setIsPwOk] = useState(false);
   const [isEmailOk, setIsEmailOk] = useState(false);
   const [isAllOk, setIsAllOk] = useState(false);
@@ -19,15 +17,6 @@ const useInput = (initialValue) => {
     const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
     return passwordRegex.test(password);
-  };
-
-  const handleOnChange = (e) => {
-    const { name, value } = e.target;
-    console.log("name", name);
-    console.log("value", value);
-
-    setValue((prev) => ({ ...prev, [name]: value }));
-    // setLoading(false);
   };
 
   const handlePwChange = (e) => {
@@ -63,21 +52,4 @@ const useInput = (initialValue) => {
   useEffect(() => {
     setIsAllOk(isPwOk && isEmailOk);
   }, [isPwOk, isEmailOk]);
-
-  // if (isPwOk && isEmailOk){
-  //   setIsAllOk(true);
-  // }else{
-  //   setIsAllOk(false);
-  // }
-  return {
-    value,
-    handleOnChange,
-    emailError,
-    passwordError,
-    handlePwChange,
-    handleEmailChange,
-    isAllOk,
-  };
 };
-
-export default useInput;

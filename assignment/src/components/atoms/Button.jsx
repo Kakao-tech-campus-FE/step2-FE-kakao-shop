@@ -4,17 +4,17 @@
 function Button({ onClick, children, disabled }) {
   return (
     <button
-      onClick={e => {
-        e.preventDefault()
+      onClick={(e) => {
+        e.preventDefault();
         if (!disabled) {
-          onClick()
+          onClick();
         }
       }}
       disabled={disabled}
     >
       {children}
     </button>
-  )
+  );
 }
 
-export default Button
+export default Button;

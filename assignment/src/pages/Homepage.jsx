@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react'
 import '../styles/pages/Homepage.css'
 
 const HomePage = () => {
-  const tokenString = localStorage.getItem('user')
-  const tokenObject = JSON.parse(tokenString)
-  const expiration = tokenObject?.expiration
+  const getUserToken = () => {
+    const tokenString = localStorage.getItem('user')
+    const tokenObject = JSON.parse(tokenString)
+    return tokenObject?.expiration > Date.now() ? tokenString : null
+  }
 
-  const [token, setToken] = useState(
-    expiration > Date.now() ? tokenString : null,
-  )
+  const [token, setToken] = useState(getUserToken())
 
   const handleLogout = () => {
     localStorage.removeItem('user')
@@ -18,11 +18,12 @@ const HomePage = () => {
   }
 
   useEffect(() => {
+    const tokenObject = JSON.parse(localStorage.getItem('user'))
+    const expiration = tokenObject?.expiration
     if (expiration && expiration <= Date.now()) {
-      localStorage.removeItem('user')
-      setToken(null)
+      handleLogout()
     }
-  }, [expiration])
+  }, [])
 
   const renderAuthButton = () => {
     if (token) {

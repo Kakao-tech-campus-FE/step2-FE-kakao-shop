@@ -1,14 +1,14 @@
-import Container from '../atoms/Container'
-import InputGroup from '../molecules/InputGroup'
-import Button from '../atoms/Button'
-import useInput from '../../hooks/useInput'
-import { register } from '../../services/user'
+import Container from "../atoms/Container";
+import InputGroup from "../molecules/InputGroup";
+import Button from "../atoms/Button";
+import useInput from "../../hooks/useInput";
+import { register } from "../../services/user";
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 // import { BrowserRouter as Redirect } from 'react-router-dom';
 
 const RegisterForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     value,
     handleOnChange,
@@ -18,11 +18,11 @@ const RegisterForm = () => {
     handleEmailChange,
     isAllOk,
   } = useInput({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  })
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
   return (
     <Container>
       <InputGroup
@@ -72,20 +72,20 @@ const RegisterForm = () => {
             password: value.password,
             username: value.username,
           })
-            .then(res => {
-              alert('성공')
-              navigate('/')
+            .then((res) => {
+              alert("성공");
+              navigate("/");
             })
-            .catch(error => {
-              alert(error.response.data.error.message)
-            })
+            .catch((error) => {
+              alert(error.response.data.error.message);
+            });
         }}
         disabled={!isAllOk}
       >
         회원가입
       </Button>
     </Container>
-  )
-}
+  );
+};
 
-export default RegisterForm
+export default RegisterForm;

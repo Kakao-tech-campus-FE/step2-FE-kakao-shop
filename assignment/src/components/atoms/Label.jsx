@@ -8,6 +8,6 @@ const Label = ({ children, htmlFor, className }) => {
     <label htmlFor={htmlFor} className={className}>
       {children}
     </label>
-  )
-}
-export default Label
+  );
+};
+export default Label;
