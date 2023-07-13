@@ -1,4 +1,8 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +14,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} */
+
+@layer components {
+  .btn-primary {
+    @apply py-2 px-4 bg-yellow-400 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75;
+  }
+  .container{
+    @apply mt-10 ml-96 flex items-center justify-center
+  }
+  .title{
+    @apply mb-10 text-center text-2xl font-bold leading-9 tracking-tight text-black
+  }
 }
