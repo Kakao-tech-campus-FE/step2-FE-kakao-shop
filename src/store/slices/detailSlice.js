@@ -23,7 +23,7 @@ const detailSlice = createSlice({
       })
       .addCase(getDetail.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.error;
+        state.error = action.payload;
       });
   },
 });
