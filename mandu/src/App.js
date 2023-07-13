@@ -1,28 +1,22 @@
 import './App.css';
-import ToastControlBox from "./components/toastControlBox";
-import BreadcrumbControlBox from "./components/breadcrumbControlBox";
-import CarouselControlBox from "./components/carouselControlBox";
-import CheckboxControlBox from "./components/checkboxControlBox";
-import RadioControlBox from "./components/radioControlBox";
-import ToggleControlBox from "./components/toggleControlBox";
-
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import LoginPage from "./pages/LoginPage";
+import SignUpPage from "./pages/SignUpPage";
 
 function App() {
 
 
     return (
         <div className="App">
-            <ToastControlBox/>
-            <hr/>
-            <BreadcrumbControlBox/>
-            <hr/>
-            <CarouselControlBox/>
-            <hr/>
-            <CheckboxControlBox/>
-            <hr/>
-            <RadioControlBox/>
-            <hr/>
-            <ToggleControlBox/>
+            <BrowserRouter>
+                <Routes>
+                    <Route exact path="/" element={<MainPage/>}/>
+                    <Route path="/login" element={<LoginPage/>}/>
+                    <Route path="/signup" element={<SignUpPage/>}/>
+                    <Route path='/*' element={<MainPage/>}/>
+                </Routes>
+            </BrowserRouter>
 
 
         </div>
