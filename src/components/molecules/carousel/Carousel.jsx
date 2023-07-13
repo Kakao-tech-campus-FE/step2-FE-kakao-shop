@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -71,13 +71,13 @@ function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const slideRef = useRef();
 
-  const handleNextSlide = useCallback(() => {
+  const handleNextSlide = () => {
     if (currentSlideIndex >= slideArray.length - 1) {
       setCurrentSlideIndex(0);
     } else {
       setCurrentSlideIndex((prevIndex) => prevIndex + 1);
     }
-  }, [currentSlideIndex, slideArray.length]);
+  };
 
   const handlePrevSlide = () => {
     if (currentSlideIndex === 0) {

@@ -2,12 +2,10 @@ import instance from "./instance.js";
 import API from "../constants/API.js";
 
 const signIn = async (data) => {
-  const { email, password } = data;
-
   return await instance({
     url: API.AUTH.LOGIN,
     method: "POST",
-    data: { email: email, password: password },
+    data,
   });
 };
 
@@ -20,16 +18,10 @@ const checkEmailDuplicate = async (email) => {
 };
 
 const signUp = async (data) => {
-  const { email, password, username } = data;
-
   return await instance({
     url: API.AUTH.JOIN,
     method: "POST",
-    data: {
-      email: email,
-      password: password,
-      username: username,
-    },
+    data,
   });
 };
 
