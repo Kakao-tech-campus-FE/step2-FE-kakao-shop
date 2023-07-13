@@ -1,34 +1,16 @@
-import { useState, useEffect } from 'react';
-import { getCookie } from '../../constants/cookie';
+import { useSelector } from "react-redux";
 
-import Signup from "../atoms/Signup"
 import Login from "../atoms/Login"
 import Logout from "../atoms/Logout";
 
 const MenuAccount = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = getCookie('accessToken');
-    console.log("토큰:", token)
-    setIsLoggedIn(!!token);
-  }, []);
+  const isLoggedIn = useSelector(state => state.isLoggedIn.isLoggedIn);
 
   return (
     <div>
-      {isLoggedIn ? 
-      (
-        <>
-          <Logout />
-        </>
-      ) : 
-      (
-        <>
-          <Signup />
-          <a style={{ margin: 10 }}>|</a>
-          <Login />
-        </>
-      )}
+      {
+        isLoggedIn ? <Logout /> : <Login />
+      }
     </div>
   );
 };

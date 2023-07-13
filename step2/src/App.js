@@ -8,9 +8,9 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <GNB />
+      {/* <GNB /> */}
       <Router />
-      <Examples />
+      {/* <Examples /> */}
     </BrowserRouter>
   );
 };

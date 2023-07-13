@@ -62,12 +62,10 @@ export const getProductName = (categoryId, productId) => {
 // }
 
 export const crumbs = (pathname) => {
-  console.log("crumbs에 들어온 pathname: ", pathname);
   var crumbs = []; //new Crumbs();
   var categoryId = -1;
   var productId = -1;
   pathname.map((path, index) => {
-    console.log("mapping - path: ", path, "index: ", index);
     if (index == 0) {
       // crumbs.push({"path": "..", "label": "홈"});
       crumbs.push({ "path": "..", "label": "홈" });

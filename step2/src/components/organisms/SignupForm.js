@@ -50,6 +50,7 @@ const SignupForm = () => {
         onChange={handleOnChange}
       />
       <Button
+        className="primary"
         onClick={() => {
           handleOnClick("signup", value)
         }}>회원가입</Button>

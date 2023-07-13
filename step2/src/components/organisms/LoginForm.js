@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 import useInput from '../../hooks/useInput';
 import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
@@ -30,9 +32,14 @@ const LoginForm = () => {
         onChange={handleOnChange}
       />
       <Button
-        onClick={() => {
-          handleOnClick("login", value)
-        }}>로그인</Button>
+        className="primary"
+        onClick={() => { handleOnClick("login") }}>
+        로그인
+      </Button>
+      <Link to="/signup">
+        <Button>회원가입</Button>
+      </Link>
+
     </Container>
   );
 };

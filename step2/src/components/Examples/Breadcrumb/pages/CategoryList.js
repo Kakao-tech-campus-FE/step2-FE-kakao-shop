@@ -9,7 +9,7 @@ export const CategoryList = () => {
       <h5>카테고리 목록 페이지</h5>
       <ul>
         {getCategories().map((category, index) => (
-          <li><Link to={""+category.id}>{category.name}</Link></li>
+          <li><Link to={"store/" + category.id}>{category.name}</Link></li>
         ))}
       </ul>
     </div>

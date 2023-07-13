@@ -1,6 +1,31 @@
-/* @import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities'; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.btn {
+  @apply py-2 px-4 my-2 rounded-md w-full bg-gray-300 hover:bg-gray-400 active:bg-gray-500;
+}
+
+.primary {
+  @apply bg-primary hover:bg-primary-hover active:bg-primary-active;
+}
+
+.container {
+  @apply relative w-75 min-w-400 max-w-750;
+}
+
+.box_form {
+  @apply w-full my-4 border-solid border-b border-t-0 border-x-0 border-gray-500 ;
+}
+
+.label_form {
+  @apply w-full;
+}
+
+.input_form {
+  @apply w-full border-none focus:outline-none;
+}
 
 body {
   font-family: Arial, sans-serif;
