@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { styled } from 'styled-components';
 import { Link } from 'react-router-dom';
+import colors from '../../constants/colors';
 
-export default function LinkBtn({ content, to }: { content: string; to: string }) {
+export default function LinkBtn({ children, to }: { children: ReactNode; to: string }) {
   return (
     <Wrap type="button">
-      <StyledLink to={to}>{content}</StyledLink>
+      <StyleResetLink to={to}>{children}</StyleResetLink>
     </Wrap>
   );
 }
 const Wrap = styled.button`
   border: none;
-  background-color: black;
-  padding: 10px;
+  background-color: inherit;
 `;
 
-const StyledLink = styled(Link)`
+const StyleResetLink = styled(Link)`
   text-decoration: none;
-  color: white;
+  color: ${colors.black};
 `;
