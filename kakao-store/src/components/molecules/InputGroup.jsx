@@ -2,6 +2,7 @@ import Input from "../atoms/Input";
 import Box from "../atoms/Box";
 import Label from "../atoms/Label";
 
+<<<<<<< HEAD
 /**
  * 입력 그룹 컴포넌트 생성
  * @param {string} id
@@ -15,10 +16,13 @@ import Label from "../atoms/Label";
  * @returns 입력 그룹 컴포넌트
  */
 const InputGroup = ({id, type, value, onChange, className, placeholder, label, name}) => {
+=======
+const InputGroup = ({id, type, value, onChange, className, placeholder, label}) => {
+>>>>>>> parent of 1f837820 (fix: Fix Register Page)
     return (
         <Box className={className}>
             <Label htmlFor={id}>{label}</Label>
-            <Input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} name={name}></Input>
+            <Input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder}></Input>
         </Box>
     );
 }

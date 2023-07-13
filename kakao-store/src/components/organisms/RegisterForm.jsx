@@ -1,9 +1,13 @@
+import { useState } from "react";
 import Button from "../atoms/Button";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
+<<<<<<< HEAD
 import useInput from "../../hooks/useInput";
 import { register } from "../../apis/api";
 import Title from "../atoms/Title";
+=======
+>>>>>>> parent of 1f837820 (fix: Fix Register Page)
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
@@ -18,7 +22,7 @@ const PASSWORD_CONFIRM_MESSAGE = "비밀번호가 일치하지 않습니다.";
  * @returns 회원가입 폼 컴포넌트
  */
 const RegisterForm = () => {
-    const { value, handleOnChange } = useInput({
+    const [form, setForm] = useState({
         username: "",
         email: "",
         password: "",
@@ -27,6 +31,7 @@ const RegisterForm = () => {
 
     return (
         <Container>
+<<<<<<< HEAD
             <Container className="flex items-center justify-center mt-10">
 				<Title>
 					<img src="/img/logoKakaoText.png" width="88px" height="27px"/>
@@ -62,6 +67,29 @@ const RegisterForm = () => {
                     }}
                 >회원가입</Button>
             </Container>
+=======
+            <InputGroup id="username" type="text" placeholder="사용자 이름" label="이름" 
+                onChange={(e) => {
+                    setForm({...form, [e.target.name]: e.target.value});
+                }}/>
+            <InputGroup id="email" type="email" placeholder="이메일(아이디)" label="이메일" 
+                onChange={(e) => {
+                setForm({...form, [e.target.name]: e.target.value});
+                }}/>
+            <InputGroup id="password" type="password" placeholder="비밀번호" label="비밀번호" 
+                onChange={(e) => {
+                    setForm({...form, [e.target.name]: e.target.value});
+                }}/>
+            <InputGroup id="passwordConfirm" type="password" placeholder="비밀번호 확인" label="비밀번호 확인" 
+                onChange={(e) => {
+                    setForm({...form, [e.target.name]: e.target.value});
+                }}/>
+            <Button
+                onClick={() => {
+                    // Api 요청
+                }}
+            >회원가입</Button>
+>>>>>>> parent of 1f837820 (fix: Fix Register Page)
         </Container>
     );
 }
