@@ -7,15 +7,17 @@ const instance = axios.create({
     "Content-Type": "application/json",
   }
 });
-console.log(instance);
-export const loginApi = (data) => {
+
+export const loginApi = async (data) => {
   const {email, password} = data;
-  return (
-    instance.post("/login", {
+  try {
+    await instance.post("/login", {
       email,
       password
     })
-  );
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const checkDuplicateEmail = ({email}) => {

@@ -2,21 +2,23 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { login } from "../../actions/authActions";
+import { loginApi } from "../../apis/api";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginSuccess } from "../../redux/redux";
 const LoginForm = () => {
-
   const [value, handleOnChange] = useInput({
     email:"",
     emailIsValid: false,
     password:"",
     passwordIsValid: false,
   });
-  const [LoginFailed, setLoginFailed] = useState('');
+  const [loginFailed, setLoginFailed] = useState('');
   const dispatch = useDispatch();
-  
+
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -26,10 +28,12 @@ const LoginForm = () => {
 
     try {
       console.log(value.email);
-      await dispatch(login({email: value.email, password:value.password}));
+      await (loginApi({email: value.email, password:value.password}));
+      dispatch(loginSuccess({email: value.email, password:value.password}));
       console.log("로그인 성공");
+      localStorage.setItem('userInfo', JSON.stringify({email: value.email, password:value.password, expirationTime: Date.now() + 1000 * 60 * 60 * 24}));
+      navigate('/');
     } catch (error) {
-      console.error(error.response.data.error.message);
       setLoginFailed(error.response.data.error.message);
     }
   };
@@ -64,7 +68,7 @@ const LoginForm = () => {
         </Container>
       </form>
 
-      <span className="text-red-500 text-xs block h-2">{LoginFailed}</span>
+      <span className="text-red-500 text-xs block h-2">{loginFailed}</span>
       
       {everythingIsValid ? 
       <Button
