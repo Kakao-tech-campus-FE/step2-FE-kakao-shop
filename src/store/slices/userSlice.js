@@ -1,4 +1,6 @@
-import {createSlice} from "@reduxjs/toolkit"
+import {createSlice, createAsyncThunk} from "@reduxjs/toolkit"
+import { fetchProducts } from "../../services/product";
+import _ from "lodash";
 
 const initialState = {
     email:null,
@@ -29,6 +31,15 @@ const userSlice = createSlice({
         });
       }
 })
+
+export const getProducts = createAsyncThunk(
+    "products/getProducts",
+    async (page = 0) => {
+      const response = await fetchProducts(page);
+      return response.data;
+    }
+  );
+
 
 export const {setEmail} = userSlice.actions;
 export default userSlice.reducer; 

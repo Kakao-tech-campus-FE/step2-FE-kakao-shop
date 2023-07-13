@@ -1,3 +1,5 @@
+import {getProductById} from "../../services/product";
+
 const {createSlice, createAsyncThunk} = require("@reduxjs/toolkit");
 
 const initialState = {

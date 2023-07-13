@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getDetail } from "../store/slices/detailSlice";
-import Loader from "../components/atoms/Loader";
+import Loader from "../components_2/atoms/Loader";
 import { getProductById } from "../services/product";
+import { useQuery } from "react-query";
 
 const ProductDetailPage = () => {
   const { id } = useParams();

@@ -1,12 +1,12 @@
-import  instance  from './index';
+import instance from './index';
 
 export const fetchProducts = (page = 0) => {
-  return instance.get(`/products?page=${page}`)
+  return instance.get(`/products?page=${page}`);
 }
 
 export const getProductById = (id) => {
-  if(!id) return{
-    throw: new Error('id가 필요합니다.')
+  if (!id) {
+    throw new Error('id가 필요합니다.');
   }
   
   return instance.get(`/products/${id}`);

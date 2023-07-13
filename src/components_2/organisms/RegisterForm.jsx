@@ -6,6 +6,7 @@ import useInput from '../../hooks/useInput';
 import { register } from '../../services';
 import { useDispatch } from 'react-redux';
 import { setEmail } from '../../store/slices/userSlice';
+import Title from '../atoms/Title';
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const RegisterForm = () => {
 
   return (
     <Container>
+      <Title>회원가입</Title>
       {/* <Loader loading={loading} /> */}
       <InputGroup
         id="username"
