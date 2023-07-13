@@ -1,9 +1,9 @@
-import Container from "../Atoms/container";
-import Button from "../Atoms/button";
-import InputGroup from "../Molecules/inputgroup";
-import { register, checkUnique } from "../../api";
+import Container from "../Atoms/Container";
+import Button from "../Atoms/Button";
+import InputGroup from "../Molecules/InputGroup";
+import { register, checkUnique } from "../../Servicies/user";
 import useInput from "../../Hooks/useinput";
-import Box from "../Atoms/box";
+import Box from "../Atoms/Box";
 import { setEmail } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -90,12 +90,12 @@ const RegisterForm = ( ) => {
       })
   }
 
-  const backToMain = useNavigate("../mainpage")
+  const navigate = useNavigate()
 
 
   return (
     <div className="flex min-h-screen justify-center items-center">
-      <Container className= "border-solid border-2">
+      <Container className= "mx-auto w-1/3 h-2/3 align-middle  border-solid border-2">
         <div className="object-center	text-xl p-3 m-3 font-semibold text-center">Sign up</div>
         <InputGroup 
           id="username" 
@@ -149,7 +149,7 @@ const RegisterForm = ( ) => {
             onClick={() => {
               setClicked(!isClicked)
               registerReq()
-              backToMain()            
+              navigate("/mainpage")            
             }}
             disabled={validAll(value)}
             className={validAll(value) ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 

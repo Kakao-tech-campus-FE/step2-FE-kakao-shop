@@ -1,55 +1,35 @@
-import Container from "../Atoms/container";
-import Button from "../Atoms/button";
-import InputGroup from "../Molecules/inputgroup";
-import { login, checkUnique } from "../../api";
+import Container from "../Atoms/Container";
+import Button from "../Atoms/Button";
+import InputGroup from "../Molecules/InputGroup";
+import { login, checkUnique } from "../../Servicies/user";
 import useInput from "../../Hooks/useinput";
-import Box from "../Atoms/box";
-import { setEmail } from "../../Store/Slices/userSlice";
+import Box from "../Atoms/Box";
+import { loginRequest, setEmail } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const LoginForm = ( ) => {
   const dispatch = useDispatch()
 
   const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
-  const backToMain = useNavigate("/main")
 
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   }); 
 
-  const validAll = (props) => {
-    if (props.email && props.password) {
+  const validAll = () => {
+    if (value.email && value.password) {
       return false
     } else { return true }
   }
 
-  const loginReq = () => {
-    login({
-      email: value.email, 
-      password: value.password,
-    })
-      .then((res) => {
-        console.log(res);
-        dispatch(setEmail({
-          email: value.email
-        }))
-        console.log('로그인했음')
-        backToMain()
-      })
-      .catch((err) => {
-        console.log('err', err);
-        alert(err.name)
-      })
-  }
-
-
-
+  const navigate = useNavigate();
 
   return (
     <div className="flex min-h-screen justify-center items-center">
-      <Container className="border-solid border-2 ">
+      <Container className="mx-auto w-1/3 h-2/3 align-middle  border-solid border-2 ">
         <header className="object-center text-xl p-3 m-3 font-semibold text-center">Sign in</header>
         <InputGroup 
           id="email" 
@@ -57,7 +37,7 @@ const LoginForm = ( ) => {
           type="email" 
           placeholder="아이디(이메일)을 입력하세요" 
           label="아이디(이메일)" 
-          value={value.email}
+          value={value?.email}
           onChange={handleOnChange}
           className={inputStyle} 
         />
@@ -67,22 +47,29 @@ const LoginForm = ( ) => {
           type="password" 
           placeholder="비밀번호를 입력하세요" 
           label="비밀번호" 
-          value={value.password}
+          value={value?.password}
           onChange={handleOnChange}
           className={inputStyle} 
         />
         <Box className="m-3">
-          <Button 
-            onClick={() => {
-
-              loginReq()
-            }}
-            disabled={validAll(value)}
-            className={validAll(value) ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
-                        : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"}
-          >
-          로그인
-          </Button>
+          {/* <Link to='/mainpage'> */}
+            <Button
+              onClick={() => {
+                dispatch(
+                  loginRequest({
+                    email: value.email,
+                    password: value.password,
+                  })
+                )
+                navigate('/mainpage')
+              }}
+              disabled={validAll()}
+              className={validAll() ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
+                          : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"}
+            >
+            로그인
+            </Button>
+          {/* </Link> */}
         </Box>      
 
       </Container>

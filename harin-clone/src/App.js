@@ -3,26 +3,33 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MainPage from './Pages/mainpage';
 import LoginPage from './Pages/loginpage';
 import RegisterPage from './Pages/registerpage';
-import PageNotFound from './Pages/pagenotfound';
-import Navigation from "./Components/Molecules/navigation";
-import Week1 from './Pages/Week1';
-import { Navigate } from 'react-router-dom';
+import MainLayout from './Layouts/mainlayout';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { QueryClient, QueryClientProvider } from "react-query";
 
+// const queryClient = new QueryClient();
 
 function App() {
   return (
+    // <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-          <Routes>   
-            <Route exact path='/' Component={Navigation}>
-              <Route path='/:mainpage' Component={MainPage} />
+          <Routes>
+            {/* 단독 레이아웃 */}
+            <Route path='/loginpage' Component={LoginPage} />
+            <Route path='/registerpage' Component={RegisterPage} />
+            
+            {/* 공통 레이아웃 */}
+            {/* <Route exact path='/' Component={Navigation}>
+              <Route path='/' Component={MainPage} />
               <Route Component={PageNotFound} />
+            </Route> */}
+            <Route element={<MainLayout />}>
+              <Route path='/' element={<MainPage />}></Route>
             </Route>
-              <Route path='/loginpage' Component={LoginPage} />
-              <Route path='/registerpage' Component={RegisterPage} />
-              <Route path='/week1' Component={Week1} />
-              <Route path="/loginpage" element={<Navigate replace to="/mainpage" />} />
           </Routes>
-      </BrowserRouter>  
+      </BrowserRouter> 
+      // <ReactQueryDevtools />
+    // </QueryClientProvider>
 
   );
 };
