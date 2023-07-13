@@ -7,6 +7,7 @@ import { setEmail, setLogInTime } from "store/slices/userSlice";
 import Test from "pages/Test.js";
 import LogIn from "pages/LogIn.js";
 import SignUp from "pages/SignUp.js";
+import Layout from "components/templates/Layout";
 import Products from "pages/Products.js";
 import Product from "pages/Product.js";
 import Cart from "pages/Cart.js";
@@ -30,7 +31,7 @@ function App() {
       window.location.href = "/";
     }, expireTime - (new Date().getTime() - logInTime));
     return () => clearTimeout(timeoutId);
-  // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
@@ -39,11 +40,13 @@ function App() {
         <Routes>
           <Route path="/login" element={<LogIn />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<Products />} />
-          <Route path="/product/:productId" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order" element={<Order />} />
-          <Route path="/result/:orderId" element={<Result />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Products />} />
+            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/order" element={<Order />} />
+            <Route path="/result/:orderId" element={<Result />} />
+          </Route>
           <Route path="/test" element={<Test />} />
           {/* 잘못된 경로 */}
           <Route path="*" element={<NotFound />} />
