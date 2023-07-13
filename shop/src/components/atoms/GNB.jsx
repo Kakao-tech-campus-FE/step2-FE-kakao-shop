@@ -66,8 +66,8 @@ const GNB = () => {
     }
   };
   return (
-    <header className="fixed top-0 left-0 p-5 bg-white  md:flex md:items-center inner">
-      <img className="h-12 inline cursor-pointer" src="/img/logo_talkshopping.png" alt="logoKakao"/>
+    <header className="fixed top-0 left-0 p-5 bg-white border-b border-gray-300 flex items-center inner">
+      <img className="h-10 inline cursor-pointer mr-4" src="/logoKakao.png" alt="logoKakao"/>
       <nav>
         <ul className = "md:flex md:items-center space-x-4">
           <li>
@@ -89,7 +89,7 @@ const GNB = () => {
       </nav>
     
       <div className="flex flex-1 justify-end space-x-4 ">
-        <img src="/img/장바구니.png" style={{width:'30px'}} alt="장바구니 아이콘"/>
+        <img src="/cart.png" style={{width:'30px'}} alt="장바구니 아이콘"/>
         {renderAuthLink()}
       </div>
 
