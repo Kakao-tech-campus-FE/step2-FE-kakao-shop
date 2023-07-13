@@ -72,7 +72,7 @@ const SignInForm = () => {
         id="password"
         title="비밀번호"
         name="password"
-        type="text"
+        type="password"
         placeholder="비밀번호"
         register={register("password", {
           required: "비밀번호를 입력해주세요.(영문자/숫자/특수문자)",

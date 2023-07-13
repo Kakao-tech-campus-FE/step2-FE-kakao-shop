@@ -200,7 +200,7 @@ const SignUpForm = () => {
         id="password"
         title="비밀번호"
         name="password"
-        type="text"
+        type="password"
         placeholder="비밀번호"
         register={register("password", {
           required: "필수 정보입니다.",
@@ -220,7 +220,7 @@ const SignUpForm = () => {
         id="passwordConfirm"
         title="비밀번호 확인"
         name="passwordConfirm"
-        type="text"
+        type="password"
         placeholder="비밀번호 확인"
         register={register("passwordConfirm", {
           required: "필수 정보입니다.",
