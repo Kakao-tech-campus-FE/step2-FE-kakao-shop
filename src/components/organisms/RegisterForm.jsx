@@ -3,7 +3,7 @@ import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import { register } from "../../services/api";
+import { register } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";

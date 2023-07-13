@@ -1,8 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { login } from "../../services/user";
 
 const initialState = {
   email: null,
   loggedInAt: null,
+  loading: false,
+  token: null,
 };
 
 const userSlice = createSlice({
@@ -17,7 +20,34 @@ const userSlice = createSlice({
       state.loggedInAt = action.payload.loggedInAt;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(loginRequest.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(loginRequest.fulfilled, (state, action) => {
+      state.loading = false;
+      state.email = action.payload.email;
+      localStorage.setItem("token", action.payload.token);
+      localStorage.setItem("email", "sample email");
+      state.token = action.payload.token;
+    });
+    builder.addCase(loginRequest.rejected, (state, action) => {
+      state.loading = false;
+    });
+  },
 });
+
+export const loginRequest = createAsyncThunk(
+  "user/loginRequest",
+  async (data) => {
+    const { email, password } = data;
+    const response = await login({ email, password });
+    return {
+      email,
+      token: response.headers.authorization,
+    };
+  }
+);
 
 export const { setEmail } = userSlice.actions;
 

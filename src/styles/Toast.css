@@ -1,14 +1,17 @@
 .toast {
-  position: absolute;
-  opacity: 0%;
-  bottom: -100px;
-  left: 10px;
-  right: 10px;
-  border-radius: 10px;
-  padding: 20px;
+  display: none;
+  justify-content: center;
+  position: fixed;
+  margin: 0 54px 30px;
+  border-radius: 5px;
+  padding: 24px;
   z-index: 1;
-  color: white;
-  background-image: linear-gradient(120deg, #f093fb 0%, #f5576c 100%);
-  box-shadow: 0 5px 5px gray;
+  box-shadow: 0 3px 5px gray;
   transition: .5s;
+  
+  /* Kakao Store Attrs */
+  font-size: 14px;
+  line-height: 1.5;
+  color: white;
+  background-color: #333;
 }

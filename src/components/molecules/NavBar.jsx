@@ -9,10 +9,11 @@ import Timer from "./Timer";
 const NavBar = () => {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
-  const timeout = 10000;
+  const timeout = 1000009;
 
   const setLoginStateNull = () => {
     dispatch(setEmail({ email: null, loggedInAt: null }));
+    localStorage.removeItem("token");
   };
 
   return (

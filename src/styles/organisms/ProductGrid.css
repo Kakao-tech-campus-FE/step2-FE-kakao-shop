@@ -1,0 +1,17 @@
+.product-grid {
+  display: grid;
+  /* grid-template-column 공부하기 */
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: inherit;
+}
+
+/* 화면 사이즈가 가로 0px ~ 768px일 때 적용되는 코드 */
+/* 아래 예시는 아이패드를 예시로 듬 */
+@media screen and (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

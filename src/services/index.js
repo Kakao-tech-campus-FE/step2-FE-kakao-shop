@@ -1,11 +1,10 @@
 import axios from "axios";
-import { Route, redirect } from "react-router-dom";
 
-const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-const passwordReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*-=])(?=.*[0-9]).{8,20}$/;
+// const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+// const passwordReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*-=])(?=.*[0-9]).{8,20}$/;
 
 // AXIOS 인스턴스 선언
-const instance = axios.create({
+export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   timeout: 1000, // 보다 나은 사용자 경험을 위해 timeout 추가
   headers: {
@@ -16,7 +15,11 @@ const instance = axios.create({
 // 인터셉터: 요청/응답을 보내거나 받기 전에 가로채서 처리하는 역할
 instance.interceptors.request.use(
   (config) => {
+    const token = localStorage.getItem("token");
     // 여기서 요청을 취소할 수 없어 비워둠
+    if (token) {
+      config.headers["Authorization"] = token;
+    }
     return config;
   },
   (error) => {
@@ -31,27 +34,14 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
+    // switch (error.response.status) {
+    //   case 401:
+    //     alert("로그인이 필요합니다");
+    //     window.location.href = ("/login");
+    //     break;
+    //   case 400:
+    //     return Promise.resolve(error.response);
+    // }
     throw new Error(error.response.data.error.message);
   }
 );
-
-// 회원가입
-// 외부로부터 데이터를 받아 baseURL에 "/join"을 붙여 POST 형식으로 보낸다.
-export const register = (data) => {
-  const { email, password, username } = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  });
-};
-
-// 로그인
-// 외부로부터 데이터를 받아 baseURL에 "/login"을 붙여 POST 형식으로 보낸다.
-export const login = (data) => {
-  const { email, password } = data;
-  return instance.post("/login", {
-    email,
-    password,
-  });
-};
