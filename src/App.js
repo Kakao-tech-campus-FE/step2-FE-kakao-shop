@@ -10,12 +10,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<RegisterPage />}></Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
           {/* 공통 레이아웃 : GNB, Footer */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

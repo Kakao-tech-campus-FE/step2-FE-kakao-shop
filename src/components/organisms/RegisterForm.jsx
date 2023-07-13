@@ -48,7 +48,7 @@ const RegisterForm = () => {
     if (!name) {
       return "사용자 이름을 입력하세요.";
     }
-    return "";
+    return;
   };
 
   const handleNameBlur = (event) => {

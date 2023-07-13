@@ -54,6 +54,7 @@ export const loginRequest = createAsyncThunk(
     if (typeof password !== "string") {
       throw new Error("비밀번호 형식이 올바르지 않습니다.");
     }
+
     return {
       email: email,
       token: response.token,

@@ -1,9 +1,18 @@
+import styled from "styled-components";
 const Container = ({ children }) => {
-  return (
-    <div className="absolute top-1/2 left-1/2 w-2/5 mt-8 px-10 py-10 transform -translate-x-1/2 -translate-y-1/2 box-border shadow-lg rounded-lg">
-      {children}
-    </div>
-  );
+  return <StyledContainer>{children}</StyledContainer>;
 };
 
 export default Container;
+
+const StyledContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40%;
+  padding: 2.5rem;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+`;

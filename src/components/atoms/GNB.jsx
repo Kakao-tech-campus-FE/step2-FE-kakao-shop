@@ -1,9 +1,10 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/userSlice";
-import { useState, useEffect } from "react";
 import logoKakao from "../../assets/logoKakao.png";
 import cart from "../../assets/cart.png";
+import styled from "styled-components";
 
 const LOGOUT_TIMER = 30 * 60 * 1000; // 30분 후 자동 로그아웃
 
@@ -34,41 +35,78 @@ function GNB() {
   };
 
   return (
-    <header className="header">
-      <div className="fixed left-0 right-0 top-0 z-40 px-32 h-20 border-b-2 border-gray-300 bg-white">
-        <div className="flex w-1280 h-79 mx-auto justify-between">
-          <Link to="/">
-            <img
-              src={logoKakao}
-              alt="카카오 쇼핑하기 로고"
-              className="text-2xl w-20 h-15 mx-5 my-6 py-1.5"
-            />
+    <Header>
+      <Container>
+        <Link to="/">
+          <Logo src={logoKakao} alt="카카오 쇼핑하기 로고" />
+        </Link>
+        <Nav>
+          <Link to="/cart">
+            <img src={cart} alt="장바구니 버튼" className="h-10" />
           </Link>
-          <nav className="flex items-center space-x-4">
-            <Link to="/cart">
-              <img
-                src={cart}
-                alt="장바구니 버튼"
-                className="text-2xl w-10 mr-10 py-1.5"
-              />
-            </Link>
-            {!isLoggedIn ? (
-              <Link to="/login" className="">
-                로그인
-              </Link>
-            ) : (
-              <>
-                <span>{email}</span>
-                <button onClick={handleLogout}>로그아웃</button>
-              </>
-            )}
-
-            <Link to="/signup">회원가입</Link>
-          </nav>
-        </div>
-      </div>
-    </header>
+          {!isLoggedIn ? (
+            <StyledLink to="/login">로그인</StyledLink>
+          ) : (
+            <>
+              <span>{email}</span>
+              <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
+            </>
+          )}
+          <StyledLink to="/signup">회원가입</StyledLink>
+        </Nav>
+      </Container>
+    </Header>
   );
 }
 
 export default GNB;
+
+const Header = styled.header`
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 40;
+  padding: 0 2rem;
+  height: 5rem;
+  border-bottom: 0.1rem solid #ccc;
+  background-color: #fff;
+`;
+
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 80rem;
+  height: 4.95rem;
+  margin: 0 auto;
+`;
+
+const Logo = styled.img`
+  font-size: 2rem;
+  width: 5rem;
+  height: 2.25rem;
+  margin: 1.3rem;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: 0 2rem;
+  height: 5rem;
+`;
+
+const StyledLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+`;
+
+const StyledButton = styled.button`
+  color: #000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;

@@ -9,25 +9,14 @@ const ProductDetailPage = () => {
     getProductById(id)
   );
 
-  // const testFetchProducts = async () => {
-  //   try {
-  //     const response = await getProductById(id);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // testFetchProducts();
-
-  console.log(typeof id);
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="pt-40">
-      {/* {isLoading && <Loader />} */}
-      {!isLoading && <Loader />}
       {error && <div>{error.message}</div>}
-      {data && <div>{data["data"].response.productName}</div>}
+      {data && <div>{data.data.response.productName}</div>}
     </div>
   );
 };

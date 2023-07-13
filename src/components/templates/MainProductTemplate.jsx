@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { useQuery } from "react-query";
 import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../atoms/Loader";
@@ -8,16 +8,17 @@ import _ from "lodash";
 
 const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
+
   const { page } = useParams();
   const [pageNumber, setPageNumber] = useState(
     !isNaN(page) ? parseInt(page, 10) : 0
   );
+
   const [products, setProducts] = useState([]);
   const [isEnd, setIsEnd] = useState(false);
 
-  const { data, isLoading, isError, isFetching } = useQuery(
-    ["myData", pageNumber],
-    () => fetchProducts(pageNumber)
+  const { data, error, isLoading } = useQuery(["myData", pageNumber], () =>
+    fetchProducts(pageNumber)
   );
 
   const loadMore = async () => {
@@ -29,7 +30,7 @@ const MainProductTemplate = () => {
       setProducts((prevProducts) =>
         _.uniqBy([...prevProducts, ...data.data.response], "id")
       );
-      setIsEnd(data.data.response.length < 10);
+      setIsEnd(data.data.response.length < 9);
     }
   }, [data]);
 
@@ -55,18 +56,17 @@ const MainProductTemplate = () => {
     };
   }, [bottomObserver, isEnd]);
 
-  if (isLoading || isFetching) {
-    return <Loader />;
-  }
-
-  if (isError) {
-    return <div>Error: Failed to fetch data</div>;
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
 
   return (
-    <div className="w-full mx-auto px-20 pt-20">
-      <ProductGrid products={products} />
+    <div className="w-full mx-auto px-32 pt-20">
+      {isLoading && <Loader />}
+      {/* <Suspense fallback={<Loader />}> */}
+      <ProductGrid products={products} loading={isLoading} />
       <div ref={bottomObserver}></div>
+      {/* </Suspense> */}
     </div>
   );
 };
