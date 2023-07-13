@@ -31,17 +31,17 @@ const ProductCard = ({ product, skeleton }) => {
       </div>
       <div
         className={`mt-2 text-sm ${
-          skeleton && "h-[30px] rounded-md bg-gray-300 text-[0px] "
+          skeleton && "mt-[30px] h-[50px] rounded-md bg-gray-300 text-[0px]"
         }`}
       >
         {product.productName}
       </div>
       <div
-        className={`mt-1 text-xl font-bold ${
-          skeleton && "w-[100px] rounded-md bg-gray-300 text-[0px]"
+        className={`mt-1 font-bold ${
+          skeleton && "h-[30px] w-[100px] rounded-md bg-gray-300 text-[0px]"
         }`}
       >
-        <span className={`mr-2 text-[#4684e9] ${skeleton && "text-[0px]"}`}>
+        <span className={`mr-1 text-[#4684e9] ${skeleton && "text-[0px]"}`}>
           톡딜가
         </span>
         {comma(product.price)}원
