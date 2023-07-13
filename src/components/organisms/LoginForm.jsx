@@ -1,24 +1,57 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import { register, login } from "../../services/api";
-import Title from '../atoms/Title';
+import { login } from "../../services/api";
+import Title from "../atoms/Title";
+import { useDispatch, useSelector } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
+import { useNavigate } from 'react-router-dom'
+// import useInputError from "../../hooks/useInputError";
 
-const RegisterForm = () => {
+const LoginForm = () => {
+  // global state 변경할 때
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // global state 가져올 때
+  // state는 /src/store/index.js 안에 선언된 state임
+  const email = useSelector((state) => state.user.email);
+
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
 
-  useEffect(() => {
-    console.log(value.username);
-  }, [value.username]);
+  // const { errorMsg, handleOnBlur } = useInputError("");
+  const [errorMsg, setErrorMsg] = useState("");
+  
+  const loginReq = () => {
+    login({
+      email: value.email,
+      password: value.password,
+    })
+      // 정상적인 로그인 시
+      .then((res) => {
+        dispatch(
+          setEmail({
+            email: value.email,
+            loggedInAt: new Date().getTime(),
+          })
+        );
+        navigate("/");
+      })
+      // 에러 발생 시
+      .catch((error) => {
+        setErrorMsg(error.message);
+      });
+  };
 
   return (
     <Container>
       <Title>로그인</Title>
+      <span>{email}</span>
       <InputGroup
         id="email"
         type="email"
@@ -27,6 +60,7 @@ const RegisterForm = () => {
         label="이메일"
         value={value.email}
         onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -37,21 +71,20 @@ const RegisterForm = () => {
         label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
-
 
       <Button
         onClick={() => {
-          login({
-            email: value.email,
-            password: value.password,
-          });
+          // API 요청 보내기 전 검사
+          loginReq();
         }}
       >
         로그인
       </Button>
+      <>{errorMsg}</>
     </Container>
   );
 };
 
-export default RegisterForm;
+export default LoginForm;

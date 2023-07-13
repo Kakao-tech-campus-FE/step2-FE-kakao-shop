@@ -1,11 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { register } from "../../services/api";
+import Title from "../atoms/Title";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+// import useInputError from "../../hooks/useInputError";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
+
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
@@ -13,12 +19,29 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
-  useEffect(() => {
-    console.log(value.username);
-  }, [value.username]);
+  const [errorMsg, setErrorMsg] = useState("");
+  // const { errorMsg, handleOnBlur } = useInputError("");
+
+  const registerReq = () => {
+    register({
+      email: value.email,
+      password: value.password,
+      username: value.username,
+    })
+      // 정상적인 로그인 시
+      .then((res) => {
+        navigate("/");
+      })
+      // 에러 났을 시
+      .catch((error) => {
+        setErrorMsg(error.message);
+      });
+  };
 
   return (
     <Container>
+      <Title>회원가입</Title>
+
       <InputGroup
         id="username"
         type="text"
@@ -27,6 +50,7 @@ const RegisterForm = () => {
         label="이름"
         value={value.username}
         onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -37,6 +61,7 @@ const RegisterForm = () => {
         label="이메일"
         value={value.email}
         onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -47,6 +72,7 @@ const RegisterForm = () => {
         label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
 
       <InputGroup
@@ -57,19 +83,17 @@ const RegisterForm = () => {
         label="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
+        // onBlur={handleOnBlur}
       />
 
       <Button
         onClick={() => {
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          });
+          registerReq();
         }}
       >
         회원가입
       </Button>
+      <>{errorMsg}</>
     </Container>
   );
 };

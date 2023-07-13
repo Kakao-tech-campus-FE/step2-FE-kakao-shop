@@ -9,6 +9,7 @@ const InputGroup = ({
   name,
   value,
   onChange,
+  onBlur,
   label,
   placeholder
 }) => {
@@ -19,9 +20,10 @@ const InputGroup = ({
         id={id}
         type={type}
         name={name}
+        placeholder={placeholder}
         value={value}
         onChange={onChange}
-        placeholder={placeholder}
+        onBlur={onBlur}
       ></Input>
     </Box>
   );

@@ -1,10 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../styles/NavBar.css"
+import "../../styles/NavBar.css";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../atoms/Button";
+import { setEmail } from "../../store/slices/userSlice";
+import Timer from "./Timer";
 
 const NavBar = () => {
+  const email = useSelector((state) => state.user.email);
+  const dispatch = useDispatch();
+  const timeout = 10000;
+
+  const setLoginStateNull = () => {
+    dispatch(setEmail({ email: null, loggedInAt: null }));
+  };
+
   return (
     <div className="navbar">
+      <Link className="navbarMenu" to={"/"}>
+        Main
+      </Link>
       <Link className="navbarMenu" to={"/carousel"}>
         Carousel
       </Link>
@@ -20,12 +35,29 @@ const NavBar = () => {
       <Link className="navbarMenu" to={"/togglebutton"}>
         ToggleButton
       </Link>
-      <Link className="navbarMenu" to={"/login"}>
-        로그인
-      </Link>
-      <Link className="navbarMenu" to={"/register"}>
-        회원가입
-      </Link>
+
+      {(() => {
+        if (email) {
+          return (
+            <>
+              <Timer timeout={timeout}></Timer>
+              <span> {email} </span>
+              <Button children="로그아웃" onClick={setLoginStateNull}></Button>
+            </>
+          );
+        } else {
+          return (
+            <>
+              <Link className="navbarMenu" to={"/login"}>
+                로그인
+              </Link>
+              <Link className="navbarMenu" to={"/register"}>
+                회원가입
+              </Link>
+            </>
+          );
+        }
+      })()}
     </div>
   );
 };
