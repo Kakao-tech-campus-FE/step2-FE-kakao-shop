@@ -1,13 +1,13 @@
-import Container from "../atoms/Container";
-import InputGroup from "../molecules/InputGroup";
-import Button from "../atoms/Button";
-import useInput from "../../hooks/useInput";
-import { register } from "../../services/user";
-
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import Container from '../atoms/Container';
+import InputGroup from '../molecules/InputGroup';
+import Button from '../atoms/Button';
+import useInput from '../../hooks/useInput';
+import { register } from '../../services/user';
 // import { BrowserRouter as Redirect } from 'react-router-dom';
 
-const RegisterForm = () => {
+function RegisterForm() {
   const navigate = useNavigate();
   const {
     value,
@@ -18,11 +18,27 @@ const RegisterForm = () => {
     handleEmailChange,
     isAllOk,
   } = useInput({
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
   });
+
+  const handleClick = () => {
+    register({
+      email: value.email,
+      password: value.password,
+      username: value.username,
+    })
+      .then((res) => {
+        alert('성공');
+        navigate('/');
+      })
+      .catch((error) => {
+        alert(error.response.data.error.message);
+      });
+  };
+
   return (
     <Container>
       <InputGroup
@@ -65,27 +81,11 @@ const RegisterForm = () => {
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
-      <Button
-        onClick={() => {
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          })
-            .then((res) => {
-              alert("성공");
-              navigate("/");
-            })
-            .catch((error) => {
-              alert(error.response.data.error.message);
-            });
-        }}
-        disabled={!isAllOk}
-      >
+      <Button onClick={handleClick} disabled={!isAllOk}>
         회원가입
       </Button>
     </Container>
   );
-};
+}
 
 export default RegisterForm;

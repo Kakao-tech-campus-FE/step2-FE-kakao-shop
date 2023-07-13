@@ -1,22 +1,23 @@
-import Container from "../atoms/Container";
-import InputGroup from "../molecules/InputGroup";
-import Button from "../atoms/Button";
-import useInput from "../../hooks/useInput";
-import { useNavigate } from "react-router-dom";
-import { login } from "../../services/user";
-import Title from "../atoms/Title";
-import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Container from '../atoms/Container';
+import InputGroup from '../molecules/InputGroup';
+import Button from '../atoms/Button';
+import useInput from '../../hooks/useInput';
+import { login } from '../../services/user';
+import Title from '../atoms/Title';
+import { setEmail } from '../../store/slices/userSlice';
 
-const LoginForm = () => {
+function LoginForm() {
   // 모든 reducer함수를 호출하려면 먼저 dispatch
   const dispatch = useDispatch();
   // 데이터 가져올 때
   // state 모든 state를 다담고 있는 최상위 state
   const email = useSelector((state) => state.user.email);
   const { value, handleOnChange } = useInput({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const navigate = useNavigate();
   const loginReq = () => {
@@ -28,15 +29,15 @@ const LoginForm = () => {
         dispatch(
           setEmail({
             user: value.email,
-          })
+          }),
         );
         const item = {
           value: res.headers.authorization,
           expiration: Date.now() + 600000,
         };
-        localStorage.setItem("user", JSON.stringify(item));
-        alert("로그인 성공!");
-        navigate("/");
+        localStorage.setItem('user', JSON.stringify(item));
+        alert('로그인 성공!');
+        navigate('/');
       })
       .catch((err) => {
         console.log(err.request.response);
@@ -46,7 +47,7 @@ const LoginForm = () => {
   return (
     <Container>
       <Title>로그인</Title>
-      {/*데이터 가져오기*/}
+      {/* 데이터 가져오기 */}
       <span>{email}</span>
       <InputGroup
         id="email"
@@ -75,7 +76,7 @@ const LoginForm = () => {
       </Button>
     </Container>
   );
-};
+}
 
 export default LoginForm;
 // api 로그인요청
