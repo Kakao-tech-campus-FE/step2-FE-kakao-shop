@@ -1,0 +1,83 @@
+.toggleContainer {
+  width: 50px;
+  height: 25px;
+  display: block;
+  position: relative;
+  border-radius: 30px;
+  background-color: #fff;
+  border-style: solid;
+  border-width: 1px;  
+  border-color: #be70f2;
+  cursor: pointer;
+}
+
+.toggleContainer .toggleButton {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background-color: #be70f2;
+}
+
+#toggle:checked ~ .toggleContainer {
+  background: #cc8ff4;
+}
+
+#toggle:checked ~ .toggleContainer .toggleButton {
+  left: calc(100% - 22px);
+  background: #fff;
+}
+
+.toggleButton, .toggleContainer {
+  transition: all 0.3s ease-in;
+}
+
+#list {
+  list-style-type: none;
+  display: flex;
+  background-color: rgb(228, 211, 255);
+}
+
+#list li+li::before {
+  padding: 8px;
+  color: rgb(77, 17, 155);
+  content: ">";
+}
+
+.breadBtn button+button {
+  margin-left: 4px;
+}
+
+.toasty {
+  height: 40px;
+  width: 200px;
+  background-color: rgb(228, 211, 255);
+  border-radius: 10px;
+  padding: 2px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  display: flex;
+  bottom: 20px;
+  left: 20px;
+  margin-top: 10px;
+}
+
+.carousel-container {
+  width: 300vw;
+  overflow: hidden;
+
+}
+
+.each {
+  width: 100vw;
+  float: left;
+}
+
+.each img {
+  width: 100;
+}

@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useRef} from "react";
-import styled from 'styled-components';
 
 const MoveL = () => {
   document.querySelector(".carousel-container").style.transform = 'translateX(-500px)'

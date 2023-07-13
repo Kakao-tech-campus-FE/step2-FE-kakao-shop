@@ -1,54 +1,30 @@
 import './App.css';
-import BreadCrumb from './Components/Breadcrumb/breadcrumb';
-import Carousel from './Components/Carousel/carousel';
-import CheckBoxList from './Components/Checklist/checklist';
-import RadiobButtonGroup from './Components/Radiobutton/radiogroup';
-import Toasty from './Components/Toast/toasty';
-import { ToggleButton } from './Components/Togglebutton/togglebutton';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import MainPage from './Pages/mainpage';
+import LoginPage from './Pages/loginpage';
+import RegisterPage from './Pages/registerpage';
+import PageNotFound from './Pages/pagenotfound';
+import Navigation from "./Components/Molecules/navigation";
+import Week1 from './Pages/Week1';
+import { Navigate } from 'react-router-dom';
 
 
 function App() {
-  const style = {
-    padding: '50px',
-    margin: '30px',
-    borderColor: '#be70f2'
-  }
-
   return (
-    <form>
-      <h2>[1주차 과제] 부산대 FE 민하린</h2>
-
-
-        <h3>Toast</h3>
-        <Toasty />
-
- 
-        <h3>Breadcrumb</h3>
-        <BreadCrumb />
-
-
-
-        <h3>Carousel</h3>
-        <Carousel />
-
-
-
-        <h3>Radio Button</h3>
-        <RadiobButtonGroup />
-
-
-
-        <h3>Toggle Button</h3>
-        <ToggleButton />
-
-      
-
-        <h3>Check List</h3>
-        <CheckBoxList />
-
-    </form>
+      <BrowserRouter>
+          <Routes>   
+            <Route exact path='/' Component={Navigation}>
+              <Route path='/:mainpage' Component={MainPage} />
+              <Route Component={PageNotFound} />
+            </Route>
+              <Route path='/loginpage' Component={LoginPage} />
+              <Route path='/registerpage' Component={RegisterPage} />
+              <Route path='/week1' Component={Week1} />
+              <Route path="/loginpage" element={<Navigate replace to="/mainpage" />} />
+          </Routes>
+      </BrowserRouter>  
 
   );
-}
+};
 
 export default App;
