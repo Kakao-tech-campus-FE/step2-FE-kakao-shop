@@ -41,21 +41,11 @@ export const signinRequest = createAsyncThunk(
       });
       return { email, token: response.headers.authorization };
     } catch (error) {
-      if (error.response.data.error.status === 401) {
+      if (error.response.status === 401) {
         return rejectWithValue(error.response.data);
       }
     }
   }
 );
-
-export const checkTokenExpiration = () => {
-  const tokenData = localStorage.getItem("token");
-  if (tokenData) {
-    const { expiration } = JSON.parse(tokenData);
-    if (expiration && new Date().getTime() > expiration) {
-      localStorage.removeItem("token");
-    }
-  }
-};
 
 export default userSlice.reducer;

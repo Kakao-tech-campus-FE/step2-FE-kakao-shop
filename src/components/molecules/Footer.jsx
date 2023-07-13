@@ -7,7 +7,7 @@ const Container = styled.footer`
   border-top: 1px solid rgb(238, 238, 238);
 `;
 
-const Wrapper = styled.footer`
+const Wrapper = styled.div`
   width: 1200px;
   margin: 0 auto;
   height: 100px;

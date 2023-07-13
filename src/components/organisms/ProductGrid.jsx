@@ -6,7 +6,7 @@ import ProductsLoader from "../atoms/ProductsLoader";
 import { useEffect, useRef } from "react";
 
 const Container = styled.main`
-  margin-top: 20px;
+  margin: 20px 0;
 `;
 
 const ProductsList = styled.section`

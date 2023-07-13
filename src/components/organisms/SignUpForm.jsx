@@ -155,6 +155,7 @@ const SignUpForm = () => {
       });
       navigate("/");
     } catch (error) {
+      // 에러 발생 상황 뭐가 있을까 생각해보기
       const errorMsg = error.response.data.error.message;
       console.log(errorMsg);
     }
