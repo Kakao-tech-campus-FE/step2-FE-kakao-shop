@@ -12,10 +12,6 @@ function BreadCrumb() {
 
   const [location, setLocation] = useState(["음료"])
 
-  const handleCategoryClick = (e) => {
-    setLocation((prev) =>  [...prev, e.target.innerText])
-  }
-
   const handleLocationClick = (e) => {
     setLocation((prev) => {
       const prevState = [...prev]
@@ -25,6 +21,11 @@ function BreadCrumb() {
       return prevState;
     })
   }
+
+  const handleCategoryClick = (e) => {
+    setLocation((prev) =>  [...prev, e.target.innerText])
+  }
+
 
 
   return (

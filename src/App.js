@@ -1,29 +1,26 @@
-import './App.css';
-import Badge from './components/Badge'
-import Toast from './components/Toast'
-import Carousel from './components/Carousel';
-import BreadCrumb from './components/BreadCrumb';
-import RadioButton from './components/RadioButton';
-import CheckList from './components/CheckList';
 import { Reset } from 'styled-reset'
-import { Component, useEffect } from 'react';
-import Toggle from './components/Toggle';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RegisterPage from "./components/pages/RegisterPage";
+import LoginPage from "./components/pages/LoginPage";
+import HomePage from "./components/pages/HomePage"
+
 
 function App() {
   return (
     <>
-      <BreadCrumb></BreadCrumb>
-      <Badge styleArgument={"blue"}>Good</Badge>
-      <Badge styleArgument={"red"}>BAD</Badge>
-      <Carousel></Carousel>
-      <Toast>Error!!</Toast>
-      <BreadCrumb></BreadCrumb>
-      <Toggle></Toggle>
-      <CheckList/>
-      <RadioButton/> 
+      <Reset />
+      <BrowserRouter> 
+        <Routes>
+          <Route path="/login" element={<LoginPage/>}></Route>    
+          <Route path="/signup" element={<RegisterPage/>}></Route> 
+          {/* 공통 레이아웃 */}
+          <Route path="/" element={<HomePage/>}></Route>   
+        </Routes> 
+      </BrowserRouter>
     </>
   );
 }
 
 export default App;
+
 
