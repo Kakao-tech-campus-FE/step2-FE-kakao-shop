@@ -29,19 +29,4 @@ instance.interceptors.response.use(
   }
 );
 
-export const register = (data) => {
-  const { email, password, username } = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  });
-};
-
-export const signIn = (data) => {
-  const { email, password } = data;
-  return instance.post("/login", {
-    email,
-    password,
-  });
-};
+export default instance;
