@@ -1,11 +1,12 @@
 import Card from "../atoms/Card";
+import Photo from "../atoms/Photo";
 
 const ProductCard = ({ product }) => {
     return (
         <Card to={`/product/${product.id}`}>
-            <img src={product.imageUrl} alt={product.name} />
+            <Photo className="card" src={product.image} alt={product.productName} />
             <div className="product-name">
-                {product.name}
+                {product.productName}
             </div>
             <div className="product-price">
                 {comma(product.price)}원
@@ -13,3 +14,5 @@ const ProductCard = ({ product }) => {
         </Card>
     );
 }
+
+export default ProductCard;
