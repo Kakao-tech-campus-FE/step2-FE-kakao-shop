@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useProduct } from '../../hooks/query';
 import MainProductListTemplate from '../templates/mainProductListTemplate';
-import Loader from '../atoms/loader';
+import GlobalLoader from '../atoms/globalLoader';
 
 export default function MainProductListPage() {
   const [pageIndex, setPageIndex] = useState(0);
@@ -34,10 +35,7 @@ export default function MainProductListPage() {
     <>
       {isFetching
         ? (
-          <div className="text-center">
-            <Loader />
-
-          </div>
+          createPortal(<GlobalLoader />, document.body)
         ) : null}
       <MainProductListTemplate
         ref={bottomObserverRef}
