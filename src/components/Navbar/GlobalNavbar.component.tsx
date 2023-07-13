@@ -4,7 +4,7 @@ import NavbarSignItem from "./NavbarSignItem.component";
 const GlobalNavbar = () => {
   return (
     <>
-      <nav className="fixed top-0 left-0 bg-white  w-full py-2 border-t-[1px] border-b-[1px] border-slate-300 text-sm z-10 ">
+      <nav className="fixed top-0 left-0 bg-white  w-full py-2 border-t-[1px] border-b-[1px] border-slate-300 text-sm z-50 ">
         <div className="flex m-auto max-w-7xl">
           <div className="flex flex-1 justify-start">
             <NavbarItem link="HOME">

@@ -28,7 +28,7 @@ const ProductGroup = () => {
           result: data.response,
           nextPage: pageParam + 1,
         });
-      }, 1000);
+      }, 3000);
     });
 
     return lazyReturn as getProductResult;
@@ -55,7 +55,7 @@ const ProductGroup = () => {
             fetchNextPage();
           }
         },
-        { root: productsRef.current }
+        { root: productsRef.current, threshold: 1 }
       );
     });
 
@@ -70,7 +70,7 @@ const ProductGroup = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-6 auto-rows-fr">
         {data &&
           data.pages
             .flatMap((pages) => pages.result)

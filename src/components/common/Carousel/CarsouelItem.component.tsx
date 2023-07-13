@@ -1,4 +1,5 @@
 import { FC } from "react";
+import LazyImage from "../LazyImage";
 
 export interface CarouselItemProps {
   src: string;
@@ -22,7 +23,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ src, alt, position }) => {
     <div
       className={"absolute duration-1000 ease-in-out " + classNameByPosition()}
     >
-      <img src={src} alt={alt} />
+      <LazyImage src={src} alt={alt} />
     </div>
   );
 };
