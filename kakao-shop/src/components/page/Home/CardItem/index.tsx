@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Product } from '@store/Home/reducers';
 
 import { Photo } from '@components/atom';
+import { comma } from '@utils/comma';
 
 const CardItem = ({ productName, image, price }: Product) => {
   return (
@@ -18,7 +19,7 @@ const CardItem = ({ productName, image, price }: Product) => {
         <S.ProductName>{productName}</S.ProductName>
         <S.Price>
           <span>톡딜가</span>
-          <span>{price}원</span>
+          <span>{comma(price)}원</span>
         </S.Price>
       </S.Info>
     </S.Root>
