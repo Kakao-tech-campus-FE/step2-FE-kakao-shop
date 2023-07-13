@@ -7,7 +7,7 @@ import '../../../src/styles/molcules/ProductCard.css';
 const ProductCard = ({ product }) => {
   return (
     
-    <Card to={`/product/${product.id}`}>
+    <Card to={`/product/${product.id}`} >
       <div className="product-photo">
         <Photo src={process.env.REACT_APP_API_URL + product.image} alt={product.productName} />
         </div>

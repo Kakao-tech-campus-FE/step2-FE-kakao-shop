@@ -19,6 +19,12 @@
   padding : 5px 15px;
   
   float: left;
+
+  font-family:'Malgun Gothic';
+  font-weight: bold;
+  color: black;
+  font-size: 15pt;
+  text-decoration: none;
 }
 
 .header a:hover {

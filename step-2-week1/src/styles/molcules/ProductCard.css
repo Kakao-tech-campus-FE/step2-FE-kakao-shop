@@ -19,3 +19,19 @@
   object-fit: cover;
 }
 
+.product-name{
+  font-family:'Malgun Gothic';
+  color: black;
+  font-size: 13pt;
+  font-weight: bold;
+
+}
+
+.product-price{
+  font-family:'Malgun Gothic';
+  color: black;
+  font-size: 13pt;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
