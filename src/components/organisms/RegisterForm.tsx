@@ -46,7 +46,7 @@ const RegisterForm = () => {
       register({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
           console.log(res);
-          dispatch(loginStore({ email: inputInfo.email }));
+          dispatch(loginStore({ isLoggedIn: true, email: inputInfo.email }));
           navigate('/');
         })
         .catch((err) => {
