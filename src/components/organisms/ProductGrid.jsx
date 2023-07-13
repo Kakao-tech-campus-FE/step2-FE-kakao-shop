@@ -36,6 +36,9 @@ const ProductGrid = () => {
       },
       onError: (error) => {
         console.error("Failed to fetch products:", error);
+        alert(
+          "네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요."
+        );
         fetchNextPage();
       },
     }
@@ -71,7 +74,7 @@ const ProductGrid = () => {
         <ProductsLoader />
       ) : (
         <ProductsList>
-          {products.pages.map((page) =>
+          {products.pages?.map((page) =>
             page.data.response.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))

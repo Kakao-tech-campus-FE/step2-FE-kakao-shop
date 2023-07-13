@@ -8,6 +8,14 @@ import ErrorMessage from "../atoms/ErrorMessage";
 import ValidMessage from "../atoms/ValidMessage";
 import Title from "../atoms/Title";
 import { useNavigate } from "react-router-dom";
+import { EMAIL_REG, PASSWORD_REG } from "../../utils/regExp";
+import {
+  FORM_REQUIRED,
+  FORM_MAIL,
+  FORM_DUPLICATE_MAIL,
+  FORM_PASSWORD,
+  FORM_PASSWORD_CONFIRM,
+} from "../../utils/formMessage";
 
 const Container = styled.form`
   width: 400px;
@@ -34,9 +42,6 @@ const Row = styled.div`
   }
 `;
 
-const EMAIL_REG = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-const PASSWORD_REG = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
-
 const SignUpForm = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const navigate = useNavigate();
@@ -57,12 +62,12 @@ const SignUpForm = () => {
     setIsEmailValid(false);
 
     if (!email) {
-      return setError("email", { message: "필수 정보입니다." });
+      return setError("email", { message: FORM_REQUIRED });
     }
 
     if (!EMAIL_REG.test(email)) {
       setError("email", {
-        message: "이메일 형식으로 작성해주세요.",
+        message: FORM_MAIL,
       });
     } else {
       clearErrors("email");
@@ -71,7 +76,7 @@ const SignUpForm = () => {
   const checkDupEmail = async (email) => {
     trigger("email");
     if (!email) {
-      return setError("email", { message: "필수 정보입니다." });
+      return setError("email", { message: FORM_REQUIRED });
     }
     try {
       const response = await instance.post("/check", { email });
@@ -87,7 +92,7 @@ const SignUpForm = () => {
         });
       } else {
         setError("email", {
-          message: "이미 사용 중인 이메일(아이디)입니다.",
+          message: FORM_DUPLICATE_MAIL,
         });
       }
     }
@@ -98,7 +103,7 @@ const SignUpForm = () => {
     const username = watch("username");
 
     if (!username) {
-      return setError("username", { message: "필수 정보입니다." });
+      return setError("username", { message: FORM_REQUIRED });
     } else {
       clearErrors("username");
     }
@@ -109,13 +114,12 @@ const SignUpForm = () => {
     const password = watch("password");
 
     if (!password) {
-      return setError("password", { message: "필수 정보입니다." });
+      return setError("password", { message: FORM_REQUIRED });
     }
 
     if (!PASSWORD_REG.test(password)) {
       setError("password", {
-        message:
-          "공백 없이 8자 ~ 20자로 영문, 숫자, 특수문자를 포함해야 합니다.",
+        message: FORM_PASSWORD,
       });
     } else {
       clearErrors("password");
@@ -123,7 +127,7 @@ const SignUpForm = () => {
 
     if (watch("password") !== watch("passwordConfirm")) {
       setError("passwordConfirm", {
-        message: "비밀번호가 일치하지 않습니다.",
+        message: FORM_PASSWORD_CONFIRM,
       });
     } else {
       clearErrors("passwordConfirm");
@@ -134,7 +138,7 @@ const SignUpForm = () => {
   const handlePasswordConfirmChange = () => {
     if (watch("password") !== watch("passwordConfirm")) {
       setError("passwordConfirm", {
-        message: "비밀번호가 일치하지 않습니다.",
+        message: FORM_PASSWORD_CONFIRM,
       });
     } else {
       clearErrors("passwordConfirm");
@@ -166,10 +170,10 @@ const SignUpForm = () => {
           type="email"
           placeholder="이메일"
           register={register("email", {
-            required: "필수 정보입니다.",
+            required: FORM_REQUIRED,
             pattern: {
               value: EMAIL_REG,
-              message: "이메일 형식으로 작성해주세요.",
+              message: FORM_MAIL,
             },
             onChange: handleEmailChange,
           })}
@@ -188,7 +192,7 @@ const SignUpForm = () => {
         type="text"
         placeholder="이름"
         register={register("username", {
-          required: "필수 정보입니다.",
+          required: FORM_REQUIRED,
           onChange: handleUsernameChange,
         })}
       />
@@ -202,11 +206,10 @@ const SignUpForm = () => {
         type="password"
         placeholder="비밀번호"
         register={register("password", {
-          required: "필수 정보입니다.",
+          required: FORM_REQUIRED,
           pattern: {
             value: PASSWORD_REG,
-            message:
-              "공백 없이 8자 ~ 20자로 영문, 숫자, 특수문자를 포함해야 합니다.",
+            message: FORM_PASSWORD,
           },
           onChange: handlePasswordChange,
         })}
@@ -221,9 +224,8 @@ const SignUpForm = () => {
         type="password"
         placeholder="비밀번호 확인"
         register={register("passwordConfirm", {
-          required: "필수 정보입니다.",
-          validate: (v) =>
-            v === watch("password") || "비밀번호가 일치하지 않습니다.",
+          required: FORM_REQUIRED,
+          validate: (v) => v === watch("password") || FORM_PASSWORD_CONFIRM,
           onChange: handlePasswordConfirmChange,
         })}
       />

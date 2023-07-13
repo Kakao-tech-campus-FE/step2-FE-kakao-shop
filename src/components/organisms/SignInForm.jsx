@@ -7,6 +7,8 @@ import Title from "../atoms/Title";
 import ErrorMessage from "../atoms/ErrorMessage";
 import { signinRequest } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { EMAIL_REG, PASSWORD_REG } from "../../utils/regExp";
+import { FORM_MAIL, FORM_PASSWORD } from "../../utils/formMessage";
 
 const Container = styled.form`
   width: 400px;
@@ -22,9 +24,6 @@ const Container = styled.form`
   }
 `;
 
-const EMAIL_REG = /^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-const PASSWORD_REG = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
-
 const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,15 +36,13 @@ const SignInForm = () => {
   } = useForm();
 
   const onSubmit = async ({ email, password }) => {
-    try {
-      dispatch(signinRequest({ email, password }));
+    const action = await dispatch(signinRequest({ email, password }));
+    if (action.payload.error?.status === 401) {
+      setError("password", {
+        message: "이메일(아이디) 혹은 비밀번호가 일치하지 않습니다.",
+      });
+    } else {
       navigate("/");
-    } catch (error) {
-      if (error.response.status === 401) {
-        setError("password", {
-          message: "이메일(아이디) 혹은 비밀번호가 일치하지 않습니다.",
-        });
-      }
     }
   };
 
@@ -58,10 +55,10 @@ const SignInForm = () => {
         type="email"
         placeholder="이메일"
         register={register("email", {
-          required: "이메일(아이디)을 입력해주세요.",
+          required: "이메일(아이디)을(를) 입력해주세요.",
           pattern: {
             value: EMAIL_REG,
-            message: "이메일 형식으로 작성해주세요.",
+            message: FORM_MAIL,
           },
         })}
       />
@@ -77,8 +74,7 @@ const SignInForm = () => {
           required: "비밀번호를 입력해주세요.(영문자/숫자/특수문자)",
           pattern: {
             value: PASSWORD_REG,
-            message:
-              "공백 없이 8자 ~ 20자로 영문, 숫자, 특수문자를 포함해야 합니다.",
+            message: FORM_PASSWORD,
           },
         })}
       />
