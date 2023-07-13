@@ -8,8 +8,15 @@ function ProductCard({ product }) {
   return (
     <Card to={`/product/${product.id}`}>
       <Photo src={product.image} alt={product.productName} />
-      <div>{product.productName}</div>
-      <div>{comma(product.price)}원</div>
+      <div style={{
+        width: "200px",
+        height: "65px",
+        marginTop: "50px",
+        fontWeight: "bold",
+      }}>{product.productName}</div>
+      <div style={{
+        marginTop: "10px",
+      }}>{comma(product.price)}원</div>
     </Card>
   )
 }

@@ -4,7 +4,11 @@ import Containor from '../atoms/Containor'
 
 function ProductGrid({products}) {
   return (
-    <Containor>{products.map((product)=>
+    <Containor style={{
+      width: "1280px",
+      margin: "0 auto",
+      textAlign: "center"
+    }}>{products.map((product)=>
       <ProductCard key={product.id} product={product}/>
     )}
     </Containor>

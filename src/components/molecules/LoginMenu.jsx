@@ -9,7 +9,7 @@ function LoginMenu({style, }) {
 
   useEffect(()=>{
     const token = localStorage.getItem('token')
-    if(token === "null"){
+    if(token === null){
       setLoginCheck(false)
     }
     else{

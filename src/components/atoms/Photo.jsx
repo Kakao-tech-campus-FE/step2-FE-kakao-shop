@@ -15,7 +15,7 @@ export default Photo
 
 const Picture = styled.picture`
   display: block;
-  width: 200px;
+  width: 284px;
 
   > img{
     width: inherit

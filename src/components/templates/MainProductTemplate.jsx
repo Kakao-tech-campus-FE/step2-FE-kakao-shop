@@ -21,7 +21,7 @@ function MainProductTemplate() {
       }
     })
   },{
-    threshold: 0.5,
+    threshold: 0.3,
   })
 
   // const {isLoading, data, error, isError} = useQuery(['/products',page], () => {return fetchProducts('/products',page)})
@@ -41,7 +41,7 @@ function MainProductTemplate() {
       </Suspense>
       {isError ? console.log(error) : "?" } */}
       {isLoading && !reRender ? <Loader/> : <ProductGrid products={productData}/> }
-      <div ref={bottomObserver}>나를찾아봐!!</div>
+      <div ref={bottomObserver}></div>
     </Containor>
     
   )
