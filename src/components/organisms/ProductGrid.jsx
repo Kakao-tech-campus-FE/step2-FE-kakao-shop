@@ -1,12 +1,13 @@
 import React from 'react'
 import ProductCard from '../molecules/ProductCard'
+import Containor from '../atoms/Containor'
 
 function ProductGrid({products}) {
   return (
-    <div>{products.map((product)=>
+    <Containor>{products.map((product)=>
       <ProductCard key={product.id} product={product}/>
     )}
-    </div>
+    </Containor>
   )
 }
 

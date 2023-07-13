@@ -4,12 +4,15 @@ import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 
 
 
-const queryClient = new QueryClient()
 
 function MainProductPage() {
+  const queryClient = new QueryClient()
+
   return (
      <QueryClientProvider client={queryClient}>
-       <MainProductTemplate/>
+      <>
+        <MainProductTemplate/>
+      </>
      </QueryClientProvider>
   )
 }
