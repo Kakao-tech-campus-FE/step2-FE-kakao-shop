@@ -61,13 +61,7 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     '@typescript-eslint/dot-notation': 'off',
-    '@typescript-eslint/naming-convention': [
-      'warn',
-      {
-        selector: 'variable',
-        format: ['camelCase', 'snake_case', 'PascalCase'],
-      },
-    ],
+    '@typescript-eslint/default-param-last': 'off',
     'react/react-in-jsx-scope': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
@@ -75,6 +69,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': ['warn'],
     'import/named': 'warn',
     'import/no-extraneous-dependencies': 'warn',
+    'react/self-closing-comp': 'warn', // 셀프 클로징 태그 가능하면 적용,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
