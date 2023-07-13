@@ -1,13 +1,11 @@
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { useEffect, useState, useRef } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../../apis/product";
 import Loader from "../atoms/Loader";
 
 const MainProductTemplate = () => {
-  const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(0);
   const targetRef = useRef(null);
 
   const observer = new IntersectionObserver(
@@ -16,9 +14,8 @@ const MainProductTemplate = () => {
         if (!entry.isIntersecting) {
           return;
         }
-        if (entry.isIntersecting && targetRef.current && !isLoading) {
-          console.log("관측!!!");
-          setPage((prev) => prev + 1);
+        if (entry.isIntersecting && targetRef.current) {
+          fetchNextPage();
         }
       });
     },
@@ -27,45 +24,40 @@ const MainProductTemplate = () => {
     }
   );
 
-  const { isLoading, data, isError, error } = useQuery(
-    ["products", page],
-    async () => {
-      return await fetchProducts(page);
+  const { data, fetchNextPage, hasPreviousPage } = useInfiniteQuery(
+    ["products"],
+    async ({ pageParam = 0 }) => {
+      const response = await fetchProducts(pageParam);
+      return { data: response.data.response, page: pageParam };
     },
     {
-      staleTime: 600000,
-      cacheTime: 600000,
-      onSuccess: (data) => {
-        setProducts((prev) => [
-          ...prev.slice(0, prev.length - 9),
-          ...data.data.response,
-        ]);
+      cacheTime: 0,
+      getNextPageParam: (response) => {
+        if (response.page === 1) return undefined;
+
+        return response.page + 1;
+      },
+      getPreviousPageParam: (response) => {
+        if (response.page < 0) return undefined;
+        else return response.page - 1;
       },
     }
   );
 
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    if (data?.data.response.length < 9) {
-      observer.unobserve(targetRef.current);
-    } else {
+    if (hasPreviousPage) {
       observer.observe(targetRef.current);
     }
-    return () => {
-      if (targetRef.current) {
-        observer.unobserve(targetRef.current);
-      }
-    };
-  }, [data]);
+  }, [hasPreviousPage]);
 
   useEffect(() => {
-    if (isLoading && page !== 0) {
-      setProducts((prev) => [...prev, ...Array(9).fill("skeleton")]);
+    if (data) {
+      const combinedData = data.pages.flatMap((page) => page.data);
+      setProducts(combinedData);
     }
-  }, [isLoading, page]);
-
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
+  }, [data]);
 
   return (
     <Container>
