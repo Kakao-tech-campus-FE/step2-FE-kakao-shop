@@ -8,8 +8,8 @@ const Card = ({
     children, // children
 }) => {
     return (
-        <Link className="card" to={to}>
-            {chldren}
+        <Link className={`card ${className}`} to={to} id={id}, style={style}>
+            {children}
         </Link>
     );
 };

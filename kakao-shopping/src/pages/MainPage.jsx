@@ -1,9 +1,9 @@
-import Container from "../components/atoms/Container";
-import Header from "../components/organisms/Header";
+
+import MainLayout from "../layouts/MainLayout"
 
 const MainPage = () => {
     return (
-            <Header />
+            <MainLayout />
     );
 };
 
