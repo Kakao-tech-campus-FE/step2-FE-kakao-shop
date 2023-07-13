@@ -1,5 +1,6 @@
 import React from 'react';
 import ProductCard from '../molecules/ProductCard';
+import '../../styles/organisms/ProductGrid.css';
 
 const ProductGrid = ({ products }) => {
   return (
@@ -10,3 +11,5 @@ const ProductGrid = ({ products }) => {
     </div>
   );
 };
+
+export default ProductGrid;

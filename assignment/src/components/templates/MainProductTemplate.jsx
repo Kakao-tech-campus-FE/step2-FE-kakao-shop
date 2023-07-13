@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from '../atoms/Container';
 import ProductGrid from '../organisms/ProductGrid';
@@ -9,10 +9,10 @@ const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
 
   const dispatch = useDispatch();
-  const product = useSelector((state) => state.product.products);
-  const loading = useSelector((state) => state.product.loading);
-  const error = useSelector((state) => state.product.error);
-  const isEnd = useSelector((state) => state.product.isEnd);
+  const product = useSelector((state) => state.products.products);
+  //   const loading = useSelector((state) => state.product.loading);
+  //   const error = useSelector((state) => state.product.error);
+  const isEnd = useSelector((state) => state.products.isEnd);
 
   const io = new IntersectionObserver(
     (entries, observer) => {
@@ -36,8 +36,10 @@ const MainProductTemplate = () => {
   }, [dispatch, page]);
   return (
     <Container>
-      <ProductGrid products={products} />
+      <ProductGrid products={product} />
       <div ref={bottomObserver} />
     </Container>
   );
 };
+
+export default MainProductTemplate;

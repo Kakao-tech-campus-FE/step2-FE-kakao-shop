@@ -3,7 +3,7 @@ import instance from './index';
 // 상품을 가져오는 fetch API
 // Page 형식
 export const fetchProducts = (page = 0) =>
-  instance.get('/products' + `?page=${page}`);
+  instance.get('/products' + '?page=' + page);
 // cursor (LastIndex)
 export const fetchProductFromCursor = (cursor) => {
   return instance.get('/products' + '?cursor=' + cursor);
