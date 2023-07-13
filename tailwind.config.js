@@ -3,9 +3,21 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-      translate: {
-        translateSlidePrev: "calc(1030px * 2)",
-        translateSlideCurrnetAndNext: "-1030px",
+      backgroundColor: {
+        yellow: "#ffe342",
+      },
+      width: {
+        logo: "100px",
+        kakaoTest: "120px",
+        icon: "36px",
+        before: "1px",
+        input: "570px",
+      },
+      height: {
+        confirmButton: "38px",
+      },
+      fontSize: {
+        errorMessage: "13px",
       },
     },
   },

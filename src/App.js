@@ -1,23 +1,15 @@
 import { Outlet } from "react-router-dom";
-import "./App.css";
-import Breadcrumb from "./components/Breadcrumb/Breadcrumb";
-import Carousel from "./components/Carousel/Carousel";
-import RadioGroup from "./components/Radio/RadioGroup";
-import Toggle from "./components/Toggle/Toggle";
-import CheckboxGroup from "./components/Checkbox/CheckboxGroup";
+import Header from "./components/templates/Header";
+import Container from "./components/atoms/Container";
 
 function App() {
   return (
-    <div className="w-full h-full m-5">
-      <Breadcrumb />
-      <Outlet />
-      <Carousel />
-      <div className="flex gap-4">
-        <RadioGroup />
-        <CheckboxGroup />
-      </div>
-      <Toggle />
-    </div>
+    <>
+      <Header />
+      <Container className="w-full h-full pt-20">
+        <Outlet />
+      </Container>
+    </>
   );
 }
 
