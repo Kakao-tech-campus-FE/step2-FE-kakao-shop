@@ -1,11 +1,12 @@
 import { comma } from "../../utils/convert"
 import Card from "../atoms/Card"
+import Photo from "../atoms/Photo"
 
 const ProductCard = ({ product }) => {
     return (
         <Card to={`/product/${product.id}`}>
-            <img src={product.imageUrl} alt={product.name} />
-            <div className="product-name">{product.name}</div>
+            <Photo src={product.imageUrl} alt={product.productName} />
+            <div className="product-name">{product.productName}</div>
             <div className="product-price">{comma(product.price)}원</div>
         </Card>
     )

@@ -5,6 +5,7 @@ const initialState = {
     products: [],
     loading: false,
     error: null, // error exist: { message, status }
+    isEnd: false,
 }
 
 const productsSlice = createSlice({
@@ -16,12 +17,15 @@ const productsSlice = createSlice({
         })
         // Promise.resolve()
         builder.addCase(getProducts.fulfilled, (state, action) => {
+            if (action.payload.response.length, 10) {
+                state.isEnd = true;
+            }
             state.loading = false;
             state.products = action.payload.response
             state.error = action.payload.error
         })
         // Promise.reject()
-        builder.addCase(getProducts.fulfilled, (state, action) => {
+        builder.addCase(getProducts.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload.error
         })
