@@ -1,56 +1,64 @@
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
-import { useDispatch, useSelector } from "react-redux"
+import { useQuery } from 'react-query';
 import Container from "../atoms/Container"
 import ProductGrid from "../organisms/ProductGrid"
 import { Suspense, useEffect, useRef, useState } from "react"
-import { getProducts } from "../../store/slices/productSlice"
 import Loader from "../atoms/Loader"
+import { fetchProducts } from '../../services/product';
 
 
 const MainProductTemplate = () => {
+  const [bottom, setBottom] = useState(false);
   const [page,setPage] = useState(0)
   const bottomObserver = useRef(null)
-  const dispatch = useDispatch()
-  const products = useSelector((state) => state.product.products)
-  const loading = useSelector((state) => state.product.loading)
-  // const error = useSelector((state) => state.product.error)
-  const isEnd = useSelector((state) => state.product.isEnd)
-  const queryClient = new QueryClient();
-
-  // const { data: products, isLoading: loading } = useQuery(['products', page], () =>
-  //   dispatch(getProducts(page))
-  // );
-
-
-  const io = new IntersectionObserver((entries, observer) =>{
-    entries.forEach((entry)=>{
-      if(entry.isIntersecting && !isEnd){
-        // 임계점 퍼센트만큼 보이면 해당 코드 실행 
-        setPage((page) => page + 1)
-      }
-    })
-  },{
-      threshold: 1,
-    }
-  )
-
-  useEffect(()=>{
-    io.observe(bottomObserver.current)
-  },[]) // 최초 렌더링때 1번만 선언 
-
+  const { 
+    data: products, 
+    isLoading: loading,
+    error,   
+  } = useQuery(['products'], () =>
+    fetchProducts(page),
+  );
 
   useEffect(() => {
-    dispatch(getProducts(page));
-  }, [dispatch, page])
+    fetchProducts(page);
+  }, [page])
 
+  useEffect(()=>{
+    if(products && products?.data.response.length <10){
+      setBottom(true)
+    }
+  },[products])
+
+  useEffect(()=>{
+    const io = new IntersectionObserver((entries, observer) =>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting && !bottom){
+          // 임계점 퍼센트만큼 보이면 해당 코드 실행 
+          setPage((prevPage) => prevPage + 1);
+          console.log(entry)
+        }
+      })
+    },{
+        threshold: 0.5,
+      }
+    )
+    if(bottom){
+      io.unobserve(bottomObserver.current)
+    } else{
+      io.observe(bottomObserver.current)
+    }
+    
+  }
+  ,[]) // 최초 렌더링때 1번만 선언 
+
+  
   return (
     <Container>
-      <QueryClientProvider client={queryClient}>
-        <Suspense fallback={<Loader/>}>
-            <ProductGrid products={products} loading={loading}/>
+        {/* <Suspense fallback={<Loader/>}> */}
+          {loading ? <Loader/> : (
+            <ProductGrid products={products}/>
+          )}
           <div ref={bottomObserver}></div>
-        </Suspense>
-      </QueryClientProvider>
+        {/* </Suspense> */}
     </Container>
   )
 }
