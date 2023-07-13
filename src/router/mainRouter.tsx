@@ -5,6 +5,7 @@ import Home from '@pages/Home';
 import RegisterPage from '@pages/RegisterPage';
 import MainLayout from '@components/templates/MainLayout';
 import PageContainer from '@components/atoms/PageContainer';
+import ProductListPage from '@pages/ProductListPage';
 
 const mainRouter = () =>
   useRoutes([
@@ -26,6 +27,10 @@ const mainRouter = () =>
             {
               path: 'register',
               element: <RegisterPage />,
+            },
+            {
+              path: 'productList',
+              element: <ProductListPage />,
             },
           ],
         },
