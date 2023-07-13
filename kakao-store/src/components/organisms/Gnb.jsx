@@ -36,7 +36,7 @@ const Gnb = () => {
             <Container className="px-4 mx-auto max-w-7xl"> 
                 <Container className="flex justify-between">
                     <Box className="flex items-center py-4">
-                        <img src="/img/logoKakao.png" width="100px"/>
+                        <img src="/img/logoKakao.png" width="100px" alt="logo"/>
                     </Box>
                     <Box className="flex items-center space-x-4">
                         {isLogin === false &&
