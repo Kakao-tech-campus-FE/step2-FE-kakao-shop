@@ -1,16 +1,17 @@
 import ProductCard from "../molecules/ProductCard";
 import '../../styles/organisms/ProductGrid.css'
 import Skeleton from "../atoms/Skeleton";
+import Loader from "../atoms/Loader";
 
 
-const ProductGrid = ({ products, loading }) => (
+const ProductGrid = ({ products, loading }) => 
   <div className="product-grid">
-    {loading
-      ? [...Array(products.length)].map((_, index) => <Skeleton key={index} />)
-      : products.map((product) => (
-          <ProductCard key={product.id} product={product}/>
-        ))}
+    {
+      products?.data.response.map((product) => (
+        <ProductCard key={product.id} product={product}/>
+      ))
+    }
   </div>
-);
+;
 
 export default ProductGrid
