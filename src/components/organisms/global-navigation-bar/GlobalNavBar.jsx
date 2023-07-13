@@ -20,6 +20,9 @@ const Styled = {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    background-color: white;
+    z-index: 10;
   `,
   ButtonBox: styled.div``,
   AuthButton: styled.button`
