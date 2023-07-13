@@ -1,12 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
+import productReducer from "./slices/productSlice";
 
 const store = configureStore({
   reducer: {
-    // 유저정보 글로벌로 저장 User reducer : email
     user: userReducer,
-    // Products reducer: produts
-    // products: useReducer
+    product: productReducer,
   },
 });
 

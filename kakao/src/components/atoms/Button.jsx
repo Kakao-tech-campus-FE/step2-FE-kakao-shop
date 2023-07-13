@@ -3,7 +3,7 @@ const Button = ({ onClick, children }) => {
     <button
       onClick={(e) => {
         e.preventDefault(); //submit으로 인한 리렌더링 막기
-        onClick();
+        onClick(e);
       }}
     >
       {children}

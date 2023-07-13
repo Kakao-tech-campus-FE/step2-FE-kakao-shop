@@ -1,5 +1,6 @@
 .App {
   overflow: scroll !important;
+  position: relative;
 }
 
 /* ToggleBtn */
@@ -266,4 +267,8 @@
 
 .crumb span {
   color: rgba(18, 189, 18, 0.699);
+}
+
+.homepage {
+  margin-top: 80px;
 }

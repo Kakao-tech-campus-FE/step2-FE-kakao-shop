@@ -1,7 +1,7 @@
 import Container from "../atoms/Conatiner";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import { register } from "../../services/api";
+import { register } from "../../services/user";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import { useNavigate } from "react-router-dom";
