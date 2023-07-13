@@ -23,7 +23,7 @@ const Gnb = ({ children }) => {
   const state = useSelector((state) => state);
 
   const handleLogout = () => {
-    state === "false"
+    state === false
       ? navigate(routes.login)
       : dispatch({ type: "changeState" }) &&
         window.localStorage.removeItem("userInfo") &&
@@ -38,7 +38,6 @@ const Gnb = ({ children }) => {
           type="click"
           onClick={() => navigate(routes.home)}
           styles={{
-            width: "5rem",
             margin: "1rem",
             fontWeight: "bold",
           }}
