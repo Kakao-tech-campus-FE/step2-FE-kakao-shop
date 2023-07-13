@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Location, Category } from "./style";
 
 const categories = {
   뷰티: ["스킨케어/메이크업", "향수/바디/헤어"],
@@ -48,20 +47,28 @@ export default function Breadcrumb() {
 
   return (
     <>
-      <Location>
+      <div className="m-3">
         {locations.map((location) => (
-          <span key={location} onClick={handleLocationClick}>
+          <span
+            className="ml-1 cursor-pointer text-sm font-extrabold text-[#aaa] last:text-black [&:not(:first-child)]:before:content-['<\00a0']"
+            key={location}
+            onClick={handleLocationClick}
+          >
             {location}
           </span>
         ))}
-      </Location>
-      <Category>
+      </div>
+      <div className="m-2.5 flex w-[780px] flex-wrap border-t border-gray-100 bg-gray-50 px-5 pt-5 text-base text-gray-400">
         {categories[currentLocation]?.map((category) => (
-          <p key={category} onClick={handleCategoryClick}>
+          <p
+            className="h-10 w-1/2 cursor-pointer font-semibold"
+            key={category}
+            onClick={handleCategoryClick}
+          >
             {category}
           </p>
         ))}
-      </Category>
+      </div>
     </>
   );
 }
