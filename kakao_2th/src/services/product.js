@@ -1,19 +1,15 @@
 import instance from "./index";
 
 export const fetchProducts = (page = 0) => {
-    return instance.get("/products" + "?page=" + page);
-}
-
-export const fetchProductFromCursor = (cursor) => {
-    return instance.get("/products" + "?cursor=" + cursor)
-}
+    return instance.get("/products?page=" + page); // 백엔드 API와의 통신을 위한 GET 요청
+};
 
 export const getProductById = (id) => {
     if (!id) {
-        throw Error("id가 필요합니다.")
+        throw Error("id가 필요합니다.");
     }
-    return instance.get("/products" + id);
-}
+    return instance.get("/products/" + id); // 백엔드 API와의 통신을 위한 GET 요청
+};
 
 export const getProductList = (page = 0) => {
     return fetchProducts(page)

@@ -11,7 +11,7 @@ const HomePage = () => {
     const dispatch = useDispatch();
     const { page } = useParams();
 
-    const { data: productList, isLoading, error } = useQuery(
+    const { data: productList, isLoading, error, isFetching } = useQuery(
         ["productList", page],
         () => getProductList(page),
         { keepPreviousData: true }
@@ -24,17 +24,19 @@ const HomePage = () => {
     return (
         <div>
             <h1>Home Page</h1>
-            {isLoading ? (
-                <Loader />
-            ) : error ? (
-                <div>Error: {error.message}</div>
-            ) : (
-                <div className="product-grid">
-                    {productList.map((product) => (
-                        <ProductCard key={product.id} product={product} />
-                    ))}
-                </div>
-            )}
+            {isFetching && <Loader />} {/* 글로벌 로더 적용 */}
+            <div className="product-grid">
+                {productList.pages.map((page) =>
+                    page.data.map((product) => (
+                        <ProductCard
+                            key={product.id}
+                            product={product}
+                            isLoading={isLoading}
+                        />
+                    ))
+                )}
+            </div>
+            {error && <div>Error: {error.message}</div>}
         </div>
     );
 };
