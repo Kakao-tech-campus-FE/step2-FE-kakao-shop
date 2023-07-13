@@ -61,7 +61,7 @@ const LoginForm = () => {
         helperText={passwordHT}
         onChange={handleOnChange}
       />
-      <Link to="/register" className="text-sm text-[#979797]">
+      <Link to="/register" className="text-sm text-middleGray">
         회원가입 페이지로
       </Link>
       <FilledButton onClick={loginReq}>로그인</FilledButton>

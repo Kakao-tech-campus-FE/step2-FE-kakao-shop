@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       colors: {
         pointPupple: '#A50FFF',
+        middleGray: '#979797',
         subGray: '#F0F0F0',
         subRed: '#dc3232',
       },
