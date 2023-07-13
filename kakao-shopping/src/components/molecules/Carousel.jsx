@@ -1,46 +1,54 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const images = [
-  '/assets/test1.png',
-  '/assets/test2.png',
-  '/assets/test3.png',
-  '/assets/test4.png',
+  '/assets/carouselItem1.jpeg',
+  '/assets/carouselItem2.jpeg',
+  '/assets/carouselItem3.jpeg',
 ];
 
 const Carousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndex = useRef(0);
+  // eslint-disable-next-line 
+  const [render, renderSet] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const toPreviousSlide = () => {
-    if (currentIndex === 0) {
-      setCurrentIndex(images.length - 1);
-    }
-    else
-      setCurrentIndex((prevIndex) => prevIndex - 1);
-  };
-
-  const toNextSlide = () => {
-    if (currentIndex === images.length - 1) {
-      setCurrentIndex(0);
-    }
-    else
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-  };
   const carouselStyle = {
-    width:"200px",
-    height:"200px",
+    width:"100%",
+    height:"100%",
     overflow: "hidden",
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      currentIndex.current = (currentIndex.current + 1) % images.length;
+      renderSet((prev) => prev + 1);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+
   const transformStyle = {
     display:"flex",
-    width: `${200 * images.length}px`,
-    transform: `translate3d(-${200 * currentIndex}px, 0, 0)`,
-    transition: "transform 0.5s ease"
+    width: `${screenWidth * images.length}px`,
+    transform: `translate3d(-${screenWidth * currentIndex.current}px, 0, 0)`,
+    transition: "transform 1s ease"
   };
 
   return (
     <>
-    <h1>Carousel</h1>
-    <div className="carousel" style={carouselStyle}>
+    <div className="carousel mt-5" style={carouselStyle}>
       <div className="slide-container" style={transformStyle}>
         {images.map((image, index) => (
           <img
@@ -48,19 +56,13 @@ const Carousel = () => {
             alt={`${index}th pic is missing`}
             key={index}
             style={{
-              width: '200px',
-              height: '200px',
+              width: `${screenWidth}px`,
+              height: `${screenWidth * 0.2}px`,
             }}
           />
         ))}
       </div>
     </div>
-      <button className="prev" onClick={toPreviousSlide}>
-        Previous
-      </button>
-      <button className="next" onClick={toNextSlide}>
-        Next
-    </button>
     </>
   );
 };
