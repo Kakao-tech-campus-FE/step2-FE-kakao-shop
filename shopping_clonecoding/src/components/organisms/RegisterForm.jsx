@@ -5,7 +5,7 @@ import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register, duplicate } from "../../services/api";
+import { register, duplicate } from "../../services/users";
 
 import "../../styles/organisms/RegisterForm.css";
 

@@ -6,7 +6,7 @@ import Title from "../atoms/Title";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../services/api";
+import { login } from "../../services/users";
 import { setUser } from "../../store/slices/userSlice";
 
 import "../../styles/organisms/LoginForm.css";

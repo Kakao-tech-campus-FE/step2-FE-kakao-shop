@@ -1,0 +1,30 @@
+.header {
+  align-items: center;
+  padding: 10px;
+}
+
+.navigation {
+  position: fixed;
+  background-color: beige;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 0;
+}
+
+.navigation span {
+  margin-right: 20px;
+}
+
+.cart {
+  margin-left: auto;
+  display: flex;
+  justify-content: right;
+}
+
+.navigation img {
+  height: 30px;
+}
