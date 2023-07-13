@@ -11,7 +11,7 @@ instance.interceptors.request.use(
   function (config) {
     if (
       !localStorage.getItem("accessTokenDate") ||
-      !localStorage("accessToken")
+      !localStorage.getItem("accessToken")
     )
       return config;
 
