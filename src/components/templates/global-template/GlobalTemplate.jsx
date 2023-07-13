@@ -10,7 +10,7 @@ const Styled = {
   `,
   Section: styled.section`
     width: 100%;
-    padding-top: 5rem;
+    padding-top: 4rem;
     margin: 0 5rem;
   `,
 };
