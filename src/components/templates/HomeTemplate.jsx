@@ -16,7 +16,7 @@ const Container = styled.div`
 const HomeTemplate = () => {
   return (
     <>
-      <GlobalNavBar />
+      <GlobalNavBar height="80px" />
       <Carousel />
       <Container>
         <ProductGrid />
