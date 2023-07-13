@@ -6,6 +6,7 @@ import { getItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO } from '../../utils/common';
 import { useUserDispatch, useUserSelector } from '../../hooks/store';
 import LinkButton from '../atoms/linkButton';
+import Photo from '../atoms/photo';
 
 export default function NavigationBar() {
   const user = useUserSelector((state) => state.user);
@@ -38,8 +39,12 @@ export default function NavigationBar() {
   };
 
   return (
-    <div className="flex items-center justify-between border border-b-stone-300 px-6 py-4">
-      <LinkButton href="/">메인 페이지</LinkButton>
+    <div className="sticky inset-x-0 top-0 z-50 flex w-full items-center justify-between bg-white px-6 py-4">
+      <LinkButton href="/">
+        <div className="h-10">
+          <Photo src="/logoKakao.png" alt="카카오톡 쇼핑하기" />
+        </div>
+      </LinkButton>
       <div className="flex items-center gap-4">
         {user.isLogin ? (
           <>
@@ -57,12 +62,9 @@ export default function NavigationBar() {
           </>
         ) : (
           <div>
-            <Button onClick={() => {
-              navigator('/login');
-            }}
-            >
+            <LinkButton href="/login">
               로그인
-            </Button>
+            </LinkButton>
           </div>
         )}
       </div>

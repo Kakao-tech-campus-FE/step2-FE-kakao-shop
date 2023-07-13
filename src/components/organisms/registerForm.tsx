@@ -10,6 +10,7 @@ import { REGISTER_ERROR_MSG } from '../../utils/errorMsg';
 import { debounce } from '../../utils/debounce';
 import { checkEmail } from '../../apis/user';
 import { DEBOUNCE_TIMEOUT } from '../../utils/common';
+import Loader from '../atoms/loader';
 
 interface RegisterFormProps {
   // Request registration
@@ -163,13 +164,15 @@ export default function RegisterForm({
           </div>
         </div>
       </div>
-      <div className="px-2">
-        <Button
-          isSubmitType
-          disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
-        >
-          {isLoading ? '처리 중' : '가입하기'}
-        </Button>
+      <div className="px-2 text-center">
+        {isLoading ? <Loader /> : (
+          <Button
+            isSubmitType
+            disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
+          >
+            가입하기
+          </Button>
+        )}
       </div>
     </form>
   );

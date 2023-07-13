@@ -10,9 +10,7 @@ export default function LinkButton({
   href,
 }: LinkButtonProps) {
   return (
-    <span className="text-sm opacity-50
-      hover:opacity-100"
-    >
+    <span className="text-sm">
       <Link to={href}>
         {children}
       </Link>

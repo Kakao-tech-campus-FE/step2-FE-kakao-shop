@@ -2,7 +2,7 @@
 export default function Loader() {
   return (
     <div
-      className="mx-auto mb-4 inline-block p-4 text-center align-top"
+      className="mx-auto inline-block text-center align-top"
       title="Loading..."
     >
       <svg

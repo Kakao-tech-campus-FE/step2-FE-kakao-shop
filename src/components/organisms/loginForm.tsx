@@ -7,6 +7,7 @@ import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
 import { LOGIN_ERROR_MSG } from '../../utils/errorMsg';
 import { LOGIN_VALID_REGEX } from '../../utils/regex';
+import Loader from '../atoms/loader';
 
 interface LoginFormProps {
   // Request login
@@ -88,13 +89,15 @@ export default function LoginForm({
           </div>
         </div>
       </div>
-      <div>
-        <Button
-          isSubmitType
-          disabled={!formState.isDirty || !formState.isValid || isLoading}
-        >
-          {isLoading ? '처리 중' : '로그인'}
-        </Button>
+      <div className="px-2 text-center">
+        {isLoading ? <Loader /> : (
+          <Button
+            isSubmitType
+            disabled={!formState.isDirty || !formState.isValid || isLoading}
+          >
+            로그인
+          </Button>
+        )}
       </div>
     </form>
   );

@@ -32,11 +32,9 @@ export default function LoginTemplate({
   errorMessage,
 }: LoginTemplateProps) {
   return (
-    <div className="flex min-w-[20rem] flex-col justify-center">
-      <h1 className="mt-8 py-4 text-center text-3xl">로그인</h1>
-      <div className="my-4 p-8
-          md:w-[40rem] md:self-center md:rounded-sm md:border md:border-stone-300"
-      >
+    <div className="mx-auto flex w-[48rem] grow flex-col items-center">
+      <h1 className="mt-8 py-4 text-3xl">로그인</h1>
+      <div className="my-4 w-full p-8">
         <LoginForm
           handleLogin={handleLogin}
           register={register}
