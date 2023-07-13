@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setEmail, setLogInTime } from "store/slices/userSlice.js";
+import { setEmail, setLogInTime, setToken } from "store/slices/userSlice.js";
 
 import Box from "components/atoms/Box.js";
 import ImageLink from "components/molecules/ImageLink.js";
@@ -15,6 +15,7 @@ export default function GNB() {
 
   const handleLinkClick = () => {
     dispatch(setEmail({ email: null }));
+    dispatch(setToken({ token: null }));
     dispatch(setLogInTime({ logInTime: null }));
   };
 
