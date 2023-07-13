@@ -6,7 +6,7 @@ import '../../../src/styles/molcules/ProductCard.css';
 
 const ProductCard = ({ product }) => {
   return (
-    
+    <div className="product-card">
     <Card to={`/product/${product.id}`} >
       <div className="product-photo">
         <Photo src={process.env.REACT_APP_API_URL + product.image} alt={product.productName} />
@@ -15,6 +15,7 @@ const ProductCard = ({ product }) => {
         <div className="product-price">{comma(product.price)}원</div>
       
     </Card>
+    </div>
   );
 } ;
 

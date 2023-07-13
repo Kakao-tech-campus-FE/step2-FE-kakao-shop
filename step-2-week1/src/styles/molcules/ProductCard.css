@@ -8,8 +8,8 @@
 } */
 
 .product-photo {
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   overflow: hidden;
 }
 
@@ -33,5 +33,11 @@
   font-size: 13pt;
   margin-top: 5px;
   font-weight: bold;
+}
+
+.product-card {
+  /* border: 1px solid gray; */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
 }
 
