@@ -16,12 +16,6 @@ const MainProductTemplate = () => {
   const error = useSelector((state) => state.product.error);
   const isEnd = useSelector((state) => state.product.isEnd);
 
-  // useQuary
-  // const { products, loading, error, isEnd } = useQuery(
-  //   `product`,
-  //   fetchProducts(page)
-  // );
-
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
@@ -48,17 +42,9 @@ const MainProductTemplate = () => {
 
   return (
     <Container>
-      <ProductGrid products={products} />
+      <ProductGrid products={products} loading={loading} />
       {loading && <Loader />}
-      <div
-        ref={bottomObserver}
-        // style={{
-        //   height: "300px",
-        //   backgroundColor: "red",
-        //   color: "white",
-        //   fontSize: "3em",
-        // }}
-      ></div>
+      <div ref={bottomObserver}></div>
     </Container>
   );
 };
