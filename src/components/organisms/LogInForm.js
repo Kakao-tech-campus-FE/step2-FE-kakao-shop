@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { logInReq } from "apis/user.js";
-import { setEmail, setLogInTime, setToken } from "store/slices/userSlice.js";
+import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 import { isValidLogIn } from "utils/validate.js";
 import useInput from "hooks/useInput.js";
 
@@ -31,11 +31,12 @@ export default function LogInForm() {
       .then((res) => {
         const CurrentTime = new Date().getTime();
         dispatch(setEmail({ email: inputValue.email }));
-        dispatch(setToken({token: res.headers.authorization}))
         dispatch(setLogInTime({ logInTime: CurrentTime }));
+        window.localStorage.setItem("token", res.headers.authorization);
         setTimeout(() => {
           dispatch(setEmail({ email: null }));
           dispatch(setLogInTime({ logInTime: null }));
+          window.localStorage.removeItem("token");
           alert("로그인이 만료되었습니다.");
           window.location.href = "/";
         }, expireTime);

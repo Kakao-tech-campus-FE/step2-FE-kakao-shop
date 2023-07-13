@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { setEmail, setToken, setLogInTime } from "store/slices/userSlice";
+import { setEmail, setLogInTime } from "store/slices/userSlice";
 
 import Test from "pages/Test.js";
 import LogIn from "pages/LogIn.js";
@@ -26,8 +26,8 @@ function App() {
     if (!logInTime) return;
     const timeoutId = setTimeout(() => {
       dispatch(setEmail({ email: null }));
-      dispatch(setToken({ token: null }));
       dispatch(setLogInTime({ logInTime: null }));
+      window.localStorage.removeItem("token");
       alert("로그인이 만료되었습니다.");
       window.location.href = "/";
     }, expireTime - (new Date().getTime() - logInTime));
