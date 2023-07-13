@@ -1,3 +1,4 @@
+import Photo from "../components/atoms/Photo";
 import LoginForm from "../components/organisms/LoginForm";
 
 /**
@@ -8,11 +9,13 @@ import LoginForm from "../components/organisms/LoginForm";
 const LoginPage = () => {
   return (
     <div className="login-page">
-      <img
-        src="/logoKakaoText.png"
-        alt="kakao-shopping"
-        className="w-32 mx-auto mt-32 mb-10"
-      />
+      <div className="mt-32 mb-10">
+        <Photo
+          className="w-32 mx-auto block"
+          src="/logoKakaoText.png"
+          alt="kakao-text-logo"
+        />
+      </div>
       <LoginForm />
     </div>
   );
