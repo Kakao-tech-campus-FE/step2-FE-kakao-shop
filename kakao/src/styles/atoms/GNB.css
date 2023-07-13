@@ -50,3 +50,12 @@
 .header-menu .menu-account a {
   font-size: 40;
 }
+
+/* 창에맞게 */
+@media screen and (max-width: 768px) {
+  .header-innerwrap {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+}

@@ -1,9 +1,17 @@
 import { instance } from "./index"; //요거 이상한듯..
 
-// 제품목록 가져오는 API 요청
+// 제품목록 가져오는 API 요청(원래코드!!!)
+// export const fetchProducts = (page = 0) => {
+//   return instance.get("/products" + "?page=" + page);
+// };
+
+// 스켈레톤 확인용 딜레이 걸어보기
 export const fetchProducts = (page = 0) => {
-  // return instance.get("/products" + "?page=" + page);
-  return instance.get("/products" + "?page=" + page);
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(instance.get("/products" + "?page=" + page));
+    }, 2000); // 1초 딜레이
+  });
 };
 
 // 특정한 아이디 가져오기
