@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, HelveticaNeue, Helvetica, Roboto,
+    Apple SD Gothic Neo, \b9d1\c740\ace0\b515, Malgun Gothic, sans-serif,
+    ArialUnicodeMs;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  white-space: nowrap;
+}
