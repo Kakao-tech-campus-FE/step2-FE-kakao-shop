@@ -21,6 +21,17 @@ const MainProductTemplate = () => {
             }
             // 다음 페이지를 요청하기 위해 현재 페이지의 개수를 계산하여 반환
             return pages.length + 1;
+        },
+        onError: (error) => {
+            switch(error.status) {
+                case 300: console.error(`something went wrong 300: ${error.message}`);
+                break;
+                case 400: console.error(`something went wrong 400: ${error.nessage}`);
+                break;
+                case 500: console.error(`something went wrong 500: ${error.message}`);
+                break;
+                default: console.error(`something went wrong: ${error.message}`);
+            }
         }
     }); // 구분자, API 요청 함수
 
