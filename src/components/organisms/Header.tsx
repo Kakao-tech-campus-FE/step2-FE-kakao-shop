@@ -8,7 +8,7 @@ const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const dispatch = useDispatch();
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     dispatch(loginStore({ isLoggedIn: false, email: null }));
   };
 
