@@ -6,8 +6,6 @@ import Loader from '@components/atoms/Loader';
 
 const MainPRoductTemplate = () => {
   const products = useSelector((state: RootState) => state.product.products);
-  const loading = useSelector((state: RootState) => state.product.loading);
-  const error = useSelector((state: RootState) => state.product.error);
 
   return (
     <Suspense fallback={<Loader />}>
