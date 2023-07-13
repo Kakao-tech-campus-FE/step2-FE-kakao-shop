@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../apis/api";
+import { login } from "../../apis/user";
 
 const initialState = {
     email: null,    // user email 값 저장.

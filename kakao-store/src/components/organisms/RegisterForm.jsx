@@ -2,7 +2,7 @@ import Button from "../atoms/Button";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
-import { register } from "../../apis/api";
+import { register } from "../../apis/user";
 import Title from "../atoms/Title";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -29,7 +29,7 @@ const RegisterForm = () => {
         <Container>
             <Container className="flex items-center justify-center mt-10">
 				<Title>
-					<img src="/img/logoKakaoText.png" width="88px" height="27px"/>
+					<img src="/img/logoKakaoText.png" width="88px" height="27px" alt="logo"/>
 				</Title>
 			</Container>
 			<Container className="flex flex-col items-center justify-center w-2/5 p-10 mx-auto mt-10 border border-gray-400">
