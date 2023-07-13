@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from "../../services/product";
+import _, { uniqBy } from "lodash";
 
 const initialState = {
     products: [],
@@ -21,7 +22,7 @@ const productsSlice = createSlice({
                 state.isEnd = true;
             }
             state.loading = false;
-            state.products = action.payload.response
+            state.products = _.uniqBy([...state.products, ...action.payload.response], 'id')
             state.error = action.payload.error
         })
         // Promise.reject()
