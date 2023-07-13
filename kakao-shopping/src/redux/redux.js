@@ -1,8 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { loginApi } from "../apis/api";
-
-const expirationDay = 1; // 1일
-const calculateExpirationTime = expirationDay * 24 * 60 * 60 * 1000; // 1일을 밀리초로 환산
+import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
   name: "auth",
