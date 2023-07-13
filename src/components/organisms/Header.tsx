@@ -6,7 +6,7 @@ import { RootState } from 'src/store';
 const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   return (
-    <div className="fixed w-screen bg-subGray h-[100px] flex items-center">
+    <div className="fixed w-screen bg-subGray h-header flex items-center">
       {!isLoggedIn && (
         <Link to="/login" className="absolute right-[10px]">
           로그인
