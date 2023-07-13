@@ -1,26 +1,11 @@
 import InputGroup from "../molecules/InputGroup";
-import Button from "../atoms/Button";
-import styled from "styled-components";
-import { register } from "../../services/api.js";
+import SubmitButton from "../atoms/SubmitButton";
+import Form from "../atoms/Form";
+import { register } from "../../services/user";
 import useInput from "../../hooks/useInput";
-import { useState } from "react";
+import useValidation from "../../hooks/useValidation";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
-const Form = styled.form`
-  display: flex;
-  height: 80vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  Button {
-    margin-top: 1.5rem;
-  }
-`;
-
-const emailRegEx =
-  /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/i;
-
-const passwordRegEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-])[^\s]{8,}$/;
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -30,45 +15,12 @@ const RegisterForm = () => {
     username: "",
   });
 
-  const [email, setEmail] = useState("");
-  const [emailErrorMsg, setEmailErrorMsg] = useState("");
-
-  const [password, setPassword] = useState("");
-  const [pwErrorMsg, setPwErrorMsg] = useState("");
-
-  const [confirmPw, setConfirmPw] = useState("");
-  const [confirmPwErrorMsg, setConfirmPwErrorMsg] = useState("");
-
-  const emailCheck = (email) => {
-    return emailRegEx.test(email) ? "" : "이메일 형식이 아닙니다.";
-  };
-
-  const handleEmailChange = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-    setEmailErrorMsg(emailCheck(email));
-  };
-
-  const pwCheck = (password) => {
-    return passwordRegEx.test(password)
-      ? ""
-      : "영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다.";
-  };
-
-  const handlePwCheck = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-    setPwErrorMsg(pwCheck(password));
-  };
-
-  const correctPwCheck = (confirmPw) => {
-    return password === confirmPw ? "" : "비밀번호가 일치하지 않습니다";
-  };
+  const { msg: emailMsg, handleSetMsg: handleSetEmailMsg } = useValidation("");
+  const { msg: pwMsg, handleSetMsg: handleSetPwMsg } = useValidation("");
+  const { msg: confirmPwMsg, handleConfirmPwMsg } = useValidation("");
 
   const handlePwConfirm = (e) => {
-    const confirmPw = e.target.value;
-    setConfirmPw(confirmPw);
-    setConfirmPwErrorMsg(correctPwCheck(confirmPw));
+    handleConfirmPwMsg(value.password, e.target.value);
   };
 
   const navigate = useNavigate();
@@ -98,10 +50,11 @@ const RegisterForm = () => {
           placeholder="이메일"
           onChange={(e) => {
             handleOnChange(e);
-            handleEmailChange(e);
+            handleSetEmailMsg(e);
           }}
+          errorMsg={emailMsg}
         >
-          {["이메일(아이디)", emailErrorMsg]}
+          이메일(아이디)
         </InputGroup>
         <InputGroup
           id="username"
@@ -111,7 +64,7 @@ const RegisterForm = () => {
           placeholder="이름"
           onChange={handleOnChange}
         >
-          {["이름", ""]}
+          이름
         </InputGroup>
         <InputGroup
           id="password"
@@ -121,10 +74,11 @@ const RegisterForm = () => {
           placeholder="비밀번호"
           onChange={(e) => {
             handleOnChange(e);
-            handlePwCheck(e);
+            handleSetPwMsg(e);
           }}
+          helperMsg={pwMsg}
         >
-          {["비밀번호", pwErrorMsg]}
+          비밀번호
         </InputGroup>
         <InputGroup
           id="passwordConfirm"
@@ -136,22 +90,13 @@ const RegisterForm = () => {
             handleOnChange(e);
             handlePwConfirm(e);
           }}
+          errorMsg={confirmPwMsg}
         >
-          {["비밀번호 확인", confirmPwErrorMsg]}
+          비밀번호 확인
         </InputGroup>
-        <Button
-          type="submit"
-          styles={{
-            width: "32rem",
-            padding: "0.6rem",
-            backgroundColor: "yellow",
-            fontWeight: "bold",
-            borderRadius: "6px",
-          }}
-          onClick={handleSubmit}
-        >
+        <SubmitButton type="submit" onClick={handleSubmit}>
           회원가입
-        </Button>
+        </SubmitButton>
       </Form>
     </>
   );
