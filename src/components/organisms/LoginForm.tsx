@@ -22,7 +22,7 @@ const LoginForm = () => {
   const loginReq = () => {
     login({ email: inputInfo.email, password: inputInfo.password })
       .then((res) => {
-        dispatch(loginStore({ email: inputInfo.email }));
+        dispatch(loginStore({ isLoggedIn: true, email: inputInfo.email }));
         navigate('/');
       })
       .catch((err) => {
