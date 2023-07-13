@@ -5,6 +5,9 @@ export const fetchProducts = (page = 0) => {
   return instance.get("/products" + "?page=" + page);
 }
 
+export const fetchProductsFromCursor = (cursor) => {
+}
+
 export const getProductById = (id) => {
   // 에러캐칭은 위에서
   if(!id) {
@@ -12,5 +15,9 @@ export const getProductById = (id) => {
   }
 
   // 정상콜백은 밑에서
-  return instance.get("/products/" + id);
+  return instance.get(`/products/${id}`);
+}
+
+export const getProductList = ()  => {
+  return instance.get("/products");
 }

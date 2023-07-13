@@ -1,8 +1,10 @@
+import MainProductTemplate from "../template/MainProductTemplate";
+
 const HomePage = () => {
   return (
-    <div>
-      <h1>홈페이지</h1>
-    </div>
+    <>
+      <MainProductTemplate />
+    </>
   );
 };
 

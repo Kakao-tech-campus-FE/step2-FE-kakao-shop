@@ -1,10 +1,12 @@
 import {createSlice, createAsyncThunk}  from '@reduxjs/toolkit';
 import {fetchProducts} from '../../services/product';
+import _ from 'lodash';
 
 const initialState = {
   products: [],
   loading: false,
   error: null, // error exist: { message, status }
+  isEnd: false,
 };
 
 const productsSlice = createSlice({
@@ -15,8 +17,14 @@ const productsSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(getProduct.fulfilled, (state, action) => {
+      if (action.payload.response.length < 10) {
+        state.isEnd = true;
+      }
       state.loading = false;
-      state.products = action.payload; // {sucess, response, error}
+      state.products.concat(action.payload.response);
+      state.products = _.uniqBy([...state.products, ...action.payload.response], 'id'); // {sucess, response, error}
+      const nextLength = state.products.length;
+
       state.error = action.payload.error;
     });
     builder.addCase(getProduct.rejected, (state, action) => {
