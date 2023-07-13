@@ -11,11 +11,12 @@ const MainProductTemplate = () => {
   const products = useSelector((state) => state.product.products);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
+  const isEnd = useSelector((state) => state.product.isEnd);
 
   const io = new IntersectionObserver(
     (entires, observer) => {
       entires.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !isEnd) {
           setPage((page) => page + 1);
         }
       });
