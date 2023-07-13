@@ -1,3 +1,4 @@
+
 const Photo = ({ className, src, alt }) => {
   return (
     <picture className={className}>

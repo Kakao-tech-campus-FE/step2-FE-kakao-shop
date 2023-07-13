@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import  userReducer from "./slices/userSlice";
 import productReducer from "./slices/productSlice";
+
 // import { ReactDOM } from "react";
 // import App from "../App";
 // import { Provider } from "react-redux";

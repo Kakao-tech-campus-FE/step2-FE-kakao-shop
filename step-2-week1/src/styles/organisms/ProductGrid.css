@@ -7,9 +7,13 @@
   max-width: inherit;
 }
 
-.product-grid {
+/* .product-grid {
   display: flex;
   flex-wrap: wrap;
+}
+
+.product-grid img {
+display: flex;
 }
 
 .product-grid > .product-card {
@@ -20,4 +24,4 @@
   .product-grid > .product-card {
     width: 180px;
   }  
-}
+} */

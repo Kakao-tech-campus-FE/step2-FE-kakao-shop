@@ -5,7 +5,7 @@ const Button = ({ onClick, children }) => {
     <button
       onClick={(e) => {
         e.preventDefault();
-        onClick();
+        onClick(e);
       }}
     >
       {children}

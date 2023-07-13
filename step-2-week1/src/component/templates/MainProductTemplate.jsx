@@ -4,6 +4,7 @@ import ProductGrid from "../organisms/ProductGrid";
 import { Suspense, useEffect } from "react";
 import { getProducts } from "../../store/modules/product";
 import { useState } from "react";
+import { useRef } from "react";
 
 const MainProductTemplate = () => {
   // const [page, setPage] = useState(0);

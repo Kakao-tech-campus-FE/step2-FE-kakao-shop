@@ -26,17 +26,9 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // console.log(error.response.status);
-    // console.log(error.response.data.error.message);
-    // return Promise.resolve(error.response.data.error.message);
-    // 주석 지워도 됨. 그저 예시
-    // if (error.response.status === 400) {
-    //   localStorage.removeItem("token");
-    //   // window.location.href = "/login";
-    //   return Promise.resolve();
-    // }
-    // return Promise.reject(error.response);
-    return Promise.reject(error.response);
+    
+    return Promise.reject(error.response.data.error.message);
+    
   }
 );
 

@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <div>
       <h1>Home Page</h1>
-      <ProductGrid products={[{id:1}, {id:2}]} />
+      <ProductGrid product />
     </div>
   )
 };

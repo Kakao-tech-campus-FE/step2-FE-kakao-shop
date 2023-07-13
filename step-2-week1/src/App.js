@@ -10,7 +10,6 @@ import { setUser, clearUser } from './store/slices/userSlice';
 import MainLayout from "./layouts/MainLayout";
 import GNB from './component/atoms/GNB';
 import ProductGrid from './component/organisms/ProductGrid';
-import MainLayout from './services';
 
 function App() {
 
@@ -43,7 +42,9 @@ function App() {
         {/* 공통 레이아웃 GNB, Footer */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
-          <Route path="product" element={<ProductGrid />}></Route>
+          <Route path="/" element={<ProductGrid />}></Route>
+          {/* <Route path="/produc/:id" element={<ProductDetailPage />}></Route> */}
+          
         </Route>
       </Routes>
     </BrowserRouter>
