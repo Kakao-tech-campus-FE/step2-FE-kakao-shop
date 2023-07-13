@@ -76,7 +76,7 @@ const StyledLoaderHolder = styled.div`
   bottom: 0px;
   right: 0px;
   width: 100%;
-  height: 100%;
+  height: 40%;
 `;
 
 const StyledLoader = styled.div`
