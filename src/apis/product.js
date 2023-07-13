@@ -5,5 +5,6 @@ export async function getProductspReq(page = 0) {
 }
 
 export async function getProductReq(id) {
+  if (!id) throw new Error("getProductReq Error : ID 필요함");
   return await instance.get(`/product/${id}`);
 }
