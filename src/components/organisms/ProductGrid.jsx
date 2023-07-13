@@ -56,7 +56,7 @@ const ProductGrid = () => {
     };
 
     const io = new IntersectionObserver(handleObserver, {
-      threshold: 1,
+      threshold: 0.2,
     });
 
     if (bottomObserverRef.current) {

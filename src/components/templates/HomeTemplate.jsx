@@ -9,6 +9,8 @@ const Container = styled.div`
   margin: 0 auto;
   position: relative;
   top: 80px;
+  height: auto;
+  min-height: 100%;
 `;
 
 const HomeTemplate = () => {
