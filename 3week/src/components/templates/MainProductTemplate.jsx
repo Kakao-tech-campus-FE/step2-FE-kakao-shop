@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import Container from "../atoms/Container"
 import ProductGrid from "../organisms/ProductGrid"
-import { Suspense, useEffect, useState } from "react"
-import { getProducts } from "../../store/modules/product"
+import { Suspense, useEffect, useState, useRef } from "react"
+import { getProducts } from "../../store/slices/productSlice"
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0)
