@@ -1,3 +1,4 @@
+import { useRedirect } from "@hooks/useRedirect";
 import axios from "axios";
 
 const AxiosInstance = axios.create({
@@ -34,6 +35,8 @@ AxiosInstance.interceptors.response.use(
     if (status === 400 || status === 401) {
       const { message } = data.error;
       return Promise.reject(message);
+    } else if (status === 404) {
+      useRedirect("notFound");
     }
     return Promise.reject(error);
   }
