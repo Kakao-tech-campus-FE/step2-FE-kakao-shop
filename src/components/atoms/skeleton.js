@@ -1,4 +1,4 @@
-import "styles/atoms/skeleton.css";
+import "styles/atoms/Skeleton.css";
 
 export default function Skeleton() {
   return (

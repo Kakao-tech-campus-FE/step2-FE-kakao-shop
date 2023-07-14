@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { getProductspReq } from "apis/product";
-import Container from "components/atoms/Container";
-import ProductGrid from "components/organisms/ProductGrid";
-import Loader from "components/atoms/loader";
+import { getProductspReq } from "apis/product.js";
+import Container from "components/atoms/Container.js";
+import ProductGrid from "components/organisms/ProductGrid.js";
+import Loader from "components/atoms/Loader.js";
 
 export default function ProductSection() {
   const [page, setPage] = useState(0);

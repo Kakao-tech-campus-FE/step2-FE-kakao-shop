@@ -1,6 +1,6 @@
 import ImageLink from "components/molecules/ImageLink.js";
 
-import logoKakao from "assets/images/icon/logoKakao.png";
+import logoKakao from "assets/icon/logoKakao.png";
 
 export default function Footer() {
   return (

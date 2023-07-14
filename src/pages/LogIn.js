@@ -1,7 +1,7 @@
 import ImageLink from "components/molecules/ImageLink.js";
 import LogInForm from "components/organisms/LogInForm.js";
 
-import logoKakaoText from "assets/images/icon/logoKakaoText.png";
+import logoKakaoText from "assets/icon/logoKakaoText.png";
 
 export default function LogIn() {
   return (

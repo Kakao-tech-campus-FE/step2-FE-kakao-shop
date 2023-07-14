@@ -6,8 +6,8 @@ import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 import Box from "components/atoms/Box.js";
 import ImageLink from "components/molecules/ImageLink.js";
 
-import logoKakao from "assets/images/icon/logoKakao.png";
-import cart from "assets/images/icon/cart.png";
+import logoKakao from "assets/icon/logoKakao.png";
+import cart from "assets/icon/cart.png";
 
 export default function GNB() {
   const dispatch = useDispatch();

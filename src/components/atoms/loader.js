@@ -1,4 +1,4 @@
-import "styles/atoms/loader.css"
+import "styles/atoms/Loader.css";
 
 export default function Loader() {
   return <div className={"loader"} />;

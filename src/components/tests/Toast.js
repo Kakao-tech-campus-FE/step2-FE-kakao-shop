@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "styles/tests/Toast.css";
 
-import cart_white from "assets/images/icon/cart_white.png";
+import cart_white from "assets/icon/cart_white.png";
 
 export default function Toast() {
   const [visible, setVisible] = useState(false);
