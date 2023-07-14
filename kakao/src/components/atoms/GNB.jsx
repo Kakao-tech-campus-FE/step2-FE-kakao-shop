@@ -31,7 +31,6 @@ const GNB = () => {
               <img src={"/cart.png"} alt="장바구니" height={30} />
             </Link>
           </span>
-          <span className="hearder-menu-line">|</span>
           <span className="menu-account">
             {email ? (
               <Link

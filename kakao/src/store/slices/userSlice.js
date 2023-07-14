@@ -14,7 +14,9 @@ const userSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload.email;
     },
-
+    setToken: (state, action) => {
+      state.token = action.payload.token;
+    },
     clearEmail: (state) => {
       state.email = null;
     },
@@ -41,13 +43,12 @@ export const loginRequest = createAsyncThunk(
   async (data) => {
     const { email, password } = data;
     const response = await login({ email, password });
-    console.log(response);
     return {
-      email: email,
+      email,
       token: response.headers.authorization,
     };
   }
 );
 
-export const { setEmail, clearEmail } = userSlice.actions;
+export const { setEmail, clearEmail, setToken } = userSlice.actions;
 export default userSlice.reducer;

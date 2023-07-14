@@ -18,7 +18,7 @@ function App() {
           {/* 공통 레이아웃: GNB, Footer */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />}></Route>
-            {/* <Route path="/product/:id" element={<ProductDetailPage />}></Route>ㄴ */}
+            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

@@ -38,12 +38,13 @@ const productsSlice = createSlice({
         [...state.products, ...action.payload.response],
         "id"
       ); //action.payload -> {success, response, error} 3개가 들어가 있음
+      const nextLength = state.products.length;
       state.error = action.payload.error;
     });
     // Promise.reject()되었을때
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
-      // state.error = action.payload.error;
+      state.error = action.payload.error;
     });
   },
 });

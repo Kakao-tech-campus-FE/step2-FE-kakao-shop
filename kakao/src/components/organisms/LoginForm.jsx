@@ -39,7 +39,6 @@ const LoginForm = () => {
       password: value.password,
     })
       .then((res) => {
-        console.log("lkerjlwigj");
         console.log(res);
         const token = res.data.token;
         localStorage.setItem("token", token);
