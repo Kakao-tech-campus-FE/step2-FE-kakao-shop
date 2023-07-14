@@ -1,11 +1,11 @@
 import InputField from "../components/molecules/InputField";
 import useForm from "../hook/useForm";
-import {signIn} from "../services/userApi";
-import {useNavigate} from "react-router-dom";
+import {signIn} from "../services/apis";
+import {Link, useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {useDispatch} from "react-redux";
 import {setId} from "../redux/userSlice";
-import Button from "../components/atoms/MyButton";
+import Button from "../components/atoms/Button";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -16,12 +16,16 @@ const LoginPage = () => {
         password: "",
     }
     const onSubmit = async (value) => {
-        const response = await signIn({
-                email: value.id,
-                password: value.password,
-            }
-        );
-        response.success ? onLoginSuccess(value.id) : onLoginFail(response.error.message);
+        try {
+            await signIn({
+                    email: value.id,
+                    password: value.password,
+                }
+            );
+            onLoginSuccess(value.id)
+        } catch (e) {
+            onLoginFail(e.message);
+        }
     }
     const onLoginSuccess = (id) => {
         const expires = new Date();
@@ -74,6 +78,11 @@ const LoginPage = () => {
                     <Button className="mt-8" type="submit" disabled={submitting}>
                         로그인
                     </Button>
+                    <div className="flex justify-center mt-6 mx-6">
+                        <Link to="/signup" className="inline-block text-xs">
+                            회원가입
+                        </Link>
+                    </div>
                 </form>
             </div>
         </div>
