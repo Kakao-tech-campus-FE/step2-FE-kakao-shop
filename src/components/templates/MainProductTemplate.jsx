@@ -58,12 +58,18 @@ const MainProductTemplate = () => {
         dispatch(getProducts(page));
     }, [dispatch, page])
 
+
+    // Loader : 글로벌 로더
     return (
         <>
             <Container>
+                {/* <ProductGrid products={products} loading={true} /> */}
                 {loading ? 
-                <Loader /> : 
-                <ProductGrid products={products} />}
+                <>
+                <Loader />
+                <ProductGrid products={products} loading={loading} />
+                </>
+                : <ProductGrid products={products} loading={loading} />}
                 <div ref={bottomObserver}></div>
             </Container>
         </>

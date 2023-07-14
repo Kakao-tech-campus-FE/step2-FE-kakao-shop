@@ -1,6 +1,7 @@
 .product-name {
     text-decoration: none; 
     color: black;
+    font-size: 1.3rem;
 }
 
 .product-price {

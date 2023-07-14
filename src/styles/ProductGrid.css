@@ -18,6 +18,12 @@
     }
 }
 
+@media screen and (max-width: 750px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 /* 이 경우에는 사이즈에 따라 유동적으로 바뀌는 flex */
 /* .product-grid {
     display: flex;
