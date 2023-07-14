@@ -1,17 +1,19 @@
+import { useState } from "react";
+import { useRegister } from "../../services/register";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import GNB from "../atoms/GNB";
-import { register } from "../../services/user";
-import { useState } from "react";
 
 const RegisterForm = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
+
+  const registerMutation = useRegister();
 
   const { value, handleOnChange, reset } = useInput({
     username: "",
@@ -33,7 +35,7 @@ const RegisterForm = () => {
 
   const handleRegister = async () => {
     try {
-      await register({
+      await registerMutation.mutateAsync({
         email: value.email,
         password: value.password,
         username: value.username,

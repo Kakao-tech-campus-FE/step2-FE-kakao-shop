@@ -8,12 +8,14 @@ import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+// import { useLogin } from "../../services/login";
 
 const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const dispatch = useDispatch();
+  // const loginMutation = useLogin();
 
   const { value, handleOnChange, reset } = useInput({
     email: "",
@@ -22,13 +24,17 @@ const LoginForm = () => {
 
   const handleLogin = async () => {
     try {
+      // loginMutation.mutateAsync({
+      //   email: value.email,
+      //   password: value.password,
+      // });
       await dispatch(
         loginRequest({
           email: value.email,
           password: value.password,
         })
       );
-      // reset();
+      reset();
     } catch {
       console.log("login fail....");
     }

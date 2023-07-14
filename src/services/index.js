@@ -22,16 +22,15 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    console.log(error);
     if (error.response.data.success === false) {
       if (error.response.status === 401) {
         localStorage.removeItem("token");
-        window.location.href = "/login";
-        window.alert(error.response.data.error.message);
+        // window.location.href = "/login";
+        // window.alert(error.response.data.error.message);
         return Promise.resolve();
       }
-      window.location.href = "/login";
-      window.alert(error.response.data.error.message);
+      // window.location.href = "/login";
+      // window.alert(error.response.data.error.message);
     }
 
     return Promise.reject(error);
