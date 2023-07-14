@@ -14,7 +14,7 @@ const Container = styled.div`
 const Button = styled.button`
   position: absolute;
   top: calc(50% - 1rem);
-  z-index: 100;
+  z-index: 1;
 
   font-size: 2rem;
   color: white;
@@ -33,7 +33,7 @@ const Slide = styled.img`
 
 const DotContainer = styled.div`
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   bottom: 0.5rem;
 
   width: 100%;
