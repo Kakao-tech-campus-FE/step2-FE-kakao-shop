@@ -1,9 +1,5 @@
-const Skeleton = ({ style }) => {
-  const styleObj = {
-
-  };
-  
-  return <div className={`bg-gray-400 my-4 rounded  ${styleObj[style]}`}></div>;
+const Skeleton = ({ className }) => {
+  return <div className={`bg-gray-300 my-4 rounded ${className}}`}></div>;
 };
 
 export default Skeleton;
