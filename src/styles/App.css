@@ -31,9 +31,8 @@ footer, header, hgroup, menu, nav, section {
     font-family: 'yg-jalnan', Helvetica, sans-serif;
 }
 
-/* tyle={{textAlign:"center", justifyContent: "center", alignItems: "center",  marginTop: "150px"}}> */
 
-.loginPage, .mainPage, .registerPage, .componentsPage {
+.loginPage, .mainPage, .registerPage, .componentsPage, .productDetailPage {
     text-align: center;
     margin-top: 180px;
 }

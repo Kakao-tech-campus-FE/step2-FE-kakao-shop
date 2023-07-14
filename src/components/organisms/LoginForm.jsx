@@ -7,7 +7,6 @@ import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
-import { Link } from "react-router-dom";
 // import { login } from "../services/api";
 // import { loginRequest, setEmail } from "../../store/slices/userSlice";
 

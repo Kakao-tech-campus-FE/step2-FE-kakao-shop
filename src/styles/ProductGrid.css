@@ -4,8 +4,8 @@
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* column을 1:1:1:1 비율로 가져감*/
-    grid-gap: 1rem;
-    margin: 1rem 0;
+    grid-gap: 2rem;
+    margin: 3rem 0;
     width: 100%;
     max-width: inherit;
 }
