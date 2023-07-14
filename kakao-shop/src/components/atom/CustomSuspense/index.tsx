@@ -7,8 +7,6 @@ type Props = {
 const CustomSuspense = (props: PropsWithChildren<Props>) => {
   const { fallback, isLoading, children } = props;
 
-  console.log(fallback);
-
   if (isLoading) {
     return fallback;
   }
