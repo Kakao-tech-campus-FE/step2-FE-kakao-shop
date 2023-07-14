@@ -1,0 +1,38 @@
+.card_deal {
+  display: inline-block;
+  width: 284px;
+  padding: 20px 50px;
+  vertical-align: top;
+}
+
+.card_deal .link_card {
+  display: block;
+}
+
+.card_deal .img_thumb {
+  display: block;
+  width: 100%;
+}
+
+.card_deal .img_thumb:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.card_deal .product_name {
+  padding: 0;
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #111;
+  word-break: break-all;
+}
+
+.card_deal .product_price {
+  font-weight: 700;
+  color: #111;
+  display: inline-block;
+  margin: 0;
+  font-size: 20px;
+}
