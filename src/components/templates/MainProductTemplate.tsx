@@ -3,10 +3,11 @@ import useGetProductsQuery from '../../apis/productApi';
 import ProductGrid from '../organisms/ProductGrid';
 import Container from '../atoms/Container';
 import Loader from '../atoms/Loader';
+import SkeletonProductGrid from '../organisms/SkeletonProductGrid';
 
 const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
-  const { data, fetchNextPage, hasNextPage, isSuccess, isLoading } = useGetProductsQuery();
+  const { data, fetchNextPage, hasNextPage, isSuccess, isLoading, isFetching } = useGetProductsQuery();
 
   const io = new IntersectionObserver(
     (entries) => {
@@ -28,8 +29,13 @@ const MainProductTemplate = () => {
 
   return (
     <Container className='pb-16 pt-8'>
-      {isLoading && <Loader />}
-      <div>{isSuccess && data.pages && <ProductGrid pages={data.pages} />}</div>
+      {isLoading && (
+        <>
+          <Loader />
+          <SkeletonProductGrid />
+        </>
+      )}
+      <div>{isSuccess && data.pages && <ProductGrid isFetching={isFetching} pages={data.pages} />}</div>
       <div ref={bottomObserver} className='h-20' />
     </Container>
   );
