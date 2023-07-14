@@ -1,38 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import { useState } from "react"
+import RegisterPage from "./pages/RegisterPage"
 import LoginPage from "./pages/LoginPage"
-import RegisterPage from "./pages/Registerpage"
 import HomePage from "./pages/HomePage"
+import MainLayout from "./layouts/MainLayout"
 
 function App() {
-  const [user, setUser] = useState(null) // 사용자 정보 상태
-
-  // 로그인 성공 시 사용자 정보 설정
-  const handleLoginSuccess = (userData) => {
-    setUser(userData)
-  };
-
-  // 회원가입 성공 시 사용자 정보 설정
-  const handleRegisterSuccess = (userData) => {
-    setUser(userData)
-  };
-
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/login"
-            element={<LoginPage onLoginSuccess={handleLoginSuccess} />}
-          />
-          <Route
-            path="/signup"
-            element={<RegisterPage onRegisterSuccess={handleRegisterSuccess} />}
-          />
-          <Route
-            path="/"
-            element={<HomePage user={user} />}
-          />
+          {/* 단독 레이아웃 */}
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/signup" element={<RegisterPage />}></Route>
+          {/* 공통 레이아웃: GNB, Footer */}
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>

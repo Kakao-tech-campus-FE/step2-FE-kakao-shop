@@ -1,0 +1,28 @@
+.header {
+  background-color: #f1f1f1;
+  height: 60px;
+  padding: 10px;
+}
+
+.contents {
+  display: flex;
+  align-items: center;
+}
+
+.navigation {
+  margin-left: auto;
+}
+
+.navigation span {
+  margin-right: 10px;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: black;
+  padding: 5px;
+}
+
+.navigation a:hover {
+  background-color: #ddd;
+}

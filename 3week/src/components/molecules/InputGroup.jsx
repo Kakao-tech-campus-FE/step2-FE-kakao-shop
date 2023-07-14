@@ -1,4 +1,4 @@
-import Input from "../atoms/input"
+import Input from "../atoms/Input"
 import Box from "../atoms/Box"
 import Label from "../atoms/Label"
 

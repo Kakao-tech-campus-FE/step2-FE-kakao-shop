@@ -5,7 +5,7 @@ const useInput = (initialValue) => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target
-    setValue((prev) => ({ ...prev, [name]: value }))
+    setValue((prev) => ({...prev ,[name]: value}) )
   }
 
   return {value, handleOnChange}

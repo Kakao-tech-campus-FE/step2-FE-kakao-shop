@@ -2,7 +2,7 @@ import Container from "../atoms/Container"
 import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button"
 import useInput from "../../hooks/useInput"
-import { register } from "../../service/api"
+import { register } from "../../services/user.js"
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
