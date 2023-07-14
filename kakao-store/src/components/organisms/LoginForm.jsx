@@ -48,6 +48,8 @@ const LoginForm = () => {
 									email: value.email,
 									password: value.password,
 								})
+							).then(
+								window.location.href = "/"
 							)
 						)
 					}}
