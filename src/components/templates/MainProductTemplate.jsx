@@ -7,7 +7,6 @@ import Loader from "../atoms/Loader";
 
 const MainProductTemplate = () => {
   const targetRef = useRef(null);
-
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
