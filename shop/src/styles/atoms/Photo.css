@@ -4,6 +4,8 @@ picture.card{
 
 picture > img{
   width: inherit;
+  border-radius: 5px;
+  margin-bottom: 30px;
 }
 
 img.card{
