@@ -3,7 +3,7 @@ import { useState } from "react";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import useForm from "../../hooks/useForm";
+import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import Box from "../atoms/Box";
 import instance from "../../api";
@@ -16,7 +16,7 @@ import AlertBox from "../molecules/AlertBox";
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();
-  const { values, handleChange } = useForm({
+  const { values, handleChange } = useInput({
     username: "",
     email: "",
     password: "",
