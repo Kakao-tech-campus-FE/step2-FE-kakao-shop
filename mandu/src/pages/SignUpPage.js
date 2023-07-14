@@ -1,9 +1,9 @@
 import InputField from "../components/molecules/InputField";
 import useForm from "../hook/useForm";
 import {userValidation} from "../util/validation";
-import {checkDuplicateEmail, signUp} from "../services/userApi";
+import {checkDuplicateEmail, signUp} from "../services/apis";
 import {useNavigate} from "react-router-dom";
-import Button from "../components/atoms/MyButton";
+import Button from "../components/atoms/Button";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -14,10 +14,13 @@ const SignUpPage = () => {
         checkPassword: "",
     }
     const onSubmit = async (value) => {
-        const response = await signUp({email: value.id, password: value.password, username: value.name});
-        if (!response.success) return alert(response.error.message);
-        alert("회원가입이 완료되었습니다!");
-        navigate("/login");
+        try {
+            await signUp({email: value.id, password: value.password, username: value.name});
+            alert("회원가입이 완료되었습니다!");
+            navigate("/login");
+        } catch (e) {
+            alert(e.message);
+        }
     }
 
     const {
