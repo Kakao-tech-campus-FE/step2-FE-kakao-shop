@@ -3,7 +3,6 @@ import Box from "../Atoms/Box";
 import Label from "../Atoms/Label";
 
 const InputGroup = ({ id, type, value, onChange, className, label, placeholder, name}) => {
-  // const valid = {valid}
   
   return (
     <> 

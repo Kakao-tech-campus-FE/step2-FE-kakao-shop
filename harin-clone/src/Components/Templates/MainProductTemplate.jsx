@@ -40,18 +40,6 @@ const MainProductTemplate = () => {
     dispatch(getProducts(page))
   }, [dispatch, page])
 
- 
-  // const { data, fetchNextPage, hasNextPage, isLoading, isError } = useInfiniteQuery(
-  //   ['page'], 
-  //   ({ pageParam = 0 }) => getProducts(pageParam),
-  //   {
-  //     getNextPageParam: (lastPage, allPages) => {
-  //       const nextPage = allPages.length + 1;
-  //       return lastPage.data.length === 0 ? null : nextPage;
-  //   },
-  //   }
-  // )
-{/* <Loader/> &&  */}
 
   return (
     <Container >

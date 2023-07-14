@@ -52,7 +52,6 @@ const LoginForm = ( ) => {
           className={inputStyle} 
         />
         <Box className="m-3">
-          {/* <Link to='/mainpage'> */}
             <Button
               onClick={() => {
                 dispatch(
@@ -69,7 +68,6 @@ const LoginForm = ( ) => {
             >
             로그인
             </Button>
-          {/* </Link> */}
         </Box>      
 
       </Container>
