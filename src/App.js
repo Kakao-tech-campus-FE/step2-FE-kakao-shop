@@ -6,6 +6,7 @@ import SignUpPage from "./pages/SignUpPage";
 import checkTokenExpiration from "./utils/checkTokenExpiration";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -85,6 +86,7 @@ function App() {
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }
