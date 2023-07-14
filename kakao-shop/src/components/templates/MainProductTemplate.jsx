@@ -47,7 +47,6 @@ const MainProductTemplate = () => {
     <Container className="whitespace-break-spaces mx-auto w-5/6">
       <Suspense fallback={<Loader />}>
         <ProductGrid products={products} isLoading={loading} />
-        {/* 하단이 될 빈 div */}
         <div ref={bottomObserver}></div>
       </Suspense>
     </Container>
