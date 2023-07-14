@@ -65,6 +65,7 @@ const MainProductTemplate = () => {
           if (lastPage.response && lastPage.response.length === 0) {
             return null;
           }
+
           return allPages.length + 1;
         },
         onError: (error) => {
@@ -95,7 +96,7 @@ const MainProductTemplate = () => {
         <Container>
             <Suspense fallback={<SkeletonProductGrid />}>
                 {isLoading ? <Loader /> : <ProductGrid products={products.pages.flatMap((page) => page.response)} />}
-                <div ref={ref}></div>
+                <div ref={ref} className="h-3"></div>
                 {isFetchingNextPage && <SkeletonProductGrid />}
             </Suspense>
         </Container>
