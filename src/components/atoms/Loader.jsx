@@ -1,5 +1,7 @@
 import "../../styles/atoms/Loader.css";
 
+// https://codepen.io/aurer/pen/ZEJxpO
+
 const Loader = () => (
   <div className="loader loader--style1" title="0">
     <svg

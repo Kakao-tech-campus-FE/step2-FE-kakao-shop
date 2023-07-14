@@ -1,17 +1,9 @@
 import "../../styles/atoms/Skeleton.css";
 
+// https://codepen.io/oslego/pen/XdvWmd
+
 const Skeleton = () => {
-  return (
-    <li className="skeleton-item">
-      <div>
-        <div className="skeleton-img" />
-      </div>
-      <div className="skeleton-info">
-        <p className="skeleton-name" />
-        <p className="skeleton-email" />
-      </div>
-    </li>
-  );
+  return <div className="demo"></div>;
 };
 
 export default Skeleton;

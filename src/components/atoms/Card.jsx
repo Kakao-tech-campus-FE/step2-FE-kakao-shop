@@ -1,3 +1,5 @@
+// card components return Link
+
 import { Link } from "react-router-dom";
 import "../../styles/atoms/Card.css";
 

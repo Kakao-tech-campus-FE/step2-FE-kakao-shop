@@ -2,7 +2,7 @@ import ProductCard from "../molecules/ProductCard";
 import "../../styles/organisms/ProductGrid.css";
 
 const ProductGrid = ({ products, isLoading }) => {
-  // main product grid
+  // main page product grid
   return (
     <div className="product-grid">
       {products?.map((product) => (

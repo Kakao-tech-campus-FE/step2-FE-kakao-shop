@@ -7,10 +7,7 @@ const ProductInformationColumn = ({ product }) => {
   return (
     <div className="product-information-column">
       <div className="col">
-        <Photo
-          src={image}
-          alt={productName} // 대체 텍스트가 존재해야 한다. '웹 접근성 이슈가 발생'
-        />
+        <Photo src={image} alt={productName} />
       </div>
       <div className="col">
         <h1 className="name">{productName} </h1>

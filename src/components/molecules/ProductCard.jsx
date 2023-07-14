@@ -4,9 +4,11 @@ import Photo from "../atoms/Photo";
 import "../../styles/molecules/ProductCard.css";
 import Skeleton from "../atoms/Skeleton";
 
+// Components of each product card
 const ProductCard = ({ product, isLoading }) => {
   return (
     <div className="card_deal">
+      {/* while loading, use skeleton instead. */}
       {isLoading ? <Skeleton /> : null}
       <Card className="link_card" to={`/product/${product.id}`}>
         <Photo
@@ -20,9 +22,5 @@ const ProductCard = ({ product, isLoading }) => {
     </div>
   );
 };
-
-//CSS 속성
-// wdith : 내가 src로 가져오는 이미지 원본의 width 그대로 가져온다.
-// production level
 
 export default ProductCard;

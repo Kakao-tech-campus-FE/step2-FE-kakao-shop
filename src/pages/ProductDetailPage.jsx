@@ -5,6 +5,8 @@ import Loader from "../components/atoms/Loader";
 import { getProductById } from "../services/product";
 import { useQuery } from "react-query";
 
+//Maybe next week hw
+
 const ProductDetailPage = () => {
   const { id } = useParams(); //string
   const dispatch = useDispatch();

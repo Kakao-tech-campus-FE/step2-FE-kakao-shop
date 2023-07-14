@@ -1,20 +1,38 @@
-@keyframes loading {
-  0% {
-    transform: translateX(0);
-  }
-  50%,
-  100% {
-    transform: translateX(460px);
-  }
+.demo:empty {
+  margin: auto;
+  width: 284px;
+  height: 160px; /* change height to see repeat-y behavior */
+
+  background-image: radial-gradient(
+      circle 50px at 50px 50px,
+      lightgray 99%,
+      transparent 0
+    ),
+    linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 80%
+    ),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0),
+    linear-gradient(lightgray 20px, transparent 0);
+
+  background-repeat: repeat-y;
+
+  background-size: 100px 200px, /* circle */ 50px 200px,
+    /* highlight */ 150px 200px, 350px 200px, 300px 200px, 250px 200px;
+
+  background-position: 0 0, /* circle */ 0 0, /* highlight */ 120px 0,
+    120px 40px, 120px 80px, 120px 120px;
+
+  animation: shine 1s infinite;
 }
 
-.skeleton-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 30px;
-  height: 100%;
-  background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
-  animation: loading 2s infinite linear;
+@keyframes shine {
+  to {
+    background-position: 0 0, 100% 0, /* move highlight to right */ 120px 0,
+      120px 40px, 120px 80px, 120px 120px;
+  }
 }

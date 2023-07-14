@@ -3,7 +3,9 @@ import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import clearUser from "../../store/slices/userSlice";
 
-function GNB() {
+//header bar components
+
+const GNB = () => {
   const email = useSelector((state) => state.user.email); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
   const dispatch = useDispatch();
 
@@ -67,6 +69,6 @@ function GNB() {
       </div>
     </header>
   );
-}
+};
 
 export default GNB;

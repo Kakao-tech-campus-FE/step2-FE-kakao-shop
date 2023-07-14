@@ -6,6 +6,7 @@ import { useQuery } from "react-query";
 import Loader from "../atoms/Loader";
 import "../../styles/templates/MainProductTemplate.css";
 import { union } from "lodash";
+import { handleAPIError, useAxiosInterceptor } from "../../services/errorcatch";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -13,14 +14,21 @@ const MainProductTemplate = () => {
   const [allProduct, setAllProduct] = useState([]);
   const bottomObserver = useRef(null);
 
+  // using interceptor
+  useAxiosInterceptor();
+
   //Query data with 'usequery'
+  //Error data catching
   const {
     data: products,
     isLoading,
     isError,
     isFetching,
     isFetched,
-  } = useQuery([`products/${page}`], () => fetchProducts(page));
+  } = useQuery([`products/${page}`], () => fetchProducts(page), {
+    onError: handleAPIError,
+    throwOnError: true,
+  });
 
   // Merge existing query and new query list
   useEffect(() => {

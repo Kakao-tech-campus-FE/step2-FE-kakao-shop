@@ -5,7 +5,6 @@ export const fetchProducts = (page = 0) => {
 };
 
 export const getProductById = (id) => {
-  // 에러 캐칭은 위에서!
   if (!id) {
     throw Error("id가 없습니다.");
   }

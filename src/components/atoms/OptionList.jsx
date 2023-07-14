@@ -1,6 +1,6 @@
 import { comma } from "../../utils/convert";
 import "../../styles/atoms/OptionList.css";
-
+// Get options, rendering and click then callback
 const OptionList = ({ options, onClick }) => {
   return (
     <ol className="option-list">
@@ -12,7 +12,7 @@ const OptionList = ({ options, onClick }) => {
           <span className="price">{comma(option.price)}원</span>
         </li>
       ))}
-    </ol> // 의미론적 태그 관점에서 순서가 있는 것은 <ol>이 좋다.
+    </ol>
   );
 };
 
