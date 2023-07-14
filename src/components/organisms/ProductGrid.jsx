@@ -1,14 +1,15 @@
 import ProductCard from '../molecules/ProductCard';
 import '../../styles/organisms/productGrid.css';
 import SkeletonProductCard from "../molecules/SkeletonProductCard";
-const ProductGrid = ({ products }) => {
-    // loading state
-    // error state
+
+const ProductGrid = ({products, isLoading}) => {
+    console.log("isLoading", isLoading)
     return (
         <div className="product-grid">
-        {products.map((product) => (
-            product? <ProductCard key={product.id} product={product} /> : <SkeletonProductCard />
-        ))}
+            {products.map((product) => (
+                product ? <ProductCard key={product.id} product={product}/> : <SkeletonProductCard/>
+            ))}
+            {isLoading && <SkeletonProductCard cards={9}/>}
         </div>
     );
 }

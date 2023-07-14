@@ -5,20 +5,23 @@ import LoginPage from "./components/pages/LoginPage";
 import HomePage from "./components/pages/HomePage";
 import MainLayout from "./components/layouts/MainLayout";
 import ProductDetailPage from "./components/pages/ProductDetailPage";
+import {SkeletonTheme} from "react-loading-skeleton";
 
 function App() {
     return (
         <div className="App">
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/signup" element={<RegisterPage/>}/>
-                    <Route path="/login" element={<LoginPage/>}/>
-                    <Route element={<MainLayout/>}>
-                        <Route path="/" element={<HomePage/>}/>
-                        <Route path="/product/:id" element={<ProductDetailPage/>}/>
-                    </Route>
-                </Routes>
-            </BrowserRouter>
+            <SkeletonTheme color="#202020" highlightColor="#aaa">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/signup" element={<RegisterPage/>}/>
+                        <Route path="/login" element={<LoginPage/>}/>
+                        <Route element={<MainLayout/>}>
+                            <Route path="/" element={<HomePage/>}/>
+                            <Route path="/product/:id" element={<ProductDetailPage/>}/>
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </SkeletonTheme>
         </div>
     );
 }

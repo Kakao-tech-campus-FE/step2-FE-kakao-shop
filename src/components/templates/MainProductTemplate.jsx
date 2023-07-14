@@ -8,7 +8,7 @@ import {useInfiniteQuery} from "react-query";
 import useProducts from "../../hooks/useProducts";
 import {fetchProductsByPage} from "../../services/product";
 import ErrorSign from "../atoms/ErrorSign";
-import SkeletonProductGrid from "../organisms/SkeletonProductGrid";
+import Loader from "../atoms/Loader";
 
 const dummy = {
     data: {
@@ -29,7 +29,7 @@ const MainProductTemplate = ({children}) => {
     const [isError, setIsError] = useState(false)
     const [errorCode, setErrorCode] = useState(0)
 
-    const {isLoading, data, fetchNextPage} = useInfiniteQuery(
+    const {isLoading, fetchNextPage} = useInfiniteQuery(
         "products",
         async ({pageParam = 0}) => {
             return fetchProductsByPage(pageParam).then(
@@ -85,7 +85,7 @@ const MainProductTemplate = ({children}) => {
                     rootMargin: "80px"
                 }
             )
-        }, [throat, fetchNextPage]
+        }, [throat, fetchNextPage, addProducts]
     )
 
     useEffect(() => {
@@ -97,8 +97,8 @@ const MainProductTemplate = ({children}) => {
 
     return (
         <div className="main-product-template">
-            {data && !isError && <ProductGrid products={products}/>}
-            {isLoading && <SkeletonProductGrid skeletonAmount={12}/>}
+            {!isError && <ProductGrid products={products} isLoading={isLoading}/>}
+            {isLoading && <Loader />}
             {isError && <ErrorSign error={errorCode}/>}
             {!throat && <div className="bottom-observer" ref={bottomObserver}></div>}
         </div>
