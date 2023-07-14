@@ -51,6 +51,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (email !== null) {
       navigate("/", { replace: true });
+      window.location.reload(false);
     }
     if (error === true) {
       setLoginError(

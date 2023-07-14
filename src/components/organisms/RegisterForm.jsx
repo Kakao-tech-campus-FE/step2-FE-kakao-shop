@@ -136,6 +136,7 @@ const RegisterForm = () => {
           buttonText={"시작하기"}
           onClick={() => {
             navigate("/", { replace: true });
+            window.location.reload(false);
           }}
           type={modal}
           setModal={setModal}

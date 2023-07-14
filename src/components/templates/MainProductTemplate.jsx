@@ -32,7 +32,7 @@ const MainProductTemplate = () => {
     },
     {
       staleTime: 300000,
-      cacheTime: 0,
+      cacheTime: 300000,
       getNextPageParam: (response) => {
         if (response.page === 1) return undefined;
 
