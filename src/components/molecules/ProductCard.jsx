@@ -1,13 +1,19 @@
 import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
-import Photo from "../atoms/Photo/Photo";
+import Photo from "../atoms/Photo";
+import styles from "./ProductCard.module.css";
 
 const ProductCard = ({ product }) => {
     return (
-        <Card to={`/product/${product.id}`}>
-            <Photo src={product.image} alt={product.productName} />
-            <h3>{product.productName}</h3>
-            <p>{comma(product.price)}원</p>
+        <Card className={styles.card} to={`/product/${product.id}`}>
+            <span>
+                <Photo className={styles.product_image} src={`${process.env.REACT_APP_API_URL}${product.image.substr(1)}`} alt={product.productName} />
+            </span>
+            <p className={styles.product_name}>{product.productName}</p>
+            <span className={styles.price}>
+                <em className={styles.em_talkspecial}>톡별가 </em>
+                {comma(product.price)} 원 부터~
+            </span>
         </Card>
     )
 }
