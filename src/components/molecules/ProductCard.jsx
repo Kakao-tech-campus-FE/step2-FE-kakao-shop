@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
       <Photo
         className={"card-photo"}
         alt={product.productName}
-        src={product.image}
+        src={`${process.env.REACT_APP_API_URL}${product.image}`}
       />
       <div className="mt-2 text-sm">{product.productName}</div>
       <div className="font-bold text-xl">
