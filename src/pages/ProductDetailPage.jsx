@@ -17,7 +17,7 @@ const ProductDetailPage = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
-    const { data, error, isLoading } = useQuery(`product${id}`, () => getProductById(id));
+    const { data, error, isLoading } = useQuery(`product/${id}`, () => getProductById(id));
 
     useEffect(() => {
         dispatch(getDetail(id));

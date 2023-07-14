@@ -1,6 +1,5 @@
 import { instance } from "./index";
 
-
 export const fetchProducts = (page = 0) => {
     // eslint-disable-next-line
     return instance.get("/products" + "?page=" + page);

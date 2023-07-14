@@ -6,6 +6,7 @@ const initialState = {
     products: [],
     loading: false, // { success, response [] , error }
     error: null,    // { message, status }
+    isEnd: false,
 }
 
 const productSlice = createSlice({
@@ -21,11 +22,13 @@ const productSlice = createSlice({
         });
         builder.addCase(getProducts.fulfilled, (state, action) => {
             // API처리가 되었을 때, action.payload에는 { success, response [], error }가 담겨있게 된다.
-            // action.payload.response에는 정상 콜백 시 최대 10개의 요소가 존재한다.
-            // 그러나 10개보다 작다면 더이상 데이터를 요청해봤자 의미가 없다.
-            if (action.payload.response.length < 10) {
-                state.inEnd = true; // 이 경우에는 더 이상 가져오지 말라!
+            // action.payload.response에는 정상 콜백 시 최대 9개의 요소가 존재한다.
+            // 그러나 9개보다 작다면 더이상 데이터를 요청해봤자 의미가 없다.
+            if (action.payload.response.length < 9) {
+                state.isEnd = true; // 이 경우에는 더 이상 가져오지 말라!
             }
+            console.log("isEnd", state.isEnd);
+            console.log(action.payload.response.length);
             // 각 자료형의 prototype 메소드를 필히 알아두자!(ex. map / forEach / concat / filter / findIndex / sort / slice / splice ...)
             state.loading = false;
             state.products = _.uniqBy([...state.products, ...action.payload.response], 'id'); // id값을 기준으로 중복값을 제거
@@ -47,6 +50,7 @@ export const getProducts = createAsyncThunk(
     async (page) => {
         // page에 따라 fetchProducts를 실행하여 data를 action.payload에 담아 반환함
         const response = await fetchProducts(page);
+        console.log(response.data);
         return response.data;
         // API문서에서 반환값으로 크게 success, response, error가 들어간다.
     }
