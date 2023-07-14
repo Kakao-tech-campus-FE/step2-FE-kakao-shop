@@ -14,7 +14,7 @@ export async function checkEmail(email: string) {
   try {
     const response = await axiosRegisterInstance.post('/check', { email });
 
-    return response.data.success === true;
+    return response.status === 200 && response.data.success === true;
   } catch (error) {
     return false;
   }
