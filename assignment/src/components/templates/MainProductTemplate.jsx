@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Container from '../atoms/Container';
 import ProductGrid from '../organisms/ProductGrid';
 import { getProducts } from '../../store/slices/productSlice';
+import Loader from '../atoms/Loader';
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
-
   const dispatch = useDispatch();
   const product = useSelector((state) => state.products.products);
-  //   const loading = useSelector((state) => state.product.loading);
+  const loading = useSelector((state) => state.products.loading);
   //   const error = useSelector((state) => state.product.error);
   const isEnd = useSelector((state) => state.products.isEnd);
 
@@ -34,9 +34,10 @@ const MainProductTemplate = () => {
   useEffect(() => {
     dispatch(getProducts(page));
   }, [dispatch, page]);
+
   return (
     <Container>
-      <ProductGrid products={product} />
+      <ProductGrid loading={loading} products={product} />
       <div ref={bottomObserver} />
     </Container>
   );
