@@ -95,7 +95,7 @@ const Nav = styled.nav`
   position: fixed;
   top: 0;
   right: 0;
-  padding: 0 2rem;
+  padding: 0 8rem;
   height: 5rem;
 `;
 
