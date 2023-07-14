@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from '../../Servicies/product'
-import _ from 'lodash'; // lodash import의 convention
+import _ from 'lodash'; // lodash import convention
 
 const initialState = {
   products: [],
@@ -17,7 +17,7 @@ const productsSlice = createSlice({
       state.loading = true;
     })
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      if (action.payload.response.length < 5) {
+      if (action.payload.response.length < 9) {
         state.isEnd = true;
       }
       state.loading = false; // { success, response, error }
@@ -26,7 +26,7 @@ const productsSlice = createSlice({
     })
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload.error;
+      state.error = action.payload.error.message;
     })
   }
 });
@@ -39,4 +39,5 @@ export const getProducts = createAsyncThunk(
 
   }
 )
+
 export default productsSlice.reducer;

@@ -1,9 +1,11 @@
 import { useDispatch, useSelector} from "react-redux"
 import Container from "../Atoms/Container"
 import ProductGrid from "../Organisms/ProductGrid"
-import { Suspense, useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getProducts } from '../../Store/Slices/productSlice'
-import { useState, useRef } from "react";
+import { useInfiniteQuery } from '@tanstack/react-query';
+import Loader from "../Atoms/Loader";
+
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -19,36 +21,45 @@ const MainProductTemplate = () => {
   // intersection observer
   const io = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting) return ;
-
+      if (isEnd) return ;
       if (!loading && entry.isIntersecting && bottomObserver.current) {
-        console.log('감지')
         setPage((page) => page + 1);
+        console.log('page: '+page)
       }
     })
   }, {
-    threshold: 0.1,
+    threshold: 0.5,
   }
   )
-
 
   useEffect(() => {
     io.observe(bottomObserver.current);
   }, [loading]) // 최초 마운트 시에만...
 
   useEffect(() => { 
-    dispatch(getProducts(page));
+    dispatch(getProducts(page))
   }, [dispatch, page])
 
+ 
+  // const { data, fetchNextPage, hasNextPage, isLoading, isError } = useInfiniteQuery(
+  //   ['page'], 
+  //   ({ pageParam = 0 }) => getProducts(pageParam),
+  //   {
+  //     getNextPageParam: (lastPage, allPages) => {
+  //       const nextPage = allPages.length + 1;
+  //       return lastPage.data.length === 0 ? null : nextPage;
+  //   },
+  //   }
+  // )
+{/* <Loader/> &&  */}
 
   return (
     <Container >
-      {/* <Suspense fallback={<Loader />}> */}
-        {loading && <p>Loading...</p>}
+        {loading && <Loader/> } 
         {error && <p>Error</p>}
+
         <ProductGrid products={products} />
         <div ref={bottomObserver}></div>
-      {/* </Suspense> */}
     </Container>
   )
 }

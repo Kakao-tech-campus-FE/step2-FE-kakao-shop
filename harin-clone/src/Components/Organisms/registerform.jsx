@@ -149,7 +149,7 @@ const RegisterForm = ( ) => {
             onClick={() => {
               setClicked(!isClicked)
               registerReq()
-              navigate("/mainpage")            
+              navigate("/")            
             }}
             disabled={validAll(value)}
             className={validAll(value) ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 

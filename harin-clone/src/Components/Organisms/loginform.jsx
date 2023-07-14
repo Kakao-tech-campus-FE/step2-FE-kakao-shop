@@ -61,7 +61,7 @@ const LoginForm = ( ) => {
                     password: value.password,
                   })
                 )
-                navigate('/mainpage')
+                navigate('/')
               }}
               disabled={validAll()}
               className={validAll() ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
