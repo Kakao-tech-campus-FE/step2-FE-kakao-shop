@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { useProduct } from '../../hooks/query';
 import MainProductListTemplate from '../templates/mainProductListTemplate';
-import GlobalLoader from '../atoms/globalLoader';
+import Loader from '../atoms/loader';
 
 export default function MainProductListPage() {
   const [pageIndex, setPageIndex] = useState(0);
   const {
-    data, fetchNextPage, isFetching, isFetchingNextPage, hasNextPage,
+    data, fetchNextPage, isInitialLoading, isFetchingNextPage, hasNextPage,
   } = useProduct();
   const bottomObserverRef = useRef<HTMLDivElement>(null);
 
@@ -33,10 +32,8 @@ export default function MainProductListPage() {
 
   return (
     <>
-      {isFetching
-        ? (
-          createPortal(<GlobalLoader />, document.body)
-        ) : null}
+      {isInitialLoading
+        ? <Loader /> : null}
       <MainProductListTemplate
         ref={bottomObserverRef}
         products={data?.pages.flat()}

@@ -1,13 +1,10 @@
-import axios from 'axios';
 import { ProductData } from '../types/product';
+import { KAKAO_API_BASEURL, createAxiosInstance } from '../utils/axios';
 
-const axiosProductInstance = axios.create({
-  baseURL: process.env.REACT_APP_KAKAO_API_URL,
-  timeout: 3000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const axiosProductInstance = createAxiosInstance(
+  KAKAO_API_BASEURL,
+  3000,
+);
 
 export async function getProductList(pageIndex: number): Promise<ProductData[]> {
   const response = await axiosProductInstance.get(`/products?page=${pageIndex}`);

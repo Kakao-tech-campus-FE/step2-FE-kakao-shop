@@ -1,21 +1,14 @@
-import axios from 'axios';
 import { LoginData, RegisterFormData } from '../types/formData';
+import { KAKAO_API_BASEURL, createAxiosInstance } from '../utils/axios';
 
-const axiosRegisterInstance = axios.create({
-  baseURL: process.env.REACT_APP_KAKAO_API_URL,
-  timeout: 3000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-
-const axiosLoginInstance = axios.create({
-  baseURL: process.env.REACT_APP_KAKAO_API_URL,
-  timeout: 3000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const axiosRegisterInstance = createAxiosInstance(
+  KAKAO_API_BASEURL,
+  3000,
+);
+const axiosLoginInstance = createAxiosInstance(
+  KAKAO_API_BASEURL,
+  3000,
+);
 
 export async function checkEmail(email: string) {
   try {
@@ -27,12 +20,14 @@ export async function checkEmail(email: string) {
   }
 }
 
-export function requestUserRegistration({ email, password, username }: RegisterFormData) {
-  return axiosRegisterInstance.post('/join', {
+export async function requestUserRegistration({ email, password, username }: RegisterFormData) {
+  const response = await axiosRegisterInstance.post('/join', {
     email,
     password,
     username,
   });
+
+  return response.status === 200 && response.data.success === true;
 }
 
 export function requestUserLogin({ email, password }: LoginData) {
@@ -41,14 +36,3 @@ export function requestUserLogin({ email, password }: LoginData) {
     password,
   });
 }
-
-axiosLoginInstance.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.response.status === 401) {
-      return Promise.resolve(error.response);
-    }
-
-    return Promise.reject(error);
-  },
-);
