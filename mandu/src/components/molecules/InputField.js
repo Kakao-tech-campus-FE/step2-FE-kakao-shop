@@ -1,4 +1,4 @@
-import Input from "../atoms/MyInput";
+import Input from "../atoms/Input";
 
 const InputField = ({id, label, type, placeholder, value, onChange, error, name, className, children}) => {
     return (
