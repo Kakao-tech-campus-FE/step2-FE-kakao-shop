@@ -2,7 +2,7 @@ import FORM_INFO from '../constants/FORM_INFO';
 
 const info = FORM_INFO.SIGNUP;
 
-const LoginFormValidation = ({ email, password }) => {
+const validationLoginForm = ({ email, password }) => {
     const errors = {};
 
     const emailValidation = info.find((e) => e.id === 'email').validation;
@@ -11,14 +11,14 @@ const LoginFormValidation = ({ email, password }) => {
     // email
     let emailCheckUrl = '';
     if (!email) {
-        errors.email = emailValidation.required;
+        errors.email = emailValidation.required.message;
     } else if (!emailValidation.pattern.value.test(email)) {
         errors.email = emailValidation.pattern.message;
     }
 
     // password
     if (!password) {
-        errors.password = passwordValidation.required;
+        errors.password = passwordValidation.required.message;
     } else if (!passwordValidation.pattern.value.test(password)) {
         errors.password = passwordValidation.pattern.message;
     }
@@ -26,4 +26,4 @@ const LoginFormValidation = ({ email, password }) => {
     return errors;
 };
 
-export default LoginFormValidation;
+export default validationLoginForm;

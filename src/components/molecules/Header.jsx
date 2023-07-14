@@ -1,30 +1,31 @@
 import { styled } from 'styled-components';
-import { jwtAtom } from '../../store';
+import { tokenAtom } from '../../store';
 import Button from '../atoms/Button';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
+import URL from '../../constants/URL';
 
 const Header = () => {
-    const [jwt, setJwt] = useAtom(jwtAtom);
+    const [token, setToken] = useAtom(tokenAtom);
     const navigate = useNavigate();
 
     const handleLoginClick = () => {
-        if (jwt.length > 0) {
-            setJwt('');
-            console.log(jwt);
+        if (token.length > 0) {
+            setToken('');
+            console.log(token);
         } else {
-            navigate('/login');
+            navigate(URL.LOGIN);
         }
     };
     const handleSignUpClick = () => {
-        navigate('/signup');
+        navigate(URL.SIGNUP);
     };
     return (
         <StyledHeader>
             <Button className="header" onClick={handleLoginClick}>
-                {jwt.length === 0 ? '로그인' : '로그아웃'}
+                {token.length === 0 ? '로그인' : '로그아웃'}
             </Button>
-            {jwt.length === 0 ? (
+            {token.length === 0 ? (
                 <Button className="header" onClick={handleSignUpClick}>
                     회원가입
                 </Button>

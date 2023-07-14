@@ -1,5 +1,12 @@
 import { styled } from 'styled-components';
 
+/**
+ * type이 "submit"인 Button Component
+ * @param {ReactNode} children - 하위 컴포넌트
+ * @param {string} className - 클래스 이름
+ * @returns {JSX.Element} 컴포넌트 반환
+ */
+
 const SubmitButton = ({ children, className = '' }) => {
     return (
         <StyledButton className={className} type="submit">

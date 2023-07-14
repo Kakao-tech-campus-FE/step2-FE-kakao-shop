@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import './carousel.css';
 
 const Carousel = ({ data }) => {
-    const TOTAL_IMAGE_COUNT = data.img.length - 1;
+    const totalImageCount = data.img.length - 1;
     const [currentIdx, setCurrentIdx] = useState(0);
     const slideRef = useRef(null);
 
     const nextSlide = () => {
-        if (currentIdx === TOTAL_IMAGE_COUNT) {
+        if (currentIdx === totalImageCount) {
             setCurrentIdx(0);
         } else {
             setCurrentIdx((prev) => prev + 1);
@@ -16,15 +16,17 @@ const Carousel = ({ data }) => {
 
     const prevSlide = () => {
         if (currentIdx === 0) {
-            setCurrentIdx(TOTAL_IMAGE_COUNT);
+            setCurrentIdx(totalImageCount);
         } else {
             setCurrentIdx((prev) => prev - 1);
         }
     };
 
     useEffect(() => {
-        slideRef.current.style.transition = `all 0.5s ease-in-out`;
-        slideRef.current.style.transform = `translateX(-${currentIdx * 312}px)`; // currentIdx에 해당하는 이미지 위치로 이동!
+        if (!!slideRef) {
+            slideRef.current.style.transition = `all 0.5s ease-in-out`;
+            slideRef.current.style.transform = `translateX(-${currentIdx * 312}px)`; // currentIdx에 해당하는 이미지 위치로 이동!
+        }
     }, [currentIdx]);
 
     return (

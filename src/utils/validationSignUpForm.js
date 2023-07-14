@@ -2,7 +2,7 @@ import FORM_INFO from '../constants/FORM_INFO';
 
 const info = FORM_INFO.SIGNUP;
 
-const SignUpFormValidation = async ({ username, email, password, passwordCheck }) => {
+const validationSingUPForm = async ({ username, email, password, passwordCheck }) => {
     const errors = {};
 
     const usernameValidation = info.find((e) => e.id === 'username').validation;
@@ -12,13 +12,13 @@ const SignUpFormValidation = async ({ username, email, password, passwordCheck }
 
     // username
     if (!username) {
-        errors.username = usernameValidation.required;
+        errors.username = usernameValidation.required.message;
     }
 
     // email
     let emailCheckUrl = '';
     if (!email) {
-        errors.email = emailValidation.required;
+        errors.email = emailValidation.required.message;
     } else if (!emailValidation.pattern.value.test(email)) {
         errors.email = emailValidation.pattern.message;
     } else {
@@ -35,18 +35,18 @@ const SignUpFormValidation = async ({ username, email, password, passwordCheck }
 
     // password
     if (!password) {
-        errors.password = passwordValidation.required;
+        errors.password = passwordValidation.required.message;
     } else if (!passwordValidation.pattern.value.test(password)) {
         errors.password = passwordValidation.pattern.message;
     }
 
     if (!passwordCheck) {
-        errors.passwordCheck = passwordCheckValidation.required;
+        errors.passwordCheck = passwordCheckValidation.required.message;
     } else if (password !== passwordCheck) {
-        errors.passwordCheck = passwordCheckValidation.mismatch;
+        errors.passwordCheck = passwordCheckValidation.mismatch.message;
     }
 
     return errors;
 };
 
-export default SignUpFormValidation;
+export default validationSingUPForm;
