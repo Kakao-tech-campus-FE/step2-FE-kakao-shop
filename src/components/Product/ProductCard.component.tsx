@@ -2,11 +2,13 @@ import { Product } from "@/dtos/product.dto";
 import Badge from "@/components/common/Badge.component";
 import Txt from "@/components/common/Txt.component";
 import { pointByThree } from "@/functions/utils";
-import LazyImage from "../common/LazyImage";
+import LazyImage from "@/components/common/LazyImage.component";
+import { PRODUCT } from "@/assets/product.ko";
+import { Ref } from "react";
 
 interface ProductCardProps {
   product: Product;
-  cardRef: React.Ref<HTMLDivElement>;
+  cardRef: Ref<HTMLDivElement>;
 }
 
 const ProductCard = ({ product, cardRef }: ProductCardProps) => {
@@ -20,15 +22,15 @@ const ProductCard = ({ product, cardRef }: ProductCardProps) => {
         />
       </div>
       <Badge color="secondary" className="w-fit">
-        무료배송
+        {PRODUCT.FREE_SHIPPING}
       </Badge>
       <Txt className="line-clamp-2 h-12">{product.productName}</Txt>
       <div>
         <Txt color="primary" typograph="h5">
-          특별가
+          {PRODUCT.SPECIAL_PRICE}
         </Txt>
         <Txt typograph="h5"> {pointByThree(product.price)} </Txt>
-        <Txt typograph="h5">원 부터~</Txt>
+        <Txt typograph="h5">{PRODUCT.FROM_PRICE}~</Txt>
       </div>
     </div>
   );

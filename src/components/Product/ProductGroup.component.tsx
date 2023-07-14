@@ -1,11 +1,12 @@
 import { Product } from "@/dtos/product.dto";
-import ProductCard from "./ProductCard.component";
+import ProductCard from "@/components/Product/ProductCard.component";
 import { commonAxios } from "@/functions/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import ProductSkeleton from "@/components/Product/ProductSkeleton.component";
 import _ from "lodash/";
 import { PRODUCT } from "@/assets/product.ko";
+import Txt from "../common/Txt.component";
 
 const { NO_PRODUCT } = PRODUCT;
 
@@ -28,7 +29,7 @@ const ProductGroup = () => {
           result: data.response,
           nextPage: pageParam + 1,
         });
-      }, 3000);
+      }, 1000);
     });
 
     return lazyReturn as getProductResult;
@@ -85,7 +86,9 @@ const ProductGroup = () => {
       </div>
       {!isFetching && !hasNextPage && (
         <div className="flex w-full justify-center my-4">
-          <p className="text-gray-400">{NO_PRODUCT}</p>
+          <Txt typograph="p" className="text-gray-400">
+            {NO_PRODUCT}
+          </Txt>
         </div>
       )}
     </>

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import LazyImage from "../LazyImage";
+import LazyImage from "@/components/common/LazyImage.component";
 
 export interface CarouselItemProps {
   src: string;
