@@ -10,7 +10,7 @@ const MainProduct = () => {
   const bottomObserver = useRef(null);
   const products = useSelector((state) => state.products.products);
   const loading = useSelector((state) => state.products.loading);
-  const error = useSelector((state) => state.products.error);
+  const status = useSelector((state) => state.products.status);
 
   const io = useRef(
     new IntersectionObserver(
@@ -41,8 +41,10 @@ const MainProduct = () => {
 
   return (
     <Container>
-      {error && <p>{error}</p>}
-      <ProductGrid products={products} />
+      <ProductGrid products={products} isLoading={loading} />
+      {/* status와 loader 컴포넌트 구현 필요 */}
+      {status && <p>{status}</p>}
+      {loading && <p>loading ...</p>}
       <div ref={bottomObserver}></div>
     </Container>
   );
