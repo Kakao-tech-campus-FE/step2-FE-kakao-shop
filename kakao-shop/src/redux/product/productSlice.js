@@ -32,7 +32,7 @@ const productsSlice = createSlice({
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload.error;
+        state.error = action.error;
       });
   },
 });
@@ -42,8 +42,20 @@ export const getProducts = createAsyncThunk(
   async (page) => {
     // 비동기 콜백함수
 
-    const response = await fetchProducts(page);
-    return response.data; // action.payload에 들어간다
+    try {
+      const response = await fetchProducts(page);
+      return response.data; // action.payload에 들어간다
+    } catch (error) {
+      if (!error.response) {
+        throw error;
+      }
+      if (error.response.status === 408) {
+        return {
+          error: "연결 시간이 초과되었습니다. 네트워크 상태를 확인해주세요.",
+        };
+      }
+      return { error: error.response.data };
+    }
   }
 );
 
