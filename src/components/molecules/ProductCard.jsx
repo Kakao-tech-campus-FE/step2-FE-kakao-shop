@@ -1,8 +1,17 @@
 import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
 import comma from "../../utils/convert";
+import SkeletonCard from "../atoms/SkeletonCard";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, loading }) => {
+  if (loading) {
+    return (
+      <div className="pb-[50px]">
+        <SkeletonCard />
+      </div>
+    );
+  }
+
   return (
     <Card to={`/product/${product.id}`} className="product-card pb-[50px]">
       <Photo
