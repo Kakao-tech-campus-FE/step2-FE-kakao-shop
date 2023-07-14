@@ -1,8 +1,12 @@
+import { lazy } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import routes from "@/constants/routes.js";
-import ThumbCard from "@/components/molecules/thumb-card/ThumbCard.jsx";
+const ThumbCard = lazy(() =>
+  import("@/components/molecules/thumb-card/ThumbCard.jsx")
+);
 
 const Styled = {
   Container: styled.div`
