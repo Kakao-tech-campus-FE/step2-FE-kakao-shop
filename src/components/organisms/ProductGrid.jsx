@@ -28,7 +28,6 @@ const ProductGrid = () => {
     ({ pageParam = 0 }) => fetchProductsByPage({ page: pageParam }),
     {
       getNextPageParam: (lastPage, allPages) => {
-        console.log(allPages);
         if (lastPage?.data?.response.length === 0) {
           return undefined;
         }
@@ -56,7 +55,7 @@ const ProductGrid = () => {
     };
 
     const io = new IntersectionObserver(handleObserver, {
-      threshold: 0.2,
+      threshold: 0.3,
     });
 
     if (bottomObserverRef.current) {
@@ -79,11 +78,8 @@ const ProductGrid = () => {
               <ProductCard key={product.id} product={product} />
             ))
           )}
-          {isFetching ? (
-            <ProductsLoader />
-          ) : (
-            <div ref={bottomObserverRef}></div>
-          )}
+          {isFetching && <ProductsLoader />}
+          <div ref={bottomObserverRef}></div>
         </ProductsList>
       )}
     </Container>
