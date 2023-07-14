@@ -60,10 +60,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" index element={<LoginPage />}></Route>
-
+          {/* {단독 레이아웃} */}
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
-          {/* <Route path="/signup" element={<HomePage />}></Route> */}
+          {/* {공통 레이아웃: GNB, Footer } */}
+          <Route path="/" element={<HomePage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
