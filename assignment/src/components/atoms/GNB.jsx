@@ -41,11 +41,13 @@ function GNB() {
   };
   return (
     <header className="header">
-      <div className="contents">
+      <div className="left-content">
         <Link to="/">
           <img src="logoKaKao.png" alt="logoKakao.png" height={30} />
         </Link>
-        <nav>
+      </div>
+      <nav>
+        <div className="right-content">
           <div className="navigation">
             <span>
               <Link to="/cart">
@@ -55,8 +57,8 @@ function GNB() {
             <span> | </span>
             <span>{renderAuthButton()}</span>
           </div>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
   );
 }
