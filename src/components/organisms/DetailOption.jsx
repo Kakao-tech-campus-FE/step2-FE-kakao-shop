@@ -4,7 +4,7 @@ import OptionContainer from '../atoms/detail/OptionContainer'
 const ProductOption = (props) => {
   return (
     <OptionContainer>
-      {props.options.map((item)=>(
+      {props.options?.map((item)=>(
         <div>{item.optionName}</div>
       ))}
     </OptionContainer>

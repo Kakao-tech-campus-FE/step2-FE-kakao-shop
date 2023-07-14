@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import GNB from "./components/organisms/GNB";
@@ -10,12 +10,14 @@ import RegisterPage from "./pages/RegisterPage";
 import DetailPage from "./pages/DetailPage";
 import PageContainer from "./components/atoms/PageContainer";
 import Test from "./components/organisms/Test";
+import Loader from "./components/molecules/Loader";
 
 function App() {
   return (
     <BrowserRouter>
       <PageContainer>
         <GNB></GNB>
+        {/* <Suspense fallback={<Loader />}> */}
         <Routes>
           <Route path="*" element={<MainPage />} />
           <Route path="/signup" element={<RegisterPage />} />
@@ -23,6 +25,7 @@ function App() {
           <Route path="/test" element={<Test />} />
           <Route path="/products/:id" element={<DetailPage />} />
         </Routes>
+        {/* </Suspense> */}
       </PageContainer>
     </BrowserRouter>
   );

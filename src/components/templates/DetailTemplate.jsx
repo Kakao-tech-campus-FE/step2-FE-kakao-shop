@@ -7,27 +7,30 @@ import MainContainer from '../atoms/MainContainer'
 import ProductDetail from "../organisms/DetailInfo";
 import ProductOption from "../organisms/DetailOption";
 
+import Loader from "../molecules/Loader";
+import ErrorInvalidID from "../organisms/ErrorInvalidID";
 
-const ProductDetailTemplate = ( props ) => {
+const DetailTemplate = ( props ) => {
 
   const params = useParams();
 
   const { data: obj, isLoading, isError, error } = useQuery( 
     ["getproductdetail"], 
-    () => getDetail(params.id)
+    () => getDetail(params.id),
   )
 
-  if (!obj) {
-      return (<div> 에러 </div>)
-  }
-  
-  const details = obj.data.response;
-  return (
-    <MainContainer>
-      <ProductDetail image={details.image} name={details.productName} price={details.price}></ProductDetail>
-      <ProductOption options={details.options}></ProductOption>
-    </MainContainer>
-  );
+    if (isLoading) {return <Loader />}
+    if (isError) {return <ErrorInvalidID />}
+    
+    return (
+      <MainContainer>
+            <ProductDetail 
+              image={obj?.data.response.image} 
+              name={obj?.data.response.productName} 
+              price={obj?.data.response.price} /> 
+            <ProductOption options={obj?.data.response.options} />
+      </MainContainer> 
+    );
 };
 
-export default ProductDetailTemplate;
+export default DetailTemplate;

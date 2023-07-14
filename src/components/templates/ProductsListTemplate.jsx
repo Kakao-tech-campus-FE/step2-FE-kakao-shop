@@ -1,7 +1,6 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { useInfiniteQuery } from 'react-query';
 import getProducts from '../../api/getProducts';
-import Loader from '../molecules/Loader';
 import ProductsList from '../organisms/ProductsList';
 import SubmitButton from '../atoms/SubmitButton';
 import ColumnContainer from '../atoms/ColumnContainer';
@@ -42,7 +41,7 @@ const ProductsListTemplate = () => {
           : null}
 
         <SubmitButton
-          onClick={() => fetchNextPage()}
+          onClick={fetchNextPage}
           disabled={isFetchingNextPage || !hasNextPage}
           >더보기</SubmitButton>
       </ColumnContainer>
