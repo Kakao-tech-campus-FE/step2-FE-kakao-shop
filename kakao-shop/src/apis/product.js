@@ -5,7 +5,7 @@ export const fetchProducts = async (page = 0, isEnd = false) => {
 
   try {
     const response = await instance.get(`/products?page=${page}`);
-    return response.data.response || [];
+    return response || [];
   } catch (error) {
     throw new Error("Failed to fetch products");
   }
