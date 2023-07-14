@@ -10,16 +10,41 @@ import {fetchProductsByPage} from "../../services/product";
 import ErrorSign from "../atoms/ErrorSign";
 import SkeletonProductGrid from "../organisms/SkeletonProductGrid";
 
+const dummy = {
+    data: {
+        response: [
+            {
+                id: -1,
+                name: "dummy",
+                price: 0,
+            }
+        ]
+    }
+}
 const MainProductTemplate = ({children}) => {
 
     const bottomObserver = useRef(null);
     const {products, addProducts} = useProducts()
     const [throat, setThroat] = useState(false)
+    const [isError, setIsError] = useState(false)
+    const [errorCode, setErrorCode] = useState(0)
 
-    const {isLoading, isError, error, data, fetchNextPage} = useInfiniteQuery(
+    const {isLoading, data, fetchNextPage} = useInfiniteQuery(
         "products",
         async ({pageParam = 0}) => {
-            return fetchProductsByPage(pageParam)
+            return fetchProductsByPage(pageParam).then(
+                (res) => {
+                    return res
+                }
+            ).catch(
+                (err) => {
+                    console.log("err", err);
+                    setIsError(true);
+                    setErrorCode(err.response.status);
+                    console.log("err.response.status", err.response.status)
+                    return dummy
+                }
+            )
         },
         {
             getNextPageParam: (lastPage, pages) => {
@@ -43,7 +68,10 @@ const MainProductTemplate = ({children}) => {
                                     (res) => {
                                         addProducts(res.data.pages.flatMap(page => page.data.response))
                                     }
-                                )
+                                ).catch(
+                                (err) => {
+                                }
+                            )
                                 .finally(() => {
                                         setThroat(false)
                                     }
@@ -69,9 +97,9 @@ const MainProductTemplate = ({children}) => {
 
     return (
         <div className="main-product-template">
-            {data && <ProductGrid products={products}/>}
+            {data && !isError && <ProductGrid products={products}/>}
             {isLoading && <SkeletonProductGrid skeletonAmount={12}/>}
-            {isError && <ErrorSign error={error}/>}
+            {isError && <ErrorSign error={errorCode}/>}
             {!throat && <div className="bottom-observer" ref={bottomObserver}></div>}
         </div>
     );

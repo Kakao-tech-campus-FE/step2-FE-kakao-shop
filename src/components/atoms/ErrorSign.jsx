@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-
+import "../../styles/atoms/errorSign.css"
 const ErrorSign = ({error}) => {
 
     useEffect(() => {
