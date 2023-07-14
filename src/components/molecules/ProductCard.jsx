@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
     <Card to={`/products/${product.id}`}>
       <Container>
         <Photo
-          src={`../../../assets${product.image}`}
+          src={`${process.env.REACT_APP_BASE_URL}${product.image}`}
           alt={product.productName}
         />
         <ProductName>{product.productName}</ProductName>

@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
-import ProductInfo from "../atoms/ProductInfo";
-import ProductOption from "../atoms/ProductOption";
+import ProductInfoContainer from "../atoms/ProductInfoContainer";
+import ProductOptionContainer from "../atoms/ProductOptionContainer";
 import SkeletonPhoto from "../atoms/SkeletonPhoto";
 import SkeletonRating from "../atoms/SkeletonRating";
 import SkeletonTitle from "../atoms/SkeletonTitle";
@@ -13,17 +13,17 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const ProductDetailsLoader = () => {
+const ProductDetailsSkeleton = () => {
   return (
     <Container>
-      <ProductInfo
+      <ProductInfoContainer
         photo={<SkeletonPhoto />}
         rating={<SkeletonRating />}
         title={<SkeletonTitle />}
       />
-      <ProductOption option={<SkeletonOption />} />
+      <ProductOptionContainer option={<SkeletonOption />} />
     </Container>
   );
 };
 
-export default ProductDetailsLoader;
+export default ProductDetailsSkeleton;

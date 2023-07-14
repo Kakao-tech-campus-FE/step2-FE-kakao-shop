@@ -17,7 +17,7 @@ const InfoContainer = styled.div`
   flex-basis: 40%;
 `;
 
-const ProductInfo = ({ photo, rating, title }) => {
+const ProductInfoContainer = ({ photo, rating, title }) => {
   return (
     <Container>
       <ProductContainer>
@@ -31,4 +31,4 @@ const ProductInfo = ({ photo, rating, title }) => {
   );
 };
 
-export default ProductInfo;
+export default ProductInfoContainer;

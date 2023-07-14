@@ -11,7 +11,7 @@ const OptionContainer = styled.div`
   height: 700px;
 `;
 
-const ProductOption = ({ option }) => {
+const ProductOptionContainer = ({ option }) => {
   return (
     <Container>
       <OptionContainer>{option}</OptionContainer>
@@ -19,4 +19,4 @@ const ProductOption = ({ option }) => {
   );
 };
 
-export default ProductOption;
+export default ProductOptionContainer;
