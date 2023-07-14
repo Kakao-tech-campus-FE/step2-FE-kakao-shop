@@ -1,15 +1,12 @@
-import { createStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+// import userReducer from "./slices/userSlice";
+import productReducer from "./slices/productSlice";
 
-let loginState = false;
-
-function reducer(state = loginState, action) {
-  if (action.type === "changeState") {
-    return !state;
-  } else {
-    return state;
-  }
-}
-
-const store = createStore(reducer);
+const store = configureStore({
+  reducer: {
+    // user: userReducer,
+    product: productReducer,
+  },
+});
 
 export default store;
