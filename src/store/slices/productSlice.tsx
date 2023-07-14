@@ -5,6 +5,7 @@ const initialState = {
   products: [],
   loading: false,
   error: null,
+  isEnd: false,
 };
 
 const getProducts = createAsyncThunk('products/getProducts', async (page: number) => {
@@ -24,6 +25,10 @@ const productsSlice = createSlice({
     builder.addCase(getProducts.fulfilled, (state, action) => {
       // Promise.resolve() 되었을때
       const newState = state;
+
+      if (action.payload.response.length < 10) {
+        newState.isEnd = true;
+      }
       newState.loading = false;
       newState.products = action.payload.response;
       newState.error = action.payload.error;
