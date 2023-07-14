@@ -19,7 +19,7 @@ const Button = ({ type, onClick, children, color, className }) => {
       className={`btn w-full h-12 rounded-md font-bold ${colorObj[color]} ${className}`}
       onClick={(e) => {
         e.preventDefault();
-        onClick();
+        onClick(e);
       }}
       type={type}
     >
