@@ -1,13 +1,10 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../store/slices/detailSlice";
 import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
 import { getProductById } from "../services/api/product";
 
 const ProductDetailPage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch(); // react-query 사용으로 disable
   // useParams로 파라미터 가져오기 ex: ...URL/user/1에서 user는 pathname, 1은 parameter
   const { id } = useParams(); // 주의! useParams로 받은 값은 항상 string이다. 필요 시 가공하여 사용
   // const parsedId = parseInt(id, 10); // 10진수로 파싱 // 지금은 필요 없음 만약 다른 프로젝트에서 필요하다면 사용
@@ -25,7 +22,7 @@ const ProductDetailPage = () => {
   // const detail = useSelector((state) => state.detail.detail);
 
   // react-query를 이용한 상태 관리
-  const { data, error, isLoading } = useQuery(`procutc/${id}`, () =>
+  const { data, error, isLoading } = useQuery(`product/${id}`, () =>
     getProductById(id)
   ); // 구분자, API 요청 함수
 

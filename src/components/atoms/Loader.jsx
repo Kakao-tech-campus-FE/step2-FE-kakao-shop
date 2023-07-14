@@ -1,6 +1,24 @@
-// codepen에서 마음에 드는 로더 가져오기
+import "../../styles/atoms/Loader.css";
 
 const Loader = () => {
-  return <div>임시 로더</div>;
+  return (
+    <div id="wrapper">
+      <div className="profile-main-loader">
+        <div className="loader">
+          <svg className="circular-loader" viewBox="25 25 50 50">
+            <circle
+              className="loader-path"
+              cx="50"
+              cy="50"
+              r="20"
+              fill="none"
+              stroke="#a3a3a3"
+              strokeWidth="2"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
 };
 export default Loader;

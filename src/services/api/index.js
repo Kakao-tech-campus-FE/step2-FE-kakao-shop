@@ -34,6 +34,7 @@ instance.interceptors.response.use(
   // 2. 에러가 일어났을때 콜백
   (error) => {
     // 아래와 같은 방법으로 에러 처리를 한다~~ 참고하래
+    console.log(error)
     const errorStatus = error.response.status;
     
     if(errorStatus === 400 || errorStatus === 401) {

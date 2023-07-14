@@ -23,7 +23,7 @@ const productsSlice = createSlice({
     builder.addCase(getProducts.fulfilled, (state, action) => {
       // action.payload.response는 최대 10개의 요소가 있을 것
       // 10개보다 작다면 더이상 데이터를 불러오는게 의미 없음
-      if (action.payload.response.length == 0){
+      if (action.payload.response.length === 0){
         state.isEnd = true;
       }
       state.loading = false;
@@ -38,6 +38,7 @@ const productsSlice = createSlice({
     // Promise.reject()
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
+      console.log(action)
       state.error = action.payload.error; // error exist: {message, status}
     });
   }

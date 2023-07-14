@@ -21,6 +21,7 @@ const MainProductTemplate = () => {
   // if (error) return <div>에러 발생!</div>
   // 2. 요즘의 방식
   // 리액트 쿼리를 이용하여 서스펜스로 감싸주어서 fallback을 지정하여 처리
+  // HomePage에서 MainProductTemplate를 suspense로 감싸주어 처리
 
   const io = new IntersectionObserver(
     (entries, observer) => {
@@ -44,14 +45,14 @@ const MainProductTemplate = () => {
   //   io.observe(bottomObserver.current);
   // }, []); // 이렇게 코드를 작성하면 observer에 의해 감지된 후 데이터가 로딩되는 도중(아직 컨텐츠 없음) 또 다시 감지되어 페이지가 무한대로 커지는 문제 발생(API에 수많은 요청 보냄) => 보호가 필요
   useEffect(() => {
-    console.log("loading: ", loading);
-    console.log("isFirstLoad: ", isFirstLoad);
+    //console.log("loading: ", loading);
+    //console.log("isFirstLoad: ", isFirstLoad);
     if (!isFirstLoad && !loading) {
-      console.log("Observe!!");
+      //console.log("Observe!!");
       io.observe(bottomObserver.current);
     }
     setIsFirstLoad(false);
-  }, [loading]); // 최초 렌더링 마운트 1회만(임시)
+  }, [loading]); // 첫 번째 로딩이 끝난 후 observe가 시작될 수 있도록 처리
 
   // 컨텐츠 하단에 다다르면(감지) 추가적으로 데이터를 로드하고싶다.
   // page 값이 순차적으로 변화 => 의존성 배열에 들어가야 함.
@@ -61,7 +62,7 @@ const MainProductTemplate = () => {
   }, [dispatch, page]); // 렌더링 발생 시 최초 1회만 실행 되도록 => page가 변화할 때마다 실행되도록 수정
 
   return (
-    <Container>
+    <Container className="w-full px-24 py-6">
       <div>{`${page}${loading}${isFirstLoad}`}</div>
       <ProductGrid products={products} />
       <div ref={bottomObserver}></div>

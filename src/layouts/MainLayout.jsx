@@ -10,13 +10,14 @@ const MainLayout = () => {
   const dispatch = useDispatch();
   dispatch(setUserInfo(getUserCookie()));
   return (
-    <>
+    <div>
       {/* 로그인 버튼, 장바구니 버튼, 메인 로고 */}
       <GNB />
       {/* 콘텐츠 영역: 페이지마다 달라지는 영역 */}
+      <div className="h-20"></div>
       <Outlet />
       {/* 푸터 영역 */}
-    </>
+    </div>
   );
 };
 export default MainLayout;
