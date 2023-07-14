@@ -1,5 +1,3 @@
-// MainProduct.jsx
-
 import { useSelector, useDispatch } from "react-redux";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
@@ -51,3 +49,31 @@ const MainProduct = () => {
 };
 
 export default MainProduct;
+
+// -----------------------------------------------------
+// react-query
+// import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+// import Container from "../atoms/Container";
+// import ProductGrid from "../organisms/ProductGrid";
+// import { useEffect, useState } from "react";
+// import { useProducts } from "../../services/product";
+
+// const MainProduct = () => {
+//   const [page, setPage] = useState(0);
+//   const { data: products, isLoading, isError, error } = useProducts(page);
+
+//   useEffect(() => {
+//     setPage(page);
+//   }, [page]);
+
+//   console.log(products);
+
+//   return (
+//     <Container>
+//       {isError && <p>{error.message}</p>}
+//       {isLoading ? <p>Loading...</p> : <ProductGrid products={products} />}
+//     </Container>
+//   );
+// };
+
+// export default MainProduct;
