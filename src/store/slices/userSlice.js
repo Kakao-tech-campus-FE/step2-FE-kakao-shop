@@ -3,6 +3,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { login } from "../../components/services/user";
 import Swal from 'sweetalert2'
+// import { useNavigate } from "react-router-dom"; // 사용해봤으나 로직이 작동하지 않음
 
 const initialState = {
     email: null,
@@ -62,6 +63,7 @@ export const loginRequest = createAsyncThunk(
         const { email, password } = data;
         const response = await login({ email, password });
         console.log(response)
+
         // 로그인 성공
         if(response.status === 200) {
             Swal.fire({
@@ -76,6 +78,9 @@ export const loginRequest = createAsyncThunk(
                 localStorage.setItem("email", email);
                 localStorage.setItem("token", response.headers.authorization);
                 localStorage.setItem("tokenExpiration", expirationDate);
+
+                // const navigate = useNavigate();
+                // navigate('/');
             })
             .then(() => {
                 window.location.href = "/";

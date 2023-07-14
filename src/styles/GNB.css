@@ -17,3 +17,15 @@
     font-size: 20px;
     text-decoration: none;
 }
+
+.navbarMenu.logo {
+    position: absolute;
+    left: 50px;
+}
+
+.divider {
+    border: 1px solid grey;
+    width: 0.1px;
+    height: 40px;
+    margin-right: 50px;
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import MainProductTemplate from '../components/templates/MainProductTemplate';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 const Main = () => {
@@ -11,7 +12,8 @@ const Main = () => {
     return (
         <>
             <div className='mainPage'>
-                홈페이지입니다.
+                <MainProductTemplate/>
+                메인 홈페이지입니다.
                 <br></br>
                 <button onClick={logEmail}>이메일 있나?</button>
                 <button onClick={logToken}>토큰 있나?</button>

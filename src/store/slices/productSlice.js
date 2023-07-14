@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProducts } from '../../components/services/product';
+import _ from 'lodash';
 
 const initialState = {
     products: [],
@@ -20,8 +21,14 @@ const productSlice = createSlice({
         });
         builder.addCase(getProducts.fulfilled, (state, action) => {
             // API처리가 되었을 때, action.payload에는 { success, response [], error }가 담겨있게 된다.
+            // action.payload.response에는 정상 콜백 시 최대 10개의 요소가 존재한다.
+            // 그러나 10개보다 작다면 더이상 데이터를 요청해봤자 의미가 없다.
+            if (action.payload.response.length < 10) {
+                state.inEnd = true; // 이 경우에는 더 이상 가져오지 말라!
+            }
+            // 각 자료형의 prototype 메소드를 필히 알아두자!(ex. map / forEach / concat / filter / findIndex / sort / slice / splice ...)
             state.laoding = false;
-            state.products = action.payload.response; 
+            state.products = _.uniqBy([...state.products, ...action.payload.response], 'id'); // id값을 기준으로 중복값을 제거
             state.error = action.payload.error;
         });
         builder.addCase(getProducts.rejected, (state, action) => {
