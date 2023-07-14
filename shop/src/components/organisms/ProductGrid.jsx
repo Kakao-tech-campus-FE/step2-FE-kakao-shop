@@ -1,13 +1,11 @@
 import ProductCard from "../molecules/ProductCard";
 import '../../styles/organisms/ProductGrid.css'
-import Skeleton from "../atoms/Skeleton";
-import Loader from "../atoms/Loader";
 
 
-const ProductGrid = ({ products, loading }) => 
+const ProductGrid = ({ products }) => 
   <div className="product-grid">
     {
-      products?.data.response.map((product) => (
+      products.map((product) => (
         <ProductCard key={product.id} product={product}/>
       ))
     }
