@@ -1,6 +1,7 @@
 import Card from "@components/atoms/Card";
 import Photo from "@components/atoms/Photo";
 import { Product } from "@components/organisms/ProductGrid";
+import { comma } from "@utils/regex";
 import { styled } from "styled-components";
 
 interface Props {
@@ -23,7 +24,7 @@ const ProductCard = ({ product }: Props) => {
         </Tags>
         <h3>{product.productName}</h3>
         <p>
-          <strong>톡딜가</strong> <b>{product.price}</b>원~
+          <strong>톡딜가</strong> <b>{comma(product.price)}</b>원~
         </p>
       </Card>
     </CardWrapper>
