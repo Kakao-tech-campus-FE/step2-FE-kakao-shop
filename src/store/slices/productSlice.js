@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 const initialState = {
     products: [],
-    laoding: false, // { success, response [] , error }
+    loading: false, // { success, response [] , error }
     error: null,    // { message, status }
 }
 
@@ -17,7 +17,7 @@ const productSlice = createSlice({
     // thunk의 getProducts 함수에 대한 3가지 케이스에 대해서 처리를 진행해준다  
     extraReducers: (builder) => {
         builder.addCase(getProducts.pending, (state, action) => {
-            state.laoding = true;
+            state.loading = true;
         });
         builder.addCase(getProducts.fulfilled, (state, action) => {
             // API처리가 되었을 때, action.payload에는 { success, response [], error }가 담겨있게 된다.
@@ -27,14 +27,14 @@ const productSlice = createSlice({
                 state.inEnd = true; // 이 경우에는 더 이상 가져오지 말라!
             }
             // 각 자료형의 prototype 메소드를 필히 알아두자!(ex. map / forEach / concat / filter / findIndex / sort / slice / splice ...)
-            state.laoding = false;
+            state.loading = false;
             state.products = _.uniqBy([...state.products, ...action.payload.response], 'id'); // id값을 기준으로 중복값을 제거
             state.error = action.payload.error;
         });
         builder.addCase(getProducts.rejected, (state, action) => {
             // API처리시 에러가 존재하는 경우에는 { message, status } 가 존재한다.
             state.error = action.payload.error;
-            state.laoding = false;
+            state.loading = false;
         })
     }
 });
