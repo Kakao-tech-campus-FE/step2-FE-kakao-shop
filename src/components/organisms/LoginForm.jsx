@@ -1,21 +1,19 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Container from "../atoms/Container";
 import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import GNB from "../atoms/GNB";
-import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-// import { useLogin } from "../../services/login";
 
 const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
   const dispatch = useDispatch();
-  // const loginMutation = useLogin();
 
   const { value, handleOnChange, reset } = useInput({
     email: "",
@@ -24,10 +22,6 @@ const LoginForm = () => {
 
   const handleLogin = async () => {
     try {
-      // loginMutation.mutateAsync({
-      //   email: value.email,
-      //   password: value.password,
-      // });
       await dispatch(
         loginRequest({
           email: value.email,

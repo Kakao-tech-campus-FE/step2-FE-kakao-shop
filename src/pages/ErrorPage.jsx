@@ -1,5 +1,6 @@
 import "../styles/ErrorPage.css";
 
+// 404번 에러 페이지
 const ErrorPage = () => {
   return (
     <div id="main">
