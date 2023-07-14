@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchProducts } from "../../apis/product";
+import _ from "lodash";
 
 const initialState = {
     products: [],
@@ -16,13 +17,14 @@ export const productsSlice = createSlice({
             state.loading = true;
         })
         builder.addCase(getProducts.fulfilled, (state, action) => {
-            // 가져오는 데이터가 10개보다 작다면 끝.
-            if(action.payload.response.length < 10) {
+            // 가져오는 데이터가 9개보다 작다면 끝.
+            if(action.payload.response.length < 9) {
                 state.isEnd = true;
             }
 
             state.loading = false;
-            state.products = action.payload.response;
+            state.products.concat(action.payload.response);
+            state.products = _.uniqBy([...state.products, ...action.payload.response], 'id');
             state.error = action.payload.error;
         })
         builder.addCase(getProducts.rejected, (state, action) => {
