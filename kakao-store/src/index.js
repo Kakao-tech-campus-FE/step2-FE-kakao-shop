@@ -7,27 +7,16 @@ import store from './store';
 import {PersistGate} from "redux-persist/integration/react"
 import { persistStore } from 'redux-persist';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import ErrorPage from './pages/ErrorPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
 const queryClient = new QueryClient();
 
-function alertError(error) {
-  alert(error.response.data.error.message);
-}
-
 function useApiQuery(queryKey, fetchData) {
   return useQuery(queryKey, fetchData, {
     onError: (error) => {
-      if (error.response?.status >= 200 && error.response?.status < 300) {
-        alertError(error)
-      } else if (error.response?.status >= 300 && error.response?.status < 400) {
-        alertError(error)
-      } else if (error.response?.status >= 400 && error.response?.status < 500) {
-        alertError(error)
-      } else {
-        alertError(error)
-      }
+      <ErrorPage />
     },
     onSuccess: (data) => {
       console.log(data)
@@ -48,7 +37,7 @@ function AppWrapper() {
   }
 
   if (error) {
-    return <div>에러: {error.message}</div>;
+    return <ErrorPage />;
   }
 
   return <App data={data} />;
