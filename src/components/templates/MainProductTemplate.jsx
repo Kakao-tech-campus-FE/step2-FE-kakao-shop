@@ -3,6 +3,7 @@ import ProductGrid from "../organisms/ProductGrid";
 import { useEffect, useState, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../../apis/product";
+import Loader from "../atoms/Loader";
 
 const MainProductTemplate = () => {
   const targetRef = useRef(null);
@@ -23,7 +24,7 @@ const MainProductTemplate = () => {
     }
   );
 
-  const { data, fetchNextPage, isFetching } = useInfiniteQuery(
+  const { data, fetchNextPage, isFetching, isLoading } = useInfiniteQuery(
     ["products"],
     async ({ pageParam = 0 }) => {
       const response = await fetchProducts(pageParam);
@@ -60,7 +61,7 @@ const MainProductTemplate = () => {
 
   return (
     <Container>
-      <ProductGrid products={products} />
+      {isLoading ? <Loader /> : <ProductGrid products={products} />}
       <div ref={targetRef}></div>
     </Container>
   );
