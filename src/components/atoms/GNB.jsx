@@ -6,7 +6,7 @@ import logoKakao from "../../assets/logoKakao.png";
 import cart from "../../assets/cart.png";
 import styled from "styled-components";
 
-const LOGOUT_TIMER = 6 * 1000; // 30분 후 자동 로그아웃
+const LOGOUT_TIMER = 30 * 60 * 1000; // 30분 후 자동 로그아웃
 
 function GNB() {
   const dispatch = useDispatch();
