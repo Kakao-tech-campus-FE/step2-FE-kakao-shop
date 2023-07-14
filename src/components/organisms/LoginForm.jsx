@@ -2,11 +2,11 @@ import Container from "./../atoms/Container";
 import InputGroup from "./../molecules/InputGroup";
 import Button from "./../atoms/Button";
 import useInput from "./../../hooks/useInput";
-import Title from "../atoms/Title";
 import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage } from "../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
+// import Title from "../atoms/Title";
 // import { login } from "../services/api";
 // import { loginRequest, setEmail } from "../../store/slices/userSlice";
 
@@ -66,7 +66,6 @@ const LoginForm = () => {
   return (
     <>
       <Container>
-        <Title>{email}</Title>
         <InputGroup
           id="email"
           type="email"

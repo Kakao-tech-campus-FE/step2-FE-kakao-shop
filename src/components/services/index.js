@@ -1,6 +1,5 @@
 import axios from "axios"
 import Swal from 'sweetalert2'
-import { useNavigate } from "react-router-dom";
 import { clearTokens } from "../../utils/constants";
 
 export const instance = axios.create({
