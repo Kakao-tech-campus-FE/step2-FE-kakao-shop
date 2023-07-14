@@ -10,11 +10,13 @@ import SignupPage from "./pages/SignupPage";
 import { Provider } from "react-redux";
 import store from "./store";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFound from "./pages/NotFound";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       { index: true, element: <MainPage /> },
       { path: "/product/:id", element: <ProductDetailPage /> },
