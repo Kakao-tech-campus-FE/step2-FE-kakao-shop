@@ -2,7 +2,7 @@ import Container  from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/api";
+import { register } from "../../services/user";
 import { useState } from "react";
 import Box from "../atoms/Box";
 
@@ -78,11 +78,6 @@ const RegisterForm =() =>{
             onClick={()=>{
                 //회원가입 요청
                 registerReq();
-                register({
-                    username: value.username,
-                    email: value.email,
-                    password: value.password
-                })
             }}
             >
             회원가입
