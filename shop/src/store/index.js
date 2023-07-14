@@ -6,12 +6,12 @@ import productReducer from "./slices/productSlice"
 
 //데이터 저장소의 형태를 키값으로부터 알 수 있
 const store = configureStore({
-    reducer: {
-        // User reducer : 유저 정보 저장 - email
-        user: userReducer,
-        // Products reducer : products
-        product: productReducer
-    }
+  reducer: {
+      // User reducer : 유저 정보 저장 - email
+      user: userReducer,
+      // Products reducer : products
+      product: productReducer
+  }
 })
 
 export default store;
