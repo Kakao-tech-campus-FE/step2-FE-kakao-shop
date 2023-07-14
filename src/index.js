@@ -5,13 +5,32 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from "react-redux";
 import store from "./store"
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const queryErrorHandler = error => {
+  alert("queryErrorHandler");
+  console.log("queryErrorHandler", error);
+}
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      onError: queryErrorHandler,
+      retry: 0,
+      suspense: true,
+    }
+  }
+});
+
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
+      </Provider>
   </React.StrictMode>
 );
 
