@@ -4,6 +4,7 @@ import ProductGrid from "../organisms/ProductGrid";
 import { Suspense } from "react";
 import { useEffect, useRef, useState } from "react";
 import { getProducts } from "../../redux/product/productSlice";
+import Loader from "../atoms/Loader";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -44,8 +45,8 @@ const MainProductTemplate = () => {
 
   return (
     <Container className="whitespace-break-spaces mx-auto w-5/6">
-      <Suspense fallback={<div>Loading...</div>}>
-        <ProductGrid products={products} />
+      <Suspense fallback={<Loader />}>
+        <ProductGrid products={products} isLoading={loading} />
         {/* 하단이 될 빈 div */}
         <div ref={bottomObserver}></div>
       </Suspense>
