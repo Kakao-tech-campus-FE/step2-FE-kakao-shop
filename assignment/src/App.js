@@ -8,29 +8,22 @@ import NewHomePage from './pages/NewHomePage';
 import MainLayout from './layouts/MainLayout';
 import ProductDetailPage from './pages/ProductDetail';
 import Loader from './components/atoms/Loader';
+import { ErrorPage } from './pages/ErrorPage';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* 단독 레이아웃 */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<RegisterPage />} />
-          {/* 공통 레이아웃 : GNB , Footer */}
-          {/* <Route path ="/" element = {<HomePage/>}></Route> */}
-          {/* 레이아웃 같은건 별도의 path를 선언하지 않음(path attribute가 없다.) */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<NewHomePage />}>
-              {' '}
-            </Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}>
-              {' '}
-            </Route>
+            <Route path="/" element={<NewHomePage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
           </Route>
+          <Route path="/error" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
-      <Loader />
     </div>
   );
 }
