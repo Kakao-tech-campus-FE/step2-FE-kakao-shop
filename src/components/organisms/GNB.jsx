@@ -6,7 +6,7 @@ import Box from "../atoms/Box";
 
 const GNB = () => {
   return (
-    <div className="fixed inset-x-0 top-0 z-11000 bg-white h-20 border-neutral-200 border-b-[1px]">
+    <div className="fixed inset-x-0 top-0 z-50 bg-white h-20 border-neutral-200 border-b-[1px]">
       <Container className="  flex w-320 h-20 m-auto px-7">
         <Box className="pt-7">
           <Link to={"/"} className="block">
