@@ -7,10 +7,16 @@ interface ProductGridProps {
 }
 
 const ProductGrid = ({ products }: ProductGridProps) => {
+  const cardSize = 200;
+  const productGridSize = 1080;
+  const invisibleCards = new Array(Math.floor(productGridSize / cardSize));
   return (
-    <div>
+    <div className="flex flex-wrap justify-center space-x-[30px]">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} size={cardSize} />
+      ))}
+      {invisibleCards.fill(1).map((key) => (
+        <div key={key} className={`w-[${cardSize}px] invisible`} />
       ))}
     </div>
   );

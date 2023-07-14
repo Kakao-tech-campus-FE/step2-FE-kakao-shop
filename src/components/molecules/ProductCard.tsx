@@ -6,15 +6,18 @@ import React from 'react';
 
 interface ProductCardProps {
   product: ProductInfoData;
+  size: number;
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, size }: ProductCardProps) => {
   return (
-    <Card to={`/product/${product.id}`}>
-      <Photo src={`${process.env.REACT_APP_API_URL}${product.image}`} alt={product.productName} />
-      <h3>{product.productName}</h3>
-      <p>{comma(product.price)}</p>
-    </Card>
+    <div className={`w-[${size}px]`}>
+      <Card to={`/product/${product.id}`}>
+        <Photo src={`${process.env.REACT_APP_API_URL}${product.image}`} alt={product.productName} />
+        <h3>{product.productName}</h3>
+        <p>{comma(product.price)}</p>
+      </Card>
+    </div>
   );
 };
 
