@@ -24,7 +24,7 @@ export default function NavBar() {
 
   return (
     <Container className="flex items-center">
-      <LinkedIcon to="/" alt="mycart" width="w-icon">
+      <LinkedIcon to="/cart" alt="장바구니" width="w-icon">
         {cartImage}
       </LinkedIcon>
       <Button
