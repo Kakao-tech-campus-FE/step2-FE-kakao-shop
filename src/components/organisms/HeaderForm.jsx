@@ -10,7 +10,7 @@ import { logout } from "../../store/slices/authSlice";
  */
 const HeaderForm = () => {
   const dispatch = useDispatch();
-  const { isLogin } = useSelector((state) => state.authReducer);
+  const { isLogin } = useSelector((state) => state.auth);
   return (
     <Container className="flex max-w-none w-[1280px] h-[79px] mx-auto fixed left-0 right-0 top-0 border-b border-gray-300 bg-white">
       <Logo className="pt-[31px]" />

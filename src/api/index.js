@@ -16,7 +16,7 @@ instance.interceptors.response.use(
         token: response.headers.getAuthorization(),
       };
     }
-    return response.data;
+    return response;
   },
   (e) => {
     return e.response.data;
