@@ -15,6 +15,14 @@ instance.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    switch (error.status) {
+      case 404:
+        window.history.pushState('', '', '/404');
+        break;
+      case 500:
+        window.history.pushState('', '', '/500');
+        break;
+    }
     return error.response.data;
   }
 );
