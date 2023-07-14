@@ -1,5 +1,5 @@
 import axios from "axios";
-import routes from "../routes";
+import routes from "../routes/routes";
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -42,24 +42,3 @@ instance.interceptors.response.use(
 //401 에러 캐치(jwt 만료)
 
 
-export const login = (data) => {
-    const { email, password } = data;
-    return instance.post('/login', {
-        email,
-        password,
-    })
-}
-
-
-export const doubleCheck = (email) => {
-    return instance.post('/check', { email });
-}
-
-export const register = (data) => {
-    const { email, password, username } = data;
-    return instance.post('/join', {
-        email,
-        password,
-        username
-    })
-}

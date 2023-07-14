@@ -4,10 +4,10 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import styled from "styled-components";
-import routes from '../../routes'
+import routes from '../../routes/routes'
 import { useNavigate } from 'react-router-dom';
-import { register, doubleCheck } from "../../services";
-import Question from "../atoms/question";
+import { register, doubleCheck } from "../../services/user";
+import Question from "../atoms/Question";
 import { useState, useEffect } from "react";
 import DoubleCheck from '../atoms/DoubleCheck';
 import { emailCheck, passwordCheck, passwordReCheck } from "../../services/regex";
