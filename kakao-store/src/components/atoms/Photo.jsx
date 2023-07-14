@@ -1,12 +1,12 @@
 const Photo = ({ className, src, alt }) => {
     const styleObj = {
-        card: "w-px-200",
+        card: "w-[270px] h-[200px] rounded-lg",
     }
 
     return (
-        <picture className={`${styleObj[className]}`}>
+        <picture>
             <source srcSet={src} />
-            <img className="w-inherit" src={src} alt={alt} />
+            <img className={` ${styleObj[className]}`} src={src} alt={alt} />
         </picture>
     )
 }
