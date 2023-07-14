@@ -31,7 +31,7 @@
 .utils {
     position: relative;
     margin-left: auto;
-    padding: 14px 13px 0 0;
+    padding-right: 13px;
 }
 .link_cart {
     display: block;
