@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useId } from "react";
 import "@components/common/CheckList/check-list-item.css";
 
 export interface CheckListItemProps {
@@ -16,9 +16,19 @@ const CheckListItem = ({
   onChange,
   onItemRemove,
 }: CheckListItemProps) => {
-  const [uid] = useState(
-    Date.now().toString(36) + Math.random().toString(36).substring(2)
-  );
+  const uid = useId();
+
+  const onPreventDefaultItemRemove = (
+    e: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    e.preventDefault();
+    onItemRemove(id);
+  };
+
+  const onPreventDefaultChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    onChange(e);
+  };
 
   return (
     <div className="check-list-item">
@@ -26,11 +36,11 @@ const CheckListItem = ({
         id={uid}
         type="checkbox"
         checked={checked}
-        onChange={onChange}
+        onChange={onPreventDefaultChange}
         value={id}
       />
       <label htmlFor={uid}>{label}</label>
-      <button onClick={() => onItemRemove(id)}>Remove</button>
+      <button onClick={onPreventDefaultItemRemove}>Remove</button>
     </div>
   );
 };

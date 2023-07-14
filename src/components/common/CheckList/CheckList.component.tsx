@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import CheckListItem, {
   CheckListItemProps,
 } from "@components/common/CheckList/CheckListItem.component";
@@ -16,6 +16,11 @@ const CheckList: FC<CheckListProps> = ({
   onItemAppend,
   onItemRemove,
 }) => {
+  const onPreventDefaultItemAppend = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    onItemAppend();
+  };
+
   return (
     <div className="check-list">
       {items.map((item) => {
@@ -30,7 +35,7 @@ const CheckList: FC<CheckListProps> = ({
           />
         );
       })}
-      <button onClick={onItemAppend}>Add</button>
+      <button onClick={onPreventDefaultItemAppend}>Add</button>
     </div>
   );
 };

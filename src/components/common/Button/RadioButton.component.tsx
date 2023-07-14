@@ -1,10 +1,10 @@
-import { FC, useId } from "react";
+import { ChangeEvent, FC, useId } from "react";
 
 export interface RadioButtonProps {
   label: string;
   name: string;
   value: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   checked: boolean;
 }
 
@@ -16,6 +16,10 @@ const RadioButton: FC<RadioButtonProps> = ({
   checked,
 }) => {
   const uid = useId();
+  const onPreventDefaultChange = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (onChange) onChange(e);
+  };
 
   return (
     <div>
@@ -25,7 +29,7 @@ const RadioButton: FC<RadioButtonProps> = ({
         id={uid}
         name={name}
         value={value}
-        onChange={onChange}
+        onChange={onPreventDefaultChange}
         checked={checked}
       />
       <label

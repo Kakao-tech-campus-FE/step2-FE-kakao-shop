@@ -15,7 +15,7 @@ const ProductCard = ({ product, cardRef }: ProductCardProps) => {
       <div className="w-full overflow-hidden flex-1">
         <LazyImage
           className="hover:scale-110 transition-all ease-out duration-500 h-full"
-          src={product.image}
+          src={import.meta.env.VITE_KAKAO_IMAGE_URL + product.image}
           alt={product.productName}
         />
       </div>

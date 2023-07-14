@@ -28,7 +28,7 @@ const LazyImage: FC<LazyImageProps> = ({ src, alt, className, ...rest }) => {
               ) {
                 setTimeout(() => {
                   setImageSrc(src);
-                }, 3000);
+                }, 1000);
                 observer.unobserve(imageRef);
               }
             });
@@ -43,7 +43,6 @@ const LazyImage: FC<LazyImageProps> = ({ src, alt, className, ...rest }) => {
         setImageSrc(src);
       }
     }
-    console.log(imageSrc === src);
 
     return () => {
       didCancel = true;

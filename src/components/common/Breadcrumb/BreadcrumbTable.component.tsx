@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import Breadcrumb, {
   BreadcrumbProps,
 } from "@/components/common/Breadcrumb/Breadcrumb.component";
@@ -9,7 +9,8 @@ interface BreadcrumbTableProps {
 }
 
 const BreadcrumbTable: FC<BreadcrumbTableProps> = ({ crumbs }) => {
-  const copy = () => {
+  const copy = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const crumbsString = crumbs.map((crumb) => `${crumb.title}`).join("/");
     navigator.clipboard.writeText(crumbsString);
   };

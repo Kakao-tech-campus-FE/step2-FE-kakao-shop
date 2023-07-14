@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, MouseEvent } from "react";
 import { Toast as ToastType, useToast } from "@/hooks/useToast";
 
 interface ToastProps extends Omit<ToastType, "timeout"> {
@@ -14,6 +14,11 @@ const Toast: FC<ToastProps> = ({
 }) => {
   const { removeToast } = useToast();
 
+  const onPreventDefaultRemoveToast = (e: MouseEvent) => {
+    e.preventDefault();
+    removeToast(id);
+  };
+
   return (
     <div
       className={`toast toast-${type}`}
@@ -24,7 +29,7 @@ const Toast: FC<ToastProps> = ({
       <img src={`/toast/${type}.svg`} alt="alert" />
       <div className="title">{title}</div>
       <div className="message">{message}</div>
-      <button onClick={() => removeToast(id)}>
+      <button onClick={onPreventDefaultRemoveToast}>
         <img src="/multiply.svg" alt="close" />
       </button>
     </div>

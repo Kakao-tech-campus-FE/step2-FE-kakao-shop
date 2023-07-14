@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC } from "react";
+import { ComponentPropsWithoutRef, FC, MouseEvent } from "react";
 
 type ButtonProps = ComponentPropsWithoutRef<"button">;
 interface ButtonFormItemProps extends ButtonProps {
@@ -49,10 +49,15 @@ const ButtonFormItem: FC<ButtonFormItemProps> = ({
   color,
   ...props
 }) => {
+  const onPreventDefaultClick = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    if (onClick) onClick(e);
+  };
+
   return (
     <button
       type={type}
-      onClick={onClick}
+      onClick={onPreventDefaultClick}
       className={`rounded-lg py-4 px-8 w-full ${COLORS[color]}`}
       {...props}
     >
