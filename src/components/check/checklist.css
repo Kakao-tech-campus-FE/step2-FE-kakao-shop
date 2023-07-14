@@ -1,0 +1,28 @@
+.check-container {
+    height: auto;
+    width: 150px;
+    margin: 10px;
+    padding: 10px 20px 40px 20px;
+    background-color: #f8f6f4;
+}
+
+.check-item {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type='checkbox']:checked {
+    background-color: #8dc5c5;
+}
+
+input[type='checkbox'] {
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box;
+    border: 1px solid #9999;
+    border-radius: 5px;
+    margin-right: 7px;
+    vertical-align: middle;
+}
