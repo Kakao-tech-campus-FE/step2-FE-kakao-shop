@@ -13,6 +13,9 @@ module.exports = {
       spacing: {
         header: '100px',
       },
+      maxWidth: {
+        container: '1080px',
+      },
     },
   },
   plugins: [],

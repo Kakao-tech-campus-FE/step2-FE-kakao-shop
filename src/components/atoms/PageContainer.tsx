@@ -3,8 +3,10 @@ import { Outlet } from 'react-router-dom';
 
 const PageContainer = () => {
   return (
-    <div className="w-full mt-header pt-16">
-      <Outlet />
+    <div className="flex justify-center w-full mt-header pt-16">
+      <div className="max-w-container">
+        <Outlet />
+      </div>
     </div>
   );
 };
