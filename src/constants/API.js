@@ -1,11 +1,11 @@
 const AUTH = {
-  LOGIN: "login",
-  CHECK: "check",
-  JOIN: "join",
+  LOGIN: "/login",
+  CHECK: "/check",
+  JOIN: "/join",
 };
 
 const PRODUCT = {
-  PRODUCTS: "products",
+  PRODUCTS: "/products",
 };
 
 Object.freeze(AUTH);
