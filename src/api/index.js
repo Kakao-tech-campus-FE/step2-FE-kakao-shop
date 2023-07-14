@@ -19,6 +19,12 @@ instance.interceptors.response.use(
     return response;
   },
   (e) => {
+    // eslint-disable-next-line default-case
+    switch (e.response.status) {
+      case 404:
+        window.history.pushState({}, "", "/error");
+        break;
+    }
     return e.response.data;
   }
 );
