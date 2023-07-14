@@ -18,14 +18,24 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   function (response) {
-    const successMessage = response.config.url.includes("/join")
-      ? "회원가입 성공!"
-      : "로그인 성공!";
-    alert(successMessage);
     return response;
   },
   function (error) {
-    return Promise.reject(error);
+    if (error.response && error.response.status === 400) {
+      console.log("요청 변수 확인");
+    } else if (error.response && error.response.status === 401) {
+      console.log("인증 실패");
+    } else if (error.response && error.response.status === 403) {
+      console.log("호출 금지");
+    } else if (error.response && error.response.status === 404) {
+      console.log("API 없음");
+    } else if (error.response && error.response.status === 405) {
+      console.log("메서드 허용 안함");
+    } else if (error.response && error.response.status === 500) {
+      console.log("서버 오류");
+    } else {
+      // 기타 에러 처리
+    }
   }
 );
 
