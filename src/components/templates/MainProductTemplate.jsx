@@ -29,7 +29,7 @@ const MainProductTemplate = () => {
       });
     },
     {
-      threshold: .1,
+      threshold: 0.1,
     }
   );
 
@@ -47,8 +47,11 @@ const MainProductTemplate = () => {
 
   return (
     <Container>
-      <ProductGrid products={products} loading={loading} />
-      {loading && <Loader />}
+      {loading ? (
+        <Loader />
+      ) : (
+        <ProductGrid products={products} loading={loading} />
+      )}
       <div ref={bottomObserver}></div>
     </Container>
   );
