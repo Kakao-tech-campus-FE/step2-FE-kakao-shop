@@ -19,8 +19,7 @@ instance.interceptors.request.use((config) => {
 // middleware
 instance.interceptors.response.use(
     (response) => {
-        window.location.href = "/";
-        return response
+        return response 
     },
     (error) => {
         if(error.response.status === 401) {
