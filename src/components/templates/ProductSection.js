@@ -18,9 +18,24 @@ export default function ProductSection() {
           return allPages.length;
         },
         onError: (error) => {
-          console.log("[Products Error]", error.message);
+          let state;
+          switch (error.response.status / 100) {
+            case 3:
+              state = "리다이렉션";
+              break;
+            case 4:
+              state = "클라이언트";
+              break;
+            case 5:
+              state = "서버";
+              break;
+            default:
+              state = "기타";
+          }
+          console.log(
+            `[Products Request Error] ${error.response.status}(${state}): ${error.message}`
+          );
         },
-        staleTime: Infinity,
       }
     );
 
@@ -47,7 +62,10 @@ export default function ProductSection() {
         <ProductGrid
           products={data.pages.flatMap((page) => page.data.response)}
         >
-          {isFetchingNextPage && Array(9).fill(null).map(() => <Skeleton />)}
+          {isFetchingNextPage &&
+            Array(9)
+              .fill(null)
+              .map(() => <Skeleton />)}
           <div ref={observerRef}></div>
         </ProductGrid>
       )}
