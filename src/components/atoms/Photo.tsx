@@ -8,10 +8,7 @@ interface PhotoProps {
 const Photo = ({ src, alt }: PhotoProps) => {
   return (
     <picture>
-      <source srcSet={`${src}.webp`} />
-      <source srcSet={`${src}.png`} />
-      <source srcSet={`${src}.webm`} />
-      <img src={`${src}.webp`} className="width:inherit" alt={alt} />
+      <img src={`${src}`} className="width:inherit" alt={alt} />
     </picture>
   );
 };
