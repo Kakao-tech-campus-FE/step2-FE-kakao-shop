@@ -20,6 +20,7 @@ const Styled = {
     justify-content: space-between;
     align-items: center;
 
+    border-bottom: 1px solid #ebebeb;
     background-color: white;
     z-index: 10;
   `,
@@ -53,7 +54,6 @@ function GlobalNavBar({ isStorybookMode }) {
           navigate(routes.home);
         }}
       />
-
       <Styled.ButtonBox>
         <Styled.AuthButton onClick={onAuthButtonClick}>
           {accessToken ? "로그아웃" : "로그인"}

@@ -5,9 +5,12 @@ import routes from "@/constants/routes.js";
 import ThumbCard from "@/components/molecules/thumb-card/ThumbCard.jsx";
 
 const Styled = {
+  Container: styled.div`
+    height: 17.75rem;
+  `,
   Card: styled.div`
     width: 17.75rem;
-    margin: 0 10px 50px;
+    margin: 0 10px auto;
     box-sizing: content-box;
     cursor: pointer;
   `,
@@ -35,11 +38,13 @@ function ProductInfoCard({ id, productName, description, image, price }) {
   };
 
   return (
-    <Styled.Card onClick={() => onCardClick(id)}>
-      <ThumbCard badge={description} imgSrc={image} imgAlt={productName} />
-      <Styled.Name>{productName}</Styled.Name>
-      <Styled.Price>{changeNumToMonetaryUnit(price)}원</Styled.Price>
-    </Styled.Card>
+    <Styled.Container>
+      <Styled.Card onClick={() => onCardClick(id)}>
+        <ThumbCard badge={description} imgSrc={image} imgAlt={productName} />
+        <Styled.Name>{productName}</Styled.Name>
+        <Styled.Price>{changeNumToMonetaryUnit(price)}원</Styled.Price>
+      </Styled.Card>
+    </Styled.Container>
   );
 }
 
