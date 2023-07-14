@@ -40,9 +40,9 @@ export const register = async (data) => {
     throw error;
   }
 };
-export const getProducts = async () => {
+export const getProducts = async (index) => {
   try {
-    const response = await instance.get("/products", {
+    const response = await instance.get(`/products?page=${index}`, {
     });
     return response;
   } catch (error) {

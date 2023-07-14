@@ -3,7 +3,7 @@ import { getIdProduct } from "../apis/api";
 import { useQuery } from "react-query";
 import ProductDetail from "../components/organisms/ProductDetail";
 import ProductOptions from "../components/organisms/ProductOptions";
-import Error from "./Error";
+import Error from "../components/molecules/Error";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -17,7 +17,7 @@ const ProductPage = () => {
     )
   } else if(isError) {
     return (
-      <Error errorStatus={error.request.message}/>
+      <Error errorStatus={error.message}/>
     )
   }
 

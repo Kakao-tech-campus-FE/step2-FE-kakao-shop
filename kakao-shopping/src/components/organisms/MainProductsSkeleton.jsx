@@ -11,6 +11,9 @@ const MainProductsSkeleton = () => {
       <div className="w-60 m-10"><Skeleton /></div>
       <div className="w-60 m-10"><Skeleton /></div>
       <div className="w-60 m-10"><Skeleton /></div>
+      <div className="w-60 m-10"><Skeleton /></div>
+      <div className="w-60 m-10"><Skeleton /></div>
+      <div className="w-60 m-10"><Skeleton /></div>
     </Container>
   </Container>
   )
