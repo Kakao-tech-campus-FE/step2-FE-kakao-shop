@@ -3,6 +3,12 @@ import Photo from "../atoms/Photo";
 import comma from "../../utils/convert";
 import SkeletonCard from "../atoms/SkeletonCard";
 
+/** 상품 카드
+ *
+ * @param {object} product - 상품 정보
+ * @param {boolean} loading - 로딩 상태
+ * @return {JSX.Element}
+ */
 const ProductCard = ({ product, loading }) => {
   if (loading) {
     return (

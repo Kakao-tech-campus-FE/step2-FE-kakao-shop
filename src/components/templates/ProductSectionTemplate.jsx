@@ -6,18 +6,19 @@ import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { fetchProducts } from "../../api/product";
 
+/** 상품 목록 템플릿
+ *
+ * @return {JSX.Element}
+ */
 const ProductSectionTemplate = () => {
   const bottomObserver = useRef(null);
-
   const { page } = useParams();
   const [pageNumber, setPageNumber] = useState(
     // eslint-disable-next-line no-restricted-globals
     !isNaN(page) ? parseInt(page, 10) : 0
   );
-
   const [products, setProducts] = useState([]);
   const [isEnd, setIsEnd] = useState(false);
-
   const { data, error, isLoading } = useQuery([pageNumber], () =>
     fetchProducts(pageNumber)
   );

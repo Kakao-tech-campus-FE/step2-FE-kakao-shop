@@ -1,5 +1,9 @@
 import Container from "./Container";
 
+/** 로더
+ *
+ * @return {JSX.Element}
+ */
 const Loader = () => {
   return (
     <Container className="flex max-w-none justify-center mt-[400px]">

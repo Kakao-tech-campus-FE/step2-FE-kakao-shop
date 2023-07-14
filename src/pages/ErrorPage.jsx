@@ -1,3 +1,7 @@
+/** 에러 페이지
+ *
+ * @return {JSX.Element}
+ */
 const ErrorPage = () => {
   return (
     <div>

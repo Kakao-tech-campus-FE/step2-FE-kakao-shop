@@ -1,3 +1,7 @@
+/** 스켈레톤 카드
+ *
+ * @return {JSX.Element}
+ */
 const SkeletonCard = () => {
   return (
     <div className="border-0">
