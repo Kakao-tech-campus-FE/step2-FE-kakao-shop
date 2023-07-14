@@ -1,6 +1,7 @@
 import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
+import ProductPrice from "../atoms/ProductPrice";
 
 const MainProducts = ({slicedData}) => {
 
@@ -21,7 +22,7 @@ const MainProducts = ({slicedData}) => {
           <span className="text-sm leading-tight">{product.productName}</span>
           <span className="font-bold">
             <span className="text-blue-600">톡별가</span>
-            <span className="mx-1">{product.price}</span>
+            <ProductPrice price={product.price} className="mx-1"/>
             <span>원 부터~</span>
           </span>
         </div>

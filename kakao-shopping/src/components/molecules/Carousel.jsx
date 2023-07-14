@@ -28,7 +28,7 @@ const Carousel = ({images}) => {
     const interval = setInterval(() => {
       currentIndex.current = (currentIndex.current + 1) % images.length;
       renderSet((prev) => prev + 1);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(interval);
   }, [images.length]);
 
@@ -37,7 +37,7 @@ const Carousel = ({images}) => {
     display:"flex",
     width: `${screenWidth * images.length}px`,
     transform: `translate3d(-${screenWidth * currentIndex.current}px, 0, 0)`,
-    transition: "transform 1s ease"
+    transition: "transform 2s ease"
   };
 
   return (

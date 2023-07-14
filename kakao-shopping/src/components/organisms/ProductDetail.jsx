@@ -1,5 +1,6 @@
 import StarRating from "./StarRating"
 import Button from "../atoms/Button"
+import ProducePrice from "../atoms/ProductPrice"
 
 const ProductDetail = ({product}) => {
   return (
@@ -11,7 +12,7 @@ const ProductDetail = ({product}) => {
         <Button className="bg-yellow-300 rounded-full flex flex-column align-center w-32 py-3 justify-center">
           <div className="flex font-bold text-sm">
             <span>톡딜가</span>
-            <div className="mx-1">{product.price}</div>
+            <ProducePrice price={product.price} className="mx-1" />
             <span> 원 ~</span>
           </div>
         </Button>
