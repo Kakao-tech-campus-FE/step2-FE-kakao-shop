@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import Badge from "@/components/atoms/badge/Badge.jsx";
 import PropTypes from "prop-types";
+import Badge from "@/components/atoms/badge/Badge.jsx";
 
 const Styled = {
   Card: styled.a`
@@ -10,7 +10,7 @@ const Styled = {
 
     display: inline-block;
     overflow: hidden;
-    border-radius: 0.35rem;
+    border-radius: 0.5rem;
     cursor: pointer;
   `,
   Image: styled.img`
@@ -27,7 +27,6 @@ const Styled = {
 };
 
 function ThumbCard({ imgSrc, imgAlt, badge }) {
-  const imgUrl = new URL("/assets" + imgSrc, import.meta.url).href;
   return (
     <Styled.Card>
       {badge && (
@@ -42,7 +41,7 @@ function ThumbCard({ imgSrc, imgAlt, badge }) {
           {badge}
         </Badge>
       )}
-      <Styled.Image src={imgUrl} alt={imgAlt} />
+      <Styled.Image src={import.meta.env.VITE_SHOP_API + imgSrc} alt={imgAlt} />
     </Styled.Card>
   );
 }
