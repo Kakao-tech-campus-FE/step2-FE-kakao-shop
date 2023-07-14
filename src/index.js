@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
@@ -19,11 +19,11 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: '/', element: <Home /> },
-      { path: '/signup', element: <SignUp /> },
-      { path: '/signin', element: <SignIn /> },
+      { path: '/join', element: <SignUp /> },
+      { path: '/login', element: <SignIn /> },
       { path: '/products/:id', element: <ProductDetail /> },
       { path: '/cart', element: <MyCart /> },
-      { path: '/order', element: <Order /> },
+      { path: '/orders', element: <Order /> },
     ],
   },
 ]);

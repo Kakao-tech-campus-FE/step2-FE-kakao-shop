@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function ProductDetail() {
+export default function Carousel() {
   return <div></div>;
 }

@@ -1,12 +1,16 @@
 import React from 'react';
 import Card from '../atoms/Card';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({
+  product: { id, productName, image, price },
+}) {
   return (
-    <Card to={`/product/${product.id}`}>
-      <img src={product.imageUrl} alt={product.name} />
-      <div>{product.name}</div>
-      <div>{product.price}</div>
-    </Card>
+    <li>
+      <img src={image} alt={productName} />
+      <div>
+        <h3>{productName}</h3>
+        <p>{`${price}원`}</p>
+      </div>
+    </li>
   );
 }
