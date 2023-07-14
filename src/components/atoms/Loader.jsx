@@ -1,9 +1,9 @@
-import { ClockLoader } from "react-spinners";
+import { ClipLoader } from "react-spinners";
 
 const Loader = () => {
   return (
     <div className="flex h-[300px] items-center">
-      <ClockLoader color="gray" size="30px" className="m-auto" />
+      <ClipLoader color="#c7c7c7" size="30px" className="m-auto" />
     </div>
   );
 };

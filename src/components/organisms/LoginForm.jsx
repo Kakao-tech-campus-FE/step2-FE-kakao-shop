@@ -13,6 +13,7 @@ const LoginForm = () => {
   // user 전역 상태 관련
   const email = useSelector((state) => state.user.email);
   const error = useSelector((state) => state.user.error);
+  const loading = useSelector((state) => state.user.loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -89,7 +90,7 @@ const LoginForm = () => {
             {loginError}
           </Box>
         )}
-        <Button className={"mt-10"} onClick={loginReq}>
+        <Button className={"mt-10"} onClick={loginReq} isLoading={loading}>
           로그인
         </Button>
         <Link to="/signup" className="mt-5 text-xs ">
