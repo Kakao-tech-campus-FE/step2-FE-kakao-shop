@@ -2,7 +2,15 @@ import {instance} from "./index"
 
 // 상품 가져오기 - 페이지 별
 export const fetchProducts = (page = 0) => {
-  return instance.get("/products" + "?page=" + page);
+  return instance.get("/products" + "?page=" + page)
+  .then(response =>  {
+    // 요청 성공 시
+    return response;
+  })
+  .catch(error => {
+    console.error("Error fetching products: ", error);
+    throw error;
+  })
 };
 
 // 상품 가져오기 - 커서 이용(lastIndex)
@@ -19,5 +27,13 @@ export const getProductById = (id) => {
     throw Error("상품 id가 필요합니다.");
   }
   // 정상 콜백은 마지막으로
-  return instance.get("/products/" + id);
+  return instance.get("/products/" + id)
+  .then(response =>  {
+    // 요청 성공 시
+    return response;
+  })
+  .catch(error => {
+    console.error("Error fetching product by id: ", error);
+    throw error;
+  })
 };

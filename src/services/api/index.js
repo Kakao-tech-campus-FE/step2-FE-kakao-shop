@@ -6,7 +6,7 @@ export const instance = axios.create({
   //baseURL: "http;//localhost:8080"
   baseURL: process.env.REACT_APP_API_URL,
   // 꼭 timeout 세팅을 해줘야 한다. 무한정 요청을 기다릴 수 없기 때문
-  timeout: 1000 * 5,
+  timeout: 1000 * 10,
   headers: {
     "Content-Type" : "application/json"
   }
@@ -34,13 +34,10 @@ instance.interceptors.response.use(
   // 2. 에러가 일어났을때 콜백
   (error) => {
     // 아래와 같은 방법으로 에러 처리를 한다~~ 참고하래
-    console.log(error)
-    const errorStatus = error.response.status;
-    
-    if(errorStatus === 400 || errorStatus === 401) {
-      // localStorage.removeItem("token");
-      // window.location.href = "/login";
-      return Promise.reject(error.response.data.error);
+    if (error.response) {
+      const errorStatus = error.response.status;
+        return Promise.reject(error.response.data.error);
+      
     }
     return Promise.reject(error);
   }

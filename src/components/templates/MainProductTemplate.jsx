@@ -61,8 +61,8 @@ const MainProductTemplate = () => {
         // 타겟 요소의 일정 부분이 루트 요소와 겹치면 콜백이 실행된다.
       }
     );
-
-    if (!isFirstLoad.current && !isLoading) {
+    const currentObserver = bottomObserver.current;
+    if (!!currentObserver && !isFirstLoad.current && !isLoading) {
       io.observe(bottomObserver.current);
     }
 
@@ -98,13 +98,18 @@ const MainProductTemplate = () => {
   // });
   //}, [page]); // 렌더링 발생 시 최초 1회만 실행 되도록 => page가 변화할 때마다 실행되도록 수정
   //console.log("Products:", products);
+
+  if (error) {
+    return (
+      <Container className="w-full px-24 py-6 m-auto">
+        <div>{error.message}</div>
+      </Container>
+    );
+  }
+
   return (
     <Container className="w-full px-24 py-6 m-auto">
-      {!!error ? (
-        <div>{error.message}</div>
-      ) : (
-        <ProductGrid products={products} isLoading={isLoading} />
-      )}
+      <ProductGrid products={products} isLoading={isLoading} />
       <div ref={bottomObserver}></div>
     </Container>
   );
