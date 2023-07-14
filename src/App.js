@@ -5,7 +5,6 @@ import HomePage from "./pages/HomePage";
 import GNB from "./components/atoms/GNB";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import ComponentsPage from "./pages/ComponentsPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 // import Nav from "./components/organisms/Nav";
 
@@ -29,7 +28,6 @@ function App() {
                 <Route path="/" element={<HomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/register" element={<RegisterPage/>}/>
-                <Route path="/ComponentsPage" element={<ComponentsPage/>}/>
                 <Route path="/product/:id" element={<ProductDetailPage/>}/>
             </Routes>
         </BrowserRouter>

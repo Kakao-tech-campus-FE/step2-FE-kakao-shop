@@ -1,6 +1,8 @@
 import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
 import { comma } from "../../utils/comma";
+import "../../styles/ProductCard.css";
+
 
 const ProductCard = ({ product }) => {
     return (

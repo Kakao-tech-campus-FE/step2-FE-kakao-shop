@@ -29,14 +29,17 @@ footer, header, hgroup, menu, nav, section {
 
 * {
     font-family: 'yg-jalnan', Helvetica, sans-serif;
+    font-size: 1rem;
 }
 
-
-.loginPage, .mainPage, .registerPage, .componentsPage, .productDetailPage {
-    text-align: center;
+.mainPage {
     margin-top: 180px;
 }
 
+.loginPage, .registerPage, .productDetailPage {
+    text-align: center;
+    margin-top: 180px;
+}
 
 @font-face {
     font-family: 'yg-jalnan';

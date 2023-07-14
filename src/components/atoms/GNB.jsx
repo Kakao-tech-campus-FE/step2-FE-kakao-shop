@@ -1,7 +1,6 @@
 import Swal from 'sweetalert2'
 import { logoutMessage, clearTokens } from '../../utils/constants';
 import { Link } from "react-router-dom";
-
 import "../../styles/GNB.css";
 
 const GNB = () => {
@@ -26,7 +25,6 @@ const GNB = () => {
             ? <span className="navbarMenu">{email}님 안녕하세요!</span> 
             : <></>} */}
             <Link className="navbarMenu logo" to={"/"}>로고(메인 화면)</Link>
-            <Link className="navbarMenu" to={"/ComponentsPage"}>컴포넌트 테스팅</Link>
             <Link className="navbarMenu" to={"/"}>장바구니</Link>
             <div className="divider"></div>
             <Link className="navbarMenu" to={"/register"}>회원가입</Link>
