@@ -96,7 +96,7 @@ const RegisterForm = ({
 
     return (
         <Container
-            className={`d-flex flex-column align-items-center p-5 border text-start ${className}`}
+            className={`d-flex flex-column align-items-center p-5 border text-start w-75 mx-auto ${className}`}
         >
             <Container className="w-100 d-flex flex-row p-0">
                 <InputGroup
@@ -108,6 +108,7 @@ const RegisterForm = ({
                     value={value.email ? value.email : ""}
                     description={description.email}
                     placeholder="이메일을 입력해주세요."
+                    className={`w-100`}
                     onChange={handleOnChange}
                 />
                 <Button

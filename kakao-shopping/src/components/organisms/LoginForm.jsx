@@ -36,7 +36,7 @@ const LoginForm = ({
     const dispatch = useDispatch();
     return (
         <Container
-            className={`d-flex flex-column align-items-center p-5 border ${className}`}
+            className={`d-flex flex-column align-items-center p-5 border mx-auto ${className}`}
             style={{ width: "580px" }}
         >
             <InputGroup

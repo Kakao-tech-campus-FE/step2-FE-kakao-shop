@@ -8,7 +8,12 @@ const Card = ({
     children, // children
 }) => {
     return (
-        <Link className={`card ${className}`} to={to} id={id}, style={style}>
+        <Link
+            className={`card text-decoration-none ${className}`}
+            to={to}
+            id={id}
+            style={style}
+        >
             {children}
         </Link>
     );

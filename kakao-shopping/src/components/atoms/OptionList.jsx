@@ -17,3 +17,5 @@ const OptionList = ({ options, onClick }) => {
         </ol>
     );
 };
+
+export default OptionList;
