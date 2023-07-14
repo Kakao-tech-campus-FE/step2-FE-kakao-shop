@@ -585,6 +585,140 @@ Gnd 컴포넌트가 렌더링될 때, 로컬 스토리지에 저장된 시각 �
 </div>
 </details>
 
+
+<details>
+<summary>부산대FE_김성현_2주차 과제</summary>
+<div>
+<br>
+
+✅**과제 1. 상품 목록 페이지 개발**
+
+```
+const {
+        data : products,
+        isLoading, 
+        isFetchingNextPage, 
+        fetchNextPage, 
+        hasNextPage
+      } = useInfiniteQuery('products', ({ pageParam = 0 }) => fetchProducts(pageParam), {
+        getNextPageParam: (lastPage, allPages) => {
+          if (lastPage.response && lastPage.response.length === 0) {
+            return null;
+          }
+
+          return allPages.length;
+        }
+    });
+```
+react-query에서 제공하는 함수 중에 useInfiniteQuery를 사용했다.
+파라미터 값의 변경으로 useQuery를 계속해서 호출할 수 있어,
+무한 스크롤에 잘 맞는다고 생각했다.
+
+https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery
+
+
+```
+const {ref, inView} = useInView();
+
+useEffect(() => {
+    if(inView && hasNextPage) {
+        fetchNextPage();
+    }
+}, [inView]);
+```
+
+react-intersection-observer를 통해 io를 구현했다.
+마지막에 div를 추가하여, 감지 시에 fetchNextPage가 실행되도록 했다.
+
+
+```
+const Loader = () => {
+    return (
+        <div className="flex items-center justify-center w-full mx-auto my-10">
+            <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="40px" height="40px" viewBox="0 0 40 40" enableBackground="new 0 0 40 40" xmlSpace="preserve">
+            <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
+                s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
+                c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"/>
+            <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0
+                C22.32,8.481,24.301,9.057,26.013,10.047z">
+                <animateTransform attributeType="xml"
+                attributeName="transform"
+                type="rotate"
+                from="0 20 20"
+                to="360 20 20"
+                dur="0.5s"
+                repeatCount="indefinite"/>
+                </path>
+            </svg>
+        </div>
+    );
+}
+```
+
+SVG 파일로 원형의 스피너를 로더 이미지로 찾았다.
+직접적으로 가운데 정렬을 했으나, 
+범용성을 위해 className으로 받아 div에 넣어주는게 좋겠다는 생각이 들었다.
+
+
+<br>
+
+✅**과제 2. 스켈레톤과 로더**
+
+기본 atom으로 스켈레톤을 구현했다.
+
+molecule 레벨에서 Product Card의 모습을 본 따,
+SkeletonProductCard 컴포넌트를 만들었다.
+
+SkeletonProdectGrid는 마찬가지로,
+Product Grid와 유사하게 grid-col 옵션에 1fr 4개로 만들었다.
+
+<br>
+
+✅**과제 3. 백엔드 상태 코드 반응**
+
+useInfiniteQuery의 옵션에서 onError를 통해 에러 캐칭이 가능했다.
+
+```
+onError: (error) => {
+    switch(error.status) {
+        case 300: 
+            alert(`에러 300: ${error.message}`);
+            break;
+        case 400: 
+            alert(`에러 400: ${error.nessage}`);
+            break;
+        case 500: 
+            alert(`에러 500: ${error.message}`);
+            break;
+        default: 
+            alert(`에러: ${error.message}`);
+            break;
+    }
+}
+```
+
+
+<br>
+
+---
+
+api를 page index를 통해 전달하려고 했으나, 
+받은 데이터에는 page index가 없었다.
+
+왜 id를 통해 값을 전달받는지 이해했다.
+
+allPages.length를 next Param으로 넣었다.
+
+네트워크를 확인했을 때, length가 page의 길이여서
+index로 주었다.
+
+
+과제 상세를 방금 보았다...
+
+</div>
+</details>
+
 ---
 
 <details>
