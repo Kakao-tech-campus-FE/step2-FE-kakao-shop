@@ -1,0 +1,19 @@
+.imageLoader {
+  height: 300px;
+  width: 300px;
+  background-color: #ccc;
+}
+
+.nameLoader {
+  height: 1em;
+  width: 200px;
+  margin-top: 4px;
+  background-color: #ccc;
+}
+
+.priceLoader {
+  height: 1em;
+  width: 150px;
+  margin-top: 4px;
+  background-color: #ccc;
+}

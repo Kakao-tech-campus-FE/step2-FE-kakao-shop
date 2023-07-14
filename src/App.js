@@ -15,10 +15,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/*단독 레이아웃 */}
           <Route path={LOGIN_PATH} element={<LoginPage />} />
           <Route path={SIGNUP_PATH} element={<RegisterPage />} />
-          {/*공통 레이아웃: GNB, Footer */}
           <Route element={<MainLayout />}>
             <Route path={HOME_PATH} element={<HomePage />} />
             <Route path={PRODUCT_DETAIL_PATH} element={<ProductDetailPage />} />
