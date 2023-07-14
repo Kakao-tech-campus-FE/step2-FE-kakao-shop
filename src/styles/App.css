@@ -36,7 +36,7 @@ footer, header, hgroup, menu, nav, section {
     margin-top: 180px;
 }
 
-.loginPage, .registerPage, .productDetailPage {
+.loginPage, .registerPage, .productDetailPage, .notFoundPage {
     text-align: center;
     margin-top: 180px;
 }

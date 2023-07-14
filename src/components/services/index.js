@@ -1,5 +1,6 @@
 import axios from "axios"
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 import { clearTokens } from "../../utils/constants";
 
 export const instance = axios.create({
@@ -28,6 +29,12 @@ instance.interceptors.response.use(
     (response) => {
         return response;
     },
+    // HTTP 응답 코드별 상태 정리
+    // 1XX : 정보 제공
+    // 2XX : 성공(Success)
+    // 3XX : 리다이렉션(Redirection)
+    // 4XX : 클라이언트 에러
+    // 5XX : 서버 에러
     (error) => {
         // 401 error : 인증되지 않음 - 로그인 화면으로 이동
         // token은 백엔드에서 유효하지 않다면 401(Unauthorized) Http code를 보내주기에, 이에따라 처리
@@ -45,7 +52,19 @@ instance.interceptors.response.use(
             return Promise.resolve();
         }
 
-        // 401외의 다른 error
+        // 404 error : 지정한 리소스를 찾을 수 없음
+        // 에러 메시지를 띄워주는 것 외에, 잘못된 경로로 이동 시 NotFound페이지로 이동(라우팅에서 처리)
+        if (error.response.status === 404) {
+            Swal.fire({
+                icon: 'error',
+                title: '없는 페이지입니다😅',
+                text: error.response.data.error.message,
+                confirmButtonText: '확인',
+            })
+            return Promise.reject(error.response);
+        }
+
+        // 401, 404 외의 다른 error
         else {
             Swal.fire({
                 icon: 'error',
