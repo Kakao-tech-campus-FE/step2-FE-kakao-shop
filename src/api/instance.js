@@ -32,4 +32,25 @@ instance.interceptors.request.use(
   }
 );
 
+instance.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (!error.response || !error.response.status) {
+      return Promise.reject(error);
+    }
+
+    switch (error.response.status) {
+      case 401:
+        // Promise chaining
+        return new Promise(() => {});
+      case 404:
+        return new Promise(() => {});
+      default:
+        return Promise.reject(error);
+    }
+  }
+);
+
 export default instance;
