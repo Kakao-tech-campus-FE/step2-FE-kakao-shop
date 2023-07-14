@@ -1,29 +1,13 @@
-import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import RegisterPage from './pages/RegisterPage';
-import LoginPage from './pages/LoginPage';
-import NotFoundPage from './pages/NotFoundPage';
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <MainPage />,
-    errorElement: <NotFoundPage />,
-    children: [
-      { index: true, element: <MainPage /> },
-      { path: '/login', element: <RegisterPage /> },
-      { path: '/register', element: <LoginPage /> },
-    ],
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-]);
+import { Outlet } from 'react-router-dom';
+import GNB from './components/molecules/GNB';
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <GNB />
+      <Outlet />
+    </>
+  );
 }
 
 export default App;
