@@ -11,12 +11,17 @@ const GNB = () => {
   
   // 새로고침해도 로그인 지속
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem('userInfo'));
-    if(storedUser.expirationTime > Date.now()) {
-      dispatch(loginSuccess(storedUser));
-    } else {
-      dispatch(logout());
+    try {
+      const storedUser = JSON.parse(localStorage.getItem('userInfo'));
+      if(storedUser.expirationTime > Date.now()) {
+        dispatch(loginSuccess(storedUser));
+      } else {
+        dispatch(logout());
+      }
+    } catch (error) {
+      console.log("Parse error", error);
     }
+    
   },[dispatch]);
 
   const handleLogoutClick = () => {
@@ -35,7 +40,7 @@ const GNB = () => {
           <div className="flex items-center">
             <Link to='/'><img className="w-8" src="/assets/cart.png" alt="cart"/></Link>
             <span className="px-4">|</span>
-              {isLoggedIn ?
+              {!!isLoggedIn ?
             <Button className="text-sm" onClick={handleLogoutClick}>로그아웃</Button> :
               <Link className="text-sm mr-4" to='/login'>로그인</Link>
               }
