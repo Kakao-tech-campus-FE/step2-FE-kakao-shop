@@ -4,8 +4,9 @@ export const FETCH_PRODUCT_DATA = 'home/FETCH_PRODUCT_DATA';
 export const SET_PRODUCT_DATA = 'home/SET_PRODUCT_DATA';
 export const SET_PRODUCT_LOADING_STATE = 'home/SET_PRODUCT_LOADING_STATE';
 
-export const productDataRequest = (): FetchProductDataAction => ({
+export const productDataRequest = (payload: number): FetchProductDataAction => ({
   type: FETCH_PRODUCT_DATA,
+  payload,
 });
 
 export const setProductData = (payload: ProductResponse): SetProductDataAction => ({
@@ -18,7 +19,7 @@ export const setProductLoadingState = (): SetProductLoadingStateAction => ({
 });
 
 export const initialState: HomeState = {
-  isLoading: true,
+  isLoading: false,
   products: [],
 };
 
@@ -30,7 +31,7 @@ export const homeReducer = produce(
         break;
 
       case SET_PRODUCT_DATA:
-        draft.products = action.payload.response;
+        draft.products.push(...action.payload.response);
         draft.isLoading = false;
         break;
 
@@ -43,6 +44,7 @@ export const homeReducer = produce(
 
 export type FetchProductDataAction = {
   type: typeof FETCH_PRODUCT_DATA;
+  payload: number;
 };
 
 export type SetProductDataAction = {
