@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function Carousel() {
+function Carousel({width = "100%", height = "400px"}) {
     const imageUrlList = [
         "https://images.unsplash.com/photo-1529788295308-1eace6f67388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format",
         "https://images.unsplash.com/photo-1682686578615-39549501dd08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format",
@@ -51,8 +51,8 @@ function Carousel() {
     }
     return (
         <div style={{
-            width: '100%',
-            height: '400px',
+            width: width,
+            height: height,
             overflow: 'hidden',
             position: 'relative',
         }}>
