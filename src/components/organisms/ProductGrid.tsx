@@ -11,7 +11,7 @@ const ProductGrid = ({ products }: ProductGridProps) => {
   const productGridSize = 1080;
   const invisibleCards = new Array(Math.floor(productGridSize / cardSize));
   return (
-    <div className="flex flex-wrap justify-center space-x-[30px]">
+    <div className="flex flex-wrap justify-center gap-x-[30px]">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} size={cardSize} />
       ))}
