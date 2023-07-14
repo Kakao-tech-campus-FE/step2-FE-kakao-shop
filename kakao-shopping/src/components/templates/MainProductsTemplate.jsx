@@ -8,15 +8,21 @@ import { getProducts } from '../../apis/api';
 import Error from "../molecules/Error";
 
 const MainProductsTemplate = () => {
+  const storedPage = sessionStorage.getItem("currentPage");
+  const [page, setPage] = useState(storedPage ? parseInt(storedPage) : 0);
 
-  const [page, setPage] = useState(0);
-
-  const { data, isLoading, isError, error, refetch } = useQuery("products", () => getProducts(page));
+  const { data, isLoading, isError, error, refetch } = 
+  useQuery(
+    "products", 
+    () => getProducts(page), 
+    { keepPreviousData: true }
+  );
 
   const slicedData = data?.data.response;
 
   useEffect(() => {
     refetch();
+    sessionStorage.setItem("currentPage", page);
   }, [page, refetch])
 
   if(isLoading ) {

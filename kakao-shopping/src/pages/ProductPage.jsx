@@ -21,8 +21,8 @@ const ProductPage = () => {
     )
   }
 
-  const product = data.data.response;
-  console.log(product)
+  const product = data?.data.response;
+
   return (
     <div className="flex justify-around h-280">
       <ProductDetail product={product} />
