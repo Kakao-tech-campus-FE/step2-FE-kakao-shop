@@ -1,7 +1,7 @@
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 import { useState } from "react";
 import Title from "../atoms/Title";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,18 +11,26 @@ import { loginUser } from "../../store/userSlice";
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user.email);
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
     try {
-      const response = await login({ email: email, password: password });
+      const response = await login({
+        email: email,
+        password: password,
+      });
       if (response.data.success === true) {
         // 성공적으로 로그인한 경우 메인 페이지로 이동
-        dispatch(loginUser({
-          email :email }
-          ));
+        dispatch(
+          loginUser({
+            email: email,
+            username: user.username,
+          })
+        );
         navigate("/main");
       } else {
         // 로그인 실패 처리
@@ -42,7 +50,8 @@ const LoginForm = (props) => {
   const onPasswordHandler = (e) => {
     setPassword(e.currentTarget.value);
   };
-  const ID_REGEX = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+  const ID_REGEX =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
   const handleID = (e) => {
     // 포커스 이벤트 처리 로직을 여기에 작성합니다.
@@ -54,7 +63,8 @@ const LoginForm = (props) => {
     } else console.log("이메일 형식으로 입력해주세요. ");
   };
 
-  const PW_REGEX = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
+  const PW_REGEX =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$/;
 
   const handlePW = (e) => {
     // 포커스 이벤트 처리 로직을 여기에 작성합니다.
@@ -63,13 +73,15 @@ const LoginForm = (props) => {
       console.log("필수 정보입니다. ");
     } else if (PW_REGEX.test(e.currentTarget.value)) {
       console.log("good");
-    } else console.log("8에서 20자 이내로 영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다");
+    } else
+      console.log(
+        "8에서 20자 이내로 영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다"
+      );
   };
 
   return (
     <Container>
       <Title>로그인</Title>
-      <p>{user}</p>
       <InputGroup
         id="email"
         type="email"

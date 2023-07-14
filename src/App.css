@@ -1,3 +1,6 @@
+* {
+  text-decoration: none;
+}
 .box {
   width: 300px;
 }
@@ -7,10 +10,12 @@ input {
   width: 300px;
 }
 
-.container{
-  position: fixed;
-  margin-top: 150px;
-  margin-left: 450px;
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
 }
 
 button {
