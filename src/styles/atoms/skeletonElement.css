@@ -1,0 +1,17 @@
+.skeleton {
+    box-sizing: border-box;
+    background: #dbdbdb;
+    border-radius: 4px;
+    margin: 10px
+}
+
+.skeleton-product-card {
+    width: 100%;
+    height: 100%;
+    padding: 0.7rem;
+    border-radius: 10px;
+}
+
+.skeleton.product-photo {
+    padding-bottom: 75%;
+}

@@ -1,5 +1,4 @@
 import ProductGrid from "../organisms/ProductGrid";
-import Loader from "../atoms/Loader";
 
 import '../../styles/templates/mainProductTemplate.css';
 
@@ -9,6 +8,7 @@ import {useInfiniteQuery} from "react-query";
 import useProducts from "../../hooks/useProducts";
 import {fetchProductsByPage} from "../../services/product";
 import ErrorSign from "../atoms/ErrorSign";
+import SkeletonProductGrid from "../organisms/SkeletonProductGrid";
 
 const MainProductTemplate = ({children}) => {
 
@@ -26,34 +26,39 @@ const MainProductTemplate = ({children}) => {
                 if (lastPage?.data.response.length < 9) {
                     return undefined;
                 } else {
-                    return pages.length;
+                    return pages?.length;
                 }
             }
         }
     )
 
     const io = useMemo(() => {
-        return new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    if (!throat) {
-                        setThroat(true)
-                        fetchNextPage().then(
-                            (res) => {
-                                addProducts(res.data.pages.flatMap(page => page.data.response))
-                                setThroat(false)
-                            }
-                        )
+            return new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        if (!throat) {
+                            setThroat(true)
+                            fetchNextPage()
+                                .then(
+                                    (res) => {
+                                        addProducts(res.data.pages.flatMap(page => page.data.response))
+                                    }
+                                )
+                                .finally(() => {
+                                        setThroat(false)
+                                    }
+                                )
+                        }
                     }
+                },
+                {
+                    root: null,
+                    threshold: 1,
+                    rootMargin: "80px"
                 }
-            },
-            {
-                root: null,
-                threshold: 1,
-                rootMargin: "80px"
-            }
-        )
-    }, [throat, fetchNextPage, addProducts])
+            )
+        }, [throat, fetchNextPage]
+    )
 
     useEffect(() => {
             if (bottomObserver.current) {
@@ -65,7 +70,7 @@ const MainProductTemplate = ({children}) => {
     return (
         <div className="main-product-template">
             {data && <ProductGrid products={products}/>}
-            {isLoading && <Loader/>}
+            {isLoading && <SkeletonProductGrid skeletonAmount={12}/>}
             {isError && <ErrorSign error={error}/>}
             {!throat && <div className="bottom-observer" ref={bottomObserver}></div>}
         </div>
