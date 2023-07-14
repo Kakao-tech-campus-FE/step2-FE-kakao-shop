@@ -18,7 +18,11 @@ const MainProductTemplate = () => {
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !isEnd) {
-          setPage((page) => page + 1);
+          // setPage((page) => page + 1);
+          setPage((page) => {
+            console.log(page + 1);
+            return page + 1;
+          });
         }
       });
     },
@@ -32,9 +36,9 @@ const MainProductTemplate = () => {
   }, []);
 
   //container안 suspense fallback = {<loader />} 안 productgrid넣어주기
-  // 0번페이지 데이터 로드하고 값 products에 뿌려주기
+  // 페이지 데이터 로드하고 값 products에 뿌려주기
   useEffect(() => {
-    dispatch(getProducts(0));
+    dispatch(getProducts(page));
   }, [dispatch, page]);
 
   // 나중에 suspense 사용해보기

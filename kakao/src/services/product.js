@@ -5,12 +5,12 @@ import { instance } from "./index"; //요거 이상한듯..
 //   return instance.get("/products" + "?page=" + page);
 // };
 
-// 스켈레톤 확인용 딜레이 걸어보기
+// 스켈레톤 확인용 딜레이 걸어보기(이렇게 임의로 딜레이를 걸어도되는걸까?)
 export const fetchProducts = (page = 0) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(instance.get("/products" + "?page=" + page));
-    }, 2000); // 1초 딜레이
+    }, 1000); // 1초 딜레이
   });
 };
 
