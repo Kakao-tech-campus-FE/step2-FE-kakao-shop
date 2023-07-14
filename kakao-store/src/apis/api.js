@@ -22,6 +22,7 @@ instance.interceptors.response.use(
         return response 
     },
     (error) => {
+        /*
         if(error.response.status === 401) {
             localStorage.removeItem("token");
             alert(error.response.data.error.message);
@@ -31,6 +32,7 @@ instance.interceptors.response.use(
             alert(error.response.data.error.message);
             return Promise.resolve();
         }
+        */
         return Promise.reject(error.response);
     }
-)
+);
