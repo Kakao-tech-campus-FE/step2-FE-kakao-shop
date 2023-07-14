@@ -37,6 +37,7 @@ const GNB = () => {
                 to="/"
                 onClick={() => {
                   dispatch(setEmail(null));
+                  window.location.reload(false);
                 }}
               >
                 로그아웃

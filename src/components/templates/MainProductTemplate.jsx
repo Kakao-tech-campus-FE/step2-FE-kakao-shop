@@ -30,6 +30,7 @@ const MainProductTemplate = () => {
       return { data: response.data.response, page: pageParam };
     },
     {
+      staleTime: 300000,
       cacheTime: 0,
       getNextPageParam: (response) => {
         if (response.page === 1) return undefined;

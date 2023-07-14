@@ -7,7 +7,7 @@ const ProductCard = ({ product, skeleton }) => {
     <Card to={`/product/${product.id}`}>
       {!skeleton ? (
         <Photo
-          src={product.image}
+          src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
           alt={product.productName}
           className={"block h-[150px] w-[270px] overflow-hidden rounded-[10px]"}
           imgAnimation={
