@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const HeaderStyle = styled.header`
     height: 4rem;
-    width: 992px;
+    width: 993px;
     border-bottom: 1px solid #dbdbdbb6;
 
     display: flex;

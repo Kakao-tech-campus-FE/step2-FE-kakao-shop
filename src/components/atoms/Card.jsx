@@ -9,5 +9,5 @@ const Card = (to, children) => {
         </div>
     );
 };
-//이번주 과제
+//이번주 과제!
 export default Card;
