@@ -78,12 +78,11 @@ export const loginRequest = createAsyncThunk(
                 localStorage.setItem("email", email);
                 localStorage.setItem("token", response.headers.authorization);
                 localStorage.setItem("tokenExpiration", expirationDate);
-
-                // const navigate = useNavigate();
-                // navigate('/');
             })
             .then(() => {
                 window.location.href = "/";
+                // const navigate = useNavigate();
+                // navigate("/");
             })
             return {
                 email: email,
