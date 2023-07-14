@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import ProductCard from "../molecules/ProductCard";
 import useInfinieScroll from "../../hooks/useInfinieScroll";
-import { fetchProducts } from "../../apis/product";
+import productInstance from "../../apis/product";
 import Loader from "../atoms/Loader";
 
 export default function ProductGrid() {
@@ -9,7 +9,7 @@ export default function ProductGrid() {
   const { error, data, hasNextPage, isFetchingNextPage } = useInfinieScroll({
     queryKey: "/products",
     observeEl: bottomObserver,
-    fetchFunction: fetchProducts,
+    fetchFunction: productInstance.fetchProducts,
   });
 
   if (error) {
@@ -18,8 +18,8 @@ export default function ProductGrid() {
   return (
     <>
       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 gap-y-4 pt-8 pb-20">
-        {data.pages.map((pages) =>
-          pages.map((product) => (
+        {data.pages.map((page) =>
+          page.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
         )}

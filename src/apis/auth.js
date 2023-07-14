@@ -1,24 +1,29 @@
-import { instance } from "./index";
+import ApiInstance from "./index";
+class AuthInstance extends ApiInstance {
+  checkEmail = (email) => {
+    return this.instance.post("/check", { email });
+  };
 
-export const checkEmail = (email) => {
-  return instance.post("/check", { email });
-};
+  signUp = (data) => {
+    const { email, username, password } = data;
 
-export const signUp = (data) => {
-  const { email, username, password } = data;
+    return this.instance.post("/join", {
+      email,
+      username,
+      password,
+    });
+  };
 
-  return instance.post("/join", {
-    email,
-    username,
-    password,
-  });
-};
+  login = (data) => {
+    const { email, password } = data;
 
-export const login = (data) => {
-  const { email, password } = data;
+    return this.instance.post("/login", {
+      email,
+      password,
+    });
+  };
+}
 
-  return instance.post("/login", {
-    email,
-    password,
-  });
-};
+const authInstance = new AuthInstance();
+
+export default authInstance;

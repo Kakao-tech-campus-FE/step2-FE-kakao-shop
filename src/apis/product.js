@@ -1,11 +1,16 @@
-import { instance } from "./index";
+import ApiInstance from "./index";
+class ProductInstance extends ApiInstance {
+  fetchProducts = async (page) => {
+    const response = await this.instance.get(`/products?page=${page}`);
 
-export const fetchProducts = async (page) => {
-  const response = await instance.get(`/products?page=${page}`);
+    return response.data.response;
+  };
 
-  return response.data.response;
-};
+  getProductMyId = (id) => {
+    return this.instance.get(`/products/${id}`);
+  };
+}
 
-export const getProductMyId = (id) => {
-  return instance.get(`/products/${id}`);
-};
+const productInstance = new ProductInstance();
+
+export default productInstance;

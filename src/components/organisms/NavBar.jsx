@@ -11,14 +11,14 @@ import Container from "../atoms/Container";
 export default function NavBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user.isLoggedIn);
 
   const handleLoginClick = () => {
     if (!user) {
       navigate("/login");
     } else {
       removeCookie("accessToken");
-      dispatch(setUser({ user: false }));
+      dispatch(setUser({ isLoggedIn: false }));
     }
   };
 

@@ -1,5 +1,5 @@
 export function setCookie(name, value, unixTime) {
-  var date = new Date();
+  const date = new Date();
   date.setTime(date.getTime() + unixTime);
   document.cookie =
     encodeURIComponent(name) +
@@ -11,7 +11,7 @@ export function setCookie(name, value, unixTime) {
 }
 
 export function getCookie(name) {
-  var value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
+  const value = document.cookie.match("(^|;) ?" + name + "=([^;]*)(;|$)");
   return value ? value[2] : null;
 }
 

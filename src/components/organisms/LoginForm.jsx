@@ -36,11 +36,12 @@ export default function LoginForm() {
             password: form.password,
           })
         );
+
         const accessToken = response.payload.accessToken;
         setCookie("accessToken", accessToken, 1000 * 60 * 60 * 24);
         navigate("/");
       } catch (error) {
-        setError("잘못된 요청입니다.");
+        setError("인증되지 않았습니다");
       }
     }
   };

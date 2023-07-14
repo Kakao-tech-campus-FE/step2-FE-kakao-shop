@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import useSignupValidation from "../../hooks/useSignupValidation";
 import useInput from "../../hooks/useInput";
-import { checkEmail, signUp } from "../../apis/auth";
+import authInstance from "../../apis/auth";
 import { useNavigate } from "react-router-dom";
 
 const initialState = {
@@ -37,7 +37,7 @@ export default function SignupForm() {
 
     if (!errorResult) {
       try {
-        await signUp({
+        await authInstance.signUp({
           email: form.email,
           username: form.username,
           password: form.password,
@@ -60,7 +60,7 @@ export default function SignupForm() {
       emailRef.current.focus();
     } else {
       try {
-        await checkEmail(form.email);
+        await authInstance.checkEmail(form.email);
         setError(false);
         usernameRef.current.focus();
       } catch (error) {
