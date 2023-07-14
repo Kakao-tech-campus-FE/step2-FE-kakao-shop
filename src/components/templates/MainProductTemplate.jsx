@@ -46,7 +46,7 @@ const MainProductTemplate = () => {
       };
   
       const io = new IntersectionObserver(handleObserver, {
-        threshold: 0.3,
+        threshold: 0.5,
       });
   
       if (bottomObserverRef.current) {
