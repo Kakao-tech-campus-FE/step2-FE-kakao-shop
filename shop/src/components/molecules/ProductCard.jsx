@@ -16,18 +16,17 @@ const ProductCard = ({product})=>{
 }
 
 const StyledCard = styled.div`
-  border: 1px solid lightgray;
-  padding:30px;
+  padding:20px;
   letter-spacing: -0.5px;
-  margin-bottom: 30px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 30px 30px;
 `
 const StyledProductName = styled.h1`
   font-size: 20px; 
-  font-weight: 700;
+
   margin-bottom: 10px;
 `
 const StyledProductPrice = styled.p`
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 700;
 `;
 export default ProductCard
