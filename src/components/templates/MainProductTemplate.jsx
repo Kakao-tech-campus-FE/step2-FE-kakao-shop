@@ -16,17 +16,20 @@ const MainProductTemplate = () => {
   const error = useSelector((state) => state.product.error);
   const isEnd = useSelector((state) => state.product.isEnd);
 
+  // const { data, error, isError, isLoading } = useQuery(`/products?page=${page}`, () =>
+  //   fetchProducts(page)
+  // );
+
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting && !isEnd) {
-          console.log("intersection!");
           setPage((page) => page + 1);
         }
       });
     },
     {
-      threshold: 1,
+      threshold: .1,
     }
   );
 
@@ -39,6 +42,8 @@ const MainProductTemplate = () => {
   useEffect(() => {
     dispatch(getProducts(page));
   }, [dispatch, page]);
+
+  console.log(products);
 
   return (
     <Container>

@@ -6,7 +6,6 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import GNB from "./components/atoms/GNB";
 
 function App() {
   const [page, setPage] = React.useState("");

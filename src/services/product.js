@@ -1,7 +1,6 @@
 import { instance } from "./index";
 
 export const fetchProducts = (page = 0) => {
-  // console.log(instance.get("/products" + "?page=" + page));
   return instance.get("/products" + "?page=" + page);
 };
 
@@ -10,9 +9,9 @@ export const fetchProductFromCursor = (cursor) => {
 };
 
 export const getProductsById = (id) => {
-  if (!id) {
-    throw Error("id가 없습니다");
-  }
+  // if (!id) {
+  //   throw Error("id가 없습니다");
+  // }
   // console.log(instance.get("/products/" + id));
   return instance.get("/products/" + id);
 };

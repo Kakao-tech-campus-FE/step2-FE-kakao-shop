@@ -34,14 +34,17 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // switch (error.response.status) {
-    //   case 401:
-    //     alert("로그인이 필요합니다");
-    //     window.location.href = ("/login");
-    //     break;
-    //   case 400:
-    //     return Promise.resolve(error.response);
-    // }
-    throw new Error(error.response.data.error.message);
+    const errorCode = error.response.status;
+    if (errorCode >= 100 && errorCode <= 199) {
+      throw new Error("100번대 상태 코드 수신: " + errorCode)
+    } else if (errorCode >= 200 && errorCode <= 299) {
+      throw new Error("200번대 상태 코드 수신: " + errorCode)
+    } else if (errorCode >= 300 && errorCode <= 399) {
+      throw new Error("300번대 상태 코드 수신: " + errorCode)
+    } else if (errorCode >= 400 && errorCode <= 499) {
+      throw new Error("400번대 상태 코드 수신: " + errorCode)
+    } else {
+      throw new Error("500번대 상태 코드 수신: " + errorCode)
+    }
   }
 );
