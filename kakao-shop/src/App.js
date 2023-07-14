@@ -4,6 +4,7 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import MainLayout from "./layouts/MainLayout";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
         </Route>
+
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
