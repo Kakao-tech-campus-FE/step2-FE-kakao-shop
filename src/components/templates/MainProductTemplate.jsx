@@ -44,10 +44,10 @@ const MainProductTemplate = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    if (!isFetching) {
+    if (isFetching && !isLoading) {
       setProducts((prev) => [...prev, ...Array(9).fill("skeleton")]);
     }
-  }, [isFetching]);
+  }, [isFetching, isLoading]);
 
   useEffect(() => {
     if (data) {
