@@ -3,14 +3,12 @@ import Loader from "../atoms/Loader";
 
 import '../../styles/mainProductTemplate.css';
 
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useMemo, useRef, useState} from "react";
 import {useInfiniteQuery} from "react-query";
 
 import useProducts from "../../hooks/useProducts";
 import {fetchProductsByPage} from "../../services/product";
 import ErrorSign from "../atoms/ErrorSign";
-
-import _ from "lodash";
 
 const MainProductTemplate = ({children}) => {
 
@@ -34,27 +32,28 @@ const MainProductTemplate = ({children}) => {
         }
     )
 
-
-    const io = new IntersectionObserver(
-        ([entry]) => {
-            if (entry.isIntersecting) {
-                if ( !throat ) {
-                    setThroat(true)
-                    fetchNextPage().then(
-                        (res) => {
-                            addProducts(res.data.pages.flatMap(page => page.data.response))
-                            setThroat(false)
-                        }
-                    )
+    const io = useMemo(() => {
+        return new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    if (!throat) {
+                        setThroat(true)
+                        fetchNextPage().then(
+                            (res) => {
+                                addProducts(res.data.pages.flatMap(page => page.data.response))
+                                setThroat(false)
+                            }
+                        )
+                    }
                 }
+            },
+            {
+                root: null,
+                threshold: 1,
+                rootMargin: "80px"
             }
-        },
-        {
-            root: null,
-            threshold: 1,
-            rootMargin: "80px"
-        }
-    )
+        )
+    }, [throat, fetchNextPage, addProducts])
 
     useEffect(() => {
             if (bottomObserver.current) {
