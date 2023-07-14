@@ -5,13 +5,16 @@ import Carousel from '../components/molecules/Carousel';
 import MainProductsTemplate from '../components/templates/MainProductsTemplate';
 import { useQuery } from 'react-query';
 import { getProducts } from '../apis/api';
+import Error from './Error';
 
 const Main = () => {
-  const { data, isLoading, isError, error } = useQuery("products", getProducts, {
-    onError: (error) => {
-      console.log(error);
-    }
-  });
+  const { data, isLoading, isError, error } = useQuery("products", getProducts);
+
+  if(isError) {
+    return (
+      <Error errorStatus={error.message}/>
+    )
+  }
   
   return (
     <Container>
