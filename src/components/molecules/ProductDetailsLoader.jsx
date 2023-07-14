@@ -1,6 +1,10 @@
 import { styled } from "styled-components";
 import ProductInfo from "../atoms/ProductInfo";
 import ProductOption from "../atoms/ProductOption";
+import SkeletonPhoto from "../atoms/SkeletonPhoto";
+import SkeletonRating from "../atoms/SkeletonRating";
+import SkeletonTitle from "../atoms/SkeletonTitle";
+import SkeletonOption from "../atoms/SkeletonOption";
 
 const Container = styled.div`
   width: 100%;
@@ -12,8 +16,12 @@ const Container = styled.div`
 const ProductDetailsLoader = () => {
   return (
     <Container>
-      <ProductInfo />
-      <ProductOption />
+      <ProductInfo
+        photo={<SkeletonPhoto />}
+        rating={<SkeletonRating />}
+        title={<SkeletonTitle />}
+      />
+      <ProductOption option={<SkeletonOption />} />
     </Container>
   );
 };

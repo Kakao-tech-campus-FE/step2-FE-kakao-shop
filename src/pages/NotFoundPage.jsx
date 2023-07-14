@@ -4,7 +4,7 @@ import GlobalNavBar from "../components/organisms/GlobalNavBar";
 const NotFoundPage = () => {
   return (
     <>
-      <GlobalNavBar />
+      <GlobalNavBar height="80px" />
       <NotFound />
     </>
   );
