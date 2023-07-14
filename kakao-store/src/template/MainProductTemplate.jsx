@@ -5,8 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../store/slices/productSlice";
 import { fetchProducts } from "../services/product";
 import Loader from "../components/atoms/Loader";
-
-import "../styles/Skeleton.css";
+import { useQuery } from "react-query";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -14,8 +13,12 @@ const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.products);
-  const error = useSelector((state) => state.product.error);
+  // const [products, setProducts] = useState([]);
   const isEnd = useSelector((state) => state.product.isEnd);
+
+  const { data, isError, error } = useQuery([("products", page)], async () => {
+    return await fetchProducts(page);
+  });
 
   const io = new IntersectionObserver(
     (entries) => {
@@ -31,12 +34,17 @@ const MainProductTemplate = () => {
     { threshold: 1 }
   );
   const time = 2000;
+
   useEffect(() => {
-    io.observe(bottomObserver.current);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, time);
-  }, [page]);
+    if (data?.data.response.length < 9) {
+      io.disconnect(bottomObserver.current);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, time);
+    } else {
+      io.observe(bottomObserver.current);
+    }
+  }, [data]);
 
   useEffect(() => {
     dispatch(getProduct(page));
@@ -45,19 +53,15 @@ const MainProductTemplate = () => {
   return (
     <Container className={"product-section"}>
       <Suspense fallback={<Loader />}>
-        {isLoading && <Loader />}
-        {isLoading && (
-          // <SkeletonCard />
-          <div className="col col-10 skeleton-field-wrapper">
-            {Array.from(Array(15).keys()).map((index) => (
-              <div key={index} className="skeleton"></div>
-            ))}
-          </div>
+        {isLoading ? (
+          <>
+            <Loader />
+            <ProductGrid products={products} isLoading={true} />
+          </>
+        ) : (
+          <ProductGrid products={products} isLoading={false} />
         )}
         {error && <p>에러가 발생했습니다.</p>}
-        {!isLoading && (
-          <ProductGrid products={products} isLoading={isLoading} />
-        )}
         <div ref={bottomObserver}></div>
       </Suspense>
     </Container>

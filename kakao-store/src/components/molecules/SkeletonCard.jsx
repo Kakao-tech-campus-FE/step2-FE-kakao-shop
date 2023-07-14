@@ -1,35 +1,12 @@
-import React from "react";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import Card from "../atoms/Card";
 
-const SkeletonCard = () => {
+const SkeletonCard = ({ product }) => {
   return (
-    <SkeletonTheme color="#202020" highlightColor="#444">
-      <section>
-        <h2 className="section-title">
-          <Skeleton duration={1} height={30} width={300} />
-        </h2>
-
-        <ul className="list">
-          {Array(9)
-            .fill()
-            .map((item, index) => (
-              <li className="card" key={index}>
-                <Skeleton height={180} />
-                <h4 className="card-title">
-                  <Skeleton circle={true} height={50} width={50} /> &nbsp;
-                  <Skeleton height={36} width={`80%`} />
-                </h4>
-                <p className="card-channel">
-                  <Skeleton width={`60%`} />
-                </p>
-                <div className="card-metrics">
-                  <Skeleton width={`90%`} />
-                </div>
-              </li>
-            ))}
-        </ul>
-      </section>
-    </SkeletonTheme>
+    <Card to={`/products/${product.id}`} className="rounded-md bg-gray-200 p-4">
+      <div className="mb-4 h-48 w-full rounded-md bg-gray-300"></div>
+      <h3 className="mb-2 h-6 w-3/4 bg-gray-300"></h3>
+      <p className="h-4 w-1/2 bg-gray-300"></p>
+    </Card>
   );
 };
 

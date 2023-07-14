@@ -12,11 +12,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
 const queryClient = new QueryClient();
 
-function preprocessResponse(response) {
-  // Preprocessing logic goes here...
-  return response;
-}
-
 function alertError(error) {
   alert(error.response.data.error.message);
 }
@@ -24,21 +19,18 @@ function alertError(error) {
 function useApiQuery(queryKey, fetchData) {
   return useQuery(queryKey, fetchData, {
     onError: (error) => {
-      if (error.response?.status === 401) {
+      if (error.response?.status >= 200 && error.response?.status < 300) {
         alertError(error)
-      } else if (error.response?.status === 500) {
+      } else if (error.response?.status >= 300 && error.response?.status < 400) {
         alertError(error)
       } else if (error.response?.status >= 400 && error.response?.status < 500) {
         alertError(error)
       } else {
-        // Handle other errors
-        // Add your error handling logic here...
+        alertError(error)
       }
     },
     onSuccess: (data) => {
-      // Preprocess the API response
-      const processedData = preprocessResponse(data);
-      console.log("onSuccess")
+      console.log(data)
       return ;
     },
   });
@@ -47,17 +39,16 @@ function useApiQuery(queryKey, fetchData) {
 //200, 500, 401, 3XX, 2XX, 4XX 
 
 function AppWrapper() {
-  // Example usage of the custom useApiQuery hook
   const { isLoading, error, data } = useApiQuery('product', () =>
     fetch(process.env.REACT_APP_API_URL).then((response) => response.json())
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>로딩</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>에러: {error.message}</div>;
   }
 
   return <App data={data} />;

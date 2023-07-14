@@ -1,16 +1,27 @@
 import ProductCard from "../molecules/ProductCard";
+import SkeletonCard from "../molecules/SkeletonCard";
 
 const ProductGrid = ({ products, isLoading }) => {
+  if (isLoading) {
+    return (
+      <div className="product-grid m-4 grid w-full max-w-full grid-cols-3 gap-4">
+        {products.map((product) => (
+          <SkeletonCard key={product.id} product={product} />
+        ))}
+      </div>
+    );
+  }
   //loading state
   //error state
   //presentation state
-  return (
-    <div className="product-grid m-4 grid w-full max-w-full grid-cols-3 gap-4">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} isLoading={isLoading} />
-      ))}
-    </div>
-  );
+  else
+    return (
+      <div className="product-grid m-4 grid w-full max-w-full grid-cols-3 gap-4">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    );
 };
 
 export default ProductGrid;
