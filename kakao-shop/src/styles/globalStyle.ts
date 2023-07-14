@@ -54,9 +54,7 @@ const globalStyle = css`
     margin: 0;
     padding: 0;
 
-    font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI',
-      'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-      sans-serif;
+    font-family: 'Apple SD Gothic Neo', sans-serif;
   }
 
   h1,
@@ -105,6 +103,20 @@ const globalStyle = css`
 
   #root {
     height: 100%;
+  }
+
+  @font-face {
+    font-family: 'AppleSDGothicNeo';
+    font-weight: 400;
+    font-display: swap;
+    src: url('@assets/font/AppleSDGothicNeoR') format('woff2');
+  }
+
+  @font-face {
+    font-family: 'AppleSDGothicNeo';
+    font-weight: 700;
+    font-display: swap;
+    src: url('@assets/font/AppleSDGothicNeoB') format('woff2');
   }
 `;
 
