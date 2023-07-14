@@ -10,7 +10,7 @@ const Container = styled.div`
   position: relative;
   top: 80px;
   height: auto;
-  min-height: 100%;
+  min-height: calc(100vh - 481px);
 `;
 
 const HomeTemplate = () => {
