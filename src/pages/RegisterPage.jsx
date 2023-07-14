@@ -1,6 +1,6 @@
 // src/pages/RegisterPage.jsx
 import { useDispatch } from "react-redux";
-import { register } from "../services/api";
+import { register } from "../services/user";
 import { setEmail } from "../store/slices/userSlice";
 import RegisterForm from "../components/organisms/RegisterForm";
 
@@ -14,7 +14,6 @@ const RegisterPage = () => {
       dispatch(setEmail({ email}));
       localStorage.setItem("token", token);
     } catch (error) {
-      // 에러 처리
     }
   };
 

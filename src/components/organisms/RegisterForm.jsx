@@ -1,13 +1,12 @@
-// src/components/organisms/RegisterForm.jsx
 import React, { useState } from "react";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { checkEmail } from "../../services/api";
 import Title from "../atoms/Title";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../services/api";
+import { register, checkEmail } from "../../services/user";
+import { validateEmail, validatePassword } from "../../utils/validation";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -18,36 +17,40 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
-  const [isEmailAvailable, setIsEmailAvailable] = useState(false);
   const [isEmailChecked, setIsEmailChecked] = useState(false);
 
   const handleCheckEmail = () => {
     if (value.email.trim() === "") {
       setErrorMessage("이메일을 입력해주세요.");
+      setIsEmailChecked(false); 
       return;
     }
 
-    // 이메일 유효성 검사 로직 추가
     if (!validateEmail(value.email)) {
       setErrorMessage("유효한 이메일을 입력해주세요.");
+      setIsEmailChecked(false); 
       return;
     }
 
     checkEmail({ email: value.email })
       .then((response) => {
-        setIsEmailAvailable(response.success);
-        setErrorMessage("사용 가능한 이메일입니다.");
-        setIsEmailChecked(true); // 중복 체크 완료 상태로 설정
+        if (response.success) {
+          setErrorMessage("사용 가능한 이메일입니다.");
+          setIsEmailChecked(true);
+        } else {
+          setErrorMessage("동일한 이메일이 이미 존재합니다.");
+          setIsEmailChecked(false); 
+        }
       })
       .catch((error) => {
-        console.error("동일한 이메일이 존재합니다.", error);
-        setErrorMessage("동일한 이메일이 이미 존재합니다.");
+        console.error("이메일 중복 체크에 실패하였습니다.", error);
+        setErrorMessage("이메일 중복 체크에 실패하였습니다.");
+        setIsEmailChecked(false); 
       });
   };
 
   const handleRegister = () => {
-    if (!isEmailChecked || !isEmailAvailable) {
+    if (!isEmailChecked) {
       setErrorMessage("이메일 중복 체크를 완료해주세요.");
       return;
     }
@@ -92,23 +95,8 @@ const RegisterForm = () => {
       });
   };
 
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/;
-    return emailRegex.test(email);
-  };
-
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).{8,20}$/;
-    return passwordRegex.test(password);
-  };
-
   const handleLogin = () => {
     navigate("/login");
-  };
-
-  const handleInputChange = (event) => {
-    handleOnChange(event);
-    setErrorMessage(""); // 입력값 변경 시 에러 메시지 초기화
   };
 
   return (
@@ -122,7 +110,7 @@ const RegisterForm = () => {
           placeholder=" 이메일"
           label="이메일 (아이디) "
           value={value.email}
-          onChange={handleInputChange}
+          onChange={handleOnChange}
         />
         
         {!isEmailChecked && (
@@ -139,7 +127,7 @@ const RegisterForm = () => {
           placeholder=" 이름"
           label="이름 "
           value={value.username}
-          onChange={handleInputChange}
+          onChange={handleOnChange}
         />
 
         <InputGroup
@@ -149,23 +137,23 @@ const RegisterForm = () => {
           placeholder=" 비밀번호"
           label="비밀번호 "
           value={value.password}
-          onChange={handleInputChange}
+          onChange={handleOnChange}
         />
 
         <InputGroup
-          id="passwordConfirm"
+         id="passwordConfirm"
           type="password"
           name="passwordConfirm"
           placeholder=" 비밀번호 확인"
           label="비밀번호 확인 "
           value={value.passwordConfirm}
-          onChange={handleInputChange}
+          onChange={handleOnChange}
         />
       </div>
 
-      {isEmailChecked && isEmailAvailable && <p>{errorMessage}</p>}
+      {isEmailChecked && <p>{errorMessage}</p>}
 
-      <Button onClick={handleRegister} disabled={!isEmailChecked || !isEmailAvailable}>
+      <Button onClick={handleRegister}>
         회원가입
       </Button>
       {errorMessage && <p>{errorMessage}</p>}
