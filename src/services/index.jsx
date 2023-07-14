@@ -2,7 +2,6 @@ import axios from "axios";
 import cookies from "react-cookies";
 
 export const instance = axios.create({
-    // baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
     baseURL: process.env.REACT_APP_API_URL,
     timeout: 1000,
     headers: {
@@ -23,15 +22,15 @@ instance.interceptors.response.use(
     (response) => {
         return response;
     },
-    (error) => {
-        // if(error.response.status === 400) {
-
-        // }
-        if(error.response.status === 401) {
-            // localStorage.removeItem("token");
-            // window.location.href = "/login";
-            // return Promise.resolve();
+    (error) => { // API 응답 에러 캐칭
+        const { status } = error.response;
+        if(status === 404){
+            window.location.href="/notFound";
+        }
+        if(status >= 500){
+            alert("오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
         }
         return Promise.reject(error.response);
+
     }
 );
