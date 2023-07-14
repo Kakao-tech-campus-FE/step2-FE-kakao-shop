@@ -1,7 +1,7 @@
 import RegisterForm from "../organisms/RegisterForm";
 import Title from "../atoms/Title";
 import Container from "../atoms/Container";
-import "../../styles/formPage.css";
+import "../../styles/pages/formPage.css";
 
 const RegisterPage = () => {
     return (

@@ -2,7 +2,7 @@ import Label from "../atoms/Label";
 import Input from "../atoms/Input";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
-import "../../styles/inputGroup.css"
+import "../../styles/molecules/inputGroup.css"
 
 // @ts-check
 

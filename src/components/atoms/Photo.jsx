@@ -1,4 +1,4 @@
-import "../../styles/productCard.css"
+import "../../styles/molecules/productCard.css"
 
 const Photo = ({ className, src, alt }) => {
 

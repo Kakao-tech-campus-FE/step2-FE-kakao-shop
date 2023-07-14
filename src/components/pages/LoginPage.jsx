@@ -1,7 +1,7 @@
 import Title from "../atoms/Title";
 import LoginForm from "../organisms/LoginForm";
 import Container from "../atoms/Container";
-import "../../styles/formPage.css";
+import "../../styles/pages/formPage.css";
 
 const LoginPage = () => {
     return (

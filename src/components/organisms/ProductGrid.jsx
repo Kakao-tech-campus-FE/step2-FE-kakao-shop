@@ -1,5 +1,5 @@
 import ProductCard from '../molecules/ProductCard';
-import '../../styles/productGrid.css';
+import '../../styles/organisms/productGrid.css';
 const ProductGrid = ({ products }) => {
     // loading state
 

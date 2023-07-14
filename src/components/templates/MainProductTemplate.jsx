@@ -1,7 +1,7 @@
 import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../atoms/Loader";
 
-import '../../styles/mainProductTemplate.css';
+import '../../styles/templates/mainProductTemplate.css';
 
 import {useEffect, useMemo, useRef, useState} from "react";
 import {useInfiniteQuery} from "react-query";
