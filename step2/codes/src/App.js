@@ -4,9 +4,24 @@ import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import "./App.css"
+import "./App.css";
+import { useQueryClient } from "react-query";
+import useApiError from "./hooks/useApiError";
 
 function App() {
+
+    const { handleError } = useApiError();
+    const queryClient = useQueryClient();
+
+    queryClient.setDefaultOptions({
+    queries: { onError: (error) => handleError(error) },
+    mutations: {
+      onError: (error) => {
+        handleError(error);
+      },
+    },
+  });
+
     return (
         <div className="App">
             <BrowserRouter>

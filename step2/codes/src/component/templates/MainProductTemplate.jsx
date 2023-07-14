@@ -16,19 +16,21 @@ const MainProductTemplate = () => {
 
   const loadPrevPage = () => {
       setPage((prevPage) => prevPage - 1);
+      console.log(page);
     };
     
     const loadNextPage = () => {
         setPage((prevPage) => prevPage + 1);
+        console.log(page);
     };
     const productArray = products?.payload?.response || [];
     
+
     useEffect(() => {
         dispatch(getProducts(page));
       }, [dispatch, page]);
   
-
-
+    
   return (
     <Container className="productsView">
         {isLoading ? (
