@@ -1,4 +1,4 @@
-import '../../styles/Toast.css';
+import './Toast.css';
 import React, { useState, useEffect, useRef } from "react";
 
 function Toast() {

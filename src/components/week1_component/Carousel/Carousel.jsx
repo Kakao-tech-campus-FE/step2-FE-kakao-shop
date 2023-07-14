@@ -1,4 +1,4 @@
-import '../../styles/Carousel.css';
+import './Carousel.css';
 import React, { useState, useEffect } from "react";
 
 function Carousel({items}) {
