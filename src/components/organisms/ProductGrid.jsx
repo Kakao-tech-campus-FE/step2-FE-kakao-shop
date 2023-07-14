@@ -1,4 +1,5 @@
 import ProductCard from "../molecules/ProductCard";
+import ProductCardSkeleton from "../atoms/ProductCardSkeleton";
 import "../../styles/organisms/ProductGrid.css";
 
 const ProductGrid = ({ products }) => {
@@ -8,7 +9,15 @@ const ProductGrid = ({ products }) => {
   윗단에서 로딩 상태를 관리하는게 좋을 것 같다
   MainProductTemplate.jsx를 두어 관리
   */
-  return (
+  //products = [];
+  const isLoading = products.length === 0;
+  return isLoading ? (
+    <div className="product-grid">
+      {Array.from({ length: 12 }, (_, index) => (
+        <ProductCardSkeleton key={index} />
+      ))}
+    </div>
+  ) : (
     <div className="product-grid">
       {products.map((product) => {
         return <ProductCard key={product.id} product={product} />;

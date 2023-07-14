@@ -62,7 +62,7 @@ const MainProductTemplate = () => {
   }, [dispatch, page]); // 렌더링 발생 시 최초 1회만 실행 되도록 => page가 변화할 때마다 실행되도록 수정
 
   return (
-    <Container className="w-full px-24 py-6">
+    <Container className="w-full px-24 py-6 m-auto">
       <div>{`${page}${loading}${isFirstLoad}`}</div>
       <ProductGrid products={products} />
       <div ref={bottomObserver}></div>
