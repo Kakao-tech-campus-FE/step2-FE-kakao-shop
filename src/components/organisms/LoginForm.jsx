@@ -29,8 +29,9 @@ const LoginForm = () => {
       .then((response) => {
         if (response.status === 200) {
           navigate("/");
-          dispatch({ type: "changeState" });
+          // dispatch({ type: "changeState" });
           localStorage.setItem("userInfo", JSON.stringify(data));
+          alert("로그인 성공!");
         }
       })
       .catch((error) => console.log(error));

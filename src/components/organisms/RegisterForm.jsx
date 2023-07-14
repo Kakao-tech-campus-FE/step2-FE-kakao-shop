@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
 
 const RegisterForm = () => {
+  const navigate = useNavigate();
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
@@ -23,8 +24,6 @@ const RegisterForm = () => {
     handleConfirmPwMsg(value.password, e.target.value);
   };
 
-  const navigate = useNavigate();
-
   const handleSubmit = () => {
     register({
       email: value.email,
@@ -34,6 +33,7 @@ const RegisterForm = () => {
       .then((response) => {
         if (response.status === 200) {
           navigate(routes.home);
+          alert("회원가입 성공!");
         }
       })
       .catch((error) => console.log(error));
