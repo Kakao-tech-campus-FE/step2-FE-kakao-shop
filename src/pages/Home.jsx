@@ -6,6 +6,8 @@ import { getProducts } from "../store/slices/productSlice";
 import { fetchProducts } from "../services/product";
 import { useEffect, useState } from "react";
 import ProductGrid from "../components/organisms/ProductGrid";
+import { Outlet } from "react-router-dom";
+import Footer from "../components/molecules/Footer";
 
 
 
@@ -34,8 +36,9 @@ function Home() {
     return (
         <>
             <MainLayout />
-            <ProductGrid products={Data}></ProductGrid>
-            {/* <div>{Data.map((d) => <div>{d.productName}</div>)}</div> */}
+            <ProductGrid products={Data} />
+            <Footer />
+
         </>
     );
 }

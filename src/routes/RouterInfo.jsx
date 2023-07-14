@@ -15,7 +15,7 @@ export const RouterInfo = [
             //     element: <Login></Login>,
             //     label: 'login'
             // }
-        ]// 이상하게 children에 넣으면 작동되지 않습니다ㅜㅜ
+        ]
     },
     {
         path: `${routes.logIn}`,

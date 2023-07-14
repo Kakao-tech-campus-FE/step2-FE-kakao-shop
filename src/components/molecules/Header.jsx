@@ -26,18 +26,21 @@ const Header = () => {
 
 
     return (
-        <HeaderStyle>
-            {JWT ? < HeaderList name="로그아웃" slash={false}
-                onClick={() => {
-                    localStorage.removeItem('jwt')
-                    setJWT(null)
-                }
+        <>
+            <h1 onClick={() => { navigate(routes.home); }}>Kakao</h1>
+            <HeaderStyle>
+                {JWT ? < HeaderList name="로그아웃" slash={false}
+                    onClick={() => {
+                        localStorage.removeItem('jwt')
+                        setJWT(null)
+                    }
 
-                }></ HeaderList > : <>
-                < HeaderList name="로그인" slash={true} onClick={() => { navigate(routes.logIn); }}></ HeaderList >
-                <HeaderList name="회원가입" slash={false} onClick={() => { navigate(routes.signUp); }}></HeaderList>
-            </>}
-        </HeaderStyle>
+                    }></ HeaderList > : <>
+                    < HeaderList name="로그인" slash={true} onClick={() => { navigate(routes.logIn); }}></ HeaderList >
+                    <HeaderList name="회원가입" slash={false} onClick={() => { navigate(routes.signUp); }}></HeaderList>
+                </>}
+            </HeaderStyle></>
+
     );
 };
 
