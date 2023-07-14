@@ -1,5 +1,6 @@
 const Photo = ({
-    src, alt,
+    src, // 이미지 주소
+    alt, // 이미지 설명
     className = "", // class
     id = "", // id       
     style = {}, // style

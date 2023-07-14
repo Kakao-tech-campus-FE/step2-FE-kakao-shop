@@ -5,7 +5,7 @@ const Container = ({
     children, // 자식 Component
 }) => {
     return (
-        <div className={`Container ${className}`} id={id} style={style}>
+        <div className={`container ${className}`} id={id} style={style}>
             {children}
         </div>
     );

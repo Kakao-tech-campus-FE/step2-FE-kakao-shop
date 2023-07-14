@@ -7,15 +7,20 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import { QuertClient, QueryClientProvider } from "react-query"
+import { ReactQueryDevtools } from "react-query/devtools"
 
 export let persistor = persistStore(store);
+const queryClient = new QueryClient();
 
 function App() {
     return (
         <div className="App">
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-                    <BrowserRouter>
+                    <QueryClientProvider client={queryClient}>
+                        <ReactQueryDevtools initialIsOpen={true}/>
+                        <BrowserRouter>
                         <Routes>
                             {/* 단독 레이아웃 */}
                             <Route path="/login" element={<LoginPage />}>
@@ -30,6 +35,7 @@ function App() {
                             </Route>
                         </Routes>
                     </BrowserRouter>
+                    </QueryClientProvider>
                 </PersistGate>
             </Provider>
         </div>

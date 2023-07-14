@@ -10,7 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { userLogout } from "../../store/userSlice";
 import { persistor } from "../../App";
 
-const Header = ({
+const GNB = ({
     className, // class
 }) => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Header = ({
         await persistor.purge();
     };
     return (
-        <Container
+        <div
             className={`GNB d-flex flex-row align-items-center justify-content-between w-100 px-5 m-0 border ${className}`}
             style={{height:'80px',}}>
             <div
@@ -55,8 +55,8 @@ const Header = ({
                     )}
             </div>
             
-        </Container>
+        </div>
     );
 };
 
-export default Header;
+export default GNB;
