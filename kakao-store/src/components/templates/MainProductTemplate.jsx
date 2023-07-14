@@ -65,8 +65,6 @@ const MainProductTemplate = () => {
           if (lastPage.response && lastPage.response.length === 0) {
             return null;
           }
-          console.log(allPages);
-
           return allPages.length;
         },
         onError: (error) => {
