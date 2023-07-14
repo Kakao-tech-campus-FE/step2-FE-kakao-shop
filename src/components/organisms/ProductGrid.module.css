@@ -1,0 +1,9 @@
+.product_grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 3rem;
+    margin: 0 auto;
+    padding: 30px 0 120px;
+    width: 100%;
+    max-width: 1280px;
+}

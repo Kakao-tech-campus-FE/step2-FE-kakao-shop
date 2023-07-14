@@ -1,59 +1,61 @@
-import { useState, useEffect, useRef, Suspense } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../store/slices/productSlice";
+import { useEffect, useRef, Suspense } from "react";
+import { fetchProducts } from "../../services/product";
+import { useInfiniteQuery } from "react-query";
 import Loader from "../atoms/Loader";
+import SkeletonGrid from "../organisms/SkeletonGrid";
+import { getProductImage } from "../../services/product";
 
 // components
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 
 const MainProductTemplate = () => {
-    const [page, setPage] = useState(0);
     const bottomObserver = useRef(null);
-    const dispatch = useDispatch();
-    const products = useSelector((state) => state.products.products);
-    const loading = useSelector((state) => state.products.loading);
-    const error = useSelector((state) => state.products.error);
-    const isEnd = useSelector((state) => state.products.isEnd);
+    const { data, isLoading, hasNextPage, fetchNextPage } = useInfiniteQuery(
+        'productsData',
+        ({pageParam=0})=> fetchProducts(pageParam),
+        {
+            getNextPageParam: (curPage,allPages)=>{
+                return (curPage.data.response.length===9? allPages.length : undefined);
+            },
+        }
+    );
+    
+    const productList = []
+    data?.pages.forEach((page)=> 
+    page.data.response.forEach((data)=>{
+        productList.push(data)
+    }))
+    // console.log(productList)
     
     const io = new IntersectionObserver(
         (entries, observer) => {
             entries.forEach((entry) => {
                 if(!entry.isIntersecting) return;
-
-                if(!loading && entry.isIntersecting && !isEnd && bottomObserver.current) {
-                    setPage((page) => page + 1);
+                if (entry.isIntersecting && hasNextPage && bottomObserver.current) {
+                    // console.log("not working")
+                    fetchNextPage();
                 }
             });
         },
-        { threshold: 1 }
+        { threshold: 0.5 }
     );
 
     useEffect(() => {
         io.observe(bottomObserver.current);
     }, []); // 최초 렌더링 마운트 1회만 선언
 
-    useEffect(() => {
-        if(isEnd) return;
-        
-        dispatch(getProducts(page));
-    }, [dispatch, page]);
-
-
     return (
-        <Container>
-            {loading && <Loader />}
-            <ProductGrid products={products} />
-            <div ref={bottomObserver}></div>
-        </Container>
+        <>
+            
+            <Container>
+                <Suspense fallback={<Loader />}>
+                    <ProductGrid products={productList} />
+                </Suspense>
+                <div ref={bottomObserver}></div>
+            </Container>
+        </>
     )
 }
 
 export default MainProductTemplate;
-
-{/* <Container>
-    <Suspense fallback={<Loader />}>
-        <ProductGrid products={products} />
-        <div ref={bottomObserver}></div>
-    </Suspense>
-</Container> */}

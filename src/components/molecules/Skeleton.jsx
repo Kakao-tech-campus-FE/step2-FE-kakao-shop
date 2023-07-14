@@ -4,8 +4,8 @@ import styles from "./Skeleton.module.css";
 const Skeleton = () => {
     return (
         <Card className={styles.skeleton}>
-            <div className="shimmer-wrapper">
-                <div className="shimmer"></div>
+            <div className={styles.shimmer_wrapper}>
+                <div className={styles.shimmer}></div>
             </div>
             <div className={styles.skeleton_image}></div>
             <p className={styles.skeleton_name}>.</p>

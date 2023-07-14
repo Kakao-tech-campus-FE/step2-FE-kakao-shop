@@ -1,17 +1,12 @@
 :root {
     --maincolor : lightgray;
 }
-.skeleton {
-    position: relative;
-    background-color: red;
-}
-.shimmer-wrapper {
+.shimmer_wrapper {
     position : absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 80%;
     height: 100%;
-    background-color: red;
     animation: loading 2.5s infinite;
 }
 .shimmer {
@@ -19,7 +14,7 @@
     height: 100%;
     background-color: rgba(255, 255, 255, 0.2);
     transform: skewX(-20deg);
-    box-shadow: 0 0 30px 30px rgba(255, 0, 0, 1);
+    box-shadow: 0 0 30px 30px rgba(225, 225, 225, 0.05);
 }
 
 @keyframes loading {
@@ -27,7 +22,7 @@
         transform: translateX(-150%);
     }
     50% {
-        transform: translateX(-60%);
+        transform: translateX(60%);
     }
     100% {
         transform: translateX(150%);

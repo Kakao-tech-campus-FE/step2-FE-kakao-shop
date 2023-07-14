@@ -46,7 +46,7 @@ const ValidMsgBox = styled(Box)`
 `;
 
 
-const LoginForm = ({ errorMsg="" }) => {
+const LoginForm = () => {
     const dispatch = useDispatch();
     const email = useSelector(state => state.user.email);
     const token = useSelector(state => state.user.token);
