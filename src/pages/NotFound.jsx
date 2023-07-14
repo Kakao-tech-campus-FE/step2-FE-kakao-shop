@@ -10,7 +10,7 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center w-full h-full">
       <header className="flex justify-center w-full border-b">
-        <LinkedIcon to="/" alt="카카오톡 쇼핑하기 로고" width="28">
+        <LinkedIcon to="/" alt="카카오톡 쇼핑하기 로고" width="w-24">
           {logoImage}
         </LinkedIcon>
       </header>
