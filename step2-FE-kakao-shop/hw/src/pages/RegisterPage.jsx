@@ -1,4 +1,4 @@
-import RegisterForm from "../components/orgamisms/RegisterForm";
+import RegisterForm from "../components/organisms/RegisterForm";
 
 const RegisterPage = () => {
   return <RegisterForm />;
