@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getProductspReq } from "apis/product.js";
 import Container from "components/atoms/Container.js";
@@ -7,18 +6,21 @@ import ProductGrid from "components/organisms/ProductGrid.js";
 import Loader from "components/atoms/Loader.js";
 
 export default function ProductSection() {
-  const [page, setPage] = useState(0);
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["product", page],
-    queryFn: () => getProductspReq(page).then((res) => res.data.response),
-    enabled: true,
-  });
+  const { isLoading, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
+    useInfiniteQuery(["products"], ({ page = 0 }) => getProductspReq(page), {
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage?.data?.response.length === 0) return undefined;
+        return allPages.length;
+      },
+      onError: (error) => {
+        console.log("[Products Error]", error.message);
+      },
+    });
 
   return (
     <Container>
       {isLoading && <Loader />}
-      {error && <p>{`Error: ${error.message}`}</p>}
-      {data && <ProductGrid products={data} />}
+      {data && <ProductGrid products={data.pages.flatMap(page => page.data.response)} />}
     </Container>
   );
 }
