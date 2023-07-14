@@ -1,8 +1,5 @@
-/**
- * Button component
- * onClick: event handler
- * children: text inside button
- */
+import React from 'react';
+
 export default function Button({ onClick, children }) {
   return (
     <button

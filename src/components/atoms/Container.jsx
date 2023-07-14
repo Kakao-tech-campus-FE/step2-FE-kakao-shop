@@ -1,8 +1,5 @@
-/**
- * Container component
- * children: child component
- * className: custom class name
- */
+import React from 'react';
+
 export default function Container({ children, className = '' }) {
   return <div className={`container ${className}`}>{children}</div>;
 }

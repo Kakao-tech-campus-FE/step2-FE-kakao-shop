@@ -1,13 +1,5 @@
-/**
- * Input component
- * id: id attribute
- * name: name attribute
- * type: type attribute
- * value: value attribute
- * onChange: event handler
- * placeholder: placeholder attribute
- * className: custom class name
- */
+import React from 'react';
+
 export default function Input({
   id,
   name,
