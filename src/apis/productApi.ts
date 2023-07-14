@@ -1,10 +1,19 @@
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 
-const useGetProductsQuery = ({ page = 0 }: { page: number }) => {
-  const fetcher = () => axios.get('/products', { params: { page } }).then(({ data }) => data.response);
+const useGetProductsQuery = () => {
+  const MAX_PAGE = 1;
+  const fetcher = ({ pageParam = 0 }) =>
+    axios.get('/products', { params: { page: pageParam } }).then(({ data }) => data.response);
 
-  return useQuery({ queryKey: ['products', page], queryFn: fetcher });
+  return useInfiniteQuery({
+    queryKey: ['products'],
+    queryFn: fetcher,
+    getNextPageParam: (lastPage, allPages) => {
+      if (allPages.length > MAX_PAGE) return undefined;
+      return allPages.length;
+    },
+  });
 };
 
 export default useGetProductsQuery;

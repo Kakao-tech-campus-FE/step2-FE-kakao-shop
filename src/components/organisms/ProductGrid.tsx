@@ -3,15 +3,17 @@ import ProductCard from '../molecules/ProductCard';
 import { productInfo } from '../../dto/productDto';
 
 interface ProductGridProps {
-  products: productInfo[];
+  pages: productInfo[][];
 }
 
-const ProductGrid = ({ products }: ProductGridProps) => {
+const ProductGrid = ({ pages }: ProductGridProps) => {
   return (
     <div className='my-1 grid w-full grid-cols-4 gap-5'>
-      {products.map((product) => {
-        return <ProductCard key={product.id} product={product} />;
-      })}
+      {pages.map((products) =>
+        products.map((product) => {
+          return <ProductCard key={product.id} product={product} />;
+        }),
+      )}
     </div>
   );
 };
