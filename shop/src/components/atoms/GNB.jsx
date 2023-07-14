@@ -67,9 +67,10 @@ const GNB = () => {
   };
   return (
     <header className="fixed top-0 left-0 p-5 bg-white border-b border-gray-300 flex items-center inner">
+      <div style={{width :'2000px'}} className='ml-20 md:flex items-center '>
       <img className="h-10 inline cursor-pointer mr-4" src="/logoKakao.png" alt="logoKakao"/>
       <nav>
-        <ul className = "md:flex md:items-center space-x-4">
+        <ul className = "flex space-x-4">
           <li>
             <a href="/" className="text-black text-xl hover:underline text-black-200">홈</a>
           </li>
@@ -92,7 +93,7 @@ const GNB = () => {
         <img src="/cart.png" style={{width:'30px'}} alt="장바구니 아이콘"/>
         {renderAuthLink()}
       </div>
-
+      </div>
     </header>
   )
 }

@@ -73,10 +73,10 @@ const StyledLoaderHolder = styled.div`
   position: absolute;
   left: 0px;
   top: 0px;
-  bottom: 0px;
+  bottom: 40px;
   right: 0px;
   width: 100%;
-  height: 40%;
+  height: 50%;
 `;
 
 const StyledLoader = styled.div`
@@ -84,7 +84,7 @@ const StyledLoader = styled.div`
   height: ${(props) => props.$size}px;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 80%;
   transform: translateX(-50%) translateY(-50%);
   animation: rotateLoader ${(props) => props.$time}ms infinite ease-in;
 
