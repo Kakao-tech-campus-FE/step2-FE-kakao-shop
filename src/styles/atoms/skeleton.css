@@ -1,17 +1,18 @@
 .skeleton-card {
-  margin: auto;
-  width: 250px;
-  height: 200px;
-  border: 5px solid #eeeeee;
+  box-sizing: border-box;
+  width: 200px;
+  height: 300px;
+  padding: 3px;
+  border: 2px solid #eeeeee;
   border-radius: 10px;
 }
 
 .skeleton-photo {
   overflow: hidden;
   position: relative;
-  width: 94%;
-  height: 50%;
-  margin: 4% 3% 0%;
+  width: 100%;
+  height: 65%;
+  margin-bottom: 10px;
   background-color: #eee;
   border-radius: 10px;
 }
@@ -30,9 +31,9 @@
 .skeleton-h3 {
   overflow: hidden;
   position: relative;
-  width: 95%;
-  height: 12%;
-  margin: 8% auto 4%;
+  width: 100%;
+  height: 17%;
+  margin-bottom: 10px;
   background-color: #eee;
 }
 
@@ -50,9 +51,8 @@
 .skeleton-p {
   overflow: hidden;
   position: relative;
-  width: 95%;
-  height: 12%;
-  margin: 0% auto 4%;
+  width: 100%;
+  height: 10%;
   background-color: #eee;
 }
 

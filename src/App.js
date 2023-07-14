@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Reset } from "styled-reset";
 
 import { setEmail, setLogInTime } from "store/slices/userSlice";
 
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <div className="App">
+      <Reset />
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<LogIn />} />
