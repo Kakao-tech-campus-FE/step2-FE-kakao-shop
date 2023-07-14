@@ -6,6 +6,8 @@ import LoginPage from './pages/LoginPage';
 // import HomePage from './pages/Homepage'
 import NewHomePage from './pages/NewHomePage';
 import MainLayout from './layouts/MainLayout';
+import ProductDetailPage from './pages/ProductDetail';
+import Loader from './components/atoms/Loader';
 
 function App() {
   return (
@@ -22,9 +24,13 @@ function App() {
             <Route path="/" element={<NewHomePage />}>
               {' '}
             </Route>
+            <Route path="/product/:id" element={<ProductDetailPage />}>
+              {' '}
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
+      <Loader />
     </div>
   );
 }
