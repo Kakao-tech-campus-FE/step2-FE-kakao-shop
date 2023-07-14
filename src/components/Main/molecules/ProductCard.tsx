@@ -5,22 +5,22 @@ import ProductDescription from '../atoms/ProductDescription';
 import ProductName from '../atoms/ProductName';
 import ProductPrice from '../atoms/ProductPrice';
 import useIntersectionObserver from '../../../hooks/useIntersectionObserver';
+
 interface ProductCardProps {
   name: string;
   image: string;
   description: string;
   price: number;
   isLast: boolean;
-  setPage: React.Dispatch<React.SetStateAction<number>>;
+  hasNext: boolean | undefined;
+  fetchNextPage: Function;
 }
-
-function ProductCard({ name, image, description, price, isLast, setPage }: ProductCardProps) {
+function ProductCard({ name, image, description, price, isLast, fetchNextPage, hasNext }: ProductCardProps) {
   const targetRef = useRef<HTMLDivElement>(null);
 
   const isIntersecting = useIntersectionObserver(targetRef, { threshold: 1.0 }, isLast);
   useEffect(() => {
-    console.log(isIntersecting);
-    isIntersecting && setPage((prev) => prev + 1);
+    if (isIntersecting && hasNext) fetchNextPage();
   }, [isIntersecting]);
   return (
     <Wrap ref={targetRef}>
@@ -36,4 +36,6 @@ export default ProductCard;
 
 const Wrap = styled.div`
   margin: 10px;
+  width: 280px;
+  height: 280px;
 `;
