@@ -3,13 +3,17 @@ import Card from '../atoms/Card';
 import { comma } from '../../utils/convert';
 import Photo from '../atoms/Photo';
 import SkeletonCard from '../atoms/Skeleton';
+import Loader from '../atoms/Loader';
 
 const ProductCard = ({ product, loading }) => {
   console.log(loading);
   return (
     <>
       {loading ? (
-        <SkeletonCard />
+        <>
+          {loading && <Loader />}
+          <SkeletonCard />
+        </>
       ) : (
         <Card to={`/product/${product.id}`}>
           <Photo
