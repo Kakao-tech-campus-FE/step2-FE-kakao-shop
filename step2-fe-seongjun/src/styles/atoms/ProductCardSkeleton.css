@@ -1,0 +1,12 @@
+.image {
+  background-color: #D3D3D3;
+  width: 300px;
+  height: 300px;
+}
+
+.productName, .productPrice {
+  background-color: #d3d3d3;
+  width: 300px;
+  height: 1em;
+  margin-top: 4px;
+}
