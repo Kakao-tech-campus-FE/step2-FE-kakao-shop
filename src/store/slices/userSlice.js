@@ -1,18 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setExprirationTime } from "../../utils";
 
 const initialState = {
   isLogged: false,
 };
 
 const userSlice = createSlice({
-  // 구분자 unique해야됨
   name: "login",
   initialState,
   reducers: {
     LogIn: (state, action) => {
+      setExprirationTime();
       state.isLogged = true;
     },
     LogOut: (state, action) => {
+      localStorage.removeItem("loginExpirationTime");
       state.isLogged = false;
     },
   },
