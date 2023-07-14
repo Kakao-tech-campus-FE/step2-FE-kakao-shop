@@ -38,7 +38,7 @@ const MainProductTemplate = () => {
 
   return (
     <Container>
-      <ProductGrid products={products} />
+      <ProductGrid products={products} isLoading={loading} />
       <div ref={bottomObserver}></div>
       {loading && <Loader />}
       {/* <Loader /> */}

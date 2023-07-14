@@ -36,7 +36,7 @@ const userSlice = createSlice({
       state.loading = false;
       state.isLogined = false;
       state.email = null;
-      state.error = action.payload.error.message; // error message 관리
+      state.error = action.payload.error.message;
     });
   },
 });

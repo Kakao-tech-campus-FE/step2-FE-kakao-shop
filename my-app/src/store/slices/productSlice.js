@@ -63,11 +63,10 @@ const productsSlice = createSlice({
 });
 
 export const getProducts = createAsyncThunk(
-  "products/getProducts", // key 값
+  "products/getProducts",
   async (page) => {
-    // 비동기 callback 함수
     const response = await fetchProducts(page);
-    return response.data; // action.payload -> success, response: [...], error
+    return response.data;
   }
 );
 export default productsSlice.reducer;
