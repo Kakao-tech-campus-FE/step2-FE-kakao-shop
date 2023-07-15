@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-const ProductCard = ({id, title, description, image, link, price}) => {
+const ProductCard = ({id, title, image, link, price}) => {
     return (
         <div id={id} className="w-72 ml-5 mb-7">
             <Link to={link}>
@@ -10,8 +10,7 @@ const ProductCard = ({id, title, description, image, link, price}) => {
                 </div>
                 <div className="my-2">
                     <h3>{title}</h3>
-                    <p>{description}</p>
-                    <h3>{price}원</h3>
+                    <h3 className="font-bold">{price}원</h3>
                 </div>
             </Link>
         </div>
