@@ -6,9 +6,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: stretch;
   width: 95%;
-  height: 95%;
   max-width: 320px;
-  padding: 10px 5px;
+  padding: 10px 5px 40PX 5PX;
   cursor: pointer;
 `
 

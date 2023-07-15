@@ -23,6 +23,7 @@ const StyledButton = styled.button`
 const SubmitButton = (props) => {
   return (
       <StyledButton
+        id={props.id}
         type="submit"
         disabled={props.disabled} 
         bgcolor={props.disabled ? "lightgray" : "yellow"}

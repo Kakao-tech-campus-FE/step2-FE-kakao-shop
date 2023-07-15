@@ -5,7 +5,7 @@ const ProductOption = (props) => {
   return (
     <OptionContainer>
       {props.options?.map((item)=>(
-        <div>{item.optionName}</div>
+        <div key={item.optionName}>{item.optionName}</div>
       ))}
     </OptionContainer>
   )

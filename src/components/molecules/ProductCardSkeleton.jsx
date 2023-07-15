@@ -9,8 +9,8 @@ const ProductsCardSkeleton = ( props ) => {
 
   return (
     <CardContainer>
-        <ImageBox><Skeleton></Skeleton></ImageBox>
-        <ItemTitle><Skeleton></Skeleton></ItemTitle>
+        <ImageBox><Skeleton /></ImageBox>
+        <ItemTitle><Skeleton height="50%"/></ItemTitle>
         <ItemPrice><Skeleton></Skeleton></ItemPrice>
     </CardContainer>
   )

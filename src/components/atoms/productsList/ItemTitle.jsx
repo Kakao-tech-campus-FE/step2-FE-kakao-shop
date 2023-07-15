@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 const StyledDiv = styled.div`
     width: 100%;
     text-decoration: none;
-    height: 4rem;
+    height: 5.2rem;
     margin: 5px 0;
 `
 
