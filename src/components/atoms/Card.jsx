@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
@@ -11,6 +12,7 @@ const Card = ({ to, children }) => {
         <CardCss><Link to={to}>
             {children}
         </Link></CardCss>
+
 
     );
 };

@@ -1,7 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
+
 import productReducer from './slices/productSlice';
 import detailReducer from "./slices/detailSlice";
+
 
 //모든 리덕스 파일이 저장되는 기준이 되는 스토어 파일
 
@@ -16,6 +18,7 @@ const store = configureStore({
         //보통 툴킷은 슬라이스 파일을 이용해 리듀서들 관리
         product: productReducer,
         detail: detailReducer,
+
     },
 });
 

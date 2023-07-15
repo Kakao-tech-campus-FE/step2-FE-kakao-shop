@@ -4,8 +4,10 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import styled from "styled-components";
+
 import routes from '../../routes/routes'
 import { useNavigate } from 'react-router-dom';
+
 import Question from "../atoms/Question";
 import { useState, useEffect } from "react";
 import { emailCheck, passwordCheck } from "../../services/regex";
@@ -20,7 +22,9 @@ const LoginForm = () => {
 
     // redux에서 값을 가져올때는 useSelector라는 훅을 사용한다.
     // 여기에서 사용하는 state는 모든 변수를 다담고 있는 state이다.
+
     // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다
+
     const email = useSelector((state) => state.user.email);
 
     const navigate = useNavigate();
@@ -37,17 +41,21 @@ const LoginForm = () => {
     const [whatEmail, setWhatEmail] = useState("");
     const [isPassword, setIsPassword] = useState(true);
 
+
     let emails = useSelector((state) => state.user.email,);
 
     useEffect((e) => {
         console.log(valueInit.email);
+
         if (valueInit.email.length > 0) {
             setIsEmail(emailCheck(valueInit.email));
             setWhatEmail(valueInit.email);
         }
     }, [valueInit.email]);
+
     useEffect((e) => {
         console.log(valueInit.password);
+
         if (valueInit.password.length > 0) {
             setIsPassword(passwordCheck(valueInit.password));
         }
@@ -60,6 +68,7 @@ const LoginForm = () => {
             <Container>
                 <InputGroup id='email' type='email' placeholder='이메일(아이디)를 입력해주세요' label="이메일"
                     value={valueInit.email}
+
                     onChange={(e) => {
                         handleOnChange(e);
                     }
@@ -70,10 +79,12 @@ const LoginForm = () => {
                     onChange={(e) => {
                         handleOnChange(e);
                     }}
+
                     para={isPassword ? null : "비밀번호는 영문, 숫자, 특수문자가 포함된 8~20자로 구성되어야 합니다."} />
 
                 <Button
                     onClick={(e) => {
+
                         console.log(valueInit.email);
                         console.log(valueInit.password);
                         if (valueInit.email == '') {
@@ -84,6 +95,7 @@ const LoginForm = () => {
                         }
 
                         else if (isEmail && isPassword) {
+
                             dispatch(loginRequest({
                                 email: valueInit.email,
                                 password: valueInit.password,

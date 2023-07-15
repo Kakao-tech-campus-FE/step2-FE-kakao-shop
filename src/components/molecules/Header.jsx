@@ -1,12 +1,16 @@
 import { React, useEffect, useState } from 'react';
+
 import routes from '../../routes/routes'
+
 import { useNavigate } from 'react-router-dom';
 import HeaderList from '../atoms/HeaderList';
 import styled from 'styled-components';
 
 const HeaderStyle = styled.header`
     height: 4rem;
+
     width: 993px;
+
     border-bottom: 1px solid #dbdbdbb6;
 
     display: flex;
@@ -26,6 +30,7 @@ const Header = () => {
 
 
     return (
+
         <>
             <h1 onClick={() => { navigate(routes.home); }}>Kakao</h1>
             <HeaderStyle>
@@ -40,6 +45,7 @@ const Header = () => {
                     <HeaderList name="회원가입" slash={false} onClick={() => { navigate(routes.signUp); }}></HeaderList>
                 </>}
             </HeaderStyle></>
+
 
     );
 };

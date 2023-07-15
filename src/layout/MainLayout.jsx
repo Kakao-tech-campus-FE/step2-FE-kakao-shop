@@ -1,3 +1,4 @@
+
 import { Outlet } from 'react-router-dom'
 import GNB from '../components/molecules/Header';
 import Footer from '../components/molecules/Footer';
@@ -15,3 +16,4 @@ const MainLayout = () => {
 };
 
 export default MainLayout;
+

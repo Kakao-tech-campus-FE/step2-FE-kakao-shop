@@ -1,5 +1,7 @@
 import axios from "axios";
+
 import routes from "../routes/routes";
+
 
 export const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -40,5 +42,6 @@ instance.interceptors.response.use(
     }
 )
 //401 에러 캐치(jwt 만료)
+
 
 
