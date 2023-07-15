@@ -1,5 +1,6 @@
 import ProductCard from "../molecules/ProductCard";
 import styled from 'styled-components'
+import SkeletonElement from "../skeleton/SkeletonElement";
 
 const GridCss = styled.div`
   display:grid;
@@ -16,9 +17,12 @@ const ProductGrid = ({ products }) => {
     // })
     return (
         <GridCss>
-            {products.map((product) =>
-                (<ProductCard key={product.id} product={product} />)
-            )}
+            {products ?
+                products.map((product) =>
+                    (<ProductCard key={product.id} product={product} />)
+                )
+                : <SkeletonElement />}
+
         </GridCss>
     );
 };

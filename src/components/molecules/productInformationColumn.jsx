@@ -8,7 +8,6 @@ const ProductInformationColumn = ({ product }) => {
             <img src={process.env.REACT_APP_API_URL + image} alt="name"></img>
             <h1>{productName}</h1>
             <p>{comma(price)}원</p>
-
         </div>
     );
 };
