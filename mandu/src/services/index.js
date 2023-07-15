@@ -4,7 +4,7 @@ import {ErrorType} from "./type";
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
-    timeout: 1000,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     },
