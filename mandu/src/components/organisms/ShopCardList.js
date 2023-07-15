@@ -1,4 +1,4 @@
-import ProductCard from "../molecules/ProductCard";
+import {ProductCard, SkeletonProductCard} from "../molecules/ProductCard";
 import {useInfiniteQuery} from "react-query";
 import {useInView} from 'react-intersection-observer'
 import {getProducts} from "../../services/apis";
@@ -8,12 +8,7 @@ const ShopCardList = () => {
     const {ref, inView} = useInView()
 
     const {
-        status,
-        data,
-        error,
-        isFetching,
-        fetchNextPage,
-        hasNextPage,
+        status, data, error, fetchNextPage, hasNextPage, isFetching
     } = useInfiniteQuery(
         ['products'],
         getProducts,
@@ -23,29 +18,56 @@ const ShopCardList = () => {
     )
 
     useEffect(() => {
-        if (inView && hasNextPage && !isFetching) {
+        if (inView && hasNextPage && !error) {
             fetchNextPage()
         }
     }, [inView])
 
-    if (status === "loading") return <div>loading</div>
-    if (status === "error") return <div>{error.message}</div>
+
+    if (status === "error") return <div className="text-center">{error.message}</div>
     return (
-        <div className="w-full flex flex-wrap">
+        <div className="flex flex-wrap">
+            {status === "loading" ?
+                <SkeletonProductCardList/>
+                :
+                <ProductCardList
+                    data={data}
+                    ref={ref}
+                    isFetching={isFetching}
+                    error={error}
+                    hasNextPage={hasNextPage}
+                />
+            }
+        </div>
+    );
+}
+
+const ProductCardList = ({data, ref, isFetching, error, hasNextPage}) => {
+    return (
+        <>
             {data.pages.map((page) => (
                 <Fragment key={"page" + page.nextPage}>
                     {page.data.map(function (project) {
                         const {id, productName, image, price} = project;
                         return <ProductCard key={"card" + id} id={id} title={productName}
                                             image={image} price={price}/>
-
                     })}
                 </Fragment>
             ))}
-            <div ref={ref}>
-                {isFetching ? "loading" : null}
+            <div ref={ref} className="text-center">
+                {isFetching ? "loading" : error ? error.message : hasNextPage ? "더보기" : ""}
             </div>
-        </div>
+        </>
+    )
+}
+
+const SkeletonProductCardList = () => {
+    return (
+        <>
+            {Array(9).fill(0).map((_, index) => (
+                <SkeletonProductCard key={"skeleton" + index}/>
+            ))}
+        </>
     );
 }
 
