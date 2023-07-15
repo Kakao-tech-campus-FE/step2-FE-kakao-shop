@@ -23,9 +23,6 @@ const ShopCardList = () => {
     )
 
     useEffect(() => {
-        console.log("check", `inView: ${inView}, hasNextPage: ${hasNextPage}, isFetching: ${isFetching}`);
-        console.log("check", data);
-        console.log("check", status, error)
         if (inView && hasNextPage && !isFetching) {
             fetchNextPage()
         }
@@ -36,10 +33,10 @@ const ShopCardList = () => {
     return (
         <div className="w-full flex flex-wrap">
             {data.pages.map((page) => (
-                <Fragment key={page.nextPage}>
+                <Fragment key={"page" + page.nextPage}>
                     {page.data.map(function (project) {
-                        const {id, productName, description, image, price} = project;
-                        return <ProductCard id={id} title={productName} description={description}
+                        const {id, productName, image, price} = project;
+                        return <ProductCard key={"card" + id} id={id} title={productName}
                                             image={image} price={price}/>
 
                     })}
