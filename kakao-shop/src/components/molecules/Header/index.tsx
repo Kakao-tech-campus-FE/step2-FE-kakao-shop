@@ -44,6 +44,7 @@ const Header = () => {
               <button
                 onClick={() => {
                   dispatch(signOutRequest());
+                  window.location.reload(); // 전역 state 초기화를 위해서
                 }}>
                 로그아웃
               </button>
