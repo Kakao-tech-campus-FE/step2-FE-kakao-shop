@@ -7,23 +7,23 @@ import { useInfiniteQuery } from 'react-query'
 import {useInView} from "react-intersection-observer"
 
 const MainProductTemplate = () => {
-  const {ref, inView} = useInView()
+  const {ref, inView} = useInView(false)
   const {
     data: products,
     isLoading: loading,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
-  } = useInfiniteQuery('products', ({ pageParam = 0 }) => 
+  } = useInfiniteQuery(['products'], ({ pageParam = 0 }) => 
     fetchProducts(pageParam), 
     {
       getNextPageParam: (lastPage, pages) => {
-        if(lastPage.response && lastPage.response.length === 0 ){
-          // 마지막 페이지일 경우 null 반환 해서 더이상 페이지 불러오지 않음
+        if(lastPage.data?.response.length === 0 ){
           return null
         }
-        // 다음 페이지 요청하기 위해 현재 페이지 개수 계산해 반환 
-        return pages.length +1
+        console.log(pages)
+        console.log(lastPage)
+        return pages.length
       },
       // Error 처리
       onError: (error) => {
@@ -41,8 +41,12 @@ const MainProductTemplate = () => {
   );
 
   useEffect(() => {
+
     if(inView && hasNextPage){
       fetchNextPage();
+      console.log(`inview:${inView}`)
+      console.log("-----------")
+      console.log(hasNextPage)
     }
   },[inView])
   
@@ -58,12 +62,12 @@ const MainProductTemplate = () => {
   
 
   return (
-    <Container>
-          {loading ? <Loader/> : (
-            <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
-          )}
-          <div ref={ref}></div>
-          {isFetchingNextPage && <Loader/>}
+    <Container className={'ml-20 mr-20'}>
+      {loading ? <Loader/> : (
+        <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
+      )}
+      <div ref={ref}></div>
+      {isFetchingNextPage && <Loader/>}
     </Container>
   )
 }
