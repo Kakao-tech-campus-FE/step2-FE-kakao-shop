@@ -31,7 +31,7 @@ instance.interceptors.response.use(
     } else if (status === 404) {
       window.location.href = "/404";
     }
-    return Promise.reject(error.response);
+    return Promise.reject(error);
   }
 );
 
