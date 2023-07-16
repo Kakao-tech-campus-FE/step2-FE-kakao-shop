@@ -6,7 +6,7 @@ import Footer from "../atoms/Footer";
 import {useNavigate} from 'react-router-dom';
 import LinkText from "../atoms/LinkText";
 import * as Link from '../../styles/atoms/Link';
-import {login} from '../../apis/api';
+import {login} from '../../apis/user';
 import { useDispatch } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
 import { useState } from "react";

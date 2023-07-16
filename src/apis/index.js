@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     timeout: 1000,
     headers: {
@@ -16,23 +16,6 @@ instance.interceptors.request.use((config) => {
     return config;
 });
 
-export const register = (data) => {
-    const {email, password, username} = data;
-    return instance.post("/join", {
-        email,
-        password,
-        username,
-    });
-};
-
-export const login = (data) => {
-    const {email, password} = data;
-    return instance.post("/login", {
-        email,
-        password,
-    });
-};
-
 //middleware
 instance.interceptors.response.use(
     (response) => {
@@ -47,4 +30,4 @@ instance.interceptors.response.use(
         // }
         return Promise.reject(error.response);
     }
-)
+);

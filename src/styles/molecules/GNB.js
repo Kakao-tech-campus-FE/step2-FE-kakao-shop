@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
+    overflow: hidden;
     align-items: center;
     padding: 1.4em 2em;
 `
 
 export const Header = styled.header`
-    position: fixed;
     width: 100%;
     border-bottom: 1px solid #D8D8D8;
 `

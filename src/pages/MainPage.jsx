@@ -1,8 +1,8 @@
-import MainShop from "../components/organisms/MainShop";
 import { getLocalStorage } from "../utils/localStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "../store/slices/userSlice";
+import MainProductTemplate from "../components/templates/MainProductTemplate";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -15,10 +15,7 @@ const MainPage = () => {
             }));
         };
     }, [user, dispatch]);
-
-    return(
-        <MainShop />
-    );
+    return <MainProductTemplate />;
 };
 
 export default MainPage;
