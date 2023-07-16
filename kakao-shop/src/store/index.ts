@@ -1,4 +1,5 @@
 import { HomeState } from '@store/Home/reducers';
+import { SignInState } from '@store/Login/reducers';
 import { applyMiddleware, compose, createStore } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -7,6 +8,7 @@ import rootSaga from './rootSaga';
 
 export type RootState = {
   home: HomeState;
+  signIn: SignInState;
 };
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;

@@ -13,7 +13,11 @@ export function* fetchSignInRequest({ payload }: FetchSignInAction) {
     yield put(signInSuccess(response.data));
     payload.navigate('/');
   } catch (error: any) {
-    yield put(signInFailure(error.response.data));
+    const errorResponse = {
+      method: error.config.method,
+      ...error.response.data,
+    };
+    yield put(signInFailure(errorResponse));
     payload.setErrorMessage(error.response.data.error.message);
   }
 }
