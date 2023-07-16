@@ -53,7 +53,7 @@ export default function RegisterForm({
             description="이메일"
           >
             <InputBox
-              inputType="email"
+              type="email"
               id="email"
               resetValue={() => setValue('email', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이메일을 입력하세요 (example@example.com)"
@@ -89,7 +89,7 @@ export default function RegisterForm({
             description="이름"
           >
             <InputBox
-              inputType="text"
+              type="text"
               id="username"
               resetValue={() => setValue('username', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이름을 입력하세요"
@@ -113,7 +113,7 @@ export default function RegisterForm({
             description="비밀번호"
           >
             <InputBox
-              inputType="password"
+              type="password"
               id="password"
               resetValue={() => setValue('password', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 입력하세요"
@@ -144,7 +144,7 @@ export default function RegisterForm({
             description="비밀번호 확인"
           >
             <InputBox
-              inputType="password"
+              type="password"
               id="confirm-password"
               resetValue={() => setValue('confirmPassword', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 다시 입력하세요"
@@ -167,7 +167,7 @@ export default function RegisterForm({
       <div className="px-2 text-center">
         {isLoading ? <Loader /> : (
           <Button
-            isSubmitType
+            type="submit"
             disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
           >
             가입하기

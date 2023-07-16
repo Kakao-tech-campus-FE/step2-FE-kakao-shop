@@ -40,7 +40,7 @@ export default function LoginForm({
             description="이메일"
           >
             <InputBox
-              inputType="email"
+              type="email"
               id="email"
               resetValue={() => setValue('email', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이메일을 입력하세요 (example@example.com)"
@@ -64,7 +64,7 @@ export default function LoginForm({
             description="비밀번호"
           >
             <InputBox
-              inputType="password"
+              type="password"
               id="password"
               resetValue={() => setValue('password', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 입력하세요"
@@ -92,7 +92,7 @@ export default function LoginForm({
       <div className="px-2 text-center">
         {isLoading ? <Loader /> : (
           <Button
-            isSubmitType
+            type="submit"
             disabled={!formState.isDirty || !formState.isValid || isLoading}
           >
             로그인
