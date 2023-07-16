@@ -16,9 +16,13 @@ export const fetchProducts = async (page = 0) => {
     return response.data;
   } catch (error) {
     console.log("FetchProducts Api Error", error);
-    return error;
+    throw error;
   }
 };
+
+// ❔의문점:
+// - fetchProducts에서 에러를 return 하면 fetchProducts를 요청하는 곳에서
+//   Error객체를 못 받아 에러가 발생하는데 throw를 하면 받을 수 있음 -> useQuery에서 받는건가?
 
 export const getProductById = (id) => {
   if (!id) {

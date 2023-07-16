@@ -13,9 +13,14 @@ export default function MainProductTemplate() {
   const [products, setProducts] = useState([]);
   const [isRenderingDone, setIsRenderingDone] = useState(false);
   const bottomObserver = useRef(null);
-  const { data, isLoading, error, isFetching } = useQuery(
+  const { data, isLoading, isFetching, error } = useQuery(
     ["products", page],
-    () => fetchProducts(page),
+    () =>
+      fetchProducts(page)
+        .then((response) => response)
+        .catch((error) => {
+          throw error;
+        }),
     {
       keepPreviousData: true,
     }
