@@ -16,6 +16,13 @@ import {
   clearTimeoutId,
 } from "../../store/slices/userSlice";
 
+/**
+ * 로그인 폼 컴포넌트
+ * 이메일과 비밀번호를 입력받아 로그인을 시도하는 컴포넌트
+ *
+ * @returns {JSX.Element} - 로그인 폼
+ */
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email); // user 안에 email에 접근
@@ -84,6 +91,7 @@ const LoginForm = () => {
       setErrors(validationErrors);
     }
   };
+  const inputBoxStyle = `mb-4 rounded-md  bg-white p-1`;
   return (
     <Container>
       <Title>

@@ -1,6 +1,15 @@
 import ProductCard from "../molecules/ProductCard";
 import SkeletonCard from "../molecules/SkeletonCard";
 
+/**
+ * 상품 그리드
+ * 상품 정보를 받아서 상품 카드를 그리드 형태로 보여주는 컴포넌트
+ *
+ * @param {object[]} products - 상품 정보
+ * @param {boolean} isLoading - 로딩 상태
+ * @returns {JSX.Element} 상품 그리드
+ */
+
 const ProductGrid = ({ products, isLoading }) => {
   if (isLoading) {
     return (

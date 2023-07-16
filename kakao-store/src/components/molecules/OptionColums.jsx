@@ -1,5 +1,12 @@
 import OptionList from "../atoms/OptionList.jsx";
 
+/**
+ * 옵션 선택 컬럼
+ *
+ * @param {object} product 상품 정보
+ * @returns {JSX.Element} 옵션 선택 컬럼
+ */
+
 const OptionColums = ({ product }) => {
   return (
     <div className="option-columns">

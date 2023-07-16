@@ -1,11 +1,11 @@
-import PropTypes from "prop-types";
+/**
+ * 제목 컴포넌트
+ * @param {string} children - 제목
+ * @returns
+ */
 
 const Title = ({ children }) => {
   return <h1 className="m-3 flex justify-center">{children}</h1>;
-};
-
-Title.prototyps = {
-  children: PropTypes.node.isRequired, // Title 컴포넌트의 자식 요소
 };
 
 export default Title;

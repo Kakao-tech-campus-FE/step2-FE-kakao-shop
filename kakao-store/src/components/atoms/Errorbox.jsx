@@ -1,4 +1,9 @@
-import PropTypes from "prop-types";
+/**
+ * 에러 메시지 박스 컴포넌트
+ *
+ * @param {string} errors - 에러 메시지
+ * @returns {JSX.Element} - 에러 메시지 박스
+ */
 
 const Errorbox = ({ errors }) => {
   return (
@@ -8,10 +13,6 @@ const Errorbox = ({ errors }) => {
       ))}
     </div>
   );
-};
-
-Errorbox.propTypes = {
-  error: PropTypes.string.isRequired, // Errorbox 컴포넌트의 자식 요소
 };
 
 export default Errorbox;

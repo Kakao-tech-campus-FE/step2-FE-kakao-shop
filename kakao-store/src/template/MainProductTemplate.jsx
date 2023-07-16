@@ -7,6 +7,12 @@ import { fetchProducts } from "../services/product";
 import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
 
+/**
+ * 메인 페이지 컴포넌트
+ * 상품을 불러오는 컴포넌트
+ * @returns {JSX.Element} - 메인 페이지
+ */
+
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const [isLoading, setIsLoading] = useState(true);

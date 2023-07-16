@@ -1,5 +1,12 @@
 import Card from "../atoms/Card";
 
+/**
+ * 스켈레톤 상품 카드
+ *
+ * @param {object} product 상품 정보
+ * @returns {JSX.Element} 상품 카드
+ */
+
 const SkeletonCard = ({ product }) => {
   return (
     <Card to={`/products/${product.id}`} className="rounded-md bg-gray-200 p-4">

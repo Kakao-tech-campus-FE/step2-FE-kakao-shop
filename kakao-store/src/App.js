@@ -2,11 +2,12 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
-import { useSelector, useDispatch } from 'react-redux';
-import { setEmailandPassword, logout } from './store/slices/userSlice';
+import { useDispatch } from 'react-redux';
+import { setEmailandPassword } from './store/slices/userSlice';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import "tailwindcss/tailwind.css";
 
 function App() {
   const dispatch = useDispatch();

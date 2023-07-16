@@ -1,3 +1,11 @@
+/**
+ * 사진 컴포넌트
+ *
+ * @param {string} src - 이미지 경로
+ * @param {string} alt - 이미지 설명
+ * @returns
+ */
+
 const Photo = ({ src, alt }) => {
   return (
     <picture>

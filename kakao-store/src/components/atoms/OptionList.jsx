@@ -1,5 +1,12 @@
 import { comma } from "../../utils/convert";
 
+/**
+ * 옵션 목록
+ * @param {object} options 옵션 목록
+ * @param {function} onClick 옵션 클릭 시 실행할 함수
+ * @returns
+ */
+
 const OptionList = ({ options, onClick }) => {
   return (
     <ol className="option-list">

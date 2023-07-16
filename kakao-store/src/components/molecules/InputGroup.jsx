@@ -1,7 +1,20 @@
 import Input from "../atoms/Input";
 import Box from "../atoms/Box";
 import Label from "../atoms/Label";
-import PropTypes from "prop-types";
+
+/**
+ * 입력 필드와 라벨이 묶인 그룹
+ *
+ * @param {string} id - 입력 필드의 id
+ * @param {string} name - 입력 필드의 이름
+ * @param {string} type - 입력 필드 타입
+ * @param {string} value - 입력 필드의 값
+ * @param {function} onChange - 입력 필드 값 변경 이벤트 핸들러
+ * @param {string} className - 입력 필드에 추가할 클래스
+ * @param {string} label - 입력 필드의 라벨
+ * @param {string} placeholder - 입력 필드의 placeholder
+ * @returns {JSX.Element} - 입력 필드와 라벨이 묶인 그룹
+ */
 
 const InputGroup = ({
   id,
@@ -26,17 +39,6 @@ const InputGroup = ({
       />
     </Box>
   );
-};
-
-InputGroup.propTypes = {
-  id: PropTypes.string, // input 요소의 ID
-  name: PropTypes.string, // input 요소의 이름 속성
-  type: PropTypes.string, //  input 요소의 타입 (예: "username", "email", "password" 등)
-  value: PropTypes.string, // input 요소의 값
-  onChange: PropTypes.func, // input 값 변경 이벤트 핸들러
-  className: PropTypes.string, // CSS 클래스
-  label: PropTypes.string, // label 요소의 텍스트
-  placeholder: PropTypes.string, // input 요소의 플레이스홀더 텍스트
 };
 
 export default InputGroup;

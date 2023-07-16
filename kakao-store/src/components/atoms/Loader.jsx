@@ -1,5 +1,10 @@
 import "../../styles/atoms/Loader.css";
 
+/**
+ *
+ * @returns {JSX.Element} - 로딩 중 표시
+ */
+
 const Loader = () => {
   return (
     <div className="loader loader--style1" title="0">

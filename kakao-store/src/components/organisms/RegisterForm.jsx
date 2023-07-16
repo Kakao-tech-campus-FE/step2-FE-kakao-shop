@@ -10,6 +10,13 @@ import { useState } from "react";
 import logo from "../../images/logoKakaoText.png";
 // import useRegister from "../../hooks/useRegister";
 
+/**
+ * 회원가입 폼 컴포넌트
+ * 이메일, 이름, 비밀번호, 비밀번호 확인을 입력받아 회원가입을 시도하는 컴포넌트
+ *
+ * @returns {JSX.Element} - 회원가입 폼
+ */
+
 const RegisterForm = () => {
   const navigate = useNavigate();
 

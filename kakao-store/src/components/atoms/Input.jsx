@@ -1,4 +1,15 @@
-import PropTypes from "prop-types";
+/**
+ * 입력 필드 컴포넌트
+ *
+ * @param {string} type - 입력 필드 타입
+ * @param {string} value - 입력 필드의 값
+ * @param {string} name - 입력 필드의 이름
+ * @param {function} onChange - 입력 필드 값 변경 이벤트 핸들러
+ * @param {string} placeholder - 입력 필드의 placeholder
+ * @param {string} className - 입력 필드에 추가할 클래스
+ * @param {string} id - 입력 필드의 id
+ * @returns {JSX.Element} - 입력 필드
+ */
 
 const Input = ({ type, value, name, onChange, placeholder, className, id }) => {
   return (
@@ -12,16 +23,6 @@ const Input = ({ type, value, name, onChange, placeholder, className, id }) => {
       placeholder={placeholder}
     />
   );
-};
-
-Input.propTypes = {
-  type: PropTypes.string, //  input 요소의 타입 (예: "username", "email", "password" 등)
-  value: PropTypes.string, // input 요소의 값
-  name: PropTypes.string, // input 요소의 이름 속성
-  onChange: PropTypes.func, // input 값 변경 이벤트 핸들러
-  placeholder: PropTypes.string, // input 요소의 플레이스홀더 텍스트
-  className: PropTypes.string, // CSS 클래스
-  id: PropTypes.string, // input 요소의 ID
 };
 
 export default Input;

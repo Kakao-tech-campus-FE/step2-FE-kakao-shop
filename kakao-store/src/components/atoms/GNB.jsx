@@ -4,6 +4,12 @@ import { logout } from "../../store/slices/userSlice";
 import logoKakao from "../../images/logoKakao.png";
 import cart from "../../images/cart.png";
 
+/**
+ * GNB 컴포넌트
+ *
+ * @returns {JSX.Element} - GNB
+ */
+
 function GNB() {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
