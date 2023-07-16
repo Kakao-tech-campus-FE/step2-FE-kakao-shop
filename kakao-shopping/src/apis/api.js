@@ -5,18 +5,20 @@ const instance = axios.create({
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
-    
   }
 });
 
-export const loginApi = (data) => {
+export const loginApi = async (data) => {
   const {email, password} = data;
-  return (
-    instance.post("/login", {
+  try {
+    const response = await instance.post("/login", {
       email,
       password
     })
-  );
+    return response;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const checkDuplicateEmail = ({email}) => {
@@ -32,6 +34,25 @@ export const register = async (data) => {
       email,
       password,
       username
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+export const getProducts = async () => {
+  try {
+    const response = await instance.get("/products", {
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getIdProduct = async (id) => {
+  try {
+    const response = await instance.get(`/products/${id}`, {
     });
     return response;
   } catch (error) {

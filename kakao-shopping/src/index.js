@@ -4,15 +4,15 @@ import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import authReducer from './reducers/authReducer';
-import thunk from 'redux-thunk'
+import { configureStore } from '@reduxjs/toolkit';
+import authReducer from './redux/redux';
 import './App.css';
 
-const rootReducer = combineReducers({
-  authReducer
+const store = configureStore({
+  reducer: {
+    auth: authReducer,
+  },
 });
-const store = createStore(rootReducer, applyMiddleware(thunk));
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

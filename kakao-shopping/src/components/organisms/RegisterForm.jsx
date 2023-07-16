@@ -29,7 +29,7 @@ const RegisterForm = () => {
     try {
       const duplicateEmailResponse = await checkDuplicateEmail({email: value.email});
       if(duplicateEmailResponse.data.success) {
-        const registerResponse = await register ({
+        await register ({
           email: value.email,
           username: value.username,
           password: value.password
@@ -111,7 +111,7 @@ const RegisterForm = () => {
       <Button
         className="w-96 m-2 pr-6 pl-6 p-2 bg-yellow-300 hover:bg-yellow-400 rounded-md mb-10"
         onClick={handleRegisterClick}>
-          로그인
+          회원가입
       </Button> :
         
       <Button
@@ -120,7 +120,7 @@ const RegisterForm = () => {
           회원가입
       </Button>}
     <div className="absolute left-4 bottom-0 m-3">
-      <Link to='/login'><span className="text-sm">회원가입</span></Link>
+      <Link to='/login'><span className="text-sm">로그인</span></Link>
       </div>
     </Container>
   );
