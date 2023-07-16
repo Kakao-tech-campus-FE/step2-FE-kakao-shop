@@ -105,6 +105,11 @@ const globalStyle = css`
     height: 100%;
   }
 
+  // dev mode의 에러 페이지가 보이지 않도록 함.
+  iframe#webpack-dev-server-client-overlay {
+    display: none;
+  }
+
   @font-face {
     font-family: 'AppleSDGothicNeo';
     font-weight: 400;
