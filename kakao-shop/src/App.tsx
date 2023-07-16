@@ -1,5 +1,6 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
+import NotFound from '@pages/404';
 import Error from '@pages/500';
 import Home from '@pages/Home';
 import Login from '@pages/Login';
@@ -13,6 +14,7 @@ function App() {
         <Route path={'/signup'} element={<SignUp />} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'/500'} element={<Error />} />
+        <Route path={'/*'} element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
