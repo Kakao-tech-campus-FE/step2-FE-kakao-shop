@@ -1,5 +1,6 @@
 import React, { Fragment, PropsWithChildren } from 'react';
 
+import Error from '@pages/500';
 import { Toast } from '@components/atom';
 
 type ErrorBoundaryState = {
@@ -18,7 +19,7 @@ export class ErrorBoundary extends React.Component<PropsWithChildren> {
     return { status: error.status, method: error.method };
   }
 
-  componentDidCatch(error: any, errorInfo: any) {
+  componentDidCatch() {
     const { status, method } = this.state;
 
     if (status === 401) {
@@ -38,6 +39,11 @@ export class ErrorBoundary extends React.Component<PropsWithChildren> {
   render() {
     const { children } = this.props;
     const { status, method } = this.state;
+
+    if (status === 500) {
+      location.href = '/500';
+      return <Error />;
+    }
 
     return children;
   }
