@@ -1,5 +1,5 @@
 import React from "react";
-import { useQuery, useIsFetching } from 'react-query';
+import { useQuery } from 'react-query';
 import { useParams } from "react-router-dom";
 import getDetail from "../../api/getDetail"
 
@@ -7,8 +7,7 @@ import MainContainer from '../atoms/MainContainer'
 import ProductDetail from "../organisms/DetailInfo";
 import ProductOption from "../organisms/DetailOption";
 
-import Loader from "../molecules/Loader";
-import ErrorBox from "../organisms/ErrorBox";
+import ErrorFallback from "../organisms/ErrorFallback";
 
 const DetailTemplate = ( props ) => {
 
@@ -17,11 +16,13 @@ const DetailTemplate = ( props ) => {
   const { data: obj, isLoading, isError, error } = useQuery( 
     ["getproductdetail", params.id], 
     () => getDetail(params.id),
+    {suspense: true
+    }
   )
     
     return (
       <>
-        {isError && <ErrorBox errorObject={error} />}
+        {/* {isError && <ErrorFallback errorObject={error} />} */}
         {obj && 
           <MainContainer>
             <ProductDetail 

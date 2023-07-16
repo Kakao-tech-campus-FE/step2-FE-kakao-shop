@@ -9,9 +9,8 @@ const ProductsList = (props) => {
 
   return (
       <ListContainer>
-        
         {
-          props.obj?.pages.map(( pageData ) => (
+          props.obj.pages.map(( pageData, i ) => (
             pageData?.data.response.map((item) => (
               <ProductCard 
                 link={`/products/${item.id}`}

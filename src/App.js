@@ -10,38 +10,28 @@ import DetailPage from "./pages/DetailPage";
 import PageContainer from "./components/atoms/PageContainer";
 import Test from "./components/organisms/Test";
 import Loader from "./components/molecules/Loader";
-import {
-  QueryClient,
-  QueryCache,
-  useIsFetching,
-  QueryClientProvider,
-} from "react-query";
+
+import { Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
+import ErrorFallback from "./components/organisms/ErrorFallback";
 
 function App() {
-  const queryClient = new QueryClient({
-    queryCache: new QueryCache({
-      onError: (error) => {
-        console.log(`Something went wrong: ${error.message}`);
-      },
-    }),
-  });
-  const isFetching = useIsFetching();
-
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <PageContainer>
-          <GNB></GNB>
-          <Routes>
-            <Route path="*" element={<MainPage />} />
-            <Route path="/signup" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/products/:id" element={<DetailPage />} />
-          </Routes>
-          {isFetching ? <Loader /> : null}
-        </PageContainer>
-      </QueryClientProvider>
+      <PageContainer>
+        <GNB></GNB>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Suspense fallback={<Loader />}>
+            <Routes>
+              <Route path="*" element={<MainPage />} />
+              <Route path="/signup" element={<RegisterPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/test" element={<Test />} />
+              <Route path="/products/:id" element={<DetailPage />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
+      </PageContainer>
     </BrowserRouter>
   );
 }
