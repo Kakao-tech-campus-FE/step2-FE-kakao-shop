@@ -1,49 +1,40 @@
-import './Carousel.css';
-import React, { useState, useEffect } from "react";
+// import './Carousel.css';
+import styles from "./Carousel.module.css";
+import React, { useState } from "react";
 
 function Carousel({items}) {
     const N = items.length;
     const [current, setCurrent] = useState(0);
 
-    let carousel_items = new Array(N);
-    for(let i=0; i<N; i++){
-        carousel_items[i] = (
-        <div className="carousel-item">
-            <img src={items[i]} key={i}></img>
-        </div>
-        );
+    function handlePrevBtn(){
+        setCurrent((current + N - 1) % N);
+    }
+    function handleNextBtn(){
+        setCurrent((current + 1) % N);
     }
 
-    let navs = new Array(N);
-    for(let i=0; i<N; i++){
-        navs[i] = (
-            <div className={`carousel-nav-btn ${i===current ? "active" : ""}`}></div>
-        );
-    }
-
-    // console.log(carousel_items);
     return (
         <>
-            <div className="carousel-container">
-                <div className="carousel-item-container" style={{ transform: `translateX(-${current * 100}%)` }}>
-                    {carousel_items}
+            <div className={styles.carousel_container}>
+                <div className={styles.carousel_item_container} style={{ transform: `translateX(-${current * 100}%)` }}>
+                    {items.map((item) => 
+                        <div className={styles.carousel_item} key={item}>
+                            <img src={item}></img>
+                        </div>
+                    )}
                 </div>
-                <button className="carousel-btn prev" onClick={handlePrevBtn}></button>
-                <button className="carousel-btn next" onClick={handleNextBtn}></button>
-                <div className="carousel-nav">
-                    {navs}
+                <button className={`${styles.carousel_btn} ${styles.prev}`} onClick={handlePrevBtn}></button>
+                <button className={`${styles.carousel_btn} ${styles.next}`} onClick={handleNextBtn}></button>
+                <div className={styles.carousel_nav}>
+                    {items.map((item, i) => (
+                        <div className={`${styles.carousel_nav_btn} ${i === current ? styles.active : ""}`} key={i}></div>
+                    ))}
                 </div>
             </div>
         </>
     );
     
-    function handlePrevBtn(){
-        setCurrent((current + N - 1) % N);
-        
-    }
-    function handleNextBtn(){
-        setCurrent((current + 1) % N);
-    }
+    
 }
 
 export default Carousel;
