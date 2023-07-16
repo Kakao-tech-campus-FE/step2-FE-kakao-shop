@@ -47,7 +47,9 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-      <AppWrapper />
+      <PersistGate persistor={persistor}>
+        <AppWrapper />
+      </PersistGate>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>

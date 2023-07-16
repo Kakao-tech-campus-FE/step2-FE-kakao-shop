@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDetail } from "../store/slices/detailSlice";
 import Loader from "../components/atoms/Loader";
 import { getProductById } from "../services/product";
-import useSWR from "swr";
+
 import { useQuery } from "react-query";
 
 const ProductDetailPage = () => {
