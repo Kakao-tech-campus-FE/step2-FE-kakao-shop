@@ -11,15 +11,15 @@ const MainPRoductTemplate = () => {
   const products = useSelector((state: RootState) => state.product.products);
   const isEnd = useSelector((state: RootState) => state.product.isEnd);
   const loading = useSelector((state: RootState) => state.product.loading);
-
   const dispatch = useDispatch<AppDispatch>();
   const bottomObserver = useRef(null);
 
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !isEnd && !loading) {
+        if (entry.isIntersecting && !isEnd) {
           setPage(page + 1);
+          console.log('page: ', page);
           window.scrollTo({ left: 0, top: 0 });
         }
       });
@@ -33,7 +33,7 @@ const MainPRoductTemplate = () => {
     if (bottomObserver.current) {
       io.observe(bottomObserver.current); // 감시 선언
     }
-  }, [io]);
+  }, [bottomObserver]);
 
   useEffect(() => {
     console.log('loading: ', loading);
@@ -46,8 +46,9 @@ const MainPRoductTemplate = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <ProductGrid products={products} loading={loading} />
-      <div className="pt-[500px]" ref={bottomObserver} />
+      <div ref={bottomObserver}>
+        <ProductGrid products={products} loading={loading} />
+      </div>
     </Suspense>
   );
 };

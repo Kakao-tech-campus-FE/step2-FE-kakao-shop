@@ -20,7 +20,6 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state, action) => {
       const newState = state;
-      newState.loading = true;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
       // Promise.resolve() 되었을때

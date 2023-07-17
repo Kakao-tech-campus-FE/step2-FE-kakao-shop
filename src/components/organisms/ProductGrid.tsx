@@ -16,7 +16,7 @@ const ProductGrid = ({ products, loading }: ProductGridProps) => {
   });
 
   return (
-    <div className="flex flex-wrap justify-center gap-x-[30px] pb-[300px]">
+    <div className="flex flex-wrap justify-center gap-x-[30px]">
       {products.map((product) =>
         loading ? (
           <Skeleton key={product.id} variant="rectangular" animation="wave">
