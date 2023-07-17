@@ -6,6 +6,7 @@ import Loader from '@components/atoms/Loader';
 
 import { getProducts } from '@store/slices/productSlice';
 import { ProductInfoData } from '@api/dto';
+import _ from 'lodash';
 
 const MainPRoductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -25,7 +26,6 @@ const MainPRoductTemplate = () => {
           console.log('bottom!');
           setPage(page + 1);
         }
-        console.log(isEnd);
         // observer.observe(bottomObserver.current);
       });
     },
@@ -44,7 +44,7 @@ const MainPRoductTemplate = () => {
   }, [io]);
 
   useEffect(() => {
-    if (prevProduct !== undefined) setPrevProduct([...prevProduct, ...products]);
+    if (prevProduct !== undefined) setPrevProduct(_.uniqBy([...prevProduct, ...products], 'id'));
     else setPrevProduct(products);
     dispatch(getProducts(page));
     console.log('page: ', page);
