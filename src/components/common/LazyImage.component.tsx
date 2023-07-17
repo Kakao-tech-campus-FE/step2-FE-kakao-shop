@@ -26,9 +26,7 @@ const LazyImage: FC<LazyImageProps> = ({ src, alt, className, ...rest }) => {
                 !didCancel &&
                 (entry.intersectionRatio > 0 || entry.isIntersecting)
               ) {
-                setTimeout(() => {
-                  setImageSrc(src);
-                }, 1000);
+                setImageSrc(src);
                 observer.unobserve(imageRef);
               }
             });

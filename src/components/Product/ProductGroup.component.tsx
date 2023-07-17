@@ -10,11 +10,6 @@ import Txt from "../common/Txt.component";
 
 const { NO_PRODUCT } = PRODUCT;
 
-interface getProductResult {
-  result: Product[];
-  nextPage: number;
-}
-
 const ProductGroup = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
@@ -22,17 +17,6 @@ const ProductGroup = () => {
   const getProducts = async (pageData: { pageParam?: number }) => {
     const pageParam = pageData?.pageParam ?? 0;
     const { data } = await commonAxios.get(`/products?page=${pageParam}`);
-
-    const lazyReturn = await new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          result: data.response,
-          nextPage: pageParam + 1,
-        });
-      }, 1000);
-    });
-
-    return lazyReturn as getProductResult;
 
     return {
       result: data.response,
