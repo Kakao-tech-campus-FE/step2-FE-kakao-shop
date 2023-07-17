@@ -2,8 +2,13 @@ import React from 'react'
 import strPrice from '../../utils/price';
 import ProductCard from '../molecules/ProductCard';
 import ListContainer from '../atoms/productsList/ListContainer';
-import ProductCardSkeleton from '../molecules/ProductCardSkeleton'
 
+/**
+ * 상품 리스트
+ * @param {*} props
+ * @param {object} props.obj - 로딩된 페이지 정보가 담겨있는 객체
+ * @returns 
+ */
 
 const ProductsList = (props) => {
 

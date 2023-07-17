@@ -6,6 +6,15 @@ import ItemPrice from '../atoms/productsList/ItemPrice'
 import StyledLink from '../atoms/StyledLink';
 import ImageBox from '../atoms/productsList/ImageBox';
 
+/**
+ * 상품 리스트에서 상품 정보 카드
+ * @param {*} props 
+ * @param {string} props.link - 상품 상세페이지 링크
+ * @param {*} props.image - 이미지 링크
+ * @param {*} props.productName - 상품 이름
+ * @param {*} props.price - 상품 가격
+ * @returns 
+ */
 const ProductCard = ( props ) => {
 
   return (

@@ -8,7 +8,6 @@ import RegisterPage from "./pages/RegisterPage";
 
 import DetailPage from "./pages/DetailPage";
 import PageContainer from "./components/atoms/PageContainer";
-import Test from "./components/organisms/Test";
 import Loader from "./components/molecules/Loader";
 import { useIsFetching } from "react-query";
 
@@ -23,7 +22,6 @@ function AppNoSuspense() {
           <Route path="*" element={<MainPage />} />
           <Route path="/signup" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/test" element={<Test />} />
           <Route path="/products/:id" element={<DetailPage />} />
         </Routes>
         {isFetching ? <Loader /> : null}

@@ -11,7 +11,7 @@ const skeletonAnimation = keyframes`
 `;
 
 const SkeletonBox = styled.div`
-  width: 97%;
+  width: 95%;
   height: ${props=>props.height};
   background: linear-gradient(to right, #e8e8e8 0%, #f5f5f5 50%, #e8e8e8 100%);
   background-size: 200% 100%;
@@ -21,6 +21,13 @@ const SkeletonBox = styled.div`
   object-fit: cover;
 `;
 
+/**
+ * 스켈레톤 : 부모 요소의 크기에 맞게 늘어나는 애니메이션 박스 
+ * @param {*} props
+ * @param {string} props.height - 높이 지정, 미지정시 부모요소의 95%
+ * @param {*} props.children
+ * @returns 
+ */
 function Skeleton(props) {
   return (
       <SkeletonBox height={props.height ? props.height : "95%"}>{props.children}</SkeletonBox>

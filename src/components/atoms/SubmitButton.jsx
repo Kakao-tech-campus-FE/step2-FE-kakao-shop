@@ -7,7 +7,6 @@ const StyledButton = styled.button`
   border: none;
   text-align: center;
   margin: 10px 0;
-  background-color: ${props=>props.bgcolor};
   font-family: Pretendard;
   cursor: pointer;
 `
@@ -26,7 +25,7 @@ const SubmitButton = (props) => {
         id={props.id}
         type="submit"
         disabled={props.disabled} 
-        bgcolor={props.disabled ? "lightgray" : "yellow"}
+        style={{backgroundColor: props.disabled ? "lightgray" : "yellow"}}
         onClick={props.onClick}
         >
         {props.children}
