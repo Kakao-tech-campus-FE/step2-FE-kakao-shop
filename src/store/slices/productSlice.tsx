@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState = {
   products: [],
-  loading: false,
+  loading: true,
   error: null,
   isEnd: false,
 };

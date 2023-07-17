@@ -10,7 +10,7 @@ const MainPRoductTemplate = () => {
   const [page, setPage] = useState(0);
   const products = useSelector((state: RootState) => state.product.products);
   const isEnd = useSelector((state: RootState) => state.product.isEnd);
-  const loading = useSelector((state: RootState) => state.product.isEnd);
+  const loading = useSelector((state: RootState) => state.product.loading);
 
   const dispatch = useDispatch<AppDispatch>();
   const bottomObserver = useRef(null);
@@ -18,7 +18,7 @@ const MainPRoductTemplate = () => {
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !isEnd) {
+        if (entry.isIntersecting && !isEnd && !loading) {
           setPage(page + 1);
           window.scrollTo({ left: 0, top: 0 });
         }
@@ -36,6 +36,11 @@ const MainPRoductTemplate = () => {
   }, [io]);
 
   useEffect(() => {
+    console.log('loading: ', loading);
+  }, [loading]);
+
+  useEffect(() => {
+    console.log('page:', page);
     dispatch(getProducts(page));
   }, [dispatch, page]);
 

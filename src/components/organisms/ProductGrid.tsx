@@ -15,17 +15,15 @@ const ProductGrid = ({ products, loading }: ProductGridProps) => {
     return i;
   });
 
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
-
   return (
     <div className="flex flex-wrap justify-center gap-x-[30px] pb-[300px]">
       {products.map((product) =>
         loading ? (
-          <ProductCard key={product.id} product={product} size={cardSize} />
+          <Skeleton key={product.id} variant="rectangular" animation="wave">
+            <ProductCard key={product.id} product={product} size={cardSize} />
+          </Skeleton>
         ) : (
-          <Skeleton key={product.id} variant="rectangular" animation="wave" width={cardSize} height={200} />
+          <ProductCard key={product.id} product={product} size={cardSize} />
         ),
       )}
       {invisibleCards.map((key) => (
