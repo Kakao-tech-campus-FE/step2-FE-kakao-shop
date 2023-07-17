@@ -27,6 +27,17 @@ const LoginForm = ( ) => {
 
   const navigate = useNavigate();
 
+  const loginHandler = () => {
+    const res = dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
+    if (res===)
+    
+  }
+
   return (
     <div className="flex min-h-screen justify-center items-center">
       <Container className="mx-auto w-1/3 h-2/3 align-middle  border-solid border-2 ">

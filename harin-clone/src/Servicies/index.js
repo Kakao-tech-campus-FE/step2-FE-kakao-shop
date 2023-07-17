@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')
   if (token) {
-    config.headers['Authorization'] = token;
+    config.headers['Authorization'] = `Bearer ${token}`;
   }
   return config;
 });
@@ -23,8 +23,13 @@ instance.interceptors.response.use(
     return response
   },
   (error) => {
-    
-    return Promise.reject(error.response);
+    if (error.status >= 300 && error.status < 400) {
+      console.log("리다이렉션")
+    } else if (error.status < 500) {
+      console.log("클라이언트 오류") 
+    } else if (error.status < 600) {
+      console.log("서버 오류")
+    }
   }
 );
 
