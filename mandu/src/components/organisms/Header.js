@@ -17,6 +17,12 @@ const Header = () => {
         }
     }
 
+    const logout = () => {
+        cookie.remove('access_token', {path: '/'});
+        cookie.remove('user_id', {path: '/'});
+        dispatch(setId(null));
+    }
+
     useEffect(() => {
         checkValidUser();
     }, []);
@@ -33,14 +39,20 @@ const Header = () => {
                 <TopNavListItem link="/about">기획전</TopNavListItem>
             </List>
             <div className="flex mb-1">
-                <div>
+                <div className="self-center">
                     <Link to="/cart">
                         <img alt="장바구니" className="h-7 mx-2" src="cart.png"/>
                     </Link>
                 </div>
-                <div className="pl-7 border-l-2 ml-4 px-2">
+                <div className="pl-7 border-l-2 ml-4 px-2 mt-0.5">
                     {userId
-                        ? <div className="my-2">{`유저 id : ${userId}`}</div> :
+                        ?
+                        <div className="flex">
+                            <div className="my-2">{`유저 id : ${userId}`}</div>
+                            <button onClick={logout}>
+                                <img alt="로그아웃" className="h-4 mx-4" src="logout.png"/>
+                            </button>
+                        </div> :
                         <Link to="/login"
                               className="text-sm ">
                             로그인
