@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import routes from "@/constants/routes.js";
+import changeNumToMonetaryUnit from "@/utils/changeNumToMonetaryUnit.js";
 const ThumbCard = lazy(() =>
   import("@/components/molecules/thumb-card/ThumbCard.jsx")
 );
@@ -35,10 +36,6 @@ function ProductInfoCard({ id, productName, description, image, price }) {
 
   const onCardClick = (id) => {
     navigate(`${routes.product}/${id}`);
-  };
-
-  const changeNumToMonetaryUnit = (num) => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
