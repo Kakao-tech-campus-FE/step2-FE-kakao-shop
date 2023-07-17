@@ -5,8 +5,11 @@ export const ProductCard = ({id, title, image, link, price}) => {
         <div id={id} className="w-72 ml-5 mb-7">
             <Link to={link}>
                 <div className="card__image">
-                    <img className="w-full h-40 object-cover rounded-2xl" src={process.env.REACT_APP_API_URL + image}
-                         alt={title}/>
+                    <img
+                        loading="lazy"
+                        className="w-full h-40 object-cover rounded-2xl" src={process.env.REACT_APP_API_URL + image}
+                        alt={title}
+                    />
                 </div>
                 <div className="my-2">
                     <h3>{title}</h3>
