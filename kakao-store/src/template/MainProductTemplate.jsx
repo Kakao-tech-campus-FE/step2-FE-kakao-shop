@@ -6,6 +6,7 @@ import { getProduct } from "../store/slices/productSlice";
 import { fetchProducts } from "../services/product";
 import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
+import { useParams } from "react-router-dom";
 
 /**
  * 메인 페이지 컴포넌트
@@ -21,7 +22,6 @@ const MainProductTemplate = () => {
   const products = useSelector((state) => state.product.products);
   // const [products, setProducts] = useState([]);
   const isEnd = useSelector((state) => state.product.isEnd);
-
   const { data, isError, error } = useQuery([("products", page)], async () => {
     return await fetchProducts(page);
   });

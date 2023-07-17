@@ -10,12 +10,14 @@ import { useQuery } from "react-query";
 const ProductDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  // const { data, error, isLoading } = useSWR(`/product/${id}`, getProductById);
-  const {
-    data: detail,
-    error,
-    isLoading,
-  } = useQuery(`product/${id}`, () => getProductById(id)); // 구분자, API 요청 함수 / deatilSlice 필요없음
+  const { data, error, isLoading } = useQuery(`/product/${id}`, () =>
+    getProductById(id)
+  );
+  // const {
+  //   data: detail,
+  //   error,
+  //   isLoading,
+  // } = useQuery(`product/${id}`, () => getProductById(id)); // 구분자, API 요청 함수 / deatilSlice 필요없음
 
   // 비동기 함수
   // 50초랑 20초 요청이 있으면 동시에 출발
@@ -23,9 +25,7 @@ const ProductDetailPage = () => {
   // useQueries([]) 사용
   // 단일 비동기는 useQuery 사용
 
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
+  const product = data?.data.response;
 
   return (
     <div>
@@ -34,7 +34,7 @@ const ProductDetailPage = () => {
       error state */}
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
-      {detail && <div>{detail.productName}</div>}
+      {data && <div>{data.productName}</div>}
     </div>
   );
 };
