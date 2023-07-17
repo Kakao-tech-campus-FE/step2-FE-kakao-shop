@@ -16,12 +16,12 @@ const ProductGrid = ({ products, loading, setInvisibleCards = true }: ProductGri
   });
 
   return (
-    <div className="flex flex-wrap justify-center gap-x-[30px]">
+    <>
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}
       {setInvisibleCards && invisibleCards.map((key) => <div key={key} className={`w-[${cardSize}px] invisible`} />)}
-    </div>
+    </>
   );
 };
 

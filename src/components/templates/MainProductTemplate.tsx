@@ -51,7 +51,7 @@ const MainPRoductTemplate = () => {
   }, [dispatch, page]);
 
   return (
-    <div>
+    <div className="flex flex-wrap justify-center gap-x-[30px]">
       {prevProduct && <ProductGrid products={prevProduct} loading={loading} setInvisibleCards={false} />}
       {loading || !currentProduct ? <Loader /> : <ProductGrid products={currentProduct} loading={loading} />}
       <div ref={bottomObserver} />
