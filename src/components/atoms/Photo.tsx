@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Skeleton } from '@mui/material';
+import React from 'react';
 
 interface PhotoProps {
   src: string;
   alt: string;
+  setImgLoaded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Photo = ({ src, alt }: PhotoProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-
+const Photo = ({ src, alt, setImgLoaded }: PhotoProps) => {
   return (
     <picture>
       <img
         src={`${src}`}
         onLoad={(e) => {
-          setIsLoading(false);
+          setImgLoaded(true);
         }}
         className="width:inherit"
         alt={alt}
       />
-      {isLoading && <Skeleton variant="rectangular" animation="wave" width={200} height={200} />}
     </picture>
   );
 };
