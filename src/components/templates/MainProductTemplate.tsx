@@ -10,6 +10,7 @@ const MainPRoductTemplate = () => {
   const [page, setPage] = useState(0);
   const products = useSelector((state: RootState) => state.product.products);
   const isEnd = useSelector((state: RootState) => state.product.isEnd);
+  const loading = useSelector((state: RootState) => state.product.isEnd);
 
   const dispatch = useDispatch<AppDispatch>();
   const bottomObserver = useRef(null);
@@ -40,7 +41,7 @@ const MainPRoductTemplate = () => {
 
   return (
     <Suspense fallback={<Loader />}>
-      <ProductGrid products={products} />
+      <ProductGrid products={products} loading={loading} />
       <div className="pt-[500px]" ref={bottomObserver} />
     </Suspense>
   );
