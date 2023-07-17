@@ -9,7 +9,7 @@ const Styled = {
     min-height: 100vh;
   `,
   Section: styled.section`
-    width: 100%;
+    width: 100vw;
     padding-top: 4rem;
     margin: 0 5rem;
   `,

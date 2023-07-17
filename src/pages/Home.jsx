@@ -66,7 +66,7 @@ function Home() {
         slideArray={CAROUSEL.SLIDE}
         dotButton
         arrowButton
-        width="100vwr"
+        width="100vw"
         time={2000}
         style={{ position: "relative", left: "-5rem" }}
       />
