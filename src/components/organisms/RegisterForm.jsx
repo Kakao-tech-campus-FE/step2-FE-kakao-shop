@@ -42,7 +42,7 @@ const RegisterForm = () => {
     value,
     setModal
   );
-  const allValid = Object.values(valid).every((value) => value === true);
+  const isAllValid = Object.values(valid).every((value) => value === true);
 
   // 회원가입 API
   const handleRegister = () => {
@@ -123,7 +123,7 @@ const RegisterForm = () => {
             handleOnBlur(e);
           }}
         ></InputGroup>
-        <Button valid={allValid} className={"mt-10"} onClick={handleRegister}>
+        <Button valid={isAllValid} className={"mt-10"} onClick={handleRegister}>
           회원가입
         </Button>
       </Container>

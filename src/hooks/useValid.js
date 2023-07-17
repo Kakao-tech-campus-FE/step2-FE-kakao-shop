@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { check } from "../apis/user";
+import { EMAIL_REGEX, PW_REGEX } from "../constants/regex";
 
 // 유효성 검사 커스텀 훅
 const useValid = (initialValue, formValue, setModal) => {
@@ -31,9 +32,6 @@ const useValid = (initialValue, formValue, setModal) => {
 
   // 유효성 검사
   const checkRegex = (name, value) => {
-    const EMAIL_REGEX = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
-    const PW_REGEX =
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
     let result;
     if (value.length === 0) {
       result = "required";

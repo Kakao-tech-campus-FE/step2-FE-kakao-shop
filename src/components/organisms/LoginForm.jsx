@@ -12,8 +12,8 @@ import { loginRequest } from "../../store/slices/userSlice";
 const LoginForm = () => {
   // user 전역 상태 관련
   const email = useSelector((state) => state.user.email);
-  const error = useSelector((state) => state.user.error);
-  const loading = useSelector((state) => state.user.loading);
+  const isError = useSelector((state) => state.user.error);
+  const isLoading = useSelector((state) => state.user.loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -53,12 +53,12 @@ const LoginForm = () => {
       navigate("/", { replace: true });
       window.location.reload(false);
     }
-    if (error === true) {
+    if (isError === true) {
       setLoginError(
         "이메일 혹은 비밀번호가 일치하지 않습니다. 입력한 내용을 다시 확인해 주세요."
       );
     }
-  }, [email, navigate, error]);
+  }, [email, navigate, isError]);
 
   return (
     <>
@@ -91,7 +91,7 @@ const LoginForm = () => {
             {loginError}
           </Box>
         )}
-        <Button className={"mt-10"} onClick={loginReq} isLoading={loading}>
+        <Button className={"mt-10"} onClick={loginReq} isLoading={isLoading}>
           로그인
         </Button>
         <Link to="/signup" className="mt-5 text-xs ">
