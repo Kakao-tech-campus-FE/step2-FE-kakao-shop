@@ -1,6 +1,5 @@
 import { ProductInfoData } from '@api/dto';
 import ProductCard from '@components/molecules/ProductCard';
-import { Skeleton } from '@mui/material';
 import React, { useEffect } from 'react';
 
 interface ProductGridProps {
@@ -17,15 +16,9 @@ const ProductGrid = ({ products, loading }: ProductGridProps) => {
 
   return (
     <div className="flex flex-wrap justify-center gap-x-[30px]">
-      {products.map((product) =>
-        loading ? (
-          <Skeleton key={product.id} variant="rectangular" animation="wave">
-            <ProductCard key={product.id} product={product} size={cardSize} />
-          </Skeleton>
-        ) : (
-          <ProductCard key={product.id} product={product} size={cardSize} />
-        ),
-      )}
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} size={cardSize} />
+      ))}
       {invisibleCards.map((key) => (
         <div key={key} className={`w-[${cardSize}px] invisible`} />
       ))}
