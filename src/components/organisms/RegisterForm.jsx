@@ -9,6 +9,7 @@ import useValid from "../../hooks/useValid";
 import Modal from "../moleclules/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // 유효성 검사의 에러 메세지
 const ERROR_MSG = {
@@ -23,6 +24,7 @@ const ERROR_MSG = {
 const RegisterForm = () => {
   // 전역 상태
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // input 값, 유효성 검사, 모달 상태
   const { value, handleOnChange } = useInput({
@@ -53,10 +55,13 @@ const RegisterForm = () => {
     }).then((res) => {
       if (res.status === 200) {
         setModal("complete");
-        loginRequest({
-          email: value.email,
-          password: value.password,
-        });
+        console.log("hello");
+        dispatch(
+          loginRequest({
+            email: value.email,
+            password: value.password,
+          })
+        );
       }
     });
   };
