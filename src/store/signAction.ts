@@ -41,7 +41,6 @@ export const signUp = createAsyncThunk<
     try {
       const response = await commonAxios.post("/join", data);
       const resData = new DefaultResDto(response.data);
-      console.log(resData);
 
       if (resData.error) {
         return rejectWithValue(resData.error);

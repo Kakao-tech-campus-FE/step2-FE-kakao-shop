@@ -1,7 +1,13 @@
+import GlobalNavbar from "@/components/Navbar/GlobalNavbar.component";
 import ProductDetail from "@/components/ProductDetail/ProductDetail.component";
 
 const ProductDetailPage = () => {
-  return <ProductDetail />;
+  return (
+    <>
+      <GlobalNavbar />
+      <ProductDetail />
+    </>
+  );
 };
 
 export default ProductDetailPage;
