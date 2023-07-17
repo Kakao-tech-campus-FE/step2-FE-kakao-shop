@@ -5,16 +5,19 @@ import { RootState } from '@store/index';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { FallbackErrorBoundary } from '@components/@common/FallbackErrorBoundary';
 import { CustomSuspense } from '@components/atom';
 import BannerImageList from '@components/atom/Carousel/BannerImageList';
 import Loading from '@components/atom/Loading';
 import Header from '@components/molecules/Header';
 import { CardList } from '@components/page/Home/CardList';
+import CardListFallback from '@components/page/Home/CardListFallback';
 
 function Home() {
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.home.products);
   const isLoading = useSelector((state: RootState) => state.home.isLoading);
+  const error = useSelector((state: RootState) => state.home.error);
   const [page, setPage] = useState(0);
   const endRef = useRef<HTMLDivElement>(null);
 
@@ -57,9 +60,11 @@ function Home() {
             <S.InnerTxt>오늘의 딜</S.InnerTxt>
           </S.InnerTxtContainer>
 
-          <CustomSuspense fallback={CardList.Skeleton()} isLoading={isLoading && page === 0}>
-            <CardList products={products} />
-          </CustomSuspense>
+          <FallbackErrorBoundary fallback={CardListFallback}>
+            <CustomSuspense fallback={CardList.Skeleton()} isLoading={isLoading && page === 0} error={error}>
+              <CardList products={products} />
+            </CustomSuspense>
+          </FallbackErrorBoundary>
 
           {isLoading && page !== 0 && <Loading />}
         </S.ProductSection>
