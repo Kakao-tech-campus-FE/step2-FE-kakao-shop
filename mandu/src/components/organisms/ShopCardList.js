@@ -18,10 +18,10 @@ const ShopCardList = () => {
     )
 
     useEffect(() => {
-        if (inView && hasNextPage && !error) {
+        if (inView && hasNextPage) {
             fetchNextPage()
         }
-    }, [inView])
+    }, [inView, fetchNextPage, hasNextPage])
 
 
     if (status === "error") return <div className="text-center">{error.message}</div>
@@ -32,17 +32,16 @@ const ShopCardList = () => {
                 :
                 <ProductCardList
                     data={data}
-                    ref={ref}
-                    isFetching={isFetching}
-                    error={error}
-                    hasNextPage={hasNextPage}
                 />
             }
+            <div ref={ref} className="text-center w-full">
+                {isFetching ? "loading" : error ? error.message : ""}
+            </div>
         </div>
     );
 }
 
-const ProductCardList = ({data, ref, isFetching, error, hasNextPage}) => {
+const ProductCardList = ({data}) => {
     return (
         <>
             {data.pages.map((page) => (
@@ -54,9 +53,7 @@ const ProductCardList = ({data, ref, isFetching, error, hasNextPage}) => {
                     })}
                 </Fragment>
             ))}
-            <div ref={ref} className="text-center">
-                {isFetching ? "loading" : error ? error.message : hasNextPage ? "더보기" : ""}
-            </div>
+
         </>
     )
 }
