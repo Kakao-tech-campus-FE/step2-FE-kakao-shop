@@ -37,12 +37,11 @@ const Styled = {
 };
 
 function Home() {
+  const loaderRef = useRef(null);
   const observer = useIntersectionObserver(async () => {
     await fetchNextPage();
   });
-  const loaderRef = useRef();
   const { data, fetchNextPage } = useGetInfiniteProductsQuery({
-    observer,
     loaderRef,
   });
 
