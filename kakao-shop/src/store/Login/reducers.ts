@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { produce, Draft } from 'immer';
 
 import { SignInRequest } from '@hooks/page/Login/useLoginForm';
@@ -21,7 +22,7 @@ export const signInSuccess = (payload: SignInResponse): SignInAction => ({
   payload,
 });
 
-export const signInFailure = (payload: SignInErrorResponse): SignInErrorAction => ({
+export const signInFailure = (payload: AxiosError<SignInResponse>): SignInErrorAction => ({
   type: SIGN_IN_FAILURE,
   payload,
 });
@@ -42,20 +43,20 @@ export const initialState: SignInState = {
 };
 
 export const signInReducer = produce(
-  (draft: Draft<SignInState>, action: SignInAction | SignOutAction | SignInErrorAction | ResetSignInStateAction) => {
+  (draft: Draft<SignInState>, action: SignInAction | SignOutAction | ResetSignInStateAction) => {
     switch (action.type) {
       case SIGN_IN_SUCCESS:
         draft.isLogin = !!getCookie('accessToken');
         draft.success = action.payload.success;
         draft.response = action.payload.response;
-        draft.error = action.payload.error;
+        draft.error = action.payload.error as null;
         break;
 
       case SIGN_IN_FAILURE:
-        const payload = action.payload as SignInErrorResponse; // SignInResponse 과 SignInErrorResponse 의 엔티티가 달라서 타입 오류가 발생하였음. 이를 해결하기 위해서 타입 단언을 사용.
-        draft.success = payload.success;
-        draft.response = payload.response;
-        draft.error = { method: payload.method, message: payload.error!.message, status: payload.error!.status }; // SIGN_IN_FAILURE 액션이 발생할떄 payload.error === null 일 수 없기때문에 non-null assertion operator 를 사용해도 된다고 생각하였음.
+        const payload = action.payload as unknown as AxiosError<SignInResponse>;
+        draft.success = payload.response?.data.success ? payload.response?.data.success : false; // 서버에서 보내주는 약속 데이터가 예기치 못한 오류가 발생할 경우 응답으로 오지않을 수 있으므로 기본값 설정
+        draft.response = payload.response?.data.response ? payload.response?.data.response : null;
+        draft.error = payload;
         break;
 
       case RESET_SIGN_IN_STATE:
@@ -86,7 +87,7 @@ export type SignInState = {
   isLogin: boolean;
   success: boolean;
   response: null;
-  error: ErrorType | null;
+  error: AxiosError<SignInResponse> | null;
 };
 
 export type SignInResponse = {
@@ -95,12 +96,7 @@ export type SignInResponse = {
   error: ErrorType | null;
 };
 
-export type SignInErrorResponse = {
-  method: string;
-} & SignInResponse;
-
 export type ErrorType = {
-  method: string;
   message: string;
   status: number;
 };
@@ -112,7 +108,7 @@ export type SignInAction = {
 
 export type SignInErrorAction = {
   type: typeof SIGN_IN_SUCCESS | typeof SIGN_IN_FAILURE;
-  payload: SignInErrorResponse;
+  payload: AxiosError<SignInResponse>;
 };
 
 export type SignOutAction = {

@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-import { ErrorBoundary } from '@components/ErrorBoundary';
+import { GlobalErrorBoundary } from '@components/@common/GlobalErrorBondary';
 
 import App from './App';
 import { store } from './store';
@@ -19,10 +19,10 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
     <Global styles={globalStyle} />
-    <ErrorBoundary>
+    <GlobalErrorBoundary>
       <Provider store={store}>
         <App />
       </Provider>
-    </ErrorBoundary>
+    </GlobalErrorBoundary>
   </React.StrictMode>,
 );
