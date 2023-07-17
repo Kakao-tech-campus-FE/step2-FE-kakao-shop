@@ -1,13 +1,7 @@
 import {useState} from "react";
 
-function Carousel({width = "100%", height = "400px"}) {
-    const imageUrlList = [
-        "https://images.unsplash.com/photo-1529788295308-1eace6f67388?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format",
-        "https://images.unsplash.com/photo-1682686578615-39549501dd08?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format",
-        "https://images.unsplash.com/photo-1687463221023-02f259da7d77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format",
-        "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format",
+function Carousel({width = "100%", height = "400px", imgList = []}) {
 
-    ];
 
     const [curImageIndex, setCurImageIndex] = useState(0);
 
@@ -15,9 +9,9 @@ function Carousel({width = "100%", height = "400px"}) {
 
     const moveLeft = () => {
         setCurImageIndex((value) => {
-            let index = (value - 1) % imageUrlList.length;
+            let index = (value - 1) % imgList.length;
             if (value < 0) {
-                index = index + imageUrlList.length;
+                index = index + imgList.length;
             }
             return index;
 
@@ -25,9 +19,9 @@ function Carousel({width = "100%", height = "400px"}) {
     }
     const moveRight = () => {
         setCurImageIndex((value) => {
-            let index = (value + 1) % imageUrlList.length;
-            if (value >= imageUrlList.length) {
-                index = index - imageUrlList.length;
+            let index = (value + 1) % imgList.length;
+            if (value >= imgList.length) {
+                index = index - imgList.length;
             }
             return index;
         });
@@ -84,7 +78,7 @@ function Carousel({width = "100%", height = "400px"}) {
             }}>
 
                 {
-                    imageUrlList.map((url, index) => {
+                    imgList.map((url, index) => {
                             return (<div style={{width: '100%', height: '100%', flex: '1 0 100%'}} key={index}>
                                 <img
                                     style={{width: '100%', height: '100%', objectFit: 'cover'}}
