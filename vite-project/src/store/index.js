@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
+import productReducer from ".slices/productSlice"
 
 import { persistReducer } from 'redux-persist';
 
@@ -8,7 +9,7 @@ export const store = configureStore({
     // User reducer: email
     user: userReducer,
     // Products reducer: products
-    // products: productsReducer,
+    product: productReducer,
   }
 });
 
