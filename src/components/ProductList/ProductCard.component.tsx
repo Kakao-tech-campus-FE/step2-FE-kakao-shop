@@ -5,15 +5,20 @@ import { pointByThree } from "@/functions/utils";
 import LazyImage from "@/components/common/LazyImage.component";
 import { PRODUCT } from "@/assets/product.ko";
 import { Ref } from "react";
+import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
-  cardRef: Ref<HTMLDivElement>;
+  cardRef: Ref<HTMLAnchorElement>;
 }
 
 const ProductCard = ({ product, cardRef }: ProductCardProps) => {
   return (
-    <div className="h-full cursor-pointer flex flex-col gap-2" ref={cardRef}>
+    <Link
+      to={`/product/${product.id}`}
+      className="h-full cursor-pointer flex flex-col gap-2"
+      ref={cardRef}
+    >
       <div className="w-full overflow-hidden flex-1">
         <LazyImage
           className="hover:scale-110 transition-all ease-out duration-500 h-full"
@@ -32,7 +37,7 @@ const ProductCard = ({ product, cardRef }: ProductCardProps) => {
         <Txt typograph="h5"> {pointByThree(product.price)} </Txt>
         <Txt typograph="h5">{PRODUCT.FROM_PRICE}~</Txt>
       </div>
-    </div>
+    </Link>
   );
 };
 

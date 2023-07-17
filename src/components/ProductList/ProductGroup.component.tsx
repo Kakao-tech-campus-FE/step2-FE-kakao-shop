@@ -12,7 +12,7 @@ const { NO_PRODUCT } = PRODUCT;
 
 const ProductGroup = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
-  const cardRef = useRef<HTMLDivElement | null>(null);
+  const cardRef = useRef<HTMLAnchorElement | null>(null);
 
   const getProducts = async (pageData: { pageParam?: number }) => {
     const pageParam = pageData?.pageParam ?? 0;

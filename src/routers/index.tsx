@@ -8,6 +8,7 @@ import CarouselPage from "@/pages/test/Carousel.page";
 import RadioButtonPage from "@/pages/test/RadioButton.page";
 import TogglePage from "@/pages/test/Toggle.page";
 import CheckListPage from "@/pages/test/CheckList.page";
+import ProductDetailPage from "@/pages/Product/ProductDetail.page";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     element: <SignInPage />,
     path: "/signin",
+  },
+  {
+    element: <ProductDetailPage />,
+    path: "/product/:productId",
   },
   {
     element: <Toast />,
