@@ -31,7 +31,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "build-test": "cp serve.json build && yarn serve build"
   },
   "eslintConfig": {
     "extends": [
