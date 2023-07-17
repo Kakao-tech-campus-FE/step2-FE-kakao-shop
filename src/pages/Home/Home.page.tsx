@@ -1,5 +1,5 @@
 import GlobalNavbar from "@/components/Navbar/GlobalNavbar.component";
-import ProductGroup from "@/components/Product/ProductGroup.component";
+import ProductGroup from "@/components/ProductList/ProductGroup.component";
 import Carousel from "@/components/common/Carousel/Carousel.component";
 
 const HomePage = () => {

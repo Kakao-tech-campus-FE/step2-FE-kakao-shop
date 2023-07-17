@@ -1,9 +1,9 @@
 import { Product } from "@/dtos/product.dto";
-import ProductCard from "@/components/Product/ProductCard.component";
+import ProductCard from "@/components/ProductList/ProductCard.component";
 import { commonAxios } from "@/functions/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
-import ProductSkeleton from "@/components/Product/ProductSkeleton.component";
+import ProductSkeleton from "@/components/ProductList/ProductSkeleton.component";
 import _ from "lodash/";
 import { PRODUCT } from "@/assets/product.ko";
 import Txt from "../common/Txt.component";
