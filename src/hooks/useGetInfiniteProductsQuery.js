@@ -3,13 +3,15 @@ import productAPI from "@/api/productAPI.js";
 
 function useGetInfiniteProductsQuery({ observer, loaderRef }) {
   const deleteObserver = () => {
-    const unobserve = observer.observe(loaderRef.current);
-    observer && unobserve();
-    loaderRef.current.style = "display:none";
+    const unobserve = observer?.observe(loaderRef.current);
+    observer && unobserve?.();
+
+    if (!loaderRef || !loaderRef.current) return;
+    loaderRef.current.style.display = "none";
   };
 
   const { data, fetchNextPage } = useInfiniteQuery(
-    "getAllProducts",
+    ["getAllProducts"],
     async ({ pageParam = 0 }) => {
       const { data } = await productAPI.getAllProducts({
         pageIndex: pageParam,
@@ -19,7 +21,8 @@ function useGetInfiniteProductsQuery({ observer, loaderRef }) {
     {
       getNextPageParam: (lastPage, allPages) => {
         if (lastPage.length === 0) {
-          return deleteObserver();
+          deleteObserver();
+          return undefined;
         }
         return allPages.length;
       },
