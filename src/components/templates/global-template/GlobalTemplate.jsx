@@ -9,9 +9,10 @@ const Styled = {
     min-height: 100vh;
   `,
   Section: styled.section`
-    width: 100vw;
+    width: calc(100vw - 10rem);
     padding-top: 4rem;
     margin: 0 5rem;
+    box-sizing: border-box;
   `,
 };
 

@@ -15,9 +15,6 @@ import CAROUSEL from "@/constants/CAROUSEL.js";
 
 const Styled = {
   Grid: styled.article`
-    position: relative;
-    left: -5rem;
-
     width: 100%;
     padding-top: 4rem;
 
@@ -27,11 +24,7 @@ const Styled = {
 
     grid-template-columns: repeat(3, 300px);
   `,
-
   Loader: styled.article`
-    position: relative;
-    left: -5rem;
-
     width: 100%;
     padding-bottom: 120px;
 
@@ -68,7 +61,7 @@ function Home() {
         arrowButton
         width="100vw"
         time={2000}
-        style={{ position: "relative", left: "-5rem" }}
+        style={{ width: "100vw", position: "relative", left: "-5rem" }}
       />
       <ErrorBoundary fallback={<div>api 통신 오류</div>}>
         <Suspense
