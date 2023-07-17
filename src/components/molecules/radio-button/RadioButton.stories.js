@@ -1,7 +1,7 @@
 import RadioButton from "./RadioButton.jsx";
 
 export default {
-  title: "Radio Button",
+  title: "week 1/Radio Button",
   tags: ["autodocs"],
   component: RadioButton,
   argTypes: {

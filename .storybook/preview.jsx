@@ -1,8 +1,5 @@
-/** @type { import('@storybook/react').Preview } */
-
 import { ThemeProvider } from "styled-components";
 import theme from "../src/styles/theme.js";
-import { withThemeFromJSXProvider } from "@storybook/addon-styling";
 import GlobalStyle from "../src/styles/GlobalStyle.js";
 import { HelmetProvider } from "react-helmet-async";
 import { withRouter } from "storybook-addon-react-router-v6";
@@ -16,19 +13,21 @@ const preview = {
         date: /Date$/,
       },
     },
+    options: {
+      storySort: {
+        order: ["atoms", "molecules", "organisms", "templates", "week 1", "*"],
+      },
+    },
   },
 };
 
 export const decorators = [
-  withThemeFromJSXProvider({
-    themes: { theme },
-    defaultTheme: theme,
-    Provider: ThemeProvider,
-    GlobalStyles: GlobalStyle,
-  }),
   (Story) => (
     <HelmetProvider>
-      <Story />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Story />
+      </ThemeProvider>
     </HelmetProvider>
   ),
   withRouter,

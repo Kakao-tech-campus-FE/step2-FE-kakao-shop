@@ -1,7 +1,7 @@
 import Stars from "@/components/atoms/stars/Stars.jsx";
 
 export default {
-  title: "atoms/Logo Button",
+  title: "atoms/Stars",
   tags: ["autodocs"],
   component: Stars,
   argTypes: {
