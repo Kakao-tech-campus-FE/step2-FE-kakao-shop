@@ -33,10 +33,8 @@ const MainPRoductTemplate = () => {
   );
 
   useEffect(() => {
-    // if (prevProduct !== undefined) setPrevProduct([...prevProduct, ...products]);
-    // else setPrevProduct(products);
     setCurrentProduct(products);
-    console.log(products);
+    console.log(prevProduct, products);
   }, [products]);
 
   useEffect(() => {
@@ -46,14 +44,16 @@ const MainPRoductTemplate = () => {
   }, [io]);
 
   useEffect(() => {
+    if (prevProduct !== undefined) setPrevProduct([...prevProduct, ...products]);
+    else setPrevProduct(products);
     dispatch(getProducts(page));
     console.log('page: ', page);
   }, [dispatch, page]);
 
   return (
     <div>
-      {prevProduct && <ProductGrid products={prevProduct} loading={loading} />}
-      {loading ? <Loader /> : <ProductGrid products={products} loading={loading} />}
+      {prevProduct && <ProductGrid products={prevProduct} loading={loading} setInvisibleCards={false} />}
+      {loading || !currentProduct ? <Loader /> : <ProductGrid products={currentProduct} loading={loading} />}
       <div ref={bottomObserver} />
     </div>
   );
