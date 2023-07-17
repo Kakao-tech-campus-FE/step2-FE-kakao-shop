@@ -17,7 +17,7 @@ const ProductGrid = ({ products, loading }: ProductGridProps) => {
   return (
     <div className="flex flex-wrap justify-center gap-x-[30px]">
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} size={cardSize} />
+        <ProductCard key={product.id} product={product} />
       ))}
       {invisibleCards.map((key) => (
         <div key={key} className={`w-[${cardSize}px] invisible`} />

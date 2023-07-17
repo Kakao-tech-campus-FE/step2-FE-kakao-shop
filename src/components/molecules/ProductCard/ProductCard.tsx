@@ -7,10 +7,9 @@ import ProductCardSkeleton from './ProductCardSkeleton';
 
 interface ProductCardProps {
   product: ProductInfoData;
-  size: number;
 }
 
-const ProductCard = ({ product, size }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const cardComponent = (
     <>
