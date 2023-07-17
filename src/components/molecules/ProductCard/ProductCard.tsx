@@ -23,9 +23,7 @@ const ProductCard = ({ product, size }: ProductCardProps) => {
       <p>{comma(product.price)}</p>
     </>
   );
-  useEffect(() => {
-    console.log(imgLoaded);
-  }, [imgLoaded]);
+
   return (
     <div className="w-[200px] h-[300px] bg-white rounded drop-shadow mb-[30px] p-[5px]">
       <Card to={`/product/${product.id}`}>
