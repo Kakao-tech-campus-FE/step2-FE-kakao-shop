@@ -45,11 +45,7 @@ const MainPRoductTemplate = () => {
   }, [dispatch, page]);
 
   return (
-    <Suspense fallback={<Loader />}>
-      <div ref={bottomObserver}>
-        <ProductGrid products={products} loading={loading} />
-      </div>
-    </Suspense>
+    <div ref={bottomObserver}>{loading ? <Loader /> : <ProductGrid products={products} loading={loading} />} </div>
   );
 };
 
