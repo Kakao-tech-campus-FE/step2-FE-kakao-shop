@@ -3,6 +3,7 @@ import {useInfiniteQuery} from "react-query";
 import {useInView} from 'react-intersection-observer'
 import {getProducts} from "../../services/apis";
 import {Fragment, useEffect} from "react";
+import Loader from "../atoms/Loader";
 
 const ShopCardList = () => {
     const {ref, inView} = useInView()
@@ -35,7 +36,7 @@ const ShopCardList = () => {
                 />
             }
             <div ref={ref} className="text-center w-full">
-                {isFetching ? "loading" : error ? error.message : ""}
+                {isFetching ? <Loader/> : error ? error.message : ""}
             </div>
         </div>
     );
