@@ -1,10 +1,11 @@
-import React, { Suspense, useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { RootState, AppDispatch } from '@store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductGrid from '@components/organisms/ProductGrid';
 import Loader from '@components/atoms/Loader';
 
 import { getProducts } from '@store/slices/productSlice';
+import { ProductInfoData } from '@api/dto';
 
 const MainPRoductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -13,39 +14,48 @@ const MainPRoductTemplate = () => {
   const loading = useSelector((state: RootState) => state.product.loading);
   const dispatch = useDispatch<AppDispatch>();
   const bottomObserver = useRef(null);
+  const [prevProduct, setPrevProduct] = useState<ProductInfoData[]>();
+  const [currentProduct, setCurrentProduct] = useState<ProductInfoData[]>();
 
   const io = new IntersectionObserver(
-    (entries, observer) => {
+    (entries) => {
       entries.forEach((entry) => {
+        if (loading) return;
         if (entry.isIntersecting && !isEnd) {
+          console.log('bottom!');
           setPage(page + 1);
-          console.log('page: ', page);
-          window.scrollTo({ left: 0, top: 0 });
         }
+        console.log(isEnd);
+        // observer.observe(bottomObserver.current);
       });
     },
-    {
-      threshold: 1,
-    },
+    { threshold: 1 },
   );
+
+  useEffect(() => {
+    // if (prevProduct !== undefined) setPrevProduct([...prevProduct, ...products]);
+    // else setPrevProduct(products);
+    setCurrentProduct(products);
+    console.log(products);
+  }, [products]);
 
   useEffect(() => {
     if (bottomObserver.current) {
       io.observe(bottomObserver.current); // 감시 선언
     }
-  }, [bottomObserver]);
+  }, [io]);
 
   useEffect(() => {
-    console.log('loading: ', loading);
-  }, [loading]);
-
-  useEffect(() => {
-    console.log('page:', page);
     dispatch(getProducts(page));
+    console.log('page: ', page);
   }, [dispatch, page]);
 
   return (
-    <div ref={bottomObserver}>{loading ? <Loader /> : <ProductGrid products={products} loading={loading} />} </div>
+    <div>
+      {prevProduct && <ProductGrid products={prevProduct} loading={loading} />}
+      {loading ? <Loader /> : <ProductGrid products={products} loading={loading} />}
+      <div ref={bottomObserver} />
+    </div>
   );
 };
 

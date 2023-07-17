@@ -20,12 +20,13 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProducts.pending, (state, action) => {
       const newState = state;
+      newState.loading = true;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
       // Promise.resolve() 되었을때
       const newState = state;
 
-      if (action.payload.response.length < 10) {
+      if (action.payload.response.length < 9) {
         newState.isEnd = true;
       }
       newState.loading = false;
