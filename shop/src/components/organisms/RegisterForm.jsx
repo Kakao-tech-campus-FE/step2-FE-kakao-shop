@@ -53,7 +53,7 @@ const RegisterForm = () => {
 
 
   return (
-    <Container>
+    <Container className="mx-96 mt-10 items-center justify-center">
       <div className="w-max p-52 bg-white shadow">
         <Title>회원가입</Title>
         <InputGroup 
@@ -104,7 +104,7 @@ const RegisterForm = () => {
 
 
         <Button
-          className="mt-10 "
+          className="mt-10 btn-primary py-2 px-4"
           disabled={isError || !value.password || !value.passwordConfirm }
           onClick={()=>{
             //api 요청 
