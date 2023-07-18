@@ -1,14 +1,18 @@
 import React from "react";
 
-/*
- * inputRef: focus를 주기 위해 ref 설정을 위한 props
- * id: <Label>과 연결할 id 값을 입력받음
- * type: <input> 태그의 타입을 입력받음
- * value: <input> 태그의 값을 입력받음
- * name: <input> 태그의 name 값을 입력받음
- * placeholder: <input> 태그의 placeholder를 입력받음
- * autoFocus: 페이지에 들어오면 포커스를 주기 위한 props
- * onChange: 입력되는 값이 변경될 때 실행할 콜백함수를 전달받음
+/**
+ * @description Input 컴포넌트
+ *
+ * @param {object} props - Input 컴포넌트의 속성(props).
+ * @param {React.RefObject<HTMLElement>} [props.inputRef=""] - input 태그의 ref값. ref 객체를 전달받습니다.
+ * @param {string} [props.id=""] - label 태그와 연결할 id 값. 문자열로 입력받습니다.
+ * @param {string} [props.type=""] - <input> 태그의 타입 값. 문자열로 입력받습니다.
+ * @param {string} [props.value=""] - <input> 태그의 값. 문자열로 입력받습니다.
+ * @param {string} [props.name=""] - <input> 태그의 name 값. 문자열로 입력받습니다.
+ * @param {string} [props.placeholder=""] - <input> 태그의 placeholder 값. 문자열로 입력받습니다.
+ * @param {boolean} [props.autoFocus=false] - autofocus 기능을 사용할지 여부. 기본값은 false입니다.
+ * @param {Function} [props.onChange=() => {}] - 입력되는 값이 변경될 때 호출되는 콜백함수. 기본값은 빈 함수입니다.
+ * @returns {JSX.Element} Input 컴포넌트의 JSX 요소.
  */
 export default function Input({
   inputRef,
@@ -17,8 +21,8 @@ export default function Input({
   value,
   name,
   placeholder,
-  autoFocus,
-  onChange,
+  autoFocus = false,
+  onChange = () => {},
 }) {
   return (
     <input
