@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "store/store";
 
 const instance = axios.create({
   baseURL:
@@ -6,7 +7,7 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: localStorage.getItem("token"),
+    Authorization: store.getState().token,
   },
 });
 
