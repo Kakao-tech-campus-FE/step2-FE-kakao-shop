@@ -269,6 +269,14 @@
   color: rgba(18, 189, 18, 0.699);
 }
 
+/* 카카오 쇼핑 클론 */
 .homepage {
   margin-top: 80px;
+}
+
+.product-detail-page {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

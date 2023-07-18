@@ -1,6 +1,7 @@
 import React from "react";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
+import "../../styles/molecules/ProductInfoColumn.css";
 
 const ProductInfoColumn = ({ product }) => {
   const { productName, price, image } = product;
