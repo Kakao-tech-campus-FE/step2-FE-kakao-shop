@@ -7,6 +7,11 @@ import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
+import Toast from "./components/Toast";
+import Carousel from "./components/Carousel";
+import RadioButton from "./components/RadioButton";
+import ToggleButton from "./components/ToggleButton";
+import CheckList from "./components/molecules/CheckList";
 
 function App() {
   const [page, setPage] = React.useState("");
@@ -16,6 +21,13 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<RegisterPage />}></Route>
+
+        {/* UI Components */}
+        <Route path="/carousel" element={<Carousel />}></Route>
+        <Route path="/radiobutton" element={<RadioButton />}></Route>
+        <Route path="/toast" element={<Toast />}></Route>
+        <Route path="/togglebutton" element={<ToggleButton />}></Route>
+
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
