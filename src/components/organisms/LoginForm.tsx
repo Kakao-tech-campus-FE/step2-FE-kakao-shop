@@ -6,6 +6,8 @@ import { useDispatch } from 'react-redux';
 import { loginStore } from '@store/slices/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import login from '@api/loginApi';
+import { Card } from '@mui/material';
+import Title from '@components/atoms/Title';
 import InputGroup from '../molecules/InputGroup';
 
 const LoginForm = () => {
@@ -45,27 +47,32 @@ const LoginForm = () => {
   }, []);
 
   return (
-    <div className="flex flex-col space-y-2">
-      <InputGroup
-        inputName="email"
-        labelName="이메일"
-        value={inputInfo.email}
-        helperText={emailHT}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        inputName="password"
-        labelName="비밀번호"
-        inputType="password"
-        value={inputInfo.password}
-        helperText={passwordHT}
-        onChange={handleOnChange}
-      />
-      <Link to="/register" className="text-sm text-middleGray">
-        회원가입 페이지로
-      </Link>
-      <FilledButton onClick={loginReq}>로그인</FilledButton>
-    </div>
+    <>
+      <Title>Login</Title>
+      <Card>
+        <div className="flex flex-col space-y-2 mx-[100px] mt-[20px] mb-[50px]">
+          <InputGroup
+            inputName="email"
+            labelName="이메일"
+            value={inputInfo.email}
+            helperText={emailHT}
+            onChange={handleOnChange}
+          />
+          <InputGroup
+            inputName="password"
+            labelName="비밀번호"
+            inputType="password"
+            value={inputInfo.password}
+            helperText={passwordHT}
+            onChange={handleOnChange}
+          />
+          <Link to="/register" className="text-sm text-middleGray">
+            회원가입 페이지로
+          </Link>
+          <FilledButton onClick={loginReq}>로그인</FilledButton>
+        </div>
+      </Card>
+    </>
   );
 };
 
