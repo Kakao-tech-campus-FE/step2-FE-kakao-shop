@@ -63,16 +63,19 @@ export const productDetailSlice = createSlice({
       .addCase(getProductDetail.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.order = [];
       })
       .addCase(getProductDetail.fulfilled, (state, action) => {
         state.loading = false;
         state.error = null;
         state.success = true;
         state.data = action.payload.response;
+        state.order = [];
       })
       .addCase(getProductDetail.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload?.message ?? "";
+        state.order = [];
       });
   },
 });

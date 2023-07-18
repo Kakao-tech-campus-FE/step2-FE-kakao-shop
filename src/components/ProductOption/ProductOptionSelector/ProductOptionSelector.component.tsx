@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import ProductOptionItem from "@components/ProductOption/ProductOptionItem.component";
+import ProductOptionItem from "@components/ProductOption/ProductOptionSelector/ProductOptionItem.component";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import { addProductOrder } from "@/store/productSlice";
