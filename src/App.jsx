@@ -1,31 +1,21 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css';
-import routes from './routes';
-import Home from './pages/Home'
 
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
+import { RouterInfo } from "./routes/RouterInfo";
 import { GlobalStyle } from "./css/globalStyles";
+const RouterObject = createBrowserRouter(RouterInfo);
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <GlobalStyle></GlobalStyle>
-        <Routes>
-          <Route path={routes.logIn} element={<Login />} />
-          <Route path={routes.signUp} element={<SignUp />} />
-          {/*단독 레이아웃*/}
-
-          <Route element></Route>
-          <Route path={routes.home} element={<Home />} />
-
-
-        </Routes></BrowserRouter>
-
-
+      <GlobalStyle></GlobalStyle>
+      <RouterProvider router={RouterObject} />
 
     </>
   );
 }
 
 export default App;
+
+//기본 라우터 사용시 메인 레이아웃은 홈이나 장바구니 같은 기본 페이지들을 감싸주면 됨.
+

@@ -22,5 +22,7 @@ const Question = ({ para, children, onClick }) => {
     );
 };
 //로그인에서는 회원가입 폼으로, 회원가입 페이지에서는 로그인 폼으로 이동하는 버튼
-//para 에는 스트링값이 들어가고, onClick 시 이동하는 함수가 들어간다.
+
+//para 에는 스트링값이 들어가고, onClick 시 이동하는 함수가 들어간다..
+
 export default Question;

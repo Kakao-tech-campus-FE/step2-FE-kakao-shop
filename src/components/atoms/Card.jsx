@@ -1,12 +1,19 @@
-import Link from 'react-router-dom';
 
-import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components'
 
-const Card = (to, children) => {
+const CardCss = styled.div`
+  width: 10rem;
+`;
+
+
+const Card = ({ to, children }) => {
     return (
-        <div>
+        <CardCss><Link to={to}>
             {children}
-        </div>
+        </Link></CardCss>
+
+
     );
 };
 //이번주 과제
