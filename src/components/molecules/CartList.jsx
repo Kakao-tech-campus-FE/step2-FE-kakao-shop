@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from 'react-query';
+import { comma } from "../../utils/convert";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
@@ -14,9 +16,12 @@ const CartList = ({ data }) => {
 
   const initPayload = useRef([]); // [{ cartId, quantity }]
 
-  const { mutate } = useMutation({
-    mutationFn: updateCart,
-  });
+  /**
+   * 다시 오기!
+   */
+  // const { mutate } = useMutation({
+  //   mutationFn: updateCart,
+  // });
 
   useEffect(() => {
     // ?. 연산자를 계속 쓰는 것이 별로 안좋은 패턴이기 때문에
@@ -109,13 +114,15 @@ const CartList = ({ data }) => {
       <Button
         className="order-btn"
         onClick={() => {
-          mutate(updatePayload, {
-            onSuccess: (data) => {
-              route.push("/order");
-            },
-            onError: (error) => {},
-          });
-          console.log(mutate(updatePayload));
+          /**
+           * 다시 오기!
+           */
+          // mutate(updatePayload, {
+          //   onSuccess: (data) => {
+          //     route.push("/order");
+          //   },
+          //   onError: (error) => {},
+          // });
           // update cart
           // 장바구니 정보를 수정하는 API 호출(개수 변경이 있는 경우에) POST METHOD
 

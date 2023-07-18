@@ -46,10 +46,10 @@ const RegisterForm = () => {
         id="username"
         type="text"
         name="username"
-        placeholder="사용자 이름을 입력해주세요."
-        label="이름"
+        placeholder="사용자 이름"
         value={value.username}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
         // onBlur={handleOnBlur}
       />
 
@@ -57,10 +57,10 @@ const RegisterForm = () => {
         id="email"
         type="email"
         name="email"
-        placeholder="아이디(이메일)을 입력해주세요."
-        label="이메일"
+        placeholder="아이디(이메일)"
         value={value.email}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
         // onBlur={handleOnBlur}
       />
 
@@ -68,10 +68,10 @@ const RegisterForm = () => {
         id="password"
         type="password"
         name="password"
-        placeholder="********"
-        label="비밀번호"
+        placeholder="비밀번호"
         value={value.password}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
         // onBlur={handleOnBlur}
       />
 
@@ -79,14 +79,15 @@ const RegisterForm = () => {
         id="passwordConfirm"
         type="password"
         name="passwordConfirm"
-        placeholder="********"
-        label="비밀번호 확인"
+        placeholder="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
         // onBlur={handleOnBlur}
       />
 
       <Button
+        className="w-96 h-12 bg-yellow-300 rounded-lg hover:bg-yellow-400"
         onClick={() => {
           registerReq();
         }}

@@ -15,3 +15,7 @@ import { instance } from "./index"; // axios instance
 export const addCart = (payload) => {
   return instance.post("/carts/add", payload)
 };
+
+export const getCart = () => {
+  return instance.get("/carts");
+}

@@ -11,7 +11,8 @@ const InputGroup = ({
   onChange,
   onBlur,
   label,
-  placeholder
+  placeholder,
+  className=""
 }) => {
   return (
     <Box>
@@ -24,6 +25,7 @@ const InputGroup = ({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        className={className}
       ></Input>
     </Box>
   );

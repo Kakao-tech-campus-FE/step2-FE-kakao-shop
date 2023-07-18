@@ -2,6 +2,7 @@ import React from "react";
 import Box from "./Box";
 import { comma } from "../../utils/convert";
 import Card from "./Card";
+import Counter from './Counter';
 
 const CartItem = ({ item, onChange }) => {
   return (

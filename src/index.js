@@ -17,7 +17,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     onError: errorHandler,
   },
-});
+}); 
 // 상태 관리가 전역적으로 이루어져야 하기 때문에 <Provider> <App /> </Provider> 와 같은 형태 취함
 root.render(
   <React.StrictMode>
