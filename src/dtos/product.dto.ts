@@ -13,7 +13,7 @@ export class Product {
   }
 }
 
-interface ProductOption {
+export interface ProductOption {
   id: number;
   optionName: string;
   price: number;

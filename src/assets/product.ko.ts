@@ -5,6 +5,7 @@ const PRODUCT = {
   FROM_PRICE: "원 부터",
   TOC_PRICE: "톡 딜가",
   WON: "원",
+  OPTION_SELECT: "옵션 선택",
 };
 
 export { PRODUCT };

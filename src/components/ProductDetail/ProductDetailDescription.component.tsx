@@ -11,7 +11,7 @@ const ProductDetailDescription = () => {
   if (!data) return <div>로딩중...</div>;
 
   return (
-    <div className="flex flex-[2_0_0]">
+    <>
       <div className="flex-1">
         <LazyImage
           src={import.meta.env.VITE_KAKAO_IMAGE_URL + data.image}
@@ -31,7 +31,7 @@ const ProductDetailDescription = () => {
           </Txt>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
