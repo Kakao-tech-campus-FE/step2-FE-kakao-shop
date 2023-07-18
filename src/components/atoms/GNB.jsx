@@ -1,14 +1,15 @@
 import Swal from 'sweetalert2'
 import { logoutMessage, clearTokens } from '../../utils/constants';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/GNB.css";
 
 const GNB = () => {
+    const navigate = useNavigate()
     const logout = () => {
         clearTokens();
         Swal.fire(logoutMessage)
         .then(() => {
-            window.location.href = "/";
+            navigate("/");
         })
     }
 
