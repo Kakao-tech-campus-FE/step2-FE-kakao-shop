@@ -1,5 +1,4 @@
 import React from 'react'
-import strPrice from 'utils/price'
 
 const TotalPrice = (props) => {
   return (

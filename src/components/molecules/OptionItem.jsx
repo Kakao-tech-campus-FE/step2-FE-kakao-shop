@@ -1,5 +1,4 @@
 import React from 'react'
-import strPrice from 'utils/price'
 
 const OptionItem = (props) => {
   return (
@@ -11,7 +10,7 @@ const OptionItem = (props) => {
       onClick={props.onClick}
     >
       {props.children}
-      <div className='text-xs' >{strPrice(props.optionPrice)}</div>
+      <div className='text-xs' >{props.optionPrice}</div>
     </div>
   )
 }

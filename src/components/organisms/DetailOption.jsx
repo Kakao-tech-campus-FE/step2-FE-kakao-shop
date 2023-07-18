@@ -6,6 +6,7 @@ import SubmitButton from 'components/atoms/SubmitButton'
 import TotalPrice from 'components/atoms/option/TotalPrice'
 import OptionSelected from 'components/molecules/OptionSelected'
 import strPrice from 'utils/price'
+import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 
 const DetailOption = (props) => {
   const initialList = props.options.map((item) => { 
@@ -15,8 +16,10 @@ const DetailOption = (props) => {
   const [quantity, setQuantity] = useState(initialList)
   const [open, setOpen] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
+  const [totalQuantity, setTotalQuantity] = useState(0)
 
   const selectOption = (id) => {
+    setOpen(prev => false)
     const newList = quantity.map((obj) => (
       obj.id === id && obj.quantity === 0
       ? {...obj, quantity: obj.quantity + 1}
@@ -26,7 +29,6 @@ const DetailOption = (props) => {
   }
 
   const changeQuantity = (id, newQuntity) => {
-    console.log(id, newQuntity)
     const newList = quantity.map((obj) => (
       obj.id === id
       ? {...obj, quantity: newQuntity}
@@ -36,24 +38,35 @@ const DetailOption = (props) => {
   }
 
   useEffect(()=>{
-    let total = 0;
+    let p = 0;
+    let q = 0
     for (const item of quantity) {
       if (item.quantity > 0) {
-        total += item.quantity * item.price
+        p += item.quantity * item.price
+        q += item.quantity
       }
     }
-    setTotalPrice(prev => total)
+    setTotalPrice(prev => p)
+    setTotalQuantity(prev => q)
   }, [quantity])
 
   return (
     <OptionContainer>
       <OptionListBox open={open}>
-        <OptionItem summary={true} onClick={()=>setOpen(prev=>!prev)}> 선택하기 </OptionItem>
+        <OptionItem summary={true} onClick={()=>setOpen(prev=>!prev)}> 
+          <span className="flex"> 
+            선택하기 
+            {open 
+              ? <RiArrowUpSLine className='w-5 h-5 ml-auto'/>
+              : <RiArrowDownSLine className='w-5 h-5 ml-auto'/>
+            }
+          </span>
+        </OptionItem>
         {open 
           ? props.options?.map((item)=>(
             <OptionItem 
               key={item.optionName}
-              optionPrice={item.price}
+              optionPrice={strPrice(item.price)}
               onClick={() => selectOption(item.id)}
             >
               {item.optionName}
@@ -69,7 +82,7 @@ const DetailOption = (props) => {
               key={item.optionName} 
               optionName={item.optionName} 
               quantity={item.quantity}
-              price={item.quantity * item.price}
+              price={strPrice(item.quantity * item.price)}
               subDisabled={item.quantity === 1}
               subOnClick={() => changeQuantity(item.id, item.quantity - 1)}
               addOnClick={() => changeQuantity(item.id, item.quantity + 1)}
@@ -78,10 +91,10 @@ const DetailOption = (props) => {
               />
           }
         })}
-      <TotalPrice price={strPrice(totalPrice)} />
+      <TotalPrice price={strPrice(totalPrice)} quantity={totalQuantity}/>
 
-      <div className='grid grid-cols-2 gap-5'>
-        <SubmitButton>장바구니</SubmitButton>
+      <div className='grid grid-cols-2 gap-4'>
+        <SubmitButton color="white" border="1px solid gray">장바구니</SubmitButton>
         <SubmitButton>구매하기</SubmitButton>
       </div>
     </OptionContainer>

@@ -4,11 +4,14 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
   height: 40px;
   border-radius: 10px;
-  border: none;
+  border: ${props => props.border ? props.border : "none"};
   text-align: center;
   margin: 10px 0;
-  font-family: Pretendard;
   cursor: pointer;
+  background-color: ${props => 
+            props.disabled ? 
+              "lightgray" : props.color ? 
+                props.color : "yellow"};
 `
 
 /**
@@ -22,10 +25,10 @@ const StyledButton = styled.button`
 const SubmitButton = (props) => {
   return (
       <StyledButton
-        id={props.id}
+        color={props.color}
+        border={props.border}
         type="submit"
         disabled={props.disabled} 
-        style={{backgroundColor: props.disabled ? "lightgray" : "yellow"}}
         onClick={props.onClick}
         >
         {props.children}
