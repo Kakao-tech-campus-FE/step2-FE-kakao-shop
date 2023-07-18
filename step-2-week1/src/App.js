@@ -44,7 +44,7 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
               <Route path="/" element={<ProductGrid />}></Route>
-              <Route path="/produc/:id" element={<ProductDetailPage />}></Route>
+              <Route path="/product/:id" element={<ProductDetailPage />}></Route>
     
         </Route>
       </Routes>
