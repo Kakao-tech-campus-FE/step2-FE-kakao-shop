@@ -32,7 +32,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
             cardComponent
           ) : (
             <>
-              <ProductCardSkeleton /> {cardComponent}
+              <ProductCardSkeleton />
+              <div className="hidden">{cardComponent}</div>
             </>
           )}
         </div>
