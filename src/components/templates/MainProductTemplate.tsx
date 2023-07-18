@@ -17,6 +17,7 @@ const MainPRoductTemplate = () => {
   const bottomObserver = useRef(null);
   const [prevProduct, setPrevProduct] = useState<ProductInfoData[]>();
   const [currentProduct, setCurrentProduct] = useState<ProductInfoData[]>();
+  const [allProduct, setAllProduct] = useState<ProductInfoData[]>();
 
   const io = new IntersectionObserver(
     (entries) => {
@@ -32,9 +33,15 @@ const MainPRoductTemplate = () => {
   );
 
   useEffect(() => {
-    setCurrentProduct(products);
-    console.log(prevProduct, products);
+    setAllProduct((prev) => {
+      if (prev !== undefined) return [...prev, ...products];
+      return products;
+    });
   }, [products]);
+
+  useEffect(() => {
+    console.log(allProduct);
+  }, [allProduct]);
 
   useEffect(() => {
     if (bottomObserver.current) {
@@ -43,16 +50,13 @@ const MainPRoductTemplate = () => {
   }, [io]);
 
   useEffect(() => {
-    if (prevProduct !== undefined) setPrevProduct(_.uniqBy([...prevProduct, ...products], 'id'));
-    else setPrevProduct(products);
     dispatch(getProducts(page));
     console.log('page: ', page);
   }, [dispatch, page]);
 
   return (
     <div className="flex flex-wrap justify-center gap-x-[30px]">
-      {prevProduct && <ProductGrid products={prevProduct} loading={loading} setInvisibleCards={false} />}
-      {loading || !currentProduct ? <Loader /> : <ProductGrid products={currentProduct} loading={loading} />}
+      {allProduct && <ProductGrid products={allProduct} loading={loading} />}
       <div ref={bottomObserver} />
     </div>
   );
