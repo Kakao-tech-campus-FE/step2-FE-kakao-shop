@@ -21,8 +21,6 @@ const MainProductTemplate = () => {
         if(lastPage.data?.response.length === 0 ){
           return null
         }
-        console.log(pages)
-        console.log(lastPage)
         return pages.length
       },
       // Error 처리
