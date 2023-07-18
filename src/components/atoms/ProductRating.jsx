@@ -1,15 +1,26 @@
 import { styled } from "styled-components";
+import { Rate } from "antd";
 
 const Rating = styled.div`
-  display: block;
+  width: 150px;
   height: 30px;
-  margin-right: 20px;
-  border: 1px solid blue;
-  text-align: center;
 `;
 
+const override = {
+  color: "#4683E9",
+};
+
 const ProductRating = ({ starCount }) => {
-  return <Rating>{starCount}</Rating>;
+  return (
+    <Rating>
+      <Rate
+        disabled
+        count={starCount}
+        defaultValue={starCount}
+        style={override}
+      />
+    </Rating>
+  );
 };
 
 export default ProductRating;
