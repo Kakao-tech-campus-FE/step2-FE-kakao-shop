@@ -7,17 +7,18 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: store.getState().token,
+    Authorization: localStorage.getItem("token"),
   },
 });
 
 instance.interceptors.request.use(
   (config) => {
     // 요청 보내기 전 수행할 일
+    // const loginState = store.getState();
+    // config.headers.Authorization = loginState.login.token;
     return config;
   },
   (error) => {
-    // 오류 요청을 보내기 전 수행할 일
     return Promise.reject(error);
   }
 );
