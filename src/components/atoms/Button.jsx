@@ -9,9 +9,9 @@ const Button = ({ onClick, children, className = "" }) => {
         <button
             onClick={(e) => {
                 e.preventDefault();
-                onClick();
+                onClick(e);
             }}
-            className={'button ${className}'}
+            className={`button ${className}`}
         >
             {children}
         </button>

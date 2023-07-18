@@ -5,42 +5,40 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { useDispatch, useSelector } from "react-redux";
-import { loginRequest, setEmail } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
+import useLoginRequestAction from "../../hooks/useLoginRequestAction";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { email } = useSelector((state) => state.user);
-  const { loading } = useSelector((state) => state.user);
+  const { email, loading } = useSelector((state) => state.user);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const [value, handleOnChange] = useInput({
+  const [values, handleOnChange, getValue] = useInput({
     email: "",
     password: "",
   });
 
-  const handleLogin = () => {
-    if (value.email.trim() === "" || value.password.trim() === "") {
+  const loginRequest = useLoginRequestAction();
+
+  const handleLogin = async () => {
+    if (values.email.trim() === "" || values.password.trim() === "") {
       setErrorMessage("이메일과 비밀번호를 입력해주세요.");
       return;
     }
-
-    dispatch(
-      loginRequest({
-        email: value.email,
-        password: value.password,
-      })
-    )
-      .then(() => {
-        console.log("로그인이 완료되었습니다.");
-        navigate("/");
-      })
-      .catch((error) => {
-        console.error("로그인에 실패하였습니다.", error);
-        setErrorMessage("로그인에 실패하였습니다.");
+    try {
+      await loginRequest({
+        email: values.email,
+        password: values.password,
       });
+      console.log("로그인이 완료되었습니다.");
+      navigate("/");
+    } catch (error) {
+      console.error("로그인에 실패하였습니다.", error);
+      setErrorMessage("로그인에 실패하였습니다.");
+    }
   };
 
   useEffect(() => {
@@ -63,7 +61,7 @@ const LoginForm = () => {
         name="email"
         placeholder=" 이메일"
         label="이메일(아이디) "
-        value={value.email}
+        value={getValue("email")}
         onChange={handleOnChange}
       />
       <InputGroup
@@ -72,7 +70,7 @@ const LoginForm = () => {
         name="password"
         placeholder="  비밀번호"
         label="비밀번호 "
-        value={value.password}
+        value={getValue("password")}
         onChange={handleOnChange}
       />
       <Button onClick={handleLogin} disabled={loading}>

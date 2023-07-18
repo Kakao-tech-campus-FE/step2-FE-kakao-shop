@@ -1,15 +1,22 @@
 // src/hooks/useInput.js
 import { useState } from "react";
 
-const useInput = (initialValue) => {
-  const [value, setValue] = useState(initialValue);
+const useInput = (initialValues) => {
+  const [values, setValues] = useState(initialValues);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    setValue((prev) => ({ ...prev, [name]: value }));
+    setValues((prevValues) => ({
+      ...prevValues,
+      [name]: value,
+    }));
   };
 
-  return [value, handleOnChange];
+  const getValue = (name) => {
+    return values[name];
+  };
+
+  return [values, handleOnChange, getValue];
 };
 
 export default useInput;
