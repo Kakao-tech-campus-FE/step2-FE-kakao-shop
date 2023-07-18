@@ -14,9 +14,6 @@ const Nav = () => {
         })
     }
 
-    // 원래는 useSelector로 가져와야 하나...userSlice의 loginRequest에서 return 부분 전에
-    // 메인 페이지 리다이렉트 과정을 거치면서 return이 동작하지 못해버림...(해결 필요)
-    // 메인 페이지 리다이렉트 로직 수정이 필요할 것으로 보임
     const email = useSelector((state) => state.user.email);
     const token = localStorage.getItem("token");
 
