@@ -1,25 +1,27 @@
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getDetail } from "../store/slices/detailSlice";
 import Loader from "../component/atoms/Loader";
-import { useState } from "react";
+import { getProductById } from "../services/product";
+import Container from "../component/atoms/Container";
+import { useQuery } from "react-query";
+import ProductDetailTemplate from "../../src/component/templates/ProductDetailTemplate";
 
 const ProductDetailPage = () => {
-  const { id } = useParams();
-  const dispatch = useDispatch();
+    const { id } = useParams();
+    const { data, error, isLoading } = useQuery(`product/${id}`, () =>
+        getProductById(id)
+    );
 
+    const product = data?.data?.response;
 
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
-
-
-  return (
-    <div>
-      <h1>Product Detail Page</h1>
-    </div>
-  );
+    
+    return (
+        <div>
+            {isLoading && <Loader />}
+            {error && <div>{error.message}</div>}
+            {product && <ProductDetailTemplate product={product} />}
+        </div>
+    );
 };
 
 export default ProductDetailPage;
+

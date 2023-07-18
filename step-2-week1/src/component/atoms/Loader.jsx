@@ -2,7 +2,7 @@
 import React from "react";
 import { Oval } from "react-loader-spinner";
 
-function Loding () {
+function Loader () {
   return ( 
     <Oval
     color="#ff0000"
@@ -12,7 +12,7 @@ function Loding () {
   );
 };
 
-export default Loding;
+export default Loader;
 
 // const Loader = () => (
 //   <div className="loader loader--style1" title="0">

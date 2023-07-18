@@ -27,7 +27,8 @@ const ProductGrid = ({ product }) => {
   return (
     <div className="product-grid">
       
-      {products? products.map((product) => (
+      { 
+        products? products.map((product) => (
         <ProductCard key={product.id} product={product} />
         
       )): null}
