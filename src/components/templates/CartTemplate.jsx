@@ -4,7 +4,7 @@ import Cart from 'components/organisms/Cart';
 
 const CartTemplate = () => {
   return (
-    <MainContainer column={true}>
+    <MainContainer direction={"column"}>
       <Cart />
     </MainContainer>
   )

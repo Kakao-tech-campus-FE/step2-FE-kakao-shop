@@ -26,7 +26,7 @@ function App() {
               <Route path="/signup" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/products/:id" element={<DetailPage />} />
-              <Route path="/cart" element={<CartPage />} />
+              <Route path="/carts" element={<CartPage />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>

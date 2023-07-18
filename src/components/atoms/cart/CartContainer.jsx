@@ -4,10 +4,11 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
-  justify-content: center;
+  width: 95%;
+  padding: 10px;
+
 `
-const CheckContainer = (props) => {
+const CartContainer = (props) => {
     return (
       <Container>
         {props.children}
@@ -15,4 +16,4 @@ const CheckContainer = (props) => {
     );
 };
 
-export default CheckContainer
+export default CartContainer

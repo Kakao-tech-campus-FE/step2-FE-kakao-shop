@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
-import CheckInput from '../atoms/checklist/CheckInput';
-import CheckItemBox from '../atoms/checklist/CheckItemBox';
+import CheckInput from '../atoms/cart/CheckInput';
+import CartItemBox from '../atoms/cart/CartItemBox';
 
 
 /**
@@ -8,10 +8,7 @@ import CheckItemBox from '../atoms/checklist/CheckItemBox';
  * @param {object} props - props
  * @param {object[]} props.state - 전체 항목 리스트
  * @param {function} props.setState - state 상태를 관리하는 함수
- * @param {array} props.checklist - 전체 항목 중 체크된 아이템 모음
- * @param {function} props.setChecklist - checklist 상태를 관리하는 함수
  * @param {number} props.index - 전체 항목 리스트(props.state)에서 현재 항목의 인덱스
- * @param {string} props.key - 현재 항목의 key
  * @param {object} props.style - 현재 항목 컴포넌트의 박스 스타일 지정
  * @param {*} props.children - 항목 정보 컴포넌트
  * @returns {*} 
@@ -27,21 +24,15 @@ const CheckGroup = ( props ) => {
       return newList
     })
   }
-  
-  useEffect(() => {
-    props.setChecklist(props.state.filter(item => item.isChecked)
-    .map(item => item.name))
-  }, [props.state])
 
   return (
-    <CheckItemBox style={props.style} key={props.key}>
+    <CartItemBox style={props.style}>
       <CheckInput 
         defaultChecked={ props.state[props.index].isChecked } 
         onChange={() => toggle(props.index)}
-        
-        />
+      />
       {props.children}
-    </CheckItemBox>
+    </CartItemBox>
   )
 }
 

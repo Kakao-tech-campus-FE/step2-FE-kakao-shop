@@ -9,6 +9,7 @@ import strPrice from 'utils/price'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import addToCart from 'api/addToCart'
+import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
 
 const DetailOption = (props) => {
   const initialList = props.options.map((item) => { 
@@ -105,18 +106,22 @@ const DetailOption = (props) => {
       </OptionListBox> 
 
       {quantity.map((item) => {
-          if (item.quantity > 0) {
-            return <OptionSelected 
-              key={item.optionName} 
-              optionName={item.optionName} 
-              price={strPrice(item.quantity * item.price)}
-              quantity={item.quantity}
-              sub={() => changeQuantity(item.id, item.quantity - 1)}
-              add={() => changeQuantity(item.id, item.quantity + 1)}
-              clear={() => changeQuantity(item.id, 0)}
-              change={(event) => changeQuantity(item.id, parseInt(event.target.value))}
-              />
-          } })
+        if (item.quantity > 0) {
+          return (
+            <SelectedItemBox>
+              <OptionSelected 
+                key={item.optionName} 
+                optionName={item.optionName} 
+                price={strPrice(item.quantity * item.price)}
+                quantity={item.quantity}
+                sub={() => changeQuantity(item.id, item.quantity - 1)}
+                add={() => changeQuantity(item.id, item.quantity + 1)}
+                clear={() => changeQuantity(item.id, 0)}
+                change={(event) => changeQuantity(item.id, parseInt(event.target.value))}
+                />
+            </SelectedItemBox> 
+          )} 
+        })
       }
 
       <TotalPrice price={strPrice(totalPrice)} quantity={totalQuantity}/>

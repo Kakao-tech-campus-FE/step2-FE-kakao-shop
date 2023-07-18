@@ -6,7 +6,7 @@ import Counter from './Counter';
 
 const OptionSelected = (props) => {
   return (
-    <SelectedItemBox>
+    <>
       <div className='flex'>
         <span>{props.optionName}</span>
         <button className='ml-auto' onClick={props.clear} >
@@ -24,7 +24,7 @@ const OptionSelected = (props) => {
 
         <div className='ml-auto'>{props.price}</div>
       </div>
-    </SelectedItemBox>
+    </>
   )
 }
 

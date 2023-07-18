@@ -55,7 +55,7 @@ const ProductsListTemplate = () => {
     }, [hasNextPage]) 
 
     return (
-      <MainContainer column={true}>
+      <MainContainer direction={"column"}>
         
         {obj && <ProductsList obj={obj} />}
         

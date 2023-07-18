@@ -9,7 +9,7 @@ import GNBInnerBox from '../atoms/GNB/GNBInnerBox'
 import GNBButton from '../atoms/GNB/GNBButton'
 import GNBMyGroup from '../molecules/GNBMyGroup';
 import GNBMainGroup from '../molecules/GNBMainGroup';
-import Loader from '../molecules/Loader';
+
 
 const Logobox = styled.div`
   margin: 0 10px;
@@ -38,9 +38,9 @@ const GNB = () => {
   }
   
   useEffect(()=>{
-    console.log("체크")
+    console.log("체크", loginState.islogin, Date.now(), loginState.loginTime)
     // 로그인 시간 만료
-    if (loginState.islogin && Date.now() > Number(loginState.loginTime) + 3600 * 24) {
+    if (loginState.islogin && Date.now() > loginState.loginTime + 3600 * 24 * 1000) {
       logout();
       alert("로그인 시간이 만료되었습니다.")
     }
@@ -65,7 +65,7 @@ const GNB = () => {
             ? 
               <>  
                 <GNBButton>
-                  <GNBButton onClick={()=>{navigate("/cart")}}>장바구니</GNBButton>
+                  <GNBButton onClick={()=>{navigate("/carts")}}>장바구니</GNBButton>
                 </GNBButton>
                 <GNBButton onClick={logout}>
                   로그아웃
