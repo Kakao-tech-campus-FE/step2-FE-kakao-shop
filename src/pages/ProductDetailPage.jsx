@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { getProductById } from "../components/services/product";
 import { useQuery } from "@tanstack/react-query";
+import { comma } from './../utils/comma';
 import Loader from "../components/atoms/Loader";
 
 // import { useDispatch } from "react-redux";
@@ -18,7 +19,7 @@ const ProductDetailPage = () => {
 
     // const dispatch = useDispatch();
     const { id } = useParams();
-    const { data, error, isLoading } = useQuery(`product/${id}`, () => 
+    const { data, error, isLoading } = useQuery([`product/${id}`], () => 
         getProductById(id)
     );
 
@@ -36,7 +37,7 @@ const ProductDetailPage = () => {
                 {isLoading && <Loader />}
                 {error && <div>{error.message}</div>}
                 {data && <div>{data.data.response.productName}</div>}
-                {data && <div>{data.data.response.price}원</div>}
+                {data && <div>{comma(data.data.response.price)}원</div>}
                 {data && <div>평점 {data.data.response.starCount}/5 점</div>}
             </div>
         </>
