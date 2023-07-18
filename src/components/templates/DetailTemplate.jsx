@@ -4,10 +4,13 @@ import { useParams } from "react-router-dom";
 import getDetail from "../../api/getDetail"
 
 import MainContainer from '../atoms/MainContainer'
-import ProductDetail from "../organisms/DetailInfo";
-import ProductOption from "../organisms/DetailOption";
+import DetailOption from "../organisms/DetailOption";
+import InfoBox from "components/atoms/detail/InfoBox";
+import DetailContainer from "components/atoms/detail/DetailContainer";
+import ImgBox from "components/atoms/detail/ImgBox";
+import Image from "components/atoms/Image";
+import RightContainer from "components/atoms/detail/RightContainer";
 
-import ErrorFallback from "../organisms/ErrorFallback";
 
 const DetailTemplate = ( props ) => {
 
@@ -16,23 +19,25 @@ const DetailTemplate = ( props ) => {
   const { data: obj, isLoading, isError, error } = useQuery( 
     ["getproductdetail", params.id], 
     () => getDetail(params.id),
-    {suspense: true
-    }
+    { suspense: true }
   )
     
     return (
-      <>
+      <MainContainer>
         {/* {isError && <ErrorFallback errorObject={error} />} */}
         {obj && 
-          <MainContainer>
-            <ProductDetail 
-              image={obj?.data.response.image} 
-              name={obj?.data.response.productName} 
-              price={obj?.data.response.price} /> 
-            <ProductOption options={obj?.data.response.options} />
-          </MainContainer> 
+        <DetailContainer>
+          <ImgBox>
+            <Image image={obj.data.response.image} alt={obj.data.response.productName}/>
+          </ImgBox>
+          
+          <RightContainer>
+            <InfoBox name={obj.data.response.productName} price={obj.data.response.price} />
+            <DetailOption options={obj.data.response.options} />
+          </RightContainer>
+        </DetailContainer>
         }
-      </>
+      </MainContainer> 
     );
 };
 

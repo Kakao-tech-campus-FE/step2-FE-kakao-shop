@@ -5,7 +5,7 @@ const Box = styled.div`
   width: 1200px;
   display: flex;
   align-items: center;
-  padding: 0 15px;
+  padding: 0 7px;
 `
 
 /**

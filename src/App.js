@@ -5,7 +5,7 @@ import GNB from "./components/organisms/GNB";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-
+import CartPage from "./pages/CartPage";
 import DetailPage from "./pages/DetailPage";
 import PageContainer from "./components/atoms/PageContainer";
 import Loader from "./components/molecules/Loader";
@@ -26,6 +26,7 @@ function App() {
               <Route path="/signup" element={<RegisterPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/products/:id" element={<DetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>

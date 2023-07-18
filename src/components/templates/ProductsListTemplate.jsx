@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useInfiniteQuery } from 'react-query';
 import getProducts from '../../api/getProducts';
 import ProductsList from '../organisms/ProductsList';
-import ColumnContainer from '../atoms/ColumnContainer';
+import MainContainer from '../atoms/MainContainer';
 import ProductCardSkeleton from '../molecules/ProductCardSkeleton';
 import ListContainer from '../atoms/productsList/ListContainer';
 import repeat from '../../utils/repeat';
@@ -55,7 +55,7 @@ const ProductsListTemplate = () => {
     }, [hasNextPage]) 
 
     return (
-      <ColumnContainer>
+      <MainContainer column={true}>
         
         {obj && <ProductsList obj={obj} />}
         
@@ -72,7 +72,7 @@ const ProductsListTemplate = () => {
         {next &&
           <div id="target" ref={targetBox}></div>}
 
-      </ColumnContainer>
+      </MainContainer>
     )
 }
 

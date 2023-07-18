@@ -61,15 +61,15 @@ const GNB = () => {
         <GNBMyGroup>
           
           {
-            loginState.email
+            loginState.islogin
             ? 
               <>  
-                  <GNBButton>
-                    {loginState.email}
-                  </GNBButton>
-                  <GNBButton onClick={logout}>
-                    로그아웃
-                  </GNBButton>
+                <GNBButton>
+                  <GNBButton onClick={()=>{navigate("/cart")}}>장바구니</GNBButton>
+                </GNBButton>
+                <GNBButton onClick={logout}>
+                  로그아웃
+                </GNBButton>
               </>
             : 
               <>
