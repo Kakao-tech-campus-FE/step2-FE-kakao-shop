@@ -1,10 +1,10 @@
 import { PRODUCT } from "@/assets/product.ko";
 import { ProductOptionWithCount } from "@/dtos/product.dto";
 import { FC } from "react";
-import Txt from "../common/Txt.component";
+import Txt from "../../common/Txt.component";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { removeProductOrder, updateProductOrder } from "@/store/productSlice";
-import Button from "../common/Button.component";
+import Button from "../../common/Button.component";
 
 const { CHOICE_PRODUCT } = PRODUCT;
 

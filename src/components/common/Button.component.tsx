@@ -12,7 +12,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     | "dark"
     | "none";
   className?: string;
-  onClick: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent) => void;
 }
 
 const COLOR = {
@@ -35,7 +35,7 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
 }) => {
   const onClickPreventDefault = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    onClick(e);
+    onClick && onClick(e);
   };
   return (
     <button
