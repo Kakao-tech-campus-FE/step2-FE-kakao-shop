@@ -70,7 +70,6 @@ const MainProductTemplate = () => {
                 {!error && isLoading ? 
                 <>
                 <Loader />
-                <ProductGrid products={products} loading={isLoading} />
                 </>
                 : <ProductGrid products={products} loading={isLoading} />}
                 <div ref={bottomObserver}></div>
