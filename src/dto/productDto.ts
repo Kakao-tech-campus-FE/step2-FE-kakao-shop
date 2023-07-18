@@ -5,3 +5,9 @@ export interface productInfo {
   price: number;
   productName: string;
 }
+
+export interface OptionInfo {
+  id: number;
+  optionName: string;
+  price: number;
+}
