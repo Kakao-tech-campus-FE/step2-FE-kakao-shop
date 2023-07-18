@@ -1,24 +1,40 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getDetail } from "../redux/product/detailSlice";
-import { useDispatch } from "react-redux";
-import Loader from "../components/atoms/Loader";
-import { getProductById } from "../apis/product";
-import { useQuery } from "react-query";
+import { useParams } from 'react-router-dom';
+import Loader from '../components/atoms/Loader';
+import { getProductById } from '../apis/product';
+import { useQuery } from 'react-query';
+import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
 
-  const { data, error, isLoading } = useQuery(`product/${id}`, () =>
-    getProductById(id)
+  const { data, error, isLoading } = useQuery(`products/${id}`, () => getProductById(id));
+
+  const product = data?.data?.response;
+
+  const validate = () => {
+    if (!product) {
+      return false;
+    }
+
+    const requiredKeys = ['id', 'productName'];
+
+    const keys = Object.keys(product); // Object.prototype method
+    const missingKeys = requiredKeys.filter((key) => !keys.includes(key));
+
+    if (missingKeys.length > 0) {
+      return false;
+    }
+
+    return true;
+  };
+
+  return (
+    <div>
+      {isLoading && <Loader />}
+      {error && <div>error</div>}
+      {product && <ProductDetailTemplate product={product} />}
+    </div>
   );
-
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
-
-  return <div>{isLoading && <Loader />}</div>;
 };
 
 export default ProductDetailPage;

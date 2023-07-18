@@ -7,7 +7,7 @@
  * @returns {JSX.Element} - 컨테이너 컴포넌트의 JSX 요소
  */
 const Container = ({ children, className }) => {
-  return <div className={`container ${className}`}>{children}</div>;
+  return <div className={`container mx-auto ${className}`}>{children}</div>;
 };
 
 export default Container;
