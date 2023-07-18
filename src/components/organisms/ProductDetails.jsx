@@ -10,6 +10,7 @@ import SkeletonOption from "../atoms/SkeletonOption";
 import ProductPhoto from "../atoms/ProductPhoto";
 import ProductRating from "../atoms/ProductRating";
 import ProductTitle from "../atoms/ProductTitle";
+import ProductOption from "../atoms/ProductOption";
 
 const Container = styled.div`
   width: 100%;
@@ -42,7 +43,7 @@ const ProductDetails = () => {
           }
           rating={<ProductRating starCount={productDetails.starCount} />}
           title={<ProductTitle>{productDetails.productName}</ProductTitle>}
-          option={<div>안녕</div>}
+          option={<ProductOption options={productDetails.options} />}
         />
       )}
     </Container>

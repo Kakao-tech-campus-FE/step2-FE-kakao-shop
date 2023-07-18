@@ -8,7 +8,7 @@ const Container = styled.div`
 
 const OptionContainer = styled.div`
   width: 100%;
-  height: 700px;
+  border-left: 1px solid #bbb;
 `;
 
 const ProductOptionContainer = ({ option }) => {
