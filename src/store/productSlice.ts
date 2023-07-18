@@ -27,6 +27,13 @@ export const productDetailSlice = createSlice({
   initialState,
   reducers: {
     addProductOrder: (state, action: PayloadAction<ProductOption>) => {
+      if (
+        state.order.find(
+          (productOption) => productOption.id === action.payload.id
+        )
+      ) {
+        return;
+      }
       const newOrder = new ProductOptionWithCount(action.payload);
       state.order.push(newOrder);
     },
@@ -40,12 +47,12 @@ export const productDetailSlice = createSlice({
       action: PayloadAction<{ id: number; count: number }>
     ) => {
       const { id, count } = action.payload;
-      const productOption = state.order.find(
-        (productOption) => productOption.id === id
-      );
-      if (productOption) {
-        productOption.count = count;
-      }
+      state.order = state.order.map((productOption) => {
+        if (productOption.id === id) {
+          productOption.count = count;
+        }
+        return productOption;
+      });
     },
     clearProductOrder: (state) => {
       state.order = [];
@@ -69,5 +76,12 @@ export const productDetailSlice = createSlice({
       });
   },
 });
+
+export const {
+  addProductOrder,
+  removeProductOrder,
+  updateProductOrder,
+  clearProductOrder,
+} = productDetailSlice.actions;
 
 export default productDetailSlice.reducer;

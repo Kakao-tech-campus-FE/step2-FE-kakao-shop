@@ -15,6 +15,7 @@ const PRODUCT = {
   TOTAL_AMOUNT: "총 수량",
   PEICE: "개",
   TOTAL_PRICE: "총 주문금액",
+  CHOICE_PRODUCT: "선택한 상품",
 };
 
 export { PRODUCT };

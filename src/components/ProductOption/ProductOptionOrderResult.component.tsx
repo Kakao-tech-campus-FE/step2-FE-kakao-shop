@@ -2,6 +2,7 @@ import { useAppSelector } from "@/hooks/useRedux";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import ProductOptionOrderItem from "./ProductOptionOrderItem.component";
+import { pointByThree } from "@/functions/utils";
 const {
   SHIPPING_METHOD,
   DELIVERY_SHIP,
@@ -18,7 +19,7 @@ const ProductOptionOrderResult = () => {
   const { order } = useAppSelector((state) => state.productSlice);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       <div>
         <Txt typograph="h6" className="mr-2">
           {SHIPPING_METHOD}
@@ -37,10 +38,16 @@ const ProductOptionOrderResult = () => {
       </div>
       <div className="flex justify-between">
         <Txt>
-          {TOTAL_AMOUNT}: {PEICE}
+          {TOTAL_AMOUNT}:{" "}
+          {pointByThree(order.reduce((acc, cur) => acc + cur.count, 0))}
+          {PEICE}
         </Txt>
         <Txt>
-          {TOTAL_PRICE}: {WON}
+          {TOTAL_PRICE}:{" "}
+          {pointByThree(
+            order.reduce((acc, cur) => acc + cur.price * cur.count, 0)
+          )}
+          {WON}
         </Txt>
       </div>
     </div>

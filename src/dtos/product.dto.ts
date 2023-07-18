@@ -38,6 +38,6 @@ export class ProductOptionWithCount implements ProductOption {
     this.id = productOption.id;
     this.optionName = productOption.optionName;
     this.price = productOption.price;
-    this.count = 0;
+    this.count = 1;
   }
 }
