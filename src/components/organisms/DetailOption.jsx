@@ -7,6 +7,8 @@ import TotalPrice from 'components/atoms/option/TotalPrice'
 import OptionSelected from 'components/molecules/OptionSelected'
 import strPrice from 'utils/price'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { useDispatch, useSelector } from 'react-redux';
+import addToCart from 'api/addToCart'
 
 const DetailOption = (props) => {
   const initialList = props.options.map((item) => { 
@@ -50,6 +52,27 @@ const DetailOption = (props) => {
     setTotalQuantity(prev => q)
   }, [quantity])
 
+  const loginState = useSelector((state) => state.login)
+  const dispatch = useDispatch()
+  console.log(loginState)
+
+  const submitHandler = () => {
+    if (quantity) {
+      alert("옵션을 선택해주세요")
+      return
+    }
+    
+    // 저장
+
+    if (!loginState.islogin) {
+      alert("로그인 해주세요")
+      return
+    }
+
+    addToCart(quantity)
+
+  }
+
   return (
     <OptionContainer>
       <OptionListBox open={open}>
@@ -76,6 +99,7 @@ const DetailOption = (props) => {
         }
         
       </OptionListBox>
+
       {quantity.map((item) => {
           if (item.quantity > 0) {
             return <OptionSelected 
@@ -91,11 +115,19 @@ const DetailOption = (props) => {
               />
           }
         })}
+
       <TotalPrice price={strPrice(totalPrice)} quantity={totalQuantity}/>
 
       <div className='grid grid-cols-2 gap-4'>
-        <SubmitButton color="white" border="1px solid gray">장바구니</SubmitButton>
-        <SubmitButton>구매하기</SubmitButton>
+        <SubmitButton 
+          color="white" 
+          border="1px solid orange"
+        >
+          장바구니
+        </SubmitButton>
+        <SubmitButton>
+          구매하기
+        </SubmitButton>
       </div>
     </OptionContainer>
   )
