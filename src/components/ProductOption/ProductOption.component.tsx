@@ -6,6 +6,10 @@ const ProductOption = () => {
     <>
       <ProductOptionSelector />
       <ProductOptionOrderResult />
+      <div className="flex">
+        <button>장바구니 담기</button>
+        <button>톡딜가로 구매하기</button>
+      </div>
     </>
   );
 };

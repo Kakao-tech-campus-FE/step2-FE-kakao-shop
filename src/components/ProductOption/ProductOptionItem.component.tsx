@@ -1,8 +1,9 @@
 import { ProductOption } from "@/dtos/product.dto";
-import { FC, MouseEvent } from "react";
-import Txt from "../common/Txt.component";
+import { FC } from "react";
+import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import { pointByThree } from "@/functions/utils";
+import Button from "@components/common/Button.component";
 
 interface ProductOptionItemProps {
   option: ProductOption;
@@ -15,12 +16,8 @@ const ProductOptionItem: FC<ProductOptionItemProps> = ({
   index,
   onClick,
 }) => {
-  const onClickPreventDefault = (e: MouseEvent) => {
-    e.preventDefault();
-    onClick();
-  };
   return (
-    <button className="flex gap-2 p-3 w-full" onClick={onClickPreventDefault}>
+    <Button color="none" className="flex gap-2 p-3 w-full" onClick={onClick}>
       <Txt typograph="h6">{index}.</Txt>
       <div className="flex flex-col items-start">
         <Txt typograph="h6">{option.optionName}</Txt>
@@ -29,7 +26,7 @@ const ProductOptionItem: FC<ProductOptionItemProps> = ({
           &nbsp;{PRODUCT.WON}
         </Txt>
       </div>
-    </button>
+    </Button>
   );
 };
 

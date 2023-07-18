@@ -3,6 +3,7 @@ import CheckListItem, {
   CheckListItemProps,
 } from "@components/common/CheckList/CheckListItem.component";
 import "@components/common/CheckList/check-list.css";
+import Button from "../Button.component";
 interface CheckListProps {
   items: Omit<CheckListItemProps, "onChange" | "onItemRemove">[];
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -16,11 +17,6 @@ const CheckList: FC<CheckListProps> = ({
   onItemAppend,
   onItemRemove,
 }) => {
-  const onPreventDefaultItemAppend = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onItemAppend();
-  };
-
   return (
     <div className="check-list">
       {items.map((item) => {
@@ -35,7 +31,9 @@ const CheckList: FC<CheckListProps> = ({
           />
         );
       })}
-      <button onClick={onPreventDefaultItemAppend}>Add</button>
+      <Button color="none" onClick={onItemAppend}>
+        Add
+      </Button>
     </div>
   );
 };

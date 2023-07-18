@@ -33,20 +33,18 @@ const COLOR = {
   info: "text-gray-500",
   light: "text-white",
   dark: "text-black",
-};
+} as const;
 
 const Txt: FC<TxtProps> = ({
   typograph = "p",
   color = "dark",
   className,
   ...props
-}) => {
-  return (
-    <span
-      className={classnames(TYPOGRAPH[typograph], COLOR[color], className)}
-      {...props}
-    />
-  );
-};
+}) => (
+  <span
+    className={classnames(TYPOGRAPH[typograph], COLOR[color], className)}
+    {...props}
+  />
+);
 
 export default Txt;

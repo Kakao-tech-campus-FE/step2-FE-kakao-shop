@@ -2,6 +2,7 @@ import CarouselItem, {
   CarouselItemProps,
 } from "@components/common/Carousel/CarsouelItem.component";
 import { FC, useState } from "react";
+import Button from "@components/common/Button.component";
 
 interface CarouselProps {
   carouselItems: Omit<CarouselItemProps, "position">[];
@@ -36,15 +37,17 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
             ></div>
           ))}
         </div>
-        <button
+        <Button
+          color="none"
           className="absolute top-1/2 left-12 p-4 rounded-full bg-slate-100 opacity-80 transform -translate-y-1/2 rotate-180 z-10"
           onClick={() =>
             setItemIndex((index) => (index - 1 > 0 ? index - 1 : 0))
           }
         >
           <img src="/icons/next.svg" alt="prev" />
-        </button>
-        <button
+        </Button>
+        <Button
+          color="none"
           className="absolute top-1/2 right-12 p-4 rounded-full bg-slate-100 opacity-80 transform -translate-y-1/2 z-10"
           onClick={() =>
             setItemIndex((index) =>
@@ -53,7 +56,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
           }
         >
           <img src="/icons/next.svg" alt="next" />
-        </button>
+        </Button>
       </div>
     </div>
   );

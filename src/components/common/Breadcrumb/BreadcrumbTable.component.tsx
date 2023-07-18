@@ -3,13 +3,14 @@ import Breadcrumb, {
   BreadcrumbProps,
 } from "@/components/common/Breadcrumb/Breadcrumb.component";
 import "@components/common/Breadcrumb/breadcrumb-table.css";
+import Button from "@components/common/Button.component";
 
 interface BreadcrumbTableProps {
   crumbs: BreadcrumbProps[];
 }
 
 const BreadcrumbTable: FC<BreadcrumbTableProps> = ({ crumbs }) => {
-  const copy = (e: MouseEvent<HTMLButtonElement>) => {
+  const copy = (e: MouseEvent) => {
     e.preventDefault();
     const crumbsString = crumbs.map((crumb) => `${crumb.title}`).join("/");
     navigator.clipboard.writeText(crumbsString);
@@ -27,9 +28,9 @@ const BreadcrumbTable: FC<BreadcrumbTableProps> = ({ crumbs }) => {
           {index < crumbs.length - 1 && <span> / </span>}
         </div>
       ))}
-      <button onClick={copy}>
+      <Button onClick={copy}>
         <img src="/copy.svg" alt="copy" />
-      </button>
+      </Button>
     </div>
   );
 };

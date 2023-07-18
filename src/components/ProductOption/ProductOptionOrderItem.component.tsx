@@ -4,6 +4,7 @@ import { FC } from "react";
 import Txt from "../common/Txt.component";
 import { useAppDispatch } from "@/hooks/useRedux";
 import { removeProductOrder, updateProductOrder } from "@/store/productSlice";
+import Button from "../common/Button.component";
 
 const { CHOICE_PRODUCT } = PRODUCT;
 
@@ -29,19 +30,17 @@ const ProductOptionOrderItem: FC<ProductOptionOrderItemProps> = ({ item }) => {
       <Txt>{CHOICE_PRODUCT}: </Txt>
       <Txt>{item.optionName}</Txt>
       <div className="flex gap-2">
-        <button
-          className="h-8 w-8 bg-slate-100 rounded-lg hover:bg-slate-200"
+        <Button
+          color="light"
+          className="h-8 w-8 rounded-lg"
           onClick={countDown}
         >
           -
-        </button>
+        </Button>
         <Txt>{item.count}</Txt>
-        <button
-          className="h-8 w-8 bg-slate-100 rounded-lg hover:bg-slate-200"
-          onClick={countUp}
-        >
+        <Button color="light" className="h-8 w-8 rounded-lg" onClick={countUp}>
           +
-        </button>
+        </Button>
       </div>
     </div>
   );

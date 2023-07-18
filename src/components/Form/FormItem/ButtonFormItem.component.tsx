@@ -1,10 +1,11 @@
+import Button from "@/components/common/Button.component";
 import { ComponentPropsWithoutRef, FC, MouseEvent } from "react";
 
 type ButtonProps = ComponentPropsWithoutRef<"button">;
 interface ButtonFormItemProps extends ButtonProps {
   children: React.ReactNode;
   type: "button" | "submit" | "reset";
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: MouseEvent) => void;
   color:
     | "primary"
     | "secondary"
@@ -49,20 +50,20 @@ const ButtonFormItem: FC<ButtonFormItemProps> = ({
   color,
   ...props
 }) => {
-  const onPreventDefaultClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const onClickAfterCheck = (e: MouseEvent) => {
     e.preventDefault();
     if (onClick) onClick(e);
   };
 
   return (
-    <button
+    <Button
       type={type}
-      onClick={onPreventDefaultClick}
+      onClick={onClickAfterCheck}
       className={`rounded-lg py-4 px-8 w-full ${COLORS[color]}`}
       {...props}
     >
       {children}
-    </button>
+    </Button>
   );
 };
 

@@ -1,5 +1,6 @@
 import { ChangeEvent, useId } from "react";
 import "@components/common/CheckList/check-list-item.css";
+import Button from "@components/common/Button.component";
 
 export interface CheckListItemProps {
   id: number;
@@ -18,13 +19,6 @@ const CheckListItem = ({
 }: CheckListItemProps) => {
   const uid = useId();
 
-  const onPreventDefaultItemRemove = (
-    e: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    e.preventDefault();
-    onItemRemove(id);
-  };
-
   const onPreventDefaultChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     onChange(e);
@@ -40,7 +34,9 @@ const CheckListItem = ({
         value={id}
       />
       <label htmlFor={uid}>{label}</label>
-      <button onClick={onPreventDefaultItemRemove}>Remove</button>
+      <Button color="none" onClick={() => onItemRemove(id)}>
+        Remove
+      </Button>
     </div>
   );
 };
