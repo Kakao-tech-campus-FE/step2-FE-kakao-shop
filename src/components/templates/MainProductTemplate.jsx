@@ -3,7 +3,7 @@ import Container from './../atoms/Container';
 import Loader from './../atoms/Loader';
 import _ from 'lodash';
 import { useEffect, useRef, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import { fetchProducts } from '../services/product';
 
 const MainProductTemplate = () => {

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { getProductById } from "../components/services/product";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Loader from "../components/atoms/Loader";
 
 // import { useDispatch } from "react-redux";
@@ -18,13 +18,18 @@ const ProductDetailPage = () => {
 
     // const dispatch = useDispatch();
     const { id } = useParams();
-    const { data, error, isLoading } = useQuery(`product/${id}`, () => getProductById(id));
+    const { data, error, isLoading } = useQuery(`product/${id}`, () => 
+        getProductById(id)
+    );
 
     // useEffect(() => {
     //     dispatch(getDetail(id));
     // }, [dispatch, id])
 
-    // loading & error state에 대한 처리 필요
+    // parsing error를 방지하기 위해 ?를 사용한다(값이 존재하면 접근함)
+    // product에 우리가 원하는 데이터가 정확하게 존재하는가?
+    // typescript -> interface, type
+    // 타입스크립트 등을 쓰지 않는다면, 검증 함수를 만들어 사용!
     return (
         <>  
             <div className="productDetailPage">
