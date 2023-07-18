@@ -1,4 +1,4 @@
-import FilledButton from '@components/atoms/FilledButton';
+import FilledButton from '@components/atoms/button/FilledButton';
 import React, { useState, useEffect } from 'react';
 import useInput from '@hooks/useInput';
 import { checkEmail, checkPassword } from '@utils/validationUtils';

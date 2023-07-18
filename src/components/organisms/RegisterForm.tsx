@@ -1,4 +1,4 @@
-import FilledButton from '@components/atoms/FilledButton';
+import FilledButton from '@components/atoms/button/FilledButton';
 import InputGroup from '@components/molecules/InputGroup';
 import React, { useState, useEffect } from 'react';
 import useInput from '@hooks/useInput';
