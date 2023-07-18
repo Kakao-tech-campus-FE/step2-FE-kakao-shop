@@ -2,7 +2,7 @@
 // onClick : default 이벤트 방지용 함수
 const Button = ({children, onClick, disabled, className}) => {
 	return (
-		<button className = {`btn-primary ${className}}`} disabled={disabled} onClick={(e) => {
+		<button className = {className} disabled={disabled} onClick={(e) => {
 			e.preventDefault()
 			onClick()
 		}}>
