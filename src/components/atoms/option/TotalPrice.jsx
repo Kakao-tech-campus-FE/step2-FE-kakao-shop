@@ -11,7 +11,7 @@ const TotalPrice = (props) => {
                         text-orange-600 
                         font-extrabold 
         '>
-            {strPrice(props.price)}
+            {props.price}
         </span>
     
     </div>
