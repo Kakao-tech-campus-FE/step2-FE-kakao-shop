@@ -117,7 +117,9 @@ const OptionColumn = ({ product }) => {
       </div>
 
       <div className="button-group">
-        <button className="like-button">🤍</button>
+        <button className="like-button">
+          <span class="material-symbols-outlined">favorite</span>
+        </button>
         <Button
           onClick={() => {
             mutate(
@@ -140,7 +142,7 @@ const OptionColumn = ({ product }) => {
           }}
           className="cart-button"
         >
-          장바구니
+          <span class="material-symbols-outlined">shopping_cart</span>
         </Button>
         <button className="order-button">구매하기</button>
       </div>
