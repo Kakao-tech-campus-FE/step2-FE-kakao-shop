@@ -6,23 +6,21 @@ import { useDispatch } from "react-redux";
 import Loader from "../components/atoms/Loader";
 import ProductCard from "../components/molecules/ProductCard";
 import { getProductById } from "../services/product";
+import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const { isLoading, data, error } = useQuery(`/product/${id}}`, () =>
+  const { data, error, isLoading } = useQuery(`product/${id}}`, () =>
     getProductById(id)
   );
 
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
+  const product = data?.data?.response;
 
   return (
     <div>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
-      {data && <ProductCard product={data.data.response} />}
+      {product && <ProductDetailTemplate product={product} />}
     </div>
   );
 };
