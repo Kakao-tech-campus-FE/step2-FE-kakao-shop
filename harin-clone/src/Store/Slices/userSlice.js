@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../Servicies/user";
+import { login, register } from "../../Servicies/user";
 
 const initialState = {
+  username: null,
   email: null,
   loading: false,
   token: null,
@@ -24,7 +25,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loginRequest.fulfilled, (state, action) => {
       state.loading = false;
-      state.email = action.payload.email; // response로 담긴 데이터들이 payload로 담김..!
+      state.email = action.payload?.email; // response로 담긴 데이터들이 payload로 담김..!
     })
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
@@ -38,6 +39,15 @@ export const loginRequest = createAsyncThunk(
   async (data) => {
     const { email, password } = data;
     const response = await login({ email, password }); // post: 데이터 생성, 데이터 조회.
+    return response.data;
+  }
+)
+
+export const registerRequest = createAsyncThunk(
+  'user/registerRequest',
+  async (data) => {
+    const { username, email, password } = data;
+    const response = await register({ username, email, password }); // post: 데이터 생성, 데이터 조회.
     return response.data;
   }
 )

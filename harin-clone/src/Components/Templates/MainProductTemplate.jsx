@@ -5,6 +5,8 @@ import { useEffect, useState, useRef } from "react";
 import { getProducts } from '../../Store/Slices/productSlice'
 import { useInfiniteQuery } from '@tanstack/react-query';
 import Loader from "../Atoms/Loader";
+import ProductSkeleton from "../Atoms/Skeleton";
+
 
 
 const MainProductTemplate = () => {
@@ -18,21 +20,25 @@ const MainProductTemplate = () => {
 
   const dispatch = useDispatch();
 
+  //bottomObserver.current && !loading &&  !isEnd  && bottomObserver.current
   // intersection observer
-  const io = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (isEnd) return ;
-      if (!loading && entry.isIntersecting && bottomObserver.current) {
-        setPage((page) => page + 1);
-        console.log('page: '+page)
-      }
-    })
-  }, {
-    threshold: 0.5,
-  }
-  )
+
 
   useEffect(() => {
+    const io = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        // if (!entry.isIntersecting) return;
+        if (!isEnd && !loading && entry.isIntersecting) {
+          console.log("페이지 여기서" + page);
+          console.log(bottomObserver.current)
+          setTimeout(setPage((page) => page + 1), 5000);
+          console.log('페이지 넘어감: ' + page);
+        }
+      })
+      }, {
+        threshold: 0.5,
+      }
+    )
     io.observe(bottomObserver.current);
   }, [loading]) // 최초 마운트 시에만...
 

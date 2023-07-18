@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const instance = axios.create({
   // baseURL: process.env.REACT_APP_API_URL, -> 이렇게 하니까 인식을 못하는 것 같은데...?
-  baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/", 
+  baseURL: process.env.REACT_APP_API_URL, 
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -30,6 +30,7 @@ instance.interceptors.response.use(
     } else if (error.status < 600) {
       console.log("서버 오류")
     }
+    return error.message
   }
 );
 

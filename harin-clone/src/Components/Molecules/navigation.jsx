@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Navigation = () => {
   const dispatch = useDispatch()
-  const email = useSelector((state => state.user.email))
+  const token = useSelector((state) => state.user.token)
+  console.log(token)
 
   const handleLogout = () => {
     localStorage.removeItem("token"); // 로그아웃 시 토큰을 삭제함
@@ -35,7 +36,7 @@ const Navigation = () => {
               </picture>              
             </Link>
             {/* 로그인 */}
-            { email ? (
+            { token ? (
               <Link 
                 to='/loginpage' 
                 onClick={handleLogout}

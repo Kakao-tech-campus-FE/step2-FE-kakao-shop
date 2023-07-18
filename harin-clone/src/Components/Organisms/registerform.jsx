@@ -4,7 +4,7 @@ import InputGroup from "../Molecules/InputGroup";
 import { register, checkUnique } from "../../Servicies/user";
 import useInput from "../../Hooks/useinput";
 import Box from "../Atoms/Box";
-import { setEmail } from "../../Store/Slices/userSlice";
+import { registerRequest } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,9 +21,6 @@ const RegisterForm = ( ) => {
     password: "",
     passwordConfirm: "",
   });
-
-  const [isClicked, setClicked] = useState(false)
-
 
   const validPw = (password) => {
     const validPwLength = 8 <= password.length && password.length <= 20;
@@ -59,17 +56,17 @@ const RegisterForm = ( ) => {
 
 
   const checkReq = () => {
-    checkUnique({
+    dispatch(checkUnique({
       email:value.email
-    })
+    }))
       .then((res) => {
+        alert('사용할 수 있는 이메일입니다')
         // return <p className="text-green-400">사용할 수 있는 이메일입니다.</p>
-        // alert('사용할 수 있는 이메일입니다')
       })
 
       .catch((err) => {
-        // return <p className="text-red-400">{err.name}</p>
         alert(err.response)
+        // return <p className="text-red-400">{err.name}</p>
       })
   }
 
@@ -92,6 +89,24 @@ const RegisterForm = ( ) => {
 
   const navigate = useNavigate()
 
+  const registerHandler = () => {
+    dispatch(registerRequest({
+      username: value.username,
+      email: value.email,
+      password: value.password,
+      passwordConfirm: value.passwordConfirm
+    }
+    )) .then(response => {
+      if (response.payload?.success) {
+        alert("회원가입이 완료되었습니다.")
+        navigate('/');
+      } else {
+        console.log(response)
+        alert(response.payload?.error.message)
+        // window.history.go(0) // 이렇게 리로드 해도 괜찮나요..?
+      }
+    })
+  }
 
   return (
     <div className="flex min-h-screen justify-center items-center">
@@ -116,7 +131,7 @@ const RegisterForm = ( ) => {
           value={value.email}
           onChange={(e) => {
             handleOnChange(e)
-            checkReq()
+            // checkReq()
           }}
           className={inputStyle} 
         />
@@ -146,11 +161,7 @@ const RegisterForm = ( ) => {
         {validAll(value)}
         <Box className="m-3">
           <Button 
-            onClick={() => {
-              setClicked(!isClicked)
-              registerReq()
-              navigate("/")            
-            }}
+            onClick={registerHandler}
             disabled={validAll(value)}
             className={validAll(value) ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
                         : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"}

@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import '../../Styles/ProductGrid.css'
 
-const productSkeleton = () => {
+const ProductSkeleton = () => {
   const skeletonElement = () => {
     
   }
@@ -22,4 +22,4 @@ const productSkeleton = () => {
 }
 
 
-export default productSkeleton;
+export default ProductSkeleton;
