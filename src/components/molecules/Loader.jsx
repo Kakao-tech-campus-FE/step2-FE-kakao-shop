@@ -1,6 +1,6 @@
 import React from "react";
 import { RotatingLines } from "react-loader-spinner";
-import Container from "./Container";
+import Container from "../atoms/Container";
 
 export default function Loader({ height }) {
   return (

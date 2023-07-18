@@ -7,12 +7,14 @@ module.exports = {
         yellow: "#ffe342",
       },
       width: {
+        inner: "1280px",
         logo: "100px",
         kakaoTest: "120px",
         icon: "36px",
         before: "1px",
         input: "570px",
         inherit: "inherit",
+        detailImage: "430px",
       },
       height: {
         confirmButton: "38px",

@@ -6,8 +6,10 @@ class ProductInstance extends ApiInstance {
     return response.data.response;
   };
 
-  getProductMyId = (id) => {
-    return this.instance.get(`/products/${id}`);
+  getProductById = async (id) => {
+    const response = await this.instance.get(`/products/${id}`);
+
+    return response.data.response;
   };
 }
 
