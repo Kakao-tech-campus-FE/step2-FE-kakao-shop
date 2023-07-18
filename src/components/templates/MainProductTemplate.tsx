@@ -26,7 +26,6 @@ const MainPRoductTemplate = () => {
           console.log('bottom!');
           setPage(page + 1);
         }
-        // observer.observe(bottomObserver.current);
       });
     },
     { threshold: 1 },
