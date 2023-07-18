@@ -22,7 +22,6 @@ function App() {
     },[])
     
     return (
-    <>
         <BrowserRouter>
             <GNB/>
             <Routes>
@@ -33,7 +32,6 @@ function App() {
                 <Route path="/*" element={<NotFoundPage/>}/>
             </Routes>
         </BrowserRouter>
-    </>
     );
 }
 

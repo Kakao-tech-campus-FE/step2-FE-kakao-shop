@@ -6,13 +6,11 @@ const ProductGrid = ({products, loading}) => {
     // 여기서는 ProductGrid -> 데이터를 단순히 표기만 하는 용도의 컴포넌트로 사용
     // state 관리는 해당 컴포넌트보다 윗단에서 처리해 주었음
     return (
-        <>
-            <div className="product-grid">
-                {products.map((product) => (
-                    <ProductCard key={product.id} product={product} loading={loading} />
-            ))}
-            </div>
-        </>
+        <div className="product-grid">
+            {products.map((product) => (
+                <ProductCard key={product.id} product={product} loading={loading} />
+        ))}
+        </div>
     );
 };
 

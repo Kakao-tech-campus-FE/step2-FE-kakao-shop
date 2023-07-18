@@ -10,11 +10,9 @@ const Main = () => {
     // const logToken = () => { console.log(token) }
 
     return (
-        <>
-            <div className='mainPage'>
-                <MainProductTemplate/>
-            </div>
-        </>
+        <div className='mainPage'>
+            <MainProductTemplate/>
+        </div>
     );
 };
 

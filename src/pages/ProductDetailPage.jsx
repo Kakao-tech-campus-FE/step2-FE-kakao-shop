@@ -31,16 +31,14 @@ const ProductDetailPage = () => {
     // product에 우리가 원하는 데이터가 정확하게 존재하는가?
     // typescript -> interface, type
     // 타입스크립트 등을 쓰지 않는다면, 검증 함수를 만들어 사용!
-    return (
-        <>  
-            <div className="productDetailPage">
-                {isLoading && <Loader />}
-                {error && <div>{error.message}</div>}
-                {data && <div>{data.data.response.productName}</div>}
-                {data && <div>{comma(data.data.response.price)}원</div>}
-                {data && <div>평점 {data.data.response.starCount}/5 점</div>}
-            </div>
-        </>
+    return (  
+        <div className="productDetailPage">
+            {isLoading && <Loader />}
+            {error && <div>{error.message}</div>}
+            {data && <div>{data.data.response.productName}</div>}
+            {data && <div>{comma(data.data.response.price)}원</div>}
+            {data && <div>평점 {data.data.response.starCount}/5 점</div>}
+        </div>
     );
 };
 

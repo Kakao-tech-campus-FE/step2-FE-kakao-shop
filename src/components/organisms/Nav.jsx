@@ -21,7 +21,6 @@ const Nav = () => {
     const token = localStorage.getItem("token");
 
     return (
-    <>
       <div className="navbar">
         {email 
         ? <span className="navbarMenu">{email}님 안녕하세요!</span> 
@@ -33,7 +32,6 @@ const Nav = () => {
         ? <Link className="navbarMenu" onClick={logout}>로그아웃</Link> 
         : <Link className="navbarMenu" to={"/login"}>로그인</Link>}
       </div>
-    </>
     );
 };
 
