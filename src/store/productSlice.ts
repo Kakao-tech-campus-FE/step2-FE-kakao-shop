@@ -1,5 +1,9 @@
-import { ProductDetail } from "@/dtos/product.dto";
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  ProductDetail,
+  ProductOption,
+  ProductOptionWithCount,
+} from "@/dtos/product.dto";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { getProductDetail } from "@/store/productAction";
 
 interface ProductDetailState {
@@ -7,6 +11,7 @@ interface ProductDetailState {
   error: string | null;
   success: boolean;
   data: ProductDetail | null;
+  order: ProductOptionWithCount[];
 }
 
 const initialState: ProductDetailState = {
@@ -14,12 +19,38 @@ const initialState: ProductDetailState = {
   error: null,
   success: false,
   data: null,
+  order: [],
 };
 
 export const productDetailSlice = createSlice({
   name: "productDetail",
   initialState,
-  reducers: {},
+  reducers: {
+    addProductOrder: (state, action: PayloadAction<ProductOption>) => {
+      const newOrder = new ProductOptionWithCount(action.payload);
+      state.order.push(newOrder);
+    },
+    removeProductOrder: (state, action: PayloadAction<number>) => {
+      state.order = state.order.filter(
+        (productOption) => productOption.id !== action.payload
+      );
+    },
+    updateProductOrder: (
+      state,
+      action: PayloadAction<{ id: number; count: number }>
+    ) => {
+      const { id, count } = action.payload;
+      const productOption = state.order.find(
+        (productOption) => productOption.id === id
+      );
+      if (productOption) {
+        productOption.count = count;
+      }
+    },
+    clearProductOrder: (state) => {
+      state.order = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getProductDetail.pending, (state) => {

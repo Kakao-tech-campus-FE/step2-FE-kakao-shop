@@ -6,6 +6,15 @@ const PRODUCT = {
   TOC_PRICE: "톡 딜가",
   WON: "원",
   OPTION_SELECT: "옵션 선택",
+  SHIPPING: "배송",
+  SHIPPING_FEE: "배송비",
+  SHIPPING_FREE: "무료배송",
+  SHIPPING_METHOD: "배송방법",
+  DELIVERY_SHIP: "택배배송",
+  SHIPPING_DESC: "제주 추가 3,000원, 제주 외 도서지역 추가 6,000원",
+  TOTAL_AMOUNT: "총 수량",
+  PEICE: "개",
+  TOTAL_PRICE: "총 주문금액",
 };
 
 export { PRODUCT };

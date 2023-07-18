@@ -11,7 +11,7 @@ interface ProductOptionItemProps {
 
 const ProductOptionItem: FC<ProductOptionItemProps> = ({ option, index }) => {
   return (
-    <div className="flex gap-2 p-2">
+    <div className="flex gap-2 p-3">
       <Txt typograph="h6">{index}.</Txt>
       <div className="flex flex-col">
         <Txt typograph="h6">{option.optionName}</Txt>

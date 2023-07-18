@@ -28,3 +28,16 @@ export class ProductDetail extends Product {
     this.options = product.options;
   }
 }
+
+export class ProductOptionWithCount implements ProductOption {
+  id: number;
+  optionName: string;
+  price: number;
+  count: number;
+  constructor(productOption: Omit<ProductOptionWithCount, "count">) {
+    this.id = productOption.id;
+    this.optionName = productOption.optionName;
+    this.price = productOption.price;
+    this.count = 0;
+  }
+}

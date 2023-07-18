@@ -1,5 +1,9 @@
 import { useAppSelector } from "@/hooks/useRedux";
-import ProductOptionItem from "./ProductOptionItem.component";
+import ProductOptionItem from "@components/ProductOption/ProductOptionItem.component";
+import Txt from "@components/common/Txt.component";
+import { PRODUCT } from "@/assets/product.ko";
+
+const { OPTION_SELECT } = PRODUCT;
 
 const ProductOptionSelector = () => {
   const { data } = useAppSelector((state) => state.productSlice);
@@ -8,11 +12,18 @@ const ProductOptionSelector = () => {
   const { options } = data;
 
   return (
-    <>
-      {options.map((option, index) => (
-        <ProductOptionItem key={option.id} index={index + 1} option={option} />
-      ))}
-    </>
+    <div className="flex flex-col gap-2">
+      <Txt>{OPTION_SELECT}</Txt>
+      <div className="divide-y border-[1px] rounded-md">
+        {options.map((option, index) => (
+          <ProductOptionItem
+            key={option.id}
+            index={index + 1}
+            option={option}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
