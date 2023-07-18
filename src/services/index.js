@@ -8,7 +8,7 @@ export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
   timeout: 1000, // 보다 나은 사용자 경험을 위해 timeout 추가
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json;charset=UTF-8",
   },
 });
 
@@ -20,6 +20,7 @@ instance.interceptors.request.use(
     if (token) {
       config.headers["Authorization"] = token;
     }
+    console.log(config);
     return config;
   },
   (error) => {

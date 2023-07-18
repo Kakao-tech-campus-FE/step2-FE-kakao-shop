@@ -43,8 +43,6 @@ const MainProductTemplate = () => {
     dispatch(getProducts(page));
   }, [dispatch, page]);
 
-  console.log(products);
-
   return (
     <Container>
       {loading ? (
