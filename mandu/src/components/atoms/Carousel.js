@@ -1,11 +1,17 @@
 import {useState} from "react";
+import {useEffect} from "react";
 
-function Carousel({width = "100%", height = "400px", imgList = []}) {
-
+function Carousel({width = "100%", height = "400px", imgList = [], intervalTime = 6000}) {
 
     const [curImageIndex, setCurImageIndex] = useState(0);
-
     const transform = `translate(-${curImageIndex * 100}%)`;
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            moveRight();
+        }, intervalTime);
+        return () => clearInterval(interval);
+    }, [])
 
     const moveLeft = () => {
         setCurImageIndex((value) => {
@@ -14,9 +20,9 @@ function Carousel({width = "100%", height = "400px", imgList = []}) {
                 index = index + imgList.length;
             }
             return index;
-
         });
     }
+
     const moveRight = () => {
         setCurImageIndex((value) => {
             let index = (value + 1) % imgList.length;
@@ -27,7 +33,6 @@ function Carousel({width = "100%", height = "400px", imgList = []}) {
         });
 
     }
-
 
     const buttonStyle = {
         border: '1px solid rgba(255,255,255,.23)',
@@ -43,6 +48,7 @@ function Carousel({width = "100%", height = "400px", imgList = []}) {
         zIndex: 10
 
     }
+    
     return (
         <div style={{
             width: width,
@@ -71,12 +77,8 @@ function Carousel({width = "100%", height = "400px", imgList = []}) {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'row',
-                // transition: 'transform 1s ease-in-out',
                 transform: transform,
-
-
             }}>
-
                 {
                     imgList.map((url, index) => {
                             return (<div style={{width: '100%', height: '100%', flex: '1 0 100%'}} key={index}>
@@ -84,7 +86,6 @@ function Carousel({width = "100%", height = "400px", imgList = []}) {
                                     style={{width: '100%', height: '100%', objectFit: 'cover'}}
                                     src={url} alt={index.toString()}/>
                             </div>);
-
                         }
                     )
                 }
