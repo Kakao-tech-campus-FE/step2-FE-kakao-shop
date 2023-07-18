@@ -14,10 +14,10 @@ const Counter = ({
     onDecrease(count - 1);
   };
   return (<div>
-    <div className="counter">
-      <button onClick={handleOnDecrease}>-</button>
-      <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
+    <div className="flex">
+      <button className="border-2 w-6" onClick={handleOnDecrease}>-</button>
+      <div className="border-2 w-12 text-center">{count}</div>
+      <button className="border-2 w-6" onClick={handleOnIncrease}>+</button>
     </div>
   </div>);
 };

@@ -87,7 +87,7 @@ const Carousel = () => {
         </div>
 
         <button className="text-5xl text-white absolute w-16 h-16 bg-gray-400 border-4 border-solid border-white opacity-30 rounded-full hover:bg-gray-200 left-5 top-1/2 -translate-y-1/2" onClick={handleLeftButton}>&lt;</button>
-        <button className="text-5xl text-white absolute w-16 h-16 bg-gray-400 border-4 border-solid border-white opacity-30 rounded-full hover:bg-gray-200 right-5 top-1/2 -translate-y-1/2" onClick={handleLeftButton}>&gt;</button>
+        <button className="text-5xl text-white absolute w-16 h-16 bg-gray-400 border-4 border-solid border-white opacity-30 rounded-full hover:bg-gray-200 right-5 top-1/2 -translate-y-1/2" onClick={handleRightButton}>&gt;</button>
       </div>
 
       <br />
