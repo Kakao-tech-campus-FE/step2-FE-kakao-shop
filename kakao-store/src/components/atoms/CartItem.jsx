@@ -1,7 +1,7 @@
-import { Card } from "react-bootstrap";
-import Box from "./Box";
-import Counter from "./Counter";
-import { comma } from "../../utils/convert";
+import { Card } from 'react-bootstrap';
+import Box from './Box';
+import Counter from './Counter';
+import { comma } from '../../utils/convert';
 
 // 각 상품별 장바구니 항목
 // 여러 옵션이 저장될 수 있음

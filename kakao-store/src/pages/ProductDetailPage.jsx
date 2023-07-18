@@ -1,18 +1,18 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getDetail } from "../store/slices/detailSlice";
-import Loader from "../components/atoms/Loader";
-import { getProductById } from "../services/product";
+import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getDetail } from '../store/slices/detailSlice';
+import Loader from '../components/atoms/Loader';
+import { getProductById } from '../services/product';
 
-import { useQuery } from "react-query";
+import { useQuery } from 'react-query';
+import ProductInformationColumn from '../components/molecules/ProductInformationColumn';
+import OptionColums from '../components/molecules/OptionColums';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { data, error, isLoading } = useQuery(`/product/${id}`, () =>
-    getProductById(id)
-  );
+  const { data, error, isLoading } = useQuery(`/product/${id}`, () => getProductById(id));
   // const {
   //   data: detail,
   //   error,
@@ -24,12 +24,19 @@ const ProductDetailPage = () => {
   // 여러 비동기를 다 받고 처리를 해야한다고 한다면
   // useQueries([]) 사용
   // 단일 비동기는 useQuery 사용
-
   const product = data?.data.response;
 
   return (
     <div>
       <h1>product </h1>
+      {product && (
+        <>
+          <ProductInformationColumn product={product} />
+          <OptionColums product={product} />
+        </>
+      )}
+
+      {/* <OptionColums product={product} /> */}
       {/* loading state 
       error state */}
       {isLoading && <Loader />}

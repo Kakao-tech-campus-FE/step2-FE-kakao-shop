@@ -7,7 +7,7 @@ import { setEmailandPassword } from './store/slices/userSlice';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
-import "tailwindcss/tailwind.css";
+import 'tailwindcss/tailwind.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,21 +31,17 @@ function App() {
     <div className="App">
       <BrowserRouter>
         {/* 단독 레이아웃 */}
-    
 
         <Routes>
-          <Route path='/login' element={<LoginPage onLogin={handleLogin} />} />
-          <Route path='/signup' element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+          <Route path="/signup" element={<RegisterPage />} />
         </Routes>
         <Routes>
-          <Route element={<MainLayout/>}>
-            <Route path='/' element={<HomePage /> } />
-            <Route path='/product/:id' element={<ProductDetailPage /> } />
-
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
           </Route>
         </Routes>
-
-        
       </BrowserRouter>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const Counter = ({
   value, // 최초 수량
@@ -15,6 +15,7 @@ const Counter = ({
   };
 
   const handleOnDecrease = () => {
+    if (count === 1) return;
     // count = 1
     setCount(count - 1);
     // count = ?
