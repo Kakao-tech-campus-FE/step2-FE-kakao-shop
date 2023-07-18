@@ -18,41 +18,35 @@ const OptionColums = ({ product }) => {
 
   const handleOnclickOption = (option) => {
     // 동일한 옵션 클릭을 방지해주어야 하는 코드
-    const isOptionSelected = selectedOptions.find((el) => el.optionId === option.id);
-
+    const isOptionSelected = selectedOptions.find((el) => el.Id === option.id);
     // 이미 선택된 옵션이면 수량을 증가시킨다.
     if (isOptionSelected) {
-      setSelectedOptions((prev) =>
-        prev.map((el) => (el.optionId === option.id ? { ...el, quantity: el.quantity + 1 } : el))
-      );
+      setSelectedOptions((prev) => prev.map((el) => (el.Id === option.id ? { ...el, quantity: el.quantity + 1 } : el)));
+      handleOnIncrease(option.quantity, option.id);
+    } else {
+      setSelectedOptions((prev) => [
+        ...prev,
+        {
+          Id: option.id,
+          quantity: 1,
+          price: option.price,
+          name: option.optionName,
+          optionquantity: option.quantity,
+        },
+      ]);
     }
-
-    setSelectedOptions((prev) => [
-      ...prev,
-      {
-        optionId: option.id,
-        quantity: 1,
-        price: option.price,
-        name: option.optionName,
-      },
-    ]);
   };
 
   const handleOnIncrease = (count, optionId) => {
-    setSelectedOptions((prev) =>
-      prev.map((el) => (el.optionId === optionId ? { ...el, quantity: el.quantity + 1 } : el))
-    );
+    setSelectedOptions((prev) => prev.map((el) => (el.Id === optionId ? { ...el, quantity: el.quantity + 1 } : el)));
   };
 
   const handleOnDecrease = (count, optionId) => {
-    setSelectedOptions((prev) =>
-      prev.map((el) => (el.optionId === optionId ? { ...el, quantity: el.quantity - 1 } : el))
-    );
+    setSelectedOptions((prev) => prev.map((el) => (el.Id === optionId ? { ...el, quantity: el.quantity - 1 } : el)));
   };
 
   const handleOnClickDelete = (option) => {
-    console.log(option.optionId);
-    setSelectedOptions((prev) => prev.filter((el) => el.optionId !== option.optionId));
+    setSelectedOptions((prev) => prev.filter((el) => el.Id !== option.Id));
   };
 
   const { mutate } = useMutation({
@@ -82,8 +76,8 @@ const OptionColums = ({ product }) => {
           수량변경{' '}
           <Counter
             value={option.quantity}
-            onIncrease={(count) => handleOnIncrease(count, option.id)}
-            onDecrease={(count) => handleOnDecrease(count, option.id)}
+            onIncrease={(count) => handleOnIncrease(count, option.Id)}
+            onDecrease={(count) => handleOnDecrease(count, option.Id)}
           />
           <span className="name">{option.name}</span>
           {/* option 삭제 버튼 */}
@@ -124,7 +118,7 @@ const OptionColums = ({ product }) => {
             mutate(
               selectedOptions.map((el) => {
                 return {
-                  optionId: el.optionId,
+                  Id: el.Id,
                   quantity: el.quantity,
                 };
               }),
