@@ -13,7 +13,7 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed w-screen bg-subGray h-header flex items-center">
+    <div className="absolute w-screen bg-subGray h-header flex items-center">
       {!isLoggedIn ? (
         <Link to="/login" className="absolute right-[10px]">
           로그인
