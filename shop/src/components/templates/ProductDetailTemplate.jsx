@@ -4,7 +4,7 @@ import ProductInformationColumn from '../atoms/ProductInformationColumn'
 
 const ProductDetailTemplate = ({product}) => {
   return (
-    <Container>
+    <Container className="flex mx-80 space-x-4">
       <ProductInformationColumn product={product}/>
       <OptionColumn product={product}/>
     </Container>
