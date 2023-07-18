@@ -1,10 +1,21 @@
 import NavbarItem from "@components/Navbar/NavbarItem.component";
 import NavbarSignItem from "./NavbarSignItem.component";
+import { FC } from "react";
+import classnames from "classnames";
 
-const GlobalNavbar = () => {
+interface GlobalNavbarProps {
+  isSmall?: boolean;
+}
+
+const GlobalNavbar: FC<GlobalNavbarProps> = ({ isSmall = false }) => {
   return (
     <>
-      <nav className="fixed top-0 left-0 bg-white  w-full py-2 border-t-[1px] border-b-[1px] border-slate-300 text-sm z-50 ">
+      <nav
+        className={classnames(
+          "fixed top-0 left-0 bg-white w-full border-t-[1px] border-b-[1px] border-slate-300 text-sm z-50",
+          { "py-2": !isSmall }
+        )}
+      >
         <div className="flex m-auto max-w-7xl">
           <div className="flex flex-1 justify-start">
             <NavbarItem link="HOME">
@@ -20,7 +31,12 @@ const GlobalNavbar = () => {
             <NavbarItem link="HOME">
               <img className="h-8" src="/icons/cart.png" alt="mycart"></img>
             </NavbarItem>
-            <div className="h-6 border-r-[1px] border-slate-400 mx-2"></div>
+            <div
+              className={classnames(
+                "border-r-[1px] border-slate-400 mx-2",
+                isSmall ? "h-4" : "h-6"
+              )}
+            ></div>
             <NavbarSignItem />
           </div>
         </div>

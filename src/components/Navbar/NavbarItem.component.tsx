@@ -1,10 +1,12 @@
 import { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { URL } from "@/assets/url.ko";
+import classnames from "classnames";
 
 interface NavbarItem {
   link: string;
   children: ReactNode;
+  isSmall?: boolean;
 }
 
 export interface NavbarItemProps extends NavbarItem {
@@ -17,10 +19,11 @@ const NavbarItem: FC<NavbarItemProps> = ({
   link,
   className,
   onClick,
+  isSmall = false,
 }) => (
   <Link
     to={URL[link as keyof typeof URL]}
-    className={`p-4 ${className}`}
+    className={classnames(className, isSmall ? "p-4" : "p-2")}
     onClick={() => {
       if (typeof onClick !== "function") return;
       onClick();

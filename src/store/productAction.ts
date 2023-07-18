@@ -10,7 +10,12 @@ export const getProductDetail = createAsyncThunk<
   "product/getProductDetail",
   async (id: number, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const response = await commonAxios.get(`/product/${id}`);
+      if (Number.isNaN(id)) {
+        location.href = "/";
+        return rejectWithValue({ message: "id is not number", status: 400 });
+      }
+
+      const response = await commonAxios.get(`/products/${id}`);
       const resData = new ProductResDto(response.data);
 
       if (resData.error) {

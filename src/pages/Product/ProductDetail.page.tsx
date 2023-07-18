@@ -4,7 +4,7 @@ import ProductDetail from "@/components/ProductDetail/ProductDetail.component";
 const ProductDetailPage = () => {
   return (
     <>
-      <GlobalNavbar />
+      <GlobalNavbar isSmall={true} />
       <ProductDetail />
     </>
   );
