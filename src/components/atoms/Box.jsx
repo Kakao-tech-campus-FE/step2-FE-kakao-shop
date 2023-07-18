@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/atoms/Box.css";
+// import "../../styles/atoms/Box.css";
 // import styled from "styled-components";
 
 // const StyledBox = styled.div`

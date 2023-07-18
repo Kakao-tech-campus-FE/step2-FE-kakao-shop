@@ -1,9 +1,7 @@
-import "../../styles/atoms/Photo.css"
-
 const Photo = ({ className, src, alt }) => {
   return (
     <picture className={className}>
-      <source srcSet={src} height={300} />
+      <source srcSet={src} />
       <img src={src} alt={alt} />
     </picture>
   );

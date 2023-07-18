@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../../styles/NavBar.css";
+// import "../../styles/NavBar.css";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../atoms/Button";
 import { setEmail } from "../../store/slices/userSlice";

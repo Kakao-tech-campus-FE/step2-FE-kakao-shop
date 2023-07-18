@@ -2,7 +2,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setEmail } from "../../store/slices/userSlice";
-import "../../styles/atoms/GNB.css";
 
 const GNB = () => {
   const email = useSelector((state) => state.user.email);
@@ -15,43 +14,37 @@ const GNB = () => {
   };
 
   return (
-    <header className="header">
-      <div className="contents">
-        {/* 로고 버튼 */}
-        <Link to="/">
-          <div className="content">
-            <img
-              src="/logoKakao.png"
-              alt="logoKakao.png"
-              style={{ width: "90px" }}
-            />
+    // p-6
+    <header className="fixed z-50 bg-white border-gray-200 border-solid border-b-2 m-auto left-0 right-0 p-3">
+      <div className=" max-w-screen-xl">
+        <nav className="flex justify-between">
+          <div className="p-3">
+            <Link to="/">
+              <img
+                className="w-24"
+                src="/logoKakao.png"
+                alt="카카오톡 쇼핑하기"
+              />
+            </Link>
           </div>
-        </Link>
 
-        <nav>
-          <div className="navigation">
-            {/* 장바구니 버튼 */}
-            <span>
+          <div className="flex items-center">
+            <div className="p-3">
               <Link to="/cart">
-                <img src="/cart.png" alt="cart.png" style={{ width: "28px" }} />
+                <img className="w-9" src="/cart.png" alt="장바구니" />
               </Link>
-            </span>
-            {/* 로그인 버튼 */}
-            {email ? (
-              <Link to="/login" onClick={handleLogout}>
-                로그아웃
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                }}
-              >
-                로그인
-              </Link>
-            )}
+            </div>
+            <div className="p-3">
+              {email ? (
+                <Link className="text-sm" to="/login" onClick={handleLogout}>
+                  로그아웃
+                </Link>
+              ) : (
+                <Link className="text-sm" to="/login">
+                  로그인
+                </Link>
+              )}
+            </div>
           </div>
         </nav>
       </div>
