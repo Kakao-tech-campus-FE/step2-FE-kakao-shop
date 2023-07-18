@@ -5,10 +5,21 @@ import { pointByThree } from "@/functions/utils";
 import { PRODUCT } from "@/assets/product.ko";
 import { useAppSelector } from "@/hooks/useRedux";
 
+const ProductDetailSkeleton = () => (
+  <>
+    <div className="animate-pulse flex-1 w-full h-[30vw] bg-slate-200 rounded-md" />
+    <div className="animate-pulse flex flex-col gap-2 flex-1 py-2 px-4">
+      <div className="h-4 w-20 bg-slate-200 rounded-lg"></div>
+      <div className="h-8 w-96 bg-slate-200 rounded-md"></div>
+      <div className="h-12 w-32 bg-slate-200 rounded-full"></div>
+    </div>
+  </>
+);
+
 const ProductDetailDescription = () => {
   const { data } = useAppSelector((state) => state.productSlice);
 
-  if (!data) return <div>로딩중...</div>;
+  if (!data) return <ProductDetailSkeleton />;
 
   return (
     <>
