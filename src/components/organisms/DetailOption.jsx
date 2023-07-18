@@ -23,14 +23,17 @@ const DetailOption = (props) => {
   const selectOption = (id) => {
     setOpen(prev => false)
     const newList = quantity.map((obj) => (
-      obj.id === id && obj.quantity === 0
-      ? {...obj, quantity: obj.quantity + 1}
+      obj.id === id && (obj.quantity === 0 || obj.quantity === NaN)
+      ? {...obj, quantity: 1}
       : {...obj} 
     ))
     setQuantity(prev => newList)
   }
 
   const changeQuantity = (id, newQuntity) => {
+    if (Number.isNaN(newQuntity)) {
+      newQuntity = 0
+    }
     const newList = quantity.map((obj) => (
       obj.id === id
       ? {...obj, quantity: newQuntity}
@@ -40,6 +43,7 @@ const DetailOption = (props) => {
   }
 
   useEffect(()=>{
+    console.log(quantity)
     let p = 0;
     let q = 0
     for (const item of quantity) {
@@ -54,10 +58,9 @@ const DetailOption = (props) => {
 
   const loginState = useSelector((state) => state.login)
   const dispatch = useDispatch()
-  console.log(loginState)
 
   const submitHandler = () => {
-    if (quantity) {
+    if (totalQuantity === 0) {
       alert("옵션을 선택해주세요")
       return
     }
@@ -76,7 +79,7 @@ const DetailOption = (props) => {
   return (
     <OptionContainer>
       <OptionListBox open={open}>
-        <OptionItem summary={true} onClick={()=>setOpen(prev=>!prev)}> 
+        <OptionItem title={true} onClick={()=>setOpen(prev=>!prev)}> 
           <span className="flex"> 
             선택하기 
             {open 
@@ -85,6 +88,7 @@ const DetailOption = (props) => {
             }
           </span>
         </OptionItem>
+
         {open 
           ? props.options?.map((item)=>(
             <OptionItem 
@@ -96,25 +100,24 @@ const DetailOption = (props) => {
             </OptionItem>
             ))
           : null
-        }
+        } 
         
-      </OptionListBox>
+      </OptionListBox> 
 
       {quantity.map((item) => {
           if (item.quantity > 0) {
             return <OptionSelected 
               key={item.optionName} 
               optionName={item.optionName} 
-              quantity={item.quantity}
               price={strPrice(item.quantity * item.price)}
-              subDisabled={item.quantity === 1}
-              subOnClick={() => changeQuantity(item.id, item.quantity - 1)}
-              addOnClick={() => changeQuantity(item.id, item.quantity + 1)}
-              clearOnClick={() => changeQuantity(item.id, 0)}
-              onChange={(event) => changeQuantity(item.id, parseInt(event.target.value))}
+              quantity={item.quantity}
+              sub={() => changeQuantity(item.id, item.quantity - 1)}
+              add={() => changeQuantity(item.id, item.quantity + 1)}
+              clear={() => changeQuantity(item.id, 0)}
+              change={(event) => changeQuantity(item.id, parseInt(event.target.value))}
               />
-          }
-        })}
+          } })
+      }
 
       <TotalPrice price={strPrice(totalPrice)} quantity={totalQuantity}/>
 
@@ -122,6 +125,7 @@ const DetailOption = (props) => {
         <SubmitButton 
           color="white" 
           border="1px solid orange"
+          onClick={submitHandler}
         >
           장바구니
         </SubmitButton>
