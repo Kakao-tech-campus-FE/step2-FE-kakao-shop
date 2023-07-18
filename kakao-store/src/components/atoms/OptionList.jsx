@@ -1,4 +1,4 @@
-import { comma } from "../../utils/convert";
+import { comma } from '../../utils/convert';
 
 /**
  * 옵션 목록
@@ -15,6 +15,7 @@ const OptionList = ({ options, onClick }) => {
           <span className="name">
             {index + 1}. {option.optionName}
           </span>
+
           <span className="price">{comma(option.price)}원</span>
         </li>
       ))}
