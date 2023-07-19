@@ -5,25 +5,35 @@ import { useQuery } from '@tanstack/react-query';
 import { getDetail } from '../store/slices/detailSlice';
 import Loader from '../components/atoms/Loader';
 import { getProductById } from '../services/product';
+import { comma } from '../utils/convert';
 
 const ProductDetailPage = () => {
   const { id } = useParams(); // string
   //   const parsedId = parseInt(id, 10);
-  const dispatch = useDispatch();
-  const {
-    data: detail,
-    error,
-    isLoading,
-  } = useQuery(`/product/${id}`, () => getProductById(id));
-
+  const { data, error, isLoading } = useQuery([`/product/${id}`, id], () =>
+    getProductById(id),
+  );
   useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
+    console.log(data); // data 객체를 콘솔에 출력
+  }, [data]);
+
+  // useEffect(() => {
+  //   dispatch(getDetail(id));
+  // }, [dispatch, id]);
   return (
     <div>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
-      {detail && <div>{detail.productName}</div>}
+      {data && (
+        <div>
+          <img
+            src={process.env.REACT_APP_API_URL + data.data.response.image}
+            alt={data.data.response.productName}
+          />
+          {data.data.response.productName}
+          {data.data.response.price}원{data.data.response.starCount}/5 점
+        </div>
+      )}
     </div>
   );
 };
