@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import OptionList from "./OptionList";
 import DeliveryForm from "./DeliveryForm";
 import Box from "../atoms/Box";
@@ -6,41 +6,26 @@ import Button from "../atoms/Button";
 import Icon from "../atoms/Icon";
 import cartImage from "../../assets/cart_white.png";
 import { comma } from "../../utils/convert";
+import optionReducer from "../../reducer/option-reducer";
 
 export default function OptionColumn({ productData }) {
   const { options } = productData;
-  const [optionList, setOptionList] = useState([]);
+  const [optionList, dispatch] = useReducer(optionReducer, []);
 
   const getAllCount = () => {
     return optionList.reduce((pre, cur) => pre + cur.count, 0);
   };
   const getAllPrice = () => {
-    return optionList.reduce((pre, cur) => pre + cur.price, 0);
+    return optionList.reduce((pre, cur) => pre + cur.price * cur.count, 0);
   };
   const handleOptionClick = (option) => {
-    const { id, optionName, price } = option;
-    setOptionList((prev) => {
-      const hasOption = Boolean(prev.find((opt) => opt.id === id));
-
-      if (hasOption) {
-        return prev.map((opt) =>
-          opt.id === id ? { ...opt, count: opt.count + 1 } : opt
-        );
-      }
-      return [...prev, { id, optionName, price, count: 1 }];
-    });
+    dispatch({ type: "add", option });
   };
-  const handleOptionUpdate = (id, type) => {
-    setOptionList((prev) =>
-      prev.map((opt) =>
-        opt.id === id
-          ? { ...opt, count: type === "plus" ? opt.count + 1 : opt.count - 1 }
-          : opt
-      )
-    );
+  const handleOptionUpdate = (id, flag) => {
+    dispatch({ type: "update", id, flag });
   };
   const handleOptionDelete = (id) => {
-    setOptionList((prev) => prev.filter((opt) => opt.id !== id));
+    dispatch({ type: "delete", id });
   };
   return (
     <section className="basis-1/3 border-l pl-8">
@@ -53,8 +38,14 @@ export default function OptionColumn({ productData }) {
       />
       <DeliveryForm />
       <Box className="flex justify-between py-3 text-lg font-semibold">
-        <span>총 수량 {getAllCount()}개</span>
-        <span>총 주문금액 {comma(getAllPrice())}원</span>
+        <p>총 수량 {getAllCount()}개</p>
+        <p>
+          총 주문금액{" "}
+          <span className="text-red-500 font-extrabold">
+            {comma(getAllPrice())}
+          </span>
+          원
+        </p>
       </Box>
       <Box className="flex justify-between pb-8">
         <Button className="shrink-0" padding="p-2" color="black" radius="sm">
