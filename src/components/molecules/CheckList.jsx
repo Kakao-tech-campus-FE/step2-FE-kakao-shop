@@ -29,11 +29,11 @@ const CheckList = ({ checkAll = "", list }) => {
 
   const handleOnCheckAll = (e) => {
     if (e.target.checked) {
-      setCheckedAll(true);
       setCheckedList(Array.from({ length: list.length }, () => true));
+      setCheckedAll(true);
     } else {
-      setCheckedAll(false);
       setCheckedList(Array.from({ length: list.length }, () => false));
+      setCheckedAll(false);
     }
   };
 

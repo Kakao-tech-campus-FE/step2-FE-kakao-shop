@@ -3,17 +3,14 @@ import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import { login } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { loginRequest } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-// import useInputError from "../../hooks/useInputError";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const email = useSelector((state) => state.user.email);
   const [errorMsg, setErrorMsg] = useState("");
   const { value, handleOnChange } = useInput({
     email: "",
@@ -21,22 +18,17 @@ const LoginForm = () => {
   });
 
   const loginReq = () => {
-    login({
-      email: value.email,
-      password: value.password,
-    })
+    dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
       .then((res) => {
-        dispatch(
-          setEmail({
-            email: value.email,
-            loggedInAt: new Date().getTime(),
-          })
-        );
-        localStorage.setItem("token", res.headers.authorization);
         navigate("/");
       })
       .catch((error) => {
-        setErrorMsg(error.message);
+        setErrorMsg(error.toString());
       });
   };
 
@@ -65,13 +57,11 @@ const LoginForm = () => {
 
       <Button
         className="w-96 h-12 bg-yellow-300 rounded-lg hover:bg-yellow-400"
-        onClick={() => {
-          loginReq();
-        }}
+        onClick={loginReq}
       >
         로그인
       </Button>
-      <div>{errorMsg}</div>
+      {errorMsg && <div>{errorMsg}</div>}
     </Container>
   );
 };

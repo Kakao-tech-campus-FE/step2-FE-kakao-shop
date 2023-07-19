@@ -37,15 +37,15 @@ instance.interceptors.response.use(
   (error) => {
     const errorCode = error.response.status;
     if (errorCode >= 100 && errorCode <= 199) {
-      throw new Error("100번대 상태 코드 수신: " + errorCode)
+      throw Error("100번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 200 && errorCode <= 299) {
-      throw new Error("200번대 상태 코드 수신: " + errorCode)
+      throw Error("200번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 300 && errorCode <= 399) {
-      throw new Error("300번대 상태 코드 수신: " + errorCode)
+      throw Error("300번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 400 && errorCode <= 499) {
-      throw new Error("400번대 상태 코드 수신: " + errorCode)
+      throw Error("400번대 상태 코드 수신: " + errorCode)
     } else {
-      throw new Error("500번대 상태 코드 수신: " + errorCode)
+      throw Error("500번대 상태 코드 수신: " + errorCode)
     }
   }
 );

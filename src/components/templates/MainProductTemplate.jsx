@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import Loader from "../atoms/Loader";
 import { useQuery } from "react-query";
 import { fetchProducts } from "../../services/product";
+import CheckList from "../molecules/CheckList";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -45,6 +46,7 @@ const MainProductTemplate = () => {
 
   return (
     <Container>
+      <CheckList checkAll="모두 선택" list={["제3자 개인정보 열람 동의", "개인정보 유출 동의"]}/>
       {loading ? (
         <Loader />
       ) : (
