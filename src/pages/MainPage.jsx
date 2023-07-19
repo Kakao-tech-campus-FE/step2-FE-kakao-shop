@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setUser } from "../store/slices/userSlice";
 import MainProductTemplate from "../components/templates/MainProductTemplate";
+import Carousel from "../components/atoms/Carousel";
 
 const MainPage = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,12 @@ const MainPage = () => {
             }));
         };
     }, [user, dispatch]);
-    return <MainProductTemplate />;
+    return (
+        <>
+            <Carousel />
+            <MainProductTemplate />
+        </>
+    );
 };
 
 export default MainPage;
