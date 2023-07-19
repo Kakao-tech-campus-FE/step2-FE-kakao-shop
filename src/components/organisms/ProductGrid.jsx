@@ -3,7 +3,6 @@ import '../../styles/organisms/productGrid.css';
 import SkeletonProductCard from "../molecules/SkeletonProductCard";
 
 const ProductGrid = ({products, isLoading}) => {
-    console.log("isLoading", isLoading)
     return (
         <div className="product-grid">
             {products.map((product) => (
