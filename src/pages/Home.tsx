@@ -1,7 +1,8 @@
+import MainProductTemplate from '@components/templates/MainProductTemplate';
 import React from 'react';
 
 const Home = () => {
-  return <div />;
+  return <MainProductTemplate />;
 };
 
 export default Home;

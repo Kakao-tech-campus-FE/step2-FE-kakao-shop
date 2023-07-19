@@ -7,7 +7,7 @@ import { getProducts } from '@store/slices/productSlice';
 import { ProductInfoData } from '@api/dto';
 import _ from 'lodash';
 
-const MainPRoductTemplate = () => {
+const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const products = useSelector((state: RootState) => state.product.products);
   const isEnd = useSelector((state: RootState) => state.product.isEnd);
@@ -61,4 +61,4 @@ const MainPRoductTemplate = () => {
   );
 };
 
-export default MainPRoductTemplate;
+export default MainProductTemplate;
