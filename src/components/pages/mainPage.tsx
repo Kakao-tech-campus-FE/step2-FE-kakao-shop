@@ -1,7 +1,7 @@
-import NavigationBar from './navigationBar';
+import MainProductListPage from './mainProductListPage';
 
 export default function MainPage() {
   return (
-    <NavigationBar />
+    <MainProductListPage />
   );
 }

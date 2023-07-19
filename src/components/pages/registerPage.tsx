@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterTemplate from '../templates/registerTemplate';
 import { RegisterFormData } from '../../types/formData';
-import { requestUserRegistration } from '../../apis/axios';
+import { requestUserRegistration } from '../../apis/user';
 
 export default function RegisterPage() {
   const {
@@ -33,14 +33,14 @@ export default function RegisterPage() {
   const handleRegister = async () => {
     setIsLoading(true);
 
-    requestUserRegistration(getValues())
-      .then(() => {
-        alert('회원가입이 정상적으로 완료되었습니다.');
-        navigator('/');
-      })
-      .catch(() => {
-        setErrorMessage('회원가입에 실패하였습니다.');
-      });
+    const result = await requestUserRegistration(getValues());
+
+    if (result) {
+      alert('회원가입이 정상적으로 완료되었습니다.');
+      navigator('/');
+    } else {
+      setErrorMessage('회원가입에 실패하였습니다.');
+    }
 
     setIsLoading(false);
   };
