@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/slices/productSlice";
 import ProductGrid from "../organisms/ProductGrid";
+import { loader } from "react-global-loader";
 import SkeletonGrid from "../organisms/SkeletonGrid";
 import Container from "../atoms/Container";
+import Carousel from "../week1/Carousel";
 
 const ProductSection = () => {
   const [page, setPage] = useState(0);
@@ -24,6 +26,13 @@ const ProductSection = () => {
       threshold: 1,
     }
   );
+  const showLoader = () => {
+    loader.show();
+  };
+
+  const hideLoader = () => {
+    loader.hide();
+  };
 
   useEffect(() => {
     io.observe(bottomObserver.current);
@@ -32,8 +41,15 @@ const ProductSection = () => {
   useEffect(() => {
     if (!isEnd) dispatch(getProducts(page));
   }, [dispatch, page, isEnd]);
+
+  useEffect(() => {
+    if (!loading) hideLoader();
+    else showLoader();
+  }, [loading]);
+
   return (
     <Container className="product-section">
+      <Carousel />
       {loading && <SkeletonGrid arr={new Array(15).fill(1)} />}
       {products && <ProductGrid products={products} />}
       <div ref={bottomObserver}></div>
