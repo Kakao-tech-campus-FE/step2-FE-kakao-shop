@@ -54,8 +54,8 @@ const OptionColums = ({ product }) => {
     mutationFn: addCart,
   });
   return (
-    <div className="option-columns">
-      <h3>옵션 선택</h3>
+    <div className="option-columns block">
+      <h3 className="text font-bold">옵션 선택</h3>
       {/* 옵션 담기를 할 수 있는 영역 */}
       <OptionList
         options={product.options}
@@ -134,7 +134,9 @@ const OptionColums = ({ product }) => {
               }
             );
           }}
-        ></Button>
+        >
+          장바구니 담기
+        </Button>
         {/* 톡딜가 X */}
       </div>
     </div>

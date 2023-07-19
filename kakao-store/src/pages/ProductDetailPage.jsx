@@ -29,9 +29,14 @@ const ProductDetailPage = () => {
   return (
     <div>
       {product && (
-        <div className="flex">
-          <ProductInformationColumn product={product} />
-          <OptionColums product={product} />
+        <div className="flex px-40 ">
+          <span className="w-2/3">
+            <ProductInformationColumn product={product} />
+          </span>
+
+          <span className="border-gray w-1/3 border-l p-10">
+            <OptionColums product={product} />
+          </span>
         </div>
       )}
 
