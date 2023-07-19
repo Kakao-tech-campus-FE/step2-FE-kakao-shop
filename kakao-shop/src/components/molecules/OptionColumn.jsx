@@ -1,12 +1,14 @@
 import OptionList from '../atoms/OptionList.jsx';
 import Counter from '../atoms/Counter.jsx';
 import Button from '../atoms/Button.jsx';
+import Divider from '../atoms/Divider.jsx';
 import { comma } from '../../utils/convert.js';
 import { useState } from 'react';
 import { useMutation } from 'react-query';
 import { addCart } from '../../apis/cart.js';
 
-import { GoGift, GoHeart } from 'react-icons/go';
+import { GoGift, GoHeart, GoX } from 'react-icons/go';
+import GrayBox from '../atoms/GrayBox.jsx';
 
 /**
  * 옵션 선택 컬럼
@@ -46,12 +48,18 @@ const OptionColums = ({ product }) => {
     setSelectedOptions((prev) => prev.map((el) => (el.id === optionId ? { ...el, quantity: el.quantity - 1 } : el)));
   };
 
+  const handleOptionDelete = (optionId) => {
+    const updatedOptions = selectedOptions.filter((option) => option.id !== optionId);
+    setSelectedOptions(updatedOptions);
+  };
+
   const { mutate } = useMutation({
     mutationFn: addCart,
   });
+
   return (
-    <div className="option-columns m-8">
-      <h3>옵션 선택</h3>
+    <div className="option-columns ml-8 mt-8 sm:text-sm md:text-base text-gray-800 w-[400px]">
+      <h3 className="font-bold mb-4">옵션선택</h3>
       {/* 옵션 담기를 할 수 있는 영역 */}
       <OptionList
         options={product.options}
@@ -62,49 +70,52 @@ const OptionColums = ({ product }) => {
           // optionId, quantity
         }
       />
-      <hr />
-      <div className="total-price">
-        <span>총 상품금액</span>
-      </div>
       {/* 담긴옵션이 표기 */}
       {/* ui에서 옵션이름, 옵션 가격 */}
       {selectedOptions.map((option) => (
-        <ol key={option.id} className="seleted-option-list">
-          수량변경{' '}
-          <Counter
-            value={option.quantity}
-            onIncrease={(count) => handleOnIncrease(count, option.id)}
-            onDecrease={(count) => handleOnDecrease(count, option.id)}
-          />
-          <span className="name">{option.name}</span>
-          <span className="price">{comma(option.price)}원</span>
+        <ol key={option.id} className="seleted-option-list bg-gray-50 p-4 relative mt-4 mb-3">
+          <span className="name text-sm block w-10/12 whitespace-pre-wrap">{option.name}</span>
+          <button className="absolute right-2 top-2" onClick={() => handleOptionDelete(option.id)}>
+            <GoX size="20" color="gray">
+              X
+            </GoX>
+          </button>
+          <div className="flex justify-between items-center mt-4">
+            <Counter
+              value={option.quantity}
+              onIncrease={(count) => handleOnIncrease(count, option.id)}
+              onDecrease={(count) => handleOnDecrease(count, option.id)}
+            />
+            <span className="price text-sm">{comma(option.price * option.quantity)}원</span>
+          </div>
         </ol>
       ))}
-      <hr />
-      <div className="total-price">
+      <Divider />
+      <div className="total-price flex justify-between items-center my-4 text-lg tracking-tighter">
         <span>
-          총 수량:{' '}
+          총 수량{' '}
           {selectedOptions.reduce((acc, cur) => {
-            // acc: 이전 값
-            // cur: 현재 선택된 엘리먼트
             return acc + cur.quantity;
           }, 0)}
           개
         </span>
         <span>
-          총 상품금액:{' '}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              // acc: 이전 값
-              // cur: 현재 선택된 엘리먼트
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
+          총 주문금액{' '}
+          <span className="font-extrabold text-red-500 tracking-normal">
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price;
+              }, 0)
+            )}
+          </span>{' '}
+          원
         </span>
       </div>
+
       <div className="button-group">
         {/* 장바구니 담기 버튼 위치 */}
         <Button
+          color="kakao"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
@@ -123,13 +134,10 @@ const OptionColums = ({ product }) => {
               }
             );
           }}
-        ></Button>
+        >
+          장바구니 담기
+        </Button>
         {/* 톡딜가 X */}
-      </div>
-
-      <div className="flex mt-3">
-        <GoGift size="25" color="gray" />
-        <GoHeart size="25" color="gray" className="ml-2" />
       </div>
     </div>
   );

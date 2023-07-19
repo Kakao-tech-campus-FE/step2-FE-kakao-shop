@@ -1,12 +1,12 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistReducer, PERSIST, PURGE } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistReducer, PERSIST, PURGE } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import userSlice from "./user/userSlice";
-import productSlice from "./product/productSlice";
-import detailSlice from "./product/detailSlice";
+import userSlice from './user/userSlice';
+import productSlice from './product/productSlice';
+import detailSlice from './product/detailSlice';
 
-import logger from "redux-logger";
+import logger from 'redux-logger';
 
 const reducers = combineReducers({
   user: userSlice,
@@ -15,10 +15,10 @@ const reducers = combineReducers({
 });
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   version: 1,
   storage: storage,
-  whitelist: ["user"],
+  whitelist: ['user'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
