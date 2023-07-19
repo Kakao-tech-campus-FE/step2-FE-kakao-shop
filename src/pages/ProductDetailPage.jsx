@@ -1,42 +1,46 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Loader from "../components/atoms/Loader";
 import { getProductById } from "../services/product";
+import Container from "../components/atoms/Container";
 import { useQuery } from "react-query";
-
+import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 //Maybe next week hw
 
 const ProductDetailPage = () => {
-  const { id } = useParams(); //string
-  const dispatch = useDispatch();
-  const {
-    data: detail,
-    error,
-    isLoading,
-  } = useQuery(`product/${id}`, () => getProductById(id)); // 구분자, API 요청 함수,, 50초가 걸리는 요청
-  // useQuery 따로따로 관리하는 단일 비동기 요청
-  // useQueries([]); 복수의 비동기 요청을 한 번에 관리
+  const { id } = useParams(); //string,
+  const { data, error, isLoading } = useQuery(
+    `product/${id}`,
+    () => getProductById(id) // id parameter to get product data
+  );
 
-  //useQuery('some api', ()=> fetch('some api')); //20초 걸리는 요청
+  const product = data?.data?.response;
+  console.log(`id = ${id}`);
 
-  // 여러 비동기를 다 받고 처리를 해야한다고 한다면
-  //비동기 함수
+  const validate = () => {
+    if (!product) {
+      // product object validiate
+      return false;
+    }
 
-  //const { data, error, isLoading } = useSWR(`/product/${id}`, getProductById); ->swr
-  // react-query, useSWR
+    const requiredKeys = ["id", "productName"]; // necessary keys
 
-  // 의도
+    const keys = Object.keys(product); //Object.prototype.methods
 
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
+    // iterate `requiredKeys` array
+    for (let i = 0; i < requiredKeys.length; i++) {
+      const requiredKeys = requiredKeys[i];
+      if (!keys.includes(requiredKeys)) {
+        alert(`product 객체에 ${requiredKeys}가 존재하지 않습니다.}`);
+        return false;
+      }
+    }
+  };
 
   return (
     <div>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
-      {detail && <div>{detail.productName}</div>}
+      {product && <ProductDetailTemplate product={product} />}
     </div>
   );
 };

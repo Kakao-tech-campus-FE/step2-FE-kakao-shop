@@ -7,7 +7,7 @@ const ProductInformationColumn = ({ product }) => {
   return (
     <div className="product-information-column">
       <div className="col">
-        <Photo src={image} alt={productName} />
+        <Photo src={import.meta.env.VITE_API_URL + image} alt={productName} />
       </div>
       <div className="col">
         <h1 className="name">{productName} </h1>
