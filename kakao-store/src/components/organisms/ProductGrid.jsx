@@ -1,5 +1,5 @@
-import ProductCard from "../molecules/ProductCard";
-import SkeletonCard from "../molecules/SkeletonCard";
+import ProductCard from '../molecules/ProductCard';
+import SkeletonCard from '../molecules/SkeletonCard';
 
 /**
  * 상품 그리드
@@ -13,7 +13,7 @@ import SkeletonCard from "../molecules/SkeletonCard";
 const ProductGrid = ({ products, isLoading }) => {
   if (isLoading) {
     return (
-      <div className="product-grid m-4 grid w-full max-w-full grid-cols-3 gap-4">
+      <div className="product-grid m-4 grid w-full max-w-full gap-4  sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-4">
         {products.map((product) => (
           <SkeletonCard key={product.id} product={product} />
         ))}
@@ -25,7 +25,7 @@ const ProductGrid = ({ products, isLoading }) => {
   //presentation state
   else
     return (
-      <div className="product-grid m-4 grid w-full max-w-full grid-cols-3 gap-4">
+      <div className="product-grid m-4 grid w-full max-w-full gap-4 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}

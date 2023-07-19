@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../../store/slices/userSlice";
-import logoKakao from "../../images/logoKakao.png";
-import cart from "../../images/cart.png";
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../store/slices/userSlice';
+import logoKakao from '../../images/logoKakao.png';
+import cart from '../../images/cart.png';
+import { removeCookie } from '../../storage/Cookie';
 
 /**
  * GNB 컴포넌트
@@ -15,9 +16,10 @@ function GNB() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
+    removeCookie('token');
     dispatch(logout());
-    alert("로그아웃 되었습니다.");
+    alert('로그아웃 되었습니다.');
   };
 
   return (
@@ -38,20 +40,13 @@ function GNB() {
             <span className="mx-3">
               {/* 로그인 버튼 */}
               {email ? (
-                <Link
-                  to="/login"
-                  onClick={handleLogout}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {email} 로그아웃{" "}
+                <Link to="/login" onClick={handleLogout} style={{ textDecoration: 'none', color: 'black' }}>
+                  {email} 로그아웃{' '}
                 </Link>
               ) : (
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그인{" "}
+                <Link to="/login" style={{ textDecoration: 'none', color: 'black' }}>
+                  {' '}
+                  로그인{' '}
                 </Link>
               )}
             </span>

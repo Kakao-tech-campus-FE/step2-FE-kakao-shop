@@ -28,12 +28,11 @@ const ProductDetailPage = () => {
 
   return (
     <div>
-      <h1>product </h1>
       {product && (
-        <>
+        <div className="flex">
           <ProductInformationColumn product={product} />
           <OptionColums product={product} />
-        </>
+        </div>
       )}
 
       {/* <OptionColums product={product} /> */}

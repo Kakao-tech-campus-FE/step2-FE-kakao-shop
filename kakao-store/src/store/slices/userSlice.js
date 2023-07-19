@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   email: null,
@@ -6,13 +6,14 @@ const initialState = {
   isLoggedIn: false,
   timeoutId: null,
   token: null,
-}
+};
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
-    setEmailandPassword: (state, action) => { // setter에 해당하는 부분
+    setEmailandPassword: (state, action) => {
+      // setter에 해당하는 부분
       state.email = action.payload.email;
       state.password = action.payload.password;
       state.isLoggedIn = true;
@@ -24,6 +25,7 @@ const userSlice = createSlice({
       state.email = null;
       state.password = null;
       state.isLoggedIn = false;
+      state.token = null;
     },
     setTimeoutId: (state, action) => {
       state.timeoutId = action.payload;
@@ -31,9 +33,9 @@ const userSlice = createSlice({
     clearTimeoutId: (state) => {
       state.timeoutId = null;
     },
-  }
+  },
 });
 
-export const { setEmailandPassword, setToken,  logout, setTimeoutId, clearTimeoutId } = userSlice.actions;
+export const { setEmailandPassword, setToken, logout, setTimeoutId, clearTimeoutId } = userSlice.actions;
 
 export default userSlice.reducer;

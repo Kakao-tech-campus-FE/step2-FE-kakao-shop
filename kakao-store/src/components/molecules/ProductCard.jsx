@@ -1,6 +1,6 @@
-import { comma } from "../../utils/convert";
-import Card from "../atoms/Card";
-import Photo from "../atoms/Photo";
+import { comma } from '../../utils/convert';
+import Card from '../atoms/Card';
+import Photo from '../atoms/Photo';
 
 /**
  * 상품 카드
@@ -17,8 +17,11 @@ const ProductCard = ({ product }) => {
   return (
     <Card to={`/products/${product.id}`}>
       <Photo src={product.image} alt={product.productName} />
-      <h3 className="product-name">{product.productName}</h3>
-      <p className="product-price">{comma(product.price)}원</p>
+      <h3 className="product-name block p-0 text-sm">{product.productName}</h3>
+      <span className="block overflow-hidden font-bold">
+        <span className="sale-price blue text-kakao_blue mx-1 text-lg">톡딜가</span>
+        <span className="product-price m-0 text-xl ">{comma(product.price)}원</span>
+      </span>
     </Card>
   );
 };

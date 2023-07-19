@@ -14,7 +14,7 @@ import Photo from '../atoms/Photo';
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image, starCount } = product;
   return (
-    <div className="product-information-column">
+    <div className="product-information-column flex">
       <div className="col">
         <Photo src={image} alt={productName} />
       </div>

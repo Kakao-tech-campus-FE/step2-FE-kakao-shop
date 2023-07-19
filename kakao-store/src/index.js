@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './store';
-import {PersistGate} from "redux-persist/integration/react"
+import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 import ErrorPage from './pages/ErrorPage';
@@ -16,16 +16,16 @@ const queryClient = new QueryClient();
 function useApiQuery(queryKey, fetchData) {
   return useQuery(queryKey, fetchData, {
     onError: (error) => {
-      <ErrorPage />
+      <ErrorPage />;
     },
     onSuccess: (data) => {
-      console.log(data)
-      return ;
+      console.log(data);
+      return;
     },
   });
 }
 
-//200, 500, 401, 3XX, 2XX, 4XX 
+//200, 500, 401, 3XX, 2XX, 4XX
 
 function AppWrapper() {
   const { isLoading, error, data } = useApiQuery('product', () =>
@@ -47,14 +47,17 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-      <PersistGate persistor={persistor}>
-        <AppWrapper />
-      </PersistGate>
+        <PersistGate persistor={persistor}>
+          {/* <AppWrapper /> */}
+          <App />
+        </PersistGate>
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>
 );
 
-{/* <PersistGate loading={null} persistor={persistor}>
+{
+  /* <PersistGate loading={null} persistor={persistor}>
           <AppWrapper />
-        </PersistGate> */}
+        </PersistGate> */
+}

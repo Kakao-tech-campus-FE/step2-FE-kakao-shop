@@ -1,14 +1,14 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { useFetcher, useNavigate } from "react-router-dom";
-import Container from "../atoms/Container";
-import Box from "../atoms/Box";
-import CartItem from "../atoms/CartItem";
-import Card from "../atoms/Card";
-import Button from "../atoms/Button";
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { useFetcher, useNavigate } from 'react-router-dom';
+import Container from '../atoms/Container';
+import Box from '../atoms/Box';
+import CartItem from '../atoms/CartItem';
+import Card from '../atoms/Card';
+import Button from '../atoms/Button';
 
-import { updateCart } from "../../services/cart";
-import { comma } from "../../utils/convert";
-import { useMutation } from "react-query";
+import { updateCart } from '../../services/cart';
+import { comma } from '../../utils/convert';
+import { useMutation } from 'react-query';
 
 const CartList = ({ data }) => {
   // hook을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언
@@ -29,12 +29,22 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountIncludingOptions = useCallback(() => {
     let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity; // 개별 옵션에 해당
-      });
-    });
-    return count;
+    console.log(cartItems);
+    {
+      cartItems &&
+        cartItems.forEach((item) => {
+          item.carts.forEach((cart) => {
+            count += cart.quantity; // 개별 옵션에 해당
+          });
+        });
+      return count;
+    }
+    // cartItems.forEach((item) => {
+    //   item.carts.forEach((cart) => {
+    //     count += cart.quantity; // 개별 옵션에 해당
+    //   });
+    // });
+    // return count;
   }, [cartItems]); // cartItems이 변경될 때 실행
 
   /**
@@ -127,7 +137,7 @@ const CartList = ({ data }) => {
           // payload 더 작게할 수 있으니
           mutate(updatePayload, {
             onSuccess: (data) => {
-              route.push("/order");
+              route.push('/order');
             },
             onError: (error) => {},
           });

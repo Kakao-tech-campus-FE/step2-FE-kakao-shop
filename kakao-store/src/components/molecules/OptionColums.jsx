@@ -15,14 +15,14 @@ import { addCart } from '../../services/cart';
 
 const OptionColums = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]); // [option, option, ...
+  const [count, setCount] = useState(0);
 
   const handleOnclickOption = (option) => {
-    // 동일한 옵션 클릭을 방지해주어야 하는 코드
     const isOptionSelected = selectedOptions.find((el) => el.Id === option.id);
-    // 이미 선택된 옵션이면 수량을 증가시킨다.
+
     if (isOptionSelected) {
       setSelectedOptions((prev) => prev.map((el) => (el.Id === option.id ? { ...el, quantity: el.quantity + 1 } : el)));
-      handleOnIncrease(option.quantity, option.id);
+      setCount((prev) => prev + 1); // Counter의 value 값 증가
     } else {
       setSelectedOptions((prev) => [
         ...prev,
@@ -34,6 +34,7 @@ const OptionColums = ({ product }) => {
           optionquantity: option.quantity,
         },
       ]);
+      setCount((prev) => prev + 1); // Counter의 value 값 증가
     }
   };
 
@@ -117,8 +118,9 @@ const OptionColums = ({ product }) => {
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
+                console.log(el.Id, el.quantity);
                 return {
-                  Id: el.Id,
+                  optionId: el.Id,
                   quantity: el.quantity,
                 };
               }),

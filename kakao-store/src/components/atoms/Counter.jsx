@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Counter = ({
   value, // 최초 수량
@@ -7,19 +7,21 @@ const Counter = ({
 }) => {
   const [count, setCount] = useState(value);
 
+  useEffect(() => {
+    setCount(value); // value 값이 변경될 때마다 Counter의 count 상태 업데이트
+  }, [value]);
+
   const handleOnIncrease = () => {
-    // count = 1
-    setCount(count + 1);
-    // count = ?
-    onIncrease(count + 1);
+    const updatedCount = count + 1;
+    setCount(updatedCount);
+    onIncrease(updatedCount);
   };
 
   const handleOnDecrease = () => {
     if (count === 1) return;
-    // count = 1
-    setCount(count - 1);
-    // count = ?
-    onDecrease(count - 1);
+    const updatedCount = count - 1;
+    setCount(updatedCount);
+    onDecrease(updatedCount);
   };
 
   return (

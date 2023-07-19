@@ -7,6 +7,7 @@ import { setEmailandPassword } from './store/slices/userSlice';
 import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import CartPage from './pages/CartPage';
 import 'tailwindcss/tailwind.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
           </Route>
         </Routes>

@@ -1,4 +1,8 @@
 import axios from 'axios';
+import { persistStore } from 'redux-persist';
+import { useSelector } from 'react-redux';
+import store from '../store';
+import { getCookie } from '../storage/Cookie';
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -8,15 +12,24 @@ export const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      config.headers["Authorization"] = token;
-    }
-    return config;
+// persistStore(store, null, () => {
+//   const token = useSelector((state) => state.user.token);
+//   console.log(token);
+//   instance.interceptors.request.use((config) => {
+//     if (token) {
+//       config.headers['Authorization'] = token;
+//     }
+//     return config;
+//   });
+// });
+
+instance.interceptors.request.use((config) => {
+  const token = getCookie('token');
+  if (token) {
+    config.headers['Authorization'] = token;
   }
-);
+  return config;
+});
 
 //middleware
 instance.interceptors.response.use(
@@ -28,17 +41,16 @@ instance.interceptors.response.use(
       localStorage.removeItem('token');
       const errorMessage = error.response.data.error.message;
       alert(errorMessage);
-      window.location.href = '/signup';
+      // window.location.href = '/signup';
       return Promise.resolve();
     }
     if (error.response.status === 401) {
       localStorage.removeItem('token');
       const errorMessage = error.response.data.error.message;
-      alert(errorMessage);
+      console.log(errorMessage);
 
       return Promise.resolve();
     }
     return Promise.reject(error.response);
   }
 );
-
