@@ -1,6 +1,7 @@
-import { Card } from 'react-bootstrap';
+// import { Card } from 'react-bootstrap';
 import Box from './Box';
 import Counter from './Counter';
+import Card from './Card';
 import { comma } from '../../utils/convert';
 
 // 각 상품별 장바구니 항목

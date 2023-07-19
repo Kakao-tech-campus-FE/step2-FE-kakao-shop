@@ -6,6 +6,7 @@ import RegisterPage from './pages/RegisterPage';
 import MainLayout from './layouts/MainLayout';
 import NotFoundPage from './pages/NotFoundPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
 
           <Route path="/products/:id" element={<ProductDetailPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

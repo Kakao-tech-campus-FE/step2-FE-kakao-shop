@@ -50,7 +50,9 @@ export default function InnerHead() {
       <div className="innerhead-right mr-12">
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
-          <GoGift size="20" />
+          <Link to="/cart">
+            <GoGift size="20" />
+          </Link>
           {userEmail ? (
             <div>
               <span className="mr-2 text-sm text-gray-500">{userEmail}님</span>

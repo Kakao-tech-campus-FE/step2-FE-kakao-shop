@@ -6,21 +6,22 @@ import CartItem from '../atoms/CartItem';
 import Card from '../atoms/Card';
 import Button from '../atoms/Button';
 
-import { updateCart } from '../../services/cart';
+import { updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
 import { useMutation } from 'react-query';
+import GrayBox from '../atoms/GrayBox';
 
 const CartList = ({ data }) => {
   // hook을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [updatePayload, setUpdatepayload] = useState([]); // 렌더링에 관여 X
-  // updatePayload: 렌더링에 관려하고 있는가?
+  const [updatePayload, setUpdatepayload] = useState([]);
 
   const initPayload = useRef([]); // DOM에 접근할 때 [{cardId, quantity}]
   const { mutate } = useMutation({ mutationFn: updateCart });
 
+  console.log('data>>', data);
   useEffect(() => {
     // validate 또는 구조분해할당
     setCartItems(data?.data?.response?.products);
@@ -29,11 +30,12 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountIncludingOptions = useCallback(() => {
     let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity; // 개별 옵션에 해당
+    cartItems &&
+      cartItems.forEach((item) => {
+        item.carts.forEach((cart) => {
+          count += cart.quantity; // 개별 옵션에 해당
+        });
       });
-    });
     return count;
   }, [cartItems]); // cartItems이 변경될 때 실행
 
@@ -92,7 +94,7 @@ const CartList = ({ data }) => {
       <Box>
         <h1>장바구니</h1>
       </Box>
-      <Card>
+      <Box>
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
@@ -104,39 +106,18 @@ const CartList = ({ data }) => {
               />
             );
           })}
-      </Card>
-      <Card>
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
-        </div>
-      </Card>
+      </Box>
+      <GrayBox name="주문 예상금액" value={`${comma(totalPrice)}원`} />
       <Button
+        color="kakao"
         className="order-btn"
         onClick={() => {
-          // update api
-          // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
-
-          // post method
-
-          // 1번째 방법
-          // 전체 장바구니 목록의 개수를 적절히 파싱해서 페이로드로 보내주기
-
-          // 2번째 방법
-          // 변경된 개수만 파싱해서 페이로드로 보내주기
-          // payload 더 작게할 수 있으니
           mutate(updatePayload, {
             onSuccess: (data) => {
               route.push('/order');
             },
             onError: (error) => {},
           });
-          // navigate to order page
-          // 주문 페이지로 이동
-
-          // 결제 프로세스
-          // 1. 장바구니에 있는 모든 항복 그대로 결제 페이지에 담김
-          // 2. 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
         }}
       >
         <span>총 {getTotalCartCountIncludingOptions()}건 주문하기</span>
