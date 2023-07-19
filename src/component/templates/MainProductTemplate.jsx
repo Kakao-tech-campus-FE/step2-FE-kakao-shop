@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react"
 import Container from "../atoms/Container"
 import ProductGrid from "../organisms/ProductGrid"
 import { useDispatch, useSelector } from "react-redux"
-import { getProducts } from "../../src/services/product"
+import { getProducts } from "../../services/product"
 
 const MainProductTemplate = () => {
     const [page, setPage] = useState(0);

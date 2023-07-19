@@ -8,7 +8,7 @@ function GNB() {
 
     useEffect(() => {
         if (localStorage.getItem("token") != null) setIsLogin(true);
-    }, [isLogin]);
+    }, [isLogin, setIsLogin]);
 
     const handleLogout = () => {
         localStorage.removeItem("token");

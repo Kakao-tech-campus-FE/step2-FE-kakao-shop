@@ -1,14 +1,14 @@
-const Loader = () => {
+const Skeleton = () => {
     return (
-      <div className="loader-box">
+      <div className="Skeleton-box">
         <div className="lable">Loading...</div>
-        <div className="loader">
+        <div className="Skeleton">
           <div className="element-animation">
             <img
-              src="../../src/clock_loader_90_FILL0_wght400_GRAD0_opsz48.png"
+              src="../../src/clock_Skeleton_90_FILL0_wght400_GRAD0_opsz48.png"
               width="300"
               height="300"
-              alt="loader"
+              alt="Skeleton"
             />
           </div>
         </div>
@@ -16,4 +16,4 @@ const Loader = () => {
     );
   };
   
-  export default Loader;
+  export default Skeleton;

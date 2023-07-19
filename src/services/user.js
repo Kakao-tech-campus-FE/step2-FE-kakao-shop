@@ -1,6 +1,6 @@
 import instance from "./index";
 
-export const signUp = ( {email, username, password} ) => {
+export const register = ( {email, username, password} ) => {
   return instance.post("/join", {
      "email": email,
     "username": username,
@@ -8,7 +8,7 @@ export const signUp = ( {email, username, password} ) => {
 });
 };
 
-export const signIn = ( {email, password }) => {
+export const login = ( {email, password }) => {
   return instance.post("/login", { 
     "email": email,
     "password": password
