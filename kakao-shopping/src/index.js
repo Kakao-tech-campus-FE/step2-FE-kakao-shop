@@ -6,11 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './redux/redux';
+import cartReducer from './redux/cartRedux';
 import './App.css';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
+    cart: cartReducer,
   },
 });
 
