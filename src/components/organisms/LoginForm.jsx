@@ -4,9 +4,10 @@ import Button from "../atoms/Button";
 import { login } from "../../services/user";
 import { useState } from "react";
 import Title from "../atoms/Title";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice";
+import Box from "../atoms/Box";
 
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
@@ -81,28 +82,38 @@ const LoginForm = (props) => {
 
   return (
     <Container>
-      <Title>로그인</Title>
-      <InputGroup
-        id="email"
-        type="email"
-        placeholder="아이디(메일)를 입력해주세요."
-        label="아이디"
-        value={email}
-        onChange={onEmailHandler}
-        onBlur={handleID}
-        name="email"
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        placeholder="비밀번호를 입력해주세요."
-        label="비밀번호"
-        value={password}
-        onChange={onPasswordHandler}
-        onBlur={handlePW}
-        name="password"
-      />
-      <Button onClick={handleLogin}>로그인</Button>
+      <Title>Kakao</Title>
+      <Box className="inputform">
+        <InputGroup
+          id="email"
+          type="email"
+          placeholder="아이디(메일)를 입력해주세요."
+          // label="아이디"
+          value={email}
+          onChange={onEmailHandler}
+          onBlur={handleID}
+          name="email"
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          placeholder="비밀번호를 입력해주세요."
+          // label="비밀번호"
+          value={password}
+          onChange={onPasswordHandler}
+          onBlur={handlePW}
+          name="password"
+        />
+        <Button onClick={handleLogin}>로그인</Button>
+        <br />
+        <br />
+        <br />
+        <Link to="/signup" style={{ textDecoration: "none", color: "black" }}>
+          회원가입
+        </Link>
+        <br />
+        <br />
+      </Box>
     </Container>
   );
 };

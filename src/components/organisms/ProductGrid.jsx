@@ -3,9 +3,11 @@ import ProductCard from "../molecules/ProductCard";
 const ProductGrid = ({ products }) => {
   return (
     <div className="product-grid">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+      {products.pages?.map((page) =>
+        page.data.response.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))
+      )}
     </div>
   );
 };

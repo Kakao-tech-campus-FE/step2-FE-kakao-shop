@@ -1,18 +1,39 @@
-import Input from '../atoms/Input';
-import Box from '../atoms/Box';
-import Label from '../atoms/Label';
+import Input from "../atoms/Input";
+import Label from "../atoms/Label";
+import styled from "styled-components";
 
-const InputGroup = ({ onBlur, id, value, label, placeholder, className, onChange, type, name }) => {
+const StyledInputGroup =
+  // 아래의 style이 입혀진 button 태그를 생성
+  styled.div`
+    margin-top: 40px;
+    margin-bottom: 30px;
+  `;
+
+const InputGroup = ({
+  onBlur,
+  id,
+  value,
+  label,
+  placeholder,
+  className,
+  onChange,
+  type,
+  name,
+}) => {
   return (
-
-    <Box  className={className}>
-      <Label htlmFor = {id}>{label}</Label>
-      <Input id ={id} value={value} placeholder={placeholder} onChange={onChange} 
-      onBlur={onBlur} type={type} name={name} >
-        {/* // input 컴포넌트에서 이미 지정해놓은 걸 왜 또 지정해주는지 ??  input className은 왜 빼는건지  */}
-      </Input>
-    </Box>
-  )
-}
+    <StyledInputGroup>
+      <Label htlmFor={id}>{label}</Label>
+      <Input
+        id={id}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        onBlur={onBlur}
+        type={type}
+        name={name}
+      ></Input>
+    </StyledInputGroup>
+  );
+};
 
 export default InputGroup;

@@ -6,7 +6,7 @@
   width: 50%;
   height: 50%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 
   /* overflow-y: auto; Enable vertical scrolling within the grid */
@@ -17,6 +17,7 @@
   width: 284px;
   padding: 0 20px 50px 0;
   vertical-align: top;
+  margin-bottom: 40px;
 }
 
 .photo {
