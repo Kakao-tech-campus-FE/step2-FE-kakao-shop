@@ -3,7 +3,6 @@ import { RootState, AppDispatch } from '@store/index';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductGrid from '@components/organisms/ProductGrid';
 import Loader from '@components/atoms/Loader';
-
 import { getProducts } from '@store/slices/productSlice';
 import { ProductInfoData } from '@api/dto';
 import _ from 'lodash';
