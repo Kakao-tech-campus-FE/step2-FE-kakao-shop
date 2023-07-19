@@ -1,14 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../atoms/Button";
 import { setLogin } from "../../store/slices/userSlice";
-import { deleteCookie } from "../../store/cookies";
+import { deleteCookie, getCookie } from "../../store/cookies";
 
 const GNB = ({ children }) => {
   const movePage = useNavigate();
-  const loginedUser = useSelector((state) => state.user.loginCheck);
-  const loginedUser2 = useSelector((state) => state.user.logined);
+  const token = getCookie("token");
   const dispatch = useDispatch();
   function gohome(url) {
     movePage(url);
@@ -25,12 +24,17 @@ const GNB = ({ children }) => {
             src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230707/130532/assets/images/pc/pc_logo.png"
           />
         </h1>
-        <Container className="text-base leading-6 font-sans text-gray-700 relative py-3 px-6">
+        <Container className="text-base leading-6 font-sans text-gray-700 relative pt-13 pr-0 pb-13 pl-3 grid place-items-end">
+          <span className="mr-10">
+            <Link to="/cart">
+              <img src={"/cart.png"} alt="장바구니 버튼" height={30} />
+            </Link>
+          </span>
           <Button
-            className="text-base leading-7 font-sans text-black no-underline block py-3 px-0 font-semibold"
+            className="text-base leading-7 font-sans text-black no-underline mb-4 pb-0 px-12 font-semibold block"
             onClick={() => {
               let url = "/login";
-              if (loginedUser) {
+              if (token) {
                 dispatch(setLogin(false)); //로그아웃 상태로 만듦
                 deleteCookie("token"); //유효시간 관리하는 토큰 쿠키 삭제
                 alert("logout");
@@ -39,16 +43,16 @@ const GNB = ({ children }) => {
               gohome(url);
             }}
           >
-            {loginedUser || loginedUser2 ? "로그아웃" : "로그인"}
+            {token ? "로그아웃" : "로그인"}
           </Button>
-          <Button
+          {/*<Button
             className="text-base leading-7 font-sans text-black no-underline block py-3 px-0 font-semibold"
             onClick={() => {
               gohome("/signup");
             }}
           >
             회원가입 이동
-          </Button>
+          </Button>*/}
         </Container>
       </Container>
     </Container>
