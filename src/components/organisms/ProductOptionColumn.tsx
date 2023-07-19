@@ -3,13 +3,17 @@ import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import ProductOptionList from '../molecules/ProductOptionList';
 import Button from '../atoms/Button';
 import DarkButton from '../atoms/DarkButton';
+import { OptionInfo } from '../../dto/productDto';
 
-const ProductOptionColumn = () => {
-  const options = []; // TODO
+interface ProductOptionColumnProps {
+  options: OptionInfo[];
+}
+
+const ProductOptionColumn = ({ options }: ProductOptionColumnProps) => {
   return (
-    <div>
+    <div className='h-full w-[360px] p-7'>
       <p className='pb-2 font-bold'>옵션선택</p>
-      <ProductOptionList options={[]} />
+      <ProductOptionList options={options} />
       <div className='mt-7'>
         <div className='space-y-1 pb-4'>
           <span className='flex items-center'>

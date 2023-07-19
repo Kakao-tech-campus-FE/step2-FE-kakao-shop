@@ -11,3 +11,13 @@ export interface OptionInfo {
   optionName: string;
   price: number;
 }
+
+export interface DetailProductInfo {
+  id: number;
+  productName: string;
+  description: string;
+  image: string;
+  price: number;
+  starCount: number;
+  options: OptionInfo[];
+}

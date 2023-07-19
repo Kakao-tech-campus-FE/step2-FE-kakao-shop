@@ -1,7 +1,8 @@
 import React from 'react';
+import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
 
 const ProductDetailPage = () => {
-  return <div />;
+  return <ProductDetailTemplate />;
 };
 
 export default ProductDetailPage;

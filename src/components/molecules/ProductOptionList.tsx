@@ -19,7 +19,7 @@ const ProductOptionList = ({ options }: ProductOptionListProps) => {
       </button>
       <ol className='divide-y divide-gray-200'>
         {options.map((option) => (
-          <li key={option.id} className='py-4'>
+          <li key={option.id} className='px-3 py-4'>
             <ProductOption optionInfo={option} />
           </li>
         ))}
