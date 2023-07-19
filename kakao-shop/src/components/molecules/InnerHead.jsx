@@ -1,17 +1,15 @@
-import { useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
 
-import { NavLink } from "react-router-dom";
+import Divider from '../atoms/Divider';
+import Link from '../atoms/Link';
 
-import { persistor } from "../..";
-import { getCookie, removeCookie } from "../../storage/Cookie";
+import { SlMenu } from 'react-icons/sl';
+import { IoSearchOutline } from 'react-icons/io5';
+import { GoGift } from 'react-icons/go';
+import Photo from '../atoms/Photo';
 
-import Divider from "../atoms/Divider";
-import Link from "../atoms/Link";
-
-import { SlMenu } from "react-icons/sl";
-import { IoSearchOutline } from "react-icons/io5";
-import { GoGift } from "react-icons/go";
-import Photo from "../atoms/Photo";
+import { logout } from '../../utils/user';
+import { getCookie } from '../../storage/Cookie';
 
 /**
  * 선물하기 헤더의 내부 헤더 컴포넌트
@@ -20,26 +18,11 @@ import Photo from "../atoms/Photo";
  * @returns {JSX.Element} - InnerHead 컴포넌트의 JSX 요소
  */
 export default function InnerHead() {
-  let userEmail = useSelector((state) => state.user.email);
-  if (!userEmail) {
-    userEmail = getCookie("userEmail");
-  }
-
-  const logout = async () => {
-    await persistor.purge();
-    removeCookie("userEmail");
-    removeCookie("token");
-    window.location.reload();
-  };
-
+  const userEmail = getCookie('email');
   return (
     <div className="innerhead flex justify-between items-center min-w-[740px]">
       <div className="innerhead-left flex gap-4 items-center h-14 font-bold mx-12">
-        <Photo
-          src="/logoGift.jpg"
-          alt="kakao-shopping"
-          className="w-20 mr-12 h-fit"
-        />
+        <Photo src="/logoGift.jpg" alt="kakao-shopping" className="w-20 mr-12 h-fit" />
         <nav className="gnb">
           <ul className="flex justify-between w-48">
             <li>

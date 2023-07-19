@@ -1,24 +1,21 @@
 // hooks
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import useFocus from "../../hooks/useFocus";
-import useInput from "../../hooks/useInput";
+import useFocus from '../../hooks/useFocus';
+import useInput from '../../hooks/useInput';
 
 // functions
-import { login } from "../../apis/user";
-import { validateEmail, validatePassword } from "../../utils/validate";
-
-import { setEmail, setToken } from "../../redux/user/userSlice";
-import { setCookie } from "../../storage/Cookie";
+import { login } from '../../apis/user';
+import { validateEmail, validatePassword } from '../../utils/validate';
+import { setLogin } from '../../utils/user';
 
 // components
-import InputGroup from "../molecules/InputGroup";
-import CheckboxGroup from "../molecules/CheckboxGroup";
-import Button from "../atoms/Button";
-import Container from "../atoms/Container";
-import Link from "../atoms/Link";
+import InputGroup from '../molecules/InputGroup';
+import CheckboxGroup from '../molecules/CheckboxGroup';
+import Button from '../atoms/Button';
+import Container from '../atoms/Container';
+import Link from '../atoms/Link';
 
 /**
  * 로그인 폼 컴포넌트
@@ -28,28 +25,27 @@ import Link from "../atoms/Link";
  */
 const LoginForm = () => {
   const { value, handleOnChange } = useInput({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [isEmailFocus, onFocusEmail, onBlurEmail] = useFocus();
   const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
   const [isKeepLog, setIsKeepLog] = useState(false);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     if (!validateEmail(value.email)) {
-      const errorMessage = "카카오계정을 정확하게 입력해 주세요.";
+      const errorMessage = '카카오계정을 정확하게 입력해 주세요.';
       setErrorMessage(errorMessage);
       return;
     }
 
     if (!validatePassword(value.password)) {
-      const errorMessage = "비밀번호가 올바르지 않습니다.";
+      const errorMessage = '비밀번호가 올바르지 않습니다.';
       setErrorMessage(errorMessage);
       return;
     }
@@ -60,42 +56,25 @@ const LoginForm = () => {
         password: value.password,
       });
 
-      // 로그인 성공 시 로그인 유지를 체크했다면 로컬에 영구 저장(redux-persist)
-      if (isKeepLog) {
-        dispatch(
-          setEmail({
-            email: value.email,
-          })
-        );
-        dispatch(setToken({ token: response.headers.authorization }));
-        localStorage.setItem("token", response.headers.authorization);
-      }
-
-      // 체크하지 않았다면 쿠키에 30분(1800s)만 저장
-      // (체크했더라도 쿠키에 함께 넣어준다)
-      setCookie("userEmail", value.email, { path: "/", maxAge: 1800 });
-      setCookie("token", response.headers.authorization, {
-        path: "/",
-        maxAge: 1800,
-      });
+      // 로그인 성공 시 쿠키에 정보 저장(이메일, 토큰)
+      setLogin(value.email, response.headers.authorization, isKeepLog);
 
       // 메인페이지로 이동. 뒤로가기 시 로그인 페이지 못 돌아오게함
-      navigate("/", { replace: true });
+      navigate('/', { replace: true });
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        const errorMessage =
-          "카카오계정 혹은 비밀번호가 일치하지 않습니다. 입력한 내용을 다시 확인해 주세요.";
+        const errorMessage = '카카오계정 혹은 비밀번호가 일치하지 않습니다. 입력한 내용을 다시 확인해 주세요.';
         setErrorMessage(errorMessage);
       }
 
       // 혹시 형식이 다른데 못 잡아내고 전송해서 400 에러가 뜨면 처리
       else if (error.response && error.response.status === 400) {
-        const errorType = error.response.data.error.message.split(":")[1];
-        if (errorType === "email") {
-          const errorMessage = "카카오계정을 정확하게 입력해 주세요.";
+        const errorType = error.response.data.error.message.split(':')[1];
+        if (errorType === 'email') {
+          const errorMessage = '카카오계정을 정확하게 입력해 주세요.';
           setErrorMessage(errorMessage);
-        } else if (errorType === "password") {
-          const errorMessage = "비밀번호가 올바르지 않습니다.";
+        } else if (errorType === 'password') {
+          const errorMessage = '비밀번호가 올바르지 않습니다.';
           setErrorMessage(errorMessage);
         }
       }
@@ -112,17 +91,14 @@ const LoginForm = () => {
         value={value.email}
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         label=""
-        className={`${inputBoxStyle} ${
-          isEmailFocus ? "border-black" : "border-gray-300"
-        }`}
+        className={`${inputBoxStyle} ${isEmailFocus ? 'border-black' : 'border-gray-300'}`}
         onChange={handleOnChange}
         onFocus={onFocusEmail}
         onBlur={onBlurEmail}
       />
       {(isEmailFocus || value.email) && (
         <p className="text-xs mb-5">
-          <span className="text-red-500 font-bold">TIP</span> 카카오메일이
-          있다면 메일 아이디만 입력해 보세요.
+          <span className="text-red-500 font-bold">TIP</span> 카카오메일이 있다면 메일 아이디만 입력해 보세요.
         </p>
       )}
       <InputGroup
@@ -132,9 +108,7 @@ const LoginForm = () => {
         value={value.password}
         placeholder="비밀번호"
         label=""
-        className={`${inputBoxStyle} ${
-          isPasswordFocus ? "border-black" : "border-gray-300"
-        }`}
+        className={`${inputBoxStyle} ${isPasswordFocus ? 'border-black' : 'border-gray-300'}`}
         onChange={handleOnChange}
         onFocus={onFocusPassword}
         onBlur={onBlurPassword}
@@ -144,20 +118,16 @@ const LoginForm = () => {
           name="keepLog"
           items={[
             {
-              id: "keepLog",
-              value: "keepLog",
+              id: 'keepLog',
+              value: 'keepLog',
               checked: isKeepLog,
-              text: "로그인 상태 유지",
+              text: '로그인 상태 유지',
             },
           ]}
           onChange={(e) => setIsKeepLog(e.target.checked)}
         />
       </div>
-      {errorMessage && (
-        <div className="p-4 mb-10 bg-gray-100 text-sm text-red-600">
-          {errorMessage}
-        </div>
-      )}
+      {errorMessage && <div className="p-4 mb-10 bg-gray-100 text-sm text-red-600">{errorMessage}</div>}
       <Button color="kakao" onClick={handleLogin}>
         로그인
       </Button>
