@@ -8,9 +8,7 @@ const Button = ({ onClick, children, className }) => {
       className={className} /**className: 클래스 이름 */
       onClick={(e) => {
         e.preventDefault();
-        if (onClick) {
-          onClick(); /**onClick: 버튼을 클릭했을 때 실행될 콜백 함수 */
-        }
+        onClick(); // onClick이 없으면 빈 함수가 호출됩니다.
       }}
     >
       {children}
@@ -28,7 +26,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  onClick: null,
+  onClick: () => {},
   children: null,
   className: "",
 };
