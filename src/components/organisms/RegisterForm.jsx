@@ -6,7 +6,7 @@ import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { registerRequest } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { emailExp, nameExp, passwordExp } from "../../exp";
+import { emailExp, nameExp, passwordExp } from "../../utils/regex/exp";
 
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -22,14 +22,23 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.user.error);
   return (
-    <Container>
-      <Title className="text-3xl font-bold">회원가입</Title>
+    <Container className="doc-main m-0 p-0 w-full h-full bg-white">
+      <div className="doc-title block pt-1/3 mt-10 mb-10 ">
+        <h1 className="tit_service block m-0 p-0 font-bold">
+          <span className="logo_kakao block w-88 h-27 mx-auto my-0 bg-white bg-auto text-center ">
+            <span className="relative block text-center -z-1 w-full h-full text-2xl">
+              kakao
+            </span>
+          </span>
+        </h1>
+      </div>
       <Title>{error}</Title>
       <InputGroup
         id="username"
         type="text"
         placeholder="사용자 이름을 입력해주세요"
-        label="이름"
+        className="border-b border-gray-200 w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none"
+        //label="이름"
         name="username"
         value={value.username}
         onChange={handleOnChange}
@@ -38,7 +47,8 @@ const RegisterForm = () => {
         id="email"
         type="email"
         placeholder="이메일을 입력해주세요"
-        label="이메일"
+        className="border-b border-gray-200 w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none"
+        //label="이메일"
         name="email"
         value={value.email}
         onChange={handleOnChange}
@@ -48,7 +58,8 @@ const RegisterForm = () => {
         type="password"
         name="password"
         placeholder="********"
-        label="비밀번호"
+        className="border-b border-gray-200 w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none"
+        //label="비밀번호"
         value={value.password}
         onChange={handleOnChange}
       />
@@ -57,13 +68,16 @@ const RegisterForm = () => {
         type="password"
         name="passwordConfirm"
         placeholder="********"
-        label="비밀번호 확인"
+        className="border-b border-gray-200 w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none"
+        //label="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
       <Button
+        className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-1 w-full rounded cursor-pointer transition-colors duration-300"
         onClick={() => {
           new Promise((resolve, reject) => {
+            //유효성 검사 진행
             if (!nameExp(value.username))
               reject("이름은 비어있을 수 없습니다.");
             else if (!emailExp(value.email))
@@ -75,6 +89,7 @@ const RegisterForm = () => {
             resolve(1);
           })
             .then(() => {
+              //api 요청
               dispatch(
                 registerRequest({
                   email: value.email,
@@ -83,7 +98,7 @@ const RegisterForm = () => {
                   password: value.password,
                 })
               ).then((res) => {
-                if (res.payload.success) gohome("/"); //성공 시 홈페이지 이ㅇ
+                if (res.payload.success) gohome("/"); //성공 시 홈페이지 이동
               });
             })
             .catch((err) => {
