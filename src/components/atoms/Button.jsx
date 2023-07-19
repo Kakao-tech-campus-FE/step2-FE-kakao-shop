@@ -65,7 +65,7 @@ export default function Button({
     <button
       disabled={disabled}
       type={type}
-      className={`shrink-0 ${className} ${padding} ${margin} ${width} ${height} ${
+      className={`shrink-0 outline-none ${className} ${padding} ${margin} ${width} ${height} ${
         TEXTSIZE[textsize]
       } ${FONTWEIGHT[font]} ${COLOR[color]} ${RADIUS[radius]} ${
         before ? beforeContentStyle : ""

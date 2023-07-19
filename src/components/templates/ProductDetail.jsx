@@ -15,6 +15,7 @@ export default function ProductDetail() {
   if (error) {
     return <div>{error.message}</div>;
   }
+  console.log(data);
   return (
     <Container className="flex mx-auto w-inner">
       <ProductInfoColumn productData={data} />
