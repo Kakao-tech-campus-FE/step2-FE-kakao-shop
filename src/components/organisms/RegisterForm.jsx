@@ -1,6 +1,5 @@
 import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
-//import { useEffect } from "react";
 import * as Form from '../../styles/organisms/RegisterForm';
 import Footer from "../atoms/Footer";
 import LinkText from "../atoms/LinkText";
@@ -8,13 +7,9 @@ import * as Link from '../../styles/atoms/Link';
 import {useNavigate} from 'react-router-dom';
 import { register } from "../../apis/user";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setUser } from "../../store/slices/userSlice";
 import Msg from "../atoms/Msg";
-import { setLocalStorageWithExp } from "../../utils/localStorage";
 
 const RegisterForm = () => {
-    const dispatch = useDispatch();
     const [error, setError] = useState('');
     const {value, handleOnChange, handleOnCheck, invalidCheck} = useInput({
         username: "",
@@ -31,11 +26,8 @@ const RegisterForm = () => {
         })
         .then((res) => {
             setError('');
-            dispatch(setUser({
-                user: value.user,
-            }));
-            setLocalStorageWithExp("user", res.headers.authorization, 1000 * 1440);
-            navigate("/");
+            alert('회원가입이 완료!\n 로그인이 필요합니다.');
+            navigate("/login");
         })
         .catch((err) => {
             console.log(err.request.response);
