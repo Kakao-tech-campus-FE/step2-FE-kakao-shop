@@ -3,6 +3,7 @@ import ProductGrid from "../organisms/ProductGrid";
 import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { fetchProducts } from "../../services/product";
+import Loading from "../atoms/Loader";
 
 const MainProduct = () => {
   const bottomObserverRef = useRef(null);
@@ -56,7 +57,7 @@ const MainProduct = () => {
   return (
     <Container>
       {isError && <p>{error.message}</p>}
-      {isLoading ? <p>Loading...</p> : <ProductGrid products={products} />}
+      {isLoading ? <Loading /> : <ProductGrid products={products} />}
       <div ref={bottomObserverRef}></div>
     </Container>
   );
