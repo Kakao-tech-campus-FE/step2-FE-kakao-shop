@@ -1,6 +1,10 @@
 import { styled } from "styled-components";
-import { Collapse, Divider } from "antd";
+import { Card, Collapse, Divider } from "antd";
 import Button from "./Button";
+import { useState } from "react";
+import Counter from "./Counter";
+import { useMutation } from "react-query";
+import { addCart } from "../../services/apis";
 
 const Container = styled.div`
   width: 400px;
@@ -11,7 +15,7 @@ const Container = styled.div`
 `;
 
 const SelectContainer = styled.div`
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: auto;
 `;
 const SelectRow = styled.div`
@@ -71,12 +75,51 @@ const ButtonContainer = styled.div`
 `;
 
 const ProductOption = ({ options }) => {
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const { mutate } = useMutation(addCart, {
+    onSuccess: () => {
+      alert("주문되었습니다.");
+      setSelectedOptions([]);
+      // window.location.reload();
+    },
+    onError: (error) => {
+      if (error.response.status === 401) {
+        alert("로그인이 필요합니다.");
+      }
+      console.log(error);
+    },
+  });
+
+  const handleOptionClick = (option) => {
+    const isSelected = selectedOptions.find(
+      (item) => item.optionId === option.id
+    );
+
+    if (isSelected) {
+      alert("선택한 옵션입니다.");
+    } else {
+      setSelectedOptions((prev) => [
+        ...prev,
+        {
+          optionId: option.id,
+          quantity: 1,
+          name: option.optionName,
+          price: option.price,
+        },
+      ]);
+    }
+  };
+
   const items = [
     {
       key: "1",
       label: "선택",
       children: options.map((option, index) => (
-        <div key={option.id}>
+        <div
+          key={option.id}
+          onClick={() => handleOptionClick(option)}
+          style={{ cursor: "pointer" }}
+        >
           <p>{option.optionName}</p>
           <p>{option.price.toLocaleString()}원</p>
           {index === options.length - 1 ? null : <Divider />}
@@ -86,6 +129,20 @@ const ProductOption = ({ options }) => {
   ];
 
   console.log(options);
+  console.log("hello,", selectedOptions);
+
+  const handleOnChange = (count, item) => {
+    setSelectedOptions((prev) =>
+      prev.map((el) => {
+        if (el.optionId === item.optionId) {
+          if (item.quantity > 0) {
+            return { ...el, quantity: count };
+          }
+        }
+        return el;
+      })
+    );
+  };
   return (
     <Container>
       <SelectContainer>
@@ -97,7 +154,22 @@ const ProductOption = ({ options }) => {
           defaultActiveKey={["1"]}
           items={items}
         />
+        {selectedOptions.map((item) => (
+          <Card
+            key={item.optionId}
+            type="inner"
+            title={item.name}
+            extra="X"
+            style={{ marginTop: "10px" }}
+          >
+            <Counter
+              onIncrease={(count) => handleOnChange(count, item)}
+              onDecrease={(count) => handleOnChange(count, item)}
+            />
+          </Card>
+        ))}
       </SelectContainer>
+
       <ResultContainer>
         <FeeContainer>
           <FeeRow>
@@ -110,14 +182,39 @@ const ProductOption = ({ options }) => {
           </FeeRow>
         </FeeContainer>
         <ItemContainer>
-          <ItemCount>총 수량 0개</ItemCount>
+          <ItemCount>
+            총 수량{" "}
+            {selectedOptions
+              .reduce((acc, cur) => acc + cur.quantity, 0)
+              .toLocaleString()}
+            개
+          </ItemCount>
           <ItemPrice>
-            총 주문금액 <span>255,340</span> 원
+            총 주문금액{" "}
+            <span>
+              {selectedOptions
+                .reduce((acc, cur) => acc + cur.quantity * cur.price, 0)
+                .toLocaleString()}
+            </span>{" "}
+            원
           </ItemPrice>
         </ItemContainer>
         <ButtonContainer>
           <Button
-            onClick={() => console.log("장바구니 클릭")}
+            onClick={() => {
+              if (selectedOptions.length) {
+                mutate(
+                  selectedOptions.map((item) => {
+                    return {
+                      optionId: item.optionId,
+                      quantity: item.quantity,
+                    };
+                  })
+                );
+              } else {
+                alert("옵션을 먼저 선택해주세요.");
+              }
+            }}
             bgColor="black"
             textColor="white"
           >
