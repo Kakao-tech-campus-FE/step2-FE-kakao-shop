@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundColor: {
         yellow: "#ffe342",
+        lightGray: "#fafafa",
       },
       width: {
         inner: "1280px",

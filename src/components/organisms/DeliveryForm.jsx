@@ -9,7 +9,7 @@ export default function DeliveryForm() {
         <div className="w-16">
           <strong>배송방법</strong>
         </div>
-        <div className="grow pl-3">
+        <div className="grow ml-2 pl-3">
           <span>택배배송</span>
         </div>
       </Box>
@@ -20,7 +20,7 @@ export default function DeliveryForm() {
           </Label>
         </div>
         <select
-          className="grow py-1 px-3 text-sm bg-gray-100 rounded-sm border"
+          className="grow ml-2 py-1 px-3 text-sm bg-gray-100 rounded-sm border"
           name="deliveryFee"
           id="deliveryFee"
           disabled

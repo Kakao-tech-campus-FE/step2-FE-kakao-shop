@@ -4,6 +4,7 @@ const COLOR = {
   transparent: "bg-transparent text-black",
   yellow: "bg-yellow text-black",
   black: "bg-black text-white",
+  white: "bg-white text-black",
 };
 
 const RADIUS = {
