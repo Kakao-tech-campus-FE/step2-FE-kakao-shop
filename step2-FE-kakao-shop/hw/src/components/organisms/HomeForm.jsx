@@ -17,7 +17,7 @@ const HomeForm = () => {
     if (email) {
       dispatch(setEmail({ email }));
     }
-  }, [dispatch]);
+  }, [dispatch, email]);
 
   // 이부분이 일정 시간 지나면 자동으로 로그아웃 되는 부분
   const logoutTimeSecond = 60 * 60; // 1시간 뒤 자동 로그아웃

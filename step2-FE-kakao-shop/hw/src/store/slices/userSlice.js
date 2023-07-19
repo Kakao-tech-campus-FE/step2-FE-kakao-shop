@@ -40,6 +40,7 @@ const userSlice = createSlice({
       state.isLogined = true;
       // createAsyncThunk한게 다 페이로드에 담김
       state.email = action.payload.email;
+      state.token = action.payload.token;
       localStorage.setItem("email", action.payload.email);
       localStorage.setItem("isLogined", true);
       localStorage.setItem("token", action.payload.token);

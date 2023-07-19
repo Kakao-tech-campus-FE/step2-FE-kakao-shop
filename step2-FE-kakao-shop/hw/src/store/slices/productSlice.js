@@ -19,7 +19,6 @@ const productsSlice = createSlice({
     });
     // Promise.resolve()
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      console.log(action.payload.response);
       // action.payload.response는 최대 10개의 요소가 있을 것
       // 10개보다 작다면 더이상 데이터를 불러오는게 의미 없음
       if (action.payload.response.length < 10) {
