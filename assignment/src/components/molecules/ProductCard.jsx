@@ -5,7 +5,7 @@ import Photo from '../atoms/Photo';
 import SkeletonCard from '../atoms/Skeleton';
 import Loader from '../atoms/Loader';
 
-const ProductCard = ({ product, loading }) => {
+const ProductCard = ({ product, loading, error }) => {
   console.log(loading);
   return (
     <>
@@ -14,6 +14,8 @@ const ProductCard = ({ product, loading }) => {
           {loading && <Loader />}
           <SkeletonCard />
         </>
+      ) : error ? (
+        <div>Error: {error.message}</div>
       ) : (
         <Card to={`/product/${product.id}`}>
           <Photo
