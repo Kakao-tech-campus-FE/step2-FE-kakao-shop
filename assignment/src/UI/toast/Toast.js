@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Toast.css';
 
-const Toast = ({ message, duration }) => {
+function Toast({ message, duration }) {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
@@ -12,11 +12,7 @@ const Toast = ({ message, duration }) => {
     return () => clearTimeout(timer);
   }, [duration]);
 
-  return (
-    <div className={`toast ${show ? 'show' : ''}`}>
-      {message}
-    </div>
-  );
-};
+  return <div className={`toast ${show ? 'show' : ''}`}>{message}</div>;
+}
 
 export default Toast;

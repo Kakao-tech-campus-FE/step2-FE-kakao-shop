@@ -10,7 +10,7 @@ function RadioButtons() {
 
   return (
     <div>
-        <h3> 단일 구매</h3>
+      <h3> 단일 구매</h3>
       <label>
         <input
           type="radio"

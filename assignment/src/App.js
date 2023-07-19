@@ -1,25 +1,31 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
+import React from 'react';
 import RegisterPage from './pages/RegisterPage';
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/Homepage";
+import LoginPage from './pages/LoginPage';
+// import HomePage from './pages/Homepage'
+import NewHomePage from './pages/NewHomePage';
+import MainLayout from './layouts/MainLayout';
+import ProductDetailPage from './pages/ProductDetail';
+import Loader from './components/atoms/Loader';
+import { ErrorPage } from './pages/ErrorPage';
+
 function App() {
-    return (
+  return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path ="/login" element = {<LoginPage/>}></Route>
-          <Route path ="/signup" element = {<RegisterPage/>}></Route>
-          <Route path ="/" element = {<HomePage/>}></Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<RegisterPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<NewHomePage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+          </Route>
+          <Route path="/error" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </div>
-    );
+  );
 }
 
 export default App;
-
-// import Sub from './subPage';
-// import Main from "./assignmentTest";
-// {/* 과제 1을 위한 코드 */} 
-//         {/* <BrowserRouter><Routes><Route path="/" element={<Main/>}/><Route path="/subPage" element={<Sub/>}/></Routes></BrowserRouter> */} 
