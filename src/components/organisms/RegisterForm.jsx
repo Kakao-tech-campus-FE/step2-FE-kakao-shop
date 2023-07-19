@@ -1,17 +1,19 @@
+import { useState } from "react";
+import { useRegister } from "../../services/register";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import Gnb from "../molecules/Gnb";
-import { register } from "../../services/api";
-import { useState } from "react";
+import GNB from "../atoms/GNB";
 
 const RegisterForm = () => {
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
+
+  const registerMutation = useRegister();
 
   const { value, handleOnChange, reset } = useInput({
     username: "",
@@ -33,7 +35,7 @@ const RegisterForm = () => {
 
   const handleRegister = async () => {
     try {
-      await register({
+      await registerMutation.mutateAsync({
         email: value.email,
         password: value.password,
         username: value.username,
@@ -48,7 +50,7 @@ const RegisterForm = () => {
     if (!name) {
       return "사용자 이름을 입력하세요.";
     }
-    return "";
+    return;
   };
 
   const handleNameBlur = (event) => {
@@ -87,7 +89,7 @@ const RegisterForm = () => {
   return (
     <div className="mt-32">
       <Title>
-        <Gnb />
+        <GNB />
       </Title>
       <Container>
         <InputGroup

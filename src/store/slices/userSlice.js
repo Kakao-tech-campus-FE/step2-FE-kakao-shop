@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../services/api";
+import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import { login } from "../../services/login";
 
 const initialState = {
   email: null,
@@ -47,13 +48,6 @@ export const loginRequest = createAsyncThunk(
   async (data) => {
     const { email, password } = data;
     const response = await login({ email, password });
-
-    if (typeof email !== "string") {
-      throw new Error("이메일 형식이 올바르지 않습니다.");
-    }
-    if (typeof password !== "string") {
-      throw new Error("비밀번호 형식이 올바르지 않습니다.");
-    }
     return {
       email: email,
       token: response.token,
