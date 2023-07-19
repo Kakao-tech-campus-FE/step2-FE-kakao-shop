@@ -10,4 +10,9 @@ export const ImageContainer = styled.picture`
     img {
         width: inherit;
     }
+    .productItem {
+        width: 22em;
+        object-fit: cover;
+        border-radius: 5px;
+    }
 `
