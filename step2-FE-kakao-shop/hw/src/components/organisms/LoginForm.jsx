@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
 import React from "react";
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, setEmail, logOut } from "../../store/slices/userSlice";

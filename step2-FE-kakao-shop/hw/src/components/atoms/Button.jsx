@@ -4,7 +4,7 @@ const Button = ({ onClick, disabled, children }) => {
     <button
       onClick={(e) => {
         e.preventDefault();
-        onClick();
+        onClick(e);
       }}
       disabled={disabled}
     >

@@ -1,4 +1,4 @@
-import LoginForm from "../components/orgamisms/LoginForm";
+import LoginForm from "../components/organisms/LoginForm";
 
 const LoginPage = () => {
   return <LoginForm />;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./carousel.css";
+import "../../styles/atoms/Carousel.css";
 
 const Carousel = ({ children: slides }) => {
   const [curr, setCurr] = useState(0);

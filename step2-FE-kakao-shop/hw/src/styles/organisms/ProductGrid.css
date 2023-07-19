@@ -1,0 +1,9 @@
+.product-grid {
+  display: grid;
+  /* 1fr 1fr : 1대1 비율 */
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+  max-width: inherit;
+}

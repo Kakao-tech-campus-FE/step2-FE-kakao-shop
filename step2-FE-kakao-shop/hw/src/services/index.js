@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
   // 여기에 직접 스트링으로 넣으면 안됨 근데 안됨
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL:
+    "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -24,24 +25,6 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   }
 );
-
-// 백엔드 요청
-export const register = (data) => {
-  const { email, password, username } = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  });
-};
-
-export const login = (data) => {
-  const { email, password } = data;
-  return instance.post("/login", {
-    email,
-    password,
-  });
-};
