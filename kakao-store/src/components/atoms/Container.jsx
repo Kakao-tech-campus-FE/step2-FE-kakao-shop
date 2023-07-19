@@ -6,11 +6,7 @@
  * @returns {JSX.Element} - 컨테이너
  */
 const Container = ({ children, className }) => {
-  return (
-    <div className={`container mx-auto w-2/5 px-4 ${className}`}>
-      {children}
-    </div>
-  );
+  return <div className={`container mx-auto w-3/5 px-4 ${className}`}>{children}</div>;
 };
 
 export default Container;

@@ -1,4 +1,4 @@
-import Card from "../atoms/Card";
+import Card from '../atoms/Card';
 
 /**
  * 스켈레톤 상품 카드
