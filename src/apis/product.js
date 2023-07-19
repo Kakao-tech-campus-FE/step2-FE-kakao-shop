@@ -11,5 +11,5 @@ export const getProductById = (id) => {
   }
 
   // 정상처리가 아래쪽
-  return instance.get(`/products/${id}`);
+  return instance.get(`/products/222`);
 };

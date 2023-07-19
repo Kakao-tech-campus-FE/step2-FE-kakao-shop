@@ -42,7 +42,7 @@ instance.interceptors.response.use(
         console.error("접근할 권한이 없습니다.");
         break;
       case 404:
-        console.error("잘못된 요청입니다.");
+        window.location.replace("/404");
         break;
       case 500:
         console.error("서버에 에러가 있습니다.");

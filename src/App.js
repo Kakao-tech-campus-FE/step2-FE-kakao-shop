@@ -5,6 +5,7 @@ import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
           </Route>
+          <Route path="/404" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
