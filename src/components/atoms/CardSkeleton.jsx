@@ -4,7 +4,7 @@ const CardLoader = () => {
     return(
         <Skeleton.Container>
             {new Array(9).fill('').map((_, i) => (
-                <div>
+                <div key={i}>
                     <Skeleton.ImageLoader/>
                     <Skeleton.DeliveryLoader />
                     <Skeleton.TitleLoader />
