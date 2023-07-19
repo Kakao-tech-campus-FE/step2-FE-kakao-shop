@@ -7,8 +7,9 @@ import { Provider } from "react-redux";
 import store from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
-import { QuertClient, QueryClientProvider } from "react-query"
-import { ReactQueryDevtools } from "react-query/devtools"
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 export let persistor = persistStore(store);
 const queryClient = new QueryClient();
@@ -19,20 +20,31 @@ function App() {
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
                     <QueryClientProvider client={queryClient}>
-                        <ReactQueryDevtools initialIsOpen={true}/>
+                        <ReactQueryDevtools initialIsOpen={true} />
                         <BrowserRouter>
-                        <Routes>
-                            <Route path="/login" element={<LoginPage />}>
-                                {" "}
-                            </Route>
-                            <Route path="/signup" element={<RegisterPage />}>
-                                {" "}
-                            </Route>
-                            <Route path="/" element={<MainPage />}>
-                                {" "}
-                            </Route>
-                        </Routes>
-                    </BrowserRouter>
+                            <Routes>
+                                {/* 단독 레이아웃 */}
+                                <Route path="/login" element={<LoginPage />}>
+                                    {" "}
+                                </Route>
+                                <Route
+                                    path="/signup"
+                                    element={<RegisterPage />}
+                                >
+                                    {" "}
+                                </Route>
+                                <Route
+                                    path="/product/:id"
+                                    element={<ProductDetailPage />}
+                                >
+                                    {" "}
+                                </Route>
+                                {/* 공통 레이아웃: GNB, Footer */}
+                                <Route path="/" element={<MainPage />}>
+                                    {" "}
+                                </Route>
+                            </Routes>
+                        </BrowserRouter>
                     </QueryClientProvider>
                 </PersistGate>
             </Provider>

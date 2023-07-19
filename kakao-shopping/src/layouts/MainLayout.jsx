@@ -1,5 +1,5 @@
 import GNB from "../components/organisms/GNB";
-import MainProductTemplate
+import MainProductTemplate from "../components/templates/MainProductTemplate";
 
 const MainLayout = () => {
     return (

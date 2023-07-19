@@ -4,12 +4,10 @@ import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
 
 import userReducer from "./userSlice";
-import productReducer from "./productSlice";
 import detailReducer from "./detailSlice";
 
 const reducers = combineReducers({
     user: userReducer,
-    product: productReducer,
     detail: detailReducer,
 });
 
