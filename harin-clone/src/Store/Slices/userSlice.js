@@ -52,6 +52,15 @@ export const registerRequest = createAsyncThunk(
   }
 )
 
+export const checkUnique = createAsyncThunk(
+  'user/checkUnique',
+  async (data) => {
+    const { email } = data;
+    const response = await register({ email }); // post: 데이터 생성, 데이터 조회.
+    return response.data;
+  }
+)
+
 export const {setEmail, delEmail} = userSlice.actions;
 
 export default userSlice.reducer;

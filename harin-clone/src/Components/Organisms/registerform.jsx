@@ -1,10 +1,10 @@
 import Container from "../Atoms/Container";
 import Button from "../Atoms/Button";
 import InputGroup from "../Molecules/InputGroup";
-import { register, checkUnique } from "../../Servicies/user";
+import { register, checkuser } from "../../Servicies/user";
 import useInput from "../../Hooks/useinput";
 import Box from "../Atoms/Box";
-import { registerRequest } from "../../Store/Slices/userSlice";
+import { registerRequest, checkUnique } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const RegisterForm = ( ) => {
   const dispatch = useDispatch()
 
-  const inputStyle = "text-justify items-cneter m-3 p-3 border-solid border-2 rounded";
+  const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
 
   const { value, handleOnChange } = useInput({
     username: "",
@@ -54,19 +54,16 @@ const RegisterForm = ( ) => {
     } else { return true }
   }
 
+  const [isUnique, setUnique] = useState(false)
 
   const checkReq = () => {
     dispatch(checkUnique({
       email:value.email
     }))
       .then((res) => {
-        alert('사용할 수 있는 이메일입니다')
-        // return <p className="text-green-400">사용할 수 있는 이메일입니다.</p>
-      })
-
-      .catch((err) => {
-        alert(err.response)
-        // return <p className="text-red-400">{err.name}</p>
+        if (!res.payload?.success) {
+          setUnique(!isUnique)
+        }
       })
   }
 
@@ -122,20 +119,29 @@ const RegisterForm = ( ) => {
           onChange={handleOnChange}
           className={inputStyle} 
         />
-        <InputGroup 
-          id="email" 
-          type="email" 
-          name="email"
-          placeholder="이메일을 입력하세요" 
-          label="이메일" 
-          value={value.email}
-          onChange={(e) => {
-            handleOnChange(e)
-            // checkReq()
-          }}
-          className={inputStyle} 
-        />
-        {validEmail(value.email)}
+        <div className="flex items-span items-center">
+          <div className="mr-5">
+          <InputGroup 
+            id="email" 
+            type="email" 
+            name="email"
+            placeholder="이메일을 입력하세요" 
+            label="이메일" 
+            value={value.email}
+            onChange={(e) => {
+              handleOnChange(e)
+              checkReq()
+            }}
+            className={inputStyle} 
+          />
+          </div>
+          <div className="mr-3">
+          {isUnique ? 
+            <div className=" w-3 h-3 rounded-full bg-green-300"></div> :
+            <div className="w-3 h-3 rounded-full bg-stone-300"></div>}
+          {validEmail(value.email)}
+          </div>
+        </div>
         <InputGroup 
           id="password" 
           type="password" 

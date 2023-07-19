@@ -15,7 +15,7 @@ export const login = (data) => {
 };
 
 
-export const checkUnique = (data) => {
+export const checkuser = (data) => {
   const { email } = data
   return instance.post('/check', {
     email
