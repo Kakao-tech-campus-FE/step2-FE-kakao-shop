@@ -2,12 +2,15 @@ import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import ProductPrice from "../atoms/ProductPrice";
+import { useDispatch } from "react-redux";
+import { clearItem } from "../../redux/cartRedux";
 
 const MainProducts = ({slicedData}) => {
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
+    dispatch(clearItem());
     navigate(`/product/${id}`);
   };
   
