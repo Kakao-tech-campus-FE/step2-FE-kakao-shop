@@ -59,3 +59,46 @@ export const getIdProduct = async (id) => {
     throw error;
   }
 };
+
+export const addCart = async (data) => {
+  try {
+    const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
+
+    const response = await instance.post('/carts/add', data, {
+      headers: {
+        Authorization: userAuthToken
+      }
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getCart = async () => {
+  try {
+    const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
+    const response = await instance.get('carts', {
+      headers: {
+        Authorization: userAuthToken
+      }
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const modifyCart = async (data) => {
+  try {
+    const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
+    const response = await instance.post('carts/update', data, {
+      headers: {
+        Authorization: userAuthToken
+      }
+    });
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
