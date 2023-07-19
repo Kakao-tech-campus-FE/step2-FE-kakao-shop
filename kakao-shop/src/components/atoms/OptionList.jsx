@@ -1,4 +1,5 @@
 import { comma } from '../../utils/convert';
+import Divider from './Divider';
 
 /**
  * 옵션 목록
@@ -9,16 +10,22 @@ import { comma } from '../../utils/convert';
 
 const OptionList = ({ options, onClick }) => {
   return (
-    <ol className="option-list">
+    <ol className="option-list border border-solid border-gray-400 rounded-sm px-3 py-1">
       {options.map((option, index) => (
-        <li key={option.id} className="option" onClick={() => onClick(option)}>
-          <span className="name">
+        <li key={option.id} className="option border pb-1 my-1" onClick={() => onClick(option)}>
+          <span className="name text-gray-800 text-sm xl:text-base tracking-tighter">
             {index + 1}. {option.optionName}
           </span>
-          <span className="price">{comma(option.price)}원</span>
+          <br />
+          <span className="price text-sm">{comma(option.price)}원</span>
+          {options.length - 1 !== index && (
+            <div className="divider-container mx-0 mt-1">
+              <Divider />
+            </div>
+          )}
         </li>
       ))}
-    </ol> // 의미론적 태그 관점에서 순서가 있는것은 <ol>이 좋다
+    </ol>
   );
 };
 

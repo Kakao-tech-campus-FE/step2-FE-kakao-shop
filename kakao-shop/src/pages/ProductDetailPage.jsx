@@ -29,7 +29,7 @@ const ProductDetailPage = () => {
   };
 
   return (
-    <div>
+    <div className="product-detail-page">
       {isLoading && <Loader />}
       {error && <div>error</div>}
       {product && <ProductDetailTemplate product={product} />}

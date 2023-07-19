@@ -83,7 +83,7 @@ const LoginForm = () => {
 
   const inputBoxStyle = `border-b border-solid py-1 mb-2 font-bold`;
   return (
-    <Container className="loginform-container border border-solid border-gray-300 p-16 mx-auto w-[570px]">
+    <Container className="loginform-container border border-solid border-gray-300 p-16 mx-auto w-[570px] whitespace-pre-wrap">
       <InputGroup
         id="email"
         type="email"

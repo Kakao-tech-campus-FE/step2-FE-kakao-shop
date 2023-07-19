@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { GoPlus, GoDash } from 'react-icons/go';
+import { useState } from 'react';
 
 const Counter = ({
   value, // 최초 수량
@@ -19,10 +20,14 @@ const Counter = ({
   };
 
   return (
-    <div className="counter">
-      <button onClick={handleOnDecrease}>-</button>
-      <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
+    <div className="flex bg-white">
+      <button onClick={handleOnDecrease} className="border border-solid border-slate-300 px-1 rounded-sm">
+        <GoDash size="20" color="gray" />
+      </button>
+      <span className="count border border-solid border-y-slate-300 border-x-slate-200 px-3 py-1 text-sm">{count}</span>
+      <button onClick={handleOnIncrease} className="border border-solid border-slate-300 px-1 rounded-sm">
+        <GoPlus size="20" color="gray" />
+      </button>
     </div>
   );
 };

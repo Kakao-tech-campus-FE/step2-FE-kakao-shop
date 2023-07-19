@@ -1,5 +1,5 @@
-import RegisterForm from "../components/organisms/RegisterForm";
-import Photo from "../components/atoms/Photo";
+import RegisterForm from '../components/organisms/RegisterForm';
+import Photo from '../components/atoms/Photo';
 
 /**
  * 회원가입 페이지
@@ -10,11 +10,7 @@ const RegisterPage = () => {
   return (
     <div className="register-page">
       <div className="mt-32 mb-10">
-        <Photo
-          className="w-32 mx-auto"
-          src="/logoKakaoText.png"
-          alt="kakao-text-logo"
-        />
+        <Photo className="w-32 mx-auto block" src="/logoKakaoText.png" alt="kakao-text-logo" />
       </div>
       <RegisterForm />;
     </div>

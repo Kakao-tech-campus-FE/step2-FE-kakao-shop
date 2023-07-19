@@ -5,9 +5,9 @@ import Divider from '../atoms/Divider';
 
 const ProductDetailTemplate = ({ product }) => {
   return (
-    <Container className="flex justify-between min-w-[740px]">
+    <Container className="flex justify-between sm:justify-start">
       <ProductInformationColumn product={product} />
-      <div className="flex ml-10">
+      <div className="flex ml-10 sm:ml-0">
         <Divider type="vertical" />
         <OptionColumn product={product} />
       </div>

@@ -22,7 +22,7 @@ export default function InnerHead() {
   return (
     <div className="innerhead flex justify-between items-center min-w-[740px]">
       <div className="innerhead-left flex gap-4 items-center h-14 font-bold mx-12">
-        <Photo src="/logoGift.jpg" alt="kakao-shopping" className="w-20 mr-12 h-fit" />
+        <Photo src="/logoKakao.png" alt="kakao-shopping" className="w-28 mr-12 h-fit" />
         <nav className="gnb">
           <ul className="flex justify-between w-48">
             <li>
