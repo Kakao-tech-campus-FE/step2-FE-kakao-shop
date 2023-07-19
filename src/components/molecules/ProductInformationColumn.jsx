@@ -2,7 +2,7 @@ import Photo from "../atoms/Photo";
 
 const ProductInformationColumn = ({product}) => {
     return (
-        <div className="product-information-column">
+        <div className="product-information-column flex">
             <h3>상품 정보</h3>
             <Photo className={"product-photo"} src={product.image}/>
             <div className="product-description">
