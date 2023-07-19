@@ -1,4 +1,4 @@
-const Skeleton = () => {
+const MainSkeleton = () => {
   return (
       <div className="skeleton">
           <div className="s-banner">
@@ -24,4 +24,4 @@ const Skeleton = () => {
   );
 }
 
-export default Skeleton;
+export default MainSkeleton;
