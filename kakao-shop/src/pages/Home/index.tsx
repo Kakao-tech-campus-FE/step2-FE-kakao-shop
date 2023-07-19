@@ -49,7 +49,6 @@ function Home() {
 
   return (
     <Fragment>
-      <Header />
       <S.TopBannerBlock>
         <BannerImageList />
       </S.TopBannerBlock>
