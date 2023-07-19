@@ -23,6 +23,12 @@ const SelectRow = styled.div`
   font-size: 18px;
   font-weight: 500;
 `;
+const StyledButton = styled.button`
+  display: block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
 const SelectResultRow = styled.div`
   display: flex;
   justify-content: space-between;
@@ -91,7 +97,9 @@ const ProductOption = ({ options }) => {
       if (error.response.status === 401) {
         alert("로그인이 필요합니다.");
       }
-      console.log(error);
+      if (error.response.status === 500) {
+        alert("장바구니에 담긴 상품입니다.");
+      }
     },
   });
 
@@ -115,6 +123,13 @@ const ProductOption = ({ options }) => {
     }
   };
 
+  const handleOptionDelete = (item) => {
+    const newOptions = selectedOptions.filter(
+      (option) => option.optionId !== item.optionId
+    );
+    setSelectedOptions(newOptions);
+  };
+
   const items = [
     {
       key: "1",
@@ -132,9 +147,6 @@ const ProductOption = ({ options }) => {
       )),
     },
   ];
-
-  console.log(options);
-  console.log("hello,", selectedOptions);
 
   const handleOnChange = (count, item) => {
     setSelectedOptions((prev) =>
@@ -164,7 +176,11 @@ const ProductOption = ({ options }) => {
             key={item.optionId}
             type="inner"
             title={item.name}
-            extra="삭제"
+            extra={
+              <StyledButton onClick={() => handleOptionDelete(item)}>
+                삭제
+              </StyledButton>
+            }
             style={{ marginTop: "10px" }}
           >
             <SelectResultRow>
@@ -229,7 +245,11 @@ const ProductOption = ({ options }) => {
           >
             장바구니 담기
           </Button>
-          <Button bgColor="#ffe342" textColor="black">
+          <Button
+            bgColor="#ffe342"
+            textColor="black"
+            onClick={() => alert("미구현 기능입니다.")}
+          >
             바로 구매
           </Button>
         </ButtonContainer>

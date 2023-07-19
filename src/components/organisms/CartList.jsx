@@ -71,11 +71,12 @@ const CartList = ({ cart }) => {
   useEffect(() => {
     setCartItems(cart.data.response.products);
     setTotalPrice(cart.data.response.totalPrice);
-  }, [cart]);
+  }, []);
 
   const handleOnChange = (optionId, quantity, price) => {
     setUpdatedPayload((prev) => {
       const isExist = prev.find((item) => item.cartId === optionId);
+      console.log("prev", prev);
       if (isExist) {
         return [
           ...prev.filter((item) => item.cartId !== optionId),
