@@ -4,24 +4,30 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getProductById } from '@api/productApi';
 import { getDetail } from '@store/slices/detailSlice';
+import { AppDispatch } from '@store/index';
 
 const ProductDetailPage = () => {
-  const { id } = useParams(); // string or undefined
-  const parseId = id && parseInt(id, 10);
-  const { data, error, isLoading } = useQuery(`/product/${id}`, () => getProductById);
-  if (error) {
-    return alert('그런 페이지 없음');
+  const { id } = useParams();
+  const parseId = id !== undefined ? parseInt(id, 10) : 1;
+  const { data, error, isLoading } = useQuery(`/product/${id}`, () => getProductById(parseId));
+  const dispatch = useDispatch<AppDispatch>();
+
+  console.log('Asdf');
+  useEffect(() => {
+    if (data) {
+      if (parseId) dispatch(getDetail(parseId));
+    }
+  }, [dispatch, data, parseId]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  console.log(data);
+  if (error) {
+    return <div>Error: {id}</div>;
+  }
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    // dispatch(getDetail(parseId));
-  }, [dispatch, id]);
-
-  return <div />;
+  return <p>Product ID: {id}</p>;
 };
 
 export default ProductDetailPage;

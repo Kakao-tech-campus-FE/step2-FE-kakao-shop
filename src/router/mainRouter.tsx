@@ -6,6 +6,7 @@ import RegisterPage from '@pages/RegisterPage';
 import MainLayout from '@components/templates/MainLayout';
 import PageContainer from '@components/atoms/PageContainer';
 import ProductListPage from '@pages/ProductListPage';
+import ProductDetailPage from '@pages/ProductDetailPage';
 
 const mainRouter = () =>
   useRoutes([
@@ -29,8 +30,17 @@ const mainRouter = () =>
               element: <RegisterPage />,
             },
             {
-              path: 'productList',
-              element: <ProductListPage />,
+              path: 'product',
+              children: [
+                {
+                  index: true,
+                  element: <ProductListPage />,
+                },
+                {
+                  path: ':id',
+                  element: <ProductDetailPage />,
+                },
+              ],
             },
           ],
         },
