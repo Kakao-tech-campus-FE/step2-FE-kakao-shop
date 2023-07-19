@@ -1,7 +1,7 @@
-import Navigation from "../components/organisms/Navigation";
+import MainProductTemplate from "../components/templates/MainProductTemplate";
 
 const HomePage = () => {
-  return <Navigation/>;
+  return <MainProductTemplate/>;
 };
 
 export default HomePage;

@@ -1,9 +1,12 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import { login } from '../../components/services/user';
 
 const initialState = {
-  email: localStorage.getItem('email') || null,
+  email:  null,
   loginTime: null,
-  isLoggedIn : null
+  isLoggedIn : null,
+  loading: false,
+  token: null,
 }
 
 const userSlice = createSlice({
@@ -14,22 +17,46 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       localStorage.setItem('email', state.email);
       state.loginTime = new Date().getTime();
-      state.isLoggedIn = true;
-      localStorage.setItem('isLoggedIn', state.isLoggedIn);
+    },
+    setToken : (state, action) => {
+      state.token = action.payload.token;
     },
     logout: (state) => {
       state.email = null;
-      localStorage.removeItem("isLoggedIn");
       state.isLoggedIn = false;
-      localStorage.removeItem("email");
     },
     loginTime: (state) => {
       state.loginTime = new Date().getTime();
-      localStorage.setItem("loginTime", state.loginTime.toString());
-    }
-
-  }
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(loginRequest.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(loginRequest.fulfilled, (state, action) => {
+      state.loading = false;
+      state.email = action.payload.email;
+      localStorage.setItem("token", action.payload.token);
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    });
+    builder.addCase(loginRequest.rejected, (state, action) => {
+      state.loading = false;
+    });
+  },
 });
+
+export const loginRequest = createAsyncThunk(
+  "user/loginRequest",
+  async (data) => {
+    const {email, password} = data;
+    const response = await login({email, password});
+    return {
+      email,
+      token: response.headers.authorization
+    }
+  }
+);
 
 export const { setEmail, logout, loginTime } = userSlice.actions;
 

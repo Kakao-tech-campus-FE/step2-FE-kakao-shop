@@ -3,11 +3,11 @@ import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import Title from '../atoms/Title';
 import useInput from '../../hooks/useInput';
-import { login } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { setEmail } from '../../store/slices/userSlice';
 import { useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
+import { loginRequest } from '../../store/slices/userSlice';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -15,28 +15,9 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const {value, handleOnChange} = useInput({
-    email: email || "",
+    email: "",
     password: "",
   });   
-  
-  const loginReq = () => {
-    // 로그인 요청
-    login ({
-      email: value.email,
-      password: value.password
-    })
-      .then((res) => {
-        dispatch(
-          setEmail({
-            email: value.email
-          })
-        );
-        navigate('/');
-      })
-      .catch((error) => {
-        console.error('Login error:', error);
-      })
-  };
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -75,7 +56,14 @@ const LoginForm = () => {
       onChange={handleOnChange}
     />
     <Button
-      onClick={loginReq}
+      onClick={() => {
+        dispatch(
+          loginRequest({
+            email: value.email,
+            password: value.password,
+          })
+        );
+      }}
     >로그인</Button>
     <p>
       <a href='#' onClick={goRegister}>

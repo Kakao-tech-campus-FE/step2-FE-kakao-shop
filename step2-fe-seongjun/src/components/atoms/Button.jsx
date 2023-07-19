@@ -4,7 +4,7 @@ const Button = ({onClick, children}) => {
     <button // button은 기본적으로 submit 이라는 요청을 보내게 됨(페이지가 리렌더링되게 됨), 그래서 onClick으로 관리
       onClick={(e) => {
         e.preventDefault(); // submit 발생하지 않도록 막아줌
-        onClick();
+        onClick(e);
       }}> 
       {children}
     </button>

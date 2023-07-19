@@ -3,22 +3,20 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-<<<<<<< HEAD
 import { Provider } from 'react-redux';
 import store from './store';
-=======
->>>>>>> 7bf19b80f574afd860fc4c6967796b480b45ec0a
+import {QueryClient, QueryClientProvider} from "react-query";
+// 여러 에러 케이스에 대해 대응하려면 옵션 값을 주면됨
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-<<<<<<< HEAD
       <Provider store={store}>
-        <App />
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
       </Provider>
-=======
-    <App />
->>>>>>> 7bf19b80f574afd860fc4c6967796b480b45ec0a
   </React.StrictMode>
 );
 
