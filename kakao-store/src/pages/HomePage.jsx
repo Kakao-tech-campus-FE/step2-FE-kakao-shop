@@ -1,4 +1,4 @@
-import MainProductTemplate from "../template/MainProductTemplate";
+import MainProductTemplate from '../components/template/MainProductTemplate';
 
 const HomePage = () => {
   return (

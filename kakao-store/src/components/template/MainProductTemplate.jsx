@@ -1,12 +1,12 @@
-import { Suspense, useEffect, useState, useRef } from "react";
-import Container from "../components/atoms/Container";
-import ProductGrid from "../components/organisms/ProductGrid";
-import { useSelector, useDispatch } from "react-redux";
-import { getProduct } from "../store/slices/productSlice";
-import { fetchProducts } from "../services/product";
-import Loader from "../components/atoms/Loader";
-import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
+import { Suspense, useEffect, useState, useRef } from 'react';
+import Container from '../../components/atoms/Container';
+import ProductGrid from '../../components/organisms/ProductGrid';
+import { useSelector, useDispatch } from 'react-redux';
+import { getProduct } from '../../store/slices/productSlice';
+import { fetchProducts } from '../../services/product';
+import Loader from '../../components/atoms/Loader';
+import { useQuery } from 'react-query';
+import { useParams } from 'react-router-dom';
 
 /**
  * 메인 페이지 컴포넌트
@@ -22,7 +22,7 @@ const MainProductTemplate = () => {
   const products = useSelector((state) => state.product.products);
   // const [products, setProducts] = useState([]);
   const isEnd = useSelector((state) => state.product.isEnd);
-  const { data, isError, error } = useQuery([("products", page)], async () => {
+  const { data, isError, error } = useQuery([('products', page)], async () => {
     return await fetchProducts(page);
   });
 
@@ -57,7 +57,7 @@ const MainProductTemplate = () => {
   }, [dispatch, page]);
 
   return (
-    <Container className={"product-section"}>
+    <Container className={'product-section'}>
       <Suspense fallback={<Loader />}>
         {isLoading ? (
           <>
