@@ -2,7 +2,7 @@ import LoginTemplate from "@components/templates/LoginTemplate";
 import { useRedirect } from "@hooks/useRedirect";
 
 const Login = () => {
-  useRedirect("main");
+  useRedirect();
   return (
     <div>
       <LoginTemplate />

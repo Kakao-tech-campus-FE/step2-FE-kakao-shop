@@ -5,10 +5,13 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import InnerContainer from "@components/atoms/InnerContainer";
 import { styled } from "styled-components";
 import ProductGridSkeleton from "@components/organisms/ProductGridSkeleton";
+import { useNavigate } from "react-router-dom";
 
 const ProductTemplate = () => {
+  const navigate = useNavigate();
   const { isLoading, data, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useInfiniteQuery(["/products"], getProducts, {
+      retry: false,
       getNextPageParam: (lastPage) => {
         if (lastPage.response.length < 9) {
           return undefined;
@@ -19,7 +22,9 @@ const ProductTemplate = () => {
         }
       },
       onError: (err) => {
-        console.log(err);
+        if (err === 404) {
+          navigate("/notFound");
+        }
       },
     });
 

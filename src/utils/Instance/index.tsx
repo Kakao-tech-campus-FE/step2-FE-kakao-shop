@@ -36,7 +36,7 @@ AxiosInstance.interceptors.response.use(
       const { message } = data.error;
       return Promise.reject(message);
     } else if (status === 404) {
-      useRedirect("notFound");
+      return Promise.reject(status);
     }
     return Promise.reject(error);
   }
