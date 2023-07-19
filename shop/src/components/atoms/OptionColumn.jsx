@@ -8,31 +8,24 @@ import Button from "./Button"
 import Photo from "./Photo"
 
 const OptionColumn = ({product}) => {
-  const [selectedOptions, setSeletectOptions] = useState([{
-    optionId: 1,
-    quantity: 1,
-    name: "옵션 이름",
-    price: 1000
-  }])
+  const [selectedOptions, setSeletectOptions] = useState([])
   
   // 장바구니 담기 api에서 요청한 정보: optionId, quantity
   const handleOnClickOption = (option) =>{
-    // 동일한 옵션 클릭 방지
+    // 동일한 옵션 클릭 시 수량만 증가
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     )
-
-    //이미 선택된 옵션이면 수량 증가
     if(isOptionSelected){
       setSeletectOptions((prev)=>
         prev.map((el)=>
           el.optionId === option.id
-            ?{ ...el, quantity: el.quantity +1 }
-            : el)
+            ?{ ...el, quantity: el.quantity +1}
+            : el),
+            console.log(option.quantity)
       )
-    }
-
-    setSeletectOptions((prev)=>[
+    } else{
+      setSeletectOptions((prev)=>[
       ...prev,
       {
         optionId: option.id,
@@ -41,8 +34,9 @@ const OptionColumn = ({product}) => {
         name: option.optionName
       }
     ])
-  }
+  }}
 
+  //counter 
   const handleOnChange = (count, optionId) =>{
       setSeletectOptions((prev)=>{
         return prev.map((el)=>{
@@ -64,12 +58,14 @@ const OptionColumn = ({product}) => {
 
   return (
     <div className="relative mt-20 left-20 pb-8 pt-5 ring-1 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-12">
-      <h3 className="space-y-6 py-8 text-2xl font-bold">옵션 선택</h3>
+      <h3 className="py-4 text-2xl font-bold">옵션 선택</h3>
       {/* 옵션 선택 가능 */}
       <OptionList 
         options={product.options} 
         onClick={handleOnClickOption}
       />
+      <h3 className="py-2 text-2xl font-bold">배송 방법</h3>
+      <div className="border-2 px-4 py-2 border-slate-200 rounded-sm text-lg mb-6">무료 배송</div>
       {/* 담긴 옵션 표기 */}
       {/* ui에서 필요한 정보: 옵션이름, 옵션가격, 옵션 수량, 옵션 총 가격 */}
       {selectedOptions.map((option)=>(
@@ -79,6 +75,7 @@ const OptionColumn = ({product}) => {
             <span className="mr-2">{option.name}</span>
             <span className="price font-semibold">{comma(option.price)}원</span> 
             <Counter 
+              quantity={option.quantity}
               onIncrease = {(count) => handleOnChange(count, option.id)}
               onDecrease={(count) => handleOnChange(count, option.id)}
             />
@@ -87,7 +84,7 @@ const OptionColumn = ({product}) => {
       ))}
       <hr className="my-8"/>
       <div className="text-xl font-semibold mb-8">
-        <span className="mr-32">
+        <span className="mr-36">
           총 수량:
           {comma(selectedOptions.reduce((acc, cur)=>{
             return acc+cur.quantity
