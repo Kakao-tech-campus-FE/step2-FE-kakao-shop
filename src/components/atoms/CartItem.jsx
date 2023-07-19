@@ -8,11 +8,29 @@ const Row = styled.div`
   align-items: center;
 `;
 
-const CartItem = ({ item, onChange }) => {
+const StyledButton = styled.button`
+  display: block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+const CartItem = ({ item, onChange, onCartDelete, onItemDelete }) => {
   return (
     <Card
       type="inner"
-      extra="삭제"
+      extra={
+        <StyledButton
+          onClick={() =>
+            onCartDelete(
+              item.id,
+              item.carts.reduce((acc, cur) => acc + cur.price, 0)
+            )
+          }
+        >
+          삭제
+        </StyledButton>
+      }
       title={item.productName}
       style={{ width: "700px", margin: "10px auto" }}
     >
@@ -20,7 +38,13 @@ const CartItem = ({ item, onChange }) => {
         <Card
           key={cart.id}
           title={cart.option.optionName}
-          extra="삭제"
+          extra={
+            <StyledButton
+              onClick={() => onItemDelete(cart.option.id, cart.option.price)}
+            >
+              삭제
+            </StyledButton>
+          }
           style={{ width: "600px", margin: "10px auto 0" }}
         >
           <Row>

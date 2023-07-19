@@ -102,6 +102,21 @@ const CartList = ({ cart }) => {
     );
   };
 
+  const handleCartDelete = (optionId, price) => {
+    const updatedCarts = cartItems.filter((item) => item.id !== optionId);
+    setCartItems(updatedCarts);
+    setTotalPrice((prev) => prev - price);
+  };
+
+  const handleItemDelete = (optionId, price) => {
+    const updatedItems = cartItems.map((item) => ({
+      ...item,
+      carts: item.carts.filter((cart) => cart.option.id !== optionId),
+    }));
+    setCartItems(updatedItems);
+    setTotalPrice((prev) => prev - price);
+  };
+
   const getItemsLength = useCallback(() => {
     let count = 0;
     cartItems.forEach((item) => {
@@ -110,15 +125,22 @@ const CartList = ({ cart }) => {
     return count;
   }, [cartItems]);
 
-  console.log(cartItems);
+  console.log("카트 아이템", cartItems);
   console.log(totalPrice);
+  console.log("페이로드", updatedPayload);
   return (
     <Container>
       <Title>장바구니</Title>
       {cartItems.length ? (
         <div>
           {cartItems.map((item) => (
-            <CartItem key={item.id} item={item} onChange={handleOnChange} />
+            <CartItem
+              key={item.id}
+              item={item}
+              onChange={handleOnChange}
+              onItemDelete={handleItemDelete}
+              onCartDelete={handleCartDelete}
+            />
           ))}
           <ShipContainer>
             <PriceRow>
