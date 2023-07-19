@@ -1,17 +1,20 @@
 import InnerContainer from "@components/atoms/InnerContainer";
-import Photo from "@components/atoms/Photo";
 import { styled } from "styled-components";
 import logo from "@assets/images/logoKakao.png";
+import cart from "@assets/images/cart.png";
 import { useSelectedUser } from "@hooks/useSelectedUser";
 import { setSelectedUser } from "@redux/selectedUser/slice";
-import { useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "@components/molecules/LoginModal";
 
 const GlobalNavigationBar = () => {
   const selectedUser = useSelectedUser();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [modalOpen, setModalOpen] = useState(false);
 
   useLayoutEffect(() => {
     const token = localStorage.getItem("token");
@@ -38,22 +41,40 @@ const GlobalNavigationBar = () => {
     }
   };
 
+  const handleCart = () => {
+    if (selectedUser) {
+      navigate("/cart");
+    } else {
+      setModalOpen(true);
+    }
+  };
+
+  const handleModal = () => {
+    setModalOpen(false);
+  };
+
   const logOut = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("timeStamp");
     dispatch(setSelectedUser(false));
   };
   return (
-    <Wrapper>
-      <InnerContainer>
-        <Contents>
-          <img src={logo} alt={"카카오 로고"} />
-          <UserState onClick={handleState}>
-            {selectedUser ? "로그아웃" : "로그인"}
-          </UserState>
-        </Contents>
-      </InnerContainer>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <InnerContainer>
+          <Contents>
+            <img src={logo} alt={"카카오 로고"} onClick={() => navigate("/")} />
+            <ImgWrapper>
+              <img src={cart} alt={"장바구니"} onClick={handleCart} />
+            </ImgWrapper>
+            <UserState onClick={handleState}>
+              {selectedUser ? "로그아웃" : "로그인"}
+            </UserState>
+          </Contents>
+        </InnerContainer>
+      </Wrapper>
+      {modalOpen && <LoginModal onClick={handleModal} />}
+    </>
   );
 };
 
@@ -74,15 +95,14 @@ const Contents = styled.div`
   align-items: center;
   height: 100%;
 
-  img {
+  & > img {
     width: 100px;
-    heigh: 25px;
+    cursor: pointer;
   }
 `;
 
 const UserState = styled.div`
   position: relative;
-  margin-left: auto;
   font-size: 14px;
   cursor: pointer;
 
@@ -94,5 +114,16 @@ const UserState = styled.div`
     height: 22px;
     background-color: rgba(34, 34, 34, 0.2);
     content: "";
+  }
+`;
+
+const ImgWrapper = styled.div`
+  margin-left: auto;
+  margin-right: 50px;
+
+  & > img {
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
   }
 `;
