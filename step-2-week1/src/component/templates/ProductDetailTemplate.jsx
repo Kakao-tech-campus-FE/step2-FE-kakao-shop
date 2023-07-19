@@ -3,6 +3,7 @@ import ProductInformationColumn from "../molecules/ProductInformationColumn";
 import OptionColumn from "../molecules/OptionColumn";
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
+import '../../styles/templates/ProductDetailTemplate.css'
 
 const ProductDetailTemplate = ({ product }) => {
     // 
@@ -10,15 +11,13 @@ const ProductDetailTemplate = ({ product }) => {
   
     // 
     return (
+        <div className="product-detail-template">
         <Container>
             <ProductInformationColumn product={product}/>
             <OptionColumn product={product} />
-            {/*  */}
-            <ProductInformationColumn product />
-            <OptionColumn product />
-
             
         </Container>
+        </div>
     )
 
 }

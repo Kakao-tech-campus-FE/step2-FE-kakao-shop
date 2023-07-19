@@ -12,8 +12,10 @@ const ProductInformationColumn = ({ product }) => {
                 <Photo src={process.env.REACT_APP_API_URL+ product.image} alt={product.productName} />
             </div>
             <div className="col">
-                <h1 className="product-name">{product.productName}</h1>
-                <p className="product-price">{comma(product.price)}원</p>
+                <p className="review">★★★★★ 리뷰 1,501건</p>
+                <h1 className="product-detail-name">{product.productName}</h1>
+                <p className="product-detail-price">{comma(product.price)}원</p>
+                <p className="ship-fee">배송비 무료</p>
             </div>
         </div>
     );
