@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
+import Footer from '@components/molecules/Footer';
 import LoginForm from '@components/page/Login/LoginForm';
-import Footer from '@components/page/SignUp/Footer';
 import Title from '@components/page/SignUp/Title';
 
 const Login = () => {

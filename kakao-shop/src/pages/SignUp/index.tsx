@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import Footer from '@components/page/SignUp/Footer';
+import Footer from '@components/molecules/Footer';
 import SignUpForm from '@components/page/SignUp/SignUpForm';
 import Title from '@components/page/SignUp/Title';
 
