@@ -6,8 +6,8 @@ import Button from "../atoms/Button";
 import Title from "../atoms/Title";
 import Box from "../atoms/Box";
 import InputGroup from "../molecules/InputGroup";
-import useForm from "../../hooks/useForm";
-import instance from "../../services/api";
+import useInput from "../../hooks/useInput";
+import instance from "../../api";
 import { login } from "../../store/slices/authSlice";
 import AlertBox from "../molecules/AlertBox";
 
@@ -19,7 +19,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();
-  const { values, handleChange } = useForm({
+  const { values, handleChange } = useInput({
     email: "",
     password: "",
   });

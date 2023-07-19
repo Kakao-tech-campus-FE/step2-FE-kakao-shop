@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import MainPage from "./MainPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
+import ErrorPage from "./ErrorPage";
 
 /** 레이아웃 라우트
  *
@@ -17,6 +18,7 @@ const LayoutRoute = () => {
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<RegisterPage />} />
+        <Route path="/error" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
