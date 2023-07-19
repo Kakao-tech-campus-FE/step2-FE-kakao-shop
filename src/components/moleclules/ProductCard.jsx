@@ -9,7 +9,9 @@ const ProductCard = ({ product, skeleton }) => {
         <Photo
           src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
           alt={product.productName}
-          className={"block h-[150px] w-[270px] overflow-hidden rounded-[10px]"}
+          className={
+            "block aspect-[15/9] w-[100%] overflow-hidden rounded-[10px]"
+          }
           imgAnimation={
             "hover:scale-110 transition hover:ease-in duration-[250ms]"
           }
@@ -17,7 +19,7 @@ const ProductCard = ({ product, skeleton }) => {
       ) : (
         <div
           className={
-            "block h-[150px] w-[270px] overflow-hidden rounded-[10px] bg-gray-300"
+            "block aspect-[15/9] w-[100%] overflow-hidden rounded-[10px] bg-gray-300"
           }
         ></div>
       )}
@@ -30,7 +32,7 @@ const ProductCard = ({ product, skeleton }) => {
         )}
       </div>
       <div
-        className={`mt-2 text-sm ${
+        className={`mt-2 sm:text-sm ${
           skeleton && "mt-[30px] h-[50px] rounded-md bg-gray-300 text-[0px]"
         }`}
       >

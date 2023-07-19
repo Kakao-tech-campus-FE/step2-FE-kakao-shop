@@ -11,20 +11,24 @@ const GNB = () => {
 
   return (
     <header>
-      <div className="border-b border-gray-300 px-10 py-5">
+      <div className="border-b border-gray-300 p-3 lg:px-10 lg:py-5">
         <div className="m-auto flex max-w-[1280px] items-center justify-between">
           <Link to="/" replace={true}>
             <Photo
               src={"/logoKakao.png"}
               alt="logoKakao"
-              className={"w-[100px]"}
+              className={"w-[80px] lg:w-[100px]"}
             ></Photo>
           </Link>
           <div className="flex items-center justify-evenly">
             <Link>
-              <Photo src={"/cart.png"} alt="cart" className={"w-[40px]"} />
+              <Photo
+                src={"/cart.png"}
+                alt="cart"
+                className={"w-[30px] lg:w-[40px]"}
+              />
             </Link>
-            <span className="ml-5 mr-6 text-[20px] text-[rgba(34,34,34,.2)]">
+            <span className="ml-2 mr-3 text-[20px] text-[rgba(34,34,34,.2)] lg:ml-5 lg:mr-6">
               |
             </span>
             {!email ? (
