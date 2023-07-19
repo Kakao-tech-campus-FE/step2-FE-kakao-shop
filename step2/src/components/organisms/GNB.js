@@ -1,6 +1,5 @@
 import Logo from "../atoms/Logo";
 import MenuAccount from "../molecules/MenuAccount";
-import "./GNB.css";
 
 const GNB = () => {
   return (

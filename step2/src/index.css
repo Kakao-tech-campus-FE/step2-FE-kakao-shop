@@ -27,6 +27,18 @@
   @apply w-full border-none focus:outline-none;
 }
 
+.gnb {
+  @apply flex items-center p-8;
+}
+
+.img_logo {
+  @apply w-90;
+}
+
+.menu_account {
+  @apply ml-auto;
+}
+
 body {
   font-family: Arial, sans-serif;
 }
@@ -34,11 +46,6 @@ body {
 nav {
   margin-bottom: 1rem;
 }
-
-input, button {
-  
-}
-
 
 .example {
   background-color: whitesmoke;
