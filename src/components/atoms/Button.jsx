@@ -18,6 +18,7 @@ const StyledButton = styled.button`
     color: black;
   }
   &:disabled {
+    opacity: 0.6;
     cursor: not-allowed;
   }
 `;

@@ -8,6 +8,14 @@ export const commonInstance = axios.create({
   },
 });
 
+export const fetchProductsByPage = ({ page }) => {
+  return commonInstance.get(`/products?page=${page}`);
+};
+
+export const fetchProductById = ({ id }) => {
+  return commonInstance.get(`/products/${id}`);
+};
+
 export const authInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 1000,
@@ -19,18 +27,10 @@ export const authInstance = axios.create({
 authInstance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
-    config.headers["Authorization"] = token;
+    config.headers["Authorization"] = JSON.parse(token).token;
   }
   return config;
 });
-
-export const fetchProductsByPage = ({ page }) => {
-  return commonInstance.get(`/products?page=${page}`);
-};
-
-export const fetchProductById = ({ id }) => {
-  return commonInstance.get(`/products/${id}`);
-};
 
 export const addCart = (payload) => {
   return authInstance.post("/carts/add", payload);
@@ -38,4 +38,8 @@ export const addCart = (payload) => {
 
 export const showCart = () => {
   return authInstance.get("/carts");
+};
+
+export const updateCart = (payload) => {
+  return authInstance.post("/carts/update", payload);
 };

@@ -25,8 +25,8 @@ const Count = styled.div`
   text-align: center;
 `;
 
-const Counter = ({ onDecrease, onIncrease }) => {
-  const [count, setCount] = useState(1);
+const Counter = ({ value, onDecrease, onIncrease }) => {
+  const [count, setCount] = useState(value);
 
   const handleOnDecrease = () => {
     if (count > 1) {

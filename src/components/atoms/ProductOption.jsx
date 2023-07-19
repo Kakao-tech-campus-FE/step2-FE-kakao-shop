@@ -23,6 +23,11 @@ const SelectRow = styled.div`
   font-size: 18px;
   font-weight: 500;
 `;
+const SelectResultRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const ResultContainer = styled.div`
   height: 200px;
@@ -159,13 +164,17 @@ const ProductOption = ({ options }) => {
             key={item.optionId}
             type="inner"
             title={item.name}
-            extra="X"
+            extra="삭제"
             style={{ marginTop: "10px" }}
           >
-            <Counter
-              onIncrease={(count) => handleOnChange(count, item)}
-              onDecrease={(count) => handleOnChange(count, item)}
-            />
+            <SelectResultRow>
+              <Counter
+                value={item.quantity}
+                onIncrease={(count) => handleOnChange(count, item)}
+                onDecrease={(count) => handleOnChange(count, item)}
+              />
+              <div>{(item.quantity * item.price).toLocaleString()}원</div>
+            </SelectResultRow>
           </Card>
         ))}
       </SelectContainer>
@@ -183,20 +192,20 @@ const ProductOption = ({ options }) => {
         </FeeContainer>
         <ItemContainer>
           <ItemCount>
-            총 수량{" "}
+            총 수량&nbsp;
             {selectedOptions
               .reduce((acc, cur) => acc + cur.quantity, 0)
               .toLocaleString()}
             개
           </ItemCount>
           <ItemPrice>
-            총 주문금액{" "}
+            총 주문금액&nbsp;
             <span>
               {selectedOptions
                 .reduce((acc, cur) => acc + cur.quantity * cur.price, 0)
                 .toLocaleString()}
-            </span>{" "}
-            원
+            </span>
+            &nbsp;원
           </ItemPrice>
         </ItemContainer>
         <ButtonContainer>
