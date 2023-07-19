@@ -1,12 +1,19 @@
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
 import Button from './Button'
 
 const Counter = ({
   onIncrease, //수량 증가시 호출되는 함수
-  onDecrease // 수량 감소시 호출되는 함수
+  onDecrease, // 수량 감소시 호출되는 함수
+  quantity // 이전 quantity 값
 }) => {
-  const [count, setCount] = useState(1)
+  const [count, setCount] = useState(quantity)
   const [isDisabled, setIsDisabled] = useState(true)
+
+  useEffect(() => {
+    // quantity 값이 변경되면 count 값을 업데이트합니다.
+    setCount(quantity);
+  }, [quantity]);
+
   const handleOnIncrease = () => {
     setCount((prev) => {
       onIncrease (prev + 1)
