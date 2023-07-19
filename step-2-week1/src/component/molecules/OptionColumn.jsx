@@ -6,6 +6,7 @@ import { useMutation } from "react-query";
 import { addCart } from "../../services/cart";
 import Button from "../atoms/Button";
 import '../../styles/molcules/OptionColumn.css'
+import cart from '../../img/cart_white.png';
 
 const OptionColumn = ({ product }) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
@@ -52,11 +53,25 @@ const OptionColumn = ({ product }) => {
     });
 
 
+    const buttonStyle = {
+        width: '200px',   // 버튼의 너비를 200px로 설정
+        height: '50px',   // 버튼의 높이를 50px로 설정
+        background: '#F7F738', // 배경색을 파란색으로 설정
+        color: 'black',   // 글자 색을 흰색으로 설정
+        border: 'black',   // 테두리를 없앰
+        borderRadius: '4px', // 버튼 모서리를 둥글게 설정
+        cursor: 'pointer',
+        fontsize: '20px',
+
+    }
+
+
+
 
     return (
     <div className="option-column">
         <h3>옵션선택</h3>
-        <div className="dropdown-btn">상품명</div>
+        <div className="dropdown-btn">종류선택</div>
         <div className="dropdown-item">
         <OptionList 
             options={product.options}
@@ -80,7 +95,7 @@ const OptionColumn = ({ product }) => {
         </div>
         {selectedOptions.map((option) => (
             <ol key={option.id} className="selected-option-list">
-                <li className="slected-option">
+                <li className="selected-option">
                     <Counter 
                         onIncrease={(count) => handleOnChange(count, option.id)}
                         onDecrease={(count) => handleOnChange(count, option.id)}
@@ -91,7 +106,8 @@ const OptionColumn = ({ product }) => {
             </ol>
         ))}
         <div className="button-group">
-            <Button
+            <div className="button-cart">
+            <button
                 onClick={() => {
                     mutate(
                         selectedOptions.map((el) => {
@@ -111,8 +127,10 @@ const OptionColumn = ({ product }) => {
                         }
                     );
                 }}
-                >장바구니 (아이콘)</Button>
-                <Button>바로구매</Button>
+                ><img src={cart} alt="cart" height={40}/></button>
+                </div>
+               <button style={buttonStyle} className="buy-now">바로구매</button>
+              
         </div>
     </div>)
 }
