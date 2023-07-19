@@ -43,18 +43,19 @@ api.interceptors.response.use(
             cookie.remove('user_id', {path: '/'});
         }
 
-        if (!message) {
-            switch (status) {
-                case 401:
-                    message = "로그인이 필요합니다.";
-                    break;
-                case 500:
-                    message = "서버에 문제 발생했습니다.";
-                    break;
-                case 501:
-                    message = "잘못된 접근입니다.";
-                    break;
-            }
+        switch (status) {
+            case 401:
+                message = "로그인이 필요합니다.";
+                break;
+            case 404:
+                message = "존재하지 않는 페이지입니다.";
+                break;
+            case 500:
+                message = "서버에 문제 발생했습니다.";
+                break;
+            case 501:
+                message = "잘못된 접근입니다.";
+                break;
         }
 
         return Promise.reject(
