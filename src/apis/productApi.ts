@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 
 const useGetProductsQuery = () => {
   const MAX_PAGE = 1;
@@ -21,4 +21,19 @@ const useGetProductsQuery = () => {
   });
 };
 
-export default useGetProductsQuery;
+const useGetProductQuery = (id: number) => {
+  const fetcher = () =>
+    axios
+      .get(`/products/${id}`)
+      .then(({ data }) => data.response)
+      .catch((error) => {
+        throw error;
+      });
+
+  return useQuery({
+    queryKey: ['product'],
+    queryFn: fetcher,
+  });
+};
+
+export { useGetProductsQuery, useGetProductQuery };

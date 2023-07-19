@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import useGetProductsQuery from '../../apis/productApi';
+import { useGetProductsQuery } from '../../apis/productApi';
 import ProductGrid from '../organisms/ProductGrid';
 import Container from '../atoms/Container';
 import Loader from '../atoms/Loader';
