@@ -1,5 +1,6 @@
 import axios from "axios";
 import { checkStatus } from "../utils/statuscatch";
+import { getCookie } from "../store/cookies";
 
 export const instance = axios.create({
   baseURL:
@@ -13,6 +14,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
+
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
