@@ -55,10 +55,13 @@ const OptionColumn = ({ product }) => {
 
     return (
     <div className="option-column">
-        <h3>옵션 선택</h3>
-        <OptionList
+        <h3>옵션선택</h3>
+        <div className="dropdown-btn">상품명</div>
+        <div className="dropdown-item">
+        <OptionList 
             options={product.options}
             onclick={handleOnClickOption} />
+        </div>
         <hr />
         <div className="total-price">
             <span>
@@ -108,7 +111,8 @@ const OptionColumn = ({ product }) => {
                         }
                     );
                 }}
-                ></Button>
+                >장바구니 (아이콘)</Button>
+                <Button>바로구매</Button>
         </div>
     </div>)
 }

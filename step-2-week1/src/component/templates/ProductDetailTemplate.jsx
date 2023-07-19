@@ -11,13 +11,13 @@ const ProductDetailTemplate = ({ product }) => {
   
     // 
     return (
-        <div className="product-detail-template">
         <Container>
+        <div className="product-detail-template">
             <ProductInformationColumn product={product}/>
             <OptionColumn product={product} />
-            
+            </div>    
         </Container>
-        </div>
+        
     )
 
 }

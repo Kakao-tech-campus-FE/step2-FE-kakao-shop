@@ -3,6 +3,8 @@ import "../../styles/atoms/OptionList.css"
 
 const OptionList = ({ options, onclick }) => {
 
+    
+
     return (
         <ol className="option-list">
             {options && options.map((option, index) => (
