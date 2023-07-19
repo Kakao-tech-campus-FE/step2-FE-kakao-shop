@@ -1,16 +1,13 @@
-const LOGIN = {
+const LOGIN = Object.freeze({
     email: '',
     password: '',
-};
+});
 
-const SIGNUP = {
+const SIGNUP = Object.freeze({
     username: '',
     email: '',
     password: '',
     passwordCheck: '',
-};
-
-Object.freeze(LOGIN);
-Object.freeze(SIGNUP);
+});
 
 export default { LOGIN, SIGNUP };

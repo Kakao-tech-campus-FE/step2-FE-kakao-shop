@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import useForm from '../../hooks/useForm';
-import { signup } from '../../services/api';
-import signUpFormValidation from '../../utils/SignUpFormValidation';
+import { signup } from '../../services/user';
+import validationSignUpForm from '../../utils/validationSignUpForm';
 import SubmitButton from '../atoms/SubmitButton';
 import Form from '../atoms/Form';
 import LabelInput from '../molecules/LabelInput';
+import URL from '../../constants/URL';
 
 const SignUpForm = ({ inputInfo, defaultValue, buttonLabel }) => {
     let navigate = useNavigate();
@@ -12,10 +13,10 @@ const SignUpForm = ({ inputInfo, defaultValue, buttonLabel }) => {
         initValue: defaultValue,
         onSubmit: (set, values) => {
             signup(values).then(() => {
-                navigate('/');
+                navigate(URL.HOME);
             });
         },
-        validate: signUpFormValidation,
+        validate: validationSignUpForm,
     });
 
     return (

@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
         height: 100vh;
     }
 
+    picture > img {
+        width: inherit;
+    }
+
     input { 
         -webkit-appearance : none;
         -moz-appearance:none;

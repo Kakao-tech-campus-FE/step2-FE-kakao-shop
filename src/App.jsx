@@ -4,19 +4,23 @@ import { ThemeProvider } from 'styled-components';
 import theme from './styles/theme';
 import LoginPage from './pages/LoginPage';
 import SignUpPage from './pages/SignUpPage';
-import Header from './components/molecules/Header';
-import MainPage from './pages/MainPage';
+import HomePage from './pages/HomePage';
+import MainLayout from './layouts/MainLayout';
+import ProductDetailPage from './pages/ProductDetailPage';
+import URL from './constants/URL';
 
 const App = () => {
     return (
         <ThemeProvider theme={theme}>
             <GlobalStyle />
             <Router>
-                <Header />
                 <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/signup" element={<SignUpPage />} />
+                    <Route path={URL.LOGIN} element={<LoginPage />}></Route>
+                    <Route path={URL.SIGNUP} element={<SignUpPage />}></Route>
+                    <Route element={<MainLayout />}>
+                        <Route path={URL.HOME} element={<HomePage />}></Route>
+                        <Route path={URL.PRODUCT} element={<ProductDetailPage />}></Route>
+                    </Route>
                 </Routes>
             </Router>
         </ThemeProvider>

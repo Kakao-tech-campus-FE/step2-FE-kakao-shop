@@ -1,23 +1,23 @@
-import { useEffect, useRef } from "react";
-import "./toast.css"
+import { useEffect, useRef } from 'react';
+import './toast.css';
 
-const Toast = ({content}) => {
+const Toast = ({ children, upTime = 100, downTime = 2500 }) => {
     const toastRef = useRef(null);
-    useEffect(()=>{
+    useEffect(() => {
         toastRef.current.style.transition = `transform 0.5s ease-in-out`;
         toastRef.current.style.transform = `translateY(100%)`;
         setTimeout(() => {
-            toastRef.current.style.transform = "translateY(-20%)"; // 위로 올라오는 애니메이션 설정
-        }, 100);
+            toastRef.current.style.transform = 'translateY(-20%)'; // 위로 올라오는 애니메이션 설정
+        }, upTime);
         setTimeout(() => {
-            toastRef.current.style.transform = "translateY(100%)"; // 사라지는 애니메이션 설정
-        }, 2500);
+            toastRef.current.style.transform = 'translateY(100%)'; // 사라지는 애니메이션 설정
+        }, downTime);
     }, []);
 
-    return(
+    return (
         <div className="Toast" ref={toastRef}>
-            <p>{content}</p>
+            <p>{children}</p>
         </div>
-    )
-}
+    );
+};
 export default Toast;

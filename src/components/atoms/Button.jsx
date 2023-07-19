@@ -1,6 +1,14 @@
 import { styled } from 'styled-components';
 
-const SubmitButton = ({ children, className = '', onClick }) => {
+/**
+ * type이 "button"인 Button Component
+ * @param {ReactNode} children - 하위 컴포넌트
+ * @param {string} className - 클래스 이름
+ * @param {function} onClick - 버튼 클릭 시 실행되는 함수
+ * @returns {JSX.Element} 컴포넌트 반환
+ */
+
+const Button = ({ children, className = '' }) => {
     return (
         <StyledButton className={className} onClick={onClick} type="button">
             {children}
@@ -38,4 +46,4 @@ const StyledButton = styled.button`
     }
 `;
 
-export default SubmitButton;
+export default Button;
