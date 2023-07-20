@@ -87,8 +87,8 @@ const S = {
 
   ButtonCSS: css`
     position: absolute;
-    top: 12px;
-    right: 14px;
+    top: 2px;
+    right: 2px;
 
     border: none;
   `,
