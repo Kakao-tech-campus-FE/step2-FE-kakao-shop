@@ -1,9 +1,8 @@
-import {useEffect, useState} from "react";
-import Container from "../atoms/Container";
-import Box from "../atoms/Box";
-import Card from "../atoms/Card";
+import {useCallback, useEffect, useState} from "react";
 import CartItem from "../molecules/CartItem";
 import {comma} from "../../utils/convert";
+import {updateCart} from "../../services/cart";
+import {useMutation} from "react-query";
 
 const CartList = ({data}) => {
     const [cartItems, setCartItems] = useState([]);
@@ -14,7 +13,33 @@ const CartList = ({data}) => {
         setTotalPrice(data?.data?.response?.totalPrice);
     }, [data])
 
+    const {mutate} = useMutation({
+        mutationFn: updateCart,
+        onSuccess: () => {
+            console.log("장바구니 업데이트 성공")
+        },
+        onError: (error) => {
+            console.log("error", error)
+            alert(error.response.data.error.message)
+        }
+    })
+
+    const getTotalQuantity = useCallback(
+        () => {
+            let totalQuantity = 0;
+            cartItems.forEach((item) => {
+                item.carts.forEach((cart) => {
+                    totalQuantity += cart.quantity;
+                })
+            })
+            return totalQuantity;
+        }, [cartItems]
+    );
     const handleOnChangeCount = (optionId, quantity, price) => {
+        mutate([{
+            cartId : optionId,
+            quantity: quantity,
+        }])
         setCartItems((prev) => {
             return prev.map((item) => {
                 return {
@@ -32,11 +57,9 @@ const CartList = ({data}) => {
                 }
             })
         })
-        console.log("cartItem", cartItems)
         setTotalPrice((prev) => {
             return prev + price;
         });
-        console.log("ss")
     }
     return (
         <div className={"cart-list max-w-xl flex flex-col items-center"}>
@@ -54,11 +77,17 @@ const CartList = ({data}) => {
                             />
                         );
                     })}
+                {cartItems?.length===0 && (
+                    <div className={"h-40 flex items-center justify-center"}>
+                        <h1 className={"text-2xl font-bold"}>장바구니가 비었습니다.</h1>
+                    </div>
+                )}
             </div>
             <div>
                 <span>최종 금액</span>
                 <span>{comma(totalPrice)}원</span>
             </div>
+            <button className={"bg-black text-white"}>{getTotalQuantity()}건 주문하기</button>
         </div>
     )
 }

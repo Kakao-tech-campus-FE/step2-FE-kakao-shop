@@ -1,4 +1,6 @@
 import {useEffect, useState} from "react";
+import {BsPlusLg} from "react-icons/bs";
+import {BiMinus} from "react-icons/bi";
 
 const NUMBER_REGEX = /^\d+$/
 
@@ -41,7 +43,6 @@ const Counter = ({
 
 
     useEffect(() => {
-        console.log("useEffect", value)
         setTempInput(value)
     }, [value])
 
@@ -52,9 +53,9 @@ const Counter = ({
 
     return (
         <div className={`counter w-full flex flex-row ${className}`}>
-            <button onClick={handleOnDecrease} className={"w-1/4 border border-light-gray-700"}>-</button>
+            <button onClick={handleOnDecrease} className={"w-1/4 border border-light-gray-700 flex justify-center items-center"}><BiMinus/></button>
             <input className={`option-counter w-2/4 text-center `} value={tempInput} onBlur={validateInput} onChange={handleInput}></input>
-            <button onClick={handleOnIncrease} className={"w-1/4 border border-light-gray-700"}>+</button>
+            <button onClick={handleOnIncrease} className={"w-1/4 border border-light-gray-700 flex justify-center items-center"}><BsPlusLg/></button>
         </div>
     )
 }

@@ -1,6 +1,6 @@
-import Card from "../atoms/Card";
 import Counter from "../atoms/Counter";
 import {comma} from "../../utils/convert";
+import {RxCross2} from "react-icons/rx";
 
 const CartItem = ({item, onChange}) => {
     return (
@@ -10,7 +10,12 @@ const CartItem = ({item, onChange}) => {
                 (
                     <div
                         key={cart.id}
-                        className={"cart-item p-3 my-3 border-s-4 border-light-gray-700"}>
+                        className={"cart-item pb-5 px-5 m-3 border-s-4 border-light-gray-700"}>
+                        <button className={"del-button flex  w-full justify-end items-end"}
+                                // onClick={onChange(cart.id, 0, -cart.quantity*cart.option.price)}
+                            >
+                            <RxCross2 className={"text-right"}/>
+                        </button>
                         <div className="option-name flex flex-row justify-between my-2">
                             <span>{cart.option.optionName}</span>
                             <span>{comma(cart.option.price)}원</span>
@@ -18,12 +23,12 @@ const CartItem = ({item, onChange}) => {
 
                         <div className={"row flex flex-row"}>
                             <div className="option-count w-32">
-                            <Counter
-                                value={cart.quantity}
-                                handleOnChange={(value) => {
-                                    return onChange(cart.id, value, (value-cart.quantity) * cart.option.price)
-                                }}
-                            />
+                                <Counter
+                                    value={cart.quantity}
+                                    handleOnChange={(value) => {
+                                        return onChange(cart.id, value, (value - cart.quantity) * cart.option.price)
+                                    }}
+                                />
                             </div>
                             <div className="option-price w-full text-right">
                                 <span>{comma(cart.option.price * cart.quantity)}원</span>
