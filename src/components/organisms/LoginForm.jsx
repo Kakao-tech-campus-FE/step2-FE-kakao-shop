@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../services/users";
-import { setUser } from "../../store/slices/userSlice";
+import { setToken, setUser } from "../../store/slices/userSlice";
 
 import "../../styles/organisms/LoginForm.css";
 
@@ -29,13 +29,17 @@ const LoginForm = () => {
     const { email, password } = data;
     try {
       const response = await login({ email, password }); //use apis and recieve response
+      const token = response?.headers?.authorization;
       const user = response.data;
+
       const expirationTime = new Date().getTime() + 60 * 60 * 1000; //expiration time setting, 60min
       user.expirationTime = expirationTime;
       user.email = value.email;
 
       dispatch(setUser(user)); // redux, exec setUser , store expirationTime, email
       localStorage.setItem("user", JSON.stringify(user)); // save at localStorage
+      dispatch(setToken(token));
+      localStorage.setItem("token", token);
       navigate("/"); // login success then go to home
     } catch (error) {
       setError("로그인에 실패했습니다.");
@@ -64,10 +68,12 @@ const LoginForm = () => {
         onChange={handleOnChange}
       />
       <Button
-        onClick={handleLogin({
-          email: value.email,
-          password: value.password,
-        })}
+        onClick={() =>
+          handleLogin({
+            email: value.email,
+            password: value.password,
+          })
+        }
       >
         로그인
       </Button>

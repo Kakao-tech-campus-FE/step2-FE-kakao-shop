@@ -22,7 +22,7 @@ const userSlice = createSlice({
       state.isLoggedIn = false;
     },
     setToken: (state, action) => {
-      state.token = action.payload.token;
+      state.token = action.payload;
     },
   },
 });

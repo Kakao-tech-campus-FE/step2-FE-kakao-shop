@@ -14,7 +14,6 @@ const ProductDetailPage = () => {
   );
 
   const product = data?.data?.response;
-  console.log(`id = ${id}`);
 
   const validate = () => {
     if (!product) {

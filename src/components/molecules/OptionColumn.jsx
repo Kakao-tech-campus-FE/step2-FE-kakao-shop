@@ -10,6 +10,7 @@ const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
+    console.log(option);
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
@@ -57,11 +58,15 @@ const OptionColumn = ({ product }) => {
       <hr />
       {/*담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={option.id} className="selected-option-list">
+        <ol key={option.optionId} className="selected-option-list">
           <li className="selected-option">
             <Counter
-              onIncrease={(count) => handleOnChange(count, option.id)}
-              onDecrease={(count) => handleOnChange(count, option.id)}
+              onIncrease={(count) => {
+                handleOnChange(count, option.optionId);
+              }}
+              onDecrease={(count) => {
+                handleOnChange(count, option.optionId);
+              }}
             />
             <span className="name">{option.name}</span>
             <span className="price">{comma(option.price)}원</span>
@@ -97,7 +102,7 @@ const OptionColumn = ({ product }) => {
             mutate(
               selectedOptions.map((el) => {
                 return {
-                  optionId: el.id,
+                  optionId: el.optionId,
                   quantity: el.quantity,
                 };
               }),
