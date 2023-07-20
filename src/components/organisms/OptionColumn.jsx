@@ -1,18 +1,16 @@
 import React, { useReducer, useState } from "react";
 import OptionList from "./OptionList";
 import DeliveryForm from "./DeliveryForm";
-import Box from "../atoms/Box";
-import Button from "../atoms/Button";
-import Icon from "../atoms/Icon";
-import cartImage from "../../assets/cart_white.png";
-import { comma } from "../../utils/convert";
 import optionReducer from "../../reducer/option-reducer";
 import { useMutation } from "react-query";
 import cartInstance from "../../apis/cart";
 import { useSelector } from "react-redux";
+import PurchaseGroup from "../molecules/PurchaseGroup";
+import { useNavigate } from "react-router-dom";
 
 export default function OptionColumn({ productData, modalRef }) {
   const { options } = productData;
+  const navigate = useNavigate();
   const [isOptionShow, setIsOptionShow] = useState(false);
   const user = useSelector((state) => state.user.isLoggedIn);
   const [optionList, dispatch] = useReducer(optionReducer, []);
@@ -29,6 +27,7 @@ export default function OptionColumn({ productData, modalRef }) {
   const handleOptionDelete = (id) => {
     dispatch({ type: "delete", id });
   };
+  // handleAddCart, handlePurchase 중복 제거
   const handleAddCart = () => {
     if (!user) {
       modalRef.current.showModal();
@@ -52,6 +51,25 @@ export default function OptionColumn({ productData, modalRef }) {
       }
     );
   };
+  const handlePurchase = () => {
+    if (!user) {
+      modalRef.current.showModal();
+      return;
+    }
+    if (optionList.length === 0) {
+      alert("옵션을 먼저 선택해주세요.");
+      return;
+    }
+    mutate(
+      optionList.map((option) => ({
+        optionId: option.id,
+        quantity: option.count,
+      })),
+      {
+        onSuccess: () => navigate("/purchase"),
+      }
+    );
+  };
   return (
     <section className="basis-1/3 border-l pl-8">
       <OptionList
@@ -64,33 +82,11 @@ export default function OptionColumn({ productData, modalRef }) {
         handleOptionDelete={handleOptionDelete}
       />
       <DeliveryForm />
-      <Box className="flex justify-between py-3 text-lg font-semibold">
-        <p>총 수량 {getAllCount(optionList)}개</p>
-        <p>
-          총 주문금액{" "}
-          <span className="text-red-500 font-extrabold">
-            {comma(getAllPrice(optionList))}
-          </span>
-          원
-        </p>
-      </Box>
-      <Box className="flex justify-between pb-8">
-        <Button padding="p-2" color="black" radius="sm" onClick={handleAddCart}>
-          <Icon alt="장바구니 담기" width="w-9" height="h-9">
-            {cartImage}
-          </Icon>
-        </Button>
-        <Button padding="px-16 py-3" font="semibold" color="yellow" radius="sm">
-          톡딜가로 구매하기
-        </Button>
-      </Box>
+      <PurchaseGroup
+        optionList={optionList}
+        onAddCart={handleAddCart}
+        onPurchase={handlePurchase}
+      />
     </section>
   );
 }
-
-const getAllCount = (items) => {
-  return items.reduce((pre, cur) => pre + cur.count, 0);
-};
-const getAllPrice = (items) => {
-  return items.reduce((pre, cur) => pre + cur.price * cur.count, 0);
-};

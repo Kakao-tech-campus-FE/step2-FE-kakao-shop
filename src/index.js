@@ -12,6 +12,7 @@ import store from "./store";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
+import PurchasePage from "./pages/PurchasePage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
       { index: true, element: <MainPage /> },
       { path: "/product/:id", element: <ProductDetailPage /> },
       { path: "/cart", element: <CartPage /> },
+      { path: "/purchase", element: <PurchasePage /> },
     ],
   },
   {
