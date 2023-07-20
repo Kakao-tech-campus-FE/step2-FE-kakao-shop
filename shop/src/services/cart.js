@@ -1,4 +1,4 @@
-import { instance } from "./index";
+import { cartsInstance } from "./index";
 
 /**
  * 장바구니 담기 
@@ -6,11 +6,11 @@ import { instance } from "./index";
  * @returns instance.post("/cart/add")
  */
 export const addCart = (payload) => {
-  return instance.post("/carts/add")
+  return cartsInstance.post("/carts/add", payload)
 }
 export const getCart = () => {
-  return instance.get("/carts")
+  return cartsInstance.get("/carts")
 }
 export const updateCart = (items) => {
-  return instance.get("/carts/updata", items)
+  return cartsInstance.get("/carts/update", items)
 }
