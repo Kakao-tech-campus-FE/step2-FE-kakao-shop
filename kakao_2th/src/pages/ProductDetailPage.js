@@ -7,22 +7,16 @@ import { useQuery } from "react-query";
 
 const ProductDetailPage = () => {
     const { id } = useParams();
-    const dispatch = useDispatch()
+    const { data, error, isLoading } = useQuery(`product/${id}`, () => {
+        getProductById(id)
+    })
 
-    const {
-        data,
-        error,
-        isLoading,
-    } = useQuery(`product/${id}`, () => getProductById(id))
-
-    useEffect(() => {
-
-    }, [dispatch, id])
+    const product = data?.data?.response;
 
     return <div>
         {isLoading && <Loader />}
         {error && <div>{error.message}</div>}
-        {data && <div>{data.porductName}</div>}
+        {data && <div>{product.porductName}</div>}
     </div>
 }
 
