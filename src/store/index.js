@@ -1,29 +1,26 @@
-import { applyMiddleware , configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware, configureStore } from "@reduxjs/toolkit";
 import userSlice from "../store/userSlice";
 import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
-import { combineReducers } from 'redux'
+import { persistReducer, persistStore } from "redux-persist";
+import { combineReducers } from "redux";
+import productsSlice from "../store/productSlice";
 
-const reducer = combineReducers({
-  user : userSlice.reducer,
+const rootReducer = combineReducers({
+  user: userSlice.reducer,
+  products: productsSlice,
 });
 
-const persisConfig = {
-  key:"root",
+const persistConfig = {
+  key: "root",
   storage,
-  whitelist: ['user']
+  whitelist: ["user"],
 };
 
-const persistedReducer = persistReducer(persisConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = configureStore({
+export const store = configureStore({
   reducer: persistedReducer,
-  // middleware: (getDefaultMiddleware) =>
-  // getDefaultMiddleware({
-  //   serializableCheck: false,
-  // }),
-  
   devTools: true, // Redux DevTools 활성화
 });
 
-export default store;
+export const persistor = persistStore(store);

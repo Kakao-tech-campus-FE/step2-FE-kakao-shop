@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap");
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background-color: #ffffff;
+  position: relative;
+}
+
+.contents {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-start;
+}
+
+.contents .logo {
+  position: absolute;
+}
+.contents .navigation {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: "Helvetica Neue", sans-serif;
+  color: #333;
+  position: absolute;
+  right: 0px;
+}
+
+.navigation span {
+  margin: 0 10px;
+}
+
+.navigation span:first-child {
+  margin-left: 0;
+}
+
+.navigation span:last-child {
+  margin-right: 0;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: black;
+  margin: 0 10px;
+}
+
+.navigation button {
+  margin-left: 10px;
+}

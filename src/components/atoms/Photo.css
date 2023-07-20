@@ -1,0 +1,37 @@
+.container .product-grid {
+  position: relative;
+  margin: 1rem 0;
+  top: 100px;
+  left: 50px;
+  width: 50%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1rem;
+
+  /* overflow-y: auto; Enable vertical scrolling within the grid */
+}
+
+.card {
+  display: inline-block;
+  width: 284px;
+  padding: 0 20px 50px 0;
+  vertical-align: top;
+  margin-bottom: 40px;
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+  /* Add additional styling as needed */
+}
+
+.product-name {
+  font-weight: bold;
+  /* Add additional styling as needed */
+}
+
+.product-price {
+  color: #555555;
+  /* Add additional styling as needed */
+}
