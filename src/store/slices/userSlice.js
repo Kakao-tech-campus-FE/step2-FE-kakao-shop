@@ -73,7 +73,7 @@ export const loginRequest = createAsyncThunk(
                 confirmButtonText:'확인',
             })
             .then(() => {
-                const expirationDate = new Date().getTime() + 10000; // 10초 세팅
+                const expirationDate = new Date().getTime() + 1000 * 60 * 10; // 10분 세팅
 
                 localStorage.setItem("email", email);
                 localStorage.setItem("token", response.headers.authorization);

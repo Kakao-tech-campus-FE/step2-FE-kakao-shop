@@ -10,8 +10,10 @@ const Counter = ({onIncrease, onDecrease}) => {
     }
 
     const handleOnDecrease = () => {
-        setCount(count - 1);
-        onDecrease(count - 1);
+        if (count > 0) {
+            setCount(count - 1);
+            onDecrease(count - 1);
+        }
     }
 
     return (

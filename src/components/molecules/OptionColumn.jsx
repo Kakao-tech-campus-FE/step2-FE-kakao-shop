@@ -2,9 +2,12 @@ import { useState } from "react";
 import { comma } from "../../utils/comma";
 import { useMutation } from "@tanstack/react-query";
 import { addCart } from './../services/cart';
+import { cartSuccessMessage, cartFailedMessage, cartLoginNeedMessage } from "../../utils/constants";
+import Swal from "sweetalert2";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
 import Button from './../atoms/Button';
+import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
     /**
@@ -12,8 +15,11 @@ const OptionColumn = ({ product }) => {
      * UI단에서 표시하기 위해 4가지 옵션값을  받아서 처리해줌
      */
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const token = localStorage.getItem("token");
+    const navigate = useNavigate();
 
     const handleOnClickOption = (option) => {
+        // console.log(option.id)
         // 사용자가 선택한 옵션이 이미 담겨져있는 옵션인지 아닌지 판별
         const isOptionSelected = selectedOptions.find(
             (el) => el.optionId === option.id
@@ -36,6 +42,8 @@ const OptionColumn = ({ product }) => {
     }
 
     const handleOnChange = (count, optionId) => {
+        console.log(count)
+        console.log(optionId)
         setSelectedOptions((prev) => {
             return prev.map((el) => {
                 if (el.optionId === optionId) {
@@ -68,14 +76,15 @@ const OptionColumn = ({ product }) => {
             {/* 담긴 옵션을 표시할 부분 - 옵션 이름 + 가격 + 수량 + 총 가격 */}
             {/* Counter : 옵션 개수를 변경할 수 있는 기능을 제공하는 컴포넌트! */}
             {selectedOptions.map((option) => (
-                <ol key={option.id} className="selected-option-list">
+                <ol key={option.optionId} className="selected-option-list">
                     <li className="selected-option">
-                        <Counter 
-                            onDecrease={(count) => handleOnChange(count, option.id)}
-                            onIncrease={(count) => handleOnChange(count, option.id)}
+                        <Counter
+                            onDecrease={(count) => handleOnChange(count, option.optionId)}
+                            onIncrease={(count) => handleOnChange(count, option.optionId)}
                         />
-                        <span className="name">{option.name}</span>
-                        <span className="price">{comma(option.price)}원</span>
+                        <span className="name">{option.name} </span>
+                        <span className="quantity">{option.quantity}개 </span>
+                        <span className="price">{`${comma(option.price)} * ${option.quantity} = ${comma(option.price * option.quantity)}`}원</span>
                     </li>
                 </ol>
             ))}
@@ -86,6 +95,7 @@ const OptionColumn = ({ product }) => {
                         return acc + cur.quantity;
                     }, 0))}개 
                 </span>
+                <br/>
                 <span>총 상품금액: {
                     comma(selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity * cur.price;
@@ -103,10 +113,15 @@ const OptionColumn = ({ product }) => {
                         }
                     }), {
                         onSuccess: () => {
-                            alert("장바구니에 담겼습니다!");
+                            token 
+                            ? Swal.fire(cartSuccessMessage) 
+                            : Swal.fire(cartLoginNeedMessage)
+                            .then(navigate("/login"))
                         },
                         onError: () => {
-                            alert("장바구니에 담지 못했습니다.")
+                            // 적절하지 않은 값에 대해 장바구니 담기 - 에러 핸들링 처리
+                            Swal.fire(cartFailedMessage)
+                            .then(navigate("/notFoundPage"))
                         }
                     });
                 }}></Button>
