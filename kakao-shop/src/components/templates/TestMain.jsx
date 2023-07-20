@@ -1,11 +1,11 @@
-import Container from "../atoms/Container";
-import ProductGrid from "../organisms/ProductGrid";
-import { Suspense } from "react";
-import { useEffect, useRef, useState } from "react";
-import { fetchProducts } from "../../apis/product";
-import Loader from "../atoms/Loader";
-import { useInfiniteQuery, useQuery } from "react-query";
-import _ from "lodash";
+import Container from '../atoms/Container';
+import ProductGrid from '../organisms/ProductGrid';
+import { Suspense } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { fetchProducts } from '../../apis/product';
+import Loader from '../atoms/Loader';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import _ from 'lodash';
 
 const TestMain = () => {
   const [page, setPage] = useState(0);
@@ -41,7 +41,7 @@ const TestMain = () => {
     isError,
     error,
   } = useQuery(
-    ["/products", page], // Include page in the query key
+    ['/products', page], // Include page in the query key
     () => fetchProducts(page, isEnd),
 
     {
@@ -52,21 +52,16 @@ const TestMain = () => {
   useEffect(() => {
     // console.log(productsData.flat());
     if (productsData) {
-      console.log("length:", productsData.flat().length);
+      console.log('length:', productsData.flat().length);
       productsData.flat().length < 9 && setIsEnd(true);
-      setProducts(_.uniqBy([...products, ...productsData.flat()], "id"));
+      setProducts(_.uniqBy([...products, ...productsData.flat()], 'id'));
     }
   }, [productsData]);
 
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (
-          !isLoading &&
-          entry.isIntersecting &&
-          bottomObserver.current &&
-          !isEnd
-        ) {
+        if (!isLoading && entry.isIntersecting && bottomObserver.current && !isEnd) {
           setPage((prev) => prev + 1);
         }
       });
@@ -81,7 +76,7 @@ const TestMain = () => {
   }, [bottomObserver.current, io]);
 
   useEffect(() => {
-    console.log("page");
+    console.log('page');
     console.log(page);
   }, [page]);
 

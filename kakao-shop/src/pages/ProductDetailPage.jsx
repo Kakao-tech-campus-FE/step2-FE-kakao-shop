@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 import Loader from '../components/atoms/Loader';
 import { getProductById } from '../apis/product';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
 
-  const { data, error, isLoading } = useQuery(`products/${id}`, () => getProductById(id));
+  const { status, data } = useQuery({ queryKey: ['product', id], queryFn: () => getProductById(id) });
 
   const product = data?.data?.response;
 
@@ -28,13 +28,15 @@ const ProductDetailPage = () => {
     return true;
   };
 
-  return (
-    <div className="product-detail-page">
-      {isLoading && <Loader />}
-      {error && <div>error</div>}
-      {product && <ProductDetailTemplate product={product} />}
-    </div>
-  );
+  if (status === 'loading') {
+    return <Loader />;
+  }
+
+  if (status === 'error') {
+    return <div>error</div>;
+  }
+
+  return <div className="product-detail-page">{product && <ProductDetailTemplate product={product} />}</div>;
 };
 
 export default ProductDetailPage;

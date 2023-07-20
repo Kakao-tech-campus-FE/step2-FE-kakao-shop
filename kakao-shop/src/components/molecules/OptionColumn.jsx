@@ -4,7 +4,7 @@ import Button from '../atoms/Button.jsx';
 import Divider from '../atoms/Divider.jsx';
 import { comma } from '../../utils/convert.js';
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import { addCart } from '../../apis/cart.js';
 
 import { GoGift, GoHeart, GoX } from 'react-icons/go';

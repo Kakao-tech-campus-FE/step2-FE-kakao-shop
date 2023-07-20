@@ -13,7 +13,7 @@ import { getCookie } from '../../storage/Cookie';
 import { useEffect, useState } from 'react';
 
 import { getCart } from '../../apis/cart';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 /**
  * 선물하기 헤더의 내부 헤더 컴포넌트
@@ -22,10 +22,18 @@ import { useQuery } from 'react-query';
  * @returns {JSX.Element} - InnerHead 컴포넌트의 JSX 요소
  */
 export default function InnerHead() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [count, setCount] = useState(0);
+
   const userEmail = getCookie('email');
 
-  const [count, setCount] = useState(0);
-  const { data } = useQuery('cart', getCart);
+  useEffect(() => {
+    if (userEmail) {
+      setLoggedIn(true);
+    }
+  }, [userEmail]);
+
+  const { data } = useQuery(['cart'], () => (loggedIn ? getCart : null));
 
   useEffect(() => {
     setCount(data?.data?.response.products.length);
@@ -63,9 +71,11 @@ export default function InnerHead() {
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
           <Link to="/cart" className="relative">
-            <span className="cart-count absolute -top-1 left-3 text-[0.3rem] text-center text-white bg-red-600 rounded-full w-3 h-3">
-              {count}
-            </span>
+            {count > 0 && (
+              <span className="cart-count absolute -top-1 left-3 text-[0.3rem] text-center text-white bg-red-600 rounded-full w-3 h-3">
+                {count}
+              </span>
+            )}
             <BsCart2 size="20" />
           </Link>
           {userEmail ? (

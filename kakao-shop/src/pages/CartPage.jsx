@@ -1,10 +1,10 @@
 import CartList from '../components/molecules/CartList';
 import { Suspense, useEffect, useState } from 'react';
 import { getCart } from '../apis/cart';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import Loader from '../components/atoms/Loader';
 const CartPage = () => {
-  const { data } = useQuery('cart', getCart);
+  const { data } = useQuery(['cart'], getCart);
 
   return (
     <Suspense fallback={<Loader />}>

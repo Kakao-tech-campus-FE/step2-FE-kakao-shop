@@ -8,7 +8,7 @@ import Button from '../atoms/Button';
 
 import { updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
-import { useMutation } from 'react-query';
+import { useMutation } from '@tanstack/react-query';
 import GrayBox from '../atoms/GrayBox';
 
 const CartList = ({ data }) => {
