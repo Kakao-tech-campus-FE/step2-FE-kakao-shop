@@ -21,3 +21,16 @@ export interface DetailProductInfo {
   starCount: number;
   options: OptionInfo[];
 }
+
+export interface CartInfo {
+  id: number;
+  option: OptionInfo;
+  quantity: number;
+  price: number;
+}
+
+export interface CartProductInfo {
+  id: number;
+  productName: string;
+  carts: CartInfo[];
+}
