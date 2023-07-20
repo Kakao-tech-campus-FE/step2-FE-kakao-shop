@@ -4,17 +4,26 @@ import Button from "../atoms/Button";
 import { useEffect, useState } from "react";
 import Counter from "../atoms/Counter";
 import { useMutation } from "react-query";
-import { addCart } from "../../apis/cart";
+import { addCart, getCart } from "../../apis/cart";
 import { comma } from "../../utils/convert";
+import { getLocalStorage } from "../../utils/localStorage";
+import { useNavigate } from "react-router-dom";
 
 const ProductOption = ({product}) => {
+    const navigate = useNavigate();
     const [selectedOptions, setSelectedOptions] = useState([]);
 
     const handleOnClickOption = (option) => {
         // 동일한 옵션 클릭을 방지해주어야 하는 코드
-        const isOptionSelected = selectedOptions.find(
-            (selectedOption) => selectedOption.optionId === option.id
-        );
+        let isOptionSelected;
+        if(JSON.parse(getLocalStorage("user")).value) {
+            isOptionSelected = selectedOptions.find(
+                (selectedOption) => selectedOption.optionId === option.id
+            );
+        } else {
+            alert('로그인이 필요합니다.');
+            navigate('/login');
+        }
 
         // 이미 선택된 옵션이면 증가
         if(isOptionSelected) {
@@ -143,6 +152,7 @@ const ProductOption = ({product}) => {
                             alert("장바구니 담기에 실패했습니다.");
                         }
                     });
+                    console.log(getCart());
                 }}>장바구니 담기</Button>
                 <Button className="talkButton">톡딜가로 구매하기</Button>
             </Option.Purchase>
