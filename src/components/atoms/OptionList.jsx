@@ -10,9 +10,7 @@ const OptionList = ({ options, onClick }) => {
             key={option.id}
             onClick={() => onClick(option)}
           >
-            <span className="name">
-              {index + 1}. {option.optionName}
-            </span>
+            <span className="name">{option.optionName}</span>
             <span className="price">{comma(option.price)}원</span>
           </li>
         );

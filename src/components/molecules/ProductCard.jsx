@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
   return (
     <Card to={`/product/${product.id}`}>
       <Photo
-        className={"card-photo"}
+        className={"product-card-photo"}
         alt={product.productName}
         src={`${process.env.REACT_APP_API_URL}${product.image}`}
       />

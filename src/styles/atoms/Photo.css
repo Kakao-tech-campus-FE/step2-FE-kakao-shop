@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  picture .card-photo {
+  picture .product-card-photo {
     @apply h-fit;
   }
 }

@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";

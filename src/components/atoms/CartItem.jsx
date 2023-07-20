@@ -1,5 +1,4 @@
 import Box from "./Box";
-import Card from "./Card";
 import Counter from "./Counter";
 
 // 각 상품별 장바구니 항목
