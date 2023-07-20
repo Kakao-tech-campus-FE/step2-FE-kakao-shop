@@ -3,6 +3,7 @@ import { comma } from "../../utils/convert";
 import Box from "./Box/index.js";
 import Card from "./Card";
 import Counter from "./Counter";
+import "../../styles/Atoms/CartItem.css";
 
 const CartItem = ({ item, onChange }) => {
     return (
