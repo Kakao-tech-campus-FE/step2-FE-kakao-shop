@@ -11,7 +11,7 @@ export interface RegisterData {
 
 export interface ProductOptionData {
   id: number;
-  price: string;
+  price: number;
   optionName: string;
 }
 
