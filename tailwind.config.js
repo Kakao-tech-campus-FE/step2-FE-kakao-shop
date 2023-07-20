@@ -21,6 +21,7 @@ module.exports = {
       height: {
         confirmButton: "38px",
         inherit: "inherit",
+        cart: "632px",
       },
       fontSize: {
         errorMessage: "13px",

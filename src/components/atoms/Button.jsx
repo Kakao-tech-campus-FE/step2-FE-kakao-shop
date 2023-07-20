@@ -8,6 +8,7 @@ const COLOR = {
 };
 
 const RADIUS = {
+  xs: "rounded-sm",
   sm: "rounded-md",
   lg: "rounded-full",
 };
