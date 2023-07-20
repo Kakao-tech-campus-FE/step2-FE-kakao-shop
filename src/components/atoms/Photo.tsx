@@ -3,10 +3,16 @@ import React from 'react';
 interface PhotoProps {
   src: string;
   alt: string;
-  setImgLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  setImgLoaded?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Photo = ({ src, alt, setImgLoaded }: PhotoProps) => {
+const Photo = ({
+  src,
+  alt,
+  setImgLoaded = () => {
+    return false;
+  },
+}: PhotoProps) => {
   return (
     <picture>
       <img
