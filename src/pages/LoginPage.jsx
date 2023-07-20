@@ -1,8 +1,8 @@
-import LoginForm from "../components/templates/LoginTemplate";
+import LoginTemplate from "../components/templates/LoginTemplate";
 const LoginPage = () => {
   return (
     <>
-      <LoginForm />
+      <LoginTemplate />
     </>
   );
 };

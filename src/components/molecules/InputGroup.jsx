@@ -1,32 +1,25 @@
 import Label from "../atoms/Label";
 import Input from "../atoms/Input";
 import Group from "../atoms/Group";
-import ErrorMsg from "../atoms/ErrorMsg";
+import Msg from "../atoms/Msg";
 
 const InputGroup = ({
   id,
   children,
-  name,
-  type,
-  value,
-  placeholder,
-  onChange,
+  msgColor,
+  helperMsg,
+  errorMsg,
+  ...inputProps
 }) => {
-  const label = children[0];
-  const errorMsg = children[1];
   return (
     <>
       <Group>
-        <Label htmlFor={id}>{label}</Label>
-        <Input
-          id={id}
-          name={name}
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-        />
-        <ErrorMsg>{errorMsg}</ErrorMsg>
+        <Label htmlFor={id}>{children}</Label>
+        <Input id={id} {...inputProps} />
+        <Msg msgColor={errorMsg ? "red" : "gray"}>
+          {helperMsg}
+          {errorMsg}
+        </Msg>
       </Group>
     </>
   );

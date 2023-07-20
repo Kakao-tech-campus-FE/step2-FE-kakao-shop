@@ -1,4 +1,4 @@
-import Button from "../atoms/Button";
+import LinkButton from "../atoms/LinkButton";
 import Label from "../atoms/Label";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
@@ -16,13 +16,13 @@ const GoRegister = () => {
     <>
       <AnchorRegister>
         <Label>계정이 없으신가요?</Label>
-        <Button
+        <LinkButton
           type="click"
           onClick={() => navigate(routes.register)}
-          styles={{ width: "5rem", fontWeight: "bold" }}
+          styles={{ fontWeight: "bold" }}
         >
           회원가입
-        </Button>
+        </LinkButton>
       </AnchorRegister>
     </>
   );
