@@ -71,16 +71,20 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
         <div>
           <span>
             총 수량:
-            {selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity;
-            }, 0)}
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity;
+              }, 0),
+            )}
             개
           </span>
           <span>
             총 상품금액:
-            {selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)}
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price;
+              }, 0),
+            )}
           </span>
         </div>
         <div>
