@@ -1,8 +1,8 @@
 import axios from "axios"
 import Swal from 'sweetalert2'
-import { registerWelcomeMessage, clearTokens } from "../../utils/constants";
+import { clearTokens } from "../../utils/constants";
 
-const instance = axios.create({
+export const instance = axios.create({
     baseURL : process.env.REACT_APP_API_URL, // production level 에서는 env에서 넣어주어야함(보안 관련)
     timeout : 1000, // 타임아웃이 없으면 무한정 wait가 걸려버릴 수도 있다!
     headers : {
@@ -28,6 +28,12 @@ instance.interceptors.response.use(
     (response) => {
         return response;
     },
+    // HTTP 응답 코드별 상태 정리
+    // 1XX : 정보 제공
+    // 2XX : 성공(Success)
+    // 3XX : 리다이렉션(Redirection)
+    // 4XX : 클라이언트 에러
+    // 5XX : 서버 에러
     (error) => {
         // 401 error : 인증되지 않음 - 로그인 화면으로 이동
         // token은 백엔드에서 유효하지 않다면 401(Unauthorized) Http code를 보내주기에, 이에따라 처리
@@ -45,7 +51,19 @@ instance.interceptors.response.use(
             return Promise.resolve();
         }
 
-        // 401외의 다른 error
+        // 404 error : 지정한 리소스를 찾을 수 없음
+        // 에러 메시지를 띄워주는 것 외에, 잘못된 경로로 이동 시 NotFound페이지로 이동(라우팅에서 처리)
+        if (error.response.status === 404) {
+            Swal.fire({
+                icon: 'error',
+                title: '없는 페이지입니다😅',
+                text: error.response.data.error.message,
+                confirmButtonText: '확인',
+            })
+            return Promise.reject(error.response);
+        }
+
+        // 401, 404 외의 다른 error
         else {
             Swal.fire({
                 icon: 'error',
@@ -59,40 +77,3 @@ instance.interceptors.response.use(
         }
     }
 )
-
-// 백엔드 요청!
-// 데이터 객체를 정확히 명시해주면 좋다. 데이터가 무엇을 의미하는지 알 수 있게!
-// 데이터 객체에 엉뚱한 내용이 들어가는것을 방지할 수 있다.
-export const register = (data) => {
-    const { email, password, username } = data;
-
-    return instance
-    .post("/join", {
-        email,
-        password,
-        username
-    })
-    .then(() => {
-        Swal.fire(registerWelcomeMessage)
-        .then(() => {
-            window.location.href = "/";
-        })
-    })
-    .catch((error) => {
-        Swal.fire({
-            icon: 'error',
-            title: '내용을 다시 확인해 주세요!',
-            text: error.data.error.message,
-            confirmButtonText: '확인',
-            })
-        })
-}
-
-export const login = (data) => {
-    const { email, password } = data;
-    return instance
-    .post("/login", {
-        email,
-        password
-    });
-}

@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { isTokenExpiration } from "./store/slices/userSlice";
 import { useEffect } from "react";
-import Nav from "./components/organisms/Nav";
+import HomePage from "./pages/HomePage";
+import GNB from "./components/atoms/GNB";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
-import ComponentsPage from "./pages/ComponentsPage";
-import Main from "./pages/Main";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
+// import Nav from "./components/organisms/Nav";
 
 import './styles/App.css';
 
@@ -20,17 +22,16 @@ function App() {
     },[])
     
     return (
-    <>
         <BrowserRouter>
-            <Nav/>
+            <GNB/>
             <Routes>
-                <Route path="/" element={<Main/>}/>
-                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/" element={<HomePage/>}/>
                 <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/ComponentsPage" element={<ComponentsPage/>}/>
+                <Route path="/register" element={<RegisterPage/>}/>
+                <Route path="/product/:id" element={<ProductDetailPage/>}/>
+                <Route path="/*" element={<NotFoundPage/>}/>
             </Routes>
         </BrowserRouter>
-    </>
     );
 }
 

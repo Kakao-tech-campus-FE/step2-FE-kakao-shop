@@ -29,15 +29,17 @@ footer, header, hgroup, menu, nav, section {
 
 * {
     font-family: 'yg-jalnan', Helvetica, sans-serif;
+    font-size: 1rem;
 }
 
-/* tyle={{textAlign:"center", justifyContent: "center", alignItems: "center",  marginTop: "150px"}}> */
-
-.loginPage, .mainPage, .registerPage, .componentsPage {
-    text-align: center;
+.mainPage {
     margin-top: 180px;
 }
 
+.loginPage, .registerPage, .productDetailPage, .notFoundPage {
+    text-align: center;
+    margin-top: 180px;
+}
 
 @font-face {
     font-family: 'yg-jalnan';
