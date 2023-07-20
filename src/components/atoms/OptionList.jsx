@@ -1,15 +1,14 @@
 import {comma} from "../../utils/convert"
 
 const OptionList = ({options, onClick}) => {
-    // console.log("options", options)
-    // console.log("onClick", onClick)
     return (
-        <ol className={"option-list"}>
+        <ol className={"option-list w-full"}>
             {options.map((option) => {
                     return (
-                        <li key={option.id} onClick={() => onClick(option)}>
-                            <span>{option.optionName}</span>
-                            <span>{comma(option.price)}원</span>
+                        <li key={option.id} onClick={() => onClick(option)}
+                            className={"w-full p-1 flex flex-col items-start box-border border-solid border border-light-gray box-s cursor-pointer" }>
+                            <span className={"p-0.5 w-full text-ellipsis text-justify whitespace-nowrap overflow-hidden"}>{option.optionName}</span>
+                            <span className={"p-0.5 block text-sm"}>{comma(option.price)}원</span>
                         </li>
                     )
                 }

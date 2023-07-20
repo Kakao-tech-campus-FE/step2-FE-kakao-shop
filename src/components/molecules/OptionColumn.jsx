@@ -2,11 +2,11 @@ import {useState} from "react";
 import {useMutation} from "react-query";
 
 import Counter from "../atoms/Counter";
-import Button from "../atoms/Button";
 import OptionList from "../atoms/OptionList";
 
 import {comma} from "../../utils/convert";
 import {addCart} from "../../services/cart";
+import {RxCross2} from "react-icons/rx";
 
 const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
@@ -62,57 +62,63 @@ const OptionColumn = ({product}) => {
     })
 
     return (
-        <div className="option-column">
-            <h3>옵션 선택</h3>
+        <div className="option-column h-full w-1/4 p-2 border-l">
+            <h3 className={"font-medium text-lg"}>옵션 선택</h3>
+            <div className={"overflow-y-auto h-80 pe-3"}>
+                <OptionList
+                    options={product.options}
+                    onClick={handleOnClickOption}/>
 
-            <OptionList
-                options={product.options}
-                // 사용자가 선택한 옵션
-                onClick={handleOnClickOption}/>
-            <hr/>
-            <div className={"total-price"}>
-                <button onClick={
-                    () => {
-                        console.log("selectedOption", selectedOption)
-                    }
-                }>
-                    selected?
-                </button>
-                <span>
-                    총 수량 : {selectedOption.reduce((acc, cur) => acc + cur.quantity, 0)}개
-                </span>
-                <span>총 상품금액 :
-                    {comma(selectedOption.reduce((acc, cur) => acc + cur.quantity * cur.price, 0))}원
-                </span>
+                {selectedOption.map((option) => (
+                    <ol key={option.id} className="selected-option-list w-full">
+                        <li className="selected-option bg-red-100">
+                            <div className={"flex flex-row justify-between p-1"}>
+                                <span className="block option-name text-ellipsis text-justify whitespace-nowrap overflow-hidden">{option.optionName}</span>
+                                <button className={"delete-button"} onClick={
+                                    () => setSelectedOption((prev) => prev.filter((el) => el.id !== option.id))
+                                }>
+                                    <RxCross2/>
+                                </button>
+                            </div>
+                            <div className={"flex flex-row justify-between p-1"}>
+                                <span className="text-sm block option-price">{comma(option.price * option.quantity)}원</span>
+                                <div className={"w-1/3"}>
+                                    <Counter
+                                        value={option.quantity}
+                                        handleOnChange={(count) => handleOnChangeQuantity(count, option.id)}
+                                    />
+                                </div>
+                            </div>
+                        </li>
+                    </ol>
+                ))}
             </div>
 
-            {selectedOption.map((option) => (
-                <ol key={option.id} className="selected-option-list">
-                    <li className="selected-option">
-                        <Counter
-                            value={option.quantity}
-                            handleOnChange={(count) => handleOnChangeQuantity(count, option.id)}
-                        />
-                        <span className="option-name">{option.optionName}</span>
-                        <span className="option-price">{comma(option.price * option.quantity)}원</span>
-                    </li>
-                </ol>
-            ))}
+            <div className={"button-group bottom-0 relative"}>
+                <div className={"total-price"}>
+                    <div className={"flex flex-row justify-between px-1"}>
+                        <span>
+                            총 수량 : {selectedOption.reduce((acc, cur) => acc + cur.quantity, 0)}개
+                        </span>
+                        <span>총 상품금액 :
+                            {comma(selectedOption.reduce((acc, cur) => acc + cur.quantity * cur.price, 0))}원
+                        </span>
+                    </div>
+                </div>
 
-            <div className={"button-group"}>
-                <Button
-                    onClick={
-                        () => mutate({
-                            productId: product.id,
-                            options: selectedOption.map((option) => {
-                                return {
-                                    optionId: option.id,
-                                    quantity: option.quantity,
-                                }
-                            })
-                        })}>
+                <button className={"w-full cursor-pointer bg-kakao-yellow rounded-lg py-2"}
+                        onClick={
+                            () => mutate({
+                                productId: product.id,
+                                options: selectedOption.map((option) => {
+                                    return {
+                                        optionId: option.id,
+                                        quantity: option.quantity,
+                                    }
+                                })
+                            })}>
                     장바구니 담기
-                </Button>
+                </button>
             </div>
         </div>
     )

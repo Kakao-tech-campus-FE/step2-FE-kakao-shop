@@ -24,7 +24,7 @@
 .gnb-buttons{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: right;
     align-items: center;
     margin-right: 20px;
 }

@@ -4,8 +4,8 @@ import OptionColumn from "../molecules/OptionColumn";
 
 const ProductDetailTemplate = ({ product }) => {
     return (
-        <Container>
-            <ProductInformationColumn product={product}/>
+        <Container className={"flex flex-row justify-center w-auto h-full"}>
+            <ProductInformationColumn product={product} />
             <OptionColumn product={product}/>
         </Container>
     )

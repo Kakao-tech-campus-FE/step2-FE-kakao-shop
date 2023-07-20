@@ -42,18 +42,17 @@ const ProductDetailPage = () => {
     // }
 
     return (
-        <div>
-            {isLoading && <Loader/>}
-            {error && <div>{error.message}</div>}
-            <button onClick={() => {
-                console.log("data", data)
-            }
-            }>data
-            </button>
 
-            {data && data.data.response.productName}
-            {data && <ProductDetailTemplate product={data.data.response}/>}
-            {}
+        <div className={"product-detail-page page flex flex-col"}>
+            <div className={"h-28 flex justify-center items-center  w-full border-b-light-gray"}>
+                <h1 className={"text-3xl font-bold"}>상품 페이지</h1>
+            </div>
+            <div className={"w-full flex flex-col items-center"}>
+                {isLoading && <Loader/>}
+                {error && <div>{error.message}</div>}
+                {data && <ProductDetailTemplate product={data.data.response}/>}
+                {}
+            </div>
         </div>
     )
 }

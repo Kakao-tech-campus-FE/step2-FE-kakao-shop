@@ -4,7 +4,8 @@ const NUMBER_REGEX = /^\d+$/
 
 const Counter = ({
                      value,
-                     handleOnChange
+                     handleOnChange,
+                     className = ""
                  }) => {
 
 
@@ -50,10 +51,10 @@ const Counter = ({
 
 
     return (
-        <div className="counter">
-            <button onClick={handleOnDecrease}>-</button>
-            <input className={`option-counter`} value={tempInput} onBlur={validateInput} onChange={handleInput}></input>
-            <button onClick={handleOnIncrease}>+</button>
+        <div className={`counter w-full flex flex-row ${className}`}>
+            <button onClick={handleOnDecrease} className={"w-1/4 border border-light-gray"}>-</button>
+            <input className={`option-counter w-2/4 text-center `} value={tempInput} onBlur={validateInput} onChange={handleInput}></input>
+            <button onClick={handleOnIncrease} className={"w-1/4 border border-light-gray"}>+</button>
         </div>
     )
 }
