@@ -4,15 +4,17 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import persistStore from 'redux-persist/es/persistStore';
 import { PersistGate } from 'redux-persist/integration/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import App from './App';
 import store from './store/index';
 import './tailwind.css';
 
 const persistor = persistStore(store);
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <BrowserRouter>
@@ -20,5 +22,5 @@ root.render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
-  </React.StrictMode>,
+  </QueryClientProvider>,
 );

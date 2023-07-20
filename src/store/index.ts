@@ -3,25 +3,28 @@ import { persistReducer } from 'redux-persist';
 import expireReducer from 'redux-persist-expire';
 import storage from 'redux-persist/lib/storage';
 import userReducer from './slices/userSlice';
+import productReducer from './slices/productSlice';
 
-const persistStore = {
+const persistConfig = {
   key: 'user',
   storage,
   transforms: [
     expireReducer('user', {
-      expireSeconds: 3,
+      expireSeconds: 3000,
       expiredState: { isLoggedIn: false, email: null },
     }),
   ],
 };
 
-const persistconfig = persistReducer(persistStore, userReducer);
+const persistedReducer = persistReducer(persistConfig, userReducer);
 
 const store = configureStore({
   reducer: {
-    user: persistconfig,
+    user: persistedReducer,
+    product: productReducer,
   },
 });
 
 export default store;
 export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

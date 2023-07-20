@@ -1,8 +1,8 @@
+import MainProductTemplate from '@components/templates/MainProductTemplate';
 import React from 'react';
-import Header from '@components/organisms/Header';
 
 const Home = () => {
-  return <Header />;
+  return <MainProductTemplate />;
 };
 
 export default Home;

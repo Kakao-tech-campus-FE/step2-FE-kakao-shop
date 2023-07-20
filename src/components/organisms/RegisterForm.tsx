@@ -1,4 +1,4 @@
-import FilledButton from '@components/atoms/FilledButton';
+import FilledButton from '@components/atoms/button/FilledButton';
 import InputGroup from '@components/molecules/InputGroup';
 import React, { useState, useEffect } from 'react';
 import useInput from '@hooks/useInput';
@@ -46,7 +46,7 @@ const RegisterForm = () => {
       register({ email: inputInfo.email, password: inputInfo.password, username: inputInfo.username })
         .then((res) => {
           console.log(res);
-          dispatch(loginStore({ email: inputInfo.email }));
+          dispatch(loginStore({ isLoggedIn: true, email: inputInfo.email }));
           navigate('/');
         })
         .catch((err) => {

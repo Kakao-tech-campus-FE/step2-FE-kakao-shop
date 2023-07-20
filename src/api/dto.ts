@@ -8,3 +8,17 @@ export interface RegisterData {
   password: string;
   username: string;
 }
+
+export interface ProductInfoData {
+  id: number;
+  productName: string;
+  description: string;
+  image: string;
+  price: number;
+}
+
+export interface ProductData {
+  success: boolean;
+  response: ProductInfoData[];
+  error: string;
+}

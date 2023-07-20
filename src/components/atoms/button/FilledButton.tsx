@@ -6,7 +6,7 @@ interface FilledButtonProps {
 }
 const FilledButton = ({ onClick, children }: FilledButtonProps) => {
   return (
-    <button type="button" onClick={onClick} className="bg-pointPupple h-[40px] rounded text-white font-bold">
+    <button type="button" onClick={onClick} className="bg-pointPupple h-[40px] rounded text-white font-bold p-[10px]">
       {children}
     </button>
   );
