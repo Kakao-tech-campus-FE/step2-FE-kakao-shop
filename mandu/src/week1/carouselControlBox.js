@@ -1,4 +1,4 @@
-import Carousel from "./carousel";
+import Carousel from "../components/atoms/Carousel";
 
 function CarouselControlBox() {
     //사진추가하는거넣기

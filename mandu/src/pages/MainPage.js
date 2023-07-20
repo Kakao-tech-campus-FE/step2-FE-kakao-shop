@@ -1,38 +1,20 @@
-import {useNavigate} from "react-router-dom";
-import {useEffect} from "react";
-import cookie from "react-cookies";
-import {useSelector, useDispatch} from 'react-redux';
-import {setId} from "../redux/userSlice";
-import Button from "../components/atoms/MyButton";
+import Carousel from "../components/atoms/Carousel";
+import ShopCardList from "../components/organisms/ShopCardList";
 
 const MainPage = () => {
-    const navigate = useNavigate();
-    const userId = useSelector((state) => state.user.id);
-    const dispatch = useDispatch();
-    const checkValidUser = () => {
-        const cookieAccessToken = cookie.load('access_token');
-        const cookieUserId = cookie.load('user_id');
-        if (cookieAccessToken && cookieUserId) {
-            dispatch(setId(cookieUserId));
-        }
-    }
 
-    useEffect(() => {
-        checkValidUser();
-    }, []);
+    const imageUrlList = [
+        './carouselItem1.jpeg',
+        './carouselItem2.jpeg',
+        './carouselItem3.jpeg',
+    ]
 
     return (
-        <div className="max-w-md text-center m-auto">
-            <h1 className="m-4 p-2 text-lg ">Main Page</h1>
-            {userId
-                ? <div className="my-2">{`유저 id : ${userId}`}</div> : (<div className="space-y-8">
-                    <Button onClick={() => navigate('/login')}>로그인
-                        Page
-                    </Button>
-                    <Button onClick={() => navigate('/signup')}>회원가입
-                        Page
-                    </Button>
-                </div>)}
+        <div>
+            <Carousel height='300px' imgList={imageUrlList}/>
+            <div className="max-w-screen-lg my-4 m-auto">
+                <ShopCardList/>
+            </div>
         </div>
     );
 }

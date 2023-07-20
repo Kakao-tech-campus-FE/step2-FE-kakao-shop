@@ -1,4 +1,4 @@
-const Button = ({children, className, ...props}) => (
+const Button = ({children, className = "", ...props}) => (
 
     <button
         className={`bg-amber-300 w-full p-2 rounded-md ${className}`}

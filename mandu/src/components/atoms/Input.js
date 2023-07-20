@@ -1,4 +1,4 @@
-const Input = ({style, className, ...props}) => {
+const Input = ({style, className = "", ...props}) => {
 
     let InputStyle = "border-2 p-2 flex-grow";
     switch (style) {

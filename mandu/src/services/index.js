@@ -1,10 +1,10 @@
 import axios from "axios";
 import cookie from 'react-cookies';
-import {ResponseType} from "./type";
+import {ErrorType} from "./type";
 
 const api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
-    timeout: 1000,
+    timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -12,7 +12,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
     (config) => {
-        console.log("request", config);
+        console.log(`[${config.method.toUpperCase()}] url:${config.url}`, config.params);
         const token = cookie.load('access_token');
         if (token) {
             config.headers['authorization'] = token;
@@ -32,7 +32,7 @@ api.interceptors.response.use(
                 expires,
             });
         }
-        return Promise.resolve(new ResponseType(response.data));
+        return Promise.resolve(response?.data?.response);
     },
     (error) => {
         console.log("error", error)
@@ -57,14 +57,10 @@ api.interceptors.response.use(
             }
         }
 
-        return Promise.resolve(
-            new ResponseType({
-                success: false,
-                response: null,
-                error: {
-                    message,
-                    status,
-                },
+        return Promise.reject(
+            new ErrorType({
+                message,
+                status,
             })
         );
     }
