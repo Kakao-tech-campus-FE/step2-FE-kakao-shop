@@ -2,6 +2,8 @@ import Swal from 'sweetalert2'
 import { logoutMessage, clearTokens } from '../../utils/constants';
 import { Link, useNavigate } from "react-router-dom";
 import "../../styles/GNB.css";
+import { ImBubble } from "react-icons/im";
+import { styled } from 'styled-components';
 
 const GNB = () => {
     const navigate = useNavigate()
@@ -25,7 +27,7 @@ const GNB = () => {
             {/* {email 
             ? <span className="navbarMenu">{email}님 안녕하세요!</span> 
             : <></>} */}
-            <Link className="navbarMenu logo" to={"/"}>로고(메인 화면)</Link>
+            <Link className="navbarMenu logo" to={"/"}><LogoIcon /> 쇼핑하기</Link>
             <Link className="navbarMenu" to={"/"}>장바구니</Link>
             <div className="divider"></div>
             <Link className="navbarMenu" to={"/register"}>회원가입</Link>
@@ -38,3 +40,9 @@ const GNB = () => {
 };
 
 export default GNB;
+
+const LogoIcon = styled(ImBubble)`
+    & > path {
+        fill: #000;
+    }
+`
