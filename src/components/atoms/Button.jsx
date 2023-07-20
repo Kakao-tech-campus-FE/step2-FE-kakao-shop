@@ -38,6 +38,7 @@ export default function Button({
   color,
   radius = "",
   before,
+  border = "border-none",
   onClick = () => {},
 }) {
   return (
@@ -45,7 +46,7 @@ export default function Button({
       type={type}
       className={`${padding} ${margin} ${height} ${TEXTSIZE[textsize]} ${
         COLOR[color]
-      } ${RADIUS[radius]} ${before ? beforeContentStyle : ""}`}
+      } ${RADIUS[radius]} ${before ? beforeContentStyle : ""} ${border}`}
       onClick={onClick}
     >
       {children}

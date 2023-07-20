@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login } from "../../apis/auth";
 import { getCookie } from "../../utils/cookie";
+import authInstance from "../../apis/auth";
 
-const user = !!getCookie("accessToken");
+const isLoggedIn = Boolean(getCookie("accessToken"));
 const initialState = {
-  user,
+  isLoggedIn,
 };
 
 export const userSlice = createSlice({
@@ -13,19 +13,19 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload.user;
+      state.isLoggedIn = action.payload.isLoggedIn;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(loginRequest.fulfilled, (state) => {
-      state.user = true;
+      state.isLoggedIn = true;
     });
   },
 });
 
 export const loginRequest = createAsyncThunk("user/login", async (data) => {
   const { email, password } = data;
-  const response = await login({ email, password });
+  const response = await authInstance.login({ email, password });
 
   return {
     accessToken: response.headers.authorization,

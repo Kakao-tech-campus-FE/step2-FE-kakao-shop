@@ -12,9 +12,11 @@ module.exports = {
         icon: "36px",
         before: "1px",
         input: "570px",
+        inherit: "inherit",
       },
       height: {
         confirmButton: "38px",
+        inherit: "inherit",
       },
       fontSize: {
         errorMessage: "13px",

@@ -4,17 +4,25 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage";
+import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import { Provider } from "react-redux";
 import store from "./store";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFound from "./pages/NotFound";
+import CartPage from "./pages/CartPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [{ index: true, element: <HomePage /> }],
+    errorElement: <NotFound />,
+    children: [
+      { index: true, element: <MainPage /> },
+      { path: "/product/:id", element: <ProductDetailPage /> },
+      { path: "/cart", element: <CartPage /> },
+    ],
   },
   {
     path: "/login",
