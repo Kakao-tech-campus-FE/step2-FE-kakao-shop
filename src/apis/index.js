@@ -1,13 +1,5 @@
 import axios from "axios";
 
-// instance.interceptors.request.use((config) => {
-//   const accessToken = getCookie("accessToken");
-//   if (accessToken) {
-//     config.headers["Authorization"] = "Bearer" + accessToken;
-//   }
-//   return config;
-// });
-
 export default class ApiInstance {
   constructor() {
     this.instance = axios.create({
@@ -31,3 +23,5 @@ export default class ApiInstance {
   _handleResponse = (response) => response;
   _handleError = (error) => Promise.reject(error);
 }
+
+export const instance = new ApiInstance();

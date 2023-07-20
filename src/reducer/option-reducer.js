@@ -26,6 +26,9 @@ const optionReducer = (options, action) => {
 
       return options.filter((opt) => opt.id !== id);
     }
+    case "clear": {
+      return [];
+    }
     default: {
       throw Error(`알수없는 액션 타입: ${action.type}`);
     }

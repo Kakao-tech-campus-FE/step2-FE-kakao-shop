@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "../atoms/Container";
 import OptionButton from "../molecules/OptionButton";
 import OptionItem from "../molecules/OptionItem";
 import SelectedOptionItem from "../molecules/SelectedOptionItem";
 
 export default function OptionList({
+  isOptionShow,
+  setIsOptionShow,
   options,
   optionList,
   handleOptionClick,
   handleOptionUpdate,
   handleOptionDelete,
 }) {
-  const [isOptionShow, setIsOptionShow] = useState(false);
-
   const handleOptionButtonClick = () => {
     setIsOptionShow((prev) => !prev);
   };
@@ -46,7 +46,7 @@ export default function OptionList({
         <ul>
           {optionList.map((option) => (
             <SelectedOptionItem
-              key={option.id}
+              key={`selected-option-key-${option.id}`}
               option={option}
               onUpdate={handleOptionUpdate}
               onDelete={handleOptionDelete}

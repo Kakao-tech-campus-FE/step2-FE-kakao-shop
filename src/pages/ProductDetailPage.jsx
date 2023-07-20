@@ -4,7 +4,7 @@ import Loader from "../components/molecules/Loader";
 
 export default function ProductDetailPage() {
   return (
-    <Suspense fallback={<Loader />}>
+    <Suspense fallback={<Loader height="h-full" />}>
       <ProductDetail />
     </Suspense>
   );
