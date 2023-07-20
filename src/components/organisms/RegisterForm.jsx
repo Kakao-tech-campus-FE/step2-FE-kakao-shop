@@ -26,7 +26,7 @@ const RegisterForm = () => {
         })
         .then((res) => {
             setError('');
-            alert('회원가입이 완료!\n 로그인이 필요합니다.');
+            alert('회원가입 완료!\n 로그인이 필요합니다.');
             navigate("/login");
         })
         .catch((err) => {
