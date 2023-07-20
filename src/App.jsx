@@ -6,6 +6,7 @@ import CartPage from "./pages/CartPage";
 import MainLayout from "./components/layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ErrorPage from "./pages/ErrorPage";
+import OrderPage from "./pages/OrderPage";
 
 const App = () => {
   return(
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/product/:id" element={<ProductDetailPage />} />
           </Route>
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/order" element={<OrderPage />} />
           <Route path="/error" element={<ErrorPage />} />
         </Routes>
     </>
