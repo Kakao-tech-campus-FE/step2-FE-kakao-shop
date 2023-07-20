@@ -34,11 +34,11 @@ const ProductDetailPage = () => {
       <Suspense fallback={<Loader />}>
         {product && (
           <div className="flex px-40 ">
-            <span className="w-1/2">
+            <span className="w-7/12">
               <ProductInformationColumn product={product} />
             </span>
 
-            <span className="border-gray w-1/2 border-l p-10">
+            <span className="border-gray w-5/12 border-l p-10">
               <OptionColums product={product} />
             </span>
           </div>

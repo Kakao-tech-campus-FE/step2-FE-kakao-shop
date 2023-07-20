@@ -6,7 +6,15 @@ import { useQuery } from 'react-query';
 import Loader from '../components/atoms/Loader';
 
 const CartPage = () => {
-  const { data } = useQuery('cart', getCart);
+  const { data, status } = useQuery('cart', getCart);
+
+  if (status === 'loading') {
+    return <Loader />;
+  }
+  if (status === 'error') {
+    return <div>에러가 발생했습니다.</div>;
+  }
+
   return (
     <Suspense fallback={<Loader />}>
       <CartList data={data} />

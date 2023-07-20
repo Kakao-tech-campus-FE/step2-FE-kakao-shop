@@ -1,10 +1,10 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
 import { useFetcher, useNavigate } from 'react-router-dom';
 import Container from '../atoms/Container';
 import Box from '../atoms/Box';
 import CartItem from '../atoms/CartItem';
-import Card from '../atoms/Card';
 import Button from '../atoms/Button';
+import { Card } from 'react-bootstrap';
 
 import { updateCart } from '../../services/cart';
 import { comma } from '../../utils/convert';
@@ -125,6 +125,7 @@ const CartList = ({ data }) => {
           <span className="sum-price flex-1 text-right text-kakao_blue">{comma(totalPrice)}원</span>
         </div>
       </Card>
+
       <Button
         className="order-btn mx-2 my-8 w-full rounded bg-kakao_yellow px-4 py-3 font-semibold hover:bg-yellow-400"
         onClick={() => {
