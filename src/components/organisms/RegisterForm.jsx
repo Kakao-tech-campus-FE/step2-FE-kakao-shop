@@ -5,7 +5,7 @@ import Button from "../atoms/Button";
 import {register} from "../../services/api";
 import {useEffect, useState} from "react";
 
-import "../../styles/form.css";
+import "../../styles/organisms/form.css";
 import useInput from "../../hooks/useInput";
 
 const PW_REGEX = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");

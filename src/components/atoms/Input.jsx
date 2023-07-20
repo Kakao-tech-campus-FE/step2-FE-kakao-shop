@@ -1,4 +1,4 @@
-import "../../styles/input.css";
+import "../../styles/atoms/input.css";
 
 /**
  *
