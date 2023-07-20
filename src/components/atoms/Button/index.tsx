@@ -6,6 +6,7 @@ interface Props {
   width?: string;
   height?: string;
   background?: string;
+  color?: string;
   fontSize?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
@@ -15,6 +16,7 @@ const Button = ({
   width,
   height,
   background,
+  color,
   fontSize,
   onClick,
   children,
@@ -24,6 +26,7 @@ const Button = ({
       width={width}
       height={height}
       background={background}
+      color={color}
       fontSize={fontSize}
       onClick={onClick}
     >
@@ -43,6 +46,7 @@ const StyledButton = styled.button<Props>`
   border: 0;
   border-radius: 4px;
   background: ${({ background }) => background || "inherit"};
+  color: ${({ color }) => color || "#000"};
   font-size: ${({ fontSize }) => fontSize || "inherit"};
   cursor: pointer;
 
