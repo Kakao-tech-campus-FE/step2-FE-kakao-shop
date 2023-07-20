@@ -4,32 +4,36 @@ import Button from './Button'
 const Counter = ({
   onIncrease, //수량 증가시 호출되는 함수
   onDecrease, // 수량 감소시 호출되는 함수
-  quantity // 이전 quantity 값
+  quantity, // 이전 quantity 값
+  optionId
 }) => {
   const [count, setCount] = useState(quantity)
-  const [isDisabled, setIsDisabled] = useState(true)
+  const [isDisabled, setIsDisabled] = useState(false)
 
   useEffect(() => {
-    // quantity 값이 변경되면 count 값을 업데이트합니다.
+    // quantity 값이 변경되면 count 초기 값을 업데이트합니다.
     setCount(quantity);
+    setIsDisabled(quantity <= 1);
+    // console.log("quantity:", quantity)
+    // console.log("count:", count)
+
   }, [quantity]);
 
   const handleOnIncrease = () => {
-    setCount((prev) => {
-      onIncrease (prev + 1)
-      return prev + 1
-    })
+    setCount(count+1)
+    console.log("dks",optionId)
+    onIncrease(count+1, optionId)
+
     setIsDisabled(false)
+
   }
 
   const handleOnDecrease = () => {
-    setCount((prev) => {
-      onDecrease (prev - 1)
-      return prev - 1
-    })
-    if(count <= 2){ //??? 왜 2일떄 비활성화 되지 않고 1일떄부터 비활성화될까
-      setIsDisabled(true)
-    }
+    setCount(count-1)
+    onDecrease(count-1, optionId)
+    console.log(count)
+    setIsDisabled(count <= 2)
+
   }
 
   return (

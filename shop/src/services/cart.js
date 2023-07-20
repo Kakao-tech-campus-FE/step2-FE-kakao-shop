@@ -6,5 +6,11 @@ import { instance } from "./index";
  * @returns instance.post("/cart/add")
  */
 export const addCart = (payload) => {
-  return instance.post("/cart/add")
+  return instance.post("/carts/add")
+}
+export const getCart = () => {
+  return instance.get("/carts")
+}
+export const updateCart = (items) => {
+  return instance.get("/carts/updata", items)
 }
