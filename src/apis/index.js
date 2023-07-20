@@ -10,8 +10,8 @@ export const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
     const token = localStorage.getItem("user");
-    const parsedToken = JSON.parse(token).value;
     if(token) {
+        const parsedToken = JSON.parse(token).value;
         config.headers['Authorization'] = `${parsedToken}`;
     }
     return config;
