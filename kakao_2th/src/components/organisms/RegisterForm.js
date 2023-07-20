@@ -3,11 +3,14 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { useEffect, useState } from "react";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/api";
+import { register } from "../../services/index";
 import GNB from "../molecules/Gnb";
 import Alert from "../atoms/Alert";
+import { useNavigate } from "react-router-dom";
 
-const RegisterForm = () => {
+const RegisterForm = ({ onRegisterSuccess }) => {
+    const navigate = useNavigate();
+
     const { value, handleOnChange } = useInput({
         username: "",
         email: "",
@@ -47,7 +50,16 @@ const RegisterForm = () => {
                 email: value.email,
                 password: value.password,
                 username: value.username,
-            });
+            })
+                .then(() => {
+                    // 회원가입 성공 후 리디렉션을 수행
+                    onRegisterSuccess(); // 부모 컴포넌트로부터 전달받은 콜백 호출
+                    navigate("/login"); // 로그인 페이지로 리디렉션
+                })
+                .catch((error) => {
+                    // 회원가입 실패 시에 대한 처리
+                    console.log("회원가입 실패:", error);
+                });
         }
     };
 
