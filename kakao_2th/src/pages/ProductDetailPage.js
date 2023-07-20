@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 import { getProductById } from "../services/product";
+import "../styles/Pages/ProductDetailPage.css"
 
 const ProductDetailPage = () => {
     const { id } = useParams();
