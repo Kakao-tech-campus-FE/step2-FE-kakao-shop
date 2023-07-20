@@ -8,9 +8,10 @@ import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
-import { updateCart } from "../../services/cart";
+import { updateCart, getCart } from "../../services/cart";
 
-const CartList = ({ data }) => {
+
+const CartList = () => {
     const route = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
@@ -23,9 +24,21 @@ const CartList = ({ data }) => {
     });
 
     useEffect(() => {
-        setCartItems(data?.data?.response?.products);
-        setTotalPrice(data?.data?.response?.totalPrice);
-    }, [data]);
+        const fetchData = async () => {
+          try {
+            const response = await getCart();
+            const jsonData = await response.data.response;
+
+
+    
+            setCartItems(jsonData.products);
+            setTotalPrice(jsonData.totalPrice);
+          } catch (error) {
+            console.log(`Error fetching data:`, error);
+          }
+        };
+        fetchData();
+      }, []);
 
     
 
