@@ -22,18 +22,11 @@ import { useQuery } from '@tanstack/react-query';
  * @returns {JSX.Element} - InnerHead 컴포넌트의 JSX 요소
  */
 export default function InnerHead() {
-  const [loggedIn, setLoggedIn] = useState(false);
   const [count, setCount] = useState(0);
 
   const userEmail = getCookie('email');
 
-  useEffect(() => {
-    if (userEmail) {
-      setLoggedIn(true);
-    }
-  }, [userEmail]);
-
-  const { data } = useQuery(['cart'], () => (loggedIn ? getCart : null));
+  const { data } = useQuery(['cartNum'], userEmail ? getCart : null);
 
   useEffect(() => {
     setCount(data?.data?.response.products.length);
@@ -72,7 +65,7 @@ export default function InnerHead() {
           <IoSearchOutline size="20" />
           <Link to="/cart" className="relative">
             {count > 0 && (
-              <span className="cart-count absolute -top-1 left-3 text-[0.3rem] text-center text-white bg-red-600 rounded-full w-3 h-3">
+              <span className="cart-count absolute -top-1 left-3 pt-0.5 text-[0.3rem] text-center text-white bg-red-600 rounded-full w-4 h-4">
                 {count}
               </span>
             )}

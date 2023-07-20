@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
-import Container from "../atoms/Container";
-import ProductGrid from "../organisms/ProductGrid";
-import { Suspense } from "react";
-import { useEffect, useRef, useState } from "react";
-import { getProducts } from "../../redux/product/productSlice";
-import Loader from "../atoms/Loader";
+import { useSelector, useDispatch } from 'react-redux';
+import Container from '../atoms/Container';
+import ProductGrid from '../organisms/ProductGrid';
+import { Suspense } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { getProducts } from '../../redux/product/productSlice';
+import Loader from '../atoms/Loader';
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -17,15 +17,11 @@ const MainProductTemplate = () => {
   const dispatch = useDispatch();
   const bottomObserver = useRef(null);
 
+  /** @todo redux 제외하고 react-query 적용하기 */
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (
-          !loading &&
-          entry.isIntersecting &&
-          bottomObserver.current &&
-          !isEnd
-        ) {
+        if (!loading && entry.isIntersecting && bottomObserver.current && !isEnd) {
           setPage(page + 1);
         }
       });

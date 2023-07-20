@@ -5,11 +5,12 @@ import { useQuery } from '@tanstack/react-query';
 import Loader from '../components/atoms/Loader';
 const CartPage = () => {
   const { data } = useQuery(['cart'], getCart);
-
   return (
-    <Suspense fallback={<Loader />}>
-      <CartList data={data} />
-    </Suspense>
+    <div className="bg-gray-50 pb-6">
+      <Suspense fallback={<Loader />}>
+        <CartList data={data} />
+      </Suspense>
+    </div>
   );
 };
 

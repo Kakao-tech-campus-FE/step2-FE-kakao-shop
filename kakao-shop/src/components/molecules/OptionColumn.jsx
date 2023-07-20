@@ -7,8 +7,7 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { addCart } from '../../apis/cart.js';
 
-import { GoGift, GoHeart, GoX } from 'react-icons/go';
-import GrayBox from '../atoms/GrayBox.jsx';
+import { GoX } from 'react-icons/go';
 
 /**
  * 옵션 선택 컬럼

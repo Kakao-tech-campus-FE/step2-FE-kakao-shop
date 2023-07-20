@@ -10,9 +10,9 @@ const ProductInformationColumn = ({ product }) => {
 
     for (let i = 0; i < 5; i++) {
       if (i < starCount) {
-        stars.push(<GoStarFill size="20" color="#007aff" />);
+        stars.push(<GoStarFill key={i} size="20" color="#007aff" />);
       } else {
-        stars.push(<GoStar size="20" />);
+        stars.push(<GoStar key={i} size="20" />);
       }
     }
 

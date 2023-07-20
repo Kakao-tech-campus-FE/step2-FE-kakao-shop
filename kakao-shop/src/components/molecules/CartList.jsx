@@ -1,15 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useFetcher, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Container from '../atoms/Container';
-import Box from '../atoms/Box';
 import CartItem from '../atoms/CartItem';
-import Card from '../atoms/Card';
 import Button from '../atoms/Button';
 
 import { updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
 import { useMutation } from '@tanstack/react-query';
-import GrayBox from '../atoms/GrayBox';
 
 const CartList = ({ data }) => {
   // hook을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언
@@ -21,7 +18,6 @@ const CartList = ({ data }) => {
   const initPayload = useRef([]); // DOM에 접근할 때 [{cardId, quantity}]
   const { mutate } = useMutation({ mutationFn: updateCart });
 
-  console.log('data>>', data);
   useEffect(() => {
     // validate 또는 구조분해할당
     setCartItems(data?.data?.response?.products);
@@ -47,15 +43,15 @@ const CartList = ({ data }) => {
    * @returns
    */
   const handleOnChangeCount = (optionId, quantity, price) => {
-    // 이 함수가 실행된 부분만 수량 변경이 생긴 것
+    // 수량 변경
     setUpdatepayload((prev) => {
-      const isExist = prev.find((item) => item.cardId === optionId);
+      const isExist = prev.find((item) => item.cartId === optionId);
 
       if (isExist) {
         return [
-          ...prev.filter((item) => item.cardId !== optionId),
+          ...prev.filter((item) => item.cartId !== optionId),
           {
-            cardId: optionId,
+            cartId: optionId,
             quantity,
           },
         ];
@@ -64,7 +60,7 @@ const CartList = ({ data }) => {
       return [
         ...prev,
         {
-          cardId: optionId,
+          cartId: optionId,
           quantity,
         },
       ];
@@ -90,24 +86,21 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <Container className="cart-list">
-      <Box>
+    <Container className="cart-list mx-auto max-w-4xl">
+      <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
         <h1>장바구니</h1>
-      </Box>
-      <Box>
+      </div>
+      <div className="cart-item-list">
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount} // 개수변경을 고나리하는 props
-              />
-            );
+            return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} />;
           })}
-      </Box>
-      <GrayBox name="주문 예상금액" value={`${comma(totalPrice)}원`} />
+      </div>
+      <div className="flex justify-between font-bold text-lg bg-white p-4 mb-1 border border-solid border-gray-200">
+        <span>주문 예상금액</span>
+        <span className=" text-kakao-blue text-xl">{`${comma(totalPrice)}원`} </span>
+      </div>
       <Button
         color="kakao"
         className="order-btn"
