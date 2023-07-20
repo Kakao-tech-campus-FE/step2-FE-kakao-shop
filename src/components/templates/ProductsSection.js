@@ -3,11 +3,11 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getProductspReq } from "apis/product.js";
 import Container from "components/atoms/Container.js";
-import ProductGrid from "components/organisms/ProductGrid.js";
+import ProductsGrid from "components/organisms/ProductsGrid.js";
 import Loader from "components/atoms/Loader.js";
 import Skeleton from "components/atoms/Skeleton";
 
-export default function ProductSection() {
+export default function ProductSections() {
   const { isLoading, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useInfiniteQuery(
       ["products"],
@@ -59,7 +59,7 @@ export default function ProductSection() {
     <Container>
       {isLoading && <Loader />}
       {data && (
-        <ProductGrid
+        <ProductsGrid
           products={data.pages.flatMap((page) => page.data.response)}
         >
           {isFetchingNextPage &&
@@ -67,7 +67,7 @@ export default function ProductSection() {
               .fill(null)
               .map(() => <Skeleton />)}
           <div ref={observerRef}></div>
-        </ProductGrid>
+        </ProductsGrid>
       )}
     </Container>
   );
