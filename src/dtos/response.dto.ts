@@ -1,41 +1,16 @@
-interface responseDefault {
-  success: boolean;
-  response: null;
-  error: {
-    message: string;
-    status: number;
-  } | null;
+export interface responseError {
+  message: string;
+  status: number;
 }
 
-class DefaultResDto {
+export class DefaultResDto {
   success: boolean;
   response: null;
-  error: {
-    message: string;
-    status: number;
-  } | null;
+  error: responseError | null;
 
-  constructor(data: responseDefault) {
+  constructor(data: DefaultResDto) {
     this.success = data.success;
     this.response = data.response;
     this.error = data.error;
-  }
-}
-
-export class EmailCheckResDto extends DefaultResDto {
-  constructor(data: responseDefault) {
-    super(data);
-  }
-}
-
-export class SignUpResDto extends DefaultResDto {
-  constructor(data: responseDefault) {
-    super(data);
-  }
-}
-
-export class SignInResDto extends DefaultResDto {
-  constructor(data: responseDefault) {
-    super(data);
   }
 }

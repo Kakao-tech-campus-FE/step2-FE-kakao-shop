@@ -1,91 +1,87 @@
-import { EmailCheckResDto, SignUpResDto } from "@/dtos/response.dto";
+import { DefaultResDto, responseError } from "@/dtos/response.dto";
+import { getAuth, setAuth } from "@/functions/auth";
+import { commonAxios } from "@/functions/axios";
 import { jwtDecode } from "@/functions/jwt";
-import { localStorage } from "@/functions/localstorage";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const checkEmail = createAsyncThunk(
+export const checkEmail = createAsyncThunk<
+  DefaultResDto,
+  string,
+  { rejectValue: responseError }
+>(
   "sign/checkEmail",
   async (email: string, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const response = await fetch(
-        import.meta.env.VITE_KAKAO_STORE_URL + "check",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
-        }
-      );
-
-      const resData = new EmailCheckResDto(await response.json());
+      const response = await commonAxios.post("/check", { email });
+      const resData = new DefaultResDto(response.data);
 
       if (resData.error) {
         return rejectWithValue(resData.error);
       }
       return fulfillWithValue(resData);
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue({ message: String(error), status: 400 });
     }
   }
 );
 
-export const signUp = createAsyncThunk(
+type signUpData = {
+  email: string;
+  username: string;
+  password: string;
+};
+
+export const signUp = createAsyncThunk<
+  DefaultResDto,
+  { email: string; username: string; password: string },
+  { rejectValue: responseError }
+>(
   "sign/signup",
-  async (
-    data: { email: string; username: string; password: string },
-    thunkAPI
-  ) => {
+  async (data: signUpData, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const response = await fetch(
-        import.meta.env.VITE_KAKAO_STORE_URL + "join",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await commonAxios.post("/join", data);
+      const resData = new DefaultResDto(response.data);
+      console.log(resData);
 
-      const resData = new SignUpResDto(await response.json());
       if (resData.error) {
-        return thunkAPI.rejectWithValue(resData.error);
+        return rejectWithValue(resData.error);
       }
-      return thunkAPI.fulfillWithValue(resData.success);
+      return fulfillWithValue(resData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return rejectWithValue({ message: String(error), status: 400 });
     }
   }
 );
 
-export const signIn = createAsyncThunk(
+type signInData = {
+  email: string;
+  password: string;
+};
+
+export const signIn = createAsyncThunk<
+  DefaultResDto,
+  { email: string; password: string },
+  { rejectValue: responseError }
+>(
   "sign/signin",
-  async (data: { email: string; password: string }, thunkAPI) => {
+  async (data: signInData, { rejectWithValue, fulfillWithValue }) => {
     try {
-      const response = await fetch(
-        import.meta.env.VITE_KAKAO_STORE_URL + "login",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await commonAxios.post("/login", data);
 
-      const resData = new SignUpResDto(await response.json());
+      const resData = new DefaultResDto(await response.data);
       if (resData.error) {
-        return thunkAPI.rejectWithValue(resData.error);
+        return rejectWithValue(resData.error);
       }
 
-      if (
-        jwtDecode(localStorage.get("Authorization")).exp <=
-        jwtDecode(response.headers.get("Authorization") ?? "").exp
-      ) {
-        localStorage.set(
-          "Authorization",
-          response.headers.get("Authorization")?.split("Bearer ")[1] ?? ""
-        );
+      const authHeader = response.headers.authorization;
+
+      if (jwtDecode(getAuth()).exp <= jwtDecode(authHeader ?? "").exp) {
+        setAuth(authHeader.split("Bearer ")[1] ?? "");
       }
 
-      return thunkAPI.fulfillWithValue(resData.success);
+      return fulfillWithValue(resData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return rejectWithValue({ message: String(error), status: 400 });
     }
   }
 );

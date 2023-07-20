@@ -1,7 +1,11 @@
-import { FC, useId } from "react";
-import { FORM_ERROR } from "@/assets/error.ko.json";
+import { ComponentPropsWithoutRef, FC, useId } from "react";
+import { ERROR } from "@/assets/error.ko";
 
-interface InputFormItemProps {
+const { FORM_ERROR } = ERROR;
+
+type InputProps = ComponentPropsWithoutRef<"input">;
+
+interface InputFormItemProps extends InputProps {
   label?: string;
   type: "text" | "number" | "email" | "password";
   placeholder?: string;
@@ -9,8 +13,6 @@ interface InputFormItemProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   isWrong?: boolean;
   wrongMessage?: string;
-  minlength?: number;
-  maxlength?: number;
 }
 
 /**
