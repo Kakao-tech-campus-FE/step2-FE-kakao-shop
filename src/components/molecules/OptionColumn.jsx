@@ -8,6 +8,7 @@ import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
 import Button from './../atoms/Button';
 import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
 
 const OptionColumn = ({ product }) => {
     /**
@@ -67,7 +68,7 @@ const OptionColumn = ({ product }) => {
     });
 
     return (
-        <div className="option-column">
+        <OptionColumnContainer>
             <h3>옵션 선택</h3>
             <OptionList 
                 options={product.options} 
@@ -88,8 +89,8 @@ const OptionColumn = ({ product }) => {
                     </li>
                 </ol>
             ))}
-            <hr />
-            <div className="total-price">
+            <hr></hr>
+            <TotalListContainer>
                 <span>총 수량: {
                     comma(selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity;
@@ -101,8 +102,8 @@ const OptionColumn = ({ product }) => {
                         return acc + cur.quantity * cur.price;
                     }, 0))}원 
                 </span>
-            </div>
-            <div className="button-group">
+            </TotalListContainer>
+            <ButtonGroupContainer>
                 <Button onClick={() => {
                     // 백엔드에서 원하는 데이터만 담아서 보내주어야 함!
                     // 따라서, optionId, quantity만 골라서 mutate를 실행한다.
@@ -124,10 +125,29 @@ const OptionColumn = ({ product }) => {
                             .then(navigate("/notFoundPage"))
                         }
                     });
-                }}></Button>
-            </div>
-        </div>
+                }}>장바구니 담기</Button>
+                <Button>구매</Button>
+            </ButtonGroupContainer>
+        </OptionColumnContainer>
     );
 };
 
 export default OptionColumn;
+
+const OptionColumnContainer = styled.div`
+    border-left: 1px solid #ddd;
+    padding-top: 100px;
+    padding-left: 50px;
+    min-width: 520px;
+`
+
+const TotalListContainer = styled.div`
+    margin-top:20px;
+`
+
+const ButtonGroupContainer = styled.div`
+margin-top: 20px;
+    Button {
+        margin-right: 60px;
+    }
+`

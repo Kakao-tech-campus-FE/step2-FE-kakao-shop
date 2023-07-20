@@ -1,4 +1,5 @@
 import { comma } from "../../utils/comma";
+// import "../../styles/OptionList.css";
 
 const OptionList = ({options, onClick}) => {
     return (

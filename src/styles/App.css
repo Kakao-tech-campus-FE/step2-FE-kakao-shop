@@ -36,9 +36,17 @@ footer, header, hgroup, menu, nav, section {
     margin-top: 180px;
 }
 
-.loginPage, .registerPage, .productDetailPage, .notFoundPage {
+.productDetailPage {
+    margin-top: 100px;
+}
+
+.loginPage, .registerPage, .notFoundPage {
     text-align: center;
     margin-top: 180px;
+}
+
+.selected-option, .option-list {
+    list-style: none;
 }
 
 @font-face {

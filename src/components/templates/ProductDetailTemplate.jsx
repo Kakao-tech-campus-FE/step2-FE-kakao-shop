@@ -17,4 +17,6 @@ export default ProductDetailTemplate;
 
 const ProductDetailTemplateContainer = styled(Container)`
     display:flex;
+    justify-content: center;
+    min-height: 2000px;
 `
