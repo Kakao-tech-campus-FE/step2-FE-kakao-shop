@@ -3,7 +3,7 @@ import { checkEmail, signIn, signUp } from "@/store/signAction";
 import { isExpired } from "@/functions/jwt";
 import { getAuth } from "@/functions/auth";
 
-interface SignInState {
+interface SignState {
   loading: boolean;
   error: string | null;
   success: boolean;
@@ -16,7 +16,7 @@ interface SignInState {
   };
 }
 
-const initialState: SignInState = {
+const initialState: SignState = {
   isSignIn: !isExpired(getAuth()),
   data: {
     email: "",
@@ -33,17 +33,12 @@ export const signSlice = createSlice({
   name: "sign",
   initialState,
   reducers: {
-    setEmail: (state, action: PayloadAction<string>) => {
-      state.data.email = action.payload;
-    },
-    setPassword: (state, action: PayloadAction<string>) => {
-      state.data.password = action.payload;
-    },
-    setPasswordConfirm: (state, action: PayloadAction<string>) => {
-      state.data.passwordConfirm = action.payload;
-    },
-    setUsername: (state, action: PayloadAction<string>) => {
-      state.data.username = action.payload;
+    setForm: (
+      state,
+      action: PayloadAction<{ name: keyof typeof state.data; value: string }>
+    ) => {
+      const { name, value } = action.payload;
+      state.data[name] = value;
     },
     setSignOut: (state) => {
       state.isSignIn = false;
@@ -94,12 +89,6 @@ export const signSlice = createSlice({
   },
 });
 
-export const {
-  setEmail,
-  setPassword,
-  setPasswordConfirm,
-  setUsername,
-  setSignOut,
-} = signSlice.actions;
+export const { setForm, setSignOut } = signSlice.actions;
 
 export default signSlice.reducer;

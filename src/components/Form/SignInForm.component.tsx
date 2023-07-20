@@ -3,7 +3,7 @@ import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
 import { SIGN } from "@/assets/sign.ko";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { setEmail, setPassword } from "@/store/signSlice";
+import { setForm } from "@/store/signSlice";
 import { isPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
 
@@ -58,7 +58,9 @@ const SignInForm: FC<SignInProps> = ({ onSubmit }) => {
         placeholder={EMAIL}
         type="text"
         value={email}
-        onChange={(e) => dispatch(setEmail(e.target.value))}
+        onChange={(e) =>
+          dispatch(setForm({ name: "email", value: e.target.value }))
+        }
         isWrong={isWarning.email}
         wrongMessage={EMAIL_ERROR}
       />
@@ -66,7 +68,9 @@ const SignInForm: FC<SignInProps> = ({ onSubmit }) => {
         placeholder={PASSWORD}
         type="password"
         value={password}
-        onChange={(e) => dispatch(setPassword(e.target.value))}
+        onChange={(e) =>
+          dispatch(setForm({ name: "password", value: e.target.value }))
+        }
         isWrong={isWarning.password}
         wrongMessage={PASSWORD_ERROR}
         maxLength={20}

@@ -4,12 +4,7 @@ import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
 import { SIGN } from "@/assets/sign.ko";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
-import {
-  setEmail,
-  setPassword,
-  setPasswordConfirm,
-  setUsername,
-} from "@/store/signSlice";
+import { setForm } from "@/store/signSlice";
 import { isPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
 
@@ -70,7 +65,9 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         placeholder={EMAIL}
         type="text"
         value={email}
-        onChange={(e) => dispatch(setEmail(e.target.value))}
+        onChange={(e) =>
+          dispatch(setForm({ name: "email", value: e.target.value }))
+        }
         isWrong={isWarning.email}
         wrongMessage={EMAIL_ERROR}
       />
@@ -79,14 +76,18 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         placeholder={USERNAME}
         type="text"
         value={username}
-        onChange={(e) => dispatch(setUsername(e.target.value))}
+        onChange={(e) =>
+          dispatch(setForm({ name: "username", value: e.target.value }))
+        }
       />
       <InputFormItem
         label={PASSWORD}
         placeholder={PASSWORD}
         type="password"
         value={password}
-        onChange={(e) => dispatch(setPassword(e.target.value))}
+        onChange={(e) =>
+          dispatch(setForm({ name: "password", value: e.target.value }))
+        }
         isWrong={isWarning.password}
         wrongMessage={PASSWORD_ERROR}
       />
@@ -95,7 +96,9 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         placeholder={PASSWORD_CONFIRM}
         type="password"
         value={passwordConfirm ?? ""}
-        onChange={(e) => dispatch(setPasswordConfirm(e.target.value))}
+        onChange={(e) =>
+          dispatch(setForm({ name: "passwordConfirm", value: e.target.value }))
+        }
         isWrong={isWarning.passwordConfirm}
         wrongMessage={PASSWORD_CONFIRM_ERROR}
       />
