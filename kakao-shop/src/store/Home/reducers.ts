@@ -103,6 +103,14 @@ export type Product = {
   description: string;
   image: string;
   price: number;
+  starCount?: number;
+  options?: Option[];
+};
+
+export type Option = {
+  id: number;
+  optionName: string;
+  price: number;
 };
 
 export type HomeState = {
