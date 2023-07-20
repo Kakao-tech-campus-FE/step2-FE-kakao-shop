@@ -24,8 +24,9 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (config) => {
-    return config;
+  (response) => {
+    console.log(response);
+    return response.data.response;
   },
   (error) => {
     return Promise.reject(error);

@@ -21,21 +21,20 @@ const ProductsListTemplate = () => {
         "products",
         ({ pageParam = 0 }) => getProducts(pageParam),
         {getNextPageParam: (last, allPages) => {
-          if (allPages[0].data.response.length === 0 
-            || last.data.response.length < allPages[0].data.response.length) {
-            const hasNextPage = false;
+          if (allPages[0].length === 0 
+            || last.length < allPages[0].length) {
             return undefined
           }
 
-          const lastPage = parseInt((last.data.response[0].id - 1) / 9);
+          const lastPage = parseInt((last[0].id - 1) / 9);
           return lastPage + 1
         }}
       )
-
+      
     const [next, setNext] = useState(true)
 
     const io = new IntersectionObserver(
-        (entries, observer) => {
+        (entries) => {
           if (!entries[0].isIntersecting) {return;}
           fetchNextPage();
         }, 
@@ -49,13 +48,14 @@ const ProductsListTemplate = () => {
         io.disconnect();
         setNext(prev => false);
       }
+      return () => {io.disconnect();}
     }, [hasNextPage]) 
 
     return (
       <MainContainer direction={"column"}>
         
         {listData && <ProductsList obj={listData} />}
-        
+                
         {isFetching 
           ? <ListContainer>
               {repeat(9).map((e,i) => {return <ProductCardSkeleton key={i}/>})}
@@ -63,7 +63,7 @@ const ProductsListTemplate = () => {
           : null}
 
         {/* 로딩된 페이지 없을 때*/}
-        {listData?.pages[0].data.response.length === 0 && !isFetching 
+        {isError || (listData?.pages[0].length === 0 && !isFetching )
         ? <ErrorFallback errorMessage="페이지를 찾을 수 없습니다." /> : null} 
 
         {next && <div id="target" className='h-1' ref={targetBox}></div>}
