@@ -9,7 +9,7 @@ import { useInView } from "react-intersection-observer";
 const MainProductTemplate = () => {
     const {ref, inView} = useInView();
     const {data: products, 
-        isLoading, 
+        isLoading,
         isFetchingNextPage, 
         fetchNextPage, 
         hasNextPage
@@ -23,14 +23,18 @@ const MainProductTemplate = () => {
             return pages.length + 1;
         },
         onError: (error) => {
-            switch(error.status) {
-                case 300: console.error(`something went wrong 300: ${error.message}`);
-                break;
-                case 400: console.error(`something went wrong 400: ${error.nessage}`);
-                break;
-                case 500: console.error(`something went wrong 500: ${error.message}`);
-                break;
-                default: console.error(`something went wrong: ${error.message}`);
+            if(error?.status) {
+                switch(error.status) {
+                    case 300: console.error(`something went wrong 300: ${error.message}`);
+                    break;
+                    case 400: console.error(`something went wrong 400: ${error.nessage}`);
+                    break;
+                    case 500: console.error(`something went wrong 500: ${error.message}`);
+                    break;
+                    default: console.error(`something went wrong: ${error.message}`);
+                }
+            } else {
+                console.error('Unknown error occurred: ', error);
             }
         }
     }); // 구분자, API 요청 함수
