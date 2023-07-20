@@ -8,6 +8,7 @@ import Button from "../atoms/Button";
 import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { updateCart, getCart } from "../services/cart";
+import "../../styles/Molecules/CartList.css";
 
 const CartList = () => {
     const route = useNavigate();

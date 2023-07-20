@@ -1,0 +1,26 @@
+.cart-list {
+    padding: 20px;
+  }
+  
+  .cart-list h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .order-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .order-btn:hover {
+    background-color: #0056b3;
+  }
+  
