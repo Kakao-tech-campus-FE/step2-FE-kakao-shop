@@ -3,10 +3,12 @@ import { Router, useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
-import "../../styles/CartList.css";
+import "../../styles/molecules/CartList.css";
 import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
+import { useMutation } from "react-query";
+import { updateCart } from "../../services/cart";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
