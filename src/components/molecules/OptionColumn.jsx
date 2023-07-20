@@ -113,7 +113,6 @@ const OptionColumn = ({ product }) => {
             mutate(
               selectedOptions.map((el) => {
                 return {
-                  // payload가 불필요하게 많으므로 필요한 내용만 골라서 호출
                   optionId: el.optionId,
                   quantity: el.quantity,
                 };
@@ -131,14 +130,13 @@ const OptionColumn = ({ product }) => {
         >
           장바구니 담기
         </Button>
-        {/* 톡딜가 구매: 개발은 X */}
         <Button
           className="w-64 h-12 bg-yellow-300 rounded-lg text-sm"
           onClick={() => {
             alert("준비중입니다.");
           }}
         >
-          톡딜가로 구매하기
+          구매하기
         </Button>
       </div>
     </Box>

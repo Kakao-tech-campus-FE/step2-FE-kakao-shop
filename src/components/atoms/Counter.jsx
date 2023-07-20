@@ -21,11 +21,11 @@ const Counter = ({
   return (
     <div>
       <div className="flex">
-        <button className="border-2 w-6" onClick={handleOnDecrease}>
+        <button className="border w-6" onClick={handleOnDecrease}>
           -
         </button>
-        <div className="border-2 w-12 text-center">{count}</div>
-        <button className="border-2 w-6" onClick={handleOnIncrease}>
+        <div className="border w-12 text-center">{count}</div>
+        <button className="border w-6" onClick={handleOnIncrease}>
           +
         </button>
       </div>

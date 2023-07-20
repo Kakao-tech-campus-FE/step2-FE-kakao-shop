@@ -7,6 +7,7 @@ import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import { comma } from "../../utils/convert";
 import { useMutation } from "@tanstack/react-query";
+import { updateCart } from '../../services/cart';
 
 const CartList = ({ data }) => {
   const route = useNavigate();
@@ -15,13 +16,12 @@ const CartList = ({ data }) => {
   const [updatePayload, setUpdatePayload] = useState([]);
   const initPayload = useRef([]); // [{ cartId, quantity }]
 
-  
   /**
    * 다시 오기!
    */
-  // const { mutate } = useMutation({
-  //   mutationFn: updateCart,
-  // });
+  const { mutate } = useMutation({
+    mutationFn: updateCart,
+  });
 
   useEffect(() => {
     // ?. 연산자를 계속 쓰는 것이 별로 안좋은 패턴이기 때문에
@@ -30,18 +30,9 @@ const CartList = ({ data }) => {
     setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
-  // const getTotalCartCountIncludeOptions = () => {
-  //   let count = 0;
-  //   cartItems.forEach((item) => {
-  //     item.carts.forEach((cart) => {
-  //       count += cart.quantity; // 개별 옵션에 해당
-  //     });
-  //   });
-  //   return comma(count);
-  // };
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
-    if(cartItems){
+    if (cartItems) {
       cartItems.forEach((item) => {
         item.carts.forEach((cart) => {
           count += cart.quantity; // 개별 옵션에 해당
@@ -96,13 +87,18 @@ const CartList = ({ data }) => {
         };
       });
     });
+    console.log(updatePayload)
+    console.log(totalPrice)
+    console.log(cartItems)
   };
 
   return (
     <Container className="cart-list">
-      <Box>
-        <h1>장바구니</h1>
+      {/* 제목 */}
+      <Box className="flex justify-center p-4">
+        <h1 className="text-lg font-bold">장바구니</h1>
       </Box>
+      {/* 장바구니에 담긴 품목 카드 */}
       <Card>
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
@@ -119,24 +115,30 @@ const CartList = ({ data }) => {
           })}
       </Card>
       <br />
+      {/* 주문 예상금액 박스 */}
       <Card>
-        <div className="row">
-          <span className="expect">주문 예상 금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
+        <div className="row border flex justify-between p-4">
+          <div className="expect font-bold">주문 예상 금액</div>
+          <div className="sum-price font-bold text-sky-600">
+            {comma(totalPrice)}원
+          </div>
         </div>
       </Card>
+      {/* 주문하기 버튼 */}
       <Button
-        className="order-btn bg-yellow-300 p-4 rounded-xl"
+        className="order-btn bg-yellow-300 p-4 rounded-xl font-bold w-96 mt-4"
         onClick={() => {
+          mutate(updatePayload, {
+            onSuccess: (data) => {
+              alert("상품 페이지로 이동합니다.");
+            },
+            onError: (error) => {
+              alert("업데이트에 실패했습니다.");
+            },
+          });
           /**
            * 다시 오기!
            */
-          // mutate(updatePayload, {
-          //   onSuccess: (data) => {
-          //     route.push("/order");
-          //   },
-          //   onError: (error) => {},
-          // });
           // update cart
           // 장바구니 정보를 수정하는 API 호출(개수 변경이 있는 경우에) POST METHOD
           // navigate to order page
