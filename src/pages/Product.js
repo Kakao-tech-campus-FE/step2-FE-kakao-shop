@@ -1,7 +1,9 @@
+import ProductSection from "components/templates/ProductSection";
+
 export default function Product() {
   return (
     <>
-      <h1>Product</h1>
+      <ProductSection />
     </>
   );
 }
