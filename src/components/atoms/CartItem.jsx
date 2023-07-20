@@ -1,3 +1,4 @@
+import Box from "./Box";
 import Card from "./Card";
 import Counter from "./Counter";
 
@@ -8,7 +9,7 @@ const CartItem = ({ item, onChange }) => {
     <Box className="cart-item-box">
       <h5>{item.productName}</h5>
       {item.carts.map((cart) => (
-        <Card
+        <div
           //옵션 아이디
           key={cart.id}
           className="cart"
@@ -27,7 +28,7 @@ const CartItem = ({ item, onChange }) => {
               }}
             />
           </div>
-        </Card>
+        </div>
       ))}
     </Box>
   );

@@ -8,6 +8,9 @@ import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { useRef } from "react";
+import Box from "../atoms/Box";
+import Container from "../atoms/Container";
+import { updateCart } from "../../services/api/cart";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
@@ -32,8 +35,10 @@ const CartList = ({ data }) => {
   useEffect(() => {
     // 사실 아래처럼 작성한 코드는 좋지 않은 패턴
     // => validate 또는 구조 분해 할당을 이용하는 것이 더 좋은 패턴
-    setCartItems(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
+    data?.data?.response?.products !== undefined &&
+      setCartItems(data?.data?.response?.products);
+    data?.data?.response?.totalPrice !== undefined &&
+      setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
@@ -53,32 +58,33 @@ const CartList = ({ data }) => {
    * @param {number} price : 옵션 가격
    */
   const handleOnChangeCount = (optionId, quantity, price) => {
-    setUpdatePayload((prev) => {
-      // 이미 존재하는 값들에 대한 예외 처리
-      const isExist = prev.find((item) => item.cartId === optionId);
-      if (isExist) {
-        return [
-          // 이미 존재하는 id인 값을 제외한 값들을 넣어주고
-          ...prev.filter((item) => item.cartId !== optionId),
-          // 이미 존재하는 id인 경우 새로운 quantity를 갖도록 설정
-          {
-            cartId: optionId,
-            quantity,
-          },
-        ];
-      }
-      // 이미 존재하는 id인 값이 없는 경우
-      return [
+    // 이미 존재하는 값들에 대한 예외 처리
+    const prev = updatePayload.current;
+    const isExist = prev.find((item) => item.cartId === optionId);
+    if (isExist) {
+      updatePayload.current = [
+        // 이미 존재하는 id인 값을 제외한 값들을 넣어주고
+        ...prev.filter((item) => item.cartId !== optionId),
+        // 이미 존재하는 id인 경우 새로운 quantity를 갖도록 설정
+        {
+          cartId: optionId,
+          quantity,
+        },
+      ];
+    }
+    // 이미 존재하는 id인 값이 없는 경우
+    else {
+      updatePayload.current = [
         ...prev,
         {
           cartId: optionId,
           quantity,
         },
       ];
-    });
+    }
 
     setTotalPrice((prev) => {
-      prev + price;
+      return prev + price;
     });
 
     setCartItems((prev) => {
@@ -101,25 +107,21 @@ const CartList = ({ data }) => {
       <Box>
         <h1>장바구니</h1>
       </Box>
-      <Card>
-        {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount} // 개수 변경
-              />
-            );
-          })}
-      </Card>
-      <Card>
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
-        </div>
-      </Card>
+      {/* 상품별 장바구니 */}
+      {Array.isArray(cartItems) &&
+        cartItems.map((item) => {
+          return (
+            <CartItem
+              key={item.id}
+              item={item}
+              onChange={handleOnChangeCount} // 개수 변경
+            />
+          );
+        })}
+      <div className="row">
+        <span className="expect">주문 예상금액</span>
+        <div className="sum-price">{comma(totalPrice)}원</div>
+      </div>
       <Button
         className="order-btn"
         onClick={() => {
@@ -139,11 +141,13 @@ const CartList = ({ data }) => {
           이를 해결하려면 장바구니 초기 상태를 저장하는 initPayload를 useRef로 지정하여 관리하며
           요청을 보내기 전에 initPayload와 중복되는 값을 제거한 후 요청을 보내는 방식으로 해결할 수 있다.
            */
-          mutate(updatePayload, {
+          console.log(cartItems);
+          console.log(updatePayload.current);
+          mutate(updatePayload.current, {
             onSuccess: (data) => {
               // navigate to order page
               // 주문 페이지로 이동
-              route.push("/order");
+              route("/order");
             },
             onError: (error) => {},
           });

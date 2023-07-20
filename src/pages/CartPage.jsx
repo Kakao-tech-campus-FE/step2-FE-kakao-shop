@@ -1,6 +1,8 @@
 import { Suspense } from "react";
 import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
+import CartList from "../components/molecules/CartList";
+import { getCart } from "../services/api/cart";
 
 const CartPage = () => {
   const { data } = useQuery("cart", getCart);

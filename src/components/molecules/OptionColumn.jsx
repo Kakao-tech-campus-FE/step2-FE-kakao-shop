@@ -3,7 +3,7 @@ import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
 import { useMutation } from "react-query";
-import addCart from "../../services/api/cart";
+import { addCart } from "../../services/api/cart";
 import Button from "../atoms/Button";
 
 const OptionColumn = ({ product }) => {
@@ -90,8 +90,8 @@ const OptionColumn = ({ product }) => {
                 /*Counter에 onDec, Inc의 props로 함수를 전달하였으므로
               onDec, Inc에서 이용되는 count는 Counter의 handleOnDec, Inc에서 실행된 
               count -1, count +1의 값이 여기에서 count로 이용된다. */
-                onDecrease={(count) => handleOnChange(count, option.id)}
-                onIncrease={(count) => handleOnChange(count, option.id)}
+                onDecrease={(count) => handleOnChange(count, option.optionId)}
+                onIncrease={(count) => handleOnChange(count, option.optionId)}
                 // 위의 두 줄의 코드를 아래 처럼 한 줄의 코드로 바꿔줘도 된다.
                 // 그렇게 하려면 Counter에서 props의 추가적인 수정이 필요하겠지만
                 // onChange={(count) => handleOnChange(count, option.id)}

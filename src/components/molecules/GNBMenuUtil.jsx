@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Box from "../atoms/Box";
 
 // 검색, 배송정보, 장바구니
@@ -5,7 +6,9 @@ import Box from "../atoms/Box";
 const GNBMenuUtil = ({ className = "" }) => {
   return (
     <Box className={className}>
-      <img alt="shopping cart" src="/cart.png" className="w-9 h-9" />
+      <Link to="/cart">
+        <img alt="shopping cart" src="/cart.png" className="w-9 h-9" />
+      </Link>
     </Box>
   );
 };
