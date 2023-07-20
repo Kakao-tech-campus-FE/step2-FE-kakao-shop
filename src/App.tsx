@@ -5,6 +5,8 @@ import Main from "@pages/Main";
 import Order from "@pages/Order";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "@pages/Register";
+import Layout from "@pages/Layout";
+import NotFound from "@pages/NotFound";
 
 function App() {
   return (
@@ -13,9 +15,10 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Main />} />
-          <Route path="/detail" element={<Detail />} />
-          <Route path="/detail/Order" element={<Order />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Main />} />
+          </Route>
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

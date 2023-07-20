@@ -17,5 +17,4 @@ export default TextLink;
 const StyledLink = styled(Link)`
   color: #191919;
   font-size: 12px;
-  text-decoration: none;
 `;
