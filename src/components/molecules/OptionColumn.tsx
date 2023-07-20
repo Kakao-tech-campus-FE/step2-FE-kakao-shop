@@ -1,5 +1,6 @@
 import { ProductInfoData, ProductOptionData } from '@api/dto';
 import OptionList from '@components/atoms/OptionList';
+import comma from '@utils/commaUtils';
 import React, { useState } from 'react';
 
 interface OptionColumnProps {
@@ -17,6 +18,13 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
   const [selectedOptions, setSelectedOptions] = useState<DictionaryItem[]>([]);
 
   const handleOnClickOption = (option: ProductOptionData) => {
+    // 이미 선택된 옵션의 선택 방지
+    const isOptionSelected = selectedOptions.find((el) => el.optionId === option.id);
+
+    if (isOptionSelected) {
+      return;
+    }
+
     setSelectedOptions((prev) => [
       ...prev,
       {
@@ -37,8 +45,14 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
         <span>총 상품금액</span>
       </div>
       <div>
-        ...옵션표기
-        <div />
+        {selectedOptions.map((option) => (
+          <ol key={option.optionId}>
+            option id, quantity, name, price
+            <Counter />
+            <span>{option.name}</span>
+            <span>{comma(option.price)}원</span>
+          </ol>
+        ))}
       </div>
     </>
   );
