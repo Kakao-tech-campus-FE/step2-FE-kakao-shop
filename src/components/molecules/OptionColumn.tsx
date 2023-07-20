@@ -1,8 +1,11 @@
+import addCart from '@api/cartApi';
 import { ProductInfoData, ProductOptionData } from '@api/dto';
 import Counter from '@components/atoms/Counter';
 import OptionList from '@components/atoms/OptionList';
+import FilledButton from '@components/atoms/button/FilledButton';
 import comma from '@utils/commaUtils';
 import React, { useState } from 'react';
+import { useMutation } from 'react-query';
 
 interface OptionColumnProps {
   product: ProductInfoData;
@@ -45,6 +48,9 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
     );
   };
 
+  // 장바구니 담기 api 처리
+  const { mutate } = useMutation({ mutationFn: addCart });
+
   return (
     <>
       <h3>옵션 선택</h3>
@@ -65,6 +71,31 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
             <span>{comma(option.price)}원</span>
           </ol>
         ))}
+        <div>
+          {/* 장바구니 담기 버튼 */}
+          <FilledButton
+            onClick={() => {
+              mutate(
+                selectedOptions.map((el) => {
+                  return {
+                    optionId: el.optionId,
+                    quantity: el.quantity,
+                  };
+                }),
+                {
+                  onSuccess: () => {
+                    alert('장바구니 담기 성공');
+                  },
+                  onError: () => {
+                    alert('장바구니 담기 실패');
+                  },
+                },
+              );
+            }}
+          >
+            장바구니 담기
+          </FilledButton>
+        </div>
       </div>
     </>
   );
