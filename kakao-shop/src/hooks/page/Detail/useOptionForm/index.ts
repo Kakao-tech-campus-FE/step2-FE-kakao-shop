@@ -26,7 +26,7 @@ export const useOptionForm = () => {
   }, [product]);
 
   const onSelectOption = (id: number) => {
-    setOptions(updatedSelectedOptions(id));
+    setOptions(updateSelectedOptions(id));
   };
 
   const increaseQuantity =
@@ -60,31 +60,31 @@ export const useOptionForm = () => {
 const UP1 = 1;
 const DOWN1 = -1;
 
+const addSelectProperty = (option: Option): UserSelectOption => ({
+  ...option,
+  isSelected: false,
+  quantity: 0,
+});
+
 const getUserSelectOption = (options?: Option[]) => {
   if (!options) return;
 
-  const userSelectOption = options?.map(option => {
-    return {
-      ...option,
-      isSelected: false,
-      quantity: 0,
-    };
-  });
-
-  return userSelectOption;
+  return options?.map(addSelectProperty);
 };
 
-const updatedSelectedOptions = (id: number) => (prevOptions?: UserSelectOption[]) => {
-  return prevOptions?.map(option => {
-    if (option.id === id) {
-      return {
-        ...option,
-        isSelected: true,
-        quantity: 1,
-      };
-    }
-    return option;
-  });
+const updateOption = (id: number, option: UserSelectOption): UserSelectOption => {
+  if (option.id === id) {
+    return {
+      ...option,
+      isSelected: true,
+      quantity: 1,
+    };
+  }
+  return option;
+};
+
+const updateSelectedOptions = (id: number) => (prevOptions?: UserSelectOption[]) => {
+  return prevOptions?.map(option => updateOption(id, option));
 };
 
 const calculateTotal = (totals: Totals, item: UserSelectOption) => {
@@ -93,14 +93,19 @@ const calculateTotal = (totals: Totals, item: UserSelectOption) => {
   return totals;
 };
 
+const isValidQuantityChange = (quantity: number, quantityChange: number): boolean =>
+  !(quantity === 1 && quantityChange === DOWN1);
+
+const updateQuantity = (option: UserSelectOption, quantityChange: number): UserSelectOption => ({
+  ...option,
+  quantity: option.quantity + quantityChange,
+});
+
 const updateQuantityOptions = (id: number, options: UserSelectOption[], quantityChange: number) =>
   options?.map(option => {
-    if (option.id === id) {
-      return {
-        ...option,
-        quantity: option.quantity + quantityChange,
-      };
-    }
+    if (option.id === id && isValidQuantityChange(option.quantity, quantityChange))
+      return updateQuantity(option, quantityChange);
+
     return option;
   });
 
