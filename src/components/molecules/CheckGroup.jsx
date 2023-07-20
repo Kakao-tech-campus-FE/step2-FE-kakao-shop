@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
-import CheckInput from '../atoms/CheckInput';
-import CheckItemBox from '../atoms/CheckItemBox';
+import CheckInput from '../atoms/checklist/CheckInput';
+import CheckItemBox from '../atoms/checklist/CheckItemBox';
 
 
 /**

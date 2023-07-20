@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FormContainer from "../atoms/form/FormContainer"
-import SubmitGroup from "../molecules/form/SubmitGroup"
-import InputGroup from "../molecules/form/InputGroup"
+import SubmitGroup from "../molecules/SubmitGroup"
+import InputGroup from "../molecules/InputGroup"
 import {postCheck, postJoin} from "../../api/register"
 import { useNavigate } from 'react-router-dom';
 import { emailValidate, passwordValidate } from '../../utils/validator'

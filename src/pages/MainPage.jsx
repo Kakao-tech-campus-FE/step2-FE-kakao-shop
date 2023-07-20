@@ -1,11 +1,12 @@
 import React from 'react'
-import SectionContainer from '../components/atoms/SectionContainer'
+import ProductsListTemplate from '../components/templates/ProductsListTemplate';
+import MainContainer from '../components/atoms/MainContainer';
 
 const MainPage = () => {
     return (
-      <SectionContainer>
-        라이언쇼핑 메인페이지
-      </SectionContainer>
+      <MainContainer>
+        <ProductsListTemplate />
+      </MainContainer>
     );
   };
 

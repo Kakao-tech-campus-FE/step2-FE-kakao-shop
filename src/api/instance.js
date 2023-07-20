@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
   baseURL:
     "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
-  timeout: 5000,
+  timeout: 3000,
   headers: {
     "Content-Type": "application/json",
     Authorization: localStorage.getItem("token"),
@@ -26,9 +26,6 @@ instance.interceptors.response.use(
     return config;
   },
   (error) => {
-    if (error.code === "ECONNABORTED") {
-      alert("timeout : 네트워크 오류");
-    }
     return Promise.reject(error);
   }
 );

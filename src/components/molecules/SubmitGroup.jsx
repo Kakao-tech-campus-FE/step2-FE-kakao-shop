@@ -1,5 +1,5 @@
 import React from 'react'
-import SubmitButton from "../../atoms/SubmitButton"
+import SubmitButton from "../atoms/SubmitButton"
 import { styled } from 'styled-components';
 
 const ErrorMessage = styled.div`
