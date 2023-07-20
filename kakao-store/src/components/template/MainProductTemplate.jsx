@@ -1,6 +1,7 @@
 import { Suspense, useEffect, useState, useRef } from 'react';
 import Container from '../../components/atoms/Container';
 import ProductGrid from '../../components/organisms/ProductGrid';
+import SkeletonGrid from '../organisms/SkeletonGrid';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProduct } from '../../store/slices/productSlice';
 import { fetchProducts } from '../../services/product';
@@ -39,7 +40,7 @@ const MainProductTemplate = () => {
     },
     { threshold: 1 }
   );
-  const time = 2000;
+  const time = 200;
 
   useEffect(() => {
     if (data?.data.response.length < 9) {
@@ -62,10 +63,10 @@ const MainProductTemplate = () => {
         {isLoading ? (
           <>
             <Loader />
-            <ProductGrid products={products} isLoading={true} />
+            <SkeletonGrid products={products} />
           </>
         ) : (
-          <ProductGrid products={products} isLoading={false} />
+          <ProductGrid products={products} />
         )}
         {error && <p>에러가 발생했습니다.</p>}
         <div ref={bottomObserver}></div>

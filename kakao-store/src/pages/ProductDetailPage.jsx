@@ -1,13 +1,16 @@
-import { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetail } from '../store/slices/detailSlice';
 import Loader from '../components/atoms/Loader';
 import { getProductById } from '../services/product';
-
 import { useQuery } from 'react-query';
-import ProductInformationColumn from '../components/molecules/ProductInformationColumn';
-import OptionColums from '../components/molecules/OptionColums';
+
+// import ProductInformationColumn from '../components/molecules/ProductInformationColumn';
+// import OptionColums from '../components/molecules/OptionColums';
+
+const ProductInformationColumn = React.lazy(() => import('../components/molecules/ProductInformationColumn'));
+const OptionColums = React.lazy(() => import('../components/molecules/OptionColums'));
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -28,17 +31,19 @@ const ProductDetailPage = () => {
 
   return (
     <div>
-      {product && (
-        <div className="flex px-40 ">
-          <span className="w-2/3">
-            <ProductInformationColumn product={product} />
-          </span>
+      <Suspense fallback={<Loader />}>
+        {product && (
+          <div className="flex px-40 ">
+            <span className="w-2/3">
+              <ProductInformationColumn product={product} />
+            </span>
 
-          <span className="border-gray w-1/3 border-l p-10">
-            <OptionColums product={product} />
-          </span>
-        </div>
-      )}
+            <span className="border-gray w-1/3 border-l p-10">
+              <OptionColums product={product} />
+            </span>
+          </div>
+        )}
+      </Suspense>
 
       {/* <OptionColums product={product} /> */}
       {/* loading state 
