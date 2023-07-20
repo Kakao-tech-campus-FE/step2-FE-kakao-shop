@@ -1,9 +1,5 @@
 import '../../styles/Atoms/Box.css';
-import { styled } from 'styled-components';
-
-const StyledBox = styled.div`
-    border: 1px solid #ddd;
-`
+import { StyledBox } from './style';
 
 const Box = ({ children, className = "red" }) => {
     return <StyledBox className={`box ${className}`}>{children}</StyledBox>
