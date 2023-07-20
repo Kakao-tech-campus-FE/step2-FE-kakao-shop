@@ -1,17 +1,15 @@
 import React from "react";
 
-// component
-import Toast from "../components/tests/Toast.js";
-import Breadcrumb from "../components/tests/Breadcrumb.js";
-import Carousel from "../components/tests/Carousel.js";
-import RadioList from "../components/tests/RadioList.js";
-import ToggleButton from "../components/tests/ToggleButton.js";
-import CheckList from "../components/tests/CheckList.js";
+import Toast from "components/tests/Toast.js";
+import Breadcrumb from "components/tests/Breadcrumb.js";
+import Carousel from "components/tests/Carousel.js";
+import RadioList from "components/tests/RadioList.js";
+import ToggleButton from "components/tests/ToggleButton.js";
+import CheckList from "components/tests/CheckList.js";
 
-// image
-import carouselImage1 from "../assets/images/carousel/carouselItem1.jpeg";
-import carouselImage2 from "../assets/images/carousel/carouselItem2.jpeg";
-import carouselImage3 from "../assets/images/carousel/carouselItem3.jpeg";
+import carouselImage1 from "assets/carousel/carouselItem1.jpeg";
+import carouselImage2 from "assets/carousel/carouselItem2.jpeg";
+import carouselImage3 from "assets/carousel/carouselItem3.jpeg";
 
 export default function Test() {
   return (

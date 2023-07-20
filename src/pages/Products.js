@@ -1,10 +1,9 @@
-import GNB from "../components/templates/GNB";
+import ProductSection from "components/templates/ProductSection.js";
 
 export default function Products() {
   return (
     <>
-      <GNB />
-      <h1>Products</h1>
+      <ProductSection />
     </>
   );
 }

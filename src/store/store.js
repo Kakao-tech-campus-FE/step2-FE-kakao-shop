@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice.js";
+import userReducer from "store/slices/userSlice.js";
 
 const savedLogInState = localStorage.getItem("userState");
 const preloadedState = savedLogInState
