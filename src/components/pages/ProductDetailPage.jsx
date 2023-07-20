@@ -4,7 +4,7 @@ import {getProductById} from "../../services/product";
 import {useQuery} from "react-query";
 import ProductDetailTemplate from "../templates/ProductDetailTemplate";
 import {useEffect, useState} from "react";
-import {addCart} from "../../services/cart";
+import {addCart, getCart} from "../../services/cart";
 
 const ProductDetailPage = () => {
     const id = useParams().id;
@@ -59,12 +59,12 @@ const ProductDetailPage = () => {
                     addCart(
                         [
                             {
-                                optionId : 1,
-                                quantity : 1
+                                optionId: 1,
+                                quantity: 1
                             },
                             {
-                                optionId : 2,
-                                quantity : 2
+                                optionId: 2,
+                                quantity: 2
                             }
                         ]
                     ).then((res) => {
@@ -73,6 +73,14 @@ const ProductDetailPage = () => {
                 }
                 }
             >add cart
+            </button>
+
+            <button onClick={
+                () => getCart().then((res) => {
+                    console.log("res", res)
+                })
+            }>
+                getCarts
             </button>
         </div>
     )

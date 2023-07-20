@@ -57,12 +57,13 @@ const OptionColumn = ({product}) => {
             alert("장바구니에 추가되었습니다.")
         },
         onError: (error) => {
-            alert(error.response.data.message)
+            console.log("error", error)
+            alert(error.response.data.error.message)
         }
     })
 
     return (
-        <div className="option-column h-full w-1/4 p-2 border-l">
+        <div className="option-column h-full w-1/4 p-2 border-l sticky top-20">
             <h3 className={"font-medium text-lg"}>옵션 선택</h3>
             <div className={"overflow-y-auto h-80 pe-3"}>
                 <OptionList
@@ -73,7 +74,8 @@ const OptionColumn = ({product}) => {
                     <ol key={option.id} className="selected-option-list w-full">
                         <li className="selected-option bg-red-100">
                             <div className={"flex flex-row justify-between p-1"}>
-                                <span className="block option-name text-ellipsis text-justify whitespace-nowrap overflow-hidden">{option.optionName}</span>
+                                <span
+                                    className="block option-name text-ellipsis text-justify whitespace-nowrap overflow-hidden">{option.optionName}</span>
                                 <button className={"delete-button"} onClick={
                                     () => setSelectedOption((prev) => prev.filter((el) => el.id !== option.id))
                                 }>
@@ -81,7 +83,8 @@ const OptionColumn = ({product}) => {
                                 </button>
                             </div>
                             <div className={"flex flex-row justify-between p-1"}>
-                                <span className="text-sm block option-price">{comma(option.price * option.quantity)}원</span>
+                                <span
+                                    className="text-sm block option-price">{comma(option.price * option.quantity)}원</span>
                                 <div className={"w-1/3"}>
                                     <Counter
                                         value={option.quantity}
@@ -107,16 +110,26 @@ const OptionColumn = ({product}) => {
                 </div>
 
                 <button className={"w-full cursor-pointer bg-kakao-yellow rounded-lg py-2"}
+                    // onClick={
+                    //     () => mutate({
+                    //         productId: product.id,
+                    //         options: selectedOption.map((option) => {
+                    //             return {
+                    //                 optionId: option.id,
+                    //                 quantity: option.quantity,
+                    //             }
+                    //         })
+                    //     })
+                    // }
                         onClick={
-                            () => mutate({
-                                productId: product.id,
-                                options: selectedOption.map((option) => {
+                            () => {
+                                mutate(selectedOption.map((option) => {
                                     return {
                                         optionId: option.id,
                                         quantity: option.quantity,
                                     }
-                                })
-                            })}>
+                                }))
+                            }}>
                     장바구니 담기
                 </button>
             </div>
