@@ -12,7 +12,7 @@ const OptionList = ({ options, onClick }) => {
                     <span className="price">{comma(option.price)}원</span>
                 </li>
             })}
-        </ol>
+        </ol> // 의미론적 태그 관점에서 순서가 있는것은 <ol>이 좋다
     )
 }
 
