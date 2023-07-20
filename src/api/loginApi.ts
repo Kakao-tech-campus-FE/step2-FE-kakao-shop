@@ -1,13 +1,6 @@
 import axios from 'axios';
 import { LoginData } from './dto';
-
-const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  timeout: 1000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import instance from '.';
 
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
