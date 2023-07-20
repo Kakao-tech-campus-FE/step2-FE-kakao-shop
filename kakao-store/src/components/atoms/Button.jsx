@@ -8,10 +8,10 @@
  * @returns {JSX.Element} - 버튼
  */
 
-const Button = ({ onClick, children }) => {
+const Button = ({ onClick, children, className }) => {
   return (
     <button
-      className="my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400"
+      className={className}
       onClick={(e) => {
         e.preventDefault();
         onClick();

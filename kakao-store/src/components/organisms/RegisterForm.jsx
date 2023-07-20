@@ -1,13 +1,13 @@
-import Container from "../atoms/Container";
-import InputGroup from "../molecules/InputGroup";
-import Button from "../atoms/Button";
-import useInput from "../../hooks/useinput";
-import Title from "../atoms/Title";
-import { validateForm } from "../../utils/VaildationSignup";
-import { useNavigate } from "react-router-dom";
-import { register } from "../../services/user";
-import { useState } from "react";
-import logo from "../../images/logoKakaoText.png";
+import Container from '../atoms/Container';
+import InputGroup from '../molecules/InputGroup';
+import Button from '../atoms/Button';
+import useInput from '../../hooks/useinput';
+import Title from '../atoms/Title';
+import { validateForm } from '../../utils/VaildationSignup';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../services/user';
+import { useState } from 'react';
+import logo from '../../images/logoKakaoText.png';
 // import useRegister from "../../hooks/useRegister";
 
 /**
@@ -21,10 +21,10 @@ const RegisterForm = () => {
   const navigate = useNavigate();
 
   const { value, handleOnChange } = useInput({
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
   });
 
   // const { errors, handleRegister  } = useRegister();
@@ -39,7 +39,7 @@ const RegisterForm = () => {
         password: value.password,
         username: value.username,
       });
-      navigate("/");
+      navigate('/');
     } else {
       setErrors(validationErrors);
     }
@@ -96,7 +96,12 @@ const RegisterForm = () => {
         </div>
       ))}
 
-      <Button onClick={handleRegister}>회원가입</Button>
+      <Button
+        onClick={handleRegister}
+        className={'my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400'}
+      >
+        회원가입
+      </Button>
     </Container>
   );
 };

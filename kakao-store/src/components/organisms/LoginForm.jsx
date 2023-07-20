@@ -122,7 +122,12 @@ const LoginForm = () => {
           </p>
         </div>
       ))}
-      <Button onClick={handleRegister}>로그인</Button>
+      <Button
+        onClick={handleRegister}
+        className={'my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400'}
+      >
+        로그인
+      </Button>
       <Link to="/signup">Sign up</Link>
     </Container>
   );
