@@ -6,7 +6,7 @@ const ProductInformationColumn = ({ product }) => {
   return (
     <div className="product-information-column">
       <div className="col">
-        <Photo src={image} alt={productName} />
+        <Photo src={process.env.REACT_APP_API_URL + image} alt={productName} />
       </div>
       <div className="col">
         <h1 className="name">{productName}</h1>

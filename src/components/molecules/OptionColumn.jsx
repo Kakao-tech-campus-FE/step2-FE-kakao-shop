@@ -12,7 +12,7 @@ const OptionColumn = ({ product }) => {
     // 동일한 옵션 클릭을 방지해 주는 코드(이미 선택된 옵션인지 확인)
     // Array의 find 메소드 이용, 찾았을 때 : 엘리먼트를 리턴, 찾지 못했을 때 : undefined 리턴
     const isOptionSelected = selectedOptions.find((el) => {
-      el.optionId === option.id;
+      return el.optionId === option.id;
     });
     // 이미 선택된 옵션이면 수량을 증가시킨다. => 코드를 간편하게 하기위해 강의에서는 아무 일도 일어나지 않도록 처리
     if (isOptionSelected) {
@@ -27,7 +27,7 @@ const OptionColumn = ({ product }) => {
     }
 
     setSelectedOptions((prev) => {
-      [
+      return [
         ...prev,
         {
           optionId: option.id,
@@ -82,26 +82,28 @@ const OptionColumn = ({ product }) => {
       {/* 담긴 옵션이 표기 */}
       {/* ui에서 필요한 정보: 옵션의 이름, 가격, 수량, 총 가격 */}
       {selectedOptions.map((option) => {
-        <ol key={option.id} className="selected-option-list">
-          <li className="selected-option">
-            <Counter
-              value={option.quantity}
-              /*Counter에 onDec, Inc의 props로 함수를 전달하였으므로
+        return (
+          <ol key={option.optionId} className="selected-option-list">
+            <li className="selected-option">
+              <Counter
+                value={option.quantity}
+                /*Counter에 onDec, Inc의 props로 함수를 전달하였으므로
               onDec, Inc에서 이용되는 count는 Counter의 handleOnDec, Inc에서 실행된 
               count -1, count +1의 값이 여기에서 count로 이용된다. */
-              onDecrease={(count) => handleOnChange(count, option.id)}
-              onIncrease={(count) => handleOnChange(count, option.id)}
-              // 위의 두 줄의 코드를 아래 처럼 한 줄의 코드로 바꿔줘도 된다.
-              // 그렇게 하려면 Counter에서 props의 추가적인 수정이 필요하겠지만
-              // onChange={(count) => handleOnChange(count, option.id)}
-            />
-            <span className="name">{option.name}</span>
-            <span className="price">{comma(option.price)}</span>
-          </li>
-        </ol>;
+                onDecrease={(count) => handleOnChange(count, option.id)}
+                onIncrease={(count) => handleOnChange(count, option.id)}
+                // 위의 두 줄의 코드를 아래 처럼 한 줄의 코드로 바꿔줘도 된다.
+                // 그렇게 하려면 Counter에서 props의 추가적인 수정이 필요하겠지만
+                // onChange={(count) => handleOnChange(count, option.id)}
+              />
+              <span className="name">{option.name}</span>
+              <span className="price">{comma(option.price)}</span>
+            </li>
+          </ol>
+        );
       })}
       <div className="total-price">
-        <spna>
+        <span>
           총 수량:{" "}
           {comma(
             selectedOptions.reduce((acc, cur) => {
@@ -111,7 +113,7 @@ const OptionColumn = ({ product }) => {
             }, 0)
           )}
           개
-        </spna>
+        </span>
         <span>총 상품금액</span>
       </div>
       <div className="button-group">
@@ -134,13 +136,17 @@ const OptionColumn = ({ product }) => {
                 onSuccess: () => {
                   alert("장바구니에 담겼습니다.");
                 },
-                onError: () => {
-                  alert("장바구니 담기에 실패했습니다.");
+                onError: (error) => {
+                  if (error.status === 401) alert("로그인이 필요합니다.");
+                  else
+                    alert(`${error?.message}\n장바구니 담기에 실패했습니다.`);
                 },
               }
             );
           }}
-        ></Button>
+        >
+          장바구니 담기
+        </Button>
       </div>
     </div>
   );

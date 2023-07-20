@@ -5,7 +5,7 @@ const Counter = ({
   onIncrease, // 수량 증가 함수
   onDecrease, // 수량 감소 함수
 }) => {
-  const [count, setCount] = useState(value);
+  const [count, setCount] = useState(1);
   const handleOnIncrease = () => {
     // setCount는 비동기 함수이기 때문에
     // 값을 잘 생각하여 코드를 작성해야 한다.

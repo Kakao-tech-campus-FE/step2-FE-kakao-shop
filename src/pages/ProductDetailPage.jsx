@@ -60,7 +60,7 @@ const ProductDetailPage = () => {
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
       {/* 최초의 data는 아무 값이 없어 바로 참조하지 않고 ?를 이용하여 참조하여 parsing error 방지*/}
-      {product && <ProductDetailTemplate product={product} />}
+      {validate() && <ProductDetailTemplate product={product} />}
     </div>
   );
 };
