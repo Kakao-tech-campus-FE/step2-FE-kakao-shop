@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { getAuth } from "@/functions/auth";
+import { ERROR } from "@/assets/error.ko";
 
 const responseMiddleware = (response: AxiosResponse) => {
   if (!response.data.response && response.data.error) {
@@ -13,13 +14,32 @@ const authAxios = axios.create({
 });
 
 authAxios.interceptors.request.use((config) => {
-  config.headers["Content-Type"] = "application/json";
-  config.headers["Authorization"] = `Bearer ${getAuth()}`;
+  const token = getAuth();
+  if (!token) {
+    alert(ERROR.NOT_LOGIN);
+    window.location.href = "/signin";
+  }
+
+  config.headers["Content-Type"] = "application/json;charset=UTF-8";
+  config.headers["Authorization"] = `Bearer ${token}`;
   return config;
 });
 
 authAxios.interceptors.response.use(responseMiddleware, (error) => {
-  if (error.response.status >= 400) {
+  if (error.response.status === 500) {
+    console.error(error.response.data.error.message);
+    alert(`${ERROR.UNKNOW_ERROR} ${ERROR.CONTECT_ADMIN}`);
+    window.location.href = "/signin";
+  }
+
+  if (error.response.status === 401) {
+    console.error(error.response.data.error.message);
+    alert(ERROR.NOT_LOGIN);
+    window.location.href = "/signin";
+  }
+  if (error.response.status === 400) {
+    console.error(error.response.data.error.message);
+    alert(ERROR.NOT_LOGIN);
     window.location.href = "/signin";
   }
   return error;
@@ -39,10 +59,9 @@ commonAxios.interceptors.response.use(responseMiddleware, (error) => {
 
   if (error.response.status >= 400) {
     error.response.message =
-      responseErrorMessage ??
-      `알 수 없는 오류입니다.: ${error.response.status}`;
+      responseErrorMessage ?? `${ERROR.UNKNOW_ERROR}: ${error.response.status}`;
   }
-  return error.response ?? { message: "알 수 없는 오류입니다.", status: 400 };
+  return error.response ?? { message: ERROR.UNKNOW_ERROR, status: 400 };
 });
 
 export { authAxios, commonAxios };

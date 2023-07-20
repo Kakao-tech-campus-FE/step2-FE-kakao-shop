@@ -10,6 +10,7 @@ import TogglePage from "@/pages/test/Toggle.page";
 import CheckListPage from "@/pages/test/CheckList.page";
 import ProductDetailPage from "@/pages/Product/ProductDetail.page";
 import ErrorPage from "@/pages/Error/Error.page";
+import CartPage from "@/pages/Cart/Cart.page";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     element: <ProductDetailPage />,
     path: "/product/:productId",
+  },
+  {
+    element: <CartPage />,
+    path: "/cart",
   },
   {
     element: <Toast />,

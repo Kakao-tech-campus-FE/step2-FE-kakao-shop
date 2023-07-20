@@ -29,7 +29,7 @@ const ProductOptionOrderItem: FC<ProductOptionOrderItemProps> = ({ item }) => {
     <div className="p-2">
       <Txt>{CHOICE_PRODUCT}: </Txt>
       <Txt>{item.optionName}</Txt>
-      <div className="flex gap-2">
+      <div className="flex gap-2 items-center border-[1px] rounded-lg w-fit ">
         <Button
           color="light"
           className="h-8 w-8 rounded-lg"

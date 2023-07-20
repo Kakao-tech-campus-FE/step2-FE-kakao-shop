@@ -16,6 +16,8 @@ const PRODUCT = {
   PEICE: "개",
   TOTAL_PRICE: "총 주문금액",
   CHOICE_PRODUCT: "선택한 상품",
+  BUY_BY_TOC: "톡딜가로 구매하기",
+  ADD_CART: "장바구니에 담기",
 };
 
 export { PRODUCT };

@@ -1,28 +1,18 @@
 import { Product } from "@/dtos/product.dto";
 import ProductCard from "@/components/ProductList/ProductCard.component";
-import { commonAxios } from "@/functions/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import ProductSkeleton from "@/components/ProductList/ProductSkeleton.component";
 import range from "lodash/range";
 import { PRODUCT } from "@/assets/product.ko";
 import Txt from "../common/Txt.component";
+import { getProducts } from "@/remotes/product";
 
 const { NO_PRODUCT } = PRODUCT;
 
 const ProductGroup = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
   const cardRef = useRef<HTMLDivElement | null>(null);
-
-  const getProducts = async (pageData: { pageParam?: number }) => {
-    const pageParam = pageData?.pageParam ?? 0;
-    const { data } = await commonAxios.get(`/products?page=${pageParam}`);
-
-    return {
-      result: data.response,
-      nextPage: pageParam + 1,
-    };
-  };
 
   const { data, isFetching, hasNextPage, fetchNextPage } = useInfiniteQuery({
     queryKey: ["products"],

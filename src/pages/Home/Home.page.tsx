@@ -22,7 +22,7 @@ const HomePage = () => {
     <>
       <GlobalNavbar />
       <Carousel carouselItems={carouselItems} />
-      <div className="m-auto max-w-6xl">
+      <div className="m-auto max-w-7xl">
         <ProductGroup />
       </div>
     </>

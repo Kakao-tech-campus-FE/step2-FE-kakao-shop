@@ -13,7 +13,7 @@ const GlobalNavbar: FC<GlobalNavbarProps> = ({ isSmall = false }) => {
       <nav
         className={classnames(
           "fixed top-0 left-0 bg-white w-full border-t-[1px] border-b-[1px] border-slate-300 text-sm z-50",
-          { "py-": !isSmall }
+          { "py-4": !isSmall }
         )}
       >
         <div className="flex m-auto max-w-7xl">
