@@ -1,6 +1,7 @@
 import React from 'react';
 import LinkTo from '../atoms/LinkTo';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { styled } from 'styled-components';
 
 function FontToLink({to, linkstyle, spanstyle, icon, children, iconsize}) {
 
@@ -15,3 +16,4 @@ function FontToLink({to, linkstyle, spanstyle, icon, children, iconsize}) {
 }
 
 export default FontToLink
+

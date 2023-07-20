@@ -10,8 +10,6 @@ export const useInfinite = (page) => {
   const [end, setEnd] = useState(false) //마지막 페이지에 다달았을때, 더이상 API요청을 안하도록하는 상태 값입니다
   const [reRender, setReRender] = useState(false) //이전 데이터 값과 다른 값이 리턴 값으로 전달될 때만 Render하기 위해 만든 상태
 
-
-
   const {isLoading, data, error, isError} = useQuery(['/products',page], () => {return fetchProducts('/products',page)})
 
   if(isError){
@@ -38,8 +36,6 @@ export const useInfinite = (page) => {
     }
   }
 
-  console.log(isLoading)
-  console.log(isError)
 
   return {productData,isLoading,end,reRender,isError} 
 }

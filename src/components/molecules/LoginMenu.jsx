@@ -24,6 +24,16 @@ function LoginMenu({style, }) {
 
   return (
     <Menu style={style}>
+      <LinkTo to={'/signup'} style={{
+        textDecoration: 'none',
+        display: 'block',
+        padding: '12px 0',
+        fontSize: '14px',
+        lineHeight: '30px',
+        color: '#000',
+        marginRight: '20px',
+      }}>회원가입</LinkTo>
+
       {loginCheck ? <LinkTo to={'/'} style={{
       textDecoration: 'none',
       display: 'block',

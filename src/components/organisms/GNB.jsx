@@ -135,8 +135,9 @@ function GNB({ }) {
         </SelectContainor>
 
           <LoginMenu style={{
-          display: 'relative',
+          display: 'flex',
           padding: '13px 0 13px 24px',
+          position: 'relatvie'
           }}></LoginMenu>
         </Containor>
       </Containor>
