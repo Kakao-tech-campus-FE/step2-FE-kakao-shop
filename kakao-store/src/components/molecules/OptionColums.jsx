@@ -112,7 +112,7 @@ const OptionColums = ({ product }) => {
           )}
         </span>
       </div>
-      <div className="button-group">
+      <div className="button-group flex">
         {/* 장바구니 담기 버튼 위치 */}
         <Button
           onClick={() => {
@@ -134,8 +134,14 @@ const OptionColums = ({ product }) => {
               }
             );
           }}
+          className={'mx-2 my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400'}
         >
           장바구니 담기
+        </Button>
+        <Button
+          className={'mx-2  my-8 w-full rounded bg-[#333333] px-4 py-3 font-semibold text-white hover:bg-[#292929]'}
+        >
+          바로 구매
         </Button>
         {/* 톡딜가 X */}
       </div>
