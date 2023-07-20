@@ -1,20 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { addCart } from "../../services/cart";
-import Button from "../atoms/Button";
+// import Button from "../atoms/Button";
+import { Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/molecules/OptionColumn.css";
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-
-  //잘들어오는지 확인용
-  // useEffect(() => {
-  //   console.log("new selected option:", selectedOptions);
-  // }, [selectedOptions]);
 
   const handleOnClickOption = (option) => {
     // 동일한 옵션 클릭 했을때 방지해줄 코드(이미 선택된 옵션인가?)
@@ -76,11 +72,12 @@ const OptionColumn = ({ product }) => {
             <span className="selected-option-name">{option.name}</span>
             <div className="selected-option-update">
               <Counter
+                className="selected-option-count"
                 onIncrease={(count) => handleOnChange(count, option.optionId)}
                 onDecrease={(count) => handleOnChange(count, option.optionId)}
               />
               <span className="selected-option-price">
-                {comma(option.price)}원
+                {comma(option.price * option.quantity)}원
               </span>
             </div>
           </li>
@@ -151,8 +148,10 @@ const OptionColumn = ({ product }) => {
         >
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
-        {/* <button className="order-button">구매하기</button> */}
-        <Button className="order-btn">구매하기</Button>
+        {/* <Button className="order-btn">구매하기</Button> */}
+        <Button variant="order-btn" className="order-btn">
+          구매하기
+        </Button>
       </div>
     </div>
   );

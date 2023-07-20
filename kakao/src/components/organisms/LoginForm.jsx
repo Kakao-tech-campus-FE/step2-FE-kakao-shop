@@ -40,7 +40,8 @@ const LoginForm = () => {
     })
       .then((res) => {
         console.log(res);
-        const token = res.data.token;
+        // const token = res.data.token;
+        const token = res.headers.authorization;
         localStorage.setItem("token", token);
         dispatch(
           setEmail({

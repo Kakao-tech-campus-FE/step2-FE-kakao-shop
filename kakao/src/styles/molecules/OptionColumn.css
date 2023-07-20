@@ -1,6 +1,8 @@
 .selected-option-list {
   border: 1px solid #ccc;
   margin: 5px 0;
+  list-style: none;
+  padding: 4px;
 }
 
 .selected-option-update {
@@ -8,7 +10,7 @@
   justify-content: space-between;
 }
 
-/* delivery-row(배송방법, 배송비) */
+/* ---- delivery-row(배송방법, 배송비) ---- */
 .option-column .delivery-row {
   margin: 10px 0;
 }
@@ -35,7 +37,7 @@
   display: block;
 }
 
-/* total(총수량, 주문금액) */
+/* ---- total(총수량, 주문금액) ---- */
 .option-column .total {
   padding: 8px;
   font-size: 18px;
@@ -48,7 +50,7 @@
   color: red;
 }
 
-/* button-group(찜, 장바구니, 구매) */
+/* ---- button-group(찜, 장바구니, 구매) ---- */
 .option-column .button-group {
   height: 60px;
   display: flex;
@@ -57,8 +59,10 @@
 .button-group .btn-l {
   width: 100px;
   cursor: pointer;
+  margin-right: 5px;
 }
 
-.button-group .order-btn {
-  background-color: yellow;
+.option-column .button-group .order-btn {
+  background-color: #fcea26;
+  width: 150px;
 }
