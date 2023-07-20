@@ -12,7 +12,7 @@ const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+    config.headers["Authorization"] = token;
   }
   return config;
 });
@@ -26,19 +26,4 @@ instance.interceptors.response.use(
   }
 );
 
-export const register = (data) => {
-  const { email, password, username } = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  }); // join으로 보내준다
-};
-
-export const login = (data) => {
-  const { email, password } = data;
-  return instance.post("/login", {
-    email,
-    password,
-  });
-};
+export { instance };
