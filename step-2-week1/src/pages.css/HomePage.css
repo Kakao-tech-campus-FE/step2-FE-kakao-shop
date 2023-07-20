@@ -1,12 +1,43 @@
-.navigation-bar {
-  display: flex;
-  justify-content: space-between;
+.nav {
+  float: right;
 }
 
-.navigation-bar {
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  /* margin : 5px; */
+  /* padding-left: 20px; */
+  /* align-items: center; */
+  padding : 20px 0;
+  
+  
+}
+
+.header a{
+  display: flex;
+  padding : 5px 15px;
+  
+  float: left;
+
+  font-family:'Malgun Gothic';
+  font-weight: bold;
+  color: black;
+  font-size: 15pt;
+  text-decoration: none;
+}
+
+.header a:hover {
+  color: green;
+  font-weight: bold;
+}
+
+
+
+.navigation a {
   margin-right: 20px;
 }
 
-.navigation-bar :last-child {
+.navigation :child {
   margin-right: 0;;
 }

@@ -1,13 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+picture > img {
+  width: inherit;
+}
+
 .App {
   text-align: center;
 
 }
 
-.container {
+/* .container {
   Width: 300vw;
   /* transform: translate(-100vw) */
   /* style="margin: 0" */
-}
+/* } */ 
 .carousel {
   position: relative;
   width: 100%;
