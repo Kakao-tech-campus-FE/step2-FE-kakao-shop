@@ -13,8 +13,11 @@ const CartList = () => {
     const route = useNavigate();
     const { data, isLoading } = useQuery("cart", getCart);
 
-    const [cartItems, setCartItems] = useState(data?.response?.products || []);
-    const [totalPrice, setTotalPrice] = useState(data?.response?.totalPrice || 0);
+    const initialCartItems = data?.response?.products || []; // 수정: 초기값 설정
+    const initialTotalPrice = data?.response?.totalPrice || 0; // 수정: 초기값 설정
+
+    const [cartItems, setCartItems] = useState(initialCartItems);
+    const [totalPrice, setTotalPrice] = useState(initialTotalPrice);
     const [updatePayload, setUpdatePayload] = useState([]);
 
     const { mutate } = useMutation({
