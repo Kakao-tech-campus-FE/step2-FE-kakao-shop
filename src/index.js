@@ -13,6 +13,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
 import PurchasePage from "./pages/PurchasePage";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -22,8 +23,22 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <MainPage /> },
       { path: "/product/:id", element: <ProductDetailPage /> },
-      { path: "/cart", element: <CartPage /> },
-      { path: "/order", element: <PurchasePage /> },
+      {
+        path: "/cart",
+        element: (
+          <ProtectedRoute>
+            <CartPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/order",
+        element: (
+          <ProtectedRoute>
+            <PurchasePage />
+          </ProtectedRoute>
+        ),
+      },
     ],
   },
   {

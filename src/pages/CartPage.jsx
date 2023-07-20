@@ -7,8 +7,10 @@ import { comma } from "../utils/convert";
 import Button from "../components/atoms/Button";
 import Container from "../components/atoms/Container";
 import NullCart from "../components/organisms/NullCart";
+import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
+  const navigate = useNavigate();
   const { error, data } = useQuery(["carts"], cartInstance.getCart);
 
   if (error) {
@@ -35,6 +37,7 @@ export default function CartPage() {
               textsize="lg"
               font="bold"
               color="yellow"
+              onClick={() => navigate("/order")}
             >
               주문하기
             </Button>
