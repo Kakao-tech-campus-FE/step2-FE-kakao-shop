@@ -1,11 +1,13 @@
 import Logo from "../atoms/Logo";
-import MenuAccount from "../molecules/MenuAccount";
+import MenuUtil from "../molecules/GNB/MenuUtil";
+import MenuAccount from "../molecules/GNB/MenuAccount";
+import "../../style/molecules/GNB.css";
 
 const GNB = () => {
   return (
     <div className="gnb">
       <Logo />
-      <a style={{"margin": 10}}></a>
+      <MenuUtil />
       <MenuAccount />
     </div>
   );

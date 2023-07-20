@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.content {
+  @apply pt-20;
+}
 
 .btn {
   @apply py-2 px-4 my-2 rounded-md w-full bg-gray-300 hover:bg-gray-400 active:bg-gray-500;
@@ -12,7 +15,7 @@
 }
 
 .container {
-  @apply relative w-75 min-w-400 max-w-750;
+  @apply relative w-75% min-w-400 max-w-750;
 }
 
 .box_form {
@@ -25,18 +28,6 @@
 
 .input_form {
   @apply w-full border-none focus:outline-none;
-}
-
-.gnb {
-  @apply flex items-center p-8;
-}
-
-.img_logo {
-  @apply w-90;
-}
-
-.menu_account {
-  @apply ml-auto;
 }
 
 body {
