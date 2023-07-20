@@ -1,14 +1,8 @@
-import styled from "styled-components";
-
-const StyledDiv = styled.div`
-    width: 500px;
-    height: 100%;
-    margin: 0 auto;
-`;
+import styles from "./Container.module.css";
 
 // children : container에 삽입할 요소
 const Container = ({ children, className="" }) => {
-    return <StyledDiv className={`container ${className}`}>{children}</StyledDiv>
+    return <div className={`${styles.container} ${className}`}>{children}</div>
 }
 
 export default Container;

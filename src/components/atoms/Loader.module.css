@@ -1,0 +1,14 @@
+.loader {
+  /* margin: 0 0 2em; */
+  height: 100px;
+  width: 20%;
+  text-align: center;
+  padding: 1em;
+  margin: 0 auto;
+  display: block;
+}
+
+.loader svg path,
+.loader svg rect {
+  fill: gray;
+}

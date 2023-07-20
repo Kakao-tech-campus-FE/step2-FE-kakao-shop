@@ -1,0 +1,7 @@
+.photo{
+    width: 100%;
+}
+
+.photo > img {
+    width: inherit;
+}

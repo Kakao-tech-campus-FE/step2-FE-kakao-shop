@@ -1,40 +1,4 @@
-/* .home {
-  text-align: center;
-  background-color: #E7CEA6;
-} */
 
-/* colors */
-/* #E7CEA6 */
-/* #0A6EBD */
-/* #5A96E3 */
-/* #A1C2F1  */
-
-.mainButton {
-  margin: 20px;
-  border: none;
-  padding: 15px 30px;
-  border-radius: 15px;
-  font-family: "paybooc-Light", sans-serif;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  font-weight: 600;
-  transition: 0.25s;
-}
-.mainButton:hover {
-  transform: scale(1.2);
-  box-shadow: 0 35px 35px rgba(0, 0, 0, 0.1);
-}
-
-th {
-  padding: 10px 50px;
-}
-td {
-  padding: 10px 10px;
-}
-form {
-  border-radius: 25px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 20px;
-}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -51,20 +15,4 @@ form {
 .breadcrumb {
   position: absolute;
   bottom: 0;
-}
-
-.menu_my {
-  padding: 13px 0 13px 24px;
-}
-.root-layout main {
-  position: relative;
-  top: 80px;
-}
-.root-layout .menu-util::after {
-  content: "|";
-  color: gray;
-}
-.root-layout .logoKakao img {
-  width: 90px;
-  padding: 31px 0 0;
 }
