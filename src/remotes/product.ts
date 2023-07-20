@@ -38,8 +38,11 @@ export const getCart = async () => {
   return authAxios.get<CartsResDto>("/carts");
 };
 
-export const updateCart = async (
-  orders: { cartId: number; quantity: number }[]
-) => {
+export interface UpdateCardReq {
+  cartId: number;
+  quantity: number;
+}
+
+export const updateCart = async (orders: UpdateCardReq[]) => {
   return authAxios.post<CartsResDto>("/carts/update", orders);
 };
