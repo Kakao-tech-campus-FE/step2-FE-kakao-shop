@@ -39,6 +39,8 @@ const LoginForm = () => {
                 const tomorrow = new Date(today.setDate(today.getDate() + 1));
                 dispatch(reducerLogin(value.email));
                 dispatch(setExpirationTime(tomorrow))
+                localStorage.clear();
+                localStorage.setItem("token", res.headers.authorization);
                 alert(value.email + "님 환영합니다.")
                 window.location.href = "/";
             }

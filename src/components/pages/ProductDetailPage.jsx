@@ -4,6 +4,7 @@ import {getProductById} from "../../services/product";
 import {useQuery} from "react-query";
 import ProductDetailTemplate from "../templates/ProductDetailTemplate";
 import {useEffect, useState} from "react";
+import {addCart} from "../../services/cart";
 
 const ProductDetailPage = () => {
     const id = useParams().id;
@@ -53,6 +54,26 @@ const ProductDetailPage = () => {
                 {data && <ProductDetailTemplate product={data.data.response}/>}
                 {}
             </div>
+            <button
+                onClick={() => {
+                    addCart(
+                        [
+                            {
+                                optionId : 1,
+                                quantity : 1
+                            },
+                            {
+                                optionId : 2,
+                                quantity : 2
+                            }
+                        ]
+                    ).then((res) => {
+                        console.log("res", res)
+                    })
+                }
+                }
+            >add cart
+            </button>
         </div>
     )
 }

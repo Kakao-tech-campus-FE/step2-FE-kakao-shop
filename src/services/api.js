@@ -14,8 +14,9 @@ instance.interceptors.request.use(
     async (config) => {
         const token = localStorage.getItem("token");
         if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
+            config.headers.Authorization = token
         }
+        console.log("config", config)
         return config;
     }
 );
@@ -29,7 +30,6 @@ instance.interceptors.response.use(
             localStorage.removeItem("token");
         }
         return Promise.reject(error);
-
     }
 );
 
