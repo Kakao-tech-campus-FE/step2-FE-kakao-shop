@@ -5,7 +5,7 @@ const Button = ({ onClick, children, className, disabled}) => { // 버튼: 온�
         className={className}
         onClick = {(e) => {
           e.preventDefault();
-          onClick();
+          onClick(e);
         }}
         disabled={disabled}
       >

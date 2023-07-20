@@ -1,9 +1,8 @@
-import Input from "../Atoms/input";
-import Box from "../Atoms/box";
-import Label from "../Atoms/label";
+import Input from "../Atoms/Input";
+import Box from "../Atoms/Box";
+import Label from "../Atoms/Label";
 
 const InputGroup = ({ id, type, value, onChange, className, label, placeholder, name}) => {
-  // const valid = {valid}
   
   return (
     <> 
