@@ -13,6 +13,7 @@ const ProductDetailPage = () => {
   const { data, error, isLoading } = useQuery(`/product/${id}`, () => getProductById(parseId));
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const product = data?.data.response;
 
   useEffect(() => {
     if (data) {
@@ -20,15 +21,13 @@ const ProductDetailPage = () => {
     }
   }, [dispatch, data, parseId]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    navigate(-1);
-  }
-
-  return <p>Product ID: {id}</p>;
+  return (
+    <>
+      {isLoading && <Loader />}
+      {error && navigate(-1)}
+      {product && <p>Product ID: {id}</p>}
+    </>
+  );
 };
 
 export default ProductDetailPage;
