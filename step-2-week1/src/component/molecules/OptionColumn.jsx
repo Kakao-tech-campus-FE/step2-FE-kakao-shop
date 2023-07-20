@@ -40,13 +40,13 @@ const OptionColumn = ({ product }) => {
                 if (el.optionId === optionId) {
                     return {
                         ...el,
-                        // quantity: stableValueHash,
+                        quantity: count,
                     };
                 }
                 return el;
             });
         });
-    }
+    };
 
     const { mutate } = useMutation({
         mutationFn: addCart,
@@ -94,11 +94,12 @@ const OptionColumn = ({ product }) => {
             </span>
         </div>
         {selectedOptions.map((option) => (
-            <ol key={option.id} className="selected-option-list">
+            <ol key={option.optionId} className="selected-option-list">
                 <li className="selected-option">
                     <Counter 
-                        onIncrease={(count) => handleOnChange(count, option.id)}
-                        onDecrease={(count) => handleOnChange(count, option.id)}
+                        count = {option.quantity}
+                        onIncrease={() => handleOnChange(option.quantity + 1, option.optionId)}
+                        onDecrease={() => handleOnChange(option.quantity - 1, option.optionId)}
                     />
                     <span className="name">{option.name}</span>
                     <span className="price">{comma(option.price)}원</span>
@@ -106,8 +107,8 @@ const OptionColumn = ({ product }) => {
             </ol>
         ))}
         <div className="button-group">
-            <div className="button-cart">
-            <button
+            {/* <div className="button-cart"> */}
+            <button className="button-cart"
                 onClick={() => {
                     mutate(
                         selectedOptions.map((el) => {
@@ -118,9 +119,11 @@ const OptionColumn = ({ product }) => {
                         }), {
                             onSuccess: () => {
                                 alert("장바구니에 담겼습니다.")
+                                
 
                             },
-                            onError: () => {
+                            onError: (error) => {
+                                console.error("장바구니 담기 오류:", error);
                                 alert("장바구니 담기에 실패했습니다.")
 
                             }
@@ -128,7 +131,7 @@ const OptionColumn = ({ product }) => {
                     );
                 }}
                 ><img src={cart} alt="cart" height={40}/></button>
-                </div>
+                {/* </div> */}
                <button style={buttonStyle} className="buy-now">바로구매</button>
               
         </div>

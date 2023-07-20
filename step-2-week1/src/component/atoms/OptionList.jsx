@@ -8,7 +8,7 @@ const OptionList = ({ options, onclick }) => {
     return (
         <ol className="option-list">
             {options && options.map((option, index) => (
-                <li key={option.id} className="option" onClick={(option)}>
+                <li key={option.id} className="option" onClick={() => onclick(option)}>
                     <span className="name">
                         {index + 1}. {option.optionName}
                     </span>
