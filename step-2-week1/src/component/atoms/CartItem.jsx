@@ -3,6 +3,7 @@ import Box from "./Box";
 import Counter from "./Counter";
 // import "../../styles/atoms/CartItem.css";
 import { comma } from "../../utils/convert";
+import '../../styles/atoms/CartItem.css';
 
 export const CartItem = ({ item, onChange }) => {
     return (
@@ -14,7 +15,7 @@ export const CartItem = ({ item, onChange }) => {
                         <span>{cart.option.optionName}</span>
                     </div>
                 <div className="row">
-                    <Counter
+                    <Counter className="counter"
                         onIncrease={( count ) => {
                             onChange(cart.id, count, cart.option.price);
                         }}
@@ -28,9 +29,10 @@ export const CartItem = ({ item, onChange }) => {
                 </div>
                 </Card>
             ))}
+            <div className="horizontal-line"></div>
             <Card className="total-price">
                 <div className="row">
-                    <h5>주문금액</h5>
+                    <h5>주문 예상 금액</h5>
                     <div className="price">
                         {comma(
                             item.carts.reduce((acc, cur) => {

@@ -9,7 +9,7 @@ import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
 import { updateCart, getCart } from "../../services/cart";
-
+import '../../styles/molcules/CartList.css';
 
 const CartList = () => {
     const route = useNavigate();
@@ -98,11 +98,11 @@ const CartList = () => {
             <Box>
                 <h1>장바구니</h1>
             </Box>
-            <Card>
+            <Card className="cart-item">
                 {/* 상품별 장바구니 */}
                 {Array.isArray(cartItems) && cartItems.map((item) => {
                     return (
-                        <CartItem
+                        <CartItem 
                             key={item.id}
                             item={item}
                             onChange={handleOnChangeCount}
@@ -116,8 +116,7 @@ const CartList = () => {
                     <div className="sum-price">{comma(totalPrice)}원</div>
                 </div>
             </Card>
-            <Button
-                className="order-btn"
+            <button className="order-btn"
                 onClick={() => {
                     // update cart api
                     // 장바구니 정보를 수정하는 api 호출 (개수 변경이 있는 경우)
@@ -142,7 +141,7 @@ const CartList = () => {
                 <span>
                     총 {getTotalCartCountIncludeOptions()}건 주문하기
                 </span>
-            </Button>
+            </button>
         </Container>
     )
 }

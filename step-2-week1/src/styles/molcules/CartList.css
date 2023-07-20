@@ -1,0 +1,43 @@
+.cart-list {
+    text-align: center;
+    padding-left: 300px;
+    padding-right: 300px;
+    padding-bottom: 200px;
+}
+
+.row {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.order-btn {
+    width: 300px;
+    height: 100px;
+
+    /* 버튼 배경색 설정 */
+    background-color: yellow;
+
+    /* 텍스트 색상 설정 */
+    color: black;
+
+    font-size: 30px;
+
+    /* 폰트 굵기 설정 */
+    font-weight: bold;
+
+    /* 테두리 스타일 설정 */
+    border: 1px solid black;
+
+    /* 버튼 모서리 둥글게 설정 */
+    border-radius: 8px;
+
+    /* 기타 스타일 설정 */
+    cursor: pointer;
+    outline: none;
+
+}
+
+
