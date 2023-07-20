@@ -5,7 +5,7 @@ import useInput from "./../../hooks/useInput";
 import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage, usernameErrorMessage, passwordComparisonErrorMessage } from "../../utils/constants";
 import { register } from "../services/user";
-// import { useEffect } from "react"; // useEffect는 오류가 발생하는 구간을 확인하는데 유용하다.
+import { styled } from "styled-components";
 
 const RegisterForm = () => {
   const [value, handleOnChange] = useInput({
@@ -39,7 +39,8 @@ const RegisterForm = () => {
   }
 
   return (
-    <Container>
+    <RegisterFormContainer>
+      <span>회원가입</span>
       <InputGroup
         id="username"
         type="text"
@@ -77,8 +78,17 @@ const RegisterForm = () => {
         onChange={handleOnChange}
       />
       <Button onClick={handleClick}>회원가입</Button>
-    </Container>
+    </RegisterFormContainer>
   );
 };
 
 export default RegisterForm;
+
+const RegisterFormContainer = styled(Container)`
+  margin: 0 auto;
+  width: 50%;
+  border: 1px solid #ddd;
+  & > span {
+    font-size: 2.2rem;
+  }
+`
