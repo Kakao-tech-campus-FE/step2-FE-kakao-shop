@@ -7,7 +7,6 @@ const Counter = ({
     optionId,
 }) => {
     const [count, setCount] = useState(value);
-
     const handleOnIncrease = () => {
         setCount(count + 1);
         onIncrease(count + 1, optionId);
