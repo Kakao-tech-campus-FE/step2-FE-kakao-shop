@@ -1,39 +1,61 @@
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { getProducts } from "../../store/slices/productSlice";
+import Carousel from "../molecules/Carousel";
+import CardSkeleton from "../atoms/CardSkeleton";
+import { loader } from "react-global-loader";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
-  const { products, loading, error } = useSelector((state) => state.product);
+  const { products, loading, isEnd } = useSelector((state) => state.product);
 
-  const io = new IntersectionObserver(
-    (entires, observer) => {
-      entires.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setPage((page) => page + 1);
+  const io = useMemo(
+    () =>
+      new IntersectionObserver(
+        (entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setPage((page) => page + 1);
+            }
+          });
+        },
+        {
+          threshold: 1,
         }
-      });
-    },
-    {
-      threshold: 1,
-    }
+      ),
+    []
   );
+
+  const showLoader = () => {
+    loader.show();
+  };
+
+  const hideLoader = () => {
+    loader.hide();
+  };
 
   useEffect(() => {
     io.observer(bottomObserver.current);
-  }, []);
+  }, [io]);
 
   useEffect(() => {
-    dispatch(getProducts(page));
-  }, [dispatch, page]);
+    if (!isEnd) dispatch(getProducts(page));
+  }, [dispatch, page, isEnd]);
+
+  useEffect(() => {
+    if (!loading) hideLoader();
+    else showLoader();
+  }, [loading]);
 
   return (
     <Container>
-      <ProductGrid products={products} />
+      <Carousel />
+      {loading && <CardSkeleton arr={new Array(8).fill(1)} />}
+      {products && <ProductGrid products={products} />}
       <div ref={bottomObserver}></div>
     </Container>
   );
