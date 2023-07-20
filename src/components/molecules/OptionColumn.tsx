@@ -1,4 +1,5 @@
 import { ProductInfoData, ProductOptionData } from '@api/dto';
+import Counter from '@components/atoms/Counter';
 import OptionList from '@components/atoms/OptionList';
 import comma from '@utils/commaUtils';
 import React, { useState } from 'react';
@@ -36,6 +37,14 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
     ]);
   };
 
+  const handleOnChange = (count: number, optionId: number) => {
+    setSelectedOptions(
+      selectedOptions.map((el) => {
+        return el.optionId === optionId ? { ...el, quantity: count } : el;
+      }),
+    );
+  };
+
   return (
     <>
       <h3>옵션 선택</h3>
@@ -47,8 +56,11 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
       <div>
         {selectedOptions.map((option) => (
           <ol key={option.optionId}>
-            option id, quantity, name, price
-            <Counter />
+            <Counter
+              value={option.quantity}
+              onIncrease={(count) => handleOnChange(count, option.optionId)}
+              onDecrease={(count) => handleOnChange(count, option.optionId)}
+            />
             <span>{option.name}</span>
             <span>{comma(option.price)}원</span>
           </ol>
