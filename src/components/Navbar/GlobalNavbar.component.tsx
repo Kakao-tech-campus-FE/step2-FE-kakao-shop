@@ -28,7 +28,7 @@ const GlobalNavbar: FC<GlobalNavbarProps> = ({ isSmall = false }) => {
           </div>
           <div className="flex flex-1 justify-center"></div>
           <div className="flex items-center flex-1 justify-end">
-            <NavbarItem link="HOME">
+            <NavbarItem link="CART">
               <img className="h-8" src="/icons/cart.png" alt="mycart"></img>
             </NavbarItem>
             <div

@@ -1,13 +1,21 @@
-import { CartResDto, DefaultResDto, ProductResDto } from "@/dtos/response.dto";
+import {
+  CartsResDto,
+  DefaultResDto,
+  ProductResDto,
+  ProductsResDto,
+} from "@/dtos/response.dto";
 import { authAxios, commonAxios } from "@/functions/axios";
 
 export const getProductDetailById = async (id: number) => {
   return commonAxios.get<ProductResDto>(`/products/${id}`);
 };
 
-export const getProducts = async (pageData: { pageParam?: number }) => {
-  const pageParam = pageData?.pageParam ?? 0;
-  const { data } = await commonAxios.get<ProductResDto>(
+export const getProducts = async ({
+  pageParam = 0,
+}: {
+  pageParam?: number;
+}) => {
+  const { data } = await commonAxios.get<ProductsResDto>(
     `/products?page=${pageParam}`
   );
 
@@ -17,15 +25,21 @@ export const getProducts = async (pageData: { pageParam?: number }) => {
   };
 };
 
-interface ProductOrder {
+export interface ProductOrderReq {
   optionId: number;
   quantity: number;
 }
 
-export const addProductToCart = async (orders: ProductOrder[]) => {
+export const addProductToCart = async (orders: ProductOrderReq[]) => {
   return authAxios.post<DefaultResDto>("/carts/add", orders);
 };
 
 export const getCart = async () => {
-  return authAxios.get<CartResDto>("/carts");
+  return authAxios.get<CartsResDto>("/carts");
+};
+
+export const updateCart = async (
+  orders: { cartId: number; quantity: number }[]
+) => {
+  return authAxios.post<CartsResDto>("/carts/update", orders);
 };

@@ -3,8 +3,8 @@ import { getAuth } from "@/functions/auth";
 import { ERROR } from "@/assets/error.ko";
 
 const responseMiddleware = (response: AxiosResponse) => {
-  if (!response.data.response && response.data.error) {
-    throw new Error(response.data.error.message);
+  if (response.data.error) {
+    window.location.href = "/error/404";
   }
   return response;
 };
@@ -42,6 +42,10 @@ authAxios.interceptors.response.use(responseMiddleware, (error) => {
     alert(ERROR.NOT_LOGIN);
     window.location.href = "/signin";
   }
+
+  console.error(error.response.data.error.message);
+  window.location.href = `/error/${error.response.data.error.status}`;
+
   return error;
 });
 
@@ -57,11 +61,21 @@ commonAxios.interceptors.request.use((config) => {
 commonAxios.interceptors.response.use(responseMiddleware, (error) => {
   const responseErrorMessage = error.response.data.error.message;
 
-  if (error.response.status >= 400) {
+  if (error.response.status === 500) {
+    error.response.message = `${ERROR.UNKNOW_ERROR}: ${responseErrorMessage}`;
+    window.location.href = "/error/500";
+  }
+
+  if (error.response.status === 404) {
     error.response.message =
       responseErrorMessage ?? `${ERROR.UNKNOW_ERROR}: ${error.response.status}`;
+    window.location.href = "/error/404";
   }
-  return error.response ?? { message: ERROR.UNKNOW_ERROR, status: 400 };
+
+  console.error(error.response.data.error.message);
+  window.location.href = `/error/${error.response.data.error.status}`;
+
+  return error.response;
 });
 
 export { authAxios, commonAxios };

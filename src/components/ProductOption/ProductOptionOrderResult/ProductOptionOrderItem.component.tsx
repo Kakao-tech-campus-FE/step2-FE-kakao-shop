@@ -1,60 +1,46 @@
 import { PRODUCT } from "@/assets/product.ko";
-import { ProductOptionWithQuantity } from "@/dtos/product.dto";
 import { FC } from "react";
 import Txt from "@components/common/Txt.component";
-import { useAppDispatch } from "@/hooks/useRedux";
-import { removeProductOrder, updateProductOrder } from "@/store/productSlice";
 import Button from "@components/common/Button.component";
 import { pointByThree } from "@/functions/utils";
+import { Order } from "@/hooks/useOrder";
 
 const { CHOICE_PRODUCT } = PRODUCT;
 
 interface ProductOptionOrderItemProps {
-  item: ProductOptionWithQuantity | undefined;
-  countUpCallback?: () => void;
-  countDownCallback?: () => void;
-  removeCallback?: () => void;
+  item: {
+    id: number;
+    optionName: string;
+    quantity: number;
+    price: number;
+  };
+  removeOrder: (optionId: number) => void;
+  updateOrder: (order: Order) => void;
 }
 
 const ProductOptionOrderItem: FC<ProductOptionOrderItemProps> = ({
   item,
-  countDownCallback,
-  countUpCallback,
-  removeCallback,
+  removeOrder,
+  updateOrder,
 }) => {
-  const dispatch = useAppDispatch();
-
   if (!item) return <></>;
 
   const countUp = () => {
-    dispatch(
-      updateProductOrder({
-        optionId: item.optionId,
-        quantity: item.quantity + 1,
-      })
-    );
-
-    if (countUpCallback) {
-      countUpCallback();
-    }
+    updateOrder({
+      ...item,
+      quantity: item.quantity + 1,
+    });
   };
 
   const countDown = () => {
     if (item.quantity === 1) {
-      dispatch(removeProductOrder(item.optionId));
-      if (removeCallback) {
-        removeCallback();
-      }
+      removeOrder(item.id);
+      return;
     }
-    dispatch(
-      updateProductOrder({
-        optionId: item.optionId,
-        quantity: item.quantity - 1,
-      })
-    );
-    if (countDownCallback) {
-      countDownCallback();
-    }
+    updateOrder({
+      ...item,
+      quantity: item.quantity - 1,
+    });
   };
 
   return (

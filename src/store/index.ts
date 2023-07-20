@@ -1,9 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import signSlice from "@/store/signSlice";
-import productSlice from "@/store/productSlice";
 
 const store = configureStore({
-  reducer: { signSlice, productSlice },
+  reducer: { signSlice },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });

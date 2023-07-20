@@ -1,8 +1,9 @@
-import { useAppSelector } from "@/hooks/useRedux";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import ProductOptionOrderItem from "./ProductOptionOrderItem.component";
 import { pointByThree } from "@/functions/utils";
+import { FC } from "react";
+import { Order } from "@/hooks/useOrder";
 const {
   SHIPPING_METHOD,
   DELIVERY_SHIP,
@@ -15,9 +16,17 @@ const {
   WON,
 } = PRODUCT;
 
-const ProductOptionOrderResult = () => {
-  const { order } = useAppSelector((state) => state.productSlice);
+interface ProductOptionOrderResultProps {
+  order: Order[];
+  removeOrder: (optionId: number) => void;
+  updateOrder: (order: Order) => void;
+}
 
+const ProductOptionOrderResult: FC<ProductOptionOrderResultProps> = ({
+  order,
+  removeOrder,
+  updateOrder,
+}) => {
   return (
     <div className="flex flex-col gap-2">
       <div>
@@ -33,7 +42,12 @@ const ProductOptionOrderResult = () => {
       <Txt>{SHIPPING_DESC}</Txt>
       <div className="divide-y border-[1px] rounded-md">
         {order.map((item) => (
-          <ProductOptionOrderItem key={item.optionId} item={item} />
+          <ProductOptionOrderItem
+            key={item.id}
+            item={item}
+            removeOrder={removeOrder}
+            updateOrder={updateOrder}
+          />
         ))}
       </div>
       <div className="flex justify-between">

@@ -14,7 +14,7 @@ export class Product {
 }
 
 export interface ProductOption {
-  optionId: number;
+  id: number;
   optionName: string;
   price: number;
 }
@@ -29,40 +29,23 @@ export class ProductDetail extends Product {
   }
 }
 
-export class ProductOptionWithQuantity implements ProductOption {
-  optionId: number;
-  optionName: string;
-  price: number;
+export interface CartItem {
+  id: number;
+  option: ProductOption;
   quantity: number;
-  constructor(productOption: Omit<ProductOptionWithQuantity, "quantity">) {
-    this.optionId = productOption.optionId;
-    this.optionName = productOption.optionName;
-    this.price = productOption.price;
-    this.quantity = 1;
-  }
+  price: number;
 }
 
-interface ProductOrderProducts {
+export interface ProductOrder {
   id: number;
   productName: string;
-  carts: [
-    {
-      id: number;
-      option: {
-        id: number;
-        optionName: string;
-        price: number;
-      };
-      quantity: number;
-      price: number;
-    }
-  ];
+  carts: CartItem[];
 }
 
-export class ProductOrder {
-  products: ProductOrderProducts[];
+export class Carts {
+  products: ProductOrder[];
   totalPrice: number;
-  constructor(productOrder: ProductOrder) {
+  constructor(productOrder: Carts) {
     this.products = productOrder.products;
     this.totalPrice = productOrder.totalPrice;
   }

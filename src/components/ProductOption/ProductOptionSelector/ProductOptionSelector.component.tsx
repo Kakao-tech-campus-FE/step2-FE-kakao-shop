@@ -1,14 +1,10 @@
-import { useAppDispatch } from "@/hooks/useRedux";
 import ProductOptionItem from "@components/ProductOption/ProductOptionSelector/ProductOptionItem.component";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
-import { addProductOrder, clearProductOrder } from "@/store/productSlice";
 import { ProductOption } from "@/dtos/product.dto";
 import range from "lodash/range";
-import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
-import { getProductDetailById } from "@/remotes/product";
-import { useEffect } from "react";
+import { FC } from "react";
+import { Order } from "@/hooks/useOrder";
 
 const { OPTION_SELECT } = PRODUCT;
 
@@ -26,29 +22,16 @@ const ProductOptionSelectorSkeleton = () => (
   </div>
 );
 
-const ProductOptionSelector = () => {
-  const { productId } = useParams<{ productId: string }>();
+interface ProductOptionSelectorProps {
+  options: ProductOption[] | undefined;
+  addOrder: (option: Omit<Order, "quantity">) => void;
+}
 
-  const dispatch = useAppDispatch();
-
-  const addOrder = (option: ProductOption) => {
-    dispatch(addProductOrder(option));
-  };
-
-  const { data, isLoading } = useQuery(
-    ["product", productId],
-    () => getProductDetailById(Number(productId)),
-    {
-      enabled: !!productId,
-    }
-  );
-
-  useEffect(() => {
-    dispatch(clearProductOrder());
-  }, [dispatch]);
-
-  if (!data || isLoading) return <ProductOptionSelectorSkeleton />;
-  const { options } = data.data.response;
+const ProductOptionSelector: FC<ProductOptionSelectorProps> = ({
+  options,
+  addOrder,
+}) => {
+  if (!options) return <ProductOptionSelectorSkeleton />;
 
   return (
     <div className="flex flex-col gap-2">
@@ -57,7 +40,7 @@ const ProductOptionSelector = () => {
         {options.map((option, index) => (
           <ProductOptionItem
             onClick={() => addOrder(option)}
-            key={option.optionId}
+            key={option.id}
             index={index + 1}
             option={option}
           />
