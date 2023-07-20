@@ -1,0 +1,16 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  margin: 1rem 0;
+  width: 100%;
+  height: 100%;
+  max-width: inherit;
+}
+
+/* 0~768px 사이즈까지는 2개의 column으로 보여주도록 설정 */
+@media screen and (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

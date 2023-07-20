@@ -1,6 +1,4 @@
 import AppRoutes from "./routes/route";
-import SignInPage from "./pages/SignInPage";
-import SignUpPage from "./pages/SignUpPage";
 
 function App() {
   const style = {

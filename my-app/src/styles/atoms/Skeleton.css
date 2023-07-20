@@ -1,0 +1,35 @@
+.skeleton-container {
+  width: 230px;
+  height: 280px;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  box-shadow: 2px 2px 2px 2px lightgray;
+}
+
+.skeleton-container > .card-img {
+  height: 180px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-bottom: 10px;
+  background-color: lightgray;
+}
+
+.skeleton-container > .card-body {
+  margin: 0 auto;
+  width: 200px;
+  height: 80px;
+}
+
+.card-body > .card-title {
+  background-color: lightgray;
+  height: 40px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.card-body > .card-description {
+  background-color: lightgray;
+  height: 20px;
+  border-radius: 3px;
+}

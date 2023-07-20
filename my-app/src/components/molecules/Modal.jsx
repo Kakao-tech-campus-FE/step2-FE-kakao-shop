@@ -1,5 +1,5 @@
 import Button from "../atoms/Button";
-import "../../styles/Modal.css";
+import "../../styles/molecules/Modal.css";
 
 // open: 모달 창이 열려있는지에 관한 Boolean 값
 // close: 모달 창을 닫는 close 함수
