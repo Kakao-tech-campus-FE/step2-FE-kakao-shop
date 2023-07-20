@@ -32,6 +32,7 @@ const Wrap = styled.div`
   box-sizing: border-box;
   padding: 30px;
   width: 100%;
+  background-color: ${colors.white};
   border-bottom: 1px solid ${colors.gray};
 `;
 
