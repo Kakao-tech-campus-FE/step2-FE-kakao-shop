@@ -1,13 +1,9 @@
-import { lazy } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import routes from "@/constants/routes.js";
-import changeNumToMonetaryUnit from "@/utils/changeNumToMonetaryUnit.js";
-const ThumbCard = lazy(() =>
-  import("@/components/molecules/thumb-card/ThumbCard.jsx")
-);
+import ThumbCard from "@/components/molecules/thumb-card/ThumbCard.jsx";
 
 const Styled = {
   Container: styled.div`
@@ -22,6 +18,7 @@ const Styled = {
   Name: styled.div`
     padding-top: 10px;
     font-size: 0.85rem;
+    line-height: 1.25rem;
   `,
   Price: styled.div`
     padding-top: 8px;
@@ -31,7 +28,7 @@ const Styled = {
   `,
 };
 
-function ProductInfoCard({ id, productName, description, image, price }) {
+function ProductInfoCard({ id, productName, image, price }) {
   const navigate = useNavigate();
 
   const onCardClick = (id) => {
@@ -41,9 +38,9 @@ function ProductInfoCard({ id, productName, description, image, price }) {
   return (
     <Styled.Container>
       <Styled.Card onClick={() => onCardClick(id)}>
-        <ThumbCard badge={description} imgSrc={image} imgAlt={productName} />
+        <ThumbCard imgSrc={image} imgAlt={productName} />
         <Styled.Name>{productName}</Styled.Name>
-        <Styled.Price>{changeNumToMonetaryUnit(price)}원</Styled.Price>
+        <Styled.Price>{price.toLocaleString()}원</Styled.Price>
       </Styled.Card>
     </Styled.Container>
   );
@@ -52,7 +49,6 @@ function ProductInfoCard({ id, productName, description, image, price }) {
 ProductInfoCard.propTypes = {
   id: PropTypes.number,
   productName: PropTypes.string,
-  description: PropTypes.string,
   image: PropTypes.string,
   price: PropTypes.number,
 };
@@ -60,7 +56,6 @@ ProductInfoCard.propTypes = {
 ProductInfoCard.defaultProps = {
   id: 1,
   productName: "상품 이름",
-  description: "배지",
   image: "/images/1.jpg",
   price: 5000,
 };

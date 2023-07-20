@@ -88,6 +88,7 @@ function Carousel({ time, arrowButton, dotButton, slideArray, ...props }) {
   };
 
   useEffect(() => {
+    if (!slideRef || !slideRef.current) return;
     slideRef.current.style.transition = "all 0.5s ease-in-out";
     slideRef.current.style.transform = `translate(-${currentSlideIndex}00%)`;
 

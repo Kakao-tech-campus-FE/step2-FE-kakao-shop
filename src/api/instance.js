@@ -9,22 +9,19 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   function (config) {
-    if (
-      !localStorage.getItem("accessTokenDate") ||
-      !localStorage.getItem("accessToken")
-    )
-      return config;
+    const accessTokenDate = localStorage.getItem("accessTokenDate");
+    const accessToken = localStorage.getItem("accessToken");
 
-    const accessTokenDate = Date.parse(localStorage.getItem("accessTokenDate"));
+    if (!accessTokenDate || !accessToken) return config;
 
     const oneDayInMillis = 24 * 60 * 60 * 1000;
-    if (accessTokenDate + oneDayInMillis < new Date()) {
+    if (Date.parse(accessTokenDate) + oneDayInMillis < new Date()) {
       localStorage.removeItem("accessTokenDate");
       localStorage.removeItem("accessToken");
       return config;
     }
 
-    config.headers["Authorization"] = `${localStorage?.getItem("accessToken")}`;
+    config.headers["Authorization"] = accessToken.replace('"', "");
     return config;
   },
   function (error) {
