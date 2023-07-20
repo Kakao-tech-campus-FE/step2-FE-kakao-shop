@@ -8,23 +8,13 @@ import {comma} from "../../utils/convert";
 const CartList = ({data}) => {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+
     useEffect(() => {
         setCartItems(data?.data?.response?.products);
         setTotalPrice(data?.data?.response?.totalPrice);
     }, [data])
 
-    const handleTotalPrice = () => {
-        console.log("cartItem", cartItems)
-        let totalPrice = 0;
-        cartItems.forEach((item) => {
-            item.carts.forEach((cart) => {
-                totalPrice += cart.option.price * cart.quantity;
-            })
-        })
-        return totalPrice;
-    }
     const handleOnChangeCount = (optionId, quantity, price) => {
-        setTotalPrice(handleTotalPrice());
         setCartItems((prev) => {
             return prev.map((item) => {
                 return {
@@ -42,6 +32,11 @@ const CartList = ({data}) => {
                 }
             })
         })
+        console.log("cartItem", cartItems)
+        setTotalPrice((prev) => {
+            return prev + price;
+        });
+        console.log("ss")
     }
     return (
         <div className={"cart-list max-w-xl flex flex-col items-center"}>

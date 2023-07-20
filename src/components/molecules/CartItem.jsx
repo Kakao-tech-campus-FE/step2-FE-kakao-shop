@@ -21,7 +21,7 @@ const CartItem = ({item, onChange}) => {
                             <Counter
                                 value={cart.quantity}
                                 handleOnChange={(value) => {
-                                    return onChange(cart.id, value, cart.price)
+                                    return onChange(cart.id, value, (value-cart.quantity) * cart.option.price)
                                 }}
                             />
                             </div>
