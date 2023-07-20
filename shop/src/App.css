@@ -1,9 +1,17 @@
+*{
+  box-sizing: border-box;
+}
+
+picture > img{
+  width: inherit;
+}
+
 .inner {
-    width:1700px;
-    margin: 0 auto; /* 중앙 정렬을 위해 필요한 경우 */
-    position: relative;
+  width:auto;
+  margin: 0 auto; /* 중앙 정렬을 위해 필요한 경우 */
+  position: relative;
 }
 
 a{
-    text-decoration: none;
+  text-decoration: none;
 }
