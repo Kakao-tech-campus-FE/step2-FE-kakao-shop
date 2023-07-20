@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const instance = axios.create({
+export const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     timeout: 1000,
     headers: {
@@ -19,10 +19,10 @@ instance.interceptors.request.use((config) => {
 // middleware
 instance.interceptors.response.use(
     (response) => {
-        window.location.href = "/";
-        return response
+        return response 
     },
     (error) => {
+        /*
         if(error.response.status === 401) {
             localStorage.removeItem("token");
             alert(error.response.data.error.message);
@@ -32,6 +32,7 @@ instance.interceptors.response.use(
             alert(error.response.data.error.message);
             return Promise.resolve();
         }
+        */
         return Promise.reject(error.response);
     }
-)
+);

@@ -28,7 +28,7 @@ const LoginForm = () => {
 		<Container>
 			<Container className="flex items-center justify-center mt-10">
 				<Title>
-					<img src="/img/logoKakaoText.png" width="88px" height="27px"/>
+					<img src="/img/logoKakaoText.png" width="88px" height="27px" alt="logo"/>
 				</Title>
 			</Container>
 			<Container className="flex flex-col items-center justify-center w-2/5 p-10 mx-auto mt-10 border border-gray-400">
@@ -48,6 +48,8 @@ const LoginForm = () => {
 									email: value.email,
 									password: value.password,
 								})
+							).then(
+								window.location.href = "/"
 							)
 						)
 					}}

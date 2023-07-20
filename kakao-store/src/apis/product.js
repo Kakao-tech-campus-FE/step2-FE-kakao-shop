@@ -1,7 +1,12 @@
 import { instance } from "./api";
 
 export const fetchProducts = (page = 0) => {
-    return instance.get(`/products?page=${page}`);
+    const products = instance.get(`/products?page=${page}`).then(response => response.data);
+    return products;
+}
+
+export const fetchProductFromCursor = (cursor) => {
+    return instance.get(`/product?cursor=${cursor}`);
 }
 
 export const getProductById = (id) => {

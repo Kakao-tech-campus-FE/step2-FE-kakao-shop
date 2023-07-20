@@ -1,4 +1,4 @@
-import Gnb from "../components/organisms/Gnb";
+import MainLayout from "../layouts/MainLayout";
 
 /**
  * 최상단 페이지 생성
@@ -6,7 +6,7 @@ import Gnb from "../components/organisms/Gnb";
  */
 const HomePage = () => {
 	return (
-        <Gnb />
+        <MainLayout />
 	)
 }
 

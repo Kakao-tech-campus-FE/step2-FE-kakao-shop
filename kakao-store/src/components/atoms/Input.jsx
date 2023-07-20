@@ -7,7 +7,7 @@
  * @param {string} className
  * @param {string} id
  * @param {string} name
- * @returns 입력 컴포넌트 생성
+ * @returns 입력 컴포넌트
  */
 const Input = ({type, value, onChange, placeholder, className, id, name}) => {
 	return (
