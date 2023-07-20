@@ -29,3 +29,8 @@ export interface ProductData {
   response: ProductInfoData[];
   error: string;
 }
+
+export interface CartData {
+  optionId: number;
+  quantity: number;
+}
