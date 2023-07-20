@@ -1,0 +1,17 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  margin-bottom: 10px;
+}
+
+.product-name {
+  margin-bottom: 5px;
+}
+
+.product-price {
+  margin-bottom: 5px;
+}

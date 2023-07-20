@@ -1,21 +1,23 @@
-import Container from "../atoms/Container";
-import InputGroup from "../molecules/InputGroup";
-import Button from "../atoms/Button";
-import useInput from "../../hooks/useinput";
-import Title from "../atoms/Title";
-import logo from "../../images/logoKakaoText.png";
+import Container from '../atoms/Container';
+import InputGroup from '../molecules/InputGroup';
+import Button from '../atoms/Button';
+import useInput from '../../hooks/useinput';
+import Title from '../atoms/Title';
+import logo from '../../images/logoKakaoText.png';
+import { login } from '../../services/user';
+import { Link, useNavigate } from 'react-router-dom';
+import { validateForm } from '../../utils/VaildationLogin';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEmailandPassword, logout, setTimeoutId, clearTimeoutId, setToken } from '../../store/slices/userSlice';
+import { setCookie } from '../../storage/Cookie';
 
-import { login } from "../../services/api";
-import { useNavigate } from "react-router-dom";
-import { validateForm } from "../../utils/VaildationLogin";
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setEmailandPassword,
-  logout,
-  setTimeoutId,
-  clearTimeoutId,
-} from "../../store/slices/userSlice";
+/**
+ * 로그인 폼 컴포넌트
+ * 이메일과 비밀번호를 입력받아 로그인을 시도하는 컴포넌트
+ *
+ * @returns {JSX.Element} - 로그인 폼
+ */
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -27,8 +29,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const { value, handleOnChange } = useInput({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const [errors, setErrors] = useState([]);
 
@@ -52,7 +54,7 @@ const LoginForm = () => {
     })
       .then((res) => {
         // 정상
-        console.log(res);
+        setCookie('token', res.headers.authorization);
         dispatch(
           setEmailandPassword({
             email: value.email,
@@ -66,6 +68,7 @@ const LoginForm = () => {
           dispatch(logout());
         }, time);
         dispatch(setTimeoutId(newTimeoutId));
+        dispatch(setToken({ token: res.headers.authorization }));
       })
       .catch((err) => {
         // 에러
@@ -80,11 +83,12 @@ const LoginForm = () => {
         email: value.email,
         password: value.password,
       });
-      navigate("/");
+      navigate('/');
     } else {
       setErrors(validationErrors);
     }
   };
+  const inputBoxStyle = `mb-4 rounded-md  bg-white p-1`;
   return (
     <Container>
       <Title>
@@ -118,7 +122,13 @@ const LoginForm = () => {
           </p>
         </div>
       ))}
-      <Button onClick={handleRegister}>로그인</Button>
+      <Button
+        onClick={handleRegister}
+        className={'my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400'}
+      >
+        로그인
+      </Button>
+      <Link to="/signup">Sign up</Link>
     </Container>
   );
 };

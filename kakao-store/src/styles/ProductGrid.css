@@ -1,0 +1,14 @@
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-grid > .product-card {
+  width: 360px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

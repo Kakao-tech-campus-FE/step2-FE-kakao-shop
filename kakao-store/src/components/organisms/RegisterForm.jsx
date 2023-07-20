@@ -1,25 +1,33 @@
-import Container from "../atoms/Container";
-import InputGroup from "../molecules/InputGroup";
-import Button from "../atoms/Button";
-import useInput from "../../hooks/useinput";
-import Title from "../atoms/Title";
-import { validateForm } from "../../utils/VaildationSignup";
-import { useNavigate } from "react-router-dom";
-import { register } from "../../services/api";
-import { useState } from "react";
-import logo from "../../images/logoKakaoText.png";
-import useRegister from "../../hooks/useRegister";
+import Container from '../atoms/Container';
+import InputGroup from '../molecules/InputGroup';
+import Button from '../atoms/Button';
+import useInput from '../../hooks/useinput';
+import Title from '../atoms/Title';
+import { validateForm } from '../../utils/VaildationSignup';
+import { useNavigate } from 'react-router-dom';
+import { register } from '../../services/user';
+import { useState } from 'react';
+import logo from '../../images/logoKakaoText.png';
+// import useRegister from "../../hooks/useRegister";
+
+/**
+ * 회원가입 폼 컴포넌트
+ * 이메일, 이름, 비밀번호, 비밀번호 확인을 입력받아 회원가입을 시도하는 컴포넌트
+ *
+ * @returns {JSX.Element} - 회원가입 폼
+ */
 
 const RegisterForm = () => {
   const navigate = useNavigate();
 
   const { value, handleOnChange } = useInput({
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirm: "",
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
   });
 
+  // const { errors, handleRegister  } = useRegister();
   const [errors, setErrors] = useState([]);
 
   const handleRegister = () => {
@@ -31,16 +39,11 @@ const RegisterForm = () => {
         password: value.password,
         username: value.username,
       });
-      navigate("/");
+      navigate('/');
     } else {
       setErrors(validationErrors);
     }
   };
-  // const [username, setUsername] = useState()
-  // const [email, setEmail] = useState()
-  // const [password, setPassword] = useState()
-  // const [passwordConfirm, setPasswordConfirm] = useState()
-  // 등 4개가 있어야 하는걸 hook을 사용하여 1개로 줄임
 
   return (
     <Container>
@@ -93,7 +96,12 @@ const RegisterForm = () => {
         </div>
       ))}
 
-      <Button onClick={handleRegister}>회원가입</Button>
+      <Button
+        onClick={handleRegister}
+        className={'my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400'}
+      >
+        회원가입
+      </Button>
     </Container>
   );
 };
