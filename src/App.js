@@ -14,8 +14,8 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Provider store={store}>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
           <BrowserRouter>
             <Routes>
               <Route path={routes.register} element={<RegisterPage />} />
@@ -28,8 +28,8 @@ function App() {
               ></Route>
             </Routes>
           </BrowserRouter>
-        </Provider>
-      </QueryClientProvider>
+        </QueryClientProvider>
+      </Provider>
     </>
   );
 }
