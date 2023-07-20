@@ -5,6 +5,7 @@ import CartItem from "../atoms/CartItem";
 import EmptyCart from "../atoms/EmptyCart";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/apis";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   width: 800px;
@@ -57,10 +58,11 @@ const OrderRow = styled.button`
 const CartList = ({ cart }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   const { mutate } = useMutation(updateCart, {
-    onSuccess: (e) => {
-      console.log(e);
+    onSuccess: () => {
+      navigate("/order");
     },
     onError: (err) => {
       console.log(err);

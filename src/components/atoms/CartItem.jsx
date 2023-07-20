@@ -18,7 +18,6 @@ const StyledButton = styled.button`
 const CartItem = ({ item, onChange, onCartDelete, onItemDelete }) => {
   return (
     <Card
-      type="inner"
       extra={
         <StyledButton
           onClick={() =>
@@ -33,9 +32,11 @@ const CartItem = ({ item, onChange, onCartDelete, onItemDelete }) => {
       }
       title={item.productName}
       style={{ width: "700px", margin: "10px auto" }}
+      headStyle={{ backgroundColor: "#f5f5f5" }}
     >
       {item.carts.map((cart) => (
         <Card
+          type="inner"
           key={cart.id}
           title={cart.option.optionName}
           extra={

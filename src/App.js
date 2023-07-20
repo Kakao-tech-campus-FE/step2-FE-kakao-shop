@@ -11,6 +11,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { useSelector } from "react-redux";
 
 import "antd/dist/antd";
+import OrderPage from "./pages/OrderPage";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -94,6 +95,7 @@ function App() {
               isLoggedIn ? <CartPage /> : <Navigate to="/signin" replace />
             }
           ></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
           <Route path="/products/:id" element={<ProductPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
