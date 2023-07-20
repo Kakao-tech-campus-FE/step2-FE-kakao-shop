@@ -1,0 +1,56 @@
+header{
+    width: cover;
+    position: re;
+    border-bottom: 1px solid #E5E5E5;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+div.contents{
+    display: flex;
+    width: 1280px;
+    margin: 0 auto;
+    height: 79px;
+    align-items: center;
+}
+
+img.logoImg{
+    display: block;
+    width: 90px;
+    height: 20px;
+}
+
+nav{
+    margin-left: 1050px;
+}
+
+div.navigation{
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+}
+
+img.cartImg{
+    margin-right: 20px;
+}
+/* 
+span.menu_util::after{
+    margin-left: 5px;
+    content: ' ';
+    display: block;
+    width: 2px;
+    background-color: rgba(34, 34, 34, .2);
+    height: 20px;
+    position: relative;
+    top: 1px;
+    right: 20px;
+} */
+
+a.logButton{
+    font-size: 14px;
+    padding-left: 20px;
+    position: relative;
+    /* border-left: 1px solid rgba(34,34,34,.2);; */
+}

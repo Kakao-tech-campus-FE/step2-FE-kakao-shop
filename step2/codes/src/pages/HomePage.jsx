@@ -1,14 +1,22 @@
-import Title from "../component/atoms/Title";
-import Container from "../component/atoms/Container";
-import HomeForm from "../component/organisms/HomeForm";
-// import Breadcrumb from "../component/molecules/ui/breadcrumb/breadcrumb";
+// import Title from "../component/atoms/Title";
+// import Container from "../component/atoms/Container";
+// import HomeForm from "../component/organisms/HomeForm";
 
-const Homepage = ({className}) => {
+import { useSelector } from "react-redux";
+import Loader from "../component/atoms/Loader";
+import MainProductTemplate from "../component/templates/MainProductTemplate";
 
-    return <Container>
-        <HomeForm isLoggedIn={false} className={className}/>
-    </Container>
-};
+const Homepage = () => {
+    const loading = useSelector((state) => state.product.loading);
+
+    return(
+        <div>
+            {loading && <Loader />}
+            <MainProductTemplate></MainProductTemplate>
+        </div>
+        
+    )
+}
 
 
 export default Homepage;

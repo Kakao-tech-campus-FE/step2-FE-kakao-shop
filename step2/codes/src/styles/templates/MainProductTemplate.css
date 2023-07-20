@@ -1,0 +1,20 @@
+.container.productsView{
+    margin: auto;
+    width: 1280px;
+}
+
+div.changePage{
+    width: 500px;
+    margin: 0px auto 50px;
+    display: flex;
+    justify-content: center;
+}
+
+button.changePageButton{
+    background-color: white;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #d4d4d4;
+    border-radius: 4px;
+    
+}

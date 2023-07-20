@@ -8,18 +8,16 @@ import { setEmail } from "../../store/slices/userSlice";
 import { setLogin } from "../../store/slices/loginSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux"
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import authReducer from "../../store/reducers"
 
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();  //redux 의 액션을 발생시키는 함수!!
     const email = useSelector((state) => state.user.email) // 최상위 state에서 데이터 가져오기
-    const store = createStore(authReducer, applyMiddleware(thunk));
 
     const {
         value,
@@ -46,9 +44,6 @@ const LoginForm = () => {
             .then((res) => { //로그인 성공
                 dispatch(setEmail({
                     email: value.email, //객체 형태로 넣어야함. payload라서
-                }));
-                dispatch(setLogin({
-                    login: true,
                 }));
                 localStorage.setItem("email", value.email);
             navigate("/");// 홈페이지로 리다이렉트
@@ -89,10 +84,10 @@ const LoginForm = () => {
             {passwordError && <div>{passwordError}</div>}
         <Button
             disabled={isLoginError}
-            onClick = {() => {
+            onClick = {
                 //api 요청
-                loginReq()
-            }}
+                loginReq
+            }
             >
             로그인</Button>
             {apiErr && <div>{apiErr}</div>}

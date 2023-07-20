@@ -1,0 +1,19 @@
+a{
+    text-decoration: none;      /*링크 색 바뀌는 것 삭제*/
+    border-collapse: collapse;  /*모든 밑줄 뜨는 것 삭제*/
+    color: black;
+}
+
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    margin: 1rem 0;
+    width: 90%;
+    max-width: inherit;
+    margin: 50px auto;
+}
+
+a.card{
+    width: 200px;
+}

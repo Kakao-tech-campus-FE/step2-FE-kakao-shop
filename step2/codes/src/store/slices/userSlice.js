@@ -1,6 +1,6 @@
 // 슬라이스: 각각의 리듀서에 해당하는 파일을 관리
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 
 const initialState = {
     email: localStorage.getItem("email"),
@@ -13,8 +13,7 @@ const userSlice = createSlice({
     initialState,
     reducers: {
         setEmail: (state, action) => {
-            // login은 setLogin의 역할
-            state.email = action.payload.email;
+            state.email = localStorage.getItem("email");
         },
         extraReducer: (builder) => {
             //객체가 아니라 함수 | loading 부분을 가능하게 해줌
