@@ -21,27 +21,30 @@ export default function ProductOption({ product }) {
     if (selectedOptions.find((opt) => opt.id === option.id)) {
       alert("이미 선택된 옵션입니다.");
     } else
-      setSelectedOptions((prevOptions) => [
-        ...prevOptions,
-        { ...option, quantity: 1 },
-      ]);
+      setSelectedOptions((prevOptions) =>
+        [...prevOptions, { ...option, quantity: 1 }].sort((a, b) => a.id - b.id)
+      );
   };
 
   const handleIncDecClick = (opt, qtt) => {
-    setSelectedOptions((prevOptions) => [
-      ...prevOptions.filter((preOpt) => preOpt.id !== opt.id),
-      { ...opt, quantity: qtt },
-    ]);
+    setSelectedOptions((prevOptions) =>
+      [
+        ...prevOptions.filter((preOpt) => preOpt.id !== opt.id),
+        { ...opt, quantity: qtt },
+      ].sort((a, b) => a.id - b.id)
+    );
   };
 
   const handleXClick = (opt) => {
     setSelectedOptions((prevOptions) =>
-      prevOptions.filter((preOpt) => preOpt.id !== opt.id)
+      prevOptions
+        .filter((preOpt) => preOpt.id !== opt.id)
+        .sort((a, b) => a.id - b.id)
     );
   };
 
   const handleCartClick = () => {
-    if (selectedOptions.length===0) {
+    if (selectedOptions.length === 0) {
       alert("옵션을 먼저 선택해주세요.");
       return;
     }
@@ -54,7 +57,7 @@ export default function ProductOption({ product }) {
   };
 
   const handleBuyClick = () => {
-    if (selectedOptions.length===0) {
+    if (selectedOptions.length === 0) {
       alert("옵션을 먼저 선택해주세요.");
       return;
     }
