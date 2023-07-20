@@ -57,7 +57,6 @@ const OrderRow = styled.button`
 const CartList = ({ cart }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [updatedPayload, setUpdatedPayload] = useState([]);
 
   const { mutate } = useMutation(updateCart, {
     onSuccess: (e) => {
@@ -74,19 +73,6 @@ const CartList = ({ cart }) => {
   }, []);
 
   const handleOnChange = (optionId, quantity, price) => {
-    setUpdatedPayload((prev) => {
-      const isExist = prev.find((item) => item.cartId === optionId);
-      console.log("prev", prev);
-      if (isExist) {
-        return [
-          ...prev.filter((item) => item.cartId !== optionId),
-          { cartId: optionId, quantity },
-        ];
-      }
-      return [...prev, { cartId: optionId, quantity }];
-    });
-
-    setTotalPrice((prev) => prev + price);
     setCartItems((prev) =>
       prev.map((item) => {
         return {
@@ -100,20 +86,23 @@ const CartList = ({ cart }) => {
         };
       })
     );
+    setTotalPrice((prev) => prev + price);
   };
 
   const handleCartDelete = (optionId, price) => {
-    const updatedCarts = cartItems.filter((item) => item.id !== optionId);
-    setCartItems(updatedCarts);
+    setCartItems((prev) => prev.filter((item) => item.id !== optionId));
     setTotalPrice((prev) => prev - price);
   };
 
   const handleItemDelete = (optionId, price) => {
-    const updatedItems = cartItems.map((item) => ({
-      ...item,
-      carts: item.carts.filter((cart) => cart.option.id !== optionId),
-    }));
-    setCartItems(updatedItems);
+    setCartItems((prev) =>
+      prev
+        .map((item) => ({
+          ...item,
+          carts: item.carts.filter((cart) => cart.option.id !== optionId),
+        }))
+        .filter((item) => item.carts.length)
+    );
     setTotalPrice((prev) => prev - price);
   };
 
@@ -125,9 +114,15 @@ const CartList = ({ cart }) => {
     return count;
   }, [cartItems]);
 
-  console.log("카트 아이템", cartItems);
-  console.log(totalPrice);
-  console.log("페이로드", updatedPayload);
+  const getPayload = useCallback(() => {
+    const payload = cartItems.flatMap((item) => {
+      return item.carts.map((cart) => {
+        return { cartId: cart.id, quantity: cart.quantity };
+      });
+    });
+    return payload;
+  }, [cartItems]);
+
   return (
     <Container>
       <Title>장바구니</Title>
@@ -149,7 +144,7 @@ const CartList = ({ cart }) => {
                 <span>{totalPrice.toLocaleString()}원</span>
               </Price>
             </PriceRow>
-            <OrderRow onClick={() => mutate(updatedPayload)}>
+            <OrderRow onClick={() => mutate(getPayload())}>
               {getItemsLength()}건 주문하기
             </OrderRow>
           </ShipContainer>

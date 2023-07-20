@@ -40,7 +40,9 @@ const CartItem = ({ item, onChange, onCartDelete, onItemDelete }) => {
           title={cart.option.optionName}
           extra={
             <StyledButton
-              onClick={() => onItemDelete(cart.option.id, cart.option.price)}
+              onClick={() =>
+                onItemDelete(cart.option.id, cart.option.price * cart.quantity)
+              }
             >
               삭제
             </StyledButton>

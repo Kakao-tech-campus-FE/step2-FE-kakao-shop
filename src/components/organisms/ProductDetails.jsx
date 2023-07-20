@@ -23,7 +23,7 @@ const ProductDetails = () => {
   );
 
   const productDetails = product?.data.response;
-  console.log(productDetails);
+
   return (
     <Container>
       {isLoading ? (
