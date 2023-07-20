@@ -1,10 +1,10 @@
 import React from 'react';
-import GNB from '../components/molecules/GNB';
+import MainProductTemplate from '../components/templates/MainProductTemplate';
 
 const MainPage = () => {
   return (
     <div>
-      <GNB />
+      <MainProductTemplate />
     </div>
   );
 };

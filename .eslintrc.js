@@ -1,12 +1,13 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', '@tanstack/query'],
   extends: [
     'airbnb',
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   rules: {
     'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
@@ -25,6 +26,8 @@ module.exports = {
       },
     ],
     'no-param-reassign': ['error', { props: true, ignorePropertyModificationsFor: ['state'] }],
+    '@tanstack/query/exhaustive-deps': 'error',
+    '@tanstack/query/prefer-query-object-syntax': 'error',
   },
   settings: {
     'import/resolver': {
