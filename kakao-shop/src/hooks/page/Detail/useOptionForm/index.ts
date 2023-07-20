@@ -29,6 +29,12 @@ export const useOptionForm = () => {
     setOptions(updateSelectedOptions(id));
   };
 
+  const onDeleteOption =
+    (id: number): MouseEventHandler<HTMLButtonElement> =>
+    () => {
+      setOptions(deleteSelectedOptions(id));
+    };
+
   const increaseQuantity =
     (id: number): MouseEventHandler<HTMLButtonElement> =>
     () => {
@@ -51,6 +57,7 @@ export const useOptionForm = () => {
     },
     handler: {
       onSelectOption,
+      onDeleteOption,
       increaseQuantity,
       decreaseQuantity,
     },
@@ -72,19 +79,30 @@ const getUserSelectOption = (options?: Option[]) => {
   return options?.map(addSelectProperty);
 };
 
-const updateOption = (id: number, option: UserSelectOption): UserSelectOption => {
+const updateOption = (
+  id: number,
+  option: UserSelectOption,
+  isSelected: boolean,
+  quantity: number,
+): UserSelectOption => {
   if (option.id === id) {
     return {
       ...option,
-      isSelected: true,
-      quantity: 1,
+      isSelected,
+      quantity,
     };
   }
   return option;
 };
 
 const updateSelectedOptions = (id: number) => (prevOptions?: UserSelectOption[]) => {
-  return prevOptions?.map(option => updateOption(id, option));
+  const SELECTED = true;
+  return prevOptions?.map(option => updateOption(id, option, SELECTED, 1));
+};
+
+const deleteSelectedOptions = (id: number) => (prevOptions?: UserSelectOption[]) => {
+  const DELETE = false;
+  return prevOptions?.map(option => updateOption(id, option, DELETE, 0));
 };
 
 const calculateTotal = (totals: Totals, item: UserSelectOption) => {

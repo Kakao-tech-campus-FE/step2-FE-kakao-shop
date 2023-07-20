@@ -9,16 +9,22 @@ import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 type Props = {
   options?: UserSelectOption[];
   onSelectOption: (id: number) => void;
+  onDeleteOption: (id: number) => MouseEventHandler<HTMLButtonElement>;
   increaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   decreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
 };
 
-const OptionListSection = ({ options, onSelectOption, increaseQuantity, decreaseQuantity }: Props) => {
+const OptionListSection = ({ options, onSelectOption, onDeleteOption, increaseQuantity, decreaseQuantity }: Props) => {
   return (
     <S.Root>
       <S.Tit>옵션 선택</S.Tit>
       <OptionList options={options} onSelectOption={onSelectOption} />
-      <SelectOptionItemList options={options} increaseQuantity={increaseQuantity} decreaseQuantity={decreaseQuantity} />
+      <SelectOptionItemList
+        options={options}
+        onDeleteOption={onDeleteOption}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+      />
     </S.Root>
   );
 };

@@ -1,9 +1,10 @@
 import close from '@assets/close.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import hideWithA11y from '@styles/a11y';
 import { MouseEventHandler } from 'react';
 
-import { Photo } from '@components/atom';
+import { Button, Photo } from '@components/atom';
 import { RegularInput } from '@components/molecules';
 
 import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
@@ -12,14 +13,18 @@ import { comma } from '@utils/comma';
 
 type Props = {
   option: UserSelectOption;
+  onDeleteOption: (id: number) => MouseEventHandler<HTMLButtonElement>;
   increaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   decreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
 };
 
-const SelectOptionItem = ({ option, increaseQuantity, decreaseQuantity }: Props) => {
+const SelectOptionItem = ({ option, onDeleteOption, increaseQuantity, decreaseQuantity }: Props) => {
   return (
     <S.Root key={option.id}>
-      <Photo imageClassName={S.CloseCSS} src={close} alt={'닫기'} />
+      <Button css={S.ButtonCSS} onClick={onDeleteOption(option.id)}>
+        <Photo imageClassName={S.CloseCSS} src={close} alt={'닫기'} />
+      </Button>
+
       <S.Tit>{option.optionName}</S.Tit>
 
       <S.Container>
@@ -78,5 +83,13 @@ const S = {
     height: 13px;
 
     filter: invert(9%) sepia(0%) saturate(2635%) hue-rotate(318deg) brightness(88%) contrast(72%);
+  `,
+
+  ButtonCSS: css`
+    position: absolute;
+    top: 12px;
+    right: 14px;
+
+    border: none;
   `,
 };
