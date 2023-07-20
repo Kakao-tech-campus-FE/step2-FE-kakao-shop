@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getUserCookie } from '../cookie';
 
 export const instance = axios.create({
   // baseURL을 하드코딩 하는 것은 Bad code -> env 환경변수에 담아 이용
@@ -15,9 +16,9 @@ export const instance = axios.create({
 // Axios의 인터셉터를 사용하여 모든 요청 전에 실행될 함수를 등록합니다.
 // 요청 전에 실행되어 헤더에 인증 토큰을 추가하는 역할을 수행합니다.
 instance.interceptors.request.use((config) =>{
-    const token = localStorage.getItem("token");
+    const token = getUserCookie().token;
     if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
+      config.headers["Authorization"] = `${token}`; // `Bearer ${token}`;
     }
     return config;
   }
