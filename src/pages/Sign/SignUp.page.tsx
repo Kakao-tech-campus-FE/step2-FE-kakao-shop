@@ -9,9 +9,7 @@ const SignUpPage = () => {
 
   const dispatch = useAppDispatch();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = async () => {
     const checkEmailResult = await dispatch(checkEmail(data.email));
     if (checkEmailResult.meta.requestStatus === "rejected") {
       return;

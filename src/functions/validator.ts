@@ -6,7 +6,7 @@ export const isEmail = (email: string): boolean => {
   return re.test(email);
 };
 
-export const canPassword = (password: string): boolean => {
+export const isPassword = (password: string): boolean => {
   const re = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
   return re.test(password);
 };

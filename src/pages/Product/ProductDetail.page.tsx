@@ -5,7 +5,9 @@ const ProductDetailPage = () => {
   return (
     <>
       <GlobalNavbar isSmall={true} />
-      <ProductDetail />
+      <div className="px-12 min-w-[1200px]">
+        <ProductDetail />
+      </div>
     </>
   );
 };

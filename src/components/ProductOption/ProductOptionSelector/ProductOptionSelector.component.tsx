@@ -4,7 +4,7 @@ import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import { addProductOrder } from "@/store/productSlice";
 import { ProductOption } from "@/dtos/product.dto";
-import _ from "lodash";
+import range from "lodash/range";
 
 const { OPTION_SELECT } = PRODUCT;
 
@@ -12,7 +12,7 @@ const ProductOptionSelectorSkeleton = () => (
   <div className="flex flex-col gap-2">
     <Txt>{OPTION_SELECT}</Txt>
     <div className="divide-y border-[1px] rounded-md">
-      {_.range(3).map((index) => (
+      {range(3).map((index) => (
         <div key={index} className="flex flex-col gap-4 p-3 animate-pulse">
           <div className="h-4 w-96 bg-slate-200 rounded-md"></div>
           <div className="h-4 w-32 bg-slate-200 rounded-md"></div>

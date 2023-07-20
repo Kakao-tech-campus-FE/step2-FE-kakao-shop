@@ -1,7 +1,12 @@
-import { ButtonHTMLAttributes, FC, MouseEvent, PropsWithChildren } from "react";
+import {
+  ComponentPropsWithoutRef,
+  FC,
+  MouseEvent,
+  PropsWithChildren,
+} from "react";
 import classnames from "classnames";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
   color?:
     | "primary"
     | "secondary"
@@ -34,8 +39,10 @@ const Button: FC<PropsWithChildren<ButtonProps>> = ({
   ...props
 }) => {
   const onClickPreventDefault = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    onClick && onClick(e);
+    if (onClick) {
+      e.preventDefault();
+      onClick(e);
+    }
   };
   return (
     <button

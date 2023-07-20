@@ -4,7 +4,7 @@ import { commonAxios } from "@/functions/axios";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import ProductSkeleton from "@/components/ProductList/ProductSkeleton.component";
-import _ from "lodash/";
+import range from "lodash/range";
 import { PRODUCT } from "@/assets/product.ko";
 import Txt from "../common/Txt.component";
 
@@ -66,7 +66,7 @@ const ProductGroup = () => {
                 cardRef={cardRef}
               />
             ))}
-        {isFetching && _.range(9).map((i) => <ProductSkeleton key={i} />)}
+        {isFetching && range(9).map((i) => <ProductSkeleton key={i} />)}
       </div>
       {!isFetching && !hasNextPage && (
         <div className="flex w-full justify-center my-4">

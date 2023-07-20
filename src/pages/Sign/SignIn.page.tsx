@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
 import { signIn } from "@/store/signAction";
 import SignInForm from "@/components/Form/SignInForm.component";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SIGN } from "@/assets/sign.ko";
 
 const { SIGN_UP, NO_ACCOUNT } = SIGN;
@@ -14,10 +14,9 @@ const SignInPage = () => {
   } = useAppSelector((state: RootState) => state.signSlice);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = async () => {
     const checkSignUpResult = await dispatch(
       signIn({
         email: email,
@@ -29,7 +28,7 @@ const SignInPage = () => {
       return;
     }
 
-    location.href = "/";
+    navigate("/");
   };
 
   return (

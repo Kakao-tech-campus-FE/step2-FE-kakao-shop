@@ -10,7 +10,7 @@ import {
   setPasswordConfirm,
   setUsername,
 } from "@/store/signSlice";
-import { canPassword, isEmail } from "@/functions/validator";
+import { isPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
 
 const { EMAIL, EMAIL_WITH_ID, USERNAME, PASSWORD, PASSWORD_CONFIRM, SIGN_UP } =
@@ -52,7 +52,7 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
       return;
     }
 
-    if (!canPassword(password)) {
+    if (!isPassword(password)) {
       setWarning({ ...resetWarning, password: true });
       return;
     }
@@ -99,11 +99,9 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         isWrong={isWarning.passwordConfirm}
         wrongMessage={PASSWORD_CONFIRM_ERROR}
       />
-      <div className="w-full mt-8">
-        <ButtonFormItem color="primary" type="submit">
-          {SIGN_UP}
-        </ButtonFormItem>
-      </div>
+      <ButtonFormItem color="primary" type="submit" className="w-full mt-8">
+        {SIGN_UP}
+      </ButtonFormItem>
     </form>
   );
 };
