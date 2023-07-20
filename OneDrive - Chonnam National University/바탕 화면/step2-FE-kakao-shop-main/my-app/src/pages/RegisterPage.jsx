@@ -1,7 +1,7 @@
-import RegisterForm from "../components2/organisms/RegisterForm";
+import RegisterForm from "../components/organisms/RegisterForm";
 
 const RegisterPage = () => {
     return <RegisterForm />;
 }
 
-export default RegisterPage
+export default RegisterPage;
