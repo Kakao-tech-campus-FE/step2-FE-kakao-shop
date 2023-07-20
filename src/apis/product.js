@@ -1,7 +1,7 @@
 import { instance } from "./index";
 
 export const fetchProducts = (page = 0) => {
-  return instance.get("/products" + "?page=" + page);
+  return instance.get(`/products?page=${page}`);
 };
 
 export const getProductById = (id) => {
@@ -11,5 +11,5 @@ export const getProductById = (id) => {
   }
 
   // 정상처리가 아래쪽
-  return instance.get(`/products/222`);
+  return instance.get(`/products/${id}`);
 };
