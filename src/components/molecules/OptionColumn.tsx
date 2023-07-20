@@ -14,7 +14,7 @@ interface OptionColumnProps {
 type DictionaryItem = {
   optionId: number;
   quantity: number;
-  price: string;
+  price: number;
   name: string;
 };
 
@@ -55,10 +55,6 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
     <>
       <h3>옵션 선택</h3>
       <OptionList options={product.options} onClick={handleOnClickOption} />
-      <hr />
-      <div>
-        <span>총 상품금액</span>
-      </div>
       <div>
         {selectedOptions.map((option) => (
           <ol key={option.optionId}>
@@ -71,6 +67,22 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
             <span>{comma(option.price)}원</span>
           </ol>
         ))}
+        <hr />
+        <div>
+          <span>
+            총 수량:
+            {selectedOptions.reduce((acc, cur) => {
+              return acc + cur.quantity;
+            }, 0)}
+            개
+          </span>
+          <span>
+            총 상품금액:
+            {selectedOptions.reduce((acc, cur) => {
+              return acc + cur.quantity * cur.price;
+            }, 0)}
+          </span>
+        </div>
         <div>
           {/* 장바구니 담기 버튼 */}
           <FilledButton
