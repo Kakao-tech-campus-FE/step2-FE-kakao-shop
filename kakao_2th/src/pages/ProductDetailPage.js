@@ -14,6 +14,8 @@ const ProductDetailPage = () => {
 
     const product = data?.data?.response;
 
+    if (!product) return <div>상품을 찾을 수 없습니다.</div>;
+
     return (
         <div>
             <ProductDetailTemplate product={product} />
