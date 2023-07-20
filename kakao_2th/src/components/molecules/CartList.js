@@ -1,84 +1,87 @@
-import { useCallback, useEffect, useState } from "react"
-import Container from "../atoms/Container"
-import Box from "../atoms/Box/index.js"
-import Card from "../atoms/Card"
-import CartItem from "../atoms/CartItem"
-import { comma } from "../../utils/convert"
-import Button from "../atoms/Button"
-import { useMutation } from "react-query"
-import { useNavigate } from "react-router-dom"
+import React, { useCallback, useState } from "react";
+import Container from "../atoms/Container";
+import Box from "../atoms/Box";
+import Card from "../atoms/Card";
+import CartItem from "../atoms/CartItem";
+import { comma } from "../../utils/convert";
+import Button from "../atoms/Button";
+import { useMutation, useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { updateCart, getCart } from "../services/cart";
 
+const CartList = () => {
+    const route = useNavigate();
+    const { data, isLoading } = useQuery("cart", getCart);
 
-const CartList = ({ data }) => {
-    const route = useNavigate()
-    const [cartItems, setCartItems] = useState([])
-    const [totalPrice, setTotalPrices] = useState(0)
-    const [updatePayload, setUpdatePayload] = useState([])
+    const [cartItems, setCartItems] = useState(data?.response?.products || []);
+    const [totalPrice, setTotalPrice] = useState(data?.response?.totalPrice || 0);
+    const [updatePayload, setUpdatePayload] = useState([]);
 
     const { mutate } = useMutation({
         mutationFn: updateCart,
-    })
-
-    useEffect(() => {
-        setCartItems(data?.data?.response?.products)
-        setTotalPrices(data?.data?.response?.totalPrice)
-    }, [data])
+    });
 
     const getTotalCartCountIncludeOptions = useCallback(() => {
-        let count = 0
+        let count = 0;
         cartItems.forEach((item) => {
             item.carts.forEach((cart) => {
-                count += cart.quantity
-            })
-        })
-        return comma(count)
-    }, [cartItems])
+                count += cart.quantity;
+            });
+        });
+        return comma(count);
+    }, [cartItems]);
 
-    /**
-     * 
-     * @param {number} optionId : 옵션의 아이디
-     * @param {number} quantity : 옵션의 수량
-     * @param {number} price : 옵션 금액
-     */
-
-    const handleOnChangeCount = (optionId, quantity, price) => {
-
+    const handleOnChangeCount = (cartId, quantity, price) => {
         setUpdatePayload((prev) => {
-            const isExist = prev.find((item) => item.cartId === optionId)
+            const isExist = prev.find((item) => item.cartId === cartId);
 
             if (isExist) {
                 return [
-                    ...prev.filter((item) => item.cartId !== optionId),
+                    ...prev.filter((item) => item.cartId !== cartId),
                     {
-                        cartId: optionId,
-                        quantity
-                    }
-                ]
+                        cartId: cartId,
+                        quantity: quantity,
+                    },
+                ];
             }
 
             return [
                 ...prev,
                 {
-                    cartId: optionId,
-                    quantity
-                }
-            ]
-        })
+                    cartId: cartId,
+                    quantity: quantity,
+                },
+            ];
+        });
 
-        setTotalPrices((prev) => prev + price)
+        setTotalPrice((prev) => prev + price);
         setCartItems((prev) => {
             return prev.map((item) => {
                 return {
                     ...item,
-                    carts: item.cart.map((cart) => {
-                        if (cart.id === optionId) {
-                            return { ...cart, quantity }
-                        }
-                    })
-                }
-            })
-        })
+                    carts: item.carts.map((cart) =>
+                        cart.id === cartId ? { ...cart, quantity: quantity } : cart
+                    ),
+                };
+            });
+        });
+    };
+
+    const handleOrderButtonClick = () => {
+        mutate(updatePayload, {
+            onSuccess: (data) => {
+                route("/order");
+            },
+            onError: (error) => {
+                // 에러 처리 로직
+            },
+        });
+    };
+
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
+
     return (
         <Container className="cart-list">
             <Box>
@@ -93,7 +96,7 @@ const CartList = ({ data }) => {
                                 item={item}
                                 onChange={handleOnChangeCount}
                             />
-                        )
+                        );
                     })}
             </Card>
             <Card>
@@ -102,22 +105,11 @@ const CartList = ({ data }) => {
                     <div className="sum-price">{comma(totalPrice)}원</div>
                 </div>
             </Card>
-            <Button
-                className="order-btn"
-                onClick={() => {
-                    mutate(updatePayload, {
-                        onSuccess: (data) => {
-                            route.push("/order")
-                        },
-                        onError: (error) => { },
-                    })
-                }}
-            >
-                <span>총 {getTotalCartCountIncludeOptions()}건 주문하기
-                </span>
+            <Button className="order-btn" onClick={handleOrderButtonClick}>
+                <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
             </Button>
         </Container>
-    )
-}
+    );
+};
 
-export default CartList
+export default CartList;
