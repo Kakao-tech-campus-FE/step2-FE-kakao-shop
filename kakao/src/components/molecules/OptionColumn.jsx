@@ -1,29 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
-import Button from "../atoms/Button";
 import { addCart } from "../../services/cart";
+import Button from "../atoms/Button";
+import "../../styles/molecules/OptionColumn.css";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
+  //잘들어오는지 확인용
+  // useEffect(() => {
+  //   console.log("new selected option:", selectedOptions);
+  // }, [selectedOptions]);
+
   const handleOnClickOption = (option) => {
     // 동일한 옵션 클릭 했을때 방지해줄 코드(이미 선택된 옵션인가?)
     // 사용자가 선택한 옵션과 기존옵션이 일치하는 것을 isOptionSelected에 담아주고
+    console.log(option);
+
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
-    // 이미 선택된 옵션이면
-    // 1. 그대로 증가없이 처리 if(isOptionSelected){ return;}
-    // 2. 수량 증가
+
     if (isOptionSelected) {
-      setSelectedOptions((prev) => {
-        prev.map((el) =>
-          el.optionId === option.id ? { ...el, quantity: el.quantity + 1 } : el
-        );
-      });
+      console.log("이미있음");
       return;
     }
 
@@ -68,35 +71,37 @@ const OptionColumn = ({ product }) => {
 
       {/* 담긴 옵션 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={option.optionId} className="selected-option-list">
+        <ol key={option.id} className="selected-option-list">
           <li className="selected-option-item">
             <span className="selected-option-name">{option.name}</span>
-            <Counter
-              onIncrease={(count) => handleOnChange(count, option.id)}
-              onDecrease={(count) => handleOnChange(count, option.id)}
-            />
-            <span className="selected-option-price">
-              {comma(option.price)}원
-            </span>
+            <div className="selected-option-update">
+              <Counter
+                onIncrease={(count) => handleOnChange(count, option.optionId)}
+                onDecrease={(count) => handleOnChange(count, option.optionId)}
+              />
+              <span className="selected-option-price">
+                {comma(option.price)}원
+              </span>
+            </div>
           </li>
         </ol>
       ))}
 
-      <div className="delivery-info">
-        <div className="delivery-info-method">
-          <h3>배송방법</h3>
-          <p>택배배송</p>
+      <div className="delivery-row">
+        <div className="row">
+          <span className="row-l">배송방법</span>
+          <span className="row-r">택배배송</span>
         </div>
-        <div className="delivery-info-deliveryprice">
-          <h3>배송비</h3>
-          <p>무료</p>
+        <div className="row">
+          <span className="row-l">배송비</span>
+          <span className="row-r">무료</span>
         </div>
       </div>
 
       {/* 구분선 */}
       <hr />
-      <div className="total-price">
-        <span>
+      <div className="total">
+        <span className="total-quantity">
           총 수량:{" "}
           {comma(
             selectedOptions.reduce((acc, cur) => {
@@ -105,28 +110,30 @@ const OptionColumn = ({ product }) => {
           )}
           개
         </span>
-        <span>
-          총 주문금액:
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
+        <span className="total-price">
+          총 주문금액:{" "}
+          <span>
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price;
+              }, 0)
+            )}
+          </span>
           원
         </span>
       </div>
 
       <div className="button-group">
-        <button className="like-button">
-          <span class="material-symbols-outlined">favorite</span>
-        </button>
+        <Button className="btn-l">
+          <span className="material-symbols-outlined">favorite</span>
+        </Button>
         <Button
           onClick={() => {
             mutate(
               // selectedOptions에서 필요한 데이터만 id와 수량만
               selectedOptions.map((el) => {
                 return {
-                  optionId: el.id,
+                  optionId: el.optionId,
                   quantity: el.quantity,
                 };
               }),
@@ -140,11 +147,12 @@ const OptionColumn = ({ product }) => {
               }
             );
           }}
-          className="cart-button"
+          className="btn-l"
         >
-          <span class="material-symbols-outlined">shopping_cart</span>
+          <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
-        <button className="order-button">구매하기</button>
+        {/* <button className="order-button">구매하기</button> */}
+        <Button className="order-btn">구매하기</Button>
       </div>
     </div>
   );

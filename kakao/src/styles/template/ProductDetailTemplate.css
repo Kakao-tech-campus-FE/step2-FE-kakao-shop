@@ -1,18 +1,18 @@
 .product-detail-innerwrap {
   width: 1200px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 30px 0;
+  margin: 30px 0;
 }
 
 .product-info-column {
-  width: 700px;
-  padding: 50px;
+  width: 800px;
+  padding: 30px 30px 0 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .option-column {
   width: 400px;
-  padding: 50px;
+  padding: 20px;
   border: 1px solid #ccc;
 }

@@ -88,7 +88,7 @@ const LoginForm = () => {
             onBlur={validatePassword}
           />
           {pwError && <p className="error-message">{pwError}</p>}
-          <>{error}</>
+          {error}
         </div>
         <Button onClick={loginReq}>로그인</Button>
         <Button

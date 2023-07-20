@@ -8,10 +8,17 @@ const ProductInfoColumn = ({ product }) => {
   return (
     <div className="product-info-column">
       <div className="col">
-        <Photo src={image} alt={productName} />
+        <Photo src={image} alt={productName} className="product-info-img" />
       </div>
       <div className="col">
-        <h1 className="name">{productName}</h1>
+        <div className="stars">
+          <span className="material-symbols-outlined">star_rate_half</span>
+          <span className="material-symbols-outlined">star_rate_half</span>
+          <span className="material-symbols-outlined">star_rate_half</span>
+          <span className="material-symbols-outlined">star_rate_half</span>
+          <span className="material-symbols-outlined">star_rate_half</span>
+        </div>
+        <p className="name">{productName}</p>
         <p className="price">{comma(price)}원</p>
       </div>
     </div>

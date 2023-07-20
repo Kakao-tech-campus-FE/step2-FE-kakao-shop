@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 const Counter = ({ onIncrease, onDecrease }) => {
   const [count, setCount] = useState(1);
+
   const handleOnIncrease = () => {
     setCount(count + 1);
     onIncrease(count + 1);
   };
   const handleOnDecrease = () => {
+    if (count === 1) return;
     setCount(count - 1);
     onDecrease(count - 1);
   };
