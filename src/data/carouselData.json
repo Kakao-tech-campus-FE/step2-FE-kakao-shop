@@ -1,0 +1,16 @@
+{
+  "slides": [
+    {
+      "src": "https://st.kakaocdn.net/thumb/C1920x300/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fmain_top_banner_pc%2F20230712144432_9b05bc25daeb48298a68122401d6054d.png",
+      "alt": "Image 1 for carousel"
+    },
+    {
+      "src": "https://st.kakaocdn.net/thumb/C1920x300/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fmain_top_banner_pc%2F20230707181922_459fdd6fe4b140a3afe8cd2f9029f555.png",
+      "alt": "Image 2 for carousel"
+    },
+    {
+      "src": "https://st.kakaocdn.net/thumb/C1920x300/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fmain_top_banner_pc%2F20230711195026_c790ec3a8d314cbd95498aace716ebae.png",
+      "alt": "Image 3 for carousel"
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+.header {
+  align-items: center;
+  padding: 10px;
+  height: 80px;
+}
+
+.link_util {
+  float: left;
+  text-align: center;
+}
+
+.header .inner_head {
+  position: fixed;
+  background-color: beige;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 11000;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+  display: flex;
+}
+
+.header .inner_wrap {
+  display: flex;
+  align-items: center;
+  width: 1280px;
+  height: 79px;
+  margin: 0 auto;
+}
+
+.header .tit_logo {
+  padding-top: 31px;
+}
+
+.header .link_logo {
+  display: block;
+}
+
+.header .img_logo {
+  display: block;
+  width: 90px;
+  height: 20px;
+}
+
+.header .menu_util {
+  position: relative;
+  margin-left: auto;
+  padding: 13px 0px 13px 24;
+}
+
+.header .menu_util .link_util {
+  display: block;
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+
+.header .menu_util .ico_cart {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+}
+
+.header .menu_my {
+  position: relative;
+  padding: 13px 0 13px 24px;
+}
+
+.header .menu_my .link_login {
+  display: block;
+  padding: 12px 0;
+  font-size: 14px;
+  line-height: 30px;
+  color: #000;
+}
