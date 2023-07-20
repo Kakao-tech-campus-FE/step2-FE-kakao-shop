@@ -27,6 +27,12 @@ class CartInstance extends ApiInstance {
     return this.instance.post("/carts/add", payload);
   };
 
+  updateCart = async (payload) => {
+    const response = await this.instance.post("/carts/update", payload);
+
+    return response;
+  };
+
   getCart = async () => {
     try {
       const response = await this.instance.get("/carts");

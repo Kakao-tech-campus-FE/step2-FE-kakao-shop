@@ -5,8 +5,8 @@ import optionReducer from "../../reducer/option-reducer";
 import { useMutation } from "react-query";
 import cartInstance from "../../apis/cart";
 import { useSelector } from "react-redux";
-import PurchaseGroup from "../molecules/PurchaseGroup";
 import { useNavigate } from "react-router-dom";
+import OrderGroup from "../molecules/OrderGroup";
 
 export default function OptionColumn({ productData, modalRef }) {
   const { options } = productData;
@@ -66,7 +66,7 @@ export default function OptionColumn({ productData, modalRef }) {
         quantity: option.count,
       })),
       {
-        onSuccess: () => navigate("/purchase"),
+        onSuccess: () => navigate("/order"),
       }
     );
   };
@@ -82,7 +82,7 @@ export default function OptionColumn({ productData, modalRef }) {
         handleOptionDelete={handleOptionDelete}
       />
       <DeliveryForm />
-      <PurchaseGroup
+      <OrderGroup
         optionList={optionList}
         onAddCart={handleAddCart}
         onPurchase={handlePurchase}

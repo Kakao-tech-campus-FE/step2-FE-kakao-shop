@@ -5,7 +5,7 @@ import Button from "../atoms/Button";
 import Icon from "../atoms/Icon";
 import cartImage from "../../assets/cart_white.png";
 
-export default function PurchaseGroup({ optionList, onAddCart, onPurchase }) {
+export default function OrderGroup({ optionList, onAddCart, onPurchase }) {
   return (
     <>
       <Box className="flex justify-between py-3 text-lg font-semibold">
