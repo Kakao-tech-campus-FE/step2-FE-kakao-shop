@@ -6,6 +6,7 @@ import Loader from "../components/atoms/Loader";
 import ProductCard from "../components/molecules/ProductCard";
 import { getProductList } from "../services/product";
 import { setPage } from "../store/slices/productSlice";
+import "../styles/Pages/HomePage.css"
 
 const HomePage = () => {
     const dispatch = useDispatch();
