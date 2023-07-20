@@ -1,6 +1,6 @@
 const Loader = () => {
   return (
-    <div className="loader" title="0">
+    <div className="loader mt-10" title="0">
       <svg
         className="mx-auto"
         version="1.1"
