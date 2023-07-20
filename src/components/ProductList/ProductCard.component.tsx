@@ -4,20 +4,17 @@ import Txt from "@/components/common/Txt.component";
 import { pointByThree } from "@/functions/utils";
 import LazyImage from "@/components/common/LazyImage.component";
 import { PRODUCT } from "@/assets/product.ko";
-import { Ref } from "react";
 import { Link } from "react-router-dom";
 
 interface ProductCardProps {
   product: Product;
-  cardRef: Ref<HTMLAnchorElement>;
 }
 
-const ProductCard = ({ product, cardRef }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       to={`/product/${product.id}`}
       className="h-full cursor-pointer flex flex-col gap-2"
-      ref={cardRef}
     >
       <div className="w-full overflow-hidden flex-1">
         <LazyImage

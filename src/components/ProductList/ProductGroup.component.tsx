@@ -12,7 +12,7 @@ const { NO_PRODUCT } = PRODUCT;
 
 const ProductGroup = () => {
   const productsRef = useRef<HTMLDivElement | null>(null);
-  const cardRef = useRef<HTMLAnchorElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
 
   const getProducts = async (pageData: { pageParam?: number }) => {
     const pageParam = pageData?.pageParam ?? 0;
@@ -60,14 +60,11 @@ const ProductGroup = () => {
           data.pages
             .flatMap((pages) => pages.result)
             .map((product: Product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                cardRef={cardRef}
-              />
+              <ProductCard key={product.id} product={product} />
             ))}
         {isFetching && range(9).map((i) => <ProductSkeleton key={i} />)}
       </div>
+      <div className="h-0" ref={cardRef} />
       {!isFetching && !hasNextPage && (
         <div className="flex w-full justify-center my-4">
           <Txt typograph="p" className="text-gray-400">
