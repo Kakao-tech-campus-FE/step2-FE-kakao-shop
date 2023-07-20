@@ -20,6 +20,8 @@ const StyledButton = styled.button`
   }
 `;
 
+// onClick: 버튼을 눌렀을 때 실행할 함수
+// disabled: 유효성 검사를 통과했을 때만 enable
 const Button = ({ children, onClick, disabled }) => {
   return (
     <StyledButton

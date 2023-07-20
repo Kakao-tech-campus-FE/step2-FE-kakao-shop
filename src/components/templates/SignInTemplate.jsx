@@ -5,7 +5,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #939393;
+  border: 1px solid #bbb;
   border-radius: 10px;
   width: 680px;
   height: 480px;

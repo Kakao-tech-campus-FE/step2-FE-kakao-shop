@@ -6,6 +6,7 @@ const StyledH1 = styled.h1`
   font-size: 40px;
 `;
 
+// 제목을 나타내는 컴포넌트
 const Title = ({ children }) => {
   return <StyledH1>{children}</StyledH1>;
 };

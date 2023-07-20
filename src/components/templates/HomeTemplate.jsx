@@ -1,20 +1,27 @@
 import { styled } from "styled-components";
 import GlobalNavBar from "../organisms/GlobalNavBar";
-import Products from "../organisms/Products";
+import ProductGrid from "../organisms/ProductGrid";
+import Carousel from "../organisms/Carousel";
+import Footer from "../molecules/Footer";
 
 const Container = styled.div`
   width: 1200px;
-  border: 1px solid black;
-  margin: 80px auto 0;
+  margin: 0 auto;
+  position: relative;
+  top: 80px;
+  height: auto;
+  min-height: calc(100vh - 481px);
 `;
 
 const HomeTemplate = () => {
   return (
     <>
-      <GlobalNavBar />
+      <GlobalNavBar height="80px" />
+      <Carousel />
       <Container>
-        <Products />
+        <ProductGrid />
       </Container>
+      <Footer />
     </>
   );
 };

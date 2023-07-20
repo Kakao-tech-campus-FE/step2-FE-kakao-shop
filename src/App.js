@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInpage";
 import SignUpPage from "./pages/SignUpPage";
-import { checkTokenExpiration } from "./store/slices/userSlice";
+import checkTokenExpiration from "./utils/checkTokenExpiration";
+import NotFoundPage from "./pages/NotFoundPage";
+import ProductPage from "./pages/ProductPage";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -79,6 +81,8 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/signin" element={<SignInPage />}></Route>
           <Route path="/signup" element={<SignUpPage />}></Route>
+          <Route path="/products/:id" element={<ProductPage />}></Route>
+          <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>

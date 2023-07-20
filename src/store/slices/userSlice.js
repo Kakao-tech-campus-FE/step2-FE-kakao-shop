@@ -33,23 +33,19 @@ const userSlice = createSlice({
 
 export const signinRequest = createAsyncThunk(
   "user/signinRequest",
-  async ({ email, password }) => {
-    const response = await instance.post("/login", {
-      email,
-      password,
-    });
-    return { email, token: response.headers.authorization };
-  }
-);
-
-export const checkTokenExpiration = () => {
-  const tokenData = localStorage.getItem("token");
-  if (tokenData) {
-    const { expiration } = JSON.parse(tokenData);
-    if (expiration && new Date().getTime() > expiration) {
-      localStorage.removeItem("token");
+  async ({ email, password }, { rejectWithValue }) => {
+    try {
+      const response = await instance.post("/login", {
+        email,
+        password,
+      });
+      return { email, token: response.headers.authorization };
+    } catch (error) {
+      if (error.response.status === 401) {
+        return rejectWithValue(error.response.data);
+      }
     }
   }
-};
+);
 
 export default userSlice.reducer;
