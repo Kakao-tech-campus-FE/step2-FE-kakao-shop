@@ -10,10 +10,15 @@ export const useOptionForm = () => {
   const dispatch = useDispatch();
   const product = useSelector((state: RootState) => state.detail.product);
   const [options, setOptions] = useState<UserSelectOption[] | undefined>();
+
   const totals = options?.reduce(calculateTotal, {
     quantity: 0,
     price: 0,
   } as Totals);
+
+  const addCartPayload = Object.values(options ?? [])
+    .filter(option => option.isSelected)
+    .map(({ id, quantity }) => ({ optionId: id, quantity }));
 
   useEffect(() => {
     if (!productId) return;
@@ -54,6 +59,7 @@ export const useOptionForm = () => {
       product,
       options,
       totals,
+      addCartPayload,
     },
     handler: {
       onSelectOption,

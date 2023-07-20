@@ -1,13 +1,25 @@
 import shoppingCart from '@assets/shoppingCart.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { addCartItem } from '@store/Detail/reducers';
+import { useDispatch } from 'react-redux';
 
 import { Button, Photo } from '@components/atom';
 
-const PurchaseButtons = () => {
+type Props = {
+  addCartPayload: AddCartPayload[];
+};
+
+export type AddCartPayload = {
+  optionId: number;
+  quantity: number;
+};
+
+const PurchaseButtons = ({ addCartPayload }: Props) => {
+  const dispatch = useDispatch();
   return (
     <S.Root>
-      <Button css={S.BasketButtonCSS}>
+      <Button css={S.BasketButtonCSS} onClick={() => dispatch(addCartItem(addCartPayload))}>
         <Photo imageClassName={S.ShoppingCartCSS} src={shoppingCart} alt={'장바구니'} />
       </Button>
       <Button css={S.PurchaseButtonCSS}>톡딜가로 구매하기</Button>
