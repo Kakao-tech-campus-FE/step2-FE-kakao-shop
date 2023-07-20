@@ -40,8 +40,10 @@ const LoginForm = () => {
         // };
         email: value.email,
         password: value.password,
-        expirationTime: new Date().getTime() + 60 * 60 * 1000,
-        isLoggedIn: true,
+        // expirationTime: new Date().getTime() + 60 * 60 * 1000,
+        // isLoggedIn: true,
+        // isLogin: true,
+        
       })
     
       ).catch((error) => alert(error))

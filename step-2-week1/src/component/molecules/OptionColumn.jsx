@@ -113,7 +113,7 @@ const OptionColumn = ({ product }) => {
                     mutate(
                         selectedOptions.map((el) => {
                             return {
-                                optionId: el.id,
+                                optionId: el.optionId,
                                 quantity: el.quantity,
                             };
                         }), {
@@ -128,6 +128,7 @@ const OptionColumn = ({ product }) => {
 
                             }
                         }
+                        
                     );
                 }}
                 ><img src={cart} alt="cart" height={40}/></button>

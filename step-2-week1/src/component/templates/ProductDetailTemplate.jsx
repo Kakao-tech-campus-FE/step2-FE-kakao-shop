@@ -6,8 +6,8 @@ import axios from 'axios';
 import '../../styles/templates/ProductDetailTemplate.css'
 
 const ProductDetailTemplate = ({ product }) => {
-    // 
-    console.log(product);
+    // // 
+    // console.log(product);
   
     // 
     return (

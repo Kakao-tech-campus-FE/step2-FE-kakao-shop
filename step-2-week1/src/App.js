@@ -11,6 +11,7 @@ import MainLayout from "./layouts/MainLayout";
 import GNB from './component/atoms/GNB';
 import ProductGrid from './component/organisms/ProductGrid';
 import ProductDetailPage from './pages/ProductDetailPage';
+import CartList from './component/molecules/CartList';
 
 function App() {
 
@@ -45,6 +46,8 @@ function App() {
               <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
               <Route path="/" element={<ProductGrid />}></Route>
               <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+              <Route path="/cart" element={<CartList />}></Route>
+              
     
         </Route>
       </Routes>

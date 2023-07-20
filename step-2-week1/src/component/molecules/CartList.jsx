@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Router, useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
-import "../../styles/molcules/CartList.css";
+// import "../../styles/molcules/CartList.css";
 import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
@@ -27,6 +27,7 @@ const CartList = ({ data }) => {
         setTotalPrice(data?.data?.response?.totalPrice);
     }, [data]);
 
+    
 
     const getTotalCartCountIncludeOptions = useCallback(() => {
         let count = 0;
@@ -47,7 +48,7 @@ const CartList = ({ data }) => {
 
             if (isExist) {
                 return [
-                    ...prev,filter((item) => item.cartId !== optionId ),
+                    ...prev.filter((item) => item.cartId !== optionId ),
                     {
                         cartId: optionId,
                         quantity,
@@ -109,6 +110,7 @@ const CartList = ({ data }) => {
                     // 장바구니 정보를 수정하는 api 호출 (개수 변경이 있는 경우)
                     // post method
 
+
                     mutate(updatePayload, {
                         onSuccess: (data) => {
                         // navigate to order page
@@ -131,3 +133,5 @@ const CartList = ({ data }) => {
         </Container>
     )
 }
+
+export default CartList;

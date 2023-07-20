@@ -1,10 +1,10 @@
 import { Card } from "react-bootstrap";
 import Box from "./Box";
 import Counter from "./Counter";
-import "../../styles/atoms/CartItem.css";
+// import "../../styles/atoms/CartItem.css";
 import { comma } from "../../utils/convert";
 
-const CartItem = ({ item, onChange }) => {
+export const CartItem = ({ item, onChange }) => {
     return (
         <Box className="cart-item-box">
             <h5>{item.productName}</h5>
@@ -44,3 +44,5 @@ const CartItem = ({ item, onChange }) => {
         </Box>
     )
 }
+
+export default CartItem;

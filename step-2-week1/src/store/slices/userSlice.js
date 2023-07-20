@@ -4,7 +4,6 @@ import Home from "../../pages/HomePage";
 
 const initialState = {
   email: null,
-  // isLoggedIn : false,
   loading: false,  // 요청을 보냈을 때는 true, 아닌 경우: 요청이 없었거나, 실패했거나, 성공했을 때 false
   // expirationTime : null,
   token: null,
@@ -25,11 +24,11 @@ const userSlice = createSlice({
     //   state.isLoggedIn = true;
     //   // window.location.href = "/";
     // },
-    // clearUser: (state) => {
-    //   state.email = null;
-    //   state.expirationTime = null;
-    //   state.isLoggedIn = false;
-    // },
+    clearUser: (state) => {
+      state.email = null;
+      state.expirationTime = null;
+      state.isLoggedIn = false;
+    },
 
   },
     extraReducers: (builder) => {
