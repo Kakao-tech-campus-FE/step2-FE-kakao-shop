@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
 import { getProductById } from "../services/api/product";
+import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 
 const ProductDetailPage = () => {
   // const dispatch = useDispatch(); // react-query 사용으로 disable
@@ -30,11 +31,36 @@ const ProductDetailPage = () => {
   // useEffect(() => {
   //   dispatch(getDetail(id));
   // }, [dispatch, id]);
+
+  // props drilling을 방지하기 위해 redux를 이용하거나 context api를 이용하여 관리하는 것이 좋다.(product)
+
+  const product = data?.data?.response;
+  // product에 우리가 원하는 데이터가 정확히 존재하는지 검증할 필요가 있다.
+  // 1. Typescript로 interface, type 지정하여 이용
+  // 2. 검증 함수: data가 정확이 들어왔는지 체크, validate function
+
+  const validate = () => {
+    if (!product) {
+      return false;
+    }
+    const requiredKeys = ["id", "productName"];
+    const keys = Object.keys(product); // Object의 프로로타입 메소드인 keys를 이용하여 product의 Key들을 배열로 받음
+    for (let i = 0; i < requiredKeys.length; i++) {
+      const requiredKey = requiredKeys[i];
+      if (!keys.includes(requiredKey)) {
+        alert(`product 객체에 ${requiredKeys}가 존재하지 않습니다.`);
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <div>
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
-      {data && <div>{data.data.response.productName}</div>}
+      {/* 최초의 data는 아무 값이 없어 바로 참조하지 않고 ?를 이용하여 참조하여 parsing error 방지*/}
+      {product && <ProductDetailTemplate product={product} />}
     </div>
   );
 };

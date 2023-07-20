@@ -35,9 +35,8 @@ instance.interceptors.response.use(
   (error) => {
     // 아래와 같은 방법으로 에러 처리를 한다~~ 참고하래
     if (error.response) {
-      const errorStatus = error.response.status;
+      //const errorStatus = error.response.status;
         return Promise.reject(error.response.data.error);
-      
     }
     return Promise.reject(error);
   }
