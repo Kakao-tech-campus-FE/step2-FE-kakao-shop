@@ -2,16 +2,13 @@ import Container from "../atoms/Container";
 import Link from "../atoms/Link";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import GNB from "../molecules/GNB";
 import useInput from "../../hooks/useInput";
 import { setEmail } from "../../store/slices/userSlice";
-import { setLogin } from "../../store/slices/loginSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import { login } from "../../services/user";
 import { useDispatch, useSelector } from "react-redux"
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import GNB from "../atoms/GNB";
 
 
 const LoginForm = () => {
@@ -59,7 +56,7 @@ const LoginForm = () => {
     };
 
     return <Container>
-        <GNB>로그인</GNB>
+        <GNB />
         <InputGroup 
             id = "email" 
             type="email" 

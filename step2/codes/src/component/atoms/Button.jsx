@@ -1,8 +1,8 @@
 import '../../styles/atoms/Button.css';
 
-const Button = ({ className, disabled = false, onClick, children} ) => {
+const Button = ({ className, disabled, onClick, children} ) => {
 
-    return <button className={`button ${className}`} disabled={disabled} onClick={(e)=>{
+    return <button className = {className} disabled={disabled} onClick={(e)=>{
         e.preventDefault();
         onClick(e);
     }}>

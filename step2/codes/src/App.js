@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import CartPage from "./pages/CartPage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import "./App.css";
@@ -29,6 +30,7 @@ function App() {
                     {/*단독 레이아웃*/}
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/signup" element={<RegisterPage />}></Route>
+                    <Route path="/cart" element={<CartPage />}></Route>
                     {/*공통 레이아웃: GNB, FOOTER*/}
                     <Route element={<MainLayout />}> {/* 레이아웃은 별도의 경로를 지정하지 않음 */}
                         <Route path="/" element={<HomePage />}></Route>
