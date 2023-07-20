@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const ProductInfoContainer = styled.div`
     display: flex;
     margin-top: 3em;
-    margin-left: 7em;
+    margin-left: 9em;
     margin-right: 1em;
     border-right: 1px solid #D8D8D8;
+    padding-right: 1em;
 `
 
 export const ProductTitle = styled.div`
@@ -26,5 +27,5 @@ export const ProductPrice = styled.span`
 
 export const TextContainer = styled.div`
     margin: 0 1em;
-    width: 33em;
+    width: 35em;
 `
