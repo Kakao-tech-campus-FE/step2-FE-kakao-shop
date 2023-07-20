@@ -2,6 +2,8 @@ import styled from '@emotion/styled';
 
 import { Totals } from '@hooks/page/Detail/useOptionForm';
 
+import { comma } from '@utils/comma';
+
 type Props = {
   totals?: Totals;
 };
@@ -20,7 +22,7 @@ const SelectResult = ({ totals }: Props) => {
 
       <S.Price>
         <span>주문금액</span>
-        <span>{price}</span>
+        <span>{comma(price)}</span>
         <span>원</span>
       </S.Price>
     </S.Root>

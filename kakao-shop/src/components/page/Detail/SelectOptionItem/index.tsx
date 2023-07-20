@@ -33,7 +33,7 @@ const SelectOptionItem = ({ option, onDeleteOption, onIncreaseQuantity, onDecrea
           onClickMinusButton={onDecreaseQuantity(option.id)}
           onClickPlusButton={onIncreaseQuantity(option.id)}
         />
-        <S.Price>{comma(option.price)}</S.Price>
+        <S.Price>{comma(option.price)}원</S.Price>
       </S.Container>
     </S.Root>
   );
