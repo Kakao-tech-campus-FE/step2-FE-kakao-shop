@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import OptionList from "./OptionList"
 import { comma } from "../../utils/convert"
 import Counter from "./Counter"
@@ -6,9 +6,13 @@ import { useMutation } from "react-query"
 import {addCart} from "../../services/cart"
 import Button from "./Button"
 import Photo from "./Photo"
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux"
 
 const OptionColumn = ({product}) => {
+  const navigate = useNavigate()
   const [selectedOptions, setSelectedOptions] = useState([])
+  const email = useSelector((state) => state.user.email)
 
   // 장바구니 담기 api에서 요청한 정보: optionId, quantity
   const handleOnClickOption = (option) =>{
@@ -49,7 +53,7 @@ const OptionColumn = ({product}) => {
         })
       })
     }
-  useEffect(()=>{console.log(selectedOptions)},[selectedOptions])
+
   // 장바구니 담기 api 처리
   const {mutate} = useMutation({
     mutationFn: addCart
@@ -108,21 +112,26 @@ const OptionColumn = ({product}) => {
         <Button
           className="relative top-8 left-2"
           onClick={()=>{
-            mutate(
-              selectedOptions.map(el=>{
-                return {
-                  optionId: el.optionId,
-                  quantity: el.quantity
+            if(email){
+              mutate(
+                selectedOptions.map(el=>{
+                  return {
+                    optionId: el.optionId,
+                    quantity: el.quantity
+                  }
+                }),{
+                  onSuccess:()=>{
+                    alert("장바구니에 담겼습니다.")
+                  },
+                  onError:()=>{
+                    alert("장바구니 담기에 실패했습니다.")
+                  }
                 }
-              }),{
-                onSuccess:()=>{
-                  alert("장바구니에 담겼습니다.")
-                },
-                onError:()=>{
-                  alert("장바구니 담기에 실패했습니다.")
-                }
-              }
-            )
+              )
+            } else{
+              alert("로그인이 필요한 서비스입니다.")
+              navigate("/login")
+            }
           }}><Photo src="/cart.png" alt="장바구니"/></Button>
           <Button className="relative left-20 bottom-4 btn-primary text-2xl px-20 py-8">바로구매</Button>
       </div>

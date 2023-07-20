@@ -21,9 +21,7 @@ const Counter = ({
 
   const handleOnIncrease = () => {
     setCount(count+1)
-    console.log("dks",optionId)
     onIncrease(count+1, optionId)
-
     setIsDisabled(false)
 
   }
@@ -31,16 +29,15 @@ const Counter = ({
   const handleOnDecrease = () => {
     setCount(count-1)
     onDecrease(count-1, optionId)
-    console.log(count)
     setIsDisabled(count <= 2)
 
   }
 
   return (
     <div className='mt-1'>
-      <Button className="btn-counter" disabled={isDisabled} onClick={handleOnDecrease}>-</Button>
-      <span className='px-6 py-1 border-2'>{count}</span>
-      <Button className="btn-counter" onClick={handleOnIncrease}>+</Button>
+      <Button className="btn-counter px-3" disabled={isDisabled} onClick={handleOnDecrease}>-</Button>
+      <span className='px-6 py-1'>{count}</span>
+      <Button className="btn-counter px-2" onClick={handleOnIncrease}>+</Button>
     </div>
   )
 }
