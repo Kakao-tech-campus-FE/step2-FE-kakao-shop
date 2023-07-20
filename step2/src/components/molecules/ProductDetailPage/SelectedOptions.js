@@ -7,6 +7,7 @@ const SelectedOptions = ({ selectedOptions, onQuantityChange, onRemove }) => {
         <SelectedOption
           key={option.id}
           option={option}
+          quantity={option.quantity}
           onQuantityChange={onQuantityChange}
           onRemove={onRemove}
         />

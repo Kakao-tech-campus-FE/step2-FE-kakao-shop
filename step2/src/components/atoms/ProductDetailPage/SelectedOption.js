@@ -1,14 +1,14 @@
 import { comma } from "../../../utils/convert";
 
-const SelectedOption = ({ option, onQuantityChange, onRemove }) => {
+const SelectedOption = ({ option, quantity, onQuantityChange, onRemove }) => {
   const handleDecreaseQuantity = () => {
-    if (option.quantity > 1) {
-      onQuantityChange(option.id, option.quantity - 1);
+    if (quantity > 1) {
+      onQuantityChange(option.id, quantity - 1);
     }
   };
 
   const handleIncreaseQuantity = () => {
-    onQuantityChange(option.id, option.quantity + 1);
+    onQuantityChange(option.id, quantity + 1);
   };
 
   return (
@@ -24,7 +24,7 @@ const SelectedOption = ({ option, onQuantityChange, onRemove }) => {
           </button>
           <input
             className="option-quantity"
-            value={option.quantity}
+            value={quantity}
             onChange={(e) => onQuantityChange(option.id, +e.target.value)}
           />
           <button className="btn-quantity" onClick={handleIncreaseQuantity}>
