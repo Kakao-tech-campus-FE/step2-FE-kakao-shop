@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import MainProductTemplate from '../components/templates/MainProductTemplate';
+import Loader from '../components/atoms/Loader';
 
 const MainPage = () => {
   return (
-    <div>
+    <Suspense fallback={<Loader />}>
       <MainProductTemplate />
-    </div>
+    </Suspense>
   );
 };
 

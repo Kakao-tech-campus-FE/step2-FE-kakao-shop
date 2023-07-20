@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
+import Loader from '../components/atoms/Loader';
 
 const ProductDetailPage = () => {
-  return <ProductDetailTemplate />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <ProductDetailTemplate />
+    </Suspense>
+  );
 };
 
 export default ProductDetailPage;
