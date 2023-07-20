@@ -14,11 +14,11 @@ import { comma } from '@utils/comma';
 type Props = {
   option: UserSelectOption;
   onDeleteOption: (id: number) => MouseEventHandler<HTMLButtonElement>;
-  increaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
-  decreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
 };
 
-const SelectOptionItem = ({ option, onDeleteOption, increaseQuantity, decreaseQuantity }: Props) => {
+const SelectOptionItem = ({ option, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
   return (
     <S.Root key={option.id}>
       <Button css={S.ButtonCSS} onClick={onDeleteOption(option.id)}>
@@ -30,8 +30,8 @@ const SelectOptionItem = ({ option, onDeleteOption, increaseQuantity, decreaseQu
       <S.Container>
         <RegularInput.Counter
           value={option.quantity}
-          onClickMinusButton={decreaseQuantity(option.id)}
-          onClickPlusButton={increaseQuantity(option.id)}
+          onClickMinusButton={onDecreaseQuantity(option.id)}
+          onClickPlusButton={onIncreaseQuantity(option.id)}
         />
         <S.Price>{comma(option.price)}</S.Price>
       </S.Container>

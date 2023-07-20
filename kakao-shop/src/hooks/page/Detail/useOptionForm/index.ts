@@ -35,14 +35,14 @@ export const useOptionForm = () => {
       setOptions(deleteSelectedOptions(id));
     };
 
-  const increaseQuantity =
+  const onIncreaseQuantity =
     (id: number): MouseEventHandler<HTMLButtonElement> =>
     () => {
       if (!options) return;
       setOptions(updateQuantityOptions(id, options, UP1));
     };
 
-  const decreaseQuantity =
+  const onDecreaseQuantity =
     (id: number): MouseEventHandler<HTMLButtonElement> =>
     () => {
       if (!options) return;
@@ -58,8 +58,8 @@ export const useOptionForm = () => {
     handler: {
       onSelectOption,
       onDeleteOption,
-      increaseQuantity,
-      decreaseQuantity,
+      onIncreaseQuantity,
+      onDecreaseQuantity,
     },
   };
 };

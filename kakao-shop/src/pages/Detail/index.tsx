@@ -26,7 +26,7 @@ const renderStar = (starCount?: number) => {
 const Detail = () => {
   const {
     state: { product, options, totals },
-    handler: { onSelectOption, onDeleteOption, increaseQuantity, decreaseQuantity },
+    handler: { onSelectOption, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity },
   } = useOptionForm();
 
   return (
@@ -53,8 +53,8 @@ const Detail = () => {
           options={options}
           onSelectOption={onSelectOption}
           onDeleteOption={onDeleteOption}
-          increaseQuantity={increaseQuantity}
-          decreaseQuantity={decreaseQuantity}
+          onIncreaseQuantity={onIncreaseQuantity}
+          onDecreaseQuantity={onDecreaseQuantity}
         />
         <DeliveryInfo />
         <SelectResult totals={totals} />

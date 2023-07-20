@@ -7,10 +7,10 @@ import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 type Props = {
   options?: UserSelectOption[];
   onDeleteOption: (id: number) => MouseEventHandler<HTMLButtonElement>;
-  increaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
-  decreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
 };
-const SelectOptionItemList = ({ options, onDeleteOption, increaseQuantity, decreaseQuantity }: Props) => {
+const SelectOptionItemList = ({ options, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
   return (
     <Fragment>
       {options?.map(option => {
@@ -20,8 +20,8 @@ const SelectOptionItemList = ({ options, onDeleteOption, increaseQuantity, decre
             key={option.id}
             option={option}
             onDeleteOption={onDeleteOption}
-            increaseQuantity={increaseQuantity}
-            decreaseQuantity={decreaseQuantity}
+            onIncreaseQuantity={onIncreaseQuantity}
+            onDecreaseQuantity={onDecreaseQuantity}
           />
         );
       })}

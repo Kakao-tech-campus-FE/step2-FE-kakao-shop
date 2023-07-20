@@ -10,11 +10,17 @@ type Props = {
   options?: UserSelectOption[];
   onSelectOption: (id: number) => void;
   onDeleteOption: (id: number) => MouseEventHandler<HTMLButtonElement>;
-  increaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
-  decreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
 };
 
-const OptionListSection = ({ options, onSelectOption, onDeleteOption, increaseQuantity, decreaseQuantity }: Props) => {
+const OptionListSection = ({
+  options,
+  onSelectOption,
+  onDeleteOption,
+  onIncreaseQuantity,
+  onDecreaseQuantity,
+}: Props) => {
   return (
     <S.Root>
       <S.Tit>옵션 선택</S.Tit>
@@ -22,8 +28,8 @@ const OptionListSection = ({ options, onSelectOption, onDeleteOption, increaseQu
       <SelectOptionItemList
         options={options}
         onDeleteOption={onDeleteOption}
-        increaseQuantity={increaseQuantity}
-        decreaseQuantity={decreaseQuantity}
+        onIncreaseQuantity={onIncreaseQuantity}
+        onDecreaseQuantity={onDecreaseQuantity}
       />
     </S.Root>
   );
