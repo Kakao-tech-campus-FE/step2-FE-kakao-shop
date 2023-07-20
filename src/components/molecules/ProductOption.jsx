@@ -139,20 +139,24 @@ const ProductOption = ({product}) => {
             </Option.Result>
             <Option.Purchase>
                 <Button className="cartButton" onClick={() => {
-                    mutate(selectedOptions.map((el) => {
-                        return {
-                            optionId: el.optionId,
-                            quantity: el.quantity,
-                        };
-                    }), {
-                        onSuccess: () => {
-                            alert("장바구니에 담겼습니다.");
-                        },
-                        onError: () => {
-                            alert("장바구니 담기에 실패했습니다.");
-                        }
-                    });
-                    console.log(getCart());
+                    if(JSON.parse(getLocalStorage("user")).value) {
+                        mutate(selectedOptions.map((el) => {
+                            return {
+                                optionId: el.optionId,
+                                quantity: el.quantity,
+                            };
+                        }), {
+                            onSuccess: () => {
+                                alert("장바구니에 담겼습니다.");
+                            },
+                            onError: () => {
+                                alert("장바구니 담기에 실패했습니다.");
+                            }
+                        });
+                    } else {
+                        alert('로그인이 필요합니다.');
+                        navigate('/login');
+                    }
                 }}>장바구니 담기</Button>
                 <Button className="talkButton">톡딜가로 구매하기</Button>
             </Option.Purchase>
