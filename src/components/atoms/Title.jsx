@@ -1,8 +1,8 @@
 import React from 'react'
 
-function Title( {children }) {
+function Title( {children, style }) {
   return (
-    <h3>{children}</h3>
+    <h3 style={style}>{children}</h3>
   )
 }
 

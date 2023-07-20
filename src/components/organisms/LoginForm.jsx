@@ -4,12 +4,11 @@ import Button from '../atoms/Button'
 import Title from '../atoms/Title'
 import Warning from '../atoms/Warning'
 import useInput from '../../hooks/useInput'
-import { login } from '../../services/api'
+import { login } from '../../services/user'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { setEmail } from '../../store/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
-import Label from '../atoms/Label'
 
 
 function LoginForm() {
@@ -29,39 +28,67 @@ function LoginForm() {
   const navigate = useNavigate()
 
   useEffect(()=>{
-    console.log(form.username)
+    // console.log(form.username)
   },[form])
 
   return (
-    <Containor style={{margin: '100px auto', width: '1500px'}}>
-      <Containor style={{margin: '0 auto'}}>
+    <Containor style={{
+      display: 'inline-block', 
+      width: '100%', 
+      height: '100%',
+      verticalAlign:'middle'}}>
+      <Containor style={{
+        position: 'absolute',
+        width: '100%', 
+        height: '100%',
+      }}>
+      <Containor style={{
+        marginTop: '50px',
+      }}>
+        <Title style={{
+          display:'block', 
+          margin: '0 auto',
+          width:'88px', 
+          height: '27px', 
+          fontSize: '27px'
+        }}>KaKao</Title>
+      </Containor>
+       <Containor style={{width: '100%'}}>
+        <Containor style={{
+        margin: '50px auto', 
+        width:'580px',
+        height: '100%',
+        border: '1px solid rgba(0,0,0,.12)',
+        borderRadius: '15px',
+        padding: '40px 69px',
+        fontSize: '12px',
+        boxSizing: 'border-box',
+        }}>
       <span>{email}</span>
       <InputGroup id="email" type="email" placeholder="이메일(아이디)를 입력해주세요!" name= "email" label="이메일(아이디)" value={form.email} onChange={handleOnChange}
       style={{
+        width: '100%',
         display: 'block',
-        width: '50%',
-        height: '30px',
         borderRadius: '5px',
         border: '1px solid gray',
-        margin: '0 auto',
-        marginBottom: '15px'
+        marginBottom: '15px',
       }}
       labelStyle={{
-        display: 'block',width: '50%', margin: '0 auto', marginBottom: '10px', fontWeight: 'bold'
+        display: 'block', 
+        marginBottom: '5px',
       }}
       />
       <InputGroup id="password" type="password" placeholder="비밀번호" label="비밀번호" name= "password" value={form.password} onChange={handleOnChange}
       style={{
+        width: '100%',
         display: 'block',
-        width: '50%',
-        height: '30px',
         borderRadius: '5px',
         border: '1px solid gray',
-        margin: '0 auto',
-        marginBottom: '15px' 
+        marginBottom: '50px',
       }}
       labelStyle={{
-        display: 'block', width: '50%', margin: '0 auto', marginBottom: '10px', fontWeight: 'bold'
+        display: 'block', 
+        marginBottom: '5px',
       }}
       />
       {valid ? "" : <Warning style={{
@@ -69,12 +96,8 @@ function LoginForm() {
         width: '50%',
       }}>{errorMsg}</Warning>}
       <Button style={{
+        width: '100%',
         display: 'block',
-        width: '50%',
-        margin: '0 auto',
-        marginTop: '50px',
-        height: '50px',
-        fontWeight: 'bold',
         borderRadius: '5px',
         border: '1px solid gray',
         backgroundColor: '#ffe342'
@@ -91,7 +114,6 @@ function LoginForm() {
         }
 
         if(form.password===""){
-          console.log(form.password)
           setValid(false)
           setErrorMsg("비밀번호를 정확하게 입력해주세요.")
           return
@@ -100,25 +122,27 @@ function LoginForm() {
         setValid(true)
         setErrorMsg("")
 
-        //api 로그인 요청
-        login({
-          email: form.email,
-          password: form.password,
-        }).then((res)=>{
-            dispatch(
-              setEmail({
-              email: form.email
-            })
-            )
+          //api 로그인 요청
+          login({
+            email: form.email,
+            password: form.password,
+          }).then((res)=>{
             localStorage.setItem("token",res.headers.authorization)
-            navigate("/")
-        }).catch((error)=>{
-          setValid(false)
-          setErrorMsg(error.response.data.error.message)
-        })
-      }}>
-      로그인</Button>
-    </Containor>
+              dispatch(
+                setEmail({
+                email: form.email
+              })
+              )
+              navigate("/")
+          }).catch((error)=>{
+            setValid(false)
+            setErrorMsg(error.data.error.message)
+          })
+        }}>
+        로그인</Button>
+         </Containor>
+       </Containor>
+      </Containor>
     </Containor>
   )
 }
