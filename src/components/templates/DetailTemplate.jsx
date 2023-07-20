@@ -12,7 +12,7 @@ import Image from "components/atoms/Image";
 import RightContainer from "components/atoms/detail/RightContainer";
 
 
-const DetailTemplate = ( props ) => {
+const DetailTemplate = ( ) => {
 
   const params = useParams();
   
@@ -28,12 +28,12 @@ const DetailTemplate = ( props ) => {
         {obj && 
         <DetailContainer>
           <ImgBox>
-            <Image image={obj.data.response.image} alt={obj.data.response.productName}/>
+            <Image image={obj.image} alt={obj.productName}/>
           </ImgBox>
           
           <RightContainer>
-            <InfoBox name={obj.data.response.productName} price={obj.data.response.price} />
-            <DetailOption options={obj.data.response.options} />
+            <InfoBox name={obj.productName} price={obj.price} />
+            <DetailOption options={obj.options} />
           </RightContainer>
         </DetailContainer>
         }

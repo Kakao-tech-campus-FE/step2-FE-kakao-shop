@@ -46,7 +46,7 @@ const LoginForm = () => {
     postLogin(user)
       .then((response) => {
         // 1. 로컬스토리지에 저장 
-        localStorage.setItem("token", response.headers.authorization);
+        localStorage.setItem("token", response);
         localStorage.setItem("email", user.email);
         localStorage.setItem("loginTime", `${Date.now()}`);
         localStorage.setItem("islogin", `${true}`);
@@ -54,7 +54,7 @@ const LoginForm = () => {
         // 2. Redux store에 상태 저장
         dispatch(setUserReducer( {
           email: user.email,
-          token: response.headers.authorization,
+          token: response,
           loginTime: Date.now(),
           islogin: true,
         } ))

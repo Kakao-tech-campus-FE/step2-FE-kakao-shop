@@ -10,6 +10,8 @@ import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import addToCart from 'api/addToCart'
 import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
+import getCarts from 'api/getCarts'
+import instance from 'api/instance'
 
 const DetailOption = (props) => {
   const initialList = props.options.map((item) => { 
@@ -20,6 +22,7 @@ const DetailOption = (props) => {
   const [open, setOpen] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalQuantity, setTotalQuantity] = useState(0)
+  const [duplicate, setDuplicate] = useState(false)
 
   const selectOption = (id) => {
     setOpen(prev => false)
@@ -32,7 +35,10 @@ const DetailOption = (props) => {
   }
 
   const changeQuantity = (id, newQuntity) => {
-    if (Number.isNaN(newQuntity)) {
+    if (newQuntity === 0 || Number.isNaN(newQuntity)) {
+      return
+    }
+    if (newQuntity === -1) {
       newQuntity = 0
     }
     const newList = quantity.map((obj) => (
@@ -58,7 +64,18 @@ const DetailOption = (props) => {
   }, [quantity])
 
   const loginState = useSelector((state) => state.login)
-  const dispatch = useDispatch()
+
+  const test = () => {
+    return instance.post("/carts/add", 
+      [ {
+        "optionId" : 1,
+        "quantity" : 5
+      }, {
+        "optionId" : 2,
+        "quantity" : 5
+      } ]
+    );
+  }
 
   const submitHandler = () => {
     if (totalQuantity === 0) {
@@ -72,7 +89,7 @@ const DetailOption = (props) => {
       alert("로그인 해주세요")
       return
     }
-
+    
     addToCart(quantity)
 
   }
@@ -116,7 +133,7 @@ const DetailOption = (props) => {
                 quantity={item.quantity}
                 sub={() => changeQuantity(item.id, item.quantity - 1)}
                 add={() => changeQuantity(item.id, item.quantity + 1)}
-                clear={() => changeQuantity(item.id, 0)}
+                clear={() => changeQuantity(item.id, -1)}
                 change={(event) => changeQuantity(item.id, parseInt(event.target.value))}
                 />
             </SelectedItemBox> 

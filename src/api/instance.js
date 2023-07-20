@@ -26,6 +26,10 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     console.log(response);
+    // 로그인
+    if (response.config.url === "/login") {
+      return response.headers.authorization;
+    }
     return response.data.response;
   },
   (error) => {

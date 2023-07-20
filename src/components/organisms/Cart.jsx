@@ -12,7 +12,7 @@ import updateCart from 'api/updateCart';
 
 
 const Cart = () => {
-  const {data: obj, isError, error, isFetching, refetch} = useQuery(
+  const query = useQuery(
     ["getCarts"],
     getCarts,
     {suspense: true}
@@ -20,37 +20,30 @@ const Cart = () => {
   
   const navigate = useNavigate()
   const [cartObj, setCartObj] = useState([]);
-  const [buylist, setBuylist] = useState([]);
     
   useEffect(()=> {
-    if (obj) {
-      setCartObj(prev => obj.data.response.products)
+    console.log(query.data)
+    if (query.data) {
+      setCartObj(prev => query.data.products)
     }
-  }, [obj, setCartObj])
+  }, [query.data, setCartObj])
   
 
   const mutation = useMutation(
     updateCart, 
     {
-      onMutate: (variables) => { 
-        /* 요청 직전 처리, 여기서 반환하는 값은 하단 함수들의 context로 사용됨 */
+      onSuccess: () => {
+        query.refetch()
       },
-      onError: (error, variables, context) => {
-        /* 오류 발생 시 처리 */
-      },
-      onSuccess: (data, variables, context) => {
-        refetch()
-        /* 성공 시 처리 */
-      },
-      onSettled: (data, error, variables, context) => {
-        /* 성공 여부와 관계없이 작업이 끝나면 처리 */
-      }
     }
   );
 
   const changeCart = (id, q) => {
-    if (q <= 0) {
+    if (q === 0) {
       return
+    }
+    if (q === -1) {
+      q = 0
     }
     const updateList = []
     for (const item of cartObj) {
@@ -90,7 +83,7 @@ const Cart = () => {
                     quantity={optionItem.quantity}
                     sub={() => {changeCart(optionItem.id, optionItem.quantity - 1)}}
                     add={() => {changeCart(optionItem.id, optionItem.quantity + 1)}}
-                    clear={() => {changeCart(optionItem.id, 0)}}
+                    clear={() => {changeCart(optionItem.id, -1)}}
                     change={(event) => changeCart(optionItem.id, parseInt(event.target.value))}
                   />
                 </div> ))
@@ -101,7 +94,7 @@ const Cart = () => {
         ))
       }
       
-      <TotalPrice price={strPrice(obj.data.response.totalPrice)}></TotalPrice>
+      <TotalPrice price={strPrice(query.data.totalPrice)}></TotalPrice>
       <SubmitButton> 
         주문하기 
       </SubmitButton>
