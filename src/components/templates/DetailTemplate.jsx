@@ -16,7 +16,7 @@ const DetailTemplate = ( ) => {
 
   const params = useParams();
   
-  const { data: obj, isLoading, isError, error } = useQuery( 
+  const { data: obj } = useQuery( 
     ["getproductdetail", params.id], 
     () => getDetail(params.id),
     { suspense: true }

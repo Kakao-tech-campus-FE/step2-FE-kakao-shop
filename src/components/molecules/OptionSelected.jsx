@@ -19,7 +19,9 @@ const OptionSelected = (props) => {
           sub={props.sub}
           add={props.add}
           quantity={props.quantity}
-          change={props.change}
+          changeQuantity={props.changeQuantity}
+          useChange={props.useChange}
+          optionId={props.optionId}
         />
 
         <div className='ml-auto'>{props.price}</div>

@@ -12,6 +12,8 @@ import updateCart from 'api/updateCart';
 
 
 const Cart = () => {
+
+  // 장바구니 객체 get
   const query = useQuery(
     ["getCarts"],
     getCarts,
@@ -19,52 +21,62 @@ const Cart = () => {
   )
   
   const navigate = useNavigate()
-  const [cartObj, setCartObj] = useState([]);
-    
-  useEffect(()=> {
-    console.log(query.data)
-    if (query.data) {
-      setCartObj(prev => query.data.products)
-    }
-  }, [query.data, setCartObj])
+  // const [cartObj, setCartObj] = useState([]);
+  
+  // 장바구니 객체 get 할때마다 상태에 저장
+  // useEffect(()=> {
+  //   console.log("query.data.products", query.data.products)
+  //   if (query.data) {
+  //     setCartObj(prev => query.data.products)
+  //   }
+  // }, [query.data])
   
 
   const mutation = useMutation(
     updateCart, 
     {
-      onSuccess: () => {
+      onSuccess: (data, variables, context) => {
         query.refetch()
       },
     }
   );
-
+  
+  const useChange = (initial, after) => {
+    const [state, setState] = useState(initial)
+    if (after !== initial) {
+      setState(prev => after)
+    }
+  }
+  // onClick, onChange 이벤트 : 장바구니 업데이트
+  // 장바구니 객체 돌면서 > cartID를 찾기 > 형식에 맞춰서 > mutation 요청 보내기
   const changeCart = (id, q) => {
+    
     if (q === 0) {
       return
     }
     if (q === -1) {
       q = 0
     }
-    const updateList = []
-    for (const item of cartObj) {
+
+    // 장바구니 get 객체 돌면서 cartID를 찾기
+    for (const item of query.data.products) {
       for (const option of item.carts) {
         if (option.id === id) {
-          updateList.push({cartId: id, quantity: q})
+          // 형식에 맞춰서 요청 보내기
+          mutation.mutate( [ {cartId: id, quantity: q} ] )
+          console.log("update data", [ {cartId: id, quantity: q} ])
+          break
         }
       }
     }
-    mutation.mutate(updateList)
   }
 
   return (
     <CartContainer>
 
       {
-        cartObj?.map((item, i)=>(
+        query.data.products?.map((item, i)=>(
           <CheckGroup
-            state={ cartObj }
-            setState={ setCartObj }
-            index={ i }
             key={ item.productName }
           >
             <div className='flex flex-col w-full'>
@@ -81,10 +93,8 @@ const Cart = () => {
                     optionName={optionItem.option.optionName} 
                     price={strPrice(optionItem.price)}
                     quantity={optionItem.quantity}
-                    sub={() => {changeCart(optionItem.id, optionItem.quantity - 1)}}
-                    add={() => {changeCart(optionItem.id, optionItem.quantity + 1)}}
+                    changeQuantity={changeCart}
                     clear={() => {changeCart(optionItem.id, -1)}}
-                    change={(event) => changeCart(optionItem.id, parseInt(event.target.value))}
                   />
                 </div> ))
               }

@@ -7,10 +7,9 @@ import TotalPrice from 'components/atoms/option/TotalPrice'
 import OptionSelected from 'components/molecules/OptionSelected'
 import strPrice from 'utils/price'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import addToCart from 'api/addToCart'
 import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
-import getCarts from 'api/getCarts'
 import instance from 'api/instance'
 
 const DetailOption = (props) => {
@@ -22,7 +21,6 @@ const DetailOption = (props) => {
   const [open, setOpen] = useState(false)
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalQuantity, setTotalQuantity] = useState(0)
-  const [duplicate, setDuplicate] = useState(false)
 
   const selectOption = (id) => {
     setOpen(prev => false)
@@ -65,18 +63,6 @@ const DetailOption = (props) => {
 
   const loginState = useSelector((state) => state.login)
 
-  const test = () => {
-    return instance.post("/carts/add", 
-      [ {
-        "optionId" : 1,
-        "quantity" : 5
-      }, {
-        "optionId" : 2,
-        "quantity" : 5
-      } ]
-    );
-  }
-
   const submitHandler = () => {
     if (totalQuantity === 0) {
       alert("옵션을 선택해주세요")
@@ -91,7 +77,6 @@ const DetailOption = (props) => {
     }
     
     addToCart(quantity)
-
   }
 
   return (
@@ -127,15 +112,14 @@ const DetailOption = (props) => {
           return (
             <SelectedItemBox>
               <OptionSelected 
+                optionId={item.id}
                 key={item.optionName} 
                 optionName={item.optionName} 
                 price={strPrice(item.quantity * item.price)}
                 quantity={item.quantity}
-                sub={() => changeQuantity(item.id, item.quantity - 1)}
-                add={() => changeQuantity(item.id, item.quantity + 1)}
+                changeQuantity={changeQuantity}
                 clear={() => changeQuantity(item.id, -1)}
-                change={(event) => changeQuantity(item.id, parseInt(event.target.value))}
-                />
+              />
             </SelectedItemBox> 
           )} 
         })
