@@ -4,6 +4,8 @@ import { useState } from "react"
 import Counter from "../atoms/Counter"
 import { comma } from "../../utils/convert"
 import { useMutation } from "react-query"
+import Button from "../atoms/Button"
+import { addCart } from "../services/cart"; // Import the addCart function from cart.js
 
 const OptionColumn = ({ product }) => {
     const [selectedOptions, setSelectedOptions] = useState([])
@@ -43,7 +45,7 @@ const OptionColumn = ({ product }) => {
         })
     }
 
-    useMutation({
+    const { mutate } = useMutation({
         mutationFn: addCart,
     })
 
@@ -56,10 +58,6 @@ const OptionColumn = ({ product }) => {
 
                 onClick={handleOnClickOption}
             />
-            <hr />
-            <div className="total-price">
-                <span>총 상품금액</span>
-            </div>
             {/* 담긴 옵션이 표기 */}
             {selectedOptions.map((option) => (
                 <ol key={option.id} className="selected-option-list">
@@ -73,7 +71,45 @@ const OptionColumn = ({ product }) => {
                     </li>
                 </ol>
             ))}
-            <div className="button-group"></div>
+            <hr />
+            <div className="total-price">
+                <span>
+                    총 수량:{" "}
+                    {comma(selectedOptions.reduce((acc, cur) => {
+                        return acc + cur.quantity
+                    }, 0))}
+                    개
+                </span>
+                <span>총 상품금액
+                    {comma(selectedOptions.reduce((acc, cur) => {
+                        return acc + cur.quantity * cur.price
+                    }, 0))}
+                    개
+                </span>
+            </div>
+            <div className="button-group">
+                <Button
+                    onClick={() => {
+                        mutate(
+                            selectedOptions.map((el) => {
+                                return {
+                                    optionId: el.id,
+                                    quantity: el.quantity
+                                }
+                            }), {
+                            onSuccess: () => {
+                                alert("장바구니에 담겼습니다.")
+                            },
+                            onError: () => {
+                                alert("장바구니 담기에 실패했습니다.")
+                            }
+                        }
+
+                        )
+                    }}>
+
+                </Button>
+            </div>
         </div>
     )
 }
