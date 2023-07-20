@@ -9,8 +9,15 @@ export interface RegisterData {
   username: string;
 }
 
+export interface ProductOptionData {
+  id: number;
+  price: string;
+  optionName: string;
+}
+
 export interface ProductInfoData {
   id: number;
+  options: ProductOptionData[];
   productName: string;
   description: string;
   image: string;
