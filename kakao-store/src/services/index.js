@@ -3,6 +3,8 @@ import { persistStore } from 'redux-persist';
 import { useSelector } from 'react-redux';
 import store from '../store';
 import { getCookie } from '../storage/Cookie';
+import ErrorPage from '../pages/ErrorPage';
+import { Link } from 'react-router-dom';
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -37,18 +39,15 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 400) {
+    if (error.response.status >= 400 && error.response.status <= 500) {
+      if (error.response.status === 404) {
+        <Link to="/error" />;
+      }
+
       localStorage.removeItem('token');
       const errorMessage = error.response.data.error.message;
       alert(errorMessage);
       // window.location.href = '/signup';
-      return Promise.resolve();
-    }
-    if (error.response.status === 401) {
-      localStorage.removeItem('token');
-      const errorMessage = error.response.data.error.message;
-      console.log(errorMessage);
-
       return Promise.resolve();
     }
     return Promise.reject(error.response);

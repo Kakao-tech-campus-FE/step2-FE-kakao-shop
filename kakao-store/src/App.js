@@ -8,6 +8,7 @@ import MainLayout from './layouts/MainLayout';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
+import ErrorPage from './pages/ErrorPage';
 import 'tailwindcss/tailwind.css';
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
+            <Route path="/error" element={<ErrorPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
