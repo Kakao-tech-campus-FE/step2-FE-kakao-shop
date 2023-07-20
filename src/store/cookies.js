@@ -3,10 +3,7 @@ export const setCookie = (name, value, days) => {
   expirationDate.setDate(expirationDate.getDate() + days);
 
   const cookieValue =
-    encodeURIComponent(value) +
-    "; expires=" +
-    expirationDate.toUTCString() +
-    "; path=/";
+    value + "; expires=" + expirationDate.toUTCString() + "; path=/";
   console.log("setCookie:", cookieValue);
   document.cookie = name + "=" + cookieValue;
 };

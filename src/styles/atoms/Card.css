@@ -1,0 +1,40 @@
+.carousel {
+    display: block;
+}
+
+.grid-container {
+  display: grid;
+  gap : 20px 50px;
+  grid-template-columns: 33% 33% 33%;
+  margin: 30px;
+  padding: 15px;
+}
+
+#test{
+    padding: 20px;
+}
+
+li {
+    list-style: none;
+}
+
+.card-title {
+    font-size: 15px;
+    color : black;
+    display: block;
+    width: 300px;
+}
+
+.card-price {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.card-price span{
+    color : black;
+}
+
+.card-text {
+    margin-top: 10px;
+    margin-left: 0px;
+}

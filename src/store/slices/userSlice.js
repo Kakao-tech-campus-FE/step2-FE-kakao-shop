@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login, register } from "../../services/api";
+import { login, register } from "../../services/user";
 import { getCookie, setCookie } from "../cookies";
 
 const token = getCookie("token");
@@ -22,7 +22,6 @@ const userSlice = createSlice({
     },
     setLogin: (state, action) => {
       //로그인 후 메인 페이지 로딩 시 로그인 버튼 -> 로그아웃 버튼으로 리렌더링 없이 하기 위해 만들었는데 로그아웃에 반영이 안됨..
-      console.log(action);
       state.logined = action.payload;
     },
   },
@@ -64,8 +63,10 @@ export const loginRequest = createAsyncThunk(
       const { email, password } = data;
       const response = await login({ email, password });
       alert("login success");
-      if (response.data.success)
+      if (response.data.success) {
+        console.log(response.headers.authorization);
         setCookie("token", response.headers.authorization, 1); //token 쿠키 저장
+      }
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

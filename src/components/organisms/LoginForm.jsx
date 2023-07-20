@@ -1,12 +1,12 @@
+import React from "react";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import Title from "../atoms/Title";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginRequest, setLogin } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { emailExp, passwordExp } from "../../exp";
+import { emailExp, passwordExp } from "../../utils/regex/exp";
 
 const LoginForm = () => {
   const navigator = useNavigate();
@@ -18,75 +18,106 @@ const LoginForm = () => {
     email: "",
     password: "",
   });
-  const email = useSelector((state) => state.email);
-  const error = useSelector((state) => state.error);
-
   return (
-    <Container className="flex h-screen w-full items-center justify-center bg-white-900 bg-cover bg-no-repeat">
-      <Container className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8">
-        <Container className="mb-8 flex flex-col items-center">
-          <Title className="mb-2 text-2xl">kakao</Title>
-          <Title>{email}</Title>
-          <Title>{error}</Title>
-        </Container>
-        <Container className="text-black">
-          <Container>
-            <Container className="mb-4 text-lg">
+    <Container className="flex items-center justify-center h-screen">
+      <Container className="items-center float-none ">
+        <h1 className="text-4xl font-bold text-center pb-5">kakao</h1>
+        <Container className="w-128 border border-gray-200 rounded-lg p-6">
+          <Container pt-10>
+            <Container className="mb-4">
               <InputGroup
-                className="rounded-3xl border-none bg-white-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-white-md"
+                className="border-b border-gray-200 w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none"
                 id="email"
                 type="email"
-                placeholder="이메일을 입력해주세요"
-                label="이메일"
+                //placeholder="이메일을 입력해주세요"
+                //label="이메일"
                 name="email"
                 value={value.email}
                 onChange={handleOnChange}
+                placeholder="카카오메일 아이디, 이메일, 전화번호"
               />
             </Container>
-
-            <Container className="mb-4 text-lg">
+            <Container className="mb-6">
               <InputGroup
-                //className="rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md"
+                className="border-b border-gray-200 w-full py-2 px-1 text-gray-700 leading-tight focus:outline-none"
                 id="password"
                 type="password"
                 name="password"
-                placeholder="********"
-                label="비밀번호"
+                placeholder="비밀번호"
+                //label="비밀번호"
                 value={value.password}
                 onChange={handleOnChange}
               />
             </Container>
-            <Container className="mt-8 flex justify-center text-lg text-black">
-              <Button
-                onClick={() => {
-                  new Promise((resolve, reject) => {
-                    //프론트 엔드에서 진행하는 유효성 검사 프로미스
-                    if (!emailExp(value.email))
-                      reject("이메일 형식이 올바르지 않습니다.");
-                    else if (!passwordExp(value.password))
-                      reject("비밀번호 형식이 올바르지 않습니다.");
-                    resolve(1);
+            <Button
+              className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-1 w-full rounded cursor-pointer transition-colors duration-300"
+              onClick={() => {
+                new Promise((resolve, reject) => {
+                  //프론트 엔드에서 진행하는 유효성 검사 프로미스
+                  if (!emailExp(value.email))
+                    reject("이메일 형식이 올바르지 않습니다.");
+                  else if (!passwordExp(value.password))
+                    reject("비밀번호 형식이 올바르지 않습니다.");
+                  resolve(1);
+                })
+                  .then(() => {
+                    //유효성 검사 완료 후 api 요청
+                    dispatch(
+                      loginRequest({
+                        email: value.email,
+                        password: value.password,
+                      })
+                    ).then((res) => {
+                      if (res.payload.success) {
+                        //로그인 성공시
+                        dispatch(setLogin(true)); //로그인이 됐다면 바로 (로그아웃)으로 버튼이 뜰 수 있게 상태 설정
+                        gohome("/"); //성공 시 홈페이지 이동
+                      }
+                    });
                   })
-                    .then(() => {
-                      //유효성 검사 완료 후 api 요청
-                      dispatch(
-                        loginRequest({
-                          email: value.email,
-                          password: value.password,
-                        })
-                      ).then((res) => {
-                        if (res.payload.success) {
-                          //로그인 성공시
-                          dispatch(setLogin(true)); //로그인이 됐다면 바로 (로그아웃)으로 버튼이 뜰 수 있게 상태 설정
-                          gohome("/"); //성공 시 홈페이지 이동
-                        }
-                      });
-                    })
-                    .catch((error) => alert(error));
+                  .catch((error) => alert(error));
+              }}
+            >
+              로그인
+            </Button>
+          </Container>
+          <Container className="flex items-center justify-center mt-6">
+            <hr className="flex-grow border-gray-200" />
+            <span className="mx-4 text-gray-500 text-xs">또는</span>
+            <hr className="flex-grow border-gray-200" />
+          </Container>
+          <Container className="flex items-center justify-center mt-6">
+            <Button
+              className="bg-gray-500 hover:bg-yellow-600 text-white font-bold py-2 px-1 w-full rounded cursor-pointer transition-colors duration-300"
+              onClick={(e) => {}}
+            >
+              QR코드 로그인
+            </Button>
+          </Container>
+          <Container className="flex justify-between mt-6 text-xs">
+            <Button
+              className="text-gray-600 hover:text-gray-800 float-left"
+              onClick={() => {
+                gohome("/signup");
+              }}
+            >
+              회원가입
+            </Button>
+            <Container className="float-right pr-1000">
+              <Button
+                className="text-gray-600 hover:text-gray-800"
+                onClick={(e) => {
+                  console.log(e);
                 }}
-                className="rounded-3xl bg-yellow-400 bg-yellow-50 px-10 py-2 text-white shadow-xl backdrop-yellow-md transition-colors duration-300 hover:bg-yellow-600"
               >
-                Login
+                계정 찾기
+              </Button>
+              <span className="mx-1">|</span>
+              <Button
+                className="text-gray-600 hover:text-gray-800"
+                onClick={(e) => {}}
+              >
+                비밀번호 찾기
               </Button>
             </Container>
           </Container>
@@ -95,4 +126,5 @@ const LoginForm = () => {
     </Container>
   );
 };
+
 export default LoginForm;

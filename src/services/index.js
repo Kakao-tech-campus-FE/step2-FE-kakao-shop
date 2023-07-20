@@ -1,6 +1,8 @@
 import axios from "axios";
+import { checkStatus } from "../utils/statuscatch";
+import { getCookie } from "../store/cookies";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL:
     "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
   //process.env.REACT_APP_API_URL,
@@ -12,6 +14,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
+
   if (token) {
     config.headers["Authorization"] = `Bearer ${token}`;
   }
@@ -23,23 +26,10 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
+    if (error.response) {
+      console.log(error.response);
+      checkStatus(error.response);
+    }
     return Promise.reject(error);
   }
 );
-
-export const register = (data) => {
-  const { email, password, username } = data;
-  return instance.post("/join", {
-    email,
-    password,
-    username,
-  });
-};
-
-export const login = (data) => {
-  const { email, password } = data;
-  return instance.post("/login", {
-    email,
-    password,
-  });
-};
