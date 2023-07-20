@@ -4,7 +4,7 @@ import React from 'react';
 import TextButton from './button/TextButton';
 
 interface OptionListProps {
-  options: any;
+  options: ProductOptionData[];
   onClick: (option: ProductOptionData) => void;
 }
 
