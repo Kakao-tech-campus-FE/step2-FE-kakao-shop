@@ -1,0 +1,7 @@
+.card {
+  width: 270px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding-bottom: 25px;
+}

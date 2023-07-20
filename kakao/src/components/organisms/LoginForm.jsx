@@ -2,7 +2,7 @@ import Container from "../atoms/Conatiner";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
@@ -33,6 +33,7 @@ const LoginForm = () => {
     if (emailError || pwError) {
       return;
     }
+
     login({
       email: value.email,
       password: value.password,
@@ -89,13 +90,13 @@ const LoginForm = () => {
           {pwError && <p className="error-message">{pwError}</p>}
           <>{error}</>
         </div>
+        <Button onClick={loginReq}>로그인</Button>
         <Button
           onClick={() => {
-            //api 로그인 요청
-            loginReq();
+            navigate("/signup");
           }}
         >
-          로그인
+          회원가입
         </Button>
       </Container>
     </div>
