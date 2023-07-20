@@ -102,9 +102,11 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         isWrong={isWarning.passwordConfirm}
         wrongMessage={PASSWORD_CONFIRM_ERROR}
       />
-      <ButtonFormItem color="primary" type="submit" className="w-full mt-8">
-        {SIGN_UP}
-      </ButtonFormItem>
+      <div className="w-full mt-8">
+        <ButtonFormItem color="primary" type="submit">
+          {SIGN_UP}
+        </ButtonFormItem>
+      </div>
     </form>
   );
 };

@@ -3,7 +3,9 @@ import ProcutStars from "@components/ProductDetail/ProductStars.component";
 import Txt from "../common/Txt.component";
 import { pointByThree } from "@/functions/utils";
 import { PRODUCT } from "@/assets/product.ko";
-import { useAppSelector } from "@/hooks/useRedux";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { getProductDetailById } from "@/remotes/product";
 
 const ProductDetailSkeleton = () => (
   <>
@@ -17,27 +19,40 @@ const ProductDetailSkeleton = () => (
 );
 
 const ProductDetailDescription = () => {
-  const { data } = useAppSelector((state) => state.productSlice);
+  const { productId } = useParams<{ productId: string }>();
 
-  if (!data) return <ProductDetailSkeleton />;
+  const { data, isLoading } = useQuery(
+    ["product", productId],
+    () => getProductDetailById(Number(productId)),
+    {
+      enabled: !!productId,
+    }
+  );
+
+  if (!data || isLoading || data.data.response === null) {
+    return <ProductDetailSkeleton />;
+  }
+
+  const { description, image, price, productName, starCount } =
+    data.data.response;
 
   return (
     <>
       <div className="flex-1">
         <LazyImage
-          src={import.meta.env.VITE_KAKAO_IMAGE_URL + data.image}
-          alt={data.productName}
+          src={import.meta.env.VITE_KAKAO_IMAGE_URL + image}
+          alt={productName}
         />
       </div>
       <div className="flex flex-col gap-2 flex-1 py-2 px-4">
-        <ProcutStars starCount={data.starCount} />
+        <ProcutStars starCount={starCount} />
         <Txt typograph="h4" className="font-normal">
-          {data.productName}
+          {productName}
         </Txt>
-        <div>{data.description}</div>
+        <div>{description}</div>
         <div className="py-2 px-4 rounded-full bg-yellow-300 w-fit">
           <Txt typograph="h6" className="font-normal">
-            {PRODUCT.TOC_PRICE} {pointByThree(data.price)}
+            {PRODUCT.TOC_PRICE} {pointByThree(price)}
             {PRODUCT.WON}
           </Txt>
         </div>

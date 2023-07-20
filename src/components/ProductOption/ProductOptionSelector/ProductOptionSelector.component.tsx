@@ -1,10 +1,13 @@
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch } from "@/hooks/useRedux";
 import ProductOptionItem from "@components/ProductOption/ProductOptionSelector/ProductOptionItem.component";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import { addProductOrder } from "@/store/productSlice";
 import { ProductOption } from "@/dtos/product.dto";
 import range from "lodash/range";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { getProductDetailById } from "@/remotes/product";
 
 const { OPTION_SELECT } = PRODUCT;
 
@@ -23,15 +26,25 @@ const ProductOptionSelectorSkeleton = () => (
 );
 
 const ProductOptionSelector = () => {
-  const { data } = useAppSelector((state) => state.productSlice);
+  const { productId } = useParams<{ productId: string }>();
+
   const dispatch = useAppDispatch();
 
-  const addOrder = (order: ProductOption) => {
-    dispatch(addProductOrder(order));
+  const addOrder = (option: ProductOption) => {
+    dispatch(addProductOrder(option));
   };
 
-  if (!data) return <ProductOptionSelectorSkeleton />;
-  const { options } = data;
+  const { data, isLoading } = useQuery(
+    ["product", productId],
+    () => getProductDetailById(Number(productId)),
+    {
+      enabled: !!productId,
+    }
+  );
+
+  if (!data || isLoading || data.data.response === null)
+    return <ProductOptionSelectorSkeleton />;
+  const { options } = data.data.response;
 
   return (
     <div className="flex flex-col gap-2">

@@ -41,3 +41,29 @@ export class ProductOptionWithCount implements ProductOption {
     this.count = 1;
   }
 }
+
+interface ProductOrderProducts {
+  id: number;
+  productName: string;
+  carts: [
+    {
+      id: number;
+      option: {
+        id: number;
+        optionName: string;
+        price: number;
+      };
+      quantity: number;
+      price: number;
+    }
+  ];
+}
+
+export class ProductOrder {
+  products: ProductOrderProducts[];
+  totalPrice: number;
+  constructor(productOrder: ProductOrder) {
+    this.products = productOrder.products;
+    this.totalPrice = productOrder.totalPrice;
+  }
+}
