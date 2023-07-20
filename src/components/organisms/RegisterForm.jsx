@@ -3,12 +3,12 @@ import InputGroup from "../moleclules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { register, login } from "../../apis/api";
+import { register } from "../../apis/user";
+import { loginRequest } from "../../store/slices/userSlice";
 import useValid from "../../hooks/useValid";
 import Modal from "../moleclules/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../store/slices/userSlice";
 import { useDispatch } from "react-redux";
 
 // 유효성 검사의 에러 메세지
@@ -22,18 +22,18 @@ const ERROR_MSG = {
 };
 
 const RegisterForm = () => {
-  // 모달 상태
-  const [modal, setModal] = useState("");
+  // 전역 상태
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // form value state
+  // input 값, 유효성 검사, 모달 상태
   const { value, handleOnChange } = useInput({
     email: "",
     username: "",
     password: "",
     passwordConfirm: "",
   });
-
-  // 유효성 검사 상태 -
+  const [modal, setModal] = useState("");
   const { valid, handleOnBlur, handleOnClick } = useValid(
     {
       email: "",
@@ -44,85 +44,32 @@ const RegisterForm = () => {
     value,
     setModal
   );
-  // 모든 유효성 검사 통과했는지 -> 버튼 활성화
-  const allValid = Object.values(valid).every((value) => value === true);
+  const isAllValid = Object.values(valid).every((value) => value === true);
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // 회원가입 API 요청
+  // 회원가입 API
   const handleRegister = () => {
     register({
       email: value.email,
       password: value.password,
       username: value.username,
     }).then((res) => {
-      // 회원가입 성공시
-      if (res === "complete") {
+      if (res.status === 200) {
         setModal("complete");
-        // 회원가입 성공시, 자동으로 로그인
-        login({
-          email: value.email,
-          password: value.password,
-        }).then((res) => {
-          dispatch(setUser({ email: value.email, token: res.token }));
-        });
+        console.log("hello");
+        dispatch(
+          loginRequest({
+            email: value.email,
+            password: value.password,
+          })
+        );
       }
     });
-  };
-  // 상태에 따라 다른 모달창 출력
-  const changeModal = () => {
-    switch (modal) {
-      case "complete":
-        return (
-          <Modal
-            titleText={"환영합니다!"}
-            contentText={"카카오톡 쇼핑하기 가입이 완료되었습니다."}
-            buttonText={"시작하기"}
-            onClick={() => {
-              navigate("/", { replace: true });
-            }}
-            type={modal}
-            setModal={setModal}
-          ></Modal>
-        );
-      case "duplicateEmail":
-        return (
-          <Modal
-            titleText={"이미 사용 중인 이메일입니다."}
-            contentText={
-              "등록된 이메일로 로그인하거나, 다른 이메일 주소를 입력해 주세요."
-            }
-            buttonText={"로그인"}
-            onClick={() => {
-              navigate("/login", { replace: false });
-            }}
-            type={modal}
-            setModal={setModal}
-          ></Modal>
-        );
-      case "goodEmail":
-        return (
-          <Modal
-            titleText={"사용 가능한 이메일입니다."}
-            buttonText={"확인"}
-            onClick={() => {
-              setModal("");
-            }}
-            type={modal}
-            setModal={setModal}
-          ></Modal>
-        );
-
-      default:
-        return;
-    }
   };
 
   return (
     <>
       <Title></Title>
-      <Container>
+      <Container type={"form"}>
         <InputGroup
           id="email"
           name="email"
@@ -181,11 +128,50 @@ const RegisterForm = () => {
             handleOnBlur(e);
           }}
         ></InputGroup>
-        <Button valid={allValid} className={"mt-10"} onClick={handleRegister}>
+        <Button valid={isAllValid} className={"mt-10"} onClick={handleRegister}>
           회원가입
         </Button>
       </Container>
-      {changeModal()}
+
+      {/* 모달의 상태에 따라 서로 다른 모달창 */}
+      {modal === "complete" && (
+        <Modal
+          titleText={"환영합니다!"}
+          contentText={"카카오톡 쇼핑하기 가입이 완료되었습니다."}
+          buttonText={"시작하기"}
+          onClick={() => {
+            navigate("/", { replace: true });
+            window.location.reload(false);
+          }}
+          type={modal}
+          setModal={setModal}
+        ></Modal>
+      )}
+      {modal === "duplicateEmail" && (
+        <Modal
+          titleText={"이미 사용 중인 이메일입니다."}
+          contentText={
+            "등록된 이메일로 로그인하거나, 다른 이메일 주소를 입력해 주세요."
+          }
+          buttonText={"로그인"}
+          onClick={() => {
+            navigate("/login", { replace: false });
+          }}
+          type={modal}
+          setModal={setModal}
+        ></Modal>
+      )}
+      {modal === "goodEmail" && (
+        <Modal
+          titleText={"사용 가능한 이메일입니다."}
+          buttonText={"확인"}
+          onClick={() => {
+            setModal("");
+          }}
+          type={modal}
+          setModal={setModal}
+        ></Modal>
+      )}
     </>
   );
 };

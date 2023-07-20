@@ -1,0 +1,20 @@
+const Photo = ({ src, alt, className, imgAnimation = "" }) => {
+  return (
+    <picture className={className}>
+      <source srcSet={src} />
+      <img
+        className={imgAnimation}
+        src={src}
+        alt={alt}
+        style={{
+          width: "inherit",
+          height: "inherit",
+          objectFit: "cover",
+          borderRadius: "inherit",
+        }}
+      />
+    </picture>
+  );
+};
+
+export default Photo;
