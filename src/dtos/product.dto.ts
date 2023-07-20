@@ -14,7 +14,7 @@ export class Product {
 }
 
 export interface ProductOption {
-  id: number;
+  optionId: number;
   optionName: string;
   price: number;
 }
@@ -29,16 +29,16 @@ export class ProductDetail extends Product {
   }
 }
 
-export class ProductOptionWithCount implements ProductOption {
-  id: number;
+export class ProductOptionWithQuantity implements ProductOption {
+  optionId: number;
   optionName: string;
   price: number;
-  count: number;
-  constructor(productOption: Omit<ProductOptionWithCount, "count">) {
-    this.id = productOption.id;
+  quantity: number;
+  constructor(productOption: Omit<ProductOptionWithQuantity, "quantity">) {
+    this.optionId = productOption.optionId;
     this.optionName = productOption.optionName;
     this.price = productOption.price;
-    this.count = 1;
+    this.quantity = 1;
   }
 }
 

@@ -2,12 +2,13 @@ import { useAppDispatch } from "@/hooks/useRedux";
 import ProductOptionItem from "@components/ProductOption/ProductOptionSelector/ProductOptionItem.component";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
-import { addProductOrder } from "@/store/productSlice";
+import { addProductOrder, clearProductOrder } from "@/store/productSlice";
 import { ProductOption } from "@/dtos/product.dto";
 import range from "lodash/range";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getProductDetailById } from "@/remotes/product";
+import { useEffect } from "react";
 
 const { OPTION_SELECT } = PRODUCT;
 
@@ -42,8 +43,11 @@ const ProductOptionSelector = () => {
     }
   );
 
-  if (!data || isLoading || data.data.response === null)
-    return <ProductOptionSelectorSkeleton />;
+  useEffect(() => {
+    dispatch(clearProductOrder());
+  }, [dispatch]);
+
+  if (!data || isLoading) return <ProductOptionSelectorSkeleton />;
   const { options } = data.data.response;
 
   return (
@@ -53,7 +57,7 @@ const ProductOptionSelector = () => {
         {options.map((option, index) => (
           <ProductOptionItem
             onClick={() => addOrder(option)}
-            key={option.id}
+            key={option.optionId}
             index={index + 1}
             option={option}
           />

@@ -20,4 +20,8 @@ const PRODUCT = {
   ADD_CART: "장바구니에 담기",
 };
 
-export { PRODUCT };
+const CART = {
+  CART: "장바구니",
+};
+
+export { PRODUCT, CART };

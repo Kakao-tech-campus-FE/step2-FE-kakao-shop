@@ -18,16 +18,16 @@ export class DefaultResDto {
 }
 
 export class ProductResDto extends DefaultResDto {
-  response: ProductDetail | null;
+  response: ProductDetail;
   constructor(data: ProductResDto) {
     super(data);
     this.response = data.response;
   }
 }
 
-export class ProductOrderResDto extends DefaultResDto {
-  response: ProductOrder | null;
-  constructor(data: ProductOrderResDto) {
+export class CartResDto extends DefaultResDto {
+  response: ProductOrder;
+  constructor(data: CartResDto) {
     super(data);
     this.response = data.response;
   }

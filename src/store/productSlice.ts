@@ -1,11 +1,11 @@
-import { ProductOption, ProductOptionWithCount } from "@/dtos/product.dto";
+import { ProductOption, ProductOptionWithQuantity } from "@/dtos/product.dto";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 interface ProductDetailState {
   loading: boolean;
   error: string | null;
   success: boolean;
-  order: ProductOptionWithCount[];
+  order: ProductOptionWithQuantity[];
 }
 
 const initialState: ProductDetailState = {
@@ -22,27 +22,27 @@ export const productDetailSlice = createSlice({
     addProductOrder: (state, action: PayloadAction<ProductOption>) => {
       if (
         state.order.find(
-          (productOption) => productOption.id === action.payload.id
+          (productOption) => productOption.optionId === action.payload.optionId
         )
       ) {
         return;
       }
-      const newOrder = new ProductOptionWithCount(action.payload);
+      const newOrder = new ProductOptionWithQuantity(action.payload);
       state.order.push(newOrder);
     },
     removeProductOrder: (state, action: PayloadAction<number>) => {
       state.order = state.order.filter(
-        (productOption) => productOption.id !== action.payload
+        (productOption) => productOption.optionId !== action.payload
       );
     },
     updateProductOrder: (
       state,
-      action: PayloadAction<{ id: number; count: number }>
+      action: PayloadAction<{ optionId: number; quantity: number }>
     ) => {
-      const { id, count } = action.payload;
+      const { optionId, quantity } = action.payload;
       state.order = state.order.map((productOption) => {
-        if (productOption.id === id) {
-          productOption.count = count;
+        if (productOption.optionId === optionId) {
+          productOption.quantity = quantity;
         }
         return productOption;
       });
@@ -50,10 +50,21 @@ export const productDetailSlice = createSlice({
     clearProductOrder: (state) => {
       state.order = [];
     },
+    initProductOrder: (
+      state,
+      action: PayloadAction<ProductOptionWithQuantity[]>
+    ) => {
+      state.order = action.payload.map((productOption) => {
+        const order = new ProductOptionWithQuantity(productOption);
+        order.quantity = productOption.quantity;
+        return order;
+      });
+    },
   },
 });
 
 export const {
+  initProductOrder,
   addProductOrder,
   removeProductOrder,
   updateProductOrder,

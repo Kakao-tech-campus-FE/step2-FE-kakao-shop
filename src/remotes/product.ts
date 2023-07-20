@@ -1,4 +1,4 @@
-import { DefaultResDto, ProductResDto } from "@/dtos/response.dto";
+import { CartResDto, DefaultResDto, ProductResDto } from "@/dtos/response.dto";
 import { authAxios, commonAxios } from "@/functions/axios";
 
 export const getProductDetailById = async (id: number) => {
@@ -24,4 +24,8 @@ interface ProductOrder {
 
 export const addProductToCart = async (orders: ProductOrder[]) => {
   return authAxios.post<DefaultResDto>("/carts/add", orders);
+};
+
+export const getCart = async () => {
+  return authAxios.get<CartResDto>("/carts");
 };

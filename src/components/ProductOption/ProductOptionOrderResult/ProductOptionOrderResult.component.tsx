@@ -33,19 +33,19 @@ const ProductOptionOrderResult = () => {
       <Txt>{SHIPPING_DESC}</Txt>
       <div className="divide-y border-[1px] rounded-md">
         {order.map((item) => (
-          <ProductOptionOrderItem key={item.id} item={item} />
+          <ProductOptionOrderItem key={item.optionId} item={item} />
         ))}
       </div>
       <div className="flex justify-between">
         <Txt>
           {TOTAL_AMOUNT}:{" "}
-          {pointByThree(order.reduce((acc, cur) => acc + cur.count, 0))}
+          {pointByThree(order.reduce((acc, cur) => acc + cur.quantity, 0))}
           {PEICE}
         </Txt>
         <Txt>
           {TOTAL_PRICE}:{" "}
           {pointByThree(
-            order.reduce((acc, cur) => acc + cur.price * cur.count, 0)
+            order.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
           )}
           {WON}
         </Txt>

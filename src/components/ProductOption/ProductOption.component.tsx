@@ -16,8 +16,9 @@ const ProductOption = () => {
     }
 
     const orderForCart = order.map((item) => {
-      return { optionId: item.id, quantity: item.count };
+      return { optionId: item.optionId, quantity: item.quantity };
     });
+
     addProductToCart(orderForCart);
   };
 

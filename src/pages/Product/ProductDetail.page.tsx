@@ -15,7 +15,6 @@ const ProductDetailPage = () => {
     {
       onSuccess: (data) => {
         queryClient.setQueryData(["product", productId], data);
-        if (data.data.response === null) return;
       },
     }
   );
