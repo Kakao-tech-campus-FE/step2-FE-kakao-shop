@@ -29,7 +29,7 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountIncludingOptions = useCallback(() => {
     let count = 0;
-    console.log(cartItems);
+    // console.log(cartItems);
     {
       cartItems &&
         cartItems.forEach((item) => {
@@ -100,29 +100,33 @@ const CartList = ({ data }) => {
   return (
     <Container className="cart-list">
       <Box>
-        <h1>장바구니</h1>
+        <div className="wrap_tit relative text-center">
+          <h2 className="tit_cart mt-4 block font-bold">장바구니</h2>
+        </div>
       </Box>
+      <div className="cart-itembox">
+        <Card>
+          {/* 상품별 장바구니 */}
+          {Array.isArray(cartItems) &&
+            cartItems.map((item) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onChange={handleOnChangeCount} // 개수변경을 고나리하는 props
+                />
+              );
+            })}
+        </Card>
+      </div>
       <Card>
-        {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount} // 개수변경을 고나리하는 props
-              />
-            );
-          })}
-      </Card>
-      <Card>
-        <div className="row">
+        <div className="row flex font-bold">
           <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
+          <span className="sum-price flex-1 text-right text-kakao_blue">{comma(totalPrice)}원</span>
         </div>
       </Card>
       <Button
-        className="order-btn"
+        className="order-btn mx-2 my-8 w-full rounded bg-kakao_yellow px-4 py-3 font-semibold hover:bg-yellow-400"
         onClick={() => {
           // update api
           // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
@@ -149,7 +153,7 @@ const CartList = ({ data }) => {
           // 2. 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
         }}
       >
-        <span>총 {getTotalCartCountIncludingOptions()}건 주문하기</span>
+        <span> {getTotalCartCountIncludingOptions()}건 주문하기</span>
       </Button>
     </Container>
   );

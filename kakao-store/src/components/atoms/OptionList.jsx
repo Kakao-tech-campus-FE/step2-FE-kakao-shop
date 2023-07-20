@@ -16,9 +16,9 @@ const OptionList = ({ options, onClick }) => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <button
-        className="flex w-full items-center justify-between  border border-gray-300 bg-white px-4 py-2"
+        className="flex w-full items-center justify-between rounded  border border-gray-300 bg-white px-4 py-2"
         onClick={toggleDropdown}
       >
         상품 선택

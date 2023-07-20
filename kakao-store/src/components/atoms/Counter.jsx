@@ -25,10 +25,14 @@ const Counter = ({
   };
 
   return (
-    <div className="counter">
-      <button onClick={handleOnDecrease}>-</button>
-      <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
+    <div className="counter flex text-center ">
+      <button onClick={handleOnDecrease} className="h-7 w-7 rounded-l border border-solid border-gray-300 bg-white">
+        <span className="minus text-base">-</span>
+      </button>
+      <span className="count  h-7 w-7 border border-solid border-gray-300 bg-white">{count}</span>
+      <button onClick={handleOnIncrease} className="h-7 w-7 rounded-r border border-solid border-gray-300 bg-white">
+        <span className="plus text-base">+</span>
+      </button>
     </div>
   );
 };

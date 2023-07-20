@@ -6,11 +6,12 @@
  * @returns {JSX.Element} - 카드
  */
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Card = ({ to, children }) => {
+const Card = ({ to, children, className = '' }) => {
+  const combinedClassName = `card ${className}`;
   return (
-    <Link to={to} className="card">
+    <Link to={to} className={combinedClassName}>
       {children}
     </Link>
   );
