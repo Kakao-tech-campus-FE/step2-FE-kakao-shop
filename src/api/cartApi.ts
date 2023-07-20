@@ -7,9 +7,8 @@ import { CartData } from './dto';
  * @returns
  */
 
-const addCart = (data: CartData) => {
-  const { optionId, quantity } = data;
-  return instance.post('/carts/add', { optionId, quantity });
+const addCart = (payload: CartData[]) => {
+  return instance.post('/carts/add', payload);
 };
 
 export default addCart;
