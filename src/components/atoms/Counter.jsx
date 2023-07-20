@@ -52,9 +52,9 @@ const Counter = ({
 
     return (
         <div className={`counter w-full flex flex-row ${className}`}>
-            <button onClick={handleOnDecrease} className={"w-1/4 border border-light-gray"}>-</button>
+            <button onClick={handleOnDecrease} className={"w-1/4 border border-light-gray-700"}>-</button>
             <input className={`option-counter w-2/4 text-center `} value={tempInput} onBlur={validateInput} onChange={handleInput}></input>
-            <button onClick={handleOnIncrease} className={"w-1/4 border border-light-gray"}>+</button>
+            <button onClick={handleOnIncrease} className={"w-1/4 border border-light-gray-700"}>+</button>
         </div>
     )
 }

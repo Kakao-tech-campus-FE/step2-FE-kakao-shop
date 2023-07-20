@@ -5,10 +5,12 @@ import {Suspense} from "react";
 import CartList from "../organisms/CartList";
 
 const CartPage = () => {
-    const { data } = useQuery("cart", getCart);
+    const {data} = useQuery("cart", getCart);
     return (
-        <Suspense fallback={<Loader />}>
-            <CartList data={data} />
+        <Suspense fallback={<Loader/>}>
+            <div className={"flex justify-center"}>
+                <CartList data={data}/>
+            </div>
         </Suspense>
     )
 }
