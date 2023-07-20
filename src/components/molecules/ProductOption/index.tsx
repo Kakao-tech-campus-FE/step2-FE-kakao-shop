@@ -5,6 +5,9 @@ import { styled } from "styled-components";
 import cart from "@assets/images/cart_white.png";
 import { useState, useEffect } from "react";
 import OptionBasket from "@components/atoms/OptionBasket";
+import { useMutation } from "@tanstack/react-query";
+import { postAddCart } from "@apis/postAddCart";
+import { comma } from "@utils/regex";
 
 export interface SelectedOption extends Option {
   quantity: number;
@@ -16,6 +19,8 @@ interface Props {
 
 const ProductOption = ({ product }: Props) => {
   const [productOptions, setProductOptions] = useState<SelectedOption[]>([]);
+
+  const { mutate } = useMutation({ mutationFn: postAddCart });
 
   const handleOptions = (option: Option) => {
     const isSelected = productOptions.find((el) => el.id === option.id);
@@ -33,14 +38,27 @@ const ProductOption = ({ product }: Props) => {
     ]);
   };
 
+  const handleAddCart = () => {
+    mutate(
+      productOptions.map((el) => {
+        return {
+          optionId: el.id,
+          quantity: el.quantity,
+        };
+      })
+    );
+  };
+
   const getTotalQuantity = () => {
     return productOptions.reduce((total, option) => total + option.quantity, 0);
   };
 
   const getTotalPrice = () => {
-    return productOptions.reduce(
-      (total, option) => total + option.quantity * option.price,
-      0
+    return comma(
+      productOptions.reduce(
+        (total, option) => total + option.quantity * option.price,
+        0
+      )
     );
   };
 
@@ -87,7 +105,12 @@ const ProductOption = ({ product }: Props) => {
         >
           톡딜가로 구매하기
         </Button>
-        <Button width={"60px"} height={"60px"} background={"#000"}>
+        <Button
+          width={"60px"}
+          height={"60px"}
+          background={"#000"}
+          onClick={handleAddCart}
+        >
           <img src={cart} alt="장바구니" />
         </Button>
       </BtnWrapper>
