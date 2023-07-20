@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import Loader from "../components/atoms/Loader";
 import ProductCard from "../components/molecules/ProductCard";
@@ -11,6 +11,8 @@ import "../styles/Pages/HomePage.css"
 const HomePage = () => {
     const dispatch = useDispatch();
     const { page } = useParams();
+
+    const navigate = useNavigate();
 
     const { data: productList, isLoading, error, isFetching } = useQuery(
         ["productList", page],
@@ -33,6 +35,7 @@ const HomePage = () => {
                             key={product.id}
                             product={product}
                             isLoading={isLoading}
+                            onClick={() => navigate(`/product/${product.id}`)} // 이 onClick 핸들러를 추가합니다
                         />
                     ))
                 )}

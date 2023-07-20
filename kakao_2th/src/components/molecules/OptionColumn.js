@@ -5,7 +5,7 @@ import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
-import { addCart } from "../services/cart";
+import { addCart } from '../../services/cart';
 
 const OptionColumn = ({ product }) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
