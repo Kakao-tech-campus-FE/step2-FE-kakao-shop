@@ -1,11 +1,10 @@
-import { comma } from "../../utils/convert"
-import Box from "./Box/index.js"
-import Card from "./Card"
-import Counter from "./Counter"
-
+import React from "react";
+import { comma } from "../../utils/convert";
+import Box from "./Box/index.js";
+import Card from "./Card";
+import Counter from "./Counter";
 
 const CartItem = ({ item, onChange }) => {
-
     return (
         <Box className="cart-item-box">
             <h5>{item.productName}</h5>
@@ -17,10 +16,10 @@ const CartItem = ({ item, onChange }) => {
                     <div className="row">
                         <Counter
                             onIncrease={(count) => {
-                                onChange(cart.id, count, cart.option.price)
+                                onChange(cart.id, count, cart.option.price);
                             }}
                             onDecrease={(count) => {
-                                onChange(cart.id, count, -cart.option.price)
+                                onChange(cart.id, count, -cart.option.price);
                             }}
                         />
                         <div className="price">
@@ -35,16 +34,15 @@ const CartItem = ({ item, onChange }) => {
                     <div className="price">
                         {comma(
                             item.carts.reduce((acc, cur) => {
-                                return acc + cur.option.price * cur.quantity
+                                return acc + cur.option.price * cur.quantity;
                             }, 0)
                         )}
                         원
                     </div>
                 </div>
             </Card>
-
         </Box>
-    )
-}
+    );
+};
 
-export default CartItem
+export default CartItem;
