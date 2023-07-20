@@ -63,8 +63,7 @@ export const getIdProduct = async (id) => {
 export const addCart = async (data) => {
   try {
     const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
-
-    const response = await instance.post('/carts/add', data, {
+    const response = await instance.post('carts/add', data, {
       headers: {
         Authorization: userAuthToken
       }

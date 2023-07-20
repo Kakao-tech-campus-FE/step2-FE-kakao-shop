@@ -28,7 +28,6 @@ const cartSlice = createSlice({
       action.payload.forEach(element => {
         element.carts.forEach(cart => {
           // 각 카트에 대해 cartId와 quantity를 cartForModify에 추가
-          console.log(cart);
           state.cartForModify.push({
             cartId: cart.id,
             quantity: cart.quantity,
@@ -37,7 +36,6 @@ const cartSlice = createSlice({
 
         })
       });
-      console.log(state.cartForModify);
     },
     modifyItem: (state, action) => { // 장바구니 수정 (장바구니 페이지에서 수량 변경)
       state.cartForModify

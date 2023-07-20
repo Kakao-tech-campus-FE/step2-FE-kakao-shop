@@ -31,7 +31,6 @@ const SelectedOption = ({ selectedOption, setSumOptionCount, setSumOptionPrice, 
   }
   const cart = useSelector((state) => state.cart);
   console.log(cart);
-  console.log(selectedOption);
   return (
     <li className={className}>
       <div key={selectedOption.optionName}>

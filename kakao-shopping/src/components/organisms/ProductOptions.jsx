@@ -5,7 +5,7 @@ import Container from "../atoms/Container";
 import DeliveryInformation from "../molecules/DeliveryInformation";
 import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
-import { addCart, getCart, modifyCart } from "../../apis/api";
+import { addCart, getCart } from "../../apis/api";
 import { clearItem, setCart } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
@@ -16,48 +16,14 @@ const ProductOptions = ({ product }) => {
 
   const dispatch = useDispatch();
   const options = product.options;
-  let finalItems = [];
 
   const cartItems = useSelector((state) => state.cart.cartItems);
-  const tempItems = []; // 장바구니에 담긴 상품들의 옵션들
   const handleAddCartClick = () => {
 
     getCart().then((res) => {
-      console.log(res.data.response.products);
       dispatch(setCart(res.data.response.products));
-      res.data.response.products.forEach((product) => {
-        product.carts.forEach((option) => {
-          tempItems.push({
-            optionId: option.option.id,
-            quantity: option.quantity,
-            cartId: option.id
-          })
-        })
-      })
     }).then(() => {
-
-      // 중복된 요소 처리
-      const tempItemsToRemove = [];
-      cartItems.forEach((cartItem, index) => {
-        tempItems.forEach((tempItem) => {
-          if (tempItem.optionId === cartItem.optionId) {
-            modifyCart([{
-              cartId: tempItem.cartId,
-              quantity: tempItem.quantity + cartItem.quantity
-            }]);
-
-            tempItemsToRemove.push(cartItem);
-          }
-        });
-      });
-
-      // 중복된 요소를 tempItems 배열에서 삭제 <- 이게 안됨
-      finalItems = cartItems.filter((item) => {
-        return !tempItemsToRemove.includes(item);
-      })
-
-    }).then(() => {
-      addCart(finalItems);
+      addCart(cartItems);
     }).catch((err) => {
       console.log(err);
     });

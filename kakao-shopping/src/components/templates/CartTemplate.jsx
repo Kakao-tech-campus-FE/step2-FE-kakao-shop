@@ -9,7 +9,6 @@ import GNB from "./GNB";
 const CartTemplate = () => {
   const { data : cart, isError } = useQuery('cart', getCart, {suspense: true}); // api 호출로 카트 정보 가져오기
   const [totalPrice, setTotalPrice] = useState(cart?.data.response.totalPrice);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCart(cart.data.response.products));
@@ -17,7 +16,6 @@ const CartTemplate = () => {
   }, [cart, dispatch])
 
   if(isError) return (<div>error</div>);
-
   const cartList = cart?.data.response.products.map((item) => {
     const optionDetails = item.carts;
 
