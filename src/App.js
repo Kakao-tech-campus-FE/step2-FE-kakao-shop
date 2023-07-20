@@ -6,6 +6,7 @@ import HomePage from "./components/pages/HomePage";
 import MainLayout from "./components/layouts/MainLayout";
 import ProductDetailPage from "./components/pages/ProductDetailPage";
 import {SkeletonTheme} from "react-loading-skeleton";
+import CartPage from "./components/pages/CartPage";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                         <Route element={<MainLayout/>}>
                             <Route path="/" element={<HomePage/>}/>
                             <Route path="/product/:id" element={<ProductDetailPage/>}/>
+                            <Route path="/carts" element={<CartPage/>}/>
                         </Route>
                     </Routes>
                 </BrowserRouter>

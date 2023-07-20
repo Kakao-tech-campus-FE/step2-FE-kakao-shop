@@ -6,6 +6,7 @@ import "../../styles/organisms/globalNavBar.css"
 import Container from "../atoms/Container";
 import {Link} from "react-router-dom";
 import {useEffect} from "react";
+import {BsCart2} from "react-icons/bs";
 
 const GlobalNavBar = () => {
     const user = useSelector(state => state.user);
@@ -29,7 +30,10 @@ const GlobalNavBar = () => {
                     {user.isLogin ?
                         <>
                             <Box className={"user-info"}>{user.email}</Box>
-                            <Button className={"logout-button"}
+                            <Link to={"/carts"} className={"button cart-button"}>
+                                    <BsCart2 size="20" className={"cart-icon"}/>
+                            </Link>
+                            <Button className={"button logout-button"}
                                     onClick={
                                         () => {
                                             dispatch(reducerLogout())

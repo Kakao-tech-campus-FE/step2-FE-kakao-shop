@@ -12,7 +12,7 @@ const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
 
     const handleOnClickOption = (option) => {
-        console.log("option", option)
+        // console.log("option", option)
         if (selectedOption.find((el) => el.id === option.id)) {
             setSelectedOption((prev) => {
                 return prev.map((el) => {

@@ -3,16 +3,11 @@ import Loader from "../atoms/Loader";
 import {getProductById} from "../../services/product";
 import {useQuery} from "react-query";
 import ProductDetailTemplate from "../templates/ProductDetailTemplate";
-import {useEffect, useState} from "react";
 import {addCart, getCart} from "../../services/cart";
 
 const ProductDetailPage = () => {
     const id = useParams().id;
     const {isLoading, error, data} = useQuery(`product${id}`, () => getProductById(id));
-
-
-    const [product, setProduct] = useState({})
-
     // useEffect(() => {
     //     console.log("data.data.response.options", data?.data?.response.options)
     //     if (!validate(data)) {
@@ -54,34 +49,7 @@ const ProductDetailPage = () => {
                 {data && <ProductDetailTemplate product={data.data.response}/>}
                 {}
             </div>
-            <button
-                onClick={() => {
-                    addCart(
-                        [
-                            {
-                                optionId: 1,
-                                quantity: 1
-                            },
-                            {
-                                optionId: 2,
-                                quantity: 2
-                            }
-                        ]
-                    ).then((res) => {
-                        console.log("res", res)
-                    })
-                }
-                }
-            >add cart
-            </button>
-
-            <button onClick={
-                () => getCart().then((res) => {
-                    console.log("res", res)
-                })
-            }>
-                getCarts
-            </button>
+            
         </div>
     )
 }
