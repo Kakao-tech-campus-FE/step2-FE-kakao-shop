@@ -3,14 +3,14 @@ import cart from "../../assets/cart.png";
 import * as Head from '../../styles/molecules/GNB';
 import ImgLink from "../atoms/ImgLink";
 import LinkText from "../atoms/LinkText";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
-import { removeLocalStorageItem } from "../../utils/localStorage";
+import { getLocalStorage, removeLocalStorageItem } from "../../utils/localStorage";
 
 
 const GNB = () => {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.user);
+    const user = getLocalStorage("user");;
 
     const handleLogOut = () => {
         if(user) {
