@@ -3,7 +3,7 @@ import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
 import { addCart } from "../../services/cart";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 
@@ -11,7 +11,7 @@ const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
-    // 동일한 옵션을 클릭할 수도 있으므로 방지해주는 코드를 여기에 넣는다.
+    // 동일 옵션 클릭 방지
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
@@ -32,7 +32,6 @@ const OptionColumn = ({ product }) => {
     ]);
   };
 
-  // 나중에 영상보여 수정 필수
   const handleOnChange = (count, optionId) => {
     setSelectedOptions((prev) => {
       return prev.map((el) => {
@@ -47,10 +46,6 @@ const OptionColumn = ({ product }) => {
     });
   };
 
-  // 장바구니 담기 API 처리
-  // 장바구니 담기 기능 구현 위해 post 메소드 사용
-  // useMutation 사용
-  // mutation = 변이라는 뜻
   const { mutate } = useMutation({
     mutationFn: addCart,
   });
@@ -67,7 +62,7 @@ const OptionColumn = ({ product }) => {
         </div>
         <div className="shippingCost">
           <span className="font-bold">배송비</span>
-          <Box className="w-96 h-6 bg-gray-200 border-2 border-gray-400 text-sm">
+          <Box className="w-96 bg-gray-200 border border-gray-400 text-sm p-1">
             무료배송
           </Box>
         </div>
@@ -77,14 +72,16 @@ const OptionColumn = ({ product }) => {
       {selectedOptions.map((option) => (
         <ol key={option.optionId} className="selected-option-list">
           {/* 수량 변경 기능 */}
-          <li className="bg-gray-100 my-2">
+          <li className="bg-gray-100 my-2 p-2">
             <div className="flex justify-between">
               <div className="name">{option.name}</div>
-              <div className="price">{comma(option.price)}원</div>
+              <div className="price">
+                {comma(option.price * option.quantity)}원
+              </div>
             </div>
             <Counter
-              onIncrease={(count) => handleOnChange(count, option.id)}
-              onDecrease={(count) => handleOnChange(count, option.id)}
+              onIncrease={(count) => handleOnChange(count, option.optionId)}
+              onDecrease={(count) => handleOnChange(count, option.optionId)}
             />
           </li>
         </ol>
@@ -115,7 +112,6 @@ const OptionColumn = ({ product }) => {
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
-                console.log(el);
                 return {
                   // payload가 불필요하게 많으므로 필요한 내용만 골라서 호출
                   optionId: el.optionId,
@@ -126,8 +122,8 @@ const OptionColumn = ({ product }) => {
                 onSuccess: () => {
                   alert("장바구니에 담겼습니다.");
                 },
-                onError: () => {
-                  alert("장바구니 담기에 실패했습니다.");
+                onError: (error) => {
+                  alert("장바구니 담기에 실패했습니다: " + error);
                 },
               }
             );
@@ -136,7 +132,12 @@ const OptionColumn = ({ product }) => {
           장바구니 담기
         </Button>
         {/* 톡딜가 구매: 개발은 X */}
-        <Button className="w-64 h-12 bg-yellow-300 rounded-lg text-sm">
+        <Button
+          className="w-64 h-12 bg-yellow-300 rounded-lg text-sm"
+          onClick={() => {
+            alert("준비중입니다.");
+          }}
+        >
           톡딜가로 구매하기
         </Button>
       </div>

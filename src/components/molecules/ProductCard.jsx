@@ -20,3 +20,4 @@ const ProductCard = ({ product, loading }) => {
 };
 
 export default ProductCard;
+

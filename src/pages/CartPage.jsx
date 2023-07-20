@@ -1,11 +1,11 @@
-import React, { Suspense } from 'react';
-import { useQuery } from 'react-query';
-import Loader from '../components/atoms/Loader';
-import CartList from '../components/molecules/CartList';
-import { getCart } from '../services/cart';
+import React, { Suspense } from "react";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../components/atoms/Loader";
+import CartList from "../components/molecules/CartList";
+import { getCart } from "../services/cart";
 
 const CartPage = () => {
-  const {data} = useQuery("cart", getCart);
+  const { data } = useQuery(["cart"], getCart);
   return (
     // data라는 데이터가 존재할 때 Suspense가 풀리고 (Loader가 지워지고) 데이터가 보임
     <Suspense fallback={<Loader />}>
@@ -14,6 +14,5 @@ const CartPage = () => {
     </Suspense>
   );
 };
-
 
 export default CartPage;

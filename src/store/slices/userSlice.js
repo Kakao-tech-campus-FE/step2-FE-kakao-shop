@@ -36,6 +36,7 @@ export const loginRequest = createAsyncThunk(
     const { email, password } = data;
     const response = await login({ email, password });
     return {
+      email,
       token: response.headers.authorization,
     };
   }

@@ -6,7 +6,7 @@ import Counter from './Counter';
 
 const CartItem = ({ item, onChange }) => {
   return (
-    <Box className="cart-item-box">
+    <Box className="cart-item-box border-2">
       <h5>{item.productName}</h5>
       {item.carts.map((cart) => (
         <Card key={cart.id} className="cart">
@@ -14,8 +14,8 @@ const CartItem = ({ item, onChange }) => {
             <span>{cart.option.optionName}</span>
           </div>
           <div className="row">
-            {/* onIncrease, onDecrease 코드 작성 */}
             <Counter
+              initCount={cart.quantity}
               onIncrease={(count) => {
                 onChange(cart.id, count, cart.option.price);
               }}

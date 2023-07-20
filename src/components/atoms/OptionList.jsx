@@ -6,7 +6,7 @@ const OptionList = ({ options, onClick }) => {
       {options.map((option, index) => (
         <li
           key={option.id}
-          className="option border-2"
+          className="option border p-2"
           onClick={() => onClick(option)}
         >
           <div className="name font-bold">
