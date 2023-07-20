@@ -2,16 +2,11 @@ import React from 'react';
 import ProductCard from '../molecules/ProductCard';
 import '../../styles/organisms/ProductGrid.css';
 
-const ProductGrid = ({ products, loading, error }) => {
+const ProductGrid = ({ products }) => {
   return (
     <div className="product-grid">
       {products.map((product) => (
-        <ProductCard
-          key={products.id}
-          product={product}
-          loading={loading}
-          error={error}
-        />
+        <ProductCard key={products.id} product={product} />
       ))}
     </div>
   );
