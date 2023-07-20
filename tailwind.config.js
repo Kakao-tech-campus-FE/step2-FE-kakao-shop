@@ -16,6 +16,7 @@ module.exports = {
         input: "570px",
         inherit: "inherit",
         detailImage: "430px",
+        cart: "870px",
       },
       height: {
         confirmButton: "38px",

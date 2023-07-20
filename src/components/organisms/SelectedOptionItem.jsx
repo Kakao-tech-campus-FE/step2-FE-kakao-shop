@@ -1,5 +1,5 @@
 import React from "react";
-import Counter from "./Counter";
+import Counter from "../molecules/Counter";
 import { IoCloseOutline } from "react-icons/io5";
 import { comma } from "../../utils/convert";
 

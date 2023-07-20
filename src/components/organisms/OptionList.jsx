@@ -2,7 +2,7 @@ import React from "react";
 import Container from "../atoms/Container";
 import OptionButton from "../molecules/OptionButton";
 import OptionItem from "../molecules/OptionItem";
-import SelectedOptionItem from "../molecules/SelectedOptionItem";
+import SelectedOptionItem from "./SelectedOptionItem";
 
 export default function OptionList({
   isOptionShow,
