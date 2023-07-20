@@ -4,9 +4,9 @@ import ProductInformationColumn from "../molecules/ProductInformationColumn";
 
 const ProductDetailTemplate = ({ product }) => {
   return (
-    <Container className="flex w-full px-24 py-6 m-auto">
+    <Container className="flex justify-center w-full min-w-[1280px] m-auto">
       <ProductInformationColumn product={product} />
-      <OptionColumn className="" product={product} />
+      <OptionColumn product={product} />
     </Container>
   );
 };

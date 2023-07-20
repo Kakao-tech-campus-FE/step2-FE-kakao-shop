@@ -1,18 +1,32 @@
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
-const ProductInformationColumn = ({ product }) => {
+const ProductInformationColumn = ({ product, className }) => {
   const { productName, price, image } = product;
   return (
-    <div className="product-information-column">
-      <div className="col">
-        <Photo src={process.env.REACT_APP_API_URL + image} alt={productName} />
+    <>
+      <div className="flex pt-8 pr-8 pb-40 max-w-4xl border-r border-neutral-200">
+        <div className="col flex-none">
+          <Photo
+            className="min-w-[430px] min-h-[430px] max-w-[430px] max-h-[430px]"
+            src={process.env.REACT_APP_API_URL + image}
+            alt={productName}
+          />
+        </div>
+        <div className="flex-none w-[430px] ml-7">
+          <strong className="font-normal text-[26px]">{productName}</strong>
+          <div className="pt-4 pb-2">
+            <button className="h-11 rounded-3xl bg-[#ffeb00] px-4">
+              <span className="text-[17px] font-normal">
+                톡딜가{" "}
+                <span className="text-lg font-[350]">{comma(price)}</span>원~
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
-      <div className="col">
-        <h1 className="name">{productName}</h1>
-        <p className="price">{comma(price)}원</p>
-      </div>
-    </div>
+      <div className="w-7 h-[3333px] bg-black" />
+    </>
   );
 };
 export default ProductInformationColumn;
