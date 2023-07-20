@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "../store/slices/userSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import detailReducer from "./slices/detailSlice";
 
 const persistConfig = {
   key: "root",
@@ -9,11 +10,12 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, loginReducer);
+
 const store = configureStore({
   reducer: {
-    // User reducer: email
-    // Products reducer: products
     login: persistedReducer,
+    detail: detailReducer,
+    // products: productsReducer,
   },
   middleware: (defaultMiddleware) =>
     defaultMiddleware({

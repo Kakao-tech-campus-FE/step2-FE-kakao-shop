@@ -1,0 +1,13 @@
+picture.card {
+  width: 200px;
+}
+
+/* picture의 크기를 상속 */
+picture > img {
+  width: inherit;
+}
+
+img.card {
+  width: 100%;
+  max-width: 360px;
+}
