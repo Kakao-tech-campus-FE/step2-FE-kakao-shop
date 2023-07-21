@@ -28,18 +28,18 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status >= 400 && error.response.status <= 500) {
-      if (error.response.status === 404) {
-        window.location.href = '/error';
-        return Promise.resolve();
-      }
+    // if (error.response.status >= 400 && error.response.status <= 500) {
+    //   if (error.response.status === 404) {
+    //     window.location.href = '/error';
+    //     return Promise.resolve();
+    //   }
 
-      localStorage.removeItem('token');
-      const errorMessage = error.response.data.error.message;
-      alert(errorMessage);
-      // window.location.href = '/signup';
-      return Promise.resolve();
-    }
+    //   localStorage.removeItem('token');
+    //   const errorMessage = error.response.data.error.message;
+    //   alert(errorMessage);
+    //   // window.location.href = '/signup';
+    //   return Promise.resolve();
+    // }
     return Promise.reject(error.response);
   }
 );
