@@ -33,6 +33,7 @@ instance.interceptors.response.use(
             return Promise.resolve();
         }
         */
-        return Promise.reject(error.response);
+        // return Promise.reject(error.response);
+        return Promise.resolve();
     }
 );
