@@ -48,7 +48,7 @@ export interface ProductData {
 
 export interface CartedOptionData {
   id: number; // 옵션 id
-  option: ProductOptionData[]; // 선택된 옵션
+  option: ProductOptionData; // 선택된 옵션
   quantity: number; // 수량
   price: number; // 해당 옵션 총합 가격
 }
