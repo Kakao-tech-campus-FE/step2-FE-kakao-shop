@@ -3,6 +3,7 @@ import Box from "./Box";
 import { comma } from "../../utils/convert";
 import Card from "./Card";
 import Counter from "./Counter";
+import Button from "./Button";
 
 const CartItem = ({ item, onChange }) => {
   return (
@@ -13,15 +14,25 @@ const CartItem = ({ item, onChange }) => {
           <div className="option border p-4 my-4">
             <div className="option-name">{cart.option.optionName}</div>
             <div className="row flex justify-between">
-              <Counter
-                initCount={cart.quantity}
-                onIncrease={(count) => {
-                  onChange(cart.id, count, cart.option.price);
-                }}
-                onDecrease={(count) => {
-                  onChange(cart.id, count, -cart.option.price);
-                }}
-              ></Counter>
+              <div className="flex">
+                <Button
+                  className="border w-10 mr-2"
+                  onClick={() => {
+                    onChange(cart.id, 0, 0);
+                  }}
+                >
+                  삭제
+                </Button>
+                <Counter
+                  initCount={cart.quantity}
+                  onIncrease={(count) => {
+                    onChange(cart.id, count, cart.option.price);
+                  }}
+                  onDecrease={(count) => {
+                    onChange(cart.id, count, -cart.option.price);
+                  }}
+                ></Counter>
+              </div>
               <div className="price font-bold">
                 <span>{comma(cart.option.price * cart.quantity)}원</span>
               </div>

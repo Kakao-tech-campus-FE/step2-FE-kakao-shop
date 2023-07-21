@@ -10,15 +10,12 @@ import { useMutation } from "@tanstack/react-query";
 import { updateCart } from '../../services/cart';
 
 const CartList = ({ data }) => {
-  const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
-  const initPayload = useRef([]); // [{ cartId, quantity }]
+  const route = useNavigate();
+  const initPayload = useRef([]);
 
-  /**
-   * 다시 오기!
-   */
   const { mutate } = useMutation({
     mutationFn: updateCart,
   });
@@ -87,9 +84,6 @@ const CartList = ({ data }) => {
         };
       });
     });
-    console.log(updatePayload)
-    console.log(totalPrice)
-    console.log(cartItems)
   };
 
   return (
