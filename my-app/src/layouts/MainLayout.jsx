@@ -5,6 +5,8 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "../store/slices/userSlice";
+import { useQuery } from "react-query";
+import { login } from "../services/user";
 
 const MainLayout = () => {
   const isLogined = useSelector((state) => state.user.isLogined);
@@ -43,11 +45,12 @@ const MainLayout = () => {
         text={text}
       >
         GNB 영역
+        {" 아이콘 넣기"}
       </Header>
       {/* 콘텐츠 영역*/}
       <Outlet />
       {/* 푸터 영역 */}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

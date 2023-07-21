@@ -9,6 +9,7 @@ const Header = ({ children, onClick, text }) => {
       <header>
         {children}
         <button
+          className="rounded-md"
           onClick={(e) => {
             e.preventDefault();
             onClick();

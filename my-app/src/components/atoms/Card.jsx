@@ -3,7 +3,7 @@ import "../../styles/atoms/Card.css";
 
 const Card = ({ to, children }) => {
   return (
-    <Link className="card" to={to}>
+    <Link className="card shadow-xl" to={to}>
       {children}
     </Link>
   );

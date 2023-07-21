@@ -61,6 +61,7 @@ const SignInForm = () => {
               password: value.password,
             })
           );
+          navigate("/");
         }}
       >
         로그인
