@@ -1,5 +1,5 @@
 import instance from '.';
-import { CartData } from './dto';
+import { AddCartedItem, EditCartedItem } from './dto';
 
 /**
  * 장바구니 담기
@@ -7,8 +7,16 @@ import { CartData } from './dto';
  * @returns
  */
 
-const addCart = (payload: CartData[]) => {
-  return instance.post('/carts/add', payload);
+const addCart = (data: AddCartedItem[]) => {
+  return instance.post('/carts/add', data);
 };
 
-export default addCart;
+const queryCart = () => {
+  return instance.get('/carts');
+};
+
+const updateCart = (data: EditCartedItem[]) => {
+  return instance.post('/carts/update', data);
+};
+
+export { addCart, queryCart, updateCart };

@@ -46,7 +46,57 @@ export interface ProductData {
  * 장바구니 페이지
  */
 
-export interface CartData {
+export interface CartedOptionData {
+  id: number; // 옵션 id
+  option: ProductOptionData[]; // 선택된 옵션
+  quantity: number; // 수량
+  price: number; // 해당 옵션 총합 가격
+}
+
+/**
+ * 장바구니 상품 조회
+ */
+export interface CartProductData {
+  id: number; // 상품 id
+  productName: string;
+  carts: CartedOptionData[]; // 카트에 담긴 옵션 정보
+}
+
+export interface CartProductsQuery {
+  success: boolean;
+  response: {
+    products: CartProductData[];
+    totalPrice: number;
+  };
+  error: null;
+}
+
+/**
+ * 장바구니 상품 수정
+ */
+export interface CartProductEditData {
+  cartId: number; // 상품 id
+  optionId: number; // 옵션 id
+  optionName: string; // 옵션 이름
+  quantity: number; // 수량
+  price: number; // 가격
+}
+
+export interface CartProductEdit {
+  success: boolean;
+  response: {
+    carts: CartProductEditData[];
+    totalPrice: number;
+  };
+  error: null;
+}
+
+export interface AddCartedItem {
   optionId: number;
+  quantity: number;
+}
+
+export interface EditCartedItem {
+  cartId: number;
   quantity: number;
 }
