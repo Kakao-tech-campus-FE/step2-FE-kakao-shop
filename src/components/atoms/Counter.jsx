@@ -11,21 +11,21 @@ const Counter = ({
   onDecrease, // 수량 감소 함수
 }) => {
   const [count, setCount] = useState(value);
-  const handleOnIncrease = () => {
+  const handleOnIncrease = (num = 1) => {
     // setCount는 비동기 함수이기 때문에
     // 값을 잘 생각하여 코드를 작성해야 한다.
     // 예시 1
-    setCount(count + 1);
-    onIncrease(count + 1);
+    setCount(count + num);
+    onIncrease(count + num);
     // 예시 2
     // setCount((prev) => {
     //   onIncrease(prev + 1);
     //   return prev + 1;
     // })
   };
-  const handleOnDecrease = () => {
-    setCount(count - 1);
-    onDecrease(count - 1);
+  const handleOnDecrease = (num = 1) => {
+    setCount(count - num);
+    onDecrease(count - num);
   };
 
   return (
@@ -34,7 +34,7 @@ const Counter = ({
     >
       <button
         className="flex w-8 h-8 items-center justify-center"
-        onClick={handleOnDecrease}
+        onClick={() => handleOnDecrease()}
         disabled={count <= 1}
       >
         <BsDashLg />
@@ -44,7 +44,7 @@ const Counter = ({
       </div>
       <button
         className="flex w-8 h-8 items-center justify-center"
-        onClick={handleOnIncrease}
+        onClick={() => handleOnIncrease()}
         disabled={count >= 100}
       >
         <BsPlusLg />
