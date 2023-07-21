@@ -8,6 +8,7 @@ import useInput from '../../hooks/useInput';
 import { login } from '../../services/user';
 import Title from '../atoms/Title';
 import { setEmail } from '../../store/slices/userSlice';
+import Label from '../atoms/Label';
 
 function LoginForm() {
   // 모든 reducer함수를 호출하려면 먼저 dispatch
@@ -44,36 +45,77 @@ function LoginForm() {
         alert(err.request.response);
       });
   };
+  const handleOnClick = () => {
+    navigate('/signup');
+  };
   return (
-    <Container>
-      <Title>로그인</Title>
-      {/* 데이터 가져오기 */}
-      <span>{email}</span>
-      <InputGroup
-        id="email"
-        type="email"
-        name="email"
-        placeholder="이메일(아이디) 입력해주세요"
-        label="이메일"
-        value={value.email}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        name="password"
-        placeholder="**********"
-        label="비밀번호"
-        value={value.password}
-        onChange={handleOnChange}
-      />
-      <Button
-        onClick={() => {
-          loginReq();
-        }}
-      >
-        로그인
-      </Button>
+    <Container className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <Title>로그인</Title>
+        <div>
+          <Label
+            htmlFor="email"
+            className="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Email address
+          </Label>
+          <div className="mt-2">
+            <InputGroup
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="이메일" // 추가: 이메일 입력 필드 placeholder 추가
+              value={value.email} // 추가: 이메일 입력 필드 값 바인딩
+              onChange={handleOnChange}
+            />
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between">
+            <Label
+              htmlFor="password"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Password
+            </Label>
+            <div className="text-sm" />
+          </div>
+          <div className="mt-2">
+            <InputGroup
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              placeholder="비밀번호" // 추가: 비밀번호 입력 필드 placeholder 추가
+              value={value.password} // 추가: 비밀번호 입력 필드 값 바인딩
+              onChange={handleOnChange}
+            />
+          </div>
+        </div>
+
+        <div>
+          <Button
+            onClick={() => {
+              loginReq();
+            }}
+          >
+            로그인
+          </Button>
+        </div>
+
+        <p
+          onClick={handleOnClick}
+          className="mt-10 text-center text-sm text-gray-500"
+        >
+          Not a member?
+        </p>
+      </div>
     </Container>
   );
 }
