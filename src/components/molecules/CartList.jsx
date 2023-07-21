@@ -47,7 +47,7 @@ const CartList = ({ data }) => {
     if (cartItems) {
       cartItems.forEach((item) => {
         item.carts.forEach((cart) => {
-          count += cart.quantity; // 개별 옵션에 해당
+          count += cart.quantity; 
         });
       });
     }
