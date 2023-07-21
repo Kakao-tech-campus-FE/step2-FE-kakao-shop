@@ -4,7 +4,7 @@ import CartItem from "@components/atoms/CartItem";
 import { Item, Product } from "@components/organisms/CartForm";
 import { useMutation } from "@tanstack/react-query";
 import { comma } from "@utils/regex";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 
@@ -42,10 +42,10 @@ const CartList = ({ item }: Props) => {
   return (
     <div>
       {items.map((item) => (
-        <>
-          <CartItem key={item.id} product={item} setItems={setItems} />
+        <React.Fragment key={item.id}>
+          <CartItem product={item} setItems={setItems} />
           <Gap />
-        </>
+        </React.Fragment>
       ))}
       <ButtonWrapper>
         <p>

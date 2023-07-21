@@ -22,7 +22,7 @@ const CartItem = ({ product, setItems }: Props) => {
     <Wrapper>
       <h4>{product.productName}</h4>
       {product.carts.map((cart) => (
-        <Option cart={cart} setItems={setItems} />
+        <Option key={cart.id} cart={cart} setItems={setItems} />
       ))}
       <DiscountInfo>
         <ol>
