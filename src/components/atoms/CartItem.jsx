@@ -5,6 +5,7 @@ import { useCallback } from "react";
 import { comma } from "../../utils/convert";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import Photo from "./Photo";
 
 // 각 상품별 장바구니 항목
 // 여러 옵션이 저장될 수 있음
@@ -40,10 +41,19 @@ const CartItem = ({ item, onChange }) => {
   }, []);
 
   return (
-    <Box className="border rounded bg-white p-6 my-2">
-      <Link to={`/product/${item.id}`}>
-        <h5 className="font-semibold text-[15px] mb-4">{item.productName}</h5>
-      </Link>
+    <Box className="border rounded bg-white px-10 py-6 my-2">
+      <div className="flex items-center  mb-3">
+        <Photo
+          className="w-20 h-20 rounded border border-neutral-200"
+          src={`${process.env.REACT_APP_API_URL}/images/${item.id}.jpg`}
+          alt={`${item.productName} image`}
+        />
+        <Link to={`/product/${item.id}`}>
+          <h5 className="pl-3 font-semibold text-base tracking-tighter">
+            {item.productName}
+          </h5>
+        </Link>
+      </div>
 
       {item.carts.map((cart) => {
         return (

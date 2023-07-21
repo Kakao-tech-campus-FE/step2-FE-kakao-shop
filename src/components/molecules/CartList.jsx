@@ -186,14 +186,14 @@ const CartList = ({ data }) => {
                   )
                 );
               })}
-            <div className="h-fit border rounded bg-white mt-8 p-6">
+            <div className="h-fit border rounded bg-white mt-8 px-8 py-6">
               <span className="font-bold text-lg">주문 예상금액</span>
-              <div className="float-right text-lg font-semibold text-blue-500">
+              <div className="float-right text-lg font-semibold text-blue-500 pr-4">
                 {comma(totalPrice)}원
               </div>
             </div>
             <Button
-              className="h-fit w-full border rounded bg-[#feeb00] mt-4 p-4"
+              className="h-fit w-full border rounded bg-[#feeb00] mt-4 p-4 hover:bg-yellow-300"
               onClick={() => {
                 // navigate to order page
                 // 주문 페이지로 이동
@@ -201,7 +201,7 @@ const CartList = ({ data }) => {
               }}
             >
               <span className="font-semibold text-lg">
-                총 {getTotalCartCountIncludeOptions()}건 주문하기
+                {getTotalCartCountIncludeOptions()}건 주문하기
               </span>
             </Button>
           </div>
