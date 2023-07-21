@@ -1,13 +1,13 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
-import { getProduct } from "../api/product";
+import { getProductById } from "../api/product";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useQuery(`products/${id}`, () =>
-    getProduct(id)
+    getProductById(id)
   );
   const product = data?.data?.response;
 
