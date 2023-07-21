@@ -35,7 +35,7 @@ const HomePage = () => {
                             key={product.id}
                             product={product}
                             isLoading={isLoading}
-                            onClick={() => navigate(`/product/${product.id}`)} // 이 onClick 핸들러를 추가합니다
+                            onClick={() => navigate(`/product/${product.id}`)} // onClick 핸들러를 추가합니다
                         />
                     ))
                 )}
