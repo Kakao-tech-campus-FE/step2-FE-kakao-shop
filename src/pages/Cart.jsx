@@ -8,7 +8,7 @@ import CartList from "../components/molecules/CartList";
 import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 const Cart = () => {
-    const { data: cart, isLoading } = useQuery(["cart"],getCart());
+    const { data, isLoading } = useQuery(["cart"],getCart());
     console.log(cart)
     // data.data.response={
     //     products,
@@ -18,7 +18,7 @@ const Cart = () => {
     return (
         <QueryClientProvider client={queryClient}>
         
-        {isLoading ? <Loader /> : <CartList data={cart} />}
+        {isLoading ? <Loader /> : <CartList data={data} />}
        
         </QueryClientProvider>
     );
