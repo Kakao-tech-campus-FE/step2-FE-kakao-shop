@@ -17,16 +17,17 @@ function GNB() {
     <header className="header"> 
       <div className="contents">
         <Link to="/">
-          <img src={"logokakao.png"} alt="logokakao.png" height={30} />
+          <img src={"logokakao.png"} alt="장바구니 쇼핑 로고" height={30} />
         </Link>
         <nav>
           <div className="navigation">
             <span>
               {/* 장바구니 버튼 */}
               <Link to="/cart">
-                <img src={"/cart.png"} alt="cart.png" height={30} />
+                <img src={"/cart.png"} alt="장바구니 버튼" height={30} />
               </Link>
             </span>
+            <span>|</span>
             <span>
               {/* 로그인 버튼 */}
               {token ? (
