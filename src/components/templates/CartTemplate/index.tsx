@@ -1,19 +1,24 @@
 import { getCart } from "@apis/getCart";
 import InnerContainer from "@components/atoms/InnerContainer";
+import Loader from "@components/atoms/Loader";
 import CartForm from "@components/organisms/CartForm";
 import { useQuery } from "@tanstack/react-query";
 import { styled } from "styled-components";
 
 const CartTemplate = () => {
-  const { data } = useQuery(["/carts"], getCart);
+  const { data, isLoading } = useQuery(["/carts"], getCart);
 
   return (
     <div>
-      <InnerContainer>
-        <Wrapper>
-          <CartForm item={data?.data.response} />
-        </Wrapper>
-      </InnerContainer>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <InnerContainer>
+          <Wrapper>
+            <CartForm item={data?.data.response} />
+          </Wrapper>
+        </InnerContainer>
+      )}
     </div>
   );
 };

@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ProductInfo from "@components/molecules/ProductInfo";
 import ProductOption from "@components/molecules/ProductOption";
 import { styled } from "styled-components";
+import Loader from "@components/atoms/Loader";
 
 export interface Option {
   id: number;
@@ -29,8 +30,8 @@ const ProductForm = () => {
     () => getProductsById(id),
     {
       retry: false,
-      onError: (err) => {
-        if (err === 404) {
+      onError: (err: any) => {
+        if (err.status === 404) {
           navigate("/notFound");
         }
       },
@@ -40,7 +41,7 @@ const ProductForm = () => {
   return (
     <div>
       {isLoading ? (
-        <p>loading</p>
+        <Loader />
       ) : (
         <Wrapper>
           <ProductInfo product={data?.response} />

@@ -8,6 +8,8 @@ import OptionBasket from "@components/atoms/OptionBasket";
 import { useMutation } from "@tanstack/react-query";
 import { postAddCart } from "@apis/postAddCart";
 import { comma } from "@utils/regex";
+import LoginModal from "../LoginModal";
+import Toast, { ToastData } from "../Toast";
 
 export interface SelectedOption extends Option {
   quantity: number;
@@ -19,8 +21,20 @@ interface Props {
 
 const ProductOption = ({ product }: Props) => {
   const [productOptions, setProductOptions] = useState<SelectedOption[]>([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [toastList, setToastList] = useState<ToastData[]>([]);
 
   const { mutate } = useMutation({ mutationFn: postAddCart });
+
+  const createPayload = () => {
+    const payload = productOptions.map((el) => {
+      return {
+        optionId: el.id,
+        quantity: el.quantity,
+      };
+    });
+    return payload;
+  };
 
   const handleOptions = (option: Option) => {
     const isSelected = productOptions.find((el) => el.id === option.id);
@@ -39,14 +53,37 @@ const ProductOption = ({ product }: Props) => {
   };
 
   const handleAddCart = () => {
-    mutate(
-      productOptions.map((el) => {
-        return {
-          optionId: el.id,
-          quantity: el.quantity,
-        };
-      })
-    );
+    const payload = createPayload();
+    if (payload.length === 0) {
+      setToastList((prev) =>
+        prev.concat({
+          id: Date.now(),
+          type: "warning",
+          message: "옵션을 먼저 선택해주세요.",
+        })
+      );
+      return;
+    }
+    mutate(payload, {
+      onSuccess: () => {
+        setToastList((prev) =>
+          prev.concat({
+            id: Date.now(),
+            type: "success",
+            message: "장바구니에 상품이 담겼습니다.",
+          })
+        );
+      },
+      onError: (err: any) => {
+        if (err.status === 401) {
+          setModalOpen(true);
+        }
+      },
+    });
+  };
+
+  const handleModal = () => {
+    setModalOpen(false);
   };
 
   const getTotalQuantity = () => {
@@ -63,54 +100,58 @@ const ProductOption = ({ product }: Props) => {
   };
 
   return (
-    <Wrapper>
-      <ListBox>
-        <strong>옵션선택</strong>
-        <OptionList options={product.options} onClick={handleOptions} />
-        {productOptions &&
-          productOptions.map((option) => (
-            <OptionBasket
-              key={option.id}
-              option={option}
-              setProductOptions={setProductOptions}
-            />
-          ))}
-      </ListBox>
-      <Fee>
-        <Row>
-          <strong>배송방법</strong>
-          <span>택배배송</span>
-        </Row>
-        <Row>
-          <strong>배송비</strong>
-          <span>무료</span>
-        </Row>
-      </Fee>
-      <Result>
-        <span>총 수량 {getTotalQuantity()}개</span>
-        <b>
-          총 주문금액<strong>{getTotalPrice()}</strong> 원
-        </b>
-      </Result>
-      <BtnWrapper>
-        <Button
-          width={"202px"}
-          height={"60px"}
-          background={"#ffeb00"}
-          fontSize={"18px"}
-        >
-          톡딜가로 구매하기
-        </Button>
-        <Button
-          width={"60px"}
-          height={"60px"}
-          background={"#000"}
-          onClick={handleAddCart}
-        >
-          <img src={cart} alt="장바구니" />
-        </Button>
-      </BtnWrapper>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <ListBox>
+          <strong>옵션선택</strong>
+          <OptionList options={product.options} onClick={handleOptions} />
+          {productOptions &&
+            productOptions.map((option) => (
+              <OptionBasket
+                key={option.id}
+                option={option}
+                setProductOptions={setProductOptions}
+              />
+            ))}
+        </ListBox>
+        <Fee>
+          <Row>
+            <strong>배송방법</strong>
+            <span>택배배송</span>
+          </Row>
+          <Row>
+            <strong>배송비</strong>
+            <span>무료</span>
+          </Row>
+        </Fee>
+        <Result>
+          <span>총 수량 {getTotalQuantity()}개</span>
+          <b>
+            총 주문금액<strong>{getTotalPrice()}</strong> 원
+          </b>
+        </Result>
+        <BtnWrapper>
+          <Button
+            width={"202px"}
+            height={"60px"}
+            background={"#ffeb00"}
+            fontSize={"18px"}
+          >
+            톡딜가로 구매하기
+          </Button>
+          <Button
+            width={"60px"}
+            height={"60px"}
+            background={"#000"}
+            onClick={handleAddCart}
+          >
+            <img src={cart} alt="장바구니" />
+          </Button>
+        </BtnWrapper>
+      </Wrapper>
+      {modalOpen && <LoginModal onClick={handleModal} />}
+      <Toast toastList={toastList} setToastList={setToastList} />
+    </>
   );
 };
 
