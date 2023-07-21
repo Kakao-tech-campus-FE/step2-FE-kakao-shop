@@ -2,9 +2,12 @@ import { Option } from '@store/Home/reducers';
 import { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
 
+import { SubmitData } from '@hooks/page/Cart/useCartForm';
+
 export const SET_CARTS_LOADING_STATE = 'cart/SET_CARTS_LOADING_STATE';
 export const FETCH_CARTS = 'cart/FETCH_PRODUCT_DETAIL';
 export const SET_CARTS = 'cart/SET_CARTS';
+export const UPDATE_CARTS = 'cart/UPDATE_CARTS';
 
 export const setLoadingState = (): SetCartLoadingStateAction => ({
   type: SET_CARTS_LOADING_STATE,
@@ -16,6 +19,11 @@ export const cartsRequest = (): FetchCartsAction => ({
 
 export const setCarts = (payload: AxiosResponse<CartsResponse>): SetCartsAction => ({
   type: SET_CARTS,
+  payload,
+});
+
+export const updateCarts = (payload: SubmitData[]): ApdateCartsAction => ({
+  type: UPDATE_CARTS,
   payload,
 });
 
@@ -50,6 +58,11 @@ export type FetchCartsAction = {
 export type SetCartsAction = {
   type: typeof SET_CARTS;
   payload: AxiosResponse<CartsResponse>;
+};
+
+export type ApdateCartsAction = {
+  type: typeof UPDATE_CARTS;
+  payload: SubmitData[];
 };
 
 export type CartsResponse = {
