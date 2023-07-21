@@ -9,17 +9,24 @@ const Product = styled.div`
   margin: 1rem 0;
   width: 100%;
   max-width: inherit;
+  margin-right: 1rem;
 `;
 
-const ProductGrid = ({ products }) => {
+const ProductContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-left: 12em;
+`;
+
+const ProductGrid = ({ products = [] }) => {
   return (
-    <Product>
-      {products
-        ? products.map((product) => (
+    <ProductContainer>
+        <Product>
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
-          ))
-        : null}
-    </Product>
+          ))}
+        </Product>
+    </ProductContainer>
   );
 };
 
