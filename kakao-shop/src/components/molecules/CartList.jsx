@@ -3,45 +3,44 @@ import { useNavigate } from 'react-router-dom';
 import Container from '../atoms/Container';
 import CartItem from '../atoms/CartItem';
 import Button from '../atoms/Button';
+import Error from '../atoms/Error';
 
 import { updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
 import { useMutation } from '@tanstack/react-query';
 
 const CartList = ({ data }) => {
-  // hook을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언
-  const route = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatepayload] = useState([]);
 
-  const initPayload = useRef([]); // DOM에 접근할 때 [{cardId, quantity}]
-  const { mutate } = useMutation({ mutationFn: updateCart });
+  // const initPayload = useRef([]);
+  const { mutate } = useMutation({ mutationFn: updateCart, refetchQueries: ['cart', 'cartNum'] });
 
   useEffect(() => {
-    // validate 또는 구조분해할당
+    console.log('data', data?.data?.response?.products);
     setCartItems(data?.data?.response?.products);
     setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
+  // payload가 변경될 때 마다 mutate 실행
+  useEffect(() => {
+    mutate(updatePayload);
+  }, [updatePayload]);
+
+  // cartItems가 변경될 때마다 전체 상품 개수 변경
   const getTotalCartCountIncludingOptions = useCallback(() => {
     let count = 0;
     cartItems &&
       cartItems.forEach((item) => {
         item.carts.forEach((cart) => {
-          count += cart.quantity; // 개별 옵션에 해당
+          count += cart.quantity; // 개별 옵션 수량을 모두 더해준다
         });
       });
     return count;
-  }, [cartItems]); // cartItems이 변경될 때 실행
+  }, [cartItems]);
 
-  /**
-   * 옵션의 수량 변경과 가격 변경을 관리
-   * @param {number} optionId : 옵션의 아이디
-   * @param {number} quantity : 옵션 수량
-   * @param {number} price : 옵션 가격
-   * @returns
-   */
   const handleOnChangeCount = (optionId, quantity, price) => {
     // 수량 변경
     setUpdatepayload((prev) => {
@@ -67,6 +66,7 @@ const CartList = ({ data }) => {
     });
 
     setTotalPrice((prev) => prev + price);
+
     setCartItems((prev) => {
       return prev.map((item) => {
         return {
@@ -85,6 +85,19 @@ const CartList = ({ data }) => {
     });
   };
 
+  const handleOnDelete = (optionId) => {
+    setUpdatepayload((prev) => {
+      return [
+        ...prev.filter((item) => item.cartId !== optionId),
+        {
+          cartId: optionId,
+          quantity: 0,
+        },
+      ];
+    });
+    navigate(0);
+  };
+
   return (
     <Container className="cart-list mx-auto max-w-4xl">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
@@ -94,7 +107,8 @@ const CartList = ({ data }) => {
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
-            return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} />;
+            if (item.carts.length === 0) return null;
+            return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} onDelete={handleOnDelete} />;
           })}
       </div>
       <div className="flex justify-between font-bold text-lg bg-white p-4 mb-1 border border-solid border-gray-200">
@@ -106,10 +120,12 @@ const CartList = ({ data }) => {
         className="order-btn"
         onClick={() => {
           mutate(updatePayload, {
-            onSuccess: (data) => {
-              route.push('/order');
+            onSuccess: () => {
+              navigate('/order');
             },
-            onError: (error) => {},
+            onError: () => {
+              return <Error message="결제처리 중 에러가 발생했습니다." />;
+            },
           });
         }}
       >
