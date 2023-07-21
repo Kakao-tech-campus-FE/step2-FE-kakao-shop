@@ -4,10 +4,20 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, HelveticaNeue, Helvetica, Roboto,
-    Apple SD Gothic Neo, \b9d1\c740\ace0\b515, Malgun Gothic, sans-serif,
-    ArialUnicodeMs;
+  font-family: -apple-system, HelveticaNeue, Helvetica, Roboto, Apple SD Gothic Neo, \b9d1\c740\ace0\b515, Malgun Gothic,
+    sans-serif, ArialUnicodeMs;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   white-space: nowrap;
+}
+
+/* Sweetalert custom */
+.swal2-popup.swal2-toast.swal2-show {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body.swal2-toast-shown .swal2-container {
+  width: 480px !important;
 }

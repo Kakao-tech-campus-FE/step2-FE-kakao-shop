@@ -9,6 +9,8 @@ import { addCart } from '../../apis/cart.js';
 
 import { GoHeart, GoX } from 'react-icons/go';
 import { BsCart2 } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 /**
  * 옵션 선택 컬럼
@@ -18,6 +20,7 @@ import { BsCart2 } from 'react-icons/bs';
  */
 
 const OptionColums = ({ product }) => {
+  const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnclickOption = (option) => {
@@ -25,7 +28,13 @@ const OptionColums = ({ product }) => {
 
     // 이미 선택된 옵션이면 선택하지 못하게 처리
     if (isOptionSelected) {
-      alert('이미 선택된 옵션입니다.');
+      Swal.fire({
+        text: '이미 선택된 옵션입니다',
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return;
     }
 
@@ -53,8 +62,72 @@ const OptionColums = ({ product }) => {
     setSelectedOptions(updatedOptions);
   };
 
+  const handleMutation = (mutationOptions, successMessage, errorMessage) => {
+    if (selectedOptions.length === 0) {
+      Swal.fire({
+        text: '옵션을 선택해주세요',
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+
+    mutate(
+      selectedOptions.map((el) => {
+        return {
+          optionId: el.id,
+          quantity: el.quantity,
+        };
+      }),
+      {
+        onSuccess: () => {
+          Swal.fire({
+            text: successMessage,
+            toast: true,
+            position: 'top',
+            confirmButtonText: '바로가기',
+            confirmButtonColor: '#000000',
+            timer: 3000,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate('/cart');
+            }
+          });
+        },
+        onError: () => {
+          Swal.fire({
+            text: errorMessage,
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+        ...mutationOptions,
+      }
+    );
+  };
+
+  const handleAddCart = () => {
+    return () => {
+      handleMutation({}, '장바구니에 물건을 담았습니다', '장바구니 담기 오류');
+    };
+  };
+
+  /**
+   * @todo 추후 구매페이지 상세 기능에 따라 수정
+   */
+  const handleBuyNow = () => {
+    return () => {
+      handleMutation({}, '선택한 상품을 구매합니다', '구매 오류');
+    };
+  };
+
   const { mutate } = useMutation({
     mutationFn: addCart,
+    refetchQueries: ['cart', 'cartNum'],
   });
 
   return (
@@ -109,35 +182,16 @@ const OptionColums = ({ product }) => {
       </div>
 
       <div className="button-group grid grid-flow-row-dense grid-cols-6 gap-2">
-        {/* 장바구니 담기 버튼 위치 */}
-        <Button className="col-span-1 h-14" color="gray">
+        {/* 찜 하기(기능 구현 X) */}
+        <Button className="col-span-1 h-14" color="gray" onClick={() => {}}>
           <GoHeart size="34" color="white" />
         </Button>
-        <Button
-          color="black"
-          className="col-span-1 h-14"
-          onClick={() => {
-            mutate(
-              selectedOptions.map((el) => {
-                return {
-                  optionId: el.id,
-                  quantity: el.quantity,
-                };
-              }),
-              {
-                onSuccess: () => {
-                  alert('장바구니에 담겼습니다.');
-                },
-                onError: () => {
-                  alert('장바구니에 담기 실패했습니다.');
-                },
-              }
-            );
-          }}
-        >
+        {/* 장바구니 담기 */}
+        <Button color="black" className="col-span-1 h-14" onClick={handleAddCart()}>
           <BsCart2 size="30" />
         </Button>
-        <Button className="col-span-4 h-14" color="kakao">
+        {/* 바로 구매하기 */}
+        <Button className="col-span-4 h-14" color="kakao" onClick={handleBuyNow()}>
           바로 구매하기
         </Button>
       </div>
