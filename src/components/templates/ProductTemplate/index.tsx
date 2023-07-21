@@ -17,7 +17,7 @@ const ProductTemplate = () => {
           return undefined;
         } else {
           const res = lastPage.response;
-          const nextParam = Math.floor((res[res.length - 1].id - 1) / 9) + 1;
+          const nextParam = getNextParam(res);
           return nextParam;
         }
       },
@@ -29,6 +29,10 @@ const ProductTemplate = () => {
     });
 
   const target = useRef<HTMLDivElement>(null);
+
+  const getNextParam = (res: any) => {
+    return Math.floor((res[res.length - 1].id - 1) / 9) + 1;
+  };
 
   const handleIntersect = async (
     [entry]: IntersectionObserverEntry[],
