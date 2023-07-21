@@ -8,10 +8,7 @@
 const Button = ({ onClick, children, className = "" }) => {
     return (
         <button
-            onClick={(e) => {
-                e.preventDefault();
-                onClick(e);
-            }}
+            onClick={onClick}
             className={`button ${className}`}
         >
             {children}
