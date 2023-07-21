@@ -1,6 +1,6 @@
 import ProductOptionSelector from "@/components/ProductOption/ProductOptionSelector/ProductOptionSelector.component";
 import ProductOptionOrderResult from "@/components/ProductOption/ProductOptionOrderResult/ProductOptionOrderResult.component";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { addProductToCart, getProductDetailById } from "@/remotes/product";
 import { PRODUCT } from "@/assets/product.ko";
 import { ERROR } from "@/assets/error.ko";
@@ -15,8 +15,10 @@ const ProductOption = () => {
   const { productId } = useParams<{ productId: string }>();
   const navigate = useNavigate();
 
-  const { data } = useQuery(["product", productId], () =>
-    getProductDetailById(Number(productId))
+  const { data } = useQuery(
+    ["product", productId],
+    () => getProductDetailById(Number(productId)),
+    { enabled: !!productId }
   );
 
   const onAddCart = () => {
