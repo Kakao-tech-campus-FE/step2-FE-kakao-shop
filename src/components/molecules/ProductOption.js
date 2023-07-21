@@ -49,11 +49,14 @@ export default function ProductOption({ product }) {
       return;
     }
     mutate(selectedOptions, {
+      onSuccess: () => {
+        setSelectedOptions([]);
+        alert("장바구니에 상품이 담겼습니다.");
+      },
       onError: (err) => {
         console.dir(err);
       },
     });
-    alert("장바구니에 상품이 담겼습니다.");
   };
 
   const handleBuyClick = () => {
@@ -62,11 +65,13 @@ export default function ProductOption({ product }) {
       return;
     }
     mutate(selectedOptions, {
+      onSuccess: () => {
+        navigate("/order");
+      },
       onError: (err) => {
         console.dir(err);
       },
     });
-    navigate("/order");
   };
 
   return (
