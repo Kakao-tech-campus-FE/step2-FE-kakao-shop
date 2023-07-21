@@ -10,14 +10,19 @@ import { useCartForm } from '@hooks/page/Cart/useCartForm';
 const Cart = () => {
   const {
     state: { carts: products, totalPrice },
-    handler: { onIncreaseQuantity, onDecreaseQuantity, onSubmit },
+    handler: { onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem, onSubmit },
   } = useCartForm();
 
   return (
     <S.Root>
       <S.Container>
         <Header />
-        <ItemList products={products} onIncreaseQuantity={onIncreaseQuantity} onDecreaseQuantity={onDecreaseQuantity} />
+        <ItemList
+          products={products}
+          onIncreaseQuantity={onIncreaseQuantity}
+          onDecreaseQuantity={onDecreaseQuantity}
+          onDeleteCartItem={onDeleteCartItem}
+        />
         <TotalResult totalPrice={totalPrice} />
         <Submit onSubmit={onSubmit} />
       </S.Container>

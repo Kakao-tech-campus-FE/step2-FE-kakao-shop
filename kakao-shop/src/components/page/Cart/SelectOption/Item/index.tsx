@@ -11,15 +11,25 @@ import { comma } from '@utils/comma';
 type Props = {
   onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDeleteCartItem: (id: number) => MouseEventHandler<HTMLButtonElement>;
 } & Cart;
-const SelectOptionItem = ({ id, option, quantity, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
+const SelectOptionItem = ({
+  id,
+  option,
+  quantity,
+  onIncreaseQuantity,
+  onDecreaseQuantity,
+  onDeleteCartItem,
+}: Props) => {
   return (
     <S.Root>
       <S.Tit>{option.optionName}</S.Tit>
 
       <S.Container>
         <S.ControlBox>
-          <Button css={S.ButtonCSS}>삭제</Button>
+          <Button onClick={onDeleteCartItem(id)} css={S.ButtonCSS}>
+            삭제
+          </Button>
           <RegularInput.Counter
             value={quantity}
             onClickPlusButton={onIncreaseQuantity(id)}

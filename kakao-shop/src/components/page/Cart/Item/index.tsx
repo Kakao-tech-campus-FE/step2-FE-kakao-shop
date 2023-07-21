@@ -10,9 +10,10 @@ type Props = {
   carts: Cart[];
   onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDeleteCartItem: (id: number) => MouseEventHandler<HTMLButtonElement>;
 };
 
-const Item = ({ productName, carts, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
+const Item = ({ productName, carts, onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem }: Props) => {
   const totalPrice = carts.reduce((total, cart) => total + cart.quantity * cart.option.price, 0);
 
   return (
@@ -22,6 +23,7 @@ const Item = ({ productName, carts, onIncreaseQuantity, onDecreaseQuantity }: Pr
         carts={carts}
         onIncreaseQuantity={onIncreaseQuantity}
         onDecreaseQuantity={onDecreaseQuantity}
+        onDeleteCartItem={onDeleteCartItem}
       />
       <SelectOptionResult totalPrice={totalPrice} />
     </S.Root>

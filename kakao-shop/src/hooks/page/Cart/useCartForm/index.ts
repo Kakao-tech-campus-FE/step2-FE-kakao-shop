@@ -8,13 +8,13 @@ export const useCartForm = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.cart.cart);
   const [carts, setCarts] = useState(data);
+
   const totalPrice = carts.reduce((total, product) => {
     const productTotal = product.carts.reduce((subTotal, cart) => subTotal + cart.option.price * cart.quantity, 0);
     return total + productTotal;
   }, 0);
-  const submitData = carts.flatMap(product =>
-    product.carts.map(cart => ({ cartId: cart.id, quantity: cart.quantity })),
-  );
+
+  const submitData = cartsToSubmitData(carts);
 
   useEffect(() => {
     dispatch(cartsRequest());
@@ -38,6 +38,15 @@ export const useCartForm = () => {
       setCarts(updateQuantityCarts(id, carts, DOWN1));
     };
 
+  const onDeleteCartItem =
+    (id: number): MouseEventHandler<HTMLButtonElement> =>
+    e => {
+      e.preventDefault();
+
+      const update = deleteQuantityCarts(id, carts);
+      dispatch(updateCarts(cartsToSubmitData(update)));
+    };
+
   const onSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(updateCarts(submitData));
   };
@@ -50,6 +59,7 @@ export const useCartForm = () => {
     handler: {
       onIncreaseQuantity,
       onDecreaseQuantity,
+      onDeleteCartItem,
       onSubmit,
     },
   };
@@ -70,6 +80,19 @@ const updateQuantityCarts = (id: number, carts: Product[], quantityChange: numbe
     optionItem.quantity = optionItem.quantity + quantityChange;
   });
 };
+
+const deleteQuantityCarts = (id: number, carts: Product[]) => {
+  return produce(carts, draft => {
+    const DELETED = 0;
+    const optionItem = draft.flatMap(product => product.carts).find(option => option.id === id);
+
+    if (!optionItem) return;
+    optionItem.quantity = DELETED;
+  });
+};
+
+const cartsToSubmitData = (carts: Product[]) =>
+  carts.flatMap(product => product.carts.map(cart => ({ cartId: cart.id, quantity: cart.quantity })));
 
 export type SubmitData = {
   cartId: number;

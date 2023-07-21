@@ -16,6 +16,8 @@ export function* ApdateCartsRequest({ payload }: ApdateCartsAction): any {
   try {
     yield put(setLoadingState());
     yield call(postCarts, payload);
+    const response = yield call(getCarts);
+    yield put(setCarts(response));
   } catch (err: unknown) {
     // const error = err as AxiosError<>;
   }
