@@ -64,15 +64,6 @@ const CartList = ({data}) => {
                 }
             })
         });
-        
-        mutate(updatePayload, {
-            onSuccess: () => {
-                console.log('장바구니 수정 성공!');
-            },
-            onError: (error) => {
-                console.error(error);
-            }
-        });
     }, [cartItems]);
 
     const handleOnDeleteOption = useCallback((optionId, quantity, price) => {
@@ -80,14 +71,6 @@ const CartList = ({data}) => {
             const isExist = prev.find((item) => item.cartId === optionId);
 
             if(isExist) {
-             mutate(updatePayload, {
-                onSuccess: () => {
-                    console.log('장바구니 수정 성공!');
-                },
-                onError: (error) => {
-                    console.error(error);
-                }
-            });
                 return [
                     ...prev.filter((item) => item.cartId !== optionId),
                     {
@@ -101,7 +84,7 @@ const CartList = ({data}) => {
                 ...prev,
                 {
                     cartId: optionId,
-                    quantity,
+                    quantity: 0,
                 }
             ]
         });
@@ -119,16 +102,6 @@ const CartList = ({data}) => {
                 }
             })
         });
-
-        mutate(updatePayload, {
-            onSuccess: () => {
-                console.log('장바구니 수정 성공!');
-            },
-            onError: (error) => {
-                console.error(error);
-            }
-        });
-        
     }, [cartItems]);
 
     const getTotalCartCountIncludeOptions = useCallback(() => {
@@ -142,7 +115,16 @@ const CartList = ({data}) => {
         return count;
     }, [cartItems]);
 
-    console.log('cartItems: ', cartItems);
+    useEffect(() => {
+        mutate(updatePayload, {
+            onSuccess: () => {
+                console.log('장바구니 수정 성공!');
+            },
+            onError: (error) => {
+                console.error(error);
+            }
+        });
+    }, [updatePayload]);
     
     return(
         <Cart.ListContainer>
