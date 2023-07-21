@@ -9,7 +9,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 const queryClient = new QueryClient();
 const Cart = () => {
     const { data, isLoading } = useQuery(["cart"],getCart());
-    console.log(cart)
+    console.log(data)
     // data.data.response={
     //     products,
     //     totalPrice,
