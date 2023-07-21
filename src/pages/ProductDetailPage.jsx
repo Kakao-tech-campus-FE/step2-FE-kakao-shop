@@ -13,7 +13,6 @@ const ProductDetailPage = () => {
   );
 
   const product = data?.data?.response;
-
   const validate = () => {
     if (!product) {
       // product object validiate
@@ -21,9 +20,7 @@ const ProductDetailPage = () => {
     }
 
     const requiredKeys = ["id", "productName"]; // necessary keys
-
     const keys = Object.keys(product); //Object.prototype.methods
-
     // iterate `requiredKeys` array
     for (let i = 0; i < requiredKeys.length; i++) {
       const requiredKeys = requiredKeys[i];

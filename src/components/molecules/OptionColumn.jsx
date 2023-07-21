@@ -8,7 +8,6 @@ import { addCart } from "../../services/cart";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-
   // OptionList onclick then
   const handleOnClickOption = (option) => {
     const isOptionSelected = selectedOptions.find(
@@ -47,7 +46,6 @@ const OptionColumn = ({ product }) => {
   };
 
   //장바구니 담기 api 처리
-  // react-query를 사용해서 get 요청방법
   const { mutate } = useMutation({
     mutationFn: addCart,
   });

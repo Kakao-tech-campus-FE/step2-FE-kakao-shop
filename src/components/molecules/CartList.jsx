@@ -14,17 +14,6 @@ const CartList = ({ data }) => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [updatePayload, setUpdatePayload] = useState([]);
-
-  //useState에서 리턴되는 데이터에 따라서
-  //Hook 을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언
-
-  // updatePayload : 렌더링에 관여하고 있는가? 렌더링에 관여 x 시 useState 사용할 필요 없음
-  const initPayload = useRef([]); // DOM 에 접근할 때
-  const { mutate } = useMutation({
-    mutationFn: updateCart,
-  });
-
   useEffect(() => {
     setCartItems(data?.data?.response?.products);
     setTotalPrice(data?.data?.response?.totalPrice);
@@ -40,6 +29,8 @@ const CartList = ({ data }) => {
     return count;
   }, [cartItems]);
 
+  const [updatePayload, setUpdatePayload] = useState([]);
+  const initPayload = useRef([]); // DOM 에 접근할 때
   /**
    * 옵션의 수량 변경과 가격 변경을 관리
    * @param {number} optionId : 옵션의 아이디
@@ -82,6 +73,10 @@ const CartList = ({ data }) => {
       });
     });
   };
+
+  const { mutate } = useMutation({
+    mutationFn: updateCart,
+  });
 
   return (
     <Container className="cart-list flex flex-col">

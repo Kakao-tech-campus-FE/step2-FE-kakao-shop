@@ -9,13 +9,20 @@ import { Fragment } from "react";
 const GNB = () => {
   const token = useSelector((state) => state.user.token); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
   const dispatch = useDispatch();
+  const label = token ? "로그아웃" : "로그인";
+  const loginoutpath = token ? "/" : "/login";
+  const cartpath = token ? "/cart" : "/login";
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    dispatch(clearUser());
-    alert("정상적으로 로그아웃되었습니다.");
+  const handleClick = () => {
+    if (token) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      dispatch(clearUser());
+      alert("정상적으로 로그아웃되었습니다.");
+    }
   };
+
+  const LinkButton = {};
 
   return (
     <header className="header">
@@ -35,56 +42,25 @@ const GNB = () => {
             </h1>
             <div className="menu_util">
               {/* 장바구니 버튼 */}
-              {token ? (
-                <Link className="link_util" to="/cart">
-                  <img
-                    className="ico_cart"
-                    src={"/cart.png"}
-                    alt="장바구니 버튼"
-                  />
-                </Link>
-              ) : (
-                <Link className="link_util" to="/login">
-                  <img
-                    className="ico_cart"
-                    src={"/cart.png"}
-                    alt="장바구니 버튼"
-                  />
-                </Link>
-              )}
+
+              <Link className="link_util" to={cartpath}>
+                <img
+                  className="ico_cart"
+                  src={"/cart.png"}
+                  alt="장바구니 버튼"
+                />
+              </Link>
             </div>
             <div className="menu_my">
-              {/* 로그인 버튼 */}
-              {token ? (
-                <Link
-                  className="link_login"
-                  to="/"
-                  onClick={handleLogout}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그아웃{" "}
-                </Link>
-              ) : (
-                <Fragment>
-                  <Link
-                    className="link_login"
-                    to="/login"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    {" "}
-                    로그인{" "}
-                  </Link>
-                  <Link
-                    className="link_login"
-                    to="/register"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    {" "}
-                    회원가입{" "}
-                  </Link>
-                </Fragment>
-              )}
+              {/* 로그인 로그아웃 버튼 */}
+              <Link
+                className="link_login"
+                to={loginoutpath}
+                onClick={handleClick}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                {label}
+              </Link>
             </div>
           </div>
         </nav>
