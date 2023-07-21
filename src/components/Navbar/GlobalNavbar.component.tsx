@@ -2,6 +2,7 @@ import NavbarItem from "@components/Navbar/NavbarItem.component";
 import NavbarSignItem from "./NavbarSignItem.component";
 import { FC } from "react";
 import classnames from "classnames";
+import { URL } from "@/assets/url.ko";
 
 interface GlobalNavbarProps {
   isSmall?: boolean;
@@ -18,7 +19,7 @@ const GlobalNavbar: FC<GlobalNavbarProps> = ({ isSmall = false }) => {
       >
         <div className="flex m-auto max-w-7xl">
           <div className="flex flex-1 justify-start">
-            <NavbarItem link="HOME">
+            <NavbarItem url={URL.HOME}>
               <img
                 className="h-8"
                 src="/icons/logoKakao.png"
@@ -28,7 +29,7 @@ const GlobalNavbar: FC<GlobalNavbarProps> = ({ isSmall = false }) => {
           </div>
           <div className="flex flex-1 justify-center"></div>
           <div className="flex items-center flex-1 justify-end">
-            <NavbarItem link="CART">
+            <NavbarItem url={URL.CART}>
               <img className="h-8" src="/icons/cart.png" alt="mycart"></img>
             </NavbarItem>
             <div
