@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
@@ -8,8 +8,16 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BiCart } from "react-icons/bi";
 import { useMutation } from "@tanstack/react-query";
 import { addCart } from "../../apis/cart";
+import { useSelector } from "react-redux";
+import Modal from "../moleclules/Modal";
+import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
+  const email = useSelector((state) => state.user.email);
+  const navigate = useNavigate();
+
+  const [modal, setModal] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [optionMenu, setOptionMenu] = useState(true);
 
@@ -19,7 +27,7 @@ const OptionColumn = ({ product }) => {
     );
 
     if (isOptionSelected) {
-      toast("이미 선택된 옵션입니다.");
+      setToastMessage("이미 선택된 옵션입니다.");
       return;
     }
 
@@ -55,6 +63,12 @@ const OptionColumn = ({ product }) => {
       return prev.filter((option) => option.optionId !== optionId);
     });
   };
+
+  useEffect(() => {
+    if (toastMessage) {
+      toast(toastMessage);
+    }
+  }, [toastMessage]);
 
   const { mutate } = useMutation({
     mutationFn: addCart,
@@ -138,22 +152,30 @@ const OptionColumn = ({ product }) => {
           <button
             className="flex h-[60px] w-1/4 items-center justify-center rounded-lg bg-black"
             onClick={() => {
-              mutate(
-                selectedOptions.map((el) => {
-                  return {
-                    optionId: el.optionId,
-                    quantity: el.quantity,
-                  };
-                }),
-                {
-                  onSuccess: () => {
-                    alert("장바구니에 담겼습니다.");
-                  },
-                  onError: () => {
-                    alert("장바구니 담기에 실패했습니다.");
-                  },
-                }
-              );
+              if (!selectedOptions.length) {
+                setToastMessage("옵션을 먼저 선택해주세요.");
+                return;
+              }
+              if (email) {
+                mutate(
+                  selectedOptions.map((el) => {
+                    return {
+                      optionId: el.optionId,
+                      quantity: el.quantity,
+                    };
+                  }),
+                  {
+                    onSuccess: () => {
+                      setToastMessage("장바구니에 상품이 담겼습니다.");
+                    },
+                    onError: () => {
+                      alert("장바구니 담기에 실패했습니다.");
+                    },
+                  }
+                );
+              } else {
+                setModal(true);
+              }
             }}
           >
             <BiCart color="white" size="40" />
@@ -175,6 +197,18 @@ const OptionColumn = ({ product }) => {
           width: "60%",
         }}
       />
+      {modal && (
+        <Modal
+          contentText={"로그인이 필요한 메뉴입니다."}
+          type={"two"}
+          buttonText={"로그인"}
+          secondButton={"취소"}
+          onClick={() => {
+            navigate("/login");
+          }}
+          setModal={setModal}
+        ></Modal>
+      )}
     </>
   );
 };
