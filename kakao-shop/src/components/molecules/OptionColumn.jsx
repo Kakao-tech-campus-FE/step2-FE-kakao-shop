@@ -7,7 +7,8 @@ import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { addCart } from '../../apis/cart.js';
 
-import { GoX } from 'react-icons/go';
+import { GoHeart, GoX } from 'react-icons/go';
+import { BsCart2 } from 'react-icons/bs';
 
 /**
  * 옵션 선택 컬럼
@@ -63,11 +64,7 @@ const OptionColums = ({ product }) => {
       <OptionList
         options={product.options}
         // 사용자가 선택한 option
-        onClick={
-          handleOnclickOption
-          // 장바구니 담기 api
-          // optionId, quantity
-        }
+        onClick={handleOnclickOption}
       />
       {/* 담긴옵션이 표기 */}
       {/* ui에서 옵션이름, 옵션 가격 */}
@@ -111,10 +108,14 @@ const OptionColums = ({ product }) => {
         </span>
       </div>
 
-      <div className="button-group">
+      <div className="button-group grid grid-flow-row-dense grid-cols-6 gap-2">
         {/* 장바구니 담기 버튼 위치 */}
+        <Button className="col-span-1 h-14" color="gray">
+          <GoHeart size="34" color="white" />
+        </Button>
         <Button
-          color="kakao"
+          color="black"
+          className="col-span-1 h-14"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
@@ -134,9 +135,11 @@ const OptionColums = ({ product }) => {
             );
           }}
         >
-          장바구니 담기
+          <BsCart2 size="30" />
         </Button>
-        {/* 톡딜가 X */}
+        <Button className="col-span-4 h-14" color="kakao">
+          바로 구매하기
+        </Button>
       </div>
     </div>
   );
