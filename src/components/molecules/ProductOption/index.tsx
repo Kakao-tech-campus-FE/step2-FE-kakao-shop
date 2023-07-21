@@ -3,7 +3,7 @@ import OptionList from "@components/atoms/OptionList";
 import { Option, ProductDetail } from "@components/organisms/ProductForm";
 import { styled } from "styled-components";
 import cart from "@assets/images/cart_white.png";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import OptionBasket from "@components/atoms/OptionBasket";
 import { useMutation } from "@tanstack/react-query";
 import { postAddCart } from "@apis/postAddCart";
@@ -61,10 +61,6 @@ const ProductOption = ({ product }: Props) => {
       )
     );
   };
-
-  useEffect(() => {
-    console.log(productOptions);
-  });
 
   return (
     <Wrapper>
