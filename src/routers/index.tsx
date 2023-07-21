@@ -11,6 +11,7 @@ import CheckListPage from "@/pages/test/CheckList.page";
 import ProductDetailPage from "@/pages/Product/ProductDetail.page";
 import ErrorPage from "@/pages/Error/Error.page";
 import CartPage from "@/pages/Cart/Cart.page";
+import OrderTotalCheckPage from "@/pages/Cart/OrderTotalCheck.page";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
   {
     element: <CartPage />,
     path: "/cart",
+  },
+  {
+    element: <OrderTotalCheckPage />,
+    path: "/cart/check",
   },
   {
     element: <Toast />,

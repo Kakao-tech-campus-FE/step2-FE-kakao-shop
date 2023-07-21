@@ -8,6 +8,37 @@ import { Link } from "react-router-dom";
 import { CART } from "@/assets/product.ko";
 import { COMMON } from "@/assets/common.ko";
 
+const EmptyCart = () => (
+  <>
+    <Txt>{CART.CART_EMPTY}</Txt>
+    <Link
+      to={"/"}
+      className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-fit"
+    >
+      {COMMON.GO_SHOPPING}
+    </Link>
+  </>
+);
+
+const CartItemSkeleton = () => (
+  <>
+    <div className="animate-pulse flex flex-col gap-4 p-4">
+      <div className="w-1/2 h-6 bg-gray-300 rounded"></div>
+      <div className="flex justify-between">
+        <div className="w-full h-12 bg-gray-300 rounded"></div>
+      </div>
+      <div className="w-1/2 h-6 bg-gray-300 rounded"></div>
+      <div className="flex justify-between">
+        <div className="w-full h-12 bg-gray-300 rounded"></div>
+      </div>{" "}
+      <div className="w-1/2 h-6 bg-gray-300 rounded"></div>
+      <div className="flex justify-between">
+        <div className="w-full h-12 bg-gray-300 rounded"></div>
+      </div>
+    </div>
+  </>
+);
+
 const CartItem = () => {
   const { data, isLoading } = useQuery(["cart"], getCart);
   const queryClient = useQueryClient();
@@ -27,7 +58,7 @@ const CartItem = () => {
   };
 
   if (!data || isLoading) {
-    return <div>loading...</div>;
+    return <CartItemSkeleton />;
   }
 
   const { products } = data.data.response;
@@ -37,17 +68,7 @@ const CartItem = () => {
       product.carts.every((cart) => cart.quantity === 0)
     )
   ) {
-    return (
-      <>
-        <Txt>{CART.CART_EMPTY}</Txt>
-        <Link
-          to={"/"}
-          className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-fit"
-        >
-          {COMMON.GO_SHOPPING}
-        </Link>
-      </>
-    );
+    return <EmptyCart />;
   }
 
   return (
