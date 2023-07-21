@@ -70,10 +70,10 @@ const GNB = () => {
           {!isLogin && (
             <Fragment>
               
-                <a  href ="/login">로그인</a>
+                <Link to ="/login">로그인</Link>
               
               
-                <a href ="/register">회원가입</a>
+                <Link to ="/register">회원가입</Link>
               
             </Fragment>
           )}
