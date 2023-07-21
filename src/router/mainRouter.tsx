@@ -7,6 +7,7 @@ import MainLayout from '@components/layout/MainLayout';
 import PageContainer from '@components/atoms/PageContainer';
 import ProductListPage from '@components/pages/ProductListPage';
 import ProductDetailPage from '@components/pages/ProductDetailPage';
+import CartPage from '@components/pages/CartPage';
 
 const mainRouter = () =>
   useRoutes([
@@ -41,6 +42,10 @@ const mainRouter = () =>
                   element: <ProductDetailPage />,
                 },
               ],
+            },
+            {
+              path: 'cart',
+              element: <CartPage />,
             },
           ],
         },
