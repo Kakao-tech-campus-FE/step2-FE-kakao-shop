@@ -3,7 +3,7 @@ export default function Photo({ className = "", src, alt }) {
   return (
     <picture className={className}>
       <source srcSet={src} />
-      <img src={src} alt={alt} />
+      <img className={className} src={src} alt={alt} />
     </picture>
   );
 }

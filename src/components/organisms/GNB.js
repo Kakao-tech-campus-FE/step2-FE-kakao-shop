@@ -20,19 +20,34 @@ export default function GNB() {
   };
 
   return (
-    <Box>
-      <ImageLink to="/" src={logoKakao} alt="logoKakao" />
-      <ImageLink to="/cart" src={cart} alt="cart" />
-      {email ? (
-        <>
-          {/[^@]*/.exec(email)}
-          <Link to="/" onClick={handleLinkClick}>
-            로그아웃
-          </Link>
-        </>
-      ) : (
-        <Link to="/login">로그인</Link>
-      )}
+    <Box className="fixed top-0 w-full h-16 bg-white flex items-center justify-between border">
+      <ImageLink
+        LinkClassName="ml-32"
+        PhotoClassName="h-8"
+        to="/"
+        src={logoKakao}
+        alt="logoKakao"
+      />
+      <span className="mr-32 space-x-4">
+        <ImageLink
+          PhotoClassName="h-8"
+          to="/cart"
+          src={cart}
+          alt="cart"
+        />
+        {email ? (
+          <>
+            <span className="font-bold">
+              {/[^@]*/.exec(email).toString().toUpperCase()}
+            </span>
+            <Link to="/" onClick={handleLinkClick}>
+              로그아웃
+            </Link>
+          </>
+        ) : (
+          <Link to="/login">로그인</Link>
+        )}
+      </span>
     </Box>
   );
 }
