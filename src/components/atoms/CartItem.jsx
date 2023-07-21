@@ -1,33 +1,39 @@
 import Box from "./Box";
 import Counter from './Counter';
 import { comma } from "../../utils/comma";
+import { Button } from "react-bootstrap";
+import { styled } from "styled-components";
 
-const CartItem = ({ item, onChange }) => {
+const CartItem = ({ item, onChange, onDelete }) => {
+
     return (
-        <Box className="cart-item-box">
+        <CartItemBox>
             <h5>{item.productName}</h5>
             {/* item의 carts에 담긴 장바구니 목록을 빼와서 사용 */}
             {item.carts.map((cart) => (
-                <Box key={cart.id} className="cart">
-                    <div className="option-name">
-                        <span>{cart.option.optionName}</span>
-                    </div>
-                    <div className="row">
-                        <Counter 
-                            initialCount={cart.quantity}
-                            onIncrease={(count) => {
-                                // onChange - 아이디 / 변경 수량 / 해당 옵션 상품의 가격
-                                onChange(cart.id, count, cart.option.price);
-                            }}
-                            onDecrease={(count) => {
-                                onChange(cart.id, count, -cart.option.price);
-                            }}
-                        />
-                        <div className="price">
-                            <span>{comma(cart.option.price * cart.quantity)}원</span>
-                        </div>
-                    </div>
-                </Box>
+                <CartItemOptionBox key={cart.id}>
+                <div className="option-name">
+                    <span>{cart.option.optionName}</span>
+                </div>
+                <OptionButtons>
+                <Button onClick={() => {onDelete(cart.id, 0, cart.option.price * cart.quantity);}}>
+                    삭제하기
+                </Button>
+                    <Counter className="counter"
+                        initialCount={cart.quantity}
+                        onIncrease={(count) => {
+                            // onChange - 아이디 / 변경 수량 / 해당 옵션 상품의 가격
+                            onChange(cart.id, count, cart.option.price);
+                        }}
+                        onDecrease={(count) => {
+                            onChange(cart.id, count, -cart.option.price);
+                        }}
+                    />
+                    <PriceBox className="price-box">
+                        <span>{comma(cart.option.price * cart.quantity)}원</span>
+                    </PriceBox>
+                </OptionButtons>
+            </CartItemOptionBox>
             ))}
             <Box className="total-price">
                 <div className="row">
@@ -42,8 +48,37 @@ const CartItem = ({ item, onChange }) => {
                     </div>
                 </div>
             </Box>
-        </Box>
+        </CartItemBox>
     );
 };
 
 export default CartItem;
+
+const OptionButtons = styled.div`
+    display: flex;
+    & > .counter {
+        margin : 0 10px 0 10px;
+    }
+    & > .price-box {
+        justify-content: flex-end;
+    }
+`
+
+const CartItemBox = styled.div`
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding : 10px;
+    background-color: #fff;
+`
+const CartItemOptionBox = styled.div`
+    border: 1px solid #ddd;
+    background-color: #9a9a9a1d;
+    padding : 10px;
+    margin : 10px 0 10px 0;
+`
+
+const PriceBox = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
