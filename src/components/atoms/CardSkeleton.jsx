@@ -4,20 +4,17 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 1em;;
-  margin: 2em 0;
+  grid-gap: 2em;
+  margin: 3em 0;
   width: 100%;
   max-width: 1200px;
-  max-width: inherit;
 `;
 
 const ImageLoader = styled.div`
-  width: 21em;
-  height: 13em;
-  margin-bottom: 0.5rem;
-  margin-top: 0.5rem;
-  background-color: #e7e5e5;
-  border-radius: 5px;
+  width: 18em;
+  height: 11em;
+  background-color: #f2f2f2;
+  border-radius: 10px;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
   @keyframes skeleton-gradient {
     0% {
@@ -32,12 +29,12 @@ const ImageLoader = styled.div`
   }
 `;
 
-const NameLoader = styled.div`
+const TitleLoader = styled.div`
   display: inline-block;
-  width: 21em;
+  width: 18em;
   height: 3em;
   border-radius: 5px;
-  background-color: #e7e5e5;
+  background-color: #f2f2f2;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
   @keyframes skeleton-gradient {
     0% {
@@ -52,11 +49,11 @@ const NameLoader = styled.div`
   }
 `;
 
-const PriceLoader = styled.div`
-  width: 21em;
+const PriceTextContainerLoader = styled.div`
+  width: 18em;
   height: 2em;
   border-radius: 5px;
-  background-color: #e7e5e5;
+  background-color: #f2f2f2;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
   @keyframes skeleton-gradient {
     0% {
@@ -71,18 +68,18 @@ const PriceLoader = styled.div`
   }
 `;
 
-const CardSkeleton = () => {
+const CardLoader = () => {
   return (
     <Container>
       {new Array(15).fill('').map((_, i) => (
         <div key={i}>
           <ImageLoader />
-          <NameLoader />
-          <PriceLoader />
+          <TitleLoader />
+          <PriceTextContainerLoader />
         </div>
       ))}
     </Container>
   );
 };
 
-export default CardSkeleton;
+export default CardLoader;

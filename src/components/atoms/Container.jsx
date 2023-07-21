@@ -1,7 +1,7 @@
-// src/components/atoms/Container.jsx
-// Container component
-// className: 추가 CSS 클래스 이름
-import "../../styles/atoms/Container.css"
+/**
+ * @param {*} className 추가 css 클래스 이름
+ * @Returns Container Component
+ */
 
 const Container = ({children, className = ""}) => {
     return( 

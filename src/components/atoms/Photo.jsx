@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const ImageContainer = styled.picture`
   .card {
-    width: 21em;
-    height: 13em;
+    width: 18em;
+    height: 11em;
     object-fit: cover;
     border-radius: 5px;
   }
