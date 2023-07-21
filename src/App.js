@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import SignInPage from "./pages/SignInpage";
 import SignUpPage from "./pages/SignUpPage";
-import checkTokenExpiration from "./utils/checkTokenExpiration";
+import removeTokenByExpiration from "./utils/removeTokenByExpiration";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
@@ -78,7 +78,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
-  checkTokenExpiration();
+  removeTokenByExpiration();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   return (
