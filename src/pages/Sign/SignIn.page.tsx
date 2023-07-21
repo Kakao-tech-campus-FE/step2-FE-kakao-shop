@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { SIGN } from "@/assets/sign.ko";
 import { useReducer, useState } from "react";
 import { signIn } from "@/remotes/sign";
+import { useDispatch } from "react-redux";
+import { setSignIn } from "@/store/signSlice";
 
 const { SIGN_UP, NO_ACCOUNT } = SIGN;
 
@@ -27,6 +29,7 @@ const SignInPage = () => {
   const navigate = useNavigate();
   const [signInData, setForm] = useReducer(formDataReducer, initState);
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
 
   const onSubmit = async () => {
     const loginResult = await signIn(signInData);
@@ -34,7 +37,7 @@ const SignInPage = () => {
       setError(loginResult.data.error.message);
       return;
     }
-
+    dispatch(setSignIn());
     navigate("/");
   };
 
