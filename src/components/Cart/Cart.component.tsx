@@ -7,7 +7,7 @@ import Txt from "@components/common/Txt.component";
 import CartTotal from "./CartTotal.component";
 import GlobalLoading from "../common/GlobalLoading.component";
 import { ProductOrder } from "@/dtos/product.dto";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ERROR } from "@/assets/error.ko";
 
@@ -16,14 +16,16 @@ const Cart = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data, isLoading } = useQuery(["cart"], getCart, {
-    onSuccess: (data) => {
+  const { data, isLoading } = useQuery(["cart"], getCart);
+
+  useEffect(() => {
+    if (data) {
       setProducts(data.data.response.products);
-    },
-  });
+    }
+  }, [data]);
 
   const { mutate } = useMutation(updateCart, {
-    onSuccess: () => {
+    onMutate: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
