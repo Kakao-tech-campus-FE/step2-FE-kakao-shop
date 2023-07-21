@@ -9,17 +9,11 @@ import { useNavigate } from "react-router-dom";
 
 const ProductTemplate = () => {
   const navigate = useNavigate();
+
   const { isLoading, data, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useInfiniteQuery(["/products"], getProducts, {
       retry: false,
-      getNextPageParam: (lastPage) => {
-        if (lastPage.response.length < 9) {
-          return undefined;
-        }
-        const res = lastPage.response;
-        const nextParam = getNextParam(res);
-        return nextParam;
-      },
+      getNextPageParam: (lastPage) => getNextParam(lastPage),
       onError: (err: any) => {
         if (err.status === 404) {
           navigate("/notFound");
@@ -29,9 +23,13 @@ const ProductTemplate = () => {
 
   const target = useRef<HTMLDivElement>(null);
 
-  const getNextParam = (res: any) => {
+  function getNextParam(lastPage: any) {
+    if (lastPage.response.length < 9) {
+      return undefined;
+    }
+    const res = lastPage.response;
     return Math.floor((res[res.length - 1].id - 1) / 9) + 1;
-  };
+  }
 
   const handleIntersect = async (
     [entry]: IntersectionObserverEntry[],
@@ -51,7 +49,7 @@ const ProductTemplate = () => {
     target.current && observer.observe(target.current);
 
     return () => observer && observer.disconnect();
-  }, [target, data]);
+  }, [target]);
 
   return (
     <div>
