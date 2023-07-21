@@ -1,0 +1,20 @@
+.option-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.option {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.name {
+  flex: 1;
+}
+
+.price {
+  color: #007bff;
+  font-weight: bold;
+}
