@@ -1,8 +1,9 @@
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
+import StarRating from "../atoms/StarRatinig";
 
 const ProductInformationColumn = ({ product, className }) => {
-  const { productName, price, image } = product;
+  const { productName, price, image, starCount } = product;
   return (
     <>
       <div className="flex pt-8 pr-8 pb-40 max-w-4xl border-r border-neutral-200">
@@ -14,6 +15,7 @@ const ProductInformationColumn = ({ product, className }) => {
           />
         </div>
         <div className="flex-none w-[430px] ml-7">
+          <StarRating starCount={starCount} />
           <strong className="font-normal text-[26px]">{productName}</strong>
           <div className="pt-4 pb-2">
             <button className="h-11 rounded-3xl bg-[#ffeb00] px-4">
