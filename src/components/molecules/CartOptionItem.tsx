@@ -44,18 +44,28 @@ const CartOptionItem = ({ cart, setUpdatedCartOptions }: CartOptionItemProps) =>
     setUpdatedQuantity((prevQuantity) => prevQuantity + 1);
   };
 
+  const handleDeleteButtonClick = () => {
+    setUpdatedCartOptions((prevOptions) => {
+      if (prevOptions.length === 0) {
+        return [{ cartId: cart.id, quantity: 0 }];
+      }
+
+      return prevOptions.map((option) => {
+        if (option.cartId === cart.id) {
+          return { ...option, quantity: 0 };
+        }
+        return option;
+      });
+    });
+    setUpdatedQuantity(0);
+  };
+
   return (
     <div className='space-y-2 border p-3'>
       <p>{cart.option.optionName}</p>
       <div className='flex justify-between'>
         <div className='flex items-center space-x-2'>
-          <LightButton
-            onClick={() => {
-              // TODO
-            }}
-          >
-            삭제
-          </LightButton>
+          <LightButton onClick={handleDeleteButtonClick}>삭제</LightButton>
           <Counter
             quantity={updatedQuantity}
             onDecrementClick={() => handleDecrementClick(cart.id)}
