@@ -131,7 +131,7 @@ const CartList = ({ data }) => {
   return (
     <Container className="cart-list">
       <Box>
-        <Title>장바구니</Title>
+        <Title className="ml-7">장바구니</Title>
       </Box>
       {cartItems.map((item) => (
         <CartItem
@@ -142,7 +142,7 @@ const CartList = ({ data }) => {
         />
       ))}
       <div className="row flex  items-center"> {/* Added Tailwind classes */}
-        <div className="sum-price">주문 예상금액 {comma(totalPrice)}원</div>
+        <div className="sum-price ml-7">주문 예상금액 {comma(totalPrice)}원</div>
         <Button
           className="p-2 w-full font-bold bg-yellow-300 rounded-md ml-1.5 mr-1.5"
           onClick={() => {
