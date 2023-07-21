@@ -2,17 +2,21 @@ import React from 'react';
 
 interface CounterProps {
   quantity: number;
+  onDecrementClick: () => void;
+  onIncrementClick: () => void;
 }
 
-const Counter = ({ quantity }: CounterProps) => {
+const Counter = ({ quantity, onDecrementClick, onIncrementClick }: CounterProps) => {
   return (
-    <div className='relative flex w-full flex-row rounded-lg bg-transparent'>
+    <div className='relative flex flex-row rounded-lg bg-transparent'>
       <button
         type='button'
         data-action='decrement'
-        className='w-8 cursor-pointer rounded-l border bg-white text-gray-600 outline-none hover:text-gray-700'
+        className='group w-8 cursor-pointer rounded-l border bg-white text-gray-600 outline-none hover:text-gray-700'
+        onClick={onDecrementClick}
+        disabled={quantity <= 1}
       >
-        <span className='m-auto text-2xl font-thin'>−</span>
+        <span className='m-auto text-2xl font-thin group-disabled:text-gray-300'>−</span>
       </button>
       <input
         type='tel'
@@ -26,9 +30,11 @@ const Counter = ({ quantity }: CounterProps) => {
       <button
         type='button'
         data-action='increment'
-        className='w-8 cursor-pointer rounded-r border bg-white text-gray-600  hover:text-gray-700'
+        className='group w-8 cursor-pointer rounded-r border bg-white text-gray-600  hover:text-gray-700'
+        onClick={onIncrementClick}
+        disabled={quantity >= 100}
       >
-        <span className='m-auto text-2xl font-thin'>+</span>
+        <span className='m-auto text-2xl font-thin group-disabled:text-gray-300'>+</span>
       </button>
     </div>
   );

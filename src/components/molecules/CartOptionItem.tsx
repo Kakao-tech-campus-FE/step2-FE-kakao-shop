@@ -9,6 +9,14 @@ interface CartOptionItemProps {
 }
 
 const CartOptionItem = ({ cart }: CartOptionItemProps) => {
+  const handleDecrementClick = (id: number) => {
+    // TODO
+  };
+
+  const handleIncrementClick = (id: number) => {
+    // TODO
+  };
+
   return (
     <div className='space-y-2 border p-3'>
       <p>{cart.option.optionName}</p>
@@ -21,7 +29,11 @@ const CartOptionItem = ({ cart }: CartOptionItemProps) => {
           >
             삭제
           </LightButton>
-          <Counter quantity={cart.quantity} />
+          <Counter
+            quantity={cart.quantity}
+            onDecrementClick={() => handleDecrementClick(cart.option.id)}
+            onIncrementClick={() => handleIncrementClick(cart.option.id)}
+          />
         </div>
         <strong>{comma(cart.price)}원</strong>
       </div>

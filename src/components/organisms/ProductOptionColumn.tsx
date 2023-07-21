@@ -1,19 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import ProductOptionList from '../molecules/ProductOptionList';
 import Button from '../atoms/Button';
 import DarkButton from '../atoms/DarkButton';
-import { OptionInfo } from '../../dto/productDto';
+import { AddCart, OptionInfo } from '../../dto/productDto';
+import { useAddCartMutation } from '../../apis/productApi';
+import SelectedProductOptions from '../molecules/SelectedProductOptions';
 
 interface ProductOptionColumnProps {
   options: OptionInfo[];
 }
 
 const ProductOptionColumn = ({ options }: ProductOptionColumnProps) => {
+  const [selectedOptions, setSelectedOptions] = useState<OptionInfo[]>([]);
+  const [cartOptions, setCartOptions] = useState<AddCart[]>([]);
+
+  const { mutate: addCart } = useAddCartMutation();
+
+  const handleOptionClick = (option: OptionInfo) => {
+    setSelectedOptions((prevOptions) => [...prevOptions, option]);
+    setCartOptions((prevCartOptions) => [...prevCartOptions, { optionId: option.id, quantity: 1 }]);
+  };
+
+  const handleDarkButtonClick = () => {
+    addCart(cartOptions);
+  };
+
   return (
     <div className='h-full w-[360px] p-7'>
       <p className='pb-2 font-bold'>옵션선택</p>
-      <ProductOptionList options={options} />
+      <ProductOptionList options={options} onOptionClick={handleOptionClick} />
+      <SelectedProductOptions
+        selectedOptions={selectedOptions}
+        cartOptions={cartOptions}
+        setCartOptions={setCartOptions}
+      />
       <div className='mt-7'>
         <div className='space-y-1 pb-4'>
           <span className='flex items-center'>
@@ -29,22 +50,29 @@ const ProductOptionColumn = ({ options }: ProductOptionColumnProps) => {
         <div className='flex justify-between py-5 text-lg'>
           <dl className='flex'>
             <dt className='pr-1'>총 수량</dt>
-            <dd>{options.length}개</dd>
+            <dd>
+              {cartOptions.reduce((prev, curr) => {
+                return prev + curr.quantity;
+              }, 0)}
+              개
+            </dd>
           </dl>
           <dl className='flex'>
             <dt className='pr-1'>총 주문 금액</dt>
             <dd>
-              <strong className='text-red-500'>0{/* TODO */}</strong>원
+              <strong className='text-red-500'>
+                {cartOptions.reduce((prev, curr) => {
+                  const price = selectedOptions.find((option) => option.id === curr.optionId)?.price;
+                  return price ? prev + curr.quantity * price : prev;
+                }, 0)}
+              </strong>
+              원
             </dd>
           </dl>
         </div>
         <div className='flex'>
           <div className='mr-2 w-14'>
-            <DarkButton
-              onClick={() => {
-                // TODO
-              }}
-            >
+            <DarkButton onClick={handleDarkButtonClick}>
               <HiOutlineShoppingCart size={30} />
             </DarkButton>
           </div>

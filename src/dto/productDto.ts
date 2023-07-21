@@ -39,3 +39,8 @@ export interface Cart {
   products: CartProductInfo[];
   totalPrice: number;
 }
+
+export interface AddCart {
+  optionId: number;
+  quantity: number;
+}

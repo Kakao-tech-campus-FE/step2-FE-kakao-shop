@@ -5,9 +5,10 @@ import { OptionInfo } from '../../dto/productDto';
 
 interface ProductOptionListProps {
   options: OptionInfo[];
+  onOptionClick: (option: OptionInfo) => void;
 }
 
-const ProductOptionList = ({ options }: ProductOptionListProps) => {
+const ProductOptionList = ({ options, onOptionClick }: ProductOptionListProps) => {
   return (
     <div className='rounded-sm border border-gray-800'>
       <button
@@ -19,8 +20,10 @@ const ProductOptionList = ({ options }: ProductOptionListProps) => {
       </button>
       <ol className='divide-y divide-gray-200'>
         {options.map((option) => (
-          <li key={option.id} className='px-3 py-4'>
-            <ProductOption optionInfo={option} />
+          <li key={option.id}>
+            <button type='button' className='w-full px-3 py-4 text-left' onClick={() => onOptionClick(option)}>
+              <ProductOption optionInfo={option} />
+            </button>
           </li>
         ))}
       </ol>
