@@ -15,11 +15,10 @@ const ProductTemplate = () => {
       getNextPageParam: (lastPage) => {
         if (lastPage.response.length < 9) {
           return undefined;
-        } else {
-          const res = lastPage.response;
-          const nextParam = getNextParam(res);
-          return nextParam;
         }
+        const res = lastPage.response;
+        const nextParam = getNextParam(res);
+        return nextParam;
       },
       onError: (err: any) => {
         if (err.status === 404) {
