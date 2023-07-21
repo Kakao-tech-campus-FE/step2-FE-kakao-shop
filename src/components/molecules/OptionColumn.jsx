@@ -11,12 +11,10 @@ const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
-    // 동일 옵션 클릭 방지
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
 
-    // 이미 선택된 옵션이면 증가 없이 처리
     if (isOptionSelected) {
       return;
     }
@@ -65,7 +63,6 @@ const OptionColumn = ({ product }) => {
       <span>제주 추가 3,000원, 제주 외 도서지역 추가 6,000원</span>
     </Container>
       <Container className="w-full mb-2 border border-gray-300">
-        <ul>
           {selectedOptions.map((option) => (
              <ol key={option.optionId} className="selected-option-list">
              <li className="w-full mb-2 border border-gray-300">
@@ -82,7 +79,6 @@ const OptionColumn = ({ product }) => {
              </li>
            </ol>
           ))}
-        </ul>
       </Container>
 
       <Container className="flex justify-between w-full">
