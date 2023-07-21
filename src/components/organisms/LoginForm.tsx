@@ -25,6 +25,7 @@ const LoginForm = () => {
     login({ email: inputInfo.email, password: inputInfo.password })
       .then((res) => {
         dispatch(loginStore({ isLoggedIn: true, email: inputInfo.email }));
+        localStorage.setItem('token', res.headers.authorization);
         navigate('/');
       })
       .catch((err) => {
