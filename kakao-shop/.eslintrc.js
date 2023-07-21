@@ -70,6 +70,8 @@ module.exports = {
     'import/named': 'warn',
     'import/no-extraneous-dependencies': 'warn',
     'react/self-closing-comp': 'warn', // 셀프 클로징 태그 가능하면 적용,
+    'no-throw-literal': 'off', // throw Error / Error 객체를 그대로 에러바운더리에 throw 하기 위함
+    '@typescript-eslint/no-throw-literal': 'off', // throw Error / Error 객체를 그대로 에러바운더리에 throw 하기 위함
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

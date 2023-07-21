@@ -1,1 +1,1 @@
-export { default as TestPage } from './testPage';
+export { default as TestPage } from './Home';

@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { resetSignInState } from '@store/Login/reducers';
+import { RootState } from '@store/index';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Button } from '@components/atom';
@@ -8,10 +12,21 @@ import { RegularInput } from '@components/molecules';
 import useSignInForm from '@hooks/page/Login/useLoginForm';
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const error = useSelector((state: RootState) => state.signIn.error);
+
   const {
     state: { email, password, errorMessage },
     handler: { onChangeEmail, onChangePassword, onSubmit },
   } = useSignInForm();
+
+  useEffect(() => {
+    if (!error) return;
+    dispatch(resetSignInState());
+
+    throw error;
+  }, [error, dispatch]);
+
   return (
     <S.Root>
       <S.Container onSubmit={onSubmit}>

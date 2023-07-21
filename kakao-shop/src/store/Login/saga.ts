@@ -1,5 +1,5 @@
 import { signIn } from '@apis/Login';
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
 import { setCookie } from '@utils/cookie';
@@ -12,9 +12,10 @@ export function* fetchSignInRequest({ payload }: FetchSignInAction) {
     setCookie({ name: 'accessToken', value: response.headers.authorization, maxAge: 3600 });
     yield put(signInSuccess(response.data));
     payload.navigate('/');
-  } catch (error: any) {
-    yield put(signInFailure(error.response.data));
-    payload.setErrorMessage(error.response.data.error.message);
+  } catch (err: unknown) {
+    const error = err as AxiosError<SignInResponse>;
+    yield put(signInFailure(error));
+    payload.setErrorMessage(error.response?.data.error?.message);
   }
 }
 

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { signOutRequest } from '@store/Login/reducers';
 import hideWithA11y from '@styles/a11y';
+import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -9,48 +10,53 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <S.Root>
-      <S.Container>
-        <S.TitleLogo>
-          <Link to="/">
-            <S.Image
-              src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230705/152013/assets/images/pc/pc_logo.png"
-              alt="톡쇼핑하기"
-            />
-          </Link>
-        </S.TitleLogo>
+    <Fragment>
+      <S.Root>
+        <S.Container>
+          <S.TitleLogo>
+            <Link to="/">
+              <S.Image
+                src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230705/152013/assets/images/pc/pc_logo.png"
+                alt="톡쇼핑하기"
+              />
+            </Link>
+          </S.TitleLogo>
 
-        <S.GnbMenu>
-          <S.A11yMenuDesc css={hideWithA11y}>쇼핑하기 메인 메뉴</S.A11yMenuDesc>
-          <S.MenuList>
-            <li>
-              <Link to="/">
-                <span>홈</span>
-              </Link>
-            </li>
-          </S.MenuList>
-        </S.GnbMenu>
+          <S.GnbMenu>
+            <S.A11yMenuDesc css={hideWithA11y}>쇼핑하기 메인 메뉴</S.A11yMenuDesc>
+            <S.MenuList>
+              <li>
+                <Link to="/">
+                  <span>홈</span>
+                </Link>
+              </li>
+            </S.MenuList>
+          </S.GnbMenu>
 
-        <S.MenuUtil>
-          <Link to="/">
-            <span>장바구니</span>
-          </Link>
-        </S.MenuUtil>
+          <S.MenuUtil>
+            <Link to="/">
+              <span>장바구니</span>
+            </Link>
+          </S.MenuUtil>
 
-        <S.MenuMy>
-          {isLogin ? (
-            <button
-              onClick={() => {
-                dispatch(signOutRequest());
-              }}>
-              로그아웃
-            </button>
-          ) : (
-            <Link to="/login">로그인</Link>
-          )}{' '}
-        </S.MenuMy>
-      </S.Container>
-    </S.Root>
+          <S.MenuMy>
+            {isLogin ? (
+              <button
+                onClick={() => {
+                  dispatch(signOutRequest());
+                  window.location.reload(); // 전역 state 초기화를 위해서
+                }}>
+                로그아웃
+              </button>
+            ) : (
+              <Link to="/login">로그인</Link>
+            )}{' '}
+          </S.MenuMy>
+        </S.Container>
+      </S.Root>
+      <S.HeaderTrick />
+      {/* 헤더가 fixed 이므로 아래에 div 를 하나 배치하여 레이아웃 잡기 편하도록 하기위해서 */}
+    </Fragment>
   );
 };
 
@@ -91,6 +97,7 @@ const S = {
     & > li > a {
       display: block;
 
+      margin-top: 2px;
       padding: 31px 12px 29px;
 
       font-size: 18px;
@@ -192,5 +199,8 @@ const S = {
 
       cursor: pointer;
     }
+  `,
+  HeaderTrick: styled.div`
+    height: 79px;
   `,
 };
