@@ -1,6 +1,9 @@
+/**
+ * 로딩 상태일 때 보여줄 스피너 컴포넌트
+ */
 const Loader = () => {
   return (
-    <div className="loader mt-10" title="0">
+    <div className="loader mt-40" title="0">
       <svg
         className="mx-auto"
         version="1.1"

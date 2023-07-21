@@ -14,7 +14,7 @@ import InputGroup from '../molecules/InputGroup';
  * 회원가입 폼 컴포넌트
  * 이메일, 이름, 비밀번호, 비밀번호 확인을 입력받아 회원가입을 시도하는 컴포넌트
  *
- * @returns {JSX.Element} - 회원가입 폼 컴포넌트의 JSX 요소
+ * @todo react-form으로 변경
  */
 const RegisterForm = () => {
   const { value, handleOnChange } = useInput({
@@ -68,7 +68,6 @@ const RegisterForm = () => {
       setErrorMessage((prev) => ({ ...prev, passwordConfirm: '' }));
     }
 
-    // 이런 캐칭 좋지 않다! 나중에 처리해야함
     try {
       await register({
         email: value.email,

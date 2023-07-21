@@ -2,6 +2,11 @@ import { comma } from '../../utils/convert';
 import Photo from '../atoms/Photo';
 import { GoStar, GoStarFill } from 'react-icons/go';
 
+/**
+ * 상품 정보 컬럼
+ * @param {object} product 상품 정보 - { productName, price, image, starCount }
+ */
+
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image, starCount } = product;
 

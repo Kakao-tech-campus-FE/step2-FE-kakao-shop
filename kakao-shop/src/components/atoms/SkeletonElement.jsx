@@ -1,3 +1,8 @@
+/**
+ * 타입에 따라 다른 스켈레톤을 보여주는 컴포넌트
+ * @param {'title' | 'text' | 'thumbnail' | 'price' | 'icon'} type 스켈레톤 타입
+ * @param {string} className 스켈레톤에 적용할 클래스
+ */
 const SkeletonElement = ({ type, className }) => {
   const typeToClassMap = {
     title: 'skeleton-title h-5',

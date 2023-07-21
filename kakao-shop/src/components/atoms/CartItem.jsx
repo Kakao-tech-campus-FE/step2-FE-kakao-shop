@@ -6,8 +6,11 @@ import Link from './Link';
 import GrayBox from './GrayBox';
 
 /**
+ * 장바구니에 담긴 상품 정보
  *
  * @param {Object} item { id, productName, carts: [{ id, quantity, option: { id, optionName, price } }] }
+ * @param {Function} onChange 수량 변경 시 호출되는 함수
+ * @param {Function} onDelete 삭제 버튼 클릭 시 호출되는 함수
  */
 const CartItem = ({ item, onChange, onDelete }) => {
   // 모든 수량이 0인 경우 null 반환

@@ -5,9 +5,7 @@ import Divider from './Divider';
  * 옵션 목록
  * @param {object} options 옵션 목록 - [{id, optionName, price}]
  * @param {function} onClick 옵션 클릭 시 실행할 함수
- * @returns
  */
-
 const OptionList = ({ options, onClick }) => {
   return (
     <ol className="option-list border border-solid border-gray-400 rounded-sm px-3 py-1">

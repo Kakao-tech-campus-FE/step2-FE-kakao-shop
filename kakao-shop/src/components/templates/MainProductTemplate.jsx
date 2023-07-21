@@ -11,13 +11,19 @@ const MainProductTemplate = () => {
 
   const products = useSelector((state) => state.product.products);
   const loading = useSelector((state) => state.product.loading);
-  const error = useSelector((state) => state.product.error);
+  // const error = useSelector((state) => state.product.error);
   const isEnd = useSelector((state) => state.product.isEnd);
 
   const dispatch = useDispatch();
   const bottomObserver = useRef(null);
 
-  /** @todo redux 제외하고 react-query 적용하기 */
+  /**
+   * @todo redux 제외하고 react-query 적용하기
+   * 1. react-query로 변경
+   * 2. react-query의 useInfiniteQuery 사용
+   * 3. react-query의 useInfiniteQuery의 fetchNextPage 사용
+   * 4. error 처리
+   */
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {

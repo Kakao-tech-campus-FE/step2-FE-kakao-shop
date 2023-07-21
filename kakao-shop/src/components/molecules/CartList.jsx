@@ -1,15 +1,20 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../atoms/Container';
 import CartItem from '../atoms/CartItem';
 import Button from '../atoms/Button';
-import Error from '../atoms/Error';
+import ErrorPage from '../../pages/Error/ErrorPage';
 
 import { updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
 import { useMutation } from '@tanstack/react-query';
 import { BsCart2 } from 'react-icons/bs';
 
+/**
+ * 장바구니에 담긴 상품 리스트
+ * @param {Object} data
+ * @todo data 전체를 받아오지 않고 필요한 데이터만 받아오도록 수정
+ */
 const CartList = ({ data }) => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -28,7 +33,7 @@ const CartList = ({ data }) => {
   // payload가 변경될 때 마다 mutate 실행
   useEffect(() => {
     mutate(updatePayload);
-  }, [updatePayload]);
+  }, [updatePayload, mutate]);
 
   // cartItems가 변경될 때마다 전체 상품 개수 변경
   const getTotalCartCountIncludingOptions = useCallback(() => {
@@ -138,7 +143,7 @@ const CartList = ({ data }) => {
                   navigate('/order');
                 },
                 onError: () => {
-                  return <Error message="결제처리 중 에러가 발생했습니다." />;
+                  return <ErrorPage message="결제처리 중 에러가 발생했습니다." />;
                 },
               });
             }}

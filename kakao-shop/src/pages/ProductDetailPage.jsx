@@ -3,9 +3,12 @@ import Loader from '../components/atoms/Loader';
 import { getProductById } from '../apis/product';
 import { useQuery } from '@tanstack/react-query';
 import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
-import Error from '../components/atoms/Error';
 import { Suspense } from 'react';
+import ErrorPage from './Error/ErrorPage';
 
+/**
+ * 상품 상세 페이지
+ */
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { status, data, error } = useQuery({
@@ -23,9 +26,9 @@ const ProductDetailPage = () => {
   if (status === 'error') {
     if (error?.response?.status === 404) {
       // 등록되지 않은 상품(id) 조회 시
-      return <Error message="상품 정보를 찾을 수 없습니다." />;
+      return <ErrorPage message="상품 정보를 찾을 수 없습니다." />;
     }
-    return <Error message="상품 정보를 불러오는 중 에러가 발생했습니다." />;
+    return <ErrorPage message="상품 정보를 불러오는 중 에러가 발생했습니다." />;
   }
 
   return (

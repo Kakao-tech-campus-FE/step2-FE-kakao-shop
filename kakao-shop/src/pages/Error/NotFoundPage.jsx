@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * 404 Not Found 페이지
+ */
 export default function NotFoundPage() {
   const navigate = useNavigate();
 

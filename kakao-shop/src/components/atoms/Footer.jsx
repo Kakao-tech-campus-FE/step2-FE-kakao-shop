@@ -1,3 +1,6 @@
+/**
+ * 전체 페이지에 공통으로 들어가는 footer
+ */
 const Footer = () => {
   return (
     <footer>

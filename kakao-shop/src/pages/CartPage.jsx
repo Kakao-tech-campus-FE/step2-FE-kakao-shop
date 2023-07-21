@@ -3,10 +3,13 @@ import { Suspense } from 'react';
 import { getCart } from '../apis/cart';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../components/atoms/Loader';
-import Error from '../components/atoms/Error';
 import { defaultToast } from '../utils/swal';
 import { useNavigate } from 'react-router-dom';
+import ErrorPage from './Error/ErrorPage';
 
+/**
+ * 장바구니 페이지
+ */
 const CartPage = () => {
   const { data, status, error } = useQuery(['cart'], getCart, { retry: false });
   const navigate = useNavigate();
@@ -21,7 +24,7 @@ const CartPage = () => {
       defaultToast('로그인이 필요한 기능입니다');
       navigate('/login');
     }
-    return <Error message="장바구니를 불러오는 중 에러가 발생했습니다." />;
+    return <ErrorPage message="장바구니를 불러오는 중 에러가 발생했습니다." />;
   }
 
   return (

@@ -1,6 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 
-const Error = ({ message }) => {
+/**
+ * 에러 페이지
+ *
+ * @param {string} message 표시할 에러 메시지
+ */
+const ErrorPage = ({ message }) => {
   const navigate = useNavigate();
   return (
     <div className="error text-center my-20">
@@ -13,4 +18,4 @@ const Error = ({ message }) => {
   );
 };
 
-export default Error;
+export default ErrorPage;
