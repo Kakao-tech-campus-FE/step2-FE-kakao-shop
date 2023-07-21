@@ -3,10 +3,11 @@ import { useState } from "react";
 
 interface Props {
   onChange: (count: number) => void;
+  init: number;
 }
 
-const Counter = ({ onChange }: Props) => {
-  const [count, setCount] = useState(1);
+const Counter = ({ init, onChange }: Props) => {
+  const [count, setCount] = useState(init);
 
   return (
     <Wrapper>

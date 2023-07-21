@@ -12,7 +12,7 @@ interface Props {
 const OptionBasket = ({ option, setProductOptions }: Props) => {
   const { id, quantity, price, optionName } = option;
 
-  const handleOnChange = (count: any) => {
+  const handleOnChange = (count: number) => {
     setProductOptions((prev) => {
       return prev.map((el) => {
         if (el.id === id) {
@@ -39,7 +39,7 @@ const OptionBasket = ({ option, setProductOptions }: Props) => {
       </IconWrapper>
       <p>{optionName}</p>
       <CountItem>
-        <Counter onChange={(count) => handleOnChange(count)} />
+        <Counter init={1} onChange={(count) => handleOnChange(count)} />
         <span>{comma(quantity * price)}원</span>
       </CountItem>
     </Wrapper>
