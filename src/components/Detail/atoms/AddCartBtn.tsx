@@ -7,6 +7,7 @@ import { addCart } from '../../../api/Products';
 import { optionState } from '../../../modules/options';
 import { reset } from '../../../modules/options';
 import ToastBox, { IToastData } from '../../common/ToastBox';
+import { useNavigate } from 'react-router-dom';
 export interface cartData {
   optionId: number;
   quantity: number;
@@ -14,20 +15,25 @@ export interface cartData {
 
 function AddCartBtn() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { options } = useSelector((state: RootState) => state.optionReducer);
+  const { isLogin } = useSelector((state: RootState) => state.authReducer);
   const [toast, setToast] = useState<IToastData[]>([]);
   const buttonHandler = async () => {
-    const optionData = options.reduce(
-      (prev: cartData[], option: optionState) => (option ? [...prev, { optionId: option.id, quantity: option.quantity }] : prev),
-      []
-    );
-
-    try {
-      await addCart(optionData);
-      setToast([...toast, { id: Math.random(), content: '장바구니에 상품이 담겼습니다.' }]);
-      dispatch(reset());
-    } catch (e) {
-      throw new Error('장바구니에 담기를 실패하였습니다.');
+    if (isLogin) {
+      const optionData = options.reduce(
+        (prev: cartData[], option: optionState) => (option ? [...prev, { optionId: option.id, quantity: option.quantity }] : prev),
+        []
+      );
+      try {
+        await addCart(optionData);
+        setToast([...toast, { id: Math.random(), content: '장바구니에 상품이 담겼습니다.' }]);
+        dispatch(reset());
+      } catch (e) {
+        throw new Error('장바구니에 담기를 실패하였습니다.');
+      }
+    } else {
+      navigate('/login');
     }
   };
 
