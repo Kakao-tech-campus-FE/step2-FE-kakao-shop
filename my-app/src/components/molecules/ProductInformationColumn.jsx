@@ -1,16 +1,23 @@
 import Photo from "../atoms/Photo";
+import { comma } from "../../utils/convert";
+import "../../styles/molecules/ProductInformationColumn.css";
 
+// style 작업 필요
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
-    <div className="product-information-column">
+    <div className="product-information-column border-4 rounded flex flex-col justify-center">
       <div className="col">
-        <Photo src={image} alt={productName} />{" "}
-        {/* alt(대체 텍스트)는 꼭 명시해줘야 함 - page 랭크에 평가 요소*/}
+        <Photo
+          className={"product-detail"}
+          src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${image}`}
+          alt={productName}
+          style={{ width: "100px" }}
+        />{" "}
       </div>
       <div className="col">
-        <h1 className="name">{productName}</h1>
-        <p className="price">{price}</p>
+        <h3 className="product-detail-name">{productName}</h3>
+        <p className="product-detail-price">{comma(price)}원</p>
       </div>
     </div>
   );
