@@ -32,11 +32,9 @@ AxiosInstance.interceptors.response.use(
       config,
       response: { status, data },
     } = error;
-    if (status === 400 || status === 401) {
+    if (status === 400 || status === 401 || status === 404) {
       const { message } = data.error;
-      return Promise.reject(message);
-    } else if (status === 404) {
-      return Promise.reject(status);
+      return Promise.reject({ message, status });
     }
     return Promise.reject(error);
   }

@@ -21,8 +21,8 @@ const ProductTemplate = () => {
           return nextParam;
         }
       },
-      onError: (err) => {
-        if (err === 404) {
+      onError: (err: any) => {
+        if (err.status === 404) {
           navigate("/notFound");
         }
       },

@@ -26,7 +26,7 @@ const LoginForm = () => {
       setLoginError((prev) => ({
         ...prev,
         isError: true,
-        message: err as string,
+        message: (err as Error).message,
       }));
     }
   };
