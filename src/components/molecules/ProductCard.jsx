@@ -34,7 +34,7 @@ const ProductCard = ({ product, loading }) => {
       <div className="flex mt-[7px] font-bold text-[18px]">
         <div className="text-blue-500 pr-[5px]">톡딜가</div>
         <div className="product-price text-gray-950">
-          {comma(product.price)}원
+          {comma(product.price)}원~
         </div>
       </div>
     </Card>
