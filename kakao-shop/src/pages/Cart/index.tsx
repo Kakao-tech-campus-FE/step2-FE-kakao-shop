@@ -5,13 +5,20 @@ import ItemList from '@components/page/Cart/ItemList';
 import Submit from '@components/page/Cart/Submit';
 import TotalResult from '@components/page/Cart/TotalResult';
 
+import { useCartForm } from '@hooks/page/Cart/useCartForm';
+
 const Cart = () => {
+  const {
+    state: { carts: products, totalPrice },
+    handler: { onIncreaseQuantity, onDecreaseQuantity },
+  } = useCartForm();
+
   return (
     <S.Root>
       <S.Container>
         <Header />
-        <ItemList />
-        <TotalResult />
+        <ItemList products={products} onIncreaseQuantity={onIncreaseQuantity} onDecreaseQuantity={onDecreaseQuantity} />
+        <TotalResult totalPrice={totalPrice} />
         <Submit />
       </S.Container>
     </S.Root>
