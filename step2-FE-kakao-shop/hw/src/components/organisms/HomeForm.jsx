@@ -39,30 +39,3 @@ const HomeForm = () => {
 };
 
 export default HomeForm;
-
-// return (
-//   <div>
-//     <Link to="/">
-//       <Title>Home page</Title>
-//     </Link>
-//     {loggedIn ? (
-//       <Button
-//         onClick={() => {
-//           dispatch(logOut());
-//           navigate("/");
-//         }}
-//       >
-//         로그아웃
-//       </Button>
-//     ) : (
-//       <ul>
-//         <li>
-//           <Link to="/login">Login</Link>
-//         </li>
-//         <li>
-//           <Link to="/signup">Sign up</Link>
-//         </li>
-//       </ul>
-//     )}
-//   </div>
-// );
