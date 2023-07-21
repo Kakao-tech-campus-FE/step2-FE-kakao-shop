@@ -81,7 +81,7 @@ export default function InnerHead() {
           {userEmail ? (
             <div>
               <span className="mr-2 text-sm text-gray-500">{userEmail}님</span>
-              <button className="" onClick={async () => logout()}>
+              <button className="" onClick={logout}>
                 로그아웃
               </button>
             </div>

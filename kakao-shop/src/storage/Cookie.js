@@ -1,4 +1,4 @@
-import { Cookies } from "react-cookie";
+import { Cookies } from 'react-cookie';
 
 const cookies = new Cookies();
 
@@ -11,5 +11,5 @@ export const getCookie = (name) => {
 };
 
 export const removeCookie = (name) => {
-  cookies.remove(name);
+  cookies.remove(name, { path: '/' });
 };
