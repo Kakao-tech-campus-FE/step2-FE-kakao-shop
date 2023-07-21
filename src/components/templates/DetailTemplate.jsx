@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from 'react-query';
 import { useParams } from "react-router-dom";
-import getDetail from "../../api/getDetail"
+import getDetail from "api/getDetail"
 
-import MainContainer from '../atoms/MainContainer'
-import DetailOption from "../organisms/DetailOption";
+import MainContainer from 'components//atoms/MainContainer'
+import DetailOption from "components/organisms/DetailOption";
 import InfoBox from "components/atoms/detail/InfoBox";
 import DetailContainer from "components/atoms/detail/DetailContainer";
 import ImgBox from "components/atoms/detail/ImgBox";
