@@ -135,11 +135,15 @@ const CartList = ({ data }) => {
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount} // 개수 변경
-              />
+              // 모든 옵션의 수량이 0인 경우 CartItem을 렌더링하지 않도록 한다.
+              // item.price !== 0이면 수량이 0이 아닌 경우이다.
+              item.carts.every((option) => option.quantity === 0) !== true && (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onChange={handleOnChangeCount} // 개수 변경
+                />
+              )
             );
           })}
         <div className="h-fit border rounded bg-white mt-8 p-6">

@@ -63,7 +63,6 @@ const CartItem = ({ item, onChange }) => {
                   className="w-fit h-8 mr-3 bg-white border rounded border-neutral-200 "
                   onClick={() => {
                     onChange(cart.id, 0, -cart.quantity * cart.option.price);
-                    window.location.replace("/cart");
                     setOptionAmountById(
                       cart.id,
                       -cart.quantity * cart.option.price
