@@ -35,6 +35,7 @@ const Counter = ({
       <button
         className="flex w-8 h-8 items-center justify-center"
         onClick={handleOnDecrease}
+        disabled={count <= 1}
       >
         <BsDashLg />
       </button>
@@ -44,6 +45,7 @@ const Counter = ({
       <button
         className="flex w-8 h-8 items-center justify-center"
         onClick={handleOnIncrease}
+        disabled={count >= 100}
       >
         <BsPlusLg />
       </button>
