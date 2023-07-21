@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Suspense, lazy } from "react";
+import Loader from "./components/atoms/Loader";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
@@ -8,8 +10,9 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
-import { Suspense, lazy } from "react";
-import Loader from "./components/atoms/Loader";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
 
 // const HomePage = lazy(() => import('./pages/HomePage'));
 
@@ -26,6 +29,9 @@ function App() {
                 {/* 공통 레이아웃 */}
                 <Route element={<MainLayout />}>
                   <Route path="/" element={<HomePage />} />
+                  <Route path="/product/:id" element={<ProductDetailPage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/order" element={<OrderPage />} />
                 </Route>
               </Routes>
             </BrowserRouter>
