@@ -9,7 +9,7 @@ export const useAutoLogout = () => {
   useEffect(() => {
     const logoutTimer = setTimeout(() => {
       dispatch(logoutUser());
-    }, 60000);
+    }, 3600000);
 
     return () => {
       clearTimeout(logoutTimer);

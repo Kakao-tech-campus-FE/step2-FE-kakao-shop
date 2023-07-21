@@ -18,7 +18,7 @@ function GNB() {
     dispatch(logoutUser());
     localStorage.removeItem("token");
     alert("정상적으로 로그아웃 되었습니다.");
-    navigate("/main");
+    navigate("/");
   };
 
   useEffect(() => {

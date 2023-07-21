@@ -24,6 +24,7 @@ const LoginForm = (props) => {
         email: email,
         password: password,
       });
+
       if (response.data.success === true) {
         // 성공적으로 로그인한 경우 메인 페이지로 이동
         dispatch(
@@ -33,15 +34,26 @@ const LoginForm = (props) => {
           })
         );
         navigate("/");
+        // 응답 데이터를 JSON 형식으로 파싱
+        const response = await response.json();
+
+        // 응답에서 ACCESS_TOKEN을 가져와서 로컬 스토리지에 저장
+        if (response.ACCESS_TOKEN) {
+          localStorage.setItem("token", response.ACCESS_TOKEN);
+          console.log(response.ACCESS_TOKEN);
+        }
+
+        // 메인 페이지로 이동
       } else {
         // 로그인 실패 처리
-        console.error("Login failed");
+        console.error("로그인 실패");
       }
     } catch (error) {
       // 오류 처리
       console.error(error);
+
       // 로그인 요청 실패 처리
-      console.error("Login request failed");
+      console.error("로그인 요청이 실패하였습니다.");
     }
   };
 
