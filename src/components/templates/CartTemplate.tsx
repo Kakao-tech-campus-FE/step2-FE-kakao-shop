@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Container from '../atoms/Container';
 import Button from '../atoms/Button';
 import CartItem from '../organisms/CartItem';
@@ -9,11 +10,13 @@ import { UpdateCart } from '../../dto/productDto';
 const CartTemplate = () => {
   const { data: cartProducts } = useGetCartQuery();
   const { mutate: updateCart } = useUpdateCartMutation();
+  const navigate = useNavigate();
 
   const [updatedCartOptions, setUpdatedCartOptions] = useState<UpdateCart[]>([]);
 
   const handleOrderClick = () => {
     updateCart(updatedCartOptions);
+    navigate('/order');
   };
 
   return (
