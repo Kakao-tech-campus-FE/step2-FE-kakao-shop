@@ -53,15 +53,15 @@ const ProductsListTemplate = () => {
 
     return (
       <MainContainer direction={"column"}>
-        
-        {listData && <ProductsList obj={listData} />}
-                
-        {isFetching 
-          ? <ListContainer>
-              {repeat(9).map((e,i) => {return <ProductCardSkeleton key={i}/>})}
-            </ListContainer>
-          : null}
-
+        <ListContainer>
+          {listData && <ProductsList obj={listData} />}
+                  
+          {isFetching 
+            ? <>
+                {repeat(9).map((e,i) => {return <ProductCardSkeleton key={i}/>})}
+              </>
+            : null}
+        </ListContainer>
         {/* 로딩된 페이지 없을 때*/}
         {isError || (listData?.pages[0].length === 0 && !isFetching )
         ? <ErrorFallback errorMessage="페이지를 찾을 수 없습니다." /> : null} 

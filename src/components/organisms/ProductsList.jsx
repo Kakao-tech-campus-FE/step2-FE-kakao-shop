@@ -13,7 +13,7 @@ import ListContainer from '../atoms/productsList/ListContainer';
 const ProductsList = (props) => {
 
   return (
-      <ListContainer>
+      <>
         {
           props.obj.pages.map(( pageData, i ) => (
             pageData?.map((item) => (
@@ -27,7 +27,7 @@ const ProductsList = (props) => {
             ))
           ))
         }
-      </ListContainer>
+      </>
   )
 }
 
