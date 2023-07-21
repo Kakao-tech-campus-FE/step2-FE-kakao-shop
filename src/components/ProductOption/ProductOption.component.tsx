@@ -21,7 +21,7 @@ const ProductOption = () => {
     { enabled: !!productId }
   );
 
-  const onAddCart = () => {
+  const onAddCart = async () => {
     if (order.length === 0) {
       return alert(ERROR.CHECK_OPTION);
     }
@@ -31,15 +31,16 @@ const ProductOption = () => {
       quantity: item.quantity,
     }));
 
-    addProductToCart(carts)
-      .then(() => {
-        alert(PRODUCT.ADD_CART_SUCCESS);
-        resetOrder();
-        navigate(URL.CART);
-      })
-      .catch(() => {
-        alert(ERROR.ADD_CART_FAILED);
-      });
+    try {
+      await addProductToCart(carts);
+    } catch (error) {
+      alert(ERROR.ADD_CART_FAILED);
+      return;
+    }
+
+    alert(PRODUCT.ADD_CART_SUCCESS);
+    resetOrder();
+    navigate(URL.CART);
   };
 
   return (

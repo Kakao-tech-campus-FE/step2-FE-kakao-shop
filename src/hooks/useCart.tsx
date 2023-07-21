@@ -11,7 +11,11 @@ const useCart = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data, isLoading } = useQuery(["cart"], getCart);
+  const { data, isLoading, isFetching } = useQuery(["cart"], getCart);
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: ["cart"] });
+  }, [queryClient]);
 
   useEffect(() => {
     if (data) {
@@ -22,6 +26,7 @@ const useCart = () => {
   const { mutate } = useMutation(updateCart, {
     onMutate: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
+      navigate("/cart/check");
     },
   });
 
@@ -67,10 +72,9 @@ const useCart = () => {
       alert(ERROR.NO_CART);
       return;
     }
-    navigate("/cart/check");
   };
 
-  return { products, isLoading, removeOrder, updateOrder, onOrder };
+  return { products, isLoading, isFetching, removeOrder, updateOrder, onOrder };
 };
 
 export default useCart;

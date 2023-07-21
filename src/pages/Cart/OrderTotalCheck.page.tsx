@@ -1,18 +1,17 @@
 import OrderTotalCheck from "@/components/Cart/Order/OrderTotalCheck.component";
 import GlobalNavbar from "@/components/Navbar/GlobalNavbar.component";
-import { getCart } from "@/remotes/product";
-import { useQuery } from "@tanstack/react-query";
+import useCart from "@/hooks/useCart";
 
 const OrderTotalCheckPage = () => {
-  const { data, isLoading } = useQuery(["cart"], getCart);
+  const { products, isLoading, isFetching } = useCart();
 
   return (
     <>
       <GlobalNavbar isSmall={true} />
       <div className="m-auto max-w-7xl bg-slate-50 p-2">
         <OrderTotalCheck
-          products={data?.data.response.products}
-          isLoading={isLoading}
+          products={products}
+          isLoading={isLoading || isFetching}
         />
       </div>
     </>
