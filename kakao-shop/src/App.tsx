@@ -1,8 +1,8 @@
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+import { Route, Routes, BrowserRouter, Outlet } from 'react-router-dom';
 
 import NotFound from '@pages/404';
 import Error from '@pages/500';
+import Cart from '@pages/Cart';
 import Detail from '@pages/Detail';
 import Home from '@pages/Home';
 import Login from '@pages/Login';
@@ -18,6 +18,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path={'/'} element={<Home />} />
           <Route path={'/detail/:id'} element={<Detail />} />
+          <Route path={'/cart'} element={<Cart />} />
         </Route>
         <Route path={'/signup'} element={<SignUp />} />
         <Route path={'/login'} element={<Login />} />
