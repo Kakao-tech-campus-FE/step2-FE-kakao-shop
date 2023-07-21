@@ -126,7 +126,7 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <main className="pt-1 bg-[#F4F4F4] bg-opacity-70">
+    <main className="pt-2 pb-10 bg-[#F4F4F4] bg-opacity-70">
       <Container className="w-[870px] mx-auto">
         <Box className="h-12 border rounded bg-white text-center">
           <h1 className="font-semibold text-[15px] mt-3">장바구니</h1>
@@ -142,19 +142,23 @@ const CartList = ({ data }) => {
               />
             );
           })}
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
+        <div className="h-fit border rounded bg-white mt-8 p-6">
+          <span className="font-bold text-lg">주문 예상금액</span>
+          <div className="float-right text-lg font-semibold text-blue-500">
+            {comma(totalPrice)}원
+          </div>
         </div>
         <Button
-          className="order-btn"
+          className="h-fit w-full border rounded bg-[#feeb00] mt-4 p-4"
           onClick={() => {
             // navigate to order page
             // 주문 페이지로 이동
             route("/order");
           }}
         >
-          <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
+          <span className="font-semibold text-lg">
+            총 {getTotalCartCountIncludeOptions()}건 주문하기
+          </span>
         </Button>
       </Container>
     </main>

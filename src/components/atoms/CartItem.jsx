@@ -38,14 +38,14 @@ const CartItem = ({ item, onChange }) => {
   }, []);
 
   return (
-    <Box className="border rounded bg-white p-4 my-2">
+    <Box className="border rounded bg-white p-6 my-2">
       <h5 className="font-semibold text-[15px] mb-4">{item.productName}</h5>
       {item.carts.map((cart) => {
         return (
           <div
             //옵션 아이디
             key={cart.id}
-            className="border rounded bg-[#FDFDFD] p-4 my-2"
+            className="border rounded bg-[#FDFDFD] p-6 my-2"
           >
             <div className="mb-4">
               <span>{cart.option.optionName}</span>
@@ -70,7 +70,7 @@ const CartItem = ({ item, onChange }) => {
           </div>
         );
       })}
-      <div className="border rounded bg-[#FAFAFA] p-4 mt-6">
+      <div className="border rounded bg-[#FAFAFA] p-6 mt-6">
         <span className="font-semibold">주문금액</span>
         <span className="float-right font-semibold">
           {comma(totalAmount)}원
