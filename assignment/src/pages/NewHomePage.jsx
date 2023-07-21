@@ -1,5 +1,4 @@
 import React from 'react';
-import MainProductTemplate from '../components/templates/MainProductTemplate';
 import MainTemplate from '../components/templates/MainTemplate';
 
 function NewHomePage() {
