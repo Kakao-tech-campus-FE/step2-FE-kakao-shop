@@ -1,5 +1,8 @@
-import SkeletonElement from "../atoms/SkeletonElement";
+import SkeletonElement from '../atoms/SkeletonElement';
 
+/**
+ * 상품 카드 스켈레톤
+ */
 const ProductCardSkeleton = () => {
   return (
     <div className="product-card-skeleton border-none rounded-md">

@@ -1,24 +1,41 @@
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { getDetail } from "../redux/product/detailSlice";
-import { useDispatch } from "react-redux";
-import Loader from "../components/atoms/Loader";
-import { getProductById } from "../apis/product";
-import { useQuery } from "react-query";
+import { useParams } from 'react-router-dom';
+import Loader from '../components/atoms/Loader';
+import { getProductById } from '../apis/product';
+import { useQuery } from '@tanstack/react-query';
+import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
+import { Suspense } from 'react';
+import ErrorPage from './Error/ErrorPage';
 
+/**
+ * 상품 상세 페이지
+ */
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+  const { status, data, error } = useQuery({
+    queryKey: ['product', id],
+    queryFn: () => getProductById(id),
+    retry: false,
+  });
 
-  const { data, error, isLoading } = useQuery(`product/${id}`, () =>
-    getProductById(id)
+  const product = data?.data?.response;
+
+  if (status === 'loading') {
+    return <Loader />;
+  }
+
+  if (status === 'error') {
+    if (error?.response?.status === 404) {
+      // 등록되지 않은 상품(id) 조회 시
+      return <ErrorPage message="상품 정보를 찾을 수 없습니다." />;
+    }
+    return <ErrorPage message="상품 정보를 불러오는 중 에러가 발생했습니다." />;
+  }
+
+  return (
+    <div className="product-detail-page">
+      <Suspense fallback={<Loader />}>{product && <ProductDetailTemplate product={product} />}</Suspense>
+    </div>
   );
-
-  useEffect(() => {
-    dispatch(getDetail(id));
-  }, [dispatch, id]);
-
-  return <div>{isLoading && <Loader />}</div>;
 };
 
 export default ProductDetailPage;

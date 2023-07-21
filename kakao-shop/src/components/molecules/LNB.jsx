@@ -1,5 +1,3 @@
-import Link from "../atoms/Link";
-
 /**
  * local navigation bar
  * 기능 미구현 상태, 디자인만 구현

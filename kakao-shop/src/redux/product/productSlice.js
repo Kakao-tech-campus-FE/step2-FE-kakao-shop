@@ -1,6 +1,6 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchProducts } from "../../apis/product";
-import _ from "lodash";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { getAllProducts } from '../../apis/product';
+import _ from 'lodash';
 
 const initialState = {
   products: [],
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const productsSlice = createSlice({
-  name: "products",
+  name: 'products',
   initialState,
   // thunk을 쓸 때는 extra 사용
   extraReducers: (builder) => {
@@ -23,10 +23,7 @@ const productsSlice = createSlice({
           state.isEnd = true;
         }
 
-        state.products = _.uniqBy(
-          [...state.products, ...action.payload.response],
-          "id"
-        );
+        state.products = _.uniqBy([...state.products, ...action.payload.response], 'id');
         state.loading = false;
         state.error = action.payload.error;
       })
@@ -37,26 +34,23 @@ const productsSlice = createSlice({
   },
 });
 
-export const getProducts = createAsyncThunk(
-  "products/getProducts",
-  async (page) => {
-    // 비동기 콜백함수
+export const getProducts = createAsyncThunk('products/getProducts', async (page) => {
+  // 비동기 콜백함수
 
-    try {
-      const response = await fetchProducts(page);
-      return response.data; // action.payload에 들어간다
-    } catch (error) {
-      if (!error.response) {
-        throw error;
-      }
-      if (error.response.status === 408) {
-        return {
-          error: "연결 시간이 초과되었습니다. 네트워크 상태를 확인해주세요.",
-        };
-      }
-      return { error: error.response.data };
+  try {
+    const response = await getAllProducts(page);
+    return response.data; // action.payload에 들어간다
+  } catch (error) {
+    if (!error.response) {
+      throw error;
     }
+    if (error.response.status === 408) {
+      return {
+        error: '연결 시간이 초과되었습니다. 네트워크 상태를 확인해주세요.',
+      };
+    }
+    return { error: error.response.data };
   }
-);
+});
 
 export default productsSlice.reducer;
