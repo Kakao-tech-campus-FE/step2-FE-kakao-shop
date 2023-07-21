@@ -10,7 +10,7 @@ const Photo = ({ src, alt }) => {
     setIsHovered(false);
   };
 
-  src = process.env.REACT_APP_API_URL + src;
+  const photoSrc = process.env.REACT_APP_API_URL + src;
 
   return (
     <ImageContainer
@@ -18,8 +18,8 @@ const Photo = ({ src, alt }) => {
       onMouseLeave={handleMouseLeave}
     >
       <picture>
-        <source srcSet={src} />
-        <Image src={src} alt={alt} isHovered={isHovered} />
+        <source srcSet={photoSrc} className="h-48 w-full" />
+        <Image src={photoSrc} alt={alt} isHovered={isHovered} />
       </picture>
     </ImageContainer>
   );
@@ -35,9 +35,6 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   object-fit: fill;
-  height: 12rem;
-  width: 100%;
   transition: transform 0.5s ease-in-out;
-
   ${(props) => props.isHovered && "transform: scale(1.1);"}
 `;

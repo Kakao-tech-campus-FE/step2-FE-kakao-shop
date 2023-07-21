@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from "react";
+import styled from "styled-components";
 
 const colors = [
-  { value: 'silver', label: 'Sliver' },
-  { value: 'blue', label: 'Blue' },
-  { value: 'grey', label: 'Grey' },
+  { value: "silver", label: "Sliver" },
+  { value: "blue", label: "Blue" },
+  { value: "grey", label: "Grey" },
 ];
 
 const RadioBtn = () => {
-  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedColor, setSelectedColor] = useState("");
 
   const handleColorChange = (event) => {
     setSelectedColor(event.target.value);
@@ -16,7 +16,6 @@ const RadioBtn = () => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log('You have submitted:', selectedColor);
   };
 
   return (
@@ -26,7 +25,10 @@ const RadioBtn = () => {
         <div className="col">
           <form onSubmit={handleFormSubmit}>
             {colors.map((color) => (
-              <RadioInput key={color.value} checked={selectedColor === color.value}>
+              <RadioInput
+                key={color.value}
+                checked={selectedColor === color.value}
+              >
                 <input
                   type="radio"
                   name="radio-button"
@@ -66,7 +68,7 @@ const RadioInput = styled.label`
   }
 
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     left: 7px;
     top: 0;
@@ -78,17 +80,17 @@ const RadioInput = styled.label`
   }
 
   &::after {
-    content: '';
+    content: "";
     width: 12px;
     height: 12px;
-    background: ${(props) => (props.checked ? '#f87da9' : 'transparent')};
+    background: ${(props) => (props.checked ? "#f87da9" : "transparent")};
     position: absolute;
     top: 5px;
     left: 12px;
     border-radius: 100%;
     transition: all 0.2s ease;
-    transform: scale(${(props) => (props.checked ? '1' : '0')});
-    opacity: ${(props) => (props.checked ? '1' : '0')};
+    transform: scale(${(props) => (props.checked ? "1" : "0")});
+    opacity: ${(props) => (props.checked ? "1" : "0")};
   }
 `;
 
