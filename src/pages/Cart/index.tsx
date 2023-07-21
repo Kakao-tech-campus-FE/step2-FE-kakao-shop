@@ -12,7 +12,8 @@ const Cart = () => {
 export default Cart;
 
 const Background = styled.div`
-  min-height: calc(100vh - 60px);
+  min-height: 100vh;
   min-width: 1280px;
   background-color: #f4f4f4;
+  overflow: auto;
 `;

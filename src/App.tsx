@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "@pages/Register";
 import Layout from "@pages/Layout";
 import NotFound from "@pages/NotFound";
+import Cart from "@pages/Cart";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<Layout />}>
             <Route path="/" element={<Main />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path={"/product/:id"} element={<Detail />} />
+            <Route path={"/order"} element={<Order />} />
           </Route>
           <Route path="/*" element={<NotFound />} />
         </Routes>
