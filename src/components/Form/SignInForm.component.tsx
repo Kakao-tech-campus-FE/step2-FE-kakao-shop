@@ -2,8 +2,6 @@ import { FC, useState } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
 import { SIGN } from "@/assets/sign.ko";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { setForm } from "@/store/signSlice";
 import { isPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
 
@@ -18,24 +16,28 @@ const resetWarning = {
 
 interface SignInProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  data: {
+    email: string;
+    password: string;
+  };
+  setForm: (action: { name: "email" | "password"; value: string }) => void;
 }
 
 /**
  * SignUpForm component
  * @param {function} onSubmit - form이 submit될 때 실행되는 함수
+ * @param {object} data - form의 input value를 담고 있는 객체
+ * @param {function} setForm - form의 input value를 변경하는 함수
  * @returns {JSX.Element} - SignUpForm component
  * @constructor
  */
-const SignInForm: FC<SignInProps> = ({ onSubmit }) => {
+const SignInForm: FC<SignInProps> = ({ onSubmit, data, setForm }) => {
   const [isWarning, setWarning] = useState({
     email: false,
     password: false,
   });
 
-  const { data } = useAppSelector((state) => state.signSlice);
   const { email, password } = data;
-
-  const dispatch = useAppDispatch();
 
   const onSubmitPrevent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -58,9 +60,7 @@ const SignInForm: FC<SignInProps> = ({ onSubmit }) => {
         placeholder={EMAIL}
         type="text"
         value={email}
-        onChange={(e) =>
-          dispatch(setForm({ name: "email", value: e.target.value }))
-        }
+        onChange={(e) => setForm({ name: "email", value: e.target.value })}
         isWrong={isWarning.email}
         wrongMessage={EMAIL_ERROR}
       />
@@ -68,9 +68,7 @@ const SignInForm: FC<SignInProps> = ({ onSubmit }) => {
         placeholder={PASSWORD}
         type="password"
         value={password}
-        onChange={(e) =>
-          dispatch(setForm({ name: "password", value: e.target.value }))
-        }
+        onChange={(e) => setForm({ name: "password", value: e.target.value })}
         isWrong={isWarning.password}
         wrongMessage={PASSWORD_ERROR}
         maxLength={20}

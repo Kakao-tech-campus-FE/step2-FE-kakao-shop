@@ -1,30 +1,37 @@
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { RootState } from "@/store";
-import { signIn } from "@/store/signAction";
 import SignInForm from "@/components/Form/SignInForm.component";
 import { Link, useNavigate } from "react-router-dom";
 import { SIGN } from "@/assets/sign.ko";
+import { useReducer, useState } from "react";
+import { signIn } from "@/remotes/sign";
 
 const { SIGN_UP, NO_ACCOUNT } = SIGN;
 
-const SignInPage = () => {
-  const {
-    error,
-    data: { email, password },
-  } = useAppSelector((state: RootState) => state.signSlice);
+interface setFormAction {
+  name: keyof typeof initState;
+  value: string;
+}
 
-  const dispatch = useAppDispatch();
+const initState = {
+  email: "",
+  password: "",
+};
+
+const formDataReducer = (state: typeof initState, action: setFormAction) => {
+  return {
+    ...state,
+    [action.name]: action.value,
+  };
+};
+
+const SignInPage = () => {
   const navigate = useNavigate();
+  const [signInData, setForm] = useReducer(formDataReducer, initState);
+  const [error, setError] = useState("");
 
   const onSubmit = async () => {
-    const checkSignUpResult = await dispatch(
-      signIn({
-        email: email,
-        password: password,
-      })
-    );
-
-    if (checkSignUpResult.meta.requestStatus === "rejected") {
+    const loginResult = await signIn(signInData);
+    if (loginResult.data.error) {
+      setError(loginResult.data.error.message);
       return;
     }
 
@@ -33,7 +40,7 @@ const SignInPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen">
-      <SignInForm onSubmit={onSubmit} />
+      <SignInForm onSubmit={onSubmit} data={signInData} setForm={setForm} />
       {error && <p className="text-red-500 text-sm my-2">{error}</p>}
       <div className="mt-4">
         {NO_ACCOUNT}{" "}

@@ -33,10 +33,15 @@ const ProductOptionOrderItem: FC<ProductOptionOrderItemProps> = ({
   };
 
   const countDown = () => {
+    if (item.quantity <= 0) {
+      return;
+    }
+
     if (item.quantity === 1) {
       removeOrder(item.id);
       return;
     }
+
     updateOrder({
       ...item,
       quantity: item.quantity - 1,

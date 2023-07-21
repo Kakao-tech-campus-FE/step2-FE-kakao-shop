@@ -10,7 +10,7 @@ const CartItem = () => {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation(updateCart, {
-    onSuccess() {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
     },
   });
@@ -31,31 +31,26 @@ const CartItem = () => {
 
   return (
     <div className="w-full p-4 flex flex-col gap-4">
-      {products.map((product) => {
-        return (
-          <Fragment key={product.id}>
-            <Txt typograph="h6">{product.productName}</Txt>
-            <div className="border-2 rounded-md divide-y-2">
-              {product.carts.map((cart) => {
-                const cartWithCount = {
+      {products.map((product) => (
+        <Fragment key={product.id}>
+          <Txt typograph="h6">{product.productName}</Txt>
+          <div className="border-2 rounded-md divide-y-2">
+            {product.carts.map((cart) => (
+              <ProductOptionOrderItem
+                key={cart.id}
+                item={{
                   id: cart.id,
                   optionName: cart.option.optionName,
                   price: cart.option.price,
                   quantity: cart.quantity,
-                };
-                return (
-                  <ProductOptionOrderItem
-                    key={cart.id}
-                    item={cartWithCount}
-                    removeOrder={removeOrder}
-                    updateOrder={updateOrder}
-                  />
-                );
-              })}
-            </div>
-          </Fragment>
-        );
-      })}
+                }}
+                removeOrder={removeOrder}
+                updateOrder={updateOrder}
+              />
+            ))}
+          </div>
+        </Fragment>
+      ))}
     </div>
   );
 };

@@ -4,7 +4,6 @@ import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
 import { SIGN } from "@/assets/sign.ko";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { RootState } from "@/store";
-import { setForm } from "@/store/signSlice";
 import { isPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
 
@@ -20,25 +19,34 @@ const resetWarning = {
 
 interface SignUpProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  data: {
+    email: string;
+    password: string;
+    passwordConfirm: string;
+    username: string;
+  };
+  setForm: (action: {
+    name: "email" | "password" | "passwordConfirm" | "username";
+    value: string;
+  }) => void;
 }
 
 /**
  * SignUpForm component
  * @param {function} onSubmit - form이 submit될 때 실행되는 함수
+ * @param {object} data - form의 input value를 담고 있는 객체
+ * @param {function} setForm - form의 input value를 변경하는 함수
  * @returns {JSX.Element} - SignUpForm component
  * @constructor
  */
-const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
+const SignUpForm: FC<SignUpProps> = ({ onSubmit, data, setForm }) => {
   const [isWarning, setWarning] = useState({
     email: false,
     password: false,
     passwordConfirm: false,
   });
 
-  const { data } = useAppSelector((state: RootState) => state.signSlice);
   const { email, username, password, passwordConfirm } = data;
-
-  const dispatch = useAppDispatch();
 
   const onSubmitPrevent = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,9 +73,7 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         placeholder={EMAIL}
         type="text"
         value={email}
-        onChange={(e) =>
-          dispatch(setForm({ name: "email", value: e.target.value }))
-        }
+        onChange={(e) => setForm({ name: "email", value: e.target.value })}
         isWrong={isWarning.email}
         wrongMessage={EMAIL_ERROR}
       />
@@ -76,18 +82,14 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         placeholder={USERNAME}
         type="text"
         value={username}
-        onChange={(e) =>
-          dispatch(setForm({ name: "username", value: e.target.value }))
-        }
+        onChange={(e) => setForm({ name: "username", value: e.target.value })}
       />
       <InputFormItem
         label={PASSWORD}
         placeholder={PASSWORD}
         type="password"
         value={password}
-        onChange={(e) =>
-          dispatch(setForm({ name: "password", value: e.target.value }))
-        }
+        onChange={(e) => setForm({ name: "password", value: e.target.value })}
         isWrong={isWarning.password}
         wrongMessage={PASSWORD_ERROR}
       />
@@ -97,7 +99,7 @@ const SignUpForm: FC<SignUpProps> = ({ onSubmit }) => {
         type="password"
         value={passwordConfirm ?? ""}
         onChange={(e) =>
-          dispatch(setForm({ name: "passwordConfirm", value: e.target.value }))
+          setForm({ name: "passwordConfirm", value: e.target.value })
         }
         isWrong={isWarning.passwordConfirm}
         wrongMessage={PASSWORD_CONFIRM_ERROR}

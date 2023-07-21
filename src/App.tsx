@@ -13,6 +13,7 @@ const App = () => {
       removeAuth();
     }
 
+    // Remove loading spinner in index.html
     document.querySelector(".lds-ring")?.remove();
   }, []);
 

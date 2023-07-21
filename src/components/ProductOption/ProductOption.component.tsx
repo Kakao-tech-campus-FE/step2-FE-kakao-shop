@@ -51,13 +51,13 @@ const ProductOption = () => {
       <div className="flex gap-2">
         <Link
           className="bg-black hover:bg-gray-900 text-white text-center rounded-lg flex-1 py-4"
-          onClick={() => onAddCart()}
+          onClick={onAddCart}
           to={URL.CART}
         >
           {PRODUCT.ADD_CART}
         </Link>
         <Link
-          onClick={() => onAddCart()}
+          onClick={onAddCart}
           to={"#"}
           className="text-center bg-blue-500 hover:bg-blue-600 text-white rounded-lg flex-[2_0_0] py-4"
         >

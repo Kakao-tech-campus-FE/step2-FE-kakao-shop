@@ -4,10 +4,10 @@ import {
   ProductResDto,
   ProductsResDto,
 } from "@/dtos/response.dto";
-import { authAxios, commonAxios } from "@/functions/axios";
+import { https } from "@/functions/axios";
 
 export const getProductDetailById = async (id: number) => {
-  return commonAxios.get<ProductResDto>(`/products/${id}`);
+  return https.get<ProductResDto>(`/products/${id}`);
 };
 
 export const getProducts = async ({
@@ -15,7 +15,7 @@ export const getProducts = async ({
 }: {
   pageParam?: number;
 }) => {
-  const { data } = await commonAxios.get<ProductsResDto>(
+  const { data } = await https.get<ProductsResDto>(
     `/products?page=${pageParam}`
   );
 
@@ -31,11 +31,11 @@ export interface ProductOrderReq {
 }
 
 export const addProductToCart = async (orders: ProductOrderReq[]) => {
-  return authAxios.post<DefaultResDto>("/carts/add", orders);
+  return https.post<DefaultResDto>("/carts/add", orders);
 };
 
 export const getCart = async () => {
-  return authAxios.get<CartsResDto>("/carts");
+  return https.get<CartsResDto>("/carts");
 };
 
 export interface UpdateCardReq {
@@ -44,5 +44,5 @@ export interface UpdateCardReq {
 }
 
 export const updateCart = async (orders: UpdateCardReq[]) => {
-  return authAxios.post<CartsResDto>("/carts/update", orders);
+  return https.post<CartsResDto>("/carts/update", orders);
 };
