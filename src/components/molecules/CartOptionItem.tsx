@@ -1,20 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Counter from '../atoms/Counter';
 import LightButton from '../atoms/LightButton';
-import { CartInfo } from '../../dto/productDto';
+import { CartInfo, UpdateCart } from '../../dto/productDto';
 import { comma } from '../../utils/convert';
 
 interface CartOptionItemProps {
   cart: CartInfo;
+  setUpdatedCartOptions: React.Dispatch<React.SetStateAction<UpdateCart[]>>;
 }
 
-const CartOptionItem = ({ cart }: CartOptionItemProps) => {
+const CartOptionItem = ({ cart, setUpdatedCartOptions }: CartOptionItemProps) => {
+  const [updatedQuantity, setUpdatedQuantity] = useState(cart.quantity);
+
   const handleDecrementClick = (id: number) => {
-    // TODO
+    setUpdatedCartOptions((prevOptions) => {
+      if (prevOptions.length === 0) {
+        return [{ cartId: id, quantity: cart.quantity - 1 }];
+      }
+
+      return prevOptions.map((option) => {
+        if (option.cartId === id) {
+          return { ...option, quantity: option.quantity - 1 };
+        }
+        return option;
+      });
+    });
+    setUpdatedQuantity((prevQuantity) => prevQuantity - 1);
   };
 
   const handleIncrementClick = (id: number) => {
-    // TODO
+    setUpdatedCartOptions((prevOptions) => {
+      if (prevOptions.length === 0) {
+        return [{ cartId: id, quantity: cart.quantity + 1 }];
+      }
+
+      return prevOptions.map((option) => {
+        if (option.cartId === id) {
+          return { ...option, quantity: option.quantity + 1 };
+        }
+        return option;
+      });
+    });
+    setUpdatedQuantity((prevQuantity) => prevQuantity + 1);
   };
 
   return (
@@ -30,12 +57,12 @@ const CartOptionItem = ({ cart }: CartOptionItemProps) => {
             삭제
           </LightButton>
           <Counter
-            quantity={cart.quantity}
-            onDecrementClick={() => handleDecrementClick(cart.option.id)}
-            onIncrementClick={() => handleIncrementClick(cart.option.id)}
+            quantity={updatedQuantity}
+            onDecrementClick={() => handleDecrementClick(cart.id)}
+            onIncrementClick={() => handleIncrementClick(cart.id)}
           />
         </div>
-        <strong>{comma(cart.price)}원</strong>
+        <strong>{comma(cart.option.price * updatedQuantity)}원</strong>
       </div>
     </div>
   );

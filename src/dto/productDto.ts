@@ -44,3 +44,8 @@ export interface AddCart {
   optionId: number;
   quantity: number;
 }
+
+export interface UpdateCart {
+  cartId: number;
+  quantity: number;
+}

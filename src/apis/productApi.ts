@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
-import { AddCart, Cart } from '../dto/productDto';
+import { AddCart, Cart, UpdateCart } from '../dto/productDto';
 
 const useGetProductsQuery = () => {
   const MAX_PAGE = 1;
@@ -58,4 +58,10 @@ const useAddCartMutation = () => {
   return useMutation({ mutationFn: fetcher });
 };
 
-export { useGetProductsQuery, useGetProductQuery, useGetCartQuery, useAddCartMutation };
+const useUpdateCartMutation = () => {
+  const fetcher = (cartOptions: UpdateCart[]) => axios.post(`/carts/update`, cartOptions);
+
+  return useMutation({ mutationFn: fetcher });
+};
+
+export { useGetProductsQuery, useGetProductQuery, useGetCartQuery, useAddCartMutation, useUpdateCartMutation };

@@ -26,6 +26,7 @@ const Counter = ({ quantity, onDecrementClick, onIncrementClick }: CounterProps)
         className='text-md md:text-basecursor-default flex w-9 items-center border-y bg-white text-center font-semibold text-gray-700  outline-none hover:text-black focus:text-black  focus:outline-none'
         name='custom-input-number'
         value={quantity}
+        readOnly
       />
       <button
         type='button'
