@@ -1,4 +1,4 @@
-import { CartProductData, CartedOptionData, ProductOptionData } from '@api/dto';
+import { CartProductData, CartedOptionData } from '@api/dto';
 import Counter from '@components/atoms/Counter';
 import { Card } from '@mui/material';
 import comma from '@utils/commaUtils';
