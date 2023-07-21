@@ -8,6 +8,7 @@ import Error from '../atoms/Error';
 import { updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
 import { useMutation } from '@tanstack/react-query';
+import { BsCart2 } from 'react-icons/bs';
 
 const CartList = ({ data }) => {
   const navigate = useNavigate();
@@ -99,38 +100,53 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <Container className="cart-list mx-auto max-w-4xl">
+    <Container className="cart mx-auto max-w-4xl">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
         <h1>장바구니</h1>
       </div>
-      <div className="cart-item-list">
-        {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            if (item.carts.length === 0) return null;
-            return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} onDelete={handleOnDelete} />;
-          })}
-      </div>
-      <div className="flex justify-between font-bold text-lg bg-white p-4 mb-1 border border-solid border-gray-200">
-        <span>주문 예상금액</span>
-        <span className=" text-kakao-blue text-xl">{`${comma(totalPrice)}원`} </span>
-      </div>
-      <Button
-        color="kakao"
-        className="order-btn"
-        onClick={() => {
-          mutate(updatePayload, {
-            onSuccess: () => {
-              navigate('/order');
-            },
-            onError: () => {
-              return <Error message="결제처리 중 에러가 발생했습니다." />;
-            },
-          });
-        }}
-      >
-        <span>총 {getTotalCartCountIncludingOptions()}건 주문하기</span>
-      </Button>
+      {totalPrice === 0 ? (
+        <div className="cart-empty h-full py-40 text-center bg-white">
+          <BsCart2 size="50" color="gray" className="mx-auto" />
+          <div className="text-lg mt-4">장바구니에 담긴 상품이 없습니다.</div>
+          <button className="mt-5 bg-gray-50 px-5 py-2 rounded-sm border mr-3" onClick={() => navigate(-1)}>
+            이전 화면
+          </button>
+          <button className="mt-5 bg-black text-white px-5 py-2 rounded-sm border" onClick={() => navigate('/')}>
+            쇼핑하기 홈
+          </button>
+        </div>
+      ) : (
+        <div className="cart-list">
+          <div className="cart-item-list">
+            {/* 상품별 장바구니 */}
+            {Array.isArray(cartItems) &&
+              cartItems.map((item) => {
+                if (item.carts.length === 0) return null;
+                return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} onDelete={handleOnDelete} />;
+              })}
+          </div>
+          <div className="flex justify-between font-bold text-lg bg-white p-4 mb-1 border border-solid border-gray-200">
+            <span>주문 예상금액</span>
+            <span className=" text-kakao-blue text-xl">{`${comma(totalPrice)}원`} </span>
+          </div>
+          <Button
+            color="kakao"
+            className="order-btn"
+            onClick={() => {
+              mutate(updatePayload, {
+                onSuccess: () => {
+                  navigate('/order');
+                },
+                onError: () => {
+                  return <Error message="결제처리 중 에러가 발생했습니다." />;
+                },
+              });
+            }}
+          >
+            <span>총 {getTotalCartCountIncludingOptions()}건 주문하기</span>
+          </Button>
+        </div>
+      )}
     </Container>
   );
 };
