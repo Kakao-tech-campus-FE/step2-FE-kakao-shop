@@ -10,48 +10,64 @@ import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useSelector } from 'react-redux';
 import addToCart from 'api/addToCart'
 import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
-import instance from 'api/instance'
 
 const DetailOption = (props) => {
   const initialList = props.options.map((item) => { 
     return {id:item.id, quantity: 0, optionName: item.optionName, price: item.price} 
   })
 
-  const [quantity, setQuantity] = useState(initialList)
-  const [open, setOpen] = useState(false)
+  const [selected, setSelected] = useState([])
+  const [open, setOpen] = useState(true)
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalQuantity, setTotalQuantity] = useState(0)
+  const loginState = useSelector((state) => state.login)
 
   const selectOption = (id) => {
-    setOpen(prev => false)
-    const newList = quantity.map((obj) => (
-      obj.id === id && (obj.quantity === 0 || obj.quantity === NaN)
-      ? {...obj, quantity: 1}
-      : {...obj} 
-    ))
-    setQuantity(prev => newList)
-  }
-
-  const changeQuantity = (id, newQuntity) => {
-    if (newQuntity === 0 || Number.isNaN(newQuntity)) {
+    if (!loginState.islogin) {
+      alert("로그인 해주세요")
       return
     }
-    if (newQuntity === -1) {
-      newQuntity = 0
+    setOpen(prev => false)
+
+    for (const item of selected) {
+      if (item.id === id && item.quantity > 0) {
+        console.log("이미 선택된 옵션입니다.")
+        return
+      }
     }
-    const newList = quantity.map((obj) => (
-      obj.id === id
-      ? {...obj, quantity: newQuntity}
-      : {...obj} 
-    ))
-    setQuantity(prev => newList)
+    // 추가일때 : initialList 에서 정보 찾아와서 넣기
+    for (const item of initialList) {
+      if (item.id === id) {
+        setSelected(prev => [...prev, { ...item, quantity: 1 }])
+        return
+      }
+    }
   }
 
-  useEffect(()=>{
-    console.log(quantity)
+  const changeQuantity = (id, newQuantity) => {
+ 
+    if (newQuantity === 0 || Number.isNaN(newQuantity)) {return}
+    if (newQuantity === -1) {
+      newQuantity = 0
+    }
+
+    const newSelected = [...selected]
+
+    // 변경일때 : selected 에서 찾아서 수량 바꾸기
+    for (let i=0; i < selected.length; i++) {
+      if (selected[i].id === id) {
+        newSelected[i] = { ...selected[i], quantity: newQuantity }
+        setSelected(prev => newSelected)
+        return
+      }
+    }
+  }
+
+  useEffect( () => {
+    console.log(selected)
     let p = 0;
-    let q = 0
-    for (const item of quantity) {
+    let q = 0;
+    for (const item of selected) {
       if (item.quantity > 0) {
         p += item.quantity * item.price
         q += item.quantity
@@ -59,24 +75,28 @@ const DetailOption = (props) => {
     }
     setTotalPrice(prev => p)
     setTotalQuantity(prev => q)
-  }, [quantity])
+  }, [selected])
 
-  const loginState = useSelector((state) => state.login)
 
   const submitHandler = () => {
+    if (!loginState.islogin) {
+      alert("로그인 해주세요")
+      return
+    }
     if (totalQuantity === 0) {
       alert("옵션을 선택해주세요")
       return
     }
     
-    // 저장
-
-    if (!loginState.islogin) {
-      alert("로그인 해주세요")
-      return
-    }
+    const newList = selected.map((item) => (
+      {optionId: item.id, quantity: item.quantity}
+    ))
     
-    addToCart(quantity)
+    addToCart(newList)
+    .then((res)=> {
+      setSelected(prev => [])
+      console.log("장바구니에 상품을 담았습니다")
+    })
   }
 
   return (
@@ -107,7 +127,7 @@ const DetailOption = (props) => {
         
       </OptionListBox> 
 
-      {quantity.map((item) => {
+      {selected.map((item) => {
         if (item.quantity > 0) {
           return (
             <SelectedItemBox>
