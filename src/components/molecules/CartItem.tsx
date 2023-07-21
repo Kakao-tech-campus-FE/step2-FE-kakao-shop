@@ -17,19 +17,17 @@ const CartItem = ({ item, onChange }: CartItemProps) => {
         <Card>
           <div>
             {/** 선택된 옵션들 나열? */}
-            {cart.option.map((cartedOption: ProductOptionData) => (
-              <span>{cartedOption.optionName}</span>
-            ))}
+            <span>{cart.option.optionName}</span>
           </div>
           <div>
             <Counter
               value={cart.quantity}
               onIncrease={(count) => {
                 // id, 변경된 수량, 해당 상품 가격
-                onChange(cart.id, count, cart.option[cart.id].price);
+                onChange(cart.id, count, cart.option.price);
               }}
               onDecrease={(count) => {
-                onChange(cart.id, count, -cart.option[cart.id].price);
+                onChange(cart.id, count, -cart.option.price);
               }}
             />
           </div>
