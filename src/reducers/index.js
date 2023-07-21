@@ -1,16 +1,18 @@
 import { combineReducers } from "redux";
 import { loginSlice } from "./loginSlice";
 import { persistReducer } from "redux-persist";
-import storageSession from "redux-persist/lib/storage/session";
+import storage from "redux-persist/lib/storage";
+import { toastSlice } from "./toastSlice";
 
 const persistConfig = {
   key: "root",
-  storage: storageSession,
+  storage,
   whitelist: ["login"],
 };
 
 const rootReducer = combineReducers({
   login: loginSlice.reducer,
+  toast: toastSlice.reducer,
 });
 
 export default persistReducer(persistConfig, rootReducer);
