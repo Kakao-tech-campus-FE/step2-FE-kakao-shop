@@ -5,12 +5,8 @@ import { instance } from "./index";
  * @param {object} payload
  */
 export const addCart = async (payload) => {
-    const token =localStorage.getItem("token")
-    return await instance.post ("/carts/add", payload, {
-        headers: {
-            Authorization: `Bearer ${token}`, 
-        },
-    });
+    // const token =localStorage.getItem("token");
+    return await instance.post ("/carts/add", payload);
 };
 
 export const getCart = () => {

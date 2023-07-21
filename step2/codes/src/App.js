@@ -30,11 +30,11 @@ function App() {
                     {/*단독 레이아웃*/}
                     <Route path="/login" element={<LoginPage />}></Route>
                     <Route path="/signup" element={<RegisterPage />}></Route>
-                    <Route path="/cart" element={<CartPage />}></Route>
                     {/*공통 레이아웃: GNB, FOOTER*/}
                     <Route element={<MainLayout />}> {/* 레이아웃은 별도의 경로를 지정하지 않음 */}
                         <Route path="/" element={<HomePage />}></Route>
                         <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+                        <Route path="/cart" element={<CartPage />}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

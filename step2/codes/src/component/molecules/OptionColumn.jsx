@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useMutation } from "react-query";
 import { addCart } from "../../services/Cart";
 import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
@@ -42,16 +41,16 @@ const OptionColumn = ({ product }) => {
         );
     }};
         
-        const handleOnChange = (count, optionId) => {
-            setSelectedOptions((prev) => {
-                return prev.map((el) => {
-                    if (el.optionId === optionId) {
-                        return {
-                            ...el,
-                            quantity: count,
-                        };  
-                    }
-                return el;
+    const handleOnChange = (count, option) => {
+        setSelectedOptions((prev) => {
+            return prev.map((el) => {
+                if (el.optionId === option.optionId) {
+                    return {
+                        ...el,
+                        quantity: count,
+                    };  
+                }
+            return el;
             });
         });
     }
@@ -63,13 +62,13 @@ const OptionColumn = ({ product }) => {
         }
     });
 
-
     const addCartReq = async () => {
         if (email) {
             await addCart(addCartArr)
                 .then(response => {
-                    alert("장바구니에 담았습니다.")})
-                .catch(err => {
+                    alert("장바구니에 담았습니다.")
+                    navigate("/cart")
+                }).catch(err => {
                     alert("장바구니 담기에 실패했습니다.")});
         } else {
             alert("로그인 하세요");
@@ -85,13 +84,14 @@ const OptionColumn = ({ product }) => {
         {/* 담긴 옵션이 표기 */}
         <div className="mb-6">
             {selectedOptions.map((option) => (
-                <ol className = "mt-8 border border-solid p-2 bg-stone-100" key = {`selected ${option.optionId}`}>
+                <ol className = "mt-8 border border-solid p-2 bg-stone-100" key = {option.optionId}>
                     <li className="selected-option">
                         <span className="name">{option.name}</span>
                         <span className="price">{comma(option.price)}원</span>
                         <Counter
-                            quantity = {option.quantity}
-                            optionId = {option.optionId}
+                            // quantity = {option.quantity}
+                            // optionId = {option.optionId}
+                            option={option}
                             onIncrease={handleOnChange}
                             onDecrease={handleOnChange}
                         />
@@ -100,7 +100,7 @@ const OptionColumn = ({ product }) => {
             ))}
         </div>
         <hr/>
-        <div className="flex space-x-32 mb-8">
+        <div className="flex place-content-between mb-8">
             <span className="text-lg">총 수량: {" "} {
                 comma(selectedOptions.reduce((arr, cur) => {
                     return arr+cur.quantity;
@@ -117,7 +117,7 @@ const OptionColumn = ({ product }) => {
         </div>
         <div className="flex align-center m-auto w-80 space-x-36">
             {/* 장바구니 담기 버튼 */}
-            <Button className="w-12" onClick= {addCartReq}>
+            <Button className="w-12" onClick={addCartReq}>
                 <Photo className="w-12" src="/cart.png" />
             </Button>
             <Button className="w-40 h-16 text-xl text-center rounded bg-#ffeb00" >구매하기</Button>

@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom"
 import "../../styles/atoms/Card.css"
 
-const Card = ({ to, children }) => {
+const Card = ({ className, to, children }) => {
     return (
-        <Link className="card" to={to}>
-            {children}
-        </Link>
+        <div className={className}>
+            <Link className="card" to={to}>
+                {children}
+            </Link>
+        </div>
     )
 }
 

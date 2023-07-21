@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/Cart";
 
-
 const CartList = ({ data }) => {
     const route = useNavigate();
     const [cartItems, setCartItems] = useState([]);
@@ -45,7 +44,6 @@ const CartList = ({ data }) => {
      * @param {number} price : 옵션 가격
      */
     const handleOnChangeCount = (optionId, quantity, price ) => {
-
         setUpdatePayload((prev) => {
             const isExist = prev.find((item) => item.cartID===optionId);
             if (isExist) {
@@ -83,9 +81,9 @@ const CartList = ({ data }) => {
     };
 
     return (
-        <Container className="cart-list">
-            <Box><h1>장바구니</h1></Box>
-            <Card>
+        <Container className="w-1/2 mx-auto mb-20">
+            <Box className="text-lg font-bold border-x border-t flex items-center justify-center h-18 mt-1">장바구니</Box>
+            <Card className="mb-4">
                 {/* 상품별 장바구니 */}
                 {Array.isArray(cartItems) &&
                     cartItems.map((item) => {
@@ -98,18 +96,16 @@ const CartList = ({ data }) => {
                         )
                     })}
             </Card>
-            <Card>
-                <div className="row">
-                    <span className="expect">주문 예상금액</span>
-                    <div className="sum-price">{comma(totalPrice)}원</div>
+            <Card className="border">
+                <div className="flex place-content-between p-4">
+                    <span className="text-xl font-bold">주문 예상금액</span>
+                    <div className="text-xl font-bold text-sky-600">{comma(totalPrice)}원</div>
                 </div>
             </Card>
-            <Button className="order-btn"
+            <Button className="order-btn w-full h-14 bg-#ffeb00"
                 onClick={() => {
                     //update cart api 장바구니 정보 수정 api
                     //post
-                    //1. ㅈㄴ체 장가
-
                     mutate(updatePayload, {
                         onSuccess: (data) => {
                             //navicate to order page 주문 페이지이동
@@ -122,7 +118,7 @@ const CartList = ({ data }) => {
 
                 }}    
             >
-                <span>총 {cartItems ? getTotalCartCountIncludeOptions() : 0} 건 주문하기</span>
+                <div className=" text-center">총 {cartItems ? getTotalCartCountIncludeOptions() : 0} 건 주문하기</div>
             </Button>
         </Container>
     )

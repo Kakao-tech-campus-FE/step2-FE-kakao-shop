@@ -7,9 +7,10 @@ import { getCart } from "../services/Cart";
 // 장바구니 페이지
 const CartPage = () => {
     const { data } = useQuery("cart", getCart);
+    // console.log(data);
     
     return (
-        <Suspense fallback={<Loader/>}>
+        <Suspense fallback={<Loader />}>
             {/* 렌더링이 되기 전, fallback 부분이 표기 */}
             <CartList data={data} /> 
         </Suspense>

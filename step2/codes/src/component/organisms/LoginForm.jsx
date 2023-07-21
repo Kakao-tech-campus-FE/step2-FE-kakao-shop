@@ -5,16 +5,15 @@ import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import { setEmail } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { login } from "../../services/user";
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import GNB from "../atoms/GNB";
 
 
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();  //redux 의 액션을 발생시키는 함수!!
-    const email = useSelector((state) => state.user.email) // 최상위 state에서 데이터 가져오기
 
     const {
         value,
@@ -39,10 +38,13 @@ const LoginForm = () => {
             password: value.password
         })
             .then((res) => { //로그인 성공
+                console.log(res)
                 dispatch(setEmail({
                     email: value.email, //객체 형태로 넣어야함. payload라서
                 }));
                 localStorage.setItem("email", value.email);
+                localStorage.setItem("token", res.headers.authorization);
+
             navigate("/");// 홈페이지로 리다이렉트
         })
             .catch((err) => {
