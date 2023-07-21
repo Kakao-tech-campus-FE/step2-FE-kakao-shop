@@ -40,6 +40,8 @@ export default function CartOptionItem({ item }) {
       {
         onSuccess: async () => {
           await queryClient.invalidateQueries(["carts"]);
+        },
+        onSettled: () => {
           setIsLoading(false);
         },
       }
