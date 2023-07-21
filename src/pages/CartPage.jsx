@@ -16,15 +16,17 @@ export default function CartPage() {
   if (error) {
     return <div>{error.message}</div>;
   }
+
+  const filteredData = filterData(data);
   return (
     <main className="flex flex-col justify-center items-center w-full min-h-full pb-8 bg-gray-100">
       <Container className="w-cart">
         <h3 className="text-center py-3 font-semibold bg-white border-t">
           장바구니
         </h3>
-        {data.products.length !== 0 ? (
+        {filteredData.length !== 0 ? (
           <>
-            <CartProducts products={data.products} />
+            <CartProducts products={filteredData} />
             <Box className="flex justify-between w-full text-xl p-4 bg-white border-y">
               <strong>주문 예상 금액</strong>
               <span className="font-bold text-blue-500">
@@ -49,3 +51,12 @@ export default function CartPage() {
     </main>
   );
 }
+
+const filterData = (data) => {
+  const response = data.products.map((product) => ({
+    ...product,
+    carts: product.carts.filter((cart) => cart.quantity !== 0),
+  }));
+  const filteredData = response.filter((d) => d.carts.length !== 0);
+  return filteredData;
+};
