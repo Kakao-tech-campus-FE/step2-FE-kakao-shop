@@ -2,12 +2,9 @@ import Group from "../atoms/Group";
 import SkeletonGrid from "../organisms/SkeletonGrid";
 import Loader from "../atoms/Loader";
 import ProductGrid from "../organisms/ProductGrid";
-import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { getProducts } from "../../store/slices/productSlice";
 import { fetchProducts } from "../../services/product";
 import { useInfiniteQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import _ from "lodash";
 
 const MainProductTemplate = () => {
@@ -15,12 +12,18 @@ const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
 
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useInfiniteQuery(["product"], () => fetchProducts(page), {
-      getNextPageParam: (currentPage) => {
-        const nextPage = currentPage.page + 1;
-        return nextPage > currentPage.total_pages ? null : nextPage;
-      },
-    });
+    useInfiniteQuery(
+      "products",
+      ({ pageParam = 0 }) => fetchProducts(pageParam),
+      {
+        getNextPageParam: (currentPage, allPages) => {
+          const nextPage = allPages.length;
+          return nextPage > 2 ? null : nextPage;
+        },
+      }
+    );
+
+  console.log(data);
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -50,7 +53,7 @@ const MainProductTemplate = () => {
 
   if (data) {
     const responseData = _.uniqBy(
-      data.pages.flatMap((page) => page.data.response),
+      data.pages.flatMap((pages) => pages.data.response),
       "id"
     );
 
@@ -59,7 +62,7 @@ const MainProductTemplate = () => {
         <ProductGrid products={responseData} />
         {isLoading && <SkeletonGrid />}
         <div style={{ height: "80px" }} ref={bottomObserver}></div>
-        {!isLoading && hasNextPage && <Loader />}
+        {isLoading && hasNextPage && <Loader />}
       </Group>
     );
   }
