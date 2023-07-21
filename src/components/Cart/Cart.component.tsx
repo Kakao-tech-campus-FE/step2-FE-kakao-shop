@@ -1,5 +1,5 @@
 import { getCart, updateCart } from "@/remotes/product";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Order } from "@/hooks/useOrder";
 import { CART } from "@/assets/product.ko";
 import CartItem from "./CartItem.component";
@@ -9,10 +9,12 @@ import GlobalLoading from "../common/GlobalLoading.component";
 import { ProductOrder } from "@/dtos/product.dto";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ERROR } from "@/assets/error.ko";
 
 const Cart = () => {
   const [products, setProducts] = useState<ProductOrder[]>([]);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery(["cart"], getCart, {
     onSuccess: (data) => {
@@ -20,11 +22,22 @@ const Cart = () => {
     },
   });
 
+  const { mutate } = useMutation(updateCart, {
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+
   const removeOrder = (cartId: number) => {
     setProducts(
       products.map((product) => ({
         ...product,
-        carts: product.carts.filter((cart) => cart.id !== cartId),
+        carts: product.carts.map((cart) => {
+          if (cart.id === cartId) {
+            cart.quantity = 0;
+          }
+          return cart;
+        }),
       }))
     );
   };
@@ -41,7 +54,7 @@ const Cart = () => {
   };
 
   const onOrder = () => {
-    updateCart(
+    mutate(
       products.flatMap((product) =>
         product.carts.map((cart) => ({
           cartId: cart.id,
@@ -49,6 +62,14 @@ const Cart = () => {
         }))
       )
     );
+    if (
+      products.every((product) =>
+        product.carts.every((cart) => cart.quantity === 0)
+      )
+    ) {
+      alert(ERROR.NO_CART);
+      return;
+    }
     navigate("/cart/check");
   };
 

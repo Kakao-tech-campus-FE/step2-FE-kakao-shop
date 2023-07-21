@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from "react";
+import { FC } from "react";
 import CheckListItem, {
   CheckListItemProps,
 } from "@components/common/CheckList/CheckListItem.component";

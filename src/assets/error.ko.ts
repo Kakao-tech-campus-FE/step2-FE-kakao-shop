@@ -8,6 +8,7 @@ const ERROR = {
   CONTECT_ADMIN: "관리자에게 문의해주세요.",
   NOT_LOGIN: "로그인이 필요합니다.",
   ADD_CART_FAILED: "장바구니 추가에 실패했습니다.",
+  NO_CART: "장바구니가 비어있습니다.",
 };
 
 export { ERROR };
