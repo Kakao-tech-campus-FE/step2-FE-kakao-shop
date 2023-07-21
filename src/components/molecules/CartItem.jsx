@@ -3,16 +3,26 @@ import {comma} from "../../utils/convert";
 import {RxCross2} from "react-icons/rx";
 
 const CartItem = ({item, onChange}) => {
-    return (
+    console.log("item", item)
+
+    const getItemAmount = () => {
+        let amount = 0;
+        item?.carts.forEach((cart) => {
+            amount += cart.quantity
+        })
+        return amount;
+    }
+
+    return getItemAmount() !== 0 && (
         <div className={"cart-item m-5 p-5 text-left bg-light-gray-900"}>
             <h5 className={"text-lg"}>{item.productName}</h5>
             {item.carts.map((cart) =>
-                (
+                 cart.quantity !== 0 && (
                     <div
                         key={cart.id}
                         className={"cart-item pb-5 px-5 m-3 border-s-4 border-light-gray-700"}>
                         <button className={"del-button flex  w-full justify-end items-end"}
-                                // onClick={onChange(cart.id, 0, -cart.quantity*cart.option.price)}
+                                onClick={ () => onChange(cart.id, 0, -cart.quantity*cart.option.price)}
                             >
                             <RxCross2 className={"text-right"}/>
                         </button>
