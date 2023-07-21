@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getProductById } from "../services/product";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Loading from "../components/atoms/Loader";
 import ProductInformationColumn from "../components/molecules/ProductInformationColumn";
@@ -9,6 +9,7 @@ import Container from "../components/atoms/Container";
 import Box from "../components/atoms/Box";
 import OptionColumn from "../components/molecules/OptionColumn";
 import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
 
 const ColumnContainer = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ const Column = styled.div`
 `;
 
 const ProductDetailPage = () => {
+  const navigate = useNavigate();
   // const id = useParams().id; // Params로 받은 코드는 항상 string 값
   const { id } = useParams(); //구조 분해 할당 코드
 
@@ -43,21 +45,25 @@ const ProductDetailPage = () => {
     getProductById(id)
   ); //구분자, API 요청 함수
 
+  const product = data?.data?.response;
+
   return (
     <div>
       {isLoading && <Loading />}
       {error && <div>{error.message}</div>}
-      {data && (
+      {data ? (
         <>
           <ColumnContainer className="columnContainer">
             <Column className="column-product">
-              <ProductInformationColumn product={data?.data?.response} />
+              <ProductInformationColumn product={product} />
             </Column>
             <Column className="column-option">
-              <OptionColumn product={data?.data?.response} />
+              <OptionColumn product={product} />
             </Column>
           </ColumnContainer>
         </>
+      ) : (
+        navigate("/404")
       )}
     </div>
   );
