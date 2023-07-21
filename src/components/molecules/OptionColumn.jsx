@@ -7,10 +7,12 @@ import OptionList from "../atoms/OptionList";
 import {comma} from "../../utils/convert";
 import {addCart} from "../../services/cart";
 import {RxCross2} from "react-icons/rx";
+import {BsCart2} from "react-icons/bs";
+import {useNavigate} from "react-router-dom";
 
 const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
-
+    const navigator = useNavigate();
     const handleOnClickOption = (option) => {
         // console.log("option", option)
         if (selectedOption.find((el) => el.id === option.id)) {
@@ -54,7 +56,6 @@ const OptionColumn = ({product}) => {
     const {mutate} = useMutation({
         mutationFn: addCart,
         onSuccess: () => {
-            alert("장바구니에 추가되었습니다.")
         },
         onError: (error) => {
             console.log("error", error)
@@ -97,8 +98,8 @@ const OptionColumn = ({product}) => {
                 ))}
             </div>
 
-            <div className={"button-group bottom-0 relative"}>
-                <div className={"total-price"}>
+            <div className={"total-option-group bottom-0 relative"}>
+                <div className={"total-price mt-5 mb-3"}>
                     <div className={"flex flex-row justify-between px-1"}>
                         <span>
                             총 수량 : {selectedOption.reduce((acc, cur) => acc + cur.quantity, 0)}개
@@ -108,30 +109,42 @@ const OptionColumn = ({product}) => {
                         </span>
                     </div>
                 </div>
-
-                <button className={"w-full cursor-pointer bg-kakao-yellow rounded-lg py-2"}
-                    // onClick={
-                    //     () => mutate({
-                    //         productId: product.id,
-                    //         options: selectedOption.map((option) => {
-                    //             return {
-                    //                 optionId: option.id,
-                    //                 quantity: option.quantity,
-                    //             }
-                    //         })
-                    //     })
-                    // }
+                <div className={"button-group h-12 flex flex-row justify-between"}>
+                    <button
+                        className={"w-1/4 cursor-pointer bg-kakao-dark-gray rounded-lg py-2 flex justify-center items-center"}
                         onClick={
                             () => {
-                                mutate(selectedOption.map((option) => {
-                                    return {
-                                        optionId: option.id,
-                                        quantity: option.quantity,
-                                    }
-                                }))
+                                if (selectedOption.length === 0) {
+                                    alert("옵션을 선택해주세요.")
+                                } else {
+                                    mutate(selectedOption.map((option) => {
+                                        return {
+                                            optionId: option.id,
+                                            quantity: option.quantity,
+                                        }
+                                    }))
+                                    alert("장바구니에 추가되었습니다.")
+                                }
                             }}>
-                    장바구니 담기
-                </button>
+                        <BsCart2 color={"white"} size={24}/>
+                    </button>
+                    <button className={"w-2/4 bg-kakao-yellow rounded-lg flex justify-center items-center"}
+                            onClick={() => {
+                                if (selectedOption.length === 0) {
+                                    alert("옵션을 선택해주세요.")
+                                } else {
+                                    mutate(selectedOption.map((option) => {
+                                        return {
+                                            optionId: option.id,
+                                            quantity: option.quantity,
+                                        }
+                                    }))
+                                    navigator("/carts")
+                                }
+                            }}>
+                        바로 구매
+                    </button>
+                </div>
             </div>
         </div>
     )

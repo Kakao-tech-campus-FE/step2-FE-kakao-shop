@@ -8,34 +8,6 @@ import ErrorSign from "../atoms/ErrorSign";
 const ProductDetailPage = () => {
     const id = useParams().id;
     const {isLoading, error, data} = useQuery(`product${id}`, () => getProductById(id));
-    // useEffect(() => {
-    //     console.log("data.data.response.options", data?.data?.response.options)
-    //     if (!validate(data)) {
-    //         return;
-    //     }
-    //     setProduct(data.data.response);
-    // })
-    //
-    //
-    // const validate = (target) => {
-    //     if (!target) {
-    //         return false;
-    //     }
-    //
-    //     const requiredKeys = [
-    //         "id",
-    //         "productName",
-    //     ];
-    //
-    //     const keys = Object.keys(target);
-    //     for (const requiredKey of requiredKeys) {
-    //         if (!keys.includes(requiredKey)) {
-    //             alert(`${requiredKey}가 존재하지 않습니다.`)
-    //             return false;
-    //         }
-    //     }
-    //     return true
-    // }
 
     return (
 

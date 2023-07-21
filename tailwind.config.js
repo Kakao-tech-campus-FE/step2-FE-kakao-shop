@@ -7,6 +7,7 @@ module.exports = {
       'kakao-coral-blue': '#634bff',
       'kakao-coral-red': '#f75555',
       'kakao-coral-green': '#2ded8e',
+      'kakao-dark-gray': '#444444',
       'light-gray-900': '#f5f5f5',
         'light-gray-800': '#ebebeb',
         'light-gray-700': '#d6d6d6',
