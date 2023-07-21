@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 
-import Box from "components/atoms/Box.js";
 import ImageLink from "components/molecules/ImageLink.js";
 
 import logoKakao from "assets/icon/logoKakao.png";
@@ -20,7 +19,7 @@ export default function GNB() {
   };
 
   return (
-    <Box className="fixed top-0 w-full h-16 bg-white flex items-center justify-between border">
+    <nav className="fixed top-0 w-full h-16 bg-white border flex items-center justify-between">
       <ImageLink
         LinkClassName="ml-32"
         PhotoClassName="h-8"
@@ -48,6 +47,6 @@ export default function GNB() {
           <Link to="/login">로그인</Link>
         )}
       </span>
-    </Box>
+    </nav>
   );
 }

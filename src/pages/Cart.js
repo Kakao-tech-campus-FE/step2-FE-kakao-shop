@@ -2,7 +2,7 @@ import CartSection from "components/templates/CartSection";
 
 export default function Cart() {
   return (
-    <div className="mt-16">
+    <div className="min-h-screen pt-16 pb-32">
       <CartSection />
     </div>
   );

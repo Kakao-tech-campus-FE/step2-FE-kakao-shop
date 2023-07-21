@@ -1,6 +1,6 @@
 export default function Result() {
   return (
-    <div className="mt-16">
+    <div className="min-h-screen pt-16 pb-32">
       <h1>Result</h1>
     </div>
   );
