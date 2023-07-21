@@ -1,14 +1,29 @@
 import styled from '@emotion/styled';
+import { Cart } from '@store/Cart/reducers';
+import { MouseEventHandler } from 'react';
 
 import SelectOptionItemList from '@components/page/Cart/SelectOption/List';
 import SelectOptionResult from '@components/page/Cart/SelectOption/Result';
 
-const Item = () => {
+type Props = {
+  productName: string;
+  carts: Cart[];
+  onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+};
+
+const Item = ({ productName, carts, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
+  const totalPrice = carts.reduce((total, cart) => total + cart.quantity * cart.option.price, 0);
+
   return (
     <S.Root>
-      <S.Tit>샤프란 AURA 고농축 섬유유연제 대용량 5.5L 용기 7종</S.Tit>
-      <SelectOptionItemList />
-      <SelectOptionResult />
+      <S.Tit>{productName}</S.Tit>
+      <SelectOptionItemList
+        carts={carts}
+        onIncreaseQuantity={onIncreaseQuantity}
+        onDecreaseQuantity={onDecreaseQuantity}
+      />
+      <SelectOptionResult totalPrice={totalPrice} />
     </S.Root>
   );
 };

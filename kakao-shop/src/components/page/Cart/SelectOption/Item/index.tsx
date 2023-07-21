@@ -1,22 +1,34 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Cart } from '@store/Cart/reducers';
+import { MouseEventHandler } from 'react';
 
 import { Button } from '@components/atom';
 import { RegularInput } from '@components/molecules';
 
-const SelectOptionItem = () => {
+import { comma } from '@utils/comma';
+
+type Props = {
+  onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+} & Cart;
+const SelectOptionItem = ({ id, option, quantity, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
   return (
     <S.Root>
-      <S.Tit>12.딥센트 용기 5.5L 스윗만다린 1개(+6,400원)</S.Tit>
+      <S.Tit>{option.optionName}</S.Tit>
 
       <S.Container>
         <S.ControlBox>
           <Button css={S.ButtonCSS}>삭제</Button>
-          <RegularInput.Counter value={1} />
+          <RegularInput.Counter
+            value={quantity}
+            onClickPlusButton={onIncreaseQuantity(id)}
+            onClickMinusButton={onDecreaseQuantity(id)}
+          />
         </S.ControlBox>
 
         <S.Price>
-          <span>119,400</span>
+          <span>{comma(option.price * quantity)}</span>
           <span>원</span>
         </S.Price>
       </S.Container>

@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 
-const SelectOptionResult = () => {
+import { comma } from '@utils/comma';
+
+type Props = {
+  totalPrice: number;
+};
+
+const SelectOptionResult = ({ totalPrice }: Props) => {
   return (
     <S.Root>
       <span>주문금액</span>
       <S.Price>
-        <span>146,400</span>
+        <span>{comma(totalPrice)}</span>
         <span>원</span>
       </S.Price>
     </S.Root>

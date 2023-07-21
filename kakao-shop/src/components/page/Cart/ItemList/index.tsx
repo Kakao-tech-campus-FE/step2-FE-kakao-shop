@@ -1,12 +1,25 @@
 import styled from '@emotion/styled';
+import { Product } from '@store/Cart/reducers';
+import { MouseEventHandler } from 'react';
 
 import Item from '@components/page/Cart/Item';
 
-const ItemList = () => {
+type Props = {
+  products: Product[];
+  onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+};
+const ItemList = ({ products, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
   return (
     <S.Root>
-      <Item />
-      <Item />
+      {products.map(product => (
+        <Item
+          key={product.id}
+          {...product}
+          onIncreaseQuantity={onIncreaseQuantity}
+          onDecreaseQuantity={onDecreaseQuantity}
+        />
+      ))}
     </S.Root>
   );
 };

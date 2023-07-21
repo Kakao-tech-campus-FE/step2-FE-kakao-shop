@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 
-const TotalResult = () => {
+import { comma } from '@utils/comma';
+
+type Props = {
+  totalPrice: number;
+};
+
+const TotalResult = ({ totalPrice }: Props) => {
   return (
     <S.Root>
       <S.Tit>주문 예상금액</S.Tit>
       <S.Price>
-        <span>116,100</span>
+        <span>{comma(totalPrice)}</span>
         <span>원</span>
       </S.Price>
     </S.Root>
