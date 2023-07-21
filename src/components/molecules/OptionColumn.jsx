@@ -6,6 +6,8 @@ import { comma } from '../../utils/convert'
 import { useMutation } from 'react-query'
 import { addCart } from '../../services/cart'
 import Counter from '../atoms/Counter'
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function OptionColumn({ product }) {
   const [selectedOptions, setSelectedOptions] = useState([])
@@ -34,7 +36,10 @@ function OptionColumn({ product }) {
   }
 
   const handleOnCounterClick = (count, optionId) => {
-    console.log(selectedOptions)
+    if(count<0){
+      return;
+    }
+
     setSelectedOptions((prev) => {
       return prev.map((ele)=>{
         if(ele.optionId === optionId){
@@ -57,68 +62,89 @@ function OptionColumn({ product }) {
 
 
   return (
-    <Column>
-      <h3>옵션 선택</h3>
-      {/* 옵션 담기를 할 수 있는 영역 */}
-      <OptionList 
-        options={product.options}
-        // 사용자가 선택한 option 
-        onClick={handleOnClickOption}
-          // 장바구니 담기 api
-          // optionId, quantity
-      />
-      <hr />
-      {/* 담긴 옵션이 표기 */}
-      {/* ui에서 필요한 정보: 옵션 이름, 옵션 가격 옵션 수량, 옵션 총 가격 */}
-      {selectedOptions.map((option) => (
-        <ol key={option.optionId}>
-          <li>
-            <Counter
-              onIncrease={(count) => handleOnCounterClick(count,option.optionId)}
-              onDecrease={(count) => handleOnCounterClick(count,option.optionId)}
+    <Column className='relative w-[360px] bg-white'>
+      <div className='absolute py-[30px] pl-[30px] min-h-[350px]'>
+        <div className='overflow-y-auto max-h-[450px]'>
+          <div>
+            <h3 className='overflow-hidden pb-[10px] pl-[3px] text-base leading-8 text-black font-bold'>옵션 선택</h3>
+            {/* 옵션 담기를 할 수 있는 영역 */}
+            <OptionList 
+              options={product.options}
+              // 사용자가 선택한 option 
+              onClick={handleOnClickOption}
+                // 장바구니 담기 api
+                // optionId, quantity
             />
-            <span>{option.name}</span>
-            <span>{comma(option.price)}</span>
-          </li>
-        </ol>
-      ))}
-      <hr/>
-      
-      <Title>
-        <span>총 수량: {
+          </div>
+  
+          {/* 담긴 옵션이 표기 */}
+          {/* ui에서 필요한 정보: 옵션 이름, 옵션 가격 옵션 수량, 옵션 총 가격 */}
+          <div>
+
+
+          </div>
+          {selectedOptions.map((option) => (
+            <ol key={option.optionId}>
+              <li className='mt-[10px] px-[17px] py-[20px] bg-gray-50'>
+                <div className='pr-[38px] text-sm'>{option.name}</div>
+                <div className='flex pt-[11px]'>
+                  <Counter
+                   initialCount={option.quantity}
+                   onIncrease={(count) => handleOnCounterClick(count,option.optionId)}
+                   onDecrease={(count) => handleOnCounterClick(count,option.optionId)}
+                  />
+                  <span className='ml-auto'>{comma(option.price * option.quantity)}원</span>
+                </div>
+              </li>
+            </ol>
+          ))}
+          <hr/>
+        </div>
+     
+      <div className='flex py-[22px] pr-[3px] border-t-[1px] border-solid border-gray-300 mt-[50px]'>
+        <div className='text-lg'>총 수량: 
+          <span className='font-semibold pl-[5px]'> 
+            {
             selectedOptions.reduce((acc, cur)=>{
               return acc + cur.quantity 
-            }, 0)+'개 '}</span>
-        <span> 총 상품금액: {
+            }, 0)+'개 '}
+          </span>          
+        </div>
+        <div className='ml-auto leading-7 font-semibold'> 총 상품금액: 
+          <span className='text-xl text-rose-600 pl-[5px]'>
+            {
             comma(selectedOptions.reduce((acc, cur)=>{
               return acc + cur.quantity*cur.price
-            }, 0))+'원'}</span>
-      </Title>
+            }, 0))+'원'}
+          </span>
+        </div>
+      </div>
 
       <ButtonGroup>
         {/* 장바구니 담기 버튼 위치: 장바구니 담기만 구현 */}
         {/* 톡딜가 구현은 안함 */}
-        <button onClick={() => {
+        <button>
+        <FontAwesomeIcon icon={faCartShopping} size='2x' onClick={() => {
           mutate(
             selectedOptions.map((ele)=>{
             return{
-              optionId: ele.optionId,
+               optionId: ele.optionId,
               quantity: ele.quantity,
             }
-            }),{
+             }),{
               onSuccess: () => {
               alert("장바구니에 담겼습니다.")
             },
               onError: () => {
               alert("장바구니 담기 실패 했습니다.")
-            },
-              }
-            )
-          }
-        }>장바구니 담기</button>
+              },
+            }
+          )
+          }}/>
+        </button>   
       </ButtonGroup>
+      </div>
     </Column>
-
   )
 }
 

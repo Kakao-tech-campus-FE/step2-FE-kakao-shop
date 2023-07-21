@@ -39,7 +39,7 @@ function RegisterForm() {
         display: 'block',width: '50%', margin: '0 auto', marginBottom: '10px', fontWeight: 'bold'
       }}
       />
-      <Button disabled = {emailValid} 
+      <Button disable = {emailValid} 
       style={{
         display: 'block',
         width: '50%',
@@ -49,7 +49,7 @@ function RegisterForm() {
         fontWeight: 'bold',
         borderRadius: '5px',
         border: '1px solid gray',
-        backgroundColor: '#ffe342'
+        backgroundColor: '#ffe342',
       }} 
       
       onClick={()=>{
@@ -61,7 +61,6 @@ function RegisterForm() {
         })
         .catch((error)=>{
           const token = localStorage.getItem("token")
-          console.log(token)
           alert(error.data.error.message)
         })
       }}>이메일 중복 확인</Button>

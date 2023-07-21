@@ -6,27 +6,30 @@ import { styled } from 'styled-components'
 import Title from '../atoms/Title'
 
 
+
 function ProductInformationColumn( { product }) {
   const { productName, price, image } = product
   return (
-    <Containor>
-      <Column>
-        <Photo src={image} alt={productName}/>
+    <div className= 'flex w-[920px] pt-[30px] pr-[29px] pb-[150px] border-r border-solid border-slate-200' >
+      <Column className='w-full basis-[430px]'>
+        <Photo src={image} alt={productName} size="430px"/>
       </Column>
-      <Column>
-        <Title>{productName}</Title>
-        <PText>{comma(price)}원</PText>
+      <Column className='w-[430px] basis-[430px] ml-auto pt-[20px]'>
+        <Title className='block text-left text-[26px] leading-[35px] decoration-black font-medium'>{productName}</Title>
+        <div className='pt-[15px] pr-[60px]'>
+          <div className='bg-gray-900 inline-block rounded-[23px]'>
+            <button className='px-[15px] h-[45px]'>
+              <span className='text-[18px] text-white'>{comma(price)+'원'}</span>
+            </button>
+          </div>
+        </div>
       </Column>
-    </Containor>
+    </div>
   )
 }
 
 export default ProductInformationColumn
 
 const Column = styled.div`
-
-`
-
-const PText = styled.p`
 
 `

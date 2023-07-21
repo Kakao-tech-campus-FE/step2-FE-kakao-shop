@@ -39,11 +39,9 @@ function ProductDetailPage() {
     return true
   }
 
-
-
   return (
     <>
-      {isError ? <div>에러입니다!</div> : isLoading ? <Loader/> :  <ProductDetailTemplate product={product} />}
+      {isError ? error.status === 404 ? <MissedUrl/>: <div>ohtererror</div>: isLoading ? <Loader/> :  <ProductDetailTemplate product={product} />}
     </>
   )
 }

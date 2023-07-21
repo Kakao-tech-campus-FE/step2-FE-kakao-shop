@@ -115,7 +115,7 @@ function GNB({ }) {
               display: 'inline-block',
             }}
             ></FontToLink>
-            <FontToLink icon={faCartShopping} to={'/'} linkstyle={{
+            <FontToLink icon={faCartShopping} to={'/cart'} linkstyle={{
               display: "block",
               position: 'relative',
               width: '28px',

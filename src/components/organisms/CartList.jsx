@@ -23,7 +23,7 @@ function CartList( {data, } ) {
   useEffect(()=>{
     setCartItems(data?.data?.response?.products)
     setTotalPrice(data?.data?.response?.totalPrice)
-  },[data])
+  },[])
 
   /** 
    * 옵션의 수량 변경과 가격 변경을 관리
@@ -88,11 +88,12 @@ function CartList( {data, } ) {
   }, [cartItems])
 
   return (
-    <Containor>
-      <Box>
-        <h1>장바구니</h1>
-      </Box>
-      <Card>
+  <div className='w-full h-full bg-neutral-100'>
+     <div className='w-[840px] h-full mx-auto my-0 text-center border-solid border-2 border border-neutral-100'>
+      <div className='mt-[10px]'>
+        <h1 className='py-[10px] font-semibold text-lg bg-white'>장바구니</h1>
+      </div>
+      <div className='overflow-y-auto  '>
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems) && 
           cartItems.map((item) => {
@@ -105,48 +106,53 @@ function CartList( {data, } ) {
             )
           })
         }
-      </Card>
+      </div>
 
-      <Card>
-        <div>
-          <span>주문 예상금액</span>
-          <div>{comma(totalPrice)}원</div>
+
+      <div className='bg-white '>
+        <div className='py-[20px] mt-[15px] flex'>
+          <div className='pl-[20px] font-bold text-lg'>주문 예상금액 </div>
+          <div className='ml-auto pr-[20px] text-xl text-sky-500 font-bold'>{comma(totalPrice)}원</div>
         </div>
-      </Card>
-      <Button onClick={()=>{
-        // update cart api
-        // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
-        // post method
+      </div>
 
-        //payload를 만드는 방법
-        // 1번째 방법
-        // 전체 장바구니 목록의 개수를 적절히 파싱해서 보내준다
+      <div className='bg-yellow-300 py-[20px]'>
+        <Button onClick={()=>{
+          // update cart api
+          // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
+          // post method
+
+          //payload를 만드는 방법
+          // 1번째 방법
+          // 전체 장바구니 목록의 개수를 적절히 파싱해서 보내준다
         
-        // 2번째 방법
-        // 변경된 개수만 파싱해서 페이로드로 보내주기
-        // payload 더 작게할 수 있으니까(좋음)
+          // 2번째 방법
+          // 변경된 개수만 파싱해서 페이로드로 보내주기
+          // payload 더 작게할 수 있으니까(좋음)
 
-        mutate(updataPayload, {
-          onSuccess: (data) => {
+          mutate(updataPayload, {
+            onSuccess: (data) => {
 
-          },
-          onError: (error) => {
+            },
+            onError: (error) => {
 
-          },
-        })
+           },
+          })
 
-        // navigate to order page
-        // 주문 페이지로 이동
-        route.push("/order")
+          // navigate to order page
+          // 주문 페이지로 이동
+          route.push("/order")
 
-        // 결제 프로세스
-        // 1. 장바구니에 있는 모든 항목 그대로 결제
-        // 2. 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
-      }}>
-        <span>총 {getTotalCartCountIncludeOption()}건 주문하기</span>
-      </Button>
-    </Containor>
-
+          // 결제 프로세스
+          // 1. 장바구니에 있는 모든 항목 그대로 결제
+          // 2. 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
+        }}>
+          <span className='font-bold text-xl'>총 {getTotalCartCountIncludeOption()}건 주문하기</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+  
   )
 }
 
