@@ -15,11 +15,13 @@ const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [isCartEmpty, setIsCartEmpty] = useState();
   // updatePayload가 렌더링에 관여하고 있는가? => X
   // => 그렇다면 useRef로 관리하는것이 useState로 관리하는 것 보다 더 좋다.
   //const [updatePayload, setUpdatePayload] = useState([]);
   const updatePayload = useRef([]);
   const initPayload = useRef([]);
+
   /* 정리하자면, 
   렌더링에 관여하는 값들의 상태 관리 => useState
   렌더링에 관여하지는 않지만 연산에 사용하는 등 상태 관리가 필요한 값 => useRef
@@ -38,7 +40,12 @@ const CartList = ({ data }) => {
       setCartItems(data?.data?.response?.products);
     data?.data?.response?.totalPrice !== undefined &&
       setTotalPrice(data?.data?.response?.totalPrice);
+    setIsCartEmpty(getIsCartEmpty());
   }, [data]);
+
+  useEffect(() => {
+    setIsCartEmpty(getIsCartEmpty());
+  }, [cartItems]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
@@ -48,6 +55,15 @@ const CartList = ({ data }) => {
       });
     });
     return comma(count);
+  }, [cartItems]);
+
+  const getIsCartEmpty = useCallback(() => {
+    return cartItems.every((product) => {
+      console.log(product.carts);
+      return product.carts.every((option) => {
+        return option.quantity === 0;
+      });
+    });
   }, [cartItems]);
 
   /**
@@ -131,39 +147,47 @@ const CartList = ({ data }) => {
         <Box className="h-12 border rounded bg-white text-center">
           <h1 className="font-semibold text-[15px] mt-3">장바구니</h1>
         </Box>
-        {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            return (
-              // 모든 옵션의 수량이 0인 경우 CartItem을 렌더링하지 않도록 한다.
-              // item.price !== 0이면 수량이 0이 아닌 경우이다.
-              item.carts.every((option) => option.quantity === 0) !== true && (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  onChange={handleOnChangeCount} // 개수 변경
-                />
-              )
-            );
-          })}
-        <div className="h-fit border rounded bg-white mt-8 p-6">
-          <span className="font-bold text-lg">주문 예상금액</span>
-          <div className="float-right text-lg font-semibold text-blue-500">
-            {comma(totalPrice)}원
+        {isCartEmpty ? (
+          <div>장바구니가 비었습니다.</div>
+        ) : (
+          <div>
+            {/* 상품별 장바구니 */}
+            {Array.isArray(cartItems) &&
+              cartItems.map((item) => {
+                console.log(data);
+                return (
+                  // 모든 옵션의 수량이 0인 경우 CartItem을 렌더링하지 않도록 한다.
+                  // item.price !== 0이면 수량이 0이 아닌 경우이다.
+                  item.carts.every((option) => option.quantity === 0) !==
+                    true && (
+                    <CartItem
+                      key={item.id}
+                      item={item}
+                      onChange={handleOnChangeCount} // 개수 변경
+                    />
+                  )
+                );
+              })}
+            <div className="h-fit border rounded bg-white mt-8 p-6">
+              <span className="font-bold text-lg">주문 예상금액</span>
+              <div className="float-right text-lg font-semibold text-blue-500">
+                {comma(totalPrice)}원
+              </div>
+            </div>
+            <Button
+              className="h-fit w-full border rounded bg-[#feeb00] mt-4 p-4"
+              onClick={() => {
+                // navigate to order page
+                // 주문 페이지로 이동
+                route("/order");
+              }}
+            >
+              <span className="font-semibold text-lg">
+                총 {getTotalCartCountIncludeOptions()}건 주문하기
+              </span>
+            </Button>
           </div>
-        </div>
-        <Button
-          className="h-fit w-full border rounded bg-[#feeb00] mt-4 p-4"
-          onClick={() => {
-            // navigate to order page
-            // 주문 페이지로 이동
-            route("/order");
-          }}
-        >
-          <span className="font-semibold text-lg">
-            총 {getTotalCartCountIncludeOptions()}건 주문하기
-          </span>
-        </Button>
+        )}
       </Container>
     </main>
   );
