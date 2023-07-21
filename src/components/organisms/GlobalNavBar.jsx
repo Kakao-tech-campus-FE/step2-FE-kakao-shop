@@ -23,8 +23,8 @@ const GlobalNavBar = () => {
     return (
         <>
             <nav className={"global-nav-bar"}>
-                <Container className={"logo"}>
-                    <Link className={"logo button bg-red"} to={"/"}>Home</Link>
+                <Container className={"logo bg-red"}>
+                    <Link className={"logo button"} to={"/"}>Home</Link>
                 </Container>
                 <Container className={"gnb-buttons"}>
                     {user.isLogin ?
