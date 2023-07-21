@@ -60,7 +60,7 @@ const Detail = () => {
         />
         <DeliveryInfo />
         <SelectResult totals={totals} />
-        <PurchaseButtons addCartPayload={addCartPayload} />
+        <PurchaseButtons onAddCart={onAddCart} />
       </S.OptionCotainer>
     </S.LayoutSplit>
   );

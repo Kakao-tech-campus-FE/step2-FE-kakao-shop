@@ -1,4 +1,4 @@
-import { productDetailRequest } from '@store/Detail/reducers';
+import { addCartItem, productDetailRequest } from '@store/Detail/reducers';
 import { Option } from '@store/Home/reducers';
 import { RootState } from '@store/index';
 import { useEffect, useState, MouseEventHandler } from 'react';
@@ -59,6 +59,18 @@ export const useOptionForm = () => {
       setOptions(updateQuantityOptions(id, options, DOWN1));
     };
 
+  const onAddCart: MouseEventHandler<HTMLButtonElement> = () => {
+    if (addCartPayload.length === 0) {
+      Toast.show('옵션을 먼저 선택해주세요');
+      return;
+    }
+
+    dispatch(addCartItem(addCartPayload));
+    setIsOpenList(false);
+    setOptions(getUserSelectOption(product?.options));
+    Toast.show('장바구니에 담겼습니다');
+  };
+
   return {
     state: {
       product,
@@ -72,6 +84,7 @@ export const useOptionForm = () => {
       onIncreaseQuantity,
       onDecreaseQuantity,
       onToggle,
+      onAddCart,
     },
   };
 };

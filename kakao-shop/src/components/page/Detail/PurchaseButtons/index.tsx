@@ -1,13 +1,12 @@
 import shoppingCart from '@assets/shoppingCart.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { addCartItem } from '@store/Detail/reducers';
-import { useDispatch } from 'react-redux';
+import { MouseEventHandler } from 'react';
 
 import { Button, Photo } from '@components/atom';
 
 type Props = {
-  addCartPayload: AddCartPayload[];
+  onAddCart: MouseEventHandler<HTMLButtonElement>;
 };
 
 export type AddCartPayload = {
@@ -15,11 +14,10 @@ export type AddCartPayload = {
   quantity: number;
 };
 
-const PurchaseButtons = ({ addCartPayload }: Props) => {
-  const dispatch = useDispatch();
+const PurchaseButtons = ({ onAddCart }: Props) => {
   return (
     <S.Root>
-      <Button css={S.BasketButtonCSS} onClick={() => dispatch(addCartItem(addCartPayload))}>
+      <Button css={S.BasketButtonCSS} onClick={onAddCart}>
         <Photo imageClassName={S.ShoppingCartCSS} src={shoppingCart} alt={'장바구니'} />
       </Button>
       <Button css={S.PurchaseButtonCSS}>톡딜가로 구매하기</Button>
