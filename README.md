@@ -587,7 +587,7 @@ Gnd 컴포넌트가 렌더링될 때, 로컬 스토리지에 저장된 시각 �
 
 
 <details>
-<summary>부산대FE_김성현_2주차 과제</summary>
+<summary>부산대FE_김성현_3주차 과제</summary>
 <div>
 <br>
 
@@ -779,6 +779,186 @@ index로 주었다.
 
 </div>
 </details>
+
+
+<details>
+<summary>부산대FE_김성현_4주차 과제</summary>
+<div>
+
+✅**과제 1. 상품 상세 페이지 개발**
+
+```jsx
+import { Button, ButtonGroup } from '@mui/material';
+
+<ButtonGroup size="small" variant="outlined" aria-label="small button group">
+  <Button onClick={handleOnDecrease} disabled={count <= 0}>-</Button>
+  <Button className="count">{count}</Button>
+  <Button onClick={handleOnIncrease}>+</Button>
+</ButtonGroup>
+```
+
+MUI를 사용하여 버튼에 Button과 ButtonGroup을 적용했다.
+
+<br>
+
+```jsx
+<>
+    <Gnb />
+    <div>
+        {isLoading && <Loader />}
+        {error &&  <div>{error.message}</div> /* <Error404 /> */}
+        {/* isVaildate === false && <Error404 />  */}
+        {product && <ProductDetailTemplate product={product} />}
+    </div>
+</>
+```
+
+React-Query로 Product 정보를 요청했을 때, 에러가 나거나
+적절하지 않는 정보가 들어오면 404 페이지를 렌더링한다.
+<br>
+현재 404 페이지가 만들어지지 않아서 주석 처리 해놓았다.
+
+<br>
+
+```jsx
+<div>
+    {/* 장바구니 담기 버튼 */}
+    <Button className="p-2 mx-2 border w-[170px] bg-yellow-300 justify-center inline-flex" onClick={() => {
+        console.log(product);
+
+        mutate(selectedOptions.map(el => {
+            return {
+                optionId: el.optionId,
+                quantity: el.quantity,
+            };
+        }), {
+            onSuccess: () => {
+                alert("장바구니에 담겼습니다.");
+            },
+            onError: () => {
+                alert("장바구니 담기에 실패했습니다.");
+            }
+        }
+        );
+    }}>
+    장바구니 담기
+    </Button>
+    {/* 톡딜가 구매: 개발 X */}
+    {/* 구매 버튼 */}
+    <Button className="p-2 mx-2 border w-[170px] bg-yellow-300 flex justify-center inline-flex" onClick={() => {
+        // 구매
+    }}>
+    즉시 구매
+    </Button>
+</div>
+```
+
+장바구니 버튼과 구매 버튼을 배치했다.
+<br>
+같은 스타일의 컴포넌트로 제작했고, 구매 버튼에는 orders/save API를 호출하는 코드와 /order 페이지로 이동하는 코드를 추가할 예정이다.
+
+<br>
+
+✅**과제 2. 장바구니 페이지 개발**
+
+```jsx
+const  handleOnChangeCount = (optionId, quantity, price) => {
+    setUpdatePayload((prev) => {
+        const isExist = prev.find((item) => item.cartId === optionId);
+
+        if(isExist) {
+            return [
+                ...prev.filter((item) => item.cartId !== optionId),
+                {
+                    cartId: optionId,
+                    quantity,
+                }
+            ]
+        }
+        return [
+            ...prev,
+            {
+                cartId: optionId,
+                quantity,
+            }
+        ]
+    })
+
+    setTotalPrice((prev) => prev + price);
+    setCartItems((prev) => {
+        return prev.map((item) => {
+            return {
+                ...item,
+                carts: item.carts.map((cart) => {
+                    if(cart.id === optionId) {
+                        return {...cart, quantity};
+                    }
+                    return cart;
+                }),
+            };
+        });
+    });
+};
+```
+
+useNavigate()를 사용하여 /order 페이지로 이동하는 결제하기 버튼을 만들었다.
+<br>
+옵션이 변경될 때 마다, handleOnChangeCount 가 실행되어, 변한 정보가 저장된다.
+<br>
+버튼을 클릭할 경우 updateCart가 실행되어 현재 선택한 상품의 옵션을 서버의 cart에 저장한다.
+
+
+
+<br>
+
+```jsx
+<Button
+    className="p-2 mx-2 border w-[800px] bg-yellow-300"
+    onClick={() => {
+        // update cart
+        // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
+        // post method
+        
+        mutate(updatePayload, {
+            onSuccess: (data) => {
+                // navigate to order page
+                route.push("/order");
+            },
+            onError: (error) => {
+                alert("결제에 실패하였습니다.");
+            }
+        })
+
+        // 결제 프로세스
+        // 1. 장바구니에 있는 모든 항목 그대로 결제 페이지에 담김
+        // 2. 결제 페이지에서는 수량 변경 X, 그대로 결제 진행만 가능
+    }}
+>
+    <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
+</Button>
+```
+ 결제하는 경우 /order 페이지로 이동하고, 실패할 경우 알람이 뜨게 된다.
+ <br>
+추가로 페이지로 이동하기 전에 orders/save API를 호출하여 결제되는 과정을 구현할 것이다.
+
+
+<br>
+
+```jsx
+<>
+    <Gnb />
+    <Suspense fallback={<Loader />}>
+        <CartList data={data} />
+    </Suspense>
+</>
+```
+로더를 통해 로딩 상태를 표시했다.
+
+<br>
+
+</div>
+</details>
+
 
 ---
 
