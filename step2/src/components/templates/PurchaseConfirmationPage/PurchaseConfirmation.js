@@ -40,19 +40,21 @@ const PurchaseConfirmation = () => {
   }, []);
 
   const handleOptionUpdate = (productId, optionId, newQuantity) => {
-    setCartProducts((prevCartProducts) => {
-      console.log("이전카트:", prevCartProducts, "옵션id:", optionId, "개수:", newQuantity);
-      const updatedProducts = [...prevCartProducts];
-      const productIndex = updatedProducts.findIndex((product) => product.id === productId);
-      const optionIndex = updatedProducts[productIndex].carts.findIndex((opt) => opt.option.id === optionId);
-      
-      if (newQuantity === 0) {
-        updatedProducts[productIndex].carts.splice(optionIndex, 1);
-      } else {
-        updatedProducts[productIndex].carts[optionIndex].quantity = newQuantity;
-      }
-      return filterCartProducts(updatedProducts);
-    });
+    const updatedProducts = [...cartProducts];
+    const productIndex = updatedProducts.findIndex((product) => product.id === productId);
+    const optionIndex = updatedProducts[productIndex].carts.findIndex((opt) => opt.option.id === optionId);
+  
+    if (newQuantity === 0) {
+      updatedProducts[productIndex].carts.splice(optionIndex, 1);
+    } else {
+      updatedProducts[productIndex].carts[optionIndex].quantity = newQuantity;
+    }
+  
+    const filteredProducts = filterCartProducts(updatedProducts);
+    setCartProducts(filteredProducts);
+
+    const newSelectedProductIds = filteredProducts.map((p) => p.id);
+    setSelectedProductIds(newSelectedProductIds);
   };
 
   useEffect(() => {
@@ -111,6 +113,11 @@ const PurchaseConfirmation = () => {
     
   };
 
+  const handleUpdateCart = async () => {
+    console.log("장바구니 수정", cartProducts);
+    console.log("선택된상품:", selectedProductIds);
+  };
+
   return (
     <div className="purchase-confirmation">
       <div className="purchase-title">장바구니</div>
@@ -132,7 +139,8 @@ const PurchaseConfirmation = () => {
         />
       ))}
       <div>주문 예상 가격: {comma(totalSelectedValue)}원</div>
-      <Button className="primary" onClick={handleOrder}>{cartProducts.length}건 주문하기</Button>
+      <Button className="primary" onClick={handleOrder}>{selectedProductIds.length}건 주문하기</Button>
+      <Button onClick={handleUpdateCart}>장바구니 수정하기</Button>
     </div>
   );
 };
