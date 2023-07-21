@@ -1,4 +1,4 @@
-import addCart from '@api/cartApi';
+import { addCart } from '@api/cartApi';
 import { ProductInfoData, ProductOptionData } from '@api/dto';
 import Counter from '@components/atoms/Counter';
 import OptionList from '@components/atoms/OptionList';
