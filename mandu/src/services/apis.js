@@ -1,5 +1,6 @@
 import api from "./index";
 import {ErrorType} from "./type";
+import {checkCartValidation} from "../util/validation";
 
 const checkDuplicateEmail = async (email) => {
     return await api.post("/check", {
@@ -37,4 +38,38 @@ const getProducts = async ({pageParam = 0}) => {
     return {data, nextPage: data.length !== 0 ? pageParam + 1 : undefined};
 }
 
-export {checkDuplicateEmail, signUp, signIn, getProducts};
+const getDetailProduct = async (productId) => {
+    const data = await api.get("/products/" + productId);
+    console.log("getDetailProduct", data);
+    const {id, productName, price, starCount, options} = data;
+    //주요 데이터들이 존재하는지 확인
+    if (!id || !productName || !price || !starCount || !options) {
+        throw new ErrorType({
+            message: "올바르지 않은 데이터 형식입니다.",
+        });
+    }
+    //주요 데이터들이 형식에 맞는지 확인.
+    if (isNaN(Number(price)) || isNaN(Number(starCount)) || !Array.isArray(options)) {
+        throw new ErrorType({
+            message: "올바르지 않은 데이터 형식입니다.",
+        });
+    }
+    return data;
+}
+
+const addInCart = async (options) => {
+    console.log("addInCart", options)
+    return await api.post("/carts/add", options);
+}
+
+const getCart = async () => {
+    const data = await api.get("/carts");
+    return checkCartValidation(data);
+}
+
+const updateCart = async (options) => {
+    const data = api.post("/carts/update", options);
+    return checkCartValidation(data);
+}
+
+export {checkDuplicateEmail, signUp, signIn, getProducts, getDetailProduct, addInCart, getCart};
