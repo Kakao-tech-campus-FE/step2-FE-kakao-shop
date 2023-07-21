@@ -26,10 +26,10 @@ const CartPage = () => {
       });
   }, []);
 
-  useEffect(() => {
-    console.log("cartItems");
-    console.log(cartItems);
-  }, [cartItems]);
+  // useEffect(() => {
+  //   console.log("cartItems");
+  //   console.log(cartItems);
+  // }, [cartItems]);
 
   return (
     <div className="cartpage">

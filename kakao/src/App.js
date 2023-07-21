@@ -7,6 +7,8 @@ import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
+import ErrorPage from "./pages/ErrorPage";
 
 function App() {
   return (
@@ -21,7 +23,9 @@ function App() {
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
             <Route path="/cart" element={<CartPage />}></Route>
+            <Route path="/order" element={<OrderPage />} />
           </Route>
+          <Route path="/error" element={<ErrorPage />} />
         </Routes>
       </BrowserRouter>
     </div>

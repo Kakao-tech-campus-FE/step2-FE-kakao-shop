@@ -17,15 +17,22 @@ const OptionColumn = ({ product }) => {
   const handleOnClickOption = (option) => {
     // 동일한 옵션 클릭 했을때 방지해줄 코드(이미 선택된 옵션인가?)
     // 사용자가 선택한 옵션과 기존옵션이 일치하는 것을 isOptionSelected에 담아주고
-    console.log(option);
 
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
 
     if (isOptionSelected) {
-      console.log("이미있음");
+      alert("이미 장바구니에 담긴 상품입니다🧐");
       return;
+      // setSelectedOptions((prev) =>
+      //   prev.map((prevOption) =>
+      //     prevOption.optionId === option.id
+      //       ? { ...prevOption, quantity: prevOption.quantity + 1 }
+      //       : prevOption
+      //   )
+      // );
+      // return;
     }
 
     setSelectedOptions((prev) => [
@@ -128,6 +135,7 @@ const OptionColumn = ({ product }) => {
         </Button>
         <Button
           onClick={() => {
+            // if(?){
             mutate(
               // selectedOptions에서 필요한 데이터만 id와 수량만
               selectedOptions.map((el) => {

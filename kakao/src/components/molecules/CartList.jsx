@@ -10,7 +10,7 @@ import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 
 const CartList = ({ data }) => {
-  const route = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -112,7 +112,7 @@ const CartList = ({ data }) => {
           mutate(updatePayload, {
             onSuccess: (data) => {
               //주문 페이지로 이동
-              route.push("/order");
+              navigate("/order");
             },
             onError: (error) => {},
           });
