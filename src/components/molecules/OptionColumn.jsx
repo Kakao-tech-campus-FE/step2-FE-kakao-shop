@@ -8,7 +8,6 @@ import Button from "../atoms/Button";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-
   const handleOnClickOption = (option) => {
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
@@ -90,6 +89,7 @@ const OptionColumn = ({ product }) => {
       <div className="button-group">
         {/*장바구니 담기 버튼 위치 */}
         <Button
+          className="rounded-lg bg-black text-white"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
@@ -108,7 +108,15 @@ const OptionColumn = ({ product }) => {
               }
             );
           }}
-        ></Button>
+        >
+          장바구니 담기
+        </Button>
+        <Button
+          className="rounded-full bg-yellow-500 text-black"
+          onClick={() => {}}
+        >
+          구매하기
+        </Button>
       </div>
     </div>
   );

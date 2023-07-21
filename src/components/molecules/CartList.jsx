@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { Router, useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
@@ -9,13 +9,13 @@ import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
+import * as paths from "../../constants/urls";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
-  const initPayload = useRef([]);
 
   const { mutate } = useMutation({
     mutationFn: updateCart,
@@ -26,7 +26,7 @@ const CartList = ({ data }) => {
     setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
-  const getTotalCartCounteIncludeOptions = useCallback(() => {
+  const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
     cartItems.forEach((item) => {
       item.carts.forEach((cart) => {
@@ -82,6 +82,34 @@ const CartList = ({ data }) => {
       });
     });
   };
+
+  const removeCartItem = (optionId, price) => {
+    setUpdatePayload((prev) => {
+      return [
+        ...prev.filter((item) => item.cartId !== optionId),
+        {
+          cartId: optionId,
+          quantity: 0,
+        },
+      ];
+    });
+
+    setTotalPrice((prev) => prev - price);
+    setCartItems((prev) => {
+      return prev.map((item) => {
+        return {
+          ...item,
+          carts: item.carts.map((cart) => {
+            if (cart.id === optionId) {
+              return { ...cart, quantity: 0 };
+            }
+            return cart;
+          }),
+        };
+      });
+    });
+  };
+
   return (
     <Container className="cart-List">
       <Box>
@@ -96,6 +124,7 @@ const CartList = ({ data }) => {
                 key={item.id}
                 item={item}
                 onChange={handleOnChangeCount}
+                onRemove={removeCartItem}
               />
             );
           })}
@@ -116,13 +145,15 @@ const CartList = ({ data }) => {
           mutate(updatePayload, {
             onSuccess: (data) => {
               //navigate to order page
-              route.push("/order");
+              route.push(paths.ORDER_PATH);
             },
-            onError: (error) => {},
+            onError: (error) => {
+              route.push(paths.ERROR_PATH);
+            },
           });
         }}
       >
-        <span>총 {getTotalCartCounteIncludeOptions()}건 주문하기</span>
+        <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
       </Button>
     </Container>
   );
