@@ -6,8 +6,9 @@ import GNB from "./components/atoms/GNB";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
 import NotFoundPage from "./pages/NotFoundPage";
-// import Nav from "./components/organisms/Nav";
 
 import './styles/App.css';
 
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/login" element={<LoginPage/>}/>
                 <Route path="/register" element={<RegisterPage/>}/>
                 <Route path="/product/:id" element={<ProductDetailPage/>}/>
+                <Route path="cart" element={<CartPage/>}/>
+                <Route path="order" element={<OrderPage/>}/>
                 <Route path="/*" element={<NotFoundPage/>}/>
             </Routes>
         </BrowserRouter>

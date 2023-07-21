@@ -43,8 +43,6 @@ const OptionColumn = ({ product }) => {
     }
 
     const handleOnChange = (count, optionId) => {
-        console.log(count)
-        console.log(optionId)
         setSelectedOptions((prev) => {
             return prev.map((el) => {
                 if (el.optionId === optionId) {
@@ -80,6 +78,7 @@ const OptionColumn = ({ product }) => {
                 <ol key={option.optionId} className="selected-option-list">
                     <li className="selected-option">
                         <Counter
+                            initialCount={1}
                             onDecrease={(count) => handleOnChange(count, option.optionId)}
                             onIncrease={(count) => handleOnChange(count, option.optionId)}
                         />

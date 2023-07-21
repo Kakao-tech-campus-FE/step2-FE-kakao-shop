@@ -88,6 +88,7 @@ const RegisterFormContainer = styled(Container)`
   margin: 0 auto;
   width: 50%;
   border: 1px solid #ddd;
+  text-align: center;
   & > span {
     font-size: 2.2rem;
   }

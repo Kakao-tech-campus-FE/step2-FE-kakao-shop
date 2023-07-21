@@ -41,7 +41,6 @@ footer, header, hgroup, menu, nav, section {
 }
 
 .loginPage, .registerPage, .notFoundPage {
-    text-align: center;
     margin-top: 180px;
 }
 

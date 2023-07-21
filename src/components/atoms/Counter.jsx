@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 // 최초 수량 + 수량 증가 함수 + 수량 감소 함수
-const Counter = ({onIncrease, onDecrease}) => {
-    const [count, setCount] = useState(1);
+const Counter = ({onIncrease, onDecrease, initialCount}) => {
+    const [count, setCount] = useState(initialCount);
 
     const handleOnIncrease = () => {
         setCount(count + 1);

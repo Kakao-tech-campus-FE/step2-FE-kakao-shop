@@ -28,7 +28,7 @@ const GNB = () => {
             ? <span className="navbarMenu">{email}님 안녕하세요!</span> 
             : <></>} */}
             <Link className="navbarMenu logo" to={"/"}><LogoIcon /> 쇼핑하기</Link>
-            <Link className="navbarMenu" to={"/"}>장바구니</Link>
+            <Link className="navbarMenu" to={"/cart"}>장바구니</Link>
             <div className="divider"></div>
             <Link className="navbarMenu" to={"/register"}>회원가입</Link>
             {token 
