@@ -16,7 +16,7 @@ export default function ProductSection() {
   });
 
   return (
-    <Container className="grid grid-cols-2">
+    <Container className="m-8 inline-flex">
       {isLoading && <Loader />}
       {error && <div>{error}</div>}
       {data && (

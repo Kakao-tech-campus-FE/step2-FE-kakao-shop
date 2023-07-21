@@ -75,31 +75,42 @@ export default function ProductOption({ product }) {
   };
 
   return (
-    <div className="inline-block">
+    <div className="inline-block w-96 p-4 border">
       {/* 옵션 리스트 */}
-      <h3>옵션 선택</h3>
+      <h3 className="text-left font-bold">옵션 선택</h3>
       <OptionList options={product.options} onClick={handleOptionClick} />
       {/* 선택 옵션 리스트 */}
-      <div>
+      <div className="text-center space-y-2">
         {selectedOptions.map((opt) => (
-          <div key={`selected-${opt.id}`} className="">
-            <p>{opt.optionName}</p>
+          <div
+            key={`selected-${opt.id}`}
+            className="block w-72 mx-auto overflow-x-hidden bg-gray-100"
+          >
+            <span>{opt.optionName}</span>
+            <Button
+              className="w-8 text-gray-400 font-bold"
+              onClick={() => handleXClick(opt)}
+            >
+              ×
+            </Button>
+            <br />
             <Counter value={opt} onClick={handleIncDecClick} />
-            <p>{convertToPrice(opt.price * opt.quantity)}</p>
-            <Button onClick={() => handleXClick(opt)}>X</Button>
+            <span className="text-right">
+              {convertToPrice(opt.price * opt.quantity)}
+            </span>
           </div>
         ))}
       </div>
       <hr />
       {/* 총 수량 및 가격 */}
-      <div>
+      <div className="space-x-8 text-xl">
         <span>
           총 수량
           {selectedOptions.reduce((acc, cur) => acc + cur.quantity, 0)}개
         </span>
         <span>
-          총 주문금액
-          <span>
+          총 주문금액{" "}
+          <span className="font-bold text-red-600">
             {convertToPrice(
               selectedOptions.reduce(
                 (acc, cur) => acc + cur.price * cur.quantity,
@@ -110,11 +121,20 @@ export default function ProductOption({ product }) {
         </span>
       </div>
       {/* 장바구니 및 바로구매 */}
-      <div>
+      <div className="space-x-1">
         <Button onClick={handleCartClick}>
-          <Photo className="" src={cart_white} alt={"cart_white"} />
+          <Photo
+            className="w-12 rounded-xl"
+            src={cart_white}
+            alt={"cart_white"}
+          />
         </Button>
-        <Button onClick={handleBuyClick}>바로구매</Button>
+        <Button
+          className=" bg-yellow-300 p-2 rounded text-[1.2rem]"
+          onClick={handleBuyClick}
+        >
+          바로구매
+        </Button>
       </div>
     </div>
   );

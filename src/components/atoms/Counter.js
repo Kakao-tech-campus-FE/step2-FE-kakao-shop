@@ -10,15 +10,18 @@ export default function Counter({ value, onClick }) {
   };
 
   return (
-    <div>
+    <div className="inline-block bg-white border">
       <Button
+        className="border w-6"
         disabled={value.quantity > 1 ? false : true}
         onClick={handleDecreaseClick}
       >
         -
       </Button>
-      <span>{value.quantity}</span>
-      <Button onClick={handleIncreaseClick}>+</Button>
+      <span className="inline-block w-16">{value.quantity}</span>
+      <Button className="border w-6" onClick={handleIncreaseClick}>
+        +
+      </Button>
     </div>
   );
 }
