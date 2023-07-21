@@ -1,0 +1,25 @@
+.column {
+  margin-top: 30px;
+}
+
+.column .product-name {
+  font-size: 14px;
+  margin-left: 40px;
+}
+
+.column .product-price {
+  position: relative;
+  right: 40px;
+  width: 70px;
+  height: 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 32px;
+  color: #191919;
+  background: #fee500;
+  margin-top: 10px;
+  margin-left: 10px;
+  align-content: center;
+  padding-left: 10px;
+}

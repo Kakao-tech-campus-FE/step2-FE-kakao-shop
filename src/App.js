@@ -37,11 +37,11 @@ function App() {
           {/* 단독 레이아웃 */}
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
-          <Route path="/product/:id" element={<ProductDetailPage />}></Route>
 
           {/*  공통 레이아웃 : GNB, footer */}
           <Route element={<MainLayout />}>
-            <Route path="/main" element={<MainPage />}></Route>
+            <Route path="/" element={<MainPage />}></Route>
+            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

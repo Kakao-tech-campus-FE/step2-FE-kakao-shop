@@ -32,7 +32,7 @@ const LoginForm = (props) => {
             username: user.username,
           })
         );
-        navigate("/main");
+        navigate("/");
       } else {
         // 로그인 실패 처리
         console.error("Login failed");

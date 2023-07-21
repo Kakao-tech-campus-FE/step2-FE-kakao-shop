@@ -5,6 +5,33 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Loading from "../components/atoms/Loader";
 import ProductInformationColumn from "../components/molecules/ProductInformationColumn";
+import Container from "../components/atoms/Container";
+import Box from "../components/atoms/Box";
+import OptionColumn from "../components/molecules/OptionColumn";
+import styled from "styled-components";
+
+const ColumnContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 0 50px 0;
+  vertical-align: top;
+  margin-bottom: 40px;
+  height: 1000px;
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &.column-product {
+    width: 70%;
+  }
+  &.column-option {
+    right: 20%;
+    position: fixed;
+  }
+`;
 
 const ProductDetailPage = () => {
   // const id = useParams().id; // Params로 받은 코드는 항상 string 값
@@ -20,7 +47,18 @@ const ProductDetailPage = () => {
     <div>
       {isLoading && <Loading />}
       {error && <div>{error.message}</div>}
-      {data && <ProductInformationColumn product={data?.data?.response} />}
+      {data && (
+        <>
+          <ColumnContainer className="columnContainer">
+            <Column className="column-product">
+              <ProductInformationColumn product={data?.data?.response} />
+            </Column>
+            <Column className="column-option">
+              <OptionColumn product={data?.data?.response} />
+            </Column>
+          </ColumnContainer>
+        </>
+      )}
     </div>
   );
 };

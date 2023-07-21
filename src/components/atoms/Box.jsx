@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledBox =
   // 아래의 style이 입혀진 button 태그를 생성
   styled.div`
-    width: 580px;
+    width: 70%;
     height: 100%;
     margin: 40px auto 42px;
     padding: 0 69px;
