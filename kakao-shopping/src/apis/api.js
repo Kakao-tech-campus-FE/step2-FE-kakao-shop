@@ -41,13 +41,8 @@ export const register = async (data) => {
   }
 };
 export const getProducts = async (index) => {
-  try {
-    const response = await instance.get(`/products?page=${index}`, {
-    });
-    return response;
-  } catch (error) {
-    throw error;
-  }
+  const response = await instance.get(`/products?page=${index}`);
+  return response;
 };
 
 export const getIdProduct = async (id) => {
