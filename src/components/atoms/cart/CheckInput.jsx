@@ -10,6 +10,7 @@ const CheckBox = (props) => {
         <StyledInput
             type="checkbox"
             defaultChecked={props.defaultChecked} 
+            checked={props.checked}
             onChange={props.onChange}/>
     );
 };
