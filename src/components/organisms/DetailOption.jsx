@@ -7,9 +7,11 @@ import TotalPrice from 'components/atoms/option/TotalPrice'
 import OptionSelected from 'components/molecules/OptionSelected'
 import strPrice from 'utils/price'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import addToCart from 'api/addToCart'
 import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
+import { toastOnReducer } from 'reducers/toastSlice'
+import { useToast } from 'components/molecules/Toast'
 
 const DetailOption = (props) => {
   const initialList = props.options.map((item) => { 
@@ -21,17 +23,19 @@ const DetailOption = (props) => {
   const [totalPrice, setTotalPrice] = useState(0)
   const [totalQuantity, setTotalQuantity] = useState(0)
   const loginState = useSelector((state) => state.login)
+  
+  const setToast = useToast()
 
   const selectOption = (id) => {
     if (!loginState.islogin) {
-      alert("로그인 해주세요")
+      setToast("로그인 해주세요.", "/login")
       return
     }
     setOpen(prev => false)
 
     for (const item of selected) {
       if (item.id === id && item.quantity > 0) {
-        console.log("이미 선택된 옵션입니다.")
+        setToast("이미 선택된 옵션입니다.")
         return
       }
     }
@@ -77,14 +81,13 @@ const DetailOption = (props) => {
     setTotalQuantity(prev => q)
   }, [selected])
 
-
   const submitHandler = () => {
     if (!loginState.islogin) {
-      alert("로그인 해주세요")
+      setToast("로그인 해주세요.", "/login")
       return
     }
     if (totalQuantity === 0) {
-      alert("옵션을 선택해주세요")
+      setToast("옵션을 선택해 주세요.", "/login")
       return
     }
     
@@ -95,7 +98,7 @@ const DetailOption = (props) => {
     addToCart(newList)
     .then((res)=> {
       setSelected(prev => [])
-      console.log("장바구니에 상품을 담았습니다")
+      setToast("장바구니에 상품을 담았습니다.", '/carts')
     })
   }
 
@@ -159,6 +162,7 @@ const DetailOption = (props) => {
           구매하기
         </SubmitButton>
       </div>
+
     </OptionContainer>
   )
 }
