@@ -6,6 +6,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { AiOutlineClose } from "react-icons/ai";
 import { BiCart } from "react-icons/bi";
+import { useMutation } from "@tanstack/react-query";
+import { addCart } from "../../apis/cart";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -54,9 +56,13 @@ const OptionColumn = ({ product }) => {
     });
   };
 
+  const { mutate } = useMutation({
+    mutationFn: addCart,
+  });
+
   return (
     <>
-      <div className="mt-3 w-auto border-t pl-7 pt-7 lg:mt-0 lg:h-screen lg:w-[28%] lg:border-l lg:border-t-0 lg:border-gray-300">
+      <div className="mt-3 w-auto border-t pt-7 lg:mt-0 lg:h-screen lg:w-[28%] lg:border-l lg:border-t-0 lg:border-gray-300 lg:pl-7">
         <div className="overflow-y-auto">
           <h3 className="ml-1 text-[17px] font-extrabold">옵션 선택</h3>
           <OptionList
@@ -129,7 +135,27 @@ const OptionColumn = ({ product }) => {
           </span>
         </div>
         <div className="my-5 flex w-full">
-          <button className="flex h-[60px] w-1/4 items-center justify-center rounded-lg bg-black">
+          <button
+            className="flex h-[60px] w-1/4 items-center justify-center rounded-lg bg-black"
+            onClick={() => {
+              mutate(
+                selectedOptions.map((el) => {
+                  return {
+                    optionId: el.optionId,
+                    quantity: el.quantity,
+                  };
+                }),
+                {
+                  onSuccess: () => {
+                    alert("장바구니에 담겼습니다.");
+                  },
+                  onError: () => {
+                    alert("장바구니 담기에 실패했습니다.");
+                  },
+                }
+              );
+            }}
+          >
             <BiCart color="white" size="40" />
           </button>
           <button className="ml-2 h-[60px] w-3/4 rounded-lg bg-kakao text-[17px]">

@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
 import Photo from "./Photo";
-
-// import ProductSection from "../components/templates/ProductSection";
+import { useState } from "react";
+import Modal from "../moleclules/Modal";
 
 const GNB = () => {
+  const [modal, setModal] = useState(false);
+  const navigate = useNavigate();
+
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
 
@@ -21,13 +24,28 @@ const GNB = () => {
             ></Photo>
           </Link>
           <div className="flex items-center justify-evenly">
-            <Link>
-              <Photo
-                src={"/cart.png"}
-                alt="cart"
-                className={"w-[30px] lg:w-[40px]"}
-              />
-            </Link>
+            {email ? (
+              <Link to="/cart">
+                <Photo
+                  src={"/cart.png"}
+                  alt="cart"
+                  className={"w-[30px] lg:w-[40px]"}
+                />
+              </Link>
+            ) : (
+              <Link
+                onClick={() => {
+                  setModal(true);
+                }}
+              >
+                <Photo
+                  src={"/cart.png"}
+                  alt="cart"
+                  className={"w-[30px] lg:w-[40px]"}
+                />
+              </Link>
+            )}
+
             <span className="ml-2 mr-3 text-[20px] text-[rgba(34,34,34,.2)] lg:ml-5 lg:mr-6">
               |
             </span>
@@ -50,6 +68,18 @@ const GNB = () => {
           </div>
         </div>
       </div>
+      {modal && (
+        <Modal
+          contentText={"로그인이 필요한 메뉴입니다."}
+          type={"two"}
+          buttonText={"로그인"}
+          secondButton={"취소"}
+          onClick={() => {
+            navigate("/login");
+          }}
+          setModal={setModal}
+        ></Modal>
+      )}
     </header>
   );
 };

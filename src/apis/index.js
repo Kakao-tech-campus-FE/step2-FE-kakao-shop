@@ -10,9 +10,11 @@ export const instance = axios.create({
 
 // 요청 인터셉터
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers["Authorization"] = `${token}`;
+  if (config.url.includes("/carts")) {
+    const token = JSON.parse(localStorage.getItem("user")).token;
+    if (token) {
+      config.headers["Authorization"] = `${token}`;
+    }
   }
   return config;
 });

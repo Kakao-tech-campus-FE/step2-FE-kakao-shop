@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AiOutlinePlus, AiOutlineMinus } from "react-icons/ai";
 
-const Counter = ({ onIncrease, onDecrease }) => {
-  const [count, setCount] = useState(1);
+const Counter = ({ quantity = 1, onIncrease, onDecrease }) => {
+  const [count, setCount] = useState(quantity);
 
   const handleOnIncrease = () => {
     setCount(count + 1);
@@ -17,7 +17,7 @@ const Counter = ({ onIncrease, onDecrease }) => {
   };
 
   return (
-    <div className="flex w-[130px] justify-between border border-gray-300 bg-white text-[18px]">
+    <div className="flex w-[130px] justify-between rounded-sm border border-gray-300 bg-white text-[18px]">
       <button
         className={`border-r border-gray-300 p-1 ${
           count > 1 ? "text-black" : "text-gray-300"
