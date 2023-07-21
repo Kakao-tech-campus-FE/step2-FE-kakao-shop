@@ -22,6 +22,7 @@ const GNB = ({ children }) => {
             alt="톡쇼핑하기"
             className="overflow-clip-margin-content overflow-clip overflow-x-auto overflow-y-auto"
             src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230707/130532/assets/images/pc/pc_logo.png"
+            onClick={() => gohome("/")}
           />
         </h1>
         <Container className="text-base leading-6 font-sans text-gray-700 relative pt-13 pr-0 pb-13 pl-3 grid place-items-end">
