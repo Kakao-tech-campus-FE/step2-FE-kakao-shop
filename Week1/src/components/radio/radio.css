@@ -1,0 +1,29 @@
+.radio-container {
+    background-color: #F8F6F4;
+    height: 100x;
+    width: auto;
+    margin: 10px;
+    padding: 10px 20px 40px 20px;
+    background-color: #F8F6F4;
+    display: flex;
+}
+
+.radio-item {
+    margin-right: 7px;
+}
+
+input[type="radio"]:checked{
+    background-color: #ffce08;
+}
+
+input[type="radio"]{
+    -webkit-appearance: none;
+    -webkit-box-sizing: border-box;
+    width: 15px;
+    height: 15px;
+    box-sizing: border-box;
+    border: 1px solid #9999;
+    border-radius: 5px;
+    margin-right: 7px;
+    vertical-align: middle;
+}

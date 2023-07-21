@@ -11,6 +11,7 @@ import { styled } from 'styled-components';
  * @param {boolean} required - input 필드가 필수인지 여부를 나타내는 값
  * @returns {JSX.Element} 컴포넌트 반환
  */
+
 const Input = ({ id, type, onChange, name, value, placeholder, required = false }) => {
     return (
         <StyledInput
