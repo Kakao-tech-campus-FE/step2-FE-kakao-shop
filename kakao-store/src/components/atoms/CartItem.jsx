@@ -7,7 +7,7 @@ import { useState } from 'react';
 // 각 상품별 장바구니 항목
 // 여러 옵션이 저장될 수 있음
 
-const CartItem = ({ item, onChange }) => {
+const CartItem = ({ item, onChange, onDelete }) => {
   return (
     <Box className="cart-item-box  p-2">
       <h3 className="productName mb-3 font-bold">{item.productName}</h3>
@@ -24,12 +24,12 @@ const CartItem = ({ item, onChange }) => {
           {/* 삭제 버튼 */}
 
           <div className="row my-2 flex">
-            <span
+            <button
               className="delete mr-1 rounded border border-solid border-gray-300 bg-white px-2 py-1 text-sm"
-              onClick={() => {}}
+              onClick={() => onDelete(cart.id, cart.price)}
             >
               삭제
-            </span>
+            </button>
             <Counter
               value={cart.quantity}
               onIncrease={(count) => {

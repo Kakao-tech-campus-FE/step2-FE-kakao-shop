@@ -1,5 +1,5 @@
-import {createSlice, createAsyncThunk}  from '@reduxjs/toolkit';
-import {fetchProducts} from '../../services/product';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { fetchProducts } from '../../services/product';
 import _ from 'lodash';
 
 const initialState = {
@@ -34,12 +34,9 @@ const productsSlice = createSlice({
   },
 });
 
-export const getProduct = createAsyncThunk(
-  'products/getProduct',
-  async (page) => {
-    const response = await fetchProducts(page);
-    return response.data; // action.payload에 들어감
-  }
-);
+export const getProduct = createAsyncThunk('products/getProduct', async (page) => {
+  const response = await fetchProducts(page);
+  return response.data; // action.payload에 들어감
+});
 
 export default productsSlice.reducer;
