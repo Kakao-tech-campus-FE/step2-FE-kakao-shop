@@ -6,7 +6,7 @@ import OptionColumn from "../molecules/OptionColumn";
 // product props contains product's detail info
 const ProductDetailTemplate = ({ product }) => {
   return (
-    <Container>
+    <Container className="flex flex-row">
       <ProductInformationColumn product={product} />
       <OptionColumn product={product} />
     </Container>

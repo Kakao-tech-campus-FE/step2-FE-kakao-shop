@@ -123,8 +123,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container>
-      <Title>회원 가입</Title>
+    <Container className="w-1/2 h-full block align-middle border rounded border-gray-light p-16">
       <InputGroup
         id="username"
         type="text"
@@ -144,7 +143,12 @@ const RegisterForm = () => {
         value={value.email}
         onChange={handleOnChange}
       />
-      <Button onClick={handleDuplicate}>중복체크</Button>
+      <Button
+        className="w-1/5 h-9 rounded bg-yellow mt-3"
+        onClick={handleDuplicate}
+      >
+        중복체크
+      </Button>
       {errors.duplicate && <div className="error">{errors.duplicate}</div>}
       {errors.email && <div className="error">{errors.email}</div>}
 
@@ -171,7 +175,12 @@ const RegisterForm = () => {
       {errors.passwordConfirm && (
         <div className="error">{errors.passwordConfirm}</div>
       )}
-      <Button onClick={handleOnSubmit}>회원가입</Button>
+      <Button
+        className="w-full h-9 rounded bg-yellow mt-3"
+        onClick={handleOnSubmit}
+      >
+        회원가입
+      </Button>
     </Container>
   );
 };

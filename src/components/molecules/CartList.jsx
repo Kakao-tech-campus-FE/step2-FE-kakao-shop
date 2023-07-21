@@ -27,6 +27,8 @@ const CartList = ({ data }) => {
   useEffect(() => {
     setCartItems(data?.data?.response?.products);
     setTotalPrice(data?.data?.response?.totalPrice);
+    console.log(cartItems);
+    console.log(updatePayload);
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
@@ -48,7 +50,6 @@ const CartList = ({ data }) => {
   const handleOnChangeCount = (optionId, quantity, price) => {
     setUpdatePayload((prev) => {
       const isExist = prev.find((item) => item.cartId === optionId);
-
       if (isExist) {
         return [
           ...prev.filter((item) => item.cartId !== optionId),
@@ -76,7 +77,7 @@ const CartList = ({ data }) => {
             if (cart.id === optionId) {
               return { ...cart, quantity };
             }
-            return comma(cart);
+            return cart;
           }),
         };
       });
@@ -84,9 +85,9 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <Container className="cart-list">
-      <Box>
-        <h1>장바구니</h1>
+    <Container className="cart-list flex flex-col">
+      <Box className="text-center h-11">
+        <h1 className=" text-sm align-middle mt-3">장바구니</h1>
       </Box>
       <Card>
         {/* {상품별 장바구니} */}
@@ -102,13 +103,17 @@ const CartList = ({ data }) => {
           })}
       </Card>
       <Card>
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
+        <div className="row block h-16 font-bold">
+          <span className="expect inline-block float-left p-6">
+            주문 예상금액
+          </span>
+          <div className="sum-price inline-block float-right p-6 col text-blue">
+            {comma(totalPrice)}원
+          </div>
         </div>
       </Card>
       <Button
-        className="order-btn"
+        className="order-btn block width-full h-14 bg-yellow"
         onClick={() => {
           // update cart api
           // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
@@ -134,7 +139,9 @@ const CartList = ({ data }) => {
           // 2. 결제 페이지에서는 수량 변경 x ,
         }}
       >
-        <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
+        <span className="font-bold">
+          총 {getTotalCartCountIncludeOptions()}건 주문하기
+        </span>
       </Button>
     </Container>
   );

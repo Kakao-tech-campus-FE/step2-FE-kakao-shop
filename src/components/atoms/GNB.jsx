@@ -2,15 +2,17 @@ import { Link } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import clearUser from "../../store/slices/userSlice";
+import { Fragment } from "react";
 
 //header bar components
 
 const GNB = () => {
-  const email = useSelector((state) => state.user.email); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
+  const token = useSelector((state) => state.user.token); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     dispatch(clearUser());
     alert("정상적으로 로그아웃되었습니다.");
   };
@@ -33,20 +35,30 @@ const GNB = () => {
             </h1>
             <div className="menu_util">
               {/* 장바구니 버튼 */}
-              <Link className="link_util" to="/cart">
-                <img
-                  className="ico_cart"
-                  src={"/cart.png"}
-                  alt="장바구니 버튼"
-                />
-              </Link>
+              {token ? (
+                <Link className="link_util" to="/cart">
+                  <img
+                    className="ico_cart"
+                    src={"/cart.png"}
+                    alt="장바구니 버튼"
+                  />
+                </Link>
+              ) : (
+                <Link className="link_util" to="/login">
+                  <img
+                    className="ico_cart"
+                    src={"/cart.png"}
+                    alt="장바구니 버튼"
+                  />
+                </Link>
+              )}
             </div>
             <div className="menu_my">
               {/* 로그인 버튼 */}
-              {email ? (
+              {token ? (
                 <Link
                   className="link_login"
-                  to="/login"
+                  to="/"
                   onClick={handleLogout}
                   style={{ textDecoration: "none", color: "black" }}
                 >
@@ -54,14 +66,24 @@ const GNB = () => {
                   로그아웃{" "}
                 </Link>
               ) : (
-                <Link
-                  className="link_login"
-                  to="/login"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그인{" "}
-                </Link>
+                <Fragment>
+                  <Link
+                    className="link_login"
+                    to="/login"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    {" "}
+                    로그인{" "}
+                  </Link>
+                  <Link
+                    className="link_login"
+                    to="/register"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    {" "}
+                    회원가입{" "}
+                  </Link>
+                </Fragment>
               )}
             </div>
           </div>

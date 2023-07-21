@@ -3,13 +3,17 @@ import "../../styles/atoms/OptionList.css";
 // Get options, rendering and click then callback
 const OptionList = ({ options, onClick }) => {
   return (
-    <ol className="option-list">
+    <ol className="option-list block text-sm">
       {options.map((option, index) => (
-        <li key={option.id} className="option" onClick={() => onClick(option)}>
-          <span className="name">
+        <li
+          key={option.id}
+          className="option list-item py-2.5 border-b border-gray-500/4"
+          onClick={() => onClick(option)}
+        >
+          <span className="name block leading-5 align-top">
             {index + 1}. {option.optionName}
           </span>
-          <span className="price">{comma(option.price)}원</span>
+          <span className="price block">{comma(option.price)}원</span>
         </li>
       ))}
     </ol>

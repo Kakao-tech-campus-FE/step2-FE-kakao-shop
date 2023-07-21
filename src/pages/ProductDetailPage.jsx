@@ -4,7 +4,6 @@ import { getProductById } from "../services/product";
 import Container from "../components/atoms/Container";
 import { useQuery } from "react-query";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
-//Maybe next week hw
 
 const ProductDetailPage = () => {
   const { id } = useParams(); //string,
@@ -36,7 +35,7 @@ const ProductDetailPage = () => {
   };
 
   return (
-    <div>
+    <div className="mt-10">
       {isLoading && <Loader />}
       {error && <div>{error.message}</div>}
       {product && <ProductDetailTemplate product={product} />}

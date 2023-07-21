@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../services/users";
 import { setToken, setUser } from "../../store/slices/userSlice";
+import { Link } from "react-router-dom";
 
 import "../../styles/organisms/LoginForm.css";
 
@@ -47,9 +48,9 @@ const LoginForm = () => {
   };
 
   return (
-    <Container>
-      <Title>로그인</Title>
+    <Container className="w-1/2 h-full block align-middle border rounded border-gray-light p-16">
       <InputGroup
+        className="block leading-4 mt-1 break-words "
         id="email"
         type="email"
         name="email"
@@ -68,6 +69,7 @@ const LoginForm = () => {
         onChange={handleOnChange}
       />
       <Button
+        className="w-full h-9 rounded bg-yellow mt-3"
         onClick={() =>
           handleLogin({
             email: value.email,
@@ -78,6 +80,7 @@ const LoginForm = () => {
         로그인
       </Button>
       {error && <p>{error}</p>}
+      <Link to="../register">회원가입</Link>
     </Container>
   );
 };
