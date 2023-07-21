@@ -1,0 +1,66 @@
+import { CartData } from '../../types/product';
+import Button from '../atoms/button';
+import LinkButton from '../atoms/linkButton';
+import Price from '../atoms/price';
+import OptionCard from '../molecules/optionCard';
+
+interface CartTemplateProps {
+  cartData: CartData;
+
+  handleOption: (cardId: number, quantity: number) => void;
+}
+
+export default function CartTemplate({
+  cartData,
+  handleOption,
+}: CartTemplateProps) {
+  return (
+    <div>
+      <h1 className="py-2 text-center text-2xl font-bold">장바구니</h1>
+      {cartData.products.filter(
+        (product) => product.carts.filter(
+          (cart) => cart.quantity > 0,
+        ).length > 0,
+      ).length > 0 ? (
+        <>
+          <ul>
+            {cartData.products.map((product) => (
+              product.carts.filter((cart) => cart.quantity > 0).length > 0
+                ? (
+                  <li
+                    key={`product-${product.id}`}
+                    className="my-6"
+                  >
+                    <h2 className="my-2 font-bold">
+                      <LinkButton href={`/product/${product.id}`}>
+                        {product.productName}
+                      </LinkButton>
+                    </h2>
+                    {product.carts.map((cart) => (
+                      cart.quantity > 0 ? (
+                        <OptionCard
+                          key={`product-${product.id}-option-${cart.option.id}`}
+                          optionName={cart.option.optionName}
+                          quantity={cart.quantity}
+                          optionTotalPrice={cart.price}
+                          handleQuantityDecrease={() => handleOption(cart.id, cart.quantity - 1)}
+                          handleQuantityIncrease={() => handleOption(cart.id, cart.quantity + 1)}
+                          handleDeleteOption={() => handleOption(cart.id, 0)}
+                        />
+                      ) : null
+                    ))}
+                  </li>
+                ) : null
+            ))}
+          </ul>
+          <div className="my-4 text-right text-lg font-bold">
+            총
+            {' '}
+            <Price price={cartData.totalPrice} />
+          </div>
+          <Button>결제하기</Button>
+        </>
+        ) : <div>담긴 상품이 없습니다.</div>}
+    </div>
+  );
+}

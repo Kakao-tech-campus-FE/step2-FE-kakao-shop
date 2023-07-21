@@ -55,6 +55,11 @@ export default function NavigationBar() {
               !
             </div>
             <div>
+              <LinkButton href="/cart">
+                장바구니
+              </LinkButton>
+            </div>
+            <div>
               <Button onClick={handleLogout}>
                 로그아웃
               </Button>

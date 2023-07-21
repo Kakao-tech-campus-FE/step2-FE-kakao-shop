@@ -9,6 +9,8 @@ import LoginPage from './components/pages/loginPage';
 import ProductListPage from './components/pages/mainProductListPage';
 import { store } from './store';
 import MainLayout from './components/layouts/mainLayout';
+import ProductDetailPage from './components/pages/productDetailPage';
+import CartPage from './components/pages/cartPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,6 +34,8 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<MainPage />} />
               <Route path="/product" element={<ProductListPage />} />
+              <Route path="/product/:productId" element={<ProductDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

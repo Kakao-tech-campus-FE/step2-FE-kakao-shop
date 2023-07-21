@@ -1,18 +1,9 @@
 import { LoginData, RegisterFormData } from '../types/formData';
-import { KAKAO_API_BASEURL, createAxiosInstance } from '../utils/axios';
-
-const axiosRegisterInstance = createAxiosInstance(
-  KAKAO_API_BASEURL,
-  3000,
-);
-const axiosLoginInstance = createAxiosInstance(
-  KAKAO_API_BASEURL,
-  3000,
-);
+import { kakaoUserInstance } from '../utils/axios';
 
 export async function checkEmail(email: string) {
   try {
-    const response = await axiosRegisterInstance.post('/check', { email });
+    const response = await kakaoUserInstance.post('/check', { email });
 
     return response.status === 200 && response.data.success === true;
   } catch (error) {
@@ -21,7 +12,7 @@ export async function checkEmail(email: string) {
 }
 
 export async function requestUserRegistration({ email, password, username }: RegisterFormData) {
-  const response = await axiosRegisterInstance.post('/join', {
+  const response = await kakaoUserInstance.post('/join', {
     email,
     password,
     username,
@@ -31,7 +22,7 @@ export async function requestUserRegistration({ email, password, username }: Reg
 }
 
 export function requestUserLogin({ email, password }: LoginData) {
-  return axiosLoginInstance.post('/login', {
+  return kakaoUserInstance.post('/login', {
     email,
     password,
   });

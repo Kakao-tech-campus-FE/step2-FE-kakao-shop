@@ -1,4 +1,5 @@
 import Photo from '../atoms/photo';
+import Price from '../atoms/price';
 
 interface ProductCardprops {
   productName: string;
@@ -14,23 +15,21 @@ export default function ProductCard({
     <div className="flex h-80 w-80 flex-col rounded-lg p-3
     hover:bg-stone-200"
     >
-      <div className="mb-2 h-40 w-full rounded-lg bg-stone-300">
+      <div className="mb-2 h-40 w-full rounded-lg">
         <Photo
           src={image}
           alt={productName}
         />
       </div>
       <div className="flex grow flex-col justify-between">
-        <div className="break-keep">
+        <h1 className="break-keep">
           {productName}
-        </div>
-        <div className="text-sm text-gray-400">
+        </h1>
+        <p className="text-sm text-gray-400">
           {description}
-        </div>
-        <div className="text-right text-lg font-bold">
-          {price.toLocaleString('ko-KR')}
-          {' '}
-          원
+        </p>
+        <div className="text-end text-lg font-bold">
+          <Price price={price} />
         </div>
       </div>
     </div>

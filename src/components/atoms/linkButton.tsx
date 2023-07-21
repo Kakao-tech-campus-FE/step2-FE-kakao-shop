@@ -10,7 +10,7 @@ export default function LinkButton({
   href,
 }: LinkButtonProps) {
   return (
-    <span className="text-sm">
+    <span>
       <Link to={href}>
         {children}
       </Link>

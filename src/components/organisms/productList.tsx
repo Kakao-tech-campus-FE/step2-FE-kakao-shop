@@ -1,8 +1,9 @@
-import { ProductData } from '../../types/product';
+import { Link } from 'react-router-dom';
+import { ProductThumbnail } from '../../types/product';
 import ProductCard from '../molecules/productCard';
 
 interface ProductListProps {
-  productData: ProductData[] | undefined;
+  productData: ProductThumbnail[] | undefined;
 }
 
 export default function ProductList({ productData }: ProductListProps) {
@@ -12,12 +13,14 @@ export default function ProductList({ productData }: ProductListProps) {
         id, productName, description, image, price,
       }) => (
         <li key={id}>
-          <ProductCard
-            productName={productName}
-            description={description}
-            image={`${new URL(image, process.env.REACT_APP_KAKAO_API_URL).toString()}`}
-            price={price}
-          />
+          <Link to={`product/${id}`}>
+            <ProductCard
+              productName={productName}
+              description={description}
+              image={`${new URL(image, process.env.REACT_APP_KAKAO_API_URL).toString()}`}
+              price={price}
+            />
+          </Link>
         </li>
       ))}
     </ul>
