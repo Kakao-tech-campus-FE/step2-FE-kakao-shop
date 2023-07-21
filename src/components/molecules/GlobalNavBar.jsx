@@ -26,7 +26,7 @@ export default function GlobalNavBar() {
   };
 
   return (
-    <Container className=" fixed inset-x-0 flex items-center place-content-between border-solid px-16 border-y-1 border-x-0 border-slate-300 bg-white h-20 top-0 z-10">
+    <Container className=" fixed w-full min-w-[1280px] flex items-center place-content-between border-solid px-16 border-y-1 border-x-0 border-slate-300 bg-white h-20 top-0 z-10">
       <Link to="/">
         <Logo src={logoKakao} alt="logoKakao" className="w-28" />
       </Link>
