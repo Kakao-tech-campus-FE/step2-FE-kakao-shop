@@ -38,7 +38,7 @@ const Styled = {
   Ul: styled.ul``,
 };
 
-function OptionAccordion({ options, cart, setCart, ...props }) {
+function ProductOptionAccordion({ options, cart, setCart, ...props }) {
   const [isOptionOpen, setIsOptionOpen] = useState(false);
 
   const handleOpenButtonClick = () => {
@@ -75,7 +75,7 @@ function OptionAccordion({ options, cart, setCart, ...props }) {
   );
 }
 
-OptionAccordion.propTypes = {
+ProductOptionAccordion.propTypes = {
   options: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -87,4 +87,4 @@ OptionAccordion.propTypes = {
   setCart: PropTypes.func,
 };
 
-export default OptionAccordion;
+export default ProductOptionAccordion;

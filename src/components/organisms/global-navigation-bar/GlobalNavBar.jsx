@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import accessTokenAtom from "@/storage/common/accessToken.atom.js";
 import routes from "@/constants/routes.js";
 import LogoButton from "@/components/atoms/logo-button/LogoButton.jsx";
+import CartIcon from "@/assets/CartIcon.jsx";
 
 const Styled = {
   Container: styled.nav`
@@ -24,7 +25,16 @@ const Styled = {
     background-color: white;
     z-index: 10;
   `,
-  ButtonBox: styled.div``,
+  ButtonBox: styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+  CartButton: styled.button`
+    margin-right: 1rem;
+    padding: 0.25rem;
+    background-color: white;
+  `,
   AuthButton: styled.button`
     padding: 0.4rem 0 0.4rem 1.25rem;
     background-color: white;
@@ -38,13 +48,17 @@ function GlobalNavBar({ isStorybookMode }) {
   const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const navigate = useNavigate();
 
-  const onAuthButtonClick = () => {
+  const handleAuthButtonClick = () => {
     if (accessToken) {
       setAccessToken("");
       localStorage.removeItem("accessTokenDate");
       return;
     }
     navigate(routes.signIn);
+  };
+
+  const handleCartButtonClick = () => {
+    navigate(routes.cart);
   };
 
   return (
@@ -55,7 +69,10 @@ function GlobalNavBar({ isStorybookMode }) {
         }}
       />
       <Styled.ButtonBox>
-        <Styled.AuthButton onClick={onAuthButtonClick}>
+        <Styled.CartButton onClick={handleCartButtonClick}>
+          <CartIcon />
+        </Styled.CartButton>
+        <Styled.AuthButton onClick={handleAuthButtonClick}>
           {accessToken ? "로그아웃" : "로그인"}
         </Styled.AuthButton>
       </Styled.ButtonBox>

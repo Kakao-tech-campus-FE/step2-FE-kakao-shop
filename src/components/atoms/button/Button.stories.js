@@ -9,7 +9,7 @@ export default {
       control: "select",
       options: ["submit", "button"],
     },
-    color: { control: "color" },
+    backgroundColor: { control: "color" },
     children: { control: "text" },
   },
 };

@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import Plus from "@/assets/Plus.jsx";
 import Minus from "@/assets/Minus.jsx";
@@ -8,13 +9,16 @@ const Styled = {
     width: fit-content;
     height: 1.75rem;
     border: ${({ theme }) => theme.border.default};
+    border-radius: 0.2rem;
   `,
   Button: styled.button`
     width: 2rem;
     height: 100%;
+    background-color: white;
 
     &.minus {
       border-right: ${({ theme }) => theme.border.default};
+      border-radius: 0.2rem 0 0 0.2rem;
       &:disabled {
         cursor: not-allowed;
       }
@@ -25,6 +29,7 @@ const Styled = {
     }
 
     &.plus {
+      border-radius: 0 0.2rem 0.2rem 0;
       border-left: ${({ theme }) => theme.border.default};
     }
   `,
@@ -92,4 +97,4 @@ QuantityButton.defaultProps = {
   value: 1,
 };
 
-export default QuantityButton;
+export default React.memo(QuantityButton);

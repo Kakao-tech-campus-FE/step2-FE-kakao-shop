@@ -10,12 +10,16 @@ const PRODUCT = {
 
 const CARTS = {
   ADD: "/carts/add",
+  GET: "/carts",
+  UPDATE: "/carts/update",
 };
 
 const KEYS = {
-  ADD_CART_ITEM: "addCartItem",
   GET_ALL_PRODUCTS: "getAllProducts",
   GET_PRODUCT_BY_ID: "getProductByID",
+  ADD_CART_ITEM: "addCartItem",
+  GET_CART_ITEMS: "getCartItems",
+  UPDATE_CART_ITEMS: "updateCartItems",
 };
 
 Object.freeze(AUTH);

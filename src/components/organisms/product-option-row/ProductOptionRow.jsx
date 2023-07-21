@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import OptionAccordion from "@/components/molecules/option-accordion/OptionAccordion.jsx";
-import BasketOption from "@/components/molecules/cart-option/CartOption.jsx";
+import ProductOptionAccordion from "@/components/molecules/product-option-accordion/ProductOptionAccordion.jsx";
+import BasketOption from "@/components/molecules/product-option/ProductOption.jsx";
 import useAddCartItemMutation from "@/hooks/useAddCartItemMutation.js";
-import OptionResult from "@/components/molecules/option-result/OptionResult.jsx";
+import ProductOptionResult from "@/components/molecules/product-option-result/ProductOptionResult.jsx";
 import PropTypes from "prop-types";
 
 const Styled = {
@@ -49,7 +49,11 @@ function ProductOptionRow({ options }) {
     <Styled.Container>
       <Styled.SelectPurchase>
         <Styled.Strong>옵션 선택</Styled.Strong>
-        <OptionAccordion options={options} cart={cart} setCart={setCart} />
+        <ProductOptionAccordion
+          options={options}
+          cart={cart}
+          setCart={setCart}
+        />
 
         <div>
           {cart.map((item) => (
@@ -64,7 +68,7 @@ function ProductOptionRow({ options }) {
           ))}
         </div>
       </Styled.SelectPurchase>
-      <OptionResult handleAddCart={handleAddCart} cart={cart} />
+      <ProductOptionResult handleAddCart={handleAddCart} cart={cart} />
     </Styled.Container>
   );
 }

@@ -11,13 +11,18 @@ const Styled = {
     color: white;
 
     border-radius: 0.1rem;
-    background-color: ${({ color }) => color};
+    background-color: ${({ backgroundColor }) => backgroundColor};
   `,
 };
 
-function Button({ onClick, type, color, children, ...props }) {
+function Button({ onClick, type, backgroundColor, children, ...props }) {
   return (
-    <Styled.Button onClick={onClick} type={type} color={color} {...props}>
+    <Styled.Button
+      onClick={onClick}
+      type={type}
+      backgroundColor={backgroundColor}
+      {...props}
+    >
       {children}
     </Styled.Button>
   );
@@ -26,14 +31,14 @@ function Button({ onClick, type, color, children, ...props }) {
 Button.propTypes = {
   type: PropTypes.string,
   onClick: PropTypes.func,
-  color: PropTypes.string,
+  backgroundColor: PropTypes.string,
   children: PropTypes.node,
 };
 
 Button.defaultProps = {
   type: "button",
   onClick: () => {},
-  color: "#535bf2",
+  backgroundColor: "#535bf2",
   children: "버튼",
 };
 

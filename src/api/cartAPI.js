@@ -9,4 +9,19 @@ const addCartItem = async ({ items }) => {
   });
 };
 
-export default { addCartItem };
+const getCartItems = async () => {
+  return await instance({
+    url: API.CARTS.GET,
+    method: "GET",
+  });
+};
+
+const updateCartItems = async ({ items }) => {
+  return await instance({
+    url: API.CARTS.UPDATE,
+    method: "POST",
+    data: items,
+  });
+};
+
+export default { addCartItem, getCartItems, updateCartItems };

@@ -10,20 +10,19 @@ const Styled = {
     overflow-x: auto;
   `,
   Section: styled.section`
-    width: calc(100vw - 10rem);
-    padding-top: 4rem;
-    margin: 0 5rem;
+    width: 100vw;
+    padding: 4rem 4rem 0;
     box-sizing: border-box;
   `,
 };
 
-function GlobalTemplate({ title, children, isStorybookMode }) {
+function GlobalTemplate({ title, children, isStorybookMode, ...props }) {
   return (
     <>
       <Helmet>
         <title>{title ? title : "카카오톡 쇼핑하기"}</title>
       </Helmet>
-      <Styled.Container>
+      <Styled.Container {...props}>
         <GlobalNavBar isStorybookMode={isStorybookMode} />
         <Styled.Section>{children}</Styled.Section>
       </Styled.Container>

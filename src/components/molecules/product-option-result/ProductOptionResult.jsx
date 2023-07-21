@@ -33,7 +33,7 @@ const Styled = {
   `,
 };
 
-function OptionResult({ handleAddCart, cart }) {
+function ProductOptionResult({ handleAddCart, cart }) {
   const totalQuantity = cart?.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = cart?.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -50,7 +50,7 @@ function OptionResult({ handleAddCart, cart }) {
       <Styled.ButtonBox>
         <Button
           onClick={handleAddCart}
-          color="#1e1e1e"
+          backgroundColor="#1e1e1e"
           style={{
             width: "47.5%",
             marginRight: "5%",
@@ -61,7 +61,7 @@ function OptionResult({ handleAddCart, cart }) {
           장바구니
         </Button>
         <Button
-          color="#ffeb00"
+          backgroundColor="#ffeb00"
           style={{
             width: "47.5%",
             padding: "1rem",
@@ -76,9 +76,9 @@ function OptionResult({ handleAddCart, cart }) {
   );
 }
 
-OptionResult.propTypes = {
+ProductOptionResult.propTypes = {
   handleAddCart: PropTypes.func,
   cart: PropTypes.array,
 };
 
-export default OptionResult;
+export default ProductOptionResult;
