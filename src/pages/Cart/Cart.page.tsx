@@ -5,7 +5,7 @@ const CartPage = () => {
   return (
     <>
       <GlobalNavbar isSmall={true} />
-      <div className="m-auto max-w-7xl">
+      <div className="m-auto max-w-7xl bg-slate-50 p-2">
         <Cart />
       </div>
     </>

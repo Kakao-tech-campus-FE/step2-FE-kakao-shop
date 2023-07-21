@@ -2,7 +2,7 @@ import { ProductOption } from "@/dtos/product.dto";
 import { FC } from "react";
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
-import { pointByThree } from "@/functions/utils";
+import { pointByKo } from "@/functions/utils";
 import Button from "@components/common/Button.component";
 
 interface ProductOptionItemProps {
@@ -22,7 +22,7 @@ const ProductOptionItem: FC<ProductOptionItemProps> = ({
       <div className="flex flex-col items-start">
         <Txt typograph="h6">{option.optionName}</Txt>
         <Txt typograph="p">
-          {pointByThree(option.price)}
+          {pointByKo(option.price)}
           &nbsp;{PRODUCT.WON}
         </Txt>
       </div>

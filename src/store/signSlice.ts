@@ -14,12 +14,15 @@ export const signSlice = createSlice({
   name: "sign",
   initialState,
   reducers: {
+    setSignIn: (state) => {
+      state.isSignIn = true;
+    },
     setSignOut: (state) => {
       state.isSignIn = false;
     },
   },
 });
 
-export const { setSignOut } = signSlice.actions;
+export const { setSignIn, setSignOut } = signSlice.actions;
 
 export default signSlice.reducer;

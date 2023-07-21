@@ -1,7 +1,7 @@
 import Txt from "@components/common/Txt.component";
 import { PRODUCT } from "@/assets/product.ko";
 import ProductOptionOrderItem from "./ProductOptionOrderItem.component";
-import { pointByThree } from "@/functions/utils";
+import { pointByKo } from "@/functions/utils";
 import { FC } from "react";
 import { Order } from "@/hooks/useOrder";
 const {
@@ -53,12 +53,12 @@ const ProductOptionOrderResult: FC<ProductOptionOrderResultProps> = ({
       <div className="flex justify-between">
         <Txt>
           {TOTAL_AMOUNT}:{" "}
-          {pointByThree(order.reduce((acc, cur) => acc + cur.quantity, 0))}
+          {pointByKo(order.reduce((acc, cur) => acc + cur.quantity, 0))}
           {PEICE}
         </Txt>
         <Txt>
           {TOTAL_PRICE}:{" "}
-          {pointByThree(
+          {pointByKo(
             order.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
           )}
           {WON}

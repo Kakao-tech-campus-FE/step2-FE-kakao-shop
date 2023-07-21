@@ -1,6 +1,7 @@
 import { DefaultResDto } from "@/dtos/response.dto";
 import { setAuth } from "@/functions/auth";
 import { https } from "@/functions/axios";
+import { setSignIn } from "@/store/signSlice";
 
 interface signInData {
   email: string;
@@ -11,6 +12,7 @@ export const signIn = async (data: signInData) => {
   const signInRes = await https.post<DefaultResDto>("/login", data);
   if (signInRes.data.success) {
     setAuth(signInRes.headers.authorization.split(" ")[1]);
+    setSignIn();
   }
   return signInRes;
 };

@@ -23,6 +23,9 @@ const PRODUCT = {
 
 const CART = {
   CART: "장바구니",
+  CART_EMPTY: "장바구니가 비어있습니다.",
+  TOTAL_PREDICT_PRICE: "주문 예상 금액",
+  TO_ORDER: "주문하기",
 };
 
 export { PRODUCT, CART };

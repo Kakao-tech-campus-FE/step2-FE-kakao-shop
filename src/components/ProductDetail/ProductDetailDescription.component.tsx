@@ -1,7 +1,7 @@
 import LazyImage from "@components/common/LazyImage.component";
 import ProcutStars from "@components/ProductDetail/ProductStars.component";
 import Txt from "../common/Txt.component";
-import { pointByThree } from "@/functions/utils";
+import { pointByKo } from "@/functions/utils";
 import { PRODUCT } from "@/assets/product.ko";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
@@ -52,7 +52,7 @@ const ProductDetailDescription = () => {
         <div>{description}</div>
         <div className="py-2 px-4 rounded-full bg-yellow-300 w-fit">
           <Txt typograph="h6" className="font-normal">
-            {PRODUCT.TOC_PRICE} {pointByThree(price)}
+            {PRODUCT.TOC_PRICE} {pointByKo(price)}
             {PRODUCT.WON}
           </Txt>
         </div>

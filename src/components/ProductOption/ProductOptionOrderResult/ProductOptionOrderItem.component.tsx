@@ -2,7 +2,7 @@ import { PRODUCT } from "@/assets/product.ko";
 import { FC } from "react";
 import Txt from "@components/common/Txt.component";
 import Button from "@components/common/Button.component";
-import { pointByThree } from "@/functions/utils";
+import { pointByKo } from "@/functions/utils";
 import { Order } from "@/hooks/useOrder";
 
 const { CHOICE_PRODUCT } = PRODUCT;
@@ -71,7 +71,7 @@ const ProductOptionOrderItem: FC<ProductOptionOrderItemProps> = ({
           </Button>
         </div>
         <Txt typograph="h6">
-          {pointByThree(item.price * item.quantity)}
+          {pointByKo(item.price * item.quantity)}
           {PRODUCT.WON}
         </Txt>
       </div>

@@ -1,7 +1,7 @@
 import { Product } from "@/dtos/product.dto";
 import Badge from "@/components/common/Badge.component";
 import Txt from "@/components/common/Txt.component";
-import { pointByThree } from "@/functions/utils";
+import { pointByKo } from "@/functions/utils";
 import LazyImage from "@/components/common/LazyImage.component";
 import { PRODUCT } from "@/assets/product.ko";
 import { Link } from "react-router-dom";
@@ -31,7 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <Txt color="primary" typograph="h5">
           {PRODUCT.SPECIAL_PRICE}
         </Txt>
-        <Txt typograph="h5"> {pointByThree(product.price)} </Txt>
+        <Txt typograph="h5"> {pointByKo(product.price)} </Txt>
         <Txt typograph="h5">{PRODUCT.FROM_PRICE}~</Txt>
       </div>
     </Link>

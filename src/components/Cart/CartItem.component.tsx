@@ -4,6 +4,9 @@ import { Fragment } from "react";
 import ProductOptionOrderItem from "../ProductOption/ProductOptionOrderResult/ProductOptionOrderItem.component";
 import Txt from "@components/common/Txt.component";
 import { Order } from "@/hooks/useOrder";
+import { Link } from "react-router-dom";
+import { CART } from "@/assets/product.ko";
+import { COMMON } from "@/assets/common.ko";
 
 const CartItem = () => {
   const { data, isLoading } = useQuery(["cart"], getCart);
@@ -29,29 +32,53 @@ const CartItem = () => {
 
   const { products } = data.data.response;
 
+  if (
+    products.every((product) =>
+      product.carts.every((cart) => cart.quantity === 0)
+    )
+  ) {
+    return (
+      <>
+        <Txt>{CART.CART_EMPTY}</Txt>
+        <Link
+          to={"/"}
+          className="bg-blue-500 hover:bg-blue-600 text-white rounded-lg py-2 px-4 w-fit"
+        >
+          {COMMON.GO_SHOPPING}
+        </Link>
+      </>
+    );
+  }
+
   return (
-    <div className="w-full p-4 flex flex-col gap-4">
-      {products.map((product) => (
-        <Fragment key={product.id}>
-          <Txt typograph="h6">{product.productName}</Txt>
-          <div className="border-2 rounded-md divide-y-2">
-            {product.carts.map((cart) => (
-              <ProductOptionOrderItem
-                key={cart.id}
-                item={{
-                  id: cart.id,
-                  optionName: cart.option.optionName,
-                  price: cart.option.price,
-                  quantity: cart.quantity,
-                }}
-                removeOrder={removeOrder}
-                updateOrder={updateOrder}
-              />
-            ))}
-          </div>
-        </Fragment>
-      ))}
-    </div>
+    <>
+      {products.map(
+        (product) =>
+          product.carts.every((cart) => cart.quantity === 0) || (
+            <Fragment key={product.id}>
+              <Txt typograph="h6">{product.productName}</Txt>
+              <div className="border-2 rounded-md divide-y-2">
+                {product.carts.map(
+                  (cart) =>
+                    cart.quantity === 0 || (
+                      <ProductOptionOrderItem
+                        key={cart.id}
+                        item={{
+                          id: cart.id,
+                          optionName: cart.option.optionName,
+                          price: cart.option.price,
+                          quantity: cart.quantity,
+                        }}
+                        removeOrder={removeOrder}
+                        updateOrder={updateOrder}
+                      />
+                    )
+                )}
+              </div>
+            </Fragment>
+          )
+      )}
+    </>
   );
 };
 
