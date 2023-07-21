@@ -5,7 +5,6 @@ import "../../styles/atoms/CartItem.css";
 import { comma } from "../../utils/Convert";
 
 const CartItem = ({ item, onChange }) => {
-  console.log(item.carts);
   return (
     <Box className="cart-item-box p-4 ">
       <div className="block text-base break-all font-semibold h-14">

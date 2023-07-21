@@ -5,9 +5,9 @@ import Photo from "../atoms/Photo";
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
-    //product-information-column
+    //product-information-column 3/4 width, OptionColumn 1/4 width
     <div className="flex flex-row basis-3/4">
-      {/* images col  */}
+      {/* image column 1/2 product info column 1/2*/}
       <div className="basis-1/2">
         <Photo
           className="w-full h-96 block"

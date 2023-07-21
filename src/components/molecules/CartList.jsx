@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Router, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
@@ -11,7 +11,7 @@ import { updateCart } from "../../services/cart";
 import { useMutation } from "react-query";
 
 const CartList = ({ data }) => {
-  const route = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -24,11 +24,10 @@ const CartList = ({ data }) => {
   const { mutate } = useMutation({
     mutationFn: updateCart,
   });
+
   useEffect(() => {
     setCartItems(data?.data?.response?.products);
     setTotalPrice(data?.data?.response?.totalPrice);
-    console.log(cartItems);
-    console.log(updatePayload);
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
@@ -115,22 +114,19 @@ const CartList = ({ data }) => {
       <Button
         className="order-btn block width-full h-14 bg-yellow"
         onClick={() => {
-          // update cart api
-          // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
-          // post method
+          console.log("imhere");
 
-          // 1번째 방법
-          // 전체 장바구니 목록의 개수를 적절히 파싱해서 페이로드로 보내주기
-
-          // 2번째 방법.
           // 변경된 개수만 파싱해서 페이로드로 보내주기.
           // payload 더 작게 할 수 있으니
           mutate(updatePayload, {
             onSuccess: (data) => {
+              console.log("success");
               // navigate to order page
-              route.push("/order");
+              navigate("/order");
             },
-            onError: (error) => {},
+            onError: (error) => {
+              console.log("error");
+            },
           });
 
           // navigate to order page

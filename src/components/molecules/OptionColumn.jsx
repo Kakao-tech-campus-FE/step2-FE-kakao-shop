@@ -9,8 +9,8 @@ import { addCart } from "../../services/cart";
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
+  // OptionList onclick then
   const handleOnClickOption = (option) => {
-    console.log(option);
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
@@ -31,6 +31,7 @@ const OptionColumn = ({ product }) => {
     ]);
   };
 
+  // option Counter change then,
   const handleOnChange = (count, optionId) => {
     setSelectedOptions((prev) => {
       return prev.map((el) => {
@@ -54,10 +55,13 @@ const OptionColumn = ({ product }) => {
   return (
     <div className="flex flex-col top-50 basis-1/4">
       <h3 className="pb-2.5 float-left text-base leading-8">옵션 선택</h3>
+
+      {/* option List */}
       <div className="border border-gray-100">
         <OptionList options={product.options} onClick={handleOnClickOption} />
       </div>
       <hr />
+
       {/*담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
         <ol key={option.optionId} className="selected-option-list">
@@ -78,6 +82,7 @@ const OptionColumn = ({ product }) => {
         </ol>
       ))}
 
+      {/* 총 수량 및 상품금액 */}
       <div className="flex flex-row total-price py-5 text-lg">
         <span>
           총 수량 : {""}
@@ -99,6 +104,7 @@ const OptionColumn = ({ product }) => {
         </span>
       </div>
 
+      {/* 장바구니 버튼 */}
       <Button
         className="h-14 bg-yellow w-full text-white"
         onClick={() => {
@@ -125,5 +131,7 @@ const OptionColumn = ({ product }) => {
     </div>
   );
 };
+
+// 구매 버튼은 아직 구현 안함, 구매 페이지를 아마 5주차쯤에 작업 한 후 추가시키기.
 
 export default OptionColumn;
