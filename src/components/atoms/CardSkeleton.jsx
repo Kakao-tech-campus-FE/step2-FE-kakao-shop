@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const Container = styled.div`
   display: grid;
@@ -10,23 +10,24 @@ const Container = styled.div`
   max-width: 1200px;
 `;
 
+const skeletonAnimation = keyframes`
+  0% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+  50% {
+    background-color: rgba(165, 165, 165, 0.3);
+  }
+  100% {
+    background-color: rgba(165, 165, 165, 0.1);
+  }
+`;
+
 const ImageLoader = styled.div`
   width: 18em;
   height: 11em;
   background-color: #f2f2f2;
   border-radius: 10px;
-  animation: skeleton-gradient 1.5s infinite ease-in-out;
-  @keyframes skeleton-gradient {
-    0% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-    50% {
-      background-color: rgba(165, 165, 165, 0.3);
-    }
-    100% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-  }
+  animation: ${skeletonAnimation} 1.5s infinite ease-in-out;
 `;
 
 const TitleLoader = styled.div`
@@ -35,18 +36,7 @@ const TitleLoader = styled.div`
   height: 3em;
   border-radius: 5px;
   background-color: #f2f2f2;
-  animation: skeleton-gradient 1.5s infinite ease-in-out;
-  @keyframes skeleton-gradient {
-    0% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-    50% {
-      background-color: rgba(165, 165, 165, 0.3);
-    }
-    100% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-  }
+  animation: ${skeletonAnimation} 1.5s infinite ease-in-out;
 `;
 
 const PriceTextContainerLoader = styled.div`
@@ -54,18 +44,7 @@ const PriceTextContainerLoader = styled.div`
   height: 2em;
   border-radius: 5px;
   background-color: #f2f2f2;
-  animation: skeleton-gradient 1.5s infinite ease-in-out;
-  @keyframes skeleton-gradient {
-    0% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-    50% {
-      background-color: rgba(165, 165, 165, 0.3);
-    }
-    100% {
-      background-color: rgba(165, 165, 165, 0.1);
-    }
-  }
+  animation: ${skeletonAnimation} 1.5s infinite ease-in-out;
 `;
 
 const CardLoader = () => {
