@@ -1,5 +1,15 @@
 import { useState } from "react";
 
+/** 카운터 컴포넌트
+ *
+ * @param {number} value - 카운터 값
+ * @param {function} onIncrease - 카운터 증가 이벤트
+ * @param {function} onDecrease - 카운터 감소 이벤트
+ * @param {string} btnClassName - 버튼 클래스
+ * @param {string} cntClassName - 카운터 클래스
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const Counter = ({
   value = 1,
   onIncrease,

@@ -10,6 +10,12 @@ import comma from "../../utils/convert";
 import Button from "../atoms/Button";
 import { updateCart } from "../../api/cart";
 
+/** 장바구니 리스트
+ *
+ * @param {array} data - 장바구니 정보
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);

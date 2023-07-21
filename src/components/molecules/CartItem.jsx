@@ -3,6 +3,14 @@ import Counter from "../atoms/Counter";
 import comma from "../../utils/convert";
 import Button from "../atoms/Button";
 
+/** 장바구니 아이템
+ *
+ * @param {array} item - 장바구니 아이템
+ * @param {function} onChange - 수량 변경 함수
+ * @param {function} onDelete - 삭제 함수
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const CartItem = ({ item, onChange, onDelete }) => {
   const totalQuantity = item.carts.reduce((acc, cur) => {
     return acc + cur.quantity;

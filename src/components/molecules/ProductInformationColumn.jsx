@@ -2,6 +2,12 @@ import Photo from "../atoms/Photo";
 import Button from "../atoms/Button";
 import comma from "../../utils/convert";
 
+/** 상품 정보 컬럼
+ *
+ * @param {array} product - 상품 정보
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (

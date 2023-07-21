@@ -9,6 +9,11 @@ import Button from "../atoms/Button";
 import { ReactComponent as Close } from "../../assets/close.svg";
 import LinkButton from "../atoms/LinkButton";
 
+/** 옵션 선택 컬럼
+ *
+ * @param {array} product - 상품 정보
+ * @returns {JSX.Element}
+ */
 const optionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { isLogin } = useSelector((state) => state.auth);
