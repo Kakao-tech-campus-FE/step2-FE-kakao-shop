@@ -1,26 +1,23 @@
-import { useState } from "react";
-
 import Button from "./Button";
 
-export default function Counter({ option, onClick }) {
-  const [count, setCount] = useState(1);
-
+export default function Counter({ value, onClick }) {
   const handleIncreaseClick = () => {
-    setCount((prevCount) => prevCount + 1);
-    onClick(option, count + 1);
+    onClick(value, value.quantity + 1);
   };
 
   const handleDecreaseClick = () => {
-    setCount((prevCount) => prevCount - 1);
-    onClick(option, count - 1);
+    onClick(value, value.quantity - 1);
   };
 
   return (
     <div>
-      <Button disabled={count > 1 ? false : true} onClick={handleDecreaseClick}>
+      <Button
+        disabled={value.quantity > 1 ? false : true}
+        onClick={handleDecreaseClick}
+      >
         -
       </Button>
-      <span>{count}</span>
+      <span>{value.quantity}</span>
       <Button onClick={handleIncreaseClick}>+</Button>
     </div>
   );

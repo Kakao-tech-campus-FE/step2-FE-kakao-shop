@@ -84,7 +84,7 @@ export default function ProductOption({ product }) {
         {selectedOptions.map((opt) => (
           <div key={`selected-${opt.id}`} className="">
             <p>{opt.optionName}</p>
-            <Counter option={opt} onClick={handleIncDecClick} />
+            <Counter value={opt} onClick={handleIncDecClick} />
             <p>{convertToPrice(opt.price * opt.quantity)}</p>
             <Button onClick={() => handleXClick(opt)}>X</Button>
           </div>
