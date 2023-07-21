@@ -6,7 +6,7 @@ import { Card } from '@mui/material';
 import comma from '@utils/commaUtils';
 import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useMutation } from 'react-query';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 interface CartListProps {
   data: CartProductsQuery;
@@ -86,10 +86,9 @@ const CartList = ({ data }: CartListProps) => {
               navigate('/order');
             },
             onError: (error) => {
-              ('');
+              alert('주문 실패');
             },
           });
-          navigate('/order');
         }}
       >
         <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
