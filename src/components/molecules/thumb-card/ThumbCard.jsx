@@ -29,18 +29,17 @@ const Styled = {
 function ThumbCard({ imgSrc, imgAlt, badge }) {
   return (
     <Styled.Card>
-      {badge && (
-        <Badge
-          style={{
-            position: "absolute",
-            top: "10px",
-            left: "10px",
-            zIndex: "2",
-          }}
-        >
-          {badge}
-        </Badge>
-      )}
+      <Badge
+        style={{
+          position: "absolute",
+          top: "10px",
+          left: "10px",
+          zIndex: "2",
+        }}
+      >
+        {badge}
+      </Badge>
+
       <Styled.Image src={import.meta.env.VITE_SHOP_API + imgSrc} alt={imgAlt} />
     </Styled.Card>
   );
@@ -55,7 +54,7 @@ ThumbCard.propTypes = {
 ThumbCard.defaultProps = {
   imgSrc: "/images/1.jpg",
   imgAlt: "alt",
-  badge: "Badge",
+  badge: "마감 2일 전",
 };
 
 export default ThumbCard;

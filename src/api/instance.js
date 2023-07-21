@@ -1,4 +1,5 @@
 import axios from "axios";
+import routes from "@/constants/routes.js";
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_SHOP_API,
@@ -21,7 +22,8 @@ instance.interceptors.request.use(
       return config;
     }
 
-    config.headers["Authorization"] = accessToken.replace('"', "");
+    // config.headers["Authorization"] = accessToken;
+    config.headers["Authorization"] = accessToken.replaceAll('"', "");
     return config;
   },
   function (error) {
@@ -40,6 +42,7 @@ instance.interceptors.response.use(
 
     switch (error.response.status) {
       case 401:
+        window.location.href = routes.signIn;
         // Promise chaining
         return new Promise(() => {});
       case 404:

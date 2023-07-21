@@ -9,7 +9,7 @@ import LogoButton from "@/components/atoms/logo-button/LogoButton.jsx";
 
 const Styled = {
   Container: styled.nav`
-    position: ${({ isStorybookMode }) => isStorybookMode || "fixed"};
+    position: ${({ $isStorybookMode }) => $isStorybookMode || "fixed"};
 
     min-width: 80rem;
     height: 4rem;
@@ -20,7 +20,7 @@ const Styled = {
     justify-content: space-between;
     align-items: center;
 
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: ${({ theme }) => theme.border.default};
     background-color: white;
     z-index: 10;
   `,
@@ -48,7 +48,7 @@ function GlobalNavBar({ isStorybookMode }) {
   };
 
   return (
-    <Styled.Container isStorybookMode={isStorybookMode}>
+    <Styled.Container $isStorybookMode={isStorybookMode}>
       <LogoButton
         onClick={() => {
           navigate(routes.home);

@@ -1,7 +1,6 @@
 import { Suspense, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { ErrorBoundary } from "react-error-boundary";
-import { Dna } from "react-loader-spinner";
 
 import useIntersectionObserver from "@/hooks/useIntersectionObserver.js";
 import useGetInfiniteProductsQuery from "@/hooks/useGetInfiniteProductsQuery.js";
@@ -10,6 +9,7 @@ import GlobalTemplate from "@/components/templates/global-template/GlobalTemplat
 import Carousel from "@/components/molecules/carousel/Carousel.jsx";
 import ProductInfoCard from "@/components/organisms/product-info-card/ProductInfoCard.jsx";
 import ProductInfoCardLoader from "@/components/organisms/product-info-card/ProductInfoCard.loader.jsx";
+import Loader from "@/components/atoms/loader/Loader.jsx";
 
 import CAROUSEL from "@/constants/CAROUSEL.js";
 
@@ -42,7 +42,7 @@ function Home() {
     await fetchNextPage();
   });
   const { data, fetchNextPage } = useGetInfiniteProductsQuery({
-    loaderRef,
+    loader: loaderRef?.current,
   });
 
   useEffect(() => {
@@ -63,16 +63,7 @@ function Home() {
         style={{ width: "100vw", position: "relative", left: "-5rem" }}
       />
       <ErrorBoundary fallback={<div>api 통신 오류</div>}>
-        <Suspense
-          fallback={
-            <Dna
-              visible={true}
-              ariaLabel="dna-loading"
-              wrapperStyle={{ width: "100px", height: "100px" }}
-              wrapperClass="dna-wrapper"
-            />
-          }
-        >
+        <Suspense fallback={<Loader />}>
           <Styled.Grid>
             {data?.pages.map((page) =>
               page.map((info) => (

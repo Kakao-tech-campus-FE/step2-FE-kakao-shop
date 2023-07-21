@@ -7,6 +7,7 @@ const Styled = {
   Container: styled.main`
     width: 100vw;
     min-height: 100vh;
+    overflow-x: auto;
   `,
   Section: styled.section`
     width: calc(100vw - 10rem);

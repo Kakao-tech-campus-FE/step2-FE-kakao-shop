@@ -17,13 +17,18 @@ const Styled = {
     font-family: ${({ theme }) => theme.fontFamily.main};
     font-size: 0.9rem;
 
-    background-color: white;
+    background-color: ${({ theme }) => theme.color.inputBg};
     border: 1px solid #ebebeb;
     border-radius: 0.1rem;
     outline: none;
+    transition: all 0.2s ease-in-out;
 
     &::placeholder {
       color: #757575;
+    }
+
+    &:focus {
+      background-color: white;
     }
 
     &.error {

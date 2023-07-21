@@ -1,14 +1,15 @@
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import productAPI from "@/api/productAPI.js";
+import API from "@/constants/API.js";
 
-function useGetInfiniteProductsQuery({ loaderRef }) {
+function useGetInfiniteProductsQuery({ loader }) {
   const changeLoaderDisplay = () => {
-    if (!loaderRef || !loaderRef.current) return;
-    loaderRef.current.style.display = "none";
+    if (!loader) return;
+    loader.style.display = "none";
   };
 
   const { data, fetchNextPage } = useInfiniteQuery(
-    ["getAllProducts"],
+    [API.KEYS.GET_ALL_PRODUCTS],
     async ({ pageParam = 0 }) => {
       const { data } = await productAPI.getAllProducts({
         pageIndex: pageParam,

@@ -1,5 +1,5 @@
-import { Dna } from "react-loader-spinner";
 import styled from "styled-components";
+import Loader from "@/components/atoms/loader/Loader.jsx";
 
 const Styled = {
   Container: styled.main`
@@ -19,12 +19,7 @@ const Styled = {
 function GlobalLoader() {
   return (
     <Styled.Container>
-      <Dna
-        visible={true}
-        ariaLabel="dna-loading"
-        wrapperStyle={{ width: "100px", height: "100px" }}
-        wrapperClass="dna-wrapper"
-      />
+      <Loader />
       <Styled.Text>페이지 로딩 중</Styled.Text>
     </Styled.Container>
   );

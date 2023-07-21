@@ -1,8 +1,12 @@
 import ReactDOM from "react-dom/client";
 import App from "@/App.jsx";
 import { Provider } from "jotai";
-import { QueryClient, QueryClientProvider, QueryCache } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import {
+  QueryClient,
+  QueryClientProvider,
+  QueryCache,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const queryClient = new QueryClient({
   defaultOptions: {
