@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { loginSuccess, logout } from '../redux/redux';
 import { useNavigate } from 'react-router-dom';
-import Container from "../components/atoms/Container";
 import MainLogo from "../components/molecules/MainLogo";
 
 const LoginPage = () => {
@@ -28,12 +27,12 @@ const LoginPage = () => {
   },[dispatch, navigate]);
 
   return (
-    <Container className="h-screen relative border border-slate-500 border-solid rounded-md flex flex-col justify-center items-center">
+    <div className="h-screen relative border border-slate-500 border-solid rounded-md flex flex-col justify-center items-center">
       <MainLogo className="absolute w-40 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
-      <Container className="w-fit border border-solid rounded-lg border-gray">
+      <div className="w-fit border border-solid rounded-lg border-gray">
         <LoginForm />
-      </Container>
-    </Container>
+      </div>
+    </div>
   )
 }
 

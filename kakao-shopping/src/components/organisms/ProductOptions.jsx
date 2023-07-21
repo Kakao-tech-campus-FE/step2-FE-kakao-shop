@@ -1,7 +1,6 @@
 import Button from "../atoms/Button";
 import { useState } from "react";
 import SelectedOption from "../molecules/SelectedOption";
-import Container from "../atoms/Container";
 import DeliveryInformation from "../molecules/DeliveryInformation";
 import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
@@ -48,7 +47,7 @@ const ProductOptions = ({ product }) => {
 
       <div className="w-full border-t mt-4 mb-3"/>
 
-      <Container className="w-full"> 
+      <div className="w-full"> 
         <ul>
           {selectedOptions.map((selectedOption, index) =>
             <SelectedOption 
@@ -60,17 +59,17 @@ const ProductOptions = ({ product }) => {
             />
           )}
         </ul>
-      </Container>
+      </div>
 
-      <Container className="flex justify-between w-full">
+      <div className="flex justify-between w-full">
         <div>총 수량 : {sumOptionCount}개</div>
         <div>총 주문금액 : {sumOptionPrice}원</div>
-      </Container>
+      </div>
 
-      <Container className="flex w-full mt-3">
+      <div className="flex w-full mt-3">
         <Button className="w-2/5 p-2 mr-1 text-sm h-10 bg-gray-900 rounded-md text-white" onClick={handleAddCartClick}>장바구니 담기</Button>
         <Button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md">톡딜가로 구매하기</Button>
-      </Container>
+      </div>
     </div>
   )
 }

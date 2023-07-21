@@ -1,6 +1,5 @@
 import React from 'react';
 import GNB from '../components/templates/GNB';
-import Container from '../components/atoms/Container';
 import Carousel from '../components/molecules/Carousel';
 import MainProductsTemplate from '../components/templates/MainProductsTemplate';
 
@@ -9,7 +8,7 @@ const Main = () => {
 
 
   return (
-    <Container>
+    <div>
       <GNB />
       <Carousel images={
         [
@@ -19,7 +18,7 @@ const Main = () => {
         ]
       }/>
       <MainProductsTemplate />
-    </Container>
+    </div>
   );
 };
 

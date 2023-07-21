@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Container from "../atoms/Container";
 import MainProductsSkeleton from "../organisms/MainProductsSkeleton";
 import PageSetButton from "../molecules/PageSetButton";
 import MainProducts from "../organisms/MainProducts";
@@ -36,10 +35,10 @@ const MainProductsTemplate = () => {
     )
   }
   return (
-    <Container className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <MainProducts responseData={responseData} />
       <PageSetButton page={2} setPage={setPage} />
-    </Container>
+    </div>
   );
 }
 

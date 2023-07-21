@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { addItem, subtractItem } from "../../redux/cartRedux";
-import { useSelector } from "react-redux";
 
 const SelectedOption = ({ selectedOption, setSumOptionCount, setSumOptionPrice, className }) => {
   const dispatch = useDispatch();
@@ -29,8 +28,7 @@ const SelectedOption = ({ selectedOption, setSumOptionCount, setSumOptionPrice, 
       setSumOptionPrice(prev => prev + count * selectedOption.price);
     }
   }
-  const cart = useSelector((state) => state.cart);
-  
+
   return (
     <li className={className}>
       <div key={selectedOption.optionName}>

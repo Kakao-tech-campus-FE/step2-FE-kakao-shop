@@ -1,4 +1,3 @@
-import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cartRedux";
@@ -15,7 +14,7 @@ const OptionsList = ({options, selectedOptions, setSumOptionCount,setSumOptionPr
   }
 
   return (
-    <Container className="w-full">
+    <div className="w-full">
     <div className="my-2">옵션 선택</div>
     <ul className="flex flex-col items-start">
       {options.map((option, index) => 
@@ -33,7 +32,7 @@ const OptionsList = ({options, selectedOptions, setSumOptionCount,setSumOptionPr
         </Button>
       )}
     </ul>
-  </Container>
+  </div>
   )
 }
 

@@ -1,4 +1,3 @@
-import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import ProductPrice from "../atoms/ProductPrice";
@@ -15,9 +14,9 @@ const MainProducts = ({responseData}) => {
   };
   
   return (
-    <Container className="flex flex-wrap w-240">
+    <div className="flex flex-wrap w-240">
     {responseData &&
-    
+
      responseData.map((product) => (
       <div key={product.productName} className="w-60 m-10">
       <Button onClick={() => handleProductClick(product.id)}>
@@ -34,7 +33,7 @@ const MainProducts = ({responseData}) => {
       </Button>
       </div>
     ))}
-    </Container>
+    </div>
   )
 }
 
