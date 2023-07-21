@@ -7,12 +7,13 @@ const api = axios.create({
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
     },
 });
 
 api.interceptors.request.use(
     (config) => {
-        console.log(`[${config.method.toUpperCase()}] url:${config.url}`, config.params);
+        console.log(`[${config.method.toUpperCase()}] url:${config.url} params:${config.params} data:${config.data}`);
         const token = cookie.load('access_token');
         if (token) {
             config.headers['authorization'] = token;
@@ -22,7 +23,7 @@ api.interceptors.request.use(
 );
 api.interceptors.response.use(
     (response) => {
-        console.log("success", response);
+        console.log("Api success", response);
         const token = response?.headers['authorization']
         if (token) {
             const expires = new Date();
@@ -35,18 +36,18 @@ api.interceptors.response.use(
         return Promise.resolve(response?.data?.response);
     },
     (error) => {
-        console.log("error", error)
+        console.error("Api error", error)
         let message = error.response?.data?.error?.message;
         let status = error.response?.status;
         if (status === 401) {
             cookie.remove('access_token', {path: '/'});
             cookie.remove('user_id', {path: '/'});
+            if (!!!message) {
+                message = "로그인이 필요합니다.";
+            }
         }
 
         switch (status) {
-            case 401:
-                message = "로그인이 필요합니다.";
-                break;
             case 404:
                 message = "존재하지 않는 페이지입니다.";
                 break;
