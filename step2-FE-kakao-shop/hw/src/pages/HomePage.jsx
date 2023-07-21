@@ -2,34 +2,36 @@ import MainProductTemplate from "../components/oTemplates/MainProductTemplate";
 import Carousel from "../components/atoms/Carousel";
 import { useState, useEffect } from "react";
 
-// const slides = [
-//   "/carouselItem1.jpeg",
-//   "/carouselItem2.jpeg",
-//   "/carouselItem3.jpeg",
-// ];
+const slides = [
+  "/carouselItem1.jpeg",
+  "/carouselItem2.jpeg",
+  "/carouselItem3.jpeg",
+];
 
 const HomePage = () => {
-  // const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(window.innerWidth);
 
-  // const handleResize = () => {
-  //   setWidth(window.innerWidth);
-  // };
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", handleResize);
-  //   return () => {
-  //     // cleanup
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, []);
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      // cleanup
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div>
-      {/* <Carousel>
+      <Carousel>
         {slides.map((s) => (
-          <img src={s} width={width} />
+          <li key={s} className="carousel-item">
+            <img src={s} width={width} />
+          </li>
         ))}
-      </Carousel> */}
+      </Carousel>
       <h1> Home Page</h1>
       <MainProductTemplate />
     </div>
