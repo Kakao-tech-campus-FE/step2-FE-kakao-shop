@@ -15,6 +15,10 @@ const Counter = (props) => {
     }
   }, [state])
 
+  useEffect(()=> {
+    setState(prev=> props.quantity)
+  }, [props.quantity])
+
   const handlerOnBlur = () => {
     if (state === 0) {
       setState(prev => props.quantity)
@@ -38,7 +42,7 @@ const Counter = (props) => {
       divide-x divide-gray-500
     `}> 
 
-        <button onClick={() => handlerBtn(-1)} disabled={state === 1}>
+        <button onClick={() => handlerBtn(-1)} disabled={state <= 1}>
             <RiSubtractFill className='w-3 h-3 m-auto' />
         </button>
 
