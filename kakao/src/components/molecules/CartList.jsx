@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Router, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Conatiner";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
@@ -80,11 +80,8 @@ const CartList = ({ data }) => {
 
   return (
     <Container className="cart-list">
-      <Box>
-        <h1>장바구니</h1>
-      </Box>
-
-      <Card>
+      <h1>장바구니</h1>
+      <div>
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
@@ -96,7 +93,7 @@ const CartList = ({ data }) => {
               />
             );
           })}
-      </Card>
+      </div>
 
       <Card>
         <div className="row">

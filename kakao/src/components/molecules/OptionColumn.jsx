@@ -8,8 +8,10 @@ import { addCart } from "../../services/cart";
 import { Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/molecules/OptionColumn.css";
+import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
+  const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
@@ -137,6 +139,7 @@ const OptionColumn = ({ product }) => {
               {
                 onSuccess: () => {
                   alert("장바구니에 담겼습니다😊");
+                  navigate("/cart");
                 },
                 onError: () => {
                   alert("장바구니 담기에 실패했습니다😥");
