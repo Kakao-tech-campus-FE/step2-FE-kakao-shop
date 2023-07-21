@@ -49,7 +49,8 @@ const ProductCardList = ({data}) => {
                 <Fragment key={"page" + page.nextPage}>
                     {page.data.map(function (project) {
                         const {id, productName, image, price} = project;
-                        return <ProductCard key={"card" + id} id={id} title={productName}
+                        return <ProductCard key={"product" + id} id={id} title={productName}
+                                            link={"product/" + id}
                                             image={image} price={price}/>
                     })}
                 </Fragment>
