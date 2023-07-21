@@ -3,7 +3,7 @@ import Loader from "../atoms/Loader";
 import {getProductById} from "../../services/product";
 import {useQuery} from "react-query";
 import ProductDetailTemplate from "../templates/ProductDetailTemplate";
-import {addCart, getCart} from "../../services/cart";
+import ErrorSign from "../atoms/ErrorSign";
 
 const ProductDetailPage = () => {
     const id = useParams().id;
@@ -40,14 +40,13 @@ const ProductDetailPage = () => {
     return (
 
         <div className={"product-detail-page page flex flex-col"}>
-            <div className={"h-28 flex justify-center items-center  w-full border-b-light-gray"}>
+            {data && <div className={"h-28 flex justify-center items-center  w-full border-b-light-gray"}>
                 <h1 className={"text-3xl font-bold"}>상품 페이지</h1>
-            </div>
+            </div>}
             <div className={"w-full flex flex-col items-center"}>
                 {isLoading && <Loader/>}
-                {error && <div className={"error-msg"}>{error.message}</div>}
+                {error && <ErrorSign error={error}/>}
                 {data && <ProductDetailTemplate product={data.data.response}/>}
-                {}
             </div>
             
         </div>

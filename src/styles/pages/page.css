@@ -4,8 +4,8 @@
     align-items: center;
     flex-direction: column;
     height: auto;
-    padding-bottom: 180px;
-    min-height: 100vh;
+    /*padding-bottom: 180px;*/
+    min-height: calc(100vh - 180px);
 }
 
 .home-page-content {

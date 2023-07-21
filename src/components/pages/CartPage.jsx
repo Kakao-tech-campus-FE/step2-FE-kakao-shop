@@ -8,7 +8,7 @@ const CartPage = () => {
     const {data, isError, error} = useQuery("cart", getCart);
     return (
         <Suspense fallback={<Loader/>}>
-            <div className={"flex justify-center"}>
+            <div className={"page flex"}>
                 <CartList data={data}/>
             </div>
             {isError && <div>{error.message}</div>}
