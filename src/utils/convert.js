@@ -1,15 +1,15 @@
-export const comma = (num) => {
-  if (num === undefined || num === null) {
-    return 0;
-  }
+// export const comma = (num) => {
+//   if (num === undefined || num === null) {
+//     return 0;
+//   }
 
-  if (typeof num === 'number' && isNaN(num)) {
-    return 0;
-  }
+//   if (typeof num === 'number' && isNaN(num)) {
+//     return 0;
+//   }
 
-  if (typeof num === 'string') {
-    num = parseInt(num);
-  }
+//   if (typeof num === 'string') {
+//     num = parseInt(num);
+//   }
 
-  return num.toString().replace();
-};
+//   return num.toString().replace();
+// };
