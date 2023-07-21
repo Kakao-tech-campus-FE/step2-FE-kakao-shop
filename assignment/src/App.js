@@ -6,9 +6,10 @@ import LoginPage from './pages/LoginPage';
 // import HomePage from './pages/Homepage'
 import NewHomePage from './pages/NewHomePage';
 import MainLayout from './layouts/MainLayout';
-import ProductDetailPage from './pages/ProductDetail';
+import ProductDetailPage from './pages/ProductDetailPage';
 import Loader from './components/atoms/Loader';
 import { ErrorPage } from './pages/ErrorPage';
+import CartPage from './pages/CartPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<NewHomePage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
           </Route>
           <Route path="/error" element={<ErrorPage />} />
         </Routes>
