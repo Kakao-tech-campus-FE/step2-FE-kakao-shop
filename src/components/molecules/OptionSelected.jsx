@@ -1,6 +1,5 @@
 import React from 'react'
 import { RiCloseFill } from "react-icons/ri";
-import SelectedItemBox from 'components/atoms/option/SelectedItemBox';
 import Counter from './Counter';
 
 
@@ -16,11 +15,8 @@ const OptionSelected = (props) => {
 
       <div className='flex mt-3'>
         <Counter 
-          sub={props.sub}
-          add={props.add}
           quantity={props.quantity}
           changeQuantity={props.changeQuantity}
-          useChange={props.useChange}
           optionId={props.optionId}
         />
 
