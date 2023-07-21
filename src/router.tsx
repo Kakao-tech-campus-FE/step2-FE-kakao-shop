@@ -7,9 +7,10 @@ import SkeletonList from './components/common/molecules/SkeletonList';
 const MainPage = lazy(() => import('./pages/Main'));
 const LoginPage = lazy(() => import('./pages/Login'));
 const SignupPage = lazy(() => import('./pages/Signup'));
+const DetailPage = lazy(() => import('./pages/Detail'));
+const CartPage = lazy(() => import('./pages/Cart'));
 const Page404 = lazy(() => import('./pages/Error404'));
 const Page500 = lazy(() => import('./pages/Error500'));
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -36,6 +37,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Spinner width={60} height={60} />}>
             <Page500 />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'product/:id',
+        element: (
+          <Suspense fallback={<Spinner width={60} height={60} />}>
+            <DetailPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'cart',
+        element: (
+          <Suspense fallback={<Spinner width={60} height={60} />}>
+            <CartPage />
           </Suspense>
         ),
       },
