@@ -5,7 +5,7 @@ import Button from "../atoms/Button";
 import Icon from "../atoms/Icon";
 import cartImage from "../../assets/cart_white.png";
 
-export default function OrderGroup({ optionList, onAddCart, onPurchase }) {
+export default function OrderGroup({ optionList, onAddCart, onOrder }) {
   return (
     <>
       <Box className="flex justify-between py-3 text-lg font-semibold">
@@ -29,7 +29,7 @@ export default function OrderGroup({ optionList, onAddCart, onPurchase }) {
           font="semibold"
           color="yellow"
           radius="sm"
-          onClick={onPurchase}
+          onClick={onOrder}
         >
           톡딜가로 구매하기
         </Button>

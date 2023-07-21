@@ -1,5 +1,5 @@
 export const comma = (num) => {
-  if (num === undefined || num === null) {
+  if (num == null) {
     return 0;
   }
 
@@ -11,11 +11,11 @@ export const comma = (num) => {
     num = parseInt(num);
   }
 
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return num.toLocaleString();
 };
 
 export const discount = (num) => {
-  if (num === undefined || num === null) {
+  if (num == null) {
     return 0;
   }
 

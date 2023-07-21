@@ -12,7 +12,7 @@ export default function Loader({ className, height }) {
         strokeWidth="4"
         animationDuration="1"
         width="40"
-        visible={true}
+        visible
       />
     </Container>
   );

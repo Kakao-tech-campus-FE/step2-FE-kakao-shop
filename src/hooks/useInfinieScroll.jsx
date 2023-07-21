@@ -25,7 +25,7 @@ export default function useInfinieScroll({
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
 
-        if (entry.isIntersecting && hasNextPage && observeEl.current) {
+        if (hasNextPage && observeEl.current) {
           fetchNextPage();
         }
       });

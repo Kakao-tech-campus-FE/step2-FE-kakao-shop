@@ -42,17 +42,16 @@ export default function OptionColumn({ productData, modalRef }) {
   const handleOptionDelete = (id) => {
     dispatch({ type: "delete", id });
   };
-  // handleAddCart, handlePurchase 중복 제거
   const handleAddCart = () => {
-    if (!user) {
-      modalRef.current.showModal();
-      return;
-    }
     if (optionList.length === 0) {
       toast(
         <Toast text="옵션을 먼저 선택해주세요." button={false} />,
         toastOptions
       );
+      return;
+    }
+    if (!user) {
+      modalRef.current.showModal();
       return;
     }
     mutate(
@@ -73,16 +72,16 @@ export default function OptionColumn({ productData, modalRef }) {
       }
     );
   };
-  const handlePurchase = () => {
-    if (!user) {
-      modalRef.current.showModal();
-      return;
-    }
+  const handleOrder = () => {
     if (optionList.length === 0) {
       toast(
         <Toast text="옵션을 먼저 선택해주세요." button={false} />,
         toastOptions
       );
+      return;
+    }
+    if (!user) {
+      modalRef.current.showModal();
       return;
     }
     mutate(
@@ -110,7 +109,7 @@ export default function OptionColumn({ productData, modalRef }) {
       <OrderGroup
         optionList={optionList}
         onAddCart={handleAddCart}
-        onPurchase={handlePurchase}
+        onOrder={handleOrder}
       />
     </section>
   );

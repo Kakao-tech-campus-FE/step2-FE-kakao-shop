@@ -40,7 +40,7 @@ export default function NavBar({ modalRef }) {
       >
         {cartImage}
       </LinkedIcon>
-      <CartStatus />
+      {user && <CartStatus />}
       <Button
         margin="ml-4"
         padding="px-4 py-1"
