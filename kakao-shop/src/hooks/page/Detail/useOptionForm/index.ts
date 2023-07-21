@@ -5,9 +5,14 @@ import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { Toast } from '@components/atom';
+
+import { useToggle } from '@hooks/@common';
+
 export const useOptionForm = () => {
   const { id: productId } = useParams();
   const dispatch = useDispatch();
+  const [isOpenList, setIsOpenList, onToggle] = useToggle(false);
   const product = useSelector((state: RootState) => state.detail.product);
   const [options, setOptions] = useState<UserSelectOption[] | undefined>();
 
@@ -59,13 +64,14 @@ export const useOptionForm = () => {
       product,
       options,
       totals,
-      addCartPayload,
+      isOpenList,
     },
     handler: {
       onSelectOption,
       onDeleteOption,
       onIncreaseQuantity,
       onDecreaseQuantity,
+      onToggle,
     },
   };
 };

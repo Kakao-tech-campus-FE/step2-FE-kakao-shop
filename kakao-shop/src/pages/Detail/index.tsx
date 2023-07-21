@@ -25,8 +25,8 @@ const renderStar = (starCount?: number) => {
 
 const Detail = () => {
   const {
-    state: { product, options, totals, addCartPayload },
-    handler: { onSelectOption, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity },
+    state: { product, options, totals, isOpenList },
+    handler: { onSelectOption, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity, onToggle, onAddCart },
   } = useOptionForm();
 
   return (
@@ -50,11 +50,13 @@ const Detail = () => {
 
       <S.OptionCotainer>
         <OptionListSection
+          isOpenList={isOpenList}
           options={options}
           onSelectOption={onSelectOption}
           onDeleteOption={onDeleteOption}
           onIncreaseQuantity={onIncreaseQuantity}
           onDecreaseQuantity={onDecreaseQuantity}
+          onToggle={onToggle}
         />
         <DeliveryInfo />
         <SelectResult totals={totals} />

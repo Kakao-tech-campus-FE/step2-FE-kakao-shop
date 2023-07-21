@@ -7,24 +7,28 @@ import SelectOptionItemList from '@components/page/Detail/SelectOptionItemList';
 import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 
 type Props = {
+  isOpenList: boolean;
   options?: UserSelectOption[];
   onSelectOption: (id: number) => void;
   onDeleteOption: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
+  onToggle: () => void;
 };
 
 const OptionListSection = ({
+  isOpenList,
   options,
   onSelectOption,
   onDeleteOption,
   onIncreaseQuantity,
   onDecreaseQuantity,
+  onToggle,
 }: Props) => {
   return (
     <S.Root>
       <S.Tit>옵션 선택</S.Tit>
-      <OptionList options={options} onSelectOption={onSelectOption} />
+      <OptionList isOpenList={isOpenList} options={options} onSelectOption={onSelectOption} onToggle={onToggle} />
       <SelectOptionItemList
         options={options}
         onDeleteOption={onDeleteOption}

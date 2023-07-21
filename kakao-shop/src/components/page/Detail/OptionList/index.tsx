@@ -6,18 +6,18 @@ import { Fragment } from 'react';
 import { Button, Photo } from '@components/atom';
 import OptionItem from '@components/page/Detail/OptionItem';
 
-import { useToggle } from '@hooks/@common';
 import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 
 type Props = {
+  isOpenList: boolean;
   options?: UserSelectOption[];
   onSelectOption: (id: number) => void;
+  onToggle: () => void;
 };
-const OptionList = ({ options, onSelectOption }: Props) => {
-  const [isOpenList, toggle] = useToggle(false);
+const OptionList = ({ isOpenList, options, onSelectOption, onToggle }: Props) => {
   return (
     <S.Root $isOpenOptionList={isOpenList}>
-      <Button css={S.ButtonCSS(isOpenList)} onClick={() => toggle()}>
+      <Button css={S.ButtonCSS(isOpenList)} onClick={onToggle}>
         <span>-주문 선택-</span>
         <Photo imageClassName={isOpenList ? S.ArrowDownIconCSS : S.ArrowUpIconCSS} src={arrow} alt={'화살표'} />
       </Button>
