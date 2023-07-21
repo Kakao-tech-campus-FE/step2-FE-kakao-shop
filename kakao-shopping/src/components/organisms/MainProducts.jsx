@@ -5,7 +5,7 @@ import ProductPrice from "../atoms/ProductPrice";
 import { useDispatch } from "react-redux";
 import { clearItem } from "../../redux/cartRedux";
 
-const MainProducts = ({slicedData}) => {
+const MainProducts = ({responseData}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,7 +16,9 @@ const MainProducts = ({slicedData}) => {
   
   return (
     <Container className="flex flex-wrap w-240">
-    {slicedData?.map((product) => (
+    {responseData &&
+    
+     responseData.map((product) => (
       <div key={product.productName} className="w-60 m-10">
       <Button onClick={() => handleProductClick(product.id)}>
         <div className="flex flex-col">

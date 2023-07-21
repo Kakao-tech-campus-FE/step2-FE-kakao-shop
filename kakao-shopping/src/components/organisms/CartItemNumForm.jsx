@@ -1,6 +1,4 @@
-import { useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { modifyItem } from "../../redux/cartRedux";
 import { modifyCart } from "../../apis/api";
 
 const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => {
@@ -13,8 +11,6 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
   
   const price = itemPrice * quantity;
 
-  const dispatch = useDispatch();
-
   const handleClick = async (num) => {
     if(quantity + num < 0) return;
     await modifyCart([{
@@ -23,10 +19,6 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
     }]);
     setQuantity(prev => prev + num);
     setTotalPrice((prev) => prev + num * itemPrice);
-    dispatch(modifyItem({
-      cartId,
-      num,
-    }));
   }
 
   /*  삭제 + 모달  */

@@ -2,7 +2,6 @@ import { getCart } from "../../apis/api";
 import CartItemNumForm from "../organisms/CartItemNumForm";
 import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
-import { setCart } from "../../redux/cartRedux";
 import { useEffect, useState } from "react";
 import GNB from "./GNB";
 
@@ -11,7 +10,6 @@ const CartTemplate = () => {
   const [totalPrice, setTotalPrice] = useState(cart?.data.response.totalPrice);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setCart(cart.data.response.products));
     setTotalPrice(cart.data.response.totalPrice);
   }, [cart, dispatch])
 

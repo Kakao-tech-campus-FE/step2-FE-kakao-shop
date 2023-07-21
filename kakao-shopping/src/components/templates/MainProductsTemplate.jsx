@@ -18,7 +18,7 @@ const MainProductsTemplate = () => {
     { keepPreviousData: true }
   );
 
-  const slicedData = data?.data.response;
+  const responseData = data?.data.response;
 
   useEffect(() => {
     refetch();
@@ -37,7 +37,7 @@ const MainProductsTemplate = () => {
   }
   return (
     <Container className="flex flex-col items-center justify-center">
-      <MainProducts slicedData={slicedData} />
+      <MainProducts responseData={responseData} />
       <PageSetButton page={2} setPage={setPage} />
     </Container>
   );

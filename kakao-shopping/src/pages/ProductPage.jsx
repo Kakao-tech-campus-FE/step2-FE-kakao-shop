@@ -7,7 +7,7 @@ import Error from "../components/molecules/Error";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const { data, isLoading, isError, error } = useQuery("product", ()=>getIdProduct(id));
+  const { data, isLoading, isError, error } = useQuery(["product", id], ()=>getIdProduct(id));
 
   if(isLoading) {
     return (

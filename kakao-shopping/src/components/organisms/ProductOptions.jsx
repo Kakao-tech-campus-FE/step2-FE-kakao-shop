@@ -6,7 +6,7 @@ import DeliveryInformation from "../molecules/DeliveryInformation";
 import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
 import { addCart, getCart } from "../../apis/api";
-import { clearItem, setCart } from "../../redux/cartRedux";
+import { clearItem } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
 const ProductOptions = ({ product }) => {
@@ -20,9 +20,7 @@ const ProductOptions = ({ product }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const handleAddCartClick = () => {
 
-    getCart().then((res) => {
-      dispatch(setCart(res.data.response.products));
-    }).then(() => {
+    getCart().then(() => {
       addCart(cartItems);
     }).catch((err) => {
       console.log(err);
