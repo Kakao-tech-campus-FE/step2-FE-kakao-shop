@@ -8,6 +8,7 @@ import Loading from "./components/atoms/Loader";
 import { useState, useEffect } from "react";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ProductCanNotFound from "./pages/ProductCanNotFound";
+import CartPage from "./pages/CartPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -39,10 +40,12 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
           <Route path="/404" element={<ProductCanNotFound />}></Route>
+
           {/*  공통 레이아웃 : GNB, footer */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path="/cart" element={<CartPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

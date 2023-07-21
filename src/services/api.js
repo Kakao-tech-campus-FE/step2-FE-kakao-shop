@@ -29,7 +29,7 @@ authorizationInstance.interceptors.request.use((config) => {
   if (token) {
     config.headers["Authorization"] = JSON.parse(token).token;
   } else {
-    console.log("false");
+    console.log("토큰이 없습니다");
   }
   return config;
 });
