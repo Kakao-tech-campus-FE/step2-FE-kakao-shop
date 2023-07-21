@@ -64,11 +64,11 @@ const CartList = ({data}) => {
 
 
     return (
-        <div className={"cart-list max-w-xl flex flex-col items-center"}>
-            <div className={"h-20 flex items-center"}>
+        <div className={"cart-list lg:w-160 md:w-96 flex flex-col items-center"}>
+            <div className={"h-20 flex items-center justify-center"}>
                 <h1 className={"text-3xl font-bold"}>장바구니</h1>
             </div>
-            <div>
+            <div className={"cart-itemsflex w-full justify-center items-center"}>
                 {Array.isArray(cartItems) &&
                     cartItems.map((item) => {
                         return (
@@ -86,7 +86,7 @@ const CartList = ({data}) => {
                 )}
             </div>
             {getTotalQuantity() > 0 &&
-                (<div className={"w-full flex flex-col items-center justify-center px-5"}>
+                (<div className={"w-full flex flex-col items-center justify-center"}>
                     <div className={"w-full flex flex-row justify-end text-lg pb-5"}>
                         <span className={"total-price pr-3"}>최종 금액</span>
                         <span>{comma(totalPrice)}원</span>

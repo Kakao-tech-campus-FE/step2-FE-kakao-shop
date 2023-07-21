@@ -14,8 +14,8 @@ const CartItem = ({item, onChange}) => {
     }
 
     return getItemAmount() !== 0 && (
-        <div className={"cart-item m-5 p-5 text-left bg-light-gray-900"}>
-            <h5 className={"text-lg"}>{item.productName}</h5>
+        <div className={"cart-item w-full flex flex-col box-border my-5 p-5 text-left bg-light-gray-900 "}>
+            <span className={"block cart-product-name text-xl w-full break-normal"}>{item.productName}</span>
             {item.carts.map((cart) =>
                     cart.quantity !== 0 && (
                         <div
