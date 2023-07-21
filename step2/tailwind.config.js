@@ -10,10 +10,12 @@ module.exports = {
       },
       minWidth: {
         400: "400px",
+        600: "600px",
         800: "800px",
       },
       maxWidth: {
         750: "750px",
+        1400: "1400px",
       },
       minHeight: {
         50: "50px",

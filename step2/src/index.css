@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .content {
-  @apply pt-20;
+  @apply pt-20 flex justify-center;
 }
 
 .btn {
@@ -19,7 +19,7 @@
 }
 
 .box_form {
-  @apply w-full my-4 border-solid border-b border-t-0 border-x-0 border-gray-500 ;
+  @apply w-full my-4 border-solid border-b border-t-0 border-x-0 border-gray-500;
 }
 
 .label_form {
