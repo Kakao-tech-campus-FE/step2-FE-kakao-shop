@@ -10,13 +10,7 @@ import ProductDetailTemplate from "../Components/Templates/ProductDetailTemplate
 const ProductDetailPage = () => {
   const { id } = useParams(); //string
   // const parseId = parseInt(id, 10); => 10진수로 number
-  const { status, error, data, isLoading } = useQuery([`product/${id}`], () => getProductById(id), {
-    // onError: (error) => {
-    //   if (error.status === 404) {
-    //     navigate("/pagenotfound");
-    //   }
-    // },
-  }); // 구분자, API 요청 함수
+  const { status, error, data, isLoading } = useQuery([`product/${id}`], () => getProductById(id)); // 구분자, API 요청 함수
   // 단일 쿼리의 비동기는 useQuery, 복수 비동기 요청 관리는 useQueries
 
   const navigate = useNavigate();
@@ -26,15 +20,14 @@ const ProductDetailPage = () => {
   }
 
   if (error?.response?.status === 404) {
+    // 에러코드 404 -> PageNotFound로 넘어감
     navigate("/pagenotfound");
   }
-
-  // console.log(isError);
-  // console.log(error.response.status);
 
   const product = data?.data?.response;
 
   const validate = () => {
+    // product가 유효한지를 판단.
     if (!product) {
       return false;
     }
@@ -55,7 +48,7 @@ const ProductDetailPage = () => {
   return (
     <div>
       {error && <div>{error.message}</div>}
-      {product && <ProductDetailTemplate product={product} />}
+      {validate(product) && <ProductDetailTemplate product={product} />}
     </div>
   );
 };

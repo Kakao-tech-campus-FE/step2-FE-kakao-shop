@@ -18,15 +18,8 @@ const OptionColumn = ({ product }) => {
     const isOptionSelected = selectedOptions.find((el) => el.optionId === option.id);
     setIsOpen(!isOpen);
 
-    // 이미 선택된 옵션인 경우: alert / 수량을 증가시킴
+    // 이미 선택된 옵션인 경우: alert
     if (isOptionSelected) {
-      // setSelectOptions((prev) =>
-      //   prev.map((el) =>
-      //     el.optionId === option.id
-      //       ? {...el, quantity: el.quantity + 1 }
-      //       : el
-      //   )
-      // );
       alert("이미 선택된 옵션입니다.");
       return;
     }
@@ -60,11 +53,10 @@ const OptionColumn = ({ product }) => {
   const { mutate } = useMutation({
     mutationFn: addCart,
   });
-
   return (
     <div className="option-column">
       <h3 className="font-bold pb-5">옵션 선택</h3>
-      <Container className="gird grid-cols-1 w-full rounded-sm border border-stone-300 mb-3">
+      <Container className="option-container">
         <button
           onClick={() => {
             setIsOpen(!isOpen);
@@ -82,39 +74,31 @@ const OptionColumn = ({ product }) => {
             </div>
           )}
         </button>
-        {/* <Dropdown isOpen={isOpen}>
+        <Dropdown isOpen={isOpen}>
           <OptionList
             options={product.options}
             // 사용자가 선택한 option
             onClick={handleOnClickOption}
           />
-        </Dropdown> */}
-        {isOpen ? (
-          <OptionList
-            options={product.options}
-            // 사용자가 선택한 option
-            onClick={handleOnClickOption}
-            className="border"
-          />
-        ) : null}
+        </Dropdown>
       </Container>
 
       {/* 담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={`selected-option-key-${option.id}`} className="selected-option-list">
+        <ol key={`selected-option-key-${option.optionId}`} className="selected-option-list">
           <li className="selected-option">
             <div className="name">{option.name}</div>
             <div className="flex items-center">
               <Counter
-                onIncrease={(count) => handleOnChange(count, option.id)}
-                onDecrease={(count) => handleOnChange(count, option.id)}
+                onIncrease={(count) => handleOnChange(count, option.optionId)}
+                onDecrease={(count) => handleOnChange(count, option.optionId)}
               />
-              <span className="price">{comma(option.price)}원</span>
+              <span className="price">{comma(option.price * option.quantity)}원</span>
             </div>
           </li>
         </ol>
       ))}
-      <hr />
+      <hr className="mt-6 mb-3" />
       <div className="total-price">
         <span>
           총 수량:{" "}
@@ -135,6 +119,8 @@ const OptionColumn = ({ product }) => {
           원
         </span>
       </div>
+
+      {/* 장바구니 담기 버튼 */}
       <div className="button-group">
         <div className="w-14 h-14 rounded-lg bg-stone-600 m-0.5"></div>
         <ImgButton
