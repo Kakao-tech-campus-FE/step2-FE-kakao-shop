@@ -8,7 +8,7 @@ import { styled } from 'styled-components';
  * @returns {JSX.Element} 컴포넌트 반환
  */
 
-const Button = ({ children, className = '' }) => {
+const Button = ({ children, className = '', onClick }) => {
     return (
         <StyledButton className={className} onClick={onClick} type="button">
             {children}
@@ -43,6 +43,16 @@ const StyledButton = styled.button`
         border-color: ${({ theme }) => theme.color.green};
         background-color: ${({ theme }) => theme.color.green};
         color: ${({ theme }) => theme.color.white};
+    }
+
+    &.counter {
+        min-width: 1rem;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        background-color: ${({ theme }) => theme.color.gray};
+        color: ${({ theme }) => theme.color.black};
     }
 `;
 

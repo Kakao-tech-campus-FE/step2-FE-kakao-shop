@@ -7,11 +7,11 @@ import { styled } from 'styled-components';
  * @returns {JSX.Element} 컴포넌트 반환
  */
 
-const Message = ({ children, className = '' }) => {
-    return <StyledMessage className={className}>{children}</StyledMessage>;
+const Text = ({ children, className = '' }) => {
+    return <StyledText className={className}>{children}</StyledText>;
 };
 
-const StyledMessage = styled.p`
+const StyledText = styled.p`
     margin: ${({ theme }) => theme.margin.small} 0;
     font-size: ${({ theme }) => theme.fontSize.small};
     font-weight: 400;
@@ -19,6 +19,22 @@ const StyledMessage = styled.p`
     &.error {
         color: ${({ theme }) => theme.color.red};
     }
+
+    &.base {
+        font-size: ${({ theme }) => theme.fontSize.base};
+    }
+
+    &.lg {
+        font-size: ${({ theme }) => theme.fontSize.lg};
+    }
+
+    &.xl {
+        font-size: ${({ theme }) => theme.fontSize.xl};
+    }
+
+    &.bold {
+        font-weight: 600;
+    }
 `;
 
-export default Message;
+export default Text;

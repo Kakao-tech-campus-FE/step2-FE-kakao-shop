@@ -40,6 +40,10 @@ const GlobalStyle = createGlobalStyle`
         appearance:none;
     }
 
+    ol, ul {
+	list-style: none;
+    }
+
     li {
         list-style:none;
     }

@@ -15,7 +15,7 @@ export const instance = axios.create({
 instance.interceptors.request.use((config) => {
     const token = localStorage.getItem('token');
     if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
+        config.headers['Authorization'] = `Bearer ${JSON.parse(token)}`;
     }
     return config;
 });
@@ -38,10 +38,8 @@ instance.interceptors.response.use(
             } else if (parseInt(err.status) >= 200) {
                 console.log('200번 대 에러 처리');
             }
-
             alert(err.message);
-        } else {
-            throw new Error(error);
+            return Promise.reject(error);
         }
     }
 );

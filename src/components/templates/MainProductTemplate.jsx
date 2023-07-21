@@ -7,7 +7,7 @@ import ProductGrid from '../organisms/ProductGrid';
 import ProductCardSkeleton from '../molecules/ProductCardSkeleton';
 import _ from 'lodash';
 import { sleep } from '../../utils/sleep';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const MainProductTemplate = () => {
     const [product, setProduct] = useAtom(productAtom);
