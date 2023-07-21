@@ -53,6 +53,7 @@ const OptionColumn = ({ product }) => {
   const { mutate } = useMutation({
     mutationFn: addCart,
   });
+
   return (
     <div className="option-column">
       <h3 className="font-bold pb-5">옵션 선택</h3>
@@ -126,10 +127,11 @@ const OptionColumn = ({ product }) => {
         <ImgButton
           btnClass="w-14 h-14 rounded-lg bg-black m-0.5"
           onClick={() => {
+            // 로그인 상태가 아닌 경우 처리하기
             mutate(
               selectedOptions.map((el) => {
                 return {
-                  optionId: el.id,
+                  optionId: el.optionId,
                   quantity: el.quantity,
                 };
               }),
