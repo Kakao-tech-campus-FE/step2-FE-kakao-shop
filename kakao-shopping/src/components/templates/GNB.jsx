@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { loginSuccess, logout } from "../../redux/redux";
 import Button from "../atoms/Button";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const GNB = () => {
 
@@ -24,12 +25,23 @@ const GNB = () => {
     
   },[dispatch]);
 
+  const navigate = useNavigate();
   const handleLogoutClick = () => {
     dispatch(logout());                     // 상태 초기화
+    navigate('/');
     localStorage.removeItem('userInfo');    // 로그인 유지 삭제
   }
 
   const isLoggedIn = useSelector((state) => state.auth.userInfo);
+
+  const handleCartClick = () => {
+    if(!isLoggedIn) {
+      navigate('/login');
+    }
+    else {
+      navigate('/cart');
+    }
+  }
 
   // 삼항 연산자로 로그인 상태일 때는 로그아웃만 보이도록
   return (
@@ -38,10 +50,10 @@ const GNB = () => {
         <Container className="flex justify-between my-4 items-center h-8">
           <Link to='/'><img className="w-28 ml-4" src="/assets/logoKakao.png" alt="logoKakao"/></Link>
           <div className="flex items-center">
-            <Link to='/'><img className="w-8" src="/assets/cart.png" alt="cart"/></Link>
+            <button><img className="w-8" src="/assets/cart.png" alt="cart" onClick={handleCartClick}/></button>
             <span className="px-4">|</span>
               {!!isLoggedIn ?
-            <Button className="text-sm" onClick={handleLogoutClick}>로그아웃</Button> :
+              <Button className="text-sm" onClick={handleLogoutClick}>로그아웃</Button> :
               <Link className="text-sm mr-4" to='/login'>로그인</Link>
               }
           </div>
