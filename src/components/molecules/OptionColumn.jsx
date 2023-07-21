@@ -5,8 +5,10 @@ import { addCart, inCart, modifiedCart } from "../../services/cart";
 import Button from "../atoms/Button";
 import { comma } from "../../utils/convert";
 import OptionList from "../atoms/OptionList";
+import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
+  const navigate = useNavigate();
   const [selectiedOptions, setSelectiedOptions] = useState([]);
   const [modifiedOptions, setModifiedOptions] = useState([]);
   const handleOnClickOption = (option) => {
@@ -182,6 +184,7 @@ const OptionColumn = ({ product }) => {
                 {
                   onSuccess: () => {
                     alert("장바구니에 담겼습니다.");
+                    console.log(data);
                   },
                   onError: (e) => {
                     console.log(e);
@@ -197,7 +200,9 @@ const OptionColumn = ({ product }) => {
         {/* 톡딜가 구매 : 개발 x */}
         <Button
           className="bg-gray-500 hover:bg-yellow-600 text-white font-bold py-2 px-1 w-2/3 rounded cursor-pointer transition-colors duration-300"
-          onClick={() => {}}
+          onClick={() => {
+            navigate("/cart");
+          }}
         >
           구매하기
         </Button>

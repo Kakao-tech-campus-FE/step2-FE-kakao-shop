@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const Counter = ({ onIncrease, onDecrease, className }) => {
+const Counter = ({ onIncrease, onDecrease, className, num }) => {
   const [count, setCount] = useState(1);
   const handleOnIncrease = () => {
     setCount(count + 1);
@@ -11,6 +11,11 @@ const Counter = ({ onIncrease, onDecrease, className }) => {
     setCount(count - 1);
     onDecrease(count - 1);
   };
+  useEffect(() => {
+    if (num) {
+      setCount(num);
+    }
+  }, []);
   return (
     <div className={`counter ${className} border-2 border-slate-100`}>
       <button
