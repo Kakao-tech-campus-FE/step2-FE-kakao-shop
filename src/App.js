@@ -6,6 +6,7 @@ import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { LoaderContainer, DefaultSpinner } from "react-global-loader";
 import ErrorPage from "./pages/ErrorPage";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -19,10 +20,12 @@ function App() {
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
           <Route path="/error" element={<ErrorPage />}></Route>
+
           {/*공통 레이아웃 : GNB. FOOTER*/}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path="/cart" element={<CartPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
