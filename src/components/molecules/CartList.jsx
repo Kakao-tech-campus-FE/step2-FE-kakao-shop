@@ -4,12 +4,13 @@ import CartItem from "../atoms/CartItem";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { useRef } from "react";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
 import { updateCart } from "../../services/api/cart";
+import { BsCart } from "react-icons/bs";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
@@ -148,7 +149,24 @@ const CartList = ({ data }) => {
           <h1 className="font-semibold text-[15px] mt-3">장바구니</h1>
         </Box>
         {isCartEmpty ? (
-          <div>장바구니가 비었습니다.</div>
+          <div className="text-center pt-52 pb-80 mt-2 border rounded bg-white ">
+            <BsCart className="mx-auto my-4 text-5xl text-neutral-300" />
+            <span className="text-xl">장바구니에 담긴 상품이 없습니다.</span>
+            <div className="flex w-fit mx-auto my-4">
+              <button
+                className="w-[100px] mx-1 px-3 py-2 rounded border border-neutral-300 bg-white"
+                onClick={() => route(-1)}
+              >
+                <span className="text-sm text-black">이전화면</span>
+              </button>
+              <button
+                className="w-[100px] mx-1 px-3 py-2 rounded bg-black"
+                onClick={() => route("/")}
+              >
+                <span className="text-sm text-white">쇼핑하기 홈</span>
+              </button>
+            </div>
+          </div>
         ) : (
           <div>
             {/* 상품별 장바구니 */}
