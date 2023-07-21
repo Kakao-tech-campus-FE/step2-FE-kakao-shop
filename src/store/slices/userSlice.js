@@ -14,6 +14,14 @@ const userSlice = createSlice({
         setEmail: (state, action) => {
             state.email = action.payload.email;
         },
+        clearUser: (state) => {
+            state.email = null;
+            state.expirationTime = null;
+            state.isLoggedIn = false;
+          },
+          setUser: (state, action) => {
+            state.user = action.payload.user;
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(getProducts.pending, (state, action) => {
@@ -31,6 +39,7 @@ const userSlice = createSlice({
     },
 });
 
-export const { setEmail } = userSlice.actions;
+
+export const { setUser, clearUser } = userSlice.actions;
 
 export default userSlice.reducer;

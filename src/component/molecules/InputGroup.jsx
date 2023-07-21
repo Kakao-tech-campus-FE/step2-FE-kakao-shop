@@ -5,7 +5,7 @@ import '../../styles/InputGroup.css';
 const InputGroup =({id, type, value, onChange, className, 
     label, name, placeholder})=>{
         return(
-        <Box className={className}>
+        <Box className="border-spacing-1 bg-blue-300" >
             <Label htmlFor={id}>{label}</Label>
              <Input id={id} type={type} value={value} onChange={onChange} name={name} placeholder={placeholder}/>
         </Box>

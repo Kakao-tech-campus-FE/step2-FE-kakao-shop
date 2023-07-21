@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom"
+import GNB from "../component/atoms/GNB"
 
 const MainLayout=()=>{
 return(

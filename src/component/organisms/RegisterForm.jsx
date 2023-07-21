@@ -5,6 +5,7 @@ import useInput from "../../hooks/useInput";
 import { register } from "../../services/user";
 import { useState } from "react";
 import Box from "../atoms/Box";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm =() =>{
     const{value, handleOnChange}= useInput({
@@ -14,6 +15,7 @@ const RegisterForm =() =>{
         passwordConfirm:""
     });
     const [error, setError] = useState(""); // 에러 메시지 상태 추가
+    const navigate=useNavigate();
 
   const registerReq = () => {
     const emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
@@ -42,11 +44,15 @@ const RegisterForm =() =>{
       password: value.password
     })
       .then(res => {
-        console.log(res);
+        setError('');
+            alert('회원가입 완료!\n 로그인이 필요합니다.');
+            navigate("/login");
         // 회원가입 성공 처리
       })
       .catch(error => {
-        console.log("error", error);
+        console.log(error.request.response);
+            const errObject = JSON.parse(error.request.response);
+            setError(errObject.error.message)
         // 회원가입 실패 처리
       });
   };

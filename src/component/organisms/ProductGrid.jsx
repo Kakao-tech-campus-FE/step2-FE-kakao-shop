@@ -1,11 +1,29 @@
 import ProductCard from "../molecules/ProductCard"
-import '../../styles/ProductGrid.css';
+import axios from "axios";
+import React, { useState, useEffect} from "react";
+import Photo from "../atoms/Photo";
+
 const ProductGrid = ({products})=>{
-// loaing state
+    const ProductGrid = ({ product }) => {
+        const [products, setData] = useState(null);
+        // const [loding, setLoding] = useState(true);
+      
+        useEffect(() => {
+          const fetchData = async () => {
+            try {
+              const response = await axios.get('http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/products');
+              const jsonData = await response.data.response;
+      
+              setData(jsonData);
+            } catch (error) {
+              console.log(`Error fetching data:`, error);
+            }
+          };
+          fetchData();
+        }, []);
+    }
 
-// error state
-
-//presentation components: 데이어를 단순이 표기만 하는 용도
+//presentation components: 데이어를 단순히 표기만 하는 용도
     return(
         <div className="product-grid">
             {products.map((product)=>(

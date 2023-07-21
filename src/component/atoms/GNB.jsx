@@ -1,60 +1,73 @@
-import {Link} from "react-router-dom";
-import { useState, useEffect } from "react";
+import React from "react";
+import logokakao from "../../img/logoKakao.png"
+import cart from '../../img/cart.png';
+import { useSelector, useDispatch } from "react-redux";
+import { clearUser } from "../../store/slices/userSlice";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import "../../styles/atoms/GNB.css";
-import { useDispatch } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
-
-function GNB(){
+const GNB=()=>{
     //const [isLogin, setIsLogin]=useState(false);
-    const email= useSelector((state)=> state.user.email)
+    const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
 //state안에 isLogin을 만들어 처리
+const [isLogin, setIsLogin] = useState(false);
 
     useEffect(()=>{
         if(localStorage.getItem("token")!=null) setIsLogin(true);
-    }, [isLogin]);
-    
+    const checkExpiration = () => {
+        if (user.expirationTime && user.expirationTime < new Date().getTime()) {
+          dispatch(clearUser());
+          localStorage.removeItem("user");
+        }
+      };
+
+    const interval = setInterval(checkExpiration, 1000);
+    return () => {
+        clearInterval(interval);
+      };
+    }, [user.expirationTime, isLogin]);
+
     const handleLogout=()=>{
         localStorage.removeItem("token");
-        dispatch(setEmail(null));
+        dispatch(clearUser);
+        setIsLogin(false)
         alert("정상적으로 로그아웃되었습니다.");
     };
     return(
-        <header className="header">
-            <div className="contents">
-                <Link to="/">
-                   <img src={"/logoKakao.png"} alt="카카오 쇼핑 로고" height={30}/>
+        <header className="header flex justify-center items-center">
+            <div className="contents flex justify-center items-center">
+            <h1 className="navigation flex justify-center items-center">
+                <Link to href="/">
+                   <img src={logokakao} alt="카카오 쇼핑 로고" height={30}/>
                 </Link>
+            </h1>
                 <nav>
-                    <div className="navigation">
-                        <span>
+                    <div className="row">
+                        
                             {/* 장바구니 버튼 */}
                             <Link to="/cart">
-                                <img src={"/cart.png"} alt="장바구니 버튼" height={30}/>
+                                <img src={cart} alt="장바구니 버튼" height={30}/>
                                 {/* <span style={{}}>장바구니 버튼</span>
                                 <ReactIcon.Card/> */}
                             </Link>
-                        </span>
-                        <span></span>
+                        
                         <span>
-                            {/* 장바구니 버튼 */}
-                            {token ? (
+                            {!isLogin ? (
                                 <Link
                                 to="/login"
                                 onClick={handleLogout}
                                 style={{textDecortation:"none", color:"black"}}
                                 >
                                     {" "}
-                                    로그아웃(" ")
+                                    로그아웃
                                 </Link>
                             ):(
                                 <Link
                                 to="/login"
                                 style={{textDecoration:"none", color:"black"}}
                                 >
-                                    {" "}
-                                    로그인{" "}
                                 </Link>
                             )}
                         </span>
@@ -64,3 +77,4 @@ function GNB(){
         </header>
     )
 }
+export default GNB;
