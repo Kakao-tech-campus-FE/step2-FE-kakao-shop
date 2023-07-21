@@ -1,3 +1,4 @@
+import { CartReducer } from '@store/Cart/reducers';
 import { DetailReducer } from '@store/Detail/reducers';
 import { homeReducer } from '@store/Home/reducers';
 import { signInReducer } from '@store/Login/reducers';
@@ -10,4 +11,5 @@ export const rootReducer = combineReducers({
   signIn: signInReducer,
   home: homeReducer,
   detail: DetailReducer,
+  cart: CartReducer,
 });

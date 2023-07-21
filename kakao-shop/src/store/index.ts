@@ -1,3 +1,4 @@
+import { CartState } from '@store/Cart/reducers';
 import { DetailState } from '@store/Detail/reducers';
 import { HomeState } from '@store/Home/reducers';
 import { SignInState } from '@store/Login/reducers';
@@ -11,6 +12,7 @@ export type RootState = {
   home: HomeState;
   signIn: SignInState;
   detail: DetailState;
+  cart: CartState;
 };
 
 const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
