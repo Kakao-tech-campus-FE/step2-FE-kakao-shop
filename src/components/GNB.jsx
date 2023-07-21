@@ -22,15 +22,16 @@ export default function GNB() {
   };
 
   return (
-    <header className='flex justify-between items-centertext-s font-medium py-6'>
+    <header className='flex justify-between items-centertext-s font-medium py-6 max-w-screen-xl m-auto'>
       <Link to='/' className='w-24'>
-        <img src='img/logoKakao.png' alt='쇼핑하기' />
+        <img src='assets/logoKakao.png' alt='쇼핑하기' />
       </Link>
       <nav className='flex items-center gap-4'>
         <Link to='/cart' className='w-9'>
-          <img src={'img/cart.png'} alt='장바구니' />
+          <img src={'assets/cart.png'} alt='장바구니' />
         </Link>
         <div className='border-r border-gray-300 h-6 mx-2'></div>
+        {/* Todo: 동작되게 고쳐놓을 것 */}
         {!user && <Link to='/login'>Login</Link>}
         {user && (
           <Link to='/' onClick={handleLogout}>

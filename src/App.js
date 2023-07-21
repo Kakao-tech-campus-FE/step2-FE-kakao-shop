@@ -3,7 +3,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import GNB from './components/GNB';
 
 const queryClient = new QueryClient();
-function App() {
+
+export default function App() {
   const location = useLocation();
 
   return (
@@ -15,5 +16,3 @@ function App() {
     </QueryClientProvider>
   );
 }
-
-export default App;

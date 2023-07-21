@@ -19,7 +19,11 @@ body {
 }
 
 #root {
-  @apply w-full max-w-screen-xl;
+  @apply w-full;
+}
+
+#root > .carousel {
+  max-width: none;
 }
 
 code {

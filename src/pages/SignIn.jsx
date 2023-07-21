@@ -6,7 +6,6 @@ export default function SignUp() {
   return (
     <>
       <Logo />
-
       <LoginForm />
     </>
   );
