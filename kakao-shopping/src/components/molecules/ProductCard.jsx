@@ -4,19 +4,17 @@ import { comma } from "../../utils/convert";
 
 const ProductCard = ({ product }) => {
     return (
-        <Card className={`d-flex p-1`} to={`/product/${product.id}`}>
+        <Card className={`d-flex p-1`} to={`/product/${product?.id}`}>
             <Photo
-                src={process.env.REACT_APP_API_URL + product.image}
-                alt={product.productName}
+                src={process.env.REACT_APP_API_URL + product?.image}
+                alt={product?.productName}
+                objectFit="contain"
             />
-            <div
-                className="product-name text-start flex-grow-1"
-                style={{ fontSize: "12px" }}
-            >
-                {product.productName}
+            <div className="product-name text-start flex-grow-1 fs-7">
+                {product?.productName}
             </div>
-            <div className="product-price text-start">
-                {comma(product.price)}원
+            <div className="product-price text-start fs-5 fw-bold">
+                {comma(product?.price)}원~
             </div>
         </Card>
     );

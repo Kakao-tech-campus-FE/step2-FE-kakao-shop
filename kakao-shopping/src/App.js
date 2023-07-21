@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -10,6 +10,7 @@ import { persistStore } from "redux-persist";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import CartPage from "./pages/CartPage";
 
 export let persistor = persistStore(store);
 const queryClient = new QueryClient();
@@ -41,6 +42,9 @@ function App() {
                                 </Route>
                                 {/* 공통 레이아웃: GNB, Footer */}
                                 <Route path="/" element={<MainPage />}>
+                                    {" "}
+                                </Route>
+                                <Route path="/cart" element={<CartPage />}>
                                     {" "}
                                 </Route>
                             </Routes>

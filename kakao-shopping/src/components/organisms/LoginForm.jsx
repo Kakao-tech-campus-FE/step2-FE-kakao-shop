@@ -10,7 +10,6 @@ import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { userLogin } from "../../store/userSlice";
-import runLogoutTimer from "../../utils/auth";
 
 const LoginForm = ({
     className, // class
@@ -60,25 +59,25 @@ const LoginForm = ({
             {errorMsg === "" ? (
                 ""
             ) : (
-                <Box
-                    className="w-100 mb-3 p-3 text-danger text-start border-0"
-                    style={{
-                        fontSize: "0.8rem",
-                        backgroundColor: "rgb(250,250,250)",
-                    }}
-                >
-                    <Label>{errorMsg}</Label>
+                <Box className="w-100 mb-3 p-3 text-danger text-start border-0 bg-body-tertiary">
+                    <Label className="fs-6">{errorMsg}</Label>
                 </Box>
             )}
             <Button
-                className={"w-100 py-2 border-0"}
-                style={{ backgroundColor: "rgb(254,229,0)" }}
+                className={"w-100 py-2 border-0 bg-kakao"}
                 onClick={async function () {
                     const loginCheck = await login({
                         email: value.email,
                         password: value.password,
                     })
-                        .then((response) => response.data)
+                        .then((response) => {
+                            console.log(response);
+                            localStorage.setItem(
+                                "token",
+                                response.headers.authorization
+                            );
+                            return response.data;
+                        })
                         .catch((response) => response.data);
                     if (loginCheck.success) {
                         navigate("/");
@@ -88,7 +87,6 @@ const LoginForm = ({
                                 time: new Date().toString(),
                             })
                         );
-                        runLogoutTimer(dispatch, 1000 * 3600 * 24); // 하루 후 로그아웃
                     } else {
                         setErrorMsg(LoginError[loginCheck.error.message]);
                     }
@@ -99,9 +97,8 @@ const LoginForm = ({
             <Link
                 to="/signup"
                 className={
-                    "w-100 text-start text-body text-decoration-none mt-3"
+                    "w-100 text-start text-body text-decoration-none mt-3 fs-7"
                 }
-                style={{ fontSize: "0.7rem" }}
             >
                 회원가입
             </Link>

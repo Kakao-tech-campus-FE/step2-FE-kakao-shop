@@ -5,11 +5,9 @@ import { getProductById } from "../../services/product";
 import _ from "lodash";
 import ProductInformationColumn from "../molecules/ProductInformationColumn";
 import OptionColumn from "../molecules/OptionColumn";
-import { useState } from "react";
 
-const ProductDetail = () => {
+const ProductDetailTemplate = () => {
     let { id } = useParams();
-    const [optionIndex, setOptionIndex] = useState(null);
 
     const { isLoading, data, error } = useQuery({
         queryKey: ["detail_" + id],
@@ -24,17 +22,16 @@ const ProductDetail = () => {
 
     return (
         <Container
-            className={`d-flex flex-row align-items-center p-5 border mx-auto w-75`}
+            className={`detail-container d-flex flex-row align-items-center border mx-auto`}
         >
             <ProductInformationColumn product={data} isLoading={isLoading} />
             <OptionColumn
                 product={data}
                 isLoading={isLoading}
-                option={optionIndex}
-                setOption={setOptionIndex}
+                className="border-start w-25 h-100 p-2"
             />
         </Container>
     );
 };
 
-export default ProductDetail;
+export default ProductDetailTemplate;

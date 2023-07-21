@@ -1,5 +1,3 @@
-import "../../styles/atoms/Skeleton.css";
-
 const Skeleton = ({
     type = "",
     className = "", // class

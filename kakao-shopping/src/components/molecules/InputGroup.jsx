@@ -16,7 +16,7 @@ const InputGroup = ({
 }) => {
     return (
         <Container className={`m-1 ${className}`}>
-            <Label className="d-block" htmlFor={id}>
+            <Label className="d-block fw-bold" htmlFor={id}>
                 {label}
             </Label>
             <Input
@@ -31,8 +31,7 @@ const InputGroup = ({
             <Label
                 className={`username-description pt-1 d-block text-${
                     valid ? "success" : "danger"
-                } w-100`}
-                style={{ fontSize: "0.7rem" }}
+                } w-100 fs-7`}
             >
                 {description ? `${description}` : <br />}
             </Label>
