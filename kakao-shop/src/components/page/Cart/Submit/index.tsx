@@ -1,9 +1,17 @@
 import { css } from '@emotion/react';
+import { MouseEventHandler } from 'react';
 
 import { Button } from '@components/atom';
 
-const Submit = () => {
-  return <Button css={S.ButtonCSS}>주문하기</Button>;
+type Props = {
+  onSubmit: MouseEventHandler<HTMLButtonElement>;
+};
+const Submit = ({ onSubmit }: Props) => {
+  return (
+    <Button onClick={onSubmit} css={S.ButtonCSS}>
+      주문하기
+    </Button>
+  );
 };
 
 export default Submit;

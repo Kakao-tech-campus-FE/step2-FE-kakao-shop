@@ -1,6 +1,6 @@
-import { Product, cartsRequest } from '@store/Cart/reducers';
+import { Product, cartsRequest, updateCarts } from '@store/Cart/reducers';
 import { RootState } from '@store/index';
-import { produce, current } from 'immer';
+import { produce } from 'immer';
 import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,6 +12,9 @@ export const useCartForm = () => {
     const productTotal = product.carts.reduce((subTotal, cart) => subTotal + cart.option.price * cart.quantity, 0);
     return total + productTotal;
   }, 0);
+  const submitData = carts.flatMap(product =>
+    product.carts.map(cart => ({ cartId: cart.id, quantity: cart.quantity })),
+  );
 
   useEffect(() => {
     dispatch(cartsRequest());
@@ -35,6 +38,10 @@ export const useCartForm = () => {
       setCarts(updateQuantityCarts(id, carts, DOWN1));
     };
 
+  const onSubmit: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(updateCarts(submitData));
+  };
+
   return {
     state: {
       carts,
@@ -43,6 +50,7 @@ export const useCartForm = () => {
     handler: {
       onIncreaseQuantity,
       onDecreaseQuantity,
+      onSubmit,
     },
   };
 };
@@ -61,4 +69,9 @@ const updateQuantityCarts = (id: number, carts: Product[], quantityChange: numbe
     if (!isValidQuantityChange(optionItem.quantity, quantityChange)) return;
     optionItem.quantity = optionItem.quantity + quantityChange;
   });
+};
+
+export type SubmitData = {
+  cartId: number;
+  quantity: number;
 };
