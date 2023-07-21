@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 
 import { getCart } from '../../apis/cart';
 import { useQuery } from '@tanstack/react-query';
+import CartBadge from '../atoms/CartBadge';
 
 /**
  * 선물하기 헤더의 내부 헤더 컴포넌트
@@ -26,10 +27,20 @@ export default function InnerHead() {
 
   const userEmail = getCookie('email');
 
-  const { data } = useQuery(['cartNum'], userEmail ? getCart : null);
+  // 장바구니 아이콘에 담긴 아이템 수량 표시
+  const { data } = useQuery(['cartNum'], getCart, { enabled: !!userEmail });
 
   useEffect(() => {
-    setCount(data?.data?.response.products.length);
+    let totalQuantity = 0;
+    if (data?.data?.response?.products) {
+      data.data.response.products.forEach((item) => {
+        item.carts.forEach((cart) => {
+          // 존재하는 옵션 개수를 센다(실제 수량이 아님)
+          cart.quantity > 0 && (totalQuantity += 1);
+        });
+      });
+      setCount(totalQuantity);
+    }
   }, [data]);
 
   return (
@@ -64,11 +75,7 @@ export default function InnerHead() {
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
           <Link to="/cart" className="relative">
-            {count > 0 && (
-              <span className="cart-count absolute -top-1 left-3 pt-0.5 text-[0.3rem] text-center text-white bg-red-600 rounded-full w-4 h-4">
-                {count}
-              </span>
-            )}
+            {count > 0 && <CartBadge count={count} />}
             <BsCart2 size="20" />
           </Link>
           {userEmail ? (
