@@ -118,15 +118,12 @@ const CartList = ({ data }) => {
           {Array.isArray(cartItems) &&
             cartItems.map((item) => {
               return (
-                <>
-                  <CartItem
-                    key={item.id}
-                    item={item}
-                    onChange={handleOnChangeCount}
-                    onDelete={handleOnDeleteOption}
-                  />
-                  <div className="bg-gray-100 h-[11px]" />
-                </>
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onChange={handleOnChangeCount}
+                  onDelete={handleOnDeleteOption}
+                />
               );
             })}
         </Box>
