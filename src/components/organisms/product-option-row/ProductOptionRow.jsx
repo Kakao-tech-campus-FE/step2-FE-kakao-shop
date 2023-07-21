@@ -1,11 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import ProductOptionAccordion from "@/components/molecules/product-option-accordion/ProductOptionAccordion.jsx";
-import BasketOption from "@/components/molecules/product-option/ProductOption.jsx";
+import SelectedProductOption from "@/components/molecules/selected-product-option/SelectedProductOption.jsx";
 import useAddCartItemMutation from "@/hooks/useAddCartItemMutation.js";
 import ProductOptionResult from "@/components/molecules/product-option-result/ProductOptionResult.jsx";
-import PropTypes from "prop-types";
 
 const Styled = {
   Container: styled.article`
@@ -57,7 +57,7 @@ function ProductOptionRow({ options }) {
 
         <div>
           {cart.map((item) => (
-            <BasketOption
+            <SelectedProductOption
               key={item.optionId}
               optionId={item.optionId}
               optionName={item.optionName}

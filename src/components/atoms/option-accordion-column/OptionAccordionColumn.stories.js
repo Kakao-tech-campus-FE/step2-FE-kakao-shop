@@ -1,7 +1,7 @@
-import OptionList from "@/components/atoms/option-list/OptionList.jsx";
+import OptionList from "@/components/atoms/option-accordion-column/OptionAccordionColumn.jsx";
 
 export default {
-  title: "atoms/Option List",
+  title: "atoms/Option Accordion List",
   tags: ["autodocs"],
   component: OptionList,
   argTypes: {

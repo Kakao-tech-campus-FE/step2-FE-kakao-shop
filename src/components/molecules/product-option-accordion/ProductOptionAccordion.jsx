@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
-import OptionList from "@/components/atoms/option-list/OptionList.jsx";
+import OptionAccordionColumn from "@/components/atoms/option-accordion-column/OptionAccordionColumn.jsx";
 import CollapseArrow from "@/assets/CollapseArrow.jsx";
 import ExpandArrow from "@/assets/ExpandArrow.jsx";
 
@@ -59,7 +59,7 @@ function ProductOptionAccordion({ options, cart, setCart, ...props }) {
       {isOptionOpen && (
         <Styled.Ul>
           {options.map((item) => (
-            <OptionList
+            <OptionAccordionColumn
               key={item.id}
               id={item.id}
               name={item.optionName}

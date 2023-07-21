@@ -28,7 +28,14 @@ const Styled = {
   `,
 };
 
-function OptionList({ id, name, price, cart, setCart, setIsOptionOpen }) {
+function OptionAccordionColumn({
+  id,
+  name,
+  price,
+  cart,
+  setCart,
+  setIsOptionOpen,
+}) {
   const handleListClick = () => {
     if (cart.filter((item) => item.optionId === id).length > 0) {
       return setIsOptionOpen(false);
@@ -54,7 +61,7 @@ function OptionList({ id, name, price, cart, setCart, setIsOptionOpen }) {
   );
 }
 
-OptionList.propTypes = {
+OptionAccordionColumn.propTypes = {
   id: PropTypes.number,
   name: PropTypes.string,
   price: PropTypes.number,
@@ -63,7 +70,7 @@ OptionList.propTypes = {
   setIsOptionOpen: PropTypes.func,
 };
 
-OptionList.defaultProps = {
+OptionAccordionColumn.defaultProps = {
   id: 1,
   name: "상품",
   price: 10000,
@@ -72,4 +79,4 @@ OptionList.defaultProps = {
   setIsOptionOpen: () => {},
 };
 
-export default React.memo(OptionList);
+export default React.memo(OptionAccordionColumn);

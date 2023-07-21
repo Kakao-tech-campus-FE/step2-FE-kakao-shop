@@ -10,8 +10,7 @@ function useUpdateCartItemsMutation() {
       await cartAPI.updateCartItems({ items });
     },
     {
-      onSuccess: (data) => {
-        console.log(data);
+      onSuccess: () => {
         queryClient.invalidateQueries(API.KEYS.GET_CART_ITEMS);
       },
     }

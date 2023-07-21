@@ -35,7 +35,13 @@ const Styled = {
   `,
 };
 
-function ProductOption({ optionId, optionName, quantity, price, setCart }) {
+function SelectedProductOption({
+  optionId,
+  optionName,
+  quantity,
+  price,
+  setCart,
+}) {
   const handleMinusClick = () => {
     if (quantity === 1) return;
 
@@ -125,7 +131,7 @@ function ProductOption({ optionId, optionName, quantity, price, setCart }) {
   );
 }
 
-ProductOption.propTypes = {
+SelectedProductOption.propTypes = {
   optionId: PropTypes.number.isRequired,
   optionName: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
@@ -133,4 +139,4 @@ ProductOption.propTypes = {
   setCart: PropTypes.any,
 };
 
-export default React.memo(ProductOption);
+export default React.memo(SelectedProductOption);

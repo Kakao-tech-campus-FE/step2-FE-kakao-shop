@@ -62,21 +62,19 @@ function Home() {
         time={2000}
         style={{ width: "100vw", position: "relative", left: "-5rem" }}
       />
-      <ErrorBoundary fallback={<div>api 통신 오류</div>}>
+      <ErrorBoundary FallbackComponent={<div>404</div>}>
         <Suspense fallback={<Loader />}>
           <Styled.Grid>
             {data?.pages.map((page) =>
               page.map((info) => (
-                <Suspense key={info.id} fallback={<ProductInfoCardLoader />}>
-                  <ProductInfoCard
-                    key={info.id}
-                    id={info.id}
-                    image={info.image}
-                    description={info.description}
-                    productName={info.productName}
-                    price={info.price}
-                  />
-                </Suspense>
+                <ProductInfoCard
+                  key={info.id}
+                  id={info.id}
+                  image={info.image}
+                  description={info.description}
+                  productName={info.productName}
+                  price={info.price}
+                />
               ))
             )}
           </Styled.Grid>
