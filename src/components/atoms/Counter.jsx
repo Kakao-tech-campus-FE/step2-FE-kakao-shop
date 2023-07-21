@@ -30,7 +30,7 @@ const Counter = ({
 
   return (
     <div
-      className={`${className} w-fit flex bg-white border border-neutral-200`}
+      className={`${className} w-fit flex bg-white border rounded border-neutral-200`}
     >
       <button
         className="flex w-8 h-8 items-center justify-center"
