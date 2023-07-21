@@ -13,8 +13,7 @@ const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
-  const route = useNavigate();
-  const initPayload = useRef([]);
+  const navigate = useNavigate();
 
   const { mutate } = useMutation({
     mutationFn: updateCart,
@@ -125,6 +124,7 @@ const CartList = ({ data }) => {
           mutate(updatePayload, {
             onSuccess: (data) => {
               alert("상품 페이지로 이동합니다.");
+              navigate("/order");
             },
             onError: (error) => {
               alert("업데이트에 실패했습니다.");
