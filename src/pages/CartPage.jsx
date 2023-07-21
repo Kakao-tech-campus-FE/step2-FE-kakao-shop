@@ -3,7 +3,7 @@ import { useQuery } from "react-query";
 import cartInstance from "../apis/cart";
 import CartProducts from "../components/templates/CartProducts";
 import Box from "../components/atoms/Box";
-import { comma } from "../utils/convert";
+import { comma, filterCartData } from "../utils/convert";
 import Button from "../components/atoms/Button";
 import Container from "../components/atoms/Container";
 import NullCart from "../components/organisms/NullCart";
@@ -16,8 +16,8 @@ export default function CartPage() {
   if (error) {
     return <div>{error.message}</div>;
   }
-
-  const filteredData = filterData(data);
+  console.log(data);
+  const filteredData = filterCartData(data);
   return (
     <main className="flex flex-col justify-center items-center w-full min-h-full pb-8 bg-gray-100">
       <Container className="w-cart">
@@ -52,11 +52,11 @@ export default function CartPage() {
   );
 }
 
-const filterData = (data) => {
-  const response = data.products.map((product) => ({
-    ...product,
-    carts: product.carts.filter((cart) => cart.quantity !== 0),
-  }));
-  const filteredData = response.filter((d) => d.carts.length !== 0);
-  return filteredData;
-};
+// const filterData = (data) => {
+//   const response = data.products.map((product) => ({
+//     ...product,
+//     carts: product.carts.filter((cart) => cart.quantity !== 0),
+//   }));
+//   const filteredData = response.filter((d) => d.carts.length !== 0);
+//   return filteredData;
+// };

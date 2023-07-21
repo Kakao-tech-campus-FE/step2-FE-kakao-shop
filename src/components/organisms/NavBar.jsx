@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
 import { removeCookie } from "../../utils/cookie";
 import Container from "../atoms/Container";
+import CartStatus from "../molecules/CartStatus";
 
 export default function NavBar({ modalRef }) {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function NavBar({ modalRef }) {
   };
 
   return (
-    <Container className="flex items-center">
+    <Container className="relative flex items-center">
       <LinkedIcon
         to="/cart"
         alt="장바구니"
@@ -39,6 +40,7 @@ export default function NavBar({ modalRef }) {
       >
         {cartImage}
       </LinkedIcon>
+      <CartStatus />
       <Button
         margin="ml-4"
         padding="px-4 py-1"
