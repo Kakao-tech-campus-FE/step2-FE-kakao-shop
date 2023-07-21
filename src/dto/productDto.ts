@@ -34,3 +34,8 @@ export interface CartProductInfo {
   productName: string;
   carts: CartInfo[];
 }
+
+export interface Cart {
+  products: CartProductInfo[];
+  totalPrice: number;
+}

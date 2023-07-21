@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import CartTemplate from '../components/templates/CartTemplate';
+import Loader from '../components/atoms/Loader';
 
 const CartPage = () => {
-  return <CartTemplate />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <CartTemplate />
+    </Suspense>
+  );
 };
 
 export default CartPage;
