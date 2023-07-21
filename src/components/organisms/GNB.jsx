@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { styled } from 'styled-components'
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,29 +22,12 @@ const Logobox = styled.div`
 const GNB = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
   const loginState = useSelector((state) => state.login)
 
   const logout = () => {
-    // 1. 로컬스토리지 로그아웃
-    localStorage.removeItem('email')
-    localStorage.removeItem('token')
-    localStorage.removeItem('islogin')
-    localStorage.removeItem('loginTime')
     navigate("./")
-
-    // 2. REDUX 로그아웃
     dispatch(clearUserReducer())
   }
-  
-  useEffect(()=>{
-    console.log("체크", loginState.islogin, Date.now(), loginState.loginTime)
-    // 로그인 시간 만료
-    if (loginState.islogin && Date.now() > loginState.loginTime + 3600 * 24 * 1000) {
-      logout();
-      alert("로그인 시간이 만료되었습니다.")
-    }
-  }, [])
   
 
   return (
@@ -60,16 +43,11 @@ const GNB = () => {
 
         <GNBMyGroup>
           
-          {
-            loginState.islogin
+          {loginState.islogin
             ? 
               <>  
-                <GNBButton>
-                  <GNBButton onClick={()=>{navigate("/carts")}}>장바구니</GNBButton>
-                </GNBButton>
-                <GNBButton onClick={logout}>
-                  로그아웃
-                </GNBButton>
+                <GNBButton onClick={()=>{navigate("/carts")}}>장바구니</GNBButton>
+                <GNBButton onClick={logout}>로그아웃</GNBButton>
               </>
             : 
               <>
