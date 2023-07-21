@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { BiMinus, BiPlus } from "react-icons/bi";
 
 const Counter = ({
   onIncrease, // 수량 증가 함수
@@ -16,10 +17,14 @@ const Counter = ({
   };
 
   return (
-    <div className="counter">
-      <button onClick={handleOnDecrease}>-</button>
-      <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
+    <div className="my-1 mr-1 border bg-white px-2 items-center">
+      <button onClick={handleOnDecrease} className="pr-2">
+        <BiMinus />
+      </button>
+      <span className="border-x px-4">{count}</span>
+      <button onClick={handleOnIncrease} className="pl-2">
+        <BiPlus />
+      </button>
     </div>
   );
 };

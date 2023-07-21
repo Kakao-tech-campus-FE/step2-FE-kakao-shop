@@ -4,7 +4,7 @@ import Box from "../Atoms/Box";
 import { Button, Card } from "react-bootstrap";
 import { comma } from "../../Utils/convert";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { updateCart } from "../../Servicies/cart";
 import CartItem from "../Atoms/CartItem";
 

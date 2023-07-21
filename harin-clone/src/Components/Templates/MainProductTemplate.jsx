@@ -6,26 +6,27 @@ import { getProducts } from "../../Store/Slices/productSlice";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import Loader from "../Atoms/Loader";
 import ProductSkeleton from "../Atoms/Skeleton";
+import PageNotFound from "../../Pages/PageNotFound";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
 
-  // const products = useSelector((state) => state.product.products);
-  // const loading = useSelector((state) => state.product.loading);
-  // const error = useSelector((state) => state.product.error);
-  // const isEnd = useSelector((state) => state.product.isEnd);
+  const products = useSelector((state) => state.product.products);
+  const loading = useSelector((state) => state.product.loading);
+  const error = useSelector((state) => state.product.error);
+  const isEnd = useSelector((state) => state.product.isEnd);
 
-  const {
-    data: products,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    error,
-  } = useInfiniteQuery("users", getProducts(), {
-    getNextPageParam: (page) => page + 1, // 다음 페이지 매개 변수 추출
-  });
+  // const {
+  //   data: products,
+  //   fetchNextPage,
+  //   hasNextPage,
+  //   isFetchingNextPage,
+  //   error,
+  // } = useInfiniteQuery("users", getProducts(), {
+  //   getNextPageParam: (page) => page + 1, // 다음 페이지 매개 변수 추출
+  // });
 
   //bottomObserver.current && !loading &&  !isEnd  && bottomObserver.current
   // intersection observer
@@ -45,7 +46,7 @@ const MainProductTemplate = () => {
       });
     },
     {
-      threshold: 0.5,
+      threshold: 1,
     }
   );
 
@@ -75,7 +76,6 @@ const MainProductTemplate = () => {
     <Container>
       {loading && <Loader />}
       {error && <p>Error</p>}
-
       <ProductGrid products={products} />
       <div ref={bottomObserver}></div>
     </Container>

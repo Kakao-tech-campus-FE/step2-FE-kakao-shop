@@ -6,10 +6,10 @@ const OptionList = ({ options, onClick }) => {
     <ol className="option-list">
       {options.map((option, index) => (
         <li key={option.id} className="option" onClick={() => onClick(option)}>
-          <span className="name">
+          <div className="name">
             {index + 1}, {option.optionName}
-          </span>
-          <span className="price">{comma(option.price)}원</span>
+          </div>
+          <div className="price">{comma(option.price)}원</div>
         </li>
       ))}
     </ol>

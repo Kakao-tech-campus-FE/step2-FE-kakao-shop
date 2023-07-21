@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import Loader from "../Components/Atoms/Loader";
 import CartList from "../Components/Molecules/CartList";
 import { getCart } from "../Servicies/cart";
