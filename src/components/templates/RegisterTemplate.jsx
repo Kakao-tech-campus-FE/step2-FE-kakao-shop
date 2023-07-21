@@ -7,7 +7,7 @@ const RegisterTemplate = () => {
 
   return (
     <>
-      <Gnb>{state.loginState ? "로그아웃" : "로그인"}</Gnb>
+      <Gnb />
       <RegisterForm />
     </>
   );

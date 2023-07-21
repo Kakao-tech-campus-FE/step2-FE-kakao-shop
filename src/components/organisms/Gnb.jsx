@@ -12,22 +12,32 @@ const GnbOrganism = styled.div`
     float: left;
   }
 
+  .cart {
+    float: right;
+  }
+
   .login {
     float: right;
   }
 `;
 
-const Gnb = ({ children }) => {
-  const dispatch = useDispatch();
+const Gnb = () => {
   const navigate = useNavigate();
-  const state = useSelector((state) => state);
+  const email = useSelector((state) => state.user.email);
+  const isLoggedin = email === null ? false : true;
 
-  const handleLogout = () => {
-    state === false
-      ? navigate(routes.login)
-      : dispatch({ type: "changeState" }) &&
-        window.localStorage.removeItem("userInfo") &&
-        window.location.replace("/");
+  const handleLoginButtonClick = () => {
+    try {
+      navigate(routes.login);
+    } catch (error) {
+      console.log("로그인 실패:", error);
+    }
+  };
+
+  const handleLogoutButtonClick = () => {
+    window.localStorage.removeItem("userInfo");
+    window.localStorage.removeItem("token");
+    navigate(routes.home);
   };
 
   return (
@@ -44,16 +54,42 @@ const Gnb = ({ children }) => {
         >
           쇼핑하기
         </LinkButton>
+        {isLoggedin ? (
+          <LinkButton
+            className="login"
+            type="click"
+            onClick={handleLogoutButtonClick}
+            styles={{
+              width: "5rem",
+              margin: "1rem",
+            }}
+          >
+            로그아웃
+          </LinkButton>
+        ) : (
+          <LinkButton
+            className="login"
+            type="click"
+            onClick={handleLoginButtonClick}
+            styles={{
+              width: "5rem",
+              margin: "1rem",
+            }}
+          >
+            로그인
+          </LinkButton>
+        )}
+
         <LinkButton
-          className="login"
+          className="cart"
           type="click"
-          onClick={handleLogout}
+          onClick={() => navigate(routes.cart)}
           styles={{
             width: "5rem",
             margin: "1rem",
           }}
         >
-          {children}
+          장바구니
         </LinkButton>
       </GnbOrganism>
     </>

@@ -1,14 +1,15 @@
 import InputGroup from "../molecules/InputGroup";
 import SubmitButton from "../atoms/SubmitButton";
 import Form from "../atoms/Form";
-import { register } from "../../services/user";
 import useInput from "../../hooks/useInput";
 import useValidation from "../../hooks/useValidation";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
+import { register } from "../../services/user";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
@@ -24,7 +25,7 @@ const RegisterForm = () => {
     handleConfirmPwMsg(value.password, e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     register({
       email: value.email,
       password: value.password,
@@ -33,7 +34,6 @@ const RegisterForm = () => {
       .then((response) => {
         if (response.status === 200) {
           navigate(routes.home);
-          alert("회원가입 성공!");
         }
       })
       .catch((error) => console.log(error));
