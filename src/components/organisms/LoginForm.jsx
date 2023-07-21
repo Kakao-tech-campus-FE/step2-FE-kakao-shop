@@ -131,7 +131,7 @@ const LoginForm = () => {
       >
         로그인
       </Button>
-      <Link to={"/signup"} className="inline-block my-6 mx-3">
+      <Link to={"/signup"} className=" inline-block my-6 mx-3 ml-[350px]">
         회원가입
       </Link>
     </Container>

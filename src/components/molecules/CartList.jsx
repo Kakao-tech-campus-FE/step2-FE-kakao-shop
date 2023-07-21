@@ -148,7 +148,9 @@ const CartList = ({ data }) => {
               // 주문 페이지로 이동
               route("/order");
             },
-            onError: (error) => {},
+            onError: (error) => {
+              alert(error.message);
+            },
           });
         }}
       >

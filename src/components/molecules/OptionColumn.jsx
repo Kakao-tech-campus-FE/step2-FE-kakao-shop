@@ -91,9 +91,8 @@ const OptionColumn = ({ product }) => {
             <ol key={option.optionId} className="selected-option-list">
               <li className="bg-neutral-100 mt-[10px] p-5">
                 <span className="text-sm">{option.name}</span>
-                <div className="flex justify-between pt-3">
+                <div className="flex justify-between items-center pt-3">
                   <Counter
-                    className="inline"
                     value={option.quantity}
                     /*Counter에 onDec, Inc의 props로 함수를 전달하였으므로
               onDec, Inc에서 이용되는 count는 Counter의 handleOnDec, Inc에서 실행된 

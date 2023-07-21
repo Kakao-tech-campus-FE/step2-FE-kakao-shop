@@ -18,6 +18,7 @@ const CartItem = ({ item, onChange }) => {
           </div>
           <div className="row">
             <Counter
+              value={cart.quantity}
               onIncrease={(count) => {
                 // onChange(아이디, 변경된 수량, 해당 옵션 상품의 가격)
                 onChange(cart.id, count, cart.option.price);
