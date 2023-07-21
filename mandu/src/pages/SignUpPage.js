@@ -3,7 +3,7 @@ import useForm from "../hook/useForm";
 import {userValidation} from "../util/validation";
 import {checkDuplicateEmail, signUp} from "../services/apis";
 import {useNavigate} from "react-router-dom";
-import Button from "../components/atoms/Button";
+import ElevatedButton from "../components/atoms/Buttons";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -33,8 +33,12 @@ const SignUpPage = () => {
 
     const handleCheckId = async (email) => {
         if (!email) return alert("이메일을 입력해주세요");
-        const response = await checkDuplicateEmail(email);
-        alert(response.success ? "사용가능한 아이디입니다!" : response.error.message)
+        try {
+            await checkDuplicateEmail(email);
+            alert("사용가능한 아이디입니다!");
+        } catch (e) {
+            alert(e.message);
+        }
     }
 
     return (
@@ -55,9 +59,9 @@ const SignUpPage = () => {
                             placeholder="이메일"
                         >
                             <div className="w-1/4">
-                                <Button onClick={() => handleCheckId(values.id)}>
+                                <ElevatedButton className="bg-amber-300" onClick={() => handleCheckId(values.id)}>
                                     중복확인
-                                </Button>
+                                </ElevatedButton>
                             </div>
                         </InputField>
                         <InputField
@@ -91,9 +95,9 @@ const SignUpPage = () => {
                             placeholder="비밀번호 확인"
                         />
                     </div>
-                    <Button className="mt-8" type="submit" disabled={submitting}>
+                    <ElevatedButton className="mt-8 bg-amber-300" type="submit" disabled={submitting}>
                         회원가입
-                    </Button>
+                    </ElevatedButton>
                 </form>
             </div>
         </div>

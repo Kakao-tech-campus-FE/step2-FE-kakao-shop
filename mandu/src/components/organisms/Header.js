@@ -5,7 +5,7 @@ import UserNav from "../molecules/UserNav";
 const Header = () => {
 
     return (
-        <header className="mt-1 max-w-screen-xl flex items-center w-full">
+        <header className="mx-auto mt-1 max-w-screen-xl flex items-center w-full">
             <img alt="톡쇼핑하기" className="h-5 mx-2"
                  src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230711/165439/assets/images/pc/pc_logo.png"/>
             <List className="mt-1 flex-grow">

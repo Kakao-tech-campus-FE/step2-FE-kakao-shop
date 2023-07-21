@@ -7,7 +7,7 @@ export const ProductCard = ({id, title, image, link, price}) => {
                 <div className="w-full h-44 rounded-2xl overflow-hidden">
                     <img
                         loading="lazy"
-                        className="object-fill hover:ease-out hover:scale-105 transition-all duration-500 "
+                        className="object-cover hover:ease-out hover:scale-105 transition-all duration-500 "
                         src={process.env.REACT_APP_API_URL + image}
                         alt={title}
                     />
