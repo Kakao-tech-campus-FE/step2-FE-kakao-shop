@@ -44,12 +44,13 @@ const ProductTemplate = () => {
     }
   };
 
+  const observer = new IntersectionObserver(handleIntersect);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersect);
     target.current && observer.observe(target.current);
 
     return () => observer && observer.disconnect();
-  }, [target]);
+  }, [target, data]);
 
   return (
     <div>
