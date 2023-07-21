@@ -1,16 +1,26 @@
-import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
-import { useParams } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { Suspense,useEffect,useState } from "react";
+import { getCart } from "../services/cart"; 
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getProductById } from '../services/product';
-import OptionColum from "../components/organisms/OptionColum";
-
-
+import Loader from "../components/atoms/Loader";
+import CartList from "../components/molecules/CartList";
+import { QueryClient, QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient();
 const Cart = () => {
-   
+    const { data: cart, isLoading } = useQuery(["cart"],getCart());
+    console.log(cart)
+    // data.data.response={
+    //     products,
+    //     totalPrice,
+    // }
+    //data 전부 파싱하는 이유는 데이터 없을때 fallback 되게 하기 위해서.
     return (
-        <div>
-           장바구니
-        </div>
+        <QueryClientProvider client={queryClient}>
+        
+        {isLoading ? <Loader /> : <CartList data={cart} />}
+       
+        </QueryClientProvider>
     );
 };
 

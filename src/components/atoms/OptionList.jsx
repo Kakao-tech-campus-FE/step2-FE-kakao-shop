@@ -3,11 +3,11 @@ const OptionList = ({ options, onClick,children }) => {
     return (
         <ol>
             {options.map((option, index) => (
-                <li key={option.id} onClick={()=>{onClick(option)}}>
+                <li className='my-3' key={option.id} onClick={()=>{onClick(option)}}>
                     <span>
                        {index+1}. 
                     </span>
-                    <span>
+                    <span className="mx-5">
                        {option.optionName}
                     </span>
                     <span>{comma(option.price)}원</span>

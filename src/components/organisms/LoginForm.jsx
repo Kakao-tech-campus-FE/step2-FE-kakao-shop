@@ -55,7 +55,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <LogoStyle><p onClick={() => { navigate(routes.home); }}>kakao</p></LogoStyle>
+        <h1 className="text-3xl font-bold text-kakao flex justify-center mt-24 mb-14 text-yellow-400" onClick={() => { navigate(routes.home); }}>kakao</h1>
 
             <Container>
                 <InputGroup id='email' type='email' placeholder='이메일(아이디)를 입력해주세요' label="이메일"
@@ -96,15 +96,6 @@ const LoginForm = () => {
 
     );
 };
-
-const LogoStyle = styled.h1`
-    display: flex;
-    justify-content: center;
-    margin-top:5rem;
-
-    color: #edb200;
-    font-weight: 800;
-`
 
 
 export default LoginForm;

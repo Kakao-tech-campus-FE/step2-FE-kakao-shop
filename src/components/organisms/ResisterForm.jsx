@@ -79,7 +79,7 @@ const ResisterForm = () => {
 
     return (
         <>
-            <LogoStyle><p onClick={() => { navigate(routes.home); }}>kakao</p></LogoStyle>
+            <h1 className="text-3xl font-bold text-kakao flex justify-center mt-24 mb-14" onClick={() => { navigate(routes.home); }}>kakao</h1>
 
             <Container>
 

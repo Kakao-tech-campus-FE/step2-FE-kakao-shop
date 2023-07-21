@@ -62,18 +62,19 @@ const OptionColum = ({ product }) => {
     return (
         // <QueryClientProvider client={queryClient}>
             <div>
-            <h3>옵션선택</h3>
+            <h3 className='font-bold text-2xl my-9'>옵션선택</h3>
             <OptionList
                 options={product.options}
                 //사용자가 선택한 옵션
                 onClick={handleOnClickOption}
             >
             </OptionList>
+            <hr className="mb-4"/>
              {/* 담긴 옵션 표기하기 */}
                 
              {selectedOptions.map((option) =>(
                 <ol key={option.id}>
-                    <li >
+                    <li className="flex">
                         <Counter
                             value={option.quantity} 
                             //리렌더링이슈로 날려줌
@@ -90,8 +91,9 @@ const OptionColum = ({ product }) => {
                 )
                 )} 
            
-            <hr/>
+            <hr className="my-5"/>
             <button
+                className="bg-transparent hover:font-semibold text-bubble-gum py-2 px-4 border rounded hover:bg-bubble-gum hover:text-white"
                 onClick={() => {
                     
                     mutate(
@@ -113,10 +115,10 @@ const OptionColum = ({ product }) => {
                 }}
             >장바구니에 담기
             </button>
-            <button>구매하기</button>
+            <button className="mx-5 bg-transparent hover:font-semibold text-bubble-gum py-2 px-4 border rounded hover:bg-bubble-gum hover:text-white">구매하기</button>
             
-            <span>
-                총수량:{''}
+            <span className="mx-5">
+                총 수량 : {''}
                 {
                     selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity;
@@ -124,7 +126,7 @@ const OptionColum = ({ product }) => {
                 }개
             </span>
             <span>
-                총상품금액:{'' }
+                총 상품금액 : {''}
                 {
                    comma( selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity * cur.price;

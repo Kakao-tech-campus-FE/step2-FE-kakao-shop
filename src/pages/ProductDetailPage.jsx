@@ -25,7 +25,7 @@ const ProductDetailPage = () => {
         // .catch(err=>{
         //     if(err.data.error.status===404){
         //         alert(err.data.error.message)
-        //         return(<Fourzerofour/>);
+        //         return(err);
         //     }  throw err;
         // })
         //, 
@@ -41,7 +41,10 @@ const ProductDetailPage = () => {
     }
 
     if (isLoading) 
-    return <h1 class="text-purple">Loading...</h1>
+    return <div className=' mt-4 flex justify-center items-center w-full h-full'>
+    <svg class="bg-purple b-4 rounded-full  h-6 w-6 mr-3 animate-ping" viewBox="0 0 24 24"></svg>
+    <p className="ml-4 text-3xl font-bold text-purple  ">Loading...</p>
+    </div>
    
 
     if (isError){ 

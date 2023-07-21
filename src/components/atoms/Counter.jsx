@@ -18,10 +18,9 @@ const Counter = ({
     }
     return (
         <div>
-            <button onClick={handleOnDecrease}>-</button>
+            <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold mx-3 py-1 px-3 border border-gray-400 rounded shadow' onClick={handleOnDecrease}>-</button>
             <span>{count}</span>
-            <button onClick={handleOnIncrease}>+</button>
-
+            <button className='bg-white hover:bg-gray-100 text-gray-800 font-semibold mx-3 py-1 px-3 border border-gray-400 rounded shadow' onClick={handleOnIncrease}>+</button>
         </div>
     );
 };

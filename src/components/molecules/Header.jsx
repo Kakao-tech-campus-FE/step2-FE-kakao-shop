@@ -25,7 +25,7 @@ const Header = () => {
 
     return (
         <>
-            <h1 onClick={() => { navigate(routes.home); }}>Kakao</h1>
+            <h1  className="text-3xl font-bold my-8 text-kakao"  onClick={() => { navigate(routes.home); }}>Kakao</h1>
             <div onClick={() => { navigate(routes.cart); }}>장바구니</div>
             <HeaderStyle>
                 {JWT ? < HeaderList name="로그아웃" slash={false}
