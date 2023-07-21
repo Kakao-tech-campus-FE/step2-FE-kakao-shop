@@ -2,11 +2,25 @@ import React, { useReducer, useState } from "react";
 import OptionList from "./OptionList";
 import DeliveryForm from "./DeliveryForm";
 import optionReducer from "../../reducer/option-reducer";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import cartInstance from "../../apis/cart";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import OrderGroup from "../molecules/OrderGroup";
+import Toast from "../molecules/Toast";
+import { Slide, toast } from "react-toastify";
+
+const toastOptions = {
+  position: toast.POSITION.BOTTOM_CENTER,
+  autoClose: 3000,
+  closeButton: false,
+  transition: Slide,
+  hideProgressBar: true,
+  style: {
+    padding: "12px 30px",
+    backgroundColor: "#333333",
+  },
+};
 
 export default function OptionColumn({ productData, modalRef }) {
   const { options } = productData;
@@ -14,6 +28,7 @@ export default function OptionColumn({ productData, modalRef }) {
   const [isOptionShow, setIsOptionShow] = useState(false);
   const user = useSelector((state) => state.user.isLoggedIn);
   const [optionList, dispatch] = useReducer(optionReducer, []);
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: cartInstance.addCart,
   });
@@ -34,7 +49,10 @@ export default function OptionColumn({ productData, modalRef }) {
       return;
     }
     if (optionList.length === 0) {
-      alert("옵션을 먼저 선택해주세요.");
+      toast(
+        <Toast text="옵션을 먼저 선택해주세요." button={false} />,
+        toastOptions
+      );
       return;
     }
     mutate(
@@ -43,10 +61,14 @@ export default function OptionColumn({ productData, modalRef }) {
         quantity: option.count,
       })),
       {
-        onSuccess: () => {
-          alert("장바구니에 삼품이 담겼습니다.");
+        onSuccess: async () => {
+          await queryClient.invalidateQueries(["carts"]);
           dispatch({ type: "clear" });
           setIsOptionShow(false);
+          toast(
+            <Toast text="장바구니에 상품이 담겼습니다." button={true} />,
+            toastOptions
+          );
         },
       }
     );
@@ -57,7 +79,10 @@ export default function OptionColumn({ productData, modalRef }) {
       return;
     }
     if (optionList.length === 0) {
-      alert("옵션을 먼저 선택해주세요.");
+      toast(
+        <Toast text="옵션을 먼저 선택해주세요." button={false} />,
+        toastOptions
+      );
       return;
     }
     mutate(

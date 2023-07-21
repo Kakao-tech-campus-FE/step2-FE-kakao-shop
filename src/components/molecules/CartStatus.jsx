@@ -12,8 +12,12 @@ export default function CartStatus() {
   }
   const filteredData = filterCartData(data);
   return (
-    <Box className="absolute top-1 left-7 flex justify-center items-center w-5 h-5 text-white text-sm font-bold bg-red-500 rounded-full">
-      <span>{filteredData.length}</span>
-    </Box>
+    <>
+      {filteredData.length !== 0 ? (
+        <Box className="absolute top-1 left-7 flex justify-center items-center w-5 h-5 text-white text-sm font-bold bg-red-500 rounded-full">
+          <span>{filteredData.length}</span>
+        </Box>
+      ) : null}
+    </>
   );
 }
