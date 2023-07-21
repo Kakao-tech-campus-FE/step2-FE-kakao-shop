@@ -8,7 +8,11 @@ import { Suspense } from 'react';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { status, data } = useQuery({ queryKey: ['product', id], queryFn: () => getProductById(id) });
+  const { status, data, error } = useQuery({
+    queryKey: ['product', id],
+    queryFn: () => getProductById(id),
+    retry: false,
+  });
 
   const product = data?.data?.response;
 
@@ -17,6 +21,10 @@ const ProductDetailPage = () => {
   }
 
   if (status === 'error') {
+    if (error?.response?.status === 404) {
+      // 등록되지 않은 상품(id) 조회 시
+      return <Error message="상품 정보를 찾을 수 없습니다." />;
+    }
     return <Error message="상품 정보를 불러오는 중 에러가 발생했습니다." />;
   }
 

@@ -74,7 +74,7 @@ export default function InnerHead() {
       <div className="innerhead-right mr-12">
         <div className="util flex gap-4">
           <IoSearchOutline size="20" />
-          <Link to="/cart" className="relative">
+          <Link to={userEmail ? '/cart' : '/login'} className="relative">
             {count > 0 && <CartBadge count={count} />}
             <BsCart2 size="20" />
           </Link>

@@ -11,6 +11,7 @@ import { GoHeart, GoX } from 'react-icons/go';
 import { BsCart2 } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { goToToast, defaultToast } from '../../utils/swal.js';
 
 /**
  * 옵션 선택 컬럼
@@ -28,13 +29,7 @@ const OptionColums = ({ product }) => {
 
     // 이미 선택된 옵션이면 선택하지 못하게 처리
     if (isOptionSelected) {
-      Swal.fire({
-        text: '이미 선택된 옵션입니다',
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      defaultToast('이미 선택된 옵션입니다');
       return;
     }
 
@@ -64,13 +59,7 @@ const OptionColums = ({ product }) => {
 
   const handleMutation = (mutationOptions, successMessage, errorMessage) => {
     if (selectedOptions.length === 0) {
-      Swal.fire({
-        text: '옵션을 선택해주세요',
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      defaultToast('옵션을 선택해주세요');
       return;
     }
 
@@ -83,27 +72,14 @@ const OptionColums = ({ product }) => {
       }),
       {
         onSuccess: () => {
-          Swal.fire({
-            text: successMessage,
-            toast: true,
-            position: 'top',
-            confirmButtonText: '바로가기',
-            confirmButtonColor: '#000000',
-            timer: 3000,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              navigate('/cart');
-            }
-          });
+          goToToast(successMessage, '/cart', navigate);
         },
         onError: () => {
-          Swal.fire({
-            text: errorMessage,
-            toast: true,
-            position: 'top',
-            showConfirmButton: false,
-            timer: 1500,
-          });
+          let message = errorMessage;
+          if (error?.response?.status === 401) {
+            message = '로그인이 필요한 기능입니다';
+          }
+          defaultToast(message);
         },
         ...mutationOptions,
       }
@@ -125,7 +101,7 @@ const OptionColums = ({ product }) => {
     };
   };
 
-  const { mutate } = useMutation({
+  const { mutate, error } = useMutation({
     mutationFn: addCart,
     refetchQueries: ['cart', 'cartNum'],
   });
