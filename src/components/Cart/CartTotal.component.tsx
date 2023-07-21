@@ -1,9 +1,9 @@
 import { CART, PRODUCT } from "@/assets/product.ko";
 import Txt from "@components/common/Txt.component";
 import Button from "../common/Button.component";
-import { useQuery } from "@tanstack/react-query";
-import { getCart } from "@/remotes/product";
 import { pointByKo } from "@/functions/utils";
+import { FC } from "react";
+import { ProductOrder } from "@/dtos/product.dto";
 
 const CartTotalSkeleton = () => (
   <div className="flex flex-col gap-4 p-4">
@@ -15,13 +15,16 @@ const CartTotalSkeleton = () => (
   </div>
 );
 
-const CartTotal = () => {
-  const { data, isLoading } = useQuery(["cart"], getCart);
-  if (!data || isLoading) {
+interface CartTotalProps {
+  products: ProductOrder[];
+  isLoading: boolean;
+  onOrder: () => void;
+}
+
+const CartTotal: FC<CartTotalProps> = ({ products, isLoading, onOrder }) => {
+  if (!products || isLoading) {
     return <CartTotalSkeleton />;
   }
-  const { products } = data.data.response;
-
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="flex justify-between">
@@ -30,14 +33,20 @@ const CartTotal = () => {
           {pointByKo(
             products.reduce(
               (acc, cur) =>
-                acc + cur.carts.reduce((acc, cur) => acc + cur.price, 0),
+                acc +
+                cur.carts.reduce(
+                  (acc, cur) => acc + cur.quantity * cur.option.price,
+                  0
+                ),
               0
             )
           )}
           {PRODUCT.WON}
         </Txt>
       </div>
-      <Button className="w-full p-4 rounded-lg">{CART.TO_ORDER}</Button>
+      <Button className="w-full p-4 rounded-lg" onClick={onOrder}>
+        {CART.TO_ORDER}
+      </Button>
     </div>
   );
 };

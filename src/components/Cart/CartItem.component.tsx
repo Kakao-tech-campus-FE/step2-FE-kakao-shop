@@ -1,12 +1,11 @@
-import { getCart, updateCart } from "@/remotes/product";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Fragment } from "react";
+import { FC, Fragment } from "react";
 import ProductOptionOrderItem from "../ProductOption/ProductOptionOrderResult/ProductOptionOrderItem.component";
 import Txt from "@components/common/Txt.component";
-import { Order } from "@/hooks/useOrder";
 import { Link } from "react-router-dom";
 import { CART } from "@/assets/product.ko";
 import { COMMON } from "@/assets/common.ko";
+import { ProductOrder } from "@/dtos/product.dto";
+import { Order } from "@/hooks/useOrder";
 
 const EmptyCart = () => (
   <>
@@ -30,7 +29,7 @@ const CartItemSkeleton = () => (
       <div className="w-1/2 h-6 bg-gray-300 rounded"></div>
       <div className="flex justify-between">
         <div className="w-full h-12 bg-gray-300 rounded"></div>
-      </div>{" "}
+      </div>
       <div className="w-1/2 h-6 bg-gray-300 rounded"></div>
       <div className="flex justify-between">
         <div className="w-full h-12 bg-gray-300 rounded"></div>
@@ -39,29 +38,22 @@ const CartItemSkeleton = () => (
   </>
 );
 
-const CartItem = () => {
-  const { data, isLoading } = useQuery(["cart"], getCart);
-  const queryClient = useQueryClient();
+interface CartItemProps {
+  products: ProductOrder[];
+  isLoading: boolean;
+  removeOrder: (cartId: number) => void;
+  updateOrder: (order: Order) => void;
+}
 
-  const { mutate } = useMutation(updateCart, {
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["cart"] });
-    },
-  });
-
-  const removeOrder = (cartId: number) => {
-    mutate([{ cartId: cartId, quantity: 0 }]);
-  };
-
-  const updateOrder = (order: Order) => {
-    mutate([{ cartId: order.id, quantity: order.quantity }]);
-  };
-
-  if (!data || isLoading) {
+const CartItem: FC<CartItemProps> = ({
+  products,
+  isLoading,
+  removeOrder,
+  updateOrder,
+}) => {
+  if (!products || isLoading) {
     return <CartItemSkeleton />;
   }
-
-  const { products } = data.data.response;
 
   if (
     products.every((product) =>
