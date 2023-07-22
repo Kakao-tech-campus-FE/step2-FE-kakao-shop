@@ -8,8 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { FallbackErrorBoundary } from '@components/@common/FallbackErrorBoundary';
 import { CustomSuspense } from '@components/atom';
 import BannerImageList from '@components/atom/Carousel/BannerImageList';
-import Loading from '@components/atom/Loading';
-import Header from '@components/molecules/Header';
+import Loading from '@components/atom/Loader';
 import { CardList } from '@components/page/Home/CardList';
 import CardListFallback from '@components/page/Home/CardListFallback';
 

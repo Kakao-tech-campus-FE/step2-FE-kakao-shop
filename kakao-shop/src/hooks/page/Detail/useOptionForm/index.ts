@@ -10,10 +10,13 @@ import { Toast } from '@components/atom';
 import { useToggle } from '@hooks/@common';
 
 export const useOptionForm = () => {
-  const { id: productId } = useParams();
   const dispatch = useDispatch();
-  const [isOpenList, setIsOpenList, onToggle] = useToggle(false);
   const product = useSelector((state: RootState) => state.detail.product);
+  const isLoading = useSelector((state: RootState) => state.detail.isLoading);
+  const error = useSelector((state: RootState) => state.detail.error);
+
+  const { id: productId } = useParams();
+  const [isOpenList, setIsOpenList, onToggle] = useToggle(false);
   const [options, setOptions] = useState<UserSelectOption[] | undefined>();
 
   const totals = options?.reduce(calculateTotal, {
@@ -73,6 +76,8 @@ export const useOptionForm = () => {
 
   return {
     state: {
+      isLoading,
+      error,
       product,
       options,
       totals,
