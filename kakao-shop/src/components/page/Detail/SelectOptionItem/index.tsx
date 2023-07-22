@@ -1,7 +1,6 @@
 import close from '@assets/close.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import hideWithA11y from '@styles/a11y';
 import { MouseEventHandler } from 'react';
 
 import { Button, Photo } from '@components/atom';
@@ -20,7 +19,7 @@ type Props = {
 
 const SelectOptionItem = ({ option, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity }: Props) => {
   return (
-    <S.Root key={option.id}>
+    <S.Root>
       <Button css={S.ButtonCSS} onClick={onDeleteOption(option.id)}>
         <Photo imageClassName={S.CloseCSS} src={close} alt={'닫기'} />
       </Button>

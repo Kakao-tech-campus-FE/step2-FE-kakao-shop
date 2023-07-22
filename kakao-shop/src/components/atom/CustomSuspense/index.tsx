@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { PropsWithChildren, ReactElement } from 'react';
+import { Fragment, PropsWithChildren, ReactElement } from 'react';
 
 type Props = {
   fallback: ReactElement;
@@ -17,7 +17,7 @@ const CustomSuspense = (props: PropsWithChildren<Props>) => {
     return fallback;
   }
 
-  return <>{children}</>;
+  return <Fragment>{children}</Fragment>;
 };
 
 export default CustomSuspense;

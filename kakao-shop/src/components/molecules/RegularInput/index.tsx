@@ -63,7 +63,6 @@ RegularInput.Counter = function CounterInput({
   onClickPlusButton,
   ...props
 }: CounterInputProps) {
-  console.log(onClickPlusButton);
   return (
     <C.Root>
       <C.MinusButton onClick={onClickMinusButton}>
@@ -93,7 +92,7 @@ const C = {
   Root: styled.div`
     display: flex;
 
-    width: 140px;
+    width: 100px;
     height: 32px;
 
     border: 1px solid #d6d6d6;
