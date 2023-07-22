@@ -2,6 +2,7 @@ import shoppingCart from '@assets/shoppingCart.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MouseEventHandler } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Button, Photo } from '@components/atom';
 
@@ -15,12 +16,16 @@ export type AddCartPayload = {
 };
 
 const PurchaseButtons = ({ onAddCart }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <S.Root>
       <Button css={S.BasketButtonCSS} onClick={onAddCart}>
         <Photo imageClassName={S.ShoppingCartCSS} src={shoppingCart} alt={'장바구니'} />
       </Button>
-      <Button css={S.PurchaseButtonCSS}>톡딜가로 구매하기</Button>
+      <Button css={S.PurchaseButtonCSS} onClick={() => navigate('/cart')}>
+        톡딜가로 구매하기
+      </Button>
     </S.Root>
   );
 };

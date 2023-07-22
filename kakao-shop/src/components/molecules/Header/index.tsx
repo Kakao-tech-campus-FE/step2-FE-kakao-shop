@@ -34,7 +34,7 @@ const Header = () => {
           </S.GnbMenu>
 
           <S.MenuUtil>
-            <Link to="/">
+            <Link to="/cart">
               <span>장바구니</span>
             </Link>
           </S.MenuUtil>
