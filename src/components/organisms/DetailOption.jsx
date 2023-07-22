@@ -7,10 +7,9 @@ import TotalPrice from 'components/atoms/option/TotalPrice'
 import OptionSelected from 'components/molecules/OptionSelected'
 import strPrice from 'utils/price'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import addToCart from 'api/addToCart'
 import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
-import { toastOnReducer } from 'reducers/toastSlice'
 import { useToast } from 'components/molecules/Toast'
 
 const DetailOption = (props) => {
@@ -48,19 +47,23 @@ const DetailOption = (props) => {
     }
   }
 
-  const changeQuantity = (id, newQuantity) => {
+  const changeQuantity = (id, newQuantity, clear=false) => {
  
-    if (newQuantity === 0 || Number.isNaN(newQuantity)) {return}
-    if (newQuantity === -1) {
-      newQuantity = 0
-    }
+    if ((newQuantity === 0 && !clear) || Number.isNaN(newQuantity)) {return}
 
     const newSelected = [...selected]
-
+    
     // 변경일때 : selected 에서 찾아서 수량 바꾸기
     for (let i=0; i < selected.length; i++) {
       if (selected[i].id === id) {
-        newSelected[i] = { ...selected[i], quantity: newQuantity }
+
+        if (clear) {
+          newSelected.splice(i, 1)
+        }
+        else {
+          newSelected[i] = { ...selected[i], quantity: newQuantity } 
+        }
+
         setSelected(prev => newSelected)
         return
       }
@@ -68,7 +71,6 @@ const DetailOption = (props) => {
   }
 
   useEffect( () => {
-    console.log(selected)
     let p = 0;
     let q = 0;
     for (const item of selected) {
@@ -141,7 +143,7 @@ const DetailOption = (props) => {
                 price={strPrice(item.quantity * item.price)}
                 quantity={item.quantity}
                 changeQuantity={changeQuantity}
-                clear={() => changeQuantity(item.id, -1)}
+                clear={() => changeQuantity(item.id, 0, true)}
               />
             </SelectedItemBox> 
           )} 
