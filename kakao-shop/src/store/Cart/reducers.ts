@@ -3,12 +3,14 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
 import type { CartProduct } from 'types/product';
 
+// ActionTypes
 export const GET_CARTS_REQUEST = 'cart/GET_CARTS_REQUEST';
 export const GET_CARTS_SUCCESS = 'cart/GET_CARTS_SUCCESS';
 export const GET_CARTS_FAILURE = 'cart/GET_CARTS_FAILURE';
 
 export const UPDATE_CARTS_REQUEST = 'cart/UPDATE_CARTS_REQUEST';
 
+// ActionCreators
 export const getCartsRequestAction = (): GetCartsRequestAction => ({
   type: GET_CARTS_REQUEST,
 });
@@ -23,6 +25,7 @@ export const updateCartsRequestAction = (payload: UpdateCartsRequest[]): UpdateC
   payload,
 });
 
+// Initial State
 export const initialState: CartState = {
   isLoading: false,
   error: null,
@@ -30,7 +33,8 @@ export const initialState: CartState = {
   totalPrice: 0,
 };
 
-export const CartReducer = produce((draft: Draft<CartState>, action: GetCartsRequestAction | GetCartsSuccessAction) => {
+// Reducer
+export const CartReducer = produce((draft: Draft<CartState>, action: CartActions) => {
   switch (action.type) {
     case GET_CARTS_REQUEST:
       draft.isLoading = true;
@@ -43,6 +47,9 @@ export const CartReducer = produce((draft: Draft<CartState>, action: GetCartsReq
       break;
   }
 }, initialState);
+
+// ActionCreatorsTypes
+export type CartActions = GetCartsRequestAction | GetCartsSuccessAction;
 
 export type GetCartsRequestAction = {
   type: typeof GET_CARTS_REQUEST;
@@ -58,6 +65,7 @@ export type UpdateCartsRequestAction = {
   payload: UpdateCartsRequest[];
 };
 
+// StateType
 export type CartState = {
   isLoading: boolean;
   error: AxiosError | null;

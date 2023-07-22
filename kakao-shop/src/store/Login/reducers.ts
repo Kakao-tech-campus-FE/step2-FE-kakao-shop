@@ -4,6 +4,7 @@ import { produce, Draft } from 'immer';
 
 import { getCookie, deleteCookie } from '@utils/cookie';
 
+// ActionTypes
 export const SIGN_IN_REQUEST = 'signIn/SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'signIn/SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'signIn/SIGN_IN_FAILURE';
@@ -13,6 +14,7 @@ export const RESET_SIGN_IN_STATE = 'signIn/RESET_SIGN_IN_STATE';
 
 export const SIGN_OUT = 'signout/SIGN_OUT';
 
+// ActionCreators
 export const signInRequestAction = (payload: SignInRequest): SignInRequestAction => ({
   type: SIGN_IN_REQUEST,
   payload,
@@ -36,6 +38,7 @@ export const resetSignInStateAction = (): ResetSignInStateAction => ({
   type: RESET_SIGN_IN_STATE,
 });
 
+// Initial State
 export const initialState: SignInState = {
   isLogin: !!getCookie('accessToken'),
   success: false,
@@ -43,52 +46,46 @@ export const initialState: SignInState = {
   error: null,
 };
 
-export const signInReducer = produce(
-  (draft: Draft<SignInState>, action: SignInAction | SignOutAction | ResetSignInStateAction) => {
-    switch (action.type) {
-      case SIGN_IN_SUCCESS:
-        draft.isLogin = !!getCookie('accessToken');
-        draft.success = action.payload.success;
-        draft.response = action.payload.response;
-        draft.error = action.payload.error as null;
-        break;
+// Reducer
+export const signInReducer = produce((draft: Draft<SignInState>, action: SignInActions) => {
+  switch (action.type) {
+    case SIGN_IN_SUCCESS:
+      draft.isLogin = !!getCookie('accessToken');
+      draft.success = action.payload.success;
+      draft.response = action.payload.response;
+      draft.error = action.payload.error as null;
+      break;
 
-      case SIGN_IN_FAILURE:
-        const payload = action.payload as unknown as AxiosError<SignInResponse>;
-        draft.success = payload.response?.data.success ? payload.response?.data.success : false; // 서버에서 보내주는 약속 데이터가 예기치 못한 오류가 발생할 경우 응답으로 오지않을 수 있으므로 기본값 설정
-        draft.response = payload.response?.data.response ? payload.response?.data.response : null;
-        draft.error = payload;
-        break;
+    case SIGN_IN_FAILURE:
+      const payload = action.payload as unknown as AxiosError<SignInResponse>;
+      draft.success = payload.response?.data.success ? payload.response?.data.success : false; // 서버에서 보내주는 약속 데이터가 예기치 못한 오류가 발생할 경우 응답으로 오지않을 수 있으므로 기본값 설정
+      draft.response = payload.response?.data.response ? payload.response?.data.response : null;
+      draft.error = payload;
+      break;
 
-      case RESET_SIGN_IN_STATE:
-        draft.isLogin = !!getCookie('accessToken');
-        draft.success = false;
-        draft.response = null;
-        draft.error = null;
-        break;
+    case RESET_SIGN_IN_STATE:
+      draft.isLogin = !!getCookie('accessToken');
+      draft.success = false;
+      draft.response = null;
+      draft.error = null;
+      break;
 
-      case SIGN_OUT:
-        draft.isLogin = false;
-        deleteCookie('accessToken');
-        break;
+    case SIGN_OUT:
+      draft.isLogin = false;
+      deleteCookie('accessToken');
+      break;
 
-      default:
-        break;
-    }
-  },
-  initialState,
-);
+    default:
+      break;
+  }
+}, initialState);
+
+// ActionCreatorsTypes
+export type SignInActions = SignInAction | SignOutAction | ResetSignInStateAction;
 
 export type SignInRequestAction = {
   type: typeof SIGN_IN_REQUEST;
   payload: SignInRequest;
-};
-
-export type SignInState = {
-  isLogin: boolean;
-  success: boolean;
-  response: null;
-  error: AxiosError<SignInResponse> | null;
 };
 
 export type SignInAction = {
@@ -107,4 +104,12 @@ export type SignOutAction = {
 
 export type ResetSignInStateAction = {
   type: typeof RESET_SIGN_IN_STATE;
+};
+
+// StateType
+export type SignInState = {
+  isLogin: boolean;
+  success: boolean;
+  response: null;
+  error: AxiosError<SignInResponse> | null;
 };

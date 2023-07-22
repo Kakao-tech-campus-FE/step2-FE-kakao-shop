@@ -3,6 +3,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
 import type { ProductDetail } from 'types/product';
 
+// ActionTypes
 export const GET_PRODUCT_DETAIL_REQUEST = 'detail/GET_PRODUCT_DETAIL_REQUEST';
 export const GET_PRODUCT_DETAIL_SUCCESS = 'detail/GET_PRODUCT_DETAIL_SUCCESS';
 export const GET_PRODUCT_DETAIL_FAILURE = 'detail/GET_PRODUCT_DETAIL_FAILURE';
@@ -14,6 +15,7 @@ export const getProductDetailRequestAction = (payload: string): GetProductDetail
   payload,
 });
 
+// ActionCreators
 export const getProductDetailSuccessAction = (
   payload: AxiosResponse<GetProductDetailResponse>,
 ): GetProductDetailSuccessAction => ({
@@ -33,44 +35,37 @@ export const addCartItemAction = (payload: AddCartItemRequest[]): AddCartItemAct
   payload,
 });
 
+// Initial State
 export const initialState: DetailState = {
   isLoading: false,
   error: null,
   product: undefined,
 };
 
-export const DetailReducer = produce(
-  (
-    draft: Draft<DetailState>,
-    action:
-      | GetProductDetailRequestAction
-      | GetProductDetailSuccessAction
-      | AddCartItemAction
-      | GetProductDetailFailureAction,
-  ) => {
-    switch (action.type) {
-      case GET_PRODUCT_DETAIL_REQUEST:
-        draft.isLoading = true;
-        break;
+// Reducer
+export const DetailReducer = produce((draft: Draft<DetailState>, action: DetailActions) => {
+  switch (action.type) {
+    case GET_PRODUCT_DETAIL_REQUEST:
+      draft.isLoading = true;
+      break;
 
-      case GET_PRODUCT_DETAIL_SUCCESS:
-        draft.product = action.payload.data.response;
-        draft.isLoading = false;
-        break;
+    case GET_PRODUCT_DETAIL_SUCCESS:
+      draft.product = action.payload.data.response;
+      draft.isLoading = false;
+      break;
 
-      case GET_PRODUCT_DETAIL_FAILURE:
-        draft.error = action.payload;
-        break;
-    }
-  },
-  initialState,
-);
+    case GET_PRODUCT_DETAIL_FAILURE:
+      draft.error = action.payload;
+      break;
+  }
+}, initialState);
 
-export type DetailState = {
-  isLoading: boolean;
-  error: AxiosError | null;
-  product?: ProductDetail;
-};
+// ActionCreatorsTypes
+export type DetailActions =
+  | GetProductDetailRequestAction
+  | GetProductDetailSuccessAction
+  | AddCartItemAction
+  | GetProductDetailFailureAction;
 
 export type GetProductDetailRequestAction = {
   type: typeof GET_PRODUCT_DETAIL_REQUEST;
@@ -90,4 +85,11 @@ export type GetProductDetailFailureAction = {
 export type AddCartItemAction = {
   type: typeof ADD_CART_ITEM_REQUEST;
   payload: AddCartItemRequest[];
+};
+
+// StateType
+export type DetailState = {
+  isLoading: boolean;
+  error: AxiosError | null;
+  product?: ProductDetail;
 };

@@ -1,3 +1,4 @@
+import type { Error } from '@apis/Login';
 import { client } from '@apis/client';
 
 export type SignUpRequest = {
@@ -5,6 +6,12 @@ export type SignUpRequest = {
   password: string;
   username: string;
   navigate: any;
+};
+
+export type SignUpResponse = {
+  success: boolean;
+  response: null;
+  error: Error | null;
 };
 
 export type DuplicateEmailCheckRequest = {

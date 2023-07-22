@@ -1,7 +1,8 @@
-import type { Error } from '@apis/Login';
-import type { SignUpRequest, DuplicateEmailCheckRequest } from '@apis/SignUp';
+import type { SignUpRequest, DuplicateEmailCheckRequest, SignUpResponse } from '@apis/SignUp';
+import { AxiosError } from 'axios';
 import { produce, Draft } from 'immer';
 
+// ActionTypes
 export const SIGN_UP_REQUEST = 'signUp/SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'signUp/SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'signUp/SIGN_UP_FAILURE';
@@ -10,6 +11,7 @@ export const DUPLICATE_EMAIL_CHECK_REQUEST = 'signUp/DUPLICATE_EMAIL_CHECK_REQUE
 export const DUPLICATE_EMAIL_CHECK_SUCCESS = 'signUp/DUPLICATE_EMAIL_CHECK_SUCCESS';
 export const DUPLICATE_EMAIL_CHECK_FAILURE = 'signUp/DUPLICATE_EMAIL_CHECK_FAILURE';
 
+// ActionCreators
 export const signUpRequestAction = (payload: SignUpRequest): SignUpRequestAction => ({
   type: SIGN_UP_REQUEST,
   payload,
@@ -32,13 +34,15 @@ export const duplicateEmailCheckRequestAction = (
   payload,
 });
 
-export const initialState: SignUpResponse = {
+// Initial State
+export const initialState: SignUpState = {
   success: false,
   response: null,
   error: null,
 };
 
-export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: SignUpSuccessAction) => {
+// Reducer
+export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: SignUpActions) => {
   switch (action.type) {
     case SIGN_UP_SUCCESS:
       draft.success = action.payload.success;
@@ -57,6 +61,9 @@ export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: Sign
   }
 }, initialState);
 
+// ActionCreatorsTypes
+export type SignUpActions = SignUpSuccessAction;
+
 export type SignUpRequestAction = {
   type: typeof SIGN_UP_REQUEST;
   payload: SignUpRequest;
@@ -67,13 +74,14 @@ export type DuplicateEmailCheckRequestAction = {
   payload: DuplicateEmailCheckRequest;
 };
 
-export type SignUpResponse = {
-  success: boolean;
-  response: null;
-  error: Error | null;
-};
-
 export type SignUpSuccessAction = {
   type: typeof SIGN_UP_SUCCESS | typeof SIGN_UP_FAILURE;
   payload: SignUpResponse;
+};
+
+// StateType
+export type SignUpState = {
+  success: boolean;
+  response: null;
+  error: AxiosError<SignUpResponse> | null;
 };
