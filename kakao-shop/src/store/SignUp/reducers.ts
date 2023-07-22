@@ -22,7 +22,7 @@ export const signUpSuccessAction = (payload: SignUpResponse): SignUpSuccessActio
   payload,
 });
 
-export const signUpFailureAction = (payload: SignUpResponse): SignUpSuccessAction => ({
+export const signUpFailureAction = (payload: SignUpResponse): SignUpFailureAction => ({
   type: SIGN_UP_FAILURE,
   payload,
 });
@@ -62,7 +62,7 @@ export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: Sign
 }, initialState);
 
 // ActionCreatorsTypes
-export type SignUpActions = SignUpSuccessAction;
+export type SignUpActions = SignUpSuccessAction | SignUpFailureAction;
 
 export type SignUpRequestAction = {
   type: typeof SIGN_UP_REQUEST;
@@ -75,7 +75,12 @@ export type DuplicateEmailCheckRequestAction = {
 };
 
 export type SignUpSuccessAction = {
-  type: typeof SIGN_UP_SUCCESS | typeof SIGN_UP_FAILURE;
+  type: typeof SIGN_UP_SUCCESS;
+  payload: SignUpResponse;
+};
+
+export type SignUpFailureAction = {
+  type: typeof SIGN_UP_FAILURE;
   payload: SignUpResponse;
 };
 

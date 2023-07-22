@@ -8,11 +8,11 @@ import { RegularInput } from '@components/molecules';
 
 import { comma } from '@utils/comma';
 
-type Props = {
+type Props = Cart & {
   onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDeleteCartItem: (id: number) => MouseEventHandler<HTMLButtonElement>;
-} & Cart;
+};
 const SelectOptionItem = ({
   id,
   option,

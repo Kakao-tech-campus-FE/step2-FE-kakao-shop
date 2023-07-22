@@ -1,4 +1,5 @@
 import { signUpAPI, duplicateEmailCheckAPI } from '@apis/SignUp';
+import type { SignUpResponse } from '@apis/SignUp';
 import { AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
@@ -9,7 +10,6 @@ import {
   DuplicateEmailCheckRequestAction,
   signUpSuccessAction,
   signUpFailureAction,
-  SignUpResponse,
 } from './reducers';
 
 export function* watchSignUp({ payload }: SignUpRequestAction) {
