@@ -32,23 +32,28 @@ const ProductsListTemplate = () => {
       )
       
     const [next, setNext] = useState(true)
+    const targetBox = useRef(null);
 
-    const io = new IntersectionObserver(
+    useEffect(() => {
+
+      const io = new IntersectionObserver(
         (entries) => {
           if (!entries[0].isIntersecting) {return;}
           fetchNextPage();
         }, 
-        {threshold: 0.1}
+        { threshold: 0.1 }
       );
 
-    const targetBox = useRef(null);
-    useEffect(()=>{
-      if (hasNextPage) {io.observe(targetBox.current)}
+      if (hasNextPage) {
+        io.observe(targetBox.current)
+      }
       else if (hasNextPage === false) {     
         io.disconnect();
         setNext(prev => false);
       }
+
       return () => {io.disconnect();}
+      
     }, [hasNextPage]) 
 
     return (
