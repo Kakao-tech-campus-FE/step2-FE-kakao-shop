@@ -11,10 +11,9 @@ export const register = (data) => {
 };
 
 export const login = (data) => {
-  const { email, password, username } = data;
+  const { email, password } = data;
   return instance.post("/login", {
     email,
     password,
-    username,
   });
 };
