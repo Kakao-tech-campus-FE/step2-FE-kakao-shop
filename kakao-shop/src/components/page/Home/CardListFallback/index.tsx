@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { resetHomeState, productDataRequest } from '@store/Home/reducers';
+import { resetHomeStateAction, getProductsRequestAction } from '@store/Home/reducers';
 import { useDispatch } from 'react-redux';
 
 import { Button } from '@components/atom';
@@ -19,8 +19,8 @@ const CardListFallback = ({ resetErrorBoundary }: any) => {
         css={S.Button}
         onClick={() => {
           resetErrorBoundary();
-          dispatch(resetHomeState());
-          dispatch(productDataRequest());
+          dispatch(resetHomeStateAction());
+          dispatch(getProductsRequestAction());
         }}>
         다시 시도
       </Button>

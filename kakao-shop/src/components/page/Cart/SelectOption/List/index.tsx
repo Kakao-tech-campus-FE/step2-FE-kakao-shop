@@ -1,5 +1,5 @@
-import { Cart } from '@store/Cart/reducers';
 import { Fragment, MouseEventHandler } from 'react';
+import type { Cart } from 'types/product';
 
 import SelectOptionItem from '@components/page/Cart/SelectOption/Item';
 

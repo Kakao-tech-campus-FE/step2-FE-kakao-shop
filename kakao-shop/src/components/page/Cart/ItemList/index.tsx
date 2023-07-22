@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import { Product } from '@store/Cart/reducers';
 import { MouseEventHandler } from 'react';
+import type { CartProduct } from 'types/product';
 
 import Item from '@components/page/Cart/Item';
 
 type Props = {
-  products: Product[];
+  products: CartProduct[];
   onIncreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDecreaseQuantity: (id: number) => MouseEventHandler<HTMLButtonElement>;
   onDeleteCartItem: (id: number) => MouseEventHandler<HTMLButtonElement>;

@@ -1,37 +1,38 @@
+import type { SignInRequest, SignInResponse } from '@apis/Login';
 import { AxiosError } from 'axios';
 import { produce, Draft } from 'immer';
-
-import { SignInRequest } from '@hooks/page/Login/useLoginForm';
 
 import { getCookie, deleteCookie } from '@utils/cookie';
 
 export const SIGN_IN_REQUEST = 'signIn/SIGN_IN_REQUEST';
 export const SIGN_IN_SUCCESS = 'signIn/SIGN_IN_SUCCESS';
 export const SIGN_IN_FAILURE = 'signIn/SIGN_IN_FAILURE';
+
+// 비동기 요청 액션이 아닌 경우 REQUSET, SUCCESS, FAILURE 로 나누지 않고 하나의 액션으로 처리
 export const RESET_SIGN_IN_STATE = 'signIn/RESET_SIGN_IN_STATE';
 
-export const SIGN_OUT_REQUEST = 'signout/SIGN_OUT_REQUEST'; // 비동기 요청이 아니므로 REQUEST 타입만 만들었음.
+export const SIGN_OUT = 'signout/SIGN_OUT';
 
-export const signInRequest = (payload: SignInRequest): FetchSignInAction => ({
+export const signInRequestAction = (payload: SignInRequest): SignInRequestAction => ({
   type: SIGN_IN_REQUEST,
   payload,
 });
 
-export const signInSuccess = (payload: SignInResponse): SignInAction => ({
+export const signInSuccessAction = (payload: SignInResponse): SignInAction => ({
   type: SIGN_IN_SUCCESS,
   payload,
 });
 
-export const signInFailure = (payload: AxiosError<SignInResponse>): SignInErrorAction => ({
+export const signInFailureAction = (payload: AxiosError<SignInResponse>): SignInFailureAction => ({
   type: SIGN_IN_FAILURE,
   payload,
 });
 
-export const signOutRequest = (): SignOutAction => ({
-  type: SIGN_OUT_REQUEST,
+export const signOutAction = (): SignOutAction => ({
+  type: SIGN_OUT,
 });
 
-export const resetSignInState = (): ResetSignInStateAction => ({
+export const resetSignInStateAction = (): ResetSignInStateAction => ({
   type: RESET_SIGN_IN_STATE,
 });
 
@@ -66,7 +67,7 @@ export const signInReducer = produce(
         draft.error = null;
         break;
 
-      case SIGN_OUT_REQUEST:
+      case SIGN_OUT:
         draft.isLogin = false;
         deleteCookie('accessToken');
         break;
@@ -78,7 +79,7 @@ export const signInReducer = produce(
   initialState,
 );
 
-export type FetchSignInAction = {
+export type SignInRequestAction = {
   type: typeof SIGN_IN_REQUEST;
   payload: SignInRequest;
 };
@@ -90,29 +91,18 @@ export type SignInState = {
   error: AxiosError<SignInResponse> | null;
 };
 
-export type SignInResponse = {
-  success: boolean;
-  response: null;
-  error: ErrorType | null;
-};
-
-export type ErrorType = {
-  message: string;
-  status: number;
-};
-
 export type SignInAction = {
   type: typeof SIGN_IN_SUCCESS | typeof SIGN_IN_FAILURE;
   payload: SignInResponse;
 };
 
-export type SignInErrorAction = {
+export type SignInFailureAction = {
   type: typeof SIGN_IN_SUCCESS | typeof SIGN_IN_FAILURE;
   payload: AxiosError<SignInResponse>;
 };
 
 export type SignOutAction = {
-  type: typeof SIGN_OUT_REQUEST;
+  type: typeof SIGN_OUT;
 };
 
 export type ResetSignInStateAction = {

@@ -2,11 +2,10 @@ import arrow from '@assets/arrow.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Fragment } from 'react';
+import type { UserSelectOption } from 'types/product';
 
 import { Button, Photo } from '@components/atom';
 import OptionItem from '@components/page/Detail/OptionItem';
-
-import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 
 type Props = {
   isOpenList: boolean;

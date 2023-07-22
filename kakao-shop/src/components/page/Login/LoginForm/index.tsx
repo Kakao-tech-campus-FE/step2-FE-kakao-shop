@@ -1,6 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { resetSignInState } from '@store/Login/reducers';
+import { resetSignInStateAction } from '@store/Login/reducers';
 import { RootState } from '@store/index';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (!error) return;
-    dispatch(resetSignInState());
+    dispatch(resetSignInStateAction());
 
     throw error;
   }, [error, dispatch]);

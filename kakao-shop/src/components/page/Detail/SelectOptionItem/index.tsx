@@ -2,11 +2,10 @@ import close from '@assets/close.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { MouseEventHandler } from 'react';
+import type { UserSelectOption } from 'types/product';
 
 import { Button, Photo } from '@components/atom';
 import { RegularInput } from '@components/molecules';
-
-import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 
 import { comma } from '@utils/comma';
 

@@ -1,8 +1,7 @@
 import { Fragment, MouseEventHandler } from 'react';
+import type { UserSelectOption } from 'types/product';
 
 import SelectOptionItem from '@components/page/Detail/SelectOptionItem';
-
-import { UserSelectOption } from '@hooks/page/Detail/useOptionForm';
 
 type Props = {
   options?: UserSelectOption[];

@@ -1,14 +1,17 @@
 import { client } from '@apis/client';
 
-import { SubmitData } from '@hooks/page/Cart/useCartForm';
+export type UpdateCartsRequest = {
+  cartId: number;
+  quantity: number;
+};
 
-export const getCarts = async () => {
+export const getCartsAPI = async () => {
   const res = await client.get(`/carts`);
 
   return res;
 };
 
-export const postCarts = async (payload: SubmitData[]) => {
+export const updateCartsAPI = async (payload: UpdateCartsRequest[]) => {
   const res = await client.post(`/carts/update`, payload);
 
   return res;

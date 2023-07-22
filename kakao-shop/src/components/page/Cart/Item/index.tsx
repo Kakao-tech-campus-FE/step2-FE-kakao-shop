@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
-import { Cart } from '@store/Cart/reducers';
 import { MouseEventHandler } from 'react';
+import type { Cart } from 'types/product';
 
 import SelectOptionItemList from '@components/page/Cart/SelectOption/List';
 import SelectOptionResult from '@components/page/Cart/SelectOption/Result';

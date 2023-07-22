@@ -1,8 +1,9 @@
-import { Product, cartsRequest, updateCarts } from '@store/Cart/reducers';
+import { getCartsRequestAction, updateCartsRequestAction } from '@store/Cart/reducers';
 import { RootState } from '@store/index';
 import { produce } from 'immer';
 import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import type { CartProduct } from 'types/product';
 
 export const useCartForm = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ export const useCartForm = () => {
   const submitData = cartsToSubmitData(carts);
 
   useEffect(() => {
-    dispatch(cartsRequest());
+    dispatch(getCartsRequestAction());
   }, [dispatch]);
 
   useEffect(() => {
@@ -46,11 +47,11 @@ export const useCartForm = () => {
       e.preventDefault();
 
       const update = deleteQuantityCarts(id, carts);
-      dispatch(updateCarts(cartsToSubmitData(update)));
+      dispatch(updateCartsRequestAction(cartsToSubmitData(update)));
     };
 
   const onSubmit: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(updateCarts(submitData));
+    dispatch(updateCartsRequestAction(submitData));
   };
 
   return {
@@ -75,7 +76,7 @@ const DOWN1 = -1;
 const isValidQuantityChange = (quantity: number, quantityChange: number): boolean =>
   !(quantity === 1 && quantityChange === DOWN1);
 
-const updateQuantityCarts = (id: number, carts: Product[], quantityChange: number) => {
+const updateQuantityCarts = (id: number, carts: CartProduct[], quantityChange: number) => {
   return produce(carts, draft => {
     const optionItem = draft.flatMap(product => product.carts).find(option => option.id === id);
 
@@ -85,7 +86,7 @@ const updateQuantityCarts = (id: number, carts: Product[], quantityChange: numbe
   });
 };
 
-const deleteQuantityCarts = (id: number, carts: Product[]) => {
+const deleteQuantityCarts = (id: number, carts: CartProduct[]) => {
   return produce(carts, draft => {
     const DELETED = 0;
     const optionItem = draft.flatMap(product => product.carts).find(option => option.id === id);
@@ -95,10 +96,5 @@ const deleteQuantityCarts = (id: number, carts: Product[]) => {
   });
 };
 
-const cartsToSubmitData = (carts: Product[]) =>
+const cartsToSubmitData = (carts: CartProduct[]) =>
   carts.flatMap(product => product.carts.map(cart => ({ cartId: cart.id, quantity: cart.quantity })));
-
-export type SubmitData = {
-  cartId: number;
-  quantity: number;
-};

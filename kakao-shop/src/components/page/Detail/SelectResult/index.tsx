@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
-
-import { Totals } from '@hooks/page/Detail/useOptionForm';
+import { Totals } from 'types/product';
 
 import { comma } from '@utils/comma';
 

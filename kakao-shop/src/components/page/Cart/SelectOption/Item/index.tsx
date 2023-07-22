@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Cart } from '@store/Cart/reducers';
 import { MouseEventHandler } from 'react';
+import type { Cart } from 'types/product';
 
 import { Button } from '@components/atom';
 import { RegularInput } from '@components/molecules';

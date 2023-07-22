@@ -1,13 +1,13 @@
 import { client } from '@apis/client';
 
-import { AddCartPayload } from '@components/page/Detail/PurchaseButtons';
+export type AddCartItemRequest = { optionId: number; quantity: number };
 
-export const getProductDetail = async (id: string) => {
+export const getProductDetailAPI = async (id: string) => {
   const res = await client.get(`/products/${id}`);
 
   return res;
 };
-export const addCartItem = async (payload: AddCartPayload[]) => {
+export const addCartItemAPI = async (payload: AddCartItemRequest[]) => {
   const res = await client.post(`/carts/add`, payload);
 
   return res;

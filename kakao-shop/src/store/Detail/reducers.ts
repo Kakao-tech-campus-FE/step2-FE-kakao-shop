@@ -1,37 +1,35 @@
-import { Product } from '@store/Home/reducers';
+import type { AddCartItemRequest } from '@apis/Detail';
 import { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
+import type { ProductDetail } from 'types/product';
 
-import { AddCartPayload } from '@components/page/Detail/PurchaseButtons';
+export const GET_PRODUCT_DETAIL_REQUEST = 'detail/GET_PRODUCT_DETAIL_REQUEST';
+export const GET_PRODUCT_DETAIL_SUCCESS = 'detail/GET_PRODUCT_DETAIL_SUCCESS';
+export const GET_PRODUCT_DETAIL_FAILURE = 'detail/GET_PRODUCT_DETAIL_FAILURE';
 
-export const SET_PRODUCT_DETAIL_LOADING_STATE = 'detail/SET_PRODUCT_DETAIL_LOADING_STATE';
-export const FETCH_PRODUCT_DETAIL = 'detail/FETCH_PRODUCT_DETAIL';
-export const FETCH_PRODUCT_DETAIL_FAILURE = 'detail/FETCH_PRODUCT_DETAIL_FAILURE';
-export const SET_PRODUCT_DETAIL = 'detail/SET_PRODUCT_DETAIL';
-export const ADD_CART_ITEM = 'detail/ADD_CART_ITEM';
+export const ADD_CART_ITEM_REQUEST = 'detail/ADD_CART_ITEM_REQUEST';
 
-export const setLoadingState = (payload: boolean): SetProductDetailLoadingStateAction => ({
-  type: SET_PRODUCT_DETAIL_LOADING_STATE,
+export const getProductDetailRequestAction = (payload: string): GetProductDetailRequestAction => ({
+  type: GET_PRODUCT_DETAIL_REQUEST,
   payload,
 });
 
-export const productDetailRequest = (payload: string): FetchProductDetailAction => ({
-  type: FETCH_PRODUCT_DETAIL,
+export const getProductDetailSuccessAction = (
+  payload: AxiosResponse<ProductDetailResponse>,
+): GetProductDetailSuccessAction => ({
+  type: GET_PRODUCT_DETAIL_SUCCESS,
   payload,
 });
 
-export const productDetailfailure = (payload: AxiosError<ProductDetailResponse>): FetchProductDetailFailureAction => ({
-  type: FETCH_PRODUCT_DETAIL_FAILURE,
+export const getProductDetailFailureAction = (
+  payload: AxiosError<ProductDetailResponse>,
+): GetProductDetailFailureAction => ({
+  type: GET_PRODUCT_DETAIL_FAILURE,
   payload,
 });
 
-export const setProductDetail = (payload: AxiosResponse<ProductDetailResponse>): SetProductDetailAction => ({
-  type: SET_PRODUCT_DETAIL,
-  payload,
-});
-
-export const addCartItem = (payload: AddCartPayload[]): AddCartItemAction => ({
-  type: ADD_CART_ITEM,
+export const addCartItemAction = (payload: AddCartItemRequest[]): AddCartItemAction => ({
+  type: ADD_CART_ITEM_REQUEST,
   payload,
 });
 
@@ -45,22 +43,22 @@ export const DetailReducer = produce(
   (
     draft: Draft<DetailState>,
     action:
-      | SetProductDetailLoadingStateAction
-      | SetProductDetailAction
+      | GetProductDetailRequestAction
+      | GetProductDetailSuccessAction
       | AddCartItemAction
-      | FetchProductDetailFailureAction,
+      | GetProductDetailFailureAction,
   ) => {
     switch (action.type) {
-      case SET_PRODUCT_DETAIL_LOADING_STATE:
-        draft.isLoading = action.payload;
+      case GET_PRODUCT_DETAIL_REQUEST:
+        draft.isLoading = true;
         break;
 
-      case SET_PRODUCT_DETAIL:
+      case GET_PRODUCT_DETAIL_SUCCESS:
         draft.product = action.payload.data.response;
         draft.isLoading = false;
         break;
 
-      case FETCH_PRODUCT_DETAIL_FAILURE:
+      case GET_PRODUCT_DETAIL_FAILURE:
         draft.error = action.payload;
         break;
     }
@@ -71,36 +69,31 @@ export const DetailReducer = produce(
 export type DetailState = {
   isLoading: boolean;
   error: AxiosError | null;
-  product?: Product;
+  product?: ProductDetail;
 };
 
-export type SetProductDetailLoadingStateAction = {
-  type: typeof SET_PRODUCT_DETAIL_LOADING_STATE;
-  payload: boolean;
-};
-
-export type FetchProductDetailAction = {
-  type: typeof FETCH_PRODUCT_DETAIL;
+export type GetProductDetailRequestAction = {
+  type: typeof GET_PRODUCT_DETAIL_REQUEST;
   payload: string;
 };
 
-export type FetchProductDetailFailureAction = {
-  type: typeof FETCH_PRODUCT_DETAIL_FAILURE;
+export type GetProductDetailFailureAction = {
+  type: typeof GET_PRODUCT_DETAIL_FAILURE;
   payload: AxiosError<ProductDetailResponse>;
 };
 
 export type AddCartItemAction = {
-  type: typeof ADD_CART_ITEM;
-  payload: AddCartPayload[];
+  type: typeof ADD_CART_ITEM_REQUEST;
+  payload: AddCartItemRequest[];
 };
 
 export type ProductDetailResponse = {
   sucess: boolean;
-  response: Product;
+  response: ProductDetail;
   error: boolean;
 };
 
-export type SetProductDetailAction = {
-  type: typeof SET_PRODUCT_DETAIL;
+export type GetProductDetailSuccessAction = {
+  type: typeof GET_PRODUCT_DETAIL_SUCCESS;
   payload: AxiosResponse<ProductDetailResponse>;
 };

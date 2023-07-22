@@ -1,26 +1,21 @@
-import { getProductData } from '@apis/Home';
-import {
-  FETCH_PRODUCT_DATA,
-  FetchProductDataAction,
-  setProductErrorState,
-  setProductLoadingState,
-} from '@store/Home/reducers';
+import { getProductsAPI } from '@apis/Home';
+import type { GetProductsResponse } from '@apis/Home';
+import { GET_PRODUCTS_REQUEST, GetProductsRequestAction, getProductsFailureAction } from '@store/Home/reducers';
 import { AxiosError } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { setProductData, ProductResponse } from './reducers';
+import { getProductsSuccessAction } from './reducers';
 
-export function* fetchProductDataRequest({ payload }: FetchProductDataAction): any {
+export function* watchGetProducts({ payload }: GetProductsRequestAction): any {
   try {
-    yield put(setProductLoadingState());
-    const response = yield call(getProductData, payload);
-    yield put(setProductData(response.data));
+    const response = yield call(getProductsAPI, payload);
+    yield put(getProductsSuccessAction(response.data));
   } catch (err: unknown) {
-    const error = err as AxiosError<ProductResponse>;
-    yield put(setProductErrorState(error));
+    const error = err as AxiosError<GetProductsResponse>;
+    yield put(getProductsFailureAction(error));
   }
 }
 
 export function* homeSaga() {
-  yield takeLatest(FETCH_PRODUCT_DATA, fetchProductDataRequest);
+  yield takeLatest(GET_PRODUCTS_REQUEST, watchGetProducts);
 }

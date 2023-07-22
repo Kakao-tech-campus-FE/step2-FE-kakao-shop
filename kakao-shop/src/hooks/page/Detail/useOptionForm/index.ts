@@ -1,9 +1,10 @@
-import { addCartItem, productDetailRequest } from '@store/Detail/reducers';
-import { Option } from '@store/Home/reducers';
+import { addCartItemAction, getProductDetailRequestAction } from '@store/Detail/reducers';
 import { RootState } from '@store/index';
 import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { Option, Totals } from 'types/product';
+import type { UserSelectOption } from 'types/product';
 
 import { Toast } from '@components/atom';
 
@@ -24,14 +25,14 @@ export const useOptionForm = () => {
     price: 0,
   } as Totals);
 
-  const addCartPayload = Object.values(options ?? [])
+  const getProductDetailRequest = Object.values(options ?? [])
     .filter(option => option.isSelected)
     .map(({ id, quantity }) => ({ optionId: id, quantity }));
 
   useEffect(() => {
     if (!productId) return;
 
-    dispatch(productDetailRequest(productId));
+    dispatch(getProductDetailRequestAction(productId));
   }, [productId, dispatch]);
 
   useEffect(() => {
@@ -63,12 +64,12 @@ export const useOptionForm = () => {
     };
 
   const onAddCart: MouseEventHandler<HTMLButtonElement> = () => {
-    if (addCartPayload.length === 0) {
+    if (getProductDetailRequest.length === 0) {
       Toast.show('옵션을 먼저 선택해주세요');
       return;
     }
 
-    dispatch(addCartItem(addCartPayload));
+    dispatch(addCartItemAction(getProductDetailRequest));
     setIsOpenList(false);
     setOptions(getUserSelectOption(product?.options));
     Toast.show('장바구니에 담겼습니다');
@@ -156,13 +157,3 @@ const updateQuantityOptions = (id: number, options: UserSelectOption[], quantity
 
     return option;
   });
-
-export type UserSelectOption = {
-  isSelected: boolean;
-  quantity: number;
-} & Option;
-
-export type Totals = {
-  quantity: number;
-  price: number;
-};

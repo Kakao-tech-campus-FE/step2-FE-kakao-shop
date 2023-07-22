@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Product } from '@store/Home/reducers';
 import { Link } from 'react-router-dom';
+import type { Product } from 'types/product';
 
 import { Photo } from '@components/atom';
 import Skeleton from '@components/atom/Skeleton';

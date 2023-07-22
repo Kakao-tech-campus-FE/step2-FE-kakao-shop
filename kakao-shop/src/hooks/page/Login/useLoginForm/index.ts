@@ -1,5 +1,5 @@
-import { resetHomeState } from '@store/Home/reducers';
-import { signInRequest } from '@store/Login/reducers';
+import { resetHomeStateAction } from '@store/Home/reducers';
+import { signInRequestAction } from '@store/Login/reducers';
 import { FormEventHandler } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -21,8 +21,8 @@ const useLoginForm = () => {
       return;
     }
 
-    dispatch(signInRequest({ email, password, navigate, setErrorMessage }));
-    dispatch(resetHomeState());
+    dispatch(signInRequestAction({ email, password, navigate, setErrorMessage }));
+    dispatch(resetHomeStateAction());
   };
 
   return {
@@ -40,10 +40,3 @@ const useLoginForm = () => {
 };
 
 export default useLoginForm;
-
-export type SignInRequest = {
-  email: string;
-  password: string;
-  navigate: any;
-  setErrorMessage: any;
-};

@@ -10,11 +10,6 @@ type Props = {
   onAddCart: MouseEventHandler<HTMLButtonElement>;
 };
 
-export type AddCartPayload = {
-  optionId: number;
-  quantity: number;
-};
-
 const PurchaseButtons = ({ onAddCart }: Props) => {
   const navigate = useNavigate();
 

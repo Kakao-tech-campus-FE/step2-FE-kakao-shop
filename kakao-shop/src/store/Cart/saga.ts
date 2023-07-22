@@ -1,28 +1,32 @@
-import { getCarts, postCarts } from '@apis/Cart';
-import { FETCH_CARTS, UPDATE_CARTS, setCarts, setLoadingState, ApdateCartsAction } from '@store/Cart/reducers';
+import { getCartsAPI, updateCartsAPI } from '@apis/Cart';
+import {
+  GET_CARTS_REQUEST,
+  UPDATE_CARTS_REQUEST,
+  getCartsSuccessAction,
+  UpdateCartsRequestAction,
+} from '@store/Cart/reducers';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-export function* fetchCartsRequest(): any {
+export function* watchGetCarts(): any {
   try {
-    yield put(setLoadingState());
-    const response = yield call(getCarts);
-    yield put(setCarts(response));
+    const response = yield call(getCartsAPI);
+    yield put(getCartsSuccessAction(response));
   } catch (err: unknown) {
     // const error = err as AxiosError<>;
   }
 }
 
-export function* ApdateCartsRequest({ payload }: ApdateCartsAction): any {
+export function* watchUpdateCarts({ payload }: UpdateCartsRequestAction): any {
   try {
-    yield call(postCarts, payload);
-    const response = yield call(getCarts);
-    yield put(setCarts(response));
+    yield call(updateCartsAPI, payload);
+    const response = yield call(getCartsAPI);
+    yield put(getCartsSuccessAction(response));
   } catch (err: unknown) {
     // const error = err as AxiosError<>;
   }
 }
 
 export function* CartSaga() {
-  yield takeLatest(FETCH_CARTS, fetchCartsRequest);
-  yield takeLatest(UPDATE_CARTS, ApdateCartsRequest);
+  yield takeLatest(GET_CARTS_REQUEST, watchGetCarts);
+  yield takeLatest(UPDATE_CARTS_REQUEST, watchUpdateCarts);
 }

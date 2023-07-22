@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { signOutRequest } from '@store/Login/reducers';
+import { signOutAction } from '@store/Login/reducers';
 import hideWithA11y from '@styles/a11y';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -43,7 +43,7 @@ const Header = () => {
             {isLogin ? (
               <button
                 onClick={() => {
-                  dispatch(signOutRequest());
+                  dispatch(signOutAction());
                   window.location.reload(); // 전역 state 초기화를 위해서
                 }}>
                 로그아웃

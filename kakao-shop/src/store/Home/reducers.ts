@@ -1,37 +1,35 @@
+import type { GetProductsResponse } from '@apis/Home';
 import { AxiosError } from 'axios';
 import { produce, Draft } from 'immer';
+import type { Product } from 'types/product';
 
-export const FETCH_PRODUCT_DATA = 'home/FETCH_PRODUCT_DATA';
-export const SET_PRODUCT_DATA = 'home/SET_PRODUCT_DATA';
-export const SET_PRODUCT_LOADING_STATE = 'home/SET_PRODUCT_LOADING_STATE';
-export const SET_PRODUCT_ERROR_STATE = 'home/SET_PRODUCT_ERROR_STATE';
+export const GET_PRODUCTS_REQUEST = 'home/GET_PRODUCTS_REQUEST';
+export const GET_PRODUCTS_SUCCESS = 'home/GET_PRODUCTS_SUCCESS';
+export const GET_PRODUCTS_FAILURE = 'home/GET_PRODUCTS_FAILURE';
+
 export const RESET_HOME_STATE = 'home/RESET_HOME_STATE';
 export const SET_PAGE_STATE = 'home/SET_PAGE_STATE';
 
-export const productDataRequest = (payload: number = 0): FetchProductDataAction => ({
-  type: FETCH_PRODUCT_DATA,
+export const getProductsRequestAction = (payload: number = 0): GetProductsRequestAction => ({
+  type: GET_PRODUCTS_REQUEST,
   payload,
 });
 
-export const setProductData = (payload: ProductResponse): SetProductDataAction => ({
-  type: SET_PRODUCT_DATA,
+export const getProductsSuccessAction = (payload: GetProductsResponse): GetProductsSuccessAction => ({
+  type: GET_PRODUCTS_SUCCESS,
   payload,
 });
 
-export const setProductLoadingState = (): SetProductLoadingStateAction => ({
-  type: SET_PRODUCT_LOADING_STATE,
+export const getProductsFailureAction = (payload: AxiosError): GetProductsFailureAction => ({
+  type: GET_PRODUCTS_FAILURE,
+  payload,
 });
 
-export const resetHomeState = (): ResetHomeStateAction => ({
+export const resetHomeStateAction = (): ResetHomeStateAction => ({
   type: RESET_HOME_STATE,
 });
 
-export const setProductErrorState = (payload: AxiosError): SetProductErrorStateAction => ({
-  type: SET_PRODUCT_ERROR_STATE,
-  payload,
-});
-
-export const setPageState = (payload: number): SetPageStateAction => ({
+export const setPageStateAction = (payload: number): SetPageStateAction => ({
   type: SET_PAGE_STATE,
   payload,
 });
@@ -47,23 +45,23 @@ export const homeReducer = produce(
   (
     draft: Draft<HomeState>,
     action:
-      | SetProductDataAction
-      | SetProductLoadingStateAction
+      | GetProductsRequestAction
+      | GetProductsSuccessAction
       | ResetHomeStateAction
-      | SetProductErrorStateAction
+      | GetProductsFailureAction
       | SetPageStateAction,
   ) => {
     switch (action.type) {
-      case SET_PRODUCT_LOADING_STATE:
+      case GET_PRODUCTS_REQUEST:
         draft.isLoading = true;
         break;
 
-      case SET_PRODUCT_DATA:
+      case GET_PRODUCTS_SUCCESS:
         draft.products.push(...action.payload.response);
         draft.isLoading = false;
         break;
 
-      case SET_PRODUCT_ERROR_STATE:
+      case GET_PRODUCTS_FAILURE:
         draft.error = action.payload;
         break;
 
@@ -84,22 +82,18 @@ export const homeReducer = produce(
   initialState,
 );
 
-export type FetchProductDataAction = {
-  type: typeof FETCH_PRODUCT_DATA;
+export type GetProductsRequestAction = {
+  type: typeof GET_PRODUCTS_REQUEST;
   payload: number;
 };
 
-export type SetProductDataAction = {
-  type: typeof SET_PRODUCT_DATA;
-  payload: ProductResponse;
+export type GetProductsSuccessAction = {
+  type: typeof GET_PRODUCTS_SUCCESS;
+  payload: GetProductsResponse;
 };
 
-export type SetProductLoadingStateAction = {
-  type: typeof SET_PRODUCT_LOADING_STATE;
-};
-
-export type SetProductErrorStateAction = {
-  type: typeof SET_PRODUCT_ERROR_STATE;
+export type GetProductsFailureAction = {
+  type: typeof GET_PRODUCTS_FAILURE;
   payload: AxiosError;
 };
 
@@ -110,28 +104,6 @@ export type ResetHomeStateAction = {
 export type SetPageStateAction = {
   type: typeof SET_PAGE_STATE;
   payload: number;
-};
-
-export type ProductResponse = {
-  sucess: boolean;
-  response: Product[];
-  error: boolean;
-};
-
-export type Product = {
-  id: number;
-  productName: string;
-  description: string;
-  image: string;
-  price: number;
-  starCount?: number;
-  options?: Option[];
-};
-
-export type Option = {
-  id: number;
-  optionName: string;
-  price: number;
 };
 
 export type HomeState = {

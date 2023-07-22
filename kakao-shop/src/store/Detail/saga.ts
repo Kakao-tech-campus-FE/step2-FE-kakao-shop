@@ -1,38 +1,35 @@
-import { getProductDetail, addCartItem } from '@apis/Detail';
+import { getProductDetailAPI, addCartItemAPI } from '@apis/Detail';
 import {
-  ADD_CART_ITEM,
-  FETCH_PRODUCT_DETAIL,
-  FetchProductDetailAction,
-  setProductDetail,
-  setLoadingState,
+  ADD_CART_ITEM_REQUEST,
+  GET_PRODUCT_DETAIL_REQUEST,
+  GetProductDetailRequestAction,
+  getProductDetailSuccessAction,
   AddCartItemAction,
   ProductDetailResponse,
-  productDetailfailure,
+  getProductDetailFailureAction,
 } from '@store/Detail/reducers';
 import { AxiosError, AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-const LOADING = true;
-export function* fetchProductDetailRequest({ payload }: FetchProductDetailAction) {
+export function* watchGetProductDetail({ payload }: GetProductDetailRequestAction) {
   try {
-    yield put(setLoadingState(LOADING));
-    const response: AxiosResponse<ProductDetailResponse> = yield call(getProductDetail, payload);
-    yield put(setProductDetail(response));
+    const response: AxiosResponse<ProductDetailResponse> = yield call(getProductDetailAPI, payload);
+    yield put(getProductDetailSuccessAction(response));
   } catch (err: unknown) {
     const error = err as AxiosError<ProductDetailResponse>;
-    yield put(productDetailfailure(error));
+    yield put(getProductDetailFailureAction(error));
   }
 }
 
-export function* AddCartItemRequest({ payload }: AddCartItemAction) {
+export function* watchAddCartItem({ payload }: AddCartItemAction) {
   try {
-    yield call(addCartItem, payload);
+    yield call(addCartItemAPI, payload);
   } catch (err: unknown) {
     // const error = err as AxiosError<>;
   }
 }
 
 export function* DetailSaga() {
-  yield takeLatest(FETCH_PRODUCT_DETAIL, fetchProductDetailRequest);
-  yield takeLatest(ADD_CART_ITEM, AddCartItemRequest);
+  yield takeLatest(GET_PRODUCT_DETAIL_REQUEST, watchGetProductDetail);
+  yield takeLatest(ADD_CART_ITEM_REQUEST, watchAddCartItem);
 }
