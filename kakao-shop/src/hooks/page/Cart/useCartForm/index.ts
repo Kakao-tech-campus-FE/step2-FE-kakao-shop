@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 export const useCartForm = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.cart.cart);
+  const isLoading = useSelector((state: RootState) => state.cart.isLoading);
+  const error = useSelector((state: RootState) => state.cart.error);
   const [carts, setCarts] = useState(data);
 
   const totalPrice = carts.reduce((total, product) => {
@@ -53,6 +55,8 @@ export const useCartForm = () => {
 
   return {
     state: {
+      isLoading,
+      error,
       carts,
       totalPrice,
     },

@@ -43,6 +43,7 @@ export const CartReducer = produce((draft: Draft<CartState>, action: SetCartLoad
     case SET_CARTS:
       draft.cart = action.payload.data.response.products;
       draft.totalPrice = action.payload.data.response.totalPrice;
+      draft.isLoading = false;
       break;
   }
 }, initialState);

@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import { CustomSuspense } from '@components/atom';
+import PageLoader from '@components/molecules/PageLoader';
 import Header from '@components/page/Cart/Header';
 import ItemList from '@components/page/Cart/ItemList';
 import Submit from '@components/page/Cart/Submit';
@@ -9,24 +11,26 @@ import { useCartForm } from '@hooks/page/Cart/useCartForm';
 
 const Cart = () => {
   const {
-    state: { carts: products, totalPrice },
+    state: { isLoading, error, carts: products, totalPrice },
     handler: { onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem, onSubmit },
   } = useCartForm();
 
   return (
-    <S.Root>
-      <S.Container>
-        <Header />
-        <ItemList
-          products={products}
-          onIncreaseQuantity={onIncreaseQuantity}
-          onDecreaseQuantity={onDecreaseQuantity}
-          onDeleteCartItem={onDeleteCartItem}
-        />
-        <TotalResult totalPrice={totalPrice} />
-        <Submit onSubmit={onSubmit} />
-      </S.Container>
-    </S.Root>
+    <CustomSuspense isLoading={isLoading} error={error} fallback={<PageLoader />}>
+      <S.Root>
+        <S.Container>
+          <Header />
+          <ItemList
+            products={products}
+            onIncreaseQuantity={onIncreaseQuantity}
+            onDecreaseQuantity={onDecreaseQuantity}
+            onDeleteCartItem={onDeleteCartItem}
+          />
+          <TotalResult totalPrice={totalPrice} />
+          <Submit onSubmit={onSubmit} />
+        </S.Container>
+      </S.Root>
+    </CustomSuspense>
   );
 };
 
