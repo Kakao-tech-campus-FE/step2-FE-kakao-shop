@@ -6,6 +6,7 @@ import { AddCartPayload } from '@components/page/Detail/PurchaseButtons';
 
 export const SET_PRODUCT_DETAIL_LOADING_STATE = 'detail/SET_PRODUCT_DETAIL_LOADING_STATE';
 export const FETCH_PRODUCT_DETAIL = 'detail/FETCH_PRODUCT_DETAIL';
+export const FETCH_PRODUCT_DETAIL_FAILURE = 'detail/FETCH_PRODUCT_DETAIL_FAILURE';
 export const SET_PRODUCT_DETAIL = 'detail/SET_PRODUCT_DETAIL';
 export const ADD_CART_ITEM = 'detail/ADD_CART_ITEM';
 
@@ -16,6 +17,11 @@ export const setLoadingState = (payload: boolean): SetProductDetailLoadingStateA
 
 export const productDetailRequest = (payload: string): FetchProductDetailAction => ({
   type: FETCH_PRODUCT_DETAIL,
+  payload,
+});
+
+export const productDetailfailure = (payload: AxiosError<ProductDetailResponse>): FetchProductDetailFailureAction => ({
+  type: FETCH_PRODUCT_DETAIL_FAILURE,
   payload,
 });
 
@@ -38,7 +44,11 @@ export const initialState: DetailState = {
 export const DetailReducer = produce(
   (
     draft: Draft<DetailState>,
-    action: SetProductDetailLoadingStateAction | SetProductDetailAction | AddCartItemAction,
+    action:
+      | SetProductDetailLoadingStateAction
+      | SetProductDetailAction
+      | AddCartItemAction
+      | FetchProductDetailFailureAction,
   ) => {
     switch (action.type) {
       case SET_PRODUCT_DETAIL_LOADING_STATE:
@@ -48,6 +58,10 @@ export const DetailReducer = produce(
       case SET_PRODUCT_DETAIL:
         draft.product = action.payload.data.response;
         draft.isLoading = false;
+        break;
+
+      case FETCH_PRODUCT_DETAIL_FAILURE:
+        draft.error = action.payload;
         break;
     }
   },
@@ -68,6 +82,11 @@ export type SetProductDetailLoadingStateAction = {
 export type FetchProductDetailAction = {
   type: typeof FETCH_PRODUCT_DETAIL;
   payload: string;
+};
+
+export type FetchProductDetailFailureAction = {
+  type: typeof FETCH_PRODUCT_DETAIL_FAILURE;
+  payload: AxiosError<ProductDetailResponse>;
 };
 
 export type AddCartItemAction = {

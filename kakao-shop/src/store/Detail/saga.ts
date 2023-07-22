@@ -6,24 +6,27 @@ import {
   setProductDetail,
   setLoadingState,
   AddCartItemAction,
+  ProductDetailResponse,
+  productDetailfailure,
 } from '@store/Detail/reducers';
 import { AxiosError, AxiosResponse } from 'axios';
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-export function* fetchProductDetailRequest({ payload }: FetchProductDetailAction): any {
+const LOADING = true;
+export function* fetchProductDetailRequest({ payload }: FetchProductDetailAction) {
   try {
-    yield put(setLoadingState());
-    const response = yield call(getProductDetail, payload);
+    yield put(setLoadingState(LOADING));
+    const response: AxiosResponse<ProductDetailResponse> = yield call(getProductDetail, payload);
     yield put(setProductDetail(response));
   } catch (err: unknown) {
-    // const error = err as AxiosError<>;
+    const error = err as AxiosError<ProductDetailResponse>;
+    yield put(productDetailfailure(error));
   }
 }
 
 export function* AddCartItemRequest({ payload }: AddCartItemAction) {
   try {
-    yield put(setLoadingState());
-    const response: AxiosResponse = yield call(addCartItem, payload);
+    yield call(addCartItem, payload);
   } catch (err: unknown) {
     // const error = err as AxiosError<>;
   }

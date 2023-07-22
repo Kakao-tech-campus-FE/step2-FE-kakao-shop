@@ -61,7 +61,7 @@ export class GlobalErrorBoundary extends React.Component<PropsWithChildren> {
     }
 
     if (status === 404) {
-      location.href = '/404'; // react-router-dom의 Navigate를 사용하면 제대로 동작이 되지않아 location.href를 사용했습니다.
+      location.replace('/404'); // react-router-dom의 Navigate를 사용하면 제대로 동작이 되지않아 location.href를 사용했습니다.
       return <NotFound />;
     }
 
