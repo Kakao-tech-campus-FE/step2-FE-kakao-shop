@@ -9,23 +9,28 @@ export const instance = axios.create({
     "Content-Type": "application/json",
   },
 });
+// 응답 인터셉터
+instance.interceptors.response.use((response) => {
+  // 응답 데이터가 있는 작업 수행
+  let accessToken = response.headers["authorization"];
+  console.log("access 토큰 :", accessToken);
 
+  if (accessToken) {
+    localStorage.setItem("access_token", accessToken);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+  }
+
+  return response;
+});
+
+//middleware로 에러처리
 instance.interceptors.response.use(
   (response) => {
-    let accessToken = response.headers["authorization"];
-    console.log("access 토큰 :", accessToken);
-
-    if (accessToken) {
-      localStorage.setItem("access_token", accessToken);
-      axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-    }
-
     return response;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  // (error) => {
-  //   // 여기서 에러 처리를 원하면 추가할 수 있습니다.
-  //   return Promise.reject(error);
-  // }
 );
 
 // 로컬스토리지에 저장한 토큰을 꺼내서 , 요청헤더담아 보냄
@@ -38,15 +43,8 @@ export const authorizationInstance = axios.create({
   },
 });
 
-// authorizationInstance.interceptors.request.use((response) => {
-//   let accessToken = response.headers["authorization"];
-//   return response;
+// // 요청 인터셉터
+// authorizationInstance.interceptors.request.use((config) => {
+//   // 요청이 전달 되기 전에 작업 수행
+//   return config;
 // });
-
-//middleware로 에러처리
-instance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  (error) => {}
-);

@@ -9,24 +9,27 @@ const CartItem = ({ item, onChange }) => {
   return (
     <Box className="cart-item-box">
       <h5>{item.productName}</h5>
-      <Card key={item.id} className="cart">
-        <div className="option-name">
-          <span>{item.option.optionName}</span>
-        </div>
-        <div className="row">
-          <Counter
-            onIncrease={(count) => {
-              onChange(item.id, count, item.option.price);
-            }}
-            onDecrease={(count) => {
-              onChange(item.id, count, -item.option.price);
-            }}
-          ></Counter>
-          <div className="price">
-            <span>{comma(item.option.price * item.quantity)}원</span>
+      {item.carts.map((cart) => (
+        <Card key={cart.id} className="cart">
+          <div className="option-name">
+            <span>{cart.option.optionName}</span>
           </div>
-        </div>
-      </Card>
+          <div className="row">
+            <Counter
+              onIncrease={(count) => {
+                // 아이디 , 변경된 수량, 해당 옵션 가격
+                onChange(cart.id, count, cart.option.price);
+              }}
+              onDecrease={(count) => {
+                onChange(cart.id, count, -cart.option.price);
+              }}
+            ></Counter>
+            <div className="price">
+              <span>{comma(cart.option.price * cart.quantity)}원</span>
+            </div>
+          </div>
+        </Card>
+      ))}
       <Card classNam="total-price">
         <div className="row">
           <h5>주문 금액</h5>

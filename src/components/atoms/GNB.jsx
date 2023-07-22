@@ -30,13 +30,13 @@ function GNB() {
   return (
     <header className="header">
       <div className="contents">
-        <Link to="/main">
+        <Link to="/ ">
           <img className="logo" src={logo} alt="카카오 쇼핑 로고" height={30} />
         </Link>
         <nav>
           <div className="navigation">
             <span>
-              <Link to="/cart">
+              <Link to="/carts">
                 <img src={cart} alt="장바구니 버튼" height={30} />
               </Link>
             </span>
