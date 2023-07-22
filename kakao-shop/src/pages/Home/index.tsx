@@ -1,6 +1,6 @@
 import asideImage from '@assets/asideImage.png';
 import styled from '@emotion/styled';
-import { productDataRequest } from '@store/Home/reducers';
+import { productDataRequest, setPageState } from '@store/Home/reducers';
 import { RootState } from '@store/index';
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +17,7 @@ function Home() {
   const products = useSelector((state: RootState) => state.home.products);
   const isLoading = useSelector((state: RootState) => state.home.isLoading);
   const error = useSelector((state: RootState) => state.home.error);
-  const [page, setPage] = useState(0);
+  const page = useSelector((state: RootState) => state.home.page);
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,10 +31,10 @@ function Home() {
     return new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         if (isLoading) return;
-        setPage(prev => prev + 1);
+        dispatch(setPageState(page + 1));
       }
     });
-  }, [isLoading]);
+  }, [isLoading, page, dispatch]);
 
   useEffect(() => {
     if (!endRef.current) return;

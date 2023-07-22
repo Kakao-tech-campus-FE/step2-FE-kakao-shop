@@ -9,8 +9,9 @@ export const FETCH_PRODUCT_DETAIL = 'detail/FETCH_PRODUCT_DETAIL';
 export const SET_PRODUCT_DETAIL = 'detail/SET_PRODUCT_DETAIL';
 export const ADD_CART_ITEM = 'detail/ADD_CART_ITEM';
 
-export const setLoadingState = (): SetProductDetailLoadingStateAction => ({
+export const setLoadingState = (payload: boolean): SetProductDetailLoadingStateAction => ({
   type: SET_PRODUCT_DETAIL_LOADING_STATE,
+  payload,
 });
 
 export const productDetailRequest = (payload: string): FetchProductDetailAction => ({
@@ -41,18 +42,13 @@ export const DetailReducer = produce(
   ) => {
     switch (action.type) {
       case SET_PRODUCT_DETAIL_LOADING_STATE:
-        draft.isLoading = true;
+        draft.isLoading = action.payload;
         break;
 
       case SET_PRODUCT_DETAIL:
         draft.product = action.payload.data.response;
         draft.isLoading = false;
         break;
-
-      // case ADD_CART_ITEM:
-      //   draft.product = action.payload.data.response;
-      //   draft.isLoading = false;
-      //   break;
     }
   },
   initialState,
@@ -66,6 +62,7 @@ export type DetailState = {
 
 export type SetProductDetailLoadingStateAction = {
   type: typeof SET_PRODUCT_DETAIL_LOADING_STATE;
+  payload: boolean;
 };
 
 export type FetchProductDetailAction = {

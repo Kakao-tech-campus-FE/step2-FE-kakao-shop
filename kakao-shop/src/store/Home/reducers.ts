@@ -6,6 +6,7 @@ export const SET_PRODUCT_DATA = 'home/SET_PRODUCT_DATA';
 export const SET_PRODUCT_LOADING_STATE = 'home/SET_PRODUCT_LOADING_STATE';
 export const SET_PRODUCT_ERROR_STATE = 'home/SET_PRODUCT_ERROR_STATE';
 export const RESET_HOME_STATE = 'home/RESET_HOME_STATE';
+export const SET_PAGE_STATE = 'home/SET_PAGE_STATE';
 
 export const productDataRequest = (payload: number = 0): FetchProductDataAction => ({
   type: FETCH_PRODUCT_DATA,
@@ -30,16 +31,27 @@ export const setProductErrorState = (payload: AxiosError): SetProductErrorStateA
   payload,
 });
 
+export const setPageState = (payload: number): SetPageStateAction => ({
+  type: SET_PAGE_STATE,
+  payload,
+});
+
 export const initialState: HomeState = {
   isLoading: false,
   error: null,
   products: [],
+  page: 0,
 };
 
 export const homeReducer = produce(
   (
     draft: Draft<HomeState>,
-    action: SetProductDataAction | SetProductLoadingStateAction | ResetHomeStateAction | SetProductErrorStateAction,
+    action:
+      | SetProductDataAction
+      | SetProductLoadingStateAction
+      | ResetHomeStateAction
+      | SetProductErrorStateAction
+      | SetPageStateAction,
   ) => {
     switch (action.type) {
       case SET_PRODUCT_LOADING_STATE:
@@ -59,6 +71,10 @@ export const homeReducer = produce(
         draft.isLoading = false;
         draft.products = [];
         draft.error = null;
+        break;
+
+      case SET_PAGE_STATE:
+        draft.page = action.payload;
         break;
 
       default:
@@ -91,6 +107,11 @@ export type ResetHomeStateAction = {
   type: typeof RESET_HOME_STATE;
 };
 
+export type SetPageStateAction = {
+  type: typeof SET_PAGE_STATE;
+  payload: number;
+};
+
 export type ProductResponse = {
   sucess: boolean;
   response: Product[];
@@ -117,4 +138,5 @@ export type HomeState = {
   isLoading: boolean;
   error: AxiosError | null;
   products: Product[];
+  page: number;
 };
