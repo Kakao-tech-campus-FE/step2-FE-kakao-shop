@@ -1,4 +1,4 @@
-import type { UpdateCartsRequest } from '@apis/Cart';
+import type { UpdateCartsRequest, GetCartsResponse } from '@apis/Cart';
 import { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
 import type { CartProduct } from 'types/product';
@@ -13,7 +13,7 @@ export const getCartsRequestAction = (): GetCartsRequestAction => ({
   type: GET_CARTS_REQUEST,
 });
 
-export const getCartsSuccessAction = (payload: AxiosResponse<CartsResponse>): GetCartsSuccessAction => ({
+export const getCartsSuccessAction = (payload: AxiosResponse<GetCartsResponse>): GetCartsSuccessAction => ({
   type: GET_CARTS_SUCCESS,
   payload,
 });
@@ -50,21 +50,12 @@ export type GetCartsRequestAction = {
 
 export type GetCartsSuccessAction = {
   type: typeof GET_CARTS_SUCCESS;
-  payload: AxiosResponse<CartsResponse>;
+  payload: AxiosResponse<GetCartsResponse>;
 };
 
 export type UpdateCartsRequestAction = {
   type: typeof UPDATE_CARTS_REQUEST;
   payload: UpdateCartsRequest[];
-};
-
-export type CartsResponse = {
-  sucess: boolean;
-  response: {
-    products: CartProduct[];
-    totalPrice: number;
-  };
-  error: boolean;
 };
 
 export type CartState = {

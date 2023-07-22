@@ -1,8 +1,18 @@
 import { client } from '@apis/client';
+import type { CartProduct } from 'types/product';
 
 export type UpdateCartsRequest = {
   cartId: number;
   quantity: number;
+};
+
+export type GetCartsResponse = {
+  sucess: boolean;
+  response: {
+    products: CartProduct[];
+    totalPrice: number;
+  };
+  error: boolean;
 };
 
 export const getCartsAPI = async () => {

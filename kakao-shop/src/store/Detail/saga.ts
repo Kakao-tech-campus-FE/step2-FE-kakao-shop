@@ -1,11 +1,11 @@
 import { getProductDetailAPI, addCartItemAPI } from '@apis/Detail';
+import type { GetProductDetailResponse } from '@apis/Detail';
 import {
   ADD_CART_ITEM_REQUEST,
   GET_PRODUCT_DETAIL_REQUEST,
   GetProductDetailRequestAction,
   getProductDetailSuccessAction,
   AddCartItemAction,
-  ProductDetailResponse,
   getProductDetailFailureAction,
 } from '@store/Detail/reducers';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -13,10 +13,10 @@ import { call, put, takeLatest } from 'redux-saga/effects';
 
 export function* watchGetProductDetail({ payload }: GetProductDetailRequestAction) {
   try {
-    const response: AxiosResponse<ProductDetailResponse> = yield call(getProductDetailAPI, payload);
+    const response: AxiosResponse<GetProductDetailResponse> = yield call(getProductDetailAPI, payload);
     yield put(getProductDetailSuccessAction(response));
   } catch (err: unknown) {
-    const error = err as AxiosError<ProductDetailResponse>;
+    const error = err as AxiosError<GetProductDetailResponse>;
     yield put(getProductDetailFailureAction(error));
   }
 }

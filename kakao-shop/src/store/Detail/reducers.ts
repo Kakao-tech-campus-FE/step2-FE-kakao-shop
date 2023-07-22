@@ -1,4 +1,4 @@
-import type { AddCartItemRequest } from '@apis/Detail';
+import type { AddCartItemRequest, GetProductDetailResponse } from '@apis/Detail';
 import { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
 import type { ProductDetail } from 'types/product';
@@ -15,14 +15,14 @@ export const getProductDetailRequestAction = (payload: string): GetProductDetail
 });
 
 export const getProductDetailSuccessAction = (
-  payload: AxiosResponse<ProductDetailResponse>,
+  payload: AxiosResponse<GetProductDetailResponse>,
 ): GetProductDetailSuccessAction => ({
   type: GET_PRODUCT_DETAIL_SUCCESS,
   payload,
 });
 
 export const getProductDetailFailureAction = (
-  payload: AxiosError<ProductDetailResponse>,
+  payload: AxiosError<GetProductDetailResponse>,
 ): GetProductDetailFailureAction => ({
   type: GET_PRODUCT_DETAIL_FAILURE,
   payload,
@@ -77,23 +77,17 @@ export type GetProductDetailRequestAction = {
   payload: string;
 };
 
+export type GetProductDetailSuccessAction = {
+  type: typeof GET_PRODUCT_DETAIL_SUCCESS;
+  payload: AxiosResponse<GetProductDetailResponse>;
+};
+
 export type GetProductDetailFailureAction = {
   type: typeof GET_PRODUCT_DETAIL_FAILURE;
-  payload: AxiosError<ProductDetailResponse>;
+  payload: AxiosError<GetProductDetailResponse>;
 };
 
 export type AddCartItemAction = {
   type: typeof ADD_CART_ITEM_REQUEST;
   payload: AddCartItemRequest[];
-};
-
-export type ProductDetailResponse = {
-  sucess: boolean;
-  response: ProductDetail;
-  error: boolean;
-};
-
-export type GetProductDetailSuccessAction = {
-  type: typeof GET_PRODUCT_DETAIL_SUCCESS;
-  payload: AxiosResponse<ProductDetailResponse>;
 };
