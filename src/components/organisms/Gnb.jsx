@@ -2,7 +2,7 @@ import LinkButton from "../atoms/LinkButton";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const GnbOrganism = styled.div`
   overflow: hidden;
