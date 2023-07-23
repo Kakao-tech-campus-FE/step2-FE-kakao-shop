@@ -6,7 +6,7 @@ const SelectedOptionList = ({selectedOptions, rawOptions, onIncrease, onRemove, 
                 const option = rawOptions.find((option) => option.id === optionId);
                 const {optionName, price} = option;
                 return (
-                    <div className="bg-gray-200 mb-4 p-2">
+                    <div key={"selectedOption_" + optionId} className="bg-gray-200 mb-4 p-2">
                         <div className="flex justify-between">
                             <h3>{optionName}</h3>
                             <button onClick={() => onRemove(optionId)}>X</button>
