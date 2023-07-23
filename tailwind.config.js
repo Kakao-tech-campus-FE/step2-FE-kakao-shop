@@ -4,6 +4,11 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontSize: {
+        sm: '0.875rem',
+        paragraph: '1rem',
+        xl: '1.25rem',
+      },
       boxShadow: {
         outFlat: '0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #ffffff',
       },
