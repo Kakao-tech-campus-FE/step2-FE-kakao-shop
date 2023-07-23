@@ -8,7 +8,7 @@ interface ProductInformationColumnProps {
 const ProductInformationColumn = ({ product }: ProductInformationColumnProps) => {
   const { productName, image } = product;
   return (
-    <div className="w-[1000px]">
+    <div className="w-[500px]">
       <Photo src={`${process.env.REACT_APP_API_URL}${image}`} alt={productName} />
     </div>
   );
