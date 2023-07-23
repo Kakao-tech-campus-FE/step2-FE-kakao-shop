@@ -3,7 +3,7 @@ import useForm from "../hook/useForm";
 import {userValidation} from "../util/validation";
 import {checkDuplicateEmail, signUp} from "../services/apis";
 import {useNavigate} from "react-router-dom";
-import ElevatedButton from "../components/atoms/Buttons";
+import {ElevatedButton} from "../components/atoms/Buttons";
 
 const SignUpPage = () => {
     const navigate = useNavigate();

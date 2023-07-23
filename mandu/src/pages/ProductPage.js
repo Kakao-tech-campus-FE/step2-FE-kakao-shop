@@ -7,7 +7,7 @@ import ErrorPage from "./ErrorPage";
 import StarRank from "../components/atoms/StarRank";
 import OptionList from "../components/molecules/OptionList";
 import SelectedOptionList from "../components/molecules/SelectedOptionList";
-import ElevatedButton from "../components/atoms/Buttons";
+import {ElevatedButton, OutlinedButton} from "../components/atoms/Buttons";
 import {useSelector} from "react-redux";
 
 const ProductPage = () => {

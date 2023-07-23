@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {useDispatch} from "react-redux";
 import {setId} from "../redux/userSlice";
-import ElevatedButton from "../components/atoms/Buttons";
+import {ElevatedButton} from "../components/atoms/Buttons";
 
 const LoginPage = () => {
     const navigate = useNavigate();

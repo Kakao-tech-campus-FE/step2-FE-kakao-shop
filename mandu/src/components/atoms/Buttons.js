@@ -1,4 +1,4 @@
-const ElevatedButton = ({children, className = "", ...props}) => (
+export const ElevatedButton = ({children, className = "", ...props}) => (
 
     <button
         className={`w-full p-2 rounded-md ${className}`}
@@ -8,7 +8,7 @@ const ElevatedButton = ({children, className = "", ...props}) => (
     </button>
 );
 
-const OutlinedButton = ({children, className = "", ...props}) => (
+export const OutlinedButton = ({children, className = "", ...props}) => (
     <button
         className={`w-full p-2 rounded-md border-2 ${className}`}
         {...props}
@@ -17,4 +17,3 @@ const OutlinedButton = ({children, className = "", ...props}) => (
     </button>
 );
 
-export default ElevatedButton;

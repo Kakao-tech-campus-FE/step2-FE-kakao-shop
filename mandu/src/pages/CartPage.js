@@ -3,7 +3,7 @@ import {getCart} from "../services/apis";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 import CartProductCard from "../components/organisms/CartProductCard";
-import ElevatedButton from "../components/atoms/Buttons";
+import {ElevatedButton} from "../components/atoms/Buttons";
 
 const CartPage = () => {
 
