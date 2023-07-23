@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from 'src/store';
 import { loginStore } from '@store/slices/userSlice';
 import FilledButton from '@components/atoms/button/FilledButton';
-import { BsCart } from 'react-icons/bs';
+import { BsCart, BsPerson, BsBoxArrowInLeft } from 'react-icons/bs';
 import TextButton from '@components/atoms/button/TextButton';
 
 const Header = () => {
@@ -17,19 +17,23 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute w-screen bg-white ">
-      <div className="flex justify-end items-center space-x-5 h-header mx-[100px]">
+    <div className="absolute w-screen bg-white shadow-convexWhite">
+      <div className="flex justify-end items-center space-x-10 h-header mx-[100px] text-pointPupple">
         <BsCart
+          size="25"
           onClick={() => {
             navigate('/cart');
           }}
         />
         {!isLoggedIn ? (
-          <Link to="/login">
-            <FilledButton>로그인</FilledButton>
-          </Link>
+          <BsPerson
+            size="25"
+            onClick={() => {
+              navigate('/login');
+            }}
+          />
         ) : (
-          <TextButton onClick={handleLogout}>로그아웃</TextButton>
+          <BsBoxArrowInLeft size="25" onClick={handleLogout} />
         )}
       </div>
     </div>
