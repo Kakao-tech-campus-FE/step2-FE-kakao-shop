@@ -21,14 +21,12 @@ const OptionList = ({ options, onClick }: OptionListProps) => {
         {isOptionOn &&
           options.map((option: ProductOptionData, index: number) => {
             return (
-              <div className="text-left p-3 shadow-convexWhite">
-                <TextButton onClick={() => onClick(option)}>
-                  <div>
-                    {index + 1}.{option.optionName}
-                  </div>
+              <TextButton onClick={() => onClick(option)}>
+                <div className="w-[500px] text-left p-3 shadow-convexWhite">
+                  {index + 1}.{option.optionName}
                   <div className="text-left m-1 font-bold">{comma(option.price)}원</div>
-                </TextButton>
-              </div>
+                </div>
+              </TextButton>
             );
           })}
       </div>
