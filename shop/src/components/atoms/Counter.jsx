@@ -13,10 +13,7 @@ const Counter = ({
   useEffect(() => {
     // quantity 값이 변경되면 count 초기 값을 업데이트합니다.
     setCount(quantity);
-    setIsDisabled(quantity <= 1);
-    // console.log("quantity:", quantity)
-    // console.log("count:", count)
-
+    setIsDisabled(quantity <= 0);
   }, [quantity]);
 
   const handleOnIncrease = () => {
@@ -29,14 +26,14 @@ const Counter = ({
   const handleOnDecrease = () => {
     setCount(count-1)
     onDecrease(count-1, optionId)
-    setIsDisabled(count <= 2)
+    setIsDisabled(count <= 1)
 
   }
 
   return (
-    <div className='mt-1'>
+    <div className='flex justify-around'>
       <Button className="btn-counter px-3" disabled={isDisabled} onClick={handleOnDecrease}>-</Button>
-      <span className='px-6 py-1'>{count}</span>
+      <span className='px-6'>{count}</span>
       <Button className="btn-counter px-2" onClick={handleOnIncrease}>+</Button>
     </div>
   )

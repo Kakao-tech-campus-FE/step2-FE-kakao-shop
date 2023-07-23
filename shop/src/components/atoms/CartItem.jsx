@@ -8,38 +8,51 @@ import { comma } from '../../utils/convert'
 const CartItem = ({item, onChange}) => {
   return (
     <Box className='cart-item-box'>
-      <h5>{item.productName}</h5>
+      <h5 className='text-xl font-semibold px-5 py-5'>{item.productName}</h5>
       {item.carts.map((cart) => {
-        <Card key={cart.id} className="cart">
-          <div className='option-name'>
-            <span>{cart.option.optionName}</span>
-          </div>
-          <div className='row'>
-            <Counter
-              onIncrease={(count)=>{
-                // 옵션 아이디, 변경된 수량, 해당 옵션 상품의 가격 
-                onChange(cart.id, count, cart.option.price)
-              }}
-              onDecrease={(count)=>{
-                onChange(cart.id, count, -cart.option.price)
-              }}
-            />
-            <div className='price'>
-              <span>{comma(cart.option.price * cart.quantity)}원</span>
+        return (
+          <Card key={cart.id} className="cart">
+            <div className='mx-4 border mb-2'>
+              <div className='option-name mt-4'>
+                <span className='font-semibold px-4'>{cart.option.optionName}</span>
+              </div>
+              <div className='my-4 px-4 flex justify-between'>
+                <Counter
+                  onIncrease={(count)=>{
+                    // 옵션 아이디, 변경된 수량, 해당 옵션 상품의 가격 
+                    onChange(cart.id, count, cart.option.price)
+                  }}
+                  onDecrease={(count)=>{
+                    onChange(cart.id, count, -cart.option.price)
+                  }}
+                  quantity={cart.quantity}
+                  optionId={cart.option.id}
+                />
+                <div className='price'>
+                  <span>{comma(cart.option.price * cart.quantity)}원</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        )
       })}
       <Card className="total-price">
-        <div className='row'>
-          <h5>주문금액</h5>
-          <div className='price'>
+        <div className='row border mx-4 flex justify-between mb-6 bg-white'>
+          <div className='my-4 px-4'>
+            <h5>즉시 할인금액</h5>
+            <h5 className='font-semibold'>주문금액</h5>
+          </div>
+
+          <div className='price my-4 px-4'>
+            <div>0원</div>
+            <div className='font-semibold'>
             {/* item carts : 옵션들이 저장된 배열 */}
             {comma(
               item.carts.reduce((acc,cur)=>{
                 return acc + cur.option.price * cur.quantity
               }, 0)
             )}원
+            </div>
           </div>
         </div>
       </Card>

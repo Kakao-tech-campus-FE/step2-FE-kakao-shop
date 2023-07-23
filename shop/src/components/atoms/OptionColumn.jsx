@@ -1,8 +1,7 @@
-import { useState } from "react"
+import {  useState } from "react"
 import OptionList from "./OptionList"
 import { comma } from "../../utils/convert"
 import Counter from "./Counter"
-import { useMutation } from "react-query"
 import {addCart} from "../../services/cart"
 import Button from "./Button"
 import Photo from "./Photo"
@@ -14,7 +13,6 @@ const OptionColumn = ({product}) => {
   const [selectedOptions, setSelectedOptions] = useState([])
   const email = useSelector((state) => state.user.email)
 
-  // 장바구니 담기 api에서 요청한 정보: optionId, quantity
   const handleOnClickOption = (option) =>{
     // 동일한 옵션 클릭 시 수량만 증가
     const isOptionSelected = selectedOptions.find(
@@ -54,10 +52,28 @@ const OptionColumn = ({product}) => {
       })
     }
 
-  // 장바구니 담기 api 처리
-  const {mutate} = useMutation({
-    mutationFn: addCart
-  })
+  const addCartReq = async () => {
+    if (email) {
+      await addCart(selectedOptions.map(el=>{
+        return {
+          optionId: el.optionId,
+          quantity: el.quantity
+        }
+      }))
+      .then(res=>{
+        console.log(res)
+        alert("장바구니에 담겼습니다.")
+        navigate("/carts")
+      })
+      .catch (err=>{
+      console.log(err)
+      alert("장바구니 담기에 실패했습니다.")})
+    } else {
+      alert("로그인이 필요한 서비스입니다.");
+      navigate("/login");
+    }
+  };
+
 
   return (
     <div className="relative mt-20 left-20 pb-8 pt-5 ring-1 ring-gray-900/5 sm:mx-auto sm:rounded-lg sm:px-12">
@@ -78,12 +94,14 @@ const OptionColumn = ({product}) => {
             {/* 수량 변경 가능 */}
             <span className="mr-2">{option.name}</span>
             <span className="price font-semibold">{comma(option.price)}원</span> 
-            <Counter 
-              quantity={option.quantity}
-              optionId={option.optionId}
-              onIncrease = {handleOnChange}
-              onDecrease={handleOnChange}
-            />
+            <div className="mt-1">
+              <Counter 
+                quantity={option.quantity}
+                optionId={option.optionId}
+                onIncrease = {handleOnChange}
+                onDecrease={handleOnChange}
+              />
+            </div>
           </li>
         </ol>
       )})}
@@ -94,7 +112,6 @@ const OptionColumn = ({product}) => {
           {comma(selectedOptions.reduce((acc, cur)=>{
             return acc+cur.quantity
           }, 0))}개
-          {/* {totalQuantity} */}
         </span>
         <span>
         총 상품금액:
@@ -102,7 +119,6 @@ const OptionColumn = ({product}) => {
             {comma(selectedOptions.reduce((acc, cur)=>{
               return acc+cur.quantity * cur.price
             }, 0))} 
-            {/* {totalPrice} */}
           </span>
           원
         </span>
@@ -111,28 +127,8 @@ const OptionColumn = ({product}) => {
         {/* 장바구니 담기 버튼 */}
         <Button
           className="relative top-8 left-2"
-          onClick={()=>{
-            if(email){
-              mutate(
-                selectedOptions.map(el=>{
-                  return {
-                    optionId: el.optionId,
-                    quantity: el.quantity
-                  }
-                }),{
-                  onSuccess:()=>{
-                    alert("장바구니에 담겼습니다.")
-                  },
-                  onError:()=>{
-                    alert("장바구니 담기에 실패했습니다.")
-                  }
-                }
-              )
-            } else{
-              alert("로그인이 필요한 서비스입니다.")
-              navigate("/login")
-            }
-          }}><Photo src="/cart.png" alt="장바구니"/></Button>
+          onClick={addCartReq}><Photo src="/cart.png" alt="장바구니"/>
+        </Button>
           <Button className="relative left-20 bottom-4 btn-primary text-2xl px-20 py-8">바로구매</Button>
       </div>
     </div>
