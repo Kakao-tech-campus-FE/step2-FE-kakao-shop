@@ -127,12 +127,15 @@ const ProductPage = () => {
                                 />
                             </div>
                         </div>
-                        <ElevatedButton
-                            className="bg-amber-300"
-                            onClick={onAddInCart}
-                            disabled={cartAddMutation.isLoading}>
-                            장바구니 담기
-                        </ElevatedButton>
+                        <div className="flex">
+                            <OutlinedButton
+                                className="mr-2"
+                                onClick={onAddInCart}
+                                disabled={cartAddMutation.isLoading}>
+                                장바구니 담기
+                            </OutlinedButton>
+                            <ElevatedButton className="bg-amber-300">바로 구매하기</ElevatedButton>
+                        </div>
                     </>
                 }
             </div>
