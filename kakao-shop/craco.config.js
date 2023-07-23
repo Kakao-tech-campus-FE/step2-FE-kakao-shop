@@ -33,6 +33,7 @@ module.exports = {
       '@apis': path.resolve(__dirname, 'src/apis'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@hocs': path.resolve(__dirname, 'src/hocs'),
     },
   },
 };

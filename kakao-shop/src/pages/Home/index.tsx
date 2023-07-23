@@ -12,7 +12,7 @@ import Loading from '@components/atom/Loader';
 import { CardList } from '@components/page/Home/CardList';
 import CardListFallback from '@components/page/Home/CardListFallback';
 
-function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.home.products);
   const isLoading = useSelector((state: RootState) => state.home.isLoading);
@@ -75,7 +75,7 @@ function Home() {
       <S.InfinityScrollSection ref={endRef} />
     </Fragment>
   );
-}
+};
 
 export default Home;
 

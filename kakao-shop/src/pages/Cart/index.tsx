@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import WithRouteGuard from '@hocs/WithRouteGuard';
 
 import { CustomSuspense } from '@components/atom';
 import PageLoader from '@components/molecules/PageLoader';
@@ -9,7 +10,7 @@ import TotalResult from '@components/page/Cart/TotalResult';
 
 import { useCartForm } from '@hooks/page/Cart/useCartForm';
 
-const Cart = () => {
+const Cart = WithRouteGuard('/login', () => {
   const {
     state: { isLoading, error, carts: products, totalPrice },
     handler: { onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem, onSubmit },
@@ -32,7 +33,7 @@ const Cart = () => {
       </S.Root>
     </CustomSuspense>
   );
-};
+});
 
 export default Cart;
 
