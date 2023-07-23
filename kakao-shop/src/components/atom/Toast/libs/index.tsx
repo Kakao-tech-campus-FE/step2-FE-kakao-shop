@@ -15,6 +15,7 @@ class Toast {
       ToastItem?: ComponentProps<typeof Manager>['ToastItem'];
     } = {},
   ) {
+    // FunctionComponent<{ isShow, options, children }>
     const { ToastItem } = options;
 
     const portalElement = document.getElementById('toast-portal');
@@ -35,6 +36,8 @@ class Toast {
 
     render(
       <Manager
+        // bind 함수를 통해 토스트를 생성할 수 있는 함수를 Manager.tsx에서 받아온다.
+        // createToast: (content: FunctionComponent<{}> | ReactNode, options: Options) => void
         bind={createToast => {
           this.createToast = createToast;
         }}
