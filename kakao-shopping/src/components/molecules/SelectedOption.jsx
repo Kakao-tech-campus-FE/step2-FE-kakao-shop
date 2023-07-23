@@ -1,19 +1,27 @@
 import { useState } from "react";
 import Button from "../atoms/Button";
+import { useDispatch } from "react-redux";
+import { addItem, subtractItem } from "../../redux/cartRedux";
 
 const SelectedOption = ({ selectedOption, setSumOptionCount, setSumOptionPrice, className }) => {
+  const dispatch = useDispatch();
+
   const [optionCount, setOptionCount] = useState(1);
   const [buttonValid, setButtonValid] = useState(false);
+  
   const handleCountClick = (count) => {
     if(count === -1 && optionCount === 1) {
+      dispatch(subtractItem({optionId: selectedOption.optionId}));
       setButtonValid(false);
       return;
     } else if(count === -1 && optionCount === 2) {
+      dispatch(subtractItem({optionId: selectedOption.optionId}));
       setButtonValid(false);
       setOptionCount(prev => prev + count);
       setSumOptionCount(prev => prev + count);
       setSumOptionPrice(prev => prev + count * selectedOption.price);  
     } else {
+      dispatch(addItem({optionId: selectedOption.optionId}));
       setButtonValid(true);
       setOptionCount(prev => prev + count);
       setSumOptionCount(prev => prev + count);

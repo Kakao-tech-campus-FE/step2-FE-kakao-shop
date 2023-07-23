@@ -1,4 +1,3 @@
-import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import {logout} from "../../actions/authActions"
 import { useDispatch } from "react-redux";
@@ -13,11 +12,11 @@ const LogoutButton = () => {
     localStorage.removeItem('userInfo');    // 로그인 유지 삭제
   }
   return (
-    <Container className="flex flex-col h-48 justify-center">
+    <div className="flex flex-col h-48 justify-center">
       <Button
         className="m-2 p-1 pr-6 pl-6 hover:bg-slate-400 rounded-md"
         onClick={handleLogoutClick}>로그아웃</Button>
-    </Container>
+    </div>
   );
 }
 

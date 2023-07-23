@@ -1,4 +1,3 @@
-import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
@@ -41,9 +40,9 @@ const LoginForm = () => {
   const everythingIsValid = value.emailIsValid && value.passwordIsValid;
 
   return (
-    <Container className='relative rounded-md flex flex-col items-center m-5 my-10'>
+    <div className='relative rounded-md flex flex-col items-center m-5 my-10'>
       <form>
-        <Container>
+        <div>
         <InputGroup inputClassName={`w-96 p-2 h-8 border-solid border-gray-300 ${value.email && (value.emailIsValid ? '': 'border-red-500')} border rounded-lg mt-2 mb-1`} id="email" type="email" placeholder="이메일" autocomplete="email" value={value.email} onChange={handleOnChange}/>
         {!value.email && <span className="text-black-500 text-xs block h-3 mb-1"></span>}
           {value.email && (
@@ -53,9 +52,9 @@ const LoginForm = () => {
               <span className="text-red-500 text-xs block h-3 mb-1">이메일이 유효하지 않습니다</span>
             )
           )}
-        </Container>
+        </div>
 
-        <Container>
+        <div>
         <InputGroup inputClassName={`w-96 p-2 h-8 border-solid border-gray-300 ${value.password && (value.passwordIsValid ? '': 'border-red-500')} border rounded-lg mt-2 mb-1`} id="password" type="password" placeholder="비밀번호" autocomplete="current-password" value={value.password} onChange={handleOnChange}/>
         {!value.password && <span className="text-black-500 text-xs block h-3 mb-1"></span>}
           {value.password && (
@@ -65,7 +64,7 @@ const LoginForm = () => {
               <span className="text-red-500 text-xs block h-3 mb-1">비밀번호가 유효하지 않습니다</span>
             )
           )}
-        </Container>
+        </div>
       </form>
 
       <span className="text-red-500 text-xs block h-2">{loginFailed}</span>
@@ -85,7 +84,7 @@ const LoginForm = () => {
     <div className="absolute left-2 bottom-0">
       <Link to='/register'><span className="text-sm">회원가입</span></Link>
       </div>
-    </Container>
+    </div>
 
   );
 }

@@ -1,18 +1,20 @@
-import Skeleton from "../molecules/Skeleton";
-import Container from "../atoms/Container";
+import MainSkeleton from "../molecules/MainSkeleton";
 
 const MainProductsSkeleton = () => {
   return (
-  <Container className="flex flex-col items-center justify-center">
-    <Container className="flex flex-wrap w-240">
-      <div className="w-60 m-10"><Skeleton /></div>
-      <div className="w-60 m-10"><Skeleton /></div>
-      <div className="w-60 m-10"><Skeleton /></div>
-      <div className="w-60 m-10"><Skeleton /></div>
-      <div className="w-60 m-10"><Skeleton /></div>
-      <div className="w-60 m-10"><Skeleton /></div>
-    </Container>
-  </Container>
+  <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-wrap w-240">
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+      <div className="w-60 m-10"><MainSkeleton /></div>
+    </div>
+  </div>
   )
 }
 

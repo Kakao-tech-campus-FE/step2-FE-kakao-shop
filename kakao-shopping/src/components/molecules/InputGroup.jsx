@@ -1,4 +1,3 @@
-import Box from "../atoms/Box"
 import Input from "../atoms/Input"
 import Label from "../atoms/Label"
 
@@ -13,10 +12,10 @@ const InputGroup = ({
   autocomplete// 자동완성
 }) => {
   return (
-    <Box className={boxClassName}>
+    <div className={boxClassName}>
       <Label htmlFor={id} />
       <Input className={inputClassName} id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} autocomplete={autocomplete}/>
-    </Box>
+    </div>
   )
 }
 

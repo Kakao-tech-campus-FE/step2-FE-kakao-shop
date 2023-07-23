@@ -1,7 +1,7 @@
 import Button from "../atoms/Button";
 
 const PageSetButton = ({ page, setPage}) => {
-  const pageArray = Array(Math.ceil(page / 6)).fill(0);
+  const pageArray = Array(page).fill(0);
   return (
     <div className="flex">
     {pageArray.map((_, index) => 

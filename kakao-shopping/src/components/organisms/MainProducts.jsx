@@ -1,19 +1,23 @@
-import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import ProductPrice from "../atoms/ProductPrice";
+import { useDispatch } from "react-redux";
+import { clearItem } from "../../redux/cartRedux";
 
-const MainProducts = ({slicedData}) => {
-
+const MainProducts = ({responseData}) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
+    dispatch(clearItem());
     navigate(`/product/${id}`);
   };
   
   return (
-    <Container className="flex flex-wrap w-240">
-    {slicedData?.map((product) => (
+    <div className="flex flex-wrap w-240">
+    {responseData &&
+
+     responseData.map((product) => (
       <div key={product.productName} className="w-60 m-10">
       <Button onClick={() => handleProductClick(product.id)}>
         <div className="flex flex-col">
@@ -29,7 +33,7 @@ const MainProducts = ({slicedData}) => {
       </Button>
       </div>
     ))}
-    </Container>
+    </div>
   )
 }
 
