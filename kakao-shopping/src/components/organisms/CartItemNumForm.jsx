@@ -11,12 +11,13 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
   
   const price = itemPrice * quantity;
 
-  const handleClick = async (num) => {
+  const handleClick = (num) => {
     if(quantity + num < 0) return;
-    await modifyCart([{
+    const a = modifyCart([{
       cartId,
       quantity: quantity + num
     }]);
+    console.log(a);
     setQuantity(prev => prev + num);
     setTotalPrice((prev) => prev + num * itemPrice);
   }
@@ -26,9 +27,9 @@ const CartItemNumForm = ({ cartId, itemQuantity, itemPrice, setTotalPrice }) => 
     setIsModalOpen(true);
   };
 
-  const handleConfirmDelete = async () => {
+  const handleConfirmDelete = () => {
     setIsModalOpen(false);
-    await modifyCart([
+    modifyCart([
       {
         cartId,
         quantity: 0,

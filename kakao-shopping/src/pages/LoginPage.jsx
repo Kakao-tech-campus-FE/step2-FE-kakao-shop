@@ -14,15 +14,13 @@ const LoginPage = () => {
       const storedUser = JSON.parse(localStorage.getItem('userInfo')); // 유저 정보
 
       if(storedUser && storedUser.expirationTime > Date.now()) { // 로컬스토리지에 저장이 돼있고, 시간도 하루가 안 지났다면
-        console.log(storedUser.expirationTime);
-        console.log(Date.now());
         dispatch(loginSuccess(storedUser));
         navigate('/');
       } else {
         dispatch(logout());
       }
     } catch (error) {
-      console.log("Parse error", error);
+      console.error("Parse error", error);
     }
   },[dispatch, navigate]);
 

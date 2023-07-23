@@ -8,7 +8,6 @@ const LogoutButton = () => {
 
   const handleLogoutClick = () => {
     dispatch(logout());                     // 상태 초기화
-    localStorage.removeItem('isLoggedIn');  // 로그인 유지 삭제
     localStorage.removeItem('userInfo');    // 로그인 유지 삭제
   }
   return (
