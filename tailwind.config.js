@@ -10,7 +10,7 @@ module.exports = {
         xl: '1.25rem',
       },
       boxShadow: {
-        outFlat: '0.8rem 0.8rem 1.4rem #c8d0e7, -0.2rem -0.2rem 1.8rem #ffffff',
+        outFlat: '0.8rem 0.3rem 1.0rem #c8d0e7, -0.2rem -0.2rem 1.8rem #ffffff',
       },
       borderRadius: {
         card: '50px',
