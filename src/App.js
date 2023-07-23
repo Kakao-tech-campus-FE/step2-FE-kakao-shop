@@ -4,7 +4,8 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import CartPage from "./pages/CartPage";
-import OrdersPage from "./pages/OrdersPage";
+import BuyPage from "./pages/BuyPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { Provider } from "react-redux";
 import store from "./store/index.js";
@@ -28,7 +29,8 @@ function App() {
               <Route path={routes.home} element={<HomePage />} />
               <Route path={routes.login} element={<LoginPage />} />
               <Route path={routes.cart} element={<CartPage />} />
-              <Route path={routes.orders} element={<OrdersPage />} />
+              <Route path={routes.orders} element={<BuyPage />} />
+              <Route path="/*" element={<NotFoundPage />} />
               <Route
                 path="/product/:id"
                 element={<ProductDetailPage />}
