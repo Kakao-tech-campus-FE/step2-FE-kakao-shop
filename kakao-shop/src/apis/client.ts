@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getCookie } from '@utils/cookie';
 
 export const BASE_URL =
-  process.env.REACT_APP_TEST_ENV === 'true' ? process.env.REACT_APP_LOCAL_URL : process.env.REACT_APP_PUBLIC_URL;
+  process.env.REACT_APP_ENV === 'dev_mock' ? process.env.REACT_APP_DEV_SERVER : process.env.REACT_APP_PROD_SERVER;
 
 export const client = axios.create({
   baseURL: BASE_URL,

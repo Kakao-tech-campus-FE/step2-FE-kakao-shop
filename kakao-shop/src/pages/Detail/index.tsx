@@ -27,7 +27,7 @@ const Detail = () => {
           <S.PhotoContainer>
             <Photo
               imageClassName={S.PhotoSize}
-              src={`${process.env.REACT_APP_PUBLIC_URL}${product?.image}`}
+              src={`${process.env.REACT_APP_PROD_SERVER}${product?.image}`}
               alt={'HERO 이미지'}
             />
           </S.PhotoContainer>
