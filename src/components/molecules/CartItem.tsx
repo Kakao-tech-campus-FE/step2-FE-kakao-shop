@@ -11,45 +11,46 @@ interface CartItemProps {
 
 const CartItem = ({ item, onChange }: CartItemProps) => {
   return (
-    <>
-      <h5>{item.productName}</h5>
-      {item.carts.map((cart: CartedOptionData) => (
-        <Card>
-          <div>
-            {/** 선택된 옵션들 나열? */}
-            <span>{cart.option.optionName}</span>
-          </div>
-          <div>
-            <Counter
-              value={cart.quantity}
-              onIncrease={(count) => {
-                // id, 변경된 수량, 해당 상품 가격
-                onChange(cart.id, count, cart.option.price);
-              }}
-              onDecrease={(count) => {
-                onChange(cart.id, count, -cart.option.price);
-              }}
-            />
-          </div>
-          <div>
-            <span>{comma(cart.price)}원</span>
-          </div>
-        </Card>
-      ))}
+    <div className="my-10">
+      <h5 className="text-xl my-3 font-bold">{item.productName}</h5>
       <Card>
-        <div>
-          <h5>주문금액</h5>
-          <div>
-            {comma(
-              item.carts.reduce((acc, cur) => {
-                return acc + cur.price;
-              }, 0),
-            )}
-            원
+        <div className="p-5">
+          {item.carts.map((cart: CartedOptionData) => (
+            <>
+              <div className="flex justify-between my-5">
+                <div>
+                  {/** 선택된 옵션들 나열? */}
+                  <div className="mb-3">{cart.option.optionName}</div>
+                  <Counter
+                    value={cart.quantity}
+                    onIncrease={(count) => {
+                      // id, 변경된 수량, 해당 상품 가격
+                      onChange(cart.id, count, cart.option.price);
+                    }}
+                    onDecrease={(count) => {
+                      onChange(cart.id, count, -cart.option.price);
+                    }}
+                  />
+                </div>
+                <span className="font-bold">{comma(cart.price)}원</span>
+              </div>
+              <hr />
+            </>
+          ))}
+          <div className="flex justify-end my-5 text-xl font-bold space-x-3">
+            <h5>주문금액</h5>
+            <div>
+              {comma(
+                item.carts.reduce((acc, cur) => {
+                  return acc + cur.price;
+                }, 0),
+              )}
+              원
+            </div>
           </div>
         </div>
       </Card>
-    </>
+    </div>
   );
 };
 

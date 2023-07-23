@@ -65,36 +65,35 @@ const CartList = ({ data }: CartListProps) => {
 
   return (
     <>
-      <h1>장바구니</h1>
-      <Card>
+      <div>
         {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems) &&
+        {cartItems &&
           cartItems.map((item: CartProductData) => {
             return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} />;
           })}
-      </Card>
-      <Card>
-        <div>
-          <span>주문 예상금액</span>
-          <div>{comma(totalPrice)}원</div>
-        </div>
-      </Card>
-      <FilledButton
-        onClick={() => {
-          // updateCard
-          // 변경된 개수만 파싱해서 페이로드로 보내준다.
-          mutate(updatePayload, {
-            onSuccess: () => {
-              navigate('/order');
-            },
-            onError: (error) => {
-              alert('주문 실패');
-            },
-          });
-        }}
-      >
-        <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
-      </FilledButton>
+      </div>
+      <div className="flex justify-end space-x-3 text-xl font-bold">
+        <span>주문 예상금액</span>
+        <div className="text-subOrange">{comma(totalPrice)}</div>원
+      </div>
+      <div className="flex justify-end my-5">
+        <FilledButton
+          onClick={() => {
+            // updateCard
+            // 변경된 개수만 파싱해서 페이로드로 보내준다.
+            mutate(updatePayload, {
+              onSuccess: () => {
+                navigate('/order');
+              },
+              onError: (error) => {
+                alert('주문 실패');
+              },
+            });
+          }}
+        >
+          <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
+        </FilledButton>
+      </div>
     </>
   );
 };
