@@ -46,7 +46,7 @@ const MainProductTemplate = () => {
     };
   }, [isLoading, hasNextPage, fetchNextPage]);
 
-  if (data) {
+  if (data && data.pages && Array.isArray(data.pages)) {
     const responseData = _.uniqBy(
       data.pages.flatMap((pages) => pages.data.response),
       "id"
@@ -59,6 +59,8 @@ const MainProductTemplate = () => {
         {isLoading && !hasNextPage && <Loader />}
       </Group>
     );
+  } else {
+    return null;
   }
 };
 
