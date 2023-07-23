@@ -2,6 +2,7 @@ import { addCart } from '@api/cartApi';
 import { ProductInfoData, ProductOptionData } from '@api/dto';
 import Counter from '@components/atoms/Counter';
 import OptionList from '@components/atoms/OptionList';
+import PriceTag from '@components/atoms/PriceTag';
 import FilledButton from '@components/atoms/button/FilledButton';
 import comma from '@utils/commaUtils';
 import React, { useState } from 'react';
@@ -52,68 +53,74 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
   const { mutate } = useMutation({ mutationFn: addCart });
 
   return (
-    <>
-      <h3>옵션 선택</h3>
-      <OptionList options={product.options} onClick={handleOnClickOption} />
+    <div className="flex-column rounded-2xl shadow-innerFlat p-[30px]">
+      <div className="mb-10">
+        <p className="text-xxl font-bold mb-5">{product.productName}</p>
+        <PriceTag price={product.price} />
+      </div>
       <div>
-        {selectedOptions.map((option) => (
-          <ol key={option.optionId}>
-            <Counter
-              value={option.quantity}
-              onIncrease={(count) => handleOnChange(count, option.optionId)}
-              onDecrease={(count) => handleOnChange(count, option.optionId)}
-            />
-            <span>{option.name}</span>
-            <span>{comma(option.price)}원</span>
-          </ol>
-        ))}
-        <hr />
+        <p>옵션 선택</p>
+        <OptionList options={product.options} onClick={handleOnClickOption} />
         <div>
-          <span>
-            총 수량:
-            {comma(
-              selectedOptions.reduce((acc, cur) => {
-                return acc + cur.quantity;
-              }, 0),
-            )}
-            개
-          </span>
-          <span>
-            총 상품금액:
-            {comma(
-              selectedOptions.reduce((acc, cur) => {
-                return acc + cur.quantity * cur.price;
-              }, 0),
-            )}
-          </span>
-        </div>
-        <div>
-          {/* 장바구니 담기 버튼 */}
-          <FilledButton
-            onClick={() => {
-              mutate(
-                selectedOptions.map((el) => {
-                  return {
-                    optionId: el.optionId,
-                    quantity: el.quantity,
-                  };
-                }),
-                {
-                  onSuccess: () => {
-                    alert('장바구니 담기 성공');
+          {selectedOptions.map((option) => (
+            <ol key={option.optionId}>
+              <Counter
+                value={option.quantity}
+                onIncrease={(count) => handleOnChange(count, option.optionId)}
+                onDecrease={(count) => handleOnChange(count, option.optionId)}
+              />
+              <span>{option.name}</span>
+              <span>{comma(option.price)}원</span>
+            </ol>
+          ))}
+          <hr />
+          <div>
+            <span>
+              총 수량:
+              {comma(
+                selectedOptions.reduce((acc, cur) => {
+                  return acc + cur.quantity;
+                }, 0),
+              )}
+              개
+            </span>
+            <span>
+              총 상품금액:
+              {comma(
+                selectedOptions.reduce((acc, cur) => {
+                  return acc + cur.quantity * cur.price;
+                }, 0),
+              )}
+            </span>
+          </div>
+          <div>
+            {/* 장바구니 담기 버튼 */}
+            <FilledButton
+              onClick={() => {
+                mutate(
+                  selectedOptions.map((el) => {
+                    return {
+                      optionId: el.optionId,
+                      quantity: el.quantity,
+                    };
+                  }),
+                  {
+                    onSuccess: () => {
+                      alert('장바구니 담기 성공');
+                    },
+                    onError: () => {
+                      alert('장바구니 담기 실패');
+                    },
                   },
-                  onError: () => {
-                    alert('장바구니 담기 실패');
-                  },
-                },
-              );
-            }}
-          >
-            장바구니 담기
-          </FilledButton>
+                );
+              }}
+            >
+              장바구니 담기
+            </FilledButton>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
