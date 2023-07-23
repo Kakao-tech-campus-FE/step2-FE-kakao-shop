@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import React from 'react';
 import GNB from '../components/atoms/GNB';
-import MainProductTemplate from '../components/templates/MainProductTemplate';
 
 function MainLayout() {
   return (

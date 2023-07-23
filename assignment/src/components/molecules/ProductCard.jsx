@@ -5,28 +5,14 @@ import Photo from '../atoms/Photo';
 import SkeletonCard from '../atoms/Skeleton';
 import Loader from '../atoms/Loader';
 
-const ProductCard = ({ product, loading, error }) => {
-  console.log(loading);
+const ProductCard = ({ product }) => {
   return (
     <>
-      {loading ? (
-        <>
-          {loading && <Loader />}
-          <SkeletonCard />
-        </>
-      ) : error ? (
-        <div>Error: {error.message}</div>
-      ) : (
-        <Card to={`/product/${product.id}`}>
-          <Photo
-            className="card"
-            src={product.image}
-            alt={product.productName}
-          />
-          <div className="product-name">{product.productName}</div>
-          <div className="product-price">{comma(product.price)}원</div>
-        </Card>
-      )}
+      <Card to={`/product/${product.id}`}>
+        <Photo className="card" src={product.image} alt={product.productName} />
+        <div className="product-name">{product.productName}</div>
+        <div className="product-price">{comma(product.price)}원</div>
+      </Card>
     </>
   );
 };

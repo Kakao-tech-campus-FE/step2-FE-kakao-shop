@@ -45,6 +45,7 @@
     "jsx-a11y/no-noninteractive-element-interactions": "off",
     "react/jsx-no-useless-fragment": "off",
     "no-nested-ternary": "off",
-    "indent": "off"
+    "indent": "off",
+    "no-plusplus": "off"
   }
 }

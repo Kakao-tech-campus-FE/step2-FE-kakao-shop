@@ -16,7 +16,12 @@ function InputGroup({
 }) {
   return (
     <Box className={className}>
-      <Label htmlFor={id}>{label}</Label>
+      <Label
+        htmlFor={id}
+        className="block text-sm font-medium leading-6 text-gray-900"
+      >
+        {label}
+      </Label>
       <Input
         id={id}
         type={type}
