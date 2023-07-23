@@ -2,7 +2,7 @@ import { ProductInfoData } from '@api/dto';
 import OptionColumn from '@components/molecules/OptionColumn';
 import ProductInformationColumn from '@components/molecules/ProductInformationColumn';
 import React from 'react';
-import PhotoCard from '@components/atoms/PhotoCard';
+import Card from '@components/atoms/Card';
 
 interface ProductDetailTemplateProps {
   product: ProductInfoData;
@@ -10,12 +10,12 @@ interface ProductDetailTemplateProps {
 
 const ProductDetailTemplate = ({ product }: ProductDetailTemplateProps) => {
   return (
-    <PhotoCard>
+    <Card>
       <div className="flex space-x-5 p-[30px]">
         <ProductInformationColumn product={product} />
         <OptionColumn product={product} />
       </div>
-    </PhotoCard>
+    </Card>
   );
 };
 

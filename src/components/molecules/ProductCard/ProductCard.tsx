@@ -1,5 +1,5 @@
 import { ProductInfoData } from '@api/dto';
-import PhotoCard from '@components/atoms/PhotoCard';
+import Card from '@components/atoms/Card';
 import Photo from '@components/atoms/Photo';
 import comma from '@utils/commaUtils';
 import React, { useState, useEffect } from 'react';
@@ -16,7 +16,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const cardComponent = (
     <>
       <div className="mb-5">
-        <PhotoCard>
+        <Card>
           <Link to={`/product/${product.id}`}>
             <Photo
               setImgLoaded={setImgLoaded}
@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
               alt={product.productName}
             />
           </Link>
-        </PhotoCard>
+        </Card>
       </div>
       <div className="px-[10px]">
         <div>{product.productName}</div>
