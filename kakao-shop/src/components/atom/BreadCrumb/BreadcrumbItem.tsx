@@ -14,7 +14,7 @@ const BreadcrumbItem = ({ children, href, active = false, ...props }: Breadcrumb
   return (
     <BreadcrumbItemContainer {...props}>
       <Anchor to={href}>
-        <Text $active={active}>{children}</Text>
+        <Text active={active}>{children}</Text>
       </Anchor>
       {!active && <BsChevronRight />}
     </BreadcrumbItemContainer>
@@ -31,10 +31,10 @@ const Anchor = styled(Link)`
   text-decoration: none;
 `;
 
-const Text = styled.span<{ $active: boolean }>`
+const Text = styled.span<{ active: boolean }>`
   font-size: 14px;
-  ${({ $active }) => css`
-    font-weight: ${$active ? 'bold' : 'normal'};
+  ${({ active }) => css`
+    font-weight: ${active ? 'bold' : 'normal'};
   `}
 `;
 

@@ -15,7 +15,7 @@ type Props = {
 };
 const OptionList = ({ isOpenList, options, onSelectOption, onToggle }: Props) => {
   return (
-    <S.Root $isOpenOptionList={isOpenList}>
+    <S.Root isOpenOptionList={isOpenList}>
       <Button css={S.ButtonCSS(isOpenList)} onClick={onToggle}>
         <span>-주문 선택-</span>
         <Photo imageClassName={isOpenList ? S.ArrowDownIconCSS : S.ArrowUpIconCSS} src={arrow} alt={'화살표'} />
@@ -36,15 +36,15 @@ const OptionList = ({ isOpenList, options, onSelectOption, onToggle }: Props) =>
 export default OptionList;
 
 const S = {
-  Root: styled.div<{ $isOpenOptionList: boolean }>`
+  Root: styled.div<{ isOpenOptionList: boolean }>`
     border-radius: 3px;
 
-    ${({ $isOpenOptionList }) => css`
-      border: ${$isOpenOptionList ? '1px solid #888' : '1px solid  #fafafa'};
+    ${({ isOpenOptionList }) => css`
+      border: ${isOpenOptionList ? '1px solid #888' : '1px solid  #fafafa'};
     `}
   `,
 
-  ButtonCSS: ($isOpenOptionList: boolean) => css`
+  ButtonCSS: (isOpenOptionList: boolean) => css`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,7 +55,7 @@ const S = {
     padding: 11px 13px 12px 14px;
 
     background-color: #fafafa;
-    border: ${$isOpenOptionList ? '1px solid #fafafa' : '1px solid #d5d5d5'};
+    border: ${isOpenOptionList ? '1px solid #fafafa' : '1px solid #d5d5d5'};
     border-radius: 3px;
 
     font-size: 15px;

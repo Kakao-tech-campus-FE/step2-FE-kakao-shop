@@ -31,7 +31,7 @@ const S = {
     border-width: 1px 0 0;
   `,
 
-  ButtonCSS: ($isSelected: boolean) => css`
+  ButtonCSS: (isSelected: boolean) => css`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,7 +41,7 @@ const S = {
     padding: 9px 14px 10px;
 
     border: none;
-    background-color: ${$isSelected ? 'none' : '#ffffff'};
+    background-color: ${isSelected ? 'none' : '#ffffff'};
   `,
 
   Tit: styled.span`
