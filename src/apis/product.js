@@ -9,5 +9,6 @@ export const getProductById = (id) => {
     if(!id) {
         throw Error("id가 없습니다.");
     }
-    return instance.get(`/products/${id}`);
+    const result = instance.get(`/products/${id}`);
+    return result;
 };
