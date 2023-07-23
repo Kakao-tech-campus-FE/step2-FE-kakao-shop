@@ -40,7 +40,6 @@ const getProducts = async ({pageParam = 0}) => {
 
 const getDetailProduct = async (productId) => {
     const data = await api.get("/products/" + productId);
-    console.log("getDetailProduct", data);
     const {id, productName, price, starCount, options} = data;
     //주요 데이터들이 존재하는지 확인
     if (!id || !productName || !price || !starCount || !options) {

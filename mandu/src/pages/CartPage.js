@@ -18,7 +18,6 @@ const CartPage = () => {
     if (isError) return <ErrorPage error={error}/>
 
     const onPurchase = (e) => {
-        console.log("onPurchase");
         e.preventDefault();
         navigate("/payment");
     }

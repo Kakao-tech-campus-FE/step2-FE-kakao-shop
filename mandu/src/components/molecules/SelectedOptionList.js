@@ -1,3 +1,5 @@
+import {priceFormat} from "../../util/Format";
+
 const SelectedOptionList = ({selectedOptions, rawOptions, onIncrease, onRemove, onDecrease}) => {
     return (
         <div className="">
@@ -17,7 +19,7 @@ const SelectedOptionList = ({selectedOptions, rawOptions, onIncrease, onRemove, 
                                 <p className="px-2">{quantity}</p>
                                 <button className="px-2 m-2" onClick={() => onIncrease(optionId)}>+</button>
                             </div>
-                            <p>{(price * quantity).toLocaleString() + '원'}</p>
+                            <p>{priceFormat(price * quantity)}</p>
                         </div>
                     </div>
                 );

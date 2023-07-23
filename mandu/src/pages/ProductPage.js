@@ -9,6 +9,7 @@ import OptionList from "../components/molecules/OptionList";
 import SelectedOptionList from "../components/molecules/SelectedOptionList";
 import {ElevatedButton, OutlinedButton} from "../components/atoms/Buttons";
 import {useSelector} from "react-redux";
+import {priceFormat} from "../util/Format";
 
 const ProductPage = () => {
     const {productId} = useParams();
@@ -37,8 +38,6 @@ const ProductPage = () => {
 
     const onOptionSelect = (id) => {
         const optionId = Number(id);
-        console.log("name", optionId)
-        console.log("isNaN(name)", isNaN(optionId))
         if (isNaN(optionId)) return;
         setSelectedOption((prev) => {
             const index = prev.findIndex((prev) => prev.optionId === optionId);
@@ -81,14 +80,12 @@ const ProductPage = () => {
     }
 
     const onAddInCart = (e) => {
-        console.log("onAddInCart");
         if (!userId) return alert("로그인이 필요합니다.");
         e.preventDefault();
         cartAddMutation.mutate();
     }
 
     const onPurchase = (e) => {
-        console.log("onPurchase");
         if (!userId) return alert("로그인이 필요합니다.");
         e.preventDefault();
         navigate("/payment");
@@ -109,7 +106,7 @@ const ProductPage = () => {
             <div className="mx-8 w-96">
                 <StarRank rank={starCount}/>
                 <h1 className="text-2xl">{productName}</h1>
-                <h1 className="text-2xl font-bold">{Number(price).toLocaleString()}원</h1>
+                <h1 className="text-2xl font-bold">{priceFormat(price)}원</h1>
                 <div className="my-8">
                     <h1 className="text-lg font-bold">상품 옵션 선택</h1>
                     <div className="w-full border-2 border-gray-500">

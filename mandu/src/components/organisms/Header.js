@@ -1,4 +1,4 @@
-import {List} from "../atoms/ListItems";
+import {List} from "../atoms/List";
 import {TopNavListItem} from "../molecules/NavList";
 import UserNav from "../molecules/UserNav";
 

@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import {priceFormat} from "../../util/Format";
 
 export const ProductCard = ({id, title, image, link, price}) => {
     return (
@@ -14,7 +15,7 @@ export const ProductCard = ({id, title, image, link, price}) => {
                 </div>
                 <div className="my-2">
                     <h3>{title}</h3>
-                    <h3 className="font-bold">{Number(price).toLocaleString()}원</h3>
+                    <h3 className="font-bold">{priceFormat(price)}</h3>
                 </div>
             </Link>
         </div>

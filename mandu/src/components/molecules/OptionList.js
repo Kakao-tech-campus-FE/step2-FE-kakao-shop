@@ -1,3 +1,5 @@
+import {priceFormat} from "../../util/Format";
+
 const OptionList = ({options, onSelected}) => {
     return (
         <div className="divide-y divide-slate-200 w-full ">
@@ -9,7 +11,7 @@ const OptionList = ({options, onSelected}) => {
                         <h3>
                             {optionName}
                         </h3>
-                        <p>{price.toLocaleString() + '원'}</p>
+                        <p>{priceFormat(price)}</p>
                     </button>);
             })}
         </div>

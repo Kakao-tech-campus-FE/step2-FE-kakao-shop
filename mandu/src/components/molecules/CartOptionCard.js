@@ -1,5 +1,6 @@
 import {useMutation, useQueryClient} from "react-query";
 import {updateCart} from "../../services/apis";
+import {priceFormat} from "../../util/Format";
 
 const CartOptionCard = ({cart}) => {
     const {id, option, quantity, price} = cart;
@@ -9,7 +10,6 @@ const CartOptionCard = ({cart}) => {
     const cartUpdateMutation = useMutation(updateCart, {
         onSuccess: () => {
             queryClient.invalidateQueries('cart');
-            console.log("updateCart success");
         }
     });
 
@@ -39,7 +39,7 @@ const CartOptionCard = ({cart}) => {
                     <p className="px-2">{quantity}</p>
                     <button className="px-2 m-2" onClick={increaseSelectedCount}>+</button>
                 </div>
-                <p>{(Number(price)).toLocaleString() + '원'}</p>
+                <p>{priceFormat(price)}</p>
             </div>
         </div>
     );
