@@ -27,14 +27,16 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </PhotoCard>
       </div>
       <div className="px-[10px]">
-        <p>{product.productName}</p>
-        <PriceTag price={product.price} />
+        <div>{product.productName}</div>
+        <div className="absolute inset-x-0 bottom-0 mt-5">
+          <PriceTag price={product.price} />
+        </div>
       </div>
     </>
   );
 
   return (
-    <div className="mb-[30px] w-[250px]">
+    <div className="relative mb-[30px] w-[250px] h-[390px]">
       {imgLoaded ? (
         cardComponent
       ) : (
