@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState,useRef } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 import Container from "../atoms/Container"
 import Box from "../atoms/Box"
 import Card from "../atoms/Card"
@@ -10,6 +10,8 @@ import { useMutation } from 'react-query'
 import { updateCart } from '../../services/cart'
 
 const CartList = ({data}) => {
+  // console.log('dataddd')
+  // console.log(data)
   const route = useNavigate()
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
@@ -22,8 +24,9 @@ const CartList = ({data}) => {
 
   useEffect(()=>{
     setCartItems(data?.data?.response?.products)
-    setTotalPrice(data?.data?.response.totalPrice)
+    setTotalPrice(data?.data?.response?.totalPrice)
   },[data])
+
 /**
  * 옵션의 수량 변경과 가격 변경을 관리 
  * @param {number} optionId :옵션 아이디
@@ -69,8 +72,8 @@ const CartList = ({data}) => {
   // cartItem의 수량이 변경될 때만 실행 
   const getTotalOrder = useCallback(() =>{
     let count = 0
-    cartItems.forEach((item)=>{
-      item.carts.forEach((cart)=>{
+    cartItems.map((item) => {
+      item.carts.map((cart) => {
         count += cart.quantity //개별옵션 
       })
     })
@@ -78,24 +81,27 @@ const CartList = ({data}) => {
   },[cartItems])
 
   return (
-    <Container className="cart-list">
-      <Box>
+    <Container className="my-32 shadow bg-gray-100 flex justify-center mx-auto" >
+      <div className="w-full">
+      <Box className='text-2xl font-semibold text-center bg-white py-2 mx-1 my-1'>
         <h1>장바구니</h1>
       </Box>
-      <Card>
+      <Box className='bg-white mx-1 my-1'>
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems)&&
           cartItems.map((item)=>{
+            console.log('item')
+            console.log(item)
             return (
               <CartItem
                 key={item.id}
                 item={item}
-                onChange={handleOnChangeCount} // 개수 변
+                onChange={handleOnChangeCount} // 개수 변화 
               />
             )
           })
         }
-      </Card>
+      </Box>
       <Card>
         <div className='row'>
           <span className='expect-price'>주문 예상금액</span>
@@ -103,20 +109,24 @@ const CartList = ({data}) => {
         </div>
       </Card>
       <Button
-        className="order-btn"
+        className="btn-primary"
         onClick={()=>{
           //update cart : 장바구니 정보 수정 
           mutate(updatePayload, {
             onSuccess: (data) =>{
               //navigate to order page 
               route.push("/order")
+              console.log(data)
             },
-            onError: (error)=> {}
+            onError: (err)=> {
+              console.log(err)
+            }
           })
         }}
       >
         <span>총 {getTotalOrder()}건 주문하기 </span>
       </Button>
+      </div>
     </Container>
   )
 }
