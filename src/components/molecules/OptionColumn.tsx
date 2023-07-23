@@ -63,14 +63,16 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
         <OptionList options={product.options} onClick={handleOnClickOption} />
         <div>
           {selectedOptions.map((option) => (
-            <ol key={option.optionId} className="flex my-6">
+            <ol key={option.optionId} className="flex w-full my-6">
               <Counter
                 value={option.quantity}
                 onIncrease={(count) => handleOnChange(count, option.optionId)}
                 onDecrease={(count) => handleOnChange(count, option.optionId)}
               />
-              <span>{option.name}</span>
-              <span>{comma(option.price)}원</span>
+              <div className="w-full flex justify-between">
+                <span>{option.name}</span>
+                <span className="">{comma(option.price)}원</span>
+              </div>
             </ol>
           ))}
           <hr />
