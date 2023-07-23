@@ -2,9 +2,16 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getProductById } from "../services/product";
 import Loader from "../components/atoms/Loader";
-import SkeletonGrid from "../components/organisms/SkeletonGrid";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 import Gnb from "../components/organisms/Gnb";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -16,12 +23,13 @@ const ProductDetailPage = () => {
   const product = data?.data?.response;
 
   return (
-    <div>
+    <>
       <Gnb />
-      {isLoading && <SkeletonGrid />}
-      {error && <div>{error.message}</div>}
-      {product && <ProductDetailTemplate product={product} />}
-    </div>
+      <Container>
+        {isLoading ? <Loader /> : <ProductDetailTemplate product={product} />}
+        {error && <div>{error.message}</div>}
+      </Container>
+    </>
   );
 };
 
