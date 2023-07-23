@@ -25,6 +25,7 @@ module.exports = {
         middleGray: '#979797',
         subGray: '#F0F0F0',
         subRed: '#dc3232',
+        subOrange: '#f05800',
       },
       spacing: {
         header: '100px',

@@ -59,11 +59,11 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
         <PriceTag price={product.price} />
       </div>
       <div>
-        <p>옵션 선택</p>
+        <p className="font-bold">옵션 선택</p>
         <OptionList options={product.options} onClick={handleOnClickOption} />
         <div>
           {selectedOptions.map((option) => (
-            <ol key={option.optionId}>
+            <ol key={option.optionId} className="flex my-6">
               <Counter
                 value={option.quantity}
                 onIncrease={(count) => handleOnChange(count, option.optionId)}
@@ -74,7 +74,7 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
             </ol>
           ))}
           <hr />
-          <div>
+          <div className="flex text-xl justify-between my-3">
             <span>
               총 수량:
               {comma(
@@ -86,14 +86,17 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
             </span>
             <span>
               총 상품금액:
-              {comma(
-                selectedOptions.reduce((acc, cur) => {
-                  return acc + cur.quantity * cur.price;
-                }, 0),
-              )}
+              <span className="font-bold text-subOrange">
+                {comma(
+                  selectedOptions.reduce((acc, cur) => {
+                    return acc + cur.quantity * cur.price;
+                  }, 0),
+                )}{' '}
+              </span>
+              원
             </span>
           </div>
-          <div>
+          <div className="flex justify-end mt-10">
             {/* 장바구니 담기 버튼 */}
             <FilledButton
               onClick={() => {
