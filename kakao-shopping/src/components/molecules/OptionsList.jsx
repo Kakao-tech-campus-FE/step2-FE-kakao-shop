@@ -2,15 +2,21 @@ import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cartRedux";
 
-const OptionsList = ({options, selectedOptions, setSumOptionCount,setSumOptionPrice, setSelectedOptions}) => {
+const OptionsList = ({options, selectedOptions, setSelectedOptions}) => {
   const dispatch = useDispatch();
 
   const handleOptionClick = ({optionName, optionId, price}) => {
-    if(selectedOptions.some((selectedOption) => selectedOption.optionName === optionName)) return;
+    const existing = selectedOptions.filter((selectedOption) => selectedOption.optionName === optionName);
+    if(existing.length > 0) return;
     dispatch(addItem({optionId, quantity: 1}));
-    setSumOptionCount(prev => prev + 1);
-    setSumOptionPrice(prev => prev + price);
-    setSelectedOptions(prev => [...prev, {optionName, price, optionId}]);
+    const newItem = {
+      optionName,
+      optionId,
+      price,
+      sumCount: 1,
+      sumPrice: price,
+    }
+    setSelectedOptions(prev => [...prev, newItem]);
   }
 
   return (

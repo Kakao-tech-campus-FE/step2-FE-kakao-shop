@@ -4,32 +4,32 @@ import SelectedOption from "../molecules/SelectedOption";
 import DeliveryInformation from "../molecules/DeliveryInformation";
 import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
-import { addCart, getCart } from "../../apis/api";
+import { addCart } from "../../apis/api";
 import { clearItem } from "../../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
 const ProductOptions = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [sumOptionPrice, setSumOptionPrice] = useState(0);
-  const [sumOptionCount, setSumOptionCount] = useState(0);
+  const sumOptionPrice = selectedOptions.reduce((acc, cur) => acc + cur.sumPrice, 0);
+  const sumOptionCount = selectedOptions.reduce((acc, cur) => acc + cur.sumCount, 0);
 
   const dispatch = useDispatch();
   const options = product.options;
 
   const cartItems = useSelector((state) => state.cart.cartItems);
+
   const handleAddCartClick = () => {
 
-    getCart().then(() => {
-      addCart(cartItems);
-    }).catch((err) => {
+    addCart(cartItems)
+    .then((res) => {
+      console.log(res);
+      dispatch(clearItem());
+      setSelectedOptions([]);
+    })
+    .catch((err) => {
       console.log(err);
     });
-
-    dispatch(clearItem());
     
-    setSelectedOptions([]);
-    setSumOptionCount(0);
-    setSumOptionPrice(0);
   }
 
   return (
@@ -38,8 +38,6 @@ const ProductOptions = ({ product }) => {
       <OptionsList 
         options={options} 
         selectedOptions={selectedOptions}
-        setSumOptionCount={setSumOptionCount} 
-        setSumOptionPrice={setSumOptionPrice}
         setSelectedOptions={setSelectedOptions}
       />
 
@@ -52,9 +50,7 @@ const ProductOptions = ({ product }) => {
           {selectedOptions.map((selectedOption, index) =>
             <SelectedOption 
               key={index}
-              selectedOption={selectedOption} 
-              setSumOptionCount={setSumOptionCount} 
-              setSumOptionPrice={setSumOptionPrice} 
+              selectedOption={selectedOption}
               className="border border-b-0 1px first:rounded-t-lg last:rounded-b-lg last:border-b w-full"
             />
           )}
