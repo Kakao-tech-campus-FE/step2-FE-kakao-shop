@@ -1,20 +1,12 @@
-import { Link } from 'react-router-dom';
 import React from 'react';
+import PriceTag from './PriceTag';
 
 interface CardProps {
   children: React.ReactNode;
-  productName: string;
-  productPrice: string;
 }
 
-const Card = ({ children, productName, productPrice }: CardProps) => {
-  return (
-    <>
-      <div className="bg-white rounded-card shadow-outFlat">{children}</div>
-      <p>{productName}</p>
-      <p>{productPrice}</p>
-    </>
-  );
+const Card = ({ children }: CardProps) => {
+  return <div className="bg-white rounded-card shadow-outFlat">{children}</div>;
 };
 
 export default Card;

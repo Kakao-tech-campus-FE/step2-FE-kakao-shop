@@ -4,6 +4,7 @@ import Photo from '@components/atoms/Photo';
 import comma from '@utils/commaUtils';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PriceTag from '@components/atoms/PriceTag';
 import ProductCardSkeleton from './ProductCardSkeleton';
 
 interface ProductCardProps {
@@ -13,27 +14,35 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const cardComponent = (
-    <Link to={`/product/${product.id}`}>
-      <Photo
-        setImgLoaded={setImgLoaded}
-        src={`${process.env.REACT_APP_API_URL}${product.image}`}
-        alt={product.productName}
-      />
-    </Link>
+    <>
+      <div className="mb-5">
+        <PhotoCard>
+          <Link to={`/product/${product.id}`}>
+            <Photo
+              setImgLoaded={setImgLoaded}
+              src={`${process.env.REACT_APP_API_URL}${product.image}`}
+              alt={product.productName}
+            />
+          </Link>
+        </PhotoCard>
+      </div>
+      <div className="px-[10px]">
+        <p>{product.productName}</p>
+        <PriceTag price={product.price} />
+      </div>
+    </>
   );
 
   return (
-    <div className="mb-[30px] w-[200px]">
-      <PhotoCard productName={product.productName} productPrice={`${comma(product.price)}원`}>
-        {imgLoaded ? (
-          cardComponent
-        ) : (
-          <>
-            <ProductCardSkeleton />
-            <div className="hidden">{cardComponent}</div>
-          </>
-        )}
-      </PhotoCard>
+    <div className="mb-[30px] w-[250px]">
+      {imgLoaded ? (
+        cardComponent
+      ) : (
+        <>
+          <ProductCardSkeleton />
+          <div className="hidden">{cardComponent}</div>
+        </>
+      )}
     </div>
   );
 };
