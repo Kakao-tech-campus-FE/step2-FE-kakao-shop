@@ -29,11 +29,13 @@ const CartList = ({ data }: CartListProps) => {
   const getTotalCartCountIncludeOptions = useCallback(() => {
     // 재렌더링 될때도 실행x
     let count = 0;
-    cartItems.forEach((item: CartProductData) => {
-      item.carts.forEach((option: CartedOptionData) => {
-        count += option.quantity;
+    if (cartItems) {
+      cartItems.forEach((item: CartProductData) => {
+        item.carts.forEach((option: CartedOptionData) => {
+          count += option.quantity;
+        });
       });
-    });
+    }
     return count;
   }, [cartItems]);
 
