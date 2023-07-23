@@ -30,7 +30,7 @@ module.exports = {
       spacing: {
         header: '100px',
       },
-      minWidth: {
+      maxWidth: {
         container: '1080px',
       },
     },
