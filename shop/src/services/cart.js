@@ -8,8 +8,8 @@ import { cartsInstance } from "./index";
 export const addCart = (payload) => {
   return cartsInstance.post("/carts/add", payload)
 }
-export const getCart = () => {
-  return cartsInstance.get("/carts")
+export const getCart = async() => {
+  return await cartsInstance.get("/carts")
 }
 export const updateCart = (items) => {
   return cartsInstance.get("/carts/update", items)
