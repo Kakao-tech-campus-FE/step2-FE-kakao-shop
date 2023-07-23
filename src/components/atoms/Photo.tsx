@@ -20,7 +20,7 @@ const Photo = ({
         onLoad={(e) => {
           setImgLoaded(true);
         }}
-        className="width:inherit"
+        className="width:inherit rounded-card"
         alt={alt}
       />
     </picture>
