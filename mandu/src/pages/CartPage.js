@@ -4,6 +4,7 @@ import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 import CartProductCard from "../components/organisms/CartProductCard";
 import {ElevatedButton} from "../components/atoms/Buttons";
+import {useNavigate} from "react-router-dom";
 
 const CartPage = () => {
 
@@ -11,9 +12,16 @@ const CartPage = () => {
         getCart, {
             retry: 1,
         });
+    const navigate = useNavigate();
 
     if (isLoading) return <LoadingPage/>
     if (isError) return <ErrorPage error={error}/>
+
+    const onPurchase = (e) => {
+        console.log("onPurchase");
+        e.preventDefault();
+        navigate("/payment");
+    }
 
     return (
         <div className="bg-gray-100 py-8 min-h-screen">
@@ -31,9 +39,8 @@ const CartPage = () => {
                             }
                         })}
                 </div>
-
-                <ElevatedButton className="bg-amber-300" onClick={() => {
-                }}>주문하기</ElevatedButton>
+                s
+                <ElevatedButton className="bg-amber-300" onClick={onPurchase}>주문하기</ElevatedButton>
             </div>
 
         </div>

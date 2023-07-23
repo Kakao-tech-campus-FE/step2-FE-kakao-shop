@@ -7,9 +7,9 @@ import MainLayout from "./components/templates/MainLayout";
 import {QueryClient, QueryClientProvider} from "react-query";
 import CartPage from "./pages/CartPage";
 import ProductPage from "./pages/ProductPage";
-import LoadingPage from "./pages/LoadingPage";
 import ErrorPage from "./pages/ErrorPage";
 import {ErrorType} from "./services/type";
+import PaymentPage from "./pages/PaymentPage";
 
 const queryClient = new QueryClient()
 
@@ -27,7 +27,7 @@ function App() {
                             <Route path='/' element={<MainPage/>}/>
                             <Route path='/cart' element={<CartPage/>}/>
                             <Route path='/product/:productId' element={<ProductPage/>}/>
-                            <Route path='/loading' element={<LoadingPage/>}/>
+                            <Route path='/payment' element={<PaymentPage/>}/>
                         </Route>
                         <Route path='/*'
                                element={<ErrorPage error={notFound}/>}/>

@@ -1,5 +1,5 @@
 import {useRef, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {useMutation, useQuery} from "react-query";
 import {addInCart, getDetailProduct} from "../services/apis";
 import LoadingPage from "./LoadingPage";
@@ -16,6 +16,7 @@ const ProductPage = () => {
     const [selectedOption, setSelectedOption] = useState([]);
     const modalRef = useRef();
     const userId = useSelector((state) => state.user.id);
+    const navigate = useNavigate();
 
     const {
         isLoading,
@@ -86,6 +87,13 @@ const ProductPage = () => {
         cartAddMutation.mutate();
     }
 
+    const onPurchase = (e) => {
+        console.log("onPurchase");
+        if (!userId) return alert("로그인이 필요합니다.");
+        e.preventDefault();
+        navigate("/payment");
+    }
+
     if (isLoading) return <LoadingPage/>
     if (isError) return <ErrorPage error={error}/>
 
@@ -134,7 +142,7 @@ const ProductPage = () => {
                                 disabled={cartAddMutation.isLoading}>
                                 장바구니 담기
                             </OutlinedButton>
-                            <ElevatedButton className="bg-amber-300">바로 구매하기</ElevatedButton>
+                            <ElevatedButton className="bg-amber-300" onClick={onPurchase}>바로 구매하기</ElevatedButton>
                         </div>
                     </>
                 }
