@@ -17,12 +17,20 @@ const Counter = ({ value, onIncrease, onDecrease }: CounterProps) => {
     onDecrease(count - 1);
   };
   return (
-    <div>
-      <button type="button" onClick={handleOnDecrease}>
+    <div className="flex items-center space-x-3 mr-5">
+      <button
+        type="button"
+        onClick={handleOnDecrease}
+        className="box-content flex items-center p-2 w-[8px] h-[8px] shadow-outFlatSm rounded"
+      >
         -
       </button>
       <span>{count}</span>
-      <button type="button" onClick={handleOnIncrease}>
+      <button
+        type="button"
+        onClick={handleOnIncrease}
+        className="box-content flex items-center p-2 w-[8px] h-[8px] shadow-outFlatSm rounded"
+      >
         +
       </button>
     </div>
