@@ -1,17 +1,16 @@
 import { getCart } from "../../apis/api";
 import CartItemNumForm from "../organisms/CartItemNumForm";
 import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import GNB from "./GNB";
 
 const CartTemplate = () => {
   const { data : cart, isError } = useQuery('cart', getCart, {suspense: true}); // api 호출로 카트 정보 가져오기
   const [totalPrice, setTotalPrice] = useState(cart?.data.response.totalPrice);
-  const dispatch = useDispatch();
+
   useEffect(() => {
     setTotalPrice(cart.data.response.totalPrice);
-  }, [cart, dispatch])
+  }, [cart])
 
   if(isError) return (<div>error</div>);
   const cartList = cart?.data.response.products.map((item) => {
