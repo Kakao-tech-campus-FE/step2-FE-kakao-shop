@@ -11,6 +11,7 @@ module.exports = {
       },
       boxShadow: {
         outFlat: '0.8rem 0.3rem 1.0rem #c8d0e7, -0.2rem -0.2rem 1.8rem #ffffff',
+        covex: 'inset .2rem .2rem 1rem rgba(255,255,255,0.44), inset -.2rem -.2rem 1rem rgba(0,0,0,0.44)',
       },
       borderRadius: {
         card: '50px',

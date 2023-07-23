@@ -5,7 +5,11 @@ interface PriceTagProps {
 }
 
 const PriceTag = ({ price }: PriceTagProps) => {
-  return <span className="text-xl font-semibold text-pointPupple">{price}원</span>;
+  return (
+    <span className="text-xl px-4 py-2 rounded-card font-semibold text-white bg-pointPupple shadow-covex">
+      {price}원
+    </span>
+  );
 };
 
 export default PriceTag;
