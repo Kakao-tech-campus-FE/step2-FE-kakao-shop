@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from '../atoms/button';
+import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { login, logout } from '../../store/slices/userSlice';
 import { getItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO } from '../../utils/common';
 import { useUserDispatch, useUserSelector } from '../../hooks/store';
-import LinkButton from '../atoms/linkButton';
 import Photo from '../atoms/photo';
 
 export default function NavigationBar() {
@@ -40,12 +40,12 @@ export default function NavigationBar() {
 
   return (
     <div className="sticky inset-x-0 top-0 z-50 flex w-full items-center justify-between bg-white px-6 py-4">
-      <LinkButton href="/">
+      <Link to="/">
         <div className="h-10">
           <Photo src="/logoKakao.png" alt="카카오톡 쇼핑하기" />
         </div>
-      </LinkButton>
-      <div className="flex items-center gap-4">
+      </Link>
+      <div className="flex items-center gap-6">
         {user.isLogin ? (
           <>
             <div>
@@ -55,21 +55,25 @@ export default function NavigationBar() {
               !
             </div>
             <div>
-              <LinkButton href="/cart">
-                장바구니
-              </LinkButton>
+              <Link to="/cart">
+                <FontAwesomeIcon
+                  icon={icon({ name: 'cart-shopping' })}
+                  size="lg"
+                  title="장바구니"
+                />
+              </Link>
             </div>
             <div>
-              <Button onClick={handleLogout}>
+              <button onClick={handleLogout}>
                 로그아웃
-              </Button>
+              </button>
             </div>
           </>
         ) : (
           <div>
-            <LinkButton href="/login">
+            <Link to="/login">
               로그인
-            </LinkButton>
+            </Link>
           </div>
         )}
       </div>

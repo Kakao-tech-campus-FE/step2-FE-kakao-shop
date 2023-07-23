@@ -16,7 +16,7 @@ export default function ProductDetailTemplate({
 }: ProductDetailTemplateProps) {
   return (
     <div className="flex flex-row">
-      <div className="w-3/4">
+      <div className="w-[60rem] pr-4">
         <ProductDetailColumn
           productName={data.productName}
           description={data.description}
@@ -25,7 +25,7 @@ export default function ProductDetailTemplate({
           starCount={data.starCount}
         />
       </div>
-      <div className="w-1/4">
+      <div className="w-[20rem]">
         <ProductOptionColumn
           options={data.options}
           selectedOptions={selectedOptions}

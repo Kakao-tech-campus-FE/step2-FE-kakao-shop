@@ -1,5 +1,7 @@
-import Button from '../atoms/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Price from '../atoms/price';
+import Counter from './counter';
 
 interface OptionCardProps {
   optionName: string;
@@ -20,20 +22,28 @@ export default function OptionCard({
   handleDeleteOption,
 }: OptionCardProps) {
   return (
-    <div className="border border-stone-300 px-4 py-2">
-      <h3>{optionName}</h3>
-      <div className="flex flex-row justify-between">
-        <div className="flex flex-row items-center">
-          <Button onClick={handleQuantityDecrease}>-</Button>
-          <p>{quantity}</p>
-          <Button onClick={handleQuantityIncrease}>+</Button>
+    <div className="rounded py-4">
+      <div className="mb-2 flex flex-row justify-between">
+        <h3>{optionName}</h3>
+        <div>
+          <button
+            className="ml-2"
+            onClick={handleDeleteOption}
+          >
+            <FontAwesomeIcon
+              icon={icon({ name: 'xmark', style: 'solid' })}
+              title="삭제"
+            />
+          </button>
         </div>
-        <p><Price price={optionTotalPrice} /></p>
       </div>
-      <div className="flex flex-row justify-end">
-        <div className="w-12">
-          <Button onClick={handleDeleteOption}>삭제</Button>
-        </div>
+      <div className="flex flex-row justify-between">
+        <Counter
+          count={quantity}
+          handleDecrease={handleQuantityDecrease}
+          handleIncrease={handleQuantityIncrease}
+        />
+        <p><Price price={optionTotalPrice} /></p>
       </div>
     </div>
   );

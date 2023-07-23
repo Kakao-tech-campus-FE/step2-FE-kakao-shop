@@ -15,11 +15,15 @@ export default function ProductCard({
     <div className="flex h-80 w-80 flex-col rounded-lg p-3
     hover:bg-stone-200"
     >
-      <div className="mb-2 h-40 w-full rounded-lg">
-        <Photo
-          src={image}
-          alt={productName}
-        />
+      <div className="overflow-hidden rounded-lg">
+        <div className="mb-2 h-40 w-full rounded-lg transition-transform duration-300
+        hover:scale-[1.05]"
+        >
+          <Photo
+            src={image}
+            alt={productName}
+          />
+        </div>
       </div>
       <div className="flex grow flex-col justify-between">
         <h1 className="break-keep">

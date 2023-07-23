@@ -1,7 +1,6 @@
 import {
   FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormTrigger,
 } from 'react-hook-form';
-import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
 import { RegisterFormData } from '../../types/formData';
@@ -166,12 +165,13 @@ export default function RegisterForm({
       </div>
       <div className="px-2 text-center">
         {isLoading ? <Loader /> : (
-          <Button
+          <button
             type="submit"
+            className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
             disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
           >
             가입하기
-          </Button>
+          </button>
         )}
       </div>
     </form>

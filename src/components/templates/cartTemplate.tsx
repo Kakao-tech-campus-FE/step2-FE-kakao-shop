@@ -1,6 +1,5 @@
+import { Link } from 'react-router-dom';
 import { CartData } from '../../types/product';
-import Button from '../atoms/button';
-import LinkButton from '../atoms/linkButton';
 import Price from '../atoms/price';
 import OptionCard from '../molecules/optionCard';
 
@@ -15,7 +14,7 @@ export default function CartTemplate({
   handleOption,
 }: CartTemplateProps) {
   return (
-    <div>
+    <div className="w-[40rem]">
       <h1 className="py-2 text-center text-2xl font-bold">장바구니</h1>
       {cartData.products.filter(
         (product) => product.carts.filter(
@@ -32,9 +31,9 @@ export default function CartTemplate({
                     className="my-6"
                   >
                     <h2 className="my-2 font-bold">
-                      <LinkButton href={`/product/${product.id}`}>
+                      <Link to={`/product/${product.id}`}>
                         {product.productName}
-                      </LinkButton>
+                      </Link>
                     </h2>
                     {product.carts.map((cart) => (
                       cart.quantity > 0 ? (
@@ -53,12 +52,12 @@ export default function CartTemplate({
                 ) : null
             ))}
           </ul>
-          <div className="my-4 text-right text-lg font-bold">
+          <div className="border-t border-stone-300 py-4 text-right text-lg font-bold">
             총
             {' '}
             <Price price={cartData.totalPrice} />
           </div>
-          <Button>결제하기</Button>
+          <button className="w-full rounded-sm bg-kakao p-2">주문하기</button>
         </>
         ) : <div>담긴 상품이 없습니다.</div>}
     </div>
