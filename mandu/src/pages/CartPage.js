@@ -1,21 +1,16 @@
-import {useMutation, useQuery} from "react-query";
+import {useQuery} from "react-query";
 import {getCart} from "../services/apis";
 import ErrorPage from "./ErrorPage";
 import LoadingPage from "./LoadingPage";
 import CartProductCard from "../components/organisms/CartProductCard";
-import {ErrorType} from "../services/type";
 import ElevatedButton from "../components/atoms/Buttons";
 
 const CartPage = () => {
+
     const {isLoading, isError, data, error} = useQuery(['cart'],
         getCart, {
             retry: 1,
         });
-
-    //updataCart
-    const cartMutation = useMutation(() => {
-    },);
-
 
     if (isLoading) return <LoadingPage/>
     if (isError) return <ErrorPage error={error}/>
@@ -28,10 +23,12 @@ const CartPage = () => {
                     {
                         data.products.map((item) => {
                             let filteredProduct = item.carts.filter((cart) => cart.quantity > 0);
-                            if (filteredProduct.length === 0) return (<></>);
-                            return (
-                                <CartProductCard key={"cartItem" + item.id} id={item.id} productName={item.productName}
-                                                 carts={item.carts}/>);
+                            if (filteredProduct.length !== 0) {
+                                return (
+                                    <CartProductCard key={"cartItem_" + item.id} id={item.id}
+                                                     productName={item.productName}
+                                                     carts={item.carts}/>);
+                            }
                         })}
                 </div>
 

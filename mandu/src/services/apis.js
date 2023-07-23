@@ -67,9 +67,8 @@ const getCart = async () => {
     return checkCartValidation(data);
 }
 
-const updateCart = async (options) => {
-    const data = api.post("/carts/update", options);
-    return checkCartValidation(data);
+const updateCart = (options) => {
+    return api.post("/carts/update", options);
 }
 
-export {checkDuplicateEmail, signUp, signIn, getProducts, getDetailProduct, addInCart, getCart};
+export {checkDuplicateEmail, signUp, signIn, getProducts, getDetailProduct, addInCart, getCart, updateCart};
