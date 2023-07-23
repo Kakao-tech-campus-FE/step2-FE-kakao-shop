@@ -24,7 +24,7 @@ const ProductPage = () => {
         error
     } = useQuery(['product', productId], () => getDetailProduct(productId), {retry: 1});
 
-    const cartMutation = useMutation(() => addInCart(selectedOption), {
+    const cartAddMutation = useMutation(() => addInCart(selectedOption), {
         onSuccess: () => {
             modalRef.current.showModal();
             setSelectedOption([]);
@@ -83,7 +83,7 @@ const ProductPage = () => {
         console.log("onAddInCart");
         if (!userId) return alert("로그인이 필요합니다.");
         e.preventDefault();
-        cartMutation.mutate();
+        cartAddMutation.mutate();
     }
 
     if (isLoading) return <LoadingPage/>
@@ -130,7 +130,7 @@ const ProductPage = () => {
                         <ElevatedButton
                             className="bg-amber-300"
                             onClick={onAddInCart}
-                            disabled={cartMutation.isLoading}>
+                            disabled={cartAddMutation.isLoading}>
                             장바구니 담기
                         </ElevatedButton>
                     </>
