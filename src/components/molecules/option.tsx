@@ -29,7 +29,14 @@ export default function Option({ children, optionDescription }:OptionProps) {
       {isExpanded ? (
         <ul role="listbox" className="absolute z-30 flex w-full flex-col bg-white">
           {Children.map(children, (child, index) => (
-            <li className={`${Children.count(children) - 1 === index ? 'rounded-b border-b' : ''} border-x border-stone-300`}>
+            <li
+              className={`${Children.count(children) - 1 === index ? 'rounded-b border-b' : ''} border-x border-stone-300`}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsExpanded((prev) => !prev);
+              }}
+              role="presentation"
+            >
               {child}
             </li>
           ))}
