@@ -2,28 +2,24 @@ import Group from "../atoms/Group";
 import SkeletonGrid from "../organisms/SkeletonGrid";
 import Loader from "../atoms/Loader";
 import ProductGrid from "../organisms/ProductGrid";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { fetchProducts } from "../../services/product";
 import { useInfiniteQuery } from "react-query";
 import _ from "lodash";
 
 const MainProductTemplate = () => {
-  const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
 
-  const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useInfiniteQuery(
-      "products",
-      ({ pageParam = 0 }) => fetchProducts(pageParam),
-      {
-        getNextPageParam: (currentPage, allPages) => {
-          const nextPage = allPages.length;
-          return nextPage > 2 ? null : nextPage;
-        },
-      }
-    );
-
-  console.log(data);
+  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    "products",
+    ({ pageParam = 0 }) => fetchProducts(pageParam),
+    {
+      getNextPageParam: (currentPage, allPages) => {
+        const nextPage = allPages.length;
+        return nextPage > 2 ? null : nextPage;
+      },
+    }
+  );
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -31,7 +27,6 @@ const MainProductTemplate = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isLoading && hasNextPage) {
             fetchNextPage();
-            setPage((page) => page + 1);
           }
         });
       },
@@ -59,14 +54,12 @@ const MainProductTemplate = () => {
 
     return (
       <Group>
-        <ProductGrid products={responseData} />
-        {isLoading && <SkeletonGrid />}
+        {isLoading ? <SkeletonGrid /> : <ProductGrid products={responseData} />}
         <div style={{ height: "80px" }} ref={bottomObserver}></div>
-        {isLoading && hasNextPage && <Loader />}
+        {isLoading && !hasNextPage && <Loader />}
       </Group>
     );
   }
-  // return null;
 };
 
 export default MainProductTemplate;
