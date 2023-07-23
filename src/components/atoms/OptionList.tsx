@@ -16,7 +16,7 @@ const OptionList = ({ options, onClick }: OptionListProps) => {
 
   return (
     <TextButton onClick={onSelectorClick}>
-      <div className="w-[500px] text-left rounded-lg overflow-hidden my-3">
+      <div className="w-[450px] text-left rounded-lg overflow-hidden my-3">
         <div className="p-3 text-gray-500 font-bold shadow-innerFlat">옵션</div>
         {isOptionOn &&
           options.map((option: ProductOptionData, index: number) => {
