@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getProductById } from '@api/productApi';
 import Loader from '@components/atoms/Loader';
-import ProductDetailTemplate from '@components/templates/ProductDetailTemplate';
+import ProductDetailTemplate from '@components/templates/ProductDetailPage/ProductDetailTemplate';
 
 const ProductDetailPage = () => {
   const { id } = useParams();

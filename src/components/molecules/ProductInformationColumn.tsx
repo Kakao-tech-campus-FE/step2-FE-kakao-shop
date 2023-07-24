@@ -4,12 +4,13 @@ import React from 'react';
 
 interface ProductInformationColumnProps {
   product: ProductInfoData;
+  setIsLoaded?: React.Dispatch<React.SetStateAction<boolean>>;
 }
-const ProductInformationColumn = ({ product }: ProductInformationColumnProps) => {
+const ProductInformationColumn = ({ product, setIsLoaded }: ProductInformationColumnProps) => {
   const { productName, image } = product;
   return (
     <div className="w-[500px]">
-      <Photo src={`${process.env.REACT_APP_API_URL}${image}`} alt={productName} />
+      <Photo src={`${process.env.REACT_APP_API_URL}${image}`} alt={productName} setImgLoaded={setIsLoaded} />
     </div>
   );
 };
