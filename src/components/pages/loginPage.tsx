@@ -18,6 +18,10 @@ export default function LoginPage() {
     getValues,
   } = useForm<LoginData>({
     mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   const user = useSelector((state: RootState) => state.user);

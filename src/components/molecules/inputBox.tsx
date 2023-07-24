@@ -1,6 +1,7 @@
 import { InputHTMLAttributes, forwardRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Input from '../atoms/input';
-import XButton from '../atoms/xButton';
 
 interface InputBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   resetValue: React.MouseEventHandler<HTMLButtonElement>;
@@ -26,10 +27,16 @@ const InputBox = forwardRef<HTMLInputElement, InputBoxProps>((
       name={props.name}
     />
     <div className="my-auto flex">
-      <XButton
+      <button
+        type="button"
+        className={`${isDirty ? 'visible' : 'invisible'}`}
         onClick={resetValue}
-        isShow={isDirty}
-      />
+      >
+        <FontAwesomeIcon
+          icon={icon({ name: 'xmark', style: 'solid' })}
+          title="입력 초기화"
+        />
+      </button>
     </div>
   </div>
 ));
