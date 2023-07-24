@@ -38,7 +38,6 @@ const CartPage = () => {
                             }
                         })}
                 </div>
-                s
                 <ElevatedButton className="bg-amber-300" onClick={onPurchase}>주문하기</ElevatedButton>
             </div>
 
