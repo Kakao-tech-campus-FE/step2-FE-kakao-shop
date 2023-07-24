@@ -45,13 +45,13 @@ const Header = () => {
               <button
                 onClick={() => {
                   dispatch(signOutAction());
-                  window.location.reload(); // 전역 state 초기화를 위해서
+                  window.location.href = '/'; // 전역 state 초기화를 위해서
                 }}>
                 로그아웃
               </button>
             ) : (
               <Link to="/login">로그인</Link>
-            )}{' '}
+            )}
           </S.MenuMy>
         </S.Container>
       </S.Root>
