@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 <<<<<<< HEAD
 
 import { login } from "../../services/user";
+<<<<<<< HEAD
 
 =======
 import { login } from "../../services/index";
@@ -11,6 +12,10 @@ import { login } from "../../services/index";
 import { login } from "../../services/user";
 >>>>>>> b3e9a4d9d (feat-AddStore)
 
+=======
+import Swal from "sweetalert2";
+import routes from "../../routes/routes";
+>>>>>>> a71dbb36f (add detailPage,loading,404)
 //redux saga + react reduc : redux tookit 없이 쓰는 법. 툴킷 안쓰는 회사도 많음
 
 const initialState = {
@@ -66,24 +71,26 @@ export const loginRequest = createAsyncThunk(
 <<<<<<< HEAD
 
         if (response.status === 200) {
-            alert('로그인성공')
-                .then(() => {
-
+            Swal.fire({
+                icon: 'success',
+                title: '로그인 성공!',
+                text: '홈 화면으로 이동합니다',
+                confirmButtonColor: '#429f50',
+            }).then(result => {
+                if (result.isConfirmed) {
                     localStorage.setItem("email", email);
                     localStorage.setItem("token", response.headers.authorization);
-
-                })
-                .then(() => {
-                    window.location.href = "/home";
-                })
-
-            return {
-                email: email,
-                token: response.headers.authorization,
-            };
-
+                    window.location.href = routes.home;
+                }
+            })
         }
-    })
+        return {
+            email: email,
+            token: response.headers.authorization,
+        };
+
+    }
+)
 //로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
 
 export const { setEmail } = userSlice.actions;

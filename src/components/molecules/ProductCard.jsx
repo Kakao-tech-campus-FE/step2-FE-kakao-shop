@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../atoms/Card';
-import SkeletonElement from '../skeleton/SkeletonElement';
 
 
 const ProductCard = ({ product }) => {

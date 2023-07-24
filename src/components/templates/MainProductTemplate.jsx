@@ -1,6 +1,7 @@
 import { Suspense, useEffect } from "react";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
+import { QueryClient,useQuery, QueryClientProvider } from "@tanstack/react-query";
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from "../../store/slices/productSlice";
 import { useState, useRef } from "react";
@@ -17,17 +18,21 @@ const MainProductTemplate = () => {
     const [page, setPage] = useState(0);
     const bottomObserver = useRef(null)
     const dispatch = useDispatch();
-    const products = useSelector((state) => state.product.products);
-    const loading = useSelector((state) => state.product.loading);
-    const error = useSelector((state) => state.product.error);
-    const isEnd = useSelector((state) => state.product.isEnd);
-
+    // const products = useSelector((state) => state.product.products);
+    // const loading = useSelector((state) => state.product.loading);
+    // const error = useSelector((state) => state.product.error);
+    // const isEnd = useSelector((state) => state.product.isEnd);
     //0번페이지 로드 후 값 뿌려줌
+
+    const {
+        data,
+        error,
+        isLoading, } = useQuery(['product'], () => dispatch(getProducts(page)), { suspense: true }) //구분자,API요청함수
 
     const io = new IntersectionObserver(
         (entries, observer) => {
             entries.forEach((entry) => {
-                if (entry.isIntersecting && !isEnd) {
+                if (entry.isIntersecting) {
                     setPage((page) => page + 1)
                 }
             })
@@ -37,11 +42,11 @@ const MainProductTemplate = () => {
     }
     );
     useEffect(() => {
-        if (!loading && page === 0) {
+        if (!isLoading && page === 0) {
             io.observe(bottomObserver.current);
         }
         //io.observe(bottomObserver.current); //바로 감시를 시작한다면
-    }, [loading, page])// 모든 렌더링이 생길때마다 실행.
+    }, [isLoading, page])// 모든 렌더링이 생길때마다 실행.
 
     useEffect(() => {
         dispatch(getProducts(page))  //0번일때 데이터 불러오기 page 변경이 발생
@@ -52,9 +57,10 @@ const MainProductTemplate = () => {
 
     return (
         <Container>
-
-            <ProductGrid products={products} />
+            {/* <Suspense fallback={<SkeletonElement />}> */}
+            <ProductGrid products={data.payload} />
             <div ref={bottomObserver}></div>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             <Suspense fallback={<SkeletonElement />}></Suspense>
@@ -63,6 +69,9 @@ const MainProductTemplate = () => {
 =======
             <Suspense fallback={<SkeletonElement />}></Suspense>
 >>>>>>> 02ab4daca (feat:Add skeleton)
+=======
+            {/* </Suspense> */}
+>>>>>>> a71dbb36f (add detailPage,loading,404)
 
         </Container>
     );

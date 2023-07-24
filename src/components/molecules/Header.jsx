@@ -19,8 +19,6 @@ const HeaderStyle = styled.header`
 
 `
 
-
-
 const Header = () => {
     const navigate = useNavigate();
     const [JWT, setJWT] = useState(null)
@@ -33,6 +31,7 @@ const Header = () => {
 
         <>
             <h1 onClick={() => { navigate(routes.home); }}>Kakao</h1>
+            <div onClick={() => { navigate(routes.cart); }}>장바구니</div>
             <HeaderStyle>
                 {JWT ? < HeaderList name="로그아웃" slash={false}
                     onClick={() => {
@@ -41,8 +40,8 @@ const Header = () => {
                     }
 
                     }></ HeaderList > : <>
-                    < HeaderList name="로그인" slash={true} onClick={() => { navigate(routes.logIn); }}></ HeaderList >
-                    <HeaderList name="회원가입" slash={false} onClick={() => { navigate(routes.signUp); }}></HeaderList>
+                    < HeaderList name="로그인" slash={true} onClick={()=>navigate(routes.logIn)}></HeaderList>
+                    <HeaderList name="회원가입" slash={false} onClick={ ()=>navigate(routes.signUp)}></HeaderList>
                 </>}
             </HeaderStyle></>
 

@@ -1,4 +1,4 @@
-import Photo from "../atoms/Photo";
+
 import { comma } from '../../utils/convert'
 
 const ProductInformationColumn = ({ product }) => {

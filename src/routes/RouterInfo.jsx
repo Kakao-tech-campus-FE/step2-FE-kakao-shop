@@ -1,4 +1,4 @@
-import Card from '../components/atoms/Card';
+import Cart from '../components/templates/ProductDetailTemplate'
 import Home from '../pages/Home'
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
@@ -45,26 +45,34 @@ export const RouterInfo = [
     },
     {
         path: `${routes.cart}`,
-        element: <Card />,
+        element: <Cart/>,
         label: 'cart'
     },
     {
         path: `${routes.productDetail}`,
         element: <ProductDetailPage />,
+<<<<<<< HEAD
         label: 'cart'
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 02ab4daca (feat:Add skeleton)
+=======
+        label: 'productDetail'
+>>>>>>> a71dbb36f (add detailPage,loading,404)
     },
     {
         path: `${routes.skeletonTest}`,
         element: <SkeletonPage />,
+<<<<<<< HEAD
         label: 'cart'
 <<<<<<< HEAD
 =======
 >>>>>>> b3e9a4d9d (feat-AddStore)
 =======
 >>>>>>> 02ab4daca (feat:Add skeleton)
+=======
+        label: 'skeletonTest'
+>>>>>>> a71dbb36f (add detailPage,loading,404)
     }
 ]
