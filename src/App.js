@@ -6,7 +6,7 @@ import LoginPage from "pages/LoginPage";
 import RegisterPage from "pages/RegisterPage";
 import CartPage from "pages/CartPage";
 import DetailPage from "pages/DetailPage";
-import OrderResultPage from "pages/OrderResultPage";
+import OrderPage from "pages/OrderPage";
 
 import PageContainer from "components/atoms/PageContainer";
 import Loader from "components/molecules/Loader";
@@ -30,7 +30,7 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/products/:id" element={<DetailPage />} />
               <Route path="/carts" element={<CartPage />} />
-              <Route path="/orders" element={<OrderResultPage />} />
+              <Route path="/orders" element={<OrderPage />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>
