@@ -3,13 +3,6 @@ import Counter from "../molecules/Counter";
 import { comma } from "../../utils/convert";
 import styled from "styled-components";
 
-// const Box = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-// `;
-
 const ProductName = styled.p`
   font-size: 1.2rem;
 `;
@@ -43,14 +36,17 @@ const CartItem = ({ item, onChange, onClick }) => {
                 <span>{cart.option.optionName}</span>
               </div>
               <Option className="row">
-                <Counter
-                  onIncrease={(count) => {
-                    onChange(cart.id, count, cart.option.price);
-                  }}
-                  onDecrease={(count) => {
-                    onChange(cart.id, count, -cart.option.price);
-                  }}
-                />
+                <span className="counter">
+                  <Counter
+                    value={cart.quantity}
+                    onIncrease={(count) => {
+                      onChange(cart.id, count, cart.option.price);
+                    }}
+                    onDecrease={(count) => {
+                      onChange(cart.id, count, -cart.option.price);
+                    }}
+                  />
+                </span>
                 <div className="price">
                   <span>{comma(cart.option.price * cart.quantity)}원</span>
                 </div>
