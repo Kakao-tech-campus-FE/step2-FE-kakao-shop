@@ -33,7 +33,7 @@ const ProductOptions = ({ product }) => {
   }
 
   return (
-    <div className="flex flex-col items-center sticky top-0 h-200 pb-96 w-96">
+    <div className="flex flex-col items-center h-200 pb-96 w-96">
 
       <OptionsList 
         options={options} 
