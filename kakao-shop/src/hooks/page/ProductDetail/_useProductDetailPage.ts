@@ -14,6 +14,7 @@ import { getCookie } from '@utils/cookie';
 export const useProductDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
   const product = useSelector((state: RootState) => state.detail.product);
   const isLoading = useSelector((state: RootState) => state.detail.isLoading);
   const error = useSelector((state: RootState) => state.detail.error);
@@ -39,7 +40,7 @@ export const useProductDetail = () => {
   }, [productId, dispatch]);
 
   const onAddCart: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!getCookie('accessToken')) return setIsModal(true);
+    if (!isLogin) return setIsModal(true);
 
     if (getProductDetailRequest.length === 0) {
       Toast.show('옵션을 먼저 선택해주세요');
@@ -52,7 +53,7 @@ export const useProductDetail = () => {
   };
 
   const onNavigateCart = () => {
-    if (!getCookie('accessToken')) return setIsModal(true);
+    if (!isLogin) return setIsModal(true);
 
     navigate('/cart');
   };
