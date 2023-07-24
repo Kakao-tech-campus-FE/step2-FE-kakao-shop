@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import SubmitButton from '../atoms/SubmitButton';
-import CheckGroup from '../molecules/CheckGroup';
 import CartContainer from 'components/atoms/cart/CartContainer';
 import { useQuery, useMutation } from 'react-query';
 import getCarts from 'api/getCarts';
@@ -10,66 +9,39 @@ import strPrice from 'utils/price';
 import OptionSelected from 'components/molecules/OptionSelected';
 import updateCart from 'api/updateCart';
 import postOrder from 'api/postOrder';
+import CartOptionBox from 'components/atoms/cart/CartOptionBox';
+import CartCollectionBox from 'components/atoms/cart/CartCollectionBox';
 
 
 const Cart = () => {
   const navigate = useNavigate()
 
-  /** 장바구니 리스트 get */ 
+  /** 장바구니 객체 get */ 
   const query = useQuery(
     ["getCarts"],
     getCarts,
     {suspense: true}
   )
   
-  /** 장바구니 리스트에서 수량 0인거 빼고 구조 쉽게 */ 
-  const makeDataEasy = (original) => {
-    let q = 0
-    const newList = []
-    for (const item of original) {
-      const optionsList = []
-      for (const optionItem of item.carts) {
-        if (optionItem.quantity === 0) {continue}
-
-        optionsList.push({
-          cartId: optionItem.id, 
-          quantity: optionItem.quantity,
-          optionPrice: optionItem.price,
-          optionName: optionItem.option.optionName, 
-        })
-        q += optionItem.quantity
-      }
-      
-      if (optionsList.length === 0) {continue}
-      newList.push( {productId: item.id, productName: item.productName, options: optionsList} ) 
-    }
-    return {data:newList, quantity:q}
-  }
-
-  /** 구조 쉽게 만들고 수량 0 빼서 실제로 컴포넌트 관리할때 쓸 데이터 */
-  const [easyData, setEasyData] = useState(makeDataEasy(query.data.products).data)
-  /** 총 주문 수량 */
-  const [totalQ, setTotalQ] = useState(makeDataEasy(query.data.products).quantity)
-
-  useEffect(()=> {
-    setEasyData(prev => makeDataEasy(query.data.products).data)
-    setTotalQ(prev => makeDataEasy(query.data.products).quantity)
-  }, [query.data.products])
-
-  /** 수량 변경 요청 mutation, 보내면 장바구니 데이터를 다시 불러옴 */
   const mutation = useMutation(
     updateCart, 
     { onSuccess: () => query.refetch() }
   );
   
-  /** 수량 변경시 변경 요청 보내기 */
-  const changeCart = (cartId, q, clear=false) => {
+  /**
+   * 장바구니 업데이트
+   * @param {number} id - cartId
+   * @param {int} q - 바뀐 후 수량 
+   * @param {boolean} clear - 삭제버튼 클릭 여부 
+   * @returns 
+   */
+  const changeCart = (id, q, clear=false) => {
     if (q === 0 && !clear) return;
-    mutation.mutate( [ {cartId: cartId, quantity: q} ] )
-    console.log("update data", [ {cartId: cartId, quantity: q} ])
+    mutation.mutate( [ {cartId: id, quantity: q} ] )
+    console.log("update data", [ {cartId: id, quantity: q} ])
   }
 
-  /** 주문하기 */
+  /** 제출버튼 클릭 시 주문 요청 */
   const submitHandler = () => {
     postOrder()
     .then((res) => {
@@ -78,40 +50,65 @@ const Cart = () => {
     })
   }
 
+  /** 모음전 별 총 수량 { 모음전_id : 모음전_총_수량 } */
+  const [productsQ, setProductsQ] = useState({})
+  /** 장바구니 내부의 총 수량 */
+  const [totalQ, setTotalQ] = useState(0)
+
+  useEffect(()=> {
+    const newProductsQ = { ...productsQ }
+    let total = 0;
+
+    for (const product of query.data.products) {
+      let q = 0;
+      for (const option of product.carts) {
+        q += option.quantity
+      }
+      newProductsQ[product.id] = q 
+      total += q
+    }
+
+    setProductsQ(prev => newProductsQ)
+    setTotalQ(prev => total)
+  }, [query.data.products])
+  
+
   return (
     <CartContainer>
 
       {
-        easyData?.map((item)=> (
-          <CheckGroup key={ item.productName } id={ item.id }>
-            <div className='flex flex-col w-full'>
-            
+        query.data.products?.map((collection) => {
+          if (productsQ[collection.id] === 0) {return null}
+          return (
+          <CartCollectionBox id={ collection.id }>
               <span className='font-bold m-2'> 
-                {item.productName} 
+                {collection.productName} 
               </span>
               
-              {item.options.map((optionItem) => (
-                <div className="flex flex-col border border-solid border-gray-300 m-2 p-3">
-                  <OptionSelected 
-                    optionId={optionItem.cartId}
-                    key={optionItem.optionName} 
-                    optionName={optionItem.optionName} 
-                    price={strPrice(optionItem.optionPrice)}
-                    quantity={optionItem.quantity}
-                    changeQuantity={changeCart}
-                    clear={() => {changeCart(optionItem.cartId, 0, true)}}
-                  />
-                </div>
-              ))}
-            </div>
-            
-          </CheckGroup> 
-        ))
+              {collection.carts.map((optionItem) => (
+                optionItem.quantity === 0 
+                ? null 
+                : <CartOptionBox>
+                    <OptionSelected 
+                      optionId={optionItem.id}
+                      key={optionItem.option.optionName} 
+                      optionName={optionItem.option.optionName} 
+                      price={strPrice(optionItem.price)}
+                      quantity={optionItem.quantity}
+                      changeQuantity={changeCart}
+                      clear={() => {changeCart(optionItem.id, 0, true)}}
+                    />
+                  </CartOptionBox> 
+                ))
+              }
+
+          </CartCollectionBox> )
+        })
       }
       
       <TotalPrice 
-        price={strPrice(query.data.totalPrice)} 
-        quantity={totalQ}
+          price={!query.isFetching ? strPrice(query.data.totalPrice) : "- 원"} 
+          quantity={totalQ}
       />
 
       <SubmitButton onClick={submitHandler}> 
