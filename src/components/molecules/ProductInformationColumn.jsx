@@ -5,6 +5,7 @@ import styled from "styled-components";
 const ProductInfoColumn = styled.div`
   display: flex;
   width: 50rem;
+  margin-right: 5rem;
 `;
 
 const ProductColumn = styled.div`
