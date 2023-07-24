@@ -3,12 +3,12 @@ import OptionContainer from '../atoms/option/OptionContainer'
 import OptionListBox from 'components/atoms/option/OptionListBox'
 import OptionItem from 'components/molecules/OptionItem'
 import SubmitButton from 'components/atoms/SubmitButton'
-import TotalPrice from 'components/atoms/option/TotalPrice'
+import TotalPrice from 'components/molecules/TotalPrice'
 import OptionSelected from 'components/molecules/OptionSelected'
 import strPrice from 'utils/price'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useSelector } from 'react-redux';
-import addToCart from 'api/addToCart'
+import { addToCart } from 'api/cart'
 import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
 import { useToast } from 'components/molecules/Toast'
 
