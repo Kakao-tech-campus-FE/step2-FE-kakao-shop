@@ -49,7 +49,7 @@ const mainRouter = () =>
               element: <CartPage />,
             },
             {
-              path: '404',
+              path: '*',
               element: <PNFPage />,
             },
           ],

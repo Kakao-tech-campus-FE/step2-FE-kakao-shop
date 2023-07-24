@@ -15,7 +15,7 @@ const ProductDetailPage = () => {
   return (
     <>
       {isLoading && <Loader />}
-      {error && navigate(-1)}
+      {error && navigate('/404')}
       {product && <ProductDetailTemplate product={product} />}
     </>
   );
