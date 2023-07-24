@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Button, CustomSuspense, Photo } from '@components/atom';
+import LoginModal from '@components/molecules/LoginModal';
 import PageLoader from '@components/molecules/PageLoader';
 import DeliveryInfo from '@components/page/Detail/DeliveryInfo';
 import OptionListSection from '@components/page/Detail/OptionListSection';
@@ -16,8 +17,17 @@ import { comma } from '@utils/comma';
 
 const Detail = () => {
   const {
-    state: { isLoading, error, product, options, totals, isOpenList },
-    handler: { onSelectOption, onDeleteOption, onIncreaseQuantity, onDecreaseQuantity, onToggle, onAddCart },
+    state: { isLoading, error, product, options, totals, isOpenList, isModal },
+    handler: {
+      onSelectOption,
+      onDeleteOption,
+      onIncreaseQuantity,
+      onDecreaseQuantity,
+      onToggle,
+      onAddCart,
+      onClose,
+      onConfirm,
+    },
   } = useOptionForm();
 
   return (
@@ -56,6 +66,7 @@ const Detail = () => {
           <PurchaseButtons onAddCart={onAddCart} />
         </S.OptionCotainer>
       </S.LayoutSplit>
+      <LoginModal visible={isModal} onClose={onClose} onConfirm={onConfirm} />
     </CustomSuspense>
   );
 };

@@ -2,7 +2,7 @@ import { addCartItemAction, getProductDetailRequestAction } from '@store/Detail/
 import { RootState } from '@store/index';
 import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Option, Totals } from 'types/product';
 import type { UserSelectOption } from 'types/product';
 
@@ -10,7 +10,10 @@ import { Toast } from '@components/atom';
 
 import { useToggle } from '@hooks/@common';
 
+import { getCookie } from '@utils/cookie';
+
 export const useOptionForm = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const product = useSelector((state: RootState) => state.detail.product);
   const isLoading = useSelector((state: RootState) => state.detail.isLoading);
@@ -19,6 +22,7 @@ export const useOptionForm = () => {
   const { id: productId } = useParams();
   const [isOpenList, setIsOpenList, onToggle] = useToggle(false);
   const [options, setOptions] = useState<UserSelectOption[] | undefined>();
+  const [isModal, setIsModal] = useToggle(false);
 
   const totals = options?.reduce(calculateTotal, {
     quantity: 0,
@@ -64,6 +68,8 @@ export const useOptionForm = () => {
     };
 
   const onAddCart: MouseEventHandler<HTMLButtonElement> = () => {
+    if (!getCookie('accessToken')) return setIsModal(true);
+
     if (getProductDetailRequest.length === 0) {
       Toast.show('옵션을 먼저 선택해주세요');
       return;
@@ -75,6 +81,14 @@ export const useOptionForm = () => {
     Toast.show('장바구니에 담겼습니다');
   };
 
+  const onClose = () => {
+    setIsModal(false);
+  };
+
+  const onConfirm = () => {
+    navigate('/login');
+  };
+
   return {
     state: {
       isLoading,
@@ -83,6 +97,7 @@ export const useOptionForm = () => {
       options,
       totals,
       isOpenList,
+      isModal,
     },
     handler: {
       onSelectOption,
@@ -91,6 +106,8 @@ export const useOptionForm = () => {
       onDecreaseQuantity,
       onToggle,
       onAddCart,
+      onClose,
+      onConfirm,
     },
   };
 };

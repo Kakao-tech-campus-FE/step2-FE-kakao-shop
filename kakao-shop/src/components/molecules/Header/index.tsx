@@ -68,7 +68,7 @@ const S = {
     left: 0;
     right: 0;
     top: 0;
-    z-index: 11000;
+    z-index: 999;
 
     border-bottom: 1px solid #e5e5e5;
     background-color: #fff;
