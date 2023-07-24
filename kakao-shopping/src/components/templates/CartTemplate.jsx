@@ -2,6 +2,7 @@ import { getCart } from "../../apis/api";
 import CartItemNumForm from "../organisms/CartItemNumForm";
 import { useQuery } from "react-query";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import GNB from "./GNB";
 
 const CartTemplate = () => {
@@ -12,6 +13,7 @@ const CartTemplate = () => {
     setTotalPrice(cart.data.response.totalPrice);
   }, [cart])
 
+  const navigate = useNavigate();
   if(isError) return (<div>error</div>);
   const cartList = cart?.data.response.products.map((item) => {
     const optionDetails = item.carts;
@@ -35,7 +37,7 @@ const CartTemplate = () => {
   })
 
   const handleBuyClick = () => {
-    // 결제 페이지로 넘어가기
+    navigate('/order');
   }
 
   return (
