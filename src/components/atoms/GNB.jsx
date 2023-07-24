@@ -18,7 +18,7 @@ function GNB() {
     dispatch(logoutUser());
     localStorage.removeItem("token");
     alert("정상적으로 로그아웃 되었습니다.");
-    navigate("/main");
+    navigate("/");
   };
 
   useEffect(() => {
@@ -30,14 +30,14 @@ function GNB() {
   return (
     <header className="header">
       <div className="contents">
-        <Link to="/main">
-          <img className="logo" src={logo} alt="logokakao.png" height={30} />
+        <Link to="/ ">
+          <img className="logo" src={logo} alt="카카오 쇼핑 로고" height={30} />
         </Link>
         <nav>
           <div className="navigation">
             <span>
-              <Link to="/cart">
-                <img src={cart} alt="cart.png" height={30} />
+              <Link to="/carts">
+                <img src={cart} alt="장바구니 버튼" height={30} />
               </Link>
             </span>
             <span>|</span>

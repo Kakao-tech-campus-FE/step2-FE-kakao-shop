@@ -24,6 +24,7 @@ const LoginForm = (props) => {
         email: email,
         password: password,
       });
+
       if (response.data.success === true) {
         // 성공적으로 로그인한 경우 메인 페이지로 이동
         dispatch(
@@ -32,16 +33,18 @@ const LoginForm = (props) => {
             username: user.username,
           })
         );
-        navigate("/main");
+        navigate("/");
+        // 메인 페이지로 이동
       } else {
         // 로그인 실패 처리
-        console.error("Login failed");
+        console.error("로그인 실패");
       }
     } catch (error) {
       // 오류 처리
       console.error(error);
+
       // 로그인 요청 실패 처리
-      console.error("Login request failed");
+      console.error("로그인 요청이 실패하였습니다.");
     }
   };
 

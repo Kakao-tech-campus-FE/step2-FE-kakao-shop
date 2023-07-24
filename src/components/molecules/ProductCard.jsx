@@ -4,7 +4,7 @@ import Photo from "../atoms/Photo";
 
 const ProductCard = ({ product }) => {
   return (
-    <Card className="card" to={`/product${product.id}`}>
+    <Card className="card" to={`/product/${product.id}`}>
       <Photo
         className="photo"
         src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
