@@ -18,6 +18,10 @@ export default function ProductOption({ product }) {
   const navigate = useNavigate();
 
   const handleOptionClick = (option) => {
+    if (!window.localStorage.getItem("token"))
+      if (window.confirm("로그인이 필요한 메뉴입니다.\n로그인 하시겠습니까?"))
+        navigate("/login");
+      else return;
     if (selectedOptions.find((opt) => opt.id === option.id)) {
       alert("이미 선택된 옵션입니다.");
     } else
@@ -44,6 +48,10 @@ export default function ProductOption({ product }) {
   };
 
   const handleCartClick = () => {
+    if (!window.localStorage.getItem("token"))
+      if (window.confirm("로그인이 필요한 메뉴입니다.\n로그인 하시겠습니까?"))
+        navigate("/login");
+      else return;
     if (selectedOptions.length === 0) {
       alert("옵션을 먼저 선택해주세요.");
       return;
@@ -60,6 +68,10 @@ export default function ProductOption({ product }) {
   };
 
   const handleBuyClick = () => {
+    if (!window.localStorage.getItem("token"))
+      if (window.confirm("로그인이 필요한 메뉴입니다.\n로그인 하시겠습니까?"))
+        navigate("/login");
+      else return;
     if (selectedOptions.length === 0) {
       alert("옵션을 먼저 선택해주세요.");
       return;
