@@ -64,6 +64,7 @@ export const homeReducer = produce((draft: Draft<HomeState>, action: HomeActions
       draft.isLoading = false;
       draft.products = [];
       draft.error = null;
+      draft.page = 0;
       break;
 
     case SET_PAGE_STATE:

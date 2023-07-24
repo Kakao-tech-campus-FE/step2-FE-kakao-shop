@@ -31,6 +31,7 @@ const Home = () => {
     return new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         if (isLoading) return;
+        if (page >= 2) return;
         dispatch(setPageStateAction(page + 1));
       }
     });
