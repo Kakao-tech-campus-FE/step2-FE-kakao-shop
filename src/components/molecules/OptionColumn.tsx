@@ -7,6 +7,7 @@ import FilledButton from '@components/atoms/button/FilledButton';
 import comma from '@utils/commaUtils';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 
 interface OptionColumnProps {
   product: ProductInfoData;
@@ -21,6 +22,7 @@ type DictionaryItem = {
 
 const OptionColumn = ({ product }: OptionColumnProps) => {
   const [selectedOptions, setSelectedOptions] = useState<DictionaryItem[]>([]);
+  const navigate = useNavigate();
 
   const handleOnClickOption = (option: ProductOptionData) => {
     // 이미 선택된 옵션의 선택 방지
@@ -98,7 +100,7 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
               원
             </span>
           </div>
-          <div className="flex justify-end mt-10">
+          <div className="flex justify-end mt-10 space-x-3">
             {/* 장바구니 담기 버튼 */}
             <FilledButton
               onClick={() => {
@@ -121,6 +123,29 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
               }}
             >
               장바구니 담기
+            </FilledButton>
+            <FilledButton
+              onClick={() => {
+                mutate(
+                  selectedOptions.map((el) => {
+                    return {
+                      optionId: el.optionId,
+                      quantity: el.quantity,
+                    };
+                  }),
+                  {
+                    onSuccess: () => {
+                      alert('장바구니 담기 성공');
+                    },
+                    onError: () => {
+                      alert('장바구니 담기 실패');
+                    },
+                  },
+                );
+                navigate('/cart');
+              }}
+            >
+              구매
             </FilledButton>
           </div>
         </div>
