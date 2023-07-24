@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
 import { signOutAction } from '@store/Login/reducers';
+import { RootState } from '@store/index';
 import hideWithA11y from '@styles/a11y';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const { isLogin } = useSelector((state: any) => state.signIn);
+  const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
   const dispatch = useDispatch();
 
   return (

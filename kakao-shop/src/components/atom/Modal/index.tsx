@@ -8,17 +8,17 @@ import { useOnClickOutside } from '@hooks/@common/useOnClickOutside';
 
 export type ModalProps = {
   visible: boolean;
-  onClose: () => void;
+  onModalClose: () => void;
 };
 
-const Modal = ({ children, visible = false, onClose }: PropsWithChildren<ModalProps>) => {
+const Modal = ({ children, visible = false, onModalClose }: PropsWithChildren<ModalProps>) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const element = useMemo(() => {
     return document.createElement('div');
   }, []);
 
-  useOnClickOutside(ref, onClose);
+  useOnClickOutside(ref, onModalClose);
 
   useEffect(() => {
     if (!visible) return;

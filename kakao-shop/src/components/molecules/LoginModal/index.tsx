@@ -6,12 +6,12 @@ import Modal from '@components/atom/Modal';
 import type { ModalProps } from '@components/atom/Modal';
 
 type Props = ModalProps & {
-  onConfirm?: () => void;
+  onModalConfirm?: () => void;
 };
 
-const LoginModal = ({ visible = false, onClose, onConfirm }: Props) => {
+const LoginModal = ({ visible = false, onModalClose, onModalConfirm }: Props) => {
   return (
-    <Modal visible={visible} onClose={onClose}>
+    <Modal visible={visible} onModalClose={onModalClose}>
       <S.Body>
         <S.Text>
           <span>로그인이 필요한 메뉴입니다.</span>
@@ -21,10 +21,10 @@ const LoginModal = ({ visible = false, onClose, onConfirm }: Props) => {
       </S.Body>
 
       <S.ButtonContainer>
-        <Button onClick={onClose} css={S.ButtonCSS}>
+        <Button onClick={onModalClose} css={S.ButtonCSS}>
           취소
         </Button>
-        <Button onClick={onConfirm} css={S.ButtonCSS}>
+        <Button onClick={onModalConfirm} css={S.ButtonCSS}>
           확인
         </Button>
       </S.ButtonContainer>
