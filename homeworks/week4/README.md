@@ -54,7 +54,7 @@
 
 ### 구현 영상
 
-https://github.com/Kakao-tech-campus-FE/step2-FE-kakao-shop/assets/104095041/6474c746-dbc2-4bed-a5bd-5148e890e648
+https://github.com/kimchanho97/step2-FE-kakao-shop/assets/104095041/a465a7c3-b7e3-4150-b03d-f5857d701fcc
 
 ### 라이브러리
 
