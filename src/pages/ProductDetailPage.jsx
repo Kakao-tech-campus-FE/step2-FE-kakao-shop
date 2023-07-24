@@ -22,11 +22,37 @@ const ProductDetailPage = () => {
 
   const product = data?.data?.response;
 
+  const validate = () => {
+    if (!product) {
+      return false;
+    }
+
+    const requiredKeys = ["id", "productName"];
+
+    const keys = Object.keys(product);
+    for (let i = 0; i < requiredKeys.length; i++) {
+      const requiredKey = requiredKeys[i];
+      if (!keys.includes(requiredKey)) {
+        alert(`product 객체에 ${requiredKey}가 존재하지 않습니다.`);
+        return false;
+      }
+      return true;
+    }
+  };
+
+  const isValidProduct = validate();
+
   return (
     <>
       <Gnb />
       <Container>
-        {isLoading ? <Loader /> : <ProductDetailTemplate product={product} />}
+        {isLoading ? (
+          <Loader />
+        ) : isValidProduct ? (
+          <ProductDetailTemplate product={product} />
+        ) : (
+          <p>Invalid Data</p>
+        )}
         {error && <div>{error.message}</div>}
       </Container>
     </>
