@@ -23,9 +23,9 @@ function App() {
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
             <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/order" element={<OrderPage />} />
+            <Route path="/order" element={<OrderPage />}></Route>
           </Route>
-          <Route path="/error" element={<ErrorPage />} />
+          <Route path="/error" element={<ErrorPage />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
