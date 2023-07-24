@@ -4,7 +4,10 @@ import ProductGrid from "../organisms/ProductGrid";
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from "../../store/slices/productSlice";
 import { useState, useRef } from "react";
+<<<<<<< HEAD
 import SkeletonElement from "../skeleton/SkeletonElement";
+=======
+>>>>>>> fb7870df0 (test)
 
 const MainProductTemplate = () => {
     const [page, setPage] = useState(0);
@@ -48,7 +51,10 @@ const MainProductTemplate = () => {
 
             <ProductGrid products={products} />
             <div ref={bottomObserver}></div>
+<<<<<<< HEAD
             <Suspense fallback={<SkeletonElement />}></Suspense>
+=======
+>>>>>>> fb7870df0 (test)
 
         </Container>
     );

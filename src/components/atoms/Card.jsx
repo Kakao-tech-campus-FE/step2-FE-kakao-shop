@@ -16,5 +16,5 @@ const Card = ({ to, children }) => {
 
     );
 };
-//이번주 과제
+//이번주 과제!
 export default Card;
