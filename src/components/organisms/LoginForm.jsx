@@ -12,11 +12,15 @@ import { useNavigate } from 'react-router-dom';
 =======
 import { login } from "../../services";
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f34aae79a (feat:Components)
 import Question from "../atoms/Question";
 =======
 import Question from "../atoms/question";
 >>>>>>> e3a7bc3e1 (feat:src)
+=======
+import Question from "../atoms/Question";
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 import { useState, useEffect } from "react";
 import { emailCheck, passwordCheck } from "../../services/regex";
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,6 +34,7 @@ const LoginForm = () => {
 
     // redux에서 값을 가져올때는 useSelector라는 훅을 사용한다.
     // 여기에서 사용하는 state는 모든 변수를 다담고 있는 state이다.
+<<<<<<< HEAD
 
     // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다
 
@@ -39,6 +44,11 @@ const LoginForm = () => {
 =======
 const LoginForm = () => {
 >>>>>>> 65d8880e3 (feat:JWT token)
+=======
+    // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다!
+    const email = useSelector((state) => state.user.email);
+
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
     const navigate = useNavigate();
     const { valueInit, handleOnChange } = useInput(
         {
@@ -57,6 +67,7 @@ const LoginForm = () => {
 =======
 =======
 
+<<<<<<< HEAD
 >>>>>>> f34aae79a (feat:Components)
     const loginCheck = (data) => {
         login(data).then((res) => {
@@ -69,6 +80,10 @@ const LoginForm = () => {
             });
     };
 >>>>>>> 65d8880e3 (feat:JWT token)
+=======
+    // const dispatch = useDispatch();
+    // let email = useSelector((state) => state.user.email,);
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 
 
     let emails = useSelector((state) => state.user.email,);
@@ -113,6 +128,7 @@ const LoginForm = () => {
 
                 <Button
                     onClick={(e) => {
+<<<<<<< HEAD
 
                         console.log(valueInit.email);
                         console.log(valueInit.password);
@@ -125,6 +141,12 @@ const LoginForm = () => {
 
                         else if (isEmail && isPassword) {
 
+=======
+                        //e.preventDefault();
+                        if (isEmail && isPassword) {
+                            console.log(valueInit.email);
+                            console.log(valueInit.password);
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
                             dispatch(loginRequest({
                                 email: valueInit.email,
                                 password: valueInit.password,
@@ -139,6 +161,9 @@ const LoginForm = () => {
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 const LogoStyle = styled.h1`
     display: flex;
     justify-content: center;
@@ -149,7 +174,11 @@ const LogoStyle = styled.h1`
 `
 
 
+<<<<<<< HEAD
 export default LoginForm;
 =======
 export default LoginForm;
 >>>>>>> 65d8880e3 (feat:JWT token)
+=======
+export default LoginForm;
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)

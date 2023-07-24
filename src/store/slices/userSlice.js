@@ -25,9 +25,13 @@ const userSlice = createSlice({
         }
     },
 <<<<<<< HEAD
+<<<<<<< HEAD
     // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
 =======
 >>>>>>> 8357dd219 (feat:Add redux)
+=======
+    // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
     extraReducers: (builder) => {
         builder.addCase(loginRequest.pending, (state, action) => {
             state.loading = true;
@@ -54,6 +58,7 @@ export const loginRequest = createAsyncThunk(
         //if (typeof email !== 'string' {throw new Error('이메일 형식 틀림')})
 
         const response = await login({ email, password });
+<<<<<<< HEAD
 <<<<<<< HEAD
 
         if (response.status === 200) {
@@ -84,10 +89,34 @@ export default userSlice.reducer;
             email: email,
             token: response.headers.authorization,
         };
+=======
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 
-    }
-)//로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
+        if (response.status === 200) {
+            alert('로그인성공')
+                .then(() => {
+
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("token", response.headers.authorization);
+
+                })
+                .then(() => {
+                    window.location.href = "/home";
+                })
+
+            return {
+                email: email,
+                token: response.headers.authorization,
+            };
+
+        }
+    })
+//로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
 
 export const { setEmail } = userSlice.actions;
+<<<<<<< HEAD
 export default userSlice.reducers;
 >>>>>>> 8357dd219 (feat:Add redux)
+=======
+export default userSlice.reducer;
+>>>>>>> 8fb34fe01 (feat:주석 처리 추가)
