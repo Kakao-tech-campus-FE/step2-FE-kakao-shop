@@ -1,7 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+<<<<<<< HEAD
 
 import { login } from "../../services/user";
 
+=======
+import { login } from "../../services/index";
+>>>>>>> 8357dd219 (feat:Add redux)
 
 //redux saga + react reduc : redux tookit 없이 쓰는 법. 툴킷 안쓰는 회사도 많음
 
@@ -20,7 +24,10 @@ const userSlice = createSlice({
             state.email = action.payload.email;
         }
     },
+<<<<<<< HEAD
     // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
+=======
+>>>>>>> 8357dd219 (feat:Add redux)
     extraReducers: (builder) => {
         builder.addCase(loginRequest.pending, (state, action) => {
             state.loading = true;
@@ -47,6 +54,7 @@ export const loginRequest = createAsyncThunk(
         //if (typeof email !== 'string' {throw new Error('이메일 형식 틀림')})
 
         const response = await login({ email, password });
+<<<<<<< HEAD
 
         if (response.status === 200) {
             alert('로그인성공')
@@ -71,3 +79,15 @@ export const loginRequest = createAsyncThunk(
 
 export const { setEmail } = userSlice.actions;
 export default userSlice.reducer;
+=======
+        return {
+            email: email,
+            token: response.headers.authorization,
+        };
+
+    }
+)//로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
+
+export const { setEmail } = userSlice.actions;
+export default userSlice.reducers;
+>>>>>>> 8357dd219 (feat:Add redux)
