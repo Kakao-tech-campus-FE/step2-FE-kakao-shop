@@ -1,9 +1,9 @@
-import ProductSection from "components/templates/ProductSection.js";
+import ProductSections from "components/templates/ProductsSection.js";
 
 export default function Products() {
   return (
-    <>
-      <ProductSection />
-    </>
+    <div className="min-h-screen pt-16 pb-32">
+      <ProductSections />
+    </div>
   );
 }

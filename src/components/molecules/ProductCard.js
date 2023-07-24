@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
         alt={product.productName}
       />
       <h3 className="product-h3">{product.productName}</h3>
-      <p className="product-p">{convertToPrice(product.price)}</p>
+      <p className="product-p">{convertToPrice(product.price)}~</p>
     </Card>
   );
 }

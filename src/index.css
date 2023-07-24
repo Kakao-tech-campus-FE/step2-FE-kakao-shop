@@ -1,15 +1,7 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Apple SD Gothic Neo, Malgun Gothic, \b9d1\c740\ace0\b515,
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #fff;
-  color: #000;
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-a {
-  text-decoration: none;
-  color: inherit;
+img {
+  display: inline-block;
 }
