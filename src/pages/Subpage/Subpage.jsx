@@ -26,10 +26,10 @@ const breadcrumbLinks = ["Home", "Products", "Category", "Product Name"];
 function Subpage() {
   return (
     <div>
-      <h1>Carousel</h1>
+      {/* <h1>Carousel</h1>
       <Carousel images={mainCarouselImages} texts={mainCarouselTexts} />
       <h1>Breadcrumb</h1>
-      <Breadcrumb links={breadcrumbLinks} />
+      <Breadcrumb links={breadcrumbLinks} /> */}
     </div>
   );
 }

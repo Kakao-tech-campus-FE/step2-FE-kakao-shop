@@ -1,29 +1,29 @@
 import { useEffect, useState } from "react";
-import Toast from "../../components/Toast/Toast";
+import Toast from "../../components/Toast/Dialog";
 import Radio from "../../components/Radio/Radio";
-import Toggle from "../../components/Toggle/Toggle";
+import Toggle from "../../components/Toggle/ToggleButton";
 import CheckBox from "../../components/CheckBox/CheckBox";
 import "./Mainpage.css";
 
-const payOptions = [
-  { label: "카카오페이머니", value: "payMoney" },
-  { label: "카카오페이카드", value: "payCard" },
-];
-const receiptOptions = [
-  { label: "현금영수증 발급신청", value: "cashReceipt" },
-  { label: "발급안함", value: "noReceipt" },
-];
-const conditionOptions = [
-  {
-    label: "카카오페이 결제조건 및 개인정보 제3자 제공 동의",
-    value: "kakaoPay",
-  },
-  { label: "개인정보 제3자 제공 동의", value: "privateInfo" },
-];
 const allCondition = {
   label: "전체 동의하기",
   value: "allCondition",
 };
+const conditionOptions = [
+  {
+    label: "카카오페이 결제조건 및 개인정보 제3자 제공 동의",
+    id: "kakaoPay",
+  },
+  { label: "개인정보 제3자 제공 동의", id: "privateInfo" },
+];
+const payOptions = [
+  { label: "카카오페이머니", id: "payMoney" },
+  { label: "카카오페이카드", id: "payCard" },
+];
+const receiptOptions = [
+  { label: "현금영수증 발급신청", id: "cashReceipt" },
+  { label: "발급안함", id: "noReceipt" },
+];
 
 function Mainpage() {
   const [isPayCondShowToast, setIsPayCondShowToast] = useState(false);
@@ -120,7 +120,7 @@ function Mainpage() {
       </button>
       <div className="toggle-text">
         <p>Toggle Btn</p>
-        <Toggle className="toggle" onChange={handleToggle} value="toggleBtn" />
+        <Toggle onChange={handleToggle} value="toggleBtn" />
       </div>
     </div>
   );

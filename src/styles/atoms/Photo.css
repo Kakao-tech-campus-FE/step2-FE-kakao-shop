@@ -1,13 +1,20 @@
-picture.card {
-  width: 200px;
-}
-
 /* picture의 크기를 상속 */
 picture > img {
   width: inherit;
 }
 
+picture.card {
+  width: 200px;
+}
 img.card {
   width: 100%;
   max-width: 360px;
+}
+
+picture.detail-photo {
+  width: 430px;
+}
+img.detail-photo {
+  width: 100%;
+  max-width: 500px;
 }
