@@ -4,7 +4,6 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import routes from './routes';
 import ProductDetailPage from '../pages/ProductDetailPage';
-
 import SkeletonPage from '../components/skeleton/SkeletonPage';
 
 export const RouterInfo = [

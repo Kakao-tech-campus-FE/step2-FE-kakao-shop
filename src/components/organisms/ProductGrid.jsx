@@ -2,7 +2,6 @@ import ProductCard from "../molecules/ProductCard";
 import styled from 'styled-components'
 import SkeletonElement from "../skeleton/SkeletonElement";
 
-
 const GridCss = styled.div`
   display:grid;
   grid-template-columns: repeat(4,1fr);
@@ -17,7 +16,6 @@ const ProductGrid = ({ products }) => {
     //     console.log(product)
     // })
     return (
-
         <>
             <GridCss>
                 {products ?

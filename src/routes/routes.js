@@ -6,6 +6,7 @@ const routes = {
     cart: "/cart",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     productDetail: `/product/:id`,
     skeletonTest: `/skeleton-test`
 =======
@@ -15,6 +16,10 @@ const routes = {
     productDetail: `/product/:id`,
     skeletonTest: `/skeleton-test`
 >>>>>>> 02ab4daca (feat:Add skeleton)
+=======
+    productDetail: `/product/:id`,
+    skeletonTest: `/skeleton-test`
+>>>>>>> 019244ba4c2d3c747e642389225afaee80dd780c
 };
 
 export default routes;

@@ -3,7 +3,6 @@ import userReducer from "./slices/userSlice";
 import productReducer from './slices/productSlice';
 import detailReducer from "./slices/detailSlice";
 
-
 //모든 리덕스 파일이 저장되는 기준이 되는 스토어 파일
 
 //툴킷 쓰면 리덕스 파일 간결해짐.
