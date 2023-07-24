@@ -1,6 +1,5 @@
 import React from "react";
 import Input from "../atoms/Input";
-import Label from "../atoms/Label";
 import Box from "../atoms/Box";
 
 /**
@@ -8,7 +7,6 @@ import Box from "../atoms/Box";
  * @param id
  * @param name input name
  * @param type input type
- * @param label label 텍스트
  * @param placeholder input창 hint
  * @param value
  * @param onChange onChange 핸들러함수
@@ -19,19 +17,16 @@ export default function InputGroup({
   id,
   name,
   type,
-  label,
   placeholder,
   value,
   onChange,
   onBlur,
+  onKeyDown,
 }) {
   return (
-    <Box className="mt-5">
-      <Label htmlFor={id} className=" font-semibold ">
-        {label}
-      </Label>
+    <Box className="">
       <Input
-        className=" block  w-full box-border mt-2 h-8 "
+        className=" w-full box-border h-10 border-solid border-zinc-300 border-0 border-b-2 focus:border-black focus:outline-none text-lg"
         id={id}
         name={name}
         type={type}
@@ -39,6 +34,7 @@ export default function InputGroup({
         onChange={onChange}
         placeholder={placeholder}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
       />
     </Box>
   );

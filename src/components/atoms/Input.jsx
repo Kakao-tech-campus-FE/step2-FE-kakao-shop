@@ -21,6 +21,7 @@ export default function Input({
   name,
   onBlur,
   className = "",
+  onKeyDown,
 }) {
   return (
     <input
@@ -32,6 +33,7 @@ export default function Input({
       onChange={onChange}
       onBlur={onBlur}
       placeholder={placeholder}
+      onKeyDown={onKeyDown}
     />
   );
 }

@@ -6,7 +6,7 @@ import "../../styles/atoms/Footer.css";
  */
 export default function Footer() {
   return (
-    <div className="ng-star-inserted w-full min-w-[1280px]">
+    <div className="ng-star-inserted w-full min-w-[1280px] ">
       <div id="kakaoFoot" className="pc_footer">
         <div className="inner_foot">
           <h3 className="tit_logo">
