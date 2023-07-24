@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useSelector,useDispatch } from "react-redux"
 import { setEmail } from "../../store/slices/userSlice"
 
@@ -70,29 +70,31 @@ const GNB = () => {
   return (
     <header className="fixed top-0 left-0 p-5 bg-white border-b border-gray-300 flex items-center inner">
       <div style={{width :'2000px'}} className='ml-20 md:flex items-center '>
-      <img className="h-10 inline cursor-pointer mr-4" src="/logoKakao.png" alt="logoKakao"/>
+      <Link to='/'>
+        <img className="h-10 inline cursor-pointer mr-4" src="/logoKakao.png" alt="logoKakao"/>
+      </Link>
       <nav>
         <ul className = "flex space-x-4">
           <li>
-            <a href="/" className="text-black text-xl hover:underline text-black-200">홈</a>
+            <Link to="/" className="text-black text-xl hover:underline text-black-200">홈</Link>
           </li>
           <li>
-            <a href="#" className="text-black text-xl hover:underline text-black-200">브랜드데이</a>
+            <Link to="#" className="text-black text-xl hover:underline text-black-200">브랜드데이</Link>
           </li>
           <li>
-            <a href="#" className="text-black text-xl hover:underline text-black-200">베스트</a>
+            <Link to="#" className="text-black text-xl hover:underline text-black-200">베스트</Link>
           </li>
           <li>
-            <a href="#" className="text-black text-xl hover:underline text-black-200">라이브</a>
+            <Link to="#" className="text-black text-xl hover:underline text-black-200">라이브</Link>
           </li>
           <li>
-            <a href="#" className="text-black text-xl hover:underline text-black-200">기획전</a>
+            <Link to="#" className="text-black text-xl hover:underline text-black-200">기획전</Link>
           </li>
         </ul>
       </nav>
     
       <div className="flex flex-1 justify-end space-x-4 ">
-        <img src="/cart.png" style={{width:'30px'}} alt="장바구니 아이콘"/>
+        <Link to='/carts'><img src="/cart.png" style={{width:'30px'}} alt="장바구니 아이콘"/></Link>
         {renderAuthLink()}
       </div>
       </div>
