@@ -3,7 +3,6 @@ import { useQuery } from "react-query";
 import { getProductById } from "../services/product";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
-import styles from "./ProductDetailPage.module.css"
 
 const ProductDetailPage = () => {
     const { id } = useParams();
@@ -13,11 +12,10 @@ const ProductDetailPage = () => {
     if(error) return <div>{error.message}</div>
 
     return (
-        <div className={styles.product_detail_page}>
+        <div className="flex w-[1280px] mx-auto">
             <ProductDetailTemplate product={data?.data?.response}/>
         </div>
     );
-
 }
 
 export default ProductDetailPage;
