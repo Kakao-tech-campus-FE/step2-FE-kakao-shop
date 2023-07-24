@@ -29,9 +29,10 @@ module.exports = {
         card: '50px',
       },
       colors: {
+        backgroundPupple: '#f2f0f9',
         pointPupple: '#A50FFF',
+        lightPupple: '#fcfbfe',
         middleGray: '#979797',
-        lightPupple: '#f2f0f9',
         subGray: '#F0F0F0',
         subRed: '#dc3232',
         subOrange: '#f05800',
