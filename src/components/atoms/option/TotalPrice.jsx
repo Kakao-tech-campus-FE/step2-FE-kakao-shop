@@ -2,17 +2,26 @@ import React from 'react'
 
 const TotalPrice = (props) => {
   return (
-    <div className='flex flex-row items-center'>
-        <span>{` 총 수량 ${props.quantity ? props.quantity : 0} 개`}</span>
-        <span className='ml-auto'> 총 주문 금액</span>
-        <span className='ml-2
-                        text-lg
+    <div className='flex'>
+        <div className='flex space-x-1 items-center'>
+          <div>총 수량</div>
+          <div className='min-w-[0.4rem]'>{props.quantity}</div>
+          <div>개</div>
+        </div>
+
+
+
+        <div className='flex space-x-2 ml-auto items-center'>
+          <div>총 주문 금액</div>
+          <div className='min-w-[5rem] ml-2
+                        text-lg text-right
                         text-orange-600 
                         font-extrabold 
-        '>
+          '>
             {props.price}
-        </span>
-    
+          </div>
+        </div>
+
     </div>
   )
 }
