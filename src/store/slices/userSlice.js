@@ -1,21 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 import { login } from "../../services/user";
-<<<<<<< HEAD
 
-=======
-import { login } from "../../services/index";
->>>>>>> 8357dd219 (feat:Add redux)
-=======
-import { login } from "../../services/user";
->>>>>>> b3e9a4d9d (feat-AddStore)
 
-=======
-import Swal from "sweetalert2";
-import routes from "../../routes/routes";
->>>>>>> a71dbb36f (add detailPage,loading,404)
 //redux saga + react reduc : redux tookit 없이 쓰는 법. 툴킷 안쓰는 회사도 많음
 
 const initialState = {
@@ -33,14 +20,7 @@ const userSlice = createSlice({
             state.email = action.payload.email;
         }
     },
-<<<<<<< HEAD
-<<<<<<< HEAD
     // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
-=======
->>>>>>> 8357dd219 (feat:Add redux)
-=======
-    // extraReducers에서는 파라미터로 builder라는 것을 받는다. 
->>>>>>> 8fb34fe01 (feat:주석 처리 추가)
     extraReducers: (builder) => {
         builder.addCase(loginRequest.pending, (state, action) => {
             state.loading = true;
@@ -67,41 +47,6 @@ export const loginRequest = createAsyncThunk(
         //if (typeof email !== 'string' {throw new Error('이메일 형식 틀림')})
 
         const response = await login({ email, password });
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-        if (response.status === 200) {
-            Swal.fire({
-                icon: 'success',
-                title: '로그인 성공!',
-                text: '홈 화면으로 이동합니다',
-                confirmButtonColor: '#429f50',
-            }).then(result => {
-                if (result.isConfirmed) {
-                    localStorage.setItem("email", email);
-                    localStorage.setItem("token", response.headers.authorization);
-                    window.location.href = routes.home;
-                }
-            })
-        }
-        return {
-            email: email,
-            token: response.headers.authorization,
-        };
-
-    }
-)
-//로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
-
-export const { setEmail } = userSlice.actions;
-export default userSlice.reducer;
-=======
-        return {
-            email: email,
-            token: response.headers.authorization,
-        };
-=======
->>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 
         if (response.status === 200) {
             alert('로그인성공')
@@ -125,9 +70,4 @@ export default userSlice.reducer;
 //로그인에 대한 비동기 요청을 컴포넌트에서 진행했는데 , 여기서 비동기 
 
 export const { setEmail } = userSlice.actions;
-<<<<<<< HEAD
-export default userSlice.reducers;
->>>>>>> 8357dd219 (feat:Add redux)
-=======
 export default userSlice.reducer;
->>>>>>> 8fb34fe01 (feat:주석 처리 추가)
