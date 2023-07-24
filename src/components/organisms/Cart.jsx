@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import SubmitButton from '../atoms/SubmitButton';
-import CartContainer from 'components/atoms/cart/CartContainer';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import getCarts from 'api/getCarts';
-import TotalPrice from 'components/atoms/option/TotalPrice';
-import strPrice from 'utils/price';
-import OptionSelected from 'components/molecules/OptionSelected';
-import updateCart from 'api/updateCart';
-import postOrder from 'api/postOrder';
+import { useNavigate } from 'react-router-dom';
+
+import Section from 'components/atoms/Section';
+import SubmitButton from 'components/atoms/SubmitButton';
 import CartOptionBox from 'components/atoms/cart/CartOptionBox';
 import CartCollectionBox from 'components/atoms/cart/CartCollectionBox';
+import TotalPrice from 'components/molecules/TotalPrice';
+import OptionSelected from 'components/molecules/OptionSelected';
+
+import strPrice from 'utils/price';
+import { getCarts, updateCart } from 'api/cart';
+import { postOrder } from 'api/order';
 
 
 const Cart = () => {
@@ -74,7 +75,7 @@ const Cart = () => {
   
 
   return (
-    <CartContainer>
+    <Section>
 
       {
         query.data.products?.map((collection) => {
@@ -115,7 +116,7 @@ const Cart = () => {
         주문하기 
       </SubmitButton>
 
-    </CartContainer>
+    </Section>
   )
 }
 
