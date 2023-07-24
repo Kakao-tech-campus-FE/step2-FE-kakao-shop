@@ -43,7 +43,7 @@ const CartTemplate = () => {
   return (
     <>
       <GNB></GNB>
-      <div className="mt-12 py-5 border font-bold text-center">장바구니</div>
+      <div className="py-5 border font-bold text-center">장바구니</div>
       <div className="mb-28">{cartList}</div>
       <div className="fixed bottom-0 w-full border bg-white">
         <div className="p-5 flex justify-between font-bold">
