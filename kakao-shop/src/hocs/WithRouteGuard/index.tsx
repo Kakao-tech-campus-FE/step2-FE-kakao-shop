@@ -1,13 +1,17 @@
+import { RootState } from '@store/index';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { getCookie } from '@utils/cookie';
+const withRouteGuard = (replaceUrl: string, Page: () => JSX.Element) => {
+  return () => {
+    const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
 
-const WithRouteGuard = (replaceUrl: string, Page: () => JSX.Element) => {
-  if (!getCookie('accessToken')) {
-    return () => <Navigate to={replaceUrl} replace />;
-  }
+    if (!isLogin) {
+      return <Navigate to={replaceUrl} replace />;
+    }
 
-  return Page;
+    return <Page />;
+  };
 };
 
-export default WithRouteGuard;
+export default withRouteGuard;
