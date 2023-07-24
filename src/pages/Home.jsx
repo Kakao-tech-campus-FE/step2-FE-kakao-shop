@@ -11,7 +11,6 @@ import Footer from "../components/molecules/Footer";
 
 
 
-
 function Home() {
     // const dispatch = useDispatch();
     // const list = useSelector((state) => state.products);
@@ -39,7 +38,6 @@ function Home() {
             <MainLayout />
             <ProductGrid products={Data} />
             <Footer />
-
 
         </>
     );

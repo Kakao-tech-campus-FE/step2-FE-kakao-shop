@@ -20,10 +20,14 @@ export const RouterInfo = [
             //     label: 'login'
             // }
 <<<<<<< HEAD
+<<<<<<< HEAD
         ]
 =======
         ]// 이상하게 children에 넣으면 작동되지 않습니다ㅜㅜ
 >>>>>>> b3e9a4d9d (feat-AddStore)
+=======
+        ]
+>>>>>>> b72feaaa2 (feat:Add loader)
     },
     {
         path: `${routes.logIn}`,
