@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Toast from './components/Toast/Toast';
-import RadioGroup from './components/RadioGroup/RadioGroup';
-import CheckList from './components/CheckList/CheckList';
-import Toggle from './components/Toggle/Toggle';
-import Breadcrumb from './components/Breadcrumb/Breadcrumb';
-import Carousel from './components/Carousel/Carousel';
+import Toast from './components/week1Components/Toast/Toast';
+import RadioGroup from './components/week1Components/RadioGroup/RadioGroup';
+import CheckList from './components/week1Components/CheckList/CheckList';
+import Toggle from './components/week1Components/Toggle/Toggle';
+import Breadcrumb from './components/week1Components/Breadcrumb/Breadcrumb';
+import Carousel from './components/week1Components/Carousel/Carousel';
 
 const App = () => {
   const [isToastVisible, setIsToastVisible] = useState(false);
