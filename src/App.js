@@ -13,10 +13,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginPage />}></Route>
         {/*<Route path="/Register" element={<RegisterPage />}></Route>*/}
-        <Route element ={<MainLayout/>} >
+        <Route element ={<MainLayout/>} />
           <Route exact path = "/" element = {<HomePage />}></Route>
           <Route exact path = "/product/:id" element = {<ProductDetailPage />}></Route>
           <Route exact path = "/order" element = {<CartPage />}></Route>
+        <Route element ={<MainLayout/>} >
+          <Route exact path = "/" element = {<HomePage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
