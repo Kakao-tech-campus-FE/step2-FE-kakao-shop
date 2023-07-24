@@ -4,7 +4,7 @@ import React from 'react';
 const App = () => {
   const routes = mainRouter();
 
-  return <div className="bg-[#f2f0f9] w-full h-full">{routes}</div>;
+  return <div className="bg-lightPupple w-full h-full">{routes}</div>;
 };
 
 export default App;
