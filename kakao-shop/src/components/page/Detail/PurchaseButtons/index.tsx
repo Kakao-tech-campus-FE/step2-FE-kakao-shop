@@ -1,24 +1,22 @@
 import shoppingCart from '@assets/shoppingCart.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { MouseEventHandler } from 'react';
-import { useNavigate } from 'react-router-dom';
+import type { MouseEventHandler } from 'react';
 
 import { Button, Photo } from '@components/atom';
 
 type Props = {
   onAddCart: MouseEventHandler<HTMLButtonElement>;
+  onNavigateCart: MouseEventHandler<HTMLButtonElement>;
 };
 
-const PurchaseButtons = ({ onAddCart }: Props) => {
-  const navigate = useNavigate();
-
+const PurchaseButtons = ({ onAddCart, onNavigateCart }: Props) => {
   return (
     <S.Root>
       <Button css={S.BasketButtonCSS} onClick={onAddCart}>
         <Photo imageClassName={S.ShoppingCartCSS} src={shoppingCart} alt={'장바구니'} />
       </Button>
-      <Button css={S.PurchaseButtonCSS} onClick={() => navigate('/cart')}>
+      <Button css={S.PurchaseButtonCSS} onClick={onNavigateCart}>
         톡딜가로 구매하기
       </Button>
     </S.Root>
