@@ -28,24 +28,24 @@ export const useProductOption = () => {
     setOptions(getUserSelectOption(product?.options));
   }, [product]);
 
-  const onSelectOption = (id: number) => {
+  const selectOption = (id: number) => {
     setOptions(updateSelectedOptions(id));
   };
 
-  const onDeleteOption =
+  const deleteOption =
     (id: number): MouseEventHandler<HTMLButtonElement> =>
     () => {
       setOptions(deleteSelectedOptions(id));
     };
 
-  const onIncreaseQuantity =
+  const increaseQuantity =
     (id: number): MouseEventHandler<HTMLButtonElement> =>
     () => {
       if (!options) return;
       setOptions(updateQuantityOptions(id, options, UP1));
     };
 
-  const onDecreaseQuantity =
+  const decreaseQuantity =
     (id: number): MouseEventHandler<HTMLButtonElement> =>
     () => {
       if (!options) return;
@@ -66,10 +66,10 @@ export const useProductOption = () => {
     },
     handler: {
       initializeOptionsAfterRequest,
-      onSelectOption,
-      onDeleteOption,
-      onIncreaseQuantity,
-      onDecreaseQuantity,
+      selectOption,
+      deleteOption,
+      increaseQuantity,
+      decreaseQuantity,
       onToggle,
     },
   };
