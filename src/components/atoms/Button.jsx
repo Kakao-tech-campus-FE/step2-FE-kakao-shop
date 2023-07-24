@@ -6,24 +6,23 @@
  * Atom 컴포넌트
  * @param onClick - 클릭 이벤트핸들러 함수
  * @param className - tailwind 적용
- * @param children
- * @param style - 개별 스타일 적용
+ * @param children - 버튼 내부에 들어갈 내용
  * @returns button Tag
  */
 export default function Button({
   onClick,
   children,
   className = "",
-  style = {},
+  disabled = false,
 }) {
   return (
     <button
+      disabled={disabled}
       className={className}
       onClick={(e) => {
         e.preventDefault();
         onClick();
       }}
-      style={style}
     >
       {children}
     </button>
