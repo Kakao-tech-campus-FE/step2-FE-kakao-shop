@@ -124,7 +124,7 @@ const LoginForm = () => {
 
     return (
         <>
-            <LogoStyle><p onClick={() => { navigate(routes.home); }}>kakao</p></LogoStyle>
+        <h1 className="text-3xl font-bold text-kakao flex justify-center mt-24 mb-14 text-yellow-400" onClick={() => { navigate(routes.home); }}>kakao</h1>
 
             <Container>
                 <InputGroup id='email' type='email' placeholder='이메일(아이디)를 입력해주세요' label="이메일"
@@ -191,6 +191,7 @@ const LoginForm = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 const LogoStyle = styled.h1`
@@ -202,6 +203,8 @@ const LogoStyle = styled.h1`
     font-weight: 800;
 `
 
+=======
+>>>>>>> 776f4cfb4 (feat:Add tailwind")
 
 <<<<<<< HEAD
 export default LoginForm;
