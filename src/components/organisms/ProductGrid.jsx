@@ -1,6 +1,9 @@
 import ProductCard from "../molecules/ProductCard";
 import styled from 'styled-components'
+<<<<<<< HEAD
 import SkeletonElement from "../skeleton/SkeletonElement";
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
 
 const GridCss = styled.div`
   display:grid;
@@ -17,12 +20,18 @@ const ProductGrid = ({ products }) => {
     // })
     return (
         <GridCss>
+<<<<<<< HEAD
             {products ?
                 products.map((product) =>
                     (<ProductCard key={product.id} product={product} />)
                 )
                 : <SkeletonElement />}
 
+=======
+            {products.map((product) =>
+                (<ProductCard key={product.id} product={product} />)
+            )}
+>>>>>>> b3e9a4d9d (feat-AddStore)
         </GridCss>
     );
 };

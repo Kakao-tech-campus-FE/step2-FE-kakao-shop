@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
-
 import productReducer from './slices/productSlice';
 import detailReducer from "./slices/detailSlice";
 
@@ -18,7 +17,6 @@ const store = configureStore({
         //보통 툴킷은 슬라이스 파일을 이용해 리듀서들 관리
         product: productReducer,
         detail: detailReducer,
-
     },
 });
 

@@ -4,6 +4,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import styled from "styled-components";
+<<<<<<< HEAD
 
 import routes from '../../routes/routes'
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,10 @@ import { login } from "../../services";
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> f34aae79a (feat:Components)
+=======
+import routes from '../../routes/routes'
+import { useNavigate } from 'react-router-dom';
+>>>>>>> b3e9a4d9d (feat-AddStore)
 import Question from "../atoms/Question";
 =======
 import Question from "../atoms/question";
@@ -35,6 +40,7 @@ const LoginForm = () => {
     // redux에서 값을 가져올때는 useSelector라는 훅을 사용한다.
     // 여기에서 사용하는 state는 모든 변수를 다담고 있는 state이다.
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다
 
@@ -46,6 +52,9 @@ const LoginForm = () => {
 >>>>>>> 65d8880e3 (feat:JWT token)
 =======
     // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다!
+=======
+    // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다
+>>>>>>> b3e9a4d9d (feat-AddStore)
     const email = useSelector((state) => state.user.email);
 
 >>>>>>> 8fb34fe01 (feat:주석 처리 추가)
@@ -68,6 +77,7 @@ const LoginForm = () => {
 =======
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> f34aae79a (feat:Components)
     const loginCheck = (data) => {
         login(data).then((res) => {
@@ -86,20 +96,27 @@ const LoginForm = () => {
 >>>>>>> 8fb34fe01 (feat:주석 처리 추가)
 
 
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
     let emails = useSelector((state) => state.user.email,);
 
     useEffect((e) => {
         console.log(valueInit.email);
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
         if (valueInit.email.length > 0) {
             setIsEmail(emailCheck(valueInit.email));
             setWhatEmail(valueInit.email);
         }
     }, [valueInit.email]);
-
     useEffect((e) => {
         console.log(valueInit.password);
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
         if (valueInit.password.length > 0) {
             setIsPassword(passwordCheck(valueInit.password));
         }
@@ -112,7 +129,10 @@ const LoginForm = () => {
             <Container>
                 <InputGroup id='email' type='email' placeholder='이메일(아이디)를 입력해주세요' label="이메일"
                     value={valueInit.email}
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
                     onChange={(e) => {
                         handleOnChange(e);
                     }
@@ -123,13 +143,19 @@ const LoginForm = () => {
                     onChange={(e) => {
                         handleOnChange(e);
                     }}
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
                     para={isPassword ? null : "비밀번호는 영문, 숫자, 특수문자가 포함된 8~20자로 구성되어야 합니다."} />
 
                 <Button
                     onClick={(e) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
                         console.log(valueInit.email);
                         console.log(valueInit.password);
                         if (valueInit.email == '') {
@@ -140,6 +166,7 @@ const LoginForm = () => {
                         }
 
                         else if (isEmail && isPassword) {
+<<<<<<< HEAD
 
 =======
                         //e.preventDefault();
@@ -147,6 +174,8 @@ const LoginForm = () => {
                             console.log(valueInit.email);
                             console.log(valueInit.password);
 >>>>>>> 8fb34fe01 (feat:주석 처리 추가)
+=======
+>>>>>>> b3e9a4d9d (feat-AddStore)
                             dispatch(loginRequest({
                                 email: valueInit.email,
                                 password: valueInit.password,

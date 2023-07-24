@@ -1,6 +1,5 @@
 
 
-
 import MainLayout from "../layout/MainLayout";
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from "../store/slices/productSlice";
@@ -14,7 +13,6 @@ import Footer from "../components/molecules/Footer";
 
 
 function Home() {
-
     // const dispatch = useDispatch();
     // const list = useSelector((state) => state.products);
     // let res = dispatch(getProducts());

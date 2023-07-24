@@ -13,8 +13,7 @@ const Card = ({ to, children }) => {
             {children}
         </Link></CardCss>
 
-
     );
 };
-//이번주 과제!
+//이번주 과제
 export default Card;

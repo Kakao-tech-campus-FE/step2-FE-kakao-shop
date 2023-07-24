@@ -1,11 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import { login } from "../../services/user";
 
 =======
 import { login } from "../../services/index";
 >>>>>>> 8357dd219 (feat:Add redux)
+=======
+import { login } from "../../services/user";
+>>>>>>> b3e9a4d9d (feat-AddStore)
 
 //redux saga + react reduc : redux tookit 없이 쓰는 법. 툴킷 안쓰는 회사도 많음
 
