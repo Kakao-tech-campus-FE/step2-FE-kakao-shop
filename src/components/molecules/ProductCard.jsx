@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../atoms/Card';
-
 import SkeletonElement from '../skeleton/SkeletonElement';
+
 
 const ProductCard = ({ product }) => {
     return (
@@ -12,7 +12,6 @@ const ProductCard = ({ product }) => {
                 <div>{product.productName}</div>
                 <div>{product.price}원</div>
             </Card ></>
-
 
     );
 };

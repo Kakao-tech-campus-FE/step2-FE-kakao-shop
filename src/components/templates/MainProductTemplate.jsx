@@ -5,9 +5,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from "../../store/slices/productSlice";
 import { useState, useRef } from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import SkeletonElement from "../skeleton/SkeletonElement";
 =======
 >>>>>>> fb7870df0 (test)
+=======
+import SkeletonElement from "../skeleton/SkeletonElement";
+>>>>>>> 02ab4daca (feat:Add skeleton)
 
 const MainProductTemplate = () => {
     const [page, setPage] = useState(0);
@@ -52,9 +56,13 @@ const MainProductTemplate = () => {
             <ProductGrid products={products} />
             <div ref={bottomObserver}></div>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <Suspense fallback={<SkeletonElement />}></Suspense>
 =======
 >>>>>>> fb7870df0 (test)
+=======
+            <Suspense fallback={<SkeletonElement />}></Suspense>
+>>>>>>> 02ab4daca (feat:Add skeleton)
 
         </Container>
     );

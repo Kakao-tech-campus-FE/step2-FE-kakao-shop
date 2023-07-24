@@ -5,9 +5,13 @@ import SignUp from "../pages/SignUp";
 import routes from './routes';
 import ProductDetailPage from '../pages/ProductDetailPage';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import SkeletonPage from '../components/skeleton/SkeletonPage';
 =======
 >>>>>>> b3e9a4d9d (feat-AddStore)
+=======
+import SkeletonPage from '../components/skeleton/SkeletonPage';
+>>>>>>> 02ab4daca (feat:Add skeleton)
 
 export const RouterInfo = [
     {
@@ -49,12 +53,18 @@ export const RouterInfo = [
         element: <ProductDetailPage />,
         label: 'cart'
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 02ab4daca (feat:Add skeleton)
     },
     {
         path: `${routes.skeletonTest}`,
         element: <SkeletonPage />,
         label: 'cart'
+<<<<<<< HEAD
 =======
 >>>>>>> b3e9a4d9d (feat-AddStore)
+=======
+>>>>>>> 02ab4daca (feat:Add skeleton)
     }
 ]
