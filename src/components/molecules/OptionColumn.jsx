@@ -29,32 +29,27 @@ const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
-    // 동일한 옵션 코드를 방지해주는 코드
     const isOptionSelected = selectedOptions.find(
-      (el) => el.optionId === option.id // 찾았을 때 해당 엘리먼트 반환 없으면 undefined
+      (el) => el.optionId === option.id
     );
-    // 이미 선택된 옵션이면
+
     if (isOptionSelected) {
       setSelectedOptions((prev) => {
-        prev.map(
-          (el) =>
-            el.optionId === option.id
-              ? { ...el, quantity: el.quantity + 1 }
-              : el // 일치하는 것만 +1 한다.
+        return prev.map((el) =>
+          el.optionId === option.id ? { ...el, quantity: el.quantity + 1 } : el
         );
       });
-      return;
+    } else {
+      setSelectedOptions((prev) => [
+        ...prev,
+        {
+          optionId: option.id,
+          quantity: 1,
+          price: option.price,
+          name: option.optionName,
+        },
+      ]);
     }
-
-    setSelectedOptions((prev) => [
-      ...prev,
-      {
-        optionId: option.id,
-        quantity: 1,
-        price: option.price,
-        name: option.optionName,
-      },
-    ]);
   };
 
   const handleOnChange = (count, optionId) => {
@@ -65,8 +60,9 @@ const OptionColumn = ({ product }) => {
             ...el,
             quantity: count,
           };
+        } else {
+          return el;
         }
-        return el;
       });
     });
   };
@@ -92,16 +88,18 @@ const OptionColumn = ({ product }) => {
         <hr />
         {selectedOptions.map((option) => (
           <SelectedOrderedList
-            key={`selected-option-key${option.id}`}
+            key={`${option.optionId}`}
             className="selected-option-list"
           >
             <li className="selected-option">
               <span className="name">선택한 상품: {option.name}</span>
-              <Counter
-                // value={option.quantity}
-                onDecrease={(count) => handleOnChange(count, option.id)}
-                onIncrease={(count) => handleOnChange(count, option.id)}
-              />
+              <div>
+                <Counter
+                  value={option.quantity}
+                  onIncrease={(count) => handleOnChange(count, option.optionId)}
+                  onDecrease={(count) => handleOnChange(count, option.optionId)}
+                />
+              </div>
             </li>
             <hr />
           </SelectedOrderedList>
