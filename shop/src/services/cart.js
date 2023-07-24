@@ -14,3 +14,6 @@ export const getCart = async() => {
 export const updateCart = (items) => {
   return cartsInstance.get("/carts/update", items)
 }
+export const orderCart = (item)=>{
+  return cartsInstance.post("/orders/save", item)
+}

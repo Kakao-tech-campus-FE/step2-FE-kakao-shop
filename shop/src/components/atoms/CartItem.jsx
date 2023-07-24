@@ -8,7 +8,7 @@ import { comma } from '../../utils/convert'
 const CartItem = ({item, onChange}) => {
   return (
     <Box className='cart-item-box'>
-      <h5 className='text-xl font-semibold px-5 py-5'>{item.productName}</h5>
+      <h5 className='text-xl font-semibold px-5 py-4'>{item.productName}</h5>
       {item.carts.map((cart) => {
         return (
           <Card key={cart.id} className="cart">
@@ -27,6 +27,7 @@ const CartItem = ({item, onChange}) => {
                   }}
                   quantity={cart.quantity}
                   optionId={cart.option.id}
+                  className='flex justify-center'
                 />
                 <div className='price'>
                   <span>{comma(cart.option.price * cart.quantity)}원</span>
@@ -38,21 +39,14 @@ const CartItem = ({item, onChange}) => {
       })}
       <Card className="total-price">
         <div className='row border mx-4 flex justify-between mb-6 bg-white'>
-          <div className='my-4 px-4'>
-            <h5>즉시 할인금액</h5>
-            <h5 className='font-semibold'>주문금액</h5>
-          </div>
-
-          <div className='price my-4 px-4'>
-            <div>0원</div>
-            <div className='font-semibold'>
+          <h5 className='font-semibold my-4 px-4'>주문금액</h5>
+          <div className='price my-4 px-4 font-semibold'>
             {/* item carts : 옵션들이 저장된 배열 */}
             {comma(
               item.carts.reduce((acc,cur)=>{
                 return acc + cur.option.price * cur.quantity
               }, 0)
             )}원
-            </div>
           </div>
         </div>
       </Card>

@@ -7,7 +7,7 @@ import { comma } from '../../utils/convert'
 import Button from '../atoms/Button'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from 'react-query'
-import { updateCart } from '../../services/cart'
+import { orderCart, updateCart } from '../../services/cart'
 
 const CartList = ({data}) => {
   // console.log('dataddd')
@@ -16,10 +16,9 @@ const CartList = ({data}) => {
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
   const [updatePayload, setUpdatePayload] = useState([])
-  // const initPayload = useRef([])
 
   const {mutate} = useMutation({
-    mutationFn: updateCart 
+    mutationFn: orderCart 
   })
 
   useEffect(()=>{
@@ -81,12 +80,12 @@ const CartList = ({data}) => {
   },[cartItems])
 
   return (
-    <Container className="my-32 shadow bg-gray-100 flex justify-center mx-auto" >
+    <Container className="my-20 shadow bg-gray-100 py-2 flex justify-center mx-auto" >
       <div className="w-full">
-      <Box className='text-2xl font-semibold text-center bg-white py-2 mx-1 my-1'>
+      <Box className='text-2xl font-semibold text-center bg-white py-2 mx-1'>
         <h1>장바구니</h1>
       </Box>
-      <Box className='bg-white mx-1 my-1'>
+      <Box className='bg-white mx-1 my-1 py-1'>
         {/* 상품별 장바구니 */}
         {Array.isArray(cartItems)&&
           cartItems.map((item)=>{
@@ -103,19 +102,19 @@ const CartList = ({data}) => {
         }
       </Box>
       <Card>
-        <div className='row'>
+        <div className='bg-white flex justify-between mx-1 font-bold text-xl px-4 py-4'>
           <span className='expect-price'>주문 예상금액</span>
-          <div className='sum-price'>{comma(totalPrice)}원</div>
+          <span className='sum-price text-blue-500'>{comma(totalPrice)}원</span>
         </div>
       </Card>
       <Button
-        className="btn-primary"
+        className="btn-order py-4 mr-2 w-full"
         onClick={()=>{
           //update cart : 장바구니 정보 수정 
           mutate(updatePayload, {
             onSuccess: (data) =>{
               //navigate to order page 
-              route.push("/order")
+              route("/order")
               console.log(data)
             },
             onError: (err)=> {
@@ -124,7 +123,7 @@ const CartList = ({data}) => {
           })
         }}
       >
-        <span>총 {getTotalOrder()}건 주문하기 </span>
+        <span>{getTotalOrder()}건 주문하기 </span>
       </Button>
       </div>
     </Container>

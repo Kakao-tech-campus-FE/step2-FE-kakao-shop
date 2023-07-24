@@ -5,7 +5,8 @@ const Counter = ({
   onIncrease, //수량 증가시 호출되는 함수
   onDecrease, // 수량 감소시 호출되는 함수
   quantity, // 이전 quantity 값
-  optionId
+  optionId,
+  className
 }) => {
   const [count, setCount] = useState(quantity)
   const [isDisabled, setIsDisabled] = useState(false)
@@ -31,7 +32,7 @@ const Counter = ({
   }
 
   return (
-    <div className='flex justify-around'>
+    <div className={className}>
       <Button className="btn-counter px-3" disabled={isDisabled} onClick={handleOnDecrease}>-</Button>
       <span className='px-6'>{count}</span>
       <Button className="btn-counter px-2" onClick={handleOnIncrease}>+</Button>
