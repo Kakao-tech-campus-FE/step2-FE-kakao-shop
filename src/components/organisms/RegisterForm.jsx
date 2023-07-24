@@ -6,21 +6,20 @@ import Text from "../atoms/Text";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { register } from "../../services/user";
-import { LogIn } from "../../store/slices/userSlice";
+import { register } from "../../apis/user";
+import useValidateInput from "../../hooks/useValidateInput";
 
 export default function RegisterForm() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [requestError, setRequestError] = useState("");
   const [isSamePW, setIsSamePw] = useState(false);
-  const { value, isValidValue, errorMsg, handleOnChange, validateInput } =
-    useInput({
-      username: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
-    });
+  const { value, handleOnChange } = useInput({
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
+  const { isValidValue, validateInput, errorMsg } = useValidateInput();
 
   const handleRegister = () => {
     if (
@@ -36,7 +35,6 @@ export default function RegisterForm() {
           password: value.password,
         })
           .then(() => {
-            dispatch(LogIn()); // 로그인 상태 변경
             navigate("/"); // 메인페이지 리다이렉트
           })
           .catch((error) => {
@@ -137,10 +135,8 @@ export default function RegisterForm() {
           </Text>
         )}
         <Button
-          className=" h-10 border-hidden font-semibold text-sm rounded mt-10 cursor-pointer "
+          className=" h-10 border-hidden font-semibold text-sm rounded mt-10 cursor-pointer bg-[#ffe342]"
           onClick={handleRegister}
-          // 커스텀 스타일
-          style={{ backgroundColor: "#ffe342" }}
         >
           회원가입
         </Button>
