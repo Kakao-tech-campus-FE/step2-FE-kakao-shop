@@ -1,28 +1,21 @@
 import CounterBtn from "../atoms/CounterBtn";
-import { useState } from "react";
 
-const Counter = ({ onDecrease, onIncrease }) => {
-  const [count, setCount] = useState(1);
-
+const Counter = ({ value, onDecrease, onIncrease }) => {
   const handleOnDecrease = () => {
-    console.log("minus");
-    setCount((prev) => prev - 1);
-    onDecrease((prev) => prev - 1);
+    if (value > 1) {
+      onDecrease(value - 1);
+    }
   };
 
   const handleOnIncrease = () => {
-    console.log("plus");
-    setCount((prev) => prev + 1);
-    onIncrease((prev) => prev + 1);
+    onIncrease(value + 1);
   };
 
   return (
     <>
-      <div>
-        <CounterBtn onClick={handleOnIncrease}>-</CounterBtn>
-        <span>{count}</span>
-        <CounterBtn onClick={handleOnDecrease}>+</CounterBtn>
-      </div>
+      <CounterBtn onClick={handleOnDecrease}>-</CounterBtn>
+      <span>{value}</span>
+      <CounterBtn onClick={handleOnIncrease}>+</CounterBtn>
     </>
   );
 };
