@@ -1,28 +1,19 @@
-import { addCartItemAction, getProductDetailRequestAction } from '@store/Detail/reducers';
 import { RootState } from '@store/index';
-import { useEffect, useState, MouseEventHandler } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Option, Totals } from 'types/product';
-import type { UserSelectOption } from 'types/product';
-
-import { Toast } from '@components/atom';
+import { useState, useEffect } from 'react';
+import type { MouseEventHandler } from 'react';
+import { useSelector } from 'react-redux';
+import type { Totals, UserSelectOption, Option } from 'types/product';
 
 import { useToggle } from '@hooks/@common';
 
-import { getCookie } from '@utils/cookie';
+const UP1 = 1;
+const DOWN1 = -1;
 
-export const useOptionForm = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+export const useProductOption = () => {
   const product = useSelector((state: RootState) => state.detail.product);
-  const isLoading = useSelector((state: RootState) => state.detail.isLoading);
-  const error = useSelector((state: RootState) => state.detail.error);
 
-  const { id: productId } = useParams();
   const [isOpenList, setIsOpenList, onToggle] = useToggle(false);
   const [options, setOptions] = useState<UserSelectOption[] | undefined>();
-  const [isModal, setIsModal] = useToggle(false);
 
   const totals = options?.reduce(calculateTotal, {
     quantity: 0,
@@ -32,12 +23,6 @@ export const useOptionForm = () => {
   const getProductDetailRequest = Object.values(options ?? [])
     .filter(option => option.isSelected)
     .map(({ id, quantity }) => ({ optionId: id, quantity }));
-
-  useEffect(() => {
-    if (!productId) return;
-
-    dispatch(getProductDetailRequestAction(productId));
-  }, [productId, dispatch]);
 
   useEffect(() => {
     setOptions(getUserSelectOption(product?.options));
@@ -67,53 +52,28 @@ export const useOptionForm = () => {
       setOptions(updateQuantityOptions(id, options, DOWN1));
     };
 
-  const onAddCart: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!getCookie('accessToken')) return setIsModal(true);
-
-    if (getProductDetailRequest.length === 0) {
-      Toast.show('옵션을 먼저 선택해주세요');
-      return;
-    }
-
-    dispatch(addCartItemAction(getProductDetailRequest));
+  const initializeOptionsAfterRequest = () => {
     setIsOpenList(false);
     setOptions(getUserSelectOption(product?.options));
-    Toast.show('장바구니에 담겼습니다');
-  };
-
-  const onClose = () => {
-    setIsModal(false);
-  };
-
-  const onConfirm = () => {
-    navigate('/login');
   };
 
   return {
     state: {
-      isLoading,
-      error,
-      product,
       options,
+      getProductDetailRequest,
       totals,
       isOpenList,
-      isModal,
     },
     handler: {
+      initializeOptionsAfterRequest,
       onSelectOption,
       onDeleteOption,
       onIncreaseQuantity,
       onDecreaseQuantity,
       onToggle,
-      onAddCart,
-      onClose,
-      onConfirm,
     },
   };
 };
-
-const UP1 = 1;
-const DOWN1 = -1;
 
 const addSelectProperty = (option: Option): UserSelectOption => ({
   ...option,

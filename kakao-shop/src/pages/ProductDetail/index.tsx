@@ -11,11 +11,11 @@ import PurchaseButtons from '@components/page/Detail/PurchaseButtons';
 import RenderStar from '@components/page/Detail/RenderStar';
 import SelectResult from '@components/page/Detail/SelectResult';
 
-import { useOptionForm } from '@hooks/page/Detail/useOptionForm';
+import { useProductDetail } from '@hooks/page/ProductDetail/_useProductDetailPage';
 
 import { comma } from '@utils/comma';
 
-const Detail = () => {
+const ProductDetail = () => {
   const {
     state: { isLoading, error, product, options, totals, isOpenList, isModal },
     handler: {
@@ -25,10 +25,11 @@ const Detail = () => {
       onDecreaseQuantity,
       onToggle,
       onAddCart,
-      onClose,
-      onConfirm,
+      onNavigateCart,
+      onModalClose,
+      onModalConfirm,
     },
-  } = useOptionForm();
+  } = useProductDetail();
 
   return (
     <CustomSuspense isLoading={isLoading} error={error} fallback={<PageLoader />}>
@@ -63,15 +64,15 @@ const Detail = () => {
           />
           <DeliveryInfo />
           <SelectResult totals={totals} />
-          <PurchaseButtons onAddCart={onAddCart} />
+          <PurchaseButtons onAddCart={onAddCart} onNavigateCart={onNavigateCart} />
         </S.OptionCotainer>
       </S.LayoutSplit>
-      <LoginModal visible={isModal} onClose={onClose} onConfirm={onConfirm} />
+      <LoginModal visible={isModal} onModalClose={onModalClose} onModalConfirm={onModalConfirm} />
     </CustomSuspense>
   );
 };
 
-export default Detail;
+export default ProductDetail;
 
 const S = {
   LayoutSplit: styled.div`

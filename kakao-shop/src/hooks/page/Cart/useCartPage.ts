@@ -5,7 +5,7 @@ import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import type { CartProduct } from 'types/product';
 
-export const useCartForm = () => {
+export const useCartPage = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.cart.cart);
   const isLoading = useSelector((state: RootState) => state.cart.isLoading);

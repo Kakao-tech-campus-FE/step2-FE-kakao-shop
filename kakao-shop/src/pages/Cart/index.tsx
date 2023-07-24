@@ -8,13 +8,13 @@ import ItemList from '@components/page/Cart/ItemList';
 import Submit from '@components/page/Cart/Submit';
 import TotalResult from '@components/page/Cart/TotalResult';
 
-import { useCartForm } from '@hooks/page/Cart/useCartForm';
+import { useCartPage } from '@hooks/page/Cart/useCartPage';
 
 const Cart = WithRouteGuard('/login', () => {
   const {
     state: { isLoading, error, carts: products, totalPrice },
     handler: { onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem, onSubmit },
-  } = useCartForm();
+  } = useCartPage();
 
   return (
     <CustomSuspense isLoading={isLoading} error={error} fallback={<PageLoader />}>
