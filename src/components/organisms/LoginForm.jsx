@@ -7,7 +7,11 @@ import styled from "styled-components";
 
 import routes from '../../routes/routes'
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 
+=======
+import { login } from "../../services";
+>>>>>>> f34aae79a (feat:Components)
 import Question from "../atoms/Question";
 import { useState, useEffect } from "react";
 import { emailCheck, passwordCheck } from "../../services/regex";
@@ -45,7 +49,11 @@ const LoginForm = () => {
     const [whatEmail, setWhatEmail] = useState("");
     const [isPassword, setIsPassword] = useState(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> f34aae79a (feat:Components)
     const loginCheck = (data) => {
         login(data).then((res) => {
             localStorage.setItem('jwt', res.headers.get("Authorization"));
@@ -53,7 +61,6 @@ const LoginForm = () => {
             navigate(routes.home);
         })
             .catch((e) => {
-
                 alert("인증되지 않았습니다.");
             });
     };
