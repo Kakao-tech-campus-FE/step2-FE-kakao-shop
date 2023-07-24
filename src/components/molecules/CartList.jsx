@@ -26,35 +26,16 @@ const CartList = ({ data }) => {
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
 
   const updatePayload = useRef([]);
 
   useEffect(() => {
     setCartItems(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
   const { mutate } = useMutation({
     mutationFn: updateCart,
   });
-
-  const onChange = (cartId, newCount, priceChange) => {
-    setCartItems((prevCartItems) =>
-      prevCartItems.map((cart) =>
-        cart.id === cartId
-          ? {
-              ...cart,
-              count: newCount,
-              option: {
-                ...cart.option,
-                price: cart.option.price + priceChange,
-              },
-            }
-          : cart
-      )
-    );
-  };
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
@@ -71,8 +52,6 @@ const CartList = ({ data }) => {
       item.cartId === optionId ? { ...item, quantity } : item
     );
 
-    console.log(updatePayload.current);
-
     const isExist = updatePayload.current.some(
       (item) => item.cartId === optionId
     );
@@ -82,8 +61,6 @@ const CartList = ({ data }) => {
         quantity,
       });
     }
-
-    setTotalPrice((prev) => prev + price);
 
     setCartItems((prev) =>
       prev.map((item) => ({
