@@ -27,10 +27,9 @@ export default function Option({ children, optionDescription }:OptionProps) {
           : <FontAwesomeIcon icon={icon({ name: 'angle-down', style: 'solid' })} />}
       </button>
       {isExpanded ? (
-        <ul role="listbox" className="absolute z-30 flex w-full flex-col bg-white">
-          {Children.map(children, (child, index) => (
+        <ul role="listbox" className="absolute z-30 flex w-full flex-col rounded-b border border-t-0 border-stone-300 bg-white">
+          {Children.map(children, (child) => (
             <li
-              className={`${Children.count(children) - 1 === index ? 'rounded-b border-b' : ''} border-x border-stone-300`}
               onClick={(e) => {
                 e.preventDefault();
                 setIsExpanded((prev) => !prev);

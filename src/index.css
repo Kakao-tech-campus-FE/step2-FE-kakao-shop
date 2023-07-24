@@ -5,3 +5,7 @@
 body {
   font-family: 'Open Sans', 'Nanum Gothic', Tahoma, sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
