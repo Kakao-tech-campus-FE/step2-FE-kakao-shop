@@ -18,7 +18,7 @@ const CartList = ({data}) => {
   const [updatePayload, setUpdatePayload] = useState([])
 
   const {mutate} = useMutation({
-    mutationFn: orderCart 
+    mutationFn: updateCart 
   })
 
   useEffect(()=>{
