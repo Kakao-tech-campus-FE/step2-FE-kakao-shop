@@ -1,5 +1,5 @@
+import { comma } from '../../utils/comma';
 import Photo from '../atoms/photo';
-import Price from '../atoms/price';
 import Rating from '../atoms/rating';
 
 interface ProductDetailColumnProps {
@@ -30,7 +30,9 @@ export default function ProductDetailColumn({
         <h1 className="my-4 text-2xl">{productName}</h1>
         <p>{description}</p>
         <span className="rounded-full bg-yellow-300 px-4 py-2 font-bold">
-          <Price price={price} />
+          {comma(price)}
+          {' '}
+          원
         </span>
       </div>
     </div>

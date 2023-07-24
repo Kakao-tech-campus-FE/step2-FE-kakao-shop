@@ -1,5 +1,5 @@
+import { comma } from '../../utils/comma';
 import Photo from '../atoms/photo';
-import Price from '../atoms/price';
 
 interface ProductCardprops {
   productName: string;
@@ -33,7 +33,9 @@ export default function ProductCard({
           {description}
         </p>
         <div className="text-end text-lg font-bold">
-          <Price price={price} />
+          {comma(price)}
+          {' '}
+          원
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CartData } from '../../types/product';
-import Price from '../atoms/price';
 import OptionCard from '../molecules/optionCard';
+import { comma } from '../../utils/comma';
 
 interface CartTemplateProps {
   cartData: CartData;
@@ -62,7 +62,9 @@ export default function CartTemplate({
             총
             {' '}
             <span className="text-xl text-kakao-red">
-              <Price price={cartData.totalPrice} />
+              {comma(cartData.totalPrice)}
+              {' '}
+              원
             </span>
           </div>
           <button className="w-full rounded-sm bg-kakao p-2 font-bold">주문하기</button>

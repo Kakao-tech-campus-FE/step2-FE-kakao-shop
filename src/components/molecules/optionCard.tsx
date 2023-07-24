@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import Price from '../atoms/price';
 import Counter from './counter';
+import { comma } from '../../utils/comma';
 
 interface OptionCardProps {
   optionName: string;
@@ -49,7 +49,11 @@ export default function OptionCard({
           decreaseDisabled={decreaseDisabled}
           increaseDisabled={increaseDisabled}
         />
-        <p><Price price={optionTotalPrice} /></p>
+        <p>
+          {comma(optionTotalPrice)}
+          {' '}
+          원
+        </p>
       </div>
     </div>
   );

@@ -5,11 +5,11 @@ import { useUserSelector } from '../../hooks/store';
 import { AddCartOption, ProductOption, SelectedOption } from '../../types/product';
 import { OptionReducerAction } from '../../types/reducerAction';
 import Option from '../molecules/option';
-import Price from '../atoms/price';
 import { requestAddCart } from '../../apis/cart';
 import { getItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN } from '../../utils/common';
 import OptionCard from '../molecules/optionCard';
+import { comma } from '../../utils/comma';
 
 interface ProductOptionColumnProps {
   options: ProductOption[];
@@ -84,7 +84,11 @@ export default function ProductOptionColumn({
             })}
           >
             <p>{option.optionName}</p>
-            <p className="text-right text-sm"><Price price={option.price} /></p>
+            <p className="text-right text-sm">
+              {comma(option.price)}
+              {' '}
+              원
+            </p>
           </button>
         ))}
       </Option>
@@ -119,9 +123,10 @@ export default function ProductOptionColumn({
             총 주문금액
             {' '}
             <span className="text-xl text-kakao-red">
-              <Price price={selectedOptions.map((option) => option.individualPrice * option.quantity)
-                .reduce((accumulator, currentValue) => accumulator + currentValue)}
-              />
+              {comma(selectedOptions.map((option) => option.individualPrice * option.quantity)
+                .reduce((accumulator, currentValue) => accumulator + currentValue))}
+              {' '}
+              원
             </span>
           </div>
         </>
