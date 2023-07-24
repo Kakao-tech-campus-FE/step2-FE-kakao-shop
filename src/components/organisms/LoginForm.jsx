@@ -27,6 +27,10 @@ const LoginForm = () => {
 
     const email = useSelector((state) => state.user.email);
 
+<<<<<<< HEAD
+=======
+const LoginForm = () => {
+>>>>>>> 65d8880e3 (feat:JWT token)
     const navigate = useNavigate();
     const { valueInit, handleOnChange } = useInput(
         {
@@ -40,6 +44,20 @@ const LoginForm = () => {
     const [isEmail, setIsEmail] = useState(true);
     const [whatEmail, setWhatEmail] = useState("");
     const [isPassword, setIsPassword] = useState(true);
+<<<<<<< HEAD
+=======
+    const loginCheck = (data) => {
+        login(data).then((res) => {
+            localStorage.setItem('jwt', res.headers.get("Authorization"));
+            alert("로그인 성공!");
+            navigate(routes.home);
+        })
+            .catch((e) => {
+
+                alert("인증되지 않았습니다.");
+            });
+    };
+>>>>>>> 65d8880e3 (feat:JWT token)
 
 
     let emails = useSelector((state) => state.user.email,);
@@ -109,6 +127,7 @@ const LoginForm = () => {
     );
 };
 
+<<<<<<< HEAD
 const LogoStyle = styled.h1`
     display: flex;
     justify-content: center;
@@ -120,3 +139,6 @@ const LogoStyle = styled.h1`
 
 
 export default LoginForm;
+=======
+export default LoginForm;
+>>>>>>> 65d8880e3 (feat:JWT token)
