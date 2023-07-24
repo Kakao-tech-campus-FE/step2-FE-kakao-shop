@@ -2,25 +2,24 @@ import Group from "../atoms/Group";
 import SkeletonGrid from "../organisms/SkeletonGrid";
 import Loader from "../atoms/Loader";
 import ProductGrid from "../organisms/ProductGrid";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useRef, useState } from "react";
-import { getProducts } from "../../store/slices/productSlice";
+import { useEffect, useRef } from "react";
 import { fetchProducts } from "../../services/product";
 import { useInfiniteQuery } from "react-query";
-import { useParams } from "react-router-dom";
 import _ from "lodash";
 
 const MainProductTemplate = () => {
-  const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
 
-  const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useInfiniteQuery(["product"], () => fetchProducts(page), {
-      getNextPageParam: (currentPage) => {
-        const nextPage = currentPage.page + 1;
-        return nextPage > currentPage.total_pages ? null : nextPage;
+  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
+    "products",
+    ({ pageParam = 0 }) => fetchProducts(pageParam),
+    {
+      getNextPageParam: (currentPage, allPages) => {
+        const nextPage = allPages.length;
+        return nextPage > 2 ? null : nextPage;
       },
-    });
+    }
+  );
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -28,7 +27,6 @@ const MainProductTemplate = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !isLoading && hasNextPage) {
             fetchNextPage();
-            setPage((page) => page + 1);
           }
         });
       },
@@ -48,22 +46,22 @@ const MainProductTemplate = () => {
     };
   }, [isLoading, hasNextPage, fetchNextPage]);
 
-  if (data) {
+  if (data && data.pages && Array.isArray(data.pages)) {
     const responseData = _.uniqBy(
-      data.pages.flatMap((page) => page.data.response),
+      data.pages.flatMap((pages) => pages.data.response),
       "id"
     );
 
     return (
       <Group>
-        <ProductGrid products={responseData} />
-        {isLoading && <SkeletonGrid />}
+        {isLoading ? <SkeletonGrid /> : <ProductGrid products={responseData} />}
         <div style={{ height: "80px" }} ref={bottomObserver}></div>
-        {!isLoading && hasNextPage && <Loader />}
+        {isLoading && !hasNextPage && <Loader />}
       </Group>
     );
+  } else {
+    return null;
   }
-  // return null;
 };
 
 export default MainProductTemplate;

@@ -3,9 +3,9 @@ import SubmitButton from "../atoms/SubmitButton";
 import Form from "../atoms/Form";
 import useInput from "../../hooks/useInput";
 import useValidation from "../../hooks/useValidation";
-import { login } from "../../services/user";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginRequest } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
   const { value, handleOnChange } = useInput({
@@ -20,21 +20,22 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    const data = {
-      email: value.email,
-      password: value.password,
-    };
-
-    login(data)
+    dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
       .then((response) => {
         if (response.status === 200) {
           navigate("/");
-          // dispatch({ type: "changeState" });
-          localStorage.setItem("userInfo", JSON.stringify(data));
           alert("로그인 성공!");
         }
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error("로그인 실패:", error);
+        alert("로그인에 실패했습니다.");
+      });
   };
 
   return (
@@ -64,17 +65,7 @@ const LoginForm = () => {
           }}
           helperMsg={pwMsg}
         />
-        <SubmitButton
-          type="submit"
-          styles={{
-            width: "32rem",
-            padding: "0.6rem",
-            backgroundColor: "yellow",
-            fontWeight: "bold",
-            borderRadius: "6px",
-          }}
-          onClick={handleSubmit}
-        >
+        <SubmitButton type="submit" onClick={handleSubmit}>
           로그인
         </SubmitButton>
       </Form>

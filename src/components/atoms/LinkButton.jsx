@@ -15,14 +15,7 @@ const LinkButton = ({ type, children, onClick, ...styles }) => {
   // onClick: 클릭 이벤트
   // styles: 버튼의 스타일 지정
   return (
-    <Btn
-      type={type}
-      {...styles}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick();
-      }}
-    >
+    <Btn type={type} {...styles} onClick={onClick}>
       {children}
     </Btn>
   );
