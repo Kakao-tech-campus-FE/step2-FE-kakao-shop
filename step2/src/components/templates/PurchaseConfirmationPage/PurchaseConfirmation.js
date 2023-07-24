@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SelectedProduct from "../../organisms/PurchaseConfirmationPage/SelectedProduct";
-import { getCart } from "../../../services/cart";
-import { comma } from "../../../utils/convert";
 import Button from "../../atoms/Button";
+import { comma } from "../../../utils/convert";
+import { getCart } from "../../../services/cart";
 import { makeOrder } from "../../../services/order";
+import { updateCart } from "../../../services/cart";
 
 const PurchaseConfirmation = () => {
   const [cartProducts, setCartProducts] = useState([]);
+  const [changedCarts, setChangedCarts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [allSelected, setAllSelected] = useState(true);
@@ -39,22 +41,43 @@ const PurchaseConfirmation = () => {
     fetchCart();
   }, []);
 
+  const fetchChangedCarts = (cartInfo) => {
+    const updatedCarts = [...changedCarts];
+    const changedCartIndex = updatedCarts.findIndex((cart) => cart.cartId == cartInfo.cartId,);
+
+    if (changedCartIndex !== -1) {
+      updatedCarts[changedCartIndex] = {
+        "cartId": cartInfo.cartId,
+        "quantity": cartInfo.newQuantity
+      }
+      setChangedCarts(updatedCarts);
+      return;
+    }
+    setChangedCarts([...changedCarts, { "cartId": cartInfo.cartId, "quantity": cartInfo.newQuantity }]);
+  };
+
   const handleOptionUpdate = (productId, optionId, newQuantity) => {
     const updatedProducts = [...cartProducts];
     const productIndex = updatedProducts.findIndex((product) => product.id === productId);
     const optionIndex = updatedProducts[productIndex].carts.findIndex((opt) => opt.option.id === optionId);
   
+    // 변경된 상품 (장바구니 수정용)
+    fetchChangedCarts({ cartId: updatedProducts[productIndex]?.carts[optionIndex].id, newQuantity:newQuantity });
+
     if (newQuantity === 0) {
       updatedProducts[productIndex].carts.splice(optionIndex, 1);
     } else {
       updatedProducts[productIndex].carts[optionIndex].quantity = newQuantity;
     }
   
+    // 현재 장바구니에 담긴 상품
     const filteredProducts = filterCartProducts(updatedProducts);
     setCartProducts(filteredProducts);
 
+    // 체크된 상품 목록
     const newSelectedProductIds = filteredProducts.map((p) => p.id);
     setSelectedProductIds(newSelectedProductIds);
+
   };
 
   useEffect(() => {
@@ -89,7 +112,6 @@ const PurchaseConfirmation = () => {
   }, 0);
 
   const handleOrder = async () => {
-    console.log("결제:", cartProducts);
     if (cartProducts.length === 0) {
       alert("장바구니에 담긴 상품이 없습니다.");
       return;
@@ -114,8 +136,17 @@ const PurchaseConfirmation = () => {
   };
 
   const handleUpdateCart = async () => {
-    console.log("장바구니 수정", cartProducts);
-    console.log("선택된상품:", selectedProductIds);
+    try {
+      const res = await updateCart(changedCarts);
+      if (res.status === 200) {
+        alert("장바구니가 수정되었습니다.");
+        navigate("/cart");
+      } else {
+        alert("장바구니 수정 실패");
+      }
+    } catch (err) {
+      alert("장바구니 수정 실패");
+    }
   };
 
   return (
