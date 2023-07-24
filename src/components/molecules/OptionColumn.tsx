@@ -5,6 +5,7 @@ import OptionList from '@components/atoms/OptionList';
 import PriceTag from '@components/atoms/PriceTag';
 import FilledButton from '@components/atoms/button/FilledButton';
 import comma from '@utils/commaUtils';
+import { type } from 'os';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +24,22 @@ type DictionaryItem = {
 const OptionColumn = ({ product }: OptionColumnProps) => {
   const [selectedOptions, setSelectedOptions] = useState<DictionaryItem[]>([]);
   const navigate = useNavigate();
+  const { mutate } = useMutation({ mutationFn: addCart }); // 장바구니 담기 api 처리
+
+  const addToCart = (handleError: { onSuccess: () => void; onError: () => void }) => {
+    mutate(
+      selectedOptions.map((el) => {
+        return {
+          optionId: el.optionId,
+          quantity: el.quantity,
+        };
+      }),
+      {
+        onSuccess: handleError.onSuccess,
+        onError: handleError.onError,
+      },
+    );
+  };
 
   const handleOnClickOption = (option: ProductOptionData) => {
     // 이미 선택된 옵션의 선택 방지
@@ -50,9 +67,6 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
       }),
     );
   };
-
-  // 장바구니 담기 api 처리
-  const { mutate } = useMutation({ mutationFn: addCart });
 
   return (
     <div className="flex-column rounded-2xl shadow-innerFlat p-[30px] w-[500px]">
@@ -104,45 +118,20 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
             {/* 장바구니 담기 버튼 */}
             <FilledButton
               onClick={() => {
-                mutate(
-                  selectedOptions.map((el) => {
-                    return {
-                      optionId: el.optionId,
-                      quantity: el.quantity,
-                    };
-                  }),
-                  {
-                    onSuccess: () => {
-                      alert('장바구니 담기 성공');
-                    },
-                    onError: () => {
-                      alert('장바구니 담기 실패');
-                    },
-                  },
-                );
+                addToCart({
+                  onSuccess: () => alert('장바구니 담기 성공'),
+                  onError: () => alert('장바구니 담기 실패'),
+                });
               }}
             >
               장바구니 담기
             </FilledButton>
             <FilledButton
               onClick={() => {
-                mutate(
-                  selectedOptions.map((el) => {
-                    return {
-                      optionId: el.optionId,
-                      quantity: el.quantity,
-                    };
-                  }),
-                  {
-                    onSuccess: () => {
-                      alert('장바구니 담기 성공');
-                    },
-                    onError: () => {
-                      alert('장바구니 담기 실패');
-                    },
-                  },
-                );
-                navigate('/cart');
+                addToCart({
+                  onSuccess: () => navigate('/cart'),
+                  onError: () => alert('장바구니 담기 실패'),
+                });
               }}
             >
               구매
