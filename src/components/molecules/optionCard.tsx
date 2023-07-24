@@ -7,6 +7,8 @@ interface OptionCardProps {
   optionName: string;
   quantity: number;
   optionTotalPrice: number;
+  decreaseDisabled?: boolean;
+  increaseDisabled?: boolean;
 
   handleQuantityDecrease: () => void;
   handleQuantityIncrease: () => void;
@@ -20,6 +22,8 @@ export default function OptionCard({
   handleQuantityDecrease,
   handleQuantityIncrease,
   handleDeleteOption,
+  decreaseDisabled = false,
+  increaseDisabled = false,
 }: OptionCardProps) {
   return (
     <div className="rounded py-4">
@@ -42,6 +46,8 @@ export default function OptionCard({
           count={quantity}
           handleDecrease={handleQuantityDecrease}
           handleIncrease={handleQuantityIncrease}
+          decreaseDisabled={decreaseDisabled}
+          increaseDisabled={increaseDisabled}
         />
         <p><Price price={optionTotalPrice} /></p>
       </div>

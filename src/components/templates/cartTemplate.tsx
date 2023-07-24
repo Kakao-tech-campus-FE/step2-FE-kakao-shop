@@ -42,9 +42,15 @@ export default function CartTemplate({
                           optionName={cart.option.optionName}
                           quantity={cart.quantity}
                           optionTotalPrice={cart.price}
-                          handleQuantityDecrease={() => handleOption(cart.id, cart.quantity - 1)}
+                          handleQuantityDecrease={() => {
+                            if (cart.quantity - 1 < 1) {
+                              return;
+                            }
+                            handleOption(cart.id, cart.quantity - 1);
+                          }}
                           handleQuantityIncrease={() => handleOption(cart.id, cart.quantity + 1)}
                           handleDeleteOption={() => handleOption(cart.id, 0)}
+                          decreaseDisabled={cart.quantity <= 1}
                         />
                       ) : null
                     ))}
@@ -55,9 +61,11 @@ export default function CartTemplate({
           <div className="border-t border-stone-300 py-4 text-right text-lg font-bold">
             총
             {' '}
-            <Price price={cartData.totalPrice} />
+            <span className="text-xl text-kakao-red">
+              <Price price={cartData.totalPrice} />
+            </span>
           </div>
-          <button className="w-full rounded-sm bg-kakao p-2">주문하기</button>
+          <button className="w-full rounded-sm bg-kakao p-2 font-bold">주문하기</button>
         </>
         ) : <div>담긴 상품이 없습니다.</div>}
     </div>
