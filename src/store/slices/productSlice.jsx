@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchProducts } from '../../services/product';
@@ -65,3 +66,11 @@ export default productsSlice.reducers;
 
 
 //페이지 값에 따라서 리턴: 페이지네이티드 된 데이터
+=======
+// import { creactSlice, }
+// import fetchProduct
+
+// const productSlice
+
+// export const getProducts = 
+>>>>>>> e3a7bc3e1 (feat:src)

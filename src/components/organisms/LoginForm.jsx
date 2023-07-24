@@ -11,8 +11,12 @@ import { useNavigate } from 'react-router-dom';
 
 =======
 import { login } from "../../services";
+<<<<<<< HEAD
 >>>>>>> f34aae79a (feat:Components)
 import Question from "../atoms/Question";
+=======
+import Question from "../atoms/question";
+>>>>>>> e3a7bc3e1 (feat:src)
 import { useState, useEffect } from "react";
 import { emailCheck, passwordCheck } from "../../services/regex";
 import { useDispatch, useSelector } from 'react-redux';
