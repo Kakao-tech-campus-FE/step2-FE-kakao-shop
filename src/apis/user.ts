@@ -1,5 +1,5 @@
 import { LoginData, RegisterFormData } from '../types/formData';
-import { kakaoUserInstance } from '../utils/axios';
+import { kakaoUserInstance } from './instance';
 
 export async function checkEmail(email: string) {
   try {

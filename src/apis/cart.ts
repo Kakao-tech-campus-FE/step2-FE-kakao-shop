@@ -1,8 +1,8 @@
 import { AddCartOption } from '../types/product';
-import { kakaoCartInstance } from '../utils/axios';
+import { kakaoShoppingInstance } from './instance';
 
 export async function requestAddCart(options: AddCartOption[], auth: string) {
-  const response = await kakaoCartInstance.post('/carts/add', options, {
+  const response = await kakaoShoppingInstance.post('/carts/add', options, {
     headers: {
       Authorization: auth,
     },
@@ -12,7 +12,7 @@ export async function requestAddCart(options: AddCartOption[], auth: string) {
 }
 
 export async function getCart(auth: string) {
-  return kakaoCartInstance.get('/carts', {
+  return kakaoShoppingInstance.get('/carts', {
     headers: {
       Authorization: auth,
     },
@@ -24,7 +24,7 @@ export async function requestUpdateCart(
   quantity: number,
   auth: string,
 ) {
-  return kakaoCartInstance.post('/carts/update', [{
+  return kakaoShoppingInstance.post('/carts/update', [{
     cartId,
     quantity,
   }], {
