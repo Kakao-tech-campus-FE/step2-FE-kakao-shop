@@ -6,7 +6,7 @@ import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
 import loginApi from '../../apis/loginApi';
-import { setEmail, setExpirationDate } from '../../store/slices/userSlices';
+import { login } from '../../store/slices/userSlices';
 import { isEmpty } from '../../utils/checkValidation';
 
 const LoginForm = () => {
@@ -49,8 +49,7 @@ const LoginForm = () => {
         if (data.success) {
           const today = new Date();
           const tomorrow = new Date(today.setDate(today.getDate() + 1));
-          dispatch(setExpirationDate({ expirationDate: tomorrow }));
-          dispatch(setEmail({ email }));
+          dispatch(login({ email, expirationDate: tomorrow }));
           navigate('/');
         } else {
           setServerValidateMsg(data.error.message);

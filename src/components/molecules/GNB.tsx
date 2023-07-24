@@ -4,7 +4,7 @@ import { HiOutlineShoppingCart } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import KaKaoShopLogo from '../atoms/KaKaoShopLogo';
 import LoginLink from '../atoms/LoginLink';
-import { selectEmail, selectExpirationDate, setEmail, setExpirationDate } from '../../store/slices/userSlices';
+import { selectEmail, selectExpirationDate, logout } from '../../store/slices/userSlices';
 import Button from '../atoms/Button';
 import Container from '../atoms/Container';
 
@@ -14,8 +14,7 @@ const GNB = () => {
   const dispatch = useDispatch();
 
   const handleLogoutButtonClick = () => {
-    dispatch(setEmail({ email: null }));
-    dispatch(setExpirationDate({ expirationDate: null }));
+    dispatch(logout());
   };
 
   useEffect(() => {
