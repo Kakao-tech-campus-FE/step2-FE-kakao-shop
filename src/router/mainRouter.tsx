@@ -8,6 +8,7 @@ import PageContainer from '@components/atoms/PageContainer';
 import ProductListPage from '@components/pages/ProductListPage';
 import ProductDetailPage from '@components/pages/ProductDetailPage';
 import CartPage from '@components/pages/CartPage';
+import PNFPage from '@components/pages/PNFPage';
 
 const mainRouter = () =>
   useRoutes([
@@ -46,6 +47,10 @@ const mainRouter = () =>
             {
               path: 'cart',
               element: <CartPage />,
+            },
+            {
+              path: '404',
+              element: <PNFPage />,
             },
           ],
         },
