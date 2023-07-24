@@ -1,14 +1,8 @@
 import { LoginData, RegisterFormData } from '../types/formData';
 import { kakaoUserInstance } from './instance';
 
-export async function checkEmail(email: string) {
-  try {
-    const response = await kakaoUserInstance.post('/check', { email });
-
-    return response.status === 200 && response.data.success === true;
-  } catch (error) {
-    return false;
-  }
+export function checkEmail(email: string) {
+  return kakaoUserInstance.post('/check', { email });
 }
 
 export async function requestUserRegistration({ email, password, username }: RegisterFormData) {

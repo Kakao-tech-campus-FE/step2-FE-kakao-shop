@@ -66,9 +66,15 @@ export default function RegisterForm({
                 onChange: debounce(async () => {
                   if (!getFieldState('email', formState).invalid) {
                     const value = getValues('email');
-                    if (await checkEmail(value)) {
-                      setIsEmailDuplicated(false);
-                    } else {
+                    try {
+                      const response = await checkEmail(value);
+
+                      if (response.data.success === true) {
+                        setIsEmailDuplicated(false);
+                      } else {
+                        setIsEmailDuplicated(true);
+                      }
+                    } catch (error) {
                       setIsEmailDuplicated(true);
                     }
                   }
