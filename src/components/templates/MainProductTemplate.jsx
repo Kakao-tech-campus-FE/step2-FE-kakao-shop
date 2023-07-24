@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
-import { fetchProducts } from "../../services/product";
+import { fetchProducts } from "../../apis/product";
 import { useQuery } from "react-query";
 import { PRODUCT_NUM_PER_PAGE } from "../../utils/constant";
 import _ from "lodash";
@@ -65,7 +65,7 @@ export default function MainProductTemplate() {
   }, [error]);
 
   return (
-    <Container className=" pt-20 flex justify-center flex-col items-center ">
+    <Container className=" flex justify-center flex-col items-center ">
       {isLoading && <Loader />}
       <ProductGrid
         products={products}
