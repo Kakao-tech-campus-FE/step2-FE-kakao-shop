@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import { getAddress } from "../../utils/convert";
 import Container from "../atoms/Container";
 import { SlArrowDown } from "react-icons/sl";
-import AddressGroup from "../molecules/AddressGroup";
+import AddressGroup from "../organisms/AddressGroup";
 
 const OPTIONS = [
   { value: "placeholder", name: "배송 요청사항을 선택해주세요" },

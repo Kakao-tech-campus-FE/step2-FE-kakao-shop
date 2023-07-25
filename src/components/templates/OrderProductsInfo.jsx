@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import OrderProduct from "../organisms/OrderProduct";
 import Button from "../atoms/Button";
 import { SlArrowDown } from "react-icons/sl";
+import { getAllQuantity } from "../../utils/convert";
 
 export default function OrderProductsInfo({ products }) {
   const [isOpen, setIsOpen] = useState(true);
@@ -35,10 +36,3 @@ export default function OrderProductsInfo({ products }) {
     </section>
   );
 }
-
-const getAllQuantity = (products) => {
-  return products.reduce(
-    (pre, cur) => pre + cur.carts.reduce((pre, cur) => pre + cur.quantity, 0),
-    0
-  );
-};

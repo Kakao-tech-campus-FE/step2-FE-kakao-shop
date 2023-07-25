@@ -55,3 +55,10 @@ export const getAddress = (data) => {
   }
   return `(${data.zonecode}) ${fullAddress}`;
 };
+
+export const getAllQuantity = (products) => {
+  return products.reduce(
+    (pre, cur) => pre + cur.carts.reduce((pre, cur) => pre + cur.quantity, 0),
+    0
+  );
+};
