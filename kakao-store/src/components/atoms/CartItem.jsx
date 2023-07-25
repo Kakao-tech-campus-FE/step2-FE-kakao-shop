@@ -7,7 +7,7 @@ import { useState } from 'react';
 // 각 상품별 장바구니 항목
 // 여러 옵션이 저장될 수 있음
 
-const CartItem = ({ item, onChange }) => {
+const CartItem = ({ item, onChange, onDelete }) => {
   return (
     <Box className="cart-item-box  p-2">
       <h3 className="productName mb-3 font-bold">{item.productName}</h3>
@@ -24,12 +24,12 @@ const CartItem = ({ item, onChange }) => {
           {/* 삭제 버튼 */}
 
           <div className="row my-2 flex">
-            <span
+            <button
               className="delete mr-1 rounded border border-solid border-gray-300 bg-white px-2 py-1 text-sm"
-              onClick={() => {}}
+              onClick={() => onDelete(cart.id, cart.price)}
             >
               삭제
-            </span>
+            </button>
             <Counter
               value={cart.quantity}
               onIncrease={(count) => {
@@ -40,16 +40,16 @@ const CartItem = ({ item, onChange }) => {
                 onChange(cart.id, count, -cart.option.price);
               }}
             ></Counter>
-            <div className="price flex-1 text-right font-bold">
+            <div className="price flex-1 text-right font-semibold">
               <span>{comma(cart.option.price * cart.quantity)}원</span>
             </div>
           </div>
         </Card>
       ))}
       <Card className="total-price rounded border border-solid bg-[#f1f1f1] p-2">
-        <div className="row">
+        <div className="row flex font-bold">
           <h5>주문금액</h5>
-          <div className="price">
+          <div className="price flex-1 text-right">
             {/* item.carts = 옵션들이 저장된 배열 */}
             {comma(
               item.carts.reduce((acc, cur) => {

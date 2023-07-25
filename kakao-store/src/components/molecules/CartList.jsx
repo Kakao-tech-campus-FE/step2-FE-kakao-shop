@@ -97,6 +97,33 @@ const CartList = ({ data }) => {
     });
   };
 
+  const handleDeleteCart = (optionId, price) => {
+    setUpdatepayload((prev) => {
+      return prev.filter((item) => item.cardId !== optionId);
+    });
+
+    setTotalPrice((prev) => prev - price);
+
+    setCartItems((prev) => {
+      console.log(cartItems);
+      return prev.map((item) => {
+        return {
+          ...item,
+
+          carts: item.carts.map((cart) => {
+            if (cart.id === optionId) {
+              return {
+                ...cart,
+                quantity: 0, // Set quantity to 0 for the cart being deleted
+              };
+            }
+            return cart;
+          }),
+        };
+      });
+    });
+  };
+
   return (
     <Container className="cart-list">
       <Box>
@@ -114,6 +141,7 @@ const CartList = ({ data }) => {
                   key={item.id}
                   item={item}
                   onChange={handleOnChangeCount} // 개수변경을 고나리하는 props
+                  onDelete={handleDeleteCart}
                 />
               );
             })}
