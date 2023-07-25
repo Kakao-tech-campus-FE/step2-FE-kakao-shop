@@ -6,16 +6,17 @@ import Loader from "../components/atoms/Loader";
 
 
 const CartPage = () => {
-    const { data } = useQuery("cart", getCart, {
-        onSuccess: () => {
-
-        },
-        onError: () => {
-            alert('장바구니 로딩 에러');
-            // window.location.href="/login";
+    const { data } = useQuery(
+        "cart", 
+        getCart, 
+        {
+            onError: (err) => {
+                alert('장바구니 로딩 에러');
+            }
         }
-    });
+    )
     // console.log('cart data', data?.data?.response);
+
     return (
         <div style={{backgroundColor:"#f4f4f4"}}>
             <Suspense fallback={<Loader />}>

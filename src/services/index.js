@@ -9,13 +9,20 @@ export const instance = axios.create({
     }
 });
 
-const tokenInterceptor = instance.interceptors.request.use((config) => {
-    const token = cookies.load('token');
-    if (token) {
-        config.headers["Authorization"] = token;
-    }
-    return config;
-});
+export const tokenInterceptor = () => {
+    instance.interceptors.request.use(
+        (config) => {
+            const token = cookies.load('token');
+            if (token) {
+                config.headers["Authorization"] = token;
+            }
+            return config;
+        },
+        (error) => {
+            return Promise.reject(error);
+        }
+    );
+}
 
 export const removeTokenInterceptor = () => {
     instance.interceptors.request.eject(tokenInterceptor);

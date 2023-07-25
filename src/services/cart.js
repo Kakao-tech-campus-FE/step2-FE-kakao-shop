@@ -1,5 +1,5 @@
-import { instance } from "./index";
-import store from "../store/index";
+import { instance, tokenInterceptor } from "./index";
+import cookie from "react-cookies";
 
 /**
  * 장바구니 담기
@@ -14,12 +14,13 @@ export const addCart = (payload) => {
  * 장바구니 조회
  */
 export const getCart = () => {
-    const token = store.getState().user.token
+    const token = cookie.load('token');
     if(!token) {
         alert("로그인이 필요한 서비스입니다.");
         window.location.href="/login";
-        return;
+        return Promise.resolve();
     }
+    tokenInterceptor();
     return instance.get("/carts");
 }
 
