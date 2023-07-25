@@ -100,3 +100,24 @@ export interface EditCartedItem {
   cartId: number;
   quantity: number;
 }
+
+/**
+ * 주문 API
+ */
+
+export interface OrderedProducdtData {
+  productName: string;
+  items: CartedOptionData[];
+}
+
+export interface OrderData {
+  id: number;
+  products: OrderedProducdtData[];
+  totalPrice: number;
+}
+
+export interface OrderResult {
+  success: boolean;
+  response: OrderData[];
+  error: null;
+}
