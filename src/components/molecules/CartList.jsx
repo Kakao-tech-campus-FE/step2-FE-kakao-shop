@@ -6,13 +6,16 @@ import { useState, useEffect, useCallback } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { updateCart } from '../services/cart';
 import { styled } from 'styled-components';
+import { getCart } from '../services/cart';
+import { useQuery } from '@tanstack/react-query';
 
-const CartList = ({ data }) => {
+const CartList = () => {
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [updatePayload, setUpdatePayload] = useState([]);
-    
+    const { data } = useQuery(["/cart"], getCart);
+
     const { mutate } = useMutation({
         mutationFn: updateCart,
     })
@@ -113,7 +116,7 @@ const CartList = ({ data }) => {
                         // 주문 페이지 이동(navigate)
                         // post 요청
                         mutate(updatePayload, {
-                            onSuccess: (data) => {
+                            onSuccess: () => {
                                 // 업데이트된 사항이 바로 적용되지 않아서 고의로 window.location.href 사용
                                 // CartItem 내부 함수 분리 후 업데이트 내용이 잘 적용되어 navigate로 복귀
                                 // console.log("업데이트 내역", updatePayload);
