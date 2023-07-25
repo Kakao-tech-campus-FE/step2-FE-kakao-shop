@@ -51,7 +51,6 @@ const Counter = ({
         const input = parseInt(e.target.value);
         if (!NUMBER_REGEX.test(e.target.value) || isNaN(input) || input < lowerBound) {
             handleOnLowerBound()
-            console.log("1121")
             setTempInput(lowerBound);
             handleOnChange(lowerBound);
             return;

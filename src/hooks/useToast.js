@@ -1,5 +1,4 @@
 import {useState} from "react";
-import _ from "lodash";
 
 const defaultToast = {
     message: 'This is a toast component',

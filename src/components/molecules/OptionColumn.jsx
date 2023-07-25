@@ -9,9 +9,8 @@ import {addCart} from "../../services/cart";
 import {RxCross2} from "react-icons/rx";
 import {BsCart2} from "react-icons/bs";
 import {useNavigate} from "react-router-dom";
-import Alert from "../atoms/Alert";
-import {AlertContext, ToastContext} from "../pages/ProductDetailPage";
-import Toast from "../atoms/Toast";
+import {AlertContext} from "../pages/ProductDetailPage";
+import {ToastContext} from "../../App";
 
 const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
@@ -80,7 +79,7 @@ const OptionColumn = ({product}) => {
 
                 {selectedOption.map((option) => (
                     <ol key={option.id} className="selected-option-list w-full">
-                        <li className="selected-option bg-red-100">
+                        <li className="selected-option">
                             <div className={"flex flex-row justify-between p-1"}>
                                 <span
                                     className="block option-name text-ellipsis text-justify whitespace-nowrap overflow-hidden">{option.optionName}</span>

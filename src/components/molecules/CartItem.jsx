@@ -1,6 +1,8 @@
 import Counter from "../atoms/Counter";
 import {comma} from "../../utils/convert";
 import {RxCross2} from "react-icons/rx";
+import {useContext} from "react";
+import {ToastContext} from "../../App";
 
 const CartItem = ({item, onChange}) => {
     console.log("item", item)
@@ -12,6 +14,8 @@ const CartItem = ({item, onChange}) => {
         })
         return amount;
     }
+
+     const {showToast} = useContext(ToastContext)
 
     return getItemAmount() !== 0 && (
         <div className={"cart-item w-full flex flex-col box-border my-5 p-5 text-left bg-light-gray-900 "}>
@@ -39,6 +43,16 @@ const CartItem = ({item, onChange}) => {
                                             handleOnChange={(value) => {
                                                 return onChange(cart.id, value, (value - cart.quantity) * cart.option.price)
                                             }}
+                                            handleOnLowerBound={() => {
+                                                showToast("주문 가능 수량은 1~1,000개입니다.");
+                                                console.log("lower bound999");
+                                            }
+                                            }
+                                            handleOnUpperBound={() => {
+                                                showToast("주문 가능 수량은 1~1,000개입니다.");
+                                                console.log("upper bound")
+                                            }
+                                            }
                                         />
                                     </div>
                                     <div className="option-price w-full text-right">

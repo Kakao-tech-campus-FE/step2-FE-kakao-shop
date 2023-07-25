@@ -10,9 +10,9 @@ import {RxCross2} from "react-icons/rx";
 
 const Alert = ({
                    className = "",
-                   message,
+                   message = "경고창입니다.",
                    buttonText = "확인",
-                   onClickButton = () => {isOpen = false;},
+                   onClickButton,
                    isOpen = false,
                    onClose = () => {isOpen = false;}
                }) => {
