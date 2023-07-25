@@ -105,7 +105,7 @@ export default function RegisterForm(){
         })
         .catch(err => {
             console.log("register err: ", err);
-            alert(err.data.error.message);
+            // alert(err.data.error.message);
         })
     }
 

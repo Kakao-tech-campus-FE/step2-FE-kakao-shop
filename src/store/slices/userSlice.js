@@ -17,7 +17,7 @@ const userSlice = createSlice({
             state.token = action.payload.token;
 
             const expires = new Date();
-            expires.setMinutes(expires.getMinutes() + 1); // 1일
+            expires.setDate(expires.getDate() + 1); // 1일
             // expires.setSeconds(expires.getSeconds() + 10); // test용 10초
 
             cookies.save('token', state.token, {
@@ -29,14 +29,16 @@ const userSlice = createSlice({
                 expires: expires,
             })
         },
-        removeToken: (state, action) => {
+        logout: (state, action) => {
+            state.email = null;
             state.token = null;
+            cookies.remove('email');
             cookies.remove('token');
         }
     },
 });
 
-export const { setEmail, setToken, removeToken } = userSlice.actions;
+export const { setEmail, setToken, logout } = userSlice.actions;
 
 export default userSlice.reducer;
 

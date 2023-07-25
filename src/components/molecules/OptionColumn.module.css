@@ -1,0 +1,70 @@
+.option_column {
+    position: relative;
+    width: 360px;
+    background-color: #fff;
+    border-left: 1px solid lightgray;
+}
+.product_option {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: sticky;
+    top: 50px;
+    min-height: 50px;
+    padding: 30px 0 30px 30px;
+}
+.ship_info {
+    position: relative;
+    border-bottom: 1px solid lightgray;
+    padding: 20px 0;
+}
+.ship_info input {
+    display: block;
+    width: 100%;
+    line-height: 1.5;
+}
+.selected_option_list {
+    list-style: none;
+    padding: 20px 0 0 0;
+    margin: 0;
+}   
+.selected_option_list > li {
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 10px 14px;
+}
+.selection_result {
+    display: flex;
+    margin: 0;
+    padding: 22px 3px 20px 0;
+    line-height: 24px;
+    font-size: 18px;
+}
+.result_count {
+    line-height: 24px;
+}
+.result_price {
+    margin-left: auto;
+}
+.result_price > strong {
+    color: #FF5959;
+}
+.button_group {
+    display: flex;
+}
+.button_group > button {
+    border: none;
+    border-radius: 5px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 1.5;
+    cursor: pointer;
+}
+.cart_button {
+    background-color: #1e1e1e;
+    color: white;
+    margin-right: 4px;
+}
+.talkdeal_button {
+    background-color: #ffeb00;
+    flex: 1;
+}

@@ -97,7 +97,7 @@ const LoginForm = () => {
             console.log("login res: ", res);
             
             dispatch(setToken({ // store에 token 저장하기
-                token: res.headers["authorization"],
+                token: res.headers.authorization,
             }));
 
             window.location.href = "/"; // 메인페이지 리다이렉트
@@ -105,7 +105,8 @@ const LoginForm = () => {
         })
         .catch(err => {
             console.log("login err: ", err);
-            alert(err.data.error.message);
+            // alert('login error occured');
+            alert(err.data?.error?.message);
         })
     }
 

@@ -3,7 +3,6 @@ import { fetchProducts } from "../../services/product";
 import { useInfiniteQuery } from "react-query";
 import Loader from "../atoms/Loader";
 import SkeletonGrid from "../organisms/SkeletonGrid";
-import { getProductImage } from "../../services/product";
 
 // components
 import Container from "../atoms/Container";
@@ -20,29 +19,29 @@ const MainProductTemplate = () => {
             },
         }
     );
-    
-    const productList = []
+
+    const productList = [];
     data?.pages.forEach((page)=> 
     page.data.response.forEach((data)=>{
         productList.push(data)
     }))
-    // console.log(productList)
     
-    const io = new IntersectionObserver(
-        (entries, observer) => {
-            entries.forEach((entry) => {
-                if(!entry.isIntersecting) return;
-                if (entry.isIntersecting && hasNextPage && bottomObserver.current) {
-                    // console.log("not working")
-                    fetchNextPage();
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
-
     useEffect(() => {
+        const io = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if(!entry.isIntersecting) return;
+                    if (entry.isIntersecting && hasNextPage && bottomObserver.current) {
+                        console.log("not working")
+                        fetchNextPage();
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
         io.observe(bottomObserver.current);
+        return () => io.disconnect();
     }, []); // 최초 렌더링 마운트 1회만 선언
 
     return (

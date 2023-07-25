@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom"
 import cookies from "react-cookies";
 import { useDispatch, useSelector } from "react-redux";
-import { removeToken } from "../../store/slices/userSlice";
+import { logout } from "../../store/slices/userSlice";
+// 절대경로 설정 ../../ -> @ root path 를 정할 수 있다.
 import styles from "./GNB.module.css";
+import logoKakao from "../../assets/logoKakao.png";
+import cart from "../../assets/cart.png";
 
 const GNB = () => {
     const token = useSelector((state) => state.user.token);
@@ -10,7 +13,7 @@ const GNB = () => {
 
     const handleLogout = () => {
         cookies.remove('token');
-        dispatch(removeToken());
+        dispatch(logout());
         alert("logout");
         window.location.reload();
     }
@@ -20,13 +23,13 @@ const GNB = () => {
             <div className={styles.inner}>
                 <div className={styles.contents}>
                     <Link className={styles.link_logo} to="/">
-                        <img className={styles.img_logo} src={`${process.env.PUBLIC_URL}\logoKakao.png`} alt="logoKakao.png" />
+                        <img className={styles.img_logo} src={logoKakao} alt="logoKakao.png" />
                     </Link>
                     <nav className={styles.utils}>
                         <div className={styles.cart}>
                             {/* 장바구니 버튼 */}
                             <Link className={styles.link_cart} to="/cart">
-                                <img className={styles.img_cart} src={`${process.env.PUBLIC_URL}\cart.png`} />
+                                <img className={styles.img_cart} src={cart} />
                             </Link>
                         </div>
                     </nav>

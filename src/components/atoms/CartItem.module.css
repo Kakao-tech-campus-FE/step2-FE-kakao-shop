@@ -1,0 +1,23 @@
+.cart_item {
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 16px;
+    border: 1px solid #dee0e6;
+}
+.cart_item_title {
+    margin-bottom: 30px;
+    max-height: 60px;
+    padding-left: 12px;
+}
+.cart_item > strong {
+    text-overflow: ellipsis;
+    line-height: 18px;
+    font-weight: 600;
+    max-height: 36px;
+}
+.product_name {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+    word-break: break-all;
+}

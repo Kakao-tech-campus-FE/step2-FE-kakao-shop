@@ -3,6 +3,7 @@ import Container from "../components/atoms/Container";
 import styled from "styled-components";
 
 const StyledContainer = styled(Container)`
+    width: 580px;
     padding: 0 42px;
     border: 1px solid rgba(0, 0, 0, .12);
     margin: 40px auto 42px;

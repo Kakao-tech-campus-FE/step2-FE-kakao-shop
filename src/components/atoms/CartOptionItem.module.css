@@ -1,0 +1,32 @@
+.option_info {
+    border: 1px solid #e6e6e6;
+    padding: 11px;
+    border-radius: 3px;
+    margin: 10px 0 0 30px;
+}
+.option_name {
+    font-size: 14px;
+    line-height: 16px;
+    word-break: break-all;
+    padding: 0 0 12px;
+}
+.option_amount {
+    position: relative;
+}
+.delete_btn {
+    width: 53px;
+    margin-right: 6px;
+    padding: 6px 8px;
+    border: 1px solid #dee0e6;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 16px;
+    background-color: #fff;
+    cursor: pointer;
+}
+.price {
+    position: absolute;
+    right: 0;
+    font-weight: 700;
+    font-size: 15px;
+}

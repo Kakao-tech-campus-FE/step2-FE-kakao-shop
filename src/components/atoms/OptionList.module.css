@@ -1,0 +1,16 @@
+.option_list {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0 0 0;
+}
+.option {
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 10px 14px;
+    cursor: pointer;
+}
+.option_name {
+    font-weight: 800;
+}
+.option_price {
+
+}

@@ -1,0 +1,30 @@
+.product_information_column {
+    display: flex;
+    width: 890px;
+    padding: 30px 29px 150px 0;
+    /* gap: 20px; */
+}
+
+.product_name {
+    font-size: 26px;
+    font-weight: 400;
+}
+.image_section {
+    flex: 0 0 430px;
+    height: auto;
+}
+.info_section {
+    margin-left: auto;
+    flex: 0 0 400px;
+}
+.price {
+    height: 45px;
+    padding: 0 15px;
+    line-height: 1.5;
+    font-size: 18px;
+    background-color: #ffeb00;
+    border-radius: 23px;
+    border: none;
+    cursor: pointer;
+    font-family: HelveticaNeue,AppleSDGothicNeo-Regular,tahoma,Malgun Gothic,\b9d1\c740 \ace0\b515,dotum,\b3cb\c6c0,sans-serif;
+}
