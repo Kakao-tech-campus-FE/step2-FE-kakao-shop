@@ -1,14 +1,29 @@
 import styled from '@emotion/styled';
+import { getCartsRequestAction } from '@store/Cart/reducers';
 import { signOutAction } from '@store/Login/reducers';
 import { RootState } from '@store/index';
 import hideWithA11y from '@styles/a11y';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
   const dispatch = useDispatch();
+  const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
+  const cartProducts = useSelector((state: RootState) => state.cart.cart);
+  const totalQuantity = cartProducts.reduce((count, product) => {
+    const sumOfQuantities = product.carts.reduce((acc, cart) => acc + cart.quantity, 0);
+    return count + (sumOfQuantities !== 0 ? 1 : 0);
+  }, 0);
+
+  useEffect(() => {
+    dispatch(getCartsRequestAction());
+  }, [dispatch]);
+
+  const logout = () => {
+    dispatch(signOutAction());
+    window.location.href = '/'; // 전역 state 초기화를 위해서
+  };
 
   return (
     <Fragment>
@@ -38,21 +53,10 @@ const Header = () => {
             <Link to="/cart">
               <span>장바구니</span>
             </Link>
+            {!!totalQuantity && <S.CartCount>{totalQuantity}</S.CartCount>}
           </S.MenuUtil>
 
-          <S.MenuMy>
-            {isLogin ? (
-              <button
-                onClick={() => {
-                  dispatch(signOutAction());
-                  window.location.href = '/'; // 전역 state 초기화를 위해서
-                }}>
-                로그아웃
-              </button>
-            ) : (
-              <Link to="/login">로그인</Link>
-            )}
-          </S.MenuMy>
+          <S.MenuMy>{isLogin ? <button onClick={logout}>로그아웃</button> : <Link to="/login">로그인</Link>}</S.MenuMy>
         </S.Container>
       </S.Root>
       <S.HeaderTrick />
@@ -74,6 +78,7 @@ const S = {
     border-bottom: 1px solid #e5e5e5;
     background-color: #fff;
   `,
+
   Container: styled.div`
     display: flex;
 
@@ -81,19 +86,24 @@ const S = {
     height: 79px;
     margin: 0 auto;
   `,
+
   TitleLogo: styled.h1`
     padding-top: 31px;
   `,
+
   Image: styled.img`
     display: block;
 
     width: 90px;
     height: 20px;
   `,
+
   GnbMenu: styled.div`
     padding: 0 8px 0 38px;
   `,
+
   A11yMenuDesc: styled.h2``,
+
   MenuList: styled.ul`
     & > li > a {
       display: block;
@@ -126,6 +136,7 @@ const S = {
       background-color: #222;
     }
   `,
+
   MenuUtil: styled.div`
     position: relative;
 
@@ -171,6 +182,7 @@ const S = {
       background-color: rgba(34, 34, 34, 0.2);
     }
   `,
+
   MenuMy: styled.div`
     position: relative;
 
@@ -201,7 +213,28 @@ const S = {
       cursor: pointer;
     }
   `,
+
   HeaderTrick: styled.div`
     height: 79px;
+  `,
+
+  CartCount: styled.span`
+    position: absolute;
+    left: 29px;
+    top: 23px;
+
+    box-sizing: border-box;
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 5px;
+
+    background-color: #fc5252;
+    border-radius: 17px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px;
+    color: #fff;
+    text-align: center;
   `,
 };
