@@ -1,28 +1,20 @@
 import styled from '@emotion/styled';
-import React, { ChangeEventHandler, PropsWithChildren } from 'react';
+import { PropsWithChildren, ChangeEventHandler } from 'react';
 
 type CheckboxProps = {
-  handleToggle?: ChangeEventHandler<HTMLInputElement>;
+  onChange: ChangeEventHandler<HTMLInputElement>;
   disabled?: boolean;
-  isChecked?: boolean;
-} & React.LabelHTMLAttributes<HTMLLabelElement>;
+  checked: boolean;
+};
 
-const CheckBox = ({ handleToggle, isChecked, children, ...Props }: PropsWithChildren<CheckboxProps>) => {
+const CheckBox = ({ onChange, checked, children, ...props }: PropsWithChildren<CheckboxProps>) => {
   return (
-    <CheckboxWrapper {...Props}>
-      <input type="checkbox" onChange={handleToggle} checked={isChecked} />
+    <CheckboxWrapper {...props}>
+      <input type="checkbox" onChange={onChange} checked={checked} />
       <CheckboxMark />
       {children}
     </CheckboxWrapper>
   );
-};
-
-CheckBox.RegularText = function ({ children }: PropsWithChildren) {
-  return <CheckboxText>{children}</CheckboxText>;
-};
-
-CheckBox.BigText = function ({ children }: PropsWithChildren) {
-  return <CheckboxBigText>{children}</CheckboxBigText>;
 };
 
 export default CheckBox;
@@ -76,8 +68,8 @@ const CheckboxMark = styled.span`
 
   background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png')
     no-repeat;
-  background-position: -75px -45px;
   background-size: 150px 225px;
+  background-position: -50px -70px;
 
   color: transparent;
   font-size: 1px;
@@ -97,30 +89,11 @@ const CheckboxMark = styled.span`
     background: url('https://st.kakaocdn.net/commerce_ui/front-sp/real/20230629/093545/ico_shoporder_230607.5abf9bcf37cc40a9.png')
       no-repeat;
     background-size: 150px 225px;
-    background-position: -50px -70px;
+    background-position: -75px -45px;
 
     font-size: 1px;
     line-height: 0;
     color: transparent;
     vertical-align: top;
   }
-`;
-
-const CheckboxText = styled.span`
-  padding-left: 28px;
-
-  font-size: 14px;
-  line-height: 22px;
-  color: #222;
-  letter-spacing: -0.06em;
-`;
-
-const CheckboxBigText = styled.span`
-  padding-left: 28px;
-
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 22px;
-  color: #222;
-  letter-spacing: -0.06em;
 `;
