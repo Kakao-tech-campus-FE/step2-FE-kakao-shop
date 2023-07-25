@@ -8,12 +8,9 @@ const CartItem = ({ item, onChange }) => {
     const [isEmpty, setIsEmpty] = useState(false);
 
     useEffect(() => {
-        // option의 quantity의 합계가 0이면 isEmtpy
-        let sum = 0;
-        item.carts.forEach(option => {
-            sum += option.quantity;
-        })
-        if(sum === 0) setIsEmpty(true);
+        setIsEmpty(
+            item.carts.every(option => option.quantity === 0)
+        );
     }, [item]);
 
     if(isEmpty) return;

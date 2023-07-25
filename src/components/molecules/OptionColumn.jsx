@@ -28,8 +28,14 @@ const OptionColumn = ({ product }) => {
 
     useEffect(() => {
         console.log('selectedOptions', selectedOptions);
-        setTotalCount(selectedOptions.reduce((acc, curr) => { return acc += curr.quantity; }, 0));
-        setTotalPrice(selectedOptions.reduce((acc, curr) => { return acc += curr.price * curr.quantity; }, 0));
+        const totalValue = selectedOptions.reduce((acc, curr) => {
+            acc.totalCount += curr.quantity;
+            acc.totalPrice += curr.price * curr.quantity;
+            return acc;
+        }, {totalCount: 0, totalPrice: 0});
+
+        setTotalCount(totalValue.totalCount);
+        setTotalPrice(totalValue.totalPrice);
     }, [selectedOptions]);  
 
     const handleOnClickOption = (option) => {

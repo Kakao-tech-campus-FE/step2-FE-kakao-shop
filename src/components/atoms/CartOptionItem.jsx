@@ -1,15 +1,16 @@
 import styles from "./CartOptionItem.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 
 const CartOptionItem = ({ optionItem, onChange }) => {
     const [count, setCount] = useState(optionItem.quantity);
-    const [price, setPrice] = useState(optionItem.price);
+    const price = useMemo(() => 
+        count * optionItem.option.price
+    , [count]);
     
     // console.log('cart option item', optionItem);
     useEffect(() => {
-        setPrice(count * optionItem.option.price);
         onChange(count);
     }, [count]);
 
