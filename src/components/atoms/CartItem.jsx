@@ -5,13 +5,11 @@ import { Button } from "react-bootstrap";
 import { styled } from "styled-components";
 
 const CartItem = ({ item, onChange, onDelete }) => {
+    const CartOptionDetail = () => {
+        let renderCartOptions = [];
 
-    return (
-        <CartItemBox>
-            <h5>{item.productName}</h5>
-            {/* item의 carts에 담긴 장바구니 목록을 빼와서 사용 */}
-            {item.carts.map((cart) => (
-                <CartItemOptionBox key={cart.id}>
+        renderCartOptions.push(item.carts.map((cart) => (
+            <CartItemOptionBox key={cart.id}>
                 <div className="option-name">
                     <span>{cart.option.optionName}</span>
                 </div>
@@ -34,7 +32,13 @@ const CartItem = ({ item, onChange, onDelete }) => {
                     </PriceBox>
                 </OptionButtons>
             </CartItemOptionBox>
-            ))}
+        )))
+
+        return renderCartOptions
+    }
+
+    const CartOptionPrice = () => {
+        return (
             <Box className="total-price">
                 <div className="row">
                     <h5>주문금액</h5>
@@ -48,6 +52,15 @@ const CartItem = ({ item, onChange, onDelete }) => {
                     </div>
                 </div>
             </Box>
+        )
+    }
+
+    return (
+        <CartItemBox>
+            <h5>{item.productName}</h5>
+            {/* item의 carts에 담긴 장바구니 목록을 빼와서 사용 */}
+            <CartOptionDetail />
+            <CartOptionPrice />
         </CartItemBox>
     );
 };
