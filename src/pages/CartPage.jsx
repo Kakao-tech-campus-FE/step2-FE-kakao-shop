@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 
 export default function CartPage() {
   const navigate = useNavigate();
-  const { error, data } = useQuery(["carts"], cartInstance.getCart);
+  const { error, data } = useQuery(["carts"], cartInstance.getCart, {
+    staleTime: 1000 * 60,
+  });
 
   if (error) {
     return <div>{error.message}</div>;

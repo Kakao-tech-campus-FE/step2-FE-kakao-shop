@@ -12,7 +12,7 @@ import store from "./store";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
-import PurchasePage from "./pages/PurchasePage";
+import OrderPage from "./pages/OrderPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 const router = createBrowserRouter([
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
         path: "/order",
         element: (
           <ProtectedRoute>
-            <PurchasePage />
+            <OrderPage />
           </ProtectedRoute>
         ),
       },

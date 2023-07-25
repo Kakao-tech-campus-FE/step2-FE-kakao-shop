@@ -38,3 +38,20 @@ export const filterCartData = (data) => {
   const filteredData = response.filter((d) => d.carts.length !== 0);
   return filteredData;
 };
+
+export const getAddress = (data) => {
+  let fullAddress = data.address;
+  let extraAddress = "";
+
+  if (data.addressType === "R") {
+    if (data.bname !== "") {
+      extraAddress += data.bname;
+    }
+    if (data.buildingName !== "") {
+      extraAddress +=
+        extraAddress !== "" ? `, ${data.buildingName}` : data.buildingName;
+    }
+    fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
+  }
+  return `(${data.zonecode}) ${fullAddress}`;
+};
