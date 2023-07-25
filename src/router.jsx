@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import routes from "@/constants/routes.js";
+import Order from "@/pages/Order.jsx";
 
 const Home = lazy(() => import("@/pages/Home.jsx"));
 const SignIn = lazy(() => import("@/pages/SignIn.jsx"));
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: routes.order,
-    element: <div>주문하기</div>,
+    element: <Order />,
   },
 ]);
 
