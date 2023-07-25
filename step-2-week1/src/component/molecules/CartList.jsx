@@ -10,12 +10,15 @@ import Button from "../atoms/Button";
 import { useMutation } from "react-query";
 import { updateCart, getCart } from "../../services/cart";
 import '../../styles/molcules/CartList.css';
+// import { useRouter } from 'react-router-dom';
 
 const CartList = () => {
     const route = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [updatePayload, setUpdatePayload] = useState([]);
+    // const route = useRouter();
+    const navigate = useNavigate();
 
     const initPayload = useRef([]);
 
@@ -125,8 +128,7 @@ const CartList = () => {
 
                     mutate(updatePayload, {
                         onSuccess: (data) => {
-                        // navigate to order page
-                        route.push("/order");
+                        navigate("/order");
 
 
                         },
@@ -135,8 +137,7 @@ const CartList = () => {
                         },
                     });
 
-                    alert("결제가 완료되었습니다.");
-
+                    // alert("결제가 완료되었습니다.");
 
                 }}
             >
