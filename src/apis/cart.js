@@ -1,11 +1,7 @@
 import { instance } from "apis/instance.js";
 
 export async function addCartReq(data) {
-  const formattedData = data.map((item) => ({
-    optionId: item.id,
-    quantity: item.quantity,
-  }));
-  return await instance.post("/carts/add", formattedData);
+  return await instance.post("/carts/add", data);
 }
 
 export async function getCartReq(){
@@ -13,9 +9,5 @@ export async function getCartReq(){
 }
 
 export async function updateCartReq(data) {
-  const formattedData = data.map((item) => ({
-    cartId: item.id,
-    quantity: item.quantity,
-  }));
-  return await instance.post("/carts/update", formattedData);
+  return await instance.post("/carts/update", data);
 }

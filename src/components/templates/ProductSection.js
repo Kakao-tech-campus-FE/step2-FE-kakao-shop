@@ -11,7 +11,7 @@ import ProductOption from "components/molecules/ProductOption";
 export default function ProductSection() {
   const { productId } = useParams();
   const { isLoading, error, data } = useQuery({
-    queryKey: [`products/${productId}`],
+    queryKey: ["products", productId],
     queryFn: () => getProductReq(productId),
   });
 

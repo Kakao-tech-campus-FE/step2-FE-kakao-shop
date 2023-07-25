@@ -1,21 +1,41 @@
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+
+import { updateCartReq } from "apis/cart";
 import { convertToPrice } from "utils/convert";
+
 import Button from "./Button";
 import Counter from "./Counter";
-import { updateCartReq } from "apis/cart";
 
-export default function CartItem({ key, product, refetch }) {
+export default function CartItem({ product }) {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: updateCartReq,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["carts"] });
+    },
+    onError: (err) => {
+      console.dir("카트업데이트 오류:\n" + err);
+    },
+  });
+
   const handleDeleteClick = async (cart) => {
-    await updateCartReq([{ ...cart, quantity: 0 }]);
-    refetch();
+    const formattedData = [{ ...cart, quantity: 0 }].map((item) => ({
+      cartId: item.id,
+      quantity: item.quantity,
+    }));
+    mutate(formattedData);
   };
 
   const handleIncDecClick = async (cart, qtt) => {
-    await updateCartReq([{ ...cart, quantity: qtt }]);
-    refetch();
+    const formattedData = [{ ...cart, quantity: qtt }].map((item) => ({
+      cartId: item.id,
+      quantity: item.quantity,
+    }));
+    mutate(formattedData);
   };
 
   return (
-    <div key={key}>
+    <div>
       <h3>{product.productName}</h3>
       {product.carts.map((cart) => (
         <div key={`cart-${cart.id}`}>

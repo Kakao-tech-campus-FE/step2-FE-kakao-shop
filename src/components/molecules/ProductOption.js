@@ -56,7 +56,11 @@ export default function ProductOption({ product }) {
       alert("옵션을 먼저 선택해주세요.");
       return;
     }
-    mutate(selectedOptions, {
+    const formattedData = selectedOptions.map((item) => ({
+      optionId: item.id,
+      quantity: item.quantity,
+    }));
+    mutate(formattedData, {
       onSuccess: () => {
         setSelectedOptions([]);
         alert("장바구니에 상품이 담겼습니다.");
@@ -76,7 +80,11 @@ export default function ProductOption({ product }) {
       alert("옵션을 먼저 선택해주세요.");
       return;
     }
-    mutate(selectedOptions, {
+    const formattedData = selectedOptions.map((item) => ({
+      optionId: item.id,
+      quantity: item.quantity,
+    }));
+    mutate(formattedData, {
       onSuccess: () => {
         navigate("/order");
       },
