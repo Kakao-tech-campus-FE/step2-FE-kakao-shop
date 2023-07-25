@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { LoginData } from './dto';
 import instance from '.';
 

@@ -1,11 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RootState } from 'src/store';
 import { loginStore } from '@store/slices/userSlice';
-import FilledButton from '@components/atoms/button/FilledButton';
 import { BsCart, BsPerson, BsBoxArrowInLeft } from 'react-icons/bs';
-import TextButton from '@components/atoms/button/TextButton';
 
 const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);

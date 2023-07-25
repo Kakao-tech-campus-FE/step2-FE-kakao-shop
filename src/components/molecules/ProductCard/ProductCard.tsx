@@ -1,8 +1,7 @@
 import { ProductInfoData } from '@api/dto';
 import Card from '@components/atoms/Card';
 import Photo from '@components/atoms/Photo';
-import comma from '@utils/commaUtils';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PriceTag from '@components/atoms/PriceTag';
 import ProductCardSkeleton from './ProductCardSkeleton';

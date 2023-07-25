@@ -5,7 +5,6 @@ import OptionList from '@components/atoms/OptionList';
 import PriceTag from '@components/atoms/PriceTag';
 import FilledButton from '@components/atoms/button/FilledButton';
 import comma from '@utils/commaUtils';
-import { type } from 'os';
 import React, { useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';

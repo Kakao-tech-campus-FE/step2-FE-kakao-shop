@@ -2,9 +2,8 @@ import { updateCart } from '@api/cartApi';
 import { CartProductsQuery, CartProductData, CartedOptionData, EditCartedItem } from '@api/dto';
 import FilledButton from '@components/atoms/button/FilledButton';
 import CartItem from '@components/molecules/CartItem';
-import { Card } from '@mui/material';
 import comma from '@utils/commaUtils';
-import React, { useCallback, useEffect, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 

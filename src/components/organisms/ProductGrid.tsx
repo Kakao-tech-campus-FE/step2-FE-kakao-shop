@@ -1,6 +1,6 @@
 import { ProductInfoData } from '@api/dto';
 import ProductCard from '@components/molecules/ProductCard/ProductCard';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 interface ProductGridProps {
   products: ProductInfoData[];

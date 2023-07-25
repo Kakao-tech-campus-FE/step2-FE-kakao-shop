@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { ButtonProps } from './Button.interface';
 
 const FilledButton = ({ onClick, children }: ButtonProps) => {

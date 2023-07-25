@@ -1,5 +1,4 @@
 import React from 'react';
-import PriceTag from './PriceTag';
 
 interface CardProps {
   children: React.ReactNode;
