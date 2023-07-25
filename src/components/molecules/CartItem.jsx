@@ -5,8 +5,6 @@ import {useContext} from "react";
 import {ToastContext} from "../../App";
 
 const CartItem = ({item, onChange}) => {
-    console.log("item", item)
-
     const getItemAmount = () => {
         let amount = 0;
         item?.carts.forEach((cart) => {
@@ -45,12 +43,10 @@ const CartItem = ({item, onChange}) => {
                                             }}
                                             handleOnLowerBound={() => {
                                                 showToast("주문 가능 수량은 1~1,000개입니다.");
-                                                console.log("lower bound999");
                                             }
                                             }
                                             handleOnUpperBound={() => {
                                                 showToast("주문 가능 수량은 1~1,000개입니다.");
-                                                console.log("upper bound")
                                             }
                                             }
                                         />

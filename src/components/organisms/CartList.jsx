@@ -7,7 +7,6 @@ import {useMutation} from "react-query";
 const CartList = ({data}) => {
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
-    console.log("data", data)
     useEffect(() => {
         setCartItems(data?.data?.response?.products);
         setTotalPrice(data?.data?.response?.totalPrice);
