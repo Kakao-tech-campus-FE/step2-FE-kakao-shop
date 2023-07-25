@@ -5,11 +5,11 @@ import styled from '@emotion/styled';
 import { Button, CustomSuspense, Photo } from '@components/atom';
 import LoginModal from '@components/molecules/LoginModal';
 import PageLoader from '@components/molecules/PageLoader';
-import DeliveryInfo from '@components/page/Detail/DeliveryInfo';
-import OptionListSection from '@components/page/Detail/OptionListSection';
-import PurchaseButtons from '@components/page/Detail/PurchaseButtons';
-import RenderStar from '@components/page/Detail/RenderStar';
-import SelectResult from '@components/page/Detail/SelectResult';
+import DeliveryInfo from '@components/page/ProductDetail/DeliveryInfo';
+import OptionListSection from '@components/page/ProductDetail/OptionListSection';
+import PurchaseButtons from '@components/page/ProductDetail/PurchaseButtons';
+import RenderStar from '@components/page/ProductDetail/RenderStar';
+import SelectResult from '@components/page/ProductDetail/SelectResult';
 
 import { useProductDetail } from '@hooks/page/ProductDetail/_useProductDetailPage';
 
