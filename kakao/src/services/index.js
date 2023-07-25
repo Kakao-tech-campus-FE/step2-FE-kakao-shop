@@ -8,6 +8,7 @@ export const instance = axios.create({
   },
 });
 
+// 전체 오류날 때 지워보기
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

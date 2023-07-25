@@ -1,6 +1,6 @@
 const ErrorPage = () => {
   return (
-    <div class="errorpage">
+    <div className="errorpage">
       <span className="error">404</span>
       <div className="error-message">페이지를 찾을 수 없습니다‼️</div>
       <a href="/" className="back-home">
