@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./Layout";
+import MainLayout from "../layouts/MainLayout";
 import MainPage from "./MainPage";
 import LoginPage from "./LoginPage";
 import RegisterPage from "./RegisterPage";
@@ -15,7 +15,7 @@ const LayoutRoute = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<MainLayout />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/product/:id" element={<ProductDetailPage />} />

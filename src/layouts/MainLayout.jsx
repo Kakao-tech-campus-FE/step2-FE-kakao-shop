@@ -5,13 +5,13 @@ import HeaderForm from "../components/organisms/HeaderForm";
  *
  * @return {JSX.Element}
  */
-const Layout = () => {
+const MainLayout = () => {
   return (
-    <div>
+    <>
       <HeaderForm />
       <Outlet />
-    </div>
+    </>
   );
 };
 
-export default Layout;
+export default MainLayout;
