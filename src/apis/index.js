@@ -20,7 +20,7 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use(
   (response) => {
     console.log("Axios Interceptors Data", response);
-    return response.data.response;
+    return response;
   },
   (error) => {
     console.log("Axios Interceptors Error", error);
