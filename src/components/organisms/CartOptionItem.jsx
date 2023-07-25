@@ -49,7 +49,7 @@ export default function CartOptionItem({ item }) {
   };
   return (
     <li className="relative mt-3 px-4 py-3 border rounded">
-      <span className="text-sm text-gray-600 font-semibold">
+      <span className="text-sm text-gray-800 font-semibold">
         {item.option.optionName}
       </span>
       <Box className="flex justify-between items-center pt-3">

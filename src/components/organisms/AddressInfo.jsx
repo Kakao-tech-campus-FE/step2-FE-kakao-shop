@@ -34,13 +34,17 @@ export default function AddressInfo() {
   };
 
   return (
-    <section className="relative flex flex-col px-5 py-3 gap-2 bg-white border-y">
-      <p className="text-lg font-extrabold">배송지 정보</p>
-      <Button className="absolute top-5 right-6" onClick={handleOpen}>
+    <section className="flex flex-col bg-white border-y">
+      <Button
+        className="flex justify-between items-center"
+        padding=" px-5 py-3"
+        onClick={handleOpen}
+      >
+        <p className="text-lg font-extrabold">배송지 정보</p>
         <SlArrowDown className={isOpen ? "rotate-180" : ""} />
       </Button>
       {isOpen && (
-        <Container className="flex flex-col items-start gap-2">
+        <Container className="flex flex-col items-start gap-2 px-5 pb-3">
           <AddressGroup
             address={address}
             isPostCodeOpen={isPostCodeOpen}
