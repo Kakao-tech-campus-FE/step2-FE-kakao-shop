@@ -12,6 +12,8 @@ import Carousel from "./components/Carousel";
 import RadioButton from "./components/RadioButton";
 import ToggleButton from "./components/ToggleButton";
 import CheckList from "./components/molecules/CheckList";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout"
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   const [page, setPage] = React.useState("");
@@ -31,7 +33,11 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+        </Route>
+
+        <Route element={<RequiredAuthLayout />}>
           <Route path="/cart" element={<CartPage />}></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
