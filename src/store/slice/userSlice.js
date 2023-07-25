@@ -18,6 +18,7 @@ const userSlice = createSlice({
             state.isLogin = false;
             state.expirationTime = null;
             state.email = "";
+            localStorage.removeItem("token");
         },
         setExpirationTime: (state, action) => {
             state.expirationTime = action.payload;
