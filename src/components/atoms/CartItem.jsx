@@ -19,7 +19,9 @@ const CartItem = ({ item, onChange }) => {
     if(isEmpty) return;
     return (
         <Box className={styles.cart_item}>
-            <h5 className={styles.product_name}>{item.productName}</h5>
+            <div className={styles.cart_item_title}>
+                <strong className={styles.product_name}>{item.productName}</strong>
+            </div>
             {item.carts.map((cart) => {
                 return <CartOptionItem key={cart.id} optionItem={cart} onChange={(optionQuantity) => {
                     onChange(cart.id, optionQuantity);

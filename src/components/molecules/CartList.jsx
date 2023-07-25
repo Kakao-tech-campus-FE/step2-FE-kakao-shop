@@ -77,7 +77,7 @@ const CartList = ({ data }) => {
 
     return (
         <Container className="card_list w-[870px] overflow-hidden">
-            <Box className="title_wrap text-center leading-[44px] bg-white border-gray-300 border-b-0">
+            <Box className="title_wrap text-center leading-[44px] bg-white border border-gray-300 border-b-0">
                 <h1 className={styles.title}>장바구니</h1>
             </Box>
             <Box className={styles.product_list}>
