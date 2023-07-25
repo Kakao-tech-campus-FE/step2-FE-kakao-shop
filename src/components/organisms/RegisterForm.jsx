@@ -65,15 +65,6 @@ const RegisterForm = () => {
       }) 
   }
 
-  /** 동의 여부 상태 */
-  const [agree, setAgree] = useState(
-      [
-        {name:'동의1', isChecked: false}, 
-        {name:'동의2', isChecked: false},
-      ]
-    )
-
-  const [checklist, setChecklist] = useState([])
 
   return (
     <FormContainer>
@@ -127,28 +118,11 @@ const RegisterForm = () => {
           message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
       */}
 
-      {
-        agree.map((item, i)=>(
-          <CheckGroup 
-            style={ { boxShadow: "unset" } }
-            state={ agree }
-            setState={ setAgree }
-            checklist={ checklist }
-            setChecklist={ setChecklist } 
-            index={ i }
-            key={ agree[i].name } 
-          >
-            <div> {agree[i].name} </div>
-          </CheckGroup>
-        ))
-      }
-
       <SubmitGroup
         disabled={
             duple
             || !passwordValidate(user.password)
             || user.passwordCheck !== user.password
-            || checklist.length !== agree.length
             } 
         onClick={click}
         message={null}

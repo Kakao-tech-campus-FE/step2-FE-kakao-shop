@@ -1,4 +1,7 @@
 @import "reset.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
@@ -8,6 +11,18 @@ body {
   font-size: 0.9rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+	width: 8px;
+	background:#bbbbbb;
+  border-radius: 10px;
 }
 
 code {

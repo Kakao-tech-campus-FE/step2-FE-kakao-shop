@@ -1,5 +1,6 @@
 import React from 'react'
 import CheckInput from '../atoms/cart/CheckInput';
+import CartItemBox from '../atoms/cart/CartCollectionBox';
 
 
 /**
@@ -15,13 +16,13 @@ import CheckInput from '../atoms/cart/CheckInput';
 const CheckGroup = ( props ) => {
 
   return (
-    <div style={props.style}>
-      <CheckInput 
+    <CartItemBox style={props.style}>
+      {/* <CheckInput 
         checked={props.checked}
         onChange={() => props.checkHandler(props.id)}
-      />
+      /> */}
       {props.children}
-    </div>
+    </CartItemBox>
   )
 }
 

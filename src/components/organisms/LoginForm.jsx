@@ -45,16 +45,10 @@ const LoginForm = () => {
   const click = () => {
     postLogin(user)
       .then((response) => {
-        // 1. 로컬스토리지에 저장 
-        localStorage.setItem("token", response.headers.authorization);
-        localStorage.setItem("email", user.email);
-        localStorage.setItem("loginTime", `${Date.now()}`);
-        localStorage.setItem("islogin", `${true}`);
-        
-        // 2. Redux store에 상태 저장
+        // Redux store에 상태 저장
         dispatch(setUserReducer( {
           email: user.email,
-          token: response.headers.authorization,
+          token: response,
           loginTime: Date.now(),
           islogin: true,
         } ))
@@ -88,7 +82,7 @@ const LoginForm = () => {
               ? "이메일 형식으로 입력해주세요"
               : null
           }
-        />
+      />
       
       <InputGroup 
         id="password" 
@@ -100,11 +94,6 @@ const LoginForm = () => {
           ? "영문, 숫자, 특수문자 포함 8~20자" 
           : null }
         />
-        
-        {/* Props
-          onChange : 상태 객체 user에서 password 값을 입력값으로
-          message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
-        */}
 
         <SubmitGroup
           disabled={!emailValidate(user.email) || !passwordValidate(user.password)} 
@@ -112,19 +101,9 @@ const LoginForm = () => {
           message={wrongTry && failCnt > 0 ? `실패 : 로그인 시도 ${failCnt}회` : null}>
           로그인
         </SubmitGroup>        
-        
-        {/* Props
-          disabled : 버튼 비활성화 여부 (양식이 맞을 때 활성화)
-          onClick : 제출시 동작
-          message : 실패시 버튼밑에 출력할 메세지
-        */}
-
 
     </FormContainer>
   )
 }
-
-/* a@naver.com qqqq111!*/
-
 
 export default LoginForm

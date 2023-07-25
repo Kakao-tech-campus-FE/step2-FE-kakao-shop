@@ -1,16 +1,9 @@
 import React from 'react'
-import { styled } from 'styled-components'
 
-const StyledDiv = styled.div`
-    display: grid;
-    width: 66%;
-    /* min-width: 800px; */
-    grid-template-columns: 1fr 1fr ;
-`
 
 const DetailContainer = (props) => {
   return (
-    <StyledDiv>{props.children}</StyledDiv>
+    <section className="flex px-2.5 justify-center m-auto">{props.children}</section>
   )
 }
 

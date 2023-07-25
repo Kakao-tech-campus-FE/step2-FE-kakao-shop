@@ -13,10 +13,10 @@ import ListContainer from '../atoms/productsList/ListContainer';
 const ProductsList = (props) => {
 
   return (
-      <ListContainer>
+      <>
         {
           props.obj.pages.map(( pageData, i ) => (
-            pageData?.data.response.map((item) => (
+            pageData?.map((item) => (
               <ProductCard 
                 link={`/products/${item.id}`}
                 image={item.image} 
@@ -27,7 +27,7 @@ const ProductsList = (props) => {
             ))
           ))
         }
-      </ListContainer>
+      </>
   )
 }
 

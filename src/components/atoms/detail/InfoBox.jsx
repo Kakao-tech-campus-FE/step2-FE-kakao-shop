@@ -1,13 +1,14 @@
 import React from 'react'
-import { styled } from 'styled-components'
+import InfoTitle from './InfoTitle'
+import InfoPrice from './InfoPrice'
 
-const Section = styled.section`
-    border: 1px solid blue;
-`
 
 const InfoBox = (props) => {
   return (
-    <Section>{props.children}</Section>
+    <div>
+      <InfoTitle>{props.name}</InfoTitle>
+      <InfoPrice>{props.price}</InfoPrice>
+    </div>
   )
 }
 

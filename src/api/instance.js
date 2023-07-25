@@ -1,4 +1,7 @@
 import axios from "axios";
+import store from "store/store";
+import { useDispatch } from "react-redux";
+import { clearUserReducer } from "reducers/loginSlice";
 
 const instance = axios.create({
   baseURL:
@@ -6,24 +9,41 @@ const instance = axios.create({
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: localStorage.getItem("token"),
   },
 });
 
 instance.interceptors.request.use(
   (config) => {
-    // 요청 보내기 전 수행할 일
+    const loginState = store.getState().login;
+    if (loginState.islogin) {
+      config.headers.Authorization = loginState.token;
+    }
+
+    // 로그인 시간 만료
+    if (
+      loginState.islogin &&
+      Date.now() > loginState.loginTime + 3600 * 24 * 1000
+    ) {
+      const dispatch = useDispatch();
+      dispatch(clearUserReducer());
+      alert("로그인 시간이 만료되었습니다.");
+    }
+
     return config;
   },
   (error) => {
-    // 오류 요청을 보내기 전 수행할 일
     return Promise.reject(error);
   }
 );
 
 instance.interceptors.response.use(
-  (config) => {
-    return config;
+  (response) => {
+    console.log(response);
+    // 로그인
+    if (response.config.url === "/login") {
+      return response.headers.authorization;
+    }
+    return response.data.response;
   },
   (error) => {
     return Promise.reject(error);
