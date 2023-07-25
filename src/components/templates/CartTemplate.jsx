@@ -19,7 +19,7 @@ export default function CartTemplate({ data }) {
   const { mutate } = useMutation(updateCart);
   const dispatch = useDispatch();
   const cartNum = useSelector((state) => state.cart.cartNum);
-
+  console.log("CartTemplate data", data);
   useEffect(() => {
     // validataion 필요
     setCartItems(data?.response?.products);
@@ -33,7 +33,7 @@ export default function CartTemplate({ data }) {
       return total + (isExist ? 1 : 0);
     }, 0);
     dispatch(updateCartNum(count));
-  }, [cartItems]);
+  }, [cartItems, data?.response?.products, dispatch]);
 
   /**
    * 옵션의 아이디와 일치하는 옵션의 수량을 매개변수 값으로 변경하는 함수

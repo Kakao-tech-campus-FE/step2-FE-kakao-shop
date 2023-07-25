@@ -1,25 +1,18 @@
 import React from "react";
 import Container from "../atoms/Container";
 import ProductCard from "../molecules/ProductCard";
-import Loader from "../atoms/Loader";
 
-export default function ProductGrid({ products, isLoading, isFetching }) {
+export default function ProductGrid({ products, isFetching }) {
   return (
-    <>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <Container className=" grid grid-cols-3 py-5 gap-y-10 gap-x-4 justify-items-center max-md:grid-cols-2 ">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              isFetching={isFetching}
-            />
-          ))}
-        </Container>
-      )}
-    </>
+    <Container className=" grid grid-cols-3 py-5 gap-y-10 gap-x-4 justify-items-center max-md:grid-cols-2 ">
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          product={product}
+          isFetching={isFetching}
+        />
+      ))}
+    </Container>
   );
 }
 
