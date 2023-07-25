@@ -12,8 +12,8 @@ export const fetchProducts = async (page = 0) => {
       throw new Error("page는 0보다 작을 수 없습니다.");
     }
     const response = await instance.get(`/products?page=${page}`);
-    console.log("FetchProducts Api data", response.data);
-    return response.data;
+    console.log("FetchProducts Api data", response);
+    return response;
   } catch (error) {
     console.log("FetchProducts Api Error", error);
     throw error;
@@ -32,8 +32,8 @@ export const getProductById = async (id) => {
       throw new Error("id는 0보다 작을 수 없습니다.");
     }
     const response = await instance.get(`/products/${id}`);
-    console.log("getProductById Api data", response.data);
-    return response.data;
+    console.log("getProductById Api data", response);
+    return response.response;
   } catch (error) {
     console.log("getProductById Api Error", error);
     throw error;
