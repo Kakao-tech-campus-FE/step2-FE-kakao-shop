@@ -7,7 +7,10 @@ export default function ProductCard({
   product: { id, productName, image, price },
 }) {
   return (
-    <Card to={`/product/${id}`}>
+    <Card
+      to={`/product/${id}`}
+      className='flex mx-6 rounded-md overflow-hidden'
+    >
       <Photo src={image} alt={productName} />
       <div>
         <h3>{productName}</h3>
