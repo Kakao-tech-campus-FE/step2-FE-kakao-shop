@@ -11,7 +11,7 @@ export default function OrderProductsInfo({ products }) {
     setIsOpen((prev) => !prev);
   };
   return (
-    <section className="border-y">
+    <section className="border-t">
       <Button
         className="flex justify-between items-center bg-white"
         padding="pr-5"

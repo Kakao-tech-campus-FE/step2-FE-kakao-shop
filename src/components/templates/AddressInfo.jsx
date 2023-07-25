@@ -37,7 +37,7 @@ export default function AddressInfo() {
     <section className="flex flex-col bg-white border-y">
       <Button
         className="flex justify-between items-center"
-        padding=" px-5 py-3"
+        padding="px-5 py-3"
         onClick={handleOpen}
       >
         <p className="text-lg font-extrabold">배송지 정보</p>
