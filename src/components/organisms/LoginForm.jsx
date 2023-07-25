@@ -1,6 +1,6 @@
 import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
-import Button from '../atoms/Button';
+import KakaoButton from '../atoms/KakaoButton';
 import useInput from '../../hooks/useInput';
 import { login } from '../../services/user';
 import Title from '../atoms/Title';
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setLocalStorageWithExp } from '../../utils/localStorage';
+import NotFound from '../../pages/NotFound';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -70,14 +71,14 @@ export default function LoginForm() {
         value={value.password}
         onChange={handleOnChange}
       />
-      {error && <span className='text-red-500'>{error}</span>}
-      <Button
+      {error && <NotFound message={error.message} />}
+      <KakaoButton
         onClick={() => {
           loginReq();
         }}
       >
         로그인
-      </Button>
+      </KakaoButton>
     </Container>
   );
 }

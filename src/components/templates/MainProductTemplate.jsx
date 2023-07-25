@@ -1,17 +1,31 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import Container from '../atoms/Container';
 import ProductGrid from '../organisms/ProductGrid';
 import Loader from '../atoms/Loader';
+import NotFound from '../../pages/NotFound';
 import { fetchProducts } from '../../services/product';
+import PageButton from '../molecules/PageButton';
 
 export default function MainProductTemplate() {
-  const page = 0;
-  const { isLoading, isError, data, refetch } = useQuery(
+  const storedPage = sessionStorage.getItem('currentPage');
+  const [page, setPage] = useState(storedPage ? parseInt(storedPage) : 0);
+
+  const { isLoading, isError, error, data, refetch } = useQuery(
     ['products'],
     () => fetchProducts(page),
-    {}
+    { keepPreviousData: true }
   );
+
+  const products = data?.data?.response;
+
+  useEffect(() => {
+    refetch();
+    sessionStorage.setItem('currentPage', page);
+  }, [page, refetch]);
+
+  if (isError) {
+    return <NotFound message={error.message} />;
+  }
 
   return (
     <div className='w-[1280px] m-auto'>
@@ -19,7 +33,8 @@ export default function MainProductTemplate() {
       <Suspense fallback={<Loader />}>
         {data && (
           <Suspense fallback={<Loader />}>
-            <ProductGrid products={data?.data.response} />
+            <ProductGrid products={products} />
+            <PageButton page={2} setPage={setPage} />
           </Suspense>
         )}
       </Suspense>

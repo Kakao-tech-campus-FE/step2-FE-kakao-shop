@@ -7,14 +7,11 @@ export default function ProductCard({
   product: { id, productName, image, price },
 }) {
   return (
-    <Card
-      to={`/product/${id}`}
-      className='flex mx-6 rounded-md overflow-hidden'
-    >
+    <Card to={`/product/${id}`}>
       <Photo src={image} alt={productName} />
-      <div>
-        <h3>{productName}</h3>
-        <p>{comma(price)}원</p>
+      <div className='mt-2'>
+        <h3 className='text-sm font-normal'>{productName}</h3>
+        <p className='text-xl font-bold'>{comma(price)}원</p>
       </div>
     </Card>
   );

@@ -17,11 +17,11 @@ export default function GNB() {
     <header className='flex justify-center items-center py-5 w-full border-b border-gray-300 sticky top-0 bg-white z-10'>
       <div className='flex justify-between items-center w-[1280px]'>
         <Link to='/' className='w-24'>
-          <img src='assets/logoKakao.png' alt='쇼핑하기' />
+          <img src='assets/logoKakao.png' alt='카카오 쇼핑 로고' />
         </Link>
         <nav className='flex items-center gap-4'>
           <Link to='/cart' className='w-9'>
-            <img src={'assets/cart.png'} alt='장바구니' />
+            <img src={'assets/cart.png'} alt='장바구니 버튼' />
           </Link>
           <div className='border-r border-gray-300 h-6 mx-2'></div>
           {/* Todo: 동작되게 고쳐놓을 것 */}

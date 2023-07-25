@@ -1,11 +1,12 @@
 import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
-import Button from '../atoms/Button';
+import KakaoButton from '../atoms/KakaoButton';
 import useInput from '../../hooks/useInput';
 import { register } from '../../services/user';
 import Title from '../atoms/Title';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import NotFound from '../../pages/NotFound';
 
 export default function RegisterForm() {
   const [error, setError] = useState('');
@@ -74,14 +75,14 @@ export default function RegisterForm() {
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
-      {error && <p className='text-red-500'>{error}</p>}
-      <Button
+      {error && <NotFound message={error.message} />}
+      <KakaoButton
         onClick={() => {
           registerReq();
         }}
       >
         회원가입
-      </Button>
+      </KakaoButton>
     </Container>
   );
 }

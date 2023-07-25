@@ -1,26 +1,22 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Loader from '../components/atoms/Loader';
 import { getProductById } from '../services/product';
 import { useQuery } from '@tanstack/react-query';
+import NotFound from './NotFound';
+import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
 
 export default function ProductDetail() {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const { data, error, isLoading } = useQuery(`/product/${id}`, () =>
+  const { data, error, isLoading } = useQuery([`/product/${id}`, id], () =>
     getProductById(id)
   );
-
-  useEffect(() => {
-    dispatch(getProductById(id));
-  }, [dispatch, id]);
+  const product = data?.data?.response;
 
   return (
     <div>
       {isLoading && <Loader />}
-      {error && <div>{error.message}</div>}
-      {data && <div>{data.productName}</div>}
+      {error && <NotFound message={error.message} />}
+      {data && <ProductDetailTemplate product={product} />}
     </div>
   );
 }
