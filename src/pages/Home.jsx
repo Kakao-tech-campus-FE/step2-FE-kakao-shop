@@ -1,12 +1,12 @@
 import React from 'react';
 import Carousel from '../components/atoms/Carousel';
-import Products from '../components/templates/Products';
+import MainProductTemplate from '../components/templates/MainProductTemplate';
 
 export default function Home() {
   return (
     <>
       <Carousel />
-      <Products />
+      <MainProductTemplate />
     </>
   );
 }

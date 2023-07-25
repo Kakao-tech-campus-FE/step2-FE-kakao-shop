@@ -1,5 +1,13 @@
 import React from 'react';
+import ProductCard from '../molecules/ProductCard';
 
-export default function ProductGrid() {
-  return <div></div>;
+export default function ProductGrid({ products }) {
+  // presentational component: no logic, only UI
+  return (
+    <div className='grid grid-cols-4 gap-1 my-1 w-full max-w-full'>
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  );
 }
