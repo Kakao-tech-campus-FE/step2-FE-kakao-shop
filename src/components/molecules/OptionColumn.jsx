@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useContext, useState} from "react";
 import {useMutation} from "react-query";
 
 import Counter from "../atoms/Counter";
@@ -9,6 +9,8 @@ import {addCart} from "../../services/cart";
 import {RxCross2} from "react-icons/rx";
 import {BsCart2} from "react-icons/bs";
 import {useNavigate} from "react-router-dom";
+import Alert from "../atoms/Alert";
+import {AlertContext} from "../pages/ProductDetailPage";
 
 const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
@@ -62,6 +64,8 @@ const OptionColumn = ({product}) => {
             alert(error.response.data.error.message)
         }
     })
+
+    const {setIsOpened} = useContext(AlertContext)
 
     return (
         <div className="option-column h-full w-1/4 p-2 border-l sticky top-20">
@@ -118,8 +122,7 @@ const OptionColumn = ({product}) => {
                                     alert("옵션을 선택해주세요.")
                                 }
                                 else if (localStorage.getItem("token") === null) {
-                                    alert("로그인이 필요합니다.")
-                                    navigator("/login")
+                                    setIsOpened(true);
                                 }else {
                                     mutate(selectedOption.map((option) => {
                                         return {
@@ -138,8 +141,7 @@ const OptionColumn = ({product}) => {
                                     alert("옵션을 선택해주세요.")
                                 }
                                 else if (localStorage.getItem("token") === null) {
-                                    alert("로그인이 필요합니다.")
-                                    navigator("/login")
+                                    setIsOpened(true);
                                 }
                                 else {
                                     mutate(selectedOption.map((option) => {
