@@ -25,28 +25,11 @@ const CartList = ({ data }) => {
     // 옵션 수량 변경 & 가격 변경 관리 함수
     // 옵션의 아이디 / 옵션 수량 / 옵션 가격
     const handleOnChangeCount = (optionId, quantity, price) => {
+        // console.log("handleOnChangeCount", optionId, quantity, price);
         // 옵션이 변경된 경우에는 payload가 변경된 것이므로 이 부분을 활용
         setUpdatePayload((prev) => {
-            const isExist = prev.find((item) => item.cartId === optionId);
-
-            if (isExist) {
-                return [
-                    ...prev.filter((item) => item.cartId !== optionId),
-                    {
-                        cartId: optionId,
-                        quantity: quantity,
-                    }
-                ]
-            }
-
-            return [
-                ...prev,
-                {
-                    cartId: optionId,
-                    quantity: quantity,
-                }
-            ]
-        })
+            return prev.filter(item => item.cartId !== optionId).concat({ cartId: optionId, quantity });
+        });
         setTotalPrice((prev) => prev + price);
         setCartItems((prev) => {
             return prev.map((item) => {
@@ -65,27 +48,10 @@ const CartList = ({ data }) => {
     }
 
     const handleOnDeleteCount = (optionId, quantity, price) => {
+        // console.log("handleOnDeleteCount", optionId, quantity, price);
         setUpdatePayload((prev) => {
-            const isExist = prev.find((item) => item.cartId === optionId);
-
-            if (isExist) {
-                return [
-                    ...prev.filter((item) => item.cartId !== optionId),
-                    {
-                        cartId: optionId,
-                        quantity: quantity,
-                    }
-                ]
-            }
-
-            return [
-                ...prev,
-                {
-                    cartId: optionId,
-                    quantity: quantity,
-                }
-            ]
-        })
+            return prev.filter(item => item.cartId !== optionId).concat({ cartId: optionId, quantity });
+        });
         setTotalPrice((prev) => prev - price);
         setCartItems((prev) => {
             return prev.map((item) => {
@@ -149,8 +115,10 @@ const CartList = ({ data }) => {
                         mutate(updatePayload, {
                             onSuccess: (data) => {
                                 // 업데이트된 사항이 바로 적용되지 않아서 고의로 window.location.href 사용
-                                // navigate("/order");
-                                window.location.href = "/order"
+                                // CartItem 내부 함수 분리 후 업데이트 내용이 잘 적용되어 navigate로 복귀
+                                // console.log("업데이트 내역", updatePayload);
+                                // console.log("최종 카트 아이템 내역", cartItems);
+                                navigate("/order");
                             },
                             onError: (error) => {
                                 alert(error);
