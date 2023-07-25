@@ -12,6 +12,7 @@ import MainLayout from './components/layouts/mainLayout';
 import ProductDetailPage from './components/pages/productDetailPage';
 import CartPage from './components/pages/cartPage';
 import { queryClient } from './utils/query';
+import OrderPage from './components/pages/orderPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
               <Route path="/product" element={<ProductListPage />} />
               <Route path="/product/:productId" element={<ProductDetailPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/order" element={<OrderPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
