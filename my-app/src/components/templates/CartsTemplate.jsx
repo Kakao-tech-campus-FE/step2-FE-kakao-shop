@@ -15,15 +15,11 @@ const CartTemplate = ({ data }) => {
   const navigate = useNavigate();
 
   const totalQuantity = useCallback(() => {
-    let count = 0;
-    if (cartItems) {
-      cartItems.forEach((item) => {
-        item.carts.forEach((cart) => {
-          count += cart.quantity;
-        });
-      });
-      return count;
-    }
+    const count = cartItems
+      .flatMap((item) => item.carts) // flatMap과 map의 차이 확인하기
+      .reduce((acc, cur) => acc + cur.quantity, 0);
+    console.log("count: ", count);
+    return count;
   }, [cartItems]);
 
   const { mutate } = useMutation({
