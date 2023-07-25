@@ -21,9 +21,12 @@ export default function LoginForm() {
     email: "",
     password: "",
   });
-  const { isValidValue, validateInput } = useValidateInput();
+  const { isValidValue, validateInput } = useValidateInput({
+    email: false,
+    password: false,
+  });
 
-  const handleOnChangeValidate = (e) => {
+  const handleOnChangeAndValidate = (e) => {
     handleOnChange(e);
     validateInput(e.target.name, e.target.value);
   };
@@ -45,9 +48,6 @@ export default function LoginForm() {
     } catch (error) {
       console.log("LoginForm error", error);
       setIsFailLogin(true);
-      if (error.code === "ECONNABORTED") {
-        console.error("요청이 시간 초과되었습니다.");
-      }
     }
   };
 
@@ -70,10 +70,9 @@ export default function LoginForm() {
           id="email"
           name="email"
           type="email"
-          label="이메일"
           placeholder="카카오메일 아이디, 이메일, 전화번호"
           value={value.email}
-          onChange={handleOnChangeValidate}
+          onChange={handleOnChangeAndValidate}
           onBlur={() => {}}
           onKeyDown={handleOnKeyDown}
         />
@@ -81,10 +80,9 @@ export default function LoginForm() {
           id="password"
           name="password"
           type="password"
-          label="비밀번호"
           placeholder="비밀번호"
           value={value.password}
-          onChange={handleOnChangeValidate}
+          onChange={handleOnChangeAndValidate}
           onBlur={() => {}}
           onKeyDown={handleOnKeyDown}
         />

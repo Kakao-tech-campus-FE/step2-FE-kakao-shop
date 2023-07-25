@@ -2,12 +2,9 @@ import { useState } from "react";
 import { ERROR_MSG } from "../utils/constant";
 import { ID_REGEX, PW_REGEX } from "../utils/regex";
 
-export default function useValidateInput() {
-  const [isValidValue, setIsValidValue] = useState({
-    email: false,
-    password: false,
-  });
-  const [errorMsg, setErrorMsg] = useState({ email: "", password: "" });
+export default function useValidateInput(initialValue) {
+  const [isValidValue, setIsValidValue] = useState(initialValue);
+  const [errorMsg, setErrorMsg] = useState(initialValue);
 
   const validateInput = (name, value) => {
     // 입력이 없는 경우
