@@ -4,7 +4,7 @@ import Container from '../atoms/Container';
 
 const Footer = () => {
   return (
-    <div className='h-44 border-t border-gray-200 bg-slate-50'>
+    <footer className='h-44 border-t border-gray-200 bg-slate-50'>
       <Container className='flex py-4'>
         <Link to='/'>
           <img
@@ -41,7 +41,7 @@ const Footer = () => {
           </p>
         </div>
       </Container>
-    </div>
+    </footer>
   );
 };
 
