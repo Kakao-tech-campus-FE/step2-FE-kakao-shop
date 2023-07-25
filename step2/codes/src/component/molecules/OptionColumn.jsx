@@ -61,7 +61,6 @@ const OptionColumn = ({ product }) => {
             quantity: el.quantity
         }
     });
-
     const addCartReq = async () => {
         if (email) {
             await addCart(addCartArr)

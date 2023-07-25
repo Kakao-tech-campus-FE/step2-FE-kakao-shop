@@ -8,7 +8,7 @@ import { comma } from "../../utils/convert";
 const CartItem = ({ item, onChange }) => {
 
     return (
-        <Box className="border p-12">
+        <Box className="border p-12 mb-4">
             <span className="text-lg font-bold">{item.productName}</span>
             {item.carts.map((cart) => (
                 <Card key = {cart.id} className="p-4 border my-1">
