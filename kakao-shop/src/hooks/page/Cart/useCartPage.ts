@@ -3,9 +3,11 @@ import { RootState } from '@store/index';
 import { produce } from 'immer';
 import { useEffect, useState, MouseEventHandler } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import type { CartProduct } from 'types/product';
 
 export const useCartPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.cart.cart);
   const isLoading = useSelector((state: RootState) => state.cart.isLoading);
@@ -52,6 +54,7 @@ export const useCartPage = () => {
 
   const onSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(updateCartsRequestAction(submitData));
+    navigate('/order');
   };
 
   return {
