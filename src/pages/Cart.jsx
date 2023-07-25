@@ -115,7 +115,7 @@ function Cart() {
                 }}
                 onClick={handleOrderButtonClick}
               >
-                주문하기
+                {data?.products?.length}건 주문하기
               </Button>
             </Styled.PriceBox>
           </div>
