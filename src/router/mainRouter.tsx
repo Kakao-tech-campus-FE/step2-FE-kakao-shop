@@ -9,6 +9,7 @@ import ProductListPage from '@components/pages/ProductListPage';
 import ProductDetailPage from '@components/pages/ProductDetailPage';
 import CartPage from '@components/pages/CartPage';
 import PNFPage from '@components/pages/PNFPage';
+import OrderPage from '@components/pages/OrderPage';
 
 const mainRouter = () =>
   useRoutes([
@@ -47,6 +48,10 @@ const mainRouter = () =>
             {
               path: 'cart',
               element: <CartPage />,
+            },
+            {
+              path: 'order',
+              element: <OrderPage />,
             },
             {
               path: '*',
