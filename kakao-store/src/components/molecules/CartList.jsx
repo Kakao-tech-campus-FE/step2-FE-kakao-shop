@@ -1,14 +1,21 @@
-import React, { useState, useEffect, useCallback, useRef, Suspense, lazy } from 'react';
-import { useFetcher, useNavigate } from 'react-router-dom';
-import Container from '../atoms/Container';
-import Box from '../atoms/Box';
-import CartItem from '../atoms/CartItem';
-import Button from '../atoms/Button';
-import { Card } from 'react-bootstrap';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  Suspense,
+  lazy,
+} from "react";
+import { Link, useFetcher, useNavigate } from "react-router-dom";
+import Container from "../atoms/Container";
+import Box from "../atoms/Box";
+import CartItem from "../atoms/CartItem";
+import Button from "../atoms/Button";
+import { Card } from "react-bootstrap";
 
-import { updateCart } from '../../services/cart';
-import { comma } from '../../utils/convert';
-import { useMutation } from 'react-query';
+import { updateCart } from "../../services/cart";
+import { comma } from "../../utils/convert";
+import { useMutation } from "react-query";
 
 const CartList = ({ data }) => {
   // hook을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언
@@ -150,7 +157,9 @@ const CartList = ({ data }) => {
       <Card>
         <div className="row flex font-bold">
           <span className="expect">주문 예상금액</span>
-          <span className="sum-price flex-1 text-right text-kakao_blue">{comma(totalPrice)}원</span>
+          <span className="sum-price flex-1 text-right text-kakao_blue">
+            {comma(totalPrice)}원
+          </span>
         </div>
       </Card>
 
@@ -170,7 +179,8 @@ const CartList = ({ data }) => {
           // payload 더 작게할 수 있으니
           mutate(updatePayload, {
             onSuccess: (data) => {
-              route.push('/order');
+              route("/order");
+              console.log("success");
             },
             onError: (error) => {},
           });
