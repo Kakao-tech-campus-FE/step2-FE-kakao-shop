@@ -5,12 +5,12 @@ import "../../styles/pages/formPage.css";
 
 const RegisterPage = () => {
     return (
-        <Container className={"page register-page"}>
+        <div className={"page"}>
             <Container className={"form-page"}>
                 <Title>회원가입</Title>
                 <RegisterForm/>
             </Container>
-        </Container>
+        </div>
     )
 }
 

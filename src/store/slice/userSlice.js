@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 const initialState = {
     email: "",
     expirationTime: null,
-    isLogin: false
+    isLogin: false,
 }
 
 const userSlice = createSlice({
