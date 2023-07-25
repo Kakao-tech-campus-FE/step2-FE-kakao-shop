@@ -11,6 +11,8 @@ module.exports = {
             'light-gray-900': '#f5f5f5',
             'light-gray-800': '#ebebeb',
             'light-gray-700': '#d6d6d6',
+            'white': '#ffffff',
+            'black': '#000000',
             'slate-50': '#f8fafc',
             'slate-100': '#f1f5f9',
             'slate-200': '#e2e8f0',
