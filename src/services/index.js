@@ -1,4 +1,5 @@
 import axios from "axios";
+import { errorCode } from "../utils/errorcatch";
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
@@ -11,7 +12,7 @@ export const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
-    config.headers["Authorization"] = token;
+    config.headers["Authorization"] = `Bearer ${token}`;
   }
   return config;
 });
@@ -21,5 +22,11 @@ instance.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => {}
+  (error) => {
+    if (error.response) {
+      console.log(error.response);
+      errorCode(error.response);
+    }
+    return Promise.reject(error);
+  }
 );

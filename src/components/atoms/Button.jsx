@@ -5,12 +5,12 @@ const Button = ({ onClick, children, className }) => {
   /** children: 버튼 내부에 표시될 내용 */
   return (
     <button
-      className={className} /**className: 클래스 이름 */
+      className={
+        "bg-yellow-500 text-black px-4 py-2 rounded"
+      } /**className: 클래스 이름 */
       onClick={(e) => {
         e.preventDefault();
-        if (onClick) {
-          onClick(); /**onClick: 버튼을 클릭했을 때 실행될 콜백 함수 */
-        }
+        onClick(); // onClick이 없으면 빈 함수가 호출됩니다.
       }}
     >
       {children}
@@ -28,7 +28,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  onClick: null,
+  onClick: () => {},
   children: null,
   className: "",
 };

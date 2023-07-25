@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from "../../services/product";
-import _ from "lodash";
+import { uniqBy } from "lodash";
 
 const initialState = {
   products: [],
@@ -22,7 +22,7 @@ const productsSlice = createSlice({
       }
       state.loading = false;
       state.products.concat(action.payload.response);
-      state.products = _.uniqBy(
+      state.products = uniqBy(
         [...state.products, ...action.payload.response],
         "id"
       );
