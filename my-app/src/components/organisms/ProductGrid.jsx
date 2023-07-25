@@ -7,8 +7,8 @@ const ProductGrid = ({ products, isLoading }) => {
     <>
       <div className="product-grid">
         {isLoading &&
-          products.map(() => {
-            return <Skeleton />;
+          products.map((product) => {
+            return <Skeleton key={product.id} />;
           })}
         {!isLoading &&
           products.map((product) => {

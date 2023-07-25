@@ -17,9 +17,6 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.isLogined = action.payload.isLogined;
     },
-    setToken: (state, action) => {
-      state.token = action.payload.token;
-    },
   },
   // 중간상 처리
   extraReducers: (builder) => {
@@ -31,6 +28,8 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.loading = false;
       state.isLogined = true;
+      state.token = action.payload.headers.authorization;
+      console.log("userSlice/Token: ", state.token);
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
@@ -55,7 +54,7 @@ export const loginRequest = createAsyncThunk(
     }
 
     const response = await login({ email, password });
-    return response.data;
+    return response;
   }
 );
 

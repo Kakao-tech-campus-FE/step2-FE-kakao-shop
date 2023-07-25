@@ -8,13 +8,10 @@ export const instance = axios.create({
   },
 });
 
-instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers["Authorization"] = `${token}`;
-  }
-  return config;
-});
+// instance.interceptors.request.use((config) => {
+//   console.log("config: ", config.headers.Authorization);
+//   return config;
+// });
 
 // middleware
 instance.interceptors.response.use(

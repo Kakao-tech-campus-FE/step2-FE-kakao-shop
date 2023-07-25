@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
 import productReducer from "./slices/productSlice";
 
@@ -25,6 +25,9 @@ const store = configureStore({
     user: userReducer,
     product: productReducer,
   },
+  // Non-serialize 부분 해결을 위해 넣음
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
   preloadedState: loadStateFromLocalStorage(),
 });
 

@@ -1,7 +1,7 @@
 import Loader from "./Loader";
 
 const Footer = () => {
-  return <div>abac</div>;
+  return <div>Footer 영역</div>;
 };
 
 export default Footer;
