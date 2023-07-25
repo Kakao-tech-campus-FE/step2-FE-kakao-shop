@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import cookies from "react-cookies";
 import { useDispatch, useSelector } from "react-redux";
-import { removeToken } from "../../store/slices/userSlice";
+import { logout } from "../../store/slices/userSlice";
 // 절대경로 설정 ../../ -> @ root path 를 정할 수 있다.
 import styles from "./GNB.module.css";
 import logoKakao from "../../assets/logoKakao.png";
@@ -13,7 +13,7 @@ const GNB = () => {
 
     const handleLogout = () => {
         cookies.remove('token');
-        dispatch(removeToken());
+        dispatch(logout());
         alert("logout");
         window.location.reload();
     }

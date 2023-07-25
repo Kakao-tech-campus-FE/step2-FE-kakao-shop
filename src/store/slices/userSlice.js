@@ -29,14 +29,16 @@ const userSlice = createSlice({
                 expires: expires,
             })
         },
-        removeToken: (state, action) => {
+        logout: (state, action) => {
+            state.email = null;
             state.token = null;
+            cookies.remove('email');
             cookies.remove('token');
         }
     },
 });
 
-export const { setEmail, setToken, removeToken } = userSlice.actions;
+export const { setEmail, setToken, logout } = userSlice.actions;
 
 export default userSlice.reducer;
 
