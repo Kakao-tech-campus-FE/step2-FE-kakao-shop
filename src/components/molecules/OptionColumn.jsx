@@ -10,18 +10,22 @@ import {RxCross2} from "react-icons/rx";
 import {BsCart2} from "react-icons/bs";
 import {useNavigate} from "react-router-dom";
 import Alert from "../atoms/Alert";
-import {AlertContext} from "../pages/ProductDetailPage";
+import {AlertContext, ToastContext} from "../pages/ProductDetailPage";
+import Toast from "../atoms/Toast";
 
 const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
     const navigator = useNavigate();
+
+    const {setAlertIsOpened} = useContext(AlertContext)
+    const {showToast} = useContext(ToastContext)
+
     const handleOnClickOption = (option) => {
-        // console.log("option", option)
         if (selectedOption.find((el) => el.id === option.id)) {
             setSelectedOption((prev) => {
                 return prev.map((el) => {
                     if (el.id === option.id) {
-                        console.log("이미 선택된 옵션입니다", el)
+                        showToast("이미 선택한 옵션입니다.")
                     }
                     return el;
                 })
@@ -65,7 +69,6 @@ const OptionColumn = ({product}) => {
         }
     })
 
-    const {setIsOpened} = useContext(AlertContext)
 
     return (
         <div className="option-column h-full w-1/4 p-2 border-l sticky top-20">
@@ -94,6 +97,16 @@ const OptionColumn = ({product}) => {
                                     <Counter
                                         value={option.quantity}
                                         handleOnChange={(count) => handleOnChangeQuantity(count, option.id)}
+                                        handleOnLowerBound={() => {
+                                            showToast("주문 가능 수량은 1~1,000개입니다.")
+                                            console.log("lower bound")
+                                        }}
+                                        handleOnUpperBound={() => {
+                                            showToast("주문 가능 수량은 1~1,000개입니다.")
+                                            console.log("upper bound")
+                                        }}
+                                        upperBound={1000}
+                                        lowerBound={1}
                                     />
                                 </div>
                             </div>
@@ -118,32 +131,29 @@ const OptionColumn = ({product}) => {
                         className={"w-1/4 cursor-pointer bg-kakao-dark-gray rounded-lg py-2 flex justify-center items-center"}
                         onClick={
                             () => {
-                                if (selectedOption.length === 0) {
-                                    alert("옵션을 선택해주세요.")
-                                }
-                                else if (localStorage.getItem("token") === null) {
-                                    setIsOpened(true);
-                                }else {
+                                if (localStorage.getItem("token") === null) {
+                                    setAlertIsOpened(true);
+                                } else if (selectedOption.length === 0) {
+                                    showToast("옵션을 선택해주세요.")
+                                } else {
                                     mutate(selectedOption.map((option) => {
                                         return {
                                             optionId: option.id,
                                             quantity: option.quantity,
                                         }
                                     }))
-                                    alert("장바구니에 추가되었습니다.")
+                                    showToast("장바구니에 추가되었습니다.")
                                 }
                             }}>
                         <BsCart2 color={"white"} size={24}/>
                     </button>
                     <button className={"w-2/4 bg-kakao-yellow rounded-lg flex justify-center items-center"}
                             onClick={() => {
-                                if (selectedOption.length === 0) {
-                                    alert("옵션을 선택해주세요.")
-                                }
-                                else if (localStorage.getItem("token") === null) {
-                                    setIsOpened(true);
-                                }
-                                else {
+                                if (localStorage.getItem("token") === null) {
+                                    setAlertIsOpened(true);
+                                } else if (selectedOption.length === 0) {
+                                    showToast("옵션을 선택해주세요.")
+                                } else {
                                     mutate(selectedOption.map((option) => {
                                         return {
                                             optionId: option.id,

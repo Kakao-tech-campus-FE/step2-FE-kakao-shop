@@ -8,8 +8,8 @@ const NUMBER_REGEX = /^\d+$/
  * @param value counter의 값
  * @param handleOnChange counter의 값이 변경될 때 실행되는 함수
  * @param className counter의 className
- * @param underBound counter의 최소값
- * @param handleOnUnderBound counter의 최소값 이하로 내려갔을 때 실행되는 함수
+ * @param lowerBound counter의 최소값
+ * @param handleOnLowerBound counter의 최소값 이하로 내려갔을 때 실행되는 함수
  * @param upperBound counter의 최대값
  * @param handleOnUpperBound counter의 최대값 이상으로 올라갔을 때 실행되는 함수
  * @returns {JSX.Element}
@@ -19,8 +19,8 @@ const Counter = ({
                      value,
                      handleOnChange,
                      className = "",
-                     underBound = 1,
-                     handleOnUnderBound = () => {
+                     underBound: lowerBound = 1,
+                     handleOnLowerBound = () => {
                          console.log("underflow")
                      },
                      upperBound = 1000,
@@ -31,10 +31,15 @@ const Counter = ({
 
 
     const handleOnIncrease = () => {
+        if (value >= upperBound) {
+            handleOnUpperBound()
+            return;
+        }
         handleOnChange(value + 1);
     }
     const handleOnDecrease = () => {
         if (value <= 1) {
+            handleOnLowerBound()
             return;
         }
         handleOnChange(value - 1);
@@ -44,16 +49,17 @@ const Counter = ({
 
     const validateInput = (e) => {
         const input = parseInt(e.target.value);
-        if (!NUMBER_REGEX.test(e.target.value) || isNaN(input) || input < underBound) {
-            console.log("한 개 이상은 구매해야 합니다.");
-            setTempInput(underBound);
-            handleOnChange(underBound);
+        if (!NUMBER_REGEX.test(e.target.value) || isNaN(input) || input < lowerBound) {
+            handleOnLowerBound()
+            console.log("1121")
+            setTempInput(lowerBound);
+            handleOnChange(lowerBound);
             return;
         }
 
         if (input > upperBound) {
-            console.log("최대 1000개까지 구매할 수 있습니다.");
-            setTempInput(underBound);
+            handleOnUpperBound()
+            setTempInput(lowerBound);
             handleOnChange(upperBound);
             return;
         }
