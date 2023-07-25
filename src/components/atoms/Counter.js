@@ -1,12 +1,12 @@
 import Button from "./Button";
 
-export default function Counter({ value, onClick }) {
-  const handleIncreaseClick = () => {
-    onClick(value, value.quantity + 1);
+export default function Counter({ value, setCount }) {
+  const handlePlusClick = () => {
+    setCount(value, value.quantity + 1);
   };
 
-  const handleDecreaseClick = () => {
-    onClick(value, value.quantity - 1);
+  const handleMinusClick = () => {
+    setCount(value, value.quantity - 1);
   };
 
   return (
@@ -14,12 +14,12 @@ export default function Counter({ value, onClick }) {
       <Button
         className="border w-6"
         disabled={value.quantity > 1 ? false : true}
-        onClick={handleDecreaseClick}
+        onClick={handleMinusClick}
       >
         -
       </Button>
       <span className="inline-block w-16">{value.quantity}</span>
-      <Button className="border w-6" onClick={handleIncreaseClick}>
+      <Button className="border w-6" onClick={handlePlusClick}>
         +
       </Button>
     </div>

@@ -18,7 +18,7 @@ export default function CartItem({ product }) {
     },
   });
 
-  const handleDeleteClick = async (cart) => {
+  const handleDeleteClick = (cart) => {
     const formattedData = [{ ...cart, quantity: 0 }].map((item) => ({
       cartId: item.id,
       quantity: item.quantity,
@@ -26,7 +26,7 @@ export default function CartItem({ product }) {
     mutate(formattedData);
   };
 
-  const handleIncDecClick = async (cart, qtt) => {
+  const handleCounterClick = (cart, qtt) => {
     const formattedData = [{ ...cart, quantity: qtt }].map((item) => ({
       cartId: item.id,
       quantity: item.quantity,
@@ -41,7 +41,7 @@ export default function CartItem({ product }) {
         <div key={`cart-${cart.id}`}>
           <span>{cart.option.optionName}</span>
           <Button onClick={() => handleDeleteClick(cart)}>삭제</Button>
-          <Counter value={cart} onClick={handleIncDecClick} />
+          <Counter value={cart} setCount={handleCounterClick} />
           <span>{convertToPrice(cart.price)}</span>
         </div>
       ))}

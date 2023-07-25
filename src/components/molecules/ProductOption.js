@@ -30,7 +30,7 @@ export default function ProductOption({ product }) {
       );
   };
 
-  const handleIncDecClick = (opt, qtt) => {
+  const handleCounterClick = (opt, qtt) => {
     setSelectedOptions((prevOptions) =>
       [
         ...prevOptions.filter((preOpt) => preOpt.id !== opt.id),
@@ -114,7 +114,7 @@ export default function ProductOption({ product }) {
               ×
             </Button>
             <br />
-            <Counter value={opt} onClick={handleIncDecClick} />
+            <Counter value={opt} setCount={handleCounterClick} />
             <span className="text-right">
               {convertToPrice(opt.price * opt.quantity)}
             </span>
