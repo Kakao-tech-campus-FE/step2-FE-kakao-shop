@@ -92,9 +92,11 @@ const OptionColumn = ({ product }) => {
                     {selectedOptions.map((option) => (
                         <li key={`selected-option-key-${option.optionId}`}>
                             <span>선택한 상품 : {option.name}</span>
-                            <Counter
-                                onChange={(count) => handleOnChange(count, option.optionId)}
-                            />
+                            <div>
+                                <Counter
+                                    onChange={(count) => handleOnChange(count, option.optionId)}
+                                />
+                            </div>
                         </li>
                     ))}
                 </ol>

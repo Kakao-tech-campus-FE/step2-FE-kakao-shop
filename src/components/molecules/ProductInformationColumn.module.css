@@ -10,14 +10,12 @@
     font-weight: 400;
 }
 .image_section {
-    /* width: 430px; */
     flex: 0 0 430px;
     height: auto;
 }
 .info_section {
-    width: 430px;
     margin-left: auto;
-    flex: 0 0 430px;
+    flex: 0 0 400px;
 }
 .price {
     height: 45px;
