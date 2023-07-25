@@ -5,6 +5,7 @@ import Error from '@pages/500';
 import Cart from '@pages/Cart';
 import Home from '@pages/Home';
 import Login from '@pages/Login';
+import Order from '@pages/Order';
 import ProductDetail from '@pages/ProductDetail';
 import SignUp from '@pages/SignUp';
 
@@ -19,6 +20,7 @@ function App() {
           <Route path={'/'} element={<Home />} />
           <Route path={'/detail/:id'} element={<ProductDetail />} />
           <Route path={'/cart'} element={<Cart />} />
+          <Route path={'/order'} element={<Order />} />
         </Route>
         <Route path={'/signup'} element={<SignUp />} />
         <Route path={'/login'} element={<Login />} />
