@@ -14,6 +14,3 @@ export const getCart = async() => {
 export const updateCart = (items) => {
   return cartsInstance.post("/carts/update", items)
 }
-export const orderCart = ()=>{
-  return cartsInstance.post("/orders/save")
-}
