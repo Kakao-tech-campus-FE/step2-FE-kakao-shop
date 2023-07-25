@@ -12,39 +12,42 @@ const ProductContainer = styled(Card)`
   row-gap: 16px;
 `;
 
-const ProductImage = styled.div`
+const ImageContainer = styled.div`
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
 `;
 
-const ProductName = styled.div`
+const Title = styled.div`
   decoration-text: none;
   display: inline-block;
   font-size: 1em;
-  font-weight: 500;
   color: black;
 `;
 
-const ProductPrice = styled.span`
+const PriceText = styled.span`
   margin-left: auto; 
   color: black;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1.2em;
   text-align: center;
 `;
 
 const ProductCard = ({ product }) => {
   return (
-    <ProductContainer to={`/product/${product.id}`}>
-      <ProductImage>
+    <ProductContainer to={`/products/${product.id}`}>
+      <ImageContainer>
         <Photo src={process.env.REACT_APP_API_URL + product.image} alt={product.productName} className="card" />
-      </ProductImage>
-      <ProductName>{product.productName}</ProductName>
+      </ImageContainer>
+      <div>
+        <Title>{product.productName}</Title>
         <br/><br/>
-      <ProductPrice>{comma(product.price)}원</ProductPrice>
+        <PriceText>{comma(product.price)}원</PriceText>
+        
+      </div>
     </ProductContainer>
   );
 };

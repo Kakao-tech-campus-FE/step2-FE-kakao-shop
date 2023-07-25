@@ -1,28 +1,30 @@
-// App.jsx
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import MainPage from './pages/MainPage';
-import { ProvideAuth } from './contexts/AuthContext';
-import MainLayout from './components/layouts/MainLayout';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
+import MainPage from "./pages/MainPage";
+import CartPage from "./pages/CartPage";
+import MainLayout from "./components/layouts/MainLayout";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
-function App() {
-  return (
-    <div className="App">
+const App = () => {
+  return(
+    <div>
       <BrowserRouter>
-        <ProvideAuth>
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<RegisterPage />} />
-            <Route element={<MainLayout />}>
-              <Route path="/" element={<MainPage />} />
-            </Route>
-          </Routes>
-        </ProvideAuth>
+        <Routes>
+          <Route path="/signup" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route element={<MainLayout />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
+
     </div>
   );
-}
+};
 
 export default App;
