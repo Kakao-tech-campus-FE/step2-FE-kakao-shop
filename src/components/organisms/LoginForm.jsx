@@ -46,7 +46,7 @@ export default function LoginForm() {
       dispatch(LogIn()); // 로그인 상태 변경
       navigate("/"); // 메인페이지 리다이렉트
     } catch (error) {
-      console.log("LoginForm error", error);
+      console.log("LoginForm error", error.message);
       setIsFailLogin(true);
     }
   };

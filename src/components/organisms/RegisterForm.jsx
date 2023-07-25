@@ -50,7 +50,7 @@ export default function RegisterForm() {
             alert("회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
           })
           .catch((error) => {
-            console.log("RegisterForm Error: ", error);
+            console.log("RegisterForm Error: ", error.message);
             setRequestError(error.message);
           });
       }
