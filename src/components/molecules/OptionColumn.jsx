@@ -116,7 +116,11 @@ const OptionColumn = ({product}) => {
                             () => {
                                 if (selectedOption.length === 0) {
                                     alert("옵션을 선택해주세요.")
-                                } else {
+                                }
+                                else if (localStorage.getItem("token") === null) {
+                                    alert("로그인이 필요합니다.")
+                                    navigator("/login")
+                                }else {
                                     mutate(selectedOption.map((option) => {
                                         return {
                                             optionId: option.id,
@@ -132,7 +136,12 @@ const OptionColumn = ({product}) => {
                             onClick={() => {
                                 if (selectedOption.length === 0) {
                                     alert("옵션을 선택해주세요.")
-                                } else {
+                                }
+                                else if (localStorage.getItem("token") === null) {
+                                    alert("로그인이 필요합니다.")
+                                    navigator("/login")
+                                }
+                                else {
                                     mutate(selectedOption.map((option) => {
                                         return {
                                             optionId: option.id,
