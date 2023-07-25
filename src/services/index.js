@@ -9,12 +9,21 @@ export const instance = axios.create({
 });
 
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('user');
   if (token) {
-    config.headers['Authorization'] = token;
+    const parsedToken = JSON.parse(token).value;
+    config.headers['Authorization'] = `${parsedToken}`;
   }
   return config;
 });
+
+// instance.interceptors.request.use((config) => {
+//   const token = localStorage.getItem('token');
+//   if (token) {
+//     config.headers['Authorization'] = token;
+//   }
+//   return config;
+// });
 
 // middleware
 instance.interceptors.response.use(

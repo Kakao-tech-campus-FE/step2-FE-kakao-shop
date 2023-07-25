@@ -4,14 +4,36 @@ import Button from '../atoms/Button';
 import useInput from '../../hooks/useInput';
 import { register } from '../../services/user';
 import Title from '../atoms/Title';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterForm() {
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
   const { value, handleOnChange } = useInput({
     username: '',
     email: '',
     password: '',
     passwordConfirm: '',
   });
+
+  const registerReq = () => {
+    register({
+      email: value.email,
+      password: value.password,
+      username: value.username,
+    })
+      .then((res) => {
+        setError('');
+        alert('회원가입이 정상적으로 완료되었습니다.');
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err.request.response);
+        const errObject = JSON.parse(err.request.response);
+        setError(errObject.error.message);
+      });
+  };
 
   return (
     <Container>
@@ -52,13 +74,10 @@ export default function RegisterForm() {
         value={value.passwordConfirm}
         onChange={handleOnChange}
       />
+      {error && <p className='text-red-500'>{error}</p>}
       <Button
         onClick={() => {
-          register({
-            email: value.email,
-            username: value.username,
-            password: value.password,
-          });
+          registerReq();
         }}
       >
         회원가입

@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { setEmail } from '../store/slices/userSlice';
-import { removeLocalStorageItem } from '../utils/localStorage';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../store/slices/userSlice';
 
 export default function GNB() {
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    if (user) {
-      dispatch(
-        setEmail({
-          user: null,
-        })
-      );
-      removeLocalStorageItem('user');
-      alert('정상적으로 로그아웃 되었습니다.');
-      window.location.reload();
-    }
+    localStorage.removeItem('token');
+    dispatch(setUser(false));
+    alert('정상적으로 로그아웃 되었습니다.');
+    window.location.reload();
   };
 
   return (

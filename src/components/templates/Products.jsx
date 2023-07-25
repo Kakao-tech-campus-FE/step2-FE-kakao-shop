@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductCard from '../molecules/ProductCard';
 import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '../../services/products';
+import { getProducts } from '../../services/product';
 import { useParams } from 'react-router-dom';
 
 export default function Products() {

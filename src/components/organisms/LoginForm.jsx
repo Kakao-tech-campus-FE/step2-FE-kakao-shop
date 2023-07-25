@@ -4,12 +4,18 @@ import Button from '../atoms/Button';
 import useInput from '../../hooks/useInput';
 import { login } from '../../services/user';
 import Title from '../atoms/Title';
-import { setEmail } from '../../store/slices/userSlice';
+import { setUser } from '../../store/slices/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { setLocalStorageWithExp } from '../../utils/localStorage';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const email = useSelector((state) => state.user.email); // state: global state
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  //
+  const email = useSelector((state) => state.user.email);
   const { value, handleOnChange } = useInput({
     email: '',
     password: '',
@@ -21,21 +27,30 @@ export default function LoginForm() {
       password: value.password,
     })
       .then((res) => {
-        console.log(res);
+        setError('');
         dispatch(
-          setEmail({
-            email: value.email,
+          setUser({
+            user: value.user,
           })
         );
+        alert('로그인이 정상적으로 완료되었습니다.');
+        console.log(res.headers.authorization);
+        setLocalStorageWithExp('user', res.headers.authorization, 1000 * 1440);
+        // navigate('/');
+        // 윈도우 새로 고침
+        // window.location.reload();
       })
       .catch((err) => {
-        console.log('err', err);
+        console.log(err.request.response);
+        const errObject = JSON.parse(err.request.response);
+        setError(errObject.error.message);
       });
   };
 
   return (
     <Container>
       <Title>로그인</Title>
+      {/* */}
       <span>{email}</span>
       <InputGroup
         id='email'
@@ -55,9 +70,9 @@ export default function LoginForm() {
         value={value.password}
         onChange={handleOnChange}
       />
+      {error && <span className='text-red-500'>{error}</span>}
       <Button
         onClick={() => {
-          // api 로그인 요청
           loginReq();
         }}
       >
