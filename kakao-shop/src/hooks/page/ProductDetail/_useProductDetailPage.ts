@@ -60,6 +60,12 @@ export const useProductDetail = () => {
   const onNavigateCart = () => {
     if (!isLogin) return setIsModal(true);
 
+    if (getProductDetailRequest.length === 0) {
+      Toast.show('옵션을 먼저 선택해주세요');
+      return;
+    }
+
+    dispatch(addCartItemAction(getProductDetailRequest));
     navigate('/cart');
   };
 
