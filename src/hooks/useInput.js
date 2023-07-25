@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 // form value 커스텀 훅
 const useInput = (initialValue) => {

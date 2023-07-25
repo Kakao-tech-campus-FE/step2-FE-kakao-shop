@@ -3,7 +3,6 @@ import ProductGrid from "../organisms/ProductGrid";
 import { useEffect, useState, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchProducts } from "../../apis/product";
-import Loader from "../atoms/Loader";
 
 const MainProductTemplate = () => {
   const targetRef = useRef(null);
@@ -60,7 +59,7 @@ const MainProductTemplate = () => {
 
   return (
     <Container>
-      {isLoading ? <Loader /> : <ProductGrid products={products} />}
+      <ProductGrid products={products} />
       <div ref={targetRef} className="mb-1"></div>
     </Container>
   );

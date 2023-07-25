@@ -26,6 +26,7 @@ instance.interceptors.response.use(
     if (200 <= statusCode && statusCode < 300) return response;
   },
   (error) => {
+    console.log(error);
     const statusCode = error.response.status;
     switch (statusCode) {
       case 300:

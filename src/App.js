@@ -7,7 +7,8 @@ import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
-import PayPage from "./pages/PayPage";
+import OrderPage from "./pages/OrderPage";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 function App() {
   return (
@@ -22,8 +23,10 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+          </Route>
+          <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/pay" element={<PayPage />}></Route>
+            <Route path="/order" element={<OrderPage />}></Route>
           </Route>
           <Route path="/404" element={<NotFound />} />
         </Routes>
