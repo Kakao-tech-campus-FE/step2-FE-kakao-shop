@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { login, logout } from '../../store/slices/userSlice';
@@ -7,11 +7,11 @@ import { getItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO } from '../../utils/common';
 import { useUserDispatch, useUserSelector } from '../../hooks/store';
 import Photo from '../atoms/photo';
-import { navigator } from '../../utils/navigator';
 
 export default function NavigationBar() {
   const user = useUserSelector((state) => state.user);
   const dispatch = useUserDispatch();
+  const navigator = useNavigate();
 
   useEffect(() => {
     const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
