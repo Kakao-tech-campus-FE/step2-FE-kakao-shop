@@ -100,7 +100,7 @@ const OrderTemplate = ({data}) => {
               type="checkbox" 
               id='all-agree'
               ref={allAgreeRef}
-              checked={allAgree}
+              checked={agreePayment && agreePollcy}
               onChange={handleAllAgree}
             />
             <label htmlFor="all-agree" className='text-xl font-bold'>전체 동의</label>
@@ -109,7 +109,7 @@ const OrderTemplate = ({data}) => {
             <input 
               type="checkbox" 
               id='agree'
-              naem='payment-agree'
+              name='payment-agree'
               ref={agreePaymentRef}
               checked={agreePayment}
               onChange={handleAgree}
@@ -122,7 +122,7 @@ const OrderTemplate = ({data}) => {
             <input 
               type="checkbox" 
               id='policy'
-              naem='pollcy-agree'
+              name='pollcy-agree'
               ref={agreePollcyRef}
               checked={agreePollcy}
               onChange={handleAgree}
@@ -147,12 +147,10 @@ const OrderTemplate = ({data}) => {
               }
 
               mutate(null, {
-                onError: (err)=>{
-                  console.log(err)
+                onError: ()=>{
                   alert("주문에 실패했습니다.")
                 },
                 onSuccess: (res)=>{
-                  console.log(res)
                   const id = res.data.response.id
                   alert("주문 완료 :)")
                   navigate(`/orders/${id}`)
