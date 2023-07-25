@@ -25,7 +25,8 @@ interface SignInProps {
 
 /**
  * SignUpForm component
- * @param {function} onSubmit - form이 submit될 때 실행되는 함수
+ * @component
+ * @param {function} onSubmit - form의 submit 이벤트를 처리하는 함수
  * @param {object} data - form의 input value를 담고 있는 객체
  * @param {function} setForm - form의 input value를 변경하는 함수
  * @returns {JSX.Element} - SignUpForm component

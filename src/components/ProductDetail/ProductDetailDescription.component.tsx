@@ -40,7 +40,7 @@ const ProductDetailDescription = () => {
     <>
       <div className="flex-1">
         <LazyImage
-          src={import.meta.env.VITE_KAKAO_IMAGE_URL + image}
+          src={process.env.VITE_KAKAO_IMAGE_URL + image}
           alt={productName}
         />
       </div>

@@ -4,7 +4,7 @@ import { ERROR } from "@/assets/error.ko";
 import { DefaultResDto } from "@/dtos/response.dto";
 
 const https = axios.create({
-  baseURL: import.meta.env.VITE_KAKAO_STORE_URL,
+  baseURL: process.env.VITE_KAKAO_STORE_URL,
 });
 
 https.interceptors.request.use((config) => {
