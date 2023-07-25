@@ -95,7 +95,12 @@ function App() {
               isLoggedIn ? <CartPage /> : <Navigate to="/signin" replace />
             }
           ></Route>
-          <Route path="/order" element={<OrderPage />}></Route>
+          <Route
+            path="/order"
+            element={
+              isLoggedIn ? <OrderPage /> : <Navigate to="/signin" replace />
+            }
+          ></Route>
           <Route path="/products/:id" element={<ProductPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
