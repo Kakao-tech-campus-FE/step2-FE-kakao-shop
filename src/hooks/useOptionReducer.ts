@@ -38,6 +38,10 @@ function optionReducer(selectedOptions: SelectedOption[], action: OptionReducerA
       return selectedOptions.filter((option) => option.id !== action.id);
     }
 
+    case 'reset': {
+      return [];
+    }
+
     default: {
       throw Error('Unknown action');
     }

@@ -1,14 +1,12 @@
-import { AddCartOption } from '../types/product';
+import { AddCartOption, UpdateCartOption } from '../types/product';
 import { kakaoShoppingInstance } from './instance';
 
-export async function requestAddCart(options: AddCartOption[], auth: string) {
-  const response = await kakaoShoppingInstance.post('/carts/add', options, {
+export async function addCart(options: AddCartOption[], auth: string) {
+  return kakaoShoppingInstance.post('/carts/add', options, {
     headers: {
       Authorization: auth,
     },
   });
-
-  return response;
 }
 
 export async function getCart(auth: string) {
@@ -19,15 +17,11 @@ export async function getCart(auth: string) {
   });
 }
 
-export async function requestUpdateCart(
-  cartId: number,
-  quantity: number,
+export async function updateCart(
+  carts: UpdateCartOption[],
   auth: string,
 ) {
-  return kakaoShoppingInstance.post('/carts/update', [{
-    cartId,
-    quantity,
-  }], {
+  return kakaoShoppingInstance.post('/carts/update', carts, {
     headers: {
       Authorization: auth,
     },

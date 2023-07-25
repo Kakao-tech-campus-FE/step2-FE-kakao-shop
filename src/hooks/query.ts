@@ -1,6 +1,7 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import { getProductDetail, getProductList } from '../apis/product';
-import { getCart } from '../apis/cart';
+import { addCart, getCart, updateCart } from '../apis/cart';
+import { AddCartOption, UpdateCartOption } from '../types/product';
 
 export function useProductList() {
   return useInfiniteQuery({
@@ -19,13 +20,27 @@ export function useProductDetail(productId: number) {
   });
 }
 
-export function useCart(auth: string) {
-  return useQuery({
-    queryKey: ['cart'],
-    queryFn: async () => {
-      const response = await getCart(auth);
+export function useAddCart() {
+  return useMutation({
+    mutationKey: ['addCart'],
+    mutationFn: async (
+      { selectedOptions, auth }: { selectedOptions: AddCartOption[], auth: string },
+    ) => addCart(selectedOptions, auth),
+  });
+}
 
-      return response.data.response;
-    },
+export function useGetCart(auth: string) {
+  return useQuery({
+    queryKey: ['getCart', { auth }],
+    queryFn: async () => getCart(auth),
+  });
+}
+
+export function useUpdateCart() {
+  return useMutation({
+    mutationKey: ['updateCart'],
+    mutationFn: async (
+      { updatedOptions, auth }: { updatedOptions: UpdateCartOption[], auth: string },
+    ) => updateCart(updatedOptions, auth),
   });
 }

@@ -31,7 +31,7 @@ export default function Option({ children, optionDescription }:OptionProps) {
           {Children.map(children, (child) => (
             <li
               onClick={(e) => {
-                e.preventDefault();
+                e.stopPropagation();
                 setIsExpanded((prev) => !prev);
               }}
               role="presentation"

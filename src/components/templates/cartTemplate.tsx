@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
 import { CartData } from '../../types/product';
-import OptionCard from '../molecules/optionCard';
 import { comma } from '../../utils/comma';
+import CartItemCard from '../organisms/cartItemCard';
 
 interface CartTemplateProps {
   cartData: CartData;
@@ -30,30 +29,12 @@ export default function CartTemplate({
                     key={`product-${product.id}`}
                     className="my-6"
                   >
-                    <h2 className="my-2 font-bold">
-                      <Link to={`/product/${product.id}`}>
-                        {product.productName}
-                      </Link>
-                    </h2>
-                    {product.carts.map((cart) => (
-                      cart.quantity > 0 ? (
-                        <OptionCard
-                          key={`product-${product.id}-option-${cart.option.id}`}
-                          optionName={cart.option.optionName}
-                          quantity={cart.quantity}
-                          optionTotalPrice={cart.price}
-                          handleQuantityDecrease={() => {
-                            if (cart.quantity - 1 < 1) {
-                              return;
-                            }
-                            handleOption(cart.id, cart.quantity - 1);
-                          }}
-                          handleQuantityIncrease={() => handleOption(cart.id, cart.quantity + 1)}
-                          handleDeleteOption={() => handleOption(cart.id, 0)}
-                          decreaseDisabled={cart.quantity <= 1}
-                        />
-                      ) : null
-                    ))}
+                    <CartItemCard
+                      id={product.id}
+                      productName={product.productName}
+                      carts={product.carts}
+                      handleOption={handleOption}
+                    />
                   </li>
                 ) : null
             ))}

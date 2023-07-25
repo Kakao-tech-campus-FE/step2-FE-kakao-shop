@@ -10,4 +10,6 @@ export type OptionReducerAction = {
 } | {
   type: 'deleted';
   id: number;
+} | {
+  type: 'reset';
 };
