@@ -1,6 +1,6 @@
 import asideImage from '@assets/asideImage.png';
 import styled from '@emotion/styled';
-import { getProductsRequestAction, setPageStateAction } from '@store/Home/reducers';
+import { getProductsRequestAction, resetHomeStateAction, setPageStateAction } from '@store/Home/reducers';
 import { RootState } from '@store/index';
 import { Fragment, useEffect, useMemo, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +11,8 @@ import BannerImageList from '@components/atom/Carousel/BannerImageList';
 import Loading from '@components/atom/Loader';
 import { CardList } from '@components/page/Home/CardList';
 import CardListFallback from '@components/page/Home/CardListFallback';
+
+const LAST_PAGE = 2;
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,7 +25,7 @@ const Home = () => {
   useEffect(() => {
     // 현재는 2페이지까지만 불러오도록 설정
     // 확장성을 고려한다면 백엔드에 hasNext 라는 다음 페이지가 존재하는지 여부를 받아와서 처리해야한다고 생각이 듭니다.
-    if (isLoading || page >= 2) return;
+    if (isLoading || page >= LAST_PAGE) return;
     dispatch(getProductsRequestAction(page));
   }, [page]); // TLDR; isLoding 무한루프 / isLoading 을 deps에 넣어주면 setProductData 가 발생하고 isLoading 이 false가 될때 다시 호출되어 무한루프에 빠진다.
 
@@ -31,7 +33,7 @@ const Home = () => {
     return new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         if (isLoading) return;
-        if (page >= 2) return;
+        if (page >= LAST_PAGE) return;
         dispatch(setPageStateAction(page + 1));
       }
     });
@@ -46,6 +48,12 @@ const Home = () => {
       endOfContentObserver.unobserve(endRef.current);
     };
   }, [products, endOfContentObserver]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetHomeStateAction());
+    };
+  }, []);
 
   return (
     <Fragment>
