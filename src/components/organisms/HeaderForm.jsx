@@ -16,25 +16,13 @@ const HeaderForm = () => {
     <div className="flex max-w-none h-[79px] mx-auto fixed left-0 right-0 top-0 border-b border-gray-300 bg-white">
       <Container className="flex max-w-none w-[1280px] h-[79px] mx-auto fixed left-0 right-0 top-0 ">
         <Logo className="pt-[31px] mr-auto" />
-        {isLogin ? (
-          <LinkButton
-            to="/cart"
-            onClick={() => {}}
-            className="cart-button leading-[30px] py-[25px]"
-          >
-            <Cart />
-          </LinkButton>
-        ) : (
-          <LinkButton
-            to="/login"
-            onClick={() => {
-              alert("로그인이 필요한 메뉴입니다.");
-            }}
-            className="cart-button leading-[30px] py-[25px]"
-          >
-            <Cart />
-          </LinkButton>
-        )}
+        <LinkButton
+          to="/cart"
+          onClick={() => {}}
+          className="cart-button leading-[30px] py-[25px]"
+        >
+          <Cart />
+        </LinkButton>
         {isLogin ? (
           <LinkButton
             to="/"
