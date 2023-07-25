@@ -3,6 +3,9 @@ import Title from "../atoms/Title";
 import OrderItem from "../atoms/OrderItem";
 import CheckBox from "../atoms/CheckBox";
 import { useState } from "react";
+import { useMutation } from "react-query";
+import { orderCart } from "../../services/apis";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.main`
   width: 800px;
@@ -74,6 +77,14 @@ const OrderList = ({ cart }) => {
   ];
   const [checkItems, setCheckItems] = useState(initialItems);
 
+  const navigate = useNavigate();
+  const { mutate } = useMutation(orderCart, {
+    onSuccess: (res) => {
+      const orderId = res.data.response.id;
+      navigate(`/orders/${orderId}`);
+    },
+  });
+
   const handleItemCheck = (itemId) => {
     setCheckItems((prev) =>
       prev.map((item) =>
@@ -134,12 +145,7 @@ const OrderList = ({ cart }) => {
               />
             ))}
           </AgreeRow>
-          <OrderRow
-            disabled={!isAllChecked()}
-            onClick={() => {
-              console.log("결제되었습니다.");
-            }}
-          >
+          <OrderRow disabled={!isAllChecked()} onClick={mutate}>
             {totalPrice.toLocaleString()}원 결제하기
           </OrderRow>
         </ShipContainer>

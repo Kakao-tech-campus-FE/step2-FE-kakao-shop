@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 import "antd/dist/antd";
 import OrderPage from "./pages/OrderPage";
+import ResultPage from "./pages/ResultPage";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -99,6 +100,12 @@ function App() {
             path="/order"
             element={
               isLoggedIn ? <OrderPage /> : <Navigate to="/signin" replace />
+            }
+          ></Route>
+          <Route
+            path="/orders/:id"
+            element={
+              isLoggedIn ? <ResultPage /> : <Navigate to="/signin" replace />
             }
           ></Route>
           <Route path="/products/:id" element={<ProductPage />}></Route>

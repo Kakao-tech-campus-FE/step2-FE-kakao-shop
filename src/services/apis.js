@@ -43,3 +43,11 @@ export const showCart = () => {
 export const updateCart = (payload) => {
   return authInstance.post("/carts/update", payload);
 };
+
+export const orderCart = () => {
+  return authInstance.post("/orders/save");
+};
+
+export const getResult = ({ id }) => {
+  return authInstance.get(`/orders/${id}`);
+};

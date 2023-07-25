@@ -72,7 +72,7 @@ const CartList = ({ cart }) => {
   useEffect(() => {
     setCartItems(cart.data.response.products);
     setTotalPrice(cart.data.response.totalPrice);
-  }, []);
+  }, [cart]);
 
   const handleOnChange = (optionId, quantity, price) => {
     setCartItems((prev) =>
