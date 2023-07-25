@@ -1,13 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useUserSelector } from '../../hooks/store';
-import { AddCartOption, ProductOption, SelectedOption } from '../../types/product';
+import { ProductOption, SelectedOption } from '../../types/product';
 import { OptionReducerAction } from '../../types/reducerAction';
 import Option from '../molecules/option';
-import { requestAddCart } from '../../apis/cart';
-import { getItemWithExpireDate } from '../../utils/localStorage';
-import { LOCALSTORAGE_KEY_TOKEN } from '../../utils/common';
 import OptionCard from '../molecules/optionCard';
 import { comma } from '../../utils/comma';
 
@@ -22,51 +17,6 @@ export default function ProductOptionColumn({
   selectedOptions,
   dispatch,
 }: ProductOptionColumnProps) {
-  const user = useUserSelector((state) => state.user);
-  const navigator = useNavigate();
-
-  const checkLogin = () => {
-    if (!user.isLogin) {
-      const response = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
-      if (response) {
-        navigator('/login');
-      }
-
-      return false;
-    }
-
-    return true;
-  };
-
-  const addCart = async () => {
-    if (checkLogin()) {
-      if (selectedOptions.length === 0) {
-        alert('옵션을 선택해주세요.');
-
-        return;
-      }
-
-      const cartOptions: AddCartOption[] = selectedOptions.map((option) => ({
-        optionId: option.id,
-        quantity: option.quantity,
-      }));
-
-      const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
-      if (token === null) {
-        alert('토큰이 만료되었습니다.');
-        navigator(0);
-
-        return;
-      }
-
-      const response = await requestAddCart(cartOptions, token);
-
-      if (response.data.success === true) {
-        alert('장바구니에 상품을 담았습니다.');
-      }
-    }
-  };
-
   return (
     <div>
       <Option optionDescription="옵션 선택">
@@ -133,7 +83,7 @@ export default function ProductOptionColumn({
       ) : null}
       <div className="my-4 flex gap-4">
         <button
-          onClick={addCart}
+          onClick={() => {}}
           className="w-16 rounded bg-black p-2"
         >
           <FontAwesomeIcon

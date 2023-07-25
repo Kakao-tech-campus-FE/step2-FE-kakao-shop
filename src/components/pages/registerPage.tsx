@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import RegisterTemplate from '../templates/registerTemplate';
 import { RegisterFormData } from '../../types/formData';
 import { requestUserRegistration } from '../../apis/user';
+import { navigator } from '../../utils/navigator';
 
 export default function RegisterPage() {
   const {
@@ -27,8 +27,6 @@ export default function RegisterPage() {
   const [isEmailDuplicated, setIsEmailDuplicated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-
-  const navigator = useNavigate();
 
   const handleRegister = async () => {
     setIsLoading(true);

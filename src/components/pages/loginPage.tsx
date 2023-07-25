@@ -1,5 +1,4 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import LoginTemplate from '../templates/loginTemplate';
@@ -7,6 +6,7 @@ import { LoginData } from '../../types/formData';
 import { loginRequest } from '../../store/slices/userSlice';
 import { RootState } from '../../store';
 import { useUserDispatch } from '../../hooks/store';
+import { navigator } from '../../utils/navigator';
 
 export default function LoginPage() {
   const {
@@ -26,7 +26,6 @@ export default function LoginPage() {
 
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useUserDispatch();
-  const navigator = useNavigate();
 
   useEffect(() => {
     if (user.isLogin) {
