@@ -51,5 +51,4 @@
 
 https://github.com/kimchanho97/step2-FE-kakao-shop/assets/104095041/6a93ce3c-9585-4d5f-9cd3-226935890694
 
-
-
+**2주차 PR 코드리뷰 링크**: <https://github.com/Kakao-tech-campus-FE/step2-FE-kakao-shop/pull/114>

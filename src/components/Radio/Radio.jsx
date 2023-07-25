@@ -1,25 +1,20 @@
 import React from "react";
 import "./Radio.css";
 
-function Radio(props) {
+export default function Radio({ className, id, name, value, label, onChange }) {
   return (
-    <div className={props.className}>
-      {props.options.map((option) => (
-        <div key={option.value}>
-          <input
-            type="radio"
-            name={props.className}
-            id={option.value}
-            value={option.value}
-            checked={option.value === props.defaultChecked}
-            onChange={props.onChange}
-            className="radio-button"
-          />
-          <label htmlFor={option.value}>{option.label}</label>
-        </div>
-      ))}
+    <div className={className}>
+      <label htmlFor={id}>
+        <input
+          type="radio"
+          name={name}
+          id={id}
+          value={value}
+          onChange={onChange}
+          className="radio-button"
+        />
+        {label}
+      </label>
     </div>
   );
 }
-
-export default Radio;

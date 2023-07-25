@@ -12,23 +12,32 @@ export const fetchProducts = async (page = 0) => {
       throw new Error("page는 0보다 작을 수 없습니다.");
     }
     const response = await instance.get(`/products?page=${page}`);
-    console.log("FetchProducts Api data", response.data);
-    return response.data;
+    console.log("FetchProducts Api data", response);
+    return response.data.response;
   } catch (error) {
     console.log("FetchProducts Api Error", error);
     throw error;
   }
 };
 
-// ❔의문점:
-// - fetchProducts에서 에러를 return 하면 fetchProducts를 요청하는 곳에서
-//   Error객체를 못 받아 에러가 발생하는데 throw를 하면 받을 수 있음 -> useQuery에서 받는건가?
-
-export const getProductById = (id) => {
-  if (!id) {
-    return new Error("id가 없습니다.");
+export const getProductById = async (id) => {
+  try {
+    if (!id) {
+      throw new Error("id가 없습니다.");
+    } else if (typeof id !== "number") {
+      throw new Error("id는 숫자이어야 합니다.");
+    } else if (isNaN(id)) {
+      throw new Error("id는 숫자이어야 합니다.");
+    } else if (id < 0) {
+      throw new Error("id는 0보다 작을 수 없습니다.");
+    }
+    const response = await instance.get(`/products/${id}`);
+    console.log("getProductById Api data", response);
+    return response.response;
+  } catch (error) {
+    console.log("getProductById Api Error", error);
+    throw error;
   }
-  return instance.get(`/products/${id}`);
 };
 
 // 🔥 개념

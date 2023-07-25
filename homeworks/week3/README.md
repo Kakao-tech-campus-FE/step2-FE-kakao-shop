@@ -96,3 +96,5 @@
 - 데이터페칭: redux-query
 - 라우팅: react-router-dom
 - 유틸리티: lodash
+
+**3주차 PR 코드리뷰 링크**: <https://github.com/Kakao-tech-campus-FE/step2-FE-kakao-shop/pull/166>

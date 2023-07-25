@@ -11,8 +11,9 @@ export const instance = axios.create({
 instance.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+    config.headers["Authorization"] = token;
   }
+  config.headers["Content-Type"] = "application/json;charset=UTF-8";
   return config;
 });
 
@@ -23,15 +24,18 @@ instance.interceptors.response.use(
   },
   (error) => {
     console.log("Axios Interceptors Error", error);
+    // TimeoutError 발생 시 처리
+    if (error.code === "ECONNABORTED") {
+      console.error("요청이 시간 초과되었습니다.");
+    }
     const status = error.response.status;
     // Client단 에러 처리
     if (status === 401) {
       localStorage.clear();
-      window.location.href = "/login";
     } else if (status === 404) {
       window.location.href = "/404";
     }
-    return Promise.reject(error);
+    throw error.response.data.error;
   }
 );
 

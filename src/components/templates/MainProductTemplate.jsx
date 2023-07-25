@@ -1,77 +1,50 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
-import { fetchProducts } from "../../services/product";
-import { useQuery } from "react-query";
-import { PRODUCT_NUM_PER_PAGE } from "../../utils/constant";
-import _ from "lodash";
 import Loader from "../atoms/Loader";
+import useFetchProducts from "../../hooks/useFetchProducts";
 
 export default function MainProductTemplate() {
-  const [page, setPage] = useState(0);
-  const [isEnd, setIsEnd] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [isRenderingDone, setIsRenderingDone] = useState(false);
   const bottomObserver = useRef(null);
-  const { data, isLoading, isFetching, error } = useQuery(
-    ["products", page],
-    () =>
-      fetchProducts(page)
-        .then((response) => response)
-        .catch((error) => {
-          throw error;
-        }),
-    {
-      keepPreviousData: true,
-    }
-  );
+  const {
+    isFetchingNextPage, // 다음 페이지를 가져오는 요청이 진행 중인지 여부
+    error,
+    hasNextPage,
+    isLoading,
+    fetchNextPage,
+    products,
+    isFetching,
+  } = useFetchProducts();
 
   useEffect(() => {
+    console.log("MainProductTemplate products", products);
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && isRenderingDone && !isEnd) {
-          setPage((page) => page + 1);
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          fetchNextPage();
         }
       },
       { threshold: 1 }
     );
-    if (isRenderingDone && !isEnd) {
+    if (hasNextPage && !isFetchingNextPage) {
       io.observe(bottomObserver.current);
     }
     return () => {
       io.disconnect();
     };
-  }, [isRenderingDone, isEnd]);
-
-  useEffect(() => {
-    if (data) {
-      console.log("MainProductTemplate Data", data);
-      if (data.response.length < PRODUCT_NUM_PER_PAGE) {
-        setIsEnd(true);
-      }
-      setIsRenderingDone(false);
-      setProducts((products) =>
-        _.uniqBy([...products, ...data.response], "id")
-      );
-      setIsRenderingDone(true);
-    }
-  }, [data]);
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage, products]);
 
   useEffect(() => {
     if (error) {
-      console.log("MainProductTemplate Error", error);
+      console.log("MainProductTemplate Error", error.message);
       alert("서버에 문제가 있습니다. 잠시 후 다시 시도해주세요.");
     }
   }, [error]);
 
+  if (isLoading) return <Loader />;
   return (
-    <Container className=" pt-20 flex justify-center flex-col items-center ">
-      {isLoading && <Loader />}
-      <ProductGrid
-        products={products}
-        isLoading={isLoading}
-        isFetching={isFetching}
-      />
+    <Container className=" flex justify-center flex-col items-center ">
+      {products && <ProductGrid products={products} isFetching={isFetching} />}
       <div ref={bottomObserver}></div>
     </Container>
   );

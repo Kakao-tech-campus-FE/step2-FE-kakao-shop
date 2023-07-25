@@ -87,3 +87,5 @@
 
 * State:
   - 모두 동의하기 버튼: `useState(0)` -> Number(현재 페이지 index)
+
+**1주차 PR 코드리뷰 링크**: <https://github.com/Kakao-tech-campus-FE/step2-FE-kakao-shop/pull/60>

@@ -14,8 +14,9 @@ const userSlice = createSlice({
       state.isLogged = true;
     },
     LogOut: (state, action) => {
-      localStorage.removeItem("loginExpirationTime");
+      localStorage.clear();
       state.isLogged = false;
+      window.location.reload();
     },
   },
 });
