@@ -1,14 +1,4 @@
-import { useQuery } from "react-query"
-import { getCart } from "../../services/cart"
-import Loader from "../atoms/Loader"
-
-const OrderTemplate () => {
-
-    const { data, error, isLoading } = useQuery(getCart)
-
-    if (isLoading) {
-        return <Loader />
-    }
+const OrderTemplate ({ data }) => {
 
     return (
         <div className="py-20">
