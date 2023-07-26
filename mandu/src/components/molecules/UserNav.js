@@ -46,7 +46,7 @@ const UserNav = () => {
         <div className="flex mb-1">
             <div className="self-center">
                 <button onClick={goToCart}>
-                    <img alt="장바구니" className="h-7 mx-2" src="./cart.png"/>
+                    <img alt="장바구니" className="h-7 mx-2" src={process.env.PUBLIC_URL + "/cart.png"}/>
                 </button>
             </div>
             <div className="pl-7 border-l-2 ml-4 px-2 mt-0.5">
@@ -55,7 +55,7 @@ const UserNav = () => {
                     <div className="flex">
                         <div className="my-2">{`유저 id : ${userId}`}</div>
                         <button onClick={logout}>
-                            <img alt="로그아웃" className="h-4 mx-4" src="./logout.png"/>
+                            <img alt="로그아웃" className="h-4 mx-4" src={process.env.PUBLIC_URL + "/logout.png"}/>
                         </button>
                     </div> :
                     <Link to="/login"
