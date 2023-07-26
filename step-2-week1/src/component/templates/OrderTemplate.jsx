@@ -2,15 +2,67 @@ import { useMutation } from "react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useRef } from "react";
 
 const OrderTemplate = ({ data }) => {
 // 사용자의 장바구니 목록을 조회해 보여주는 것
-const carts = [];
+const { products, totalPrice } = data?.data?.response;
 const navigate = useNavigate();
+const [agreePayment, setAgreePayment] = useState(false);
+const [agreePolicy, setAgreePolicy] = useState(false);
+
+const allAgreeRef = useRef(null);
+const agreePaymentRef = useRef(null);
+const agreePolicyRef = useRef(null);
+
+const handleAllAgree = (e) => {
+    const value = e.target.checked;
+    setAgreePayment(value);
+    setAgreePayment(value);
+};
+
+const handleAgreement = (e) => {
+    const { name, checked } = e.target;
+
+    if (name === "payment-agree") {
+        setAgreePayment(checked);
+    } else if (name === "policy-agree") {
+        setAgreePolicy(checked);
+    }
+};
 
 const { mutate } = useMutation({
-    queryFn: () => order
-})
+    mutationKey: "order",
+    queryFn: () => order,
+});
+
+const OrderItems = () => {
+    let renderComponent = [];
+
+    // forEach, map 동기함수
+    products.forEach((item) => {
+        renderComponent.push(
+            item.carts.map((cart) => {
+            return (
+                <div key={cart.id} className="p-4 border-t">
+                    <div className="product-name font-bold">
+                        <span>{`${item.productName} - ${cart.option.optionName}`}</span>
+                    </div>
+                    <div className="quantity">
+                        <span>{comma(cart.quantity)}개</span>
+                    </div>
+                    <div className="price font-bold">
+                        <span>{comma(cart.price * cart.quantity)}원</span>
+                    </div>
+                </div>
+            )
+        }));
+
+    });
+
+    return renderComponent;
+}
 
     return (
     <div className="py-20">
@@ -39,42 +91,41 @@ const { mutate } = useMutation({
             <h2>주문상품 정보</h2>
         </div>
         {/* 각 주문의 정보 */}
-        {carts.map(item => {
-            return <div key={item.id}>
-                {/* 상품 이름, css와 항상 바인딩 될 필요는 없다. 직관적으로 이해만 */}
-                <div className="product-name">
-                    <span>{item.name}</span>
-                    <span>{item.carts[0].optionName}</span>
-                </div>
-                <div className="quantity">
-                    <span>{comma(item.quantity)}개</span>
-                </div>
-                <div className="price">
-                    <span>{comma(item.price)}원</span>
-                </div>
-            </div>
-        })}
+        <OrderItems/>
         {/* 총 주문 금액 */}
         <div className="border p-4 flex items-center justify-between">
-            <h3>총 주문 금액</h3>
-            <span className="price">{comma(data.totalPrice)}원</span>
+            <h3 className="font-bold text-xl">총 주문 금액</h3>
+            <span className="price text-xl text-indigo-700">{comma(totalPrice)}원</span>
         </div>
         {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        <div className="border p-4">
-            <div className="flex">
-                <input type="checkbox" id="all-agree" />
+        <div className="border flex flex-col p-4 gap-4">
+            <div className="flex gap-2">
+                <input type="checkbox" id="all-agree"
+                    ref={allAgreeRef}
+                    checked={agreePayment && agreePolicy}
+                    onChange={handleAllAgree}
+
+                    />
                 <label htmlFor="all-agree" className="text-xl font-bold">
                     전체 동의
                 </label>
             </div>
-            <div className="flex">
-                <input type="checkbox" id="agree" />
+            <div className="flex gap-2">
+                <input type="checkbox" id="agree" name="payment-agree"
+                    ref={agreePaymentRef}
+                    checked={agreePayment} 
+                    onChange={handleAgreement}
+                />
                 <label htmlFor="agree" className="text-sm">
                     구매조건 확인 및 결제 진행 동의
                 </label>
             </div>
-            <div className="flex">
-                <input type="checkbox" id="policy" />
+            <div className="flex gap-2">
+                <input type="checkbox" id="policy" name="policy-agree"
+                    ref={agreePolicyRef}
+                    checked={agreePolicy} 
+                    onChange={handleAgreement}
+                />
                 <label htmlFor="policy" className="text-sm">
                     개인정보 제 3자 제공동의
                 </label>
@@ -87,6 +138,11 @@ const { mutate } = useMutation({
                     // 장바구니는 비워짐
                     // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문
                     // /orders/complete/:id
+
+                    if (agreePayment === false || agreePolicy === false) {
+                        alert("모든 항목에 동의가 필요합니다.");
+                        return;
+                    }
                     mutate(null, {
                         onError:() => {
                             alert("주문에 실패했습니다.")
@@ -98,7 +154,13 @@ const { mutate } = useMutation({
                         }
                     })
                 }}
-                className="bg-yellow-500 w-fill p-4 font-medium">
+                className={`
+                    w-full p-4 font-medium    
+                ${ agreePayment && agreePolicy 
+                    ? "bg-yellow-500 text-black"
+                    : "bg-gray-300 text-gray-500" 
+                }`}
+                >   
                 결제하기
             </button>
         </div>

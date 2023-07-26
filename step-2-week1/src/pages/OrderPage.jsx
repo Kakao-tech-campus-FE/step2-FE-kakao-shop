@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import Loader from "../component/atoms/Loader";
 
 const OrderPage = () => {
-    const { data, error, isLoading } = useQuery(getCart);
+    const { data, error, isLoading } = useQuery("cart", getCart);
     return (
         <Suspense fallback={<Loader />}>
             <OrderTemplate data={data} />
