@@ -1,16 +1,52 @@
-import OrderItems from '../organisms/OrderItems';
 import { styled } from 'styled-components';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCart } from '../services/cart';
 import { comma } from '../../utils/comma';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { order } from './../services/orders';
 
 const OrderTemplate = () => {
-    const { data, error, isLoading } = useQuery(["/order"], getCart);
+    const { data } = useQuery(["/order"], getCart);
+    const [products, setProducts] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+    const navigate = useNavigate();
+
+    const { mutate } = useMutation({
+        mutationKey: "order",
+        mutationFn : order,
+    })
 
     useEffect(() => {
         console.log(data);
+        setProducts(data?.data?.response?.products);
+        setTotalPrice(data?.data?.response?.totalPrice);
     }, [data])
+
+    const OrderItems = () => {
+        let renderComponent = [];
+        if (products) {
+            products.forEach((item) => {
+                // item : 각 상품 & carts : 옵션이 담겨있음
+                renderComponent.push(item.carts.map((cart) => {
+                    return (
+                        <div key={cart.id}>
+                            <div className='product-name'>
+                                <span>{`${item.productName} - ${cart.option.optionName}`}</span>
+                            </div>
+                            <div className='quantity'>
+                                <span>{comma(cart.quantity)}개</span>
+                            </div>
+                            <div className='price'>
+                                <span>{comma(cart.price * cart.quantity)}원</span>
+                            </div>
+                        </div>
+                    )
+                }))
+            })
+        }
+        return renderComponent;
+    }
 
     return (
         <OrderTemplateContainer>
@@ -37,7 +73,7 @@ const OrderTemplate = () => {
             <OrderInformationBox>
                 <TotalPriceBox>
                     <h3>총 주문 금액</h3>
-                    <span>{comma(data?.data?.response.totalPrice)}원</span>
+                    <span>{comma(totalPrice)}원</span>
                 </TotalPriceBox>
             </OrderInformationBox>
 
@@ -57,7 +93,23 @@ const OrderTemplate = () => {
                         <label htmlFor='agree'>개인정보 제 3자 제공동의</label>
                     </UserPermission>
                 </UserPermissionBox>
-                <PaymentButton>결제하기</PaymentButton>
+                <PaymentButton onClick={() => {
+                    mutate(null, {
+                        onSuccess: (res) => {
+                            console.log(res);
+                            console.log(res.response);
+                            const id = res.response.id;
+                            console.log(id);
+                            alert("주문이 완료되었습니다.");
+                            navigate(`/orders/complete/${id}`)
+                        },
+                        onError: (error) => {
+                            alert("주문에 실패하였습니다.")
+                        }
+                    })
+                }}>
+                    결제하기
+                </PaymentButton>
             </OrderInformationBox>
         </OrderTemplateContainer>
     );
