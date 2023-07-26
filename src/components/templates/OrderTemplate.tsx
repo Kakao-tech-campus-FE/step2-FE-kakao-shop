@@ -111,6 +111,16 @@ const OrderTemplate = () => {
               </div>
             </div>
           </section>
+          <button
+            type='button'
+            disabled={!agreePayment || !agreePolicy}
+            onClick={() => {
+              // TODO
+            }}
+            className='w-full bg-yellow-300 p-4 font-medium disabled:opacity-60'
+          >
+            결제하기
+          </button>
         </>
       )}
     </div>
