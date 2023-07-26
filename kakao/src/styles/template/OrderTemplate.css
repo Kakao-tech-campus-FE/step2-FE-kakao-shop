@@ -133,7 +133,6 @@
 }
 
 /* ----- 정보동의 ----- */
-
 .order-agree .agree-title {
   padding: 19px 16px;
   border-bottom: 1px solid #ebebeb;
@@ -159,8 +158,17 @@
   font-size: 14px;
 }
 
-/* ----- 법적고지 및 결제버튼 ----- */
+.agree-title input {
+  width: 17px;
+  height: 17px;
+}
 
+.agree-group input {
+  width: 15px;
+  height: 15px;
+}
+
+/* ----- 법적고지 및 결제버튼 ----- */
 .order-bottom {
   position: relative;
 }

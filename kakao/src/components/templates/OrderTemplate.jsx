@@ -3,17 +3,43 @@ import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import "../../styles/template/OrderTemplate.css";
+import { useRef, useState } from "react";
 
 const OrderTemplate = ({ data }) => {
-  console.log(data);
   console.log("넘어옴");
 
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
+
+  const [agreePayment, setAgreePayment] = useState(false);
+  const [agreePolicy, setAgreePolicy] = useState(false);
+
+  //useRef에 null을 넣어줘야 작동 이상 없음!
+  const agreeAllRef = useRef(null);
+  const agreePaymentRef = useRef(null);
+  const agreePolicyRef = useRef(null);
+
   const { mutate } = useMutation({
     mutationKey: "order",
     queryFn: () => order,
   });
+
+  const handleAgreeAll = (e) => {
+    const value = e.target.checked;
+    // 전체 동의가 선택되면 나머지도 한번에 체크
+    setAgreePayment(value);
+    setAgreePolicy(value);
+  };
+
+  const handleAgreement = (e) => {
+    console.log(e.target.checked);
+    const { name, checked } = e.target;
+    if (name === "agree-payment") {
+      setAgreePayment(checked);
+    } else if (name === "agree-policy") {
+      setAgreePolicy(checked);
+    }
+  };
 
   // products 안에 있는 item
   // `${item.productName} - ${item.carts[0].option.optionName}`
@@ -90,7 +116,14 @@ const OrderTemplate = ({ data }) => {
         <div className="order-info">
           <div className="order-agree">
             <div className="agree-title">
-              <input type="checkbox" id="agree-all" className="check" />
+              <input
+                type="checkbox"
+                id="agree-all"
+                className="check"
+                ref={agreeAllRef}
+                checked={agreePayment && agreePolicy}
+                onChange={handleAgreeAll}
+              />
               <label htmlFor="agree-all">
                 <span>전체 동의</span>
               </label>
@@ -98,13 +131,27 @@ const OrderTemplate = ({ data }) => {
 
             <div className="agree-group">
               <div className="check">
-                <input type="checkbox" id="agree-1" />
+                <input
+                  type="checkbox"
+                  id="agree-1"
+                  name="agree-payment"
+                  ref={agreePaymentRef}
+                  checked={agreePayment}
+                  onChange={handleAgreement}
+                />
                 <label htmlFor="agree-1">
                   <span> 구매조건 확인 및 결제 진행 동의</span>
                 </label>
               </div>
               <div className="check">
-                <input type="checkbox" id="agree-2" />
+                <input
+                  type="checkbox"
+                  id="agree-2"
+                  name="agree-policy"
+                  ref={agreePolicyRef}
+                  checked={agreePolicy}
+                  onChange={handleAgreement}
+                />
                 <label htmlFor="agree-2">
                   <span> 개인정보 제3자 제공 동의</span>
                 </label>
@@ -127,6 +174,11 @@ const OrderTemplate = ({ data }) => {
           <button
             className="checkout-btn"
             onClick={() => {
+              // 동의 하나라도 안이루어진 경우
+              if (agreePayment === false || agreePolicy === false) {
+                alert("모든 항목에 동의가 필요합니다!🙏🏻");
+                return;
+              }
               mutate(null, {
                 onError: () => {
                   alert("주문에 실패했습니다🥲");
