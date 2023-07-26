@@ -4,11 +4,15 @@ const OptionList = ({ options, onClick }) => {
   return (
     <ol className="option-list">
       {options.map((option, index) => (
-        <li key={option.id} className="option" onClick={() => onClick(option)}>
-          <span className="name">
+        <li
+          key={option.id}
+          className="option border p-2"
+          onClick={() => onClick(option)}
+        >
+          <div className="name font-bold">
             {index + 1}. {option.optionName}
-          </span>
-          <span className="price">{comma(option.price)}원</span>
+          </div>
+          <div className=" ml-5">{comma(option.price)}원</div>
         </li>
       ))}
     </ol>

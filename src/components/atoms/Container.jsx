@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/atoms/Container.css";
+// import "../../styles/atoms/Container.css";
 
 // props
 // className: CSS 스타일 적용 시 활용할 클래스 이름

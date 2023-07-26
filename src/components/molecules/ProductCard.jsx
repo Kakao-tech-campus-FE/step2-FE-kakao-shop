@@ -10,9 +10,9 @@ const ProductCard = ({ product, loading }) => {
         <ProductCardSkeleton />
       ) : (
         <Card to={`product/${product.id}`}>
-          <Photo src={process.env.REACT_APP_API_URL.slice(0, -1) + product.image} alt={product.productName} />
-          <div className="product-name">{product.productName}</div>
-          <div className="product-price">{comma(product.price)}원</div>
+          <Photo className="rounded-lg" src={process.env.REACT_APP_API_URL + product.image} alt={product.productName} />
+          <div className="text-sm font-medium">{product.productName}</div>
+          <div className="text-lg font-bold">{comma(product.price)}원~</div>
         </Card>
       )}
     </>
@@ -20,3 +20,4 @@ const ProductCard = ({ product, loading }) => {
 };
 
 export default ProductCard;
+

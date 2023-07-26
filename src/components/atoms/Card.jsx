@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import "../../styles/atoms/Card.css"
+// import "../../styles/atoms/Card.css"
 
 const Card = ({ to, children }) => {
   return (
-    <Link className="card" to={to}>
+    <Link className="" to={to}>
       {children}
     </Link>
   );

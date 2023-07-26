@@ -1,11 +1,82 @@
+// import { useDispatch, useSelector } from "react-redux";
+// import Container from "../atoms/Container";
+// import ProductGrid from "../organisms/ProductGrid";
+// import { getProducts } from "../../store/slices/productSlice";
+// import { useEffect, useRef, useState } from "react";
+// import Loader from "../atoms/Loader";
+// import { fetchProducts } from "../../services/product";
+// import _ from "lodash";
+// import { useQuery } from "@tanstack/react-query";
+
+// const MainProductTemplate = () => {
+//   const [page, setPage] = useState(0);
+//   const [isEnd, setIsEnd] = useState(false);
+//   const [products, setProducts] = useState([]);
+//   const bottomObserver = useRef();
+
+//   const { data, error, isError, isLoading } = useQuery(
+//     [`/products?page=${page}`],
+//     () => fetchProducts(page)
+//   );
+
+//   const io = new IntersectionObserver(
+//     (entries, observer) => {
+//       entries.forEach((entry) => {
+//         if (entry.isIntersecting && !isEnd) {
+//           console.log("entry.isIntersecting")
+//           console.log(entry.isIntersecting)
+//           console.log("isEnd")
+//           console.log(isEnd)
+//           setPage((page) => page + 1);
+//         }
+//       });
+//     },
+//     {
+//       threshold: 1,
+//     }
+//   );
+
+//   useEffect(() => {
+//     if (data) {
+//       if (data.data.response.length < 9) {
+//         setIsEnd(true);
+//         console.log("but isEnd is actually...")
+//         console.log(isEnd)
+//         // io.unobserve(bottomObserver.current);
+//       }
+//       setProducts((prev) => {
+//         // console.log(_.uniqBy([...prev, ...data.data.response], "id"));
+//         return _.uniqBy([...prev, ...data.data.response], "id");
+//       });
+//     }
+//   }, [data]);
+
+//   useEffect(() => {
+//     if (!isLoading && !isEnd) {
+//       io.observe(bottomObserver.current);
+//     }
+//   }, [isLoading]);
+
+//   return (
+//     <Container>
+//       {isLoading ? (
+//         <Loader />
+//       ) : (
+//         <ProductGrid products={products} loading={isLoading} />
+//       )}
+//       <div ref={bottomObserver}></div>
+//     </Container>
+//   );
+// };
+
+// export default MainProductTemplate;
+
 import { useDispatch, useSelector } from "react-redux";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { getProducts } from "../../store/slices/productSlice";
 import { useEffect, useRef, useState } from "react";
 import Loader from "../atoms/Loader";
-import { useQuery } from "react-query";
-import { fetchProducts } from "../../services/product";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -16,20 +87,16 @@ const MainProductTemplate = () => {
   const error = useSelector((state) => state.product.error);
   const isEnd = useSelector((state) => state.product.isEnd);
 
-  // const { data, error, isError, isLoading } = useQuery(`/products?page=${page}`, () =>
-  //   fetchProducts(page)
-  // );
-
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !isEnd) {
+        if (entry.isIntersecting && !isEnd) {;
           setPage((page) => page + 1);
         }
       });
     },
     {
-      threshold: 0.1,
+      threshold: 1,
     }
   );
 
@@ -42,8 +109,6 @@ const MainProductTemplate = () => {
   useEffect(() => {
     dispatch(getProducts(page));
   }, [dispatch, page]);
-
-  console.log(products);
 
   return (
     <Container>

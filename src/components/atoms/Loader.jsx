@@ -1,5 +1,3 @@
-import "../../styles/atoms/Loader.css"
-
 const Loader = () => {
   return (
     <div className="loader loader--style1" title="0">

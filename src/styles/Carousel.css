@@ -1,22 +1,27 @@
 .carousel {
-  display: inline-flex;
+  display: flex;
+  position: relative;
   overflow: hidden;
-  width: 500px;
+  width: 1280px;
+  justify-content: center;
 }
 
-img {
-  width: 500px;
-  transition: .5s;
+.carouselImg {
+  width: 1280px;
+  transition: 0.5s;
 }
 
 .dots {
-  display: inline-flex;
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
   margin: 5px;
   border-radius: 10px;
-  background-color: gray;
+  background-color: white;
 }
