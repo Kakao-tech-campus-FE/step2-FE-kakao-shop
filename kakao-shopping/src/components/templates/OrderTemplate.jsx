@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getCart, orderProducts } from "../../apis/api";
+import OrderList from "../organisms/OrderList";
 
 const OrderTemplate = () => {
   const { data } = useQuery(['order'], getCart, {
@@ -46,30 +47,7 @@ const OrderTemplate = () => {
       <div className="border p-3">배송지 정보</div>
       <div className="border p-3">주문상품 정보</div>
       {
-        products && products.map((item) => {
-          const optionDetails = item.carts;
-          return (
-            <div key={item.productName} className="border p-2">
-              <h1 className="text-xl font-bold">{item.productName}</h1>
-              {optionDetails.map((optionDetail) => {
-                return (
-                  <div key={optionDetail.id} className="flex flex-col border p-2 text-sm">
-                    <div className="my-1 flex justify-between">
-                      {optionDetail.option.optionName}
-                    </div>
-                    <div>
-                      {optionDetail.quantity} 개
-                    </div>
-                    <div>
-                      {optionDetail.price} 원
-                    </div>
-                  </div>
-                )
-              })}
-
-            </div>
-          )
-        })
+        <OrderList products={products} />
       }
       <div className="flex justify-between border font-bold my-4 px-3">
         <span>
