@@ -5,52 +5,45 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setUserInfo } from "../store/slices/userSlice";
-import { useQuery } from "react-query";
-import { login } from "../services/user";
+import { FaRegUser } from "react-icons/fa6";
 
 const MainLayout = () => {
   const isLogined = useSelector((state) => state.user.isLogined);
-  const [text, setText] = useState(() => {
-    if (isLogined) {
-      return "로그아웃";
-    } else {
-      return "로그인";
-    }
-  });
+  const [text, setText] = useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLogin = (isLogined) => {
-    console.log(isLogined);
-    if (isLogined === "로그인") {
-      setText("로그아웃");
+  const handleLogin = () => {
+    if (isLogined === true) {
       dispatch(
         setUserInfo({
           isLogined: false,
         })
       );
-    } else {
-      setText("로그인");
       navigate("/login");
+    } else {
+      setText("로그아웃");
     }
   };
+
+  useEffect(() => {
+    isLogined ? setText(<FaRegUser size="26" />) : setText("로그인");
+  }, [isLogined]);
 
   return (
     <>
       {/* 로그인, 장바구니, 메인 로고 */}
       <Header
         onClick={() => {
-          handleLogin(isLogined);
+          handleLogin();
         }}
         text={text}
-      >
-        GNB 영역
-        {" 아이콘 넣기"}
-      </Header>
+      />
+
       {/* 콘텐츠 영역*/}
       <Outlet />
       {/* 푸터 영역 */}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
