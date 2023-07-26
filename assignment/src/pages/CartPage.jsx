@@ -9,9 +9,9 @@ import Loader from '../components/atoms/Loader';
 const CartPage = () => {
   const { data, isLoading } = useQuery(['cart'], getCart);
 
-  if (!isLoading) {
-    console.log('data', data);
-  }
+  // if (!isLoading) {
+  //   console.log('data', data);
+  // }
   return (
     <>{isLoading ? <Loader /> : <CartList data={data?.data?.response} />}</>
   );
