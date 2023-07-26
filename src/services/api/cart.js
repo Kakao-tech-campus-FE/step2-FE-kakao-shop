@@ -23,9 +23,9 @@ export const getCart = () => {
 }
 
 /**
- * 장바구니 수정
- * @param {object} payload
+ * 장바구니 수정 - 아이디와 수량을 받아서 업데이트를 진행
+ * @param {object} items: cartId, quantity
  * */
-export const updateCart = (payload) => {
-  return instance.post("/carts/update", payload)
+export const updateCart = (items) => {
+  return instance.post("/carts/update", items)
 }
