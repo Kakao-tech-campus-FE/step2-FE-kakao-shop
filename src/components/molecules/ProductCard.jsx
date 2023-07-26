@@ -31,12 +31,14 @@ const ProductCard = ({ product, loading }) => {
       <div className="product-name pt-[9px] text-[14px] leading-[17px] tracking-tight">
         {product.productName}
       </div>
-      <div className="flex mt-[7px] font-bold text-[18px]">
-        <div className="text-blue-500 pr-[5px]">톡딜가</div>
-        <div className="product-price text-gray-950">
-          {comma(product.price)}원
-        </div>
-      </div>
+      <span className="price-talkdeal flex mt-[7px] font-bold text-[18px]">
+        <em className="emph-talkdeal pr-[5px] text-blue-500 not-italic">
+          톡딜가
+        </em>
+        <span className="product-price text-gray-950">
+          {comma(product.price)}원~
+        </span>
+      </span>
     </Card>
   );
 };

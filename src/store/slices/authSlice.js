@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const getCookie = (name) => {
+export const getCookie = (name) => {
   const matches = document.cookie.match(
     new RegExp(
       // eslint-disable-next-line no-useless-escape
@@ -24,7 +24,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      document.cookie = `user=${action.payload}; path=/; max-age=1800`; // 30-minutes
+      document.cookie = `user=${action.payload}; path=/; max-age=3600`; // 60-minutes
       state.isLogin = true;
       state.token = action.payload;
     },

@@ -22,7 +22,7 @@ instance.interceptors.response.use(
     // eslint-disable-next-line default-case
     switch (e.response.status) {
       case 404:
-        window.history.pushState({}, "", "/error");
+        window.location.replace("/error");
         break;
     }
     return e.response.data;

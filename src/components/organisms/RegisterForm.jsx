@@ -54,7 +54,8 @@ const RegisterForm = () => {
       return;
     }
     const data = await instance.post("/join", JSON.stringify(values));
-    if (data?.success) {
+    if (data.data?.success) {
+      alert("회원가입이 완료되었습니다.");
       navigate("/");
     } else {
       // eslint-disable-next-line no-alert
