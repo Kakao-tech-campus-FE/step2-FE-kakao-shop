@@ -24,7 +24,7 @@ const ProductInfo = ({product, showDialog}) => {
             setSelectedOption([]);
         },
         onError: (error) => {
-            alert(error.response.data.message);
+            alert(error.message);
         },
     });
 
