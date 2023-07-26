@@ -81,7 +81,13 @@ const SignInForm = () => {
       {errors?.password?.message ? (
         <ErrorMessage>{errors.password.message}</ErrorMessage>
       ) : null}
-      <Button onClick={handleSubmit(onSubmit)}>로그인</Button>
+      <Button
+        onClick={handleSubmit(onSubmit)}
+        bgColor="#ffe342"
+        textColor="black"
+      >
+        로그인
+      </Button>
     </Container>
   );
 };

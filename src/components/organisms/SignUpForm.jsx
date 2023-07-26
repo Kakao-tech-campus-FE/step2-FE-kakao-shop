@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { useForm } from "react-hook-form";
-import { instance } from "../../services/apis";
+import { commonInstance } from "../../services/apis";
 import { useState } from "react";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
@@ -79,7 +79,7 @@ const SignUpForm = () => {
       return setError("email", { message: FORM_REQUIRED });
     }
     try {
-      const response = await instance.post("/check", { email });
+      const response = await commonInstance.post("/check", { email });
       if (response.data.success) {
         setIsEmailValid(true);
       }
@@ -148,7 +148,7 @@ const SignUpForm = () => {
   // 가입하기
   const onSumbit = async ({ email, username, password }) => {
     try {
-      await instance.post("/join", {
+      await commonInstance.post("/join", {
         email,
         username,
         password,
@@ -179,7 +179,13 @@ const SignUpForm = () => {
             onChange: handleEmailChange,
           })}
         />
-        <Button onClick={() => checkDupEmail(watch("email"))}>중복 확인</Button>
+        <Button
+          onClick={() => checkDupEmail(watch("email"))}
+          bgColor="#ffe342"
+          textColor="black"
+        >
+          중복 확인
+        </Button>
       </Row>
       {errors?.email?.message ? (
         <ErrorMessage>{errors.email.message}</ErrorMessage>
@@ -234,7 +240,12 @@ const SignUpForm = () => {
         <ErrorMessage>{errors.passwordConfirm.message}</ErrorMessage>
       ) : null}
 
-      <Button disabled={!isEmailValid} onClick={handleSubmit(onSumbit)}>
+      <Button
+        disabled={!isEmailValid}
+        onClick={handleSubmit(onSumbit)}
+        bgColor="#ffe342"
+        textColor="black"
+      >
         가입하기
       </Button>
     </Container>

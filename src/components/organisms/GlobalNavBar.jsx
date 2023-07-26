@@ -11,13 +11,13 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  height: ${(props) => props.height};
+  height: ${(props) => props.$height};
 `;
 
 // height: 높이에 따라 GNB를 사용
 const GlobalNavBar = ({ height }) => {
   return (
-    <StyledHeader height={height}>
+    <StyledHeader $height={height}>
       <NavBar />
     </StyledHeader>
   );

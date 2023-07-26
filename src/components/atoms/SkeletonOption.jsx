@@ -20,6 +20,7 @@ const Option = styled.div`
     }
   }
 `;
+
 const SkeletonOption = () => {
   return <Option />;
 };

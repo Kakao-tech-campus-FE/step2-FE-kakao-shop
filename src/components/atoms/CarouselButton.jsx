@@ -10,12 +10,12 @@ const StyledButton = styled.button`
   position: absolute;
   top: 125px;
   ${(props) =>
-    props.align === "left" &&
+    props.$align === "left" &&
     css`
       left: 100px;
     `}
   ${(props) =>
-    props.align === "right" &&
+    props.$align === "right" &&
     css`
       right: 100px;
     `}
@@ -34,7 +34,7 @@ const StyledButton = styled.button`
 
 const CarouselButton = ({ direction, children, onClick }) => {
   return (
-    <StyledButton align={direction} onClick={onClick}>
+    <StyledButton $align={direction} onClick={onClick}>
       {children}
     </StyledButton>
   );

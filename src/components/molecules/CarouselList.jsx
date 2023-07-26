@@ -37,6 +37,13 @@ const CarouselList = ({ images }) => {
     }
   }, [currentIndex]);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      handleSwipe(1);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
+
   const moveSlideTo = (index) => {
     setTimeout(() => {
       setCurrentIndex(index);

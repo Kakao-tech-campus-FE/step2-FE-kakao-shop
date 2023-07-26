@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { instance } from "../../services/apis";
+import { commonInstance } from "../../services/apis";
 
 const initialState = {
   email: null,
@@ -16,7 +16,7 @@ const userSlice = createSlice({
     builder.addCase(signinRequest.fulfilled, (state, action) => {
       state.isLoggedIn = true;
       state.email = action.payload.email;
-      const tokenExpiration = new Date().getTime() + 5000;
+      const tokenExpiration = new Date().getTime() + 1000 * 60 * 60 * 24;
       localStorage.setItem(
         "token",
         JSON.stringify({
@@ -35,7 +35,7 @@ export const signinRequest = createAsyncThunk(
   "user/signinRequest",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await instance.post("/login", {
+      const response = await commonInstance.post("/login", {
         email,
         password,
       });

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const instance = axios.create({
+export const commonInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   timeout: 1000,
   headers: {
@@ -8,19 +8,38 @@ export const instance = axios.create({
   },
 });
 
-// 이 코드가 있으면 로그인 상태에서 /products에 get요청을 못함
-// instance.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("token");
-//   if (token) {
-//     config.headers["Authorization"] = token;
-//   }
-//   return config;
-// });
-
 export const fetchProductsByPage = ({ page }) => {
-  return instance.get(`/products?page=${page}`);
+  return commonInstance.get(`/products?page=${page}`);
 };
 
 export const fetchProductById = ({ id }) => {
-  return instance.get(`/products/${id}`);
+  return commonInstance.get(`/products/${id}`);
+};
+
+export const authInstance = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  timeout: 1000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+authInstance.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token");
+  if (token) {
+    config.headers["Authorization"] = JSON.parse(token).token;
+  }
+  return config;
+});
+
+export const addCart = (payload) => {
+  return authInstance.post("/carts/add", payload);
+};
+
+export const showCart = () => {
+  return authInstance.get("/carts");
+};
+
+export const updateCart = (payload) => {
+  return authInstance.post("/carts/update", payload);
 };
