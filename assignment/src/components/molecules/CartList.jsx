@@ -21,18 +21,14 @@ const CartList = ({ data }) => {
   });
 
   useEffect(() => {
-    setCartItems(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
+    setCartItems(data.products);
+    setTotalPrice(data.totalPrice);
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
-    let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
-      });
-    });
-    return comma(count);
+    const count = cartItems
+      .flatMap((item) => item.carts)
+      .reduce((total, cart) => total + cart.quantity, 0);
   }, [cartItems]);
   // 옵션의 수량 변경과 가격 변경을 관리
   const handleOnChangeCount = (optionId, quantity, price) => {

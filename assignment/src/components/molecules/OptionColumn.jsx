@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { Navigate, useNavigate } from 'react-router-dom';
 import OptionList from '../atoms/OptionList';
@@ -16,6 +16,17 @@ const OptionColumn = ({ product }) => {
     mutationFn: addCart,
   });
 
+  const [totalQuantity, totalPrice] = useMemo(() => {
+    const [quantity, price] = selectedOptions.reduce(
+      (acc, option) => {
+        acc[0] += option.quantity;
+        acc[1] += option.quantity * option.price;
+        return acc;
+      },
+      [0, 0],
+    );
+    return [quantity, price];
+  }, [selectedOptions]);
   const handleOnClickOption = (option) => {
     // 동일 옵션 클릭 방지코드(이미 선택된 옵션인지 확인)
     const isOptionSelected = selectedOptions.find(
@@ -80,21 +91,8 @@ const OptionColumn = ({ product }) => {
         <span>배송비{'\n'}</span>
       </div>
       <div className="total-price">
-        <span>
-          총 수량 :{' '}
-          {selectedOptions.reduce((acc, cur) => {
-            return acc + cur.quantity;
-          }, 0)}
-        </span>
-        <span>
-          총 상품금액 :
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0),
-          )}
-          원
-        </span>
+        <span>총 수량 : {totalQuantity}</span>
+        <span>총 상품금액 :{comma(totalPrice)}원</span>
       </div>
       {/* 담긴 옵션 표기 */}
       {/* UI에서 필요한 정보 : 옵션이름, 옵션 가격, 옵션 수량, 옵션 총가격 */}
