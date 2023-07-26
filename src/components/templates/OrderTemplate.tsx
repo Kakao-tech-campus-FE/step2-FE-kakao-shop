@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { ComponentProps, useState } from 'react';
 import SimpleButton from '../atoms/SimpleButton';
 import { useGetCartQuery } from '../../apis/productApi';
 import OrderItem from '../organisms/OrderItem';
 import { comma } from '../../utils/convert';
 
 const OrderTemplate = () => {
+  const [agreePayment, setAgreePayment] = useState(false);
+  const [agreePolicy, setAgreePolicy] = useState(false);
+
   const { data: cartProducts } = useGetCartQuery();
+
+  const handleAgreementChange: ComponentProps<'input'>['onChange'] = (e) => {
+    const { name, checked } = e.target;
+    if (name === 'payment-agree') {
+      setAgreePayment(checked);
+    } else if (name === 'policy-agree') {
+      setAgreePolicy(checked);
+    } else if (name === 'all-agree') {
+      setAgreePayment(checked);
+      setAgreePolicy(checked);
+    }
+  };
 
   return (
     <div>
@@ -59,8 +74,11 @@ const OrderTemplate = () => {
             <div className='flex items-center gap-2 border-y bg-white p-4 text-sm font-bold'>
               <input
                 className='h-5 w-5 rounded-sm border-gray-300 text-yellow-300 focus:ring-0'
+                name='all-agree'
                 type='checkbox'
                 id='all-agree'
+                checked={agreePayment && agreePolicy}
+                onChange={handleAgreementChange}
               />
               <label htmlFor='all-agree'>전체 동의하기</label>
             </div>
@@ -71,6 +89,8 @@ const OrderTemplate = () => {
                   name='payment-agree'
                   type='checkbox'
                   id='agree'
+                  checked={agreePayment}
+                  onChange={handleAgreementChange}
                 />
                 <label htmlFor='agree' className='text-sm'>
                   구매조건 확인 및 결제 진행 동의
@@ -82,6 +102,8 @@ const OrderTemplate = () => {
                   name='policy-agree'
                   type='checkbox'
                   id='policy'
+                  checked={agreePolicy}
+                  onChange={handleAgreementChange}
                 />
                 <label htmlFor='policy' className='text-sm'>
                   개인정보 제3자 제공동의
