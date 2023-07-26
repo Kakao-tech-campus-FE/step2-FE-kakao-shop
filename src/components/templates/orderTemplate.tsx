@@ -2,13 +2,19 @@ import { useState } from 'react';
 import { CartData } from '../../types/product';
 import AgreeOrderTerms from '../molecules/agreeOrderTerms';
 import OrderItemList from '../organisms/orderItemList';
+import Loader from '../atoms/loader';
 
 interface OrderTemplateProps {
   cartData: CartData;
+  isOrderLoading: boolean;
+
+  handleOrder: () => void;
 }
 
 export default function OrderTemplate({
   cartData,
+  isOrderLoading,
+  handleOrder,
 }: OrderTemplateProps) {
   const [isAllAgreed, setIsAllAgreed] = useState(false);
 
@@ -23,14 +29,21 @@ export default function OrderTemplate({
         isAllAgreed={isAllAgreed}
         setIsAllAgreed={setIsAllAgreed}
       />
-      <button
-        type="button"
-        className="w-full rounded-sm bg-kakao p-2 font-bold
+      {isOrderLoading ? (
+        <div className="text-center">
+          <Loader />
+        </div>
+      ) : (
+        <button
+          type="button"
+          className="w-full rounded-sm bg-kakao p-2 font-bold
           disabled:bg-stone-300"
-        disabled={!isAllAgreed}
-      >
-        결제하기
-      </button>
+          disabled={!isAllAgreed}
+          onClick={handleOrder}
+        >
+          결제하기
+        </button>
+      )}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import ProductDetailPage from './components/pages/productDetailPage';
 import CartPage from './components/pages/cartPage';
 import { queryClient } from './utils/query';
 import OrderPage from './components/pages/orderPage';
+import ConfirmOrderPage from './components/pages/confirmOrderPage';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="/product/:productId" element={<ProductDetailPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/order" element={<OrderPage />} />
+              <Route path="/confirmOrder/:orderId" element={<ConfirmOrderPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

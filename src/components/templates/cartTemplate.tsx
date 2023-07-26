@@ -35,10 +35,13 @@ export default function CartTemplate({
             }}
           >
             주문하기
-
           </button>
         </>
-        ) : <div>담긴 상품이 없습니다.</div>}
+        ) : (
+          <div className="text-center">
+            담긴 상품이 없습니다.
+          </div>
+        )}
     </div>
   );
 }
