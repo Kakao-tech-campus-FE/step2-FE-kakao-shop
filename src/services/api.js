@@ -39,12 +39,21 @@ export const authorizationInstance = axios.create({
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
-    Authorization: localStorage.getItem("access_token"),
+    "Cache-Control": "no-cache",
+    // Authorization: localStorage.getItem("access_token"),
   },
 });
 
-// // 요청 인터셉터
-// authorizationInstance.interceptors.request.use((config) => {
-//   // 요청이 전달 되기 전에 작업 수행
-//   return config;
-// });
+// 요청 인터셉터 추가
+authorizationInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      config.headers["Authorization"] = token;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);

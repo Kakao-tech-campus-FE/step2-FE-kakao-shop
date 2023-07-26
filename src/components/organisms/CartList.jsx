@@ -26,15 +26,20 @@ const CartList = ({ data }) => {
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
-    let count = 0;
     if (cartItems) {
-      cartItems.forEach((item) => {
-        item.carts.forEach((cart) => {
-          count += cart.quantity;
-        });
-      });
-      return count;
+      // acc : count
+      // cur : item
+      return cartItems.reduce((count, item) => {
+        // count : item의 cart 수량 누적
+        return (
+          // 누적 cart item 수량  + 현재 item의 carts배열 순회(옵션 수량)
+          count +
+          item.carts.reduce((subCount, cart) => subCount + cart.quantity, 0)
+        );
+      }, 0);
     }
+    //null이나 undefined의 경우
+    return 0;
   }, [cartItems]);
 
   /** 옵션의 수량 변경과 가격 변경을 관리,
@@ -63,6 +68,7 @@ const CartList = ({ data }) => {
       ];
     });
     setTotalPrice((prev) => prev + price);
+
     setCartItem((prev) => {
       return prev.map((item) => {
         return {

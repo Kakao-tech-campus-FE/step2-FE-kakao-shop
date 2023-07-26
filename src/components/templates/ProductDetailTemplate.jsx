@@ -20,7 +20,7 @@ const Column = styled.div`
     width: 70%;
   }
   &.column-option {
-    right: 15%;
+    right: 10%;
     position: fixed;
   }
 `;

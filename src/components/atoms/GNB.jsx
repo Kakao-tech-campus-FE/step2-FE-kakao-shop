@@ -16,9 +16,12 @@ function GNB() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    localStorage.removeItem("token");
+    // localStorage.removeItem("access_token");
     alert("정상적으로 로그아웃 되었습니다.");
+
     navigate("/");
+    // 새로고침
+    window.location.reload();
   };
 
   useEffect(() => {

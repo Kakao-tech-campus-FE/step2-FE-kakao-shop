@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Counter from "../atoms/Counter";
 import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
@@ -58,6 +58,20 @@ const OptionColumn = ({ product }) => {
     });
   };
 
+  const totalquantity = useMemo(() => {
+    return selectedOptions.reduce((acc, cur) => {
+      return acc + cur.quantity;
+    }, 0);
+  }, [selectedOptions]);
+
+  const totalqprice = useMemo(() => {
+    return comma(
+      selectedOptions.reduce((acc, cur) => {
+        return acc + cur.quantity * cur.price;
+      }, 0)
+    );
+  }, [selectedOptions]);
+
   // const token = localStorage.getItem("token");
   // if (token) {
   //   console.log("true");
@@ -79,6 +93,7 @@ const OptionColumn = ({ product }) => {
         onClick={handleOnClickOption}
         //장바구니 담기 api
       />
+      <hr></hr>
 
       {/* 담긴 옵션 표기  */}
       {selectedOptions.map((item) => (
@@ -96,22 +111,9 @@ const OptionColumn = ({ product }) => {
       ))}
       <hr />
       <div className="total-price">
-        <span>
-          총 수량 :{" "}
-          {selectedOptions.reduce((acc, cur) => {
-            return acc + cur.quantity;
-          }, 0)}
-          개
-        </span>
-        <span>
-          총 상품금액 :{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
-          원
-        </span>
+        <span>총 수량 : {totalquantity}개</span>
+        <hr></hr>
+        <span>총 상품금액 : {totalqprice}원</span>
       </div>
       <div className="button-group">
         <Button

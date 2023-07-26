@@ -8,6 +8,7 @@ import Loading from "../components/atoms/Loader";
 
 const CartPage = () => {
   const { data } = useQuery("carts", getCart);
+
   return (
     <Suspense fallback={<Loading />}>
       <CartList data={data}></CartList>
