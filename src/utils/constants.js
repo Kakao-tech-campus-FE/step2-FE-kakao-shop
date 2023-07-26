@@ -57,6 +57,11 @@ export const cartFailedMessage = {
     text: '무슨 문제가 있는 것 같습니다!',
     confirmButtonText:'확인',
 }
+export const loginNeedMessage = {
+    title: '로그인이 필요한 서비스입니다!',
+    text: '로그인을 먼저 해주세요😊',
+    confirmButtonText:'확인',
+}
 
 export const clearTokens = () => {
     localStorage.removeItem("token");
