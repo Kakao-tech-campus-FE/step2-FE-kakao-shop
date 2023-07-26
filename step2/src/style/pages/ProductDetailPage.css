@@ -1,0 +1,22 @@
+@import "../templates/ProductDetailPage/ProductSection.css";
+@import "../templates/ProductDetailPage/PurchaseSection.css";
+
+.detail-panel {
+  @apply grid grid-cols-3 grid-rows-1 min-w-800 border-t border-gray-300;
+}
+
+.product-not-found {
+  @apply w-full flex items-center justify-center;
+}
+
+.product-not-found > .guide {
+  @apply text-center;
+}
+
+.txt-guide {
+  @apply text-2xl font-bold mb-4;
+}
+
+.btn-prev-page {
+  @apply bg-blue-500 text-white py-2 px-4 rounded;
+}

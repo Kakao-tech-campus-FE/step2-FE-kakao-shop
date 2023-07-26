@@ -1,0 +1,19 @@
+.gnb {
+  @apply flex fixed w-full h-80 items-center p-8 z-50 bg-white top-0;
+}
+
+.img_logo {
+  @apply w-90;
+}
+
+.menu-util {
+  @apply ml-auto border-r border-gray-300;
+}
+
+.util-icon {
+  @apply w-8 h-8 mx-4;
+}
+
+.menu_account {
+  @apply mx-4;
+}
