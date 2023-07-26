@@ -1,7 +1,11 @@
 import React from 'react';
 import SimpleButton from '../atoms/SimpleButton';
+import { useGetCartQuery } from '../../apis/productApi';
+import OrderItem from '../organisms/OrderItem';
 
 const OrderTemplate = () => {
+  const { data: cartProducts } = useGetCartQuery();
+
   return (
     <div>
       <div className='border-y bg-white p-4'>
@@ -27,6 +31,20 @@ const OrderTemplate = () => {
           </div>
           <p>010-0000-0000</p>
           <p className='text-sm'>서울특별시 강남구 도곡동 000-00</p>
+        </div>
+      </section>
+      <section>
+        <div className='border-y bg-white p-4 text-sm font-bold'>
+          <h2>주문상품 정보</h2>
+        </div>
+        <div className='space-y-4'>
+          {cartProducts && (
+            <>
+              {cartProducts.products.map((product) => (
+                <OrderItem key={product.id} product={product} />
+              ))}
+            </>
+          )}
         </div>
       </section>
     </div>
