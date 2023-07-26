@@ -4,12 +4,10 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import styled from "styled-components";
-
 import routes from '../../routes/routes'
 import { useNavigate } from 'react-router-dom';
 import { register, doubleCheck } from "../../services/user";
 import Question from "../atoms/Question";
-
 import { useState, useEffect } from "react";
 import DoubleCheck from '../atoms/DoubleCheck';
 import { emailCheck, passwordCheck, passwordReCheck } from "../../services/regex";
@@ -81,7 +79,7 @@ const ResisterForm = () => {
 
     return (
         <>
-            <LogoStyle><p onClick={() => { navigate(routes.home); }}>kakao</p></LogoStyle>
+            <h1 className="text-3xl font-bold text-kakao flex justify-center mt-24 mb-14" onClick={() => { navigate(routes.home); }}>kakao</h1>
 
             <Container>
 

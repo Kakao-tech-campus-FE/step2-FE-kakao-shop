@@ -15,7 +15,7 @@ const HeaderList = ({ name, onClick, slash }) => {
 
 
         <HeaderListStyle>
-            <div onClick={onClick}>{name}</div>
+            <div onClick={()=>onClick()}>{name}</div>
         </HeaderListStyle>
         <HeaderListStyle>
             {slash ? '/' : ''}

@@ -5,7 +5,7 @@ import SkeletonElement from "../skeleton/SkeletonElement";
 const GridCss = styled.div`
   display:grid;
   grid-template-columns: repeat(4,1fr);
-  grid-gap:1rem;
+  grid-gap:6rem;
   margin: 1rem 0;
   width: 100%;
   max-width: inherit;
@@ -16,14 +16,17 @@ const ProductGrid = ({ products }) => {
     //     console.log(product)
     // })
     return (
-        <GridCss>
-            {products ?
-                products.map((product) =>
-                    (<ProductCard key={product.id} product={product} />)
-                )
-                : <SkeletonElement />}
+        <>
+            <GridCss>
+                {products ?
+                    products.map((product) =>
+                        (<ProductCard key={product.id} product={product} />)
+                    )
+                    : <SkeletonElement />}
 
-        </GridCss>
+            </GridCss>
+        </>
+
     );
 };
 

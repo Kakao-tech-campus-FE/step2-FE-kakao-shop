@@ -1,5 +1,4 @@
 
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import { RouterInfo } from "./routes/RouterInfo";
@@ -10,7 +9,6 @@ function App() {
     <>
       <GlobalStyle></GlobalStyle>
       <RouterProvider router={RouterObject} />
-
     </>
   );
 }

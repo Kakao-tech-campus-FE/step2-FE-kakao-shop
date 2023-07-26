@@ -4,8 +4,9 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         width: 100vw;
-        height: 100vh;
+        height: 150%;
         display: flex;
         justify-content: center;
+        li{list-style: none;};
 }
 `

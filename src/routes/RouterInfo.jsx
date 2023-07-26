@@ -1,4 +1,4 @@
-import Card from '../components/atoms/Card';
+import Cart from '../pages/Cart';
 import Home from '../pages/Home'
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
@@ -16,7 +16,9 @@ export const RouterInfo = [
             //     element: <Login></Login>,
             //     label: 'login'
             // }
+
         ]
+
     },
     {
         path: `${routes.logIn}`,
@@ -30,17 +32,17 @@ export const RouterInfo = [
     },
     {
         path: `${routes.cart}`,
-        element: <Card />,
+        element: <Cart/>,
         label: 'cart'
     },
     {
         path: `${routes.productDetail}`,
         element: <ProductDetailPage />,
-        label: 'cart'
+        label: 'productDetail'
     },
     {
         path: `${routes.skeletonTest}`,
         element: <SkeletonPage />,
-        label: 'cart'
+        label: 'skeletonTest'
     }
 ]
