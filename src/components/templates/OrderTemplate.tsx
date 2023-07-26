@@ -46,13 +46,47 @@ const OrderTemplate = () => {
               ))}
             </div>
           </section>
-          <section>
+          <section className='mb-3'>
             <div className='border-y bg-white p-4 text-sm font-bold'>
               <h2>결제 정보</h2>
             </div>
             <div className='flex items-center justify-between bg-white p-4'>
               <p className='text-lg'>최종 결제금액</p>
               <p className='font-semibold'>{comma(cartProducts.totalPrice)}원</p>
+            </div>
+          </section>
+          <section className='mb-3 bg-white'>
+            <div className='flex items-center gap-2 border-y bg-white p-4 text-sm font-bold'>
+              <input
+                className='h-5 w-5 rounded-sm border-gray-300 text-yellow-300 focus:ring-0'
+                type='checkbox'
+                id='all-agree'
+              />
+              <label htmlFor='all-agree'>전체 동의하기</label>
+            </div>
+            <div className='flex flex-col gap-4 p-4'>
+              <div className='flex items-center gap-2'>
+                <input
+                  className='h-5 w-5 rounded-sm border-gray-300 text-yellow-300 focus:ring-0'
+                  name='payment-agree'
+                  type='checkbox'
+                  id='agree'
+                />
+                <label htmlFor='agree' className='text-sm'>
+                  구매조건 확인 및 결제 진행 동의
+                </label>
+              </div>
+              <div className='flex items-center gap-2'>
+                <input
+                  className='h-5 w-5 rounded-sm border-gray-300 text-yellow-300 focus:ring-0'
+                  name='policy-agree'
+                  type='checkbox'
+                  id='policy'
+                />
+                <label htmlFor='policy' className='text-sm'>
+                  개인정보 제3자 제공동의
+                </label>
+              </div>
             </div>
           </section>
         </>
