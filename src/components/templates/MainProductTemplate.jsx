@@ -63,10 +63,10 @@ const MainProductTemplate = () => {
   return (
     <div className="w-full mx-auto px-32 pt-20">
       {isLoading && <Loader />}
-      {/* <Suspense fallback={<Loader />}> */}
-      <ProductGrid products={products} loading={isLoading} />
-      <div ref={bottomObserver}></div>
-      {/* </Suspense> */}
+      <Suspense fallback={<Loader />}>
+        <ProductGrid products={products} loading={isLoading} />
+        <div ref={bottomObserver}></div>
+      </Suspense>
     </div>
   );
 };

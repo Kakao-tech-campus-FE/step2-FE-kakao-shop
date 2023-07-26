@@ -20,7 +20,7 @@ export const login = (data) => {
       }
     })
     .catch((error) => {
-      switch (error.response.status) {
+      switch (error?.response?.status) {
         case 300:
           window.alert("리다이렉션 메시지");
           break;
@@ -34,7 +34,7 @@ export const login = (data) => {
           window.location.href = "/error";
           break;
         default:
-          window.alert("API 호출에 실패했습니다.");
+          window.alert("로그인에 실패했습니다.");
           throw new Error("로그인에 실패했습니다.");
       }
     });

@@ -1,22 +1,33 @@
-import { useParams } from "react-router-dom";
-import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import Loader from "../components/atoms/Loader";
 import { getProductById } from "../services/product";
+import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
+import { Suspense, useEffect } from "react";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
+  const route = useNavigate();
+
   const { data, error, isLoading } = useQuery(`product/${id}`, () =>
     getProductById(id)
   );
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  const product = data?.data?.response;
+
+  useEffect(() => {
+    if (!id || error) {
+      route("/error");
+    }
+  }, [id, error, route]);
 
   return (
     <div className="pt-40">
-      {error && <div>{error.message}</div>}
-      {data && <div>{data.data.response.productName}</div>}
+      <Suspense fallback={<Loader />}>
+        {isLoading && <Loader />}
+        {error && <div>{error.message}</div>}
+        {product && <ProductDetailTemplate product={product} />}
+      </Suspense>
     </div>
   );
 };
