@@ -1,7 +1,7 @@
 import Button from "./Button.jsx";
 
 export default {
-  title: "atoms/button",
+  title: "atoms/Button",
   tags: ["autodocs"],
   component: Button,
   argTypes: {
@@ -9,7 +9,7 @@ export default {
       control: "select",
       options: ["submit", "button"],
     },
-    color: { control: "color" },
+    backgroundColor: { control: "color" },
     children: { control: "text" },
   },
 };

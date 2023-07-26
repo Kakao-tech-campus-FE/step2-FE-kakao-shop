@@ -1,7 +1,7 @@
 import Toast from "./Toast.jsx";
 
 export default {
-  title: "Toast",
+  title: "week 1/Toast",
   tags: ["autodocs"],
   component: Toast,
   argTypes: {

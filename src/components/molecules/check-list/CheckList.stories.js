@@ -1,7 +1,7 @@
 import CheckList from "./CheckList.jsx";
 
 export default {
-  title: "Check List",
+  title: "week 1/Check List",
   tags: ["autodocs"],
   component: CheckList,
   argTypes: {

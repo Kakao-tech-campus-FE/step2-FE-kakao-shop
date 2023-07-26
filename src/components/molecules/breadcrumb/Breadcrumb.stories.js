@@ -1,7 +1,7 @@
 import Breadcrumb from "./Breadcrumb.jsx";
 
 export default {
-  title: "Breadcrumb",
+  title: "week 1/Breadcrumb",
   tags: ["autodocs"],
   component: Breadcrumb,
   argTypes: {

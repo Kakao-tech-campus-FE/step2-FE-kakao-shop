@@ -25,10 +25,10 @@ function Breadcrumb({ path }) {
   return (
     <Container>
       {path.map((p) => (
-        <>
+        <div key={p}>
           <Path>{p}</Path>
           <div className="icon"> &gt; </div>
-        </>
+        </div>
       ))}
     </Container>
   );

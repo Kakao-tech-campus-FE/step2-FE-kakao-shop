@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-import AuthTemplate from "../components/templates/auth-template/AuthTemplate.jsx";
-import Form from "../components/organisms/form/Form.jsx";
-import Button from "../components/atoms/button/Button.jsx";
+import AuthTemplate from "@/components/templates/auth-template/AuthTemplate.jsx";
+import Form from "@/components/organisms/form/Form.jsx";
+import Button from "@/components/atoms/button/Button.jsx";
 
-import FORM_DEFAULT from "../constants/FORM_DEFAULT.js";
-import FORM_INFO from "../constants/FORM_INFO.js";
-import routes from "../constants/routes.js";
-import authAPI from "../api/authAPI.js";
+import FORM_DEFAULT from "@/constants/FORM_DEFAULT.js";
+import FORM_INFO from "@/constants/FORM_INFO.js";
+import routes from "@/constants/routes.js";
+import authAPI from "@/api/authAPI.js";
 
 function SignUp() {
   const navigate = useNavigate();

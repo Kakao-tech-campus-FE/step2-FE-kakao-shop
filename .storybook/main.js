@@ -7,6 +7,7 @@ const config = {
     "@storybook/addon-interactions",
     "@storybook/addon-mdx-gfm",
     "@storybook/addon-styling",
+    "storybook-addon-jotai",
   ],
   core: {},
   framework: {

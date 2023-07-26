@@ -1,45 +1,91 @@
 import styled from "styled-components";
 import { useAtom } from "jotai";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import isLoggedInAtom from "../../../storage/common/isLoggedIn.atom.js";
-import routes from "../../../constants/routes.js";
+import accessTokenAtom from "@/storage/common/accessToken.atom.js";
+import routes from "@/constants/routes.js";
+import LogoButton from "@/components/atoms/logo-button/LogoButton.jsx";
+import CartIcon from "@/assets/CartIcon.jsx";
 
 const Styled = {
-  Container: styled.div`
-    width: 100vw;
+  Container: styled.nav`
+    position: ${({ $isStorybookMode }) => $isStorybookMode || "fixed"};
+
+    min-width: 80rem;
     height: 4rem;
-    position: fixed;
+    padding: 0 calc((100vw - 80rem) / 2);
+    box-sizing: content-box;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
+
+    border-bottom: ${({ theme }) => theme.border.default};
+    background-color: white;
+    z-index: 10;
+  `,
+  ButtonBox: styled.div`
+    display: flex;
+    justify-content: center;
     align-items: center;
   `,
-  AuthButton: styled.button``,
+  CartButton: styled.button`
+    margin-right: 1rem;
+    padding: 0.25rem;
+    background-color: white;
+  `,
+  AuthButton: styled.button`
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    background-color: white;
+    font-size: 0.9rem;
+    color: ${({ theme }) => theme.color.black};
+    border-left: 1px solid #757575;
+  `,
 };
 
-function GlobalNavBar() {
-  const [isLoggedIn, setIsLoggedIn] = useAtom(isLoggedInAtom);
+function GlobalNavBar({ isStorybookMode }) {
+  const [accessToken, setAccessToken] = useAtom(accessTokenAtom);
   const navigate = useNavigate();
 
-  const onAuthButtonClick = () => {
-    if (isLoggedIn) {
-      localStorage.removeItem("accessToken");
+  const handleAuthButtonClick = () => {
+    if (accessToken) {
+      setAccessToken("");
       localStorage.removeItem("accessTokenDate");
-      setIsLoggedIn(false);
       return;
     }
-
     navigate(routes.signIn);
   };
+
+  const handleCartButtonClick = () => {
+    navigate(routes.cart);
+  };
+
   return (
-    <Styled.Container>
-      <button>other button</button>
-      <Styled.AuthButton onClick={onAuthButtonClick}>
-        {isLoggedIn ? "로그아웃" : "로그인"}
-      </Styled.AuthButton>
+    <Styled.Container $isStorybookMode={isStorybookMode}>
+      <LogoButton
+        onClick={() => {
+          navigate(routes.home);
+        }}
+      />
+      <Styled.ButtonBox>
+        <Styled.CartButton onClick={handleCartButtonClick}>
+          <CartIcon />
+        </Styled.CartButton>
+        <Styled.AuthButton onClick={handleAuthButtonClick}>
+          {accessToken ? "로그아웃" : "로그인"}
+        </Styled.AuthButton>
+      </Styled.ButtonBox>
     </Styled.Container>
   );
 }
+
+GlobalNavBar.propTypes = {
+  isStorybookMode: PropTypes.bool,
+};
+
+GlobalNavBar.defaultProps = {
+  isStorybookMode: false,
+};
 
 export default GlobalNavBar;

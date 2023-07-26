@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import carouselItem1 from "../../../assets/carouselItem1.jpeg";
-import carouselItem2 from "../../../assets/carouselItem2.jpeg";
-import carouselItem3 from "../../../assets/carouselItem3.jpeg";
+import carouselItem1 from "@/assets/carouselItem1.jpeg";
+import carouselItem2 from "@/assets/carouselItem2.jpeg";
+import carouselItem3 from "@/assets/carouselItem3.jpeg";
 
 const Container = styled.div`
   position: relative;
@@ -14,7 +14,7 @@ const Container = styled.div`
 const Button = styled.button`
   position: absolute;
   top: calc(50% - 1rem);
-  z-index: 100;
+  z-index: 1;
 
   font-size: 2rem;
   color: white;
@@ -33,7 +33,7 @@ const Slide = styled.img`
 
 const DotContainer = styled.div`
   position: absolute;
-  z-index: 10;
+  z-index: 1;
   bottom: 0.5rem;
 
   width: 100%;
@@ -67,17 +67,17 @@ const SLIDE_EXAMPLE = [
   },
 ];
 
-function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
+function Carousel({ time, arrowButton, dotButton, slideArray, ...props }) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const slideRef = useRef();
 
-  const handleNextSlide = useCallback(() => {
+  const handleNextSlide = () => {
     if (currentSlideIndex >= slideArray.length - 1) {
       setCurrentSlideIndex(0);
     } else {
       setCurrentSlideIndex((prevIndex) => prevIndex + 1);
     }
-  }, [currentSlideIndex, slideArray.length]);
+  };
 
   const handlePrevSlide = () => {
     if (currentSlideIndex === 0) {
@@ -88,6 +88,7 @@ function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
   };
 
   useEffect(() => {
+    if (!slideRef || !slideRef.current) return;
     slideRef.current.style.transition = "all 0.5s ease-in-out";
     slideRef.current.style.transform = `translate(-${currentSlideIndex}00%)`;
 
@@ -96,10 +97,10 @@ function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
   }, [currentSlideIndex, time, handleNextSlide]);
 
   return (
-    <Container style={{ width }}>
+    <Container {...props}>
       <SliderContainer ref={slideRef}>
         {slideArray.map((item, index) => (
-          <Slide key={index} src={item.src} />
+          <Slide key={index} src={item.src} alt={item.alt} />
         ))}
       </SliderContainer>
 
@@ -138,7 +139,6 @@ function Carousel({ width, time, arrowButton, dotButton, slideArray }) {
 }
 
 Carousel.propTypes = {
-  width: PropTypes.string,
   time: PropTypes.number,
   arrowButton: PropTypes.bool,
   dotButton: PropTypes.bool,
@@ -146,7 +146,6 @@ Carousel.propTypes = {
 };
 
 Carousel.defaultProps = {
-  width: "600px",
   time: 2000,
   arrowButton: true,
   dotButton: true,

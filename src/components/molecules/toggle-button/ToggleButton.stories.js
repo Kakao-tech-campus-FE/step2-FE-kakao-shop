@@ -1,7 +1,7 @@
 import ToggleButton from "./ToggleButton.jsx";
 
 export default {
-  title: "Toggle Button",
+  title: "week 1/Toggle Button",
   tags: ["autodocs"],
   component: ToggleButton,
   argTypes: {

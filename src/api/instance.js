@@ -1,30 +1,55 @@
 import axios from "axios";
+import routes from "@/constants/routes.js";
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_SHOP_API,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 instance.interceptors.request.use(
   function (config) {
-    config.headers["Content-Type"] = "application/json";
+    const accessTokenDate = localStorage.getItem("accessTokenDate");
+    const accessToken = localStorage.getItem("accessToken");
 
-    const accessTokenDate = Date.parse(
-      localStorage?.getItem("accessTokenDate")
-    );
-    if (!accessTokenDate) return config;
+    if (!accessTokenDate || !accessToken) return config;
 
     const oneDayInMillis = 24 * 60 * 60 * 1000;
-    if (accessTokenDate + oneDayInMillis < new Date()) {
+    if (Date.parse(accessTokenDate) + oneDayInMillis < new Date()) {
       localStorage.removeItem("accessTokenDate");
       localStorage.removeItem("accessToken");
       return config;
     }
 
-    config.headers["Authorization"] = `${localStorage?.getItem("accessToken")}`;
+    // config.headers["Authorization"] = accessToken;
+    config.headers["Authorization"] = accessToken.replaceAll('"', "");
     return config;
   },
   function (error) {
     return Promise.reject(error);
+  }
+);
+
+instance.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (!error.response || !error.response.status) {
+      return Promise.reject(error);
+    }
+
+    switch (error.response.status) {
+      case 401:
+        window.location.href = routes.signIn;
+        // Promise chaining
+        return new Promise(() => {});
+      case 404:
+        return new Promise(() => {});
+      default:
+        return Promise.reject(error);
+    }
   }
 );
 
