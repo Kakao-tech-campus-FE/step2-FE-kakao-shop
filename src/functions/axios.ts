@@ -55,9 +55,7 @@ https.interceptors.response.use(
       alert(resDto.error?.message);
     }
 
-    console.error(resDto.error?.message);
-    window.location.href = `/error/${resDto.error?.status}`;
-
+    alert(resDto.error?.message);
     return error;
   }
 );

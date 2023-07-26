@@ -50,3 +50,26 @@ export class Carts {
     this.totalPrice = productOrder.totalPrice;
   }
 }
+
+export interface PayOrderItem {
+  id: number;
+  optionName: string;
+  quantity: number;
+  price: number;
+}
+
+interface PayOrder {
+  productName: string;
+  items: PayOrderItem[];
+}
+
+export class Pay {
+  id: number;
+  products: PayOrder[];
+  totalPrice: number;
+  constructor(pay: Pay) {
+    this.id = pay.id;
+    this.products = pay.products;
+    this.totalPrice = pay.totalPrice;
+  }
+}

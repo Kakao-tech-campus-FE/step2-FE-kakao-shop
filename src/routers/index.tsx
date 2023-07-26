@@ -12,6 +12,7 @@ import ProductDetailPage from "@/pages/Product/ProductDetail.page";
 import ErrorPage from "@/pages/Error/Error.page";
 import CartPage from "@/pages/Cart/Cart.page";
 import OrderTotalCheckPage from "@/pages/Cart/OrderTotalCheck.page";
+import PayPage from "@/pages/Cart/Pay.page";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     element: <OrderTotalCheckPage />,
     path: "/cart/check",
+  },
+  {
+    element: <PayPage />,
+    path: "/cart/save",
   },
   {
     element: <Toast />,

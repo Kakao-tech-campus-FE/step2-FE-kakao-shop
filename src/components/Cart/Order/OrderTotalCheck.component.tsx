@@ -15,7 +15,7 @@ const OrderTotalCheck: FC<OrderTotalCheckProps> = ({ products, isLoading }) => {
         <OrderTotalItem products={products} isLoading={isLoading} />
       </div>
       <div className="border-2 rounded-md bg-white divide-y">
-        <OrderCheckAndPay />
+        <OrderCheckAndPay products={products} />
       </div>
     </>
   );
