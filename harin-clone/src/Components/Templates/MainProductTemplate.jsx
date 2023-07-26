@@ -11,7 +11,6 @@ const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
 
-  console.log(useSelector((state) => state.product));
   const products = useSelector((state) => state.product.products);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
@@ -49,7 +48,6 @@ const MainProductTemplate = () => {
   }
 
   if (error) {
-    console.log(error);
     return <span>Error!</span>;
   }
 

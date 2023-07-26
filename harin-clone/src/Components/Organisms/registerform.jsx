@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const { validPassword, setValidPassword } = useState(false);
 
   const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
 
@@ -27,17 +28,19 @@ const RegisterForm = () => {
     const validPwStructure = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/;
 
     if (!password) {
-      return null;
+      return validPassword;
     }
     if (!validPwLength) {
       return <p className="text-sm text-right m-3 text-red-400">8에서 20자 이내여야 합니다.</p>;
-    }
-    if (!validPwStructure.test(password)) {
+    } else if (!validPwStructure.test(password)) {
       return (
         <p className="text-sm text-right m-3 text-red-400">
           영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다.
         </p>
       );
+    } else {
+      setValidPassword(true);
+      return validPassword;
     }
   };
 
@@ -53,7 +56,7 @@ const RegisterForm = () => {
   };
 
   const validAll = (props) => {
-    if (props.email && props.username && props.password && props.passwordConfirm && isUnique) {
+    if (props.email && props.username && props.password && props.passwordConfirm && isUnique && validPassword) {
       return false;
     } else {
       return true;
@@ -72,23 +75,6 @@ const RegisterForm = () => {
         setUnique(!isUnique);
       }
     });
-  };
-
-  const registerReq = () => {
-    register({
-      username: value.username,
-      email: value.email,
-      password: value.password,
-      passwordConfirm: value.passwordConfirm,
-    })
-      .then((res) => {
-        console.log(res);
-        // alert('회원가입이 완료되었습니다')
-      })
-      .catch((err) => {
-        console.log("err", err);
-        alert(err.response);
-      });
   };
 
   const navigate = useNavigate();
