@@ -1,9 +1,8 @@
-import { useQuery, useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
-import { configure } from "@storybook/react";
 
 const OrderTemplate = ({ data }) => {
   // 사용자의 장바구니 목록을 조회해서 보여주는 것
@@ -35,7 +34,7 @@ const OrderTemplate = ({ data }) => {
   };
 
   const { mutate } = useMutation({
-    mutationKey: "order",
+    mutationKey: ["order"],
     mutationFn: order,
   });
 

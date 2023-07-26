@@ -12,10 +12,9 @@ import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
 import Button from "../atoms/Button";
 import { Card } from "react-bootstrap";
-
 import { updateCart } from "../../services/cart";
 import { comma } from "../../utils/convert";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 
 const CartList = ({ data }) => {
   // hook을 제외한 모든 컴포넌트 내에 코드는 재할당, 메모리 선언

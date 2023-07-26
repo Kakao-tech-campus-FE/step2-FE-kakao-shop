@@ -6,12 +6,15 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistStore } from 'redux-persist';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+// import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+
+import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query'
+
 import ErrorPage from './pages/ErrorPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 let persistor = persistStore(store);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 function useApiQuery(queryKey, fetchData) {
   return useQuery(queryKey, fetchData, {
@@ -48,7 +51,7 @@ root.render(
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <PersistGate persistor={persistor}>
-          {/* <AppWrapper /> */}
+          
           <App />
         </PersistGate>
       </QueryClientProvider>
