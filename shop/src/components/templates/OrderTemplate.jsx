@@ -46,7 +46,7 @@ const OrderTemplate = ({data}) => {
     let renderComponent = []
     products.forEach((item)=>{
       renderComponent.push(item.carts.map((cart)=>{
-        return <div key={cart.id} className='p-4 border-t'>
+        return <div key={cart.id} className='p-4 border bg-white'>
           <div className="product-name font-bold">
             <span>{`${item.productName} - ${cart.option.optionName}`}</span>
           </div>
@@ -63,38 +63,41 @@ const OrderTemplate = ({data}) => {
   }
 
   return (
-    <div>
+    <div className='bg-gray-100 py-5'>
       <div className='mx-auto max-w-[1024px] w-[100%]'>
-        <div className="border p-2">
-          <h1 className='text-xl font-bold'>주문하기</h1>
+        <div className="p-2 border bg-white">
+          <h1 className='text-xl font-bold text-center'>주문하기</h1>
         </div>
-        <div className="border p-4">
-          <h2 className='text-xl font-bold'>배송지 정보</h2>
+        <div className="mt-1 p-4 border bg-white">
+          <h1 className='text-xl font-bold'>배송지 정보</h1>
         </div>
-        <div className="border p-4">
+        <div className="p-4 border bg-white">
           <div className='flex items-center gap-2'>
-            홍길동
-            <span className='text-blue-400 bg-blue-100 rounded-sm text-xs p-1'>기본 배송</span>
+            문지혜
+            <span className='text-blue-400 bg-blue-100 rounded-md text-xs p-1'>기본 배송</span>
           </div>
         </div>
-        <div className="border p-4">
+        <div className="p-4 border bg-white">
           <span>010-1234-5678</span>
         </div>
-        <div className="border p-4">
+        <div className="p-4 border bg-white">
           <span>광주광역시 북구 전남대학교 공대 7호관</span>
         </div>
-        <div className="border p-4">
+        <div className="border p-4 bg-white mt-2 text-xl font-bold">
           <h2>주문상품 정보</h2>
         </div>
         {/* 각 주문의 정보 */}
         <OrderItems/>
+        <div className="border p-4 bg-white flex justify-center">
+          <span className='text-blue-500'>무료배송</span>
+        </div>
         {/* 총 주문 금액 */}
-        <div className="border p-4 flex items-center justify-between">
+        <div className="border mt-2 p-4 bg-white flex items-center justify-between">
           <h3 className='font-bold text-xl'>총 주문 금액</h3>
-          <span className='price text-xl font-bold text-indigo-700'>{comma(totalPrice)}원</span>
+          <span className='price text-xl font-bold text-blue-600'>{comma(totalPrice)}원</span>
         </div>
         {/* 동의 사항 */}
-        <div className="flex flex-col p-4 gap-4">
+        <div className="flex flex-col border p-4 gap-4 bg-white">
           <div className="flex gap-2">
             <input 
               type="checkbox" 
@@ -134,9 +137,9 @@ const OrderTemplate = ({data}) => {
           {/* 결제하기 버튼 */}
           <Button 
             className={`
-              w-full p-4 font-medium
+              w-full p-4 rounded-sm shadow-sm
               ${agreePayment && agreePollcy 
-                ?"bg-yellow-500 text-black"
+                ?"bg-yellow-300 text-black hover:bg-yellow-400 font-semibold"
                 :"bg-gray-300 text-gray-500"}`
             }
             
