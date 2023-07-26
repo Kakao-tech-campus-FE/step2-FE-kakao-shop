@@ -4,10 +4,26 @@ import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
+// import totalPrice from "../molecules/CartList";
+// import cartItems from "../molecules/CartList";
+import { useLocation } from "react-router-dom";
 
 const OrderTemplate = ({ data }) => {
 // 사용자의 장바구니 목록을 조회해 보여주는 것
-const { products, totalPrice } = data?.data?.response;
+
+// const products =[];
+// const totalPrice = 1000;
+// const [ products, totalPrice ] = location.state;
+
+const location = useLocation();
+const { cartItems, totalPrice } = location.state;
+
+// const products = location.state;
+// const totalPrice = location.state;
+// console.log(cartItems);
+// console.log(totalPrice);
+
+// const { products, totalPrice } = data?.data?.response;
 const navigate = useNavigate();
 const [agreePayment, setAgreePayment] = useState(false);
 const [agreePolicy, setAgreePolicy] = useState(false);
@@ -37,11 +53,13 @@ const { mutate } = useMutation({
     queryFn: () => order,
 });
 
+
+
 const OrderItems = () => {
     let renderComponent = [];
 
     // forEach, map 동기함수
-    products.forEach((item) => {
+    cartItems.forEach((item) => {
         renderComponent.push(
             item.carts.map((cart) => {
             return (

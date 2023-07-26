@@ -11,6 +11,8 @@ import { useMutation } from "react-query";
 import { updateCart, getCart } from "../../services/cart";
 import '../../styles/molcules/CartList.css';
 // import { useRouter } from 'react-router-dom';
+import OrderTemplate from "../templates/OrderTemplate";
+import { Link } from "react-router-dom";
 
 const CartList = () => {
     const route = useNavigate();
@@ -35,7 +37,9 @@ const CartList = () => {
 
     
             setCartItems(jsonData.products);
+            console.log(jsonData.products);
             setTotalPrice(jsonData.totalPrice);
+            console.log(jsonData.totalPrice);
           } catch (error) {
             console.log(`Error fetching data:`, error);
           }
@@ -109,6 +113,7 @@ const CartList = () => {
                             key={item.id}
                             item={item}
                             onChange={handleOnChangeCount}
+                            
                         />
                     );
                 })}
@@ -119,6 +124,7 @@ const CartList = () => {
                     <div className="sum-price">{comma(totalPrice)}원</div>
                 </div>
             </Card>
+            
             <button className="order-btn"
                 onClick={() => {
                     // update cart api
@@ -128,8 +134,8 @@ const CartList = () => {
 
                     mutate(updatePayload, {
                         onSuccess: (data) => {
-                        navigate("/order");
-
+                        navigate("/order", {state: {cartItems, totalPrice}});
+                        // <Link to ="/order"></Link>
 
                         },
                         onError: (error) => {
@@ -144,9 +150,13 @@ const CartList = () => {
                 <span>
                     총 {getTotalCartCountIncludeOptions()}건 주문하기
                 </span>
+                {/* <div>
+                <OrderTemplate cartItems={cartItems} totalPrice={totalPrice} />
+                </div> */}
             </button>
         </Container>
-    )
-}
+
+    );
+};
 
 export default CartList;
