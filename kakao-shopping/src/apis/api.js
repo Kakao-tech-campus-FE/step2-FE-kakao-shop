@@ -95,7 +95,7 @@ export const modifyCart = async (data) => {
 //주문하기 
 export const orderProducts = () => {
   const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
-  console.log(userAuthToken);
+
   return instance.post('orders/save', null ,{
     headers: {
       Authorization: userAuthToken
