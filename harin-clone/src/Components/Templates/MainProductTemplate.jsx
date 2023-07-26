@@ -4,66 +4,57 @@ import ProductGrid from "../Organisms/ProductGrid";
 import { useEffect, useState, useRef } from "react";
 import { getProducts } from "../../Store/Slices/productSlice";
 import Loader from "../Atoms/Loader";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
 
+  console.log(useSelector((state) => state.product));
   const products = useSelector((state) => state.product.products);
   const loading = useSelector((state) => state.product.loading);
   const error = useSelector((state) => state.product.error);
   const isEnd = useSelector((state) => state.product.isEnd);
 
-  // const {
-  //   data: products,
-  //   fetchNextPage,
-  //   hasNextPage,
-  //   isFetchingNextPage,
-  //   error,
-  // } = useInfiniteQuery("users", getProducts(), {
-  //   getNextPageParam: (page) => page + 1, // 다음 페이지 매개 변수 추출
-  // });
-
-  //bottomObserver.current && !loading &&  !isEnd
-  // intersection observer
-  const io = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        // if (!entry.isIntersecting) return;
-        if (!isEnd && !loading && entry.isIntersecting && bottomObserver.current) {
-          setPage((page) => page + 1);
+  useEffect(() => {
+    if (!loading) {
+      const io = new IntersectionObserver(
+        (entries, io) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && isEnd) {
+              setPage((page) => page + 1);
+              io.unobserve(bottomObserver.current);
+            } else return;
+          });
+        },
+        {
+          threshold: 1,
         }
-      });
-    },
-    {
-      threshold: 1,
+      );
+      if (bottomObserver.current) {
+        io.observe(bottomObserver.current);
+      }
     }
-  );
+  }, [isEnd, loading]);
 
   useEffect(() => {
-    io.observe(bottomObserver.current);
-  }, []); // 최초 마운트 시에만...
-
-  useEffect(() => {
-    dispatch(getProducts(page));
+    if (page < 2) {
+      dispatch(getProducts(page));
+    }
   }, [dispatch, page]);
 
-  // const { data, fetchNextPage, hasNextPage, isLoading, isError } = useInfiniteQuery(
-  //   ['page'],
-  //   ({ pageParam = 0 }) => getProducts(pageParam),
-  //   {
-  //     getNextPageParam: (lastPage, allPages) => {
-  //       const nextPage = allPages.length + 1;
-  //       return lastPage.data.length === 0 ? null : nextPage;
-  //   },
-  //   }
-  // )
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (error) {
+    console.log(error);
+    return <span>Error!</span>;
+  }
 
   return (
     <Container className="mt-12">
-      {loading && <Loader />}
-      {error && <p>Error</p>}
       <ProductGrid products={products} />
       <div ref={bottomObserver}></div>
     </Container>

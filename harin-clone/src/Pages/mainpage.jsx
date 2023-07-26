@@ -1,14 +1,11 @@
 import MainProductTemplate from "../Components/Templates/MainProductTemplate";
 
-
-const MainPage = ( ) => {
-
+const MainPage = () => {
   return (
     <>
       <MainProductTemplate />
-    </>   
-  )
-
-}
+    </>
+  );
+};
 
 export default MainPage;

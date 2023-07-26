@@ -2,7 +2,7 @@ import Card from "../Atoms/Card";
 import { comma } from "../../Utils/convert";
 import Photo from "../Atoms/Photo";
 
-const ProductCard = ({ key, product }) => {
+const ProductCard = ({ product }) => {
   return (
     <Card to={`/product/${product.id}`}>
       <Photo src={product.image} alt={product.productName} imgClass="p-4" />

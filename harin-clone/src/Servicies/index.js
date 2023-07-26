@@ -3,19 +3,24 @@ import axios from "axios";
 const instance = axios.create({
   // baseURL: process.env.REACT_APP_API_URL, -> 이렇게 하니까 인식을 못하는 것 같은데...?
   baseURL: process.env.REACT_APP_API_URL,
-  timeout: 1000,
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    config.headers["Authorization"] = `Bearer ${token}`;
+instance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("acessTtoken");
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
-  return config;
-});
+);
 
 //middleware
 instance.interceptors.response.use(
