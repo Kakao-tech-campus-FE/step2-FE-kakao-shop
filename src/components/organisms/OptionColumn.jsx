@@ -90,7 +90,10 @@ export default function OptionColumn({ productData, modalRef }) {
         quantity: option.count,
       })),
       {
-        onSuccess: () => navigate("/order"),
+        onSuccess: async () => {
+          await queryClient.invalidateQueries(["carts"]);
+          navigate("/order");
+        },
       }
     );
   };
