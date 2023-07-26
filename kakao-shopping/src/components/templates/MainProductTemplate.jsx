@@ -1,12 +1,39 @@
 import Container from "../atoms/Container";
+import Photo from "../atoms/Photo";
 import ProductGrid from "../organisms/ProductGrid";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { fetchProducts } from "../../services/product";
 import _ from "lodash";
 import Loader from "../atoms/Loader";
+import { Carousel } from "react-bootstrap";
 
 const MainProductTemplate = () => {
+    // Carousel Control
+    const carouselTempData = [
+        {
+            src: "/assets/carousel-test-1.png",
+            alt: "Carousel-1",
+            onClick: () => {},
+        },
+        {
+            src: "/assets/carousel-test-2.png",
+            alt: "Carousel-2",
+            onClick: () => {},
+        },
+        {
+            src: "/assets/carousel-test-3.png",
+            alt: "Carousel-3",
+            onClick: () => {},
+        },
+        {
+            src: "/assets/carousel-test-4.png",
+            alt: "Carousel-4",
+            onClick: () => {},
+        },
+    ];
+
+    // Infinity Scrolling 관련
     const bottomObserver = useRef(null);
     const observerRef = useRef();
 
@@ -44,7 +71,7 @@ const MainProductTemplate = () => {
             products = _.uniqBy([...products, ...page.data.response]);
         });
         console.log(products);
-        return <ProductGrid products={products} />;
+        return <ProductGrid className="main-grid" products={products} />;
     };
 
     useEffect(() => {
@@ -57,11 +84,25 @@ const MainProductTemplate = () => {
     }, [isFetching]);
 
     return (
-        <Container style={{ paddingTop: "80px" }}>
+        <main>
             <Loader isLoading={isFetching}></Loader>
+            <Carousel className="main-carousel">
+                {carouselTempData.map((slide, idx) => {
+                    return (
+                        <Carousel.Item key={`slide-${idx}`} className={`slide`}>
+                            <Photo
+                                className="w-100 carousel-img"
+                                objectFit="cover"
+                                src={`${slide.src}`}
+                                alt={`${slide.alt}`}
+                            />
+                        </Carousel.Item>
+                    );
+                })}
+            </Carousel>
             {data ? getProducts() : ""}
             <div ref={bottomObserver}></div>
-        </Container>
+        </main>
     );
 };
 

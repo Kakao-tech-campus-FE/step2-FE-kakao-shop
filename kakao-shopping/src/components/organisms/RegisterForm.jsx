@@ -112,7 +112,7 @@ const RegisterForm = ({
                     onChange={handleOnChange}
                 />
                 <Button
-                    className="flex-shrink-0 flex-grow-0 align-self-center px-3 py-2"
+                    className="flex-shrink-0 flex-grow-0 align-self-center px-3 py-2 bg-kakao"
                     onClick={async function () {
                         const emailCheck = await emailValid({
                             email: value.email,
@@ -172,7 +172,7 @@ const RegisterForm = ({
                 onChange={handleOnChange}
             />
             <Button
-                className={"w-100 mt-2 py-2 border-0"}
+                className={"w-100 mt-2 py-2 border-0 bg-kakao"}
                 onClick={async function () {
                     if (
                         valid.username &&

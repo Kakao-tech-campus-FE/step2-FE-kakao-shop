@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const Card = ({
-    to, // Link의 이동 위치
+    to = "./", // Link의 이동 위치
     className = "", // class
     id = "", // id
     style = {}, // style

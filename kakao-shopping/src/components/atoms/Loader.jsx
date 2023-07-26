@@ -41,6 +41,7 @@ const StyledLoader = styled.div`
         }
     }
 `;
+
 const Loader = ({ isLoading = false }) => {
     return (
         <>
@@ -50,7 +51,7 @@ const Loader = ({ isLoading = false }) => {
                     style={{ backgroundColor: "red" }}
                 >
                     {" "}
-                    <StyledLoader class="loader --5"></StyledLoader>
+                    <StyledLoader className="loader --5"></StyledLoader>
                 </div>
             ) : (
                 ""

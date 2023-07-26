@@ -1,22 +1,17 @@
 import ProductCard from "../molecules/ProductCard";
-import styled from "styled-components";
 
-const StyledGrid = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1rem;
-    margin: 1rem auto;
-    width: 720px;
-    max-width: inherit;
-`;
-
-const ProductGrid = ({ products }) => {
+const ProductGrid = ({
+    products, // product array
+    id = "", // id
+    className = "", // class
+    style = {}, // style
+}) => {
     return (
-        <StyledGrid className="product-grid">
+        <div className={`product-grid ${className}`} id={id} style={style}>
             {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product?.id} product={product} />
             ))}
-        </StyledGrid>
+        </div>
     );
 };
 
