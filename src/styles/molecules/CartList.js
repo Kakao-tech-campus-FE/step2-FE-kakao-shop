@@ -6,7 +6,6 @@ export const ListContainer = styled.div`
     justify-content: center;
     align-items: center;
     height: 100vh;
-    width: 100vw;
 `
 
 export const ListBox = styled.div`
