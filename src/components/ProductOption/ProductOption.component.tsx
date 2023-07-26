@@ -33,20 +33,20 @@ const ProductOption = () => {
 
     try {
       await addProductToCart(carts);
+      alert(PRODUCT.ADD_CART_SUCCESS);
+      resetOrder();
+      navigate(URL.CART);
     } catch (error) {
       alert(ERROR.ADD_CART_FAILED);
+      navigate(URL.HOME);
       return;
     }
-
-    alert(PRODUCT.ADD_CART_SUCCESS);
-    resetOrder();
-    navigate(URL.CART);
   };
 
   return (
     <>
       <ProductOptionSelector
-        options={data?.data.response.options}
+        options={data?.data?.response?.options}
         addOrder={addOrder}
       />
       <ProductOptionOrderResult

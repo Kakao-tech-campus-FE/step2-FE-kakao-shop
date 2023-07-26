@@ -1,4 +1,5 @@
 import { SIGN } from "@/assets/sign.ko";
+import { URL } from "@/assets/url.ko";
 import { checkEmail, signUp } from "@/remotes/sign";
 import SignUpForm from "@components/Form/SignUpForm.component";
 import { useReducer, useState } from "react";
@@ -43,7 +44,7 @@ const SignUpPage = () => {
 
     alert(SIGN.SIGN_UP_SUCCESS);
 
-    navigate("/");
+    navigate(URL.HOME);
   };
 
   return (

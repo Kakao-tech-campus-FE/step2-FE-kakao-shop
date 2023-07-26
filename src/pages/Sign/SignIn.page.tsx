@@ -5,6 +5,8 @@ import { useReducer, useState } from "react";
 import { signIn } from "@/remotes/sign";
 import { setSignIn } from "@/store/signSlice";
 import { useAppDispatch } from "@/hooks/useRedux";
+import { URL } from "@/assets/url.ko";
+import { isAxiosError } from "axios";
 
 const { SIGN_UP, NO_ACCOUNT } = SIGN;
 
@@ -38,7 +40,7 @@ const SignInPage = () => {
       return;
     }
     dispatch(setSignIn());
-    navigate("/");
+    navigate(URL.HOME);
   };
 
   return (

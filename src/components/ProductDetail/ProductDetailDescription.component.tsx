@@ -29,7 +29,7 @@ const ProductDetailDescription = () => {
     }
   );
 
-  if (!data || isLoading || !data.data.response) {
+  if (!data || isLoading || data?.data?.response === undefined) {
     return <ProductDetailSkeleton />;
   }
 

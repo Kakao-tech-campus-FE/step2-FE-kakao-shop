@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Order } from "./useOrder";
 import { ERROR } from "@/assets/error.ko";
+import { URL } from "@/assets/url.ko";
 
 const useCart = () => {
   const [products, setProducts] = useState<ProductOrder[]>([]);
@@ -26,7 +27,7 @@ const useCart = () => {
   const { mutate } = useMutation(updateCart, {
     onMutate: () => {
       queryClient.invalidateQueries({ queryKey: ["cart"] });
-      navigate("/cart/check");
+      navigate(URL.CART_CHECK);
     },
   });
 

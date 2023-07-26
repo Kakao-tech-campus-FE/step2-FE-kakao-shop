@@ -53,6 +53,10 @@ const SignInForm: FC<SignInProps> = ({ onSubmit, data, setForm }) => {
       return;
     }
     onSubmit(e);
+
+    setWarning(resetWarning);
+    setForm({ name: "email", value: "" });
+    setForm({ name: "password", value: "" });
   };
 
   return (

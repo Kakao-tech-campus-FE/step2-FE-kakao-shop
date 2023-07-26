@@ -9,7 +9,8 @@ interface signInData {
 
 export const signIn = async (data: signInData) => {
   const signInRes = await https.post<DefaultResDto>("/login", data);
-  if (signInRes.data.success) {
+
+  if (signInRes?.data?.success !== undefined) {
     setAuth(signInRes.headers.authorization.split(" ")[1]);
   }
   return signInRes;
