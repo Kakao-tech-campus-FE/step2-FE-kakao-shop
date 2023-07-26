@@ -39,12 +39,12 @@ function GNB() {
     <Header>
       <Container>
         <Link to="/" className="root_page" style={{paddingTop: 31}}>
-          <img src={"/logoKakao.png"} alt="logoKakao.png" height={30}/>
+          <img src={"/logoKakao.png"} alt="카카오 쇼핑 로고" height={30}/>
         </Link>
         <Nav>
               {/* 장바구니 버튼 */}
               <Link to="/cart">
-                <img src={"/cart.png"} alt="cart.png" height={30}/>
+                <img src={"/cart.png"} alt="장바구니 버튼" height={30}/>
               </Link>
             <span className="divison">|</span>
               {/* 로그인 버튼 */}

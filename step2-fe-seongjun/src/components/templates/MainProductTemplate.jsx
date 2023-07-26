@@ -1,17 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
 import Container from "../atoms/Container"
 import ProductGrid from "../organisms/ProductGrid"
 import { useState, useEffect, useRef } from "react";
-import { getProducts } from "../../store/slices/productSlice";
+import Loader from "../atoms/Loader";
+import { fetchProducts } from "../services/product";
+import _ from 'lodash';
+import { useQuery } from "@tanstack/react-query";
+
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.products);
-  const loading = useSelector((state) => state.product.loading);
-  const error = useSelector((state) => state.product.error);
-  const isEnd = useSelector((state) => state.product.isEnd);
+  const [products, setProducts] = useState([]);
+  const [isEnd, setIsEnd] =useState(false);
+
+  const {data, loading, error} = useQuery(['/products', page], () => 
+    fetchProducts(page)
+  );
 
   const io = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
@@ -22,21 +26,34 @@ const MainProductTemplate = () => {
   }, {
     threshold: 0.5,
   });
+  useEffect(() => {
+    if(!loading && !isEnd && data?.data?.response) {
+      if(data.data.response.length < 9) {
+        setIsEnd(true);
+      }
+  
+      const uniqProducts = _.uniqBy([...products, ...data.data.response], 'id')
+  
+      if(!_.isEqual(uniqProducts, products)) {
+        setProducts(uniqProducts);
+      }
+    }
+  }, [loading, data, products])
 
   useEffect(() => {
     if (!loading && page === 0) {
       io.observe(bottomObserver.current);
     }
-  }, []);
-
-  useEffect(() => {
-    dispatch(getProducts(page));
-  }, [dispatch, page]);
+  }, [loading, page]);
 
   return (
     <Container>
-      <ProductGrid products={products} loading={loading}/> 
-      <div ref={bottomObserver}></div>
+      {!error && loading ? (
+        <Loader/>
+      ): (
+        <ProductGrid products={products} loading={loading}/> 
+      )}
+        <div ref={bottomObserver}></div>
     </Container>
   );
 };
