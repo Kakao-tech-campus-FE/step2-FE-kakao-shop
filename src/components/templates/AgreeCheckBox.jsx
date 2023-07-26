@@ -20,29 +20,27 @@ const toastOptions = {
   },
 };
 
+const checkboxData = [
+  { id: 1, text: "구매조건 확인 및 결제 진행 동의" },
+  { id: 2, text: "개인정보 제3자 제공 동의" },
+];
+
 export default function AgreeCheckBox({ price, modalRef, address, selected }) {
   const navigate = useNavigate();
-  const [isFirstChecked, setIsFirstChecked] = useState(false);
-  const [isSecondChecked, setIsSecondChecked] = useState(false);
+  const [checkedList, setCheckedList] = useState([]);
   const { mutate } = useMutation({
     mutationFn: cartInstance.order,
   });
   const queryClient = useQueryClient();
 
-  const handleAllChange = () => {
-    if (isFirstChecked && isSecondChecked) {
-      setIsFirstChecked(false);
-      setIsSecondChecked(false);
-    } else {
-      setIsFirstChecked(true);
-      setIsSecondChecked(true);
-    }
+  const handleAllChange = (isChecked) => {
+    setCheckedList(isChecked ? [] : checkboxData);
   };
-  const handleAgreeChange = (e) => {
-    if (e.target.id === "checkbox1") {
-      setIsFirstChecked((prev) => !prev);
+  const handleAgreeChange = (isChecked, list) => {
+    if (isChecked) {
+      setCheckedList((prev) => prev.filter((item) => item.id !== list.id));
     } else {
-      setIsSecondChecked((prev) => !prev);
+      setCheckedList((prev) => [...prev, list]);
     }
   };
   const handleOrderClick = async () => {
@@ -57,7 +55,7 @@ export default function AgreeCheckBox({ price, modalRef, address, selected }) {
       );
       return;
     }
-    if (!isFirstChecked || !isSecondChecked) {
+    if (checkedList.length !== checkboxData.length) {
       modalRef.current.showModal();
       return;
     }
@@ -75,8 +73,8 @@ export default function AgreeCheckBox({ price, modalRef, address, selected }) {
   return (
     <section className="flex flex-col bg-white border-y">
       <CheckList
-        isFirstChecked={isFirstChecked}
-        isSecondChecked={isSecondChecked}
+        checkboxData={checkboxData}
+        checkedList={checkedList}
         onAllChange={handleAllChange}
         onChange={handleAgreeChange}
       />
