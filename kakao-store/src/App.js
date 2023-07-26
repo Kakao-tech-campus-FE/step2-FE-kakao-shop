@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import ErrorPage from './pages/ErrorPage';
 import 'tailwindcss/tailwind.css';
 import OrderPage from './pages/OrderPage';
+import OrderResultPage from './pages/OrderResultPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function App() {
       <BrowserRouter>
         {/* 단독 레이아웃 */}
 
-        <Routes>
+        <Routes> 
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/signup" element={<RegisterPage />} />
         </Routes>
@@ -50,8 +51,9 @@ function App() {
 
           {/* 사용자가 로그인 됐을 때만 접근 가능한 레이아웃*/}
           <Route element={<RequiredAythLayout />}>
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/order" element={<OrderPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/orders/:id" element={<OrderResultPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

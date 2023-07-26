@@ -1,4 +1,4 @@
-import { useMutation } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { configure } from "@storybook/react";
 
 const OrderTemplate = ({ data }) => {
   // 사용자의 장바구니 목록을 조회해서 보여주는 것
-  const { products, totalPrice } = data?.data?.response;
+  const { products, totalPrice } = data?.data?.response ?? {};
   const navigate = useNavigate();
 
   const [agreePayment, setAgreePayment] = useState(false);
@@ -36,33 +36,35 @@ const OrderTemplate = ({ data }) => {
 
   const { mutate } = useMutation({
     mutationKey: "order",
-    queryFN: () => order,
+    mutationFn: order,
   });
 
   const OrderItems = () => {
     let renderComponent = [];
 
     // forEach, map 동기 함수
-    products.forEach((item) => {
-      renderComponent.push(
-        item.carts.map((cart) => {
-          return (
-            <div key={cart.id} className="border-t p-4">
-              <div className="produce-name font-bold">
-                <span>{`${item.productName} - ${item.carts[0].option.optionName}`}</span>
-              </div>
-              <div className="quantity">
-                <span>{comma(cart.quantity)}개</span>
-              </div>
+    if (products && Array.isArray(products)) {
+      products.forEach((item) => {
+        renderComponent.push(
+          item.carts.map((cart) => {
+            return (
+              <div key={cart.id} className="border-t p-4">
+                <div className="produce-name font-bold">
+                  <span>{`${item.productName} - ${item.carts[0].option.optionName}`}</span>
+                </div>
+                <div className="quantity">
+                  <span>{comma(cart.quantity)}개</span>
+                </div>
 
-              <div className="price font-bold">
-                <span>{comma(cart.price * cart.quantity)}원</span>
+                <div className="price font-bold">
+                  <span>{comma(cart.price * cart.quantity)}원</span>
+                </div>
               </div>
-            </div>
-          );
-        })
-      );
-    });
+            );
+          })
+        );
+      });
+    }
 
     return renderComponent;
   };
@@ -100,7 +102,7 @@ const OrderTemplate = ({ data }) => {
         {/* 총 주문금액 */}
         <div className="flex items-center justify-between border p-4">
           <h3 className="text-lx font-bold">총 주문 금액</h3>
-          <span className="price text-xl text-indigo-700">
+          <span className="price text-xl text-kakao_blue">
             {comma(totalPrice)}원
           </span>
         </div>
@@ -159,14 +161,20 @@ const OrderTemplate = ({ data }) => {
               // 장바구니는 비워짐
               // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
               // /orders/complete/:id
+
               mutate(null, {
                 onError: (error) => {
-                  alert("주문에 실패하였습니다.");
+                  // console.log(error);
+                  // alert("주문에 실패하였습니다.");
+                  // 사용자 정보가 유실(headers.Authorization) -> /login
+                  // 서버사이드 에러 -> alert
+                  // 엉뚱한 product 정보 -> 404 페이지
                 },
                 onSuccess: (res) => {
-                  const id = res.response.id;
+                  console.log(res.data.response.id);
+                  const { id } = res.data.response;
                   alert("주문이 완료되었습니다.");
-                  navigate(`/orders/complete/${id}`);
+                  navigate(`/orders/${id}`);
                 },
               });
             }}

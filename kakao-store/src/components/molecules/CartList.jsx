@@ -179,8 +179,8 @@ const CartList = ({ data }) => {
           // payload 더 작게할 수 있으니
           mutate(updatePayload, {
             onSuccess: (data) => {
+              console.log(data);
               route("/order");
-              console.log("success");
             },
             onError: (error) => {},
           });
