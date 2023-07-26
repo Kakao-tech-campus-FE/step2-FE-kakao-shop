@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Counter from '../atoms/Counter';
-import LightButton from '../atoms/LightButton';
 import { CartInfo, UpdateCart } from '../../dto/productDto';
 import { comma } from '../../utils/convert';
+import SimpleButton from '../atoms/SimpleButton';
 
 interface CartOptionItemProps {
   cart: CartInfo;
@@ -65,7 +65,7 @@ const CartOptionItem = ({ cart, setUpdatedCartOptions }: CartOptionItemProps) =>
       <p>{cart.option.optionName}</p>
       <div className='flex justify-between'>
         <div className='flex items-center space-x-2'>
-          <LightButton onClick={handleDeleteButtonClick}>삭제</LightButton>
+          <SimpleButton onClick={handleDeleteButtonClick}>삭제</SimpleButton>
           <Counter
             quantity={updatedQuantity}
             onDecrementClick={() => handleDecrementClick(cart.id)}

@@ -9,11 +9,11 @@ interface CartItemProps {
 
 const CartItem = ({ product, setUpdatedCartOptions }: CartItemProps) => {
   return (
-    <div className='mb-3'>
-      <div className='flex h-16 items-center'>
+    <div className='mb-3 bg-white'>
+      <div className='border-b-1 flex h-16 items-center p-4'>
         <strong className='text-lg'>{product.productName}</strong>
       </div>
-      <div className='space-y-1'>
+      <div className='space-y-1 p-4'>
         {product.carts.map((cart) => (
           <CartOptionItem key={cart.id} cart={cart} setUpdatedCartOptions={setUpdatedCartOptions} />
         ))}

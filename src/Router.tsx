@@ -8,6 +8,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import NotFoundPage from './pages/NotFoundPage';
+import SubLayout from './layouts/SubLayout';
 
 const Router = () => {
   return (
@@ -16,9 +17,11 @@ const Router = () => {
         <Route element={<MainLayout />}>
           <Route path='/' element={<MainPage />} />
           <Route path='/product/:id' element={<ProductDetailPage />} />
+          <Route path='*' element={<NotFoundPage />} />
+        </Route>
+        <Route element={<SubLayout />}>
           <Route path='/cart' element={<CartPage />} />
           <Route path='/order' element={<OrderPage />} />
-          <Route path='*' element={<NotFoundPage />} />
         </Route>
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
