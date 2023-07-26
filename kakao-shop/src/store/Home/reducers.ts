@@ -1,89 +1,100 @@
+import type { GetProductsResponse } from '@apis/Home';
 import { AxiosError } from 'axios';
 import { produce, Draft } from 'immer';
+import type { Product } from 'types/product';
 
-export const FETCH_PRODUCT_DATA = 'home/FETCH_PRODUCT_DATA';
-export const SET_PRODUCT_DATA = 'home/SET_PRODUCT_DATA';
-export const SET_PRODUCT_LOADING_STATE = 'home/SET_PRODUCT_LOADING_STATE';
-export const SET_PRODUCT_ERROR_STATE = 'home/SET_PRODUCT_ERROR_STATE';
+// ActionTypes
+export const GET_PRODUCTS_REQUEST = 'home/GET_PRODUCTS_REQUEST';
+export const GET_PRODUCTS_SUCCESS = 'home/GET_PRODUCTS_SUCCESS';
+export const GET_PRODUCTS_FAILURE = 'home/GET_PRODUCTS_FAILURE';
+
 export const RESET_HOME_STATE = 'home/RESET_HOME_STATE';
+export const SET_PAGE_STATE = 'home/SET_PAGE_STATE';
 
-export const productDataRequest = (payload: number = 0): FetchProductDataAction => ({
-  type: FETCH_PRODUCT_DATA,
+// ActionCreators
+export const getProductsRequestAction = (payload: number = 0): GetProductsRequestAction => ({
+  type: GET_PRODUCTS_REQUEST,
   payload,
 });
 
-export const setProductData = (payload: ProductResponse): SetProductDataAction => ({
-  type: SET_PRODUCT_DATA,
+export const getProductsSuccessAction = (payload: GetProductsResponse): GetProductsSuccessAction => ({
+  type: GET_PRODUCTS_SUCCESS,
   payload,
 });
 
-export const setProductLoadingState = (): SetProductLoadingStateAction => ({
-  type: SET_PRODUCT_LOADING_STATE,
+export const getProductsFailureAction = (payload: AxiosError): GetProductsFailureAction => ({
+  type: GET_PRODUCTS_FAILURE,
+  payload,
 });
 
-export const resetHomeState = (): ResetHomeStateAction => ({
+export const resetHomeStateAction = (): ResetHomeStateAction => ({
   type: RESET_HOME_STATE,
 });
 
-export const setProductErrorState = (payload: AxiosError): SetProductErrorStateAction => ({
-  type: SET_PRODUCT_ERROR_STATE,
+export const setPageStateAction = (payload: number): SetPageStateAction => ({
+  type: SET_PAGE_STATE,
   payload,
 });
 
+// Initial State
 export const initialState: HomeState = {
   isLoading: false,
   error: null,
   products: [],
+  page: 0,
 };
 
-export const homeReducer = produce(
-  (
-    draft: Draft<HomeState>,
-    action: SetProductDataAction | SetProductLoadingStateAction | ResetHomeStateAction | SetProductErrorStateAction,
-  ) => {
-    switch (action.type) {
-      case SET_PRODUCT_LOADING_STATE:
-        draft.isLoading = true;
-        break;
+// Reducer
+export const homeReducer = produce((draft: Draft<HomeState>, action: HomeActions) => {
+  switch (action.type) {
+    case GET_PRODUCTS_REQUEST:
+      draft.isLoading = true;
+      break;
 
-      case SET_PRODUCT_DATA:
-        draft.products.push(...action.payload.response);
-        draft.isLoading = false;
-        break;
+    case GET_PRODUCTS_SUCCESS:
+      draft.products.push(...action.payload.response);
+      draft.isLoading = false;
+      break;
 
-      case SET_PRODUCT_ERROR_STATE:
-        draft.error = action.payload;
-        break;
+    case GET_PRODUCTS_FAILURE:
+      draft.error = action.payload;
+      break;
 
-      case RESET_HOME_STATE:
-        draft.isLoading = false;
-        draft.products = [];
-        draft.error = null;
-        break;
+    case RESET_HOME_STATE:
+      draft.isLoading = false;
+      draft.products = [];
+      draft.error = null;
+      break;
 
-      default:
-        break;
-    }
-  },
-  initialState,
-);
+    case SET_PAGE_STATE:
+      draft.page = action.payload;
+      break;
 
-export type FetchProductDataAction = {
-  type: typeof FETCH_PRODUCT_DATA;
+    default:
+      break;
+  }
+}, initialState);
+
+// ActionCreatorsTypes
+export type HomeActions =
+  | GetProductsRequestAction
+  | GetProductsSuccessAction
+  | ResetHomeStateAction
+  | GetProductsFailureAction
+  | SetPageStateAction;
+
+export type GetProductsRequestAction = {
+  type: typeof GET_PRODUCTS_REQUEST;
   payload: number;
 };
 
-export type SetProductDataAction = {
-  type: typeof SET_PRODUCT_DATA;
-  payload: ProductResponse;
+export type GetProductsSuccessAction = {
+  type: typeof GET_PRODUCTS_SUCCESS;
+  payload: GetProductsResponse;
 };
 
-export type SetProductLoadingStateAction = {
-  type: typeof SET_PRODUCT_LOADING_STATE;
-};
-
-export type SetProductErrorStateAction = {
-  type: typeof SET_PRODUCT_ERROR_STATE;
+export type GetProductsFailureAction = {
+  type: typeof GET_PRODUCTS_FAILURE;
   payload: AxiosError;
 };
 
@@ -91,22 +102,15 @@ export type ResetHomeStateAction = {
   type: typeof RESET_HOME_STATE;
 };
 
-export type ProductResponse = {
-  sucess: boolean;
-  response: Product[];
-  error: boolean;
+export type SetPageStateAction = {
+  type: typeof SET_PAGE_STATE;
+  payload: number;
 };
 
-export type Product = {
-  id: number;
-  productName: string;
-  description: string;
-  image: string;
-  price: number;
-};
-
+// StateType
 export type HomeState = {
   isLoading: boolean;
   error: AxiosError | null;
   products: Product[];
+  page: number;
 };

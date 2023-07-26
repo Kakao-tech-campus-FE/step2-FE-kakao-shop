@@ -1,4 +1,4 @@
-export type IBannerImageItem = {
+export type BannerImageItem = {
   id: number;
   imageUrl: string;
 };

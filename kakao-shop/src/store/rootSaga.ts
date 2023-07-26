@@ -1,3 +1,5 @@
+import { CartSaga } from '@store/Cart/saga';
+import { DetailSaga } from '@store/Detail/saga';
 import { homeSaga } from '@store/Home/saga';
 import { signInSaga } from '@store/Login/saga';
 import { all } from 'redux-saga/effects';
@@ -5,5 +7,5 @@ import { all } from 'redux-saga/effects';
 import { signUpSaga } from './SignUp/saga';
 
 export default function* rootSaga() {
-  yield all([signUpSaga(), signInSaga(), homeSaga()]);
+  yield all([signUpSaga(), signInSaga(), homeSaga(), DetailSaga(), CartSaga()]);
 }

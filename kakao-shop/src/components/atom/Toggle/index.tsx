@@ -10,7 +10,7 @@ type Props = {
 };
 
 const Toggle = ({ name, on = false, disabled = false, onChange, ...props }: Props) => {
-  const [checked, toggle] = useToggle(on);
+  const [checked, , toggle] = useToggle(on);
 
   const handleChange = () => {
     toggle();

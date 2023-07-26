@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
 import { ReactElement } from 'react';
 
-import { IBannerImageItem } from './lib/bannerImages';
+import { BannerImageItem } from './lib/bannerImages';
 
 type BannerImageListItemProps = {
-  imageItem: IBannerImageItem;
+  imageItem: BannerImageItem;
   imageWidth: number;
   imagePadding: number;
 };

@@ -1,41 +1,48 @@
+import type { SignUpRequest, DuplicateEmailCheckRequest, SignUpResponse } from '@apis/SignUp';
+import { AxiosError } from 'axios';
 import { produce, Draft } from 'immer';
 
-import { SignUpRequest, EmailDuplicateCheckRequest } from '@hooks/page/SignUp/useSignUpForm';
-
+// ActionTypes
 export const SIGN_UP_REQUEST = 'signUp/SIGN_UP_REQUEST';
 export const SIGN_UP_SUCCESS = 'signUp/SIGN_UP_SUCCESS';
 export const SIGN_UP_FAILURE = 'signUp/SIGN_UP_FAILURE';
-export const EMAIL_DUPLICATE_CHECK_REQUEST = 'signUp/EMAIL_DUPLICATE_CHECK_REQUEST';
-export const EMAIL_DUPLICATE_CHECK_SUCCESS = 'signUp/EMAIL_DUPLICATE_CHECK_SUCCESS';
-export const EMAIL_DUPLICATE_CHECK_FAILURE = 'signUp/EMAIL_DUPLICATE_CHECK_FAILURE';
 
-export const signUpRequest = (payload: SignUpRequest): FetchSignUpAction => ({
+export const DUPLICATE_EMAIL_CHECK_REQUEST = 'signUp/DUPLICATE_EMAIL_CHECK_REQUEST';
+export const DUPLICATE_EMAIL_CHECK_SUCCESS = 'signUp/DUPLICATE_EMAIL_CHECK_SUCCESS';
+export const DUPLICATE_EMAIL_CHECK_FAILURE = 'signUp/DUPLICATE_EMAIL_CHECK_FAILURE';
+
+// ActionCreators
+export const signUpRequestAction = (payload: SignUpRequest): SignUpRequestAction => ({
   type: SIGN_UP_REQUEST,
   payload,
 });
 
-export const signUpSuccess = (payload: SignUpResponse): SignUpAction => ({
+export const signUpSuccessAction = (payload: SignUpResponse): SignUpSuccessAction => ({
   type: SIGN_UP_SUCCESS,
   payload,
 });
 
-export const signUpFailure = (payload: SignUpResponse): SignUpAction => ({
+export const signUpFailureAction = (payload: SignUpResponse): SignUpFailureAction => ({
   type: SIGN_UP_FAILURE,
   payload,
 });
 
-export const emailDuplicateCheckRequest = (payload: EmailDuplicateCheckRequest): FetchEmailDuplicateCheckAction => ({
-  type: EMAIL_DUPLICATE_CHECK_REQUEST,
+export const duplicateEmailCheckRequestAction = (
+  payload: DuplicateEmailCheckRequest,
+): DuplicateEmailCheckRequestAction => ({
+  type: DUPLICATE_EMAIL_CHECK_REQUEST,
   payload,
 });
 
-export const initialState: SignUpResponse = {
+// Initial State
+export const initialState: SignUpState = {
   success: false,
   response: null,
   error: null,
 };
 
-export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: SignUpAction) => {
+// Reducer
+export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: SignUpActions) => {
   switch (action.type) {
     case SIGN_UP_SUCCESS:
       draft.success = action.payload.success;
@@ -54,28 +61,32 @@ export const signUpReducer = produce((draft: Draft<SignUpResponse>, action: Sign
   }
 }, initialState);
 
-export type FetchSignUpAction = {
+// ActionCreatorsTypes
+export type SignUpActions = SignUpSuccessAction | SignUpFailureAction;
+
+export type SignUpRequestAction = {
   type: typeof SIGN_UP_REQUEST;
   payload: SignUpRequest;
 };
 
-export type FetchEmailDuplicateCheckAction = {
-  type: typeof EMAIL_DUPLICATE_CHECK_REQUEST;
-  payload: EmailDuplicateCheckRequest;
+export type DuplicateEmailCheckRequestAction = {
+  type: typeof DUPLICATE_EMAIL_CHECK_REQUEST;
+  payload: DuplicateEmailCheckRequest;
 };
 
-export type SignUpResponse = {
+export type SignUpSuccessAction = {
+  type: typeof SIGN_UP_SUCCESS;
+  payload: SignUpResponse;
+};
+
+export type SignUpFailureAction = {
+  type: typeof SIGN_UP_FAILURE;
+  payload: SignUpResponse;
+};
+
+// StateType
+export type SignUpState = {
   success: boolean;
   response: null;
-  error: ErrorType | null;
-};
-
-export type ErrorType = {
-  message: string;
-  status: number;
-};
-
-export type SignUpAction = {
-  type: typeof SIGN_UP_SUCCESS | typeof SIGN_UP_FAILURE;
-  payload: SignUpResponse;
+  error: AxiosError<SignUpResponse> | null;
 };

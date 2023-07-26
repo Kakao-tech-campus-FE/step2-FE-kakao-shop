@@ -1,4 +1,5 @@
 const path = require('path');
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 module.exports = {
   babel: {
@@ -6,6 +7,23 @@ module.exports = {
     plugins: ['@emotion/babel-plugin'],
   },
   webpack: {
+    plugins: {
+      add: [
+        new CircularDependencyPlugin({
+          // exclude detection of files based on a RegExp
+          exclude: /a\.js|node_modules/,
+          // include specific files based on a RegExp
+          include: /src/,
+          // add errors to webpack instead of warnings
+          failOnError: false,
+          // allow import cycles that include an asyncronous import,
+          // e.g. via import(/* webpackMode: "weak" */ './file.js')
+          allowAsyncCycles: false,
+          // set the current working directory for displaying module paths
+          cwd: process.cwd(),
+        }),
+      ],
+    },
     alias: {
       '@components': path.resolve(__dirname, 'src/components'),
       '@pages': path.resolve(__dirname, 'src/pages'),
@@ -15,6 +33,7 @@ module.exports = {
       '@apis': path.resolve(__dirname, 'src/apis'),
       '@utils': path.resolve(__dirname, 'src/utils'),
       '@assets': path.resolve(__dirname, 'src/assets'),
+      '@hocs': path.resolve(__dirname, 'src/hocs'),
     },
   },
 };

@@ -1,12 +1,13 @@
 import styled from '@emotion/styled';
-import { signOutRequest } from '@store/Login/reducers';
+import { signOutAction } from '@store/Login/reducers';
+import { RootState } from '@store/index';
 import hideWithA11y from '@styles/a11y';
 import { Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  const { isLogin } = useSelector((state: any) => state.signIn);
+  const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
   const dispatch = useDispatch();
 
   return (
@@ -34,7 +35,7 @@ const Header = () => {
           </S.GnbMenu>
 
           <S.MenuUtil>
-            <Link to="/">
+            <Link to="/cart">
               <span>장바구니</span>
             </Link>
           </S.MenuUtil>
@@ -43,7 +44,7 @@ const Header = () => {
             {isLogin ? (
               <button
                 onClick={() => {
-                  dispatch(signOutRequest());
+                  dispatch(signOutAction());
                   window.location.reload(); // 전역 state 초기화를 위해서
                 }}>
                 로그아웃
@@ -68,7 +69,7 @@ const S = {
     left: 0;
     right: 0;
     top: 0;
-    z-index: 11000;
+    z-index: 999;
 
     border-bottom: 1px solid #e5e5e5;
     background-color: #fff;

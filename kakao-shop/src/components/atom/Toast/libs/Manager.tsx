@@ -1,8 +1,6 @@
 import type { FunctionComponent, ReactNode, ReactElement } from 'react';
 import { useEffect, useState, Fragment } from 'react';
 
-import { useTimeout } from '@hooks/@common';
-
 import type { Options, Toast } from './types';
 
 const Manager = ({
@@ -19,6 +17,7 @@ const Manager = ({
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   useEffect(() => {
+    // Toast.show 호출시 실행
     bind((content, options) => {
       setToasts(old => {
         if (old.length >= 3) return old;
@@ -36,6 +35,8 @@ const Manager = ({
           <DoAfterDuration
             key={id}
             options={options}
+            // 이미 생성된 토스트 컴포넌트를 제거한다.
+            // 토스트가 사라지는 애니메이션 발생 후 옵션으로 지정된 delay 시간 이후에 실행
             onDelayedAfterDone={() => {
               setToasts(oldToasts => oldToasts.filter(toast => toast.id !== id));
             }}>
@@ -65,7 +66,7 @@ const DoAfterDuration = ({
 }) => {
   const [done, setDone] = useState(false);
 
-  useTimeout(() => {
+  setTimeout(() => {
     setDone(true);
     setTimeout(() => {
       onDelayedAfterDone?.();

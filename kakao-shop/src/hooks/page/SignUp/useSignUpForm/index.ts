@@ -1,4 +1,4 @@
-import { signUpRequest, emailDuplicateCheckRequest } from '@store/SignUp/reducers';
+import { signUpRequestAction, duplicateEmailCheckRequestAction } from '@store/SignUp/reducers';
 import { FormEventHandler, MouseEventHandler, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -38,7 +38,7 @@ const useSignUpForm = () => {
       return;
     }
 
-    dispatch(signUpRequest({ email, password, username: nickname, navigate }));
+    dispatch(signUpRequestAction({ email, password, username: nickname, navigate }));
   };
 
   const onEmailDuplicateCheck: MouseEventHandler<HTMLButtonElement> = e => {
@@ -49,7 +49,7 @@ const useSignUpForm = () => {
       return;
     }
 
-    dispatch(emailDuplicateCheckRequest({ email, setErrorMessage, setIsUniqueEmail }));
+    dispatch(duplicateEmailCheckRequestAction({ email, setErrorMessage, setIsUniqueEmail }));
   };
 
   return {
@@ -73,16 +73,3 @@ const useSignUpForm = () => {
 };
 
 export default useSignUpForm;
-
-export type SignUpRequest = {
-  email: string;
-  password: string;
-  username: string;
-  navigate: any;
-};
-
-export type EmailDuplicateCheckRequest = {
-  email: string;
-  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
-  setIsUniqueEmail: React.Dispatch<React.SetStateAction<boolean>>;
-};

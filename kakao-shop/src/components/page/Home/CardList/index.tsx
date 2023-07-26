@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Product } from '@store/Home/reducers';
+import { Product } from 'types/product';
 
 import CardItem from '@components/page/Home/CardItem';
 

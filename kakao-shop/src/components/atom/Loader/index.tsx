@@ -1,19 +1,17 @@
-import React from 'react';
+import styled from '@emotion/styled';
 
-import './loading.modules.css';
-
-const Loading = () => {
+const Loader = () => {
   return (
-    <div className="loader loader--style1" title="0">
-      <svg
+    <S.Root title="0">
+      <S.Svg
         version="1.1"
         id="loader-1"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         x="0px"
         y="0px"
-        width="40px"
-        height="40px"
+        width="60px"
+        height="60px"
         viewBox="0 0 40 40"
         enableBackground="new 0 0 40 40"
         xmlSpace="preserve">
@@ -38,9 +36,31 @@ const Loading = () => {
             repeatCount="indefinite"
           />
         </path>
-      </svg>
-    </div>
+      </S.Svg>
+    </S.Root>
   );
 };
 
-export default Loading;
+export default Loader;
+
+const S = {
+  Root: styled.div`
+    display: inline-block;
+
+    height: 100px;
+    width: 100%;
+
+    margin: 0 auto 2em;
+    padding: 1em;
+
+    text-align: center;
+    vertical-align: top;
+  `,
+
+  Svg: styled.svg`
+    & > path,
+    & > rect {
+      fill: #fee500;
+    }
+  `,
+};

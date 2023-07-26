@@ -1,19 +1,20 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Product } from '@store/Home/reducers';
+import { Link } from 'react-router-dom';
+import type { Product } from 'types/product';
 
 import { Photo } from '@components/atom';
 import Skeleton from '@components/atom/Skeleton';
 
 import { comma } from '@utils/comma';
 
-const CardItem = ({ productName, image, price }: Product) => {
+const CardItem = ({ id, productName, image, price }: Product) => {
   return (
-    <S.Root>
+    <S.Root to={`/detail/${id}`}>
       <Photo
         pictureClassName={S.PhotoStyle}
         imageClassName={S.ImgStyle}
-        src={`${process.env.REACT_APP_PUBLIC_URL}${image}`}
+        src={`${process.env.REACT_APP_PROD_SERVER}${image}`}
         alt={'이미지'}
       />
       <S.Info>
@@ -42,7 +43,7 @@ CardItem.Skeleton = function () {
 export default CardItem;
 
 const S = {
-  Root: styled.div`
+  Root: styled(Link)`
     display: inline-block;
     width: 284px;
     padding: 0 20px 50px 0;
