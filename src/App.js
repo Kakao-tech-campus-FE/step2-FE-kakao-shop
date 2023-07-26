@@ -7,6 +7,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import "./App.css"
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 function App() {
   return (

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
+import GNB from "../components/organisms/GNB";
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const RequiredAuthLayout = () => {
 
   return (
     <>
-      {/* <Header /> */}
+      <GNB />
       <Outlet />
       {/* <Footer /> */}
     </>
