@@ -63,7 +63,7 @@ const OptionColumn = ({ product }) => {
       />{" "}
       {/* 담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={option.id} className="selected-option-list">
+        <ol key={option.optionId} className="selected-option-list">
           <li className="selected-option">
             {/* 수량 변경 기능 */}
             <Counter
@@ -106,7 +106,7 @@ const OptionColumn = ({ product }) => {
           mutate(
             selectedOptions.map((el) => {
               return {
-                optionId: el.id,
+                optionId: el.optionId,
                 quantity: el.quantity,
               };
             }),
@@ -120,7 +120,10 @@ const OptionColumn = ({ product }) => {
             }
           );
         }}
-      ></Button>
+      >
+        장바구니
+      </Button>
+      <Button>바로 구매</Button>
     </div>
   );
 };

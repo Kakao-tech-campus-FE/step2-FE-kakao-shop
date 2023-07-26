@@ -1,4 +1,4 @@
-import { Card } from "../atoms/Card";
+import Card from "../atoms/Card";
 import Box from "./Box";
 import Counter from "./Counter";
 import "../../styles/atoms/CartItem.css";

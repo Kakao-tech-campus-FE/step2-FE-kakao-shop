@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container } from "../atoms/Container";
+import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
 import Card from "../atoms/Card";
@@ -8,17 +8,17 @@ import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import "../../styles/molecules/CartList.css";
 import { useMutation } from "react-query";
-import { updateCart } from "../../services/cart";
+import { getCart, updateCart } from "../../services/cart";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  // const [updatePayload, setUpdatePayload] = useState({});
-  const updatePayload = useRef([]);
-  const initPayload = useRef([]);
+  const [updatePayload, setUpdatePayload] = useState({});
+  // const updatePayload = useRef([]);
+  // const initPayload = useRef([]);
 
-  const { muatate } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: updateCart,
   });
 
@@ -29,11 +29,13 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
+    if (cartItems) {
+      cartItems.forEach((item) => {
+        item.carts.forEach((cart) => {
+          count += cart.quantity;
+        });
       });
-    });
+    }
     return comma(count);
   }, [cartItems]);
 
@@ -46,7 +48,7 @@ const CartList = ({ data }) => {
   const handleOnChangeCount = (optionId, quantity, price) => {
     // 이 함수가 실행된 부분만 수량 변경이 생긴 것
     setUpdatePayload((prev) => {
-      const isExist = prev.find((item) => item.cartId === optionId);
+      const isExist = prev.find((item) => item.cartId !== optionId);
 
       if (isExist) {
         return [
@@ -57,7 +59,6 @@ const CartList = ({ data }) => {
           },
         ];
       }
-
       return [
         ...prev,
         {
@@ -115,7 +116,7 @@ const CartList = ({ data }) => {
           // post method
           // 변경된 개수만 파싱해서 페이로드로 보내주기
 
-          muatate(updatePayload, {
+          mutate(updatePayload, {
             onSuccess: (data) => {},
             onError: (error) => {},
           });
