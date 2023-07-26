@@ -1,6 +1,6 @@
-import { Outlet } from 'react-router-dom';
-import Header from '../components/organisms/Header';
-import Footer from '../components/atoms/Footer';
+import { Outlet } from "react-router-dom";
+import Header from "../components/organisms/Header";
+import Footer from "../components/atoms/Footer";
 
 const MainLayout = ({ children }) => {
   return (

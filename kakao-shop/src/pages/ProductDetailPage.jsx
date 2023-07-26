@@ -1,10 +1,11 @@
-import { useParams } from 'react-router-dom';
-import Loader from '../components/atoms/Loader';
-import { getProductById } from '../apis/product';
-import { useQuery } from '@tanstack/react-query';
-import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
-import { Suspense } from 'react';
-import ErrorPage from './Error/ErrorPage';
+import { useParams } from "react-router-dom";
+import Loader from "../components/atoms/Loader";
+import { getProductById } from "../apis/product";
+import { useQuery } from "@tanstack/react-query";
+import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
+import { Suspense } from "react";
+import ErrorPage from "./Error/ErrorPage";
+import MainContainer from "../components/atoms/MainContainer";
 
 /**
  * 상품 상세 페이지
@@ -12,18 +13,18 @@ import ErrorPage from './Error/ErrorPage';
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { status, data, error } = useQuery({
-    queryKey: ['product', id],
+    queryKey: ["product", id],
     queryFn: () => getProductById(id),
     retry: false,
   });
 
   const product = data?.data?.response;
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return <Loader />;
   }
 
-  if (status === 'error') {
+  if (status === "error") {
     if (error?.response?.status === 404) {
       // 등록되지 않은 상품(id) 조회 시
       return <ErrorPage message="상품 정보를 찾을 수 없습니다." />;
@@ -32,9 +33,11 @@ const ProductDetailPage = () => {
   }
 
   return (
-    <div className="product-detail-page">
-      <Suspense fallback={<Loader />}>{product && <ProductDetailTemplate product={product} />}</Suspense>
-    </div>
+    <MainContainer className="product-detail-page">
+      <Suspense fallback={<Loader />}>
+        {product && <ProductDetailTemplate product={product} />}
+      </Suspense>
+    </MainContainer>
   );
 };
 
