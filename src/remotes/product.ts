@@ -1,6 +1,7 @@
 import {
   CartsResDto,
   DefaultResDto,
+  PayResDto,
   ProductResDto,
   ProductsResDto,
 } from "@/dtos/response.dto";
@@ -34,7 +35,7 @@ export const addProductToCart = async (orders: ProductOrderReq[]) => {
   return https.post<DefaultResDto>("/carts/add", orders);
 };
 
-export const getCart = async () => {
+export const getCart = () => {
   return https.get<CartsResDto>("/carts");
 };
 
@@ -43,6 +44,10 @@ export interface UpdateCardReq {
   quantity: number;
 }
 
-export const updateCart = async (orders: UpdateCardReq[]) => {
+export const updateCart = (orders: UpdateCardReq[]) => {
   return https.post<CartsResDto>("/carts/update", orders);
+};
+
+export const payCart = () => {
+  return https.post<PayResDto>("/orders/save");
 };
