@@ -6,6 +6,7 @@ import Container from "../atoms/Container";
 import OrderList from "../moleclules/OrderList";
 import useCheckBox from "../../hooks/useCheckBox";
 import CheckBox from "../atoms/CheckBox";
+import { useState } from "react";
 
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
@@ -15,10 +16,26 @@ const OrderTemplate = ({ data }) => {
   const { checkedOptions, handleOnChangeCheck, handleOnChangeCheckAll } =
     useCheckBox([], ["order", "policy"]);
 
+  const [selectedReq, setSelectedReq] = useState("");
+  const [orderRequest, setOrderRequest] = useState("");
+
   const { mutate } = useMutation({
     mutationKEy: "order",
     queryFn: order,
   });
+
+  const handleOnChangeSelect = (e) => {
+    if (e.target.value === "직접입력") {
+      setOrderRequest("");
+    } else {
+      setOrderRequest(e.target.value);
+    }
+    setSelectedReq(e.target.value);
+  };
+
+  const handleOnChangeRequest = (e) => {
+    setOrderRequest(e.target.value);
+  };
 
   return (
     <div className="bg-[#f4f4f4]">
@@ -46,20 +63,25 @@ const OrderTemplate = ({ data }) => {
           </div>
           <div className="flex flex-col gap-3">
             <select
-              value={"1"}
+              value={selectedReq}
               className="rounded-md border border-gray-200 p-2 text-sm"
+              onChange={handleOnChangeSelect}
             >
-              <option value="1">배송 요청사항을 선택해주세요</option>
-              <option value="2">배송전 연락바랍니다.</option>
-              <option value="3">부재시 경비실에 맡겨주세요.</option>
-              <option value="4">부재시 연락주세요.</option>
-              <option value="5">직접입력</option>
+              <option defaultValue={true} disabled={true}>
+                배송 요청사항을 선택해주세요
+              </option>
+              <option>배송전 연락바랍니다.</option>
+              <option>부재시 경비실에 맡겨주세요.</option>
+              <option>부재시 연락주세요.</option>
+              <option>직접입력</option>
             </select>
             <textarea
               className="app rounded-md border border-gray-300 px-3 py-2 text-sm"
               name=""
               id=""
               placeholder="배송시 요청사항을 입력해주세요 (최대 50자)"
+              value={orderRequest}
+              onChange={handleOnChangeRequest}
               cols="30"
               rows="3"
             ></textarea>
@@ -69,9 +91,11 @@ const OrderTemplate = ({ data }) => {
           주문상품 정보
         </button>
         <div>
-          {products.map((item) => (
-            <OrderList item={item} key={item.id} />
-          ))}
+          {products.map((item) =>
+            item.carts.reduce((acc, cur) => acc + cur.quantity, 0) ? (
+              <OrderList item={item} key={item.id} />
+            ) : null
+          )}
         </div>
         <div className="bg-white">
           <h3 className="border-b border-gray-200 p-4 text-lg font-bold">

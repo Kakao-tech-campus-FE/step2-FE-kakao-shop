@@ -50,7 +50,7 @@ const LoginForm = () => {
   // 로그인 상태에 따른 응답
   useEffect(() => {
     if (email !== null) {
-      navigate(-1, { replace: true });
+      navigate("/", { replace: true });
       window.location.reload(false);
     }
     if (isError === true) {
