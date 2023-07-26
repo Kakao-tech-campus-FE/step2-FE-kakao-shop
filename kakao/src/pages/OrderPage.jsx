@@ -5,7 +5,9 @@ import Loader from "../components/atoms/Loader";
 import OrderTemplate from "../components/templates/OrderTemplate";
 
 const OrderPage = () => {
-  const { data, error, isLoading } = useQuery("cart", getCart);
+  const { data, error, isLoading } = useQuery("cart", getCart, {
+    suspense: true,
+  });
 
   return (
     <div className="orderpage">
