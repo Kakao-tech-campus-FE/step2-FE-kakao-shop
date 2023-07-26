@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import Title from "../atoms/Title";
 import OrderItem from "../atoms/OrderItem";
 import CheckBox from "../atoms/CheckBox";
+import EmptyCart from "../atoms/EmptyCart";
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { orderCart } from "../../services/apis";
@@ -116,40 +117,44 @@ const OrderList = ({ cart }) => {
   return (
     <Container>
       <Title>주문하기(총 {getTotalOrderCount()}개)</Title>
-      <div>
-        {cartItems.map((item) => (
-          <OrderItem key={item.id} item={item} />
-        ))}
-        <ShipContainer>
-          <PriceRow>
-            <Price>최종 결제 금액</Price>
-            <Price>
-              <span>{totalPrice.toLocaleString()}원</span>
-            </Price>
-          </PriceRow>
-          <AgreeRow>
-            <CheckBox
-              id="전체"
-              text="전체 동의하기"
-              title="true"
-              checked={isAllChecked()}
-              onCheck={handleAllItemsCheck}
-            />
-            {checkItems.map((item) => (
+      {cartItems.length ? (
+        <div>
+          {cartItems.map((item) => (
+            <OrderItem key={item.id} item={item} />
+          ))}
+          <ShipContainer>
+            <PriceRow>
+              <Price>최종 결제 금액</Price>
+              <Price>
+                <span>{totalPrice.toLocaleString()}원</span>
+              </Price>
+            </PriceRow>
+            <AgreeRow>
               <CheckBox
-                key={item.id}
-                id={item.id}
-                text={item.text}
-                checked={item.checked}
-                onCheck={handleItemCheck}
+                id="전체"
+                text="전체 동의하기"
+                title="true"
+                checked={isAllChecked()}
+                onCheck={handleAllItemsCheck}
               />
-            ))}
-          </AgreeRow>
-          <OrderRow disabled={!isAllChecked()} onClick={mutate}>
-            {totalPrice.toLocaleString()}원 결제하기
-          </OrderRow>
-        </ShipContainer>
-      </div>
+              {checkItems.map((item) => (
+                <CheckBox
+                  key={item.id}
+                  id={item.id}
+                  text={item.text}
+                  checked={item.checked}
+                  onCheck={handleItemCheck}
+                />
+              ))}
+            </AgreeRow>
+            <OrderRow disabled={!isAllChecked()} onClick={mutate}>
+              {totalPrice.toLocaleString()}원 결제하기
+            </OrderRow>
+          </ShipContainer>
+        </div>
+      ) : (
+        <EmptyCart text="주문할 상품을 장바구니에 담아주세요." />
+      )}
     </Container>
   );
 };
