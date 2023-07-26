@@ -5,6 +5,7 @@ import { convertToPrice } from "utils/convert";
 
 import Button from "./Button";
 import Counter from "./Counter";
+import { useMemo } from "react";
 
 export default function CartItem({ product }) {
   const queryClient = useQueryClient();
@@ -17,6 +18,12 @@ export default function CartItem({ product }) {
       console.dir("카트업데이트 오류:\n" + err);
     },
   });
+
+  const totalPrice = useMemo(
+    () =>
+      convertToPrice(product.carts.reduce((acc, cur) => acc + cur.price, 0)),
+    [product.carts]
+  );
 
   const handleDeleteClick = (cart) => {
     const formattedData = [{ ...cart, quantity: 0 }].map((item) => ({
@@ -45,9 +52,7 @@ export default function CartItem({ product }) {
           <span>{convertToPrice(cart.price)}</span>
         </div>
       ))}
-      <span>
-        {convertToPrice(product.carts.reduce((acc, cur) => acc + cur.price, 0))}
-      </span>
+      <span>{totalPrice}</span>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
@@ -16,6 +16,19 @@ export default function ProductOption({ product }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { mutate } = useMutation({ mutationFn: addCartReq });
   const navigate = useNavigate();
+
+  const totalPrice = useMemo(
+    () =>
+      convertToPrice(
+        selectedOptions.reduce((acc, cur) => acc + cur.price * cur.quantity, 0)
+      ),
+    [selectedOptions]
+  );
+
+  const totalQuantity = useMemo(
+    () => selectedOptions.reduce((acc, cur) => acc + cur.quantity, 0),
+    [selectedOptions]
+  );
 
   const handleOptionClick = (option) => {
     if (!window.localStorage.getItem("token"))
@@ -124,20 +137,10 @@ export default function ProductOption({ product }) {
       <hr />
       {/* 총 수량 및 가격 */}
       <div className="space-x-8 text-xl">
-        <span>
-          총 수량
-          {selectedOptions.reduce((acc, cur) => acc + cur.quantity, 0)}개
-        </span>
+        <span>총 수량 {totalQuantity}개</span>
         <span>
           총 주문금액{" "}
-          <span className="font-bold text-red-600">
-            {convertToPrice(
-              selectedOptions.reduce(
-                (acc, cur) => acc + cur.price * cur.quantity,
-                0
-              )
-            )}
-          </span>
+          <span className="font-bold text-red-600">{totalPrice}</span>
         </span>
       </div>
       {/* 장바구니 및 바로구매 */}
