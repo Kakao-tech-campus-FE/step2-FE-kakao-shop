@@ -36,7 +36,7 @@ export interface UpdateCartOption {
 
 export interface CartItem {
   id: number;
-  productName: number;
+  productName: string;
   carts: {
     id: number;
     option: ProductOption;
