@@ -67,7 +67,7 @@ const CartList = ({ data }) => {
       });
     });
   };
-  const handleOnDelete = (optionId, quantity) => {
+  const handleOnDelete = (optionId, quantity, price) => {
     setUpdatePayload((prev) => {
       const isExist = prev.find((item) => item.cartId === optionId);
 
@@ -88,6 +88,7 @@ const CartList = ({ data }) => {
         },
       ];
     });
+    setTotalPrice((prev) => prev - price * quantity);
     setCartItems((prev) => {
       return prev.map((item) => {
         return {

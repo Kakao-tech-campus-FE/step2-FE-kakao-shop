@@ -27,7 +27,7 @@ const CartItem = ({ item, onChange, onDelete }) => {
           <div className="row">
             <button
               onClick={() => {
-                onDelete(cart.id, cart.quantity);
+                onDelete(cart.id, cart.quantity, cart.option.price);
               }}
             >
               {' '}
