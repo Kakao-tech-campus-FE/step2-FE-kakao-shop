@@ -28,7 +28,7 @@ const CartOptionCard = ({cart}) => {
     }
 
     return (
-        <div className="bg-gray-200 mb-4 p-2">
+        <div className="border-2 border-gray-300 m-2 p-2">
             <div className="flex justify-between">
                 <h3>{option?.optionName}</h3>
                 <button onClick={deleteCart}>X</button>
