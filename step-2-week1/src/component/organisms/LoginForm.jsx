@@ -11,7 +11,6 @@ import React, {useState} from 'react';
 import { setUser } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
-
 const LoginForm = () => {
 
   const dispatch = useDispatch();
@@ -34,10 +33,17 @@ const LoginForm = () => {
   const handleSubmit = () => {
     dispatch(
       loginRequest({
+        
+        // 비밀번호가 20자 이상이면
+        // if (value.password.length > 20) {
+        //   return; //리턴되어 밑에 loginRequest를 호출하지 않습니다.
+        // };
         email: value.email,
         password: value.password,
-        expirationTime: new Date().getTime() + 60 * 60 * 1000,
-        isLoggedIn: true,
+        // expirationTime: new Date().getTime() + 60 * 60 * 1000,
+        // isLoggedIn: true,
+        // isLogin: true,
+        
       })
     
       ).catch((error) => alert(error))

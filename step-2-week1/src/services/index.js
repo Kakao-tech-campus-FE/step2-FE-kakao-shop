@@ -7,6 +7,7 @@ export const instance = axios.create({
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
+    // "Authorization": `Bearer ${localStorage.getItem('token')}`,
 
   }
 });
@@ -26,7 +27,7 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    
+    console.log(error);
     return Promise.reject(error.response.data.error.message);
     
   }

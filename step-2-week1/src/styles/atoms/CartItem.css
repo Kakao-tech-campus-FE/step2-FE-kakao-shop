@@ -1,0 +1,29 @@
+.cart-item-box {
+    color: black;
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.cart-item-box h5{
+    font-size: 20px;
+}
+
+.cart {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    font-family:'Malgun Gothic';
+    font-size: 20px;
+    margin: 18px;
+}
+
+.row .counter{
+    margin-bottom: 10px;
+}
+
+.price {
+}
+
+.horizontal-line {
+    border-top: 1px solid black; /* 1픽셀 두께의 검은색 가로선 */
+}

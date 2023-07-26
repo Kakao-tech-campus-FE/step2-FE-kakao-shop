@@ -10,6 +10,8 @@ import { setUser, clearUser } from './store/slices/userSlice';
 import MainLayout from "./layouts/MainLayout";
 import GNB from './component/atoms/GNB';
 import ProductGrid from './component/organisms/ProductGrid';
+import ProductDetailPage from './pages/ProductDetailPage';
+import CartList from './component/molecules/CartList';
 
 function App() {
 
@@ -33,22 +35,24 @@ function App() {
   }, [dispatch]);
 
   return (
+    <div className='App'>
+      <BrowserRouter>
+          {/* 단독 레이아웃 */}
+          <Routes>
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/register" element={<RegisterPage />}></Route>   
+            {/* 공통 레이아웃 GNB, Footer */}
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
+              <Route path="/" element={<ProductGrid />}></Route>
+              <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+              <Route path="/cart" element={<CartList />}></Route>
+              
     
-    <BrowserRouter>
-      {/* 단독 레이아웃 */}
-      <Routes>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/register" element={<RegisterPage />}></Route>   
-        {/* 공통 레이아웃 GNB, Footer */}
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
-          <Route path="/" element={<ProductGrid />}></Route>
-          {/* <Route path="/produc/:id" element={<ProductDetailPage />}></Route> */}
-          
         </Route>
       </Routes>
     </BrowserRouter>
-    
+    </div>    
 
   );
 };

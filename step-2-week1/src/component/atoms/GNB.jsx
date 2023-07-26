@@ -7,14 +7,22 @@ import { clearUser } from "../../store/slices/userSlice";
 import { Fragment, useEffect } from "react";
 import RegisterPage from "../../pages/RegisterPage";
 import instance from "../../services";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const GNB = () => {
   // use store/userSlice state
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
+  const [isLogin, setIsLogin] = useState(false);
   // expiration time over then delete at store, localstorage.
+
+  console.log(isLogin)
+
   useEffect(() => {
+
+    if (localStorage.getItem('token') !== null) setIsLogin(true);
     const checkExpiration = () => {
       if (user.expirationTime && user.expirationTime < new Date().getTime()) {
         dispatch(clearUser());
@@ -27,14 +35,15 @@ const GNB = () => {
     return () => {
       clearInterval(interval);
     };
-  }, [user.expirationTime, dispatch]);
+  }, [user.expirationTime, isLogin]);
 
   //logout feature
   const handleLogout = () => {
     dispatch(clearUser());
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setIsLogin(false);
     alert("정상적으로 로그아웃되었습니다.");
-
+    
   };
 
   return (
@@ -42,28 +51,29 @@ const GNB = () => {
       <div className="container">
         <h1 className="navigation">
 
-          <a href="/">
+          <Link to href="/">
           <img src={logoKakao} alt="Logo"  />
-          </a>
+          </Link>
 
         </h1>
         <ul>
-          <a href="/cart">
+          <Link to ="/cart">
             <img src={cart} alt="cart" height={30} />
-          </a>
-          {user.isLoggedIn && (
+          </Link>
+          {isLogin && (
+            
             <Fragment>
                 <button onClick={handleLogout}>로그아웃</button>
               
             </Fragment>
           )}
-          {!user.isLoggedIn && (
+          {!isLogin && (
             <Fragment>
               
-                <a href="./login">로그인</a>
+                <Link to ="/login">로그인</Link>
               
               
-                <a href="./register">회원가입</a>
+                <Link to ="/register">회원가입</Link>
               
             </Fragment>
           )}
