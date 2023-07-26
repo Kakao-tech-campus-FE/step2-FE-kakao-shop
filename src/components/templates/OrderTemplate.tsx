@@ -8,22 +8,22 @@ import { useNavigate } from 'react-router-dom';
 
 const OrderTemplate = () => {
   const { data, error, isLoading } = useQuery('cart', queryCart);
+  const { products, totalPrice } = data?.data?.response ?? { products: undefined, totalPriace: undefined };
   const { mutate: orderProduct } = useMutation({
     mutationFn: () => order(),
   });
   const navigate = useNavigate();
-  const orderResult = data?.data.response;
 
   return (
     <div>
       <h1>주문하기</h1>
       <h2>배송지 정보</h2>
       <h2>주문상품 정보</h2>
-      {orderResult.products &&
-        orderResult.products.map((item: CartProductData, index: number) => {
+      {products &&
+        products.map((item: CartProductData, index: number) => {
           return (
-            <>
-              <div key={item.id}>
+            <div key={item.id}>
+              <div>
                 <span>{item.productName}</span>
                 <span>{item.carts[index].option.optionName}</span>
               </div>
@@ -33,18 +33,18 @@ const OrderTemplate = () => {
               <div>
                 <span>{comma(item.carts[index].price)}원</span>
               </div>
-            </>
+            </div>
           );
         })}
       <div>
         <h3>총 주문 금액</h3>
-        <span>{comma(orderResult.totalPriace)}</span>
+        <span>{comma(totalPrice)}</span>
       </div>
       {/* 전체 동의, 구매조건 확인 및 결제 진행 동의  */}
       <button
         type="button"
         onClick={() => {
-          orderProduct(orderResult.products, {
+          orderProduct(products, {
             // 임시
             onError: () => {
               alert('주문에 실패했습니다.');
