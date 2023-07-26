@@ -1,5 +1,3 @@
 export default function Result() {
-  return (
-      <h1>Result</h1>
-  );
+  return <h1>Result</h1>;
 }
