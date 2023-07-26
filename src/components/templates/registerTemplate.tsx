@@ -1,7 +1,7 @@
 import {
   FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormTrigger,
 } from 'react-hook-form';
-import LinkButton from '../atoms/linkButton';
+import { Link } from 'react-router-dom';
 import RegisterForm from '../organisms/registerForm';
 import { RegisterFormData } from '../../types/formData';
 
@@ -64,9 +64,9 @@ export default function RegisterTemplate({
         ) : null}
       </div>
       <div className="text-center">
-        <LinkButton href="/">
+        <Link to="/">
           메인 페이지로
-        </LinkButton>
+        </Link>
       </div>
     </div>
   );

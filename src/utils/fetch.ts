@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const KAKAO_API_BASEURL = process.env.REACT_APP_KAKAO_API_URL;
 
-export function createAxiosInstance(
+export function createFetchInstance(
   baseURL: string | undefined,
   timeout: number,
 ) {

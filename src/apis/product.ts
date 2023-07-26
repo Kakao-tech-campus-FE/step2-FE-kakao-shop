@@ -1,13 +1,14 @@
-import { ProductData } from '../types/product';
-import { KAKAO_API_BASEURL, createAxiosInstance } from '../utils/axios';
+import { ProductThumbnail } from '../types/product';
+import { kakaoShoppingInstance } from './instance';
 
-const axiosProductInstance = createAxiosInstance(
-  KAKAO_API_BASEURL,
-  3000,
-);
-
-export async function getProductList(pageIndex: number): Promise<ProductData[]> {
-  const response = await axiosProductInstance.get(`/products?page=${pageIndex}`);
+export async function getProductList(pageIndex: number): Promise<ProductThumbnail[]> {
+  const response = await kakaoShoppingInstance.get(`/products?page=${pageIndex}`);
 
   return response.data.response;
+}
+
+export async function getProductDetail(productId: number) {
+  const response = await kakaoShoppingInstance.get(`/products/${productId}`);
+
+  return response;
 }

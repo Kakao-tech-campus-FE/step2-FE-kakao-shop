@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
 import ProductList from '../organisms/productList';
-import { ProductData } from '../../types/product';
+import { ProductThumbnail } from '../../types/product';
 import Loader from '../atoms/loader';
 
 interface MainProductListTemplateProps {
-  products: ProductData[] | undefined;
+  products: ProductThumbnail[] | undefined;
   isFetchingNextPage: boolean;
 }
 

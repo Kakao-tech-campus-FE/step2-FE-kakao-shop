@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LoginTemplate from '../templates/loginTemplate';
 import { LoginData } from '../../types/formData';
 import { loginRequest } from '../../store/slices/userSlice';
@@ -18,6 +18,10 @@ export default function LoginPage() {
     getValues,
   } = useForm<LoginData>({
     mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
   const user = useSelector((state: RootState) => state.user);

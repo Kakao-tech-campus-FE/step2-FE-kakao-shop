@@ -1,7 +1,6 @@
 import {
   FormState, UseFormGetFieldState, UseFormGetValues, UseFormRegister, UseFormSetValue, UseFormTrigger,
 } from 'react-hook-form';
-import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
 import { RegisterFormData } from '../../types/formData';
@@ -53,7 +52,7 @@ export default function RegisterForm({
             description="이메일"
           >
             <InputBox
-              inputType="email"
+              type="email"
               id="email"
               resetValue={() => setValue('email', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이메일을 입력하세요 (example@example.com)"
@@ -67,9 +66,15 @@ export default function RegisterForm({
                 onChange: debounce(async () => {
                   if (!getFieldState('email', formState).invalid) {
                     const value = getValues('email');
-                    if (await checkEmail(value)) {
-                      setIsEmailDuplicated(false);
-                    } else {
+                    try {
+                      const response = await checkEmail(value);
+
+                      if (response.data.success === true) {
+                        setIsEmailDuplicated(false);
+                      } else {
+                        setIsEmailDuplicated(true);
+                      }
+                    } catch (error) {
                       setIsEmailDuplicated(true);
                     }
                   }
@@ -89,7 +94,7 @@ export default function RegisterForm({
             description="이름"
           >
             <InputBox
-              inputType="text"
+              type="text"
               id="username"
               resetValue={() => setValue('username', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이름을 입력하세요"
@@ -113,7 +118,7 @@ export default function RegisterForm({
             description="비밀번호"
           >
             <InputBox
-              inputType="password"
+              type="password"
               id="password"
               resetValue={() => setValue('password', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 입력하세요"
@@ -144,7 +149,7 @@ export default function RegisterForm({
             description="비밀번호 확인"
           >
             <InputBox
-              inputType="password"
+              type="password"
               id="confirm-password"
               resetValue={() => setValue('confirmPassword', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 다시 입력하세요"
@@ -166,12 +171,13 @@ export default function RegisterForm({
       </div>
       <div className="px-2 text-center">
         {isLoading ? <Loader /> : (
-          <Button
-            isSubmitType
+          <button
+            type="submit"
+            className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
             disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
           >
             가입하기
-          </Button>
+          </button>
         )}
       </div>
     </form>

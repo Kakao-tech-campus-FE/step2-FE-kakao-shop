@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useProduct } from '../../hooks/query';
+import { useProductList } from '../../hooks/query';
 import MainProductListTemplate from '../templates/mainProductListTemplate';
 import Loader from '../atoms/loader';
 
@@ -7,7 +7,7 @@ export default function MainProductListPage() {
   const [pageIndex, setPageIndex] = useState(0);
   const {
     data, fetchNextPage, isInitialLoading, isFetchingNextPage, hasNextPage,
-  } = useProduct();
+  } = useProductList();
   const bottomObserverRef = useRef<HTMLDivElement>(null);
 
   const io = new IntersectionObserver((entries) => {

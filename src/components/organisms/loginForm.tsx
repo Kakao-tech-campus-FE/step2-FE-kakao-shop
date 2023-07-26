@@ -2,7 +2,6 @@ import {
   FormState, UseFormGetFieldState, UseFormRegister, UseFormSetValue,
 } from 'react-hook-form';
 import { LoginData } from '../../types/formData';
-import Button from '../atoms/button';
 import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
 import { LOGIN_ERROR_MSG } from '../../utils/errorMsg';
@@ -40,7 +39,7 @@ export default function LoginForm({
             description="이메일"
           >
             <InputBox
-              inputType="email"
+              type="email"
               id="email"
               resetValue={() => setValue('email', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="이메일을 입력하세요 (example@example.com)"
@@ -64,7 +63,7 @@ export default function LoginForm({
             description="비밀번호"
           >
             <InputBox
-              inputType="password"
+              type="password"
               id="password"
               resetValue={() => setValue('password', '', { shouldValidate: true, shouldDirty: true })}
               placeholder="비밀번호를 입력하세요"
@@ -91,12 +90,13 @@ export default function LoginForm({
       </div>
       <div className="px-2 text-center">
         {isLoading ? <Loader /> : (
-          <Button
-            isSubmitType
+          <button
+            type="submit"
+            className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
             disabled={!formState.isDirty || !formState.isValid || isLoading}
           >
             로그인
-          </Button>
+          </button>
         )}
       </div>
     </form>

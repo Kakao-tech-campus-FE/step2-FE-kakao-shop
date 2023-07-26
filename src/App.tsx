@@ -1,7 +1,7 @@
 import {
   BrowserRouter, Route, Routes,
 } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { Provider } from 'react-redux';
 import MainPage from './components/pages/mainPage';
 import RegisterPage from './components/pages/registerPage';
@@ -9,14 +9,9 @@ import LoginPage from './components/pages/loginPage';
 import ProductListPage from './components/pages/mainProductListPage';
 import { store } from './store';
 import MainLayout from './components/layouts/mainLayout';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-    },
-  },
-});
+import ProductDetailPage from './components/pages/productDetailPage';
+import CartPage from './components/pages/cartPage';
+import { queryClient } from './utils/query';
 
 function App() {
   return (
@@ -32,6 +27,8 @@ function App() {
             <Route element={<MainLayout />}>
               <Route path="/" element={<MainPage />} />
               <Route path="/product" element={<ProductListPage />} />
+              <Route path="/product/:productId" element={<ProductDetailPage />} />
+              <Route path="/cart" element={<CartPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

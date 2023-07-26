@@ -1,52 +1,42 @@
-import { ChangeHandler } from 'react-hook-form';
-import { forwardRef } from 'react';
+import { InputHTMLAttributes, forwardRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import Input from '../atoms/input';
-import XButton from '../atoms/xButton';
 
-interface InputBoxProps {
-  // Input props
-  inputType: string;
-  id: string;
-  placeholder?: string;
-
-  // Control input value
+interface InputBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   resetValue: React.MouseEventHandler<HTMLButtonElement>;
-
-  // react-hook-form register properties
-  onChange?: ChangeHandler;
-  onBlur?: ChangeHandler;
-  name?: string;
   isDirty: boolean;
 }
 
 const InputBox = forwardRef<HTMLInputElement, InputBoxProps>((
   {
-    inputType,
-    id,
-    placeholder = '',
     resetValue,
-    onChange,
-    onBlur,
-    name,
     isDirty,
+    ...props
   }: InputBoxProps,
   ref,
 ) => (
   <div className="flex flex-row px-2 pb-1 align-middle">
     <Input
-      inputType={inputType}
-      id={id}
-      placeholder={placeholder}
-      onChange={onChange}
-      onBlur={onBlur}
+      type={props.type}
+      id={props.id}
+      placeholder={props.placeholder}
+      onChange={props.onChange}
+      onBlur={props.onBlur}
       ref={ref}
-      name={name}
+      name={props.name}
     />
     <div className="my-auto flex">
-      <XButton
+      <button
+        type="button"
+        className={`${isDirty ? 'visible' : 'invisible'}`}
         onClick={resetValue}
-        isShow={isDirty}
-      />
+      >
+        <FontAwesomeIcon
+          icon={icon({ name: 'xmark', style: 'solid' })}
+          title="입력 초기화"
+        />
+      </button>
     </div>
   </div>
 ));
