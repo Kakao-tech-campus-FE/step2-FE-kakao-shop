@@ -4,6 +4,7 @@ import Photo from '@components/atoms/Photo';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PriceTag from '@components/atoms/PriceTag';
+import comma from '@utils/commaUtils';
 import ProductCardSkeleton from './ProductCardSkeleton';
 
 interface ProductCardProps {
@@ -27,8 +28,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
       </div>
       <div className="px-[10px]">
         <div>{product.productName}</div>
-        <div className="absolute inset-x-0 bottom-0 mt-5">
-          <PriceTag price={product.price} />
+        <div className="absolute inset-x-0 bottom-0 mt-5 text-xl">
+          <PriceTag>{comma(product.price)}원</PriceTag>
         </div>
       </div>
     </>
