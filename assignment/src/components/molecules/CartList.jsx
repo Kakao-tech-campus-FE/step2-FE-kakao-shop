@@ -29,6 +29,7 @@ const CartList = ({ data }) => {
     const count = cartItems
       .flatMap((item) => item.carts)
       .reduce((total, cart) => total + cart.quantity, 0);
+    return count;
   }, [cartItems]);
   // 옵션의 수량 변경과 가격 변경을 관리
   const handleOnChangeCount = (optionId, quantity, price) => {
@@ -134,17 +135,15 @@ const CartList = ({ data }) => {
         className="order-btn"
         onClick={() => {
           route('/order');
-          // mutate(updatePayload, {
-          //   onSuccess: (data) => {
-          //     route.push('/order');
-          //   },
-          //   onError: (error) => {},
-          // });
+          mutate(updatePayload, {
+            onSuccess: (data) => {
+              route.push('/order');
+            },
+            onError: (error) => {},
+          });
         }}
       >
-        <span>
-          총 {cartItems ? getTotalCartCountIncludeOptions() : 0}건 주문하기
-        </span>
+        <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
       </Button>
     </Container>
   );
