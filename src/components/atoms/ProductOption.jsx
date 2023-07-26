@@ -89,9 +89,8 @@ const ProductOption = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { mutate } = useMutation(addCart, {
     onSuccess: () => {
-      alert("주문되었습니다.");
+      alert("장바구니에 상품이 담겼습니다.");
       setSelectedOptions([]);
-      // window.location.reload();
     },
     onError: (error) => {
       if (error.response.status === 401) {
