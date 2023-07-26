@@ -3,51 +3,6 @@ export const errorCode = (error) => {
   const errorStatus = error.status;
   console.log(errorType);
   switch (errorStatus) {
-    case 200:
-      console.log("200(OK) : 요청이 성공적으로 되었습니다");
-      break;
-    case 201:
-      console.log(
-        "201(Created) : 요청이 성공적이였고 새로운 리소스가 생성되었습니다"
-      );
-      break;
-    case 202:
-      console.log("202(Accepted) : 요청은 접수되었지만 아직 처리중입니다");
-      break;
-    case 204:
-      console.log("204(No Content) : 요청은 성공했지만 콘텐츠가 없습니다");
-      break;
-    case 206:
-      console.log("206(Parial Content) : GET 요청의 일부만 성공했습니다");
-      break;
-    case 300:
-      console.log(
-        "300(Mulitple Choice): request에 대해 하나 이상의 응답이 가능, 하나를 선택해야 합니다"
-      );
-      break;
-    case 301:
-      console.log(
-        "301(Moved Permantly) : 요청한 리소스의 URI가 변경되었습니다"
-      );
-      break;
-    case 302:
-      console.log(
-        "302(Found) : 요청한 리소스의 URI가 일시적으로 변경되었습니다"
-      );
-      break;
-    case 303:
-      console.log(
-        "303(See Other) : 요청한 리소스를 다른 URI에서 GET요청을 통해 얻어야합니다."
-      );
-      break;
-    case 304:
-      console.log("304(Not modified) : 응답이 수정되지 않았습니다");
-      break;
-    case 305:
-      console.log(
-        "305(Use Proxy) : 요청한 응답은 반드시 프록시를 통해 접속해야 합니다"
-      );
-      break;
     case 400:
       console.log("400(Bad Request) : 요청 자체가 잘못되었습니다");
       break;

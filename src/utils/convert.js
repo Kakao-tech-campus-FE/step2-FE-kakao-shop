@@ -14,3 +14,10 @@ export const comma = (num) => {
 
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
+
+// 총액을 계산하는 함수
+export const calculateTotalPrice = (carts) => {
+  return carts.reduce((acc, cur) => {
+    return acc + cur.option.price * cur.quantity;
+  }, 0);
+};

@@ -30,14 +30,6 @@ const MainProductTemplate = () => {
     []
   );
 
-  const showLoader = () => {
-    loader.show();
-  };
-
-  const hideLoader = () => {
-    loader.hide();
-  };
-
   useEffect(() => {
     io.observer(bottomObserver.current);
   }, [io]);
@@ -47,8 +39,11 @@ const MainProductTemplate = () => {
   }, [dispatch, page, isEnd]);
 
   useEffect(() => {
-    if (!loading) hideLoader();
-    else showLoader();
+    if (loading) {
+      loader.show();
+    } else {
+      loader.hide();
+    }
   }, [loading]);
 
   return (

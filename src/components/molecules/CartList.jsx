@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
@@ -22,19 +22,21 @@ const CartList = ({ data }) => {
   });
 
   useEffect(() => {
-    setCartItems(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
+    const products = data?.response?.products || [];
+    const totalPrice = data?.response?.totalPrice || 0;
+    setCartItems(products);
+    setTotalPrice(totalPrice);
   }, [data]);
 
-  const getTotalCartCountIncludeOptions = useCallback(() => {
-    let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
-      });
-    });
-    return comma(count);
-  }, [cartItems]);
+  const getTotalCartCountIncludeOptions = () => {
+    const totalCount = cartItems.reduce((acc, item) => {
+      const itemTotal = item.carts.reduce((itemAcc, cart) => {
+        return itemAcc + cart.quantity;
+      }, 0);
+      return acc + itemTotal;
+    }, 0);
+    return comma(totalCount);
+  };
 
   /**
    * 옵션의 수량 변경과 가격 변경 관리
@@ -140,11 +142,11 @@ const CartList = ({ data }) => {
         onClick={() => {
           // update cart api
           // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우)
-          //post method
+          // post method
 
           mutate(updatePayload, {
             onSuccess: (data) => {
-              //navigate to order page
+              // navigate to order page
               route.push(paths.ORDER_PATH);
             },
             onError: (error) => {

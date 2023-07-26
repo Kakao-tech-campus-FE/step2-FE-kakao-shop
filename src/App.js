@@ -7,24 +7,31 @@ import OrderPage from "./pages/OrderPage";
 import MainLayout from "./layouts/MainLayout";
 import ErrorPage from "./pages/ErrorPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import { LoaderContainer, DefaultSpinner } from "react-global-loader";
 import * as paths from "./constants/urls";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 function App() {
   return (
     <div className="App">
+      <LoaderContainer>
+        <DefaultSpinner />
+      </LoaderContainer>
       <BrowserRouter>
         <Routes>
           <Route path={paths.LOGIN_PATH} element={<LoginPage />} />
           <Route path={paths.SIGNUP_PATH} element={<RegisterPage />} />
-          <Route path={paths.ERROR_PATH} element={<ErrorPage />}></Route>
-          <Route path={paths.ORDER_PATH} element={<OrderPage />} />
           <Route element={<MainLayout />}>
             <Route path={paths.HOME_PATH} element={<HomePage />} />
             <Route
               path={paths.PRODUCT_DETAIL_PATH}
               element={<ProductDetailPage />}
             />
+            <Route path={paths.ERROR_PATH} element={<ErrorPage />} />
+          </Route>
+          <Route element={<RequiredAuthLayout />}>
             <Route path={paths.CART_PATH} element={<CartPage />} />
+            <Route path={paths.ORDER_PATH} element={<OrderPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
