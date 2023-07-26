@@ -2,9 +2,11 @@ import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getCart, orderProducts } from "../../apis/api";
+
 const OrderTemplate = () => {
-  const { data, error, isError } = useQuery(['order'], getCart, {suspense: true});
-  const products = data?.data.response.products;
+  const { data } = useQuery(['order'], getCart, {
+    suspense: true
+  });
 
   const checkPaymentRef = useRef();
   const checkPrivacyRef = useRef();
@@ -12,9 +14,7 @@ const OrderTemplate = () => {
 
   const navigate = useNavigate();
 
-  if(isError) {
-    return <div>{error.message}</div>
-  }
+  const products = data?.data.response.products;
 
   const handleCheckAllChange = () => {
     const checkAllChecked = checkAllRef.current.checked;
@@ -32,7 +32,7 @@ const OrderTemplate = () => {
       return;
     }
     try {
-      const res = await orderProducts();
+      await orderProducts();
       alert('주문이 완료되었습니다.');
       navigate('/');
     } catch (e) {

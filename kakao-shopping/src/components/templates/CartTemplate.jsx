@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import GNB from "./GNB";
 
 const CartTemplate = () => {
-  const { data : cart, isError } = useQuery('cart', getCart, {suspense: true}); // api 호출로 카트 정보 가져오기
+  const { data : cart } = useQuery('cart', getCart, {suspense: true}); // api 호출로 카트 정보 가져오기
   const [totalPrice, setTotalPrice] = useState(cart?.data.response.totalPrice);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const CartTemplate = () => {
   }, [cart])
 
   const navigate = useNavigate();
-  if(isError) return (<div>error</div>);
+  
   const cartList = cart?.data.response.products.map((item) => {
     const optionDetails = item.carts;
 

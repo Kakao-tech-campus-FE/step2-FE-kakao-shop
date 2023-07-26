@@ -69,18 +69,13 @@ export const addCart = async (data) => {
   }
 };
 
-export const getCart = async () => {
-  try {
-    const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
-    const response = instance.get('carts', {
+export const getCart = () => {
+    const userAuthToken = JSON.parse(localStorage.getItem("userInfo"))?.token;
+    return instance.get('carts', {
       headers: {
         Authorization: userAuthToken
       }
     });
-    return response;
-  } catch (error) {
-    throw error;
-  }
 };
 
 export const modifyCart = async (data) => {
