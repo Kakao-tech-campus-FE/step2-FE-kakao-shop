@@ -70,4 +70,6 @@ export const updateCart = (options) => {
     return api.post("/carts/update", options);
 }
 
-export {checkDuplicateEmail, signUp, signIn, getProducts, getDetailProduct, addInCart, getCart, updateCart};
+export const saveOrder = async () => {
+    return await api.post("/orders/save ");
+}
