@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import ResultPage from "./pages/ResultPage";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             <OrderPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/result",
+        element: <ResultPage />,
       },
     ],
   },

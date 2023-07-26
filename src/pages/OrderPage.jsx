@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useQuery } from "react-query";
 import cartInstance from "../apis/cart";
 import { filterCartData, getAllQuantity } from "../utils/convert";
@@ -7,8 +7,13 @@ import AddressInfo from "../components/templates/AddressInfo";
 import OrderProductsInfo from "../components/templates/OrderProductsInfo";
 import PaymentInfo from "../components/templates/PaymentInfo";
 import AgreeCheckBox from "../components/templates/AgreeCheckBox";
+import AgreeModal from "../components/molecules/AgreeModal";
+import { OPTIONS } from "../utils/constant";
 
 export default function OrderPage() {
+  const agreeModalRef = useRef(null);
+  const [address, setAddress] = useState("주소를 검색해보세요.");
+  const [selectedReq, setSelectedReq] = useState(OPTIONS[0].name);
   const { error, data } = useQuery(["carts"], cartInstance.getCart, {
     staleTime: 1000 * 60,
   });
@@ -24,15 +29,26 @@ export default function OrderPage() {
           주문하기
         </h3>
         <div className="flex flex-col gap-3">
-          <AddressInfo />
+          <AddressInfo
+            address={address}
+            setAddress={setAddress}
+            selected={selectedReq}
+            setSelected={setSelectedReq}
+          />
           <OrderProductsInfo products={filteredData} />
           <PaymentInfo
             price={data.totalPrice}
             quantity={getAllQuantity(filteredData)}
           />
-          <AgreeCheckBox />
+          <AgreeCheckBox
+            price={data.totalPrice}
+            modalRef={agreeModalRef}
+            address={address}
+            selected={selectedReq}
+          />
         </div>
       </Container>
+      <AgreeModal ref={agreeModalRef} />
     </main>
   );
 }

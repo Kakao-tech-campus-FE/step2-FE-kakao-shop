@@ -41,6 +41,10 @@ class CartInstance extends ApiInstance {
       console.log(err);
     }
   };
+
+  order = async () => {
+    return await this.instance.post("/orders/save");
+  };
 }
 
 const cartInstance = new CartInstance();

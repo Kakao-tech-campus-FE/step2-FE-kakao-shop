@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { EMAIL_REGEX, PW_REGEX } from "../utils/regex";
+import { EMAIL_REGEX, PW_REGEX } from "../utils/constant";
 
 const ERROR_RESULT = {
   requiredEmail: ["이메일을 입력해 주세요.", "email"],

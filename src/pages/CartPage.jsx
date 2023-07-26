@@ -18,7 +18,6 @@ export default function CartPage() {
   if (error) {
     return <div>{error.message}</div>;
   }
-  console.log(data);
   const filteredData = filterCartData(data);
   return (
     <main className="flex flex-col justify-center items-center w-full min-h-full pb-8 bg-gray-100">
@@ -53,12 +52,3 @@ export default function CartPage() {
     </main>
   );
 }
-
-// const filterData = (data) => {
-//   const response = data.products.map((product) => ({
-//     ...product,
-//     carts: product.carts.filter((cart) => cart.quantity !== 0),
-//   }));
-//   const filteredData = response.filter((d) => d.carts.length !== 0);
-//   return filteredData;
-// };

@@ -5,18 +5,15 @@ import { getAddress } from "../../utils/convert";
 import Container from "../atoms/Container";
 import { SlArrowDown } from "react-icons/sl";
 import AddressGroup from "../organisms/AddressGroup";
+import { OPTIONS } from "../../utils/constant";
 
-const OPTIONS = [
-  { value: "placeholder", name: "배송 요청사항을 선택해주세요" },
-  { value: "option1", name: "배송전 연락바랍니다." },
-  { value: "option2", name: "부재시 경비실에 맡겨주세요." },
-  { value: "option3", name: "부재시 연락주세요." },
-];
-
-export default function AddressInfo() {
+export default function AddressInfo({
+  address,
+  setAddress,
+  selected,
+  setSelected,
+}) {
   const [isOpen, setIsOpen] = useState(true);
-  const [address, setAddress] = useState("주소를 검색해보세요.");
-  const [selected, setSelected] = useState(OPTIONS[0].name);
   const [isPostCodeOpen, setIsPostCodeOpen] = useState(false);
 
   const handleOpen = () => {
