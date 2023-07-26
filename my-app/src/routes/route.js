@@ -10,6 +10,7 @@ import ErrorPage from "../pages/ErrorPage";
 import CartsPage from "../pages/CartsPage";
 import OrderPage from "../pages/OrderPage";
 import RequiredAuthLayout from "../layouts/RequiredAuthLayout";
+import OrderDetailPage from "../pages/OrderDetailPage";
 
 const AppRoutes = () => {
   return (
@@ -19,7 +20,7 @@ const AppRoutes = () => {
           {/* 단독 레이아웃 */}
           <Route path="/login" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-
+          <Route path="/orders/complete/:id" element={<OrderDetailPage />} />
           {/* 공통 레이아웃 */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />

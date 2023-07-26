@@ -15,8 +15,7 @@ const OrderTemplate = ({ data }) => {
   const agreePolicyRef = useRef(null);
 
   const { mutate } = useMutation({
-    mutationKey: "order",
-    queryFn: () => order,
+    mutationFn: order,
   });
 
   const handleAllAgree = (e) => {
@@ -64,7 +63,6 @@ const OrderTemplate = ({ data }) => {
 
   return (
     <div className="container">
-      {console.log("TemplateData: ", data)}
       <div className="block mx-auto max-w-[1024px] w-[100%]">
         <div className="border py-2">
           <h1 className="text-sm font-bold">주문 확인</h1>
@@ -74,14 +72,18 @@ const OrderTemplate = ({ data }) => {
         </div>
         <div className="border py-4">
           <div className="name flex items-center gap-2">
-            <span>홍길동</span>
+            전도균
             <span className="text-blue-400 bg-blue-100 rounded-md text-xs p-1">
               기본배송지
             </span>
           </div>
         </div>
-        <div className="border py-4">전화번호</div>
-        <div className="border py-4">주소</div>
+        <div className="border py-4">
+          전화번호 <span>010-1234-5678</span>
+        </div>
+        <div className="border py-4">
+          주소 <span>광주광역시 북구 전남대학교</span>
+        </div>
         <div className="border py-4">
           <h2>주문상품 정보</h2>
         </div>
@@ -133,25 +135,20 @@ const OrderTemplate = ({ data }) => {
           </div>
           {/* 결제하기 버튼 */}
           <button
-            // className={`
-            //   ${bg-yellow-500 w-full p-4 font-medium}
-            // `}
+            className="bg-yellow-300 w-full p-2 font-medium"
             onClick={() => {
               // 동의가 이루어지지 않았을 경우 버튼 액션 막기
               if (agreePayment === false || agreePolicy === false) {
               }
 
-              // POST orders/save
-              // 장바구니에 있는 모든 항목이 결제로 저장
-              // 장바구니는 비워짐
-              // 페이지 이동 > 주문완료 페이지(리턴 받은 주문 아이디를 전달)
-              // orders/complete/:id
               mutate(null, {
                 onSuccess: (res) => {
-                  const id = res.id;
-                  navigate(`/orders/complete/${id}`);
+                  const id = res.data.response.id;
+                  navigate(`/orders/${id}`);
                 },
-                onError: () => {},
+                onError: () => {
+                  // 과제 2
+                },
               });
             }}
           >

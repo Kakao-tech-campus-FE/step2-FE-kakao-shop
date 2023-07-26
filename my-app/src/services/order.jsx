@@ -8,6 +8,7 @@ export const order = () => {
   return instance.post("/orders/save");
 };
 
-export const getOrderFromId = (id) => {
+export const getOrderFromId = (id, token) => {
+  instance.defaults.headers.common["Authorization"] = token;
   return instance.get(`/orders/${id}`);
 };

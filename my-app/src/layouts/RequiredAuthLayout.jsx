@@ -1,12 +1,35 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import Header from "../components/molecules/Header";
 import Footer from "../components/atoms/Footer";
+import { setUserInfo } from "../store/slices/userSlice";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { FaRegUser } from "react-icons/fa6";
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.user.token);
+  const isLogined = useSelector((state) => state.user.isLogined);
+  const [text, setText] = useState(null);
+  const dispatch = useDispatch();
+
+  const handleLogin = () => {
+    if (isLogined === true) {
+      dispatch(
+        setUserInfo({
+          isLogined: false,
+        })
+      );
+      navigate("/login");
+    } else {
+      setText(<FaRegUser size="26" />);
+      navigate("/login");
+    }
+  };
+
+  useEffect(() => {
+    isLogined ? setText(<FaRegUser size="26" />) : setText("로그인");
+  }, [isLogined]);
 
   useEffect(() => {
     if (!token) {
@@ -16,7 +39,12 @@ const RequiredAuthLayout = () => {
   }, [navigate]);
   return (
     <>
-      <Header />
+      <Header
+        onClick={() => {
+          handleLogin();
+        }}
+        text={text}
+      />
       <Outlet />
       <Footer />
     </>

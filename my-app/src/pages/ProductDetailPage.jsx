@@ -7,7 +7,7 @@ import ErrorPage from "./ErrorPage";
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { data, error, isLoading } = useQuery(`product/${id}`, () =>
+  const { data, error, isLoading } = useQuery(`/product/${id}`, () =>
     getProductById(id)
   );
   const product = data?.data?.response;
