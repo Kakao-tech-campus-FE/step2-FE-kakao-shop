@@ -8,6 +8,7 @@ import { registerRequest, checkUnique } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -189,6 +190,9 @@ const RegisterForm = () => {
             회원가입
           </Button>
         </Box>
+        <div className="text-center text-xs text-stone-500 p-3 ">
+          <Link to="/">홈으로</Link>
+        </div>
       </Container>
     </div>
   );

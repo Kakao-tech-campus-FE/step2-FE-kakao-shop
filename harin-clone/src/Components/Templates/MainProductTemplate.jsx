@@ -3,10 +3,7 @@ import Container from "../Atoms/Container";
 import ProductGrid from "../Organisms/ProductGrid";
 import { useEffect, useState, useRef } from "react";
 import { getProducts } from "../../Store/Slices/productSlice";
-import { useInfiniteQuery } from "@tanstack/react-query";
 import Loader from "../Atoms/Loader";
-import ProductSkeleton from "../Atoms/Skeleton";
-import PageNotFound from "../../Pages/PageNotFound";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -28,20 +25,14 @@ const MainProductTemplate = () => {
   //   getNextPageParam: (page) => page + 1, // 다음 페이지 매개 변수 추출
   // });
 
-  //bottomObserver.current && !loading &&  !isEnd  && bottomObserver.current
+  //bottomObserver.current && !loading &&  !isEnd
   // intersection observer
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         // if (!entry.isIntersecting) return;
-        if (!isEnd && !loading && entry.isIntersecting) {
-          console.log("페이지 여기서" + page);
-          console.log(bottomObserver.current);
-          setTimeout(
-            setPage((page) => page + 1),
-            5000
-          );
-          console.log("페이지 넘어감: " + page);
+        if (!isEnd && !loading && entry.isIntersecting && bottomObserver.current) {
+          setPage((page) => page + 1);
         }
       });
     },
@@ -52,7 +43,7 @@ const MainProductTemplate = () => {
 
   useEffect(() => {
     io.observe(bottomObserver.current);
-  }, [loading]); // 최초 마운트 시에만...
+  }, []); // 최초 마운트 시에만...
 
   useEffect(() => {
     dispatch(getProducts(page));
@@ -68,12 +59,9 @@ const MainProductTemplate = () => {
   //   },
   //   }
   // )
-  {
-    /* <Loader/> &&  */
-  }
 
   return (
-    <Container>
+    <Container className="mt-12">
       {loading && <Loader />}
       {error && <p>Error</p>}
       <ProductGrid products={products} />

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { updateCart } from "../../Servicies/cart";
 import CartItem from "../Atoms/CartItem";
+import "../../Styles/Card.css";
 
 const CartList = ({ data }) => {
   const navigate = useNavigate();
@@ -26,11 +27,14 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountInludeOptions = useCallback(() => {
     let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
+
+    cartItems &&
+      cartItems.forEach((item) => {
+        item.carts.forEach((cart) => {
+          count += cart.quantity;
+        });
       });
-    });
+
     return comma(count);
   }, [cartItems]);
 
@@ -79,43 +83,45 @@ const CartList = ({ data }) => {
     });
   };
   return (
-    <Container>
-      <Box>
-        <h1>장바구니</h1>
-      </Box>
-      <Card>
-        {/* 상품명 장바구니 */}
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount} // 개수 변경
-              />
-            );
-          })}
-      </Card>
-      <Card>
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
-        </div>
-      </Card>
-      <Button
-        className="order-btn"
-        onClick={() => {
-          mutate(updatePayload, {
-            onSuccess: (data) => {
-              navigate.push("/order");
-            },
-            onError: (error) => {},
-          });
-        }}
-      >
-        <span>총 {getTotalCartCountInludeOptions()}건 주문하기</span>
-      </Button>
-    </Container>
+    <div className="w-screen h-screen bg-stone-100 flex min-h-screen justify-center items-centers">
+      <Container className="mx-auto w-2/3 h-2/3 align-middle border-solid">
+        <Box className="card">
+          <h1 className="text-center font-bold font-l p-2">장바구니</h1>
+        </Box>
+        <Card className="card">
+          {/* 상품명 장바구니 */}
+          {Array.isArray(cartItems) &&
+            cartItems.map((item) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onChange={handleOnChangeCount} // 개수 변경
+                />
+              );
+            })}
+        </Card>
+        <Card className="card mt-5">
+          <div className="row">
+            <span className="expect">주문 예상금액</span>
+            <div className="sum-price">{comma(totalPrice)}원</div>
+          </div>
+        </Card>
+        <Button
+          className="order-btn"
+          onClick={() => {
+            mutate(updatePayload, {
+              onSuccess: (data) => {
+                navigate("/order");
+              },
+              onError: (error) => {},
+            });
+          }}
+        >
+          <span>총 {getTotalCartCountInludeOptions()}건 주문하기</span>
+        </Button>
+      </Container>
+    </div>
   );
 };
 

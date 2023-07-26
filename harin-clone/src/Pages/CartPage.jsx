@@ -7,7 +7,7 @@ import React from "react";
 
 //장바구니 페이지
 const CartPage = () => {
-  const { data } = useQuery("cart", getCart);
+  const { data } = useQuery(["cart"], getCart);
 
   return (
     <Suspense fallback={<Loader />}>

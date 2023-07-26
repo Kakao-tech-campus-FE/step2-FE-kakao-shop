@@ -1,7 +1,3 @@
-import { instance } from "../../Servicies";
-import { getImage } from "../../Servicies/product";
-import productSlice from "../../Store/Slices/productSlice";
-
 const Photo = ({ src, alt, imgClass }) => {
   return (
     <picture>
