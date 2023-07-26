@@ -10,7 +10,8 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import Loader from './components/atoms/Loader';
 import { ErrorPage } from './pages/ErrorPage';
 import CartPage from './pages/CartPage';
-import { OrderPage } from './pages/OrderPage';
+import OrderPage from './pages/OrderPage';
+import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 
 function App() {
   return (
@@ -23,9 +24,12 @@ function App() {
             <Route path="/" element={<NewHomePage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
           </Route>
-          <Route path="/cart" element={<CartPage />} />
+
           <Route path="/*" element={<ErrorPage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route element={<RequiredAuthLayout />}>
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/cart" element={<CartPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
