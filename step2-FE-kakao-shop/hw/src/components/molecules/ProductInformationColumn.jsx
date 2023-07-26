@@ -7,7 +7,13 @@ const ProductInformationColumn = ({ product }) => {
   return (
     <div className="product-information-column">
       <div className="col">
-        <Photo src={image} alt={productName} />
+        <Photo
+          src={
+            "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com" +
+            image
+          }
+          alt={productName}
+        />
       </div>
       <div className="col">
         <h1 className="name">{productName}</h1>

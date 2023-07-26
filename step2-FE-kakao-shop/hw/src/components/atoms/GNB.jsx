@@ -1,15 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../store/slices/userSlice";
+import { useEffect } from "react";
+import { setEmail, logOut } from "../../store/slices/userSlice";
 
 function GNB() {
-  const token = useSelector((state) => state.user.token);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.user.isLogined);
+  const email = localStorage.getItem("email");
+
+  // 이부분이 새로고침해도 로그인 유지 하는 부분
+  useEffect(() => {
+    if (email) {
+      dispatch(setEmail({ email }));
+    }
+  }, [dispatch, email]);
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    dispatch(setToken(null));
+    dispatch(logOut());
     alert("정상적으로 로그아웃되었습니다.");
   };
 
@@ -40,9 +50,9 @@ function GNB() {
             <span className="bar">|</span>
             <span className="login">
               {/* 로그인 버튼 */}
-              {token ? (
+              {loggedIn ? (
                 <Link
-                  to="/login"
+                  to="/"
                   onClick={handleLogout}
                   style={{ textDecoration: "none", color: "black" }}
                 >
@@ -52,7 +62,7 @@ function GNB() {
               ) : (
                 <Link
                   to="/login"
-                  onClick={handleLogout}
+                  // onClick={handleLogout}
                   style={{ textDecoration: "none", color: "black" }}
                 >
                   {" "}
