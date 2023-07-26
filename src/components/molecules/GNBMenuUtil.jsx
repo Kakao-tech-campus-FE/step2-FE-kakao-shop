@@ -22,13 +22,13 @@ const GNBMenuUtil = ({ className = "" }) => {
         );
       }, 0)
     );
-  });
+  }, [data]);
 
   return (
     <Box className={className}>
       <Link to="/cart">
         <img alt="shopping cart" src="/cart.png" className="w-9 h-9" />
-        <span className="absolute top-[24px] left-[24px] min-w-[17px] px-[5px] rounded-[17px] text-center text-[11px] text-white font-semibold bg-red-500">
+        <span className="absolute top-[24px] left-[22px] min-w-[17px] px-[5px] rounded-[17px] text-center text-[11px] text-white font-semibold bg-red-500">
           {itemNum && itemNum === 0 ? "" : itemNum}
         </span>
       </Link>

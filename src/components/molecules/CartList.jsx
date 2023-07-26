@@ -11,8 +11,9 @@ import Box from "../atoms/Box";
 import Container from "../atoms/Container";
 import { updateCart } from "../../services/api/cart";
 import { BsCart } from "react-icons/bs";
+import Loader from "../atoms/Loader";
 
-const CartList = ({ data }) => {
+const CartList = ({ data, isLoading }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -142,7 +143,9 @@ const CartList = ({ data }) => {
     });
   };
 
-  return (
+  return isLoading ? (
+    <Loader />
+  ) : (
     <main className="pt-2 pb-10 bg-[#F4F4F4] bg-opacity-70">
       <Container className="w-[870px] mx-auto">
         <Box className="h-12 border rounded bg-white text-center">
