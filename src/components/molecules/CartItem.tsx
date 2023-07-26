@@ -13,7 +13,7 @@ interface CartItemProps {
 const CartItem = ({ item, onChange }: CartItemProps) => {
   return (
     <div className="my-10">
-      <h5 className="text-xl my-3 font-bold">{item.productName}</h5>
+      <h5 className="text-xl mb-3 ml-5 font-bold">{item.productName}</h5>
       <Card>
         <div className="p-5">
           {item.carts.map((cart: CartedOptionData) => (
