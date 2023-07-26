@@ -121,7 +121,7 @@ const CartList = ({data}) => {
                 console.log('장바구니 수정 성공!');
             },
             onError: (error) => {
-                console.error(error);
+                alert(error.data.error.message);
             }
         });
     }, [updatePayload]);
@@ -162,7 +162,7 @@ const CartList = ({data}) => {
                         navigate("/order");
                     },
                     onError: (error) => {
-                        console.error(error);
+                        alert(error);
                     }
                 });
             }}>
