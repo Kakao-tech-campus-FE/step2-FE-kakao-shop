@@ -3,14 +3,35 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { getCart } from '../services/cart';
 import { comma } from '../../utils/comma';
 import { useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { order } from './../services/orders';
 
 const OrderTemplate = () => {
     const { data } = useQuery(["/order"], getCart);
     const [products, setProducts] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [agreePayment, setAgreePayment] = useState(false);
+    const [agreePolicy, setAgreePolicy] = useState(false);
     const navigate = useNavigate();
+
+    const allAgreeRef = useRef(null);
+    const agreePaymentRef = useRef(null);
+    const agreePolicyRef = useRef(null);
+
+    const handleAllAgree = (e) => {
+        const value = e.target.checked;
+        setAgreePayment(value);
+        setAgreePolicy(value);
+    }
+
+    const handleAgreement = (e) => {
+        const { name, checked } = e.target;
+        if (name === "payment-agree") {
+            setAgreePayment(checked);
+        } else if (name === "policy-agree") {
+            setAgreePolicy(checked);
+        }
+    }
 
     const { mutate } = useMutation({
         mutationKey: "order",
@@ -38,7 +59,7 @@ const OrderTemplate = () => {
                                 <span>{comma(cart.quantity)}개</span>
                             </div>
                             <div className='price'>
-                                <span>{comma(cart.price * cart.quantity)}원</span>
+                                <span>{comma(cart.option.price * cart.quantity)}원</span>
                             </div>
                         </div>
                     )
@@ -81,19 +102,46 @@ const OrderTemplate = () => {
             <OrderInformationBox>
                 <UserPermissionBox>
                     <UserPermissionAll>
-                        <input type="checkbox" id="all-agree" />
+                        <input 
+                            type="checkbox" 
+                            id="all-agree" 
+                            ref={allAgreeRef} 
+                            checked={agreePayment & agreePolicy} 
+                            onChange={handleAllAgree} 
+                        />
                         <label htmlFor='all-agree'>전체 동의</label>
                     </UserPermissionAll>
                     <UserPermission>
-                        <input type="checkbox" id="policy" />
+                        <input 
+                            type="checkbox" 
+                            id="agree"
+                            name="payment-agree"
+                            ref={agreePaymentRef}
+                            checked={agreePayment}
+                            onChange={handleAgreement}
+                        />
                         <label htmlFor='policy'>구매조건 확인 및 결제 진행 동의</label>
                     </UserPermission>
                     <UserPermission>
-                        <input type="checkbox" id="agree" />
+                        <input 
+                            type="checkbox" 
+                            id="policy" 
+                            name="policy-agree"
+                            ref={agreePolicyRef}
+                            checked={agreePolicy}
+                            onChange={handleAgreement}
+                        />
                         <label htmlFor='agree'>개인정보 제 3자 제공동의</label>
                     </UserPermission>
                 </UserPermissionBox>
-                <PaymentButton onClick={() => {
+                <PaymentButton 
+                backgroundColor={agreePayment && agreePolicy ? "#ffe100" : "#bbbbbb"}
+                onClick={() => {
+                    if (agreePayment === false || agreePolicy === false) {
+                        alert("모든 항목에 동의해주세요.");
+                        return
+                    }
+
                     mutate(null, {
                         onSuccess: (res) => {
                             console.log(res);
@@ -174,7 +222,8 @@ const UserPermission = styled.div`
 const PaymentButton = styled.div`
     width: 100%;
     padding: 8px 0 8px 0;
-    background-color: #ffe100;
+    background-color: ${(props) => props.backgroundColor};
     text-align: center;
     cursor: pointer;
+    transition: all 1s;
 `
