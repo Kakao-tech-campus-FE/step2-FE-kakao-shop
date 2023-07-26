@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import Loader from '../components/atoms/Loader';
+import OrderTemplate from '../components/templates/OrderTemplate';
 
 const OrderPage = () => {
-  return <div>결제 페이지</div>;
+  return (
+    <Suspense fallback={<Loader />}>
+      <OrderTemplate />
+    </Suspense>
+  );
 };
 
 export default OrderPage;
