@@ -1,4 +1,5 @@
 import React from 'react'
+import strPrice from 'utils/price'
 
 const TotalPrice = (props) => {
   return (
@@ -9,8 +10,6 @@ const TotalPrice = (props) => {
           <div>개</div>
         </div>
 
-
-
         <div className='flex space-x-2 ml-auto items-center'>
           <div>총 주문 금액</div>
           <div className='min-w-[5rem] ml-2
@@ -18,7 +17,7 @@ const TotalPrice = (props) => {
                         text-orange-600 
                         font-extrabold 
           '>
-            {props.price}
+            {strPrice(props.price)}
           </div>
         </div>
 

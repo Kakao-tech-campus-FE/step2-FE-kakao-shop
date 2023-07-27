@@ -6,10 +6,9 @@ import Section from 'components/atoms/Section';
 import SubmitButton from 'components/atoms/SubmitButton';
 import PageTitleBox from 'components/atoms/PageTitleBox';
 import TotalPrice from 'components/molecules/TotalPrice';
-import OptionSelected from 'components/molecules/OptionSelected';
+import OptionSelected from 'components/molecules/DetailPageOption/OptionSelected';
 import { CartOptionBox, CartCollectionBox } from 'components/atoms/cart/';
 
-import strPrice from 'utils/price';
 import { getCarts, updateCart } from 'api/cart';
 import { postOrder } from 'api/order';
 
@@ -95,7 +94,7 @@ const Cart = () => {
                       optionId={optionItem.id}
                       key={optionItem.option.optionName} 
                       optionName={optionItem.option.optionName} 
-                      price={strPrice(optionItem.price)}
+                      price={optionItem.price}
                       quantity={optionItem.quantity}
                       changeQuantity={changeCart}
                       clear={() => {changeCart(optionItem.id, 0, true)}}
@@ -109,7 +108,7 @@ const Cart = () => {
       }
       
       <TotalPrice 
-          price={!query.isFetching ? strPrice(query.data.totalPrice) : "- 원"} 
+          price={!query.isFetching ? query.data.totalPrice : "-"} 
           quantity={totalQ}
       />
 
