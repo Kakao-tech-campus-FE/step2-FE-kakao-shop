@@ -128,15 +128,15 @@ function OptionColumn({ product }) {
           mutate(
             selectedOptions.map((ele)=>{
             return{
-               optionId: ele.optionId,
+              optionId: ele.optionId,
               quantity: ele.quantity,
             }
              }),{
               onSuccess: () => {
               alert("장바구니에 담겼습니다.")
             },
-              onError: () => {
-              alert("장바구니 담기 실패 했습니다.")
+              onError: (error) => {
+                alert(error.data.error.message + '\n장바구니 담기 실패하였습니다')
               },
             }
           )

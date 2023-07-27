@@ -8,6 +8,7 @@ import CartItem from '../molecules/CartItem'
 import { updateCart } from '../../services/cart'
 import { comma } from '../../utils/convert'
 import Button from '../atoms/Button'
+import LinkTo from '../atoms/LinkTo'
 
 
 function CartList( {data, } ) {
@@ -21,6 +22,7 @@ function CartList( {data, } ) {
   })
 
   useEffect(()=>{
+    console.log("reloading")
     setCartItems(data?.data?.response?.products)
     setTotalPrice(data?.data?.response?.totalPrice)
   },[])
@@ -116,6 +118,7 @@ function CartList( {data, } ) {
         </div>
       </div>
 
+      <LinkTo to={'/order'}>
       <div className='bg-yellow-300 py-[20px]'>
         <Button onClick={()=>{
           // update cart api
@@ -141,7 +144,7 @@ function CartList( {data, } ) {
 
           // navigate to order page
           // 주문 페이지로 이동
-          route.push("/order")
+
 
           // 결제 프로세스
           // 1. 장바구니에 있는 모든 항목 그대로 결제
@@ -150,6 +153,7 @@ function CartList( {data, } ) {
           <span className='font-bold text-xl'>총 {getTotalCartCountIncludeOption()}건 주문하기</span>
         </Button>
       </div>
+      </LinkTo>
     </div>
   </div>
   

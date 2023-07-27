@@ -6,7 +6,9 @@ import ProductDetailPage from './components/pages/ProductDetailPage'
 import GlobalStyles from './GlobalStyles';
 import HomePage from "./components/pages/HomePage";
 import CartPage from "./components/pages/CartPage";
+import OrderPage from "./components/pages/OrderPage";
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
+import RequiredAuthLayout from './layouts/RequiredAuthLayout'
 
 function App() {
 
@@ -24,10 +26,15 @@ function App() {
           
             {/* 공통 레이아웃 */}
             <Route element={<MainLayout/>}>
-             <Route path="/" element={<HomePage/>}></Route>   
-             <Route path="/product/:id" element={<ProductDetailPage/>}></Route>   
-             <Route path="/cart" element={<CartPage/>}></Route> 
-           </Route>
+              <Route path="/" element={<HomePage/>}></Route>   
+              <Route path="/product/:id" element={<ProductDetailPage/>}></Route>   
+              {/* 사용자가 로그인됐을 때만 사용 가능한 페이지 */}
+            </Route>
+            
+            <Route element={<RequiredAuthLayout/>}>
+              <Route path="/order" element={<OrderPage />}></Route>
+              <Route path="/cart" element={<CartPage />}></Route> 
+            </Route>
          </Routes> 
         </BrowserRouter>
        </QueryClientProvider>  
