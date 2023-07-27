@@ -5,25 +5,20 @@ import axios from 'axios';
 import '../../../src/styles/organisms/ProductGrid.css'
 // import Loding from "../component/atoms/Loader";
 
-// 보라 {} 안 변수 임의로 바꿈
-const ProductGrid = ({ product }) => {
-  const [products, setData] = useState(null);
-  // const [loding, setLoding] = useState(true);
+/**
+ * @param {object} productsData - products
+ */
+const ProductGrid = ({ productsData }) => {
+  const [products, setProducts] = useState([]);
+
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/products');
-        const jsonData = await response.data.response;
-
-        setData(jsonData);
-        // setLoding(false);
-      } catch (error) {
-        console.log(`Error fetching data:`, error);
-      }
-    };
-    fetchData();
+    setProducts(productsData.data.response);
   }, []);
+
+
+
+
   return (
     <div className="product-grid">
       

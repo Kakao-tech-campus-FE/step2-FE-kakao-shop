@@ -1,16 +1,20 @@
 import ProductGrid from "../component/organisms/ProductGrid";
-import Loding from "../component/atoms/Loader";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { fetchProducts } from "../services/product";
+import Loader from "../component/atoms/Loader";
 
 const HomePage = () => {
-  const [loding, setLoding] = useState(true);
+  const { data: products, isLoading } = useQuery(["products"], fetchProducts, {
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
 
   return (
     <div>
-
       <h1>Home Page</h1>
-        <ProductGrid product />
+        {isLoading ? ( <Loader /> ) : ( <ProductGrid productsData={products} /> )}
     </div> 
     );
 

@@ -1,7 +1,7 @@
 import { instance } from "./index";
 
-export const fetchProducts = (page = 0) => {
-  return instance.get("/products" + "?page=" + page);
+export const fetchProducts = () => {
+  return instance.get("/products");
 };
 
 // cursor : 상품의 첫 페이지에서 가져오는 lastIndex
