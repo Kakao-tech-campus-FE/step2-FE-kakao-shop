@@ -16,7 +16,7 @@ export default function OrderSection() {
       {isLoading && <Loader />}
       {error && <span>Error</span>}
       {data && (
-        <div className=" bg-gray-100">
+        <div className="flex-grow bg-gray-100">
           <div className="inline-block w-[800px] mx-auto mt-4 mb-16">
             <h1 className="block py-2 bg-white border text-sm font-bold">주문하기</h1>
             <OrderInformation data={data.data.response} />

@@ -7,7 +7,7 @@ export default function Layout() {
   return (
     <>
       <GNB />
-      <div className="min-h-screen pt-16 pb-28">
+      <div className="min-h-screen pt-16 pb-28 flex flex-col">
         <Outlet />
       </div>
       <Footer />

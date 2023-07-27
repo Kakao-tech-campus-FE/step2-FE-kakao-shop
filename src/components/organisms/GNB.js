@@ -27,13 +27,9 @@ export default function GNB() {
         src={logoKakao}
         alt="logoKakao"
       />
-      <span className="mr-32 space-x-4">
-        <ImageLink
-          PhotoClassName="h-8"
-          to="/cart"
-          src={cart}
-          alt="cart"
-        />
+      <span className="flex items-center mr-32 space-x-4">
+        <ImageLink PhotoClassName="h-8" to="/cart" src={cart} alt="cart" />
+        <span className="border-x w-0 h-6" />
         {email ? (
           <>
             <span className="font-bold">
