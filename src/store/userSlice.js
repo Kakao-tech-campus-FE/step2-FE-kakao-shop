@@ -11,7 +11,7 @@ export const userSlice = createSlice({
     loginUser: (state, action) => {
       state.email = action.payload.email;
       const now = new Date();
-      const ttl = 60 * 1000;
+      const ttl = 3600 * 1000;
       state.expiry = now.getTime() + ttl;
       localStorage.setItem("email", action.payload.email);
       localStorage.setItem("expiry", state.expiry);

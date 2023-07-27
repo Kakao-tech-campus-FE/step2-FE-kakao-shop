@@ -112,7 +112,7 @@ const CartList = ({ data }) => {
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: () => {
-              navigate("/");
+              navigate("/order");
             },
             onError: (error) => {
               alert({ error });

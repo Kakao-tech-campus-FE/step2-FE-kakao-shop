@@ -39,7 +39,6 @@ export const authorizationInstance = axios.create({
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
-    "Cache-Control": "no-cache",
     // Authorization: localStorage.getItem("access_token"),
   },
 });
