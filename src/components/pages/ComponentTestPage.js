@@ -4,9 +4,9 @@ import Toggle from '../components/Toggle/Toggle';
 import CheckList from '../components/CheckList/CheckList';
 import React, { useState } from 'react';
 import ProcessBar from '../components/ProcessBar/processBar';
-import Toast from '../components/Toast/Toast';
+import Toast from '../../1주차 과제/Toast/Toast';
 import Carousel from '../components/Carousel/Carousel';
-import BreadCrumb from '../components/BreadCrumb/BreadCrumb';
+import BreadCrumb from '../../1주차 과제/BreadCrumb/BreadCrumb';
 
 import oneGrayCat from '../assets/images/a_gray_cat.png';
 import twoGrayCats from '../assets/images/two_gray_cats.jpg';

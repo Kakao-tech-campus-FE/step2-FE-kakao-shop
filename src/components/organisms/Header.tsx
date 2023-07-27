@@ -1,29 +1,37 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RootState } from 'src/store';
 import { loginStore } from '@store/slices/userSlice';
-import FilledButton from '@components/atoms/button/FilledButton';
+import { BsCart, BsPerson, BsBoxArrowInLeft } from 'react-icons/bs';
 
 const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleLogout = () => {
     // localStorage.removeItem('token');
     dispatch(loginStore({ isLoggedIn: false, email: null }));
   };
 
   return (
-    <div className="absolute w-screen bg-white ">
-      <div className=" h-header flex items-center mx-[100px] float-right">
+    <div className="absolute w-screen bg-white shadow-convexWhite">
+      <div className="flex justify-end items-center space-x-10 h-header mx-[100px] text-pointPupple">
+        <BsCart
+          size="25"
+          onClick={() => {
+            navigate('/cart');
+          }}
+        />
         {!isLoggedIn ? (
-          <Link to="/login">
-            <FilledButton>로그인</FilledButton>
-          </Link>
+          <BsPerson
+            size="25"
+            onClick={() => {
+              navigate('/login');
+            }}
+          />
         ) : (
-          <button type="button" onClick={handleLogout} className="absolute right-[10px]">
-            로그아웃
-          </button>
+          <BsBoxArrowInLeft size="25" onClick={handleLogout} />
         )}
       </div>
     </div>

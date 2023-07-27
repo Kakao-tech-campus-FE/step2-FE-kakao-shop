@@ -4,7 +4,7 @@ import React from 'react';
 const App = () => {
   const routes = mainRouter();
 
-  return <div>{routes}</div>;
+  return <div className="bg-backgroundPupple w-full h-full">{routes}</div>;
 };
 
 export default App;
