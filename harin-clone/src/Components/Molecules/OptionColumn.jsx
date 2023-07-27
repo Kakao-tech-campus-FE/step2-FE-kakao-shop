@@ -114,7 +114,7 @@ const OptionColumn = ({ product }) => {
           총 상품금액:{" "}
           {comma(
             selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price; // acc: 이전 값, cur: 햔재 선택된 element
+              return acc + cur.quantity * cur.price; // acc: 이전 값, cur: 현재 선택된 element
             }, 0)
           )}
           원

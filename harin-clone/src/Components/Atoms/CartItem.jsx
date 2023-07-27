@@ -3,33 +3,38 @@ import { Card } from "react-bootstrap";
 import "../../Styles/CartItem.css";
 import Counter from "./Counter";
 import { comma } from "../../Utils/convert";
+import DeleteButton from "./DeleteButton";
 
 const CartItem = ({ item, onChange }) => {
   return (
     <Box className="cart-item-box">
-      <h5>{item.productName}</h5>
+      <h5 className="font-bold p-3">{item.productName}</h5>
       {item.carts.map((cart) => (
-        <Card key={cart.id} className="cart">
-          <div className="option-name">
+        <div key={cart.id} className="m-3 p-3 border rounded">
+          <div className="text-sm mx-3">
             <span>{cart.option.optionName}</span>
           </div>
-          <div className="row">
-            <Counter
-              onIncrease={(count) => {
-                onChange(cart.id, count, cart.option.price);
-              }}
-              onDecrease={(count) => {
-                onChange(cart.id, count, -cart.option.price);
-              }}
-            />
-            <div className="price">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center">
+              <DeleteButton />
+              <Counter
+                quantity={cart.quantity}
+                onIncrease={(count) => {
+                  onChange(cart.id, count, cart.option.price);
+                }}
+                onDecrease={(count) => {
+                  onChange(cart.id, count, -cart.option.price);
+                }}
+              />
+            </div>
+            <div className="font-bold">
               <span>{comma(cart.option.price * cart.quantity)}원</span>
             </div>
           </div>
-        </Card>
+        </div>
       ))}
-      <Card className="total-price">
-        <div className="row">
+      <div className="m-3 mb-3 bg-stone-50 p-3 border rounded">
+        <div className="flex items-center justify-between font-bold">
           <h5>주문금액</h5>
           <div className="price">
             {comma(
@@ -40,7 +45,7 @@ const CartItem = ({ item, onChange }) => {
             원
           </div>
         </div>
-      </Card>
+      </div>
     </Box>
   );
 };

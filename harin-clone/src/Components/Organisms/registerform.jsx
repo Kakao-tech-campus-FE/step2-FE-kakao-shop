@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-  const { validPassword, setValidPassword } = useState(false);
+  // const [isValidPw, setIsValidPw] = useState(false);
 
   const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
 
@@ -27,9 +27,7 @@ const RegisterForm = () => {
     const validPwLength = 8 <= password.length && password.length <= 20;
     const validPwStructure = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/;
 
-    if (!password) {
-      return validPassword;
-    }
+    if (!password) return;
     if (!validPwLength) {
       return <p className="text-sm text-right m-3 text-red-400">8에서 20자 이내여야 합니다.</p>;
     } else if (!validPwStructure.test(password)) {
@@ -38,10 +36,10 @@ const RegisterForm = () => {
           영문, 숫자, 특수문자가 포함되어야하고 공백이 포함될 수 없습니다.
         </p>
       );
-    } else {
-      setValidPassword(true);
-      return validPassword;
     }
+    //  else {
+    //   setIsValidPw(!isValidPw);
+    // }
   };
 
   const validEmail = (email) => {
@@ -56,10 +54,10 @@ const RegisterForm = () => {
   };
 
   const validAll = (props) => {
-    if (props.email && props.username && props.password && props.passwordConfirm && isUnique && validPassword) {
-      return false;
-    } else {
+    if (props.email && props.username && props.password && props.passwordConfirm && isUnique) {
       return true;
+    } else {
+      return false;
     }
   };
 
@@ -143,7 +141,9 @@ const RegisterForm = () => {
           placeholder="비밀번호를 입력하세요"
           label="비밀번호"
           value={value.password}
-          onChange={handleOnChange}
+          onChange={(e) => {
+            handleOnChange(e);
+          }}
           className={inputStyle}
         />
         {validPw(value.password)}
@@ -166,10 +166,10 @@ const RegisterForm = () => {
         <Box className="m-3">
           <Button
             onClick={registerHandler}
-            disabled={validAll(value)}
+            disabled={!validAll(value)}
             className={
-              validAll(value)
-                ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	"
+              !validAll(value)
+                ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 text-stone-500 transition-colors	"
                 : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"
             }
           >

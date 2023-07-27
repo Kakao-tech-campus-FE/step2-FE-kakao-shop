@@ -12,7 +12,6 @@ const Navigation = () => {
   const handleLogout = () => {
     localStorage.removeItem("token"); // 로그아웃 시 토큰을 삭제함
     localStorage.removeItem("email");
-    // localStorage.removeItem("name");
 
     dispatch(setEmail(null)); // 이메일 상태도 null로 바꾸기
     alert("정상적으로 로그아웃 되었습니다.");

@@ -8,6 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { updateCart } from "../../Servicies/cart";
 import CartItem from "../Atoms/CartItem";
 import "../../Styles/Card.css";
+import DeleteButton from "../Atoms/DeleteButton";
 
 const CartList = ({ data }) => {
   const navigate = useNavigate();
@@ -83,32 +84,45 @@ const CartList = ({ data }) => {
     });
   };
   return (
-    <div className="w-screen h-screen bg-stone-100 flex min-h-screen justify-center items-centers">
-      <Container className="mx-auto w-2/3 h-2/3 align-middle border-solid">
+    <div className=" bg-stone-100 flex min-h-screen justify-center items-centers">
+      <Container className="mx-auto w-3/5 h-2/3 align-middle border-solid">
         <Box className="card">
           <h1 className="text-center font-bold font-l p-2">장바구니</h1>
+          <div className="flex justify-between bg-stone-50 ">
+            <div className="p-3 ">
+              <input type="checkbox" id="selectAll" />
+              <label htmlFor="selectAll" className="pl-1 text-sm">
+                전체 선택
+              </label>
+            </div>
+            <DeleteButton />
+          </div>
         </Box>
-        <Card className="card">
-          {/* 상품명 장바구니 */}
-          {Array.isArray(cartItems) &&
-            cartItems.map((item) => {
-              return (
+
+        {/* <Card> */}
+        {/* 상품명 장바구니 */}
+        {Array.isArray(cartItems) &&
+          cartItems.map((item) => {
+            return (
+              <>
                 <CartItem
                   key={item.id}
                   item={item}
                   onChange={handleOnChangeCount} // 개수 변경
                 />
-              );
-            })}
-        </Card>
-        <Card className="card mt-5">
-          <div className="row">
-            <span className="expect">주문 예상금액</span>
-            <div className="sum-price">{comma(totalPrice)}원</div>
+                <div className="h-3 bg-stone-100"></div>
+              </>
+            );
+          })}
+        {/* </Card> */}
+        <Card className="card mt-2">
+          <div className="flex justify-between p-5">
+            <span className="font-bold text-xl">주문 예상금액</span>
+            <div className="font-bold text-blue-500">{comma(totalPrice)}원</div>
           </div>
         </Card>
         <Button
-          className="order-btn"
+          className="bg-yellow-300 w-full p-3 font-bold mb-20"
           onClick={() => {
             mutate(updatePayload, {
               onSuccess: (data) => {
@@ -118,7 +132,7 @@ const CartList = ({ data }) => {
             });
           }}
         >
-          <span>총 {getTotalCartCountInludeOptions()}건 주문하기</span>
+          <span>{getTotalCartCountInludeOptions()}건 주문하기</span>
         </Button>
       </Container>
     </div>

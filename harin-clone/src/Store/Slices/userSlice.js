@@ -37,7 +37,7 @@ const userSlice = createSlice({
 export const loginRequest = createAsyncThunk("user/loginRequest", async (data) => {
   const { email, password } = data;
   const response = await login({ email, password }); // post: 데이터 생성, 데이터 조회.
-  return response.data;
+  return response;
 });
 
 export const registerRequest = createAsyncThunk("user/registerRequest", async (data) => {

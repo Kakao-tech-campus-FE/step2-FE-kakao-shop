@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
-import "../../Styles/Card.css"
+import { Link } from "react-router-dom";
+import "../../Styles/Card.css";
 
-const Card = ({ to, children }) => {
+const Card = ({ to, children, className = "card" }) => {
   return (
-    <Link className="card" to={to}>
+    <Link className={className} to={to}>
       {children}
     </Link>
-  )
-}
+  );
+};
 
 export default Card;
