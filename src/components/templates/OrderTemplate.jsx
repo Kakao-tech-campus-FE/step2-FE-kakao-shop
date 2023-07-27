@@ -1,20 +1,20 @@
-import {useMutation} from "react-query";
-import {getCart} from "../../services/cart";
 import {comma} from "../../utils/convert";
 import {useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import useToast from "../../hooks/useToast";
+import SelectBox from "../atoms/SelectBox";
+import {order} from "../../services/order";
+import {useMutation} from "react-query";
 
 const OrderTemplate = ({data}) => {
-
-    console.log("tempalate", data);
 
     const {products, totalPrice} = data?.data?.response;
 
     const {mutate} = useMutation({
-        queryFn: () => getCart(),
+        mutationFn: order,
         mutationKey: "order",
     })
+
     const navigate = useNavigate();
 
     const [agreePayment, setAgreePayment] = useState(false);
@@ -41,11 +41,15 @@ const OrderTemplate = ({data}) => {
     }
 
     const {showToast} = useToast();
+    const [selectBoxValue, setSelectBoxValue] = useState("")
+    const handleOnChangeSelectBox = (e) => {
+        setSelectBoxValue(e.target.value);
+    }
 
     const OrderItems = () => products?.map((item) =>
         item.carts.filter((cart) => cart.quantity !== 0).map((cart) => (
             <div key={cart.id} className={"flex flex-col p-4 items-start text-gray-700 gap-2 border border-gray-300"}>
-                <div className={"order-product-name font-semibold"}>
+                <div className={"order-product-name font-bold"}>
                     <span>{`${item.productName} - ${cart.option.optionName}`}</span>
                 </div>
                 <div className={"product-quantity text-sm"}>
@@ -60,6 +64,12 @@ const OrderTemplate = ({data}) => {
 
     return (
         <div className={"order-template flex flex-col mx-auto max-w-[1024px] w-[100%] px-20 gap-2"}>
+            <botton onClick={() => {
+                console.log("안녕")
+                showToast("안녕보튼")
+            }}>
+                토스트
+            </botton>
             <div className={"h-20 flex items-center justify-center"}>
                 <h1 className={"text-4xl font-bold"}>주문하기</h1>
             </div>
@@ -72,10 +82,27 @@ const OrderTemplate = ({data}) => {
                         <span className={"text-lg"}>박동진</span>
                         <span className={"badge text-blue-400 bg-blue-100 rounded-md p-1 text-sm"}>기본배송지</span>
                     </div>
-                    <input type={"text"} className={"px-4 py-2 border-b border-b-gray-300 font-semibold"} placeholder={"휴대폰 번호 '-' 제외"}/>
+                    <input type={"text"}
+                           className={"px-4 py-2 border-b border-b-gray-300 font-semibold"}
+                           placeholder={"휴대폰 번호 '-' 제외"}/>
                     <input type={"text"} className={"px-4 py-2 border-b border-b-gray-300"} placeholder={"주소"}/>
                     <input type={"text"} className={"px-4 py-2 border-b border-b-gray-300"} placeholder={"상세주소"}/>
-                    <input type={"text"} className={"px-4 py-2 border-b border-b-gray-300"} placeholder={"배송 메모"}/>
+                    <SelectBox className={"px-3 py-2 border-b border-b-gray-300"}
+                               options={[
+                                   {label: "배송 전 연락바랍니다.", value: "배송 전 연락바랍니다."},
+                                   {label: "부재 시 경비실에 맡겨주세요", value: "부재 시 경비실에 맡겨주세요."},
+                                   {label: "부재 시 문 앞에 놓아주세요", value: "부재 시 문 앞에 놓아주세요."},
+                                   {label: "부재 시 연락주세요", value: "부재 시 연락주세요."},
+                                   {label: "직접 입력", value: ""}
+                               ]}
+                               defaultValue={5}
+                               onChange={handleOnChangeSelectBox}
+                    />
+                    <input type={"text"}
+                           className={"px-4 py-2 border-b border-b-gray-300"}
+                           placeholder={"배송 메모"}
+                           onChange={handleOnChangeSelectBox}
+                           value={selectBoxValue}/>
                 </div>
             </div>
             <div className={"border border-gray-300 flex flex-col gap-4 px-10 pb-10"}>
@@ -145,6 +172,7 @@ const OrderTemplate = ({data}) => {
                             showToast("동의하지 않은 항목이 있습니다.");
                             return;
                         }
+                        console.log("mutate", mutate)
                         mutate(null, {
                             onSuccess: () => {
                                 alert("주문이 완료되었습니다.")
