@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderTemplate from 'components/templates/OrderTemplate'
+import Order from 'components/organisms/Order'
 import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query'
 import { getOrders } from 'api/order'
@@ -35,7 +35,7 @@ const OrderPage = () => {
   ]
 
   return (
-    <OrderTemplate 
+    <Order
       orderId={orderId} 
       query={query} 
       userAddress={userAddress} 
