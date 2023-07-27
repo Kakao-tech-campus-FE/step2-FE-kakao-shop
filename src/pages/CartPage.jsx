@@ -1,9 +1,9 @@
 import React from 'react'
-import CartTemplate from '../components/templates/CartTemplate';
+import Cart from 'components/organisms/Cart';
 
 const CartPage = () => {
   return (
-      <CartTemplate />
+      <Cart />
   )
 }
 

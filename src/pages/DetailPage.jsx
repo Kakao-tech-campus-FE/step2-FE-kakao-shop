@@ -1,9 +1,38 @@
 import React from "react";
-import DetailTemplate from "../components/templates/DetailTemplate";
+import { useQuery } from 'react-query';
+import { useParams } from "react-router-dom";
+import getDetail from "api/getDetail"
+
+import Image from "components/atoms/Image";
+import DetailOption from "components/organisms/DetailOption";
+import { InfoBox, DetailContainer, ImgBox, RightContainer } from "components/atoms/detail";
 
 const DetailPage = () => {
+
+  const params = useParams();
+  
+  const { data: obj } = useQuery( 
+    ["getproductdetail", params.id], 
+    () => getDetail(params.id),
+    { suspense: true }
+  )
+
+
   return (
-    <DetailTemplate />
+    <>
+      {obj && 
+      <DetailContainer>
+        <ImgBox>
+          <Image image={obj.image} alt={obj.productName}/>
+        </ImgBox>
+        
+        <RightContainer>
+          <InfoBox name={obj.productName} price={obj.price} />
+          <DetailOption options={obj.options} />
+        </RightContainer>
+      </DetailContainer>
+      }
+    </>
   );
 };
 
