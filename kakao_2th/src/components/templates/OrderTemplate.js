@@ -4,13 +4,37 @@ import { order } from "../../services/order"
 import { useNavigate } from "react-router-dom"
 
 const OrderTemplate ({ data }) => {
-    const { product, totalPrice } = data?.data?.response
+    const { products, totalPrice } = data?.data?.response
     const navigate = useNavigate()
 
     const { mutate } = useMutation({
         mutationKey: "order",
         queryFn: () => order
     })
+
+    const OrderItems = () => {
+        let renderComponent = []
+
+        products.forEach((item) => {
+            renderComponent.push(item.carts.map((cart) => {
+                return (
+                    <div key={cart.id}>
+                        <div className="product-name">
+                            <span>{`${item.productName} - ${cart.option.optionName}`}</span>
+                        </div>
+                        <div className="quantity">
+                            <span>{comma(cart.quantity)}개</span>
+                        </div>
+                        <div className="price">
+                            <span>{comma(cart.price) * cart.quantity}원</span>
+                        </div>
+                    </div>
+                )
+            }))
+        })
+
+        return renderComponent
+    }
 
     return (
         <div className="py-20">
@@ -38,22 +62,8 @@ const OrderTemplate ({ data }) => {
                 <div className="border py-4">
                     <h2>주문상품 정보</h2>
                 </div>
-                {carts.map((item) => {
-                    return (
-                        <div key={item.id}>
-                            <div className="product-name">
-                                <span>{item.name}</span>
-                                <span>{item.carts[0].optionName}</span>
-                            </div>
-                            <div className="quantity">
-                                <span>{comma(item.quantity)}개</span>
-                            </div>
-                            <div className="price">
-                                <span>{comma(item.price)}원</span>
-                            </div>
-                        </div>
-                    )
-                })}
+                <OrderItems />
+
                 <div className="border p-4 flex items-center justyfy-between">
                     <h3>총 주문 금액</h3>
                     <span className="price">{comma(totalPrice)}원</span>
