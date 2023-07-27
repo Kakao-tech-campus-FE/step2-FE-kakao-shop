@@ -35,7 +35,7 @@ const Order = () => {
           CHECKBOX_DATA={CHECKBOX_DATA}
         />
         <TotalResult totalPrice={totalPrice} />
-        <Submit isAllChecked={isAllChecked} />
+        <Submit isAllChecked={isAllChecked} totalPrice={totalPrice} cartProducts={cartProducts} />
       </S.Container>
     </S.Root>
   );
