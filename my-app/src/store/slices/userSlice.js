@@ -31,13 +31,13 @@ const userSlice = createSlice({
       state.isLogined = true;
       state.token = action.payload.headers.authorization;
       state.username = action.payload.username;
-      console.log("userSlice/Token: ", state.token);
+      state.error = null;
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
       state.isLogined = false;
       state.email = null;
-      state.error = action.payload.error.message;
+      state.error = "error";
     });
   },
 });

@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import Title from "../atoms/Title";
 import useInput from "../../hooks/useInput";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginRequest, setUserInfo } from "../../store/slices/userSlice";
 import { useState } from "react";
 import Label from "../atoms/Label";
@@ -13,6 +13,7 @@ import { useQuery } from "react-query";
 const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const error = useSelector((state) => state.user.error);
   const [correct, setCorrect] = useState(true);
   const [message, setMessage] = useState("");
 
@@ -62,6 +63,10 @@ const SignInForm = () => {
               password: value.password,
             })
           );
+          if (error === "error") {
+            alert("로그인 에러 발생");
+            return;
+          }
           navigate("/");
         }}
       >

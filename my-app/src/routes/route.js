@@ -31,7 +31,7 @@ const AppRoutes = () => {
             <Route path="/order" element={<OrderPage />} />
           </Route>
           {/* 에러페이지: 정해진 경로가 아닌 경우에 해당 페이지로 이동 */}
-          <Route path="/*" element={<ErrorPage />} />
+          <Route path="/error/:id/:message" element={<ErrorPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
