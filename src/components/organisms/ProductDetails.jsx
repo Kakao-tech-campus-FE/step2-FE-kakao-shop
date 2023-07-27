@@ -18,9 +18,17 @@ const Container = styled.div`
 
 const ProductDetails = () => {
   const productId = useParams();
-  const { isLoading, data: product } = useQuery(["product", productId], () =>
-    fetchProductById(productId)
-  );
+  const {
+    isLoading,
+    data: product,
+    refetch,
+  } = useQuery(["product", productId], () => fetchProductById(productId), {
+    // 사용자에게 alert로 문제를 알리고, refetch를 통해 계속 페칭
+    onError: () => {
+      alert("네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요.");
+      refetch();
+    },
+  });
 
   const productDetails = product?.data.response;
 

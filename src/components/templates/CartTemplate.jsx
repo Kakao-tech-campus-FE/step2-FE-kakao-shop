@@ -14,9 +14,15 @@ const Container = styled.div`
 `;
 
 const CartTemplate = () => {
-  const { data: cart, isLoading } = useQuery(["cart"], showCart, {
-    onError: (err) => {
-      console.log(err);
+  const {
+    data: cart,
+    isLoading,
+    refetch,
+  } = useQuery(["cart"], showCart, {
+    // 사용자에게 alert로 문제를 알리고, refetch를 통해 계속 페칭
+    onError: () => {
+      alert("네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요.");
+      refetch();
     },
   });
 

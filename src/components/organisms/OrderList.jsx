@@ -84,6 +84,10 @@ const OrderList = ({ cart }) => {
       const orderId = res.data.response.id;
       navigate(`/orders/${orderId}`);
     },
+    // 사용자에게 alert로 문제를 알림
+    onError: () => {
+      alert("네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요.");
+    },
   });
 
   const handleItemCheck = (itemId) => {
