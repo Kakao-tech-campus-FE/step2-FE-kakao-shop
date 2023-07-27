@@ -1,8 +1,8 @@
 import React from "react";
-import logoImage from "../assets/logoKakao.png";
-import LinkedIcon from "../components/molecules/LinkedIcon";
-import Button from "../components/atoms/Button";
 import { useNavigate } from "react-router-dom";
+import LinkedIcon from "../components/molecules/Common/LinkedIcon";
+import Button from "../components/atoms/Button";
+import logoImage from "../assets/logoKakao.png";
 
 export default function NotFound() {
   const navigate = useNavigate();

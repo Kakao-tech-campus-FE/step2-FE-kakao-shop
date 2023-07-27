@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
-import ProductGrid from "../components/organisms/ProductGrid";
-import ProductsGridSkeleton from "../components/organisms/ProductsGridSkeleton";
+import ProductGrid from "../components/organisms/Main/ProductGrid";
+import ProductsGridSkeleton from "../components/organisms/Main/ProductsGridSkeleton";
 
 export default function MainPage() {
   return (

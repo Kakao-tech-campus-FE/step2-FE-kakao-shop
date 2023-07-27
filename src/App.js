@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/templates/Header";
+import Header from "./components/templates/Header/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Suspense } from "react";
-import Loader from "./components/molecules/Loader";
+import Loader from "./components/molecules/Common/Loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

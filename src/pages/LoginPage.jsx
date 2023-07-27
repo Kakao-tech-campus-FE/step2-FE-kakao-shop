@@ -1,7 +1,7 @@
 import React from "react";
-import LoginForm from "../components/organisms/LoginForm";
+import LoginForm from "../components/organisms/Auth/LoginForm";
+import LinkedIcon from "../components/molecules/Common/LinkedIcon";
 import logoText from "../assets/logoKakaoText.png";
-import LinkedIcon from "../components/molecules/LinkedIcon";
 
 export default function LoginPage() {
   return (

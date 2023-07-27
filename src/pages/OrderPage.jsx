@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useQuery } from "react-query";
+import Container from "../components/atoms/Container";
+import AddressInfo from "../components/templates/Order/AddressInfo";
+import OrderProductsInfo from "../components/templates/Order/OrderProductsInfo";
+import PaymentInfo from "../components/templates/Order/PaymentInfo";
+import AgreeCheckBox from "../components/templates/Order/AgreeCheckBox";
+import AgreeModal from "../components/molecules/Order/AgreeModal";
 import cartInstance from "../apis/cart";
 import { filterCartData, getAllQuantity } from "../utils/convert";
-import Container from "../components/atoms/Container";
-import AddressInfo from "../components/templates/AddressInfo";
-import OrderProductsInfo from "../components/templates/OrderProductsInfo";
-import PaymentInfo from "../components/templates/PaymentInfo";
-import AgreeCheckBox from "../components/templates/AgreeCheckBox";
-import AgreeModal from "../components/molecules/AgreeModal";
 import { OPTIONS } from "../utils/constant";
 
 export default function OrderPage() {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import paymentInstance from "../apis/payment";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
+import paymentInstance from "../apis/payment";
 import cartInstance from "../apis/cart";
 
 export default function PayRedirectPage() {

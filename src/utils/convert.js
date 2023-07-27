@@ -30,6 +30,7 @@ export const discount = (num) => {
   return (num * 0.8).toFixed(0);
 };
 
+// 장바구니에서 quantity 값이 0인 상품들을 걸러내는 함수
 export const filterCartData = (data) => {
   const response = data.products.map((product) => ({
     ...product,
@@ -37,6 +38,14 @@ export const filterCartData = (data) => {
   }));
   const filteredData = response.filter((d) => d.carts.length !== 0);
   return filteredData;
+};
+
+// 장바구니에서 quantity 값이 0이 아닌 상품들의 총 개수를 구하는 함수
+export const getAllQuantity = (products) => {
+  return products.reduce(
+    (pre, cur) => pre + cur.carts.reduce((pre, cur) => pre + cur.quantity, 0),
+    0
+  );
 };
 
 export const getAddress = (data) => {
@@ -54,11 +63,4 @@ export const getAddress = (data) => {
     fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
   }
   return `(${data.zonecode}) ${fullAddress}`;
-};
-
-export const getAllQuantity = (products) => {
-  return products.reduce(
-    (pre, cur) => pre + cur.carts.reduce((pre, cur) => pre + cur.quantity, 0),
-    0
-  );
 };

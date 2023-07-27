@@ -1,7 +1,7 @@
 import React from "react";
-import SignupForm from "../components/organisms/SignupForm";
+import SignupForm from "../components/organisms/Auth/SignupForm";
+import LinkedIcon from "../components/molecules/Common/LinkedIcon";
 import logoText from "../assets/logoKakaoText.png";
-import LinkedIcon from "../components/molecules/LinkedIcon";
 
 export default function SignupPage() {
   return (

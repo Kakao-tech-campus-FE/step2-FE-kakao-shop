@@ -1,13 +1,13 @@
 import React from "react";
 import { useQuery } from "react-query";
-import cartInstance from "../apis/cart";
-import CartProducts from "../components/templates/CartProducts";
+import { useNavigate } from "react-router-dom";
+import CartProducts from "../components/templates/Cart/CartProducts";
 import Box from "../components/atoms/Box";
-import { comma, filterCartData } from "../utils/convert";
 import Button from "../components/atoms/Button";
 import Container from "../components/atoms/Container";
-import NullCart from "../components/organisms/NullCart";
-import { useNavigate } from "react-router-dom";
+import NullCart from "../components/organisms/Cart/NullCart";
+import { comma, filterCartData } from "../utils/convert";
+import cartInstance from "../apis/cart";
 
 export default function CartPage() {
   const navigate = useNavigate();
