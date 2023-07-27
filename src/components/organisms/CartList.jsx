@@ -3,10 +3,15 @@ import CartItem from "../molecules/CartItem";
 import {comma} from "../../utils/convert";
 import {updateCart} from "../../services/cart";
 import {useMutation} from "react-query";
+import {useNavigate} from "react-router-dom";
 
 const CartList = ({data}) => {
+
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+
+    const navigate = useNavigate();
+
     useEffect(() => {
         setCartItems(data?.data?.response?.products);
         setTotalPrice(data?.data?.response?.totalPrice);
@@ -67,7 +72,7 @@ const CartList = ({data}) => {
             <div className={"h-20 flex items-center justify-center"}>
                 <h1 className={"text-3xl font-bold"}>장바구니</h1>
             </div>
-            <div className={"cart-itemsflex w-full justify-center items-center"}>
+            <div className={"cart-items flex flex-col w-full justify-center items-center"}>
                 {Array.isArray(cartItems) &&
                     cartItems.map((item) => {
                         return (
@@ -90,7 +95,13 @@ const CartList = ({data}) => {
                         <span className={"total-price pr-3"}>최종 금액</span>
                         <span>{comma(totalPrice)}원</span>
                     </div>
-                    <button className={"w-full mx-5 py-5 text-xl box-content bg-kakao-yellow"}>{getTotalQuantity()}건 주문하기</button>
+                    <button className={"w-full mx-5 py-5 text-xl box-content bg-kakao-yellow"}
+                            onClick={
+                                () => {
+                                    navigate("/order");
+                                }}>
+                        {getTotalQuantity()}건 주문하기
+                    </button>
                 </div>)}
         </div>
     )
