@@ -5,6 +5,7 @@ import { getOrderResultReq } from "apis/order";
 
 import Loader from "components/atoms/Loader";
 import ResultInformation from "components/molecules/ResultInformation";
+import Button from "components/atoms/Button";
 
 export default function ResultSection() {
   const { orderId } = useParams();
@@ -32,12 +33,12 @@ export default function ResultSection() {
             <div className="mb-2 py-8 bg-white border">
               <p className="text-lg font-bold">구매완료!</p>
               <p className="mb-3">구매가 정상적으로 완료되었습니다.</p>
-              <button
+              <Button
                 className="px-2 py-1 bg-black border rounded text-white"
                 onClick={handleButtonClick}
               >
                 쇼핑 계속하기
-              </button>
+              </Button>
             </div>
             <ResultInformation data={data.data.response} />
           </div>

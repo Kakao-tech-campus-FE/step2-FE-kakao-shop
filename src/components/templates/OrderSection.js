@@ -1,13 +1,14 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getCartReq } from "apis/cart";
-import { orderReq } from "apis/order";
-
-import Loader from "components/atoms/Loader";
-
-import OrderInformation from "components/molecules/OrderInformation";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useMutation, useQuery } from "@tanstack/react-query";
+
+import { getCartReq } from "apis/cart";
+import { orderReq } from "apis/order";
 import { convertToPrice } from "utils/convert";
+
+import Loader from "components/atoms/Loader";
+import OrderInformation from "components/molecules/OrderInformation";
+import Button from "components/atoms/Button";
 
 export default function OrderSection() {
   const navigate = useNavigate();
@@ -122,12 +123,12 @@ export default function OrderSection() {
                   배송 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
                 </p>
               </div>
-              <button
+              <Button
                 className="block w-full p-3 bg-yellow-300 text-xl font-bold"
                 onClick={handleButtonClick}
               >
                 {convertToPrice(data.data.response.totalPrice)} 결제하기
-              </button>
+              </Button>
             </div>
           </div>
         </div>
