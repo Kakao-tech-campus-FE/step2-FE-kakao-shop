@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import SelectedProduct from "../../organisms/PurchaseConfirmationPage/SelectedProduct";
+import SelectedProduct from "../../organisms/CartPage/SelectedProduct";
 import Button from "../../atoms/Button";
 import { comma } from "../../../utils/convert";
 import { getCart } from "../../../services/cart";
 import { makeOrder } from "../../../services/order";
 import { updateCart } from "../../../services/cart";
 
-const PurchaseConfirmation = () => {
+const CartSection = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [changedCarts, setChangedCarts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -150,8 +150,8 @@ const PurchaseConfirmation = () => {
   };
 
   return (
-    <div className="purchase-confirmation">
-      <div className="purchase-title">장바구니</div>
+    <div className="cart-panel">
+      <div className="cart-title">장바구니</div>
       <div className="check-all">
         <label>
           <input type="checkbox" checked={allSelected} onChange={handleAllSelectedToggle} />
@@ -176,4 +176,4 @@ const PurchaseConfirmation = () => {
   );
 };
 
-export default PurchaseConfirmation;
+export default CartSection;

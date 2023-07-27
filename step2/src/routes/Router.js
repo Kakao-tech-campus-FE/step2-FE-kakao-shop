@@ -5,7 +5,7 @@ import MainPage from "../components/pages/MainPage";
 import SignupPage from "../components/pages/SignupPage";
 import LoginPage from "../components/pages/LoginPage";
 import ProductDetailPage from "../components/pages/ProductDetailPage";
-import PurchaseConfirmationPage from "../components/pages/PurchaseConfirmationPage";
+import CartPage from "../components/pages/CartPage";
 
 const Router = () => (
   <>
@@ -13,7 +13,7 @@ const Router = () => (
       <Route path="/signup" element={<SignupPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route path="/product/:productId" element={<ProductDetailPage />} />
-      <Route path="/cart" element={<PurchaseConfirmationPage />} />
+      <Route path="/cart" element={<CartPage />} />
       <Route path="/*" element={<MainPage />} />
     </Routes>
   </>

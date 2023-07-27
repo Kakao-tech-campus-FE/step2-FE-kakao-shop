@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import SelectedOption from "../../atoms/ProductDetailPage/SelectedOption";
-import TotalPrice from "../../molecules/PurchaseConfirmationPage/TotalPrice";
+import TotalPrice from "../../molecules/CartPage/TotalPrice";
 
 const SelectedProduct = ({
   productId,
