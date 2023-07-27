@@ -1,0 +1,7 @@
+.container {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  max-width: 85%;
+  margin: auto;
+  justify-items: center;
+}

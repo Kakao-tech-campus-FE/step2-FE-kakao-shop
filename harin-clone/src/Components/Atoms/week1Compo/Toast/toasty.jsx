@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from "react"
 
-const UpToast = () => {
-
+const UpToast = ({contents}) => {
   return (
-    <div className="toasty">This is Toast!!</div>
+    <div className="toasty">{contents}</div>
   )
 }
 
-const Toasty = () => {
-  const [isClick, setClick] = useState(false)
-
-  const toastState = () => {
-    setClick(!isClick)
-    }
+const Toasty = ({ obs, className, contents }) => {
+  const [isChange, setChange] = useState(false)
 
   useEffect(()=> {
-    if (isClick) {
-      setTimeout(()=>setClick(!isClick), 1000)
+    if (isChange) {
+      setTimeout(()=>setChange(!isChange), 1000)
     };
-  })
+  }, [ obs ])
 
 
   return (
     <div className="toasty-frame">
-      <button type="button" onClick={toastState}>toast</button>
-      {isClick && <UpToast />}
+      {isClick && <UpToast contents={contents} />}
     </div>
 
   )

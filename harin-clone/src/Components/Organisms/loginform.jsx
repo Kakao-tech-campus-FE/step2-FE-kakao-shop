@@ -27,6 +27,22 @@ const LoginForm = ( ) => {
 
   const navigate = useNavigate();
 
+  const loginHandler = () => {
+    dispatch(loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    ) .then(response => {
+      if (response.payload?.success) {
+        alert("로그인 되었습니다")
+        navigate('/');
+      } else {
+        alert("유효하지 않은 아이디/비밀번호 입니다.")
+        window.history.go(0) // 이렇게 리로드 해도 괜찮나요..?
+      }
+    })
+  }
+
   return (
     <div className="flex min-h-screen justify-center items-center">
       <Container className="mx-auto w-1/3 h-2/3 align-middle  border-solid border-2 ">
@@ -53,15 +69,7 @@ const LoginForm = ( ) => {
         />
         <Box className="m-3">
             <Button
-              onClick={() => {
-                dispatch(
-                  loginRequest({
-                    email: value.email,
-                    password: value.password,
-                  })
-                )
-                navigate('/')
-              }}
+              onClick={loginHandler}
               disabled={validAll()}
               className={validAll() ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	" 
                           : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"}

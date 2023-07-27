@@ -17,7 +17,7 @@ const productsSlice = createSlice({
       state.loading = true;
     })
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      if (action.payload.response.length < 9) {
+      if (action.payload.response.length < 10) {
         state.isEnd = true;
       }
       state.loading = false; // { success, response, error }
@@ -26,7 +26,7 @@ const productsSlice = createSlice({
     })
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload.error.message;
+      state.error = action.payload.error;
     })
   }
 });
@@ -39,5 +39,6 @@ export const getProducts = createAsyncThunk(
 
   }
 )
+
 
 export default productsSlice.reducer;
