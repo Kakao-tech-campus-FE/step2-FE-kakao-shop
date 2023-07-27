@@ -5,12 +5,13 @@ function Button({
   children,
   disabled,
   style,
+  disable,
 }) {
   return (
     <button style = {style} onClick={(e) => {
       e.preventDefault()
       onClick()
-    }} disabled={disabled}>
+    }} disable={disable}>
       {children}
     </button>
   )

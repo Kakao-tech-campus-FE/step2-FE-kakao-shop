@@ -115,7 +115,7 @@ function GNB({ }) {
               display: 'inline-block',
             }}
             ></FontToLink>
-            <FontToLink icon={faCartShopping} to={'/'} linkstyle={{
+            <FontToLink icon={faCartShopping} to={'/cart'} linkstyle={{
               display: "block",
               position: 'relative',
               width: '28px',
@@ -135,8 +135,9 @@ function GNB({ }) {
         </SelectContainor>
 
           <LoginMenu style={{
-          display: 'relative',
+          display: 'flex',
           padding: '13px 0 13px 24px',
+          position: 'relatvie'
           }}></LoginMenu>
         </Containor>
       </Containor>

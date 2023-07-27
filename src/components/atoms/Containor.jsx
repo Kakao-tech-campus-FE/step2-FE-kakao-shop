@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 function Containor({
   children,
   style,
+  className,
 }) {
   return (
     <ContainovrDiv style={style}>{children}</ContainovrDiv>

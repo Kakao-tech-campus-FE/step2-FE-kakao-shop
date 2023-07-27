@@ -84,17 +84,20 @@ function LoginForm() {
         display: 'block',
         borderRadius: '5px',
         border: '1px solid gray',
-        marginBottom: '50px',
+        marginBottom: '20px',
       }}
       labelStyle={{
         display: 'block', 
         marginBottom: '5px',
       }}
       />
-      {valid ? "" : <Warning style={{
+      <Warning style={{
         margin: '0 auto',
+        marginBottom: '1px',
         width: '50%',
-      }}>{errorMsg}</Warning>}
+        height: '1rem',
+        textAlign: 'center',
+      }}>{valid ? " " : errorMsg}</Warning>
       <Button style={{
         width: '100%',
         display: 'block',
