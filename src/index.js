@@ -15,6 +15,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import ResultPage from "./pages/ResultPage";
+import PayRedirectPage from "./pages/PayRedirectPage";
 
 const router = createBrowserRouter([
   {
@@ -42,7 +43,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/result",
-        element: <ResultPage />,
+        element: (
+          <ProtectedRoute>
+            <ResultPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/pay_redirect",
+        element: (
+          <ProtectedRoute>
+            <PayRedirectPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

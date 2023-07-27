@@ -4,9 +4,7 @@ import Button from "../atoms/Button";
 import { comma } from "../../utils/convert";
 import { Slide, toast } from "react-toastify";
 import Toast from "../molecules/Toast";
-import cartInstance from "../../apis/cart";
-import { useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "react-query";
+import paymentInstance from "../../apis/payment";
 
 const toastOptions = {
   position: toast.POSITION.BOTTOM_CENTER,
@@ -25,13 +23,15 @@ const checkboxData = [
   { id: 2, text: "개인정보 제3자 제공 동의" },
 ];
 
-export default function AgreeCheckBox({ price, modalRef, address, selected }) {
-  const navigate = useNavigate();
+export default function AgreeCheckBox({
+  productsName,
+  price,
+  quantity,
+  modalRef,
+  address,
+  selected,
+}) {
   const [checkedList, setCheckedList] = useState([]);
-  const { mutate } = useMutation({
-    mutationFn: cartInstance.order,
-  });
-  const queryClient = useQueryClient();
 
   const handleAllChange = (isChecked) => {
     setCheckedList(isChecked ? [] : checkboxData);
@@ -60,12 +60,16 @@ export default function AgreeCheckBox({ price, modalRef, address, selected }) {
       return;
     }
     try {
-      mutate(null, {
-        onSuccess: async () => {
-          await queryClient.invalidateQueries(["carts"]);
-          navigate("/result");
-        },
-      });
+      const response = await paymentInstance.payRequest(
+        productsName,
+        quantity,
+        price
+      );
+      const {
+        data: { next_redirect_pc_url, tid },
+      } = response;
+      window.localStorage.setItem("tid", tid);
+      window.location.assign(next_redirect_pc_url);
     } catch (error) {
       console.log(error);
     }

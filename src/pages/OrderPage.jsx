@@ -41,7 +41,9 @@ export default function OrderPage() {
             quantity={getAllQuantity(filteredData)}
           />
           <AgreeCheckBox
+            productsName={getProductName(filteredData)}
             price={data.totalPrice}
+            quantity={getAllQuantity(filteredData)}
             modalRef={agreeModalRef}
             address={address}
             selected={selectedReq}
@@ -52,3 +54,7 @@ export default function OrderPage() {
     </main>
   );
 }
+
+const getProductName = (products) => {
+  return products.map((product) => product.productName).join(", ");
+};
