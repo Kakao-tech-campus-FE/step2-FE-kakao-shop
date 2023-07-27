@@ -30,7 +30,7 @@ const LoginForm = () => {
       
       const token = response.headers.authorization;
       dispatch(loginSuccess({token: token}));
-      localStorage.setItem('userInfo', JSON.stringify({token: token, expirationTime: Date.now() + 1000 * 60 * 60 * 24}));
+      localStorage.setItem('userInfo', JSON.stringify({token: token, expirationTime: Date.now() + 1000 * 60 * 60}));
       navigate('/');
     } catch (error) {
       setLoginFailed(error.response.data.error.message);
