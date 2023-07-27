@@ -24,9 +24,9 @@ const Carousel = () => {
   }, [currentIndex]);
 
   const handleLeftButton = () => {
-    imgRef1.current.style.translate = "1280px";
-    imgRef2.current.style.translate = "1280px";
-    imgRef3.current.style.translate = "1280px";
+    imgRef1.current.style.translate = "1024px";
+    imgRef2.current.style.translate = "1024px";
+    imgRef3.current.style.translate = "1024px";
     setTimeout(() => {
       imgRef1.current.style.transition = "0s";
       imgRef2.current.style.transition = "0s";
@@ -43,9 +43,9 @@ const Carousel = () => {
   };
 
   const handleRightButton = () => {
-    imgRef1.current.style.translate = "-1280px";
-    imgRef2.current.style.translate = "-1280px";
-    imgRef3.current.style.translate = "-1280px";
+    imgRef1.current.style.translate = "-1024px";
+    imgRef2.current.style.translate = "-1024px";
+    imgRef3.current.style.translate = "-1024px";
     setTimeout(() => {
       imgRef1.current.style.transition = "0s";
       imgRef2.current.style.transition = "0s";

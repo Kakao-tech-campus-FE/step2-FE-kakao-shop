@@ -6,8 +6,10 @@ import { addCart } from "../../services/cart";
 import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
+import Badge from "../atoms/Badge";
 
 const OptionColumn = ({ product }) => {
+  const { productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
@@ -51,7 +53,22 @@ const OptionColumn = ({ product }) => {
   });
 
   return (
-    <Box className="w-96 m-4">
+    <Box className="w-[512px] m-4">
+      <h1 className="text-2xl">{productName}</h1>
+      <div className="flex justify-between my-4 items-center">
+        <div>
+          <Badge color="yellow" className="bg-black text-white">
+            {comma(price * 2)}원~
+          </Badge>
+          <Badge color="yellow" className="bg-yellow-300 ml-2 font-bold">
+            톡딜가 {comma(price)}원~
+          </Badge>
+        </div>
+        <div className="text-3xl text-blue-500">
+          50%
+        </div>
+      </div>
+
       <h3 className=" text-lg font-bold">옵션 선택</h3>
       {/* 옵션 담기를 할 수 있는 영역 */}
       <OptionList options={product.options} onClick={handleOnClickOption} />
@@ -62,7 +79,7 @@ const OptionColumn = ({ product }) => {
         </div>
         <div className="shippingCost">
           <span className="font-bold">배송비</span>
-          <Box className="w-96 bg-gray-200 border border-gray-400 text-sm p-1">
+          <Box className="bg-gray-200 border border-gray-400 text-sm p-1">
             무료배송
           </Box>
         </div>
@@ -108,7 +125,7 @@ const OptionColumn = ({ product }) => {
       <div className="button-group">
         {/* 장바구니 담기 버튼 위치 */}
         <Button
-          className="w-32 h-12 bg-gray-900 rounded-lg text-white text-sm"
+          className="w-36 h-12 bg-gray-900 rounded-lg text-white text-sm"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
@@ -131,7 +148,7 @@ const OptionColumn = ({ product }) => {
           장바구니 담기
         </Button>
         <Button
-          className="w-64 h-12 bg-yellow-300 rounded-lg text-sm"
+          className=" w-80 h-12 bg-yellow-300 rounded-lg text-sm ml-4"
           onClick={() => {
             alert("준비중입니다.");
           }}

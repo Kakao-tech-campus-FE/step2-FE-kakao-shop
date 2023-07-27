@@ -8,6 +8,7 @@ const Sidebar = () => {
   const menus = [
     { name: "홈", path: "/", icon: "/sidebarIcons/home.svg" },
     { name: "카테고리", path: "/category", icon: "/sidebarIcons/category.svg" },
+    { name: "장바구니", path: "/cart", icon: "/sidebarIcons/cart.svg" },
   ];
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);

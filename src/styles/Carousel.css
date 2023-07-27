@@ -2,12 +2,12 @@
   display: flex;
   position: relative;
   overflow: hidden;
-  width: 1280px;
+  width: 1024px;
   justify-content: center;
 }
 
 .carouselImg {
-  width: 1280px;
+  width: 1024px;
   transition: 0.5s;
 }
 
