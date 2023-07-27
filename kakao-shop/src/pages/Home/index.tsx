@@ -1,4 +1,5 @@
 import asideImage from '@assets/asideImage.png';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { getProductsRequestAction, resetHomeStateAction, setPageStateAction } from '@store/Home/reducers';
 import { RootState } from '@store/index';
@@ -17,7 +18,7 @@ import useViewport from '@hooks/@common/useViewport';
 const LAST_PAGE = 2;
 
 const Home = () => {
-  const { isMobile } = useViewport();
+  const { isMobile, width } = useViewport();
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.home.products);
   const isLoading = useSelector((state: RootState) => state.home.isLoading);
@@ -64,24 +65,29 @@ const Home = () => {
         <BannerImageList isMobile={isMobile} />
       </S.TopBannerBlock>
 
-      <S.LayoutSplit>
+      <S.LayoutSplit isMobile={isMobile} width={width}>
         <S.ProductSection>
           <S.InnerTxtContainer>
             <S.InnerTxt>오늘의 딜</S.InnerTxt>
           </S.InnerTxtContainer>
 
           <FallbackErrorBoundary fallback={CardListFallback}>
-            <CustomSuspense fallback={CardList.Skeleton()} isLoading={isLoading && page === 0} error={error}>
-              <CardList products={products} />
+            <CustomSuspense
+              fallback={CardList.Skeleton({ isMobile })}
+              isLoading={isLoading && page === 0}
+              error={error}>
+              <CardList isMobile={isMobile} products={products} />
             </CustomSuspense>
           </FallbackErrorBoundary>
 
           {isLoading && page !== 0 && <Loading />}
         </S.ProductSection>
 
-        <S.TodayProductSection>
-          <img src={asideImage} alt="아이스크림" />
-        </S.TodayProductSection>
+        {!isMobile && (
+          <S.TodayProductSection>
+            <img src={asideImage} alt="아이스크림" />
+          </S.TodayProductSection>
+        )}
       </S.LayoutSplit>
 
       <S.InfinityScrollSection ref={endRef} />
@@ -97,10 +103,22 @@ const S = {
     overflow: hidden;
   `,
 
-  LayoutSplit: styled.div`
-    display: flex;
-    width: 1280px;
-    margin: 0 auto;
+  LayoutSplit: styled.div<{ isMobile: boolean; width: number }>`
+    ${({ isMobile }) => css`
+      position: ${isMobile ? 'relative' : 'static'};
+      z-index: ${isMobile ? '1' : '0'};
+      top: ${isMobile ? '-10px' : '0'};
+
+      display: ${isMobile ? 'grid' : 'flex'};
+      grid-template-columns: ${isMobile ? '1fr' : 'none'};
+      width: ${isMobile ? '100vw' : '1280px'};
+
+      margin: ${isMobile ? '0' : '0 auto'};
+      padding: ${isMobile ? '0 20px' : '0'};
+
+      background-color: #fff;
+      border-radius: ${isMobile ? '15px 15px 0 0' : '0'};
+    `}
   `,
 
   ProductSection: styled.section`

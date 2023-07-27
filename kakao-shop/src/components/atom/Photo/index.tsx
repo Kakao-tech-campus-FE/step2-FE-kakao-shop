@@ -2,6 +2,8 @@ import { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
+import useViewport from '@hooks/@common/useViewport';
+
 type Props = {
   src: string;
   alt: string;
@@ -25,5 +27,9 @@ const S = {
   Image: styled.img`
     width: 99%;
     aspect-ratio: 16/9;
+
+    @media (max-width: 768px) {
+      aspect-ratio: auto;
+    }
   `,
 };

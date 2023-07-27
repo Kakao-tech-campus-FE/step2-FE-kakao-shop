@@ -11,11 +11,13 @@ import PurchaseButtons from '@components/page/ProductDetail/PurchaseButtons';
 import RenderStar from '@components/page/ProductDetail/RenderStar';
 import SelectResult from '@components/page/ProductDetail/SelectResult';
 
+import useViewport, { IsMobile } from '@hooks/@common/useViewport';
 import { useProductDetail } from '@hooks/page/ProductDetail/_useProductDetailPage';
 
 import { comma } from '@utils/comma';
 
 const ProductDetail = () => {
+  const { isMobile } = useViewport();
   const {
     state: { isLoading, error, product, options, totals, isOpenList, isModal },
     handler: {
@@ -33,21 +35,31 @@ const ProductDetail = () => {
 
   return (
     <CustomSuspense isLoading={isLoading} error={error} fallback={<PageLoader />}>
-      <S.LayoutSplit>
-        <S.ProductSection>
-          <S.PhotoContainer>
-            <Photo
-              imageClassName={S.PhotoSize}
-              src={`${process.env.REACT_APP_PROD_SERVER}${product?.image}`}
-              alt={'HERO 이미지'}
-            />
+      <S.LayoutSplit isMobile={isMobile}>
+        <S.ProductSection isMobile={isMobile}>
+          <S.PhotoContainer isMobile={isMobile}>
+            {isMobile ? (
+              <Photo src={`${process.env.REACT_APP_PROD_SERVER}${product?.image}`} alt={'HERO 이미지'} />
+            ) : (
+              <Photo
+                imageClassName={S.PhotoSize}
+                src={`${process.env.REACT_APP_PROD_SERVER}${product?.image}`}
+                alt={'HERO 이미지'}
+              />
+            )}
           </S.PhotoContainer>
 
-          <S.InfoContainer>
-            <RenderStar starCount={product?.starCount} />
+          <S.InfoContainer isMobile={isMobile}>
+            {!isMobile && <RenderStar starCount={product?.starCount} />}
             <S.Tit>{product?.productName}</S.Tit>
-            <Button css={S.ButtonCSS}>{comma(product?.price)}원</Button>
-            <Photo imageClassName={S.TrickImgCSS} src={trickImg} alt={''} />
+            {!isMobile ? (
+              <Button css={S.ButtonCSS}>{comma(product?.price)}원</Button>
+            ) : (
+              <S.ButtonContainer>
+                <Button css={S.ButtonCSS}>{comma(product?.price)}원</Button>
+              </S.ButtonContainer>
+            )}
+            <Photo imageClassName={S.TrickImgCSS(isMobile)} src={trickImg} alt={''} />
             {/* 위 포토 이미지는 트릭이미지입니다. 퍼블리싱보다 설계나 로직에 시간을 더 투자하고 싶었습니다. */}
           </S.InfoContainer>
         </S.ProductSection>
@@ -75,29 +87,42 @@ const ProductDetail = () => {
 export default ProductDetail;
 
 const S = {
-  LayoutSplit: styled.div`
-    display: flex;
-    width: 1280px;
-    margin: 0 auto;
+  LayoutSplit: styled.div<{ isMobile: boolean }>`
+    ${({ isMobile }) => css`
+      display: ${isMobile ? 'grid' : 'flex'};
+      grid-template-columns: ${isMobile ? '1fr' : 'none'};
+      width: ${isMobile ? '100vw' : '1280px'};
+
+      margin: ${isMobile ? '0' : '0 auto'};
+      /* padding: ${isMobile ? '0' : '0'}; */
+    `}
   `,
 
-  ProductSection: styled.section`
-    display: flex;
-    gap: 30px;
+  ProductSection: styled.section<{ isMobile: boolean }>`
+    ${({ isMobile }) => css`
+      display: ${isMobile ? 'grid' : 'flex'};
+      gap: ${isMobile ? '0' : '30px'};
+      grid-template-columns: ${isMobile ? '1fr' : 'none'};
 
-    width: 890px;
-    padding: 40px 29px 150px 0;
+      width: ${isMobile ? '100vw' : '890px'};
+
+      padding: ${isMobile ? '0' : ' 40px 29px 150px 0;'};
+    `}
   `,
 
-  PhotoContainer: styled.div`
-    width: 430px;
+  PhotoContainer: styled.div<{ isMobile: boolean }>`
+    ${({ isMobile }) => css`
+      width: ${isMobile ? '100vw' : '430px'};
+    `}
   `,
 
-  InfoContainer: styled.div`
-    display: flex;
-    flex-direction: column;
+  InfoContainer: styled.div<{ isMobile: boolean }>`
+    ${({ isMobile }) => css`
+      display: flex;
+      flex-direction: column;
 
-    width: 430px;
+      width: ${isMobile ? '100vw' : '430px'};
+    `}
   `,
 
   Tit: styled.h1`
@@ -108,6 +133,18 @@ const S = {
     line-height: 35px;
     color: #111;
     word-break: break-all;
+
+    @media (max-width: 768px) {
+      max-width: 300px;
+
+      margin: 0 auto;
+
+      font-size: 18px;
+      color: #222;
+      line-height: 25px;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
   `,
 
   OptionCotainer: styled.section`
@@ -121,6 +158,15 @@ const S = {
 
     & > img {
       width: inherit;
+    }
+
+    @media (max-width: 768px) {
+      width: auto;
+
+      margin-left: 0;
+      padding: 30px 12px;
+
+      border-left: none;
     }
   `,
 
@@ -145,10 +191,25 @@ const S = {
     letter-spacing: -0.025em;
     text-align: center;
     color: rgba(255, 255, 255, 0.9);
+
+    @media (max-width: 768px) {
+      width: fit-content;
+      height: fit-content;
+
+      padding: 10px 15px;
+
+      font-size: 16px;
+      vertical-align: top;
+      letter-spacing: -0.053em;
+    }
   `,
 
-  TrickImgCSS: css`
-    width: 430px;
-    height: 380px;
+  TrickImgCSS: (isMobile: boolean) => css`
+    width: ${isMobile ? '100vw' : '430px'};
+    height: ${isMobile ? 'auto' : '380px'};
+  `,
+
+  ButtonContainer: styled.div`
+    margin: 0 auto;
   `,
 };
