@@ -22,7 +22,8 @@ const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
 
   const { mutate } = useMutation({
-    queryFn: () => order,
+    mutationKey: 'order',
+    mutationFn: order,
   });
   // 렌더링만 해준다.
   // 주문품목
@@ -122,14 +123,20 @@ const OrderTemplate = ({ data }) => {
           {/* 결제하기 버튼 */}
           <button
             onClick={() => {
+              if (!agreePayment || !agreePolicy) {
+                alert('모든 항목의 동의가 필요!');
+                return;
+              }
               mutate(null, {
-                onError: () => {
+                onError: (error) => {
+                  console.log(error);
                   alert('주문실패');
+                  navigate('/');
                 },
                 onSuccess: (res) => {
-                  const { id } = res.response;
+                  // const { id } = res.response;
                   alert('주문완료');
-                  navigate(`/orders/complete/${id}`);
+                  // navigate(`/orders/complete/${id}`);
                 },
               });
               // Post :/orders/save
@@ -138,7 +145,11 @@ const OrderTemplate = ({ data }) => {
               // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디 같이 전달)
               // /orders/complete/:id
             }}
-            className="bg-yellow-400 w-full mt-2 p-4 font-medium rounded-md"
+            className={`w-full mt-2 p-4 font-medium rounded-md" ${
+              agreePayment && agreePolicy
+                ? 'bg-yellow-400 text-black'
+                : 'bg-gray-300 text-gray-500'
+            }`}
           >
             결제하기
           </button>

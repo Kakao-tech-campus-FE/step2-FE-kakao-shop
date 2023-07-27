@@ -64,7 +64,7 @@ const OptionColumn = ({ product }) => {
   };
   return (
     <div className="option-column">
-      <h3>옵션 선택</h3>
+      <h3 className="font-bold">옵션 선택</h3>
       {/* 옵션담기 */}
       <div className="border-solid border-2 border-gray-100 p-4">
         <OptionList options={product.options} onClick={handleOnClickOption} />
