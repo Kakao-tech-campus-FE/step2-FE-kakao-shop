@@ -1,7 +1,7 @@
 import Container from '../atoms/Container';
 import Input from '../atoms/Input';
 import Label from '../atoms/Label';
-import Message from '../atoms/Message';
+import Text from '../atoms/Text';
 
 const LabelInput = ({ id, type, value, onChange, label, placeholder, required, errorMessage }) => {
     return (
@@ -16,7 +16,7 @@ const LabelInput = ({ id, type, value, onChange, label, placeholder, required, e
                 placeholder={placeholder}
                 required={required}
             />
-            {errorMessage && <Message className="error">{errorMessage}</Message>}
+            {errorMessage && <Text className="error">{errorMessage}</Text>}
         </Container>
     );
 };

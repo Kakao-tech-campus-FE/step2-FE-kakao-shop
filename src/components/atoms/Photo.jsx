@@ -24,6 +24,10 @@ const StyledPicture = styled.picture`
             border-radius: ${({ theme }) => theme.border.rad_base};
         }
     }
+
+    &.productImage {
+        width: 400px;
+    }
 `;
 
 /**

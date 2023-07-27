@@ -7,17 +7,46 @@ import { styled } from 'styled-components';
  * @returns {JSX.Element} 컴포넌트 반환
  */
 
-const Container = ({ children, className = '' }) => {
-    return <StyledContainer className={`container ${className}`}>{children}</StyledContainer>;
+const Container = ({
+    children,
+    className = '',
+    direction = 'row',
+    align = 'center',
+    justify = 'center',
+    gap = '0',
+}) => {
+    return (
+        <StyledContainer
+            className={`container ${className}`}
+            direction={direction}
+            align={align}
+            justify={justify}
+            gap={gap}
+        >
+            {children}
+        </StyledContainer>
+    );
 };
 
 const StyledContainer = styled.div`
-    padding: ${({ theme }) => theme.padding.base};
-    margin: ${({ theme }) => theme.margin.sm};
-
+    ${({ theme, direction, align, justify }) => theme.location.flex(direction, align, justify)};
+    padding: ${({ theme }) => theme.padding.small};
+    gap: ${({ gap }) => gap};
     &.page {
         width: 100%;
-        height: 100%;
+    }
+
+    &.detail-product-info {
+        width: 70%;
+    }
+
+    &.width-100 {
+        width: 100%;
+    }
+
+    &.cart-item-box:not(:last-child) {
+        padding-bottom: ${({ theme }) => theme.padding.xxxl};
+        border-bottom: 2px solid ${({ theme }) => theme.color.light_gray};
     }
 `;
 
