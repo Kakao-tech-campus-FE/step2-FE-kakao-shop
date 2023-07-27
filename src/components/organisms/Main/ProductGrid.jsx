@@ -7,7 +7,7 @@ import productInstance from "../../../apis/product";
 export default function ProductGrid() {
   const bottomObserver = useRef(null);
   const { error, data, hasNextPage, isFetchingNextPage } = useInfinieScroll({
-    queryKey: "/products",
+    queryKey: ["/products"],
     observeEl: bottomObserver,
     fetchFunction: productInstance.fetchProducts,
   });

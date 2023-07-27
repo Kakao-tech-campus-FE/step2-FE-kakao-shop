@@ -1,15 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "react-query";
 import paymentInstance from "../apis/payment";
-import cartInstance from "../apis/cart";
+import useCart from "../hooks/useCart";
 
 export default function PayRedirectPage() {
   const navigate = useNavigate();
-  const { mutate } = useMutation({
-    mutationFn: cartInstance.order,
-  });
-  const queryClient = useQueryClient();
+  const { orderCart } = useCart();
 
   useEffect(() => {
     const approveReq = async () => {
@@ -17,9 +13,8 @@ export default function PayRedirectPage() {
       const pg_token = urlParams.get("pg_token");
       try {
         await paymentInstance.payApproveRequest(pg_token);
-        mutate(null, {
+        orderCart.mutate(null, {
           onSuccess: async () => {
-            await queryClient.invalidateQueries(["carts"]);
             navigate("/result");
           },
         });
@@ -30,7 +25,7 @@ export default function PayRedirectPage() {
     approveReq();
 
     return () => window.localStorage.removeItem("tid");
-  }, [navigate, mutate, queryClient]);
+  }, [navigate, orderCart]);
 
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-full h-full">

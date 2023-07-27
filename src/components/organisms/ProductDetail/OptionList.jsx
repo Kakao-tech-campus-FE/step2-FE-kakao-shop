@@ -16,6 +16,7 @@ export default function OptionList({
   const handleOptionButtonClick = () => {
     setIsOptionShow((prev) => !prev);
   };
+
   return (
     <article className="pt-8">
       <p className="pb-2 font-bold">옵션 선택</p>

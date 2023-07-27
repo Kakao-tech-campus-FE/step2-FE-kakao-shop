@@ -1,14 +1,13 @@
 import React, { useReducer, useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Slide, toast } from "react-toastify";
 import OptionList from "./OptionList";
 import DeliveryForm from "./DeliveryForm";
-import cartInstance from "../../../apis/cart";
 import OrderGroup from "../../molecules/ProductDetail/OrderGroup";
 import Toast from "../../molecules/Common/Toast";
 import optionReducer from "../../../reducer/option-reducer";
+import useCart from "../../../hooks/useCart";
 
 const toastOptions = {
   position: toast.POSITION.BOTTOM_CENTER,
@@ -28,10 +27,7 @@ export default function OptionColumn({ productData, modalRef }) {
   const [isOptionShow, setIsOptionShow] = useState(false);
   const user = useSelector((state) => state.user.isLoggedIn);
   const [optionList, dispatch] = useReducer(optionReducer, []);
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationFn: cartInstance.addCart,
-  });
+  const { addCart } = useCart();
 
   const handleOptionClick = (option) => {
     dispatch({ type: "add", option });
@@ -54,14 +50,13 @@ export default function OptionColumn({ productData, modalRef }) {
       modalRef.current.showModal();
       return;
     }
-    mutate(
+    addCart.mutate(
       optionList.map((option) => ({
         optionId: option.id,
         quantity: option.count,
       })),
       {
         onSuccess: async () => {
-          await queryClient.invalidateQueries(["carts"]);
           dispatch({ type: "clear" });
           setIsOptionShow(false);
           toast(
@@ -84,14 +79,13 @@ export default function OptionColumn({ productData, modalRef }) {
       modalRef.current.showModal();
       return;
     }
-    mutate(
+    addCart.mutate(
       optionList.map((option) => ({
         optionId: option.id,
         quantity: option.count,
       })),
       {
         onSuccess: async () => {
-          await queryClient.invalidateQueries(["carts"]);
           navigate("/order");
         },
       }

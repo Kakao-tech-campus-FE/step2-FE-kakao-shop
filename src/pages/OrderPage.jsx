@@ -1,22 +1,21 @@
 import React, { useRef, useState } from "react";
-import { useQuery } from "react-query";
 import Container from "../components/atoms/Container";
 import AddressInfo from "../components/templates/Order/AddressInfo";
 import OrderProductsInfo from "../components/templates/Order/OrderProductsInfo";
 import PaymentInfo from "../components/templates/Order/PaymentInfo";
 import AgreeCheckBox from "../components/templates/Order/AgreeCheckBox";
 import AgreeModal from "../components/molecules/Order/AgreeModal";
-import cartInstance from "../apis/cart";
 import { filterCartData, getAllQuantity } from "../utils/convert";
 import { OPTIONS } from "../utils/constant";
+import useCart from "../hooks/useCart";
 
 export default function OrderPage() {
   const agreeModalRef = useRef(null);
   const [address, setAddress] = useState("주소를 검색해보세요.");
   const [selectedReq, setSelectedReq] = useState(OPTIONS[0].name);
-  const { error, data } = useQuery(["carts"], cartInstance.getCart, {
-    staleTime: 1000 * 60,
-  });
+  const {
+    cartsQuery: { error, data },
+  } = useCart();
 
   if (error) {
     return <div>{error.message}</div>;

@@ -1,11 +1,12 @@
 import React from "react";
-import { useQuery } from "react-query";
 import Box from "../../atoms/Box";
-import cartInstance from "../../../apis/cart";
 import { filterCartData } from "../../../utils/convert";
+import useCart from "../../../hooks/useCart";
 
 export default function CartStatus() {
-  const { error, data } = useQuery(["carts"], cartInstance.getCart);
+  const {
+    cartsQuery: { error, data },
+  } = useCart();
 
   if (error) {
     return <div>{error.message}</div>;

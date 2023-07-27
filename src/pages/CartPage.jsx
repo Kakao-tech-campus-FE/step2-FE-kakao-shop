@@ -1,5 +1,4 @@
 import React from "react";
-import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import CartProducts from "../components/templates/Cart/CartProducts";
 import Box from "../components/atoms/Box";
@@ -7,13 +6,13 @@ import Button from "../components/atoms/Button";
 import Container from "../components/atoms/Container";
 import NullCart from "../components/organisms/Cart/NullCart";
 import { comma, filterCartData } from "../utils/convert";
-import cartInstance from "../apis/cart";
+import useCart from "../hooks/useCart";
 
 export default function CartPage() {
   const navigate = useNavigate();
-  const { error, data } = useQuery(["carts"], cartInstance.getCart, {
-    staleTime: 1000 * 60,
-  });
+  const {
+    cartsQuery: { error, data },
+  } = useCart();
 
   if (error) {
     return <div>{error.message}</div>;

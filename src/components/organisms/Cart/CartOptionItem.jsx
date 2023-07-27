@@ -1,51 +1,22 @@
 import React, { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
 import Counter from "../../molecules/Common/Counter";
 import Box from "../../atoms/Box";
 import Loader from "../../molecules/Common/Loader";
 import Button from "../../atoms/Button";
-import cartInstance from "../../../apis/cart";
 import { comma } from "../../../utils/convert";
+import useCart from "../../../hooks/useCart";
 
 export default function CartOptionItem({ item }) {
   const [isLoading, setIsLoading] = useState(false);
-  const { mutate } = useMutation({
-    mutationFn: cartInstance.updateCart,
-  });
-  const queryClient = useQueryClient();
+  const { updateCart } = useCart();
 
   const handleCartUpdate = (id, flag) => {
     setIsLoading(true);
-    mutate(
-      flag === "minus"
-        ? [
-            {
-              cartId: id,
-              quantity: item.quantity - 1,
-            },
-          ]
-        : flag === "plus"
-        ? [
-            {
-              cartId: id,
-              quantity: item.quantity + 1,
-            },
-          ]
-        : [
-            {
-              cartId: id,
-              quantity: 0,
-            },
-          ],
-      {
-        onSuccess: async () => {
-          await queryClient.invalidateQueries(["carts"]);
-        },
-        onSettled: () => {
-          setIsLoading(false);
-        },
-      }
-    );
+    updateCart.mutate(getNextCart(id, item.quantity, flag), {
+      onSettled: () => {
+        setIsLoading(false);
+      },
+    });
   };
   return (
     <li className="relative mt-3 px-4 py-3 border rounded">
@@ -80,3 +51,27 @@ export default function CartOptionItem({ item }) {
     </li>
   );
 }
+
+const getNextCart = (id, count, flag) => {
+  let quantity;
+  switch (flag) {
+    case "minus": {
+      quantity = count - 1;
+      break;
+    }
+    case "plus": {
+      quantity = count + 1;
+      break;
+    }
+    default: {
+      quantity = 0;
+      break;
+    }
+  }
+  return [
+    {
+      cartId: id,
+      quantity,
+    },
+  ];
+};
