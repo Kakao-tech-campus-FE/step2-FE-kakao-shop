@@ -1,4 +1,4 @@
-import OptionDetailList from "../molecules/OptionDetailList";
+import OptionDetailList from "../atoms/OptionDetailList";
 
 const OrderList = ({ products }) => {
   return (

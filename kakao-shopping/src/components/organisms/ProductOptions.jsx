@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SelectedOption from "../molecules/SelectedOption";
-import DeliveryInformation from "../molecules/DeliveryInformation";
+import DeliveryInformation from "../atoms/DeliveryInformation";
 import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
 import { addCart } from "../../apis/api";
