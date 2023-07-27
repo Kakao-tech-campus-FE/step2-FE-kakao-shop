@@ -21,10 +21,18 @@ export const addCart = (payload) => {
   });
 };
 
+/**
+ * 장바구니 조회
+ * @param {*} payload
+ */
 export const getCart = (payload) => {
   return instance.get("/carts", payload);
 };
 
-export const updateCart = (payload) => {
-  return instance.post("/carts/update", payload);
+/**
+ * 장바구니 수정
+ * @param {*} payload
+ */
+export const updateCart = (items) => {
+  return instance.post("/carts/update", items);
 };

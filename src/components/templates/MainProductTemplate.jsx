@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Suspense } from "react";
 import { useQuery } from "react-query";
 import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../atoms/Loader";
-import { fetchProducts } from "../../services/product";
+import { fetchProducts } from "../../apis/product";
 import { useParams } from "react-router-dom";
 import _ from "lodash";
 

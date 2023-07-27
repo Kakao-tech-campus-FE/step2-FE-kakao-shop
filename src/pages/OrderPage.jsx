@@ -1,20 +1,15 @@
 import { Suspense } from "react";
+import { useQuery } from "react-query";
+import { getCart } from "../apis/cart";
 import Loader from "../components/atoms/Loader";
-import Button from "../components/atoms/Button";
-import GNB from "../components/atoms/GNB";
+import OrderTemplate from "../components/templates/OrderTemplate";
 
 const OrderPage = () => {
+  const { data, error, isLoading } = useQuery("cart", getCart);
+
   return (
     <Suspense fallback={<Loader />}>
-      <GNB />
-      <div className="flex justify-center items-center h-screen">
-        <Button
-          className="w-40 h-10 mb-40 rounded-md text-black bg-yellow-300"
-          onClick={() => {}}
-        >
-          결제하기
-        </Button>
-      </div>
+      <OrderTemplate data={data} />
     </Suspense>
   );
 };

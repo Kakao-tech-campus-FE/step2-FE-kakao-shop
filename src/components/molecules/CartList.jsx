@@ -5,7 +5,7 @@ import CartItem from "../atoms/CartItem";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
-import { updateCart } from "../../services/cart";
+import { updateCart } from "../../apis/cart";
 
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
