@@ -93,8 +93,7 @@ const RegisterForm = () => {
     }
   };
 
-  const inputBoxStyle = `border-b border-solid py-2 mb-2 font-bold`;
-  const inputLabelStyle = `block text-sm text-gray-800 mb-2 mt-2`;
+  const inputLabelStyle = `block text-sm text-gray-800 mt-6 mb-0`;
   const errorStyle = `text-red-500 text-sm whitespace-pre-line`;
 
   return (
@@ -107,7 +106,6 @@ const RegisterForm = () => {
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         label="이메일(아이디)"
         onChange={handleOnChange}
-        className={`${inputBoxStyle}`}
         labelClassName={`${inputLabelStyle}`}
       />
       {errorMessage.email && <p className={errorStyle}>{errorMessage.email}</p>}
@@ -120,7 +118,6 @@ const RegisterForm = () => {
         placeholder="이름"
         label="이름"
         onChange={handleOnChange}
-        className={`${inputBoxStyle}`}
         labelClassName={`${inputLabelStyle}`}
       />
 
@@ -132,7 +129,6 @@ const RegisterForm = () => {
         placeholder="비밀번호"
         label="비밀번호"
         onChange={handleOnChange}
-        className={`${inputBoxStyle}`}
         labelClassName={`${inputLabelStyle}`}
       />
       {errorMessage.password && (
@@ -147,7 +143,6 @@ const RegisterForm = () => {
         placeholder="비밀번호 확인"
         label="비밀번호 확인"
         onChange={handleOnChange}
-        className={`${inputBoxStyle}`}
         labelClassName={`${inputLabelStyle}`}
       />
       {errorMessage.passwordConfirm && (

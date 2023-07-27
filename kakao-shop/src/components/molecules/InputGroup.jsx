@@ -37,7 +37,7 @@ const InputGroup = ({
         {label}
       </Label>
       <Input
-        className="w-4/5"
+        className=""
         id={id}
         name={name}
         value={value}

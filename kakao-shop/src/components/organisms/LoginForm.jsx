@@ -32,7 +32,6 @@ const LoginForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [isEmailFocus, onFocusEmail, onBlurEmail] = useFocus();
-  const [isPasswordFocus, onFocusPassword, onBlurPassword] = useFocus();
   const [isKeepLog, setIsKeepLog] = useState(false);
 
   const navigate = useNavigate();
@@ -82,7 +81,6 @@ const LoginForm = () => {
     }
   };
 
-  const inputBoxStyle = `border-b border-solid py-1 mb-2 font-bold`;
   return (
     <FormContainer>
       <InputGroup
@@ -92,15 +90,13 @@ const LoginForm = () => {
         value={value.email}
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         label=""
-        className={`${inputBoxStyle} ${
-          isEmailFocus ? "border-black" : "border-gray-300"
-        }`}
         onChange={handleOnChange}
         onFocus={onFocusEmail}
         onBlur={onBlurEmail}
+        className="mt-0"
       />
       {(isEmailFocus || value.email) && (
-        <p className="text-xs mb-5">
+        <p className="text-xs mb-5 mt-2">
           <span className="text-red-500 font-bold">TIP</span> 카카오메일이
           있다면 메일 아이디만 입력해 보세요.
         </p>
@@ -112,12 +108,7 @@ const LoginForm = () => {
         value={value.password}
         placeholder="비밀번호"
         label=""
-        className={`${inputBoxStyle} ${
-          isPasswordFocus ? "border-black" : "border-gray-300"
-        }`}
         onChange={handleOnChange}
-        onFocus={onFocusPassword}
-        onBlur={onBlurPassword}
       />
       <div className="my-6">
         <CheckboxGroup

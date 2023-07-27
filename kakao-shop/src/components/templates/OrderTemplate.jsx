@@ -45,44 +45,6 @@ const OrderTemplate = ({ data }) => {
     mutationFn: saveOrder,
   });
 
-  // const OrderItems = () => {
-  //   let renderComponent = [];
-
-  //   if (products && Array.isArray(products)) {
-  //     products.forEach((item) => {
-  //       renderComponent.push(
-  //         item.carts.map((cart) => {
-  //           return (
-  //             <div
-  //               key={cart.id}
-  //               className="border border-solid border-x-0 border-b-0 border-gray-50 pt-3 mt-2"
-  //             >
-  //               <div className="product-name font-bold text-sm">
-  //                 <span>{item.productName}</span>
-  //               </div>
-  //               <div className="product-option text-sm text-gray-500">
-  //                 <span>{`${item.carts[0].option.optionName}, `}</span>
-  //                 <span>{comma(cart.quantity)}개</span>
-  //               </div>
-
-  //               <div className="price">
-  //                 <span>
-  //                   <span className="font-bold text-lg">
-  //                     {comma(cart.price * cart.quantity)}
-  //                   </span>
-  //                   원
-  //                 </span>
-  //               </div>
-  //             </div>
-  //           );
-  //         })
-  //       );
-  //     });
-  //   }
-
-  //   return renderComponent;
-  // };
-
   return (
     <Container className="order">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
@@ -103,8 +65,8 @@ const OrderTemplate = ({ data }) => {
           </span>
         </div>
         {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        <div className="flex flex-col gap-4 p-4">
-          <div className="flex gap-2">
+        <Box className="flex flex-col gap-4 p-4">
+          <div className="flex gap-2 items-center">
             <input
               type="checkbox"
               id="all-agree"
@@ -112,11 +74,13 @@ const OrderTemplate = ({ data }) => {
               ref={allAgreeRef}
               checked={agreePayment && agreePolicy}
               onChange={handleAllAgree}
+              className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
             />
-            <label htmlFor="all-agree" className="text-x1 font-bold">
-              전체 동의
+            <label htmlFor="all-agree" className="text-lg font-bold">
+              전체 동의하기
             </label>
           </div>
+          <Divider />
           <div className="flex gap-2">
             <input
               type="checkbox"
@@ -125,6 +89,7 @@ const OrderTemplate = ({ data }) => {
               ref={agreePaymentRef}
               checked={agreePayment}
               onChange={handleAgreement}
+              className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
             />
             <label htmlFor="agree" className="text-sm">
               구매조건 확인 및 결제 진행 동의
@@ -138,47 +103,48 @@ const OrderTemplate = ({ data }) => {
               ref={agreePolicyRef}
               checked={agreePolicy}
               onChange={handleAgreement}
+              className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
             />
             <label htmlFor="policy" className="text-sm">
-              개인정보 제 3자 제공동의
+              개인정보 제3자 제공 동의
             </label>
           </div>
+        </Box>
 
-          {/* 결제하기 버튼 */}
-          <Button
-            onClick={() => {
-              // 동의가 이뤄지지 않았을 경우 처리
-              if (agreePayment === false || agreePolicy === false) {
-                alert("동의가 이뤄지지 않았습니다.");
-                return;
-              }
-              // POST: /orders/save
-              // DB: 장바구니에 있는 모든 항목이 결제로 저장
-              // 장바구니는 비워짐
-              // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
-              // /orders/complete/:id
+        {/* 결제하기 버튼 */}
+        <Button
+          onClick={() => {
+            // 동의가 이뤄지지 않았을 경우 처리
+            if (agreePayment === false || agreePolicy === false) {
+              alert("동의가 이뤄지지 않았습니다.");
+              return;
+            }
+            // POST: /orders/save
+            // DB: 장바구니에 있는 모든 항목이 결제로 저장
+            // 장바구니는 비워짐
+            // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
+            // /orders/complete/:id
 
-              mutate(null, {
-                onError: (error) => {
-                  // console.log(error);
-                  // alert("주문에 실패하였습니다.");
-                  // 사용자 정보가 유실(headers.Authorization) -> /login
-                  // 서버사이드 에러 -> alert
-                  // 엉뚱한 product 정보 -> 404 페이지
-                },
-                onSuccess: (res) => {
-                  console.log(res.data.response.id);
-                  const { id } = res.data.response;
-                  alert("주문이 완료되었습니다.");
-                  navigate(`/orders/${id}`);
-                },
-              });
-            }}
-            color={agreePayment && agreePolicy ? "kakao" : "gray"}
-          >
-            결제하기
-          </Button>
-        </div>
+            mutate(null, {
+              onError: (error) => {
+                // console.log(error);
+                // alert("주문에 실패하였습니다.");
+                // 사용자 정보가 유실(headers.Authorization) -> /login
+                // 서버사이드 에러 -> alert
+                // 엉뚱한 product 정보 -> 404 페이지
+              },
+              onSuccess: (res) => {
+                console.log(res.data.response.id);
+                const { id } = res.data.response;
+                alert("주문이 완료되었습니다.");
+                navigate(`/orders/${id}`);
+              },
+            });
+          }}
+          color={agreePayment && agreePolicy ? "kakao" : "gray"}
+        >
+          결제하기
+        </Button>
       </div>
     </Container>
   );

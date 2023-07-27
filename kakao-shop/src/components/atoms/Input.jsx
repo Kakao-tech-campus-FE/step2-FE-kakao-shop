@@ -25,7 +25,7 @@ const Input = ({
 }) => {
   return (
     <input
-      className={`input focus:outline-none ${className}`}
+      className={`input block py-2 px-0 w-full text-gray-900 font-bold bg-transparent border-0 border-b border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-black peer${className}`}
       type={type}
       name={name}
       id={id}

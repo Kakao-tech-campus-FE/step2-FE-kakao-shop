@@ -1,4 +1,3 @@
-import Container from "../atoms/Container";
 import ProductInformationColumn from "../molecules/ProductInformationColumn";
 import OptionColumn from "../molecules/OptionColumn";
 import Divider from "../atoms/Divider";
