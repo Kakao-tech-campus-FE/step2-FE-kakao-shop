@@ -4,15 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import Section from 'components/atoms/Section';
 import SubmitButton from 'components/atoms/SubmitButton';
-import CartOptionBox from 'components/atoms/cart/CartOptionBox';
-import CartCollectionBox from 'components/atoms/cart/CartCollectionBox';
+import PageTitleBox from 'components/atoms/PageTitleBox';
 import TotalPrice from 'components/molecules/TotalPrice';
 import OptionSelected from 'components/molecules/OptionSelected';
+import { CartOptionBox, CartCollectionBox } from 'components/atoms/cart/';
 
 import strPrice from 'utils/price';
 import { getCarts, updateCart } from 'api/cart';
 import { postOrder } from 'api/order';
-import PageTitleBox from 'components/atoms/PageTitleBox';
 
 
 const Cart = () => {
