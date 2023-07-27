@@ -1,10 +1,9 @@
 import React from 'react';
 
-export default function Photo({ className, src, alt }) {
+export default function Photo({ src, alt }) {
   return (
-    <picture className={className}>
-      <source srcSet={src} />
-      <img src={src} alt={alt} />
+    <picture className='w-12'>
+      <img src={src} alt={alt} className='w-full rounded-xl' />
     </picture>
   );
 }

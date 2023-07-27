@@ -13,7 +13,7 @@ export default function Input({
     <input
       id={id}
       name={name}
-      className={className}
+      className={`${className} border border-gray-300 rounded-md my-2 px-3 py-1 w-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent`}
       type={type}
       value={value}
       onChange={onChange}
