@@ -16,6 +16,8 @@ const OrderCompleteTemplate = ({ data }) => {
     setProducts(data?.data?.response.products[0]);
   }, [data]);
 
+  console.log(products);
+
   return (
     <div className="text-black py-4">
       <div className="text-center">
@@ -39,9 +41,11 @@ const OrderCompleteTemplate = ({ data }) => {
             <tr>
               <td className="p-4">옵션</td>
               <td>
-                {products?.items.map((item) => (
-                  <div key={item.id}>- {item.optionName}</div>
-                ))}
+                {products?.items
+                  .filter((item) => item.quantity > 0) // Filter items with quantity > 0
+                  .map((item) => (
+                    <div key={item.id}>- {item.optionName}</div>
+                  ))}
               </td>
             </tr>
           </tbody>

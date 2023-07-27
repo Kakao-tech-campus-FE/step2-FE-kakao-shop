@@ -48,12 +48,13 @@ const OrderTemplate = ({ data }) => {
   });
 
   const OrderItems = () => {
-    // const products = data?.data?.response.products;
+    console.log(data?.data?.response.products);
     let renderComponent = [];
 
     data?.data?.response.products.forEach((item) => {
+      const filteredCarts = item.carts.filter((cart) => cart.quantity > 0);
       renderComponent.push(
-        item.carts.map((cart) => {
+        filteredCarts.map((cart) => {
           return (
             <div key={cart.id} className="p-4 border-t">
               <div className="product-name font-bold">
@@ -103,7 +104,7 @@ const OrderTemplate = ({ data }) => {
         <OrderItems />
         <div className="border p-4 flex items-center justify-between">
           <h3 className="font-bold text-xl">총 주문 금액</h3>
-          <span className="price text-xl text-indigo-700">
+          <span className="price text-xl font-bold text-blue-600">
             {comma(totalPrice)}원
           </span>
         </div>
