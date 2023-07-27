@@ -11,6 +11,7 @@ module.exports = {
         kakao_blue: '#4684E9',
         kakao_yellow: '#FEE500',
         kakao_red: '#FF5959',
+        kakao_gray: '#FAFAFA',
       },
     },
   },

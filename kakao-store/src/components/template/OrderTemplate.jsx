@@ -5,6 +5,38 @@ import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 
 const OrderTemplate = ({ data }) => {
+  const [selectedItem, setSelectedItem] = useState("");
+
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedItem(event.target.value);
+
+    if (selectedValue === "item1") {
+      const selectElement = event.target;
+      const item1Option = Array.from(selectElement.options).find(
+        (option) => option.value === "item1"
+      );
+      if (item1Option) {
+        item1Option.disabled = true;
+      }
+    }
+  };
+
+  const getPlaceholderText = () => {
+    switch (selectedItem) {
+      case "item2":
+        return "배송전 연락바랍니다.";
+      case "item3":
+        return "부재시 경비실에 맡겨주세요.";
+      case "item4":
+        return "부재시 연락주세요.";
+      case "item5":
+        return "직접입력";
+      default:
+        return "배송 요청사항을 입력해주세요 (최대 50자)";
+    }
+  };
+
   // 사용자의 장바구니 목록을 조회해서 보여주는 것
   const { products, totalPrice } = data?.data?.response ?? {};
   const navigate = useNavigate();
@@ -47,7 +79,7 @@ const OrderTemplate = ({ data }) => {
         renderComponent.push(
           item.carts.map((cart) => {
             return (
-              <div key={cart.id} className="border-t p-4">
+              <div key={cart.id} className="border-t bg-white p-4">
                 <div className="produce-name font-bold">
                   <span>{`${item.productName} - ${item.carts[0].option.optionName}`}</span>
                 </div>
@@ -69,44 +101,64 @@ const OrderTemplate = ({ data }) => {
   };
 
   return (
-    <div className="py-10">
-      <div className="mx-auto block w-[100%] max-w-[1024px]">
-        <div className="border p-4">
-          <h1 className="font-blod text-sm">주문하기</h1>
-        </div>
-        <div className="border p-4">
-          <h2 className="font-blod text-sm">배송지 정보</h2>
-        </div>
-        <div className="border p-4">
-          <div className="flex items-center gap-4">
-            <span>홍길동</span>
-            <span className="rounded-md bg-blue-100 p-2 text-xs text-blue-400">
-              기본배송지
-            </span>
+    <div className="bg-kakao_gray py-10">
+      <div className="mx-auto flex w-[100%] max-w-[1024px] flex-col gap-4 ">
+        <div className="border bg-white">
+          <h1 className="p-2 text-center text-base font-extrabold">주문하기</h1>
+          <div className=" border-t p-4">
+            <div>
+              <span className="mr-2 text-xl font-extrabold">배송지 정보</span>
+              <span>(kakao 계정 제공)</span>
+            </div>
+
+            <div className="mt-3 flex flex-col">
+              <div>
+                <span className="text-xl font-extrabold">박지호</span>
+                <span className="rounded-md bg-blue-100 p-2 text-xs text-blue-400">
+                  박지호
+                </span>
+              </div>
+              <span> 010-0000-0000 </span>
+              <span> 부산광역시 남구 문현동 000-00 </span>
+            </div>
+
+            <div className="flex flex-col gap-2 ">
+              <label>배송 요청사항 선택</label>
+              <select
+                className="rounded border border-r-4 p-2 text-sm"
+                value={selectedItem}
+                onChange={handleSelectChange}
+              >
+                <option value="item1">배송 요청사항을 선택해주세요.</option>
+                <option value="item2">배송전 연락바랍니다.</option>
+                <option value="item3">부재시 경비실에 맡겨주세요.</option>
+                <option value="item4">부재시 연락주세요.</option>
+                <option value="item5">직접입력</option>
+              </select>
+              <textarea
+                className="h-[75px] rounded border border-r-4 p-2 text-sm"
+                type="text"
+                placeholder={getPlaceholderText()}
+              />
+            </div>
           </div>
         </div>
-        <div className="border p-4">
-          <span> 010-0000-0000 </span>
-        </div>
-        <div className="border p-4">
-          <span> 부산광역시 남구 문현동 000-00 </span>
-        </div>
 
-        <div className="border p-4">
-          <h2>주문상품 정보</h2>
+        <div className="border bg-white ">
+          <h2 className="p-4 text-xl font-bold">주문상품 정보</h2>
+          <OrderItems />
         </div>
         {/* 각 주문의 정보 */}
-        <OrderItems />
 
         {/* 총 주문금액 */}
-        <div className="flex items-center justify-between border p-4">
+        <div className="flex items-center justify-between border bg-white p-4">
           <h3 className="text-lx font-bold">총 주문 금액</h3>
           <span className="price text-xl text-kakao_blue">
             {comma(totalPrice)}원
           </span>
         </div>
         {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        <div className="flex flex-col gap-4 p-4">
+        <div className="flex flex-col gap-4 border bg-white p-4">
           <div className="flex gap-2">
             <input
               type="checkbox"

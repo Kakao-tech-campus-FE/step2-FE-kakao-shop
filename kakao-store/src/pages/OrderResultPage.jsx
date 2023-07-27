@@ -1,12 +1,10 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getOrderFromId } from "../services/order";
 import OrderList from "../components/molecules/OrderList";
 import { useQuery } from "@tanstack/react-query";
-// import { useQuery } from "react-query";
 
 const OrderResultPage = () => {
   const { id } = useParams();
-  // const { data } = useQuery(`/orders/${id}`, () => getOrderFromId(id));
 
   const { data } = useQuery({
     queryKey: [`/orders/${id}`],
