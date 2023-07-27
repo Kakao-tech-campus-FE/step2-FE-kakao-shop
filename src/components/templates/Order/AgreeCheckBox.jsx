@@ -1,23 +1,10 @@
 import React, { useState } from "react";
-import { Slide, toast } from "react-toastify";
 import CheckList from "../../organisms/Order/CheckList";
 import Button from "../../atoms/Button";
-import Toast from "../../molecules/Common/Toast";
 import paymentInstance from "../../../apis/payment";
 import { comma } from "../../../utils/convert";
 import { CHECKBOXDATA } from "../../../utils/constant";
-
-const toastOptions = {
-  position: toast.POSITION.BOTTOM_CENTER,
-  autoClose: 3000,
-  closeButton: false,
-  transition: Slide,
-  hideProgressBar: true,
-  style: {
-    padding: "12px 30px",
-    backgroundColor: "#333333",
-  },
-};
+import useToasts from "../../../hooks/useToast";
 
 export default function AgreeCheckBox({
   productsName,
@@ -28,6 +15,7 @@ export default function AgreeCheckBox({
   selected,
 }) {
   const [checkedList, setCheckedList] = useState([]);
+  const { showToast } = useToasts();
 
   const handleAllChange = (isChecked) => {
     setCheckedList(isChecked ? [] : CHECKBOXDATA);
@@ -41,14 +29,11 @@ export default function AgreeCheckBox({
   };
   const handleOrderClick = async () => {
     if (address === "주소를 검색해보세요.") {
-      toast(<Toast text="주소를 입력해주세요." button={false} />, toastOptions);
+      showToast("주소를 검색해보세요.", false);
       return;
     }
     if (selected === "배송 요청사항을 선택해주세요") {
-      toast(
-        <Toast text="배송 요청사항을 선택해주세요." button={false} />,
-        toastOptions
-      );
+      showToast("배송 요청사항을 선택해주세요.", false);
       return;
     }
     if (checkedList.length !== CHECKBOXDATA.length) {

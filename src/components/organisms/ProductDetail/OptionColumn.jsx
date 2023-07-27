@@ -1,25 +1,12 @@
 import React, { useReducer, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Slide, toast } from "react-toastify";
 import OptionList from "./OptionList";
 import DeliveryForm from "./DeliveryForm";
 import OrderGroup from "../../molecules/ProductDetail/OrderGroup";
-import Toast from "../../molecules/Common/Toast";
 import optionReducer from "../../../reducer/option-reducer";
 import useCart from "../../../hooks/useCart";
-
-const toastOptions = {
-  position: toast.POSITION.BOTTOM_CENTER,
-  autoClose: 3000,
-  closeButton: false,
-  transition: Slide,
-  hideProgressBar: true,
-  style: {
-    padding: "12px 30px",
-    backgroundColor: "#333333",
-  },
-};
+import useToasts from "../../../hooks/useToast";
 
 export default function OptionColumn({ productData, modalRef }) {
   const { options } = productData;
@@ -28,6 +15,7 @@ export default function OptionColumn({ productData, modalRef }) {
   const user = useSelector((state) => state.user.isLoggedIn);
   const [optionList, dispatch] = useReducer(optionReducer, []);
   const { addCart } = useCart();
+  const { showToast } = useToasts();
 
   const handleOptionClick = (option) => {
     dispatch({ type: "add", option });
@@ -40,10 +28,7 @@ export default function OptionColumn({ productData, modalRef }) {
   };
   const handleAddCart = () => {
     if (optionList.length === 0) {
-      toast(
-        <Toast text="옵션을 먼저 선택해주세요." button={false} />,
-        toastOptions
-      );
+      showToast("옵션을 먼저 선택해주세요.", false);
       return;
     }
     if (!user) {
@@ -59,20 +44,14 @@ export default function OptionColumn({ productData, modalRef }) {
         onSuccess: async () => {
           dispatch({ type: "clear" });
           setIsOptionShow(false);
-          toast(
-            <Toast text="장바구니에 상품이 담겼습니다." button={true} />,
-            toastOptions
-          );
+          showToast("장바구니에 상품이 담겼습니다.", true);
         },
       }
     );
   };
   const handleOrder = () => {
     if (optionList.length === 0) {
-      toast(
-        <Toast text="옵션을 먼저 선택해주세요." button={false} />,
-        toastOptions
-      );
+      showToast("옵션을 먼저 선택해주세요.", false);
       return;
     }
     if (!user) {
