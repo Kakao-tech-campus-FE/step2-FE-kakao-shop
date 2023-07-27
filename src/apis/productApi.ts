@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
-import { AddCart, Cart, UpdateCart } from '../dto/productDto';
+import { AddCart, Cart, CompleteOrder, UpdateCart } from '../dto/productDto';
 
 const useGetProductsQuery = () => {
   const MAX_PAGE = 1;
@@ -70,10 +70,10 @@ const useOrderSaveMutation = () => {
   return useMutation({ mutationFn: fetcher });
 };
 
-const useGetOrderQuery = () => {
-  const fetcher = () => axios.get(`/orders/155`);
+const useGetOrderQuery = (id: number) => {
+  const fetcher = () => axios.get(`/orders/${id}`).then(({ data }) => data.response);
 
-  return useQuery({
+  return useQuery<CompleteOrder>({
     queryKey: ['order'],
     queryFn: fetcher,
   });

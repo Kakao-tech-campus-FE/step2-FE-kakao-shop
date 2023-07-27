@@ -49,3 +49,14 @@ export interface UpdateCart {
   cartId: number;
   quantity: number;
 }
+
+export interface CompleteProduct {
+  productName: string;
+  items: ({ quantity: number } & OptionInfo)[];
+}
+
+export interface CompleteOrder {
+  id: number;
+  products: CompleteProduct[];
+  totalPrice: number;
+}
