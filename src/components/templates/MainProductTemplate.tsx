@@ -1,9 +1,7 @@
 import React, { useEffect, useRef } from 'react';
-import useGetProductsQuery from '../../apis/productApi';
+import { useGetProductsQuery } from '../../apis/productApi';
 import ProductGrid from '../organisms/ProductGrid';
 import Container from '../atoms/Container';
-import Loader from '../atoms/Loader';
-import SkeletonProductGrid from '../organisms/SkeletonProductGrid';
 
 const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
@@ -29,13 +27,7 @@ const MainProductTemplate = () => {
 
   return (
     <Container className='pb-16 pt-8'>
-      {isLoading && (
-        <>
-          <Loader />
-          <SkeletonProductGrid />
-        </>
-      )}
-      <div>{isSuccess && data.pages && <ProductGrid isFetching={isFetching} pages={data.pages} />}</div>
+      <ProductGrid isLoading={isLoading} isFetching={isFetching} pages={data?.pages} />
       <div ref={bottomObserver} className='h-20' />
     </Container>
   );

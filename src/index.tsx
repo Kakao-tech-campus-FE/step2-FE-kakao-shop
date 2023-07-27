@@ -12,8 +12,14 @@ import { store, persistor } from './store';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.timeout = 1000;
+axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
 
 const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
   queryCache: new QueryCache({
     onSuccess: (data) => {
       console.log(data);

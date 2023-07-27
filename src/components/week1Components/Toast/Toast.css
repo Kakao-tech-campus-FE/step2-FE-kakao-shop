@@ -1,14 +1,16 @@
 .toast {
   position: absolute;
   display: flex;
-  padding: 0 3px;
+  padding: 6px 16px;
   overflow: auto;
   align-items: center;
   max-width: 350px;
-  min-width: 160px;
+  min-width: 200px;
   width: fit-content;
   height: 30px;
-  background-color: beige;
+  background-color: aliceblue;
+  border-radius: 4px;
+  border: 1px solid cornflowerblue;
 }
 .toast.top-left {
   top: 3px;

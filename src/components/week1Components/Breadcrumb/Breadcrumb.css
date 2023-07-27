@@ -5,13 +5,13 @@
   font-size: small;
   color: dimgrey;
 }
-.route {
+.item {
   all: unset;
+  margin: 0 5px;
 }
-.route:hover {
+.item:hover {
+  text-decoration: underline;
+}
+.item:last-child {
   color: indigo;
-  font-weight: bolder;
-}
-.route:last-child {
-  font-weight: bolder;
 }

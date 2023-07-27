@@ -5,7 +5,7 @@ import GNB from '../components/molecules/GNB';
 
 const MainLayout = () => {
   return (
-    <div>
+    <>
       <GNB />
       <div className='flex h-full min-h-screen flex-col pt-14'>
         <div className='grow'>
@@ -13,7 +13,7 @@ const MainLayout = () => {
         </div>
         <Footer />
       </div>
-    </div>
+    </>
   );
 };
 

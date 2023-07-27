@@ -1,13 +1,13 @@
 import React, { Suspense } from 'react';
-import MainProductTemplate from '../components/templates/MainProductTemplate';
+import CartTemplate from '../components/templates/CartTemplate';
 import Loader from '../components/atoms/Loader';
 
-const MainPage = () => {
+const CartPage = () => {
   return (
     <Suspense fallback={<Loader />}>
-      <MainProductTemplate />
+      <CartTemplate />
     </Suspense>
   );
 };
 
-export default MainPage;
+export default CartPage;

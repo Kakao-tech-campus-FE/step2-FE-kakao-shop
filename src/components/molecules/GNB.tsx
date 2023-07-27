@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { HiOutlineShoppingCart } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 import KaKaoShopLogo from '../atoms/KaKaoShopLogo';
 import LoginLink from '../atoms/LoginLink';
-import { selectEmail, selectExpirationDate, setEmail, setExpirationDate } from '../../store/slices/userSlices';
+import { selectEmail, selectExpirationDate, logout } from '../../store/slices/userSlices';
 import Button from '../atoms/Button';
 import Container from '../atoms/Container';
 
@@ -12,8 +14,7 @@ const GNB = () => {
   const dispatch = useDispatch();
 
   const handleLogoutButtonClick = () => {
-    dispatch(setEmail({ email: null }));
-    dispatch(setExpirationDate({ expirationDate: null }));
+    dispatch(logout());
   };
 
   useEffect(() => {
@@ -25,12 +26,17 @@ const GNB = () => {
   }, []);
 
   return (
-    <div className='fixed left-0 right-0 top-0 z-50 h-14 border-b border-gray-200 bg-white'>
+    <nav className='fixed left-0 right-0 top-0 z-50 h-14 border-b border-gray-200 bg-white'>
       <Container className='flex items-center justify-between py-4'>
         <KaKaoShopLogo />
-        <div>{currentEmail ? <Button onClick={handleLogoutButtonClick}>로그아웃</Button> : <LoginLink />}</div>
+        <div className='flex items-center space-x-6'>
+          <Link to='cart'>
+            <HiOutlineShoppingCart size={25} />
+          </Link>
+          {currentEmail ? <Button onClick={handleLogoutButtonClick}>로그아웃</Button> : <LoginLink />}
+        </div>
       </Container>
-    </div>
+    </nav>
   );
 };
 

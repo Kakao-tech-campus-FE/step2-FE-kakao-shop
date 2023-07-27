@@ -10,16 +10,18 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setEmail: (state, action: PayloadAction<{ email: string | null }>) => {
+    login: (state, action: PayloadAction<{ email: string; expirationDate: Date }>) => {
       state.email = action.payload.email;
-    },
-    setExpirationDate: (state, action: PayloadAction<{ expirationDate: Date | null }>) => {
       state.expirationDate = action.payload.expirationDate;
+    },
+    logout: (state) => {
+      state.email = null;
+      state.expirationDate = null;
     },
   },
 });
 
-export const { setEmail, setExpirationDate } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 
 export const selectEmail = (state: RootState) => state.user.email;
 export const selectExpirationDate = (state: RootState) => state.user.expirationDate;

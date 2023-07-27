@@ -8,6 +8,7 @@ const login = async ({ email, password }: loginInfo) => {
       password,
     });
 
+    localStorage.setItem('token', response.headers.authorization);
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {

@@ -6,7 +6,7 @@ interface ButtonProps {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button = ({ type = 'submit', children, onClick }: ButtonProps) => {
+const LightButton = ({ type = 'submit', children, onClick }: ButtonProps) => {
   return (
     <button
       // eslint-disable-next-line react/button-has-type
@@ -15,11 +15,11 @@ const Button = ({ type = 'submit', children, onClick }: ButtonProps) => {
         e.preventDefault();
         onClick(e);
       }}
-      className='flex w-full items-center justify-center rounded-md bg-yellow-300 px-3 py-1.5 text-sm font-semibold leading-6 text-gray-900 shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-600'
+      className='flex w-16 justify-center rounded-md border bg-white px-3 py-1.5 text-sm leading-6 text-gray-900 shadow-sm hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-neutral-600'
     >
       {children}
     </button>
   );
 };
 
-export default Button;
+export default LightButton;

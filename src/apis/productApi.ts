@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
+import { AddCart, Cart, UpdateCart } from '../dto/productDto';
 
 const useGetProductsQuery = () => {
   const MAX_PAGE = 1;
@@ -21,4 +22,46 @@ const useGetProductsQuery = () => {
   });
 };
 
-export default useGetProductsQuery;
+const useGetProductQuery = (id: number) => {
+  const fetcher = () =>
+    axios
+      .get(`/products/${id}`)
+      .then(({ data }) => data.response)
+      .catch((error) => {
+        throw error;
+      });
+
+  return useQuery({
+    queryKey: ['product'],
+    queryFn: fetcher,
+  });
+};
+
+const useGetCartQuery = () => {
+  const fetcher = () =>
+    axios
+      .get(`/carts`)
+      .then(({ data }) => data.response)
+      .catch((error) => {
+        throw error;
+      });
+
+  return useQuery<Cart>({
+    queryKey: ['carts'],
+    queryFn: fetcher,
+  });
+};
+
+const useAddCartMutation = () => {
+  const fetcher = (cartOptions: AddCart[]) => axios.post(`/carts/add`, cartOptions);
+
+  return useMutation({ mutationFn: fetcher });
+};
+
+const useUpdateCartMutation = () => {
+  const fetcher = (cartOptions: UpdateCart[]) => axios.post(`/carts/update`, cartOptions);
+
+  return useMutation({ mutationFn: fetcher });
+};
+
+export { useGetProductsQuery, useGetProductQuery, useGetCartQuery, useAddCartMutation, useUpdateCartMutation };
