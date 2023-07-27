@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import {useMutation} from "react-query";
+import {useMutation, useQueryClient} from "react-query";
 
 import Counter from "../atoms/Counter";
 import OptionList from "../atoms/OptionList";
@@ -14,10 +14,13 @@ import {ToastContext} from "../../App";
 
 const OptionColumn = ({product}) => {
     const [selectedOption, setSelectedOption] = useState([]);
+
     const navigator = useNavigate();
+    const queryClient = useQueryClient();
 
     const {setAlertIsOpened} = useContext(AlertContext)
     const {showToast} = useContext(ToastContext)
+
 
     const handleOnClickOption = (option) => {
         if (selectedOption.find((el) => el.id === option.id)) {
@@ -61,6 +64,7 @@ const OptionColumn = ({product}) => {
     const {mutate} = useMutation({
         mutationFn: addCart,
         onSuccess: () => {
+            queryClient.invalidateQueries("cart");
         },
         onError: (error) => {
             console.log("error", error)
@@ -127,7 +131,7 @@ const OptionColumn = ({product}) => {
                 </div>
                 <div className={"button-group h-12 flex flex-row justify-between"}>
                     <button
-                        className={"w-1/4 cursor-pointer bg-kakao-dark-gray rounded-lg py-2 flex justify-center items-center"}
+                        className={"add-cart w-1/4 cursor-pointer bg-kakao-dark-gray rounded-lg py-2 flex justify-center items-center"}
                         onClick={
                             () => {
                                 if (localStorage.getItem("token") === null) {
@@ -146,7 +150,7 @@ const OptionColumn = ({product}) => {
                             }}>
                         <BsCart2 color={"white"} size={24}/>
                     </button>
-                    <button className={"w-2/4 bg-kakao-yellow rounded-lg flex justify-center items-center"}
+                    <button className={"buy-directly w-2/4 bg-kakao-yellow rounded-lg flex justify-center items-center"}
                             onClick={() => {
                                 if (localStorage.getItem("token") === null) {
                                     setAlertIsOpened(true);

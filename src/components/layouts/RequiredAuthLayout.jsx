@@ -1,18 +1,22 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import {Outlet, useNavigate} from "react-router-dom";
 
 const RequiredAuthLayout = ({ children }) => {
-    const { user } = useAuth();
-    const router = useRouter();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        if (!user) {
-        router.push('/login');
+        if (localStorage.getItem('token') === null) {
+            alert('로그인이 필요한 서비스입니다.');
+            navigate('/login');
         }
-    }, [user]);
+    }, [navigate]);
+
 
     return (
         <>
-        {children}
+            <Outlet />
         </>
     );
 }
+
+export default RequiredAuthLayout;

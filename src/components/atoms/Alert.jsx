@@ -23,7 +23,7 @@ const Alert = ({
                 className="alert-box bg-white fixed top-40 p-4 z-10 rounded-lg flex flex-col justify-center items-center border border-gray-300">
                 <RxCross2 className={"text-2xl cursor-pointer absolute right-2 top-2"} onClick={onClose}/>
                 <div className={"alert-contents p-4"}>
-                    로그인이 필요합니다.
+                    {message}
                 </div>
                 <botton className={"bg-kakao-dark-gray rounded-lg py-1 px-4 text-white cursor-pointer"}
                         onClick={onClickButton}>

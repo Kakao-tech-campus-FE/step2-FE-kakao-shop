@@ -12,14 +12,6 @@ const CartPage = () => {
     const {toastMessage, toastShow, hideToast} = useToast()
     return (
         <Suspense fallback={<Loader/>}>
-            <Toast
-                message={toastMessage}
-                isShow={toastShow}
-                time={2400}
-                onClose={() => {
-                    hideToast();
-                }}
-            />
             <Helmet
                 title={"카카오톡 쇼핑하기 - 장바구니"}
             >

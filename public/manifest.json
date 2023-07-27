@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "카카오 쇼핑하기",
+  "name": "카카오 쇼핑하기",
   "icons": [
     {
       "src": "favicon.ico",

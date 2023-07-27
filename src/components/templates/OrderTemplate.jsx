@@ -1,10 +1,10 @@
 import {comma} from "../../utils/convert";
 import {useNavigate} from "react-router-dom";
-import {useRef, useState} from "react";
-import useToast from "../../hooks/useToast";
+import {useContext, useRef, useState} from "react";
 import SelectBox from "../atoms/SelectBox";
 import {order} from "../../services/order";
 import {useMutation} from "react-query";
+import {ToastContext} from "../../App";
 
 const OrderTemplate = ({data}) => {
 
@@ -40,7 +40,7 @@ const OrderTemplate = ({data}) => {
         }
     }
 
-    const {showToast} = useToast();
+    const {showToast} = useContext(ToastContext);
     const [selectBoxValue, setSelectBoxValue] = useState("")
     const handleOnChangeSelectBox = (e) => {
         setSelectBoxValue(e.target.value);
@@ -49,7 +49,7 @@ const OrderTemplate = ({data}) => {
     const OrderItems = () => products?.map((item) =>
         item.carts.filter((cart) => cart.quantity !== 0).map((cart) => (
             <div key={cart.id} className={"flex flex-col p-4 items-start text-gray-700 gap-2 border border-gray-300"}>
-                <div className={"order-product-name font-bold"}>
+                <div className={"order-product-name font-bold text-left"}>
                     <span>{`${item.productName} - ${cart.option.optionName}`}</span>
                 </div>
                 <div className={"product-quantity text-sm"}>
@@ -64,12 +64,6 @@ const OrderTemplate = ({data}) => {
 
     return (
         <div className={"order-template flex flex-col mx-auto max-w-[1024px] w-[100%] px-20 gap-2"}>
-            <botton onClick={() => {
-                console.log("안녕")
-                showToast("안녕보튼")
-            }}>
-                토스트
-            </botton>
             <div className={"h-20 flex items-center justify-center"}>
                 <h1 className={"text-4xl font-bold"}>주문하기</h1>
             </div>
