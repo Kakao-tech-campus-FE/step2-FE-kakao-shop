@@ -7,7 +7,7 @@ import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ isMobile }: { isMobile: boolean }) => {
   const dispatch = useDispatch();
   const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
   const cartProducts = useSelector((state: RootState) => state.cart.cart);
@@ -27,8 +27,8 @@ const Header = () => {
 
   return (
     <Fragment>
-      <S.Root>
-        <S.Container>
+      <S.Root isMobile={isMobile}>
+        <S.Container isMobile={isMobile}>
           <S.TitleLogo>
             <Link to="/">
               <S.Image
@@ -38,16 +38,18 @@ const Header = () => {
             </Link>
           </S.TitleLogo>
 
-          <S.GnbMenu>
-            <S.A11yMenuDesc css={hideWithA11y}>쇼핑하기 메인 메뉴</S.A11yMenuDesc>
-            <S.MenuList>
-              <li>
-                <Link to="/">
-                  <span>홈</span>
-                </Link>
-              </li>
-            </S.MenuList>
-          </S.GnbMenu>
+          {!isMobile && (
+            <S.GnbMenu>
+              <S.A11yMenuDesc css={hideWithA11y}>쇼핑하기 메인 메뉴</S.A11yMenuDesc>
+              <S.MenuList>
+                <li>
+                  <Link to="/">
+                    <span>홈</span>
+                  </Link>
+                </li>
+              </S.MenuList>
+            </S.GnbMenu>
+          )}
 
           <S.MenuUtil>
             <Link to="/cart">
@@ -59,7 +61,7 @@ const Header = () => {
           <S.MenuMy>{isLogin ? <button onClick={logout}>로그아웃</button> : <Link to="/login">로그인</Link>}</S.MenuMy>
         </S.Container>
       </S.Root>
-      <S.HeaderTrick />
+      {!isMobile && <S.HeaderTrick />}
       {/* 헤더가 fixed 이므로 아래에 div 를 하나 배치하여 레이아웃 잡기 편하도록 하기위해서 */}
     </Fragment>
   );
@@ -68,8 +70,8 @@ const Header = () => {
 export default Header;
 
 const S = {
-  Root: styled.nav`
-    position: fixed;
+  Root: styled.nav<{ isMobile: boolean }>`
+    position: ${({ isMobile }) => (isMobile ? 'static' : 'fixed')};
     left: 0;
     right: 0;
     top: 0;
@@ -79,10 +81,10 @@ const S = {
     background-color: #fff;
   `,
 
-  Container: styled.div`
+  Container: styled.div<{ isMobile: boolean }>`
     display: flex;
 
-    width: 1280px;
+    width: ${({ isMobile }) => (isMobile ? '300px' : '1280px')};
     height: 79px;
     margin: 0 auto;
   `,
