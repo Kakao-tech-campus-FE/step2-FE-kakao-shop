@@ -1,5 +1,5 @@
 import InputGroup from "../molecules/InputGroup";
-import useInput from "../../hooks/useInput";
+import useAuthInput from "../../hooks/useAuthInput";
 //import { useEffect } from "react";
 import * as Form from '../../styles/organisms/RegisterForm';
 import Footer from "../atoms/Footer";
@@ -17,7 +17,7 @@ const LoginForm = () => {
     const dispatch = useDispatch();
     // const email = useSelector((state) => state.user.email);
     const [error, setError] = useState('');
-    const {value, handleOnChange, handleOnCheck, invalidCheck} = useInput({
+    const {value, handleOnChange, handleOnCheck, invalidCheck} = useAuthInput({
         email: "",
         password: "",
     });
