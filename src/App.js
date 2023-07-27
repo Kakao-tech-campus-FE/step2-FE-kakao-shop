@@ -15,6 +15,7 @@ import CheckList from "./components/molecules/CheckList";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout"
 import OrderPage from "./pages/OrderPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
+import Sidebar from "./components/molecules/Sidebar";
 
 function App() {
   const [page, setPage] = React.useState("");
@@ -42,6 +43,7 @@ function App() {
           <Route path="/orders/complete/:id" element={<OrderSuccessPage />}></Route>
         </Route>
       </Routes>
+      
     </BrowserRouter>
   );
 }

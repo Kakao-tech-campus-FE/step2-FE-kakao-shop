@@ -45,6 +45,10 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
+    "babel-jest": "^29.6.2",
+    "jest": "^27.5.1",
     "tailwindcss": "^3.3.3"
   }
 }
