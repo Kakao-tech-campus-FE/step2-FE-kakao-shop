@@ -3,10 +3,9 @@ import { useLocation } from "react-router-dom";
 
 const Quantity = ({
   isEditAble,
-  option,
   quantity,
   handleDecrease,
-  onQuantityChange,
+  handleQuantityChange,
   handleIncrease,
 }) => {
   return isEditAble ? (
@@ -17,7 +16,7 @@ const Quantity = ({
       <input
         className="option-quantity"
         value={quantity}
-        onChange={(e) => onQuantityChange(option.id, +e.target.value)}
+        onChange={handleQuantityChange}
       />
       <button className="btn-quantity" onClick={handleIncrease}>
         +
@@ -31,6 +30,8 @@ const Quantity = ({
 const SelectedOption = ({ option, quantity, onQuantityChange, onRemove }) => {
   const location = useLocation();
   const isEditAble = location.pathname !== "/order";
+
+  const handleQuantityChange = (e) => onQuantityChange(option.id, +e.target.value)
 
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
@@ -59,7 +60,7 @@ const SelectedOption = ({ option, quantity, onQuantityChange, onRemove }) => {
           option={option}
           quantity={quantity}
           handleDecrease={handleDecreaseQuantity}
-          onQuantityChange={onQuantityChange}
+          onQuantityChange={handleQuantityChange}
           handleIncrease={handleIncreaseQuantity}
         />
         <span>{comma(option.price)}원</span>
