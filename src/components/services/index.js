@@ -63,7 +63,7 @@ instance.interceptors.response.use(
             return Promise.reject(error.response);
         }
 
-        // 401, 404 외의 다른 error
+        // 401, 404 외의 다른 error에 대한 처리 및 에러 메시지 확인 가능
         else {
             Swal.fire({
                 icon: 'error',

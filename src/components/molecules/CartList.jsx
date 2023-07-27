@@ -26,8 +26,15 @@ const CartList = () => {
             navigate("/order");
         },
         onError: (error) => {
-            // notFoundPage로 이동
-            navigate("/error");
+            // console.log(error.status);
+            // 만약 에러가 발생할 경우 대부분 interceptor 단에서 처리하도록 함(에러 메시지 출력)
+            // 401 에러(인증 에러)의 경우 : 로그인 페이지로의 리다이렉트 발생
+            // 401 에러일 경우에는 error 페이지 리다이렉트가 아닌 interceptor에서 로그인페이지로 리다이렉트
+            // 404 에러 : 에러 메세지 확인 + 에러 페이지로 이동
+            // 그 외 에러 : 에러 메세지 확인 + 에러 페이지로 이동
+            if (error.status !== 401) {
+                navigate("/error");
+            }
         }
     })
 
