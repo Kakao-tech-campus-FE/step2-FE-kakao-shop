@@ -96,7 +96,7 @@ const OptionColumn = ({ product }) => {
             <ol key={option.optionId} className="selected-option-list">
                 <li className="selected-option">
                     <Counter 
-                        count = {option.quantity}
+                        quantity = {option.quantity}
                         onIncrease={() => handleOnChange(option.quantity + 1, option.optionId)}
                         onDecrease={() => handleOnChange(option.quantity - 1, option.optionId)}
                     />

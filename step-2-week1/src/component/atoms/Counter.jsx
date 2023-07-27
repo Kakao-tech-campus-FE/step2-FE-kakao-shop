@@ -9,8 +9,9 @@ import { useState } from "react";
 const Counter =({
     onIncrease,
     onDecrease,
+    quantity,
 }) => {
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(quantity);
 
     const handleOnIncrease = () => {
         setCount(count + 1);

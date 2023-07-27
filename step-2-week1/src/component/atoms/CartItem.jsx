@@ -23,6 +23,7 @@ export const CartItem = ({ item, onChange }) => {
                         onDecrease={( count ) => {
                             onChange(cart.id, count, -cart.option.price);
                         }}
+                        quantity={( cart.quantity )}
                     />
                     <div className="price">
                         <span>{comma(cart.option.price * cart.quantity)}원</span>

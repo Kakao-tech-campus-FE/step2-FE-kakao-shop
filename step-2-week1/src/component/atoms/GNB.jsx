@@ -19,7 +19,6 @@ const GNB = () => {
   const [isLogin, setIsLogin] = useState(false);
   // expiration time over then delete at store, localstorage.
 
-  console.log(isLogin)
 
   useEffect(() => {
 

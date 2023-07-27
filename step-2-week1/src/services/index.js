@@ -53,9 +53,10 @@ instance.interceptors.response.use(
           alert("An error occurred:", error.message);
           break;
       }
-    } else if (error.request) {
+    }
+     else if (error.request) {
       // 요청이 만들어졌지만 응답을 받지 못한 경우
-      alert("No response received:", error.request);
+      console.log("No response received:", error.request);
     } else {
       // 요청을 만드는 도중에 문제가 발생한 경우
       alert("An error occurred:", error.message);
