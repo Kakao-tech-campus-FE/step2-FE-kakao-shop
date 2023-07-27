@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import MainPage from "pages/MainPage";
+import ProductsListPage from "pages/ProductsListPage";
 import LoginPage from "pages/LoginPage";
 import RegisterPage from "pages/RegisterPage";
 import CartPage from "pages/CartPage";
@@ -27,7 +27,7 @@ function App() {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<Loader />}>
               <Routes>
-                <Route path="*" element={<MainPage />} />
+                <Route path="*" element={<ProductsListPage />} />
                 <Route path="/signup" element={<RegisterPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/products/:id" element={<DetailPage />} />
