@@ -8,6 +8,7 @@ import Register from "@pages/Register";
 import Layout from "@pages/Layout";
 import NotFound from "@pages/NotFound";
 import Cart from "@pages/Cart";
+import Complete from "@pages/Complete";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path={"/product/:id"} element={<Detail />} />
             <Route path={"/order"} element={<Order />} />
+            <Route path={"/orders/complete/:id"} element={<Complete />} />
           </Route>
           <Route path="/*" element={<NotFound />} />
         </Routes>
