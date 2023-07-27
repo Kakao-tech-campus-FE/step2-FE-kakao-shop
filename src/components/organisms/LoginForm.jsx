@@ -69,7 +69,7 @@ const LoginForm = () => {
         onChange={handleOnChange}
       />
       <Button
-        className="w-full h-9 rounded bg-yellow mt-3"
+        className="w-full h-9 rounded bg-yellow-500 mt-3"
         onClick={() =>
           handleLogin({
             email: value.email,
