@@ -11,7 +11,6 @@ const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
 
-  const [cartItems, setCartItems] = useState(products);
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -23,7 +22,35 @@ const OrderTemplate = ({ data }) => {
   const { mutate } = useMutation({
     mutationKey: "order",
     mutationFn: order,
+    onError: (error) => {
+      // 404 에러 발생 시 error 페이지로 이동
+      if (error?.response?.status === 404) {
+        navigate("/error");
+      } else if (error?.response?.status === 401) {
+        // 사용자 정보 유실 에러 (예: 토큰 만료 등)
+        // 로그인 페이지로 이동
+        navigate("/login");
+      } else {
+        // 기타 에러 처리
+        alert("주문에 실패했습니다🥲");
+      }
+    },
+    onSuccess: (res) => {
+      const id = res.data.response.id;
+      alert("주문이 완료되었습니다!😉");
+      navigate(`/orders/complete/${id}`);
+    },
   });
+
+  const handleClickOrder = () => {
+    //  동의 하나라도 안이루어진 경우
+    if (agreePayment === false || agreePolicy === false) {
+      alert("모든 항목에 동의가 필요합니다!🙏🏻");
+      return;
+    }
+    // 주문 로직을 실행하고 결과를 처리하기 위해 mutate 호출
+    mutate();
+  };
 
   const handleAgreeAll = (e) => {
     const value = e.target.checked;
@@ -167,28 +194,7 @@ const OrderTemplate = ({ data }) => {
               및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
             </span>
           </div>
-          <button
-            className="checkout-btn"
-            onClick={() => {
-              // 동의 하나라도 안이루어진 경우
-              if (agreePayment === false || agreePolicy === false) {
-                alert("모든 항목에 동의가 필요합니다!🙏🏻");
-                return;
-              }
-
-              mutate(null, {
-                onError: (error) => {
-                  console.log("주문 실패! 에러:", error);
-                  alert("주문에 실패했습니다🥲");
-                },
-                onSuccess: (res) => {
-                  const id = res.data.response.id;
-                  alert("주문이 완료되었습니다!😉");
-                  navigate(`/orders/complete/${id}`);
-                },
-              });
-            }}
-          >
+          <button className="checkout-btn" onClick={handleClickOrder}>
             결제하기
           </button>
         </div>
