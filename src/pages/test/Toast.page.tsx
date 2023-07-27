@@ -1,3 +1,4 @@
+import Button from "@/components/common/Button.component";
 import ToastTable from "@/components/common/Toast/ToastTable.component";
 import { useToast } from "@/hooks/useToast";
 
@@ -7,7 +8,7 @@ const ToastPage = () => {
 
   return (
     <>
-      <button
+      <Button
         onClick={() =>
           addToast({
             id,
@@ -18,8 +19,8 @@ const ToastPage = () => {
         }
       >
         Click!!
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() =>
           addToast({
             id,
@@ -30,8 +31,8 @@ const ToastPage = () => {
         }
       >
         Click!!
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() =>
           addToast({
             id,
@@ -42,8 +43,8 @@ const ToastPage = () => {
         }
       >
         Click!!
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() =>
           addToast({
             id,
@@ -54,7 +55,7 @@ const ToastPage = () => {
         }
       >
         Click!!
-      </button>
+      </Button>
       <ToastTable />
     </>
   );

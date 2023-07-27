@@ -1,2 +1,2 @@
-export const pointByThree = (number: number): string =>
-  number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+export const pointByKo = (number: number): string =>
+  number.toLocaleString("ko-KR", { maximumFractionDigits: 2 });

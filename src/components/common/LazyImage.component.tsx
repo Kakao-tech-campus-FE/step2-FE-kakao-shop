@@ -1,4 +1,5 @@
 import { FC, ComponentPropsWithoutRef, useEffect, useState } from "react";
+import classnames from "classnames";
 
 type ImageProps = ComponentPropsWithoutRef<"img">;
 
@@ -26,9 +27,7 @@ const LazyImage: FC<LazyImageProps> = ({ src, alt, className, ...rest }) => {
                 !didCancel &&
                 (entry.intersectionRatio > 0 || entry.isIntersecting)
               ) {
-                setTimeout(() => {
-                  setImageSrc(src);
-                }, 1000);
+                setImageSrc(src);
                 observer.unobserve(imageRef);
               }
             });
@@ -56,9 +55,7 @@ const LazyImage: FC<LazyImageProps> = ({ src, alt, className, ...rest }) => {
     <picture>
       <img
         ref={setImageRef}
-        className={`${imageSrc !== src ? "animate-pulse" : ""} ${
-          className ?? ""
-        }`}
+        className={classnames({ "animate-pulse": imageSrc !== src }, className)}
         src={imageSrc}
         alt={alt}
         {...rest}

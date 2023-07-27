@@ -2,7 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import signSlice from "@/store/signSlice";
 
 const store = configureStore({
-  reducer: { signSlice: signSlice },
+  reducer: { signSlice },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

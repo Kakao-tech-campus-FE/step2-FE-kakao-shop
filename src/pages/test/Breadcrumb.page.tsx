@@ -1,5 +1,6 @@
 import { BreadcrumbProps } from "@/components/common/Breadcrumb/Breadcrumb.component";
 import BreadcrumbTable from "@/components/common/Breadcrumb/BreadcrumbTable.component";
+import Button from "@/components/common/Button.component";
 import { MouseEvent, useState } from "react";
 
 const BreadcrumbPage = () => {
@@ -17,7 +18,7 @@ const BreadcrumbPage = () => {
 
   return (
     <>
-      <button onClick={onShowBreadcrumbs}>Click!!!</button>
+      <Button onClick={onShowBreadcrumbs}>Click!!!</Button>
       <BreadcrumbTable crumbs={crumbs} />
     </>
   );

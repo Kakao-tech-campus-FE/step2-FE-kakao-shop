@@ -1,7 +1,7 @@
 import { localStorage } from "@/functions/localstorage";
 
-export const getAuth = () => {
-  return localStorage.get("Authorization", "");
+export const getAuth = (): string => {
+  return localStorage.get<string>("Authorization", "");
 };
 
 export const removeAuth = () => {

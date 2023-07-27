@@ -1,31 +1,10 @@
-import { ComponentPropsWithoutRef, FC, MouseEvent } from "react";
-
-type ButtonProps = ComponentPropsWithoutRef<"button">;
+import Button, { ButtonProps } from "@/components/common/Button.component";
+import { FC, MouseEvent } from "react";
 interface ButtonFormItemProps extends ButtonProps {
   children: React.ReactNode;
   type: "button" | "submit" | "reset";
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  color:
-    | "primary"
-    | "secondary"
-    | "success"
-    | "danger"
-    | "warning"
-    | "info"
-    | "light"
-    | "dark";
+  onClick?: (e: MouseEvent) => void;
 }
-
-const COLORS = {
-  primary: "bg-blue-500 hover:bg-blue-600",
-  secondary: "bg-gray-500 hover:bg-gray-600",
-  success: "bg-green-500 hover:bg-green-600",
-  danger: "bg-red-500 hover:bg-red-600",
-  warning: "bg-yellow-500 hover:bg-yellow-600",
-  info: "bg-indigo-500 hover:bg-indigo-600",
-  light: "bg-gray-100 hover:bg-gray-200",
-  dark: "bg-gray-800 hover:bg-gray-900",
-} as const;
 
 /**
  * ButtonFormItem component
@@ -48,22 +27,16 @@ const ButtonFormItem: FC<ButtonFormItemProps> = ({
   onClick,
   color,
   ...props
-}) => {
-  const onPreventDefaultClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    if (onClick) onClick(e);
-  };
-
-  return (
-    <button
-      type={type}
-      onClick={onPreventDefaultClick}
-      className={`rounded-lg py-4 px-8 w-full ${COLORS[color]}`}
-      {...props}
-    >
-      {children}
-    </button>
-  );
-};
+}) => (
+  <Button
+    type={type}
+    onClick={onClick}
+    color={color}
+    className="rounded-lg py-4 px-8 w-full"
+    {...props}
+  >
+    {children}
+  </Button>
+);
 
 export default ButtonFormItem;

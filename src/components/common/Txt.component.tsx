@@ -1,4 +1,5 @@
 import { FC, HTMLAttributes } from "react";
+import classnames from "classnames";
 
 interface TxtProps extends HTMLAttributes<HTMLSpanElement> {
   typograph?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "sm";
@@ -10,6 +11,7 @@ interface TxtProps extends HTMLAttributes<HTMLSpanElement> {
     | "info"
     | "light"
     | "dark";
+  className?: string;
 }
 
 const TYPOGRAPH = {
@@ -31,12 +33,18 @@ const COLOR = {
   info: "text-gray-500",
   light: "text-white",
   dark: "text-black",
-};
+} as const;
 
-const Txt: FC<TxtProps> = ({ typograph = "p", color = "dark", ...props }) => {
-  return (
-    <span className={`${TYPOGRAPH[typograph]} ${COLOR[color]}`} {...props} />
-  );
-};
+const Txt: FC<TxtProps> = ({
+  typograph = "p",
+  color = "dark",
+  className,
+  ...props
+}) => (
+  <span
+    className={classnames(TYPOGRAPH[typograph], COLOR[color], className)}
+    {...props}
+  />
+);
 
 export default Txt;

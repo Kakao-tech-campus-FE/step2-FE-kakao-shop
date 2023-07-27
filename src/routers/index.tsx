@@ -8,6 +8,10 @@ import CarouselPage from "@/pages/test/Carousel.page";
 import RadioButtonPage from "@/pages/test/RadioButton.page";
 import TogglePage from "@/pages/test/Toggle.page";
 import CheckListPage from "@/pages/test/CheckList.page";
+import ProductDetailPage from "@/pages/Product/ProductDetail.page";
+import ErrorPage from "@/pages/Error/Error.page";
+import CartPage from "@/pages/Cart/Cart.page";
+import OrderTotalCheckPage from "@/pages/Cart/OrderTotalCheck.page";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +25,18 @@ const router = createBrowserRouter([
   {
     element: <SignInPage />,
     path: "/signin",
+  },
+  {
+    element: <ProductDetailPage />,
+    path: "/product/:productId",
+  },
+  {
+    element: <CartPage />,
+    path: "/cart",
+  },
+  {
+    element: <OrderTotalCheckPage />,
+    path: "/cart/check",
   },
   {
     element: <Toast />,
@@ -45,6 +61,14 @@ const router = createBrowserRouter([
   {
     element: <CheckListPage />,
     path: "/check-list",
+  },
+  {
+    element: <ErrorPage />,
+    path: "/error/:id",
+  },
+  {
+    element: <ErrorPage />,
+    path: "*",
   },
 ]);
 
