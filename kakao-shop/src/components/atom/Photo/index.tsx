@@ -23,7 +23,7 @@ const S = {
   Picture: styled.picture``,
 
   Image: styled.img`
-    width: 100%;
+    width: 99%;
     aspect-ratio: 16/9;
   `,
 };

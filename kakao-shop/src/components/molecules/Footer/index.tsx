@@ -15,9 +15,6 @@ const Footer = () => {
           </span>
         </S.Link>
         <S.Link to="/" tabIndex={0}>
-          <span>운영정책</span>
-        </S.Link>
-        <S.Link to="/" tabIndex={0}>
           <span>고객센터</span>
         </S.Link>
         <S.Link to="/" tabIndex={0}>

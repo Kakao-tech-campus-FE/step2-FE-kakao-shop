@@ -6,11 +6,15 @@ import type { Product } from 'types/product';
 import { Photo } from '@components/atom';
 import Skeleton from '@components/atom/Skeleton';
 
+import useViewport from '@hooks/@common/useViewport';
+
 import { comma } from '@utils/comma';
 
 const CardItem = ({ id, productName, image, price }: Product) => {
+  const { isMobile } = useViewport();
+
   return (
-    <S.Root to={`/detail/${id}`}>
+    <S.Root to={`/detail/${id}`} isMobile={isMobile}>
       <Photo
         pictureClassName={S.PhotoStyle}
         imageClassName={S.ImgStyle}
@@ -43,11 +47,13 @@ CardItem.Skeleton = function () {
 export default CardItem;
 
 const S = {
-  Root: styled(Link)`
-    display: inline-block;
-    width: 284px;
-    padding: 0 20px 50px 0;
-    vertical-align: top;
+  Root: styled(Link)<{ isMobile: boolean }>`
+    ${({ isMobile }) => css`
+      display: inline-block;
+      width: ${isMobile ? '100%' : '284px'};
+      padding: ${isMobile ? '0' : '0 20px 50px 0'};
+      vertical-align: top;
+    `}
   `,
 
   PhotoStyle: css`
