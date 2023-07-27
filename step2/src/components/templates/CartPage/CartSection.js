@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import SelectedProduct from "../../organisms/CartPage/SelectedProduct";
 import Button from "../../atoms/Button";
+import { comma } from "../../../utils/convert";
 import { getCart } from "../../../services/cart";
 import { updateCart } from "../../../services/cart";
 
@@ -85,6 +86,19 @@ const CartSection = () => {
     setCartProducts(filteredProducts);
   };
 
+  const totalValue = cartProducts.reduce((acc, product) => {
+    return (
+      acc +
+      product.carts.reduce((optAcc, option) => {
+        console.log("@@@@@@@@@@@@@", acc, option.quantity, option.option.price, option.option.optionName)
+        if (option.quantity > 0) {
+          return optAcc + option.quantity * option.option.price;
+        }
+        return 0;
+      }, 0)
+    );
+  }, 0);
+
   const handleOrder = async () => {
     if (cartProducts.length === 0) {
       alert("장바구니에 담긴 상품이 없습니다.");
@@ -122,6 +136,7 @@ const CartSection = () => {
           }
         />
       ))}
+      <div>주문 예상 가격: {comma(totalValue)}원</div>
       <Button className="primary" onClick={handleOrder}>
         주문하기
       </Button>
