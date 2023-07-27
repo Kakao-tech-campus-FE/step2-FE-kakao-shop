@@ -16,24 +16,27 @@ import GNB from "components/organisms/GNB";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "components/organisms/ErrorFallback";
+import MainContainer from "components/atoms/MainContainer";
 
 function App() {
   return (
     <BrowserRouter>
       <PageContainer>
         <GNB></GNB>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path="*" element={<MainPage />} />
-              <Route path="/signup" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/products/:id" element={<DetailPage />} />
-              <Route path="/carts" element={<CartPage />} />
-              <Route path="/orders" element={<OrderPage />} />
-            </Routes>
-          </Suspense>
-        </ErrorBoundary>
+        <MainContainer>
+          <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                <Route path="*" element={<MainPage />} />
+                <Route path="/signup" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/products/:id" element={<DetailPage />} />
+                <Route path="/carts" element={<CartPage />} />
+                <Route path="/orders" element={<OrderPage />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+        </MainContainer>
         <Toast />
       </PageContainer>
     </BrowserRouter>

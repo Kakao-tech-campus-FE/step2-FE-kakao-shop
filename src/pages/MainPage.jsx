@@ -5,6 +5,6 @@ const MainPage = () => {
     return (
         <ProductsListTemplate />
     );
-  };
+};
 
   export default MainPage

@@ -3,7 +3,6 @@ import { useQuery } from 'react-query';
 import { useParams } from "react-router-dom";
 import getDetail from "api/getDetail"
 
-import MainContainer from 'components//atoms/MainContainer'
 import DetailOption from "components/organisms/DetailOption";
 import InfoBox from "components/atoms/detail/InfoBox";
 import DetailContainer from "components/atoms/detail/DetailContainer";
@@ -23,8 +22,7 @@ const DetailTemplate = ( ) => {
   )
     
     return (
-      <MainContainer>
-        {/* {isError && <ErrorFallback errorObject={error} />} */}
+      <>
         {obj && 
         <DetailContainer>
           <ImgBox>
@@ -37,7 +35,7 @@ const DetailTemplate = ( ) => {
           </RightContainer>
         </DetailContainer>
         }
-      </MainContainer> 
+      </>
     );
 };
 
