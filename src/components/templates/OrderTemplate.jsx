@@ -39,7 +39,6 @@ const OrderTemplate = () => {
     })
 
     useEffect(() => {
-        console.log(data);
         setProducts(data?.data?.response?.products);
         setTotalPrice(data?.data?.response?.totalPrice);
     }, [data])
@@ -94,7 +93,7 @@ const OrderTemplate = () => {
             <OrderInformationBox>
                 <TotalPriceBox>
                     <h3>총 주문 금액</h3>
-                    <span>{comma(totalPrice)}원</span>
+                    <TotalPriceSpan>{comma(totalPrice)}원</TotalPriceSpan>
                 </TotalPriceBox>
             </OrderInformationBox>
 
@@ -135,7 +134,7 @@ const OrderTemplate = () => {
                     </UserPermission>
                 </UserPermissionBox>
                 <PaymentButton 
-                backgroundColor={agreePayment && agreePolicy ? "#ffe100" : "#bbbbbb"}
+                backgroundcolor={agreePayment && agreePolicy ? "#ffe100" : "#bbbbbb"}
                 onClick={() => {
                     if (agreePayment === false || agreePolicy === false) {
                         alert("모든 항목에 동의해주세요.");
@@ -144,9 +143,11 @@ const OrderTemplate = () => {
 
                     mutate(null, {
                         onSuccess: (res) => {
-                            console.log(res);
-                            console.log(res.response);
-                            const id = res.response.id;
+                            // console.log("onSuceess!!")
+                            // console.log("response is Here", res);
+                            // console.log(res.response);
+                            const id = res.data.response.id;
+                            console.log("response -> ", res)
                             console.log(id);
                             alert("주문이 완료되었습니다.");
                             navigate(`/orders/complete/${id}`)
@@ -200,6 +201,10 @@ const TotalPriceBox = styled.div`
     justify-content: space-between;
 `
 
+const TotalPriceSpan = styled.span`
+    color : #004cffea;
+`
+
 const UserPermissionBox = styled.div`
     padding : 10px;
 `
@@ -222,7 +227,7 @@ const UserPermission = styled.div`
 const PaymentButton = styled.div`
     width: 100%;
     padding: 8px 0 8px 0;
-    background-color: ${(props) => props.backgroundColor};
+    background-color: ${(props) => props.backgroundcolor};
     text-align: center;
     cursor: pointer;
     transition: all 1s;
