@@ -26,7 +26,7 @@ const OrderCompleteTemplate = ({ data }) => {
         <div className="order-product border text-center mt-10 p-2">
           <h2 className="text-lg font-bold">주문상품 정보</h2>
         </div>
-        <table className="order-list">
+        <table className="order-list flex border">
           <tbody>
             <tr>
               <td className="p-4">상품명</td>
@@ -48,7 +48,9 @@ const OrderCompleteTemplate = ({ data }) => {
         </table>
         <div className="border p-4 mt-4 flex items-center justify-between">
           <h3 className=" text-lg font-bold p-2 ">일반 결제 금액</h3>
-          <span className="text-lg text-indigo-700">{comma(totalPrice)}원</span>
+          <span className="text-lg font-bold text-blue-600">
+            {comma(totalPrice)}원
+          </span>
         </div>
         <button
           className="bg-yellow-300 text-black w-full p-4 font-medium"
