@@ -28,8 +28,7 @@ const productSlice = createSlice({
         //Promise.rejected()
         builder.addCase(getProducts.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload.error; // error exist: {message, status}
-
+            state.error = action?.payload?.error; // error exist: {message, status}
         })
     }
 });

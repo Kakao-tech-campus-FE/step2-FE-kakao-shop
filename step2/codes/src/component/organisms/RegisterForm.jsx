@@ -43,7 +43,7 @@ const RegisterForm = () => {
                 if (err.response && err.response.data && err.response.data.error){
                     setApiErr(err.response.data.error);
                 } else {
-                    setApiErr("로그인 실패");
+                    setApiErr("회원가입 실패");
                 }
             })
     }
