@@ -9,6 +9,7 @@ import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import NotFoundPage from './pages/NotFoundPage';
 import SubLayout from './layouts/SubLayout';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         <Route element={<SubLayout />}>
           <Route path='/cart' element={<CartPage />} />
           <Route path='/order' element={<OrderPage />} />
+          <Route path='/orders/complete/:id' element={<OrderCompletePage />} />
         </Route>
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/login' element={<LoginPage />} />
