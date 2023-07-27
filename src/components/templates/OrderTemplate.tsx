@@ -56,9 +56,9 @@ const OrderTemplate = () => {
           <InnerFlatCard>
             {item.carts.map((cart: CartedOptionData) => {
               return (
-                <div key={cart.id} className="grid grid-cols-3 items mb-5  items-center">
+                <div key={cart.id} className="grid grid-cols-3 items mb-5 items-center">
                   <div>{cart.option.optionName}</div>
-                  <div className="text-center">{comma(cart.quantity)}개</div>
+                  <div className="text-right">{comma(cart.quantity)}개</div>
                   <div className="text-[12px] text-right">
                     <PriceTag>{cart.price}원</PriceTag>
                   </div>
@@ -74,33 +74,36 @@ const OrderTemplate = () => {
 
   return (
     <Card>
-      <div className="p-10">
+      <div className="p-10 space-y-5">
         <h2 className="text-xl font-bold">배송지 정보</h2>
+        <hr />
         <h2 className="text-xl font-bold">주문상품 정보</h2>
         <hr />
         {orderItems()}
-        <div>
+        <div className="flex justify-between font-bold text-xl pt-5">
           <h3>총 주문 금액</h3>
-          <span>{comma(totalPrice)}</span>
+          <span className="text-subOrange pr-3">{comma(totalPrice)}원</span>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-2">
           {/* 전체 동의, 구매조건 확인 및 결제 진행 동의  */}
           <Checkbox id="all-agree" ref={allAgreeRef} checked={allAgree} onChange={handleAllAgree}>
-            전체동의
+            이용 약관, 개인정보 제 3자 제공에 모두 동의합니다.
           </Checkbox>
           <Checkbox
             id="agree-payment"
             ref={agreePaymentRef}
             name="agreePayment"
+            required
             checked={agreement.agreePayment}
             onChange={handleAgreement}
           >
-            구매조건 확인 및 결제 진행 동의
+            이용약관 확인 및 결제 진행 동의
           </Checkbox>
           <Checkbox
-            id="information-provision "
+            id="information-provision"
             ref={agreePolicyRef}
             name="agreePolicy"
+            required
             checked={agreement.agreePolicy}
             onChange={handleAgreement}
           >
@@ -108,7 +111,7 @@ const OrderTemplate = () => {
           </Checkbox>
         </div>
         {/* 구매 버튼 */}
-        <div className="flex flex-col mt-5">
+        <div className="flex flex-col w-[30%] mx-auto mt-5">
           <FilledButton
             disabled={!allAgree}
             onClick={() => {
