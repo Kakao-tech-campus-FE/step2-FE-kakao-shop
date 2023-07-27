@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import ProductCard from "../molecules/ProductCard";
 import useInfinieScroll from "../../hooks/useInfinieScroll";
 import productInstance from "../../apis/product";
-import Loader from "../atoms/Loader";
+import Loader from "../molecules/Loader";
 
 export default function ProductGrid() {
   const bottomObserver = useRef(null);

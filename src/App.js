@@ -1,6 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Header from "./components/templates/Header";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { Suspense } from "react";
+import Loader from "./components/molecules/Loader";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,8 +20,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Header />
       <div className="w-full h-full pt-20">
-        <Outlet />
+        <Suspense fallback={<Loader height="h-full" />}>
+          <Outlet />
+        </Suspense>
       </div>
+      <ToastContainer limit={2} theme={"dark"} style={{ width: "750px" }} />
     </QueryClientProvider>
   );
 }

@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlice";
 import { removeCookie } from "../../utils/cookie";
 import Container from "../atoms/Container";
+import CartStatus from "../molecules/CartStatus";
 
-export default function NavBar() {
+export default function NavBar({ modalRef }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.isLoggedIn);
@@ -19,14 +20,27 @@ export default function NavBar() {
     } else {
       removeCookie("accessToken");
       dispatch(setUser({ isLoggedIn: false }));
+      navigate("/");
+    }
+  };
+  const handleCartClick = (e) => {
+    if (!user) {
+      e.preventDefault();
+      modalRef.current.showModal();
     }
   };
 
   return (
-    <Container className="flex items-center">
-      <LinkedIcon to="/cart" alt="장바구니" width="w-icon">
+    <Container className="relative flex items-center">
+      <LinkedIcon
+        to="/cart"
+        alt="장바구니"
+        width="w-icon"
+        onClick={handleCartClick}
+      >
         {cartImage}
       </LinkedIcon>
+      {user && <CartStatus />}
       <Button
         margin="ml-4"
         padding="px-4 py-1"

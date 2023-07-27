@@ -37,7 +37,7 @@ export default function LoginForm() {
           })
         );
 
-        const accessToken = response.payload.accessToken;
+        const accessToken = response.payload.accessToken.split(" ")[1];
         setCookie("accessToken", accessToken, 1000 * 60 * 60 * 24);
         navigate("/");
       } catch (error) {
