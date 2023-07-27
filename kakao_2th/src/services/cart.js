@@ -1,10 +1,13 @@
-import { instance } from "./index"
+import { instance } from "./index";
 
+export const addCart = (items) => {
+    return instance.post("/carts/add", items)
+}
 
-/**
- * 장바구니 담기
- * @param {object} payload
- */
-export const addCart = (payload) => {
-    return instance.post("/carts/add", payload)
+export const getCart = () => {
+    return instance.get("/carts")
+}
+
+export const updateCart = (items) => {
+    return instance.post("/carts/update", items)
 }

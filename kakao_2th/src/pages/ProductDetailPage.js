@@ -1,24 +1,27 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom"
-import Loader from "../components/atoms/Loader";
-import { getProductById } from "../services/product";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
+import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
+import { getProductById } from "../services/product";
+import "../styles/Pages/ProductDetailPage.css"
 
 const ProductDetailPage = () => {
     const { id } = useParams();
-    const { data, error, isLoading } = useQuery(`product/${id}`, () => {
-        getProductById(id)
-    })
+    const { data, error, isLoading } = useQuery(`product/${id}`, () => getProductById(id));
+
+    if (isLoading) return <Loader />;
+    if (error) return <div>{error.message}</div>;
 
     const product = data?.data?.response;
 
-    return <div>
-        {isLoading && <Loader />}
-        {error && <div>{error.message}</div>}
-        {product && <ProductDetailTemplate product={product} />}
-    </div>
-}
+    if (!product) return <div>상품을 찾을 수 없습니다.</div>;
 
-export default ProductDetailPage
+    return (
+        <div>
+            <ProductDetailTemplate product={product} />
+        </div>
+    );
+};
+
+export default ProductDetailPage;
