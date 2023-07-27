@@ -7,7 +7,7 @@ const FilledButton = ({ onClick, disabled, children }: ButtonProps) => {
       disabled={disabled}
       type="button"
       onClick={onClick}
-      className={`flex items-center ${
+      className={`${
         disabled ? 'bg-middleGray' : 'bg-pointPupple'
       } h-[40px] rounded text-white font-bold py-[10px] px-[20px] shadow-convex`}
     >

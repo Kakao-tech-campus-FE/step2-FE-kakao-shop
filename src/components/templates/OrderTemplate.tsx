@@ -108,23 +108,25 @@ const OrderTemplate = () => {
           </Checkbox>
         </div>
         {/* 구매 버튼 */}
-        <FilledButton
-          disabled={!allAgree}
-          onClick={() => {
-            orderProduct(products, {
-              // 임시
-              onError: () => {
-                alert('주문에 실패했습니다.');
-              },
-              onSuccess: () => {
-                alert('주문을 완료했습니다.');
-                navigate(`/orders/complete/`);
-              },
-            });
-          }}
-        >
-          주문
-        </FilledButton>
+        <div className="flex flex-col mt-5">
+          <FilledButton
+            disabled={!allAgree}
+            onClick={() => {
+              orderProduct(products, {
+                // 임시
+                onError: () => {
+                  alert('주문에 실패했습니다.');
+                },
+                onSuccess: () => {
+                  alert('주문을 완료했습니다.');
+                  navigate(`/orders/complete/`);
+                },
+              });
+            }}
+          >
+            주문
+          </FilledButton>
+        </div>
       </div>
     </Card>
   );
