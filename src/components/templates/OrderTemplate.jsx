@@ -7,6 +7,7 @@ import OrderList from "../moleclules/OrderList";
 import useCheckBox from "../../hooks/useCheckBox";
 import CheckBox from "../atoms/CheckBox";
 import { useState } from "react";
+import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
@@ -18,10 +19,11 @@ const OrderTemplate = ({ data }) => {
 
   const [selectedReq, setSelectedReq] = useState("");
   const [orderRequest, setOrderRequest] = useState("");
+  const [openedBox, setOpenedBox] = useState(["shipping", "products"]);
 
   const { mutate } = useMutation({
-    mutationKEy: "order",
-    queryFn: order,
+    mutationKey: "order",
+    mutationFn: order,
   });
 
   const handleOnChangeSelect = (e) => {
@@ -37,67 +39,101 @@ const OrderTemplate = ({ data }) => {
     setOrderRequest(e.target.value);
   };
 
+  const handleOnClickBox = (boxName) => {
+    if (openedBox.includes(boxName)) {
+      setOpenedBox((prev) => prev.filter((el) => el !== boxName));
+    } else {
+      setOpenedBox((prev) => [...prev, boxName]);
+    }
+  };
+
   return (
     <div className="bg-[#f4f4f4]">
       <Container className="max-w-[870px] px-0 pb-5">
         <div className="border-b border-gray-200 bg-white leading-[44px]">
           <h1 className="text-center text-[15px] font-bold">주문하기</h1>
         </div>
-        <button className="w-full bg-white px-4 py-3 text-start text-lg font-bold">
+        <button
+          className="relative w-full bg-white px-4 py-3 text-start text-lg font-bold"
+          onClick={() => {
+            handleOnClickBox("shipping");
+          }}
+        >
           배송지 정보
-        </button>
-        <div className="flex flex-col gap-2 bg-white px-4 py-3">
-          <div className="flex gap-2">
-            <span className="text-lg font-bold">조준서</span>
-            <span className="rounded-xl bg-[#f3f4f9] px-2 pt-[7px] text-xs text-blue-500">
-              기본 배송지
-            </span>
-          </div>
-          <p className="text-sm">010-6201-3110</p>
-          <div>
-            {" "}
-            <p className="text-sm text-gray-500">
-              (46287) 부산 금정구 금강로279번길 60
-            </p>
-            <p className="text-sm text-gray-500">(장전동, 금조재) 503호</p>
-          </div>
-          <div className="flex flex-col gap-3">
-            <select
-              value={selectedReq}
-              className="rounded-md border border-gray-200 p-2 text-sm"
-              onChange={handleOnChangeSelect}
-            >
-              <option defaultValue={true} disabled={true}>
-                배송 요청사항을 선택해주세요
-              </option>
-              <option>배송전 연락바랍니다.</option>
-              <option>부재시 경비실에 맡겨주세요.</option>
-              <option>부재시 연락주세요.</option>
-              <option>직접입력</option>
-            </select>
-            <textarea
-              className="app rounded-md border border-gray-300 px-3 py-2 text-sm"
-              name=""
-              id=""
-              placeholder="배송시 요청사항을 입력해주세요 (최대 50자)"
-              value={orderRequest}
-              onChange={handleOnChangeRequest}
-              cols="30"
-              rows="3"
-            ></textarea>
-          </div>
-        </div>
-        <button className="mt-3 w-full border-b bg-white px-4 py-3 text-start text-lg font-bold">
-          주문상품 정보
-        </button>
-        <div>
-          {products.map((item) =>
-            item.carts.reduce((acc, cur) => acc + cur.quantity, 0) ? (
-              <OrderList item={item} key={item.id} />
-            ) : null
+          {openedBox.includes("shipping") ? (
+            <BsChevronUp className="absolute right-4 top-4" />
+          ) : (
+            <BsChevronDown className="absolute right-4 top-4" />
           )}
-        </div>
-        <div className="bg-white">
+        </button>
+        {openedBox.includes("shipping") && (
+          <div className="flex flex-col gap-2 bg-white px-4 py-3">
+            <div className="flex gap-2">
+              <span className="text-lg font-bold">조준서</span>
+              <span className="rounded-xl bg-[#f3f4f9] px-2 pt-[7px] text-xs text-blue-500">
+                기본 배송지
+              </span>
+            </div>
+            <p className="text-sm">010-6201-3110</p>
+            <div>
+              {" "}
+              <p className="text-sm text-gray-500">
+                (46287) 부산 금정구 금강로279번길 60
+              </p>
+              <p className="text-sm text-gray-500">(장전동, 금조재) 503호</p>
+            </div>
+            <div className="flex flex-col gap-3">
+              <select
+                value={selectedReq}
+                className="rounded-md border border-gray-200 p-2 text-sm"
+                onChange={handleOnChangeSelect}
+              >
+                <option defaultValue={true} disabled={true}>
+                  배송 요청사항을 선택해주세요
+                </option>
+                <option>배송전 연락바랍니다.</option>
+                <option>부재시 경비실에 맡겨주세요.</option>
+                <option>부재시 연락주세요.</option>
+                <option>직접입력</option>
+              </select>
+              <textarea
+                className="app rounded-md border border-gray-300 px-3 py-2 text-sm"
+                name=""
+                id=""
+                placeholder="배송시 요청사항을 입력해주세요 (최대 50자)"
+                value={orderRequest}
+                onChange={handleOnChangeRequest}
+                cols="30"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+        )}
+
+        <button
+          className="relative mt-3 w-full border-b bg-white px-4 py-3 text-start text-lg font-bold"
+          onClick={() => {
+            handleOnClickBox("products");
+          }}
+        >
+          주문상품 정보
+          {openedBox.includes("products") ? (
+            <BsChevronUp className="absolute right-4 top-4" />
+          ) : (
+            <BsChevronDown className="absolute right-4 top-4" />
+          )}
+        </button>
+        {openedBox.includes("products") && (
+          <div>
+            {products.map((item) =>
+              item.carts.reduce((acc, cur) => acc + cur.quantity, 0) ? (
+                <OrderList item={item} key={item.id} options={item.carts} />
+              ) : null
+            )}
+          </div>
+        )}
+
+        <div className="mt-3 bg-white">
           <h3 className="border-b border-gray-200 p-4 text-lg font-bold">
             결제정보
           </h3>
@@ -144,18 +180,13 @@ const OrderTemplate = ({ data }) => {
         <button
           className="w-full bg-kakao p-4 text-xl font-bold text-[#333]"
           onClick={() => {
-            // POST: /orders/save
-            // DB: 장바구니 모든 항목 결제로 저장
-            // 장바구니 비워짐
-            // 페이지 이동 -> 주문완료 페이지
-            // /orders/complete/:id
             mutate(null, {
               onError: () => {
                 // 주문 실패
               },
               onSuccess: (res) => {
-                const id = res.response.id;
-                navigate(`/orders/complete/${id}`);
+                const id = res.data.response.id;
+                navigate(`/orders/complete/${id}`, { replace: true });
               },
             });
           }}

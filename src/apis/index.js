@@ -10,7 +10,7 @@ export const instance = axios.create({
 
 // 요청 인터셉터
 instance.interceptors.request.use((config) => {
-  if (config.url.includes("/carts")) {
+  if (config.url.includes("/carts") || config.url.includes("/orders")) {
     const token = JSON.parse(localStorage.getItem("user")).token;
     if (token) {
       config.headers["Authorization"] = `${token}`;
@@ -26,7 +26,6 @@ instance.interceptors.response.use(
     if (200 <= statusCode && statusCode < 300) return response;
   },
   (error) => {
-    console.log(error);
     const statusCode = error.response.status;
     switch (statusCode) {
       case 300:
