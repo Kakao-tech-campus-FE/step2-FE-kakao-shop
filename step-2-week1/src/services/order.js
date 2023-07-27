@@ -7,3 +7,7 @@ export const order = () => {
 export const getOrderFromId = (id) => {
     return instance.get(`/orders/${id}`);
 };
+
+// export const orderSave = () => {
+//     return instance.post("/orders/save")
+// }

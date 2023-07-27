@@ -7,6 +7,7 @@ import { useRef } from "react";
 // import totalPrice from "../molecules/CartList";
 // import cartItems from "../molecules/CartList";
 import { useLocation } from "react-router-dom";
+import { orderSave } from "../../services/order";
 
 const OrderTemplate = ({ data }) => {
 // 사용자의 장바구니 목록을 조회해 보여주는 것
@@ -50,9 +51,19 @@ const handleAgreement = (e) => {
 
 const { mutate } = useMutation({
     mutationKey: "order",
-    queryFn: () => order,
-});
+    mutationFn: () => order(),
+    onError: () => {
+        alert("주문에 실패했습니다.");
+    },
+    onSuccess: (res) => {
+        // console.log(res);
+        const id = res.id;
+        alert("주문이 완료되었습니다.");
+        // navigate(`/orders/save/${id}`);
 
+    },
+});
+// 원래 mutationFn -> queryFn 이었음
 
 
 const OrderItems = () => {
@@ -161,16 +172,18 @@ const OrderItems = () => {
                         alert("모든 항목에 동의가 필요합니다.");
                         return;
                     }
-                    mutate(null, {
-                        onError:() => {
-                            alert("주문에 실패했습니다.")
-                        },
-                        onSuccess: (res) => {
-                            const id = res.response.id;
-                            alert("주문이 완료되었습니다.");
-                            navigate(`/orders/complete/${id}`);
-                        }
-                    })
+                    mutate(
+                    //     null, {
+                    //     onError:() => {
+                    //         alert("주문에 실패했습니다.")
+                    //     },
+                    //     onSuccess: (res) => {
+                    //         const id = res.response.id;
+                    //         alert("주문이 완료되었습니다.");
+                    //         navigate(`/orders/complete/${id}`);
+                    //     }
+                    // }
+                    );
                 }}
                 className={`
                     w-full p-4 font-medium    
