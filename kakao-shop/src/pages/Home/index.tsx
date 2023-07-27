@@ -12,9 +12,12 @@ import Loading from '@components/atom/Loader';
 import { CardList } from '@components/page/Home/CardList';
 import CardListFallback from '@components/page/Home/CardListFallback';
 
+import useViewport from '@hooks/@common/useViewport';
+
 const LAST_PAGE = 2;
 
 const Home = () => {
+  const { isMobile } = useViewport();
   const dispatch = useDispatch();
   const products = useSelector((state: RootState) => state.home.products);
   const isLoading = useSelector((state: RootState) => state.home.isLoading);
@@ -58,7 +61,7 @@ const Home = () => {
   return (
     <Fragment>
       <S.TopBannerBlock>
-        <BannerImageList />
+        <BannerImageList isMobile={isMobile} />
       </S.TopBannerBlock>
 
       <S.LayoutSplit>

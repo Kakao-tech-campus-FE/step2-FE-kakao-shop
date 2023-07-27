@@ -3,12 +3,13 @@ import styled from '@emotion/styled';
 import { ReactElement, useMemo, useState } from 'react';
 
 import useCarousel from '@hooks/@common/useCarousel';
+import { IsMobile } from '@hooks/@common/useViewport';
 import useWindowDimensions from '@hooks/@common/useWindowDimentions';
 
 import BannerImageListItem from './BannerImageListItem';
-import { bannerImages } from './lib/bannerImages';
+import { bannerImages, bannerMoblieImages } from './lib/bannerImages';
 
-function BannerImageList(): ReactElement {
+function BannerImageList({ isMobile }: IsMobile): ReactElement {
   const [imageWidth, setImageWidth] = useState(getImageWidth());
   const { width } = useWindowDimensions(); //  window 사이즈가 변화할 때마다 변경되는 width 값
 
@@ -17,6 +18,9 @@ function BannerImageList(): ReactElement {
       setImageWidth(1920);
       return (width - 1920) / 2;
     } else if (width < 1920 && width > 1440) {
+      setImageWidth(width);
+      return 0;
+    } else if (width < 768) {
       setImageWidth(width);
       return 0;
     } else {
@@ -31,7 +35,7 @@ function BannerImageList(): ReactElement {
   }, [imageWidth, slideImagePadding]);
 
   const carouselOption = {
-    data: bannerImages,
+    data: isMobile ? bannerMoblieImages : bannerImages,
     slideItemWidth: slideItemWidth,
     slideCount: 1,
   };
@@ -55,8 +59,8 @@ function BannerImageList(): ReactElement {
     onMouseOut,
   } = useCarousel(carouselOption);
   return (
-    <Wrapper>
-      <BannerImageListWrapper bannerWidth={slideItemWidth}>
+    <Wrapper isMobile={isMobile}>
+      <BannerImageListWrapper bannerWidth={slideItemWidth} isMobile={isMobile}>
         <ImageListBox
           ref={slideRef}
           isAnimation={isAnimation}
@@ -84,6 +88,7 @@ function BannerImageList(): ReactElement {
                 imageItem={image}
                 imageWidth={imageWidth}
                 imagePadding={slideImagePadding}
+                isMobile={isMobile}
               />
             ))}
           </ImageList>
@@ -124,16 +129,16 @@ const getImageWidth = () => {
   else return width;
 };
 
-const Wrapper = styled.div`
-  height: 300px;
+const Wrapper = styled.div<{ isMobile: boolean }>`
+  height: ${({ isMobile }) => (isMobile ? '160px' : '300px')};
 `;
 
-const BannerImageListWrapper = styled.div<{ bannerWidth: number }>`
+const BannerImageListWrapper = styled.div<{ bannerWidth: number; isMobile: boolean }>`
   position: relative;
   margin: 0 auto;
 
   width: ${({ bannerWidth }) => bannerWidth}px;
-  height: 300px;
+  height: ${({ isMobile }) => (isMobile ? '160px' : '300px')};
 `;
 
 const ImageListBox = styled.div<{ isAnimation: boolean }>`

@@ -7,24 +7,29 @@ type BannerImageListItemProps = {
   imageItem: BannerImageItem;
   imageWidth: number;
   imagePadding: number;
+  isMobile: boolean;
 };
 
-function BannerImageListItem({ imageItem, imageWidth, imagePadding }: BannerImageListItemProps): ReactElement {
+function BannerImageListItem({
+  imageItem,
+  imageWidth,
+  imagePadding,
+  isMobile,
+}: BannerImageListItemProps): ReactElement {
   const { imageUrl } = imageItem;
-
   return (
     <BannerImageListItemBlock imagePadding={imagePadding} imageWidth={imageWidth}>
-      <ItemImage src={imageUrl} imageWidth={imageWidth} />
+      <ItemImage src={imageUrl} imageWidth={imageWidth} isMobile={isMobile} />
     </BannerImageListItemBlock>
   );
 }
 
-type IBannerImageItemStyled = {
+type BannerImageItemProps = {
   imageWidth: number;
   imagePadding: number;
 };
 
-const BannerImageListItemBlock = styled.div<IBannerImageItemStyled>`
+const BannerImageListItemBlock = styled.div<BannerImageItemProps>`
   width: ${props => props.imageWidth}px;
   height: 100%;
 
@@ -32,9 +37,9 @@ const BannerImageListItemBlock = styled.div<IBannerImageItemStyled>`
   padding: 0 ${props => props.imagePadding}px;
 `;
 
-const ItemImage = styled.img<{ imageWidth: number }>`
+const ItemImage = styled.img<{ imageWidth: number; isMobile: boolean }>`
   width: ${props => props.imageWidth}px;
-  height: 300px;
+  height: ${({ isMobile }) => (isMobile ? '160px' : '300px')};
 
   object-fit: cover;
   vertical-align: top;
