@@ -7,13 +7,14 @@ import Card from "../atoms/Card";
 import { comma } from "../../utils/convert"; 
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
-import { updateCart } from "../../services/Cart";
+import { updateCart } from "../../services/cart";
 
 const CartList = ({ data }) => {
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const updatePayload = useRef([]);
+    const [disable, setDisable] = useState(false);
 
     const { mutate } = useMutation({
         mutationFn: updateCart,
@@ -26,6 +27,17 @@ const CartList = ({ data }) => {
         data?.data?.response?.totalPrice !== undefined &&
             setTotalPrice(data?.data?.response?.totalPrice);
     }, [data])
+
+
+    useEffect(() => {
+        if (cartItems && cartItems.length === 0) {
+            setDisable(true);
+        } else {
+            setDisable(false);
+        }
+        console.log(disable)
+        
+    }, [cartItems])
 
     const getTotalCartCountIncludeOptions = useCallback(() => {
         let count = 0;  
@@ -117,7 +129,10 @@ const CartList = ({ data }) => {
                 </div>
             </Card>
 
-            <Button className="order-btn w-full h-14 bg-#ffeb00"
+            <Button className={`order-btn w-full h-14 
+                ${ disable ? "bg-gray-300 text-gray-500": "bg-#ffeb00" }
+            `}
+                disabled={disable}
                 onClick={() => {
                     //update cart api 장바구니 정보 수정 api
                     navigate("/order");

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { useQuery } from "react-query";
 import Loader from "../component/atoms/Loader";
 import CartList from "../component/molecules/CartList";
-import { getCart } from "../services/Cart";
+import { getCart } from "../services/cart";
 
 // 장바구니 페이지
 const CartPage = () => {

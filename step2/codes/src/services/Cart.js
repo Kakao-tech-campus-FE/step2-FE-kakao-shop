@@ -13,6 +13,11 @@ export const getCart = () => {
     return instance.get("/carts");
 };
 
+
+/**
+ * 장바구니 아이디와 수량을 받아서 업데이트
+ * @param {object} items: cartId, quantity
+ */
 export const updateCart = (items) => {
     return instance.post("/carts/update", items);
 };
