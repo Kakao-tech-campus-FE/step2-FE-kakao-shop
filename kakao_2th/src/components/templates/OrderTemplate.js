@@ -4,10 +4,11 @@ import { order } from "../../services/order"
 import { useNavigate } from "react-router-dom"
 
 const OrderTemplate ({ data }) => {
-    const carts = []
+    const { product, totalPrice } = data?.data?.response
     const navigate = useNavigate()
 
     const { mutate } = useMutation({
+        mutationKey: "order",
         queryFn: () => order
     })
 
@@ -55,7 +56,7 @@ const OrderTemplate ({ data }) => {
                 })}
                 <div className="border p-4 flex items-center justyfy-between">
                     <h3>총 주문 금액</h3>
-                    <span className="price">{comma(data.totalPrice)}원</span>
+                    <span className="price">{comma(totalPrice)}원</span>
                 </div>
                 <div className="border p-4">
                     <div className="flex">
