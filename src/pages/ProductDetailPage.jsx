@@ -5,7 +5,7 @@ import { getProductsById } from "../services/product";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 
 const ProductDetailPage = () => {
-  const { id } = useParams(); // 언제나 string으로 받아옴
+  const { id } = useParams();
   const { data, error, isError, isLoading } = useQuery([`product/${id}}`], () =>
     getProductsById(id)
   );

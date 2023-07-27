@@ -1,7 +1,11 @@
-import LoginForm from "../components/organisms/LoginForm"
+import LoginForm from "../components/organisms/LoginForm";
 
 const LoginPage = () => {
-  return <LoginForm />;
-}
+  return (
+    <div className="flex justify-center">
+      <LoginForm />
+    </div>
+  );
+};
 
 export default LoginPage;

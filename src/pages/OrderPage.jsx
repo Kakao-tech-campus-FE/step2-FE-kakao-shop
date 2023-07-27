@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCart } from "../services/cart";
 
 const OrderPage = () => {
-  const { data, error, isLoading } = useQuery(["cart"], getCart);
+  const { data } = useQuery(["cart"], getCart);
   return (
     <Suspense fallback={<Loader />}>
       <OrderTemplate data={data} />

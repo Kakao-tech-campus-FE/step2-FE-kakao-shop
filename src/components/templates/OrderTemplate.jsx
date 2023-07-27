@@ -1,5 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getCart } from "../../services/cart";
+import { useMutation } from "@tanstack/react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
@@ -32,13 +31,8 @@ const OrderTemplate = ({ data }) => {
   };
 
   const { mutate } = useMutation({
-    mutationKey: "order",
-    queryFn: () => order,
+    mutationFn: order,
   });
-
-  // 목표
-  // 상품명을 적절하게 표기
-  // 그에 따라 가격, 수량
 
   // products 안에 있는 item
   // `${item.productName}` - `${item.carts[0].option.optionName}`
@@ -55,7 +49,7 @@ const OrderTemplate = ({ data }) => {
             <div key={cart.id} className="p-4 border-t">
               <div className="product-name">
                 <span>
-                  {`${item.productName}` + `${cart.option.optionName}`}
+                  {`${item.productName}` + ` ${cart.option.optionName}`}
                 </span>
               </div>
               <div className="quantity">
@@ -166,11 +160,11 @@ const OrderTemplate = ({ data }) => {
 
               // 여기 수정!
               mutate(null, {
-                onError: () => {
+                onError: (err) => {
                   alert("주문 실패");
                 },
                 onSuccess: (res) => {
-                  const id = res.response.id;
+                  const id = res.data.response.id;
                   alert("주문 성공");
                   navigate(`/orders/complete/${id}`);
                 },

@@ -3,7 +3,6 @@ import useInput from "../../hooks/useInput";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import Title from "../atoms/Title";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -33,8 +32,8 @@ const LoginForm = () => {
   };
 
   return (
-    <Container className="leading-10">
-      <Title>로그인</Title>
+    <div>
+      <h1>로그인</h1>
       <InputGroup
         id="email"
         type="email"
@@ -42,7 +41,7 @@ const LoginForm = () => {
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         value={value.email}
         onChange={handleOnChange}
-        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
+        className="w-96 h-10 border-b-2 border-b-gray focus:outline-none focus:border-b-2 focus:border-b-black"
       />
 
       <InputGroup
@@ -52,17 +51,17 @@ const LoginForm = () => {
         placeholder="비밀번호"
         value={value.password}
         onChange={handleOnChange}
-        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
+        className="w-96 h-10 border-b-2 border-b-gray focus:outline-none focus:border-b-2 focus:border-b-black"
       />
 
       <Button
-        className="w-96 h-12 bg-yellow-300 rounded-lg hover:bg-yellow-400"
+        className="w-96 h-12 bg-kakaoYellow rounded-lg hover:brightness-90"
         onClick={loginReq}
       >
         로그인
       </Button>
       {errorMsg && <div>{errorMsg}</div>}
-    </Container>
+    </div>
   );
 };
 
