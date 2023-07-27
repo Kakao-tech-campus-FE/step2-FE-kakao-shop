@@ -217,10 +217,10 @@ const OrderTemplate = ({ data }) => {
                 onError: (error) => {
                   // console.log(error);
                   // alert("주문에 실패하였습니다.");
-                  if (error.status === 401) {
+                  if (error.response.status === 401) {
                     // 사용자 정보가 유실(headers.Authorization)
                     navigate("/login");
-                  } else if (error.status === 404) {
+                  } else if (error.response.status === 404) {
                     // 엉뚱한 product 정보
                     navigate("/error");
                   } else {
