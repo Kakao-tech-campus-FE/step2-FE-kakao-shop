@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
@@ -32,13 +32,16 @@ const Gnb = () => {
     }, []);
 
     return (
-        <Container className="border-b">
+        <Container className="mb-3 border-b">
             <Container className="px-4 mx-auto max-w-7xl"> 
                 <Container className="flex justify-between">
-                    <Box className="flex items-center py-4">
+                    <NavLink className="flex items-center py-4" to="/">
                         <img src="/img/logoKakao.png" width="100px" alt="logo"/>
-                    </Box>
+                    </NavLink>
                     <Box className="flex items-center space-x-4">
+                        <NavLink to="/cart">
+                            장바구니
+                        </NavLink>
                         {isLogin === false &&
                             <NavLink to="/login"> 
                                 로그인
@@ -48,7 +51,7 @@ const Gnb = () => {
                             <Button onClick={() => {
                                 localStorage.removeItem('Time');
                                 localStorage.removeItem('token');
-                                dispatch(setEmail(null));
+                                dispatch(setEmail({email: null}));
                                 alert('로그아웃 되었습니다.');
                                 window.location.href = '/';
                             }}>
