@@ -89,15 +89,32 @@ const OrderSection = () => {
     try {
       setLoading(true);
       const res = await makeOrder();
-      console.log("res:", res);
       if (res.status === 200) {
         alert("주문 완료하였습니다.");
-        navigate("/");
+        navigate(`/order-result/${res.data.response.id}`);
       } else {
-        alert("주문실패");
+        // 응답이 정상적으로 반환되었지만 상태코드가 200이 아닌 경우
+        // 결제에 실패했다고 가정하고 사용자에게 에러가 발생했음을 알린다.
+        alert("알 수 없는 에러로 결제에 실패했습니다.");
       }
-    } catch (err) {
-      setError(err);
+    } catch (error) {
+      setError(error);
+      switch (error.code) {
+        // 다양한 에러 상황이 있지만 몇가지만 추려서 캐칭하였음.
+        // 에러 코드는 카카오 페이 API 응답 기준
+        case "-705":
+          alert("지원하지 않는 결제 수단입니다.");
+          break;
+        case "-723":
+          alert("결제 만료 시간이 지났습니다.");
+          break;
+        case "-797":
+          alert("결제 한도금액을 초과하였습니다.");
+          break;
+        default:
+          alert("결제에 실패하였습니다.");
+          break;
+      }
     } finally {
       setLoading(false);
     }
