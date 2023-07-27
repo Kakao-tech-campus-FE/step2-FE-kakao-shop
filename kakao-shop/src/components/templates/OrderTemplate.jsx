@@ -10,6 +10,7 @@ import FoldingBox from "../atoms/FoldingBox";
 import Divider from "../atoms/Divider";
 import Button from "../atoms/Button";
 import OrderItems from "../atoms/OrderItems";
+import { simpleAlert } from "../../utils/swal";
 
 const OrderTemplate = ({ data }) => {
   // 사용자의 장바구니 목록을 조회해서 보여주는 것
@@ -58,14 +59,32 @@ const OrderTemplate = ({ data }) => {
         </FoldingBox>
 
         {/* 총 주문금액 */}
-        <div className="flex items-center justify-between border p-4">
-          <h3 className="text-lx font-bold">총 주문 금액</h3>
-          <span className="price text-xl text-kakao_blue">
-            {comma(totalPrice)}원
-          </span>
-        </div>
+        <Box>
+          <h2 className="text-lg font-bold">결제정보</h2>
+          <div className="my-4">
+            <Divider />
+          </div>
+          <div className="text-sm">
+            <div className="flex justify-between">
+              <span>상품금액 ({products?.length}개)</span>
+              <span>{comma(totalPrice)}원</span>
+            </div>
+            <div className="flex justify-between mt-2">
+              <span>배송비</span>
+              <span>0원</span>
+            </div>
+          </div>
+          <div className="my-4">
+            <Divider />
+          </div>
+          <div className="flex justify-between text-lg">
+            <span>총 주문 금액</span>
+            <span className="font-extrabold">{comma(totalPrice)}원</span>
+          </div>
+        </Box>
+
         {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        <Box className="flex flex-col gap-4 p-4">
+        <Box className="flex flex-col gap-4 p-4 mb-0">
           <div className="flex gap-2 items-center">
             <input
               type="checkbox"
@@ -92,7 +111,7 @@ const OrderTemplate = ({ data }) => {
               className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
             />
             <label htmlFor="agree" className="text-sm">
-              구매조건 확인 및 결제 진행 동의
+              카카오페이 결제조건 및 개인정보 제3자 제공 동의
             </label>
           </div>
           <div className="flex gap-2">
@@ -111,39 +130,42 @@ const OrderTemplate = ({ data }) => {
           </div>
         </Box>
 
+        <div className="bg-slate-50 border border-solid border-x-gray-200 border-y-0 p-4">
+          <span className="text-sm text-gray-800 font-bold">법적고지</span>
+          <p className="text-sm text-gray-500 whitespace-pre-wrap">
+            (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이
+            포함되어 있습니다. 개별 판매자가 판매하는 상품에 대해 (주)카카오는
+            통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송
+            및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
+          </p>
+        </div>
         {/* 결제하기 버튼 */}
         <Button
           onClick={() => {
             // 동의가 이뤄지지 않았을 경우 처리
             if (agreePayment === false || agreePolicy === false) {
-              alert("동의가 이뤄지지 않았습니다.");
+              simpleAlert(
+                "카카오페이 구매조건(결제조건) 확인 동의를 체크해 주세요."
+              );
               return;
             }
-            // POST: /orders/save
-            // DB: 장바구니에 있는 모든 항목이 결제로 저장
-            // 장바구니는 비워짐
-            // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
-            // /orders/complete/:id
 
             mutate(null, {
               onError: (error) => {
-                // console.log(error);
-                // alert("주문에 실패하였습니다.");
-                // 사용자 정보가 유실(headers.Authorization) -> /login
-                // 서버사이드 에러 -> alert
-                // 엉뚱한 product 정보 -> 404 페이지
+                simpleAlert(error.response.data.errorMessage);
               },
               onSuccess: (res) => {
                 console.log(res.data.response.id);
                 const { id } = res.data.response;
-                alert("주문이 완료되었습니다.");
+                simpleAlert("주문이 완료되었습니다.");
                 navigate(`/orders/${id}`);
               },
             });
           }}
           color={agreePayment && agreePolicy ? "kakao" : "gray"}
+          className="rounded-none"
         >
-          결제하기
+          {comma(totalPrice)}원 결제하기
         </Button>
       </div>
     </Container>

@@ -1,5 +1,6 @@
 import Box from "./Box";
 import Divider from "./Divider";
+import { LiaTruckSolid } from "react-icons/lia";
 
 const OrderItems = ({ products }) => {
   return (
@@ -27,12 +28,19 @@ const OrderItems = ({ products }) => {
                 </span>
               </div>
               {cart !== item.carts[item.carts.length - 1] && (
-                <div className="my-2">
+                <div className="my-3">
                   <Divider />
                 </div>
               )}
             </div>
           ))}
+          <div className="my-3">
+            <Divider />
+          </div>
+          <div className="flex justify-center items-center gap-1 text-sm text-kakao-blue">
+            <LiaTruckSolid size="20" />
+            <span>무료배송</span>
+          </div>
         </Box>
       ))}
     </>

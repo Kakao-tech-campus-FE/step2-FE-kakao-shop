@@ -5,7 +5,7 @@ import Footer from "../components/atoms/Footer";
 import { getCookie } from "../storage/Cookie";
 import { defaultToast } from "../utils/swal";
 
-const RequiredAuthLayout = ({ children }) => {
+const RequiredAuthLayout = () => {
   const navigate = useNavigate();
   const userEmail = getCookie("email");
 
@@ -20,7 +20,7 @@ const RequiredAuthLayout = ({ children }) => {
     <>
       <Header />
       {/* 로그인 필요한 서비스가 공통적으로 가지는 레이아웃 */}
-      <div className="bg-gray-50 pb-6 h-[80vh]">
+      <div className="bg-gray-50 pb-6 h-auto">
         <Outlet />
       </div>
       <Footer />
