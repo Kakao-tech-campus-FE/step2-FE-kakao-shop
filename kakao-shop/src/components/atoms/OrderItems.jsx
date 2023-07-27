@@ -1,3 +1,4 @@
+import { comma } from "../../utils/convert";
 import Box from "./Box";
 import Divider from "./Divider";
 import { LiaTruckSolid } from "react-icons/lia";
@@ -22,7 +23,7 @@ const OrderItems = ({ products }) => {
               <div className="price">
                 <span>
                   <span className="font-bold text-lg">
-                    {cart.price * cart.quantity}
+                    {comma(cart.price * cart.quantity)}
                   </span>
                   원
                 </span>

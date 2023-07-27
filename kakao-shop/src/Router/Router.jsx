@@ -9,6 +9,8 @@ import HomePage from "../pages/HomePage";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import CartPage from "../pages/CartPage";
 import OrderPage from "../pages/OrderPage";
+import OrderCompletePage from "../pages/OrderCompletePage";
+
 import { Suspense } from "react";
 import Loader from "../components/atoms/Loader";
 import RequiredAuthLayout from "../layouts/RequiredAuthLayout";
@@ -28,10 +30,13 @@ const Router = () => {
           <Route path="/products/:id" element={<ProductDetailPage />} />
         </Route>
 
+        {/* 로그인 필요 레이아웃 */}
         <Route element={<RequiredAuthLayout />}>
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order" element={<OrderPage />} />
+          <Route path="/orders/:id" element={<OrderCompletePage />} />
         </Route>
+
         {/* 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

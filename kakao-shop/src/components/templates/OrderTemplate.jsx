@@ -51,123 +51,121 @@ const OrderTemplate = ({ data }) => {
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
         <h1>주문하기</h1>
       </div>
-      <div className="mx-auto block w-[100%] max-w-[1024px]">
-        <ShippingAddress />
+      <ShippingAddress />
 
-        <FoldingBox title="주문상품 정보" sub={`(총 ${products?.length}개)`}>
-          {products && <OrderItems products={products} />}
-        </FoldingBox>
+      <FoldingBox title="주문상품 정보" sub={`(총 ${products?.length}개)`}>
+        {products && <OrderItems products={products} />}
+      </FoldingBox>
 
-        {/* 총 주문금액 */}
-        <Box>
-          <h2 className="text-lg font-bold">결제정보</h2>
-          <div className="my-4">
-            <Divider />
-          </div>
-          <div className="text-sm">
-            <div className="flex justify-between">
-              <span>상품금액 ({products?.length}개)</span>
-              <span>{comma(totalPrice)}원</span>
-            </div>
-            <div className="flex justify-between mt-2">
-              <span>배송비</span>
-              <span>0원</span>
-            </div>
-          </div>
-          <div className="my-4">
-            <Divider />
-          </div>
-          <div className="flex justify-between text-lg">
-            <span>총 주문 금액</span>
-            <span className="font-extrabold">{comma(totalPrice)}원</span>
-          </div>
-        </Box>
-
-        {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        <Box className="flex flex-col gap-4 p-4 mb-0">
-          <div className="flex gap-2 items-center">
-            <input
-              type="checkbox"
-              id="all-agree"
-              name="all-agree"
-              ref={allAgreeRef}
-              checked={agreePayment && agreePolicy}
-              onChange={handleAllAgree}
-              className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
-            />
-            <label htmlFor="all-agree" className="text-lg font-bold">
-              전체 동의하기
-            </label>
-          </div>
+      {/* 총 주문금액 */}
+      <Box>
+        <h2 className="text-lg font-bold">결제정보</h2>
+        <div className="my-4">
           <Divider />
-          <div className="flex gap-2">
-            <input
-              type="checkbox"
-              id="agree"
-              name="payment-agree"
-              ref={agreePaymentRef}
-              checked={agreePayment}
-              onChange={handleAgreement}
-              className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
-            />
-            <label htmlFor="agree" className="text-sm">
-              카카오페이 결제조건 및 개인정보 제3자 제공 동의
-            </label>
-          </div>
-          <div className="flex gap-2">
-            <input
-              type="checkbox"
-              id="policy"
-              name="policy-agree"
-              ref={agreePolicyRef}
-              checked={agreePolicy}
-              onChange={handleAgreement}
-              className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
-            />
-            <label htmlFor="policy" className="text-sm">
-              개인정보 제3자 제공 동의
-            </label>
-          </div>
-        </Box>
-
-        <div className="bg-slate-50 border border-solid border-x-gray-200 border-y-0 p-4">
-          <span className="text-sm text-gray-800 font-bold">법적고지</span>
-          <p className="text-sm text-gray-500 whitespace-pre-wrap">
-            (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이
-            포함되어 있습니다. 개별 판매자가 판매하는 상품에 대해 (주)카카오는
-            통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송
-            및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
-          </p>
         </div>
-        {/* 결제하기 버튼 */}
-        <Button
-          onClick={() => {
-            // 동의가 이뤄지지 않았을 경우 처리
-            if (agreePayment === false || agreePolicy === false) {
-              simpleAlert(
-                "카카오페이 구매조건(결제조건) 확인 동의를 체크해 주세요."
-              );
-              return;
-            }
+        <div className="text-sm">
+          <div className="flex justify-between">
+            <span>상품금액 ({products?.length}개)</span>
+            <span>{comma(totalPrice)}원</span>
+          </div>
+          <div className="flex justify-between mt-2">
+            <span>배송비</span>
+            <span>0원</span>
+          </div>
+        </div>
+        <div className="my-4">
+          <Divider />
+        </div>
+        <div className="flex justify-between text-lg">
+          <span>총 주문 금액</span>
+          <span className="font-extrabold">{comma(totalPrice)}원</span>
+        </div>
+      </Box>
 
-            mutate(null, {
-              onError: (error) => {
-                simpleAlert(error.response.data.errorMessage);
-              },
-              onSuccess: (res) => {
-                console.log(res.data.response.id);
-                const { id } = res.data.response;
-                simpleAlert("주문이 완료되었습니다.");
-                navigate(`/orders/${id}`);
-              },
-            });
-          }}
-          color={agreePayment && agreePolicy ? "kakao" : "gray"}
-          className="rounded-none"
-        >
-          {comma(totalPrice)}원 결제하기
-        </Button>
+      {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
+      <Box className="flex flex-col gap-4 p-4 mb-0">
+        <div className="flex gap-2 items-center">
+          <input
+            type="checkbox"
+            id="all-agree"
+            name="all-agree"
+            ref={allAgreeRef}
+            checked={agreePayment && agreePolicy}
+            onChange={handleAllAgree}
+            className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
+          />
+          <label htmlFor="all-agree" className="text-lg font-bold">
+            전체 동의하기
+          </label>
+        </div>
+        <Divider />
+        <div className="flex gap-2">
+          <input
+            type="checkbox"
+            id="agree"
+            name="payment-agree"
+            ref={agreePaymentRef}
+            checked={agreePayment}
+            onChange={handleAgreement}
+            className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
+          />
+          <label htmlFor="agree" className="text-sm">
+            카카오페이 결제조건 및 개인정보 제3자 제공 동의
+          </label>
+        </div>
+        <div className="flex gap-2">
+          <input
+            type="checkbox"
+            id="policy"
+            name="policy-agree"
+            ref={agreePolicyRef}
+            checked={agreePolicy}
+            onChange={handleAgreement}
+            className="w-5 h-5 text-kakao-yellow border-gray-300 rounded-sm focus:ring-kakao-yellow"
+          />
+          <label htmlFor="policy" className="text-sm">
+            개인정보 제3자 제공 동의
+          </label>
+        </div>
+      </Box>
+
+      <div className="bg-slate-50 border border-solid border-x-gray-200 border-y-0 p-4">
+        <span className="text-sm text-gray-800 font-bold">법적고지</span>
+        <p className="text-sm text-gray-500 whitespace-pre-wrap">
+          (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이
+          포함되어 있습니다. 개별 판매자가 판매하는 상품에 대해 (주)카카오는
+          통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송 및
+          환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
+        </p>
       </div>
+      {/* 결제하기 버튼 */}
+      <Button
+        onClick={() => {
+          // 동의가 이뤄지지 않았을 경우 처리
+          if (agreePayment === false || agreePolicy === false) {
+            simpleAlert(
+              "카카오페이 구매조건(결제조건) 확인 동의를 체크해 주세요."
+            );
+            return;
+          }
+
+          mutate(null, {
+            onError: (error) => {
+              simpleAlert(error.response.data.errorMessage);
+            },
+            onSuccess: (res) => {
+              console.log(res.data.response.id);
+              const { id } = res.data.response;
+              simpleAlert("주문이 완료되었습니다.");
+              navigate(`/orders/${id}`, { replace: true });
+            },
+          });
+        }}
+        color={agreePayment && agreePolicy ? "kakao" : "gray"}
+        className="rounded-none"
+      >
+        {comma(totalPrice)}원 결제하기
+      </Button>
     </Container>
   );
 };
