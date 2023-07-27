@@ -1,6 +1,5 @@
 import Label from "../atoms/Label";
 import Input from "../atoms/Input";
-import Box from "../atoms/Box";
 
 /**
  * 입력 그룹 컴포넌트
@@ -33,7 +32,7 @@ const InputGroup = ({
   labelClassName = "", // 라벨에 적용될 클래스. 라벨 스타일링을 할 필요성 느껴서 추가함.
 }) => {
   return (
-    <Box className={className}>
+    <div className={className}>
       <Label className={labelClassName} htmlFor={id}>
         {label}
       </Label>
@@ -48,7 +47,7 @@ const InputGroup = ({
         type={type}
         placeholder={placeholder}
       />
-    </Box>
+    </div>
   );
 };
 
