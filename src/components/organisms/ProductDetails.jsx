@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import ProductDetailsContainer from "../molecules/ProductDetailsContainer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { fetchProductById } from "../../services/apis";
 import SkeletonPhoto from "../atoms/SkeletonPhoto";
@@ -18,13 +18,20 @@ const Container = styled.div`
 
 const ProductDetails = () => {
   const productId = useParams();
+  const navigate = useNavigate();
   const {
     isLoading,
     data: product,
     refetch,
   } = useQuery(["product", productId], () => fetchProductById(productId), {
-    // 사용자에게 alert로 문제를 알리고, refetch를 통해 계속 페칭
-    onError: () => {
+    onError: (error) => {
+      // 상품을 찾을 수 없는 경우: 사용자에게 alert로 문제를 알리고, 홈 화면으로 리다이렉트
+      if (error.response.status === 404) {
+        alert("선택한 상품을 찾을 수 없습니다.");
+        navigate("/");
+        return;
+      }
+      // 사용자에게 alert로 문제를 알리고, refetch를 통해 계속 페칭
       alert("네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요.");
       refetch();
     },
