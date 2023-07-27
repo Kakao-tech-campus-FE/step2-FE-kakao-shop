@@ -1,14 +1,17 @@
 import React, { ComponentProps, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SimpleButton from '../atoms/SimpleButton';
-import { useGetCartQuery } from '../../apis/productApi';
+import { useGetCartQuery, useOrderSaveMutation } from '../../apis/productApi';
 import OrderItem from '../organisms/OrderItem';
 import { comma } from '../../utils/convert';
 
 const OrderTemplate = () => {
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
+  const navigate = useNavigate();
 
   const { data: cartProducts } = useGetCartQuery();
+  const { mutate: saveOrder } = useOrderSaveMutation();
 
   const handleAgreementChange: ComponentProps<'input'>['onChange'] = (e) => {
     const { name, checked } = e.target;
@@ -20,6 +23,19 @@ const OrderTemplate = () => {
       setAgreePayment(checked);
       setAgreePolicy(checked);
     }
+  };
+
+  const handleOrderClick = () => {
+    saveOrder(undefined, {
+      onError: () => {
+        alert('주문 실패');
+      },
+      onSuccess: (res) => {
+        const { id } = res;
+        alert('주문 완료');
+        navigate(`/orders/complete/${id}`);
+      },
+    });
   };
 
   return (
@@ -114,9 +130,7 @@ const OrderTemplate = () => {
           <button
             type='button'
             disabled={!agreePayment || !agreePolicy}
-            onClick={() => {
-              // TODO
-            }}
+            onClick={handleOrderClick}
             className='w-full bg-yellow-300 p-4 font-medium disabled:opacity-60'
           >
             결제하기

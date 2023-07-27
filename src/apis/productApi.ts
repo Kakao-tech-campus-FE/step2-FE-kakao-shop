@@ -64,4 +64,27 @@ const useUpdateCartMutation = () => {
   return useMutation({ mutationFn: fetcher });
 };
 
-export { useGetProductsQuery, useGetProductQuery, useGetCartQuery, useAddCartMutation, useUpdateCartMutation };
+const useOrderSaveMutation = () => {
+  const fetcher = () => axios.post(`/orders/save`).then(({ data }) => data.response);
+
+  return useMutation({ mutationFn: fetcher });
+};
+
+const useGetOrderQuery = () => {
+  const fetcher = () => axios.get(`/orders/155`);
+
+  return useQuery({
+    queryKey: ['order'],
+    queryFn: fetcher,
+  });
+};
+
+export {
+  useGetProductsQuery,
+  useGetProductQuery,
+  useGetCartQuery,
+  useAddCartMutation,
+  useUpdateCartMutation,
+  useOrderSaveMutation,
+  useGetOrderQuery,
+};

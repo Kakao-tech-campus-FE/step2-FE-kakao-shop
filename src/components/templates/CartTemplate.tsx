@@ -21,7 +21,7 @@ const CartTemplate = () => {
   return (
     <div>
       <div className='border-y bg-white p-4'>
-        <h1 className='text-center text-sm font-bold'>주문하기</h1>
+        <h1 className='text-center text-sm font-bold'>장바구니</h1>
       </div>
       {cartProducts && (
         <>
