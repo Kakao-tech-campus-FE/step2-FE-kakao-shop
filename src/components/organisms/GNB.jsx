@@ -1,24 +1,12 @@
 import React from 'react'
-import { styled } from 'styled-components'
+
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearUserReducer } from '../../reducers/loginSlice'
 
-import GNBContainer from '../atoms/GNB/GNBContainer'
-import GNBInnerBox from '../atoms/GNB/GNBInnerBox'
-import GNBButton from '../atoms/GNB/GNBButton'
-import GNBMyGroup from '../molecules/GNBMyGroup';
-import GNBMainGroup from '../molecules/GNBMainGroup';
+import { GNBContainer, GNBInnerBox, GNBButton, GNBMenuGroup, Logobox } from 'components/atoms/GNB'
 
 
-const Logobox = styled.div`
-  margin: 0 10px;
-  width: 30px; 
-  height: 30px;
-  background-image: url("https://blog.kakaocdn.net/dn/daL0ub/btsmROiKTyk/t2CmD7jf13LjIkJ3vrLjcK/tfile.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-` 
 const GNB = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -34,14 +22,14 @@ const GNB = () => {
     <GNBContainer>
       <GNBInnerBox>
         
-        <GNBMainGroup>
+        <GNBMenuGroup>
           <Link to ="/">
             <Logobox />
           </Link>
           <GNBButton onClick={()=>{navigate("/")}}>상품목록</GNBButton>
-        </GNBMainGroup>
+        </GNBMenuGroup>
 
-        <GNBMyGroup>
+        <GNBMenuGroup className="ml-auto">
           
           {loginState.islogin
             ? 
@@ -55,11 +43,10 @@ const GNB = () => {
                 <GNBButton onClick={()=>{navigate("/signup")}}>회원가입</GNBButton>
               </>
           }
-        </GNBMyGroup>
+        </GNBMenuGroup>
       </GNBInnerBox>
     </GNBContainer>
   )
 }
 
-/* a@naver.com qqqq111! */
 export default GNB
