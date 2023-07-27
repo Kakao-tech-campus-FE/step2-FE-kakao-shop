@@ -35,27 +35,24 @@ const OrderTemplate = ({ data }) => {
   };
 
   const OrderItems = () => {
-    let renderComponent = [];
     if (!Array.isArray(products)) return;
 
-    products.forEach((item) => {
-      renderComponent.push(
-        item.carts.map((cart) => {
-          return (
-            <div key={cart.id} className="p-4 border-t">
-              <div className="product-name font-bold">
-                <span>{`${item.productName} - ${cart.option.optionName}`}</span>
-              </div>
-              <div className="quantity">
-                <span>{comma(cart.quantity)}개</span>
-              </div>
-              <div className="price font-bold">
-                <span>{comma(cart.price * cart.quantity)}원</span>
-              </div>
+    const renderComponent = products.map((item) => {
+      return item.carts.map((cart) => {
+        return (
+          <div key={cart.id} className="p-4 border-t">
+            <div className="product-name font-bold">
+              <span>{`${item.productName} - ${cart.option.optionName}`}</span>
             </div>
-          );
-        })
-      );
+            <div className="quantity">
+              <span>{comma(cart.quantity)}개</span>
+            </div>
+            <div className="price font-bold">
+              <span>{comma(cart.price * cart.quantity)}원</span>
+            </div>
+          </div>
+        );
+      });
     });
 
     return renderComponent;
@@ -65,13 +62,13 @@ const OrderTemplate = ({ data }) => {
     <div className="container">
       <div className="block mx-auto max-w-[1024px] w-[100%]">
         <div className="border py-2">
-          <h1 className="text-sm font-bold">주문 확인</h1>
+          <h1 className="text-sm font-bold mx-2">주문 확인</h1>
         </div>
         <div className="border py-4">
-          <h2 className="text-sm font-bold">배송지 정보</h2>
+          <h2 className="text-sm font-bold mx-2">배송지 정보</h2>
         </div>
         <div className="border py-4">
-          <div className="name flex items-center gap-2">
+          <div className="name flex items-center gap-2 mx-2">
             전도균
             <span className="text-blue-400 bg-blue-100 rounded-md text-xs p-1">
               기본배송지
@@ -79,13 +76,17 @@ const OrderTemplate = ({ data }) => {
           </div>
         </div>
         <div className="border py-4">
-          전화번호 <span>010-1234-5678</span>
+          <div className="mx-2">
+            전화번호 <span>010-1234-5678</span>
+          </div>
         </div>
         <div className="border py-4">
-          주소 <span>광주광역시 북구 전남대학교</span>
+          <div className="mx-2">
+            주소 <span>광주광역시 북구 전남대학교</span>
+          </div>
         </div>
         <div className="border py-4">
-          <h2>주문상품 정보</h2>
+          <span className="mx-2">주문상품 정보</span>
         </div>
         <OrderItems />
 
@@ -104,6 +105,7 @@ const OrderTemplate = ({ data }) => {
               id="all-agree"
               ref={allAgreeRef}
               checked={agreePayment === true && agreePolicy === true}
+              onClick={handleAllAgree}
             />
             <label htmlFor="all-agree" className="text-xl font-bold">
               전체 동의
@@ -116,6 +118,7 @@ const OrderTemplate = ({ data }) => {
               name="payment-agree"
               ref={agreePaymentRef}
               checked={agreePayment}
+              onClick={handleAgreement}
             />
             <label htmlFor="agree" className="text-sm">
               구매조건 확인 및 결제 진행 동의
@@ -128,6 +131,7 @@ const OrderTemplate = ({ data }) => {
               name="policy-agree"
               ref={agreePolicyRef}
               checked={agreePolicy}
+              onClick={handleAgreement}
             />
             <label htmlFor="policy" className="text-sm">
               개인정보 제공 제 3자 동의
@@ -137,8 +141,9 @@ const OrderTemplate = ({ data }) => {
           <button
             className="bg-yellow-300 w-full p-2 font-medium"
             onClick={() => {
-              // 동의가 이루어지지 않았을 경우 버튼 액션 막기
               if (agreePayment === false || agreePolicy === false) {
+                alert("필수 동의에 체크해주세요. ");
+                return;
               }
 
               mutate(null, {
@@ -146,8 +151,27 @@ const OrderTemplate = ({ data }) => {
                   const id = res.data.response.id;
                   navigate(`/orders/${id}`);
                 },
-                onError: () => {
-                  // 과제 2
+                onError: (err) => {
+                  const errorMessage = err.response.data.error.message;
+                  const status = err.response.status;
+                  // 장바구니에 아무것도 없을 땐, 알림창만 띄우도록
+                  if (
+                    errorMessage === "장바구니에 아무 내역도 존재하지 않습니다"
+                  ) {
+                    alert(errorMessage);
+                    return;
+                  } // 인증이 되지 않았을 경우(로그인 정보가 없을 때, token 만료), 알림창 이후 로그인 화면으로 돌아가도록
+                  else if (errorMessage === "인증되지 않았습니다") {
+                    navigate("/login");
+                    return;
+                  }
+                  /**
+                   * 그 외 에러 캐칭 시 에러 페이지로 이동
+                   * ex) 없는 상품, 잔액 부족, 결제 실패 등
+                   * @status - 에러 status 코드(401, 403, 404, ...)
+                   * @errorMessage - 백엔드 API에서 가져오는 Error Message
+                   */
+                  navigate(`/error/${status}/${errorMessage}`);
                 },
               });
             }}
