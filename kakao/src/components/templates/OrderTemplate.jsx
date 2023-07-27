@@ -42,11 +42,6 @@ const OrderTemplate = ({ data }) => {
     }
   };
 
-  // 주문이 완료되면 장바구니 비우기
-  // const clearCart = () => {
-  //   setCartItems([]);
-  // };
-
   // OrderItems
   const OrderItems = () => {
     let renderComponent = [];
@@ -189,7 +184,6 @@ const OrderTemplate = ({ data }) => {
                 onSuccess: (res) => {
                   const id = res.data.response.id;
                   alert("주문이 완료되었습니다!😉");
-                  // // clearCart();
                   navigate(`/orders/complete/${id}`);
                 },
               });
