@@ -7,6 +7,7 @@ const Photo = ({ src, alt, className, imgAnimation = "" }) => {
         src={src}
         alt={alt}
         style={{
+          aspectRatio: "inherit",
           width: "inherit",
           height: "inherit",
           objectFit: "cover",

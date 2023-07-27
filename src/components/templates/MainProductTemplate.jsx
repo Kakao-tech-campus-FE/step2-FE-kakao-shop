@@ -61,7 +61,7 @@ const MainProductTemplate = () => {
   return (
     <Container>
       {isLoading ? <Loader /> : <ProductGrid products={products} />}
-      <div ref={targetRef}></div>
+      <div ref={targetRef} className="mb-1"></div>
     </Container>
   );
 };

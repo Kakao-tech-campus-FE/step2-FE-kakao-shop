@@ -4,6 +4,10 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import MainPage from "./pages/MainPage";
 import MainLayout from "./layouts/MainLayout";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import NotFound from "./pages/NotFound";
+import CartPage from "./pages/CartPage";
+import PayPage from "./pages/PayPage";
 
 function App() {
   return (
@@ -13,10 +17,15 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
+
           {/* {공통 레이아웃}: GNB, Footer */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />}></Route>
+            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path="/cart" element={<CartPage />}></Route>
+            <Route path="/pay" element={<PayPage />}></Route>
           </Route>
+          <Route path="/404" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

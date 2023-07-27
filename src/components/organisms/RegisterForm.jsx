@@ -55,7 +55,6 @@ const RegisterForm = () => {
     }).then((res) => {
       if (res.status === 200) {
         setModal("complete");
-        console.log("hello");
         dispatch(
           loginRequest({
             email: value.email,
@@ -157,7 +156,8 @@ const RegisterForm = () => {
           onClick={() => {
             navigate("/login", { replace: false });
           }}
-          type={modal}
+          type={"two"}
+          secondButton={"다시 입력"}
           setModal={setModal}
         ></Modal>
       )}

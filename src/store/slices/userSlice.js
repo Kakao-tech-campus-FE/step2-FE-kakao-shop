@@ -60,7 +60,6 @@ const userSlice = createSlice({
 export const loginRequest = createAsyncThunk(
   "user/loginRequest",
   async (data) => {
-    console.log("login");
     const { email, password } = data;
     const response = await login({ email, password });
 
