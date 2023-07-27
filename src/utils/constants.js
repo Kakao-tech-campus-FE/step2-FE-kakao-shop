@@ -42,6 +42,21 @@ export const registerWelcomeMessage = {
     text: '저희 사이트에 오신 것을 환영합니다😊',
     confirmButtonText:'확인',
 }
+export const cartSuccessMessage = {
+    title:'장바구니 담기 성공!',
+    text: '다른 상품도 더 둘러보시겠어요?😄',
+    confirmButtonText:'확인',
+}
+export const cartLoginNeedMessage = {
+    title:'로그인이 먼저 필요해요!',
+    text: '상품을 담기 전 로그인을 먼저 해주세요!😊',
+    confirmButtonText:'확인',
+}
+export const cartFailedMessage = {
+    title:'장바구니 담기 실패..😭',
+    text: '무슨 문제가 있는 것 같습니다!',
+    confirmButtonText:'확인',
+}
 
 export const clearTokens = () => {
     localStorage.removeItem("token");

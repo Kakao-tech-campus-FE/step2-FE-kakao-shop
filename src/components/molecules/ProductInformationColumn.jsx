@@ -1,19 +1,39 @@
+import { styled } from "styled-components";
 import { comma } from "../../utils/comma";
 import Photo from "../atoms/Photo";
 
 const ProductInformationColumn = ({ product }) => {
     const { productName, price, image } = product;
     return (
-        <div className="product-information-column">
-            <div className="col">
+        <ProductInformationColumnContainer>
+            <ProductInformationBox>
                 <Photo src={image} alt={productName} />
-            </div>
-            <div className="col">
-                <h1 className="name">{productName}</h1>
-                <p className="price">{comma(price)}원</p>
-            </div>
-        </div>
+            </ProductInformationBox>
+            <ProductInformationBox>
+                <ProductInformationTitle className="name">{productName}</ProductInformationTitle>
+                <ProductInformationPrice>{comma(price)}원</ProductInformationPrice>
+            </ProductInformationBox>
+        </ProductInformationColumnContainer>
     );
 };
 
 export default ProductInformationColumn; 
+
+// ProductInformationColumn내 레이아웃을 위한 Container
+const ProductInformationColumnContainer = styled.div`
+    display:flex;
+    padding-top: 100px;
+`
+
+const ProductInformationBox = styled.div`
+    margin-right: 50px;
+`
+
+const ProductInformationTitle = styled.p`
+    font-size: 2rem;
+    max-width: 360px;
+`
+
+const ProductInformationPrice = styled.p`
+    font-size: 1.2rem;
+`

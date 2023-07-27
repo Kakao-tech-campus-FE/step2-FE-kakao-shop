@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage } from "../../utils/constants";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
+import { styled } from "styled-components";
 // import Title from "../atoms/Title";
 // import { login } from "../services/api";
 // import { loginRequest, setEmail } from "../../store/slices/userSlice";
@@ -64,7 +65,8 @@ const LoginForm = () => {
   */
 
   return (
-    <Container>
+    <LoginFormContainer>
+      <span>로그인</span>
       <InputGroup
         id="email"
         type="email"
@@ -86,8 +88,18 @@ const LoginForm = () => {
       <Button onClick={handleClick}>
         로그인
       </Button>
-    </Container>
+    </LoginFormContainer>
   );
 };
 
 export default LoginForm;
+
+const LoginFormContainer = styled(Container)`
+  margin: 0 auto;
+  width: 50%;
+  border: 1px solid #ddd;
+  text-align: center;
+  & > span {
+    font-size: 2.2rem;
+  }
+`

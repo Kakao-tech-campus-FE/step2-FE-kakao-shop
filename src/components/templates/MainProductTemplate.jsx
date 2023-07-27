@@ -71,8 +71,11 @@ const MainProductTemplate = () => {
                 <>
                 <Loader />
                 </>
-                : <ProductGrid products={products} loading={isLoading} />}
+                : 
+                <>
+                <ProductGrid products={products} loading={isLoading} />
                 <div ref={bottomObserver}></div>
+                </>}
             </Container>
         </>
     );
