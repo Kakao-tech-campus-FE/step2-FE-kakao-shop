@@ -7,7 +7,10 @@ import { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Header = ({ isMobile }: { isMobile: boolean }) => {
+import useViewport from '@hooks/@common/useViewport';
+
+const Header = () => {
+  const { isMobile } = useViewport();
   const dispatch = useDispatch();
   const isLogin = useSelector((state: RootState) => state.signIn.isLogin);
   const cartProducts = useSelector((state: RootState) => state.cart.cart);
@@ -84,9 +87,10 @@ const S = {
   Container: styled.div<{ isMobile: boolean }>`
     display: flex;
 
-    width: ${({ isMobile }) => (isMobile ? '300px' : '1280px')};
+    width: ${({ isMobile }) => (isMobile ? 'calc(100vw - 12px)' : '1280px')};
     height: 79px;
     margin: 0 auto;
+    padding: ${({ isMobile }) => (isMobile ? '0 6px' : '0')};
   `,
 
   TitleLogo: styled.h1`

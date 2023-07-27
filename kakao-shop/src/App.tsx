@@ -15,14 +15,11 @@ import SignUp from '@pages/SignUp';
 import Footer from '@components/molecules/Footer';
 import Header from '@components/molecules/Header';
 
-import useViewport from '@hooks/@common/useViewport';
-
 function App() {
-  const { isMobile } = useViewport();
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout isMobile={isMobile} />}>
+        <Route element={<Layout />}>
           <Route path={'/'} element={<Home />} />
           <Route path={'/detail/:id'} element={<ProductDetail />} />
           <Route path={'/cart'} element={<Cart />} />
@@ -40,10 +37,10 @@ function App() {
   );
 }
 
-const Layout = ({ isMobile }: { isMobile: boolean }) => {
+const Layout = () => {
   return (
     <>
-      <Header isMobile={isMobile} />
+      <Header />
       <Outlet />
       <Footer />
     </>

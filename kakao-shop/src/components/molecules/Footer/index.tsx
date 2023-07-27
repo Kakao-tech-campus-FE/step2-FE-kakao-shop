@@ -45,7 +45,7 @@ const S = {
     border-top: 1px solid #e5e5e5;
 
     text-align: center;
-    white-space: nowrap;
+    /* white-space: nowrap; */
   `,
   Strong: styled.strong`
     position: absolute;
