@@ -17,7 +17,6 @@ const useForm = (initialValue, onSubmit, validate) => {
 
     }
     const handleSubmit = (e) => {
-        console.log("handleSubmit")
         setSubmitting(true);
         e.preventDefault();
         setErrors(validate?.(values) ?? {});

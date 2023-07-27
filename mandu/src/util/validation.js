@@ -1,3 +1,5 @@
+import {ErrorType} from "../services/type";
+
 const emailValidation = new RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/);
 const passwordValidation = new RegExp(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,20}$/);
 
@@ -35,3 +37,22 @@ export const userValidation = (values) => {
 
     return errors;
 }
+
+
+export const checkCartValidation = (data) => {
+    let {products, totalPrice} = data;
+    if (!Array.isArray(products) || isNaN(Number(totalPrice))) {
+        throw new ErrorType({
+            message: "올바르지 않은 데이터 형식입니다.",
+        });
+    }
+    totalPrice = Number(totalPrice);
+    products.map((product) => {
+        if (!Array.isArray(product.carts)) {
+            throw new ErrorType({
+                message: "올바르지 않은 데이터 형식입니다.",
+            });
+        }
+    })
+    return {products, totalPrice};
+};

@@ -5,7 +5,7 @@ import {Link, useNavigate} from "react-router-dom";
 import cookie from "react-cookies";
 import {useDispatch} from "react-redux";
 import {setId} from "../redux/userSlice";
-import Button from "../components/atoms/Button";
+import {ElevatedButton} from "../components/atoms/Buttons";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -75,14 +75,13 @@ const LoginPage = () => {
                             placeholder="비밀번호를 입력하세요"
                         />
                     </div>
-                    <Button className="mt-8" type="submit" disabled={submitting}>
+                    <ElevatedButton className="mt-8 bg-amber-300" type="submit" disabled={submitting}>
                         로그인
-                    </Button>
-                    <div className="flex justify-center mt-6 mx-6">
-                        <Link to="/signup" className="inline-block text-xs">
-                            회원가입
-                        </Link>
-                    </div>
+                    </ElevatedButton>
+                    <Link to="/signup"
+                          className="inline-block text-sm font-medium w-full bg-gray-400 text-center rounded-md p-3 mt-2">
+                        회원가입
+                    </Link>
                 </form>
             </div>
         </div>

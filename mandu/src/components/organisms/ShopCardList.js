@@ -2,7 +2,7 @@ import {ProductCard, SkeletonProductCard} from "../molecules/ProductCard";
 import {useInfiniteQuery} from "react-query";
 import {useInView} from 'react-intersection-observer'
 import {getProducts} from "../../services/apis";
-import {Fragment, useEffect} from "react";
+import {useEffect} from "react";
 import Loader from "../atoms/Loader";
 
 const ShopCardList = () => {
@@ -31,12 +31,10 @@ const ShopCardList = () => {
             {status === "loading" ?
                 <SkeletonProductCardList/>
                 :
-                <ProductCardList
-                    data={data}
-                />
+                <ProductCardList data={data}/>
             }
             <div ref={ref} className="text-center w-full">
-                {isFetching ? <Loader/> : error ? error.message : ""}
+                {isFetching ? <Loader/> : error?.message ?? ""}
             </div>
         </div>
     );
@@ -46,13 +44,11 @@ const ProductCardList = ({data}) => {
     return (
         <>
             {data.pages.map((page) => (
-                <Fragment key={"page" + page.nextPage}>
-                    {page.data.map(function (project) {
-                        const {id, productName, image, price} = project;
-                        return <ProductCard key={"card" + id} id={id} title={productName}
-                                            image={image} price={price}/>
-                    })}
-                </Fragment>
+                page.data.map(({id, productName, image, price}) => (
+                    <ProductCard key={"product" + id} id={id} title={productName}
+                                 link={"product/" + id}
+                                 image={image} price={price}/>
+                ))
             ))}
 
         </>

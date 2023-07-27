@@ -10,11 +10,3 @@ export const ListItem = ({link, className = "", children, ...props}) => {
         </li>
     );
 }
-
-export const List = ({children, ...props}) => {
-    return (
-        <ul className="list-none flex" {...props}>
-            {children}
-        </ul>
-    );
-}
