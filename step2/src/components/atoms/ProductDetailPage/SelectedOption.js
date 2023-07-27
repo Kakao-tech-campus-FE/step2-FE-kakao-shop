@@ -1,5 +1,5 @@
 import { comma } from "../../../utils/convert";
-import { useLocation } from "react-router-dom";
+import { useMatch } from "react-router-dom";
 
 const Quantity = ({
   isEditAble,
@@ -28,8 +28,9 @@ const Quantity = ({
 };
 
 const SelectedOption = ({ option, quantity, onQuantityChange, onRemove }) => {
-  const location = useLocation();
-  const isEditAble = location.pathname !== "/order";
+  const isCartPage = useMatch("/cart");
+  const isProductPage = useMatch("/product/:productId");
+  const isEditAble = !!isCartPage || !!isProductPage;
 
   const handleQuantityChange = (e) => onQuantityChange(option.id, +e.target.value)
 
