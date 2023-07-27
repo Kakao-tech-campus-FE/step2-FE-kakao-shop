@@ -40,7 +40,8 @@ const LoginForm = () => {
     })
       .then((res) => {
         console.log(res);
-        const token = res.data.token;
+        // const token = res.data.token;
+        const token = res.headers.authorization;
         localStorage.setItem("token", token);
         dispatch(
           setEmail({
@@ -88,7 +89,7 @@ const LoginForm = () => {
             onBlur={validatePassword}
           />
           {pwError && <p className="error-message">{pwError}</p>}
-          <>{error}</>
+          {error}
         </div>
         <Button onClick={loginReq}>로그인</Button>
         <Button

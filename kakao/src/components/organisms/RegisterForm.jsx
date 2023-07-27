@@ -44,7 +44,7 @@ const RegisterForm = () => {
       })
       .catch((err) => {
         console.log("err", err);
-        if (err.data && err.data.error && err.data.error.message) {
+        if (err.data?.error?.message) {
           setError(err.data.error.message);
         } else {
           setError("회원가입 실패");
@@ -98,7 +98,7 @@ const RegisterForm = () => {
           onBlur={validatePasswordConfirm}
         />
         {pwError && <p className="error-message">{pwConfirmError}</p>}
-        <>{error}</>
+        {error}
         <Button onClick={handleRegister}>회원가입</Button>
       </Container>
     </div>

@@ -9,9 +9,10 @@ const GNB = () => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    //요기 약간이상?
     localStorage.removeItem("token");
-    dispatch(setEmail(null));
     alert("정상적으로 로그아웃되었습니다!");
+    dispatch(setEmail(null));
   };
 
   return (
@@ -34,8 +35,8 @@ const GNB = () => {
           <span className="menu-account">
             {email ? (
               <Link
-                to="/login"
                 onClick={handleLogout}
+                to="/login"
                 style={{ textDecoration: "none", color: "black" }}
               >
                 {" "}
