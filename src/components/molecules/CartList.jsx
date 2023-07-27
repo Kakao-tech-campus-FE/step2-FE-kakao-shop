@@ -18,6 +18,17 @@ const CartList = () => {
 
     const { mutate } = useMutation({
         mutationFn: updateCart,
+        onSuccess: () => {
+            // 업데이트된 사항이 바로 적용되지 않아서 고의로 window.location.href 사용
+            // CartItem 내부 함수 분리 후 업데이트 내용이 잘 적용되어 navigate로 복귀
+            // console.log("업데이트 내역", updatePayload);
+            // console.log("최종 카트 아이템 내역", cartItems);
+            navigate("/order");
+        },
+        onError: (error) => {
+            // notFoundPage로 이동
+            navigate("/error");
+        }
     })
 
     useEffect(() => {
@@ -115,20 +126,7 @@ const CartList = () => {
                         // cart 업데이트(update cart API) 
                         // 주문 페이지 이동(navigate)
                         // post 요청
-                        mutate(updatePayload, {
-                            onSuccess: () => {
-                                // 업데이트된 사항이 바로 적용되지 않아서 고의로 window.location.href 사용
-                                // CartItem 내부 함수 분리 후 업데이트 내용이 잘 적용되어 navigate로 복귀
-                                // console.log("업데이트 내역", updatePayload);
-                                // console.log("최종 카트 아이템 내역", cartItems);
-                                navigate("/order");
-                            },
-                            onError: (error) => {
-                                alert(error);
-                                // notFoundPage로 이동
-                                navigate("/error");
-                            }
-                        })
+                        mutate(updatePayload)
                     }}
                 >
                 총 {getTotalCartCount()}건 주문하기(결제하기)

@@ -56,7 +56,7 @@ instance.interceptors.response.use(
         if (error.response.status === 404) {
             Swal.fire({
                 icon: 'error',
-                title: '없는 페이지입니다😅',
+                title: '아이쿠! 에러가 발생했네요😅',
                 text: error.response.data.error.message,
                 confirmButtonText: '확인',
             })

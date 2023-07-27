@@ -36,6 +36,14 @@ const OrderTemplate = () => {
     const { mutate } = useMutation({
         mutationKey: "order",
         mutationFn : order,
+        onSuccess: (res) => {
+            const id = res.data.response.id;
+            alert("주문이 완료되었습니다.");
+            navigate(`/orders/complete/${id}`)
+        },
+        onError: (error) => {
+            alert("주문에 실패하였습니다.")
+        }
     })
 
     useEffect(() => {
@@ -140,22 +148,7 @@ const OrderTemplate = () => {
                         alert("모든 항목에 동의해주세요.");
                         return
                     }
-
-                    mutate(null, {
-                        onSuccess: (res) => {
-                            // console.log("onSuceess!!")
-                            // console.log("response is Here", res);
-                            // console.log(res.response);
-                            const id = res.data.response.id;
-                            console.log("response -> ", res)
-                            console.log(id);
-                            alert("주문이 완료되었습니다.");
-                            navigate(`/orders/complete/${id}`)
-                        },
-                        onError: (error) => {
-                            alert("주문에 실패하였습니다.")
-                        }
-                    })
+                    mutate(null)
                 }}>
                     결제하기
                 </PaymentButton>
