@@ -5,3 +5,7 @@
 picture > img {
   width: inherit;
 }
+
+button > svg {
+  margin: 0 auto;
+}

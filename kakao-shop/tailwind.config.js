@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        "kakao-yellow": "#FEE500",
+        'kakao-yellow': '#FEE500',
+        'kakao-blue': '#007aff',
       },
     },
   },
