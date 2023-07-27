@@ -1,15 +1,17 @@
 import React from 'react'
+import RadioItem from './RadioItem'
 
-const RadioGroup = ( props ) => {
-
-  return (
-    <div className='flex items-center'>
-      <input 
-        type="radio" className='mr-3' id={props.id}
-        checked={props.checked} onChange={props.onChange} /> 
-      <label htmlFor={props.id}> {props.label} </label>
-      {props.children}
-    </div>
+const RadioGroup = ( { itemList, state, onChange } ) => {
+	/* itemList = [ { id: id, label: lable }, ... ] */
+	return (
+		<>
+			{itemList.map((item) => (
+				<RadioItem 
+					id={item.id} checked={state === item.id} 
+					onChange={onChange} label={item.label}
+				/>
+			))}
+		</>
   )
 }
 
