@@ -20,9 +20,10 @@ const userSlice = createSlice({
       state.email = null;
       state.expirationTime = null;
       state.isLoggedIn = false;
+      state.token = null;
     },
     setToken: (state, action) => {
-      state.token = action.payload.token;
+      state.token = action.payload;
     },
   },
 });

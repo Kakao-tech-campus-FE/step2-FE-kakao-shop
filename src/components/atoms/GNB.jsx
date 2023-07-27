@@ -2,18 +2,27 @@ import { Link } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import clearUser from "../../store/slices/userSlice";
+import { Fragment } from "react";
 
 //header bar components
 
 const GNB = () => {
-  const email = useSelector((state) => state.user.email); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
+  const token = useSelector((state) => state.user.token); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
   const dispatch = useDispatch();
+  const label = token ? "로그아웃" : "로그인";
+  const loginoutpath = token ? "/" : "/login";
+  const cartpath = token ? "/cart" : "/login";
 
-  const handleLogout = () => {
-    localStorage.removeItem("user");
-    dispatch(clearUser());
-    alert("정상적으로 로그아웃되었습니다.");
+  const handleClick = () => {
+    if (token) {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+      dispatch(clearUser());
+      alert("정상적으로 로그아웃되었습니다.");
+    }
   };
+
+  const LinkButton = {};
 
   return (
     <header className="header">
@@ -33,7 +42,8 @@ const GNB = () => {
             </h1>
             <div className="menu_util">
               {/* 장바구니 버튼 */}
-              <Link className="link_util" to="/cart">
+
+              <Link className="link_util" to={cartpath}>
                 <img
                   className="ico_cart"
                   src={"/cart.png"}
@@ -42,27 +52,15 @@ const GNB = () => {
               </Link>
             </div>
             <div className="menu_my">
-              {/* 로그인 버튼 */}
-              {email ? (
-                <Link
-                  className="link_login"
-                  to="/login"
-                  onClick={handleLogout}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그아웃{" "}
-                </Link>
-              ) : (
-                <Link
-                  className="link_login"
-                  to="/login"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그인{" "}
-                </Link>
-              )}
+              {/* 로그인 로그아웃 버튼 */}
+              <Link
+                className="link_login"
+                to={loginoutpath}
+                onClick={handleClick}
+                style={{ textDecoration: "none", color: "black" }}
+              >
+                {label}
+              </Link>
             </div>
           </div>
         </nav>

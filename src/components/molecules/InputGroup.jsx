@@ -18,7 +18,9 @@ const InputGroup = ({
 }) => {
   return (
     <Box className={className}>
-      <Label htmlFor={id}>{label}</Label>
+      <Label className="block border-0 h-5" htmlFor={id}>
+        {label}
+      </Label>
       <Input
         id={id}
         type={type}
