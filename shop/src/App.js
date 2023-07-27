@@ -6,6 +6,8 @@ import HomePage from '../src/pages/HomePage';
 import MainLayout from './layouts/MainLayout';
 import ProductDetailPage from './pages/ProductDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
+import CartPage from './pages/CartPage';
+import OrderPage from './pages/OrderPage';
 
 function App() {
   return (
@@ -19,10 +21,12 @@ function App() {
           <Route element={<MainLayout/>}>
             <Route path='/' element={<HomePage/>}></Route>
             <Route path='/product/:id' element={<ProductDetailPage/>}></Route>
+            <Route path='/carts' element={<CartPage/>}></Route>
+            <Route path='/order' element={<OrderPage/>}></Route>
+            {/* 404 에러 페이지 */}
+            <Route path="/product/404" element={<NotFoundPage />} />
           </Route>
 
-          {/* 404 에러 페이지 */}
-          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </div>

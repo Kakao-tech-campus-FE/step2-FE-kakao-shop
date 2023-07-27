@@ -1,6 +1,6 @@
 import Container from "../atoms/Container"
 import ProductGrid from "../organisms/ProductGrid"
-import { useEffect, useRef, useState } from "react"
+import { useEffect} from "react"
 import Loader from "../atoms/Loader"
 import { fetchProducts } from '../../services/product';
 import { useInfiniteQuery } from 'react-query'
@@ -21,8 +21,6 @@ const MainProductTemplate = () => {
         if(lastPage.data?.response.length === 0 ){
           return null
         }
-        console.log(pages)
-        console.log(lastPage)
         return pages.length
       },
       // Error 처리
@@ -41,12 +39,8 @@ const MainProductTemplate = () => {
   );
 
   useEffect(() => {
-
     if(inView && hasNextPage){
       fetchNextPage();
-      console.log(`inview:${inView}`)
-      console.log("-----------")
-      console.log(hasNextPage)
     }
   },[inView])
   
@@ -62,7 +56,7 @@ const MainProductTemplate = () => {
   
 
   return (
-    <Container className={'ml-20 mr-20'}>
+    <Container className="mx-96">
       {loading ? <Loader/> : (
         <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
       )}

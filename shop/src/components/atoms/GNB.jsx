@@ -10,11 +10,13 @@ const GNB = () => {
     const loginTime = useSelector((state) => state.user.loginTime)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    
     // 로그아웃 버튼 클릭 시 상태 초기화
     const handleLogout = () => {
       dispatch(setEmail({ email: "" }))
       localStorage.removeItem("email") // 로컬 스토리지에서도 제거
       localStorage.removeItem("loginTime")
+      localStorage.removeItem("token")
       navigate("/")
     }
 

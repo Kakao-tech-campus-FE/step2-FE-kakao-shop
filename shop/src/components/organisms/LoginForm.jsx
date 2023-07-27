@@ -57,7 +57,7 @@ const LoginForm = () => {
   }
 
   return (
-    <Container>
+    <Container className="mx-96 mt-10 items-center justify-center">
       <div className="w-max p-52 bg-white shadow">
         <Title>로그인</Title>
         <span>{email}</span>
@@ -87,7 +87,7 @@ const LoginForm = () => {
         <div className="mt-5 text-lg font-semibold text-red-400">{error}</div>
 
         <Button
-          className="mt-20 "
+          className="btn-primary py-2 px-4 mt-20 "
           disabled={isError}
           onClick={()=>{
             //api 요청 
