@@ -90,7 +90,6 @@ const CartSection = () => {
     return (
       acc +
       product.carts.reduce((optAcc, option) => {
-        console.log("@@@@@@@@@@@@@", acc, option.quantity, option.option.price, option.option.optionName)
         if (option.quantity > 0) {
           return optAcc + option.quantity * option.option.price;
         }
