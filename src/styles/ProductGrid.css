@@ -1,0 +1,23 @@
+.product-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+    max-width: inherit;
+}
+
+.product-grid{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-grid>.product-card{
+    width: 360;
+}
+
+@media screen and (max-width:768px) {
+    .product-grid{
+        grid-template-columns: repeat(2,1fr);
+    }
+}

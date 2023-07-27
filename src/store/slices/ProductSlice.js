@@ -40,7 +40,7 @@ const productsSlice =createSlice({
 });
 
 export const getProducts = createAsyncThunk(
-    "products/gerproducts",
+    "products/getProducts",
     async(page)=>{
         const response =await fetchProducts(page);
         return response.data; // action.payload
