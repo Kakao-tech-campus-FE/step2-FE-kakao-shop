@@ -2,8 +2,8 @@ import { useMutation } from "react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
-import "../../styles/template/OrderTemplate.css";
 import { useRef, useState } from "react";
+import "../../styles/template/OrderTemplate.css";
 
 const OrderTemplate = ({ data }) => {
   console.log("넘어옴");
@@ -11,6 +11,7 @@ const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
 
+  const [cartItems, setCartItems] = useState(products);
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -21,7 +22,7 @@ const OrderTemplate = ({ data }) => {
 
   const { mutate } = useMutation({
     mutationKey: "order",
-    queryFn: () => order,
+    mutationFn: order,
   });
 
   const handleAgreeAll = (e) => {
@@ -41,13 +42,14 @@ const OrderTemplate = ({ data }) => {
     }
   };
 
-  // products 안에 있는 item
-  // `${item.productName} - ${item.carts[0].option.optionName}`
-  // 1개당 가격 : item.carts[0].price & item.carts[0].quantity
+  // 주문이 완료되면 장바구니 비우기
+  // const clearCart = () => {
+  //   setCartItems([]);
+  // };
 
+  // OrderItems
   const OrderItems = () => {
     let renderComponent = [];
-
     //각각 상품들
     products.forEach((item) => {
       // item: 각각의 상품. carts: 옵션들의 모임
@@ -57,7 +59,7 @@ const OrderTemplate = ({ data }) => {
           return (
             <div key={cart.id} className="order-option">
               <div className="namegroup">
-                <span class="material-symbols-outlined">storefront</span>
+                <span className="material-symbols-outlined">storefront</span>
                 <span className="prodcut-name">{`${item.productName}`}</span>
               </div>
               <div className="optionNamegroup">
@@ -128,7 +130,6 @@ const OrderTemplate = ({ data }) => {
                 <span>전체 동의</span>
               </label>
             </div>
-
             <div className="agree-group">
               <div className="check">
                 <input
@@ -179,13 +180,16 @@ const OrderTemplate = ({ data }) => {
                 alert("모든 항목에 동의가 필요합니다!🙏🏻");
                 return;
               }
+
               mutate(null, {
-                onError: () => {
+                onError: (error) => {
+                  console.log("주문 실패! 에러:", error);
                   alert("주문에 실패했습니다🥲");
                 },
                 onSuccess: (res) => {
-                  const id = res.response.id;
+                  const id = res.data.response.id;
                   alert("주문이 완료되었습니다!😉");
+                  // // clearCart();
                   navigate(`/orders/complete/${id}`);
                 },
               });

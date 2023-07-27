@@ -135,7 +135,6 @@ const OptionColumn = ({ product }) => {
         </Button>
         <Button
           onClick={() => {
-            // if(?){
             mutate(
               // selectedOptions에서 필요한 데이터만 id와 수량만
               selectedOptions.map((el) => {

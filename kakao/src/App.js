@@ -10,6 +10,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import ErrorPage from "./pages/ErrorPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
+            <Route
+              path="/orders/complete/:id"
+              element={<OrderCompletePage />}
+            ></Route>
           </Route>
           <Route path="/error" element={<ErrorPage />}></Route>
         </Routes>
