@@ -1,3 +1,5 @@
+import ResultSection from "components/templates/ResultSection";
+
 export default function Result() {
-  return <h1>Result</h1>;
+  return <ResultSection />;
 }
