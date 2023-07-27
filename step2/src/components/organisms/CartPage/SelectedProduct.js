@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import SelectedOption from "../../atoms/ProductDetailPage/SelectedOption";
 import TotalPrice from "../../molecules/CartPage/TotalPrice";
 
@@ -8,9 +9,10 @@ const SelectedProduct = ({
   selectedOptions,
   onOptionUpdate,
   onProductSelected,
-  initialSelected,
+  initialSelected=[],
 }) => {
   const [isChecked, setIsChecked] = useState(initialSelected);
+  const location = useLocation();
 
   useEffect(() => {
     setIsChecked(initialSelected);
@@ -25,9 +27,11 @@ const SelectedProduct = ({
   };
 
   const handleToggleCheck = () => {
-    const newIsChecked = !isChecked;
-    setIsChecked(newIsChecked);
-    onProductSelected(productId, newIsChecked);
+    if (onProductSelected) {
+      const newIsChecked = !isChecked;
+      setIsChecked(newIsChecked);
+      onProductSelected(productId, newIsChecked);
+    }
   };
 
   const totalPrice = selectedOptions.reduce(
@@ -42,7 +46,13 @@ const SelectedProduct = ({
 
   return (
     <div className="selected-product">
-      <input type="checkbox" checked={isChecked} onChange={handleToggleCheck} />
+      {location.pathname === "/order" && (
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleToggleCheck}
+        />
+      )}
       <div className="product-info">
         <span>{productName}</span>
         {selectedOptions.map((option) => (
