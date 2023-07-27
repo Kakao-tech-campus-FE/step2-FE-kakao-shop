@@ -1,8 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { useEffect, useRef, useState } from "react";
-import { getProducts } from "../../store/slices/productSlice";
 import { fetchProducts } from "../../services/api/product";
 import { useQuery } from "react-query";
 import _ from "lodash";
@@ -12,7 +10,7 @@ const MainProductTemplate = () => {
   //const [isFirstLoad, setIsFirstLoad] = useState(true);
   const isFirstLoad = useRef(true);
   const bottomObserver = useRef(null);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   // 리덕스 스토어에서 프로덕트 정보 가져오기
   // index.js에서 선언한 product 모듈 내부 => product slice에서 선언한 products의 정보 가져오기
   // react-query 적용 이전 코드
@@ -79,7 +77,7 @@ const MainProductTemplate = () => {
       setProducts(_.uniqBy([...products, ...data.data.response], "id"));
       if (data.data.response.length < MAX_RESPONSE_COUNT) setIsEnd(() => true);
     }
-  }, [data]);
+  }, [data, isLoading]);
 
   useEffect(() => {
     isFirstLoad.current = false;

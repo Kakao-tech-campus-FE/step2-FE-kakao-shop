@@ -6,7 +6,4 @@
   .card {
     @apply w-64;
   }
-  .photo-img {
-    @apply h-48 border border-neutral-200 rounded-xl;
-  }
 }

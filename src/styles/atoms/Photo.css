@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 @layer components {
-  picture .card-photo {
+  picture .product-card-photo {
     @apply h-fit;
+  }
+
+  .photo-img.product-card-photo {
+    @apply h-64 border border-neutral-200 rounded-xl;
   }
 }
 
