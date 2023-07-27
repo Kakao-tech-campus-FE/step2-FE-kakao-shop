@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <GNB />
-      <Wrap>
+      <Wrap className="w-screen h-screen">
         <Outlet />
       </Wrap>
     </>

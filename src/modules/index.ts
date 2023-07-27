@@ -1,5 +1,5 @@
 import authReducer from './auth';
-
-const rootReducer = { authReducer };
+import optionReducer from './options';
+const rootReducer = { authReducer, optionReducer };
 
 export default rootReducer;

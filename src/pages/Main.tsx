@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
-import getProducts from '../api/Main';
+import getProducts from '../api/Products';
 import { useInfiniteQuery } from 'react-query';
 import ProductCard from '../components/Main/molecules/ProductCard';
 import Spinner from '../components/common/atoms/Spinner';
-
+import { Link } from 'react-router-dom';
 function Main() {
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(['getProducts'], ({ pageParam = 0 }) => getProducts(pageParam), {
     getNextPageParam: (lastPage, allPages) => {
@@ -18,16 +18,18 @@ function Main() {
         {data &&
           data.pages.map(({ response }) =>
             response.map((product, index, { length }) => (
-              <ProductCard
-                key={product.id}
-                isLast={length - 1 === index}
-                hasNext={hasNextPage}
-                fetchNextPage={fetchNextPage}
-                name={product.productName}
-                image={process.env.REACT_APP_API_URL + product.image}
-                description={product.description}
-                price={product.price}
-              />
+              <Link to={`product/${product.id}`}>
+                <ProductCard
+                  key={product.id}
+                  isLast={length - 1 === index}
+                  hasNext={hasNextPage}
+                  fetchNextPage={fetchNextPage}
+                  name={product.productName}
+                  image={process.env.REACT_APP_API_URL + product.image}
+                  description={product.description}
+                  price={product.price}
+                />
+              </Link>
             ))
           )}
       </Wrap>
