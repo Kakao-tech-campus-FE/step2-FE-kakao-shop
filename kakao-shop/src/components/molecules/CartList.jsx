@@ -108,7 +108,7 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <Container className="cart mx-auto max-w-4xl h-5/6">
+    <Container className="cart">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
         <h1>장바구니</h1>
       </div>
