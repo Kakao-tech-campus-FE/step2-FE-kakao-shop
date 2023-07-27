@@ -152,8 +152,9 @@ const DetailOption = (props) => {
 
       <ButtonContainer>
         <SubmitButton 
-          color="white" 
-          border="1px solid orange"
+          activeColor="white" 
+          disabledColor="white" 
+          className='border border-solid border-amber-400'
           onClick={submitHandler}
         >
           장바구니
