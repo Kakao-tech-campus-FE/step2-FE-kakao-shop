@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 import Image from 'components/atoms/Image'
 import StyledLink from 'components/atoms/StyledLink';
 import Skeleton from 'components/atoms/Skeleton';
+import strPrice from 'utils/price';
 
 /**
  * 상품 리스트에서 상품 정보 카드
@@ -23,7 +24,7 @@ export const ProductCard = ( props ) => {
           <Image image={props.image} alt={props.productName}/>
         </ImageBox>
         <ItemTitle>{props.productName}</ItemTitle>
-        <ItemPrice>{props.price}</ItemPrice>
+        <ItemPrice>{strPrice(props.price)}</ItemPrice>
       </StyledLink>
     </CardContainer>
   )
