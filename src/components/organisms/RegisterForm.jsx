@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react'
 import FormContainer from "../atoms/form/FormContainer"
 import SubmitGroup from "../molecules/SubmitGroup"
 import InputGroup from "../molecules/InputGroup"
-import {postCheck, postJoin} from "../../api/register"
+import { postCheck, postJoin } from "../../api/register"
 import { useNavigate } from 'react-router-dom';
 import { emailValidate, passwordValidate } from '../../utils/validator'
-import CheckGroup from "../molecules/CheckGroup"
 
 const RegisterForm = () => {
 
@@ -113,11 +112,6 @@ const RegisterForm = () => {
           ? "비밀번호가 일치하지 않습니다" : null } 
         />
 
-      {/* Props
-          onChange : 상태 객체 user에서 passwordCheck 값을 입력값으로
-          message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
-      */}
-
       <SubmitGroup
         disabled={
             duple
@@ -129,18 +123,9 @@ const RegisterForm = () => {
         >
         가입하기
       </SubmitGroup>       
-      
-
-      {/* Props
-          active : 버튼 활성화 여부 (양식이 맞을 때 활성화, 활성화되면 색이 바뀜)
-          onClick : 제출시 동작
-      */}
 
     </FormContainer>
   )
 }
-
-/* abcdef abcdef@naver.com aaaa1111!*/
-
 
 export default RegisterForm
