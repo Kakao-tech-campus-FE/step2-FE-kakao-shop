@@ -12,6 +12,7 @@ import OptionSelected from 'components/molecules/OptionSelected';
 import strPrice from 'utils/price';
 import { getCarts, updateCart } from 'api/cart';
 import { postOrder } from 'api/order';
+import PageTitleBox from 'components/atoms/PageTitleBox';
 
 
 const Cart = () => {
@@ -46,8 +47,8 @@ const Cart = () => {
   const submitHandler = () => {
     postOrder()
     .then((res) => {
-      console.log(res)
-      navigate("/orders")
+      localStorage.setItem('orderId', `${res.id}`)
+      navigate("/orders", {state: {orderId: `${res.id}`}})
     })
   }
 
@@ -77,6 +78,7 @@ const Cart = () => {
   return (
     <Section>
 
+      <PageTitleBox title="장바구니"/>
       {
         query.data.products?.map((collection) => {
           if (productsQ[collection.id] === 0) {return null}
