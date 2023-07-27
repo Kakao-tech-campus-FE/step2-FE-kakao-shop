@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState} from 'react'
-import Container from "../atoms/Container"
 import Box from "../atoms/Box"
 import Card from "../atoms/Card"
 import CartItem from '../atoms/CartItem'
@@ -69,8 +68,8 @@ const CartList = ({data}) => {
   // cartItem의 수량이 변경될 때만 실행 
   const getTotalOrder = useCallback(() =>{
     let count = 0
-    cartItems.map((item) => {
-      item.carts.map((cart) => {
+    cartItems.forEach((item) => {
+      item.carts.forEach((cart) => {
         count += cart.quantity //개별옵션 
       })
     })
@@ -112,7 +111,7 @@ const CartList = ({data}) => {
                 mutate(updatePayload, {
                   onSuccess: (data) =>{
                     //navigate to order page 
-                    route("/order")
+                    route("/orders")
                     console.log(data)
                   },
                   onError: (err)=> {

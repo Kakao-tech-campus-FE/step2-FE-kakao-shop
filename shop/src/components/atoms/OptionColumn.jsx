@@ -129,7 +129,7 @@ const OptionColumn = ({product}) => {
           className="relative top-8 left-2"
           onClick={addCartReq}><Photo src="/cart.png" alt="장바구니"/>
         </Button>
-          <Button className="relative left-20 bottom-4 btn-primary text-2xl px-20 py-8">바로구매</Button>
+        <Button className="relative left-20 bottom-4 btn-primary text-2xl px-20 py-8">바로구매</Button>
       </div>
     </div>
   )
