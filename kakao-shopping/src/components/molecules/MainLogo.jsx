@@ -1,12 +1,11 @@
-import Title from "../atoms/Title";
 import { Link } from "react-router-dom";
 const MainLogo = ({className}) => {
   return (
     <div className={className}>
       <Link to="/main" >
-        <Title>
+        <h1>
           <img className="block" src="/assets/kakaologo.png" alt="main_Logo"></img>
-        </Title>
+        </h1>
       </Link>
     </div>
   )

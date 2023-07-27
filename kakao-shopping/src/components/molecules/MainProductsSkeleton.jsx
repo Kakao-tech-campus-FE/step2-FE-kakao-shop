@@ -1,4 +1,4 @@
-import MainSkeleton from "../molecules/MainSkeleton";
+import MainSkeleton from "../atoms/MainSkeleton";
 
 const MainProductsSkeleton = () => {
   return (
