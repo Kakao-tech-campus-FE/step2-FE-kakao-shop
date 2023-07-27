@@ -1,4 +1,3 @@
-import Button from "../atoms/Button";
 import { useState } from "react";
 import SelectedOption from "../molecules/SelectedOption";
 import DeliveryInformation from "../molecules/DeliveryInformation";
@@ -63,8 +62,8 @@ const ProductOptions = ({ product }) => {
       </div>
 
       <div className="flex w-full mt-3">
-        <Button className="w-2/5 p-2 mr-1 text-sm h-10 bg-gray-900 rounded-md text-white" onClick={handleAddCartClick}>장바구니 담기</Button>
-        <Button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md">톡딜가로 구매하기</Button>
+        <button className="w-2/5 p-2 mr-1 text-sm h-10 bg-gray-900 rounded-md text-white" onClick={handleAddCartClick}>장바구니 담기</button>
+        <button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md">톡딜가로 구매하기</button>
       </div>
     </div>
   )

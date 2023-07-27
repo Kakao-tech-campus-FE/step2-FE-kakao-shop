@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MainProductsSkeleton from "../organisms/MainProductsSkeleton";
+import MainProductsSkeleton from "../molecules/MainProductsSkeleton";
 import PageSetButton from "../molecules/PageSetButton";
 import MainProducts from "../organisms/MainProducts";
 import { useQuery } from "react-query";

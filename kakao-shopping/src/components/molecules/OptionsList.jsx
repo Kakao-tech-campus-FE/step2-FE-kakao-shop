@@ -1,4 +1,3 @@
-import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cartRedux";
 
@@ -24,7 +23,7 @@ const OptionsList = ({options, selectedOptions, setSelectedOptions}) => {
     <div className="my-2">옵션 선택</div>
     <ul className="flex flex-col items-start">
       {options.map((option, index) => 
-        <Button 
+        <button 
           key={option.id} 
           onClick={() => handleOptionClick({
             optionName: option.optionName,
@@ -35,7 +34,7 @@ const OptionsList = ({options, selectedOptions, setSelectedOptions}) => {
         >
           <div>{index + 1}. {option.optionName}</div>
           <div>{option.price}원</div>
-        </Button>
+        </button>
       )}
     </ul>
   </div>

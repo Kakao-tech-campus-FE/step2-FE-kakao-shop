@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { loginSuccess, logout } from "../../redux/redux";
-import Button from "../atoms/Button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -52,7 +51,7 @@ const GNB = () => {
             <button><img className="w-8" src="/assets/cart.png" alt="cart" onClick={handleCartClick}/></button>
             <span className="px-4">|</span>
               {!!isLoggedIn ?
-              <Button className="text-sm" onClick={handleLogoutClick}>로그아웃</Button> :
+              <button className="text-sm" onClick={handleLogoutClick}>로그아웃</button> :
               <Link className="text-sm mr-4" to='/login'>로그인</Link>
               }
           </div>
