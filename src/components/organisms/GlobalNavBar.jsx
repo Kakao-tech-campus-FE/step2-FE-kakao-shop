@@ -2,13 +2,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {reducerLogout} from "../../store/slice/userSlice";
 import "../../styles/organisms/globalNavBar.css"
 import Container from "../atoms/Container";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import {BsCart2} from "react-icons/bs";
 
 const GlobalNavBar = () => {
     const user = useSelector(state => state.user);
+
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!user.isLogin) return;
@@ -36,6 +38,7 @@ const GlobalNavBar = () => {
                                     onClick={
                                         () => {
                                             dispatch(reducerLogout())
+                                            navigate("/")
                                         }
                                     }>로그아웃
                             </button>
