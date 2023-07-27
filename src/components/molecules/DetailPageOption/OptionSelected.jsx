@@ -1,6 +1,7 @@
 import React from 'react'
 import { RiCloseFill } from "react-icons/ri";
-import Counter from './Counter';
+import Counter from 'components/molecules/Counter';
+import strPrice from 'utils/price';
 
 
 const OptionSelected = (props) => {
@@ -20,7 +21,7 @@ const OptionSelected = (props) => {
           optionId={props.optionId}
         />
 
-        <div className='ml-auto'>{props.price}</div>
+        <div className='ml-auto'>{strPrice(props.price)}</div>
       </div>
     </>
   )
