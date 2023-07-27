@@ -5,6 +5,8 @@ import { comma } from '../../utils/comma';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { order } from './../services/orders';
+import { orderCompleteMessage } from '../../utils/constants';
+import Swal from 'sweetalert2';
 
 const OrderTemplate = () => {
     const { data } = useQuery(["/order"], getCart);
@@ -38,11 +40,12 @@ const OrderTemplate = () => {
         mutationFn : order,
         onSuccess: (res) => {
             const id = res.data.response.id;
-            alert("주문이 완료되었습니다.");
-            navigate(`/orders/complete/${id}`)
+            Swal.fire(orderCompleteMessage);
+            navigate(`/orders/complete/${id}`);
         },
         onError: (error) => {
-            alert("주문에 실패하였습니다.")
+            // 만약 에러가 발생할 경우 interceptor 단에서 처리하도록 함
+            // alert("주문에 실패하였습니다.")
         }
     })
 
