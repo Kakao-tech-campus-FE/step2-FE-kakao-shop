@@ -57,6 +57,8 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/preset-env": "^7.22.9",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",
@@ -67,6 +69,7 @@
     "@storybook/react-webpack5": "^7.1.1",
     "@storybook/testing-library": "^0.2.0",
     "@testing-library/react": "^14.0.0",
+    "babel-jest": "^29.6.2",
     "babel-plugin-named-exports-order": "^0.0.2",
     "eslint-plugin-storybook": "^0.6.13",
     "prettier": "^2.8.8",
@@ -75,5 +78,10 @@
     "storybook": "^7.1.1",
     "tailwindcss": "^3.3.2",
     "webpack": "^5.88.2"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-navigation)/"
+    ]
   }
 }

@@ -113,7 +113,7 @@ const OrderTemplate = ({ data }) => {
 
             <div className="mt-3 flex flex-col">
               <div>
-                <span className="text-xl font-extrabold">박지호</span>
+                <span className="mr-3 text-xl font-extrabold">박지호</span>
                 <span className="rounded-md bg-blue-100 p-2 text-xs text-blue-400">
                   박지호
                 </span>
@@ -217,10 +217,7 @@ const OrderTemplate = ({ data }) => {
                 onError: (error) => {
                   // console.log(error);
                   // alert("주문에 실패하였습니다.");
-                  if (error.response.status === 401) {
-                    // 사용자 정보가 유실(headers.Authorization)
-                    navigate("/login");
-                  } else if (error.response.status === 404) {
+                  if (error.response.status === 404) {
                     // 엉뚱한 product 정보
                     navigate("/error");
                   } else {

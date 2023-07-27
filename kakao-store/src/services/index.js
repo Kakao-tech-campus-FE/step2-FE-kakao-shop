@@ -28,18 +28,12 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // if (error.response.status >= 400 && error.response.status <= 500) {
-    //   if (error.response.status === 404) {
-    //     window.location.href = '/error';
-    //     return Promise.resolve();
-    //   }
-
-    //   localStorage.removeItem('token');
-    //   const errorMessage = error.response.data.error.message;
-    //   alert(errorMessage);
-    //   // window.location.href = '/signup';
-    //   return Promise.resolve();
-    // }
+    if (error.response.status === 401) {
+      // 사용자 정보가 유실(headers.Authorization)
+      alert('로그인이 필요합니다.');
+      const navigate = useNavigate();
+      navigate('/login');
+    }
     return Promise.reject(error.response);
   }
 );
