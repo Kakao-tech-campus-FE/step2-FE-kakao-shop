@@ -1,5 +1,3 @@
-import Button from "../atoms/Button";
-import Box from "../atoms/Box";
 import {useDispatch, useSelector} from "react-redux";
 import {reducerLogout} from "../../store/slice/userSlice";
 import "../../styles/organisms/globalNavBar.css"
@@ -24,27 +22,28 @@ const GlobalNavBar = () => {
         <>
             <nav className={"global-nav-bar"}>
                 <Container className={"logo bg-red"}>
-                    <Link className={"logo button"} to={"/"}>Home</Link>
+                    <Link className={"logo button object-contain"} to={"/"}><img src={"/images/logoKakao.png"} alt={"logo"}/>
+                    </Link>
                 </Container>
                 <Container className={"gnb-buttons"}>
                     {user.isLogin ?
                         <>
-                            <Box className={"user-info"}>{user.email}</Box>
-                            <Link to={"/carts"} className={"button cart-button"}>
+                            <div className={"user-info"}>{user.email}</div>
+                            <Link to={"/carts"} className={"cart-button px-2 font-bold"}>
                                     <BsCart2 size="20" className={"cart-icon"}/>
                             </Link>
-                            <Button className={"button logout-button"}
+                            <button className={"logout-button px-2"}
                                     onClick={
                                         () => {
                                             dispatch(reducerLogout())
                                         }
                                     }>로그아웃
-                            </Button>
+                            </button>
                         </>
                         :
                         <>
-                            <Link to={"/login"} className={"button"}>로그인</Link>
-                            <Link to={"/signup"} className={"button"}>회원가입</Link>
+                            <Link to={"/login"} className={"login-button font-bold px-4 block h-full"}>로그인</Link>
+                            <Link to={"/signup"} className={"signup-button font-bold px-4 block h-full"}>회원가입</Link>
                         </>
                     }
                 </Container>
