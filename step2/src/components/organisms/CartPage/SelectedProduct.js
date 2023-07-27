@@ -9,7 +9,7 @@ const SelectedProduct = ({
   selectedOptions,
   onOptionUpdate,
   onProductSelected,
-  initialSelected=[],
+  initialSelected=true,
 }) => {
   const [isChecked, setIsChecked] = useState(initialSelected);
   const location = useLocation();
