@@ -15,12 +15,18 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const loginState = store.getState().login;
-    if (loginState.islogin) {
+    const urlGroup = config.url.split("/")[1];
+
+    if (
+      // 토큰 필요한 요청일 때만 토큰 추가
+      loginState.islogin &&
+      ["carts", "orders"].includes(urlGroup)
+    ) {
       config.headers.Authorization = loginState.token;
     }
 
-    // 로그인 시간 만료
     if (
+      // 로그인 시간 만료
       loginState.islogin &&
       Date.now() > loginState.loginTime + 3600 * 24 * 1000
     ) {
@@ -39,7 +45,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => {
     console.log(response);
-    // 로그인
+    // 로그인일때만 토큰 응답 사용
     if (response.config.url === "/login") {
       return response.headers.authorization;
     }
