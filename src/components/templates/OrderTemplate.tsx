@@ -1,10 +1,9 @@
 import { queryCart } from '@api/cartApi';
-import { CartProductData, CartedOptionData, ProductOptionData } from '@api/dto';
+import { CartProductData, CartedOptionData } from '@api/dto';
 import { order } from '@api/orderApi';
 import Card from '@components/atoms/Card';
 import InnerFlatCard from '@components/atoms/InnerFlatCard';
 import PriceTag from '@components/atoms/PriceTag';
-import Title from '@components/atoms/Title';
 import comma from '@utils/commaUtils';
 import React from 'react';
 import { useMutation, useQuery } from 'react-query';
@@ -18,33 +17,38 @@ const OrderTemplate = () => {
   });
   const navigate = useNavigate();
 
+  const orderItems = () => {
+    const renderComponent: React.ReactNode[] = [];
+    products?.forEach((item: CartProductData) => {
+      renderComponent.push(
+        <div className="mt-5">
+          <span>{item.productName}</span>
+          <InnerFlatCard>
+            {item.carts.map((cart: CartedOptionData) => {
+              return (
+                <div key={cart.id} className="grid grid-cols-3 items mb-5  items-center">
+                  <div>{cart.option.optionName}</div>
+                  <div className="text-center">{comma(cart.quantity)}개</div>
+                  <div className="text-[12px] text-right">
+                    <PriceTag>{cart.price}원</PriceTag>
+                  </div>
+                </div>
+              );
+            })}
+          </InnerFlatCard>
+        </div>,
+      );
+    });
+    return renderComponent;
+  };
+
   return (
     <Card>
       <div className="p-10">
         <h2 className="text-xl font-bold">배송지 정보</h2>
         <h2 className="text-xl font-bold">주문상품 정보</h2>
         <hr />
-        {products &&
-          products.map((item: CartProductData) => {
-            return (
-              <div className="mt-5">
-                <span>{item.productName}</span>
-                <InnerFlatCard key={item.id}>
-                  {item.carts.map((cart: CartedOptionData) => {
-                    return (
-                      <div className="grid grid-cols-3 items mb-5  items-center">
-                        <div>{cart.option.optionName}</div>
-                        <div className="text-center">{comma(cart.quantity)}개</div>
-                        <div className="text-[12px] text-right">
-                          <PriceTag>{cart.price}원</PriceTag>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </InnerFlatCard>
-              </div>
-            );
-          })}
+        {orderItems()}
         <div>
           <h3>총 주문 금액</h3>
           <span>{comma(totalPrice)}</span>
