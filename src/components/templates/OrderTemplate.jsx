@@ -1,6 +1,6 @@
-const OrderTemplate = () => {
+const OrderTemplate = ({ data }) => {
   // 사용자의 장바구니 목록을 조회하여 보여준다.
-
+  console.log(data);
   return (
     <div className="py-20">
       <div className="block mx-auto max-w-[1024px] w-full">
@@ -24,6 +24,11 @@ const OrderTemplate = () => {
         <div className="border py-4">
           <span>서울특별시 강남구 도곡동 000-00</span>
         </div>
+        {/* 각 주문의 정보 */}
+        <div className="border py-4">
+          <h2>주문상품 정보</h2>
+        </div>
+        {}
       </div>
     </div>
   );
