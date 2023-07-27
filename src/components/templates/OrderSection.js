@@ -26,7 +26,7 @@ export default function OrderSection() {
   });
   const { mutate } = useMutation({ mutationFn: orderReq });
 
-  const handleCheckClick = (e) => {
+  const handleCheckChange = (e) => {
     const { id } = e.target;
     switch (id) {
       case "agreeAll":
@@ -50,9 +50,9 @@ export default function OrderSection() {
     else if (!agreement.agreeAccount)
       alert("상품배송을 위한 개인정보 제3자 제공 동의를 체크해주세요.");
     else
-      mutate({
+      mutate(null, {
         onSuccess: (res) => {
-          navigate(`/result/${res.response.id}`);
+          navigate(`/result/${res.data.response.id}`);
         },
         onError: (err) => {
           console.dir(err);
@@ -62,7 +62,11 @@ export default function OrderSection() {
 
   return (
     <>
-      {isLoading && <div><Loader /></div>}
+      {isLoading && (
+        <div>
+          <Loader />
+        </div>
+      )}
       {error && <span>Error</span>}
       {data && (
         <div className="flex-grow bg-gray-100">
@@ -77,9 +81,12 @@ export default function OrderSection() {
                   id="agreeAll"
                   type="checkbox"
                   checked={agreement.agreeBuy && agreement.agreeAccount}
-                  onClick={handleCheckClick}
+                  onChange={handleCheckChange}
                 />
-                <label htmlFor="agreeAll" className="text-lg font-bold">
+                <label
+                  htmlFor="agreeAll"
+                  className="text-lg font-bold select-none"
+                >
                   전체 동의하기
                 </label>
               </div>
@@ -88,9 +95,9 @@ export default function OrderSection() {
                   id="agreeBuy"
                   type="checkbox"
                   checked={agreement.agreeBuy}
-                  onClick={handleCheckClick}
+                  onChange={handleCheckChange}
                 />
-                <label htmlFor="agreeBuy">
+                <label htmlFor="agreeBuy" className="select-none">
                   {" "}
                   구매조건 확인 및 결제 진행 동의
                 </label>
@@ -99,9 +106,12 @@ export default function OrderSection() {
                   id="agreeAccount"
                   type="checkbox"
                   checked={agreement.agreeAccount}
-                  onClick={handleCheckClick}
+                  onChange={handleCheckChange}
                 />
-                <label htmlFor="agreeAccount"> 개인정보 제3자 제공 동의</label>
+                <label htmlFor="agreeAccount" className="select-none">
+                  {" "}
+                  개인정보 제3자 제공 동의
+                </label>
               </div>
               <div className="p-3 bg-gray-50 border-b space-y-1 text-xs">
                 <span className="font-bold">법적 고지</span>
