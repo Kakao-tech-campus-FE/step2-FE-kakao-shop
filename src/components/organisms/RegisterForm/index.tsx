@@ -32,7 +32,7 @@ const RegisterForm = () => {
       setEmailError((prev) => ({
         ...prev,
         isError: true,
-        message: err as string,
+        message: (err as Error).message,
       }));
     }
   };

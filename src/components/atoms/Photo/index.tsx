@@ -1,8 +1,8 @@
 import { styled } from "styled-components";
 
 interface Props {
-  src: string;
-  alt: string;
+  src?: string;
+  alt?: string;
   width?: string;
   height?: string;
   radius?: string;

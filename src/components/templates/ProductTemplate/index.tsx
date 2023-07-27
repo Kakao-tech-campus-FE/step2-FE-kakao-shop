@@ -5,25 +5,31 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import InnerContainer from "@components/atoms/InnerContainer";
 import { styled } from "styled-components";
 import ProductGridSkeleton from "@components/organisms/ProductGridSkeleton";
+import { useNavigate } from "react-router-dom";
 
 const ProductTemplate = () => {
+  const navigate = useNavigate();
+
   const { isLoading, data, isFetchingNextPage, fetchNextPage, hasNextPage } =
     useInfiniteQuery(["/products"], getProducts, {
-      getNextPageParam: (lastPage) => {
-        if (lastPage.response.length < 9) {
-          return undefined;
-        } else {
-          const res = lastPage.response;
-          const nextParam = Math.floor((res[res.length - 1].id - 1) / 9) + 1;
-          return nextParam;
+      retry: false,
+      getNextPageParam: (lastPage) => getNextParam(lastPage),
+      onError: (err: any) => {
+        if (err.status === 404) {
+          navigate("/notFound");
         }
-      },
-      onError: (err) => {
-        console.log(err);
       },
     });
 
   const target = useRef<HTMLDivElement>(null);
+
+  function getNextParam(lastPage: any) {
+    if (lastPage.response.length < 9) {
+      return undefined;
+    }
+    const res = lastPage.response;
+    return Math.floor((res[res.length - 1].id - 1) / 9) + 1;
+  }
 
   const handleIntersect = async (
     [entry]: IntersectionObserverEntry[],
@@ -38,8 +44,9 @@ const ProductTemplate = () => {
     }
   };
 
+  const observer = new IntersectionObserver(handleIntersect);
+
   useEffect(() => {
-    const observer = new IntersectionObserver(handleIntersect);
     target.current && observer.observe(target.current);
 
     return () => observer && observer.disconnect();

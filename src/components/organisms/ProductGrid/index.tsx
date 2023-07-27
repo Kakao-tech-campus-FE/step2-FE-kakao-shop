@@ -15,7 +15,7 @@ export interface Product {
 const ProductGrid = ({ products }: Props) => {
   return (
     <>
-      {products.map((product: any) => (
+      {products.map((product) => (
         <li key={product.id}>
           <ProductCard product={product} />
         </li>

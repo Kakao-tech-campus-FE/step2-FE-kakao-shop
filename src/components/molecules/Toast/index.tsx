@@ -62,7 +62,7 @@ export default Toast;
 
 const Wrapper = styled.div`
   position: fixed;
-  top: 20px;
+  bottom: 20px;
   right: 20px;
   display: flex;
   flex-direction: column;
