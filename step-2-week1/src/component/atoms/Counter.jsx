@@ -1,5 +1,11 @@
 import { useState } from "react";
 
+/**
+ * @param  onIncrease - 옵션들 수량 조절 + 
+ * @param  onDecrease - 옵션들 수량 조절 -
+ * @return  - 옵션들의 수량을 조정
+ * 상품들 옵션 수량 선택하는 counter 
+ */ 
 const Counter =({
     onIncrease,
     onDecrease,

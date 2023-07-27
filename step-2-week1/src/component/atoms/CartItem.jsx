@@ -5,8 +5,9 @@ import Counter from "./Counter";
 import { comma } from "../../utils/convert";
 import '../../styles/atoms/CartItem.css';
 
+/** cartList에 들어갈 cartItem들 */
 export const CartItem = ({ item, onChange }) => {
-    return (
+    return ( 
         <Box className="cart-item-box">
             <h5>{item.productName}</h5>
             {item.carts.map((cart) => (

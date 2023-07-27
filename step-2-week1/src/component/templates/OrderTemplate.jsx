@@ -60,6 +60,9 @@ const { mutate } = useMutation({
         const id = res.id;
         alert("주문이 완료되었습니다.");
         // navigate(`/orders/save/${id}`);
+        // 주문 결과 보여주기
+        navigate('/');
+        window.location.reload();
 
     },
 });

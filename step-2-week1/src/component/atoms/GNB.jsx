@@ -10,6 +10,7 @@ import instance from "../../services";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+/** 상단바. 홈 화면 및 로그인 회원가입 로그아웃 버튼 존재 */
 const GNB = () => {
   // use store/userSlice state
   const user = useSelector((state) => state.user);
@@ -51,8 +52,8 @@ const GNB = () => {
       <div className="container">
         <h1 className="navigation">
 
-          <Link to href="/">
-          <img src={logoKakao} alt="Logo"  />
+          <Link to ="/" replace>
+            <img src={logoKakao} alt="Logo" />
           </Link>
 
         </h1>
@@ -71,6 +72,7 @@ const GNB = () => {
             <Fragment>
               
                 <Link to ="/login">로그인</Link>
+                
               
               
                 <Link to ="/register">회원가입</Link>

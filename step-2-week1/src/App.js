@@ -15,6 +15,7 @@ import CartList from './component/molecules/CartList';
 import OrderPage from '../src/pages/OrderPage';
 import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 import "../src/App.css";
+import CartPage from './pages/CartPage';
 
 function App() {
 
@@ -51,7 +52,7 @@ function App() {
               <Route path="/product/:id" element={<ProductDetailPage />}></Route>
               {/* 사용자가 로그인됐을 때만 접근 가능한 부분 */}
               <Route element ={<RequiredAuthLayout />}>
-                <Route path="/cart" element={<CartList />}></Route>
+                <Route path="/cart" element={<CartPage />}></Route>
                 <Route path="/order" element={<OrderPage />}></Route>
               </Route>
               

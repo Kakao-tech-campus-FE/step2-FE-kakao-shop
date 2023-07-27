@@ -22,7 +22,6 @@ const OptionColumn = ({ product }) => {
             return;
         }
 
-
         setSelectedOptions((prev) => [
             ...prev,
             {
@@ -119,6 +118,7 @@ const OptionColumn = ({ product }) => {
                         }), {
                             onSuccess: () => {
                                 alert("장바구니에 담겼습니다.")
+                                window.location.reload();
 
                             },
                             onError: (error) => {

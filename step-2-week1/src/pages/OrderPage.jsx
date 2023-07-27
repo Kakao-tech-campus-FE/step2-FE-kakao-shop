@@ -5,10 +5,15 @@ import { Suspense } from "react";
 import Loader from "../component/atoms/Loader";
 
 const OrderPage = () => {
-    const { data, error, isLoading } = useQuery("cart", getCart);
+    const { data, error, isLoading } = useQuery("cart", getCart, {
+        onError: (error) => {
+            console.log(error);
+        },
+    });
+
     return (
         <Suspense fallback={<Loader />}>
-            <OrderTemplate data={data} />
+            {isLoading ? ( <Loader /> ) : ( <OrderTemplate data={data} error={error} /> )}
         </Suspense>
     )
 }
