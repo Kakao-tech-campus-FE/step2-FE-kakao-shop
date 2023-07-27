@@ -49,6 +49,5 @@ const S = {
     color: #333;
     letter-spacing: -0.03em;
     text-overflow: ellipsis;
-    white-space: nowrap;
   `,
 };

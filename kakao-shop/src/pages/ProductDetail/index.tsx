@@ -137,7 +137,7 @@ const S = {
     @media (max-width: 768px) {
       max-width: 300px;
 
-      margin: 0 auto;
+      margin: 16px auto 0;
 
       font-size: 18px;
       color: #222;

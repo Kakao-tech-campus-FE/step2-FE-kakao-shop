@@ -46,6 +46,10 @@ const S = {
 
     text-align: center;
     /* white-space: nowrap; */
+
+    @media (max-width: 768px) {
+      width: 100vw;
+    }
   `,
   Strong: styled.strong`
     position: absolute;

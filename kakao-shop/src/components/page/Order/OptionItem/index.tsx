@@ -53,7 +53,6 @@ const S = {
     line-height: 18px;
     color: #333;
     text-overflow: ellipsis;
-    white-space: nowrap;
     word-break: break-all;
   `,
 
@@ -66,7 +65,6 @@ const S = {
     font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     word-break: break-all;
     line-height: 16px;
     color: #555;

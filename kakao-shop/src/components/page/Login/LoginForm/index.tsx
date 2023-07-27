@@ -70,6 +70,12 @@ const S = {
     border: 1px solid rgba(0, 0, 0, 0.12);
 
     font-size: 12px;
+
+    @media (max-width: 768px) {
+      width: calc(100vw - 8px);
+      margin: 40px 4px 42px;
+      padding: 0 6px;
+    }
   `,
   Container: styled.form`
     position: relative;

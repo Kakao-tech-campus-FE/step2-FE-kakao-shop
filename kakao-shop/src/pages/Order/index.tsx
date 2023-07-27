@@ -63,5 +63,9 @@ const S = {
 
       background-color: #f2f3f5;
     }
+
+    @media (max-width: 768px) {
+      width: 100vw;
+    }
   `,
 };
