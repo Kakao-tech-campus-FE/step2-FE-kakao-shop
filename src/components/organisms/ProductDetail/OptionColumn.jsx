@@ -26,15 +26,20 @@ export default function OptionColumn({ productData, modalRef }) {
   const handleOptionDelete = (id) => {
     dispatch({ type: "delete", id });
   };
+  const checkOptionSelected = () => {
+    if (optionList.length !== 0) return true;
+    showToast("옵션을 먼저 선택해주세요.", false);
+    return false;
+  };
+  const checkLoggendIn = () => {
+    if (user) return true;
+    modalRef.current.showModal();
+    return false;
+  };
   const handleAddCart = () => {
-    if (optionList.length === 0) {
-      showToast("옵션을 먼저 선택해주세요.", false);
-      return;
-    }
-    if (!user) {
-      modalRef.current.showModal();
-      return;
-    }
+    if (!checkOptionSelected()) return;
+    if (!checkLoggendIn()) return;
+
     addCart.mutate(
       optionList.map((option) => ({
         optionId: option.id,
@@ -46,18 +51,17 @@ export default function OptionColumn({ productData, modalRef }) {
           setIsOptionShow(false);
           showToast("장바구니에 상품이 담겼습니다.", true);
         },
+        onError: (error) => {
+          showToast(`잠시 후 다시 시도해주세요.`, false);
+          console.log(error);
+        },
       }
     );
   };
   const handleOrder = () => {
-    if (optionList.length === 0) {
-      showToast("옵션을 먼저 선택해주세요.", false);
-      return;
-    }
-    if (!user) {
-      modalRef.current.showModal();
-      return;
-    }
+    if (!checkOptionSelected()) return;
+    if (!checkLoggendIn()) return;
+
     addCart.mutate(
       optionList.map((option) => ({
         optionId: option.id,
@@ -66,6 +70,10 @@ export default function OptionColumn({ productData, modalRef }) {
       {
         onSuccess: async () => {
           navigate("/order");
+        },
+        onError: (error) => {
+          showToast(`잠시 후 다시 시도해주세요.`, false);
+          console.log(error);
         },
       }
     );

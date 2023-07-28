@@ -5,14 +5,20 @@ import Loader from "../../molecules/Common/Loader";
 import Button from "../../atoms/Button";
 import { comma } from "../../../utils/convert";
 import useCart from "../../../hooks/useCart";
+import useToasts from "../../../hooks/useToast";
 
 export default function CartOptionItem({ item }) {
   const [isLoading, setIsLoading] = useState(false);
   const { updateCart } = useCart();
+  const { showToast } = useToasts();
 
   const handleCartUpdate = (id, flag) => {
     setIsLoading(true);
     updateCart.mutate(getNextCart(id, item.quantity, flag), {
+      onError: (error) => {
+        showToast("잠시 후 다시 시도해주세요.", false);
+        console.log(error);
+      },
       onSettled: () => {
         setIsLoading(false);
       },
