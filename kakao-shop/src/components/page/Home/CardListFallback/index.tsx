@@ -38,6 +38,12 @@ const S = {
     align-items: center;
 
     width: 890px;
+
+    @media (max-width: 768px) {
+      width: calc(100vw - 40px);
+
+      margin-top: 70px;
+    }
   `,
 
   Tit: styled.div`
