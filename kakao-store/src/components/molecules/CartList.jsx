@@ -114,12 +114,13 @@ const CartList = ({ data }) => {
                     // post method
                     
                     mutate(updatePayload, {
+                        onError: (error) => {
+                            console.log(error);
+                            alert("주문에 실패하였습니다.");
+                        },
                         onSuccess: (data) => {
                             // navigate to order page
-                            route.push("/order");
-                        },
-                        onError: (error) => {
-                            alert("결제에 실패하였습니다.");
+                            route("/order");
                         }
                     })
 
