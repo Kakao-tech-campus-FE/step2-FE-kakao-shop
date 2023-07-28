@@ -36,15 +36,15 @@ function App() {
                     />
                     <BrowserRouter>
                         <Routes>
-                            <Route path="/signup" element={<RegisterPage/>}/>
-                            <Route path="/login" element={<LoginPage/>}/>
                             <Route element={<MainLayout/>}>
+                                <Route path="/signup" element={<RegisterPage/>}/>
+                                <Route path="/login" element={<LoginPage/>}/>
                                 <Route path="/" element={<HomePage/>}/>
                                 <Route path="/product/:id" element={<ProductDetailPage/>}/>
-                            <Route element={<RequiredAuthLayout/>}>
-                                <Route path="/carts" element={<CartPage/>}/>
-                                <Route path="/order" element={<OrderPage/>}/>
-                            </Route>
+                                <Route element={<RequiredAuthLayout/>}>
+                                    <Route path="/carts" element={<CartPage/>}/>
+                                    <Route path="/order" element={<OrderPage/>}/>
+                                </Route>
                             </Route>
                         </Routes>
                     </BrowserRouter>

@@ -172,13 +172,29 @@ const OrderTemplate = ({data}) => {
                                 alert("주문이 완료되었습니다.")
                             },
                             onError: (error) => {
-                                const id = error.response.id
-                                alert(error.response.data.error.message)
-                                navigate(`/orders/complete/${id}`)
+                                console.log("error", error)
+                                switch (error.response.status) {
+                                    case 500:
+                                        alert("서버에러가 발생하였습니다. 잠시 후 다시 시도해주세요.")
+                                        break;
+                                    case 401:
+                                        alert("인증이 만료되었습니다. 로그인이 필요합니다.")
+                                        navigate("/login");
+                                        break;
+                                    case 404:
+                                        alert("장바구니에 상품이 존재하지 않습니다. 상품을 추가해주세요.")
+                                        break;
+                                    case 400:
+                                        alert("요청이 올바르지 않습니다.")
+                                        break;
+                                    default:
+                                        alert("문제가 발생하였습니다. 다시 시도해주세요.")
+                                        break;
+                                }
                             }
                         })
                     }}
-                    className={`w-full text-center font-bold text-2xl py-4 ${agreePayment && agreePolicy ?
+                    className={`order-button w-full text-center font-bold text-2xl py-4 ${agreePayment && agreePolicy ?
                         "cursor-pointer bg-kakao-yellow text-black" :
                         "cursor-not-allowed bg-grey-300 text-gray-500 bg-gray-300"}
                         `}

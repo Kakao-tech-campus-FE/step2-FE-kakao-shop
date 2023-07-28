@@ -5,12 +5,15 @@ import Button from "../atoms/Button";
 import {login} from "../../services/api";
 import {reducerLogin, setExpirationTime} from "../../store/slice/userSlice";
 import {useDispatch} from "react-redux";
+import {useContext} from "react";
+import {ToastContext} from "../../App";
 
 const EMAIL_REGEX = new RegExp("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
 const PW_REGEX = new RegExp("^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$");
 
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const {showToast} = useContext(ToastContext);
 
     const {value, handleOnChange, validateInput, errorMsg} = useInput({
         value: {
@@ -46,10 +49,12 @@ const LoginForm = () => {
             }
         ).catch(err => {
                 console.log(err)
-                alert(err)
+                if (err.response.status === 401) {
+                    showToast("잘못된 아이디, 비밀번호입니다.");
+                }
             }
-        );
-    };
+        )
+    }
 
     return (
         <Container className={`form`}>
