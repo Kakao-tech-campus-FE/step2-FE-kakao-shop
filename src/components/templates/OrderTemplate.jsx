@@ -163,7 +163,13 @@ const OrderTemplate = ({ data }) => {
                 </div>                
                 <Button
                     className="block h-[60px]"
-                    onClick={handleRequestPayment}
+                    onClick={() => {
+                        if(!agreeAll) {
+                            alert("결제 진행 및 개인정보 제공에 모두 동의해주세요.");
+                            return;
+                        }
+                        handleRequestPayment();
+                    }}
                 >
                     <strong className="text-[20px] leading-5">
                         {`${comma(price)}원 결제하기`}
