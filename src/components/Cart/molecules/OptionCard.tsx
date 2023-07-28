@@ -3,16 +3,17 @@ import { ProductCartOption } from '../../../types/Product';
 import CounterBtn from '../atoms/CounterBtn';
 import { updateCart } from '../../../api/Products';
 import { useQueryClient } from 'react-query';
+import queryKey from '../../../constants/queryKey';
 
 function OptionCard({ option }: { option: ProductCartOption }) {
   const queryClient = useQueryClient();
   const quantityPlusHandler = async () => {
     await updateCart([{ cartId: option.id, quantity: option.quantity + 1 }]);
-    queryClient.invalidateQueries('getCartData');
+    queryClient.invalidateQueries(queryKey.Cart);
   };
   const quantityMinusHandler = async () => {
     await updateCart([{ cartId: option.id, quantity: option.quantity - 1 }]);
-    queryClient.invalidateQueries('getCartData');
+    queryClient.invalidateQueries(queryKey.Cart);
   };
   return (
     <div className="border border-gray-300 p-3 mb-2">

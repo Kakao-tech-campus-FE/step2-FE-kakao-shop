@@ -4,8 +4,9 @@ import { useInfiniteQuery } from 'react-query';
 import ProductCard from '../components/Main/molecules/ProductCard';
 import Spinner from '../components/common/atoms/Spinner';
 import { Link } from 'react-router-dom';
+import queryKey from '../constants/queryKey';
 function Main() {
-  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(['getProducts'], ({ pageParam = 0 }) => getProducts(pageParam), {
+  const { data, hasNextPage, fetchNextPage, isFetchingNextPage } = useInfiniteQuery([queryKey.Main], ({ pageParam = 0 }) => getProducts(pageParam), {
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = allPages.length;
       return lastPage.response.length !== 9 ? undefined : nextPage;

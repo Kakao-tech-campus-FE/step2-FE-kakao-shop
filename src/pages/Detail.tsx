@@ -4,11 +4,12 @@ import { getDetailProduct } from '../api/Products';
 import MainSection from '../components/Detail/templates/MainSection';
 import SideSection from '../components/Detail/templates/SideSection';
 import { styled } from 'styled-components';
+import queryKey from '../constants/queryKey';
 
 function Detail() {
   const param = useParams();
   const { id } = param;
-  const { data } = useQuery(['getDetailProduct'], () => getDetailProduct(id as string), {
+  const { data } = useQuery([queryKey.Detail], () => getDetailProduct(id as string), {
     suspense: true,
   });
   if (!data) return null;

@@ -7,11 +7,12 @@ import OrderBtn from '../components/Cart/atoms/OrderBtn';
 import { useSelector } from 'react-redux';
 import { RootState } from '..';
 import { useNavigate } from 'react-router-dom';
+import queryKey from '../constants/queryKey';
 
 function Cart() {
   const navigate = useNavigate();
   const { isLogin } = useSelector((state: RootState) => state.authReducer);
-  const { data } = useQuery(['getCartData'], () => getCart(), {
+  const { data } = useQuery([queryKey.Cart], () => getCart(), {
     suspense: true,
     enabled: isLogin,
   });
