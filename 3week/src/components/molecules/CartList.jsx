@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom"
 import Container from "../atoms/Container"
 import Box from "../atoms/Box"
 import CartItem from "../atoms/CartItem"
-import "../../styles/molecules/CartList.css"
+// import "../../styles/molecules/CartList.css"
 import Card from "../atoms/Card"
 import { comma } from "../../utils/convert"
 import Button from "../atoms/Button"
 import { useMutation } from "react-query"
-import { updateCart } from "../../apis/cart"
+import { updateCart } from "../../services/cart"
 
 
 const CartList = ({ data }) => {
-  const route = useNavigate()
+  const router = useNavigate()
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
   const [updatePayload, setUpdatePayload] = useState([])
@@ -61,7 +61,7 @@ const CartList = ({ data }) => {
         ...prev,
         {
           cartId: optionId,
-          quantitiy
+          quantity
         }
       ]
     })
@@ -115,12 +115,12 @@ const CartList = ({ data }) => {
 
           mutate(updatePayload, {
             onSuccess: (data) => {
-              route.push("/order")
+              router.push("/order")
             },
             onError: (error) => {}
           })
           // navigate to order page
-          route.push("/order")
+          router.push("/order")
         }}
       >
         <span>총 {cartItems ? getTotalCartCountIncludeOptions() : 0}건 주문하기</span>
