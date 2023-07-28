@@ -181,25 +181,22 @@ export default function RegisterForm() {
           </li>
           <li>안전한 계정 사용을 위해 비밀번호는 주기적으로 변경해 주세요.</li>
         </ul>
-        {isValidValue.username &&
-        isValidValue.email &&
-        isValidValue.password &&
-        isValidValue.passwordConfirm &&
-        isSamePW ? (
-          <Button
-            className=" h-10 border-hidden font-semibold text-sm rounded mt-3 cursor-pointer bg-[#ffe342]"
-            onClick={handleRegister}
-          >
-            회원가입
-          </Button>
-        ) : (
-          <Button
-            className=" h-10 border-hidden font-semibold text-sm rounded mt-3 bg-zinc-200"
-            onClick={() => {}}
-          >
-            회원가입
-          </Button>
-        )}
+
+        <Button
+          className={`h-10 border-hidden font-semibold text-sm rounded mt-3 cursor-pointer 
+          ${
+            isValidValue.username &&
+            isValidValue.email &&
+            isValidValue.password &&
+            isValidValue.passwordConfirm &&
+            isSamePW
+              ? "bg-[#ffe342]"
+              : "bg-zinc-200"
+          }`}
+          onClick={handleRegister}
+        >
+          회원가입
+        </Button>
       </Container>
     </Container>
   );
