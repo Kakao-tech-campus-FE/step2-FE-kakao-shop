@@ -15,13 +15,3 @@ instance.interceptors.request.use((config) => {
   }
   return config;
 })
-
-// use가 의미하는 바 "middleware", 대부분의 middleware는 use로 선언이 됨.
-instance.interceptors.response.use(
-  (response) => {
-    return response
-  },
-  (error) => {
-    return Promise.reject(error.response)
-  }
-)
