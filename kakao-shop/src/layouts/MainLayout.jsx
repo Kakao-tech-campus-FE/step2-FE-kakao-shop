@@ -7,7 +7,9 @@ const MainLayout = ({ children }) => {
     <>
       <Header />
       {/* 콘텐츠 영역: 페이지마다 달라지는 영역 */}
-      <Outlet />
+      <div className="mt-14">
+        <Outlet />
+      </div>
       <Footer />
     </>
   );

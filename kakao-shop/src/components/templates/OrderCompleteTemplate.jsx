@@ -2,8 +2,6 @@ import Box from "../atoms/Box";
 import Container from "../atoms/Container";
 import Divider from "../atoms/Divider";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import FoldingBox from "../atoms/FoldingBox";
-import OrderItems from "../atoms/OrderItems";
 import { comma } from "../../utils/convert";
 
 const OrderCompleteTemplate = ({ data }) => {

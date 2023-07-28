@@ -28,8 +28,6 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
-  // 문자열로 저장해야할까? boolean으로 저장해야할까?
-  // 에러 케이스가 추가되는 경우를 생각하면 문자열이 더 좋을 것 같은데 그런 경우가 있을까
   const [errorMessage, setErrorMessage] = useState({
     email: "",
     password: "",

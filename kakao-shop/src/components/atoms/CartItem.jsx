@@ -1,4 +1,3 @@
-// import { Card } from 'react-bootstrap';
 import Box from "./Box";
 import Counter from "./Counter";
 import { comma } from "../../utils/convert";

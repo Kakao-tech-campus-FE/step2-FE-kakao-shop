@@ -20,7 +20,7 @@ const RequiredAuthLayout = () => {
     <>
       <Header />
       {/* 로그인 필요한 서비스가 공통적으로 가지는 레이아웃 */}
-      <div className="bg-gray-50 pb-6 h-auto">
+      <div className="bg-gray-50 pb-6 pt-1 mt-14 h-auto">
         <Outlet />
       </div>
       <Footer />

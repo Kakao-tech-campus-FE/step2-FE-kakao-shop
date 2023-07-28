@@ -108,6 +108,26 @@ const CartList = ({ data }) => {
     navigate(0);
   };
 
+  const handleOnOrder = () => {
+    return () => {
+      mutate(updatePayload, {
+        onSuccess: () => {
+          navigate("/order");
+        },
+        onError: (error) => {
+          if (error?.response?.status === 401) {
+            // 로그인 만료된 상태에서 요청 시
+            simpleAlert(
+              "로그인이 만료되었습니다. 재로그인 후 다시 시도해주세요."
+            );
+            navigate("/login");
+          }
+          return <ErrorPage message="주문처리 중 에러가 발생했습니다." />;
+        },
+      });
+    };
+  };
+
   return (
     <Container className="cart">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
@@ -153,29 +173,7 @@ const CartList = ({ data }) => {
               {`${comma(totalPrice)}원`}{" "}
             </span>
           </div>
-          <Button
-            color="kakao"
-            className="order-btn"
-            onClick={() => {
-              mutate(updatePayload, {
-                onSuccess: () => {
-                  navigate("/order");
-                },
-                onError: (error) => {
-                  if (error?.response?.status === 401) {
-                    // 로그인 만료된 상태에서 요청 시
-                    simpleAlert(
-                      "로그인이 만료되었습니다. 재로그인 후 다시 시도해주세요."
-                    );
-                    navigate("/login");
-                  }
-                  return (
-                    <ErrorPage message="주문처리 중 에러가 발생했습니다." />
-                  );
-                },
-              });
-            }}
-          >
+          <Button color="kakao" className="order-btn" onClick={handleOnOrder()}>
             <span>총 {getTotalCartCountIncludingOptions()}건 주문하기</span>
           </Button>
         </div>

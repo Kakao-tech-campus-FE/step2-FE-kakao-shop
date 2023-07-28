@@ -8,7 +8,7 @@ import Photo from "../components/atoms/Photo";
  */
 const HomePage = () => {
   return (
-    <div className="home-page mt-14">
+    <div className="home-page">
       {/* 추후 캐러셀로 변경 */}
       <section className="main-banner">
         <Photo src="carouselItem1.jpeg" alt="메인 배너" />

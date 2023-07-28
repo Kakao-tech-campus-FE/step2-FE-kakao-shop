@@ -10,7 +10,7 @@ import { GoStar, GoStarFill } from "react-icons/go";
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image, starCount } = product;
 
-  function StarDrawing() {
+  function StarRate() {
     const stars = [];
 
     for (let i = 0; i < 5; i++) {
@@ -34,7 +34,7 @@ const ProductInformationColumn = ({ product }) => {
         />
       </div>
       <div className="xl:mx-8 xl:w-1/2 sm:w-4/5 sm:mx-0">
-        {StarDrawing()}
+        {StarRate()}
         <div className="product-name mt-4 text-2xl whitespace-break-spaces">
           {productName}
         </div>

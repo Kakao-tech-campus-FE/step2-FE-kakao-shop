@@ -11,12 +11,8 @@ import { LiaTruckSolid } from "react-icons/lia";
 import Photo from "../atoms/Photo";
 
 import { logout } from "../../utils/user";
-import { getCookie } from "../../storage/Cookie";
-import { useEffect, useState } from "react";
-
-import { getCart } from "../../apis/cart";
-import { useQuery } from "@tanstack/react-query";
 import CartBadge from "../atoms/CartBadge";
+import useCartNum from "../../hooks/useCartNum";
 
 /**
  * 헤더 컴포넌트
@@ -24,25 +20,8 @@ import CartBadge from "../atoms/CartBadge";
  * @returns {JSX.Element} - 헤더 컴포넌트의 JSX 요소
  */
 export default function Header() {
-  const [count, setCount] = useState(0);
+  const { userEmail, totalCounts } = useCartNum();
 
-  const userEmail = getCookie("email");
-
-  // 장바구니 아이콘에 담긴 아이템 수량 표시
-  const { data } = useQuery(["cartNum"], getCart, { enabled: !!userEmail });
-
-  useEffect(() => {
-    let totalQuantity = 0;
-    if (data?.data?.response?.products) {
-      data.data.response.products.forEach((item) => {
-        item.carts.forEach((cart) => {
-          // 존재하는 옵션 개수를 센다(실제 수량이 아님)
-          cart.quantity > 0 && (totalQuantity += 1);
-        });
-      });
-      setCount(totalQuantity);
-    }
-  }, [data]);
   return (
     <header>
       <MainContainer className="fixed top-0 border border-solid border-t-0 border-x-0 border-gray-100 bg-white z-50 w-screen">
@@ -85,7 +64,7 @@ export default function Header() {
               <IoSearchOutline size="27" />
               <LiaTruckSolid size="25" />
               <Link to={userEmail ? "/cart" : "/login"} className="relative">
-                {count > 0 && <CartBadge count={count} />}
+                {totalCounts > 0 && <CartBadge count={totalCounts} />}
                 <BsCart2 size="20" />
               </Link>
               <div className="divider-container h-[14px] mx-0">

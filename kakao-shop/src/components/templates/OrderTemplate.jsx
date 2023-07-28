@@ -46,6 +46,32 @@ const OrderTemplate = ({ data }) => {
     mutationFn: saveOrder,
   });
 
+  const handleOnOrder = () => {
+    return () => {
+      // 동의가 이뤄지지 않았을 경우 처리
+      if (agreePayment === false || agreePolicy === false) {
+        simpleAlert("카카오페이 구매조건(결제조건) 확인 동의를 체크해 주세요.");
+        return;
+      }
+
+      mutate(null, {
+        onError: (error) => {
+          // 인증정보 오류 발생 시 재로그인
+          if (error.response.status === 401)
+            simpleAlert("로그인이 만료되었습니다. 다시 로그인해 주세요.");
+          navigate("/login");
+          simpleAlert(error.response.data.errorMessage);
+        },
+        onSuccess: (res) => {
+          console.log(res.data.response.id);
+          const { id } = res.data.response;
+          simpleAlert("주문이 완료되었습니다.");
+          navigate(`/orders/${id}`, { replace: true });
+        },
+      });
+    };
+  };
+
   return (
     <Container className="order">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
@@ -140,33 +166,7 @@ const OrderTemplate = ({ data }) => {
       </div>
       {/* 결제하기 버튼 */}
       <Button
-        onClick={() => {
-          // 동의가 이뤄지지 않았을 경우 처리
-          if (agreePayment === false || agreePolicy === false) {
-            simpleAlert(
-              "카카오페이 구매조건(결제조건) 확인 동의를 체크해 주세요."
-            );
-            return;
-          }
-
-          mutate(null, {
-            onError: (error) => {
-              // 인증정보 오류 발생 시 재로그인
-              if (error.response.status === 401)
-                simpleAlert("로그인이 만료되었습니다. 다시 로그인해 주세요.");
-              navigate("/login");
-
-              console.log(error);
-              simpleAlert(error.response.data.errorMessage);
-            },
-            onSuccess: (res) => {
-              console.log(res.data.response.id);
-              const { id } = res.data.response;
-              simpleAlert("주문이 완료되었습니다.");
-              navigate(`/orders/${id}`, { replace: true });
-            },
-          });
-        }}
+        onClick={handleOnOrder()}
         color={agreePayment && agreePolicy ? "kakao" : "gray"}
         className="rounded-none"
       >
