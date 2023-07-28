@@ -41,7 +41,7 @@ const OrderSuccessTemplate = () => {
             );
           })}
       </div>
-      <div className="border w-96">최종 가격: {comma(orderTotalPrice)}</div>
+      <div className="border w-96">총 주문 금액: {comma(orderTotalPrice)}</div>
     </div>
   );
 };
