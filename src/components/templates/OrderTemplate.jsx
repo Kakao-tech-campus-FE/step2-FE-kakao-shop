@@ -20,12 +20,12 @@ const OrderTemplate = ({ data }) => {
   const agreePaymentRef = useRef(null);
   const agreePolicyRef = useRef(null);
 
-  //   const handleAllAgree = (e) => {
-  //     const value = e.target.checked;
+  const handleAllAgree = (e) => {
+    const value = e.target.checked;
 
-  //     value && setAgreePayment(true);
-  //     value && setAgreePolicy(true);
-  //   };
+    setAgreePayment(true);
+    setAgreePolicy(true);
+  };
 
   const handleAgreement = (e) => {
     const { name, checked } = e.target;
@@ -36,6 +36,11 @@ const OrderTemplate = ({ data }) => {
     }
   };
 
+  const checkOrder = (e) => {
+    if (allAgreeRef.current.checked) {
+      alert("결제되었습니다.");
+    }
+  };
   return (
     <>
       <h3>주문상품 정보</h3>
@@ -55,7 +60,7 @@ const OrderTemplate = ({ data }) => {
             id="all-agree"
             ref={allAgreeRef}
             checked={agreePayment && agreePolicy}
-            onChange={handleAgreement}
+            onChange={handleAllAgree}
           />
           <label htmlFor="all-agree">전체 동의</label>
         </div>
@@ -84,7 +89,7 @@ const OrderTemplate = ({ data }) => {
           </label>
         </div>
       </div>
-      <SubmitButton>결제하기</SubmitButton>
+      <SubmitButton onClick={checkOrder}>결제하기</SubmitButton>
     </>
   );
 };
