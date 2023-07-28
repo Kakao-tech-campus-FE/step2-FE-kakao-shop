@@ -83,6 +83,7 @@ const CartList = ({ data }) => {
       });
     });
   };
+
   return (
     <Container className="cart-list">
       <Box>
