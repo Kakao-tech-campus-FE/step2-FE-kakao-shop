@@ -149,7 +149,6 @@ const OrderTemplate = ({ data }) => {
           </div>
         </div>
         <button
-          // disabled={!allAgree}
           onClick={() => {
             if (allAgree === false) {
               alert("모든 항목에 동의가 필요합니다.");
@@ -161,7 +160,6 @@ const OrderTemplate = ({ data }) => {
               },
               onSuccess: (response) => {
                 const id = response?.data?.response.id;
-                // console.log(response?.data?.response.id);
                 alert("주문이 완료되었습니다.");
                 navigate(`/orders/complete/${id}`);
               },
