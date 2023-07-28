@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
@@ -22,21 +22,19 @@ const CartList = ({ data }) => {
   });
 
   useEffect(() => {
-    const products = data?.response?.products || [];
-    const totalPrice = data?.response?.totalPrice || 0;
-    setCartItems(products);
-    setTotalPrice(totalPrice);
+    setCartItems(data?.data?.response?.products);
+    setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
-  const getTotalCartCountIncludeOptions = () => {
-    const totalCount = cartItems.reduce((acc, item) => {
-      const itemTotal = item.carts.reduce((itemAcc, cart) => {
-        return itemAcc + cart.quantity;
-      }, 0);
-      return acc + itemTotal;
-    }, 0);
-    return comma(totalCount);
-  };
+  const getTotalCartCountIncludeOptions = useCallback(() => {
+    let count = 0;
+    cartItems.forEach((item) => {
+      item.carts.forEach((cart) => {
+        count += cart.quantity;
+      });
+    });
+    return comma(count);
+  }, [cartItems]);
 
   /**
    * 옵션의 수량 변경과 가격 변경 관리

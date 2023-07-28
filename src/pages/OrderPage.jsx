@@ -1,14 +1,35 @@
 import { Suspense } from "react";
-import { useQuery } from "react-query";
-import OrderTemplate from "../components/templates/OrderTemplate";
+import GNB from "../components/atoms/GNB";
+import { useMutation } from "@tanstack/react-query";
 import Loader from "../components/atoms/Loader";
-import { getCart } from "../services/cart";
+import Button from "../components/atoms/Button";
+
+const checkout = async () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ success: true });
+    }, 1000);
+  });
+};
 
 const OrderPage = () => {
-  const { data, error, isLoading } = useQuery(getCart);
+  const { mutate, isLoading } = useMutation({
+    mutationFn: checkout,
+  });
+
   return (
     <Suspense fallback={<Loader />}>
-      <OrderTemplate />
+      <GNB />
+      <div className="flex justify-center items-center">
+        <Button
+          className="rounded-full bg-yellow-500 text-black"
+          onClick={() => {
+            mutate();
+          }}
+        >
+          {isLoading ? "결제 처리중..." : "결제하기"}
+        </Button>
+      </div>
     </Suspense>
   );
 };

@@ -2,8 +2,9 @@ import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import { useQuery } from "react-query";
+import { getCart } from "../../services/cart";
 
 const OrderTemplate = ({ data, id }) => {
   // 사용자의 장바구니 목록을 조회해서 보여준다.
@@ -13,14 +14,13 @@ const OrderTemplate = ({ data, id }) => {
   const navigate = useNavigate();
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
-
+  const setAllAgree = useState(false);
   const allAgreeRef = useRef(null);
   const agreePaymentRef = useRef(null);
   const agreePolicyRef = useRef(null);
 
   const handleAllAgree = (e) => {
     const value = e.target.checked;
-
     setAgreePayment(value);
     setAgreePolicy(value);
   };
@@ -33,11 +33,21 @@ const OrderTemplate = ({ data, id }) => {
     } else if (name === "policy-agree") {
       setAgreePolicy(checked);
     }
+    if (!checked) {
+      setAllAgree(false);
+    }
   };
 
   const { mutate } = useMutation({
     mutationKey: "order",
     queryFn: () => order,
+  });
+
+  const { data } = useQuery("carts", getCart, {
+    onError: () => {
+      navigate("/error");
+    },
+    suspense: true,
   });
 
   const OrderItems = () => {
@@ -152,8 +162,6 @@ const OrderTemplate = ({ data, id }) => {
               mutate(null, {
                 onError: () => {
                   alert("주문에 실패했습니다.");
-                  // 사용자 정보가 유실
-                  // 로그인 페이지로 이동
                 },
                 onSuccess: () => {
                   alert("주문이 완료되었습니다.");

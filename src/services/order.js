@@ -1,9 +1,8 @@
 import { instance } from "./index";
 
-export const order = () => {
+export const orderCart = () => {
   return instance.post("/orders/save");
 };
-
-export const getOrderFromId = (id) => {
+export const getOrderById = (id) => {
   return instance.get(`/orders/${id}`);
 };

@@ -9,7 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import { LoaderContainer, DefaultSpinner } from "react-global-loader";
 import * as paths from "./constants/urls";
-import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
@@ -29,10 +29,12 @@ function App() {
             />
             <Route path={paths.ERROR_PATH} element={<ErrorPage />} />
           </Route>
-          <Route element={<RequiredAuthLayout />}>
-            <Route path={paths.CART_PATH} element={<CartPage />} />
-            <Route path={paths.ORDER_PATH} element={<OrderPage />} />
-          </Route>
+          <Route path={paths.CART_PATH} element={<CartPage />} />
+          <Route path={paths.ORDER_PATH} element={<OrderPage />} />
+          <Route
+            path={paths.ORDER_COMPLETE_PATH}
+            element={<OrderCompletePage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
