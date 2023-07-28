@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Container from "../atoms/Container";
 import Button from "../atoms/Button";
@@ -17,7 +16,6 @@ import AlertBox from "../molecules/AlertBox";
  */
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();
   const { values, handleChange } = useInput({
     email: "",
@@ -49,7 +47,7 @@ const LoginForm = () => {
     const data = await instance.post("/login", JSON.stringify(values));
     if (data.data?.success) {
       dispatch(login(data.token));
-      navigate("/");
+      window.location.replace("/");
     } else {
       // eslint-disable-next-line no-alert
       setErrorMessage(data?.error?.message);

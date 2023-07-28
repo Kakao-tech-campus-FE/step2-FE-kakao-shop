@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useMemo } from "react";
 import Container from "../atoms/Container";
 import comma from "../../utils/convert";
@@ -6,7 +5,6 @@ import Box from "../atoms/Box";
 import Button from "../atoms/Button";
 
 const OrderCompleteTemplate = ({ data }) => {
-  const navigate = useNavigate();
   const id = useMemo(() => data?.data?.response?.id, [data]);
   const totalPrice = useMemo(() => data?.data?.response?.totalPrice, [data]);
 
@@ -35,7 +33,7 @@ const OrderCompleteTemplate = ({ data }) => {
         <Button
           className="w-full p-4 text-[20px] font-bold bg-yellow-kakao text-black"
           onClick={() => {
-            navigate("/");
+            window.location.replace("/");
           }}
         >
           쇼핑 계속하기
