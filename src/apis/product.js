@@ -33,7 +33,7 @@ export const getProductById = async (id) => {
     }
     const response = await instance.get(`/products/${id}`);
     console.log("getProductById Api data", response);
-    return response.response;
+    return response.data.response;
   } catch (error) {
     console.log("getProductById Api Error", error);
     throw error;

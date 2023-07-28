@@ -12,7 +12,7 @@ export default function ProductDetailPage() {
     getProductById(parsedId)
   );
 
-  const product = data?.response;
+  const product = data;
   // data는 비동기 요청으로 처음에는 null이고, 요청이 완료되면 data에 데이터가 담김
   // product에 우리가 원하는 데이터가 정확하게 존재하느냐?
   // 검증 함수: data가 정확히 들어왔는지 체크, validate function
