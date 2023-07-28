@@ -8,8 +8,8 @@ function RequiredAuthLayout() {
 
   useEffect(()=>{
     if (localStorage.getItem("token") === null) {
+      navigate('/login')
       alert("로그인이 필요한 서비스입니다.")
-      navigator("/login")
     }
   }, [navigate])
 

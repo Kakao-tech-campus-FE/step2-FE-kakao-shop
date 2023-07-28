@@ -136,7 +136,15 @@ function OrderTemplate({ data }) {
                     navigate(`orders/complete/${id}`)
                   },
                   onError: (error) => {
+                    console.log(error)
                     alert("주문에 실패했습니다.")
+                    // 사용자 정보가 유실 -> login으로 이동 애초에
+                    // 애초에 사용자 정보가 없으면 이 페이지로 넘어올 수 없게 설계
+
+
+                    // 장바구니에 아무것도 존재하지 않을 때, == 404status 상황
+                    alert(error.data.error.message)
+                    navigate(`/`)
                   },
                 })
               }}

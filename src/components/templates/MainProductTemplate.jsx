@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState }  from 'react'
 import Containor from '../atoms/Containor'
 import Loader from '../molecules/Loader'
-import { useQuery, QueryClient, useQueryClient } from 'react-query'
-import { getProductById, fetchProducts} from '../../services/product'
 import ProductGrid from '../organisms/ProductGrid'
 import { useInfinite } from '../../hooks/useInfinite'
-import { isError } from 'lodash'
 import Toast from '../molecules/Toast'
 
 
