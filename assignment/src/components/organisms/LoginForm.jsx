@@ -34,15 +34,15 @@ function LoginForm() {
         );
         const item = {
           value: res.headers.authorization,
-          expiration: Date.now() + 60000000,
+          expiration: Date.now() + 600000,
         };
         localStorage.setItem('user', JSON.stringify(item));
         alert('로그인 성공!');
         navigate('/');
       })
       .catch((err) => {
-        console.log(err.request.response);
-        alert(err.request.response);
+        console.log(err.response.data.error.message);
+        alert(err.response.data.error.message);
       });
   };
   const handleOnClick = () => {
@@ -121,32 +121,3 @@ function LoginForm() {
 }
 
 export default LoginForm;
-// api 로그인요청
-//   try{
-//   loginReq();
-//   console.log('로그인 완료')
-// }
-//   catch (error) {
-//     console.error(error.response.data.error.message)
-//     }
-
-// const loginReq = () => {
-//   // loginRequest();
-//   // login({
-//   //   email :value.email,
-//   //   password : value.password,
-//   // })
-//   //   .then((res) => {
-//   //     console.log(res);
-//   //     //여기서 setEmail에 들어가는 값: payload가 된다.
-//   //     // payload는 obj를 받는다.
-//   //     dispatch(
-//   //       setEmail({
-//   //       email: value.email,
-//   //       })
-//   //     );
-//   //   })
-//   //   .catch((err)=> {
-//   //     console.log('err', err);
-//   //   });
-// };
