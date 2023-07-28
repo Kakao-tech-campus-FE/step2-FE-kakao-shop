@@ -192,7 +192,9 @@ const OrderTemplate = ({ data }) => {
                   navigate(`/orders/complete/${id}`);
                 },
                 onError: () => {
-                  alert("주문에 실패했습니다.");
+                  // 사용자 정보가 유실된 경우
+                  alert("로그인이 필요합니다.");
+                  navigate("/login");
                 },
               });
             }}
