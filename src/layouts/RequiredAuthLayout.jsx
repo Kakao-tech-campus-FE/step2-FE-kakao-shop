@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import GNB from "../components/organisms/GNB";
+import Footer from "../components/atoms/Footer";
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const RequiredAuthLayout = () => {
       <GNB />
       <div className="h-20" />
       <Outlet />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
