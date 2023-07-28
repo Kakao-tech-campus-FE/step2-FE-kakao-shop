@@ -1,19 +1,18 @@
 import React from 'react'
 import Order from 'components/organisms/Order'
-import { useLocation } from 'react-router-dom';
 import { useQuery } from 'react-query'
-import { getOrders } from 'api/order'
+import { getCarts } from 'api/cart'
 
 const OrderPage = () => {
-  const location = useLocation();
-  const orderId = location.state.orderId ? location.state.orderId : localStorage.getItem("orderId")
-  
-  const query = useQuery(
-    'getOrders',
-    () => getOrders(orderId),
-    { suspense : true }
-  )
 
+  /** 장바구니 객체 get */ 
+  const query = useQuery(
+    ["getCarts"],
+    getCarts,
+    {suspense: true}
+  )
+  
+  /** 임의 주문 정보 */
   const userAddress = {
     username: "라이언",
     contact: "010-0000-0000",
@@ -36,8 +35,7 @@ const OrderPage = () => {
 
   return (
     <Order
-      orderId={orderId} 
-      query={query} 
+      data={query.data} 
       userAddress={userAddress} 
       agreeList={agreeList}
       paymentList={payMethods} />
