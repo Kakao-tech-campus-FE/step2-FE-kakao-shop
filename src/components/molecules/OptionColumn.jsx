@@ -136,7 +136,6 @@ const OptionColumn = ({ product }) => {
               }),
               {
                 onSuccess: () => {
-                  alert("장바구니에 담겼습니다.");
                 },
                 onError: (error) => {
                   alert("장바구니 담기에 실패했습니다: " + error);

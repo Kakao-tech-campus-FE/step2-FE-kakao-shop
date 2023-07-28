@@ -16,10 +16,9 @@ import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderPage from "./pages/OrderPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import Sidebar from "./components/molecules/Sidebar";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
-  const [page, setPage] = React.useState("");
-
   return (
     <BrowserRouter>
       <Routes>
@@ -32,9 +31,10 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
-            <Route path="/orders/complete/:id"element={<OrderSuccessPage />}></Route>
+            <Route path="/orders/complete/:id" element={<OrderSuccessPage />}></Route>
           </Route>
         </Route>
+        <Route path="/*" element={<NotFoundPage />}></Route>
       </Routes>
     </BrowserRouter>
   );

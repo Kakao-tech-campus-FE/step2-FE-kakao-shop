@@ -1,32 +1,31 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { getCart } from "../../services/cart";
+import Badge from '../atoms/Badge';
 
-const OrderTemplate = ({ data }) => {
+const OrderTemplate = () => {
+  const { data } = useQuery(["cart"], getCart, { suspense: true });
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
-  const allAgreeRef = useRef(null);
-  const agreePaymentRef = useRef(null);
-  const agreePolicyRef = useRef(null);
-
   const handleAllAgree = (e) => {
     const value = e.target.checked;
     setAgreePayment(value);
-    setAgreePayment(value);
+    setAgreePolicy(value);
   };
 
   const handleAgreement = (e) => {
-    const { name, checked } = e.target;
+    const { name, value } = e.target;
 
     if (name === "payment-agree") {
-      setAgreePayment(checked);
+      setAgreePayment(value);
     } else if (name === "policy-agree") {
-      setAgreePolicy(checked);
+      setAgreePolicy(value);
     }
   };
 
@@ -67,7 +66,7 @@ const OrderTemplate = ({ data }) => {
   };
 
   return (
-    <div className="py-20">
+    <div className="py-8">
       <div className="block mx-auto max-w-[1024px] w-[100%]">
         <div className="border p-2">
           <h1 className="text-md font-bold">주문하기</h1>
@@ -109,8 +108,7 @@ const OrderTemplate = ({ data }) => {
             <input
               type="checkbox"
               id="all-agree"
-              ref={allAgreeRef}
-              value={agreePayment && agreePolicy}
+              checked={agreePayment && agreePolicy}
               onChange={handleAllAgree}
             />
             <label htmlFor="all-agree" className="text-xl font-bold">
@@ -122,8 +120,7 @@ const OrderTemplate = ({ data }) => {
               type="checkbox"
               id="agree"
               name="payment-agree"
-              ref={agreePaymentRef}
-              value={agreePayment}
+              checked={agreePayment}
               onChange={handleAgreement}
             />
             <label htmlFor="agree" className="text-sm">
@@ -135,8 +132,7 @@ const OrderTemplate = ({ data }) => {
               type="checkbox"
               id="policy"
               name="policy-agree"
-              ref={agreePolicyRef}
-              value={agreePolicy}
+              checked={agreePolicy}
               onChange={handleAgreement}
             />
             <label htmlFor="policy" className="text-sm">
@@ -146,36 +142,26 @@ const OrderTemplate = ({ data }) => {
           {/* 결제하기 버튼 */}
           <button
             onClick={() => {
-              // 동의가 이루어지지 않았을 경우 처리
               if (!agreePayment || !agreePolicy) {
                 alert("모든 항목에 동의가 필요합니다.");
                 return;
               }
 
-              // POST: /orders/save
-              // DB: 장바구니에 있는 모든 항목이 결제로 저장
-              // 장바구니는 비워짐
-              // 페이지 이동 -> 주문완료 페이지
-              // (리턴 받은 주문 아이디를 같이 전달해서) /orders/complete/:id
-
-              // 여기 수정!
               mutate(null, {
                 onError: (err) => {
-                  alert("주문 실패");
+                  // 사용자 정보가 유실된 경우 로그인 페이지로 리다이렉트
+                  alert("로그인이 필요합니다.");
+                  navigate("/login");
                 },
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  alert("주문 성공");
                   navigate(`/orders/complete/${id}`);
                 },
               });
             }}
-            className={
-              `w-full p-4 font-medium ${
-              agreePayment && agreePolicy
-                ? "bg-yellow-500"
-                : "bg-gray-300"}`
-            }
+            className={`w-full p-4 font-medium ${
+              agreePayment && agreePolicy ? "bg-yellow-500" : "bg-gray-300"
+            }`}
           >
             결제하기
           </button>

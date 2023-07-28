@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import OrderSuccessPage from "../pages/OrderSuccessPage"
+import OrderSuccessPage from "../src/pages/OrderSuccessPage"
 
 test("renders '주문완료!'", () => {
   render(<OrderSuccessPage />);

@@ -21,7 +21,10 @@ const ProductDetailPage = () => {
         {product && <ProductDetailTemplate product={product} />}
       </div>
       
-      <div>이런 상품 어때요?</div>
+      <div className="text-2xl font-bold m-4">
+        <span className="text-blue-500">이런 상품</span>
+        <span>은 어때요?</span>
+      </div>
       <MainProductTemplate />
     </>
   );

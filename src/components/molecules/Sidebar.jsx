@@ -7,7 +7,6 @@ import { setIsLoggedIn } from "../../store/slices/userSlice";
 const Sidebar = () => {
   const menus = [
     { name: "홈", path: "/", icon: "/sidebarIcons/home.svg" },
-    { name: "카테고리", path: "/category", icon: "/sidebarIcons/category.svg" },
     { name: "장바구니", path: "/cart", icon: "/sidebarIcons/cart.svg" },
   ];
 
@@ -19,13 +18,22 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="fixed w-64 bg-gray-200 border-r-2 border-gray-300 top-0 bottom-0 left-0 h-full z-50 p-3">
+    <div className="fixed w-64 bg-gray-100 border-r-2 border-gray-300 top-0 bottom-0 left-0 h-full z-50 p-3">
       <div className="my-8 ml-3">
         <Link to="/">
           <img src="/logoKakao.svg" width={100} alt="카카오톡 쇼핑하기" />
         </Link>
       </div>
       <div>
+        <form>
+          {/* <img src="/sidebarIcons/search.svg" alt="icon" className="absolute w-5" /> */}
+          <input
+            type="search"
+            placeholder="검색"
+            className="w-full rounded-lg p-3 my-2 box-border focus:outline-none"
+          />
+        </form>
+
         {menus.map((menu, index) => {
           return (
             <Link key={index} to={menu.path}>

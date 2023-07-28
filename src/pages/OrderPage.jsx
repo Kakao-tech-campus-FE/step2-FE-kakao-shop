@@ -5,10 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { getCart } from "../services/cart";
 
 const OrderPage = () => {
-  const { data } = useQuery(["cart"], getCart);
   return (
     <Suspense fallback={<Loader />}>
-      <OrderTemplate data={data} />
+      <OrderTemplate />
     </Suspense>
   );
 };
