@@ -5,7 +5,7 @@ import { comma } from '../../utils/comma';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { order } from './../services/orders';
-import { orderCompleteMessage } from '../../utils/constants';
+import { orderCompleteMessage, agreeNeedMessage } from '../../utils/constants';
 import Swal from 'sweetalert2';
 
 const OrderTemplate = () => {
@@ -155,7 +155,7 @@ const OrderTemplate = () => {
                 backgroundcolor={agreePayment && agreePolicy ? "#ffe100" : "#bbbbbb"}
                 onClick={() => {
                     if (agreePayment === false || agreePolicy === false) {
-                        alert("모든 항목에 동의해주세요.");
+                        Swal.fire(agreeNeedMessage);
                         return
                     }
                     mutate(null)

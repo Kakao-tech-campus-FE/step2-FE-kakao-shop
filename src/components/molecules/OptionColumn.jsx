@@ -125,7 +125,7 @@ const OptionColumn = ({ product }) => {
                         }
                     });
                 }}>장바구니 담기</Button>
-                <Button>구매</Button>
+                <PurchaseButton>구매</PurchaseButton>
             </ButtonGroupContainer>
         </OptionColumnContainer>
     );
@@ -149,4 +149,7 @@ margin-top: 20px;
     Button {
         margin-right: 60px;
     }
+`
+const PurchaseButton = styled.button`
+
 `

@@ -63,6 +63,11 @@ export const loginNeedMessage = {
     text: '로그인을 먼저 해주세요😊',
     confirmButtonText:'확인',
 }
+export const agreeNeedMessage = {
+    title: '모든 항목에 동의해주세요!',
+    text: '모든 항목에 동의해주셔야 결제 진행이 가능합니다.',
+    confirmButtonText:'확인',
+}
 export const orderCompleteMessage = {
     title:'주문이 완료되었습니다!',
     text: '저희 서비스를 이용해주셔서 감사합니다! 다른 상품도 더 둘러보세요!😄',
