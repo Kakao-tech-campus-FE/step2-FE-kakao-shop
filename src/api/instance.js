@@ -43,10 +43,9 @@ instance.interceptors.response.use(
     switch (error.response.status) {
       case 401:
         window.location.href = routes.signIn;
-        // Promise chaining
-        return new Promise(() => {});
+        break;
       case 404:
-        return new Promise(() => {});
+        return Promise.reject(error);
       default:
         return Promise.reject(error);
     }

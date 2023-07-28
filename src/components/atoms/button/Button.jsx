@@ -12,6 +12,12 @@ const Styled = {
 
     border-radius: 0.1rem;
     background-color: ${({ $backgroundColor }) => $backgroundColor};
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: gray;
+      color: white;
+    }
   `,
 };
 

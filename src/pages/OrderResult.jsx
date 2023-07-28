@@ -1,9 +1,7 @@
 import GlobalTemplate from "@/components/templates/global-template/GlobalTemplate.jsx";
+import useGetOrderResult from "@/hooks/useGetOrderResult.js";
 import styled from "styled-components";
-import OrderDelivery from "@/components/organisms/order-delivery/OrderDelivery.jsx";
-import useGetCartItemsQuery from "@/hooks/useGetCartItemsQuery.js";
 import OrderProductColumn from "@/components/organisms/order-product-column/OrderProductColumn.jsx";
-import OrderAgreeTerm from "@/components/organisms/order-agree-term/OrderAgreeTerm.jsx";
 
 const Styled = {
   Container: styled.div`
@@ -13,31 +11,38 @@ const Styled = {
     justify-content: center;
     align-items: center;
   `,
+  Title: styled.div`
+    width: 100%;
+    padding: 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+    background-color: white;
+  `,
 };
-function Order() {
-  const { data } = useGetCartItemsQuery();
+function OrderResult() {
+  const { data } = useGetOrderResult();
   return (
     <GlobalTemplate
-      title="장바구니"
+      title="주문 결과"
       style={{
         backgroundColor: "#f4f4f4",
       }}
     >
       <Styled.Container>
-        <OrderDelivery />
+        <Styled.Title>주문 결과</Styled.Title>
         {data?.products?.map((product) => (
           <OrderProductColumn
-            key={product.id}
-            id={product.id}
+            key={product.productName}
+            id={product.productName}
             productName={product.productName}
-            carts={product.carts}
+            carts={product.items}
+            isOrderResult={true}
           />
         ))}
-
-        <OrderAgreeTerm totalPrice={data?.totalPrice} />
       </Styled.Container>
     </GlobalTemplate>
   );
 }
 
-export default Order;
+export default OrderResult;

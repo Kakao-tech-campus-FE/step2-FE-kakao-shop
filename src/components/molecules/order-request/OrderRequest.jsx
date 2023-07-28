@@ -41,14 +41,17 @@ const OPTIONS_INFO = [
     disabled: true,
     selected: "selected",
   },
-  { value: "배송 전 연락 바랍니다.", text: "배송 전 연락 바랍니다." },
-  { value: "부재시 경비실에 맡겨주세요.", text: "부재시 경비실에 맡겨주세요." },
-  { value: "부재시 연락 주세요.", text: "부재시 연락 주세요." },
+  { value: "배송 전 연락 바랍니다. ", text: "배송 전 연락 바랍니다." },
+  {
+    value: "부재시 경비실에 맡겨주세요. ",
+    text: "부재시 경비실에 맡겨주세요.",
+  },
+  { value: "부재시 연락 주세요. ", text: "부재시 연락 주세요." },
   { value: "", text: "직접 입력" },
 ];
 
 function OrderRequest() {
-  const selectedValueRef = useRef();
+  const selectedValueRef = useRef(0);
   const messageRef = useRef();
 
   const handleSelectChange = (e) => {
