@@ -1,6 +1,6 @@
 const OptionDetailList = ({ optionDetail }) => {
   return (
-    <div key={optionDetail.id} className="flex flex-col border p-2 text-sm">
+    <div key={optionDetail.id} className="flex flex-col p-2 text-sm">
       <div className="my-1 flex justify-between">
         {optionDetail.option.optionName}
       </div>
