@@ -15,7 +15,7 @@ const ProductDetailPage = () => {
     const product = data?.data?.response;
 
     // typescript로 대체
-    const isVaildate = () => {
+    const isValidate = () => {
         if(!product) {
             return false;
         }
@@ -42,7 +42,7 @@ const ProductDetailPage = () => {
         <div>
             {isLoading && <Loader />}
             {error &&  <Error404 />}
-            {isVaildate === false && <Error404 />  }
+            {isValidate === false && <Error404 />  }
             {product && <ProductDetailTemplate product={product} />}
         </div>
     );
