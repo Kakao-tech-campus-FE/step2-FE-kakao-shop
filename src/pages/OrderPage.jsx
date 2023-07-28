@@ -1,11 +1,12 @@
-import Container from '../components/atoms/Container';
+import { useQuery } from '@tanstack/react-query';
+import { Suspense } from 'react';
+import Loader from '../components/atoms/Loader';
+import OrderTemplate from '../components/templates/OrderTemplate';
+import { getCart } from '../services/cart';
 
 const OrderPage = () => {
-    return (
-        <Container className="page">
-            <h1>주문 페이지</h1>
-        </Container>
-    );
+    const { data } = useQuery(['cart'], getCart);
+    return <Suspense fallback={<Loader />}>{data && <OrderTemplate data={data} />}</Suspense>;
 };
 
 export default OrderPage;

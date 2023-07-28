@@ -11,6 +11,7 @@ import URL from './constants/URL';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import ErrorPage from './pages/ErrorPage';
+import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 
 const App = () => {
     return (
@@ -18,14 +19,16 @@ const App = () => {
             <GlobalStyle />
             <Router>
                 <Routes>
-                    <Route path={URL.LOGIN} element={<LoginPage />}></Route>
-                    <Route path={URL.SIGNUP} element={<SignUpPage />}></Route>
-                    <Route path={URL.ERROR} element={<ErrorPage />}></Route>
+                    <Route path={URL.LOGIN} element={<LoginPage />} />
+                    <Route path={URL.SIGNUP} element={<SignUpPage />} />
+                    <Route path={URL.ERROR} element={<ErrorPage />} />
                     <Route element={<MainLayout />}>
-                        <Route path={URL.HOME} element={<HomePage />}></Route>
-                        <Route path={URL.PRODUCT} element={<ProductDetailPage />}></Route>
-                        <Route path={URL.CART} element={<CartPage />}></Route>
-                        <Route path={URL.ORDER} element={<OrderPage />}></Route>
+                        <Route path={URL.HOME} element={<HomePage />} />
+                        <Route path={URL.PRODUCT} element={<ProductDetailPage />} />
+                    </Route>
+                    <Route element={<RequiredAuthLayout />}>
+                        <Route path={URL.CART} element={<CartPage />} />
+                        <Route path={URL.ORDER} element={<OrderPage />} />
                     </Route>
                 </Routes>
             </Router>
