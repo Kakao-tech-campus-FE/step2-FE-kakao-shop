@@ -1,57 +1,70 @@
-// import { Link } from "react-router-dom";
-// import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../../styles/atoms/GNB.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../../store/slices/userSlice";
 
-// import "../../styles/atoms/GNB.css"
+function GNB() {
+  const token = useSelector((state) => state.user.token);
+  const dispatch = useDispatch();
 
-// function GNB() {
-//     const [isLogin, setIsLogin] = useState(false);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    dispatch(setToken(null));
+    alert("정상적으로 로그아웃되었습니다.");
+  };
 
-//     useEffect(() => {
-//         if (localStorage. getItem("token") != null) setIsLogin(true);
-//     }, [isLogin]);
-    
-//     const handleLogout = () => {
-//         localStorage.removeItem("token");
-//         alert ("정상적으로 로그아웃되었습니다.");
-//     };
+  return (
+    <header className="header">
+      <div className="contents">
+        <Link to="/">
+          <img
+            className="logoKakao"
+            src={"/logoKakao.png"}
+            alt="logoKakao.png"
+            height={30}
+          />
+        </Link>
+        <nav>
+          <div className="navigation">
+            <span>
+              {/* 장바구니 버튼 */}
+              <Link to="/cart">
+                <img
+                  className="cart"
+                  src={"/cart.png"}
+                  alt="cart.png"
+                  height={30}
+                />
+              </Link>
+            </span>
+            <span className="bar">|</span>
+            <span className="login">
+              {/* 로그인 버튼 */}
+              {token ? (
+                <Link
+                  to="/login"
+                  onClick={handleLogout}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  {" "}
+                  로그아웃{" "}
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  onClick={handleLogout}
+                  style={{ textDecoration: "none", color: "black" }}
+                >
+                  {" "}
+                  로그인{" "}
+                </Link>
+              )}
+            </span>
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}
 
-//     return (
-//         <header className="header"> 
-//             <div className="contents">
-//                 <Link to="/">
-//                     <img src={"/logoKakao.png"} alt= "logoKakao.png" height={30} />
-//                 </Link>
-//                 <nav>
-//                     <div calssName="navigation">
-//                         <span>
-//                             <Link to="/cart">
-//                             <img src={"/cart.png"} alt= "logoKakao.png" height={30} />
-//                             </Link>
-//                         </span>
-//                         <span></span>
-//                         <span>
-//                             {isLogin ? (
-//                                 <Link
-//                                     to="/login"
-//                                     onClick={handleLogout}
-//                                     style={{ textDecoration: "none", color: "black" }}
-//                                 >
-//                                     {" "}
-//                                     로그아웃{" "}
-//                                 </Link>
-//                             ) : (
-//                                 <Link
-//                                     to="/login"
-//                                     style={{ textDecoration: "none", color: "black" }}
-//                                 >
-//                                     {" "}
-//                                     로그인{" "}
-//                                 </Link>
-//                             )}
-//                         </span>
-//                     </div>
-//                 </nav>
-//             </div>
-//         </header>
-//     );
-// };
+export default GNB;

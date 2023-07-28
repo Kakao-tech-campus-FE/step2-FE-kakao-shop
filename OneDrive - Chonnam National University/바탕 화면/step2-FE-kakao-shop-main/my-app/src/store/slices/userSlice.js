@@ -1,10 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../services/api";
+import { login } from "../../services/user";
 
 const initialState = {
   email: null,
   loading: false,
-  isLogin: false,
+  token: null,
+  isLogined: false,
 };
 
 const userSlice = createSlice({
@@ -13,14 +14,17 @@ const userSlice = createSlice({
   reducers: {
     setEmail: (state, action) => {
       state.email = action.payload.email;
-      state.isLogin = true;
+      state.isLogined = true;
       localStorage.setItem("email", action.payload.email);
+    },
+    setToken: (state, action) => {
+      state.token = action.payload.token;
     },
     logOut: (state) => {
       state.email = null;
-      state.isLogin = false;
+      state.isLogined = false;
       localStorage.removeItem("email");
-      localStorage.removeItem("isLogin");
+      localStorage.removeItem("isLogined");
       localStorage.removeItem("token");
     },
   },
@@ -30,10 +34,11 @@ const userSlice = createSlice({
     });
     builder.addCase(loginRequest.fulfilled, (state, action) => {
       state.loading = false;
-      state.isLogin = true;
+      state.isLogined = true;
       state.email = action.payload.email;
+      state.token = action.payload.token;
       localStorage.setItem("email", action.payload.email);
-      localStorage.setItem("isLogin", true);
+      localStorage.setItem("isLogined", true);
       localStorage.setItem("token", action.payload.token);
     });
     builder.addCase(loginRequest.rejected, (state) => {
@@ -48,14 +53,12 @@ export const loginRequest = createAsyncThunk(
     const { email, password } = data;
     const response = await login({ email, password }); // post 요청: 데이터 생성, 데이터 조회 보안이 필요한 경우
     return {
-      email: email,
+      email,
       token: response.headers.authorization,
     };
   }
 );
 
-export const { setEmail, logOut } = userSlice.actions;
-
+export const { setEmail, setToken, logOut } = userSlice.actions;
 export const selectUser = (state) => state.user.user;
-
 export default userSlice.reducer;

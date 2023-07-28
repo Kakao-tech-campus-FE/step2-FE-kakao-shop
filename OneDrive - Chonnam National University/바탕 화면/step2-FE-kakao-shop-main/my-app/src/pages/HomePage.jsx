@@ -1,4 +1,4 @@
-import MainForm from "../components/orgamisms/MainForm";
+import MainForm from "../components/organisms/MainForm";
 
 const MainPage = () => {
   return <MainForm />;

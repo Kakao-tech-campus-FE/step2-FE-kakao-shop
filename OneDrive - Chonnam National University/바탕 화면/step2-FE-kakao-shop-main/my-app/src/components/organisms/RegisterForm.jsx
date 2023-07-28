@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { register } from "../../services/api";
+import { register } from "../../services/user";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
