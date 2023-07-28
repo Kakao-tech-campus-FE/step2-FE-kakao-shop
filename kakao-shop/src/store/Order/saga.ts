@@ -39,10 +39,10 @@ export function* watchApprove({ payload }: ApproveRequestAction) {
   try {
     yield call(approveAPI, payload);
     yield put(approveSuccessAction());
-    yield put(orderProductRequestAction());
     const response: AxiosResponse<OrderResponse> = yield call(orderAPI);
     yield put(orderProductSuccessAction(response));
     yield put(popupCloseAction());
+    yield;
   } catch (err: unknown) {
     // const error = err as AxiosError<OrderResponse>;
   }
