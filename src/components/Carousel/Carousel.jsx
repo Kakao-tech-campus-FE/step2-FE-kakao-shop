@@ -5,6 +5,7 @@ import Container from "../atoms/Container";
 import Photo from "../atoms/Photo";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
+import Logo from "../atoms/Logo";
 
 function Carousel({ images }) {
   const [curImgIdx, setCurImgIdx] = useState(0);
@@ -20,9 +21,9 @@ function Carousel({ images }) {
   };
 
   return (
-    <Container className="flex relative overflow-hidden">
+    <Container className="w-full min-w-[1280px] h-[300px] flex relative overflow-hidden">
       {images.map((image, idx) => (
-        <Photo src={image} alt={`carouselImage-${idx}`} className="w-screen" />
+        <img src={image} alt={`carouselImage-${idx}`} className="w-full" />
       ))}
       <Button
         onClick={handlePrevImg}
