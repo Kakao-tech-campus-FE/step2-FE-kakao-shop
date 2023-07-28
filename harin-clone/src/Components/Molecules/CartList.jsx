@@ -88,7 +88,7 @@ const CartList = ({ data }) => {
     <div className=" bg-stone-100 flex min-h-screen justify-center items-centers">
       <Container className="mx-auto w-3/5 h-2/3 align-middle border-solid">
         <Box className="card">
-          <h1 className="text-center font-bold font-l p-2">장바구니</h1>
+          <h1 className="text-center font-bold p-2">장바구니</h1>
           <div className="flex justify-between bg-stone-50 ">
             <div className="p-3 ">
               <input type="checkbox" id="selectAll" />
@@ -100,7 +100,6 @@ const CartList = ({ data }) => {
           </div>
         </Box>
 
-        {/* <Card> */}
         {/* 상품명 장바구니 */}
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
@@ -115,7 +114,7 @@ const CartList = ({ data }) => {
               </>
             );
           })}
-        {/* </Card> */}
+
         <Card className="card mt-2">
           <div className="flex justify-between p-5">
             <span className="font-bold text-xl">주문 예상금액</span>
