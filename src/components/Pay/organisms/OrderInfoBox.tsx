@@ -8,7 +8,7 @@ function OrderInfoBox({ products }: OrderInfoBoxProps | { products: undefined })
     <div className="border-x border-t border-gray-200 mb-5">
       <div className="font-semibold text-lg border-b border-gray-200 p-2">주문상품 정보</div>
       {products
-        ? products.map((product) => <OrderInfos options={product.carts} productName={product.productName}></OrderInfos>)
+        ? products.map((product) => <OrderInfos key={product.id} options={product.carts} productName={product.productName}></OrderInfos>)
         : '주문할 상품이 존재하지 않습니다.'}
     </div>
   );
