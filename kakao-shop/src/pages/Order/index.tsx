@@ -10,7 +10,12 @@ import ListSection from '@components/page/Order/ListSection';
 import Submit from '@components/page/Order/Submit';
 import TotalResult from '@components/page/Order/TotalResult';
 
-const CHECKBOX_DATA = ['카카오페이 결제조건 및 개인정보 제3자 제공 동의', '개인정보 제3자 제공 동의'];
+export type CheckboxData = { name: string; 'data-testid': string };
+
+const CHECKBOX_DATA = [
+  { name: '카카오페이 결제조건 및 개인정보 제3자 제공 동의', 'data-testid': 'order-checkbox1' },
+  { name: '개인정보 제3자 제공 동의', 'data-testid': 'order-checkbox2' },
+];
 
 const Order = () => {
   const dispatch = useDispatch();

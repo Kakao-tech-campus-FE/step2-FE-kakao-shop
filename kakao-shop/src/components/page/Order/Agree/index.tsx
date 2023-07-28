@@ -1,28 +1,37 @@
 import styled from '@emotion/styled';
 import type { ChangeEvent, ChangeEventHandler } from 'react';
 
+import { CheckboxData } from '@pages/Order';
+
 import { CheckBox } from '@components/atom';
 
 type Props = {
   isAllChecked: boolean;
   checkedListById: string[];
   setCheckedListById: React.Dispatch<React.SetStateAction<string[]>>;
-  CHECKBOX_DATA: string[];
+  CHECKBOX_DATA: CheckboxData[];
 };
 
 const Agree = ({ isAllChecked, checkedListById, setCheckedListById, CHECKBOX_DATA }: Props) => {
   return (
     <S.Root>
       <S.Header>
-        <CheckBox onChange={(e: ChangeEvent) => toggleAllCheckedById(e)} checked={isAllChecked}>
+        <CheckBox
+          data-testid={'order-allChecked'}
+          onChange={(e: ChangeEvent) => toggleAllCheckedById(e)}
+          checked={isAllChecked}>
           <S.CheckboxBigText>전체 동의하기</S.CheckboxBigText>
         </CheckBox>
       </S.Header>
 
       <S.Body>
         {CHECKBOX_DATA.map(item => (
-          <CheckBox key={item} onChange={handleOnChange(item)} checked={checkedListById.includes(item)}>
-            <S.CheckboxText>{item}</S.CheckboxText>
+          <CheckBox
+            key={item.name}
+            onChange={handleOnChange(item.name)}
+            checked={checkedListById.includes(item.name)}
+            data-testid={item['data-testid']}>
+            <S.CheckboxText>{item.name}</S.CheckboxText>
           </CheckBox>
         ))}
       </S.Body>
@@ -54,7 +63,7 @@ const Agree = ({ isAllChecked, checkedListById, setCheckedListById, CHECKBOX_DAT
     const { checked } = event.target as HTMLInputElement;
 
     if (checked) {
-      setCheckedListById(CHECKBOX_DATA.map(item => item));
+      setCheckedListById(CHECKBOX_DATA.map(item => item.name));
     } else {
       setCheckedListById([]);
     }
