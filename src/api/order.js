@@ -4,6 +4,6 @@ export const getOrders = (id) => {
   return instance.get(`/orders/${id}`);
 };
 
-export const postOrder = () => {
+export const saveOrder = () => {
   return instance.post(`/orders/save`);
 };
