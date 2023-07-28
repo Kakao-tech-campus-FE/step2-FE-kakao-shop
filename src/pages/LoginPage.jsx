@@ -2,7 +2,7 @@ import LoginForm from "../components/organisms/LoginForm";
 
 const LoginPage = () => {
   return (
-    <div className="flex justify-center">
+    <div>
       <LoginForm />
     </div>
   );

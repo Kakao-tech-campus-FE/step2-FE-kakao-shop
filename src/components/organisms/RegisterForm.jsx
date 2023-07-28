@@ -6,7 +6,7 @@ import Button from "../atoms/Button";
 import { register } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import useInputError from "../../hooks/useInputError";
 
 const RegisterForm = () => {
@@ -39,8 +39,10 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container>
-      <Title>회원가입</Title>
+    <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 border p-16 grid gap-8">
+      <Link to="/">
+        <img src="/logoKakao.svg" alt="카카오톡 쇼핑하기" className="w-32 block m-auto" />
+      </Link>
 
       <InputGroup
         id="username"
@@ -95,7 +97,7 @@ const RegisterForm = () => {
         회원가입
       </Button>
       <>{errorMsg}</>
-    </Container>
+    </div>
   );
 };
 

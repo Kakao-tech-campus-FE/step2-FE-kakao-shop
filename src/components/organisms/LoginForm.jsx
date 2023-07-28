@@ -5,7 +5,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -32,8 +32,14 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h1>로그인</h1>
+    <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 border p-16 grid gap-8">
+      <Link to="/">
+        <img
+          src="/logoKakao.svg"
+          alt="카카오톡 쇼핑하기"
+          className="w-32 block m-auto"
+        />
+      </Link>
       <InputGroup
         id="email"
         type="email"
@@ -41,7 +47,7 @@ const LoginForm = () => {
         placeholder="카카오메일 아이디, 이메일, 전화번호"
         value={value.email}
         onChange={handleOnChange}
-        className="w-96 h-10 border-b-2 border-b-gray focus:outline-none focus:border-b-2 focus:border-b-black"
+        className="w-96 h-10 border-b-2 border-b-gray focus:outline-none focus:border-b-2 focus:border-b-black "
       />
 
       <InputGroup
@@ -55,12 +61,15 @@ const LoginForm = () => {
       />
 
       <Button
-        className="w-96 h-12 bg-kakaoYellow rounded-lg hover:brightness-90"
+        className="w-96 h-12 bg-yellow-300 rounded-lg hover:brightness-90"
         onClick={loginReq}
       >
         로그인
       </Button>
       {errorMsg && <div>{errorMsg}</div>}
+      <Link to="/signup" className="block m-auto">
+        회원가입
+      </Link>
     </div>
   );
 };
