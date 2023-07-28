@@ -1,15 +1,24 @@
-const Button = ({children, onClick}) => {
-	return (
-		<button onClick={(e) => {
-			e.preventDefault()
-			onClick()
-		}}>
-			{children}
-		</button>
-	)
-}
+import PropTypes from 'prop-types';
+
+const Button = ({ onClick, disabled, children }) => {
+  return (
+    <button
+      onClick={(e) => {
+        e.preventDefault();
+        onClick();
+      }}
+      disabled={disabled}
+    >
+      {children}
+    </button>
+  );
+};
+
+Button.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string, // Add className prop if needed
+};
 
 export default Button;
-
-// button은 기본적으로 submit을 보내서 페이지를 리렌더링 시킨다.
-// onClick 메서드를 통해 관리를 해줄 필요가 있다. e.preventDefault();
