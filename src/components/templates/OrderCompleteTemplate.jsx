@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import Container from "../atoms/Container";
 import comma from "../../utils/convert";
 import Box from "../atoms/Box";
@@ -7,13 +7,8 @@ import Button from "../atoms/Button";
 
 const OrderCompleteTemplate = ({ data }) => {
   const navigate = useNavigate();
-  const [id, setId] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  useEffect(() => {
-    setId(data?.data?.response?.id);
-    setTotalPrice(data?.data?.response?.totalPrice);
-  }, [data]);
+  const id = useMemo(() => data?.data?.response?.id, [data]);
+  const totalPrice = useMemo(() => data?.data?.response?.totalPrice, [data]);
 
   return (
     <div className="bg-gray-100 mt-[80px] pb-[12px]">

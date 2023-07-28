@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useMutation } from "react-query";
 import { order } from "../../api/order";
 import comma from "../../utils/convert";
@@ -9,8 +9,6 @@ import Button from "../atoms/Button";
 
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -18,10 +16,8 @@ const OrderTemplate = ({ data }) => {
   const agreePaymentRef = useRef(null);
   const agreePolicyRef = useRef(null);
 
-  useEffect(() => {
-    setProducts(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
-  }, [data]);
+  const products = useMemo(() => data?.data?.response?.products, [data]);
+  const totalPrice = useMemo(() => data?.data?.response?.totalPrice, [data]);
 
   const handleAllAgree = (e) => {
     const value = e.target.checked;
