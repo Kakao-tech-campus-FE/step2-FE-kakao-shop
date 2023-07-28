@@ -26,13 +26,14 @@ instance.interceptors.response.use(
     if (response) {
       // 상태 코드에 따른 처리
       if (response.status >= 300 && response.status < 400) {
-        console.error('Redirection:', response.data);
+        console.error('Redirection:', response.data.error.message);
       } else if (response.status >= 400 && response.status < 500) {
-        console.error('Client Error:', response.data);
+        alert(response.data.error.message);
+        console.error('Client Error:', response.data.error.message);
       } else if (response.status >= 500) {
-        console.error('Server Error:', response.data);
+        console.error('Server Error:', response.data.error.message);
       } else {
-        console.error('Unhandled Error:', response.data);
+        console.error('Unhandled Error:', response.data.error.message);
       }
     } else {
       // 네트워크 오류 등의 처리
