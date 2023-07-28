@@ -52,6 +52,11 @@ const MainProductTemplate = () => {
 
   return (
     <MainContainer className="whitespace-break-spaces px-12">
+      <div className="my-20">
+        <span className="text-center text-2xl font-extrabold border-solid border-0 border-b-4 border-kakao-yellow">
+          오늘의 딜
+        </span>
+      </div>
       <Suspense fallback={<Loader />}>
         <ProductGrid products={products} isLoading={loading} />
         <div ref={bottomObserver}></div>

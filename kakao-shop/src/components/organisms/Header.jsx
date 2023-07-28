@@ -7,6 +7,7 @@ import Link from "../atoms/Link";
 import { SlMenu } from "react-icons/sl";
 import { IoSearchOutline } from "react-icons/io5";
 import { BsCart2 } from "react-icons/bs";
+import { LiaTruckSolid } from "react-icons/lia";
 import Photo from "../atoms/Photo";
 
 import { logout } from "../../utils/user";
@@ -44,9 +45,9 @@ export default function Header() {
   }, [data]);
   return (
     <header>
-      <MainContainer>
+      <MainContainer className="fixed top-0 border border-solid border-t-0 border-x-0 border-gray-100 bg-white z-50 w-screen">
         <div className="innerhead flex justify-between items-center">
-          <div className="innerhead-left flex gap-4 items-center h-14">
+          <div className="innerhead-left flex gap-4 items-center h-14 pl-10">
             <Photo
               src="/logoKakao.png"
               alt="kakao-shopping"
@@ -79,9 +80,10 @@ export default function Header() {
               <span className="ml-2">카테고리</span>
             </div>
           </div>
-          <div className="innerhead-right">
+          <div className="innerhead-right w-1/5 min-w-max">
             <div className="util flex gap-4 items-center">
-              <IoSearchOutline size="20" />
+              <IoSearchOutline size="27" />
+              <LiaTruckSolid size="25" />
               <Link to={userEmail ? "/cart" : "/login"} className="relative">
                 {count > 0 && <CartBadge count={count} />}
                 <BsCart2 size="20" />

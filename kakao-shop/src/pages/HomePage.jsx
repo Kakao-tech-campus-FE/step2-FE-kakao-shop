@@ -1,4 +1,5 @@
-import MainProductTemplate from '../components/templates/MainProductTemplate';
+import MainProductTemplate from "../components/templates/MainProductTemplate";
+import Photo from "../components/atoms/Photo";
 
 /**
  * 쇼핑하기 사이트의 메인 페이지
@@ -7,12 +8,12 @@ import MainProductTemplate from '../components/templates/MainProductTemplate';
  */
 const HomePage = () => {
   return (
-    <div className="home-page">
+    <div className="home-page mt-14">
+      {/* 추후 캐러셀로 변경 */}
+      <section className="main-banner">
+        <Photo src="carouselItem1.jpeg" alt="메인 배너" />
+      </section>
       <section className="main-content">
-        <div className="my-10">
-          <h2 className="text-center text-4xl font-extrabold">오늘의 추천 아이템</h2>
-          <p className="mt-2 text-center text-lg text-gray-500">카카오의 추천 아이템을 특가로 만나보세요</p>
-        </div>
         <MainProductTemplate />
       </section>
     </div>
