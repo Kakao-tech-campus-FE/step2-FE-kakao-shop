@@ -4,6 +4,7 @@ import Loader from "./components/atoms/Loader";
 
 // layouts
 import MainLayout from "./layouts/MainLayout";
+import GeneralLayout from "./layouts/GeneralLayout";
 
 // pages
 import RegisterPage from "./pages/RegisterPage";
@@ -36,6 +37,8 @@ function App() {
                 {/* 공통 레이아웃 */}
                 <Route element={<MainLayout />}>
                   <Route path="/" element={<HomePage />} />
+                </Route>
+                <Route element={<GeneralLayout />}>
                   <Route path="/product/:id" element={<ProductDetailPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/order" element={<OrderPage />} />
