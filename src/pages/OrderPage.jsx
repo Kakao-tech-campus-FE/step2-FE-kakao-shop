@@ -1,9 +1,13 @@
-import Title from "../components/atoms/Title";
+import { Suspense } from "react";
+import OrderTemplate from "../components/templates/OrderTemplate";
+import Loader from "../components/atoms/Loader";
 
 const OrderPage = () => {
-    return (
-        <Title>주문 페이지</Title>
-    );
+  return (
+    <Suspense fallback={<Loader />}>
+      <OrderTemplate />
+    </Suspense>
+  );
 };
 
 export default OrderPage;
