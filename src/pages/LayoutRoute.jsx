@@ -7,6 +7,8 @@ import ErrorPage from "./ErrorPage";
 import ProductDetailPage from "./ProductDetailPage";
 import CartPage from "./CartPage";
 import RequiredAuthLayout from "../layouts/RequiredAuthLayout";
+import OrderPage from "./OrderPage";
+import OrderCompletePage from "./OrderCompletePage";
 
 /** 레이아웃 라우트
  *
@@ -22,6 +24,8 @@ const LayoutRoute = () => {
         </Route>
         <Route element={<RequiredAuthLayout />}>
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/orders/complete/:id" element={<OrderCompletePage />} />
         </Route>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<RegisterPage />} />

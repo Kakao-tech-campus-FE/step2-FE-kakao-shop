@@ -1,16 +1,16 @@
 import instance from "./index";
 import { getCookie } from "../store/slices/authSlice";
 
-export const addCart = (payload) => {
-  return instance.post("/carts/add", payload, {
+export const addCart = (items) => {
+  return instance.post("/carts/add", items, {
     headers: {
       Authorization: getCookie("user"),
     },
   });
 };
 
-export const updateCart = (payload) => {
-  return instance.post("/carts/update", payload, {
+export const updateCart = (items) => {
+  return instance.post("/carts/update", items, {
     headers: {
       Authorization: getCookie("user"),
     },

@@ -17,7 +17,7 @@ import { updateCart } from "../../api/cart";
  * @constructor
  */
 const CartList = ({ data }) => {
-  const route = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -146,15 +146,9 @@ const CartList = ({ data }) => {
         <Button
           className="order-button w-[870px] h-[54px] bg-yellow-kakao font-bold text-[16px]"
           onClick={() => {
-            alert("주문하기 구현 예정");
-            // 주문하기는 다음 주에 구현 예정!
-            // 장바구니 정보를 수정하는 API 호출 (변경이 있는 경우에)
-            // 주문 페이지로 이동
-            // 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
             mutate(updatePayload, {
               onSuccess: (data) => {
-                // navigate to order page
-                route.push("/order");
+                navigate("/order");
               },
               onError: (error) => {},
             });
