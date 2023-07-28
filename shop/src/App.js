@@ -26,7 +26,7 @@ function App() {
             <Route path='/orders' element={<OrderPage/>}></Route>
             <Route path='/orders/:id' element={<OrderCompletePage/>}></Route>
             {/* 404 에러 페이지 */}
-            <Route path="/product/404" element={<NotFoundPage />} />
+            <Route path="/404" element={<NotFoundPage />} />
           </Route>
 
         </Routes>
