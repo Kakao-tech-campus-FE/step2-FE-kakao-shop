@@ -9,6 +9,7 @@ import { updateCart } from "../../apis/cart";
 
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
 
   const { mutate } = useMutation({
@@ -17,6 +18,7 @@ const CartList = ({ data }) => {
 
   useEffect(() => {
     setCartItems(data?.data?.response?.products);
+    setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
   useEffect(() => {
@@ -61,7 +63,7 @@ const CartList = ({ data }) => {
         },
       ];
     });
-
+    setTotalPrice((prev) => prev + price);
     setCartItems((prev) => {
       return prev.map((item) => {
         return {
@@ -92,7 +94,7 @@ const CartList = ({ data }) => {
         },
       ];
     });
-
+    setTotalPrice((prev) => prev - price);
     setCartItems((prev) => {
       return prev.map((item) => {
         return {
@@ -107,18 +109,6 @@ const CartList = ({ data }) => {
       });
     });
   };
-
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce(
-      (acc, item) =>
-        acc +
-        item.carts.reduce(
-          (subtotal, cart) => subtotal + cart.quantity * cart.price,
-          0
-        ),
-      0
-    );
-  }, [cartItems]);
 
   return (
     <div className="relative justify-center mt-24 mx-60 text-black">
