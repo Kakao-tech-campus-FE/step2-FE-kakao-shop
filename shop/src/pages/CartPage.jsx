@@ -1,19 +1,24 @@
-import React, { Suspense} from 'react'
+import React, { Suspense, useEffect} from 'react'
 import { useQuery } from 'react-query'
 import Loader from "../components/atoms/Loader"
 import CartList from '../components/molecules/CartList'
 import { getCart } from '../services/cart'
+import { useNavigate } from 'react-router-dom'
 
 const CartPage = () => {
-  const {data} = useQuery("carts", 
+  const navigate = useNavigate()
+  const {data, error} = useQuery("carts", 
     getCart,
     {
-      onError: (error) => {
-        console.error("Error fetching cart data:", error);
-      },
       suspense: true
     }
   )
+  
+  useEffect(() => {
+    if (error) {
+      navigate('/404')
+    }
+  }, [error, navigate]);
 
   return (
     <Suspense fallback={<Loader/>}>
