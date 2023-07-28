@@ -7,6 +7,8 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import { LoaderContainer, DefaultSpinner } from "react-global-loader";
 import ErrorPage from "./pages/ErrorPage";
 import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 function App() {
   return (
@@ -25,7 +27,10 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+          </Route>
+          <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
+            <Route path="/order" element={<OrderPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

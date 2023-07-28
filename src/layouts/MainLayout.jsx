@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import GNB from "../components/molecules/Gnb";
-
+import Footer from "../components/molecules/Footer";
 const MainLayout = () => {
   return (
     <>
@@ -11,6 +11,7 @@ const MainLayout = () => {
         <Outlet />
       </div>
       {/*푸터 영역 */}
+      <Footer />
     </>
   );
 };
