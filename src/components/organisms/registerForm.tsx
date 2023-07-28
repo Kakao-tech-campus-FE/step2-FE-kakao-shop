@@ -10,6 +10,7 @@ import { debounce } from '../../utils/debounce';
 import { checkEmail } from '../../apis/user';
 import { DEBOUNCE_TIMEOUT } from '../../utils/common';
 import Loader from '../atoms/loader';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
 
 interface RegisterFormProps {
   // Request registration
@@ -66,17 +67,17 @@ export default function RegisterForm({
                 onChange: debounce(async () => {
                   if (!getFieldState('email', formState).invalid) {
                     const value = getValues('email');
-                    try {
-                      const response = await checkEmail(value);
-
-                      if (response.data.success === true) {
-                        setIsEmailDuplicated(false);
-                      } else {
-                        setIsEmailDuplicated(true);
-                      }
-                    } catch (error) {
-                      setIsEmailDuplicated(true);
-                    }
+                    await fetchWithHandler(
+                      async () => checkEmail(value),
+                      {
+                        onSuccess: () => {
+                          setIsEmailDuplicated(false);
+                        },
+                        onError: () => {
+                          setIsEmailDuplicated(true);
+                        },
+                      },
+                    );
                   }
                 }, DEBOUNCE_TIMEOUT),
               })}
