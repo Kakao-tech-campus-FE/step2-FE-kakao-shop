@@ -6,7 +6,7 @@ import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
-import {useMutation} from "react-query";
+import {useMutation} from "@tanstack/react-query";
 import { updateCart } from "../services/cart";
 
 const CartList = ({data}) => {

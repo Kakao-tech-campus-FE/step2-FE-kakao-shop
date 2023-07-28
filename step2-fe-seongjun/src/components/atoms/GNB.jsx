@@ -38,13 +38,13 @@ function GNB() {
   return (
     <Header>
       <Container>
-        <Link to="/" className="root_page" style={{paddingTop: 31}}>
-          <img src={"/logoKakao.png"} alt="카카오 쇼핑 로고" height={30}/>
+        <Link to="/" className="root_page" >
+          <img src={"/logoKakao.png"} alt="카카오 쇼핑 로고" className=" h-8 mt-6"/>
         </Link>
         <Nav>
               {/* 장바구니 버튼 */}
               <Link to="/cart">
-                <img src={"/cart.png"} alt="장바구니 버튼" height={30}/>
+                <img src={"/cart.png"} alt="장바구니 버튼" className=" h-8 "/>
               </Link>
             <span className="divison">|</span>
               {/* 로그인 버튼 */}
@@ -52,7 +52,7 @@ function GNB() {
                 <StyledLink
                   to="/login"
                   onClick={handleLogout}
-                  style={{textDecoration: "none", color: "black"}}
+                  className=" font-bold no-underline text-black"
                 >
                   {" "}
                   로그아웃{" "}
@@ -60,7 +60,7 @@ function GNB() {
               ) : (
                 <Link
                   to="/login"
-                  style={{textDecoration: "none", color: "black"}}
+                  className=" font-bold no-underline text-black"
                 >
                   {" "}
                   로그인{" "}
