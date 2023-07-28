@@ -40,26 +40,30 @@ const OrderTemplate = ({ data }) => {
   const OrderItems = () => {
     return products?.map((item) => {
       return (
-        <div key={item.id} className="">
+        <div key={item.id} className="border rounded bg-white p-4 my-2">
           {item.carts.map((option) => {
             // 수량이 0인 옵션은 표현하지 않는다
             if (option.quantity !== 0) {
               return (
-                <div className="flex items-center gap-3" key={option.id}>
+                <div className="flex items-center gap-3 py-2" key={option.id}>
                   <img
-                    className="w-[60px] h-[60px] border rounded-lg"
+                    className="w-[80px] h-[80px] border rounded-lg"
                     src={`${process.env.REACT_APP_API_URL}/images/${item.id}.jpg`}
                     alt=""
                   />
                   <div className="product-info">
                     {/* 상품 이름, CSS와 항상 바인딩이 될 필요는 없다. 직관적 이해에 도움을 주도록 사용할 수 있다 */}
                     <div className="product-name-option-quantity">
-                      <p>{item.productName}</p>
-                      <span>[옵션] {option.option.optionName}, </span>
+                      <p className="font-semibold">{item.productName}</p>
+                      <span className="text-sm">
+                        [옵션] {option.option.optionName},{" "}
+                      </span>
                       <span>{option.quantity}개</span>
                     </div>
                     <div className="price">
-                      <p>{comma(option.price)}원</p>
+                      <p className="text-[17px] font-bold">
+                        {comma(option.price)}원
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -77,54 +81,66 @@ const OrderTemplate = ({ data }) => {
       </span>
     </div>
   ) : (
-    <div className="py-10 bg-[#F4F4F4] bg-opacity-70">
-      <div className="block mx-auto max-w-[870px] w-full bg-white">
-        <div className="border rounded py-4 text-center">
-          <h1 className="text-sm font-bold">주문하기</h1>
+    <div className="pt-[15px] pb-[50px] bg-[#F4F4F4] bg-opacity-70">
+      <div className="block mx-auto max-w-[870px] w-full ">
+        <div className="border rounded py-4 text-center bg-white">
+          <h1 className="text-xl font-bold">주문하기</h1>
         </div>
-        <div className="border py-4">
-          <h1 className="text-sm font-bold">배송지 정보</h1>
-        </div>
-        <div className="border py-4">
-          <h1 className="flex items-center gap-2">
-            홍길동
-            <span className="border text-blue-400 bg-blue-100 rounded text-xs p-1">
-              기본 배송지
-            </span>
-          </h1>
-        </div>
-        <div className="border py-4">
-          <span>010-0000-0000</span>
-        </div>
-        <div className="border py-4">
-          <span>서울특별시 강남구 도곡동 000-00</span>
+        <div className="ship-info border rounded my-2 bg-white">
+          <div className=" p-4 pb-3">
+            <h1 className="text-xl font-bold">배송지 정보</h1>
+          </div>
+          <div className="user-ship-info flex flex-col gap-2 px-4 pb-4">
+            <div className="">
+              <h1 className="flex items-center gap-2 text-lg font-bold">
+                홍길동
+                <span className=" text-blue-400 bg-blue-100 rounded text-xs p-1">
+                  기본 배송지
+                </span>
+              </h1>
+            </div>
+            <div className="text-[15px]">
+              <span>010-0000-0000</span>
+            </div>
+            <div className="text-[14px]">
+              <span>서울특별시 도곡동 000-00</span>
+            </div>
+            <textarea
+              className="border rounded h-16 p-3"
+              placeholder="배송시 요청사항을 입력해주세요 (최대 50자)"
+            />
+          </div>
         </div>
         {/* 각 주문의 정보 */}
-        <div className="border py-4">
-          <h2>주문상품 정보</h2>
+        <div className="border rounded p-4 bg-white">
+          <span className="text-lg font-bold">주문상품 정보 </span>
+          {/* <span className="font">(총 `${}`개)</span> */}
         </div>
         <OrderItems />
         {/* 총 주문 금액 */}
-        <div className="flex items-center justify-between border p-4">
-          <h3>총 주문 금액</h3>
-          <span className="price">{comma(totalPrice)}원</span>
+        <div className="flex items-center justify-between border p-4 bg-white">
+          <span className="text-xl font-bold">총 주문 금액</span>
+          <span className="price text-xl font-bold">{comma(totalPrice)}원</span>
         </div>
         {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        <div className="border p-4">
-          <div className="flex">
+        <div className="flex flex-col gap-4 border rounded my-2 p-4 bg-white">
+          <div className="flex items-center gap-2">
             <input
+              className="h-5 w-5"
               type="checkbox"
               id="all-agree"
               ref={allAgreeRef}
               checked={agreePayment && agreePolicy}
               onChange={handleAllAgree}
             />
-            <label htmlFor="all-agree" className="text-xl font-bold">
+            <label htmlFor="all-agree" className="text-lg font-bold">
               전체 동의
             </label>
           </div>
-          <div className="flex">
+          <hr />
+          <div className="flex items-center gap-2">
             <input
+              className="h-5 w-5"
               type="checkbox"
               id="agree"
               ref={agreePaymentRef}
@@ -132,12 +148,13 @@ const OrderTemplate = ({ data }) => {
               name="payment-agree"
               onChange={handleAgreement}
             />
-            <label htmlFor="agree" className="text-xl font-bold">
+            <label htmlFor="agree" className="text-base ">
               구매조건 확인 및 결제 진행 동의
             </label>
           </div>
-          <div className="flex">
+          <div className="flex items-center gap-2">
             <input
+              className="h-5 w-5"
               type="checkbox"
               id="policy"
               ref={agreePolicyRef}
@@ -145,14 +162,23 @@ const OrderTemplate = ({ data }) => {
               name="policy-agree"
               onChange={handleAgreement}
             />
-            <label htmlFor="policy" className="text-xl font-bold">
+            <label htmlFor="policy" className="text-base">
               개인정보 제 3자 동의
             </label>
           </div>
         </div>
+        <div className="border rounded my-2 p-4 bg-slate-50">
+          <span className="text-base font-bold">법적고지 </span>
+          <p className="text-sm text-neutral-500">
+            (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이
+            포함되어 있습니다. 개별 판매자가 판매하는 상품에 대해 (주)카카오는
+            통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송
+            및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
+          </p>
+        </div>
         {/* 결제하기 버튼 */}
         <button
-          className={` w-full p-4 font-medium ${
+          className={`border rounded w-full my-4 p-4 font-medium ${
             agreePayment && agreePolicy
               ? "bg-[#feeb00] hover:bg-yellow-300"
               : "bg-neutral-300 text-neutral-500"
@@ -189,6 +215,7 @@ const OrderTemplate = ({ data }) => {
             {comma(totalPrice)}원 결제하기
           </span>
         </button>
+        <hr />
       </div>
     </div>
   );
