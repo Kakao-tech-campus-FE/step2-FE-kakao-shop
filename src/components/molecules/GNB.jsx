@@ -9,7 +9,7 @@ const GNB = () => {
     const [isLogin, setIsLogin] = useState(false);
 
     useEffect(() => {
-        if (localStorage.getItem('token') != null) setIsLogin(true);
+        if (localStorage.getItem('token') !== null) setIsLogin(true);
     }, [isLogin]);
 
     const handleLogout = () => {
@@ -18,21 +18,19 @@ const GNB = () => {
     };
 
     return (
-        <header className="header">
-            <Container className="contents" justify="space-around">
-                <Link to={-1}>
-                    <AiOutlineLeft color="#000" size="1.5rem" />
+        <div className="header w-[100%] sticky top-0 flex justify-around p-3 bg-white">
+            <Link to={-1}>
+                <AiOutlineLeft color="#000" size="1.5rem" />
+            </Link>
+            <Link to={URL.HOME}>
+                <img src={logo} alt="Kakao Logo" height={20} className="h-10" />
+            </Link>
+            <nav>
+                <Link to={URL.CART}>
+                    <AiOutlineShoppingCart color="#000" size="1.5rem" />
                 </Link>
-                <Link to={URL.HOME}>
-                    <img src={logo} alt="Kakao Logo" height={30} />
-                </Link>
-                <nav>
-                    <Link to={URL.CART}>
-                        <AiOutlineShoppingCart color="#000" size="1.5rem" />
-                    </Link>
-                </nav>
-            </Container>
-        </header>
+            </nav>
+        </div>
     );
 };
 

@@ -23,7 +23,7 @@ const Carousel = ({ data }) => {
     };
 
     useEffect(() => {
-        if (!!slideRef) {
+        if (slideRef.current) {
             slideRef.current.style.transition = `all 0.5s ease-in-out`;
             slideRef.current.style.transform = `translateX(-${currentIdx * 312}px)`; // currentIdx에 해당하는 이미지 위치로 이동!
         }

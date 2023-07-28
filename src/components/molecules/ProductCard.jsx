@@ -7,7 +7,7 @@ const ProductCard = ({ product, className = '' }) => {
         <Card className={className} to={`/product/${product.id}`}>
             <Photo
                 className="cardImage"
-                src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
+                src={`${import.meta.env.VITE_API_URL}${product.image}`}
                 alt={product.productName}
             />
             <div className="product-name">{product.productName}</div>

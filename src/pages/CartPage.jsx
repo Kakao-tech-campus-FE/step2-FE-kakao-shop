@@ -6,6 +6,7 @@ import CartList from '../components/molecules/CartList';
 
 const CartPage = () => {
     const { data } = useQuery(['cart'], () => getCart());
+    console.log(data);
 
     return <Suspense fallback={<Loader />}>{data && <CartList data={data} />}</Suspense>;
 };
