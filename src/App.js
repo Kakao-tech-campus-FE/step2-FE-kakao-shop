@@ -13,6 +13,9 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import Checkout from "./pages/Checkout";
+import OrderSuccessPage from "./pages/OrderSuccessPage";
+import OrderFailPage from "./pages/OrderFailPage";
 
 // const HomePage = lazy(() => import('./pages/HomePage'));
 
@@ -26,12 +29,18 @@ function App() {
                 <Route path="/login" element={<LoginPage />}/>
                 <Route path="/register" element={<RegisterPage />}/>
                 <Route path="/notFound" element={<NotFoundPage />} />
+                {/* <Route path="/payment" element={<Checkout />} />
+                <Route path="/payment/success" element={<OrderSuccessPage />} />
+                <Route path="/payment/fail" element={<OrderFailPage />} /> */}
+                
                 {/* 공통 레이아웃 */}
                 <Route element={<MainLayout />}>
                   <Route path="/" element={<HomePage />} />
                   <Route path="/product/:id" element={<ProductDetailPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/order" element={<OrderPage />} />
+                  <Route path="/order/success" element={<OrderSuccessPage />} />
+                  <Route path="/order/fail" element={<OrderFailPage />} />
                 </Route>
               </Routes>
             </BrowserRouter>
