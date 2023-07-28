@@ -21,6 +21,16 @@ export default function AgreeOrderTerms({
     }
   }, [isAgreed]);
 
+  const handleAgreeAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsAgreed((prev) => prev.map(() => e.target.checked));
+  };
+
+  const handleAgree = (e: React.ChangeEvent<HTMLInputElement>, agreeId: number) => {
+    const isAgreedCopy = isAgreed.slice();
+    isAgreedCopy[agreeId] = e.target.checked;
+    setIsAgreed(isAgreedCopy);
+  };
+
   return (
     <fieldset className="mb-4 flex flex-col gap-4 rounded-sm border border-stone-300 p-4">
       <section className="flex flex-col gap-1">
@@ -32,9 +42,7 @@ export default function AgreeOrderTerms({
             type="checkbox"
             id="agree-all"
             checked={isAllAgreed}
-            onChange={(e) => {
-              setIsAgreed((prev) => prev.map(() => e.target.checked));
-            }}
+            onChange={handleAgreeAll}
           />
           <span className="text-lg font-bold">전체 동의</span>
         </label>
@@ -46,11 +54,7 @@ export default function AgreeOrderTerms({
             type="checkbox"
             id="term-1"
             checked={isAgreed[0]}
-            onChange={(e) => {
-              const isAgreedCopy = isAgreed.slice();
-              isAgreedCopy[0] = e.target.checked;
-              setIsAgreed(isAgreedCopy);
-            }}
+            onChange={(e) => handleAgree(e, 0)}
           />
           구매조건 확인 및 결제 진행 동의
         </label>
@@ -62,11 +66,7 @@ export default function AgreeOrderTerms({
             type="checkbox"
             id="term-2"
             checked={isAgreed[1]}
-            onChange={(e) => {
-              const isAgreedCopy = isAgreed.slice();
-              isAgreedCopy[1] = e.target.checked;
-              setIsAgreed(isAgreedCopy);
-            }}
+            onChange={(e) => handleAgree(e, 1)}
           />
           개인정보 제 3자 제공 동의
         </label>

@@ -10,6 +10,19 @@ interface OptionProps {
 export default function Option({ children, optionDescription }:OptionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const angleDefinition = isExpanded
+    ? icon({ name: 'angle-up', style: 'solid' })
+    : icon({ name: 'angle-down', style: 'solid' });
+
+  const handleExpand = () => {
+    setIsExpanded((prev) => !prev);
+  };
+
+  const handleOptionElementClick = (e: React.MouseEvent<HTMLLIElement>) => {
+    e.stopPropagation();
+    setIsExpanded((prev) => !prev);
+  };
+
   return (
     <div className="relative">
       <button
@@ -17,23 +30,20 @@ export default function Option({ children, optionDescription }:OptionProps) {
         type="button"
         aria-haspopup="listbox"
         aria-expanded={isExpanded}
-        onClick={() => setIsExpanded((prev) => !prev)}
+        onClick={handleExpand}
       >
         <div>
           {optionDescription}
         </div>
         {isExpanded
-          ? <FontAwesomeIcon icon={icon({ name: 'angle-up', style: 'solid' })} />
-          : <FontAwesomeIcon icon={icon({ name: 'angle-down', style: 'solid' })} />}
+          ? <FontAwesomeIcon icon={angleDefinition} />
+          : <FontAwesomeIcon icon={angleDefinition} />}
       </button>
       {isExpanded ? (
         <ul role="listbox" className="absolute z-30 flex w-full flex-col rounded-b border border-t-0 border-stone-300 bg-white">
           {Children.map(children, (child) => (
             <li
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsExpanded((prev) => !prev);
-              }}
+              onClick={handleOptionElementClick}
               role="presentation"
             >
               {child}
