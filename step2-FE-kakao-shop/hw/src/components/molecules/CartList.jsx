@@ -14,7 +14,7 @@ const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [updatePayload, setUpdatePayload] = useState({});
+  const [updatePayload, setUpdatePayload] = useState([]);
   // const updatePayload = useRef([]);
   // const initPayload = useRef([]);
 
@@ -123,7 +123,7 @@ const CartList = ({ data }) => {
 
           // navigate to order page
           // 주문 페이지로 이동
-          route.push("/order");
+          route("/order");
         }}
       >
         <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
