@@ -17,6 +17,7 @@ import OrderPage from "./pages/OrderPage";
 import Checkout from "./pages/Checkout";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import OrderFailPage from "./pages/OrderFailPage";
+import OrderTempPage from "./pages/OrderTempPage";
 
 // const HomePage = lazy(() => import('./pages/HomePage'));
 
@@ -42,6 +43,7 @@ function App() {
                   <Route path="/product/:id" element={<ProductDetailPage />} />
                   <Route path="/cart" element={<CartPage />} />
                   <Route path="/order" element={<OrderPage />} />
+                  <Route path="/order/temp" element={<OrderTempPage />} />
                   <Route path="/order/success" element={<OrderSuccessPage />} />
                   <Route path="/order/fail" element={<OrderFailPage />} />
                 </Route>

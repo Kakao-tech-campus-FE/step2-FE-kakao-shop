@@ -26,6 +26,11 @@ const OrderTemplate = ({ data }) => {
     // console.log('data', data);
 
     useEffect(() => {
+        if(data.products.length === 0) {
+            alert("결제할 상품이 존재하지 않습니다.");
+            window.location.href="/";
+        }
+
         (async () => {
             // ------ 결제위젯 초기화 ------
             // 비회원 결제에는 customerKey 대신 ANONYMOUS를 사용하세요.
@@ -43,8 +48,6 @@ const OrderTemplate = ({ data }) => {
             paymentWidgetRef.current = paymentWidget;
             paymentMethodsWidgetRef.current = paymentMethodsWidget;
         })();
-
-        
     }, []);
 
     useEffect(() => {
@@ -93,7 +96,7 @@ const OrderTemplate = ({ data }) => {
             orderName: "토스 티셔츠 외 2건",
             customerName: "김토스",
             customerEmail: ``, //"customer123@gmail.com",
-            successUrl: `${window.location.origin}/order/success`,
+            successUrl: `${window.location.origin}/order/temp`,
             failUrl: `${window.location.origin}/order/fail`,
             });
         } catch (error) {
