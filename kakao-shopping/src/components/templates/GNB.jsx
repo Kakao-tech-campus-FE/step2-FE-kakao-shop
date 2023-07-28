@@ -44,7 +44,7 @@ const GNB = () => {
   // 삼항 연산자로 로그인 상태일 때는 로그아웃만 보이도록
   return (
     <div className="h-16">
-      <div className="h-px mt-1 border border-t-grey border-solid"/>
+      <div className="h-px border border-t-grey border-solid"/>
         <div className="flex justify-between my-4 items-center h-8">
           <Link to='/'><img className="w-28 ml-4" src="/assets/logoKakao.png" alt="logoKakao"/></Link>
           <div className="flex items-center">
