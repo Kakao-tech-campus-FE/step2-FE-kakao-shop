@@ -11,7 +11,7 @@ function GNB() {
     localStorage.removeItem("token")
     dispatch(setToken(null))
     alert("정상적으로 로그아웃되었습니다.")
-  }
+  };
 
   return (
     <header className="header"> 
@@ -29,24 +29,31 @@ function GNB() {
             </span>
             <span>|</span>
             <span>
-              {/* 로그인 버튼 */}
+              {/* 로그인/로그아웃 버튼 */}
               {token ? (
                 <Link
                   to="/login"
                   onClick={handleLogout}
                   style={{ textDecoration: "none", color: "black" }}
                 >
-                  {" "}
-                  로그아웃{" "}
+                  로그아웃
                 </Link>
               ) : (
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그인{" "}
-                </Link>
+                <>
+                  <Link
+                    to="/login"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    로그인
+                  </Link>
+                  <span>|</span>
+                  <Link
+                    to="/signup"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    회원가입
+                  </Link>
+                </>
               )}
             </span>
           </div>
