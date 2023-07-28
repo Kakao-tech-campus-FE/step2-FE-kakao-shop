@@ -2,19 +2,20 @@ import { Suspense, useEffect } from "react";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { fetchProducts } from "../../services/product";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import CardSkeleton from "../atoms/CardSkeleton";
 import { useInView } from "react-intersection-observer";
 import { useRef } from "react";
 
 const MainProductTemplate = () => {
     const {ref, inView} = useInView();
-    const {data: products, 
+    const {
+        data: products, 
         isLoading, 
         isFetchingNextPage, 
         fetchNextPage, 
         hasNextPage
-    } = useInfiniteQuery('products', ({pageParam = 0}) => fetchProducts(pageParam), {
+    } = useInfiniteQuery(['products'], ({pageParam = 0}) => fetchProducts(pageParam), {
         getNextPageParam: (lastPage, pages) => {
             if(lastPage.response && lastPage.response.length === 0) {
                 return null;
@@ -25,14 +26,15 @@ const MainProductTemplate = () => {
             console.error("fetch product 실패", error);
             alert("네트워크 연결이 원활하지 않습니다.");
             fetchNextPage();
-        }
+        },
+        enabled:true,
     }); 
 
     useEffect(() => {
-        if(inView && hasNextPage) {
-            fetchNextPage();
-        }
-    }, [inView]);
+      if (inView && !isLoading && hasNextPage) { // !isLoading 추가
+        fetchNextPage();
+      }
+    }, [inView, isLoading, hasNextPage]);
     
     const bottomObserverRef = useRef(null);
 
