@@ -17,7 +17,6 @@ const OrderTemplate = ({data}) => {
 
   const handleAllAgree = (e)=>{
     const value = e.target.checked
-    console.log(value)
     setAgreePayment(value)
     setAgreePollcy(value)
 

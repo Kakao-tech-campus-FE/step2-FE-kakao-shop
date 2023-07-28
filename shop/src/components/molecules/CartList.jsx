@@ -7,17 +7,29 @@ import Button from '../atoms/Button'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from 'react-query'
 import { updateCart } from '../../services/cart'
+import { getCart } from '../../services/cart'
+import { useQuery } from 'react-query'
 
-const CartList = ({data}) => {
-  const route = useNavigate()
+const CartList = () => {
+  const navigate = useNavigate()
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
   const [updatePayload, setUpdatePayload] = useState([])
-
+  const {data, error} = useQuery("carts", 
+    getCart,
+    {suspense: true}
+  )
+  
   const {mutate} = useMutation({
     mutationFn: updateCart 
   })
-
+  
+  useEffect(() => {
+    if (error) {
+      navigate('/404')
+    }
+  }, [error, navigate]);
+  
   useEffect(()=>{
     setCartItems(data?.data?.response?.products)
     setTotalPrice(data?.data?.response?.totalPrice)
@@ -111,7 +123,7 @@ const CartList = ({data}) => {
                 mutate(updatePayload, {
                   onSuccess: (data) =>{
                     //navigate to order page 
-                    route("/orders")
+                    navigate("/orders")
                     console.log(data)
                   },
                   onError: (err)=> {
