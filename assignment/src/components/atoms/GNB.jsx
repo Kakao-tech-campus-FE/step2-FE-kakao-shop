@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import '../../styles/atoms/GNB.css';
 import { useSelector, useDispatch } from 'react-redux';
 
 function GNB() {
+  const navigate = useNavigate();
   const getUserToken = () => {
     const tokenString = localStorage.getItem('user');
     const tokenObject = JSON.parse(tokenString);
@@ -17,7 +18,7 @@ function GNB() {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setToken(null);
-    window.location.reload();
+    navigate('/');
   };
   useEffect(() => {
     const tokenObject = JSON.parse(localStorage.getItem('user'));

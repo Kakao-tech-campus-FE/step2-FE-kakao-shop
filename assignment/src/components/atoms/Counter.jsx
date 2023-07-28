@@ -24,9 +24,9 @@ const Counter = ({
   };
   return (
     <div className="counter">
-      <button onClick={handleOnDecrease}>-</button>
+      <button onClick={handleOnDecrease}> - </button>
       <span className="count">{value}</span>
-      <button onClick={handleOnIncrease}>+</button>
+      <button onClick={handleOnIncrease}> + </button>
     </div>
   );
 };
