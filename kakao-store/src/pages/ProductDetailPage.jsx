@@ -39,15 +39,12 @@ const ProductDetailPage = () => {
     }
 
     return (
-        <>
-            <Gnb />
-            <div>
-                {isLoading && <Loader />}
-                {error &&  <div>{error.message}</div> /* <Error404 /> */}
-                {/* isVaildate === false && <Error404 />  */}
-                {product && <ProductDetailTemplate product={product} />}
-            </div>
-        </>
+        <div>
+            {isLoading && <Loader />}
+            {error &&  <Error404 />}
+            {isVaildate === false && <Error404 />  }
+            {product && <ProductDetailTemplate product={product} />}
+        </div>
     );
 }
 
