@@ -7,7 +7,9 @@ import RegisterPage from "pages/RegisterPage";
 import CartPage from "pages/CartPage";
 import DetailPage from "pages/DetailPage";
 import OrderPage from "pages/OrderPage";
+import MyOrderPage from "pages/MyOrderPage";
 
+import MainContainer from "components/atoms/MainContainer";
 import PageContainer from "components/atoms/PageContainer";
 import Loader from "components/molecules/Loader";
 import Toast from "components/molecules/Toast";
@@ -16,7 +18,6 @@ import GNB from "components/organisms/GNB";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "components/organisms/ErrorFallback";
-import MainContainer from "components/atoms/MainContainer";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/products/:id" element={<DetailPage />} />
                 <Route path="/carts" element={<CartPage />} />
                 <Route path="/orders" element={<OrderPage />} />
+                <Route path="/orders/:orderId" element={<MyOrderPage />} />
               </Routes>
             </Suspense>
           </ErrorBoundary>
