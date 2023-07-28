@@ -1,0 +1,29 @@
+.input {
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border: solid 1px lightgray;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.input::before {
+    content:"L";
+    font-size: 16px !important;
+    display: absolute;
+    color: white;
+    display:inline-block;
+    transform: translateX(80%) translateY(-10%) rotateY(180deg) rotate(-45deg);
+    font-weight: 700;
+    visibility: hidden;
+}
+.input:checked {
+    background-color: #fee500;
+    border-color: #fee500;
+}
+.input:checked::before {
+    visibility: visible;
+}
+.label {
+    padding-left: 10px;
+    cursor: pointer;
+}

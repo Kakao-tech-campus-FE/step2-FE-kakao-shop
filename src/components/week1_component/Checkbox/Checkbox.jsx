@@ -1,11 +1,18 @@
-import '../../styles/Checkbox.css';
+import styles from './Checkbox.module.css';
 
-function Checkbox({id, name, value, labelChild}) {
+function Checkbox({ className, id, name, checked = false, onChange, children }) {
     return (
-        <>
-            <input className="checkbox-input" type="checkbox" id={id} name={name} value={value} />
-            <label className="checkbox-label" htmlFor={id}>{labelChild}</label>
-        </>
+        <div className={className}>
+            <input 
+                className={styles.input} 
+                type="checkbox" 
+                id={id} 
+                name={name} 
+                checked={checked}
+                onChange={onChange}
+            />
+            <label className={styles.label} htmlFor={id}>{children}</label>
+        </div>
     );
     
 }
