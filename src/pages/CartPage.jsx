@@ -7,7 +7,12 @@ import CartTemplate from "../components/templates/CartTemplate";
 export default function CartPage() {
   const { data, isLoading } = useQuery("cart", getCart);
 
-  return <>{isLoading ? <Loader /> : <CartTemplate data={data} />}</>;
+  return (
+    <>
+      {isLoading && <Loader />}
+      {data && <CartTemplate data={data} />}
+    </>
+  );
 }
 
 // Suspense란?

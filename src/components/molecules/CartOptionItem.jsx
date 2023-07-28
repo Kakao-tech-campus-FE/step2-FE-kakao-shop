@@ -23,11 +23,11 @@ export default function CartOptionItem({ cart, onChange }) {
                 onClick={() => {
                   mutate([{ cartId: cart.id, quantity: 0 }], {
                     onSuccess: (data) => {
-                      console.log("CartTemplate data", data);
+                      console.log("CartOptionItem data", data);
                       queryClient.invalidateQueries("cart");
                     },
                     onError: (error) => {
-                      console.log("CartTemplate error", error);
+                      console.log("CartOptionItem error", error);
                     },
                   });
                 }}
@@ -38,9 +38,18 @@ export default function CartOptionItem({ cart, onChange }) {
                 // 아이디, 변경된 수량, 해당 옵션의 가격
                 value={cart.quantity}
                 // Counter에서 mark를 받아 increment, decrement를 구분
-                onChange={(count, mark) =>
-                  onChange(cart.id, count, mark * cart.option.price)
-                }
+                onChange={(count, mark) => {
+                  onChange(cart.id, count, mark * cart.option.price);
+                  mutate([{ cartId: cart.id, quantity: count }], {
+                    onSuccess: (data) => {
+                      console.log("CartOptionItem data", data);
+                      queryClient.invalidateQueries("cart");
+                    },
+                    onError: (error) => {
+                      console.log("CartOptionItem error", error);
+                    },
+                  });
+                }}
               />
             </div>
             <span className=" font-bold tracking-tighter text-sm">

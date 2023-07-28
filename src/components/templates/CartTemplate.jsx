@@ -1,11 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import Button from "../atoms/Button";
 import { comma } from "../../utils/convert";
 import CartItem from "../organisms/CartItem";
-import { useMutation } from "react-query";
-import { updateCart } from "../../apis/cart";
 import { useNavigate } from "react-router-dom";
 import Text from "../atoms/Text";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,9 +12,7 @@ import { updateCartNum } from "../../store/slices/cartSlice";
 export default function CartTemplate({ data }) {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const updateCartItems = useRef([]);
   const navigate = useNavigate();
-  const { mutate } = useMutation(updateCart);
   const dispatch = useDispatch();
   const cartNum = useSelector((state) => state.cart.cartNum);
   console.log("CartTemplate data", data);
@@ -45,20 +41,6 @@ export default function CartTemplate({ data }) {
    * @param {number} price 옵션의 가격
    */
   const handleOnChnageCount = (optionId, quantity, price) => {
-    const isExist = updateCartItems.current.find(
-      (item) => item.cartId === optionId
-    );
-    if (isExist) {
-      updateCartItems.current = updateCartItems.current.map((item) => {
-        if (item.cartId === optionId) {
-          return { ...item, quantity };
-        }
-        return item;
-      });
-    } else {
-      updateCartItems.current.push({ cartId: optionId, quantity });
-    }
-
     setTotalPrice((prev) => prev + price);
     setCartItems((prev) => {
       return prev.map((item) => {
@@ -104,19 +86,12 @@ export default function CartTemplate({ data }) {
               <span className=" text-blue-500">{comma(totalPrice)}원</span>
             </Box>
             <Button
-              className="w-full h-14 bg-[#feeb00] border-0 font-bold text-base mb-4"
+              className="w-full h-14 bg-[#feeb00] border-0 font-bold text-base mb-4 cursor-pointer"
               onClick={() => {
-                // navigate("/order");
-                // 장바구니 정보를 수정하는 api 호출
                 // 결제 프로세스
                 // 1. 장바구니에 있는 모든 항목 그대로 결제 페이지에 담김
                 // 2. 결제 페이지에서는 수량 변경X, 그대로 결제 진행만 수행
-                mutate(updateCartItems, {
-                  onSuccess: (data) => {
-                    navigate("/order");
-                  },
-                  onError: (error) => {},
-                });
+                navigate("/order");
               }}
             >
               {/* 장바구니 수량: 전역 State */}
