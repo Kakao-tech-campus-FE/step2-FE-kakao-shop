@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import withRouteGuard from '@hocs/withRouteGuard';
+import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
 
 import { CustomSuspense } from '@components/atom';
 import PageLoader from '@components/molecules/PageLoader';
