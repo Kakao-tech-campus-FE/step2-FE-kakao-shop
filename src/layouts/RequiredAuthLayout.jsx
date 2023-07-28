@@ -2,6 +2,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import HeaderForm from "../components/organisms/HeaderForm";
+import FooterForm from "../components/organisms/FooterForm";
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const RequiredAuthLayout = () => {
     <>
       <HeaderForm />
       <Outlet />
+      <FooterForm />
     </>
   );
 };
