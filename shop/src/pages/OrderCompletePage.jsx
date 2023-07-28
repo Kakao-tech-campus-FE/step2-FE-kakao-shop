@@ -15,7 +15,7 @@ const OrderCompletePage = () => {
       suspense:true,
       onError: (err)=>{
         console.log(err)
-        navigate('/product/404')
+        navigate('/404')
       }
     }
   )
