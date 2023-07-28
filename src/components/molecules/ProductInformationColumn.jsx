@@ -6,7 +6,6 @@ import comma from "../../utils/convert";
  *
  * @param {array} product - 상품 정보
  * @returns {JSX.Element}
- * @constructor
  */
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;

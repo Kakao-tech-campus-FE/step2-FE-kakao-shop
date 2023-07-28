@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 import HeaderForm from "../components/organisms/HeaderForm";
 import FooterForm from "../components/organisms/FooterForm";
 
+/** 로그인이 필요한 페이지 레이아웃
+ *
+ * @returns {JSX.Element}
+ */
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
   const { isLogin } = useSelector((state) => state.auth);

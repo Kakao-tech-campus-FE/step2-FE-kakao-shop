@@ -4,6 +4,11 @@ import comma from "../../utils/convert";
 import Box from "../atoms/Box";
 import Button from "../atoms/Button";
 
+/** 주문 완료 페이지
+ *
+ * @param {array} data - 주문 완료 데이터
+ * @returns {JSX.Element}
+ */
 const OrderCompleteTemplate = ({ data }) => {
   const id = useMemo(() => data?.data?.response?.id, [data]);
   const totalPrice = useMemo(() => data?.data?.response?.totalPrice, [data]);

@@ -7,7 +7,6 @@ import ProductDetailTemplate from "../components/templates/ProductDetailTemplate
 /** 상품 상세 정보 페이지
  *
  * @returns {JSX.Element}
- * @constructor
  */
 const ProductDetailPage = () => {
   const { id } = useParams();

@@ -4,6 +4,10 @@ import { getCart } from "../api/cart";
 import Loader from "../components/atoms/Loader";
 import OrderTemplate from "../components/templates/OrderTemplate";
 
+/** 주문하기 페이지
+ *
+ * @returns {JSX.Element}
+ */
 const OrderPage = () => {
   const { data } = useQuery("cart", getCart);
 

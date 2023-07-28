@@ -14,7 +14,6 @@ import { updateCart } from "../../api/cart";
  *
  * @param {array} data - 장바구니 정보
  * @returns {JSX.Element}
- * @constructor
  */
 const CartList = ({ data }) => {
   const navigate = useNavigate();

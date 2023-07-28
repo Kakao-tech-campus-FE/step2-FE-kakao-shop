@@ -9,7 +9,6 @@ import Button from "../atoms/Button";
  * @param {function} onChange - 수량 변경 함수
  * @param {function} onDelete - 삭제 함수
  * @returns {JSX.Element}
- * @constructor
  */
 const CartItem = ({ item, onChange, onDelete }) => {
   const totalQuantity = item.carts.reduce((acc, cur) => {

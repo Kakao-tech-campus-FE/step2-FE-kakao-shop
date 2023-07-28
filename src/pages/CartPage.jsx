@@ -7,7 +7,6 @@ import CartList from "../components/organisms/CartList";
 /** 장바구니 페이지
  *
  * @returns {JSX.Element}
- * @constructor
  */
 const CartPage = () => {
   const { data } = useQuery("cart", getCart);

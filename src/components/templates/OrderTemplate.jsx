@@ -7,6 +7,11 @@ import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import Button from "../atoms/Button";
 
+/** 주문하기 페이지
+ *
+ * @param {array} data - 주문 상품 정보
+ * @returns {JSX.Element}
+ */
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
   const [agreePayment, setAgreePayment] = useState(false);

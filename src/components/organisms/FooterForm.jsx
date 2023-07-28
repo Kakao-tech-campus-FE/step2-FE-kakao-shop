@@ -2,6 +2,11 @@ import Container from "../atoms/Container";
 import Logo from "../atoms/Logo";
 import Box from "../atoms/Box";
 
+/** 푸터
+ *
+ * @param {string} className - 커스텀 클래스
+ * @returns {JSX.Element}
+ */
 const FooterForm = ({ className = "bg-white" }) => {
   return (
     <div
