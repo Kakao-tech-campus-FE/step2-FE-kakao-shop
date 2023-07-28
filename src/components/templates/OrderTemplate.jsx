@@ -194,7 +194,7 @@ const OrderTemplate = ({ data }) => {
                   const id = res?.data?.response?.id;
                   console.log(id);
                   alert("주문이 완료 되었습니다.");
-                  navigate("/");
+                  navigate(`/orders/${id}`);
                 },
               });
             }}

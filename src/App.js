@@ -12,6 +12,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import { useNavigate } from "react-router-dom";
+import GetOrderPage from "./pages/GetOrderPage";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -57,6 +58,7 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/carts" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
+            <Route path="/orders/:id" element={<GetOrderPage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

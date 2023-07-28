@@ -9,5 +9,5 @@ export const order = (order) => {
 };
 
 export const getOrderFromId = (id) => {
-  return instance.get(`orders/${id}`);
+  return authorizationInstance.get("/orders/" + id);
 };
