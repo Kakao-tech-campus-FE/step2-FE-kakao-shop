@@ -1,6 +1,9 @@
 import "../../styles/atoms/Photo.css"
 
 const Photo = ({ className, src, alt }) => {
+  // className 추가적인 스타일을 적용하기 위한 클래스 이름
+  // src 이미지의 경로
+  // alt 대체 텍스트로 이미지를 설명하는 내용
   return (
     <picture className={className}>  
       {/* img 태그보다 SEO(search engine optimazation)에 유리하다. 
