@@ -39,9 +39,9 @@ export const paymentAPI = async ({ itemName, quantity, totalAmount }: PaymentReq
     quantity,
     total_amount: totalAmount,
     tax_free_amount: 0,
-    approval_url: 'http://localhost:3000/pay/approve',
-    cancel_url: 'http://localhost:3000/pay/cancel',
-    fail_url: 'http://localhost:3000/pay/fail',
+    approval_url: 'https://kdykakaoshop.netlify.app/pay/approve',
+    cancel_url: 'https://kdykakaoshop.netlify.app/pay/cancel',
+    fail_url: 'https://kdykakaoshop.netlify.app/pay/fail',
   });
 
   return res;
