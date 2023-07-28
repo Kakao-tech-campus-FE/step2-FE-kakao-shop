@@ -1,4 +1,5 @@
 import axios from "axios";
+import { errorCode } from "../utils/errorcatch";
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

@@ -160,8 +160,15 @@ const OrderTemplate = ({ data, id }) => {
               }
 
               mutate(null, {
-                onError: () => {
+                onError: (error) => {
                   alert("주문에 실패했습니다.");
+                  if (error.response.status === 404) {
+                    // product 정보가 올바르지 않을 경우
+                    navigate("/error");
+                  } else {
+                    // 서버 에러
+                    alert("주문에 실패하였습니다. 다시 시도해주세요.");
+                  }
                 },
                 onSuccess: () => {
                   alert("주문이 완료되었습니다.");
