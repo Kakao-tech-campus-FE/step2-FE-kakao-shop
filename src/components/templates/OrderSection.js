@@ -19,6 +19,7 @@ export default function OrderSection() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["carts"],
     queryFn: getCartReq,
+    // 장바구니가 비어있는데 주문하기 페이지로 들어온 경우 알림 후 복귀시킴
     onSuccess: (res) => {
       if (res.data.response.totalPrice !== 0) return;
       alert("장바구니가 비어있습니다. 메인 페이지로 돌아갑니다.");
@@ -52,11 +53,27 @@ export default function OrderSection() {
       alert("상품배송을 위한 개인정보 제3자 제공 동의를 체크해주세요.");
     else
       mutate(null, {
-        onSuccess: (res) => {
-          navigate(`/result/${res.data.response.id}`);
+        onSuccess: (response) => {
+          navigate(`/result/${response.data.response.id}`);
         },
-        onError: (err) => {
-          console.dir(err);
+        onError: (error) => {
+          let state;
+          switch (error.response.status / 100) {
+            case 3:
+              state = "리다이렉션";
+              break;
+            case 4:
+              state = "클라이언트";
+              break;
+            case 5:
+              state = "서버";
+              break;
+            default:
+              state = "기타";
+          }
+          console.log(
+            `[Order Request Error] ${error.response.status}(${state}): ${error.message}`
+          );
         },
       });
   };
