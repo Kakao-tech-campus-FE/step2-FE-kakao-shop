@@ -1,11 +1,13 @@
 import Card from "./Card"
 import Box from "./Box"
 import Counter from "./Counter"
-import "../../styles/atoms/CartItem.css"
+// import "../../styles/atoms/CartItem.css"
 import { comma } from "../../utils/convert"
 
 // 각 상품별 장바구니 항목
 const CartItem = ({ item, onChange }) => {
+  // item 장바구니에 담긴 상품 정보
+  // onChange 수량 변경 시 호출되는 핸들러 함수
 
   return (
     <Box className="cart-item-box">
