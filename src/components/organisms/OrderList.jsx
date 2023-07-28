@@ -84,8 +84,15 @@ const OrderList = ({ cart }) => {
       const orderId = res.data.response.id;
       navigate(`/orders/${orderId}`);
     },
-    // 사용자에게 alert로 문제를 알림
-    onError: () => {
+
+    onError: (error) => {
+      // 로그인 토큰이 사라진 경우
+      if (error.response.status === 401) {
+        alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요.");
+        window.location.reload();
+        return;
+      }
+      // 사용자에게 alert로 문제를 알림
       alert("네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요.");
     },
   });
