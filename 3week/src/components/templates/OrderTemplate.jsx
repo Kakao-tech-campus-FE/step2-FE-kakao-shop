@@ -1,5 +1,5 @@
 import { comma } from "../../utils/convert"
-import { order } from "../../apis/order"
+import { order } from "../../services/order"
 import { useNavigate } from "react-router-dom"
 import { useMutation } from "react-query"
 import { useRef, useState } from "react"
