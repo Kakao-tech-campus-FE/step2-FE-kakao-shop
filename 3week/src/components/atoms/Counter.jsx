@@ -6,21 +6,21 @@ const Counter = ({
 }) => {
   const [ count, setCount ] = useState(1)
   
-  const handleOnIncrease = () => {
+  const handleClickIncrease = () => {
     setCount(count + 1)
     onIncrease(count + 1)
   }
 
-  const handleOnDecrease = () => {
+  const handleClickDecrease = () => {
     setCount(count - 1)
     onDecrease(count - 1)
   }
 
   return (
     <div>
-      <button onClick={handleOnDecrease}>-</button>
+      <button onClick={handleClickDecrease}>-</button>
       <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
+      <button onClick={handleClickIncrease}>+</button>
 
     </div>
   )
