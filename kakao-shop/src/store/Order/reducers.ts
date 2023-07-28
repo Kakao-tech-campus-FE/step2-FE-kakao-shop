@@ -15,6 +15,8 @@ export const APPROVE_REQUEST = 'order/APPROVE_REQUEST';
 export const APPROVE_SUCCESS = 'order/APPROVE_SUCCESS';
 export const APPROVE_FAILURE = 'order/APPROVE_FAILURE';
 
+export const POPUP_CLOSE = 'order/POPUP_CLOSE';
+
 export const orderProductRequestAction = (): OrderProductRequestAction => ({
   type: ORDER_PRODUCT_REQUEST,
 });
@@ -43,6 +45,10 @@ export const approveRequestAction = (payload: ApproveRequest): ApproveRequestAct
 
 export const approveSuccessAction = (): ApproveSuccessAction => ({
   type: APPROVE_SUCCESS,
+});
+
+export const popupCloseAction = (): PopupCloseAction => ({
+  type: POPUP_CLOSE,
 });
 
 // Initial State
@@ -75,11 +81,20 @@ export const OrderReducer = produce((draft: Draft<OrderState>, action) => {
     case PAYMENT_SUCCESS:
       draft.payment = action.payload.data;
       localStorage.setItem('tid', JSON.stringify(action.payload.data.tid));
-      openCenteredWindow(action.payload.data.next_redirect_pc_url, '카카오페이 결제', 500, 600);
+      openCenteredWindow(
+        isMobile() ? action.payload.data.next_redirect_app_url : action.payload.data.next_redirect_pc_url,
+        '카카오페이 결제',
+        500,
+        600,
+      );
       break;
 
     case APPROVE_SUCCESS:
       window.opener.location.href = '/payResult';
+      break;
+
+    case POPUP_CLOSE:
+      window.close();
       break;
   }
 }, initialState);
@@ -117,6 +132,10 @@ export type ApproveSuccessAction = {
   type: typeof APPROVE_SUCCESS;
 };
 
+export type PopupCloseAction = {
+  type: typeof POPUP_CLOSE;
+};
+
 // StateType
 export type OrderState = {
   isLoading: boolean;
@@ -139,4 +158,8 @@ const openCenteredWindow = (url: string, title: string, w: number, h: number) =>
     title,
     ' scrollbars=no, resizable=no, width=' + w + ', height=' + h + ', top=' + posY + ', left=' + posX,
   );
+};
+
+const isMobile = () => {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
