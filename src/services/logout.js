@@ -12,5 +12,7 @@ const logOut = () => {
   store.dispatch(logout());
   // 쿠키 초기화
   removeUserCookie();
+  // 메인 페이지로 이동
+  window.location.href = "/";
 }
 export default logOut;
