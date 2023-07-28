@@ -1,5 +1,4 @@
 import { Global } from '@emotion/react';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
@@ -9,7 +8,7 @@ import App from './App';
 import { store } from './store';
 import globalStyle from './styles/globalStyle';
 
-if (process.env.REACT_APP_TEST_ENV === 'true') {
+if (process.env.REACT_APP_ENV === 'dev_mock') {
   const { worker } = require('./mocks/browser');
 
   worker.start();
@@ -17,12 +16,12 @@ if (process.env.REACT_APP_TEST_ENV === 'true') {
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
+  <>
     <Global styles={globalStyle} />
     <GlobalErrorBoundary>
       <Provider store={store}>
         <App />
       </Provider>
     </GlobalErrorBoundary>
-  </React.StrictMode>,
+  </>,
 );

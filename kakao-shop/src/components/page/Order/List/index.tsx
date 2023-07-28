@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Fragment } from 'react';
 import type { CartProduct } from 'types/product';
 
 import Item from '@components/page/Order/Item';

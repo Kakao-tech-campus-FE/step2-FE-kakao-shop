@@ -1,11 +1,11 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 
 const Cancel = () => {
   useEffect(() => {
     window.close();
   }, []);
 
-  return <div>Cancel</div>;
+  return <Fragment />;
 };
 
 export default Cancel;

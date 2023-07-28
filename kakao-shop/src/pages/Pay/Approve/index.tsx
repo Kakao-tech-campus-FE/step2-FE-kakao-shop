@@ -1,5 +1,5 @@
 import { approveRequestAction } from '@store/Order/reducers';
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const Approve = () => {
     dispatch(approveRequestAction({ tid: JSON.parse(tid), pgToken }));
   }, [pgToken]);
 
-  return <div>Approve</div>;
+  return <Fragment />;
 };
 
 export default Approve;
