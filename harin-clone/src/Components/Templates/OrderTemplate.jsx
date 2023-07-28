@@ -172,7 +172,7 @@ const OrderTemplate = ({ data }) => {
                 구매조건 확인 및 결제 진행 동의
               </label>
             </div>
-            <div className="flex gap-2 pb-5 pt-1">
+            <div className="flex gap-2 pt-1">
               <input
                 type="checkbox"
                 id="policy"
@@ -185,27 +185,27 @@ const OrderTemplate = ({ data }) => {
                 개인정보 제 3자 제공 동의
               </label>
             </div>
-            {/* 결제하기 버튼 */}
-            <button
-              onClick={() => {
-                mutate(null, {
-                  onError: () => {
-                    alert("주문에 실패하였습니다.");
-                  },
-                  onSuccess: (res) => {
-                    const id = res.response.id;
-                    alert("주문이 완료되었습니다.");
-                    navigate(`/orders/complete/${id}`);
-                  },
-                });
-              }}
-              className={`w-full p-4 font-medium
-             ${agreePayment && agreePolicy ? "bg-yellow-300 text-black" : "bg-stone-300 text-stone-500"}`}
-            >
-              결제하기
-            </button>
           </div>
         </Box>
+        {/* 결제하기 버튼 */}
+        <button
+          onClick={() => {
+            mutate(null, {
+              onError: () => {
+                alert("주문에 실패하였습니다.");
+              },
+              onSuccess: (res) => {
+                const id = res.response.id;
+                alert("주문이 완료되었습니다.");
+                navigate(`/orders/complete/${id}`);
+              },
+            });
+          }}
+          className={`w-full p-4 text-xl font-bold mb-20
+             ${agreePayment && agreePolicy ? "bg-yellow-300 text-black" : "bg-stone-300 text-stone-500"}`}
+        >
+          {comma(totalPrice)}원 결제하기
+        </button>
       </Container>
     </div>
   );
