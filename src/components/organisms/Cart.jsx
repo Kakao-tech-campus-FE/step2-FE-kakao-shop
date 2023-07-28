@@ -10,7 +10,6 @@ import OptionSelected from 'components/molecules/DetailPageOption/OptionSelected
 import { CartOptionBox, CartCollectionBox } from 'components/atoms/cart/';
 
 import { getCarts, updateCart } from 'api/cart';
-import { postOrder } from 'api/order';
 
 
 const Cart = () => {
@@ -43,11 +42,7 @@ const Cart = () => {
 
   /** 제출버튼 클릭 시 주문 요청 */
   const submitHandler = () => {
-    postOrder()
-    .then((res) => {
-      localStorage.setItem('orderId', `${res.id}`)
-      navigate("/orders", {state: {orderId: `${res.id}`}})
-    })
+    navigate("/orders")
   }
 
   /** 모음전 별 총 수량 { 모음전_id : 모음전_총_수량 } */
@@ -78,38 +73,37 @@ const Cart = () => {
 
       <PageTitleBox title="장바구니"/>
       {
-        query.data.products?.map((collection) => {
-          if (productsQ[collection.id] === 0) {return null}
-          return (
-          <CartCollectionBox id={ collection.id }>
-              <span className='font-bold m-2'> 
-                {collection.productName} 
-              </span>
-              
-              {collection.carts.map((optionItem) => (
-                optionItem.quantity === 0 
-                ? null 
-                : <CartOptionBox>
-                    <OptionSelected 
-                      optionId={optionItem.id}
-                      key={optionItem.option.optionName} 
-                      optionName={optionItem.option.optionName} 
-                      price={optionItem.price}
-                      quantity={optionItem.quantity}
-                      changeQuantity={changeCart}
-                      clear={() => {changeCart(optionItem.id, 0, true)}}
-                    />
-                  </CartOptionBox> 
-                ))
-              }
+        query.data.products?.map((collection) => (
+          productsQ[collection.id] > 0 &&
 
-          </CartCollectionBox> )
-        })
-      }
+          <CartCollectionBox id={ collection.id }>
+            <span className='font-bold m-2'> 
+              {collection.productName} 
+            </span>
+            
+            {collection.carts.map((optionItem) => (
+              optionItem.quantity > 0 &&
+
+                <CartOptionBox>
+                  <OptionSelected 
+                    optionId={optionItem.id}
+                    key={optionItem.option.optionName} 
+                    optionName={optionItem.option.optionName} 
+                    price={optionItem.price}
+                    quantity={optionItem.quantity}
+                    changeQuantity={changeCart}
+                    clear={() => {changeCart(optionItem.id, 0, true)}}
+                  />
+                </CartOptionBox> 
+
+            ))}
+
+          </CartCollectionBox> 
+      ))}
       
       <TotalPrice 
-          price={!query.isFetching ? query.data.totalPrice : "-"} 
-          quantity={totalQ}
+        price={!query.isFetching ? query.data.totalPrice : "-"} 
+        quantity={totalQ}
       />
 
       <SubmitButton onClick={submitHandler}> 
