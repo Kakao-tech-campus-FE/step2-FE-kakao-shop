@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef, Suspense } from "react";
-import { useQuery } from "react-query";
+import { useState, useEffect, useRef, Suspense, useMemo } from "react";
+import { useInfiniteQuery, useQuery } from "react-query";
 import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../atoms/Loader";
 import { fetchProducts } from "../../apis/product";
@@ -10,29 +10,30 @@ const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
 
   const { page } = useParams();
-  const [pageNumber, setPageNumber] = useState(
-    !isNaN(page) ? parseInt(page, 10) : 0
+  const pageNumber = useMemo(
+    () => (!isNaN(page) ? parseInt(page, 10) : 0),
+    [page]
   );
 
   const [products, setProducts] = useState([]);
   const [isEnd, setIsEnd] = useState(false);
 
-  const { data, error, isLoading } = useQuery(["myData", pageNumber], () =>
-    fetchProducts(pageNumber)
-  );
-
-  const loadMore = async () => {
-    setPageNumber((prev) => prev + 1);
-  };
+  const { data, error, isLoading, fetchNextPage, hasNextPage } =
+    useInfiniteQuery("main", ({ pageParam = 0 }) => fetchProducts(pageParam), {
+      getNextPageParam: (lastPage) => {
+        return lastPage.data.response.length === 9 ? pageNumber + 1 : null;
+      },
+    });
 
   useEffect(() => {
     if (data) {
+      const newProducts = data.pages.flatMap((page) => page.data.response);
       setProducts((prevProducts) =>
-        _.uniqBy([...prevProducts, ...data.data.response], "id")
+        _.uniqBy([...prevProducts, ...newProducts], "id")
       );
-      setIsEnd(data.data.response.length < 9);
+      setIsEnd(!hasNextPage);
     }
-  }, [data]);
+  }, [data, hasNextPage]);
 
   useEffect(() => {
     const options = {
@@ -41,7 +42,7 @@ const MainProductTemplate = () => {
 
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !isEnd) {
-        loadMore();
+        fetchNextPage();
       }
     }, options);
 
@@ -54,7 +55,7 @@ const MainProductTemplate = () => {
         observer.unobserve(bottomObserver.current);
       }
     };
-  }, [bottomObserver, isEnd]);
+  }, [bottomObserver, fetchNextPage, isEnd]);
 
   if (error) {
     return <div>Error: {error.message}</div>;

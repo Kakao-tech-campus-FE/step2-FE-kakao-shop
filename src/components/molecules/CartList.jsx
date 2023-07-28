@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
@@ -10,6 +10,7 @@ import { updateCart } from "../../apis/cart";
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  // const totalPrice = useMemo(data?.data?.response?.totalPrice);
   const [updatePayload, setUpdatePayload] = useState([]);
 
   const { mutate } = useMutation({
@@ -64,7 +65,7 @@ const CartList = ({ data }) => {
       ];
     });
 
-    setTotalPrice((prev) => prev + price);
+    totalPrice((prev) => prev + price);
     setCartItems((prev) => {
       return prev.map((item) => {
         return {
@@ -96,7 +97,7 @@ const CartList = ({ data }) => {
       ];
     });
 
-    setTotalPrice((prev) => prev - price);
+    totalPrice((prev) => prev - price);
 
     setCartItems((prev) => {
       return prev.map((item) => {
