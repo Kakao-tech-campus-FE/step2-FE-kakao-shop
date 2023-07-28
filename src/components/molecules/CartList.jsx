@@ -32,27 +32,40 @@ const CartList = ({ data }) => {
   useEffect(() => {
     setTotalPrice(() => {
       if (Array.isArray(cartItems)) {
-        let sum = 0;
-        cartItems.forEach((item) => {
+        return cartItems.reduce(
+          (acc, cur) =>
+            acc +
+            cur.carts.reduce(
+              (acc2, cur2) => acc2 + cur2.quantity * cur2.option.price,
+              0
+            ),
+          0
+        );
+        /*cartItems.forEach((item) => {
           item.carts.forEach((cart) => {
-            sum += cart.quantity * cart.price;
+            sum += cart.quantity * cart.option.price;
           });
         });
-        return sum;
+        return sum;*/
       }
     });
   }, [cartItems]);
 
   const getTotalCart = () => {
-    let count = 0;
     if (Array.isArray(cartItems)) {
-      cartItems.forEach((item) => {
+      return comma(
+        cartItems.reduce(
+          (acc, cur) =>
+            acc + cur.carts.reduce((acc2, cur2) => acc2 + cur2.quantity, 0),
+          0
+        )
+      );
+      /*cartItems.forEach((item) => {
         item.carts.forEach((cart) => {
           count += cart.quantity;
         });
-      });
+      });*/
     }
-    return comma(count);
   };
   const handleOnChangeCount = (optionId, quantity, price) => {
     setUpdatePayload((prev) => {
