@@ -3,8 +3,8 @@ import { comma } from "../../utils/convert";
 import { order } from "../../services/api/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-import { setUserCookie } from "../../services/cookie";
 import logOut from "../../services/logout";
+import { BsTruck } from "react-icons/bs";
 
 const OrderTemplate = ({ data }) => {
   const products = data?.data?.response?.products;
@@ -70,6 +70,11 @@ const OrderTemplate = ({ data }) => {
               );
             }
           })}
+          <hr />
+          <div className="pt-4 text-center text-blue-500">
+            <BsTruck className="inline text-2xl" />
+            <span className="px-1 font-bold">무료배송</span>
+          </div>
         </div>
       );
     });
