@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./ProductSlice";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { login,register } from "../../services/user";
 
 const initialState = {
     email: null,
@@ -14,32 +14,45 @@ const userSlice = createSlice({
         setEmail: (state, action) => {
             state.email = action.payload.email;
         },
-        clearUser: (state) => {
-            state.email = null;
-            state.expirationTime = null;
-            state.isLoggedIn = false;
-          },
-          setUser: (state, action) => {
-            state.user = action.payload.user;
-        },
+        setToken: (state, action) => {
+            state.token = action.payload.token;
+    },
+    clearEmail: (state) => {
+        state.email = null;
+      },
     },
     extraReducers: (builder) => {
-        builder.addCase(getProducts.pending, (state, action) => {
+        builder.addCase(loginRequest.pending, (state, action) => {
             state.loading = true;
         });
-        builder.addCase(getProducts.fulfilled, (state, action) => {
+        builder.addCase(loginRequest.fulfilled, (state, action) => {
+            state.email=action.payload.email;
+            localStorage.setItem("token",action.payload.token)
+            state.token = action.payload.token;
             state.loading = false;
-            state.product = action.payload.response;
-            state.error = action.payload.error;
         });
-        builder.addCase(getProducts.rejected, (state, action) => {
+        builder.addCase(loginRequest.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload.error;
         });
     },
 });
 
+export const loginRequest = createAsyncThunk(
+    "user/login",
+    async(data)=>{
+        const {email, password}=data;
+        const response=await login({email, password}); // action.payload
 
-export const { setUser, clearUser } = userSlice.actions;
+        return{
+            email,
+            token:response.headers.authorization
+        }
+        
+    }
+);
 
+
+
+
+export const { setEmail } = userSlice.actions;
 export default userSlice.reducer;

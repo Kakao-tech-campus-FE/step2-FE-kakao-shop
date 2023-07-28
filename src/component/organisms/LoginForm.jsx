@@ -8,14 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Box from "../atoms/Box";
 import { useNavigate } from "react-router-dom";
-import { setUser } from "../../store/slices/userSlice";
+import { setEmail } from "../../store/slices/userSlice";
+// import { setUser } from "../../store/slices/userSlice";
 
 const LoginForm =() =>{
     const dispatch = useDispatch();
-    const navigate = useNavigate
+    const navigate = useNavigate();
     const email=useSelector((state)=> state.user.email);
     const [error, setError] = useState("");
-    const{value, handleOnChange}= useInput({
+    const{value, handleOnChange,validateEmail,
+        validatePassword,}= useInput({
         email:"",
         password:"",
     });
@@ -28,10 +30,14 @@ const LoginForm =() =>{
         })
         .then((res)=>{
             console.log(res);
-            dispatch(setUser({
-                user:value.user,
-            }))
-                
+            const token = res.headers.authorization;
+            localStorage.setItem("token", token);
+            dispatch(
+                setEmail({
+                  email: value.email,
+                })
+              );
+              navigate("/");
         })
         .catch((error)=> {
             console.log("error", error);
@@ -40,7 +46,7 @@ const LoginForm =() =>{
     };
 
     return (
-    <Container className="border-spacing-1 bg-blue-300">
+    <Container className="flex justify-center items-center">
         <div className="flex justify-center items-center">로그인</div>
         <span>{email}</span>
     
@@ -73,6 +79,13 @@ const LoginForm =() =>{
             }}
             >
                 로그인
+        </Button>
+        <Button
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
+          회원가입
         </Button>
         </Box>
     

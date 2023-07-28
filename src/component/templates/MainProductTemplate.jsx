@@ -8,47 +8,53 @@ import { useQuery } from "react-query";
 import Loader from "../atoms/Loader";
 import { fetchProducts } from "../../services/product";
 
+
 const MainProductTemplate=()=>{
     const [page, setPage] = useState(0);
     const dispatch=useDispatch();
     const bottomObserver=useRef(null);
     const products=useSelector((state)=> state.product.products);
-    const loading=useSelector((state)=> state.product.loading);
+    const Loading=useSelector((state)=> state.product.Loading);
     const error=useSelector((state)=> state.product.error);
     const isEnd= useSelector((state)=>state.product.isEnd);
 
-const io = new IntersectionObserver(
-    (entries, observer)=>{
-        entries.array.forEach((entry) => {
-            if(entry.isIntersecting && !isEnd){
-                setPage((page)=>page+1);
-            }
+    const io = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isEnd) {
+            setPage((page) => page + 1);
+            // setPage((page) => {
+            //   console.log(page + 1);
+            //   return page + 1;
+            // });
+          }
         });
-    },{
-        threshold:1,
-    }
-);
-  const [pageNumber, setPageNumber] = useState(
-    !isNaN(page) ? parseInt(page, 10) : 0
-  );
-  const loadMore = async () => {
-    setPageNumber((prev) => prev + 1);
-  };
+      },
+      {
+        threshold: 1,
+      }
+    );
+  // const [pageNumber, setPageNumber] = useState(
+  //   !isNaN(page) ? parseInt(page, 10) : 0
+  // );
+  // const loadMore = async () => {
+  //   setPageNumber((prev) => prev + 1);
+  // };
 
 useEffect(()=>{
-    if(!loading&& page ===0){
+  io.observe(bottomObserver.current);
+}, []);
 
-    io.observe(bottomObserver.current);
 
-   // io.unobserve(bottomObserver.current)
-    }
-    return()=>{
-        io.unobserve(bottomObserver.current)
-    }
-}, [/*loading, page*/]);
-const { data, isLoading } = useQuery(["myData", pageNumber], () =>
-fetchProducts(pageNumber)
-);
+//    // io.unobserve(bottomObserver.current)
+//     }
+//     return()=>{
+//         io.unobserve(bottomObserver.current)
+//     }
+// }, [/*loading, page*/]);
+// const { data, isLoading } = useQuery(["myData", pageNumber], () =>
+// fetchProducts(pageNumber)
+// );
 
     useEffect(()=>{
         dispatch(getProducts(page));
@@ -59,9 +65,9 @@ fetchProducts(pageNumber)
     // 안에있는 콜백함수가 실행
     return (
         <div className="w-full mx-auto px-32 pt-20">
-          {isLoading && <Loader />}
+          {Loading && <Loader />}
           <Suspense fallback={<Loader />}>
-            <ProductGrid products={products} loading={isLoading} />
+            <ProductGrid products={products} Loading={Loading} />
             <div ref={bottomObserver}></div>
           </Suspense>
         </div>

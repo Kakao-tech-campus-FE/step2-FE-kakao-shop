@@ -1,20 +1,21 @@
-import {instance} from "../services/index";
+import { instance } from "./index";
 
-export const register=(data)=>{
-    const{email, password, username}=data;
-    return instance.post("/join", 
-    {email,
-    password,
-    username});
-};
+export const register = (data) => {
+    const { email, password, username } = data;
+    return instance.post("/join", {
+      email,
+      password,
+      username,
+    });
+  };
 
-export const login=(data)=>{
-    const{email, password}=data;
-    return instance.post("/login", 
-    {email,
-    password});
-};
-
+export const login = async (data) => {
+    const { email, password } = data;
+    return await instance.post("/login", {
+      email,
+      password,
+    });
+  };
 
 // // 토큰만 전달
 // export const profile = ()=> {
