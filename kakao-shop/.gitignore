@@ -24,3 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 
 /serve.json
+/test-results/
+/playwright-report/
+/playwright/.cache/
