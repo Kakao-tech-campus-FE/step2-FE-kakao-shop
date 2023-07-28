@@ -7,7 +7,6 @@ const OrderCompletePage = () => {
   return (
     <Suspense fallback={<Loader/>}>
       <OrderCompleteTemplate />
-    
     </Suspense>
   )
 }

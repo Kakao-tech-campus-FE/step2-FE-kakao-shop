@@ -4,10 +4,22 @@ import {useMutation} from "react-query"
 import { orderCart } from '../../services/order'
 import { useNavigate } from 'react-router-dom'
 import { useRef, useState } from 'react'
+import { useQuery } from 'react-query'
+import { getCart } from '../../services/cart'
 
-const OrderTemplate = ({data}) => {
-  const {products, totalPrice} = data?.data?.response
+const OrderTemplate = () => {
   const navigate = useNavigate()
+  const {data} = useQuery("carts", 
+    getCart,
+    {
+      onError: (error) => {
+        console.error("Error fetching cart data:", error);
+        navigate('/404')
+      },
+      suspense: true
+    }
+  )
+  const {products, totalPrice} = data?.data?.response
   const [allAgree, setAllAgree] = useState(false)
   const [agreePayment, setAgreePayment] = useState(false)
   const [agreePollcy, setAgreePollcy] = useState(false)
