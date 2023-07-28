@@ -5,7 +5,6 @@ import Photo from '../atoms/Photo';
 
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
-  console.log(product.starCount);
   return (
     <div className="product-information-column grid grid-cols-5 gap-4">
       <div className="col-span-2 sm:col-span-2">

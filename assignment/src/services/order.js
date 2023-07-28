@@ -4,7 +4,7 @@ import instance from './index';
  * headers:{Authorization: `Bearer ${token}`} 형태로 정보전달
  */
 export const order = () => {
-  return instance.post('/carts/save');
+  return instance.post('/orders/save');
 };
 
 export const getOrderFromId = (id) => {

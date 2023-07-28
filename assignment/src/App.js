@@ -20,12 +20,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<RegisterPage />} />
+          <Route path="/*" element={<ErrorPage />} />
+          <Route path="/error" element={<ErrorPage />} />
+
           <Route element={<MainLayout />}>
             <Route path="/" element={<NewHomePage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
           </Route>
 
-          <Route path="/*" element={<ErrorPage />} />
           <Route element={<RequiredAuthLayout />}>
             <Route path="/order" element={<OrderPage />} />
             <Route path="/cart" element={<CartPage />} />

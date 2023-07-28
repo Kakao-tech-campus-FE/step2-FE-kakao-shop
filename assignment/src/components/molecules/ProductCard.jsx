@@ -7,7 +7,6 @@ import Loader from '../atoms/Loader';
 import Button from '../atoms/Button';
 
 const ProductCard = ({ product }) => {
-  console.log('product', product);
   return (
     <>
       <Card to={`/product/${product.id}`}>
