@@ -18,6 +18,7 @@ const RequiredAuthLayout = () => {
   return (
     <>
       <GNB />
+      <div className="h-20" />
       <Outlet />
       {/* <Footer /> */}
     </>
