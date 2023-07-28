@@ -3,6 +3,7 @@ import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import InputGroup from "../molecules/InputGroup";
 
 const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
@@ -61,7 +62,7 @@ const OrderTemplate = ({ data }) => {
                 <span>{comma(cart.quantity)}개</span>
               </div>
               <div className="price font-bold">
-                <span>{comma(cart.price * cart.quantity)}</span>
+                <span>{comma(cart.price)}</span>
               </div>
             </div>
           );
@@ -76,13 +77,13 @@ const OrderTemplate = ({ data }) => {
   return (
     <div className="py-20">
       <div className="block mx-auto max-w-[1024px] w-[100%]">
-        <div className="border py-2">
+        <div className="border py-2 text-center">
           <h1 className="text-sm font-bold">주문하기</h1>
         </div>
         <div className="border py-4">
           <h2 className="test-sm font-bold">배송지 정보</h2>
         </div>
-        <div className="border py-4">
+        <div className="border p-4">
           <div className="flex items-center gap-4">
             <span>홍길동</span>
             <span className="text-blue-400 bg-blue-100 rounded-md text-xs p-1 ">
@@ -90,13 +91,17 @@ const OrderTemplate = ({ data }) => {
             </span>
           </div>
         </div>
-        <div className="border p-4">
-          <span>010-0000-0000</span>
-        </div>
-        <div className="border p-4">
-          <span>주소명입니다</span>
-        </div>
-        <div className="border p-4">
+        <InputGroup
+          label="전화번호"
+          className="border p-4"
+          placeholder="받으시는 분의 전화번호를 입력해주세요"
+        />
+        <InputGroup
+          label="주소명"
+          className="border p-4"
+          placeholder="받으시는 분의 주소명을 입력해주세요"
+        />
+        <div className="border py-4 font-bold">
           <h2>주문상품 정보</h2>
         </div>
         {/* 각 주문의 정보 */}
@@ -119,10 +124,7 @@ const OrderTemplate = ({ data }) => {
               checked={agreePayment && agreePolicy}
               onChange={handleAllAgree}
             />
-            <label
-              htmlFor="all-agree"
-              className="text-sm font-bold whitespace-nowrap"
-            >
+            <label htmlFor="all-agree" className="text-sm whitespace-nowrap">
               전체 동의
             </label>
           </div>
@@ -160,8 +162,14 @@ const OrderTemplate = ({ data }) => {
                 alert("모든 항목에 동의가 필요합니다.");
                 return;
               }
+              // 토큰이 누락 될 시 로그인 창으로 리다이렉트
+              if (localStorage.getItem("token") === null) {
+                alert("로그인 세션이 만료되었습니다. 재로그인이 필요합니다.");
+                navigate("/login");
+              }
 
               mutate(null, {
+                //서버에서 응답을 제대로 받지 못했을 때
                 onError: () => {
                   alert("주문에 실패하였습니다.");
                 },
@@ -172,11 +180,6 @@ const OrderTemplate = ({ data }) => {
                   navigate(`/order/complete/${id}`);
                 },
               });
-              //POST /orders/save
-              //DB : 장바구니에 있는 모든 항목이 결제로 저장
-              //장바구니는 비워짐
-              // 페이지 이동 => 주문완료 페이지(리턴 받은 주문 아이디)
-              // /orders/complet/:id
             }}
             className={`w-full p-4 font-medium 
               ${

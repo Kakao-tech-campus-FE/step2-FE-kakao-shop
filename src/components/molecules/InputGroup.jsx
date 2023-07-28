@@ -18,7 +18,7 @@ const InputGroup = ({
 }) => {
   return (
     <Box className={className}>
-      <Label className="block border-0 h-5" htmlFor={id}>
+      <Label className="block h-5" htmlFor={id}>
         {label}
       </Label>
       <Input
@@ -28,6 +28,7 @@ const InputGroup = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        className="border w-full"
       />
     </Box>
   );

@@ -8,8 +8,9 @@ import Loader from "../components/atoms/Loader";
 
 //장바구니 페이지
 const CartPage = () => {
-  const { data, isLoading } = useQuery("cart", getCart);
-  console.log(data);
+  const { data, isLoading } = useQuery("cart", getCart, {
+    refetchOnWindowFocus: false,
+  });
   const navigate = useNavigate();
 
   if (isLoading) {

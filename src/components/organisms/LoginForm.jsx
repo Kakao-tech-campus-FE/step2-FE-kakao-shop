@@ -50,7 +50,7 @@ const LoginForm = () => {
   return (
     <Container className="w-1/2 h-full block align-middle border rounded border-gray-light p-16">
       <InputGroup
-        className="block leading-4 mt-1 break-words "
+        className=" w-full block leading-4 my-1 break-words  "
         id="email"
         type="email"
         name="email"
@@ -60,6 +60,7 @@ const LoginForm = () => {
         onChange={handleOnChange}
       />
       <InputGroup
+        className=" w-full block leading-4 my-1 break-words "
         id="password"
         type="password"
         name="password"

@@ -20,13 +20,12 @@ const CartList = ({ data }) => {
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
-    let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity; // 개별 옵션에 해당
-      });
-    });
-    return count;
+    const carts = cartItems.flatMap((item) => item.carts);
+    const totalQuantity = carts.reduce(
+      (total, cart) => (total += cart.quantity),
+      0
+    );
+    return comma(totalQuantity);
   }, [cartItems]);
 
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -57,9 +56,15 @@ const CartList = ({ data }) => {
         },
       ];
     });
-    setTotalPrice((prev) => prev + price);
+
+    const existingQuantity = cartItems.find((item) =>
+      item.carts.find((cart) => cart.id === optionId)
+    ).carts[0]?.quantity;
+    const priceDifference = price * (quantity - existingQuantity);
+    setTotalPrice((prev) => prev + priceDifference);
 
     setCartItems((prev) => {
+      console.log(prev);
       return prev.map((item) => {
         return {
           ...item,
@@ -107,7 +112,7 @@ const CartList = ({ data }) => {
         </div>
       </Card>
       <Button
-        className="order-btn block width-full h-14 bg-yellow"
+        className="order-btn block width-full h-14 bg-yellow-500"
         onClick={() => {
           console.log("imhere");
 
