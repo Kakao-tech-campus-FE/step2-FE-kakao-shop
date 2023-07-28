@@ -75,7 +75,7 @@ const CartList = ({ data }) => {
   const handleOnClickProductDelete = () => {
     const allOptions = [];
     cartItems
-      .filter((item) => checkedOptions.includes(item.id))
+      .filter((item) => checkedOptions.includes(item.id.toString()))
       .forEach((item) => {
         item.carts.forEach((option) => {
           if (option.quantity > 0) allOptions.push(option.id);

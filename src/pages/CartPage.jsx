@@ -3,7 +3,10 @@ import CartList from "../components/moleclules/CartList";
 import { getCart } from "../apis/cart";
 
 const CartPage = () => {
-  const { data } = useQuery(["cart"], getCart, { suspense: true });
+  const { data } = useQuery(["cart"], getCart, {
+    suspense: true,
+    cacheTime: 0,
+  });
 
   return <CartList data={data} />;
 };

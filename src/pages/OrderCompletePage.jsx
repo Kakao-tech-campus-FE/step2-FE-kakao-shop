@@ -13,12 +13,10 @@ const OrderCompletePage = () => {
     suspense: true,
   });
 
-  console.log(data);
-
   const { id: orderId, products, totalPrice } = data.data.response;
 
   return (
-    <Container className="mt-10 max-w-[870px] px-0 pb-5">
+    <Container className="mt-10 max-w-[870px] px-4 pb-5">
       <div className="flex flex-col items-center gap-2">
         {" "}
         <h1 className="text-2xl font-semibold">구매완료!</h1>

@@ -76,7 +76,7 @@ const OptionColumn = ({ product }) => {
 
   return (
     <>
-      <div className="mt-3 w-auto border-t pt-7 lg:mt-0 lg:h-screen lg:w-[28%] lg:border-l lg:border-t-0 lg:border-gray-300 lg:pl-7">
+      <div className="mt-3 w-auto border-t px-4 pt-7 lg:mt-0 lg:h-screen lg:w-[28%] lg:border-l lg:border-t-0 lg:border-gray-300 lg:px-0 lg:pl-7">
         <div className="overflow-y-auto">
           <h3 className="ml-1 text-[17px] font-extrabold">옵션 선택</h3>
           <OptionList

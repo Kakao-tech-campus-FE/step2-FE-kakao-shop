@@ -8,6 +8,7 @@ import useCheckBox from "../../hooks/useCheckBox";
 import CheckBox from "../atoms/CheckBox";
 import { useState } from "react";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import Modal from "../moleclules/Modal";
 
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
@@ -16,6 +17,9 @@ const OrderTemplate = ({ data }) => {
 
   const { checkedOptions, handleOnChangeCheck, handleOnChangeCheckAll } =
     useCheckBox([], ["order", "policy"]);
+
+  const [agreeModal, setAgreeModal] = useState(false);
+  const [failModal, setFailModal] = useState(false);
 
   const [selectedReq, setSelectedReq] = useState("");
   const [orderRequest, setOrderRequest] = useState("");
@@ -180,19 +184,43 @@ const OrderTemplate = ({ data }) => {
         <button
           className="w-full bg-kakao p-4 text-xl font-bold text-[#333]"
           onClick={() => {
-            mutate(null, {
-              onError: () => {
-                // 주문 실패
-              },
-              onSuccess: (res) => {
-                const id = res.data.response.id;
-                navigate(`/orders/complete/${id}`, { replace: true });
-              },
-            });
+            if (checkedOptions.length === 2) {
+              mutate(null, {
+                onError: () => {
+                  setFailModal(true);
+                },
+                onSuccess: (res) => {
+                  const id = res.data.response.id;
+                  navigate(`/orders/complete/${id}`, { replace: true });
+                },
+              });
+            } else {
+              setAgreeModal(true);
+            }
           }}
         >
           {comma(totalPrice)}원 결제하기
         </button>
+        {agreeModal && (
+          <Modal
+            contentText={"구매조건 확인 동의를 체크해주세요."}
+            type={"one"}
+            buttonText={"확인"}
+            onClick={() => {
+              setAgreeModal(false);
+            }}
+          ></Modal>
+        )}
+        {failModal && (
+          <Modal
+            contentText={"결제에 실패했습니다."}
+            type={"one"}
+            buttonText={"홈으로"}
+            onClick={() => {
+              navigate("/", { replace: true });
+            }}
+          ></Modal>
+        )}
       </Container>
     </div>
   );
