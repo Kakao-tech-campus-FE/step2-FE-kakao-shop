@@ -56,7 +56,7 @@ const OrderTemplate = () => {
           <InnerFlatCard>
             {item.carts.map((cart: CartedOptionData) => {
               return (
-                <div key={cart.id} className="grid grid-cols-3 items mb-5 items-center">
+                <div key={cart.id} className="grid grid-cols-3 items-center">
                   <div>{cart.option.optionName}</div>
                   <div className="text-right">{comma(cart.quantity)}개</div>
                   <div className="text-[12px] text-right">
@@ -77,6 +77,20 @@ const OrderTemplate = () => {
       <div className="p-10 space-y-5">
         <h2 className="text-xl font-bold">배송지 정보</h2>
         <hr />
+        <InnerFlatCard>
+          <div className="grid grid-cols-6 ">
+            <div className="grid grid-rows-3 font-bold col-span-1 space-y-2 items-center">
+              <span>이름</span>
+              <span>배송주소</span>
+              <span>연락처</span>
+            </div>
+            <div className="grid grid-rows-3 col-span-5 space-y-2 items-center">
+              <span>임연후</span>
+              <span>010-7777-8888</span>
+              <span>경기도 성남시 분당구 판교역로 166 (우)13529</span>
+            </div>
+          </div>
+        </InnerFlatCard>
         <h2 className="text-xl font-bold">주문상품 정보</h2>
         <hr />
         {orderItems()}
