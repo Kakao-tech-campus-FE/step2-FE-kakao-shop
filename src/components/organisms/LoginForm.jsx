@@ -25,7 +25,7 @@ const UserInfo = styled.div`
 const JoinLink = styled.a`
     font-size: 1em;
     font-weight: normal;
-    cusor: pointer;
+    cursor: pointer;
     text-decoration: none;
     &:visited{
         color: black;
