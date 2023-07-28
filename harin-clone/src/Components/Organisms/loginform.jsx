@@ -38,15 +38,15 @@ const LoginForm = () => {
         password: value.password,
       })
     ).then((response) => {
+      console.log(response);
       if (response.payload.data.success) {
         localStorage.setItem("email", value.email);
-        // localStorage.setItem("name", name);
         localStorage.setItem("token", response.payload.headers.authorization);
 
         alert("로그인 되었습니다");
         navigate("/");
         // window.location.reload();
-      } else if (response.payload.data.rror) {
+      } else if (response.payload.data.error) {
         alert("유효하지 않은 아이디/비밀번호 입니다.");
         window.history.go(0); // 이렇게 리로드 해도 괜찮나요..?
       }

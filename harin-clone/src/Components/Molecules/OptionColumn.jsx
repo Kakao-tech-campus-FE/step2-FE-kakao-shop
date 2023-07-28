@@ -58,30 +58,44 @@ const OptionColumn = ({ product }) => {
     <div className="option-column">
       <h3 className="font-bold pb-5">옵션 선택</h3>
       <Container className="option-container">
-        <button
-          onClick={() => {
-            setIsOpen(!isOpen);
-          }}
-          className="flex items-center w-full bg-stone-100 p-3"
-        >
-          <div className="ml-2 mr-auto">-주문 선택-</div>
-          {isOpen ? (
-            <div className="mr-2">
-              <BsChevronUp />
-            </div>
-          ) : (
-            <div className="mr-2">
-              <BsChevronDown />
-            </div>
-          )}
-        </button>
-        <Dropdown isOpen={isOpen}>
-          <OptionList
-            options={product.options}
-            // 사용자가 선택한 option
-            onClick={handleOnClickOption}
-          />
-        </Dropdown>
+        <div className="bg-stone-100 w-full">
+          <button
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+            className="flex items-center p-3 justify-between w-full"
+          >
+            <div>-주문 선택-</div>
+            {isOpen ? (
+              <div>
+                <BsChevronUp />
+              </div>
+            ) : (
+              <div>
+                <BsChevronDown />
+              </div>
+            )}
+          </button>
+        </div>
+        {/* <Dropdown
+          isOpen={isOpen}
+          children={
+            <OptionList
+              options={product.options}
+              // 사용자가 선택한 option
+              onClick={handleOnClickOption}
+            />
+          }
+        /> */}
+        {isOpen && (
+          <div className="grid bg-white">
+            <OptionList
+              options={product.options}
+              // 사용자가 선택한 option
+              onClick={handleOnClickOption}
+            />
+          </div>
+        )}
       </Container>
 
       {/* 담긴 옵션이 표기 */}
@@ -136,10 +150,10 @@ const OptionColumn = ({ product }) => {
                 };
               }),
               {
-                onSucess: () => {
+                onSuccess: () => {
                   alert("장바구니에 담겼습니다.");
                 },
-                onError: () => {
+                onError: (error) => {
                   alert("장바구니 담기에 실패했습니다.");
                 },
               }

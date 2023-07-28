@@ -10,7 +10,7 @@ const CartItem = ({ item, onChange }) => {
     <Box className="cart-item-box">
       <h5 className="font-bold p-3">{item.productName}</h5>
       {item.carts.map((cart) => (
-        <div key={cart.id} className="m-3 p-3 border rounded">
+        <div key={cart.id} className="m-3 p-2 border rounded">
           <div className="text-sm mx-3">
             <span>{cart.option.optionName}</span>
           </div>

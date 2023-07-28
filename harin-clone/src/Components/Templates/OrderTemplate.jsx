@@ -5,10 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 
 const OrderTemplate = ({ data }) => {
-  const { products, totalPrice } = data?.data?.response;
-  const cart = [];
-  const { agreePayment, setAgreePayment } = useState(false);
-  const { agreePolicy, setAgreePolicy } = useState(false);
+  const { products, totalPrice } = data?.data?.response ?? {};
+  const [agreePayment, setAgreePayment] = useState(false);
+  const [agreePolicy, setAgreePolicy] = useState(false);
 
   const allAgreeRef = useRef(null);
   const agreePaymentRef = useRef(null);
@@ -38,27 +37,29 @@ const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
 
   const OrderItems = () => {
-    let renderComponenet = null;
-    products.forEach((item) => {
-      renderComponenet.push(
-        item.cartsmap((cart) => {
-          return (
-            <div key={cart.id} className="p-4 border-t">
-              <div className="product-name font-bold">
-                <span>{`${item.productName} - ${cart.option.optionName}`}</span>
+    let renderComponent = null;
+    if (products) {
+      products.forEach((item) => {
+        renderComponent.push(
+          item.cartsmap((cart) => {
+            return (
+              <div key={cart.id} className="p-4 border-t">
+                <div className="product-name font-bold">
+                  <span>{`${item.productName} - ${cart.option.optionName}`}</span>
+                </div>
+                <div className="quantity">
+                  <span>{comma(cart.quantity)}개</span>
+                </div>
+                <div className="price font-bold">
+                  <span>{comma(cart.price * cart.quantity)}원</span>
+                </div>
               </div>
-              <div className="quantity">
-                <span>{comma(cart.quantity)}개</span>
-              </div>
-              <div className="price font-bold">
-                <span>{comma(cart.price * cart.quantity)}원</span>
-              </div>
-            </div>
-          );
-        })
-      );
-    });
-    return renderComponenet;
+            );
+          })
+        );
+      });
+    }
+    return renderComponent;
   };
 
   return (
@@ -100,8 +101,7 @@ const OrderTemplate = ({ data }) => {
               id="all-agree"
               ref={allAgreeRef}
               checked={agreePayment && agreePolicy}
-              name="payment-agree"
-              onChange={handleAgreement}
+              onChange={handleAllAgree}
             />
             <label htmlFor="all-agree" className="text-xl font-bold">
               전체 동의
@@ -113,7 +113,7 @@ const OrderTemplate = ({ data }) => {
               id="agree"
               ref={agreePaymentRef}
               checked={agreePayment}
-              name="policy-agree"
+              name="payment-agree"
               onChange={handleAgreement}
             />
             <label htmlFor="agree" className="text-sm">
@@ -121,7 +121,14 @@ const OrderTemplate = ({ data }) => {
             </label>
           </div>
           <div className="flex gap-2">
-            <input type="checkbox" id="policy" ref={agreePolicyRef} checked={agreePolicy} onChange={handleAllAgree} />
+            <input
+              type="checkbox"
+              id="policy"
+              ref={agreePolicyRef}
+              checked={agreePolicy}
+              name="policy-agree"
+              onChange={handleAgreement}
+            />
             <label htmlFor="policy" className="text-sm">
               개인정보 제 3자 제공 동의
             </label>

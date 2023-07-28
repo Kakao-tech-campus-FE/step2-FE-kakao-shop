@@ -1,5 +1,5 @@
 const Dropdown = (props) => {
-  return <article className={props.className}>{props.isOpen && props.children}</article>;
+  return <div className={props.className}>{props.isOpen && props.children}</div>;
 };
 
 export default Dropdown;
