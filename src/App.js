@@ -41,27 +41,32 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        {isLoading && <Loading />}
-        <Routes>
-          {/* 단독 레이아웃 */}
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<RegisterPage />}></Route>
-          <Route path="/404" element={<ProductCanNotFound />}></Route>
+      <div className="font-sans antialiased">
+        <BrowserRouter>
+          {isLoading && <Loading />}
+          <Routes>
+            {/* 단독 레이아웃 */}
+            <Route path="/login" element={<LoginPage />}></Route>
+            <Route path="/signup" element={<RegisterPage />}></Route>
+            <Route path="/404" element={<ProductCanNotFound />}></Route>
 
-          {/*  공통 레이아웃 : GNB, footer */}
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<MainPage />}></Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
-          </Route>
-          {/* 사용자 인증 되었을 때만 접근 가능  */}
-          <Route element={<RequiredAuthLayout />}>
-            <Route path="/carts" element={<CartPage />}></Route>
-            <Route path="/order" element={<OrderPage />}></Route>
-            <Route path="/orders/:id" element={<GetOrderPage />}></Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            {/*  공통 레이아웃 : GNB, footer */}
+            <Route element={<MainLayout />}>
+              <Route path="/" element={<MainPage />}></Route>
+              <Route
+                path="/product/:id"
+                element={<ProductDetailPage />}
+              ></Route>
+            </Route>
+            {/* 사용자 인증 되었을 때만 접근 가능  */}
+            <Route element={<RequiredAuthLayout />}>
+              <Route path="/carts" element={<CartPage />}></Route>
+              <Route path="/order" element={<OrderPage />}></Route>
+              <Route path="/orders/:id" element={<GetOrderPage />}></Route>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </div>
   );
 }

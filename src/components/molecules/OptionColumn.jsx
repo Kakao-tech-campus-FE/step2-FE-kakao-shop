@@ -85,7 +85,7 @@ const OptionColumn = ({ product }) => {
 
   return (
     <div className="option-column">
-      <h3>옵션 선택</h3>
+      <h3 className="pb-6 text-xl font-bold">옵션 선택</h3>
       {/* 옵션 담기 할 수 있는 영역 */}
       <OptionList
         options={product.options}
@@ -99,20 +99,20 @@ const OptionColumn = ({ product }) => {
       {selectedOptions.map((item) => (
         <ol key={`selected-${item.optionId}`} className="selected-option-list">
           <li className="selected-option">
+            <span className="name flex gap-2">{item.name}</span>
+            <span className="price">{comma(item.price)}원</span>
             <Counter
               value={item.quantity}
               onIncrease={(count) => handleOnChange(count, item)}
               onDecrease={(count) => handleOnChange(count, item)}
             />
-            <span className="name">{item.name}</span>
-            <span className="price">{comma(item.price)}원</span>
           </li>
         </ol>
       ))}
       <hr />
-      <div className="total-price">
+      <div className="total-price mt-3">
         <span>총 수량 : {totalquantity}개</span>
-        <hr></hr>
+        <hr className="mt-2 mb-3"></hr>
         <span>총 상품금액 : {totalqprice}원</span>
       </div>
       <div className="button-group">

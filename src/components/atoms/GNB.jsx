@@ -36,7 +36,7 @@ function GNB() {
         <Link to="/">
           <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
         </Link>
-        <nav className="navigation flex items-center text-base font-family['Helvetica Neue'] text-gray-700">
+        <nav className="navigation flex items-center text-base  text-gray-700">
           <Link to="/carts" className="mr-4">
             <img src={cart} alt="장바구니 버튼" className="h-8" />
           </Link>
