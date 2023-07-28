@@ -188,8 +188,8 @@ const ProductOption = ({ options }) => {
             <SelectResultRow>
               <Counter
                 value={item.quantity}
-                onIncrease={(count) => handleOnChange(count, item)}
-                onDecrease={(count) => handleOnChange(count, item)}
+                onClickIncrease={(count) => handleOnChange(count, item)}
+                onClickDecrease={(count) => handleOnChange(count, item)}
               />
               <div>{(item.quantity * item.price).toLocaleString()}원</div>
             </SelectResultRow>

@@ -53,10 +53,10 @@ const CartItem = ({ item, onChange, onCartDelete, onItemDelete }) => {
           <Row>
             <Counter
               value={cart.quantity}
-              onIncrease={(count) =>
+              onClickIncrease={(count) =>
                 onChange(cart.id, count, cart.option.price)
               }
-              onDecrease={(count) =>
+              onClickDecrease={(count) =>
                 onChange(cart.id, count, -cart.option.price)
               }
             />

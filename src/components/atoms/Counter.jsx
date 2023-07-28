@@ -25,26 +25,26 @@ const Count = styled.div`
   text-align: center;
 `;
 
-const Counter = ({ value, onDecrease, onIncrease }) => {
+const Counter = ({ value, onClickDecrease, onClickIncrease }) => {
   const [count, setCount] = useState(value);
 
-  const handleOnDecrease = () => {
+  const handleClickDecrease = () => {
     if (count > 1) {
       setCount(count - 1);
-      onDecrease(count - 1);
+      onClickDecrease(count - 1);
     }
   };
 
-  const handleOnIncrease = () => {
+  const handleClickIncrease = () => {
     setCount(count + 1);
-    onIncrease(count + 1);
+    onClickIncrease(count + 1);
   };
 
   return (
     <Container>
-      <StyledButton onClick={handleOnDecrease}>-</StyledButton>
+      <StyledButton onClick={handleClickDecrease}>-</StyledButton>
       <Count>{count}</Count>
-      <StyledButton onClick={handleOnIncrease}>+</StyledButton>
+      <StyledButton onClick={handleClickIncrease}>+</StyledButton>
     </Container>
   );
 };
