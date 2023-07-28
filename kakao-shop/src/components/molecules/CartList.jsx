@@ -9,6 +9,7 @@ import { updateCart } from "../../apis/cart";
 import { comma } from "../../utils/convert";
 import { useMutation } from "@tanstack/react-query";
 import { BsCart2 } from "react-icons/bs";
+import { simpleAlert } from "../../utils/swal";
 
 /**
  * 장바구니에 담긴 상품 리스트
@@ -160,9 +161,16 @@ const CartList = ({ data }) => {
                 onSuccess: () => {
                   navigate("/order");
                 },
-                onError: () => {
+                onError: (error) => {
+                  if (error?.response?.status === 401) {
+                    // 로그인 만료된 상태에서 요청 시
+                    simpleAlert(
+                      "로그인이 만료되었습니다. 재로그인 후 다시 시도해주세요."
+                    );
+                    navigate("/login");
+                  }
                   return (
-                    <ErrorPage message="결제처리 중 에러가 발생했습니다." />
+                    <ErrorPage message="주문처리 중 에러가 발생했습니다." />
                   );
                 },
               });

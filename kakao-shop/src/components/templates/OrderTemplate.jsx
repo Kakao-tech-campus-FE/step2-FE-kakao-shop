@@ -151,6 +151,12 @@ const OrderTemplate = ({ data }) => {
 
           mutate(null, {
             onError: (error) => {
+              // 인증정보 오류 발생 시 재로그인
+              if (error.response.status === 401)
+                simpleAlert("로그인이 만료되었습니다. 다시 로그인해 주세요.");
+              navigate("/login");
+
+              console.log(error);
               simpleAlert(error.response.data.errorMessage);
             },
             onSuccess: (res) => {

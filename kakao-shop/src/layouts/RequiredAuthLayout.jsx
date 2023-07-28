@@ -10,7 +10,7 @@ const RequiredAuthLayout = () => {
   const userEmail = getCookie("email");
 
   useEffect(() => {
-    if (userEmail === null) {
+    if (!userEmail) {
       defaultToast("로그인이 필요한 기능입니다");
       navigate("/login");
     }
