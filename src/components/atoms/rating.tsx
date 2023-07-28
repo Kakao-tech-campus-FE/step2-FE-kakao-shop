@@ -15,19 +15,15 @@ export default function Rating({
     const list = [];
 
     for (let i = 1; i <= maxScore; i += 1) {
-      if (currentScore >= i) {
-        list.push(<FontAwesomeIcon
-          key={i}
-          icon={icon({ name: 'star', style: 'solid' })}
-          color="#4684e9"
-        />);
-      } else {
-        list.push(<FontAwesomeIcon
-          key={i}
-          icon={icon({ name: 'star', style: 'regular' })}
-          color="#4684e9"
-        />);
-      }
+      const iconDefinition = currentScore >= i
+        ? icon({ name: 'star', style: 'solid' })
+        : icon({ name: 'star', style: 'regular' });
+
+      list.push(<FontAwesomeIcon
+        key={i}
+        icon={iconDefinition}
+        color="#4684e9"
+      />);
     }
 
     return list;
