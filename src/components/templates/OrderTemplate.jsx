@@ -167,10 +167,6 @@ const OrderTemplate = ({ data }) => {
             // 장바구니는 비워짐
             // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
             // /orders/complete/:id
-            setUserCookie({
-              email: "test@tester.com",
-              token: "Bearer sssssss",
-            });
             mutate(null, {
               onError: (e) => {
                 alert("주문에 실패했습니다. 재로그인 후 다시 시도해 주십시오.");
