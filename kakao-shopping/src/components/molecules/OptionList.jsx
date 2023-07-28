@@ -22,7 +22,10 @@ const OptionList = ({ options, onClick }) => {
                     <ListGroup.Item
                         key={option.id}
                         className="option text-start px-1 fs-7"
-                        onClick={() => onClick(option)}
+                        onClick={() => {
+                            handleOpen();
+                            onClick(option);
+                        }}
                     >
                         <span className="name fw-bold">
                             {option.optionName}

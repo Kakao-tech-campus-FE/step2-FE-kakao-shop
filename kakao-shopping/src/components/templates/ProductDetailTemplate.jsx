@@ -7,7 +7,7 @@ import ProductInformationColumn from "../molecules/ProductInformationColumn";
 import OptionColumn from "../molecules/OptionColumn";
 
 const ProductDetailTemplate = () => {
-    let { id } = useParams();
+    const { id } = useParams();
 
     const { isLoading, data, error } = useQuery({
         queryKey: ["detail_" + id],
@@ -21,7 +21,7 @@ const ProductDetailTemplate = () => {
     });
 
     return (
-        <Container
+        <main
             className={`detail-container d-flex flex-row align-items-center border mx-auto`}
         >
             <ProductInformationColumn product={data} isLoading={isLoading} />
@@ -30,7 +30,7 @@ const ProductDetailTemplate = () => {
                 isLoading={isLoading}
                 className="border-start w-25 h-100 p-2"
             />
-        </Container>
+        </main>
     );
 };
 

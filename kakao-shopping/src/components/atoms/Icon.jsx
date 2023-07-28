@@ -1,13 +1,12 @@
 const Icon = ({
     icon, // 아이콘 명
     className = "", // class
-    id = "", // id
-    style = {}, // style
+    ...props
 }) => {
     return (
-            <span className={`material-symbols-outlined ${className}`} id={id} style={style}>
-                {icon}
-            </span>
+        <span className={`material-symbols-outlined ${className}`} {...props}>
+            {icon}
+        </span>
     );
 };
 

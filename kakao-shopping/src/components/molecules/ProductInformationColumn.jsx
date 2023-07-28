@@ -7,12 +7,14 @@ const ProductInformationColumn = ({
     product, // 상품 정보
     isLoading, // 로딩
     className = "", // class
-    id = "", // id
-    style = {}, // style
+    ...props
 }) => {
     // if (!product) product = { productName: "", image: "", price: "" };
     return (
-        <div className="product-information-column d-flex flex-row align-items-center w-75 h-100">
+        <div
+            className={`product-information-column d-flex flex-row align-items-center w-75 h-100 ${className}`}
+            {...props}
+        >
             <div className="col w-50">
                 {!isLoading ? (
                     <Photo
@@ -23,7 +25,7 @@ const ProductInformationColumn = ({
                     <Skeleton type="thumbnail" />
                 )}
             </div>
-            <div className="col w-50 flex-grow-1 text-start d-flex flex-column h-100">
+            <div className="col w-50 flex-grow-1 text-start d-flex flex-column h-100 p-2">
                 {!isLoading ? (
                     <>
                         <div className="star ms-1 fs-4 fw-bold text-primary">

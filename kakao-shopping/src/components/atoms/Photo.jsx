@@ -3,11 +3,10 @@ const Photo = ({
     alt, // 이미지 설명
     objectFit = "contain",
     className = "", // class
-    id = "", // id
-    style = {}, // style
+    ...props
 }) => {
     return (
-        <picture className={`d-block ${className}`} id={id} style={style}>
+        <picture className={`d-block ${className}`} {...props}>
             <source className={`object-fit-${objectFit}`} srcSet={`${src}`} />
             <img
                 className={`object-fit-${objectFit}`}

@@ -9,8 +9,12 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import MainLayout from "./layouts/MainLayout";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
+import CheckPage from "./pages/CheckPage";
 
 export let persistor = persistStore(store);
 const queryClient = new QueryClient();
@@ -25,27 +29,42 @@ function App() {
                         <BrowserRouter>
                             <Routes>
                                 {/* 단독 레이아웃 */}
-                                <Route path="/login" element={<LoginPage />}>
-                                    {" "}
-                                </Route>
+                                <Route
+                                    path="/login"
+                                    element={<LoginPage />}
+                                ></Route>
                                 <Route
                                     path="/signup"
                                     element={<RegisterPage />}
-                                >
-                                    {" "}
-                                </Route>
-                                <Route
-                                    path="/product/:id"
-                                    element={<ProductDetailPage />}
-                                >
-                                    {" "}
-                                </Route>
+                                ></Route>
+
                                 {/* 공통 레이아웃: GNB, Footer */}
-                                <Route path="/" element={<MainPage />}>
-                                    {" "}
+                                <Route element={<MainLayout />}>
+                                    <Route
+                                        path="/"
+                                        element={<MainPage />}
+                                    ></Route>
+
+                                    <Route
+                                        path="/product/:id"
+                                        element={<ProductDetailPage />}
+                                    ></Route>
                                 </Route>
-                                <Route path="/cart" element={<CartPage />}>
-                                    {" "}
+
+                                {/* 로그인 전용 레이아웃 */}
+                                <Route element={<RequiredAuthLayout />}>
+                                    <Route
+                                        path="/cart"
+                                        element={<CartPage />}
+                                    ></Route>
+                                    <Route
+                                        path="/order"
+                                        element={<OrderPage />}
+                                    ></Route>
+                                    <Route
+                                        path="/check/:id"
+                                        element={<CheckPage />}
+                                    ></Route>
                                 </Route>
                             </Routes>
                         </BrowserRouter>

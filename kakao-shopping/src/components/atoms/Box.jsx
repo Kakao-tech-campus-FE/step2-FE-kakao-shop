@@ -1,15 +1,10 @@
 const Box = ({
     className = "", // class
-    id = "", // id
-    style = {}, // style
     children, // 자식 Component
+    ...props
 }) => {
     return (
-        <div
-            className={`box border rounded p-1 m-1 ${className}`}
-            id={id}
-            style={style}
-        >
+        <div className={`box border rounded p-1 m-1 ${className}`} {...props}>
             {children}
         </div>
     );

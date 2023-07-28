@@ -1,15 +1,10 @@
 const Title = ({
     children, // 자식 Component
-    id = "", // id
     className = "", // class
-    style = {}, // style
+    ...props
 }) => {
     return (
-        <h1
-            className={`label fw-bolder fs-1 ${className}`}
-            id={id}
-            style={style}
-        >
+        <h1 className={`label fw-bolder fs-1 ${className}`} {...props}>
             {children}
         </h1>
     );

@@ -119,13 +119,14 @@ const RegisterForm = ({
                         })
                             .then((response) => response.data)
                             .catch((response) => response.data);
-                        if (emailCheck.success === true) {
+                        console.log(emailCheck);
+                        if (emailCheck?.success === true) {
                             setValid({ ["email"]: true });
                             setDescription({ ["email"]: "사용 가능합니다." });
                         } else {
                             setValid({ ["email"]: false });
                             setDescription({
-                                ["email"]: emailCheck.error.message,
+                                ["email"]: emailCheck?.error.message,
                             });
                         }
                     }}

@@ -70,7 +70,6 @@ const MainProductTemplate = () => {
             products.concat(page.data.response);
             products = _.uniqBy([...products, ...page.data.response]);
         });
-        console.log(products);
         return <ProductGrid className="main-grid" products={products} />;
     };
 
