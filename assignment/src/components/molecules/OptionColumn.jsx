@@ -60,7 +60,7 @@ const OptionColumn = ({ product }) => {
     });
   };
   const handleOnOrder = () => {
-    navigate('/order');
+    alert('미구현 기능입니다');
   };
   return (
     <div className="option-column">
@@ -113,8 +113,13 @@ const OptionColumn = ({ product }) => {
               onSuccess: () => {
                 alert('장바구니에 담겼습니다.');
               },
-              onError: () => {
-                alert('장바구니 담기에 실패했습니다..');
+              onError: (error) => {
+                if (error.response.request.status === 401) {
+                  alert('로그인 세션이 만료되었습니다 다시 로그인해 주세요');
+                  navigate('/login');
+                } else {
+                  navigate('/error');
+                }
               },
             },
           );

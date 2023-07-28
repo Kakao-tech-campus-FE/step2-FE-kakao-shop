@@ -10,7 +10,6 @@ import Button from '../atoms/Button';
 import { updateCart } from '../../services/cart';
 
 const CartList = ({ data }) => {
-  console.log('cartlist', data);
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -134,12 +133,14 @@ const CartList = ({ data }) => {
       <Button
         className="order-btn"
         onClick={() => {
-          route('/order');
           mutate(updatePayload, {
             onSuccess: (data) => {
-              route.push('/order');
+              route('/order');
             },
-            onError: (error) => {},
+            onError: (error) => {
+              console.log('error', error);
+              route('/error');
+            },
           });
         }}
       >

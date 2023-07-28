@@ -8,7 +8,6 @@ import useAgree from '../../hooks/useAgree';
 
 const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data.data.response;
-  console.log('data', data);
   const {
     agreePayment,
     agreePolicy,
@@ -129,9 +128,12 @@ const OrderTemplate = ({ data }) => {
               }
               mutate(null, {
                 onError: (error) => {
-                  console.log(error);
-                  alert('주문실패');
-                  navigate('/');
+                  if (error.response.request.status === 401) {
+                    alert('로그인 세션이 만료되었습니다 다시 로그인해 주세요');
+                    navigate('/login');
+                  } else {
+                    navigate('/error');
+                  }
                 },
                 onSuccess: (res) => {
                   // const { id } = res.response;
