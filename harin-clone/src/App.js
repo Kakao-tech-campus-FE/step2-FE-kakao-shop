@@ -24,15 +24,12 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<MainPage />}></Route>
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
-          <Route path="/cart" Component={CartPage} />
-          <Route path="/order" Component={OrderPage} />
+          {/* 사용자가 로그인 되었을 때만 접근할 수 있는 레이아웃 */}
+          <Route element={<RequiredAuthLayout />}>
+            <Route path="/cart" Component={CartPage} />
+            <Route path="/order" Component={OrderPage} />
+          </Route>
         </Route>
-
-        {/* 사용자가 로그인 되었을 때만 접근할 수 있는 레이아웃 */}
-        {/* <Route element={<RequiredAuthLayout />}> */}
-        {/* <Route path="/cart" Component={CartPage} />
-        <Route path="/order" Component={OrderPage} /> */}
-        {/* </Route> */}
       </Routes>
     </BrowserRouter>
   );

@@ -4,23 +4,15 @@ import { Suspense } from "react";
 import Loader from "../Components/Atoms/Loader";
 import { getCart } from "../Servicies/cart";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const OrderPage = () => {
-  const navigate = useNavigate();
-
-  // const { data } = useQuery(["getcart"], () => getCart());
-  const data = getCart();
-  console.log(data);
-  // if (!data) {
-  //   alert("주문 가능한 상품이 없습니다!");
-  //   navigate("/cart");
-  // }
+  const { data } = useQuery(["cart"], getCart);
+  console.log("이것은 오더 데이터: " + data);
 
   return (
     <Suspense fallback={<Loader />}>
-      <div>
-        <OrderTemplate data={data} />
-      </div>
+      <OrderTemplate data={data} />
     </Suspense>
   );
 };

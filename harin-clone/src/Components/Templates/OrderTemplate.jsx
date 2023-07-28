@@ -3,9 +3,13 @@ import { comma } from "../../Utils/convert";
 import { order } from "../../Servicies/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import { getCart } from "../../Servicies/cart";
+import { useQuery } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
 
 const OrderTemplate = ({ data }) => {
-  const { products, totalPrice } = data?.data?.response ?? {};
+  const products = data?.data?.response?.products;
+  const totalPrice = data?.data?.response?.totalPrice;
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -37,11 +41,11 @@ const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
 
   const OrderItems = () => {
-    let renderComponent = null;
-    if (products) {
+    let renderComponent = [];
+    if (products && totalPrice) {
       products.forEach((item) => {
         renderComponent.push(
-          item.cartsmap((cart) => {
+          item.carts.map((cart) => {
             return (
               <div key={cart.id} className="p-4 border-t">
                 <div className="product-name font-bold">
@@ -51,7 +55,7 @@ const OrderTemplate = ({ data }) => {
                   <span>{comma(cart.quantity)}개</span>
                 </div>
                 <div className="price font-bold">
-                  <span>{comma(cart.price * cart.quantity)}원</span>
+                  <span>{comma(cart.price)}원</span>
                 </div>
               </div>
             );
@@ -91,7 +95,7 @@ const OrderTemplate = ({ data }) => {
         {/* 총 주문 금액 */}
         <div className="border p-4 flex items-center justify-between">
           <h3 className="font-bold text-xl">총 주문 금액</h3>
-          <span className="price text-xl text-indigo-700">{comma(data.totalPrice)}원</span>
+          <span className="price text-xl text-indigo-700">{comma(totalPrice ?? 0)}원</span>
         </div>
         {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
         <div className="flex flex-col p-4">

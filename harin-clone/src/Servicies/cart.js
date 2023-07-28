@@ -4,8 +4,9 @@ export const addCart = (payload) => {
   return instance.post("/carts/add", payload);
 };
 
-export const getCart = () => {
-  return instance.get("/carts");
+export const getCart = async () => {
+  const res = await instance.get("/carts");
+  return res;
 };
 
 /**
