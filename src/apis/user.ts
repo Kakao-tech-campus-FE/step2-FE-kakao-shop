@@ -1,12 +1,12 @@
 import { LoginData, RegisterFormData } from '../types/formData';
-import { kakaoUserInstance } from './instance';
+import { kakaoInstance } from './instance';
 
 export function checkEmail(email: string) {
-  return kakaoUserInstance.post('/check', { email });
+  return kakaoInstance.post('/check', { email });
 }
 
 export async function requestUserRegistration({ email, password, username }: RegisterFormData) {
-  const response = await kakaoUserInstance.post('/join', {
+  const response = await kakaoInstance.post('/join', {
     email,
     password,
     username,
@@ -16,7 +16,7 @@ export async function requestUserRegistration({ email, password, username }: Reg
 }
 
 export function requestUserLogin({ email, password }: LoginData) {
-  return kakaoUserInstance.post('/login', {
+  return kakaoInstance.post('/login', {
     email,
     password,
   });
