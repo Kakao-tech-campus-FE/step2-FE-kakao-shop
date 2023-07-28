@@ -2,7 +2,7 @@ import { Suspense } from "react"
 import OrderTemplate from "../components/templates/OrderTemplate"
 import Loader from "../components/atoms/Loader"
 import { useQuery } from "react-query"
-import { getCart } from "../apis/cart"
+import { getCart } from "../services/cart"
 
 
 const OrderPage = () => {
