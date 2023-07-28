@@ -32,15 +32,10 @@ const OrderTemplate = () => {
     mutationFn: order,
   });
 
-  // products 안에 있는 item
-  // `${item.productName}` - `${item.carts[0].option.optionName}`
-  // 1`개당 가격: item.carts[0].price + item.carts[0].quantity
   const OrderItems = () => {
     let renderComponent = [];
 
-    // forEach, map은 동기 함수
     products.forEach((item) => {
-      // item: 각 상품, carts: 옵션이 담김
       renderComponent.push(
         item.carts.map((cart) => {
           return (
@@ -91,17 +86,14 @@ const OrderTemplate = () => {
         <div className="border p-4">
           <h2>주문상품 정보</h2>
         </div>
-        {/* 각 주문의 정보 */}
+  
         <OrderItems />
-        {/* 총 주문 금액  */}
         <div className="border p-4 flex items-center justify-between">
           <h3>총 주문 금액</h3>
           <span className="price text-indigo-600 font-bold">
             {comma(totalPrice)}원
           </span>
         </div>
-        {/* 전체 동의, 구매조건 확인 및 결제 진행 동의 */}
-        {/* 수정 필요 */}
         <div className="border flex flex-col p-4 gap-4">
           <div className="flex gap-2">
             <input
@@ -138,11 +130,10 @@ const OrderTemplate = () => {
               개인정보 제 3자 제공 동의
             </label>
           </div>
-          {/* 결제하기 버튼 */}
           <button
             onClick={() => {
               if (!agreePayment || !agreePolicy) {
-                alert("모든 항목에 동의가 필요합니다.");
+                alert("모든 항목에 동의해야합니다.");
                 return;
               }
 
