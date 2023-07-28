@@ -34,7 +34,7 @@ function CheckAgrees() {
             type="checkbox"
             checked={allAgree}
             className="mr-2"
-            onClick={() =>
+            onChange={() =>
               setAllAgree((prev) => {
                 handleAllAgree(prev);
                 return !prev;
