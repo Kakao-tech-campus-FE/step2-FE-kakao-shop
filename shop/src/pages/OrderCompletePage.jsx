@@ -1,4 +1,4 @@
-import {Suspense} from 'react'
+import {Suspense, useEffect} from 'react'
 import { useQuery } from 'react-query'
 import { useNavigate, useParams } from 'react-router-dom'
 import { getOrderById } from '../services/order'
@@ -9,26 +9,18 @@ import Button from '../components/atoms/Button'
 const OrderCompletePage = () => {
   const {id} = useParams()
   const navigate = useNavigate()
-  const {data} = useQuery(`orders/${id}`, 
+  const {data, error} = useQuery(`orders/${id}`, 
     ()=>getOrderById(id),
-    {
-      suspense:true,
-      onError: (err)=>{
-        console.log(err)
-        navigate('/404')
-      }
-    }
+    {suspense:true}
   )
   const {products, totalPrice} = data?.data?.response
 
-  // if(isLoading){
-  //   return <Loader/>
-  // }
+  useEffect(() => {
+    if (error) {
+      navigate('/404')
+    }
+  }, [error, navigate]);
 
-  // if (error){
-  //   navigate('/product/404')
-  //   return null
-  // }
   
   const OrderItems = () =>{
     let renderComponent = []
