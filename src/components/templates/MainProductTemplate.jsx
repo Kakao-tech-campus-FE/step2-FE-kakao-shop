@@ -8,6 +8,7 @@ import { useState, useRef } from "react";
 
 import SkeletonElement from "../skeleton/SkeletonElement";
 
+
 const MainProductTemplate = () => {
     const [page, setPage] = useState(0);
     const bottomObserver = useRef(null)
@@ -54,9 +55,6 @@ const MainProductTemplate = () => {
             {/* <Suspense fallback={<SkeletonElement />}> */}
             <ProductGrid products={data.payload} />
             <div ref={bottomObserver}></div>
-
-            <Suspense fallback={<SkeletonElement />}></Suspense>
-
             {/* </Suspense> */}
 
 

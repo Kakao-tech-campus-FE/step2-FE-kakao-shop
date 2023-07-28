@@ -8,8 +8,8 @@ const routes = {
     skeletonTest: `/skeleton-test`,
     order:'/order',
     orderComplete:'/orders/complete',
-
-
+    productDetail: `/product/:id`,
+    skeletonTest: `/skeleton-test`
 };
 
 export default routes;
