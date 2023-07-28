@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+<<<<<<< HEAD
 import { getProductById } from "../../apis/product";
+=======
+import { getProductById } from "../../services/product";
+>>>>>>> 332b9d06cc9580dd2e0ecdda2f40fd55713f1cf8
 
 const initialState = {
     detail: [],
