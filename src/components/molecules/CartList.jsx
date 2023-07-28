@@ -105,6 +105,11 @@ const CartList = ({ data }) => {
                 <Button
                     className={styles.order_btn}
                     onClick={() => {
+                        if(cartItems.length === 0) {
+                            alert("주문할 상품이 존재하지 않습니다.");
+                            return;
+                        }
+
                         const payload = getUpdatePayload();
                         console.log('payload', payload);
                         cartUpdataMutation.mutate(payload);
