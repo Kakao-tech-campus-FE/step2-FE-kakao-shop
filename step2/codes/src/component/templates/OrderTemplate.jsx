@@ -36,7 +36,6 @@ const OrderTemplate = ({ data }) => {
 
     const handleAgreement = (e) => {
         const { name, checked } = e.target;
-
         if ( name === "payment-agree") {
             setAgreePayment(checked);
         } else if (name === "policy-agree") {
