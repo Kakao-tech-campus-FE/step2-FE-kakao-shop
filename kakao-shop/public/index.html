@@ -4,8 +4,17 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kdykakaoshop.netlify.app" />
+    <meta property="og:title" content="카카오 쇼핑하기" />
+    <meta
+      property="og:image"
+      content="data:image/png;base64,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" />
+    <meta property="og:description" content="지금, 내 마음을 전하는 가장 쉬운 방법" />
+    <meta property="og:site_name" content="카카오 쇼핑하긴" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -21,7 +30,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>카카오 쇼핑하기</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
