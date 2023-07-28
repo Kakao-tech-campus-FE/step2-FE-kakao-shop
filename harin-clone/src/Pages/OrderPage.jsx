@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 
 const OrderPage = () => {
   const { data } = useQuery(["cart"], getCart);
-  console.log("이것은 오더 데이터: " + data);
 
   return (
     <Suspense fallback={<Loader />}>

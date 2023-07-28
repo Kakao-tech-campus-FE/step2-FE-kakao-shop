@@ -2,15 +2,20 @@ import { useMutation } from "@tanstack/react-query";
 import { comma } from "../../Utils/convert";
 import { order } from "../../Servicies/order";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Container from "../Atoms/Container";
 import Box from "../Atoms/Box";
 import "../../Styles/Card.css";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { saveId } from "../../Store/Slices/orderSlice";
+import { useDispatch } from "react-redux";
 
 const OrderTemplate = ({ data }) => {
+  const dispatch = useDispatch();
+
   const products = data?.data?.response?.products;
   const totalPrice = data?.data?.response?.totalPrice;
+
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -36,7 +41,7 @@ const OrderTemplate = ({ data }) => {
 
   const { mutate } = useMutation({
     mutationKey: "order",
-    queryFn: () => order,
+    mutationFn: order,
   });
 
   const navigate = useNavigate();
@@ -191,13 +196,15 @@ const OrderTemplate = ({ data }) => {
         <button
           onClick={() => {
             mutate(null, {
-              onError: () => {
+              onError: (error) => {
+                console.log(error);
                 alert("주문에 실패하였습니다.");
               },
               onSuccess: (res) => {
                 const id = res.response.id;
+                dispatch(saveId(id));
                 alert("주문이 완료되었습니다.");
-                navigate(`/orders/complete/${id}`);
+                navigate(`/order/complete/${id}`);
               },
             });
           }}

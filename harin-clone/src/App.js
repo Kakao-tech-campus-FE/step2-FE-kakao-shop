@@ -10,6 +10,7 @@ import CartPage from "./Pages/CartPage";
 import PageNotFuond from "./Pages/PageNotFound";
 import OrderPage from "./Pages/OrderPage";
 import RequiredAuthLayout from "./Layouts/RequiredAuthLayout";
+import OrderCompletePage from "./Pages/OrderCompletePage";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" Component={CartPage} />
             <Route path="/order" Component={OrderPage} />
+            <Route path="/order/complete/:id" Component={OrderCompletePage} />
           </Route>
         </Route>
       </Routes>
