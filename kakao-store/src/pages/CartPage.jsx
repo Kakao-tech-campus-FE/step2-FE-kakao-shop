@@ -10,12 +10,9 @@ const CartPage = () => {
     const { data } = useQuery("cart", getCart);
 
     return (
-        <>
-            <Gnb />
-            <Suspense fallback={<Loader />}>
-                <CartList data={data} />
-            </Suspense>
-        </>
+        <Suspense fallback={<Loader />}>
+            <CartList data={data} />
+        </Suspense>
     )
 }
 
