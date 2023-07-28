@@ -3,6 +3,7 @@ import Loader from "../components/atoms/Loader"
 import { getProductById } from "../services/product"
 import { useQuery } from "react-query"
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate"
+import { useEffect } from "react"
 
 const ProductDetailPage = () => {
   const {id}= useParams() //string
@@ -15,15 +16,17 @@ const ProductDetailPage = () => {
 
   const product = detail?.data?.response
 
+  
+  useEffect(() => {
+    if (error) {
+      navigate('/404')
+    }
+  }, [error, navigate]);
+  
   if (isLoading){
     return <Loader/>
   }
-
-  if (error){
-    navigate('/product/404')
-    return null
-  }
-
+  
   return (
       <div>
         {detail && <ProductDetailTemplate product={product}/>}
