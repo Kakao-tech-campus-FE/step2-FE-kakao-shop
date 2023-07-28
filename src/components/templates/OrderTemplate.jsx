@@ -3,6 +3,8 @@ import { comma } from "../../utils/convert";
 import { order } from "../../services/api/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import { setUserCookie } from "../../services/cookie";
+import logOut from "../../services/logout";
 
 const OrderTemplate = ({ data }) => {
   const products = data?.data?.response?.products;
@@ -75,9 +77,9 @@ const OrderTemplate = ({ data }) => {
       </span>
     </div>
   ) : (
-    <div className="py-20">
-      <div className="block mx-auto max-w-[1024px] w-full">
-        <div className="border py-2">
+    <div className="py-10 bg-[#F4F4F4] bg-opacity-70">
+      <div className="block mx-auto max-w-[870px] w-full bg-white">
+        <div className="border rounded py-4 text-center">
           <h1 className="text-sm font-bold">주문하기</h1>
         </div>
         <div className="border py-4">
@@ -165,15 +167,22 @@ const OrderTemplate = ({ data }) => {
             // 장바구니는 비워짐
             // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
             // /orders/complete/:id
+            setUserCookie({
+              email: "test@tester.com",
+              token: "Bearer sssssss",
+            });
             mutate(null, {
-              onError: () => {
-                alert("주문에 실패했습니다.");
-                // 사용자 정보가 유실(header의 autorization)
-                // /login error
-                // 엉뚱한 데이터 404 페이지
+              onError: (e) => {
+                alert("주문에 실패했습니다. 재로그인 후 다시 시도해 주십시오.");
+                logOut();
+                navigate("/login");
+                // 사용자 정보가 유실(header의 autorization)시
+                // /login 페이지로 이동
+                // 엉뚱한 상품 데이터가 들어왔을 경우 404 페이지
               },
               onSuccess: (res) => {
-                const id = res.response.id;
+                console.log(res);
+                const id = res.data.response.id;
                 alert("주문이 완료되었습니다.");
                 navigate(`/orders/complete/${id}`);
               },
