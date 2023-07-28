@@ -3,7 +3,7 @@ import { useState } from "react"
 import { comma } from "../../utils/convert"
 import Counter from "../atoms/Counter"
 import { useMutation } from "react-query"
-import { addCart } from "../../services/Cart"
+import { addCart } from "../../services/cart"
 
 
 const OptionColumn = ({ product }) => {
