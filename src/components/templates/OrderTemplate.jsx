@@ -50,7 +50,7 @@ const OrderTemplate = ({ data }) => {
       products.forEach((item) => {
         renderComponent.push(
           item.carts.map((cart) => {
-            return (
+            return cart.quantity ? (
               <Box
                 key={cart.id}
                 className="order-item p-[16px] border-y border-gray-100"
@@ -67,6 +67,8 @@ const OrderTemplate = ({ data }) => {
                   <span>원</span>
                 </div>
               </Box>
+            ) : (
+              []
             );
           })
         );
