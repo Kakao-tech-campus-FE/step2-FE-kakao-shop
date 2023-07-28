@@ -5,6 +5,8 @@ import SignUp from "../pages/SignUp";
 import routes from './routes';
 import ProductDetailPage from '../pages/ProductDetailPage';
 import SkeletonPage from '../components/skeleton/SkeletonPage';
+import OrderPage from '../pages/OrderPage';
+import OrderCompletePage from '../pages/OrderCompletePage'
 
 export const RouterInfo = [
     {
@@ -44,5 +46,14 @@ export const RouterInfo = [
         path: `${routes.skeletonTest}`,
         element: <SkeletonPage />,
         label: 'skeletonTest'
-    }
+    },
+    {
+        path: `${routes.order}`,
+        element: <OrderPage />,
+        label: 'order'
+    }, {
+        path: `${routes.orderComplete}`,
+        element: <OrderCompletePage/>,
+        label: 'order'
+    },
 ]

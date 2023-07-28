@@ -5,18 +5,8 @@ import { QueryClient,useQuery, QueryClientProvider } from "@tanstack/react-query
 import { useSelector, useDispatch } from 'react-redux';
 import { getProducts } from "../../store/slices/productSlice";
 import { useState, useRef } from "react";
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import SkeletonElement from "../skeleton/SkeletonElement";
-=======
->>>>>>> fb7870df0 (test)
-=======
-import SkeletonElement from "../skeleton/SkeletonElement";
->>>>>>> 02ab4daca (feat:Add skeleton)
-=======
-import SkeletonElement from "../skeleton/SkeletonElement";
->>>>>>> 019244ba4c2d3c747e642389225afaee80dd780c
 
 const MainProductTemplate = () => {
     const [page, setPage] = useState(0);
@@ -64,22 +54,11 @@ const MainProductTemplate = () => {
             {/* <Suspense fallback={<SkeletonElement />}> */}
             <ProductGrid products={data.payload} />
             <div ref={bottomObserver}></div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             <Suspense fallback={<SkeletonElement />}></Suspense>
-=======
->>>>>>> fb7870df0 (test)
-=======
-            <Suspense fallback={<SkeletonElement />}></Suspense>
->>>>>>> 02ab4daca (feat:Add skeleton)
-=======
+
             {/* </Suspense> */}
->>>>>>> a71dbb36f (add detailPage,loading,404)
-=======
-            {/* </Suspense> */}
->>>>>>> 019244ba4c2d3c747e642389225afaee80dd780c
+
 
         </Container>
     );
