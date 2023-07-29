@@ -6,7 +6,7 @@ import Label from '../atoms/label';
 import InputBox from '../molecules/inputBox';
 import { LOGIN_ERROR_MSG } from '../../utils/errorMsg';
 import { LOGIN_VALID_REGEX } from '../../utils/regex';
-import Loader from '../atoms/loader';
+import Button from '../atoms/button';
 
 interface LoginFormProps {
   // Request login
@@ -89,15 +89,14 @@ export default function LoginForm({
         </div>
       </div>
       <div className="px-2 text-center">
-        {isLoading ? <Loader /> : (
-          <button
-            type="submit"
-            className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
-            disabled={!formState.isDirty || !formState.isValid || isLoading}
-          >
-            로그인
-          </button>
-        )}
+        <Button
+          type="submit"
+          className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
+          disabled={!formState.isDirty || !formState.isValid || isLoading}
+          isLoading={isLoading}
+        >
+          로그인
+        </Button>
       </div>
     </form>
   );
