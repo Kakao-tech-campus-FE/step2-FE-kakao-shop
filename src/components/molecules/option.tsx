@@ -10,7 +10,7 @@ interface OptionProps {
 export default function Option({ children, optionDescription }:OptionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const angleDefinition = isExpanded
+  const iconDefinition = isExpanded
     ? icon({ name: 'angle-up', style: 'solid' })
     : icon({ name: 'angle-down', style: 'solid' });
 
@@ -36,8 +36,8 @@ export default function Option({ children, optionDescription }:OptionProps) {
           {optionDescription}
         </div>
         {isExpanded
-          ? <FontAwesomeIcon icon={angleDefinition} />
-          : <FontAwesomeIcon icon={angleDefinition} />}
+          ? <FontAwesomeIcon icon={iconDefinition} />
+          : <FontAwesomeIcon icon={iconDefinition} />}
       </button>
       {isExpanded ? (
         <ul role="listbox" className="absolute z-30 flex w-full flex-col rounded-b border border-t-0 border-stone-300 bg-white">
