@@ -2,14 +2,22 @@ import React from 'react'
 import Order from 'components/organisms/Order'
 import { useQuery } from 'react-query'
 import { getCarts } from 'api/cart'
+import { useNavigate } from 'react-router-dom'
 
 const OrderPage = () => {
 
+  const navigate = useNavigate()
   /** 장바구니 객체 get */ 
   const query = useQuery(
     ["getCarts"],
     getCarts,
-    {suspense: true}
+    {suspense: true,
+    onSuccess: (res) => {
+      if (res.totalPrice === 0) {
+        alert('선택된 상품이 없습니다')
+        navigate('/carts')
+      }
+    }}
   )
   
   /** 임의 주문 정보 */
