@@ -19,12 +19,16 @@ const Cart = () => {
   const query = useQuery(
     ["getCarts"],
     getCarts,
-    {suspense: true}
+    { suspense: true,
+      onError: () => navigate('/login')
+    }
   )
   
   const mutation = useMutation(
     updateCart, 
-    { onSuccess: () => query.refetch() }
+    { onSuccess: () => query.refetch(),
+      onError: () => navigate('/login')
+    }
   );
   
   /**
@@ -100,13 +104,15 @@ const Cart = () => {
 
           </CartCollectionBox> 
       ))}
+
+      { totalQ === 0 && <Empty /> }
       
       <TotalPrice 
         price={!query.isFetching ? query.data.totalPrice : "-"} 
         quantity={totalQ}
       />
 
-      <SubmitButton onClick={submitHandler}> 
+      <SubmitButton onClick={submitHandler} disabled={totalQ === 0}> 
         주문하기 
       </SubmitButton>
 
@@ -115,3 +121,12 @@ const Cart = () => {
 }
 
 export default Cart
+
+
+const Empty = () => {
+  return (
+    <div className='flex h-40'>
+      <span className='m-auto'>장바구니가 비어있습니다</span>
+    </div>
+  )
+}
