@@ -2,16 +2,6 @@ import ProductCard from "../molecules/ProductCard";
 import "../../styles/organisms/ProductGrid.css";
 import CardSkeleton from "../atoms/CardSkeleton";
 
-// const ProductGrid = ({ products }) => {
-//   return (
-//     <div className="product-grid">
-//       {products.map((product) => (
-//         <ProductCard key={product.id} product={product} />
-//       ))}
-//     </div>
-//   );
-// };
-
 // 로딩중일 때 제품목록카드 개수만큼 스켈레톤카드 보여주기
 const ProductGrid = ({ products, loading }) => {
   if (loading) {

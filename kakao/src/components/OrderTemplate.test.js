@@ -33,6 +33,4 @@ describe("OrderTemplate 컴포넌트 테스트", () => {
 
     console.log("handleClickOrder 함수가 호출되었습니다.");
   });
-
-  // 여기에 추가적인 테스트를 작성할 수 있습니다.
 });

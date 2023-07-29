@@ -43,6 +43,9 @@ export const loginRequest = createAsyncThunk(
   async (data) => {
     const { email, password } = data;
     const response = await login({ email, password });
+
+    localStorage.setItem("token", response.headers.authorization);
+
     return {
       email,
       token: response.headers.authorization,

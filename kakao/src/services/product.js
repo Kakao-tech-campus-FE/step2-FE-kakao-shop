@@ -1,4 +1,4 @@
-import { instance } from "./index"; //요거 이상한듯..
+import { instance } from "./index";
 
 // 제품목록 가져오는 API 요청(원래코드!!!)
 // export const fetchProducts = (page = 0) => {

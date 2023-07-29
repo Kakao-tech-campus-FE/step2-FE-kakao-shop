@@ -1,19 +1,27 @@
 import { Link } from "react-router-dom";
 import "../../styles/atoms/Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { setEmail, setToken } from "../../store/slices/userSlice";
 import "../../styles/atoms/GNB.css";
+import { useEffect } from "react";
 
 const GNB = () => {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    //요기 약간이상?
+    dispatch(setEmail({ email: "" }));
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     alert("정상적으로 로그아웃되었습니다!");
-    dispatch(setEmail(null));
   };
+
+  useEffect(() => {
+    const email = localStorage.getItem("email");
+    if (email) {
+      dispatch(setEmail({ email: email }));
+    }
+  }, [dispatch]);
 
   return (
     <header className="header">

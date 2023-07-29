@@ -5,9 +5,9 @@ import useInput from "../../hooks/useInput";
 import { login } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail } from "../../store/slices/userSlice";
+import { setEmail, setToken } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // hook으로
 const LoginForm = () => {
@@ -39,15 +39,11 @@ const LoginForm = () => {
       password: value.password,
     })
       .then((res) => {
-        console.log(res);
-        // const token = res.data.token;
         const token = res.headers.authorization;
         localStorage.setItem("token", token);
-        dispatch(
-          setEmail({
-            email: value.email,
-          })
-        );
+        localStorage.setItem("email", value.email);
+        dispatch(setEmail({ email: value.email }));
+        dispatch(setToken({ token }));
         navigate("/");
       })
       .catch((err) => {
