@@ -22,6 +22,7 @@ export const handlers = [
       ctx.status(500),
     );
   }),
+
   rest.get(`${BASE_URL}/products`, (req, res, ctx) => {
     const page = Number(req.url.searchParams.get('page'));
     return res(
@@ -94,6 +95,22 @@ export const handlers = [
           },
         ],
         error: null,
+      }),
+    );
+  }),
+
+  rest.post(`https://kapi.kakao.com/v1/payment/ready`, (req, res, ctx) => {
+    return res(
+      // Respond with a 200 status code
+      ctx.status(200),
+      ctx.json({
+        tid: 'T1234567890123456789',
+        next_redirect_app_url: 'https://mockup-pg-web.kakao.com/v1/xxxxxxxxxx/aInfo',
+        next_redirect_mobile_url: 'https://mockup-pg-web.kakao.com/v1/xxxxxxxxxx/mInfo',
+        next_redirect_pc_url: 'https://mockup-pg-web.kakao.com/v1/xxxxxxxxxx/info',
+        android_app_scheme: 'kakaotalk://kakaopay/pg?url=https://mockup-pg-web.kakao.com/v1/xxxxxxxxxx/order',
+        ios_app_scheme: 'kakaotalk://kakaopay/pg?url=https://mockup-pg-web.kakao.com/v1/xxxxxxxxxx/order',
+        created_at: '2016-11-15T21:18:22',
       }),
     );
   }),

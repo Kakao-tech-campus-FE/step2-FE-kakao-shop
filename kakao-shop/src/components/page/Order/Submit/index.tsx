@@ -26,7 +26,7 @@ const Submit = ({ isAllChecked, totalPrice, cartProducts }: Props) => {
   };
 
   return (
-    <Button onClick={onSubmit} css={S.ButtonCSS}>
+    <Button data-testid={'order-submit'} onClick={onSubmit} css={S.ButtonCSS}>
       결제하기
     </Button>
   );
