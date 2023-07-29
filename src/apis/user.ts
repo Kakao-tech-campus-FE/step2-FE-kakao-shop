@@ -6,13 +6,11 @@ export function checkEmail(email: string) {
 }
 
 export async function requestUserRegistration({ email, password, username }: RegisterFormData) {
-  const response = await kakaoInstance.post('/join', {
+  return kakaoInstance.post('/join', {
     email,
     password,
     username,
   });
-
-  return response.status === 200 && response.data.success === true;
 }
 
 export function requestUserLogin({ email, password }: LoginData) {

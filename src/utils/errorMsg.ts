@@ -29,3 +29,7 @@ export const LOGIN_ERROR_MSG = {
     EMPTY: '비밀번호를 입력해 주세요.',
   },
 };
+
+export const LOGIN_RESPONSE_ERROR_MSG_400 = '잘못된 이메일 또는 비밀번호 형식입니다.';
+export const LOGIN_RESPONSE_ERROR_MSG_401 = '이메일 또는 비밀번호가 틀립니다.';
+export const LOGIN_RESPONSE_ERROR_MSG_500 = '로그인 서버에 문제가 발생했습니다.';
