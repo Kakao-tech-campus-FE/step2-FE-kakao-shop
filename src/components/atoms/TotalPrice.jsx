@@ -18,7 +18,7 @@ const TotalPrice = ({ item }) => {
 
   const totalPrice = orderItem
     .flatMap((x) => x.map((x) => x.price))
-    .reduce((acc, cur) => acc + cur);
+    .reduce((acc, cur) => acc + cur, 0);
 
   return (
     <>
