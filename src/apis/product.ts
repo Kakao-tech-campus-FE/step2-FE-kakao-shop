@@ -1,14 +1,14 @@
 import { ProductThumbnail } from '../types/product';
-import { kakaoShoppingInstance } from './instance';
+import { kakaoInstance } from './instance';
 
 export async function getProductList(pageIndex: number): Promise<ProductThumbnail[]> {
-  const response = await kakaoShoppingInstance.get(`/products?page=${pageIndex}`);
+  const response = await kakaoInstance.get(`/products?page=${pageIndex}`);
 
   return response.data.response;
 }
 
 export async function getProductDetail(productId: number) {
-  const response = await kakaoShoppingInstance.get(`/products/${productId}`);
+  const response = await kakaoInstance.get(`/products/${productId}`);
 
   return response;
 }

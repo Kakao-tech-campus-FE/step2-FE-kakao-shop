@@ -4,6 +4,7 @@ import { LoginData } from '../../types/formData';
 import { requestUserLogin } from '../../apis/user';
 import { setItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO, TOKEN_EXPIRE_DATE } from '../../utils/common';
+import { LOGIN_RESPONSE_ERROR_MSG_400, LOGIN_RESPONSE_ERROR_MSG_401, LOGIN_RESPONSE_ERROR_MSG_500 } from '../../utils/errorMsg';
 
 interface UserSliceState {
   isLogin: boolean;
@@ -25,7 +26,7 @@ export const loginRequest = createAsyncThunk(
     try {
       const response = await requestUserLogin({ email, password });
 
-      if (response.status === 200) {
+      if (response.data.success === true) {
         return {
           data: response.data,
           token: response.headers.authorization,
@@ -37,15 +38,20 @@ export const loginRequest = createAsyncThunk(
       if (error instanceof AxiosError) {
         switch (error.response?.status) {
           case 400: {
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(LOGIN_RESPONSE_ERROR_MSG_400);
           }
 
           case 401: {
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(LOGIN_RESPONSE_ERROR_MSG_401);
           }
 
-          default:
-            break;
+          case 500: {
+            return rejectWithValue(LOGIN_RESPONSE_ERROR_MSG_500);
+          }
+
+          default: {
+            return rejectWithValue(error.response?.data.error.message);
+          }
         }
       }
 
@@ -90,7 +96,7 @@ const userSlice = createSlice({
     });
     builder.addCase(loginRequest.rejected, (state, action: any) => {
       state.isLoading = false;
-      state.errorMessage = `로그인 요청이 실패했습니다. ${action.payload !== undefined ? action.payload.error.message : ''}`;
+      state.errorMessage = `로그인 요청이 실패했습니다. ${action.payload !== undefined ? action.payload : ''}`;
     });
   },
 });

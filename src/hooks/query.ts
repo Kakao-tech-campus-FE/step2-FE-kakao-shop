@@ -1,7 +1,10 @@
 import { useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query';
 import { getProductDetail, getProductList } from '../apis/product';
-import { addCart, getCart, updateCart } from '../apis/cart';
+import {
+  addCart, getCart, updateCart,
+} from '../apis/cart';
 import { AddCartOption, UpdateCartOption } from '../types/product';
+import { completeOrder, confirmOrder } from '../apis/order';
 
 export function useProductList() {
   return useInfiniteQuery({
@@ -42,5 +45,19 @@ export function useUpdateCart() {
     mutationFn: async (
       { updatedOptions, auth }: { updatedOptions: UpdateCartOption[], auth: string },
     ) => updateCart(updatedOptions, auth),
+  });
+}
+
+export function useOrder() {
+  return useMutation({
+    mutationKey: ['order'],
+    mutationFn: async ({ auth }: { auth: string }) => completeOrder(auth),
+  });
+}
+
+export function useConfirmOrder(orderId: number, auth: string) {
+  return useQuery({
+    queryKey: ['confirmOrder', { auth, orderId }],
+    queryFn: async () => confirmOrder(orderId, auth),
   });
 }

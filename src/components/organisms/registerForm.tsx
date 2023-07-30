@@ -9,7 +9,8 @@ import { REGISTER_ERROR_MSG } from '../../utils/errorMsg';
 import { debounce } from '../../utils/debounce';
 import { checkEmail } from '../../apis/user';
 import { DEBOUNCE_TIMEOUT } from '../../utils/common';
-import Loader from '../atoms/loader';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
+import Button from '../atoms/button';
 
 interface RegisterFormProps {
   // Request registration
@@ -66,17 +67,17 @@ export default function RegisterForm({
                 onChange: debounce(async () => {
                   if (!getFieldState('email', formState).invalid) {
                     const value = getValues('email');
-                    try {
-                      const response = await checkEmail(value);
-
-                      if (response.data.success === true) {
-                        setIsEmailDuplicated(false);
-                      } else {
-                        setIsEmailDuplicated(true);
-                      }
-                    } catch (error) {
-                      setIsEmailDuplicated(true);
-                    }
+                    await fetchWithHandler(
+                      async () => checkEmail(value),
+                      {
+                        onSuccess: () => {
+                          setIsEmailDuplicated(false);
+                        },
+                        onError: () => {
+                          setIsEmailDuplicated(true);
+                        },
+                      },
+                    );
                   }
                 }, DEBOUNCE_TIMEOUT),
               })}
@@ -170,15 +171,14 @@ export default function RegisterForm({
         </div>
       </div>
       <div className="px-2 text-center">
-        {isLoading ? <Loader /> : (
-          <button
-            type="submit"
-            className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
-            disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
-          >
-            가입하기
-          </button>
-        )}
+        <Button
+          type="submit"
+          className={`w-full rounded-sm p-2 ${!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading ? 'bg-stone-300' : 'bg-kakao'}`}
+          disabled={!formState.isDirty || !formState.isValid || isEmailDuplicated || isLoading}
+          isLoading={isLoading}
+        >
+          가입하기
+        </Button>
       </div>
     </form>
   );

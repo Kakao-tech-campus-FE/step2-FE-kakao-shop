@@ -36,7 +36,7 @@ export interface UpdateCartOption {
 
 export interface CartItem {
   id: number;
-  productName: number;
+  productName: string;
   carts: {
     id: number;
     option: ProductOption;
@@ -47,5 +47,21 @@ export interface CartItem {
 
 export interface CartData {
   products: CartItem[];
+  totalPrice: number;
+}
+
+export interface OrderItem {
+  productName: string;
+  items: {
+    id: number;
+    optionName: string;
+    quantity: number;
+    price: number;
+  }[];
+}
+
+export interface OrderData {
+  id: number;
+  products: OrderItem[];
   totalPrice: number;
 }

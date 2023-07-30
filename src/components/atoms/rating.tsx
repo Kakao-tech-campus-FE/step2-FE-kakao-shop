@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useRef } from 'react';
+import { useCallback } from 'react';
 
 interface RatingProps {
   maxScore: number;
@@ -11,32 +11,27 @@ export default function Rating({
   maxScore,
   currentScore,
 }: RatingProps) {
-  const starRef = useRef<{ key: number; isFull: boolean; }[] | null>(null);
+  const renderRating = useCallback(() => {
+    const list = [];
 
-  if (starRef.current === null) {
-    starRef.current = [];
     for (let i = 1; i <= maxScore; i += 1) {
-      starRef.current.push({ key: i, isFull: currentScore >= i });
+      const iconDefinition = currentScore >= i
+        ? icon({ name: 'star', style: 'solid' })
+        : icon({ name: 'star', style: 'regular' });
+
+      list.push(<FontAwesomeIcon
+        key={i}
+        icon={iconDefinition}
+        color="#4684e9"
+      />);
     }
-  }
+
+    return list;
+  }, [currentScore, maxScore]);
 
   return (
     <div>
-      {starRef.current?.map(({ key, isFull }) => (isFull
-        ? (
-          <FontAwesomeIcon
-            key={key}
-            icon={icon({ name: 'star', style: 'solid' })}
-            color="#4684e9"
-          />
-        )
-        : (
-          <FontAwesomeIcon
-            key={key}
-            icon={icon({ name: 'star', style: 'regular' })}
-            color="#4684e9"
-          />
-        )))}
+      {renderRating()}
     </div>
   );
 }

@@ -26,7 +26,7 @@ export default function OptionCard({
   increaseDisabled = false,
 }: OptionCardProps) {
   return (
-    <div className="rounded py-4">
+    <div className="py-4">
       <div className="mb-2 flex flex-row justify-between">
         <h3>{optionName}</h3>
         <div>

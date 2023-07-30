@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import RegisterTemplate from '../templates/registerTemplate';
 import { RegisterFormData } from '../../types/formData';
 import { requestUserRegistration } from '../../apis/user';
+import { fetchWithHandler } from '../../utils/fetchWithHandler';
 
 export default function RegisterPage() {
   const {
@@ -33,14 +34,18 @@ export default function RegisterPage() {
   const handleRegister = async () => {
     setIsLoading(true);
 
-    const result = await requestUserRegistration(getValues());
-
-    if (result) {
-      alert('회원가입이 정상적으로 완료되었습니다.');
-      navigator('/');
-    } else {
-      setErrorMessage('회원가입에 실패하였습니다.');
-    }
+    await fetchWithHandler(
+      async () => requestUserRegistration(getValues()),
+      {
+        onSuccess: () => {
+          alert('회원가입이 정상적으로 완료되었습니다.');
+          navigator('/');
+        },
+        onError: () => {
+          setErrorMessage('회원가입에 실패하였습니다.');
+        },
+      },
+    );
 
     setIsLoading(false);
   };

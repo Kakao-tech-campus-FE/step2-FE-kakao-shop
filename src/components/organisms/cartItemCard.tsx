@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CartItem } from '../../types/product';
 import OptionCard from '../molecules/optionCard';
+import Photo from '../atoms/photo';
 
 interface CartItemCardProps extends CartItem {
   handleOption: (cardId: number, quantity: number) => void;
@@ -14,11 +15,16 @@ export default function CartItemCard({
 }: CartItemCardProps) {
   return (
     <div>
-      <h2 className="my-2 font-bold">
-        <Link to={`/product/${id}`}>
-          {productName}
-        </Link>
-      </h2>
+      <section className="flex flex-row items-center gap-2">
+        <div className="w-16 rounded-sm">
+          <Photo src={`${new URL(`/images/${id}.jpg`, process.env.REACT_APP_KAKAO_API_URL).toString()}`} alt={productName} />
+        </div>
+        <h2 className="my-2 font-bold">
+          <Link to={`/product/${id}`}>
+            {productName}
+          </Link>
+        </h2>
+      </section>
       <ul>
         {carts.map((cart) => (
           cart.quantity > 0 ? (

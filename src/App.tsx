@@ -6,12 +6,13 @@ import { Provider } from 'react-redux';
 import MainPage from './components/pages/mainPage';
 import RegisterPage from './components/pages/registerPage';
 import LoginPage from './components/pages/loginPage';
-import ProductListPage from './components/pages/mainProductListPage';
 import { store } from './store';
 import MainLayout from './components/layouts/mainLayout';
 import ProductDetailPage from './components/pages/productDetailPage';
 import CartPage from './components/pages/cartPage';
 import { queryClient } from './utils/query';
+import OrderPage from './components/pages/orderPage';
+import ConfirmOrderPage from './components/pages/confirmOrderPage';
 
 function App() {
   return (
@@ -26,9 +27,10 @@ function App() {
             {/* 공통 레이아웃 */}
             <Route element={<MainLayout />}>
               <Route path="/" element={<MainPage />} />
-              <Route path="/product" element={<ProductListPage />} />
               <Route path="/product/:productId" element={<ProductDetailPage />} />
               <Route path="/cart" element={<CartPage />} />
+              <Route path="/order" element={<OrderPage />} />
+              <Route path="/confirmOrder/:orderId" element={<ConfirmOrderPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
