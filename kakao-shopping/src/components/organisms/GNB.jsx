@@ -24,7 +24,9 @@ const GNB = ({
             style={{ height: "80px" }}
         >
             <div className={`Left-GNB flex-grow-0`}>
-                <Photo src="/assets/shopping_logo.png" alt="쇼핑 로고" />
+                <Anchor to="/">
+                    <Photo src="/assets/shopping_logo.png" alt="쇼핑 로고" />
+                </Anchor>
             </div>
             <div className={`Right-GNB d-flex flex-row align-items-center`}>
                 <Anchor to="/cart">

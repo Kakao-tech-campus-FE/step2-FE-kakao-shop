@@ -1,16 +1,9 @@
 const Skeleton = ({
     type = "",
     className = "", // class
-    id = "", // id
-    style = {}, // style
+    ...props
 }) => {
-    return (
-        <div
-            className={`skeleton ${type} ${className}`}
-            id={id}
-            style={style}
-        ></div>
-    );
+    return <div className={`skeleton ${type} ${className}`} {...props}></div>;
 };
 
 export default Skeleton;

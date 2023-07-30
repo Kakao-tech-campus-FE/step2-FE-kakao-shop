@@ -2,12 +2,11 @@ import ProductCard from "../molecules/ProductCard";
 
 const ProductGrid = ({
     products, // product array
-    id = "", // id
     className = "", // class
-    style = {}, // style
+    ...props
 }) => {
     return (
-        <div className={`product-grid ${className}`} id={id} style={style}>
+        <div className={`product-grid ${className}`} {...props}>
             {products.map((product) => (
                 <ProductCard key={product?.id} product={product} />
             ))}

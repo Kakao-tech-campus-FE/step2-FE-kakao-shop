@@ -15,8 +15,7 @@ const OptionColumn = ({
     product, // 상품 정보
     isLoading, // 로딩 여부 (Skeleton, Loader)
     className = "", // class
-    id = "", // id
-    style = {}, // style
+    ...props
 }) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -71,7 +70,7 @@ const OptionColumn = ({
     });
 
     return (
-        <div className={`option-column ${className}`} id={id} style={style}>
+        <div className={`option-column ${className}`} {...props}>
             {!isLoading ? (
                 <>
                     <div className="option-group h-75 p-1 overflow-y-auto">

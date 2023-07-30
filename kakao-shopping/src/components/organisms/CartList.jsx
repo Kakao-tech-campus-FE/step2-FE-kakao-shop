@@ -81,7 +81,7 @@ const CartList = ({ data }) => {
     }, [cartItems]);
 
     return (
-        <Container className="cart-container d-flex flex-column h-100 mx-auto">
+        <main className="cart-container d-flex flex-column h-100 mx-auto">
             <Box>
                 <Label className="fs-5 fw-bold">장바구니</Label>
             </Box>
@@ -111,7 +111,7 @@ const CartList = ({ data }) => {
                     mutate(updatePayload.current, {
                         onSuccess: (data) => {
                             console.log(data);
-                            // navigate("/order");
+                            navigate("/order");
                         },
                         onError: (error) => {
                             console.log(error);
@@ -121,7 +121,7 @@ const CartList = ({ data }) => {
             >
                 <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
             </Button>
-        </Container>
+        </main>
     );
 };
 

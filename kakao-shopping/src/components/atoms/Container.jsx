@@ -1,11 +1,10 @@
 const Container = ({
     className = "", // class
-    id = "", // id
-    style = {}, // style
     children, // 자식 Component
+    ...props
 }) => {
     return (
-        <div className={`cont ${className}`} id={id} style={style}>
+        <div className={`cont ${className}`} {...props}>
             {children}
         </div>
     );

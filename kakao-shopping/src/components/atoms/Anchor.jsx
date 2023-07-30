@@ -4,11 +4,14 @@ const Anchor = ({
     to, // Link의 이동 위치
     children, // children
     className = "", // class
-    id = "", // id
-    style = {}, // style
+    ...props
 }) => {
     return (
-        <Link className={`anchor text-body text-decoration-none ${className}`} id={id} to={to} style={style}>
+        <Link
+            className={`anchor text-body text-decoration-none ${className}`}
+            to={to}
+            {...props}
+        >
             {children}
         </Link>
     );
