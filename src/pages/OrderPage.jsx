@@ -3,6 +3,7 @@ import OrderTemplate from "../components/templates/OrderTemplate";
 import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
 import { getCart } from "../services/cart";
+import NotFoundPage from "./NotFoundPage";
 import Gnb from "../components/organisms/Gnb";
 
 const OrderPage = () => {
@@ -11,6 +12,8 @@ const OrderPage = () => {
     <>
       <Gnb />
       <Suspense fallback={<Loader />}>
+        {isLoading && <Loader />}
+        {error && <NotFoundPage />}
         <OrderTemplate data={data} />
       </Suspense>
     </>
