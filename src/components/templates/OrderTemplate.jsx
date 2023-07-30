@@ -2,7 +2,6 @@ import Card from "../atoms/Card";
 import OrderItem from "../molecules/OrderItem";
 import TotalPrice from "../atoms/TotalPrice";
 import SubmitButton from "../atoms/SubmitButton";
-import { comma } from "../../utils/convert";
 import styled from "styled-components";
 import { useState, useRef } from "react";
 
@@ -17,14 +16,12 @@ const OrderTemplate = ({ data }) => {
   const [agreePolicy, setAgreePolicy] = useState(false);
 
   const allAgreeRef = useRef(null);
-  const agreePaymentRef = useRef(null);
-  const agreePolicyRef = useRef(null);
 
   const handleAllAgree = (e) => {
     const value = e.target.checked;
 
-    setAgreePayment(true);
-    setAgreePolicy(true);
+    setAgreePayment(value);
+    setAgreePolicy(value);
   };
 
   const handleAgreement = (e) => {
@@ -58,7 +55,6 @@ const OrderTemplate = ({ data }) => {
           <input
             type="checkbox"
             id="all-agree"
-            ref={allAgreeRef}
             checked={agreePayment && agreePolicy}
             onChange={handleAllAgree}
           />
@@ -68,25 +64,21 @@ const OrderTemplate = ({ data }) => {
           <input
             type="checkbox"
             id="agree"
-            ref={agreePaymentRef}
             checked={agreePayment}
             name="payment-agree"
             onChange={handleAgreement}
           />
-          <label hrmlFor="agree">구매조건 확인 및 결제 진행 동의</label>
+          <label htmlFor="agree">구매조건 확인 및 결제 진행 동의</label>
         </div>
-        <div className="flex gap-2">
+        <div>
           <input
             type="checkbox"
             name="policy-agree"
             id="policy"
-            ref={agreePolicyRef}
-            value={agreePolicy}
+            checked={agreePolicy}
             onChange={handleAgreement}
           />
-          <label htmlFor="policy" className="text-sm">
-            개인정보 제 3자 제공동의
-          </label>
+          <label htmlFor="policy">개인정보 제 3자 제공동의</label>
         </div>
       </div>
       <SubmitButton onClick={checkOrder}>결제하기</SubmitButton>
