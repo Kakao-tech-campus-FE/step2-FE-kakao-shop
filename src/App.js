@@ -7,6 +7,7 @@ import Test from "pages/Test.js";
 import LogIn from "pages/LogIn.js";
 import SignUp from "pages/SignUp.js";
 import Layout from "components/templates/Layout";
+import CheckAuth from "components/templates/CheckAuth";
 import Products from "pages/Products.js";
 import Product from "pages/Product.js";
 import Cart from "pages/Cart.js";
@@ -43,9 +44,11 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Products />} />
             <Route path="/product/:productId" element={<Product />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/order" element={<Order />} />
-            <Route path="/result/:orderId" element={<Result />} />
+            <Route element={<CheckAuth />}>
+              <Route path="/cart" element={<Cart />} />
+              <Route path="/order" element={<Order />} />
+              <Route path="/result/:orderId" element={<Result />} />
+            </Route>
           </Route>
           <Route path="/test" element={<Test />} />
           {/* 잘못된 경로 */}

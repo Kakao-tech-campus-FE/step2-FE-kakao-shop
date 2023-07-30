@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 import { getCartReq } from "apis/cart";
@@ -11,15 +11,24 @@ import Button from "components/atoms/Button";
 import CartList from "components/molecules/CartList";
 
 export default function CartSection() {
-  const { isLoading, error, data, refetch } = useQuery({
+  const queryClient = useQueryClient();
+  const { isLoading, error, data } = useQuery({
     queryKey: ["carts"],
     queryFn: getCartReq,
   });
+  const { mutate } = useMutation({
+    mutationFn: orderReq,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["carts"] });
+    },
+    onError: (err) => {
+      console.dir("카트업데이트 오류:\n" + err);
+    },
+  });
 
-  const handleDeleteAllClick = async () => {
+  const handleDeleteAllClick = () => {
     if (data.data.response.products.length === 0) return;
-    await orderReq();
-    refetch();
+    mutate();
   };
 
   return (
@@ -43,10 +52,9 @@ export default function CartSection() {
             </div>
             {/* 카트 리스트 */}
             <div className="space-y-2 border">
-            <CartList
-              products={data.data.response.products}
-              refetch={refetch}
-            />
+              <CartList
+                products={data.data.response.products}
+              />
             </div>
             {/* 주문 예상금액 및 주문하기 */}
             <div>
