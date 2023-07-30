@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { useState } from "react";
 import Button from "./Button";
 
@@ -12,6 +12,9 @@ function Counter({ value, onChange }) {
     setCount(count - 1);
     onChange(count - 1, -1);
   };
+  useEffect(() => {
+    setCount(value);
+  }, [value]);
 
   return (
     <div className=" border-solid border-zinc-300 w-fit">
