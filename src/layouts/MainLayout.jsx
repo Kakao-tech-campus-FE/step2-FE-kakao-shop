@@ -1,7 +1,7 @@
 import React from "react";
-import GlobalNavBar from "../components/molecules/GlobalNavBar";
+import GlobalNavBar from "../components/common/molecules/GlobalNavBar";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/atoms/Footer";
+import Footer from "../components/common/atoms/Footer";
 
 export default function MainLayout() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import OrderTemplate from "../components/templates/OrderTemplate";
-import Loader from "../components/atoms/Loader";
+import OrderTemplate from "../components/order/templates/OrderTemplate";
+import Loader from "../components/common/atoms/Loader";
 import { useQuery } from "react-query";
 import { getCart } from "../apis/cart";
 

@@ -1,12 +1,11 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import RegisterPage from "./pages/RegisterPage";
+import RegisterPage from "./pages/SignUpPage";
 import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
+import MainPage from "./pages/MainPage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import Mainpage from "./pages/Mainpage/Mainpage";
 import Subpage from "./pages/Subpage/Subpage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
@@ -16,7 +15,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* 단독 레이아웃 */}
-        <Route path="/main" element={<Mainpage />}></Route>
         <Route path="/sub" element={<Subpage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<RegisterPage />}></Route>
@@ -25,7 +23,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/carts" element={<CartPage />}></Route>
           <Route path="/order" element={<OrderPage />}></Route>
-          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/" element={<MainPage />}></Route>
           {/* 동적매개변수 */}
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
         </Route>
