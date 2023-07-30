@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import Container from "../../common/atoms/Container";
 import Box from "../../common/atoms/Box";
 import Title from "../../common/atoms/Title";
@@ -8,21 +8,22 @@ import { order } from "../../../apis/order";
 import OrderOptionItem from "../molecules/OrderOptionItem";
 import Button from "../../common/atoms/Button";
 import { comma } from "../../../utils/convert";
+import { useDispatch } from "react-redux";
+import { initializeCart } from "../../../store/slices/cartSlice";
 
 export default function OrderTemplate({ data }) {
   const { mutate } = useMutation(order);
+  const dispatch = useDispatch();
   const products = data.products;
   const totalPrice = data.totalPrice;
-  const totalProductCount = useMemo(() => {
-    return products.reduce((acc, cur) => {
-      return (
-        acc +
-        cur.carts.reduce((acc, cart) => {
-          return acc + cart.quantity;
-        }, 0)
-      );
-    }, 0);
-  });
+  const totalProductCount = products.reduce((acc, cur) => {
+    return (
+      acc +
+      cur.carts.reduce((acc, cart) => {
+        return acc + cart.quantity;
+      }, 0)
+    );
+  }, 0);
 
   return (
     <Container className="flex items-center justify-center bg-zinc-100 w-full min-w-[1280px] border-solid border-0 border-b border-zinc-300">
@@ -92,7 +93,20 @@ export default function OrderTemplate({ data }) {
             )}
           </div>
         </Box>
-        <Button className="w-full bg-[#ffea00] border-0 h-12 mb-10">
+        <Button
+          className="w-full bg-[#ffea00] border-0 h-12 mb-10"
+          onClick={() => {
+            mutate(null, {
+              onSuccess: () => {
+                dispatch(initializeCart());
+                alert("주문이 완료되었습니다.");
+              },
+              onError: (error) => {
+                alert(error.response.data.message);
+              },
+            });
+          }}
+        >
           <span className="text-base font-bold">
             {comma(totalPrice)}원 결제하기
           </span>
