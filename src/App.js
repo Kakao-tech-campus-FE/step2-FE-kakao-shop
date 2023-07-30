@@ -9,6 +9,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Subpage from "./pages/Subpage/Subpage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 function App() {
   return (
@@ -21,11 +22,13 @@ function App() {
         <Route path="/404" element={<NotFoundPage />}></Route>
         {/* 공통 레이아웃(path 선언X): GNB, Footer */}
         <Route element={<MainLayout />}>
-          <Route path="/carts" element={<CartPage />}></Route>
-          <Route path="/order" element={<OrderPage />}></Route>
           <Route path="/" element={<MainPage />}></Route>
           {/* 동적매개변수 */}
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+        </Route>
+        <Route element={<RequiredAuthLayout />}>
+          <Route path="/carts" element={<CartPage />}></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
