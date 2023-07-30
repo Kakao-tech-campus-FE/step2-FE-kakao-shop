@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
-import { addCart } from "../../services/cart";
+import { addCart } from "../../apis/cart";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cart_white from "../../assets/cart_white.png";
@@ -60,7 +60,6 @@ const OptionColumn = ({ product }) => {
       return prev
         .map((el) => {
           if (el.optionId === optionId) {
-            // Set quantity to 0 for the removed option
             return {
               ...el,
               quantity: 0,
@@ -68,7 +67,7 @@ const OptionColumn = ({ product }) => {
           }
           return el;
         })
-        .filter((el) => el.quantity > 0); // Remove options with quantity 0 from the list
+        .filter((el) => el.quantity > 0);
     });
   };
 

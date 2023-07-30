@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
-import { updateCart } from "../../services/cart";
+import { updateCart } from "../../apis/cart";
 
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -63,7 +63,6 @@ const CartList = ({ data }) => {
         },
       ];
     });
-
     setTotalPrice((prev) => prev + price);
     setCartItems((prev) => {
       return prev.map((item) => {
@@ -95,9 +94,7 @@ const CartList = ({ data }) => {
         },
       ];
     });
-
     setTotalPrice((prev) => prev - price);
-
     setCartItems((prev) => {
       return prev.map((item) => {
         return {

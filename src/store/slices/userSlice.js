@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { login } from "../../services/login";
+import { login } from "../../apis/login";
 
 const initialState = {
   email: null,
@@ -18,6 +18,7 @@ const userSlice = createSlice({
       state.email = action.payload.email;
     },
     logout: (state, action) => {
+      localStorage.removeItem("token");
       state.email = null;
       state.token = null;
       state.isLoggedIn = false;

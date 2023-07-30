@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../components/atoms/Loader";
-import { getProductById } from "../services/product";
+import { getProductById } from "../apis/product";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 import { Suspense, useEffect } from "react";
 

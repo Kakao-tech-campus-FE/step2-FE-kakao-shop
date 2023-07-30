@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRegister } from "../../services/register";
+import { useRegister } from "../../apis/register";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
