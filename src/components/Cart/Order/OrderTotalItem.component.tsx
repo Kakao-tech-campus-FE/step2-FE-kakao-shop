@@ -37,47 +37,39 @@ const OrderTotalItem: FC<OrderTotalItemProps> = ({ products, isLoading }) => {
     return <CartTotalSkeleton />;
   }
 
+  const totalPrice = products.reduce(
+    (acc, cur) => acc + cur.carts.reduce((acc, cur) => acc + cur.price, 0),
+    0
+  );
+
   return (
     <>
-      {products.map(
-        (product) =>
-          product.carts.every((cart) => cart.quantity === 0) || (
-            <Fragment key={product.id}>
-              <Txt typograph="h5" className="p-4 block">
-                {CART.ORDER_DESC}
-              </Txt>
-              <div className="rounded-md divide-y">
-                {product.carts.map(
-                  (cart) =>
-                    cart.quantity === 0 || (
-                      <Fragment key={cart.id}>
-                        <div className="flex flex-col p-4">
-                          <Txt typograph="h6">{cart.option.optionName}</Txt>
-                          <Txt typograph="h6">
-                            {cart.quantity} {PRODUCT.PEICE}
-                          </Txt>
-                          <Txt typograph="h6">
-                            {pointByKo(cart.option.price)} {PRODUCT.WON}
-                          </Txt>
-                        </div>
-                      </Fragment>
-                    )
-                )}
-              </div>
-            </Fragment>
-          )
-      )}
+      {products.map((product) => (
+        <Fragment key={product.id}>
+          <Txt typograph="h5" className="p-4 block">
+            {CART.ORDER_DESC}
+          </Txt>
+          <div className="rounded-md divide-y">
+            {product.carts.map((cart) => (
+              <Fragment key={cart.id}>
+                <div className="flex flex-col p-4">
+                  <Txt typograph="h6">{cart.option.optionName}</Txt>
+                  <Txt typograph="h6">
+                    {cart.quantity} {PRODUCT.PEICE}
+                  </Txt>
+                  <Txt typograph="h6">
+                    {pointByKo(cart.option.price)} {PRODUCT.WON}
+                  </Txt>
+                </div>
+              </Fragment>
+            ))}
+          </div>
+        </Fragment>
+      ))}
       <div className="flex justify-between items-center p-4">
         <Txt typograph="h5">{CART.TOTAL_PREDICT_PRICE}</Txt>
         <Txt typograph="h5" color="primary">
-          {pointByKo(
-            products.reduce(
-              (acc, cur) =>
-                acc + cur.carts.reduce((acc, cur) => acc + cur.price, 0),
-              0
-            )
-          )}{" "}
-          {PRODUCT.WON}
+          {`${pointByKo(totalPrice)} ${PRODUCT.WON}`}
         </Txt>
       </div>
     </>

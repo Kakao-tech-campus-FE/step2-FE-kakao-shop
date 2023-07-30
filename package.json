@@ -1,7 +1,7 @@
 {
-  "name": "step-2",
+  "name": "kakao-shop-clone",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
