@@ -53,7 +53,7 @@ export default function CartOptionItem({ cart, onChange }) {
               />
             </div>
             <span className=" font-bold tracking-tighter text-sm">
-              {comma(cart.option.price * cart.quantity)}원
+              {comma(cart.price)}원
             </span>
           </div>
         </Box>

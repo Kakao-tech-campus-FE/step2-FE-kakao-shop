@@ -7,14 +7,14 @@ import CartItem from "../organisms/CartItem";
 import { useNavigate } from "react-router-dom";
 import Text from "../../common/atoms/Text";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCartNum } from "../../../store/slices/cartSlice";
+import { addProduct, removeProduct } from "../../../store/slices/cartSlice";
 
 export default function CartTemplate({ data }) {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cartNum = useSelector((state) => state.cart.cartNum);
+  const cartCount = useSelector((state) => state.cart.cartCount);
   console.log("CartTemplate data", data);
   useEffect(() => {
     // validataion 필요
@@ -24,11 +24,14 @@ export default function CartTemplate({ data }) {
 
   // 장바구니에 담긴 상품의 수량이 변경되면 장바구니 아이콘의 숫자를 체크
   useEffect(() => {
-    const count = data?.response?.products.reduce((total, item) => {
-      const isExist = item.carts.some((cart) => cart.quantity > 0);
-      return total + (isExist ? 1 : 0);
-    }, 0);
-    dispatch(updateCartNum(count));
+    data?.response?.products.forEach((product) => {
+      const isExist = product.carts.some((cart) => cart.quantity > 0);
+      if (isExist) {
+        dispatch(addProduct(product.id));
+      } else {
+        dispatch(removeProduct(product.id));
+      }
+    });
   }, [cartItems, data?.response?.products, dispatch]);
 
   /**
@@ -63,7 +66,7 @@ export default function CartTemplate({ data }) {
       <Container className="w-[870px]">
         <Text className=" bg-white text-center font-bold py-3">장바구니</Text>
         {/* 장바구니가 비어있는 경우 */}
-        {cartNum === 0 ? (
+        {cartCount === 0 ? (
           <Box className="flex bg-white h-[550px] mb-5 border-solid border-0 border-t-[1px] border-zinc-300 items-center justify-center font-semibold tracking-tight text-xl">
             장바구니에 담긴 상품이 없습니다.
           </Box>
@@ -95,7 +98,7 @@ export default function CartTemplate({ data }) {
               }}
             >
               {/* 장바구니 수량: 전역 State */}
-              <span>{cartNum}</span>건 주문하기
+              <span>{cartCount}</span>건 주문하기
             </Button>
           </div>
         )}

@@ -1,7 +1,7 @@
 import React from "react";
 import OptionList from "../molecules/OptionList";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import SelectedOption from "../molecules/SelectedOption";
 import { useMutation } from "react-query";
 import { addCart } from "../../../apis/cart";
@@ -11,13 +11,12 @@ import Logo from "../../common/atoms/Logo";
 import cartWhite from "../../../assets/icons/cart_white.png";
 import DeliveryOption from "../atoms/DeliveryOption";
 import Box from "../../common/atoms/Box";
-import { updateCartNum } from "../../../store/slices/cartSlice";
+import { addProduct } from "../../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function OptionColumn({ product }) {
-  const { options } = product;
+  const { options, id } = product;
   const [selectedOption, setSelectedOption] = useState([]);
-  const cartNum = useSelector((state) => state.cart.cartNum);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isOpenOption, setIsOpenOption] = useState(true);
@@ -91,7 +90,10 @@ export default function OptionColumn({ product }) {
         <Button
           className="border-0 bg-black cursor-pointer w-16 h-16 rounded-md flex justify-center items-center"
           onClick={() => {
-            console.log(selectedOption);
+            if (selectedOption.length === 0) {
+              alert("옵션을 선택해주세요.");
+              return;
+            }
             mutate(
               selectedOption.map((item) => {
                 return { optionId: item.id, quantity: item.quantity };
@@ -99,7 +101,7 @@ export default function OptionColumn({ product }) {
               {
                 onSuccess: () => {
                   alert("장바구니에 상품이 담겼습니다.");
-                  dispatch(updateCartNum(cartNum + 1)); // 장바구니에 담긴 상품 수를 업데이트
+                  dispatch(addProduct(id)); // 장바구니에 담긴 상품 수를 업데이트
                   setSelectedOption([]);
                 },
                 onError: () => {

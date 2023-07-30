@@ -36,7 +36,7 @@ export default function CartItem({ item, onChange }) {
               <span>
                 {comma(
                   item.carts.reduce((acc, cur) => {
-                    return acc + cur.option.price * cur.quantity;
+                    return acc + cur.price;
                   }, 0)
                 )}
                 원
@@ -47,7 +47,7 @@ export default function CartItem({ item, onChange }) {
               <span>
                 {comma(
                   item.carts.reduce((acc, cur) => {
-                    return acc + cur.option.price * cur.quantity;
+                    return acc + cur.price;
                   }, 0)
                 )}
                 원
