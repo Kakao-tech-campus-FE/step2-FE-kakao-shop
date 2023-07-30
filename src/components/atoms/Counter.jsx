@@ -8,7 +8,6 @@ import { useState } from "react";
  * @param {string} btnClassName - 버튼 클래스
  * @param {string} cntClassName - 카운터 클래스
  * @returns {JSX.Element}
- * @constructor
  */
 const Counter = ({
   value = 1,

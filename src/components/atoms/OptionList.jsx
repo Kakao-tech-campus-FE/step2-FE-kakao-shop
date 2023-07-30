@@ -7,7 +7,6 @@ import comma from "../../utils/convert";
  * @param {array} options - options
  * @param {function} onClick - 옵션 클릭 시 실행되는 함수
  * @returns {JSX.Element}
- * @constructor
  */
 
 const OptionList = ({ options, onClick }) => {

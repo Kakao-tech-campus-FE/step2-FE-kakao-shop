@@ -6,7 +6,6 @@ import OptionColumn from "../molecules/OptionColumn";
  *
  * @param {array} product - 상품 정보
  * @returns {JSX.Element}
- * @constructor
  */
 const ProductDetailTemplate = ({ product }) => {
   return (

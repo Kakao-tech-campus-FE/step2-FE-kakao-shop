@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
@@ -14,7 +13,6 @@ import AlertBox from "../molecules/AlertBox";
  * @return {JSX.Element}
  */
 const RegisterForm = () => {
-  const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState();
   const { values, handleChange } = useInput({
     username: "",
@@ -56,7 +54,7 @@ const RegisterForm = () => {
     const data = await instance.post("/join", JSON.stringify(values));
     if (data.data?.success) {
       alert("회원가입이 완료되었습니다.");
-      navigate("/");
+      window.location.replace("/");
     } else {
       // eslint-disable-next-line no-alert
       setErrorMessage(data?.error?.message);

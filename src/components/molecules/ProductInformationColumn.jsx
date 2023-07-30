@@ -6,12 +6,11 @@ import comma from "../../utils/convert";
  *
  * @param {array} product - 상품 정보
  * @returns {JSX.Element}
- * @constructor
  */
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
-    <div className="product-information-column flex w-[920px] pt-[30px] pr-[29px] border-r border-gray-300 bg-white">
+    <div className="product-information-column flex w-[920px] py-[30px] pr-[29px] border-r border-gray-300 bg-white">
       <div className="col">
         <Photo
           src={process.env.REACT_APP_API_URL + image.substring(1, image.length)}

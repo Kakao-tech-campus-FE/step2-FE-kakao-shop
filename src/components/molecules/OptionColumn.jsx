@@ -148,7 +148,7 @@ const optionColumn = ({ product }) => {
             // 톡딜가로 구매하기는 과제 구현 요소 아님
             alert("준비중입니다.");
           }}
-          className="button-buy w-[182px] h-[60px] rounded-[5px] bg-yellow-kakao text-[18px]"
+          className="button-buy w-[202px] h-[60px] rounded-[5px] bg-yellow-kakao text-[18px]"
         >
           톡딜가로 구매하기
         </Button>

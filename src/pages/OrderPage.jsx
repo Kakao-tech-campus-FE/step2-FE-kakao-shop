@@ -1,20 +1,21 @@
-import { Suspense } from "react";
 import { useQuery } from "react-query";
+import { Suspense } from "react";
 import { getCart } from "../api/cart";
 import Loader from "../components/atoms/Loader";
-import CartList from "../components/organisms/CartList";
+import OrderTemplate from "../components/templates/OrderTemplate";
 
-/** 장바구니 페이지
+/** 주문하기 페이지
  *
  * @returns {JSX.Element}
  */
-const CartPage = () => {
+const OrderPage = () => {
   const { data } = useQuery("cart", getCart);
+
   return (
     <Suspense fallback={<Loader />}>
-      <CartList data={data} />
+      <OrderTemplate data={data} />
     </Suspense>
   );
 };
 
-export default CartPage;
+export default OrderPage;
