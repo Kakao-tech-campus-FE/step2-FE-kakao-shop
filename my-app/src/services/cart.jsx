@@ -26,9 +26,7 @@ export const getCart = (token) => {
 /**
  * 장바구니 업데이트
  * @param {Array} items
- * @param {String} token
  */
 export const updateCart = (items) => {
-  console.log("Items: ", items);
   return instance.post("/carts/update", items);
 };

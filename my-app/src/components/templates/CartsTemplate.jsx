@@ -15,13 +15,10 @@ const CartTemplate = ({ data }) => {
   const navigate = useNavigate();
 
   const totalQuantity = useCallback(() => {
-    let count = 0;
     if (cartItems) {
-      cartItems.forEach((item) => {
-        item.carts.forEach((cart) => {
-          count += cart.quantity;
-        });
-      });
+      const count = cartItems
+        .flatMap((item) => item.carts)
+        .reduce((acc, cur) => acc + cur.quantity, 0);
       return count;
     }
   }, [cartItems]);

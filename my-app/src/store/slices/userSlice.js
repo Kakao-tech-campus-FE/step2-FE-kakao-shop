@@ -7,6 +7,7 @@ const initialState = {
   isLogined: false,
   token: null,
   error: null,
+  username: null,
 };
 
 const userSlice = createSlice({
@@ -29,13 +30,14 @@ const userSlice = createSlice({
       state.loading = false;
       state.isLogined = true;
       state.token = action.payload.headers.authorization;
-      console.log("userSlice/Token: ", state.token);
+      state.username = action.payload.username;
+      state.error = null;
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
       state.isLogined = false;
       state.email = null;
-      state.error = action.payload.error.message;
+      state.error = "error";
     });
   },
 });
