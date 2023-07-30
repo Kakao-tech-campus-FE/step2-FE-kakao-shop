@@ -22,9 +22,12 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
     "eject": "craco eject",
-    "build-test": "cp serve.json build && yarn serve build"
+    "build-test": "cp serve.json build && yarn serve build",
+    "test": "rm -rf .nyc_output && npx playwright test",
+    "test-ui": "rm -rf .nyc_output && npx playwright test --ui",
+    "test-debug": "rm -rf .nyc_output && npx playwright test --debug",
+    "test-coverage": "npx nyc report --reporter=html"
   },
   "eslintConfig": {
     "extends": [
