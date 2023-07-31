@@ -18,7 +18,7 @@ const CardItem = ({ id, productName, image, price }: Product) => {
       <Photo
         pictureClassName={S.PhotoStyle}
         imageClassName={S.ImgStyle}
-        src={`${process.env.REACT_APP_PROD_SERVER}${image}`}
+        src={`${process.env.REACT_APP_IMAGE_CDN}${image.replace('/images', '')}?w=522&h=294&f=webp&q=80`}
         alt={'이미지'}
       />
       <S.Info>

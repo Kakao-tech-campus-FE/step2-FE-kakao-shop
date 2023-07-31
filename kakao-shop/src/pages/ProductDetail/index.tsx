@@ -39,11 +39,20 @@ const ProductDetail = () => {
         <S.ProductSection isMobile={isMobile}>
           <S.PhotoContainer isMobile={isMobile}>
             {isMobile ? (
-              <Photo src={`${process.env.REACT_APP_PROD_SERVER}${product?.image}`} alt={'HERO 이미지'} />
+              <Photo
+                src={`${process.env.REACT_APP_IMAGE_CDN}${product?.image?.replace(
+                  '/images',
+                  '',
+                )}?w=430&h=430&f=webp&q=80`}
+                alt={'HERO 이미지'}
+              />
             ) : (
               <Photo
                 imageClassName={S.PhotoSize}
-                src={`${process.env.REACT_APP_PROD_SERVER}${product?.image}`}
+                src={`${process.env.REACT_APP_IMAGE_CDN}${product?.image?.replace(
+                  '/images',
+                  '',
+                )}?w=430&h=430&f=webp&q=80`}
                 alt={'HERO 이미지'}
               />
             )}
