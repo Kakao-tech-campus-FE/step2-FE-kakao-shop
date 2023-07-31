@@ -47,7 +47,7 @@ const OrderCompleteTemplate = ({ data }) => {
         주문이 성공적으로 완료되었습니다.
       </p>
       <div className="p-2 text-right">
-        <p className="text-base">주문번호: {orderId}</p>
+        <p className="text-base text-neutral-500">주문번호: {orderId}</p>
       </div>
 
       <div className="text-center border rounded p-4 my-6">
