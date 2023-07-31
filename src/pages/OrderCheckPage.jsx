@@ -10,10 +10,12 @@ const OrderCheckPage = () => {
   const { data, error, isLoading } = useQuery("order-check", () => {
     return getOrderFromId(id);
   });
-  return (
+  return !error ? (
     <Suspense fallback={<Loader />}>
       <OrderCheckTemplate data={data} />
     </Suspense>
+  ) : (
+    <span>에러가 발생했습니다.</span>
   );
 };
 export default OrderCheckPage;
