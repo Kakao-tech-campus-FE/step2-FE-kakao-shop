@@ -21,6 +21,7 @@ export default Footer;
 const FooterBox = styled.div`
     display : flex;
     width: 100%;
+    min-width : 550px;
     height: 120px;
     background-color: #ddd;
     justify-content: center;
