@@ -7,6 +7,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
+import CompleteOrderPage from "./pages/CompleteOrderPage";
 import { Provider } from "react-redux";
 import store from "./store/index.js";
 import { PersistGate } from "redux-persist/integration/react";
@@ -35,6 +36,7 @@ function App() {
                 path="/product/:id"
                 element={<ProductDetailPage />}
               ></Route>
+              <Route path="/orders/:id" element={<CompleteOrderPage />}></Route>
             </Routes>
           </BrowserRouter>
           {/* </PersistGate> */}
