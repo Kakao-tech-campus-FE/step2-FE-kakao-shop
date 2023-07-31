@@ -36,7 +36,6 @@ const MainProductTemplate = () => {
                 console.error('Unknown error occurred: ', error);
             }
         },
-        suspense: true,
     }); // 구분자, API 요청 함수
 
     useEffect(() => {
@@ -48,11 +47,11 @@ const MainProductTemplate = () => {
     
     return(
         <Container>
-            <Suspense fallback={<MainPageSkeleton />}>
-                <ProductGrid products={products.pages.flatMap(page => page.response)}/>
-                <div ref={ref}></div>
-                {isFetchingNextPage && <MainPageSkeleton />}
-            </Suspense>
+            {products ? 
+                <ProductGrid products={products.pages.flatMap(page => page.response)} />
+                : <MainPageSkeleton />}
+            <div ref={ref}></div>
+            {isFetchingNextPage && <MainPageSkeleton />}
         </Container>
     );
 };
