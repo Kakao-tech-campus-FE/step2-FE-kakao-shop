@@ -5,23 +5,18 @@ import ProductDetailInfo from "../components/molecules/ProductDetailInfo";
 import Loader from '../components/atoms/Loader';
 import ProductOption from "../components/molecules/ProductOption";
 import * as Product from '../styles/pages/ProductDetailPage';
-import { useEffect } from "react";
 
 const ProductDetailPage = () => {
     const navigate = useNavigate();
 
     const { id } = useParams(); // string
     const parsedId = parseInt(id, 10);
-    const {data: product, isLoading, refetch} = useQuery("product", () => getProductById(parsedId), {
+    const {data: product, isLoading} = useQuery(["product", id], () => getProductById(parsedId), {
         onError: (error) => {
             console.log(`something went wrong ${error.mssage}`);
             navigate('/error');
         },
     });
-
-    useEffect(() => {
-        refetch();
-    }, [refetch, id])
 
     return (
         <Product.Container>
