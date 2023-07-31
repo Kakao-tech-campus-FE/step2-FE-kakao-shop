@@ -6,6 +6,7 @@ import Button from "../atoms/Button";
 import { comma } from "../../utils/convert";
 import OptionList from "../atoms/OptionList";
 import { useNavigate } from "react-router-dom";
+import { getCookie } from "../../store/cookies";
 
 const OptionColumn = ({ product }) => {
   const navigate = useNavigate();
@@ -170,29 +171,44 @@ const OptionColumn = ({ product }) => {
           className="bg-yellow-500 hover:bg-yellow-600 h-auto text-white font-bold py-2 px-1 w-2/3 mt-10 rounded cursor-pointer transition-colors duration-300"
           onClick={() => {
             new Promise((resolve, reject) => {
+              if (getCookie("token") === null) {
+                alert("로그인이 필요한 서비스입니다.");
+                navigate("/login");
+                reject(0);
+                return;
+              }
               checkCart(data?.data?.response);
               resolve(1);
-            }).then(() => {
-              mu2(modifiedOptions);
-              mutate(
-                selectiedOptions.map((el) => {
-                  return {
-                    optionId: el.optionId,
-                    quantity: el.quantity,
-                  };
-                }),
-                {
-                  onSuccess: () => {
-                    alert("장바구니에 담겼습니다.");
-                    console.log(data);
-                  },
-                  onError: (e) => {
-                    console.log(e);
-                    alert("failed");
-                  },
+            })
+              .then(() => {
+                if (selectiedOptions.length === 0) {
+                  return alert("장바구니에 담을 옵션을 선택해주세요.");
                 }
-              );
-            });
+                if (modifiedOptions.length !== 0) {
+                  mu2(modifiedOptions);
+                }
+                mutate(
+                  selectiedOptions.map((el) => {
+                    return {
+                      optionId: el.optionId,
+                      quantity: el.quantity,
+                    };
+                  }),
+                  {
+                    onSuccess: () => {
+                      alert("장바구니에 담겼습니다.");
+                      //console.log(data);
+                    },
+                    onError: (e) => {
+                      console.log(e);
+                      alert("failed");
+                    },
+                  }
+                );
+              })
+              .catch(() => {
+                return;
+              });
           }}
         >
           장바구니 담기
