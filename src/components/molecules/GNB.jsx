@@ -6,11 +6,8 @@ import LinkText from "../atoms/LinkText";
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
 import { getLocalStorage, removeLocalStorageItem } from "../../utils/localStorage";
-import { useNavigate } from 'react-router-dom';
-
 
 const GNB = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = getLocalStorage("user");;
 
