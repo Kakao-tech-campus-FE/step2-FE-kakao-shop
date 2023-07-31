@@ -2,7 +2,6 @@ import axios from "axios";
 import store from "store/store";
 import { useDispatch } from "react-redux";
 import { clearUserReducer } from "reducers/loginSlice";
-import { useNavigate } from "react-router-dom";
 
 const instance = axios.create({
   baseURL:
@@ -19,8 +18,14 @@ instance.interceptors.request.use(
     const urlGroup = config.url.split("/")[1];
 
     // 토큰 필요한 요청일 때
-    if (["carts", "orders"].includes(urlGroup) && loginState.islogin) {
-      config.headers.Authorization = loginState.token;
+    if (["carts", "orders"].includes(urlGroup)) {
+      if (loginState.islogin) {
+        config.headers.Authorization = loginState.token;
+      } else {
+        alert("로그인이 필요합니다.");
+        window.location.href = "/login";
+        return Promise.resolve();
+      }
     }
 
     if (
@@ -50,11 +55,7 @@ instance.interceptors.response.use(
     return response.data.response;
   },
   (error) => {
-    if (error.response.status === 401) {
-      alert("로그인이 필요합니다.");
-      window.location.href = "/login";
-    }
-    return Promise.reject(error);
+    // fallback 에서 처리
   }
 );
 
