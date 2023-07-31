@@ -28,7 +28,7 @@ const CartPage = () => {
             <h1 className="text-xl font-bold bg-white text-gray-800 text-center py-2 mb-4">장바구니</h1>
             <ProductWithOptionList products={data.products}/>
             {data.products.length !== 0 &&
-                <ElevatedButton className="bg-amber-300" onClick={onPurchase}>주문하기</ElevatedButton>
+                <ElevatedButton className="bg-amber-300 mt-4" onClick={onPurchase}>주문하기</ElevatedButton>
             }
         </MdLayOut>
     )
@@ -47,13 +47,14 @@ const ProductWithOptionList = ({products}) => {
         <div className="divide-y-8 divide-gray-100 bg-white">
             {
                 products.map((item) => {
-                    let filteredProduct = item.carts.filter((cart) => cart.quantity > 0);
-                    if (filteredProduct.length !== 0) {
+                    let filteredCart = item.carts.filter((cart) => cart.quantity > 0);
+                    if (filteredCart.length !== 0) {
                         return (
                             <ProductWithOptionCard key={"cartItem_" + item.id} id={item.id}
                                                    productName={item.productName}
-                                                   carts={item.carts}/>);
+                                                   carts={filteredCart}/>);
                     }
+                    return null;
                 })}
         </div>
     );
