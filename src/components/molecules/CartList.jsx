@@ -115,7 +115,7 @@ const CartList = ({data}) => {
     useEffect(() => {
         mutate(updatePayload, {
             onSuccess: () => {
-                console.log('장바구니 수정 성공!');
+                console.log('Cart Load Success');
             },
             onError: (error) => {
                 alert(error.data.error.message);
