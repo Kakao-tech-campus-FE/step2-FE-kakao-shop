@@ -7,6 +7,7 @@ import MainLayout from "./components/layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import ErrorPage from "./pages/ErrorPage";
 import OrderPage from "./pages/OrderPage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 const App = () => {
   return(
@@ -18,7 +19,8 @@ const App = () => {
             <Route path="/" element={<MainPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
             <Route path="/cart" element={<CartPage />} />
-          <Route path="/order" element={<OrderPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/order/complete/:id" element={<OrderCompletePage />} />
           </Route>
           <Route path="/error" element={<ErrorPage />} />
         </Routes>
