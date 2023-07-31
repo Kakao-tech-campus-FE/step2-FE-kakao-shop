@@ -20,9 +20,9 @@ const productsSlice = createSlice({
     // Promise.resolve()
     builder.addCase(getProducts.fulfilled, (state, action) => {
       
-      // action.payload.response는 최대 10개의 요소 있을 것
+      // action.payload.response는 최대 15개의 요소 있을 것
       // 10개보다 작다면 더이상 데이터를 불러오는게 의미 없음
-      if (action.payload.response.length < 10) {
+      if (action.payload.response.length < 15) {
         state.isEnd = true;
       }
 
@@ -36,6 +36,7 @@ const productsSlice = createSlice({
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload.error; 
+      alert("상품을 찾을 수 없습니다. 나중에 다시 시도해주세요");
     })
   }
 });
