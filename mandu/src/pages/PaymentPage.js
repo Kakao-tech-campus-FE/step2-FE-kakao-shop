@@ -36,7 +36,7 @@ const PaymentPage = () => {
             if (cookieUserId) {
                 setUser(cookieUserId);
             }
-        });
+        }, []);
 
 
         if (isLoading) return <LoadingPage/>
@@ -54,7 +54,7 @@ const PaymentPage = () => {
         return (
             <MdLayOut>
                 <h1 className="text-xl font-bold bg-white text-gray-800 text-center py-2 mb-4">결제</h1>
-                <PaymentSectionCard title="배송지" description="배송지를 선택해주세요.">
+                <PaymentSectionCard key="shipAddress" title="배송지" description="배송지를 선택해주세요.">
                     <div className="flex justify-between mx-4 pb-2">
                         <div className="flex flex-col">
                             <p>{user}님</p>
@@ -63,7 +63,7 @@ const PaymentPage = () => {
                         <button>변경</button>
                     </div>
                 </PaymentSectionCard>
-                <PaymentSectionCard title="주문 상품 정보" description={`총 ${totalQuantity}개`}>
+                <PaymentSectionCard key="productInfo" title="주문 상품 정보" description={`총 ${totalQuantity}개`}>
                     <div className="divide-y-4">
                         {
                             products.map((item) => {
@@ -77,6 +77,7 @@ const PaymentPage = () => {
                                         </div>
                                     );
                                 }
+                                return null;
                             })}
                     </div>
                 </PaymentSectionCard>
@@ -91,8 +92,6 @@ const PaymentPage = () => {
                                 }}>
                     결제하기
                 </ElevatedButton>
-
-
             </MdLayOut>
         );
     }
