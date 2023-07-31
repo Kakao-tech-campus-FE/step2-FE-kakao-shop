@@ -4,14 +4,14 @@ import Loader from "../atoms/Loader";
 import ProductGrid from "../organisms/ProductGrid";
 import { useEffect, useRef } from "react";
 import { fetchProducts } from "../../services/product";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import _ from "lodash";
 
 const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
 
   const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    "products",
+    ["products"],
     ({ pageParam = 0 }) => fetchProducts(pageParam),
     {
       getNextPageParam: (currentPage, allPages) => {
