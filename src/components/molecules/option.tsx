@@ -35,9 +35,7 @@ export default function Option({ children, optionDescription }:OptionProps) {
         <div>
           {optionDescription}
         </div>
-        {isExpanded
-          ? <FontAwesomeIcon icon={iconDefinition} />
-          : <FontAwesomeIcon icon={iconDefinition} />}
+        <FontAwesomeIcon icon={iconDefinition} />
       </button>
       {isExpanded ? (
         <ul role="listbox" className="absolute z-30 flex w-full flex-col rounded-b border border-t-0 border-stone-300 bg-white">
