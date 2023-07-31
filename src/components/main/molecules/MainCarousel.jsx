@@ -4,12 +4,12 @@ import Container from "../../common/atoms/Container";
 import Button from "../../common/atoms/Button";
 import "../../../styles/molecules/Carousel.css";
 
-export default function Carousel({ images }) {
+export default function MainCarousel({ images }) {
   const [curImgIdx, setCurImgIdx] = useState(1);
   // 기존 이미지 배열을 복제하여 사용할 새로운 배열을 만듭니다.
   const [extendedImages, setExtendedImages] = useState([...images]);
   const [carouselTransition, setCarouselTransition] = useState(
-    "transform 500ms ease-in-out"
+    "transform 0.25s ease-in-out"
   );
 
   const moveToNthSlide = (index) => {
@@ -18,7 +18,7 @@ export default function Carousel({ images }) {
     setTimeout(() => {
       setCarouselTransition("none");
       setCurImgIdx(index);
-    }, 500);
+    }, 250);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -29,7 +29,7 @@ export default function Carousel({ images }) {
       moveToNthSlide(1);
     }
     setCurImgIdx((prev) => {
-      setCarouselTransition("transform 500ms ease-in-out");
+      setCarouselTransition("transform 0.25s ease-in-out");
       return prev + 1;
     });
   };
@@ -40,15 +40,15 @@ export default function Carousel({ images }) {
       moveToNthSlide(images.length);
     }
     setCurImgIdx((prev) => {
-      setCarouselTransition("transform 500ms ease-in-out");
+      setCarouselTransition("transform 0.25s ease-in-out");
       return prev - 1;
     });
   };
 
-  useEffect(() => {
-    const interval = setInterval(() => handleNextImg(), 3000);
-    return () => clearInterval(interval);
-  }, [handleNextImg]);
+  // useEffect(() => {
+  //   const interval = setInterval(() => handleNextImg(), 3000);
+  //   return () => clearInterval(interval);
+  // }, [handleNextImg]);
 
   useEffect(() => {
     setExtendedImages([images.at(-1), ...images, images[0]]);
