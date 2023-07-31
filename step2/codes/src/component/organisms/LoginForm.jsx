@@ -1,6 +1,5 @@
 import Container from "../atoms/Container";
-// import Link from "../atoms/Link";
-import InputGroup from "../molecules/InputGroup";
+import Link from "../atoms/Link";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import useInput from "../../hooks/useInput";
@@ -37,7 +36,6 @@ const LoginForm = () => {
             password: value.password
         })
             .then((res) => { //로그인 성공
-                console.log(res)
                 dispatch(setEmail({
                     email: value.email, //객체 형태로 넣어야함. payload라서
                 }));
@@ -51,17 +49,19 @@ const LoginForm = () => {
                 if (err.response && err.response.data && err.response.data.error){
                     setApiErr(err.response.data.error);
                 } else {
-                    setApiErr("로그인 실패");
+                    setApiErr("아이디 혹은 비밀번호가 일치하지 않습니다. 입력한 내용을 다시 확인해 주세요.");
                 }
         })
     };
 
     return <Container>
+        <Box className="mt-14">
+            <span className="block text-[30px] font-semibold m-auto w-[88px]">kakao</span>
+        </Box>
         <Box className="my-[40px] border max-w-[580px] mx-auto">
             <Box className="py-12 px-[70px]">
                 <Box className="w-[440px]">
-                    <div className="emailPart">
-                        <label htmlFor="email"><span>이메일</span></label>
+                    <div className={`emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${emailError ? "border-red-600" : ""}`}>
                         <input 
                             type="email" 
                             id="email" 
@@ -70,38 +70,52 @@ const LoginForm = () => {
                             value={value.email}
                             onChange={handleOnChange} 
                             onBlur = {validateEmail}
+                            className="w-[100%] text-lg py-2.5 focus:outline-none"
                             />
                     </div>
-                    { emailError && <div>{emailError}</div>}
-                    <div className="passWordPart">
-                        <label htmlFor="password"><span>비밀번호</span></label>
+                    { emailError && <div><span className="ml-2 text-red-600">! </span><span className="text-sm">{emailError}</span></div>}
+
+                    <div className={`emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${passwordError ? "border-red-600" : ""}`}>
                         <input 
                             type="password" 
                             id="password" 
                             name="password" 
-                            placeholder="**********" 
+                            placeholder="비밀번호"
                             value={value.password}
                             onChange={handleOnChange}
                             onBlur = {validatePassword}
+                            className="w-[100%] text-lg py-2.5 focus:outline-none"
                         />
                     </div>
-                    {passwordError && <div>{passwordError}</div>}
+                    {passwordError && <div><span className="ml-2 text-red-600"> ! </span><span className="text-sm">{passwordError}</span></div>}
+
+                    {apiErr && <div className="w-full bg-gray-100 text-center py-4 mt-10">
+                                    <span className="text-xs text-red-600">{apiErr}</span>
+                                </div>
+                    }
                     <Button
                         disabled={isLoginError}
                         onClick = {
                             //api 요청
                             loginReq
                         }
-                        className={`
-                        w-full p-4 font-medium 
-                        ${isLoginError ? "bg-gray-300 text-gray-500" : "bg-#ffeb00 text-black"}
-                        `}
+                        className="w-full p-4 font-medium mt-10 bg-#ffeb00 text-black hover:bg-yellow-300"
                         >
-                        <span className="">로그인</span>
+                        <span className="font-medium">로그인</span>
                     </Button>
-                    {apiErr && <div>{apiErr}</div>}
-
-                    {/* <Link href={"/"}>홈화면</Link> */}
+                    <div >
+                        <span className=" flex justify-center items-center
+                        before:inline-block before:content-[''] before:w-[190px] before:h-[1px] before:bg-opacity-10 before:bg-black 
+                        after:inline-block after:content-[''] after:w-[190px] after:h-[1px] after:bg-opacity-10 after:bg-black  
+                        "><span className="block w-[40px] text-center mx-auto my-4 text-gray-400 text-xs">또는</span></span>
+                    </div>
+                    <Link href={"/signup"}
+                        className="block w-full p-4 font-medium bg-gray-200 text-black text-center hover:bg-gray-300"
+                    ><span className="font-medium">회원가입</span>
+                    </Link>
+                </Box>
+                <Box className="flex place-content-end mt-10 text-xs">
+                    <Link href={"/"}>Home</Link>
                 </Box>
             </Box>
         </Box>

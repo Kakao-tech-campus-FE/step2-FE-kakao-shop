@@ -1,13 +1,11 @@
 import Container from "../atoms/Container";
 import Link from "../atoms/Link";
-import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import Title from "../atoms/Title";
 import { register } from "../../services/user";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import "../../styles/organisms/RegisterForm.css"
+import Box from "../atoms/Box";
 
 const RegisterForm = () => {
     const navigate = useNavigate();
@@ -43,7 +41,7 @@ const RegisterForm = () => {
                 if (err.response && err.response.data && err.response.data.error){
                     setApiErr(err.response.data.error);
                 } else {
-                    setApiErr("회원가입 실패");
+                    setApiErr("회원가입이 실패했습니다.");
                 }
             })
     }
@@ -59,63 +57,85 @@ const RegisterForm = () => {
           }
         };
 
+
     return <Container className="register">
-        <Title className="register">회원가입</Title>
-        <InputGroup 
-            className="register"
-            id = "username" 
-            type="text" 
-            name="username" 
-            placeholder="사용자 이름을 입력해주세요." 
-            label="이름" 
-            value={value.username}
-            onChange={handleOnChange}/> 
-        <InputGroup 
-            className="register"
-            id = "email" 
-            type="email" 
-            name="email" 
-            placeholder="이메일(아이디)을 입력해주세요." 
-            label="이메일" 
-            value={value.email} 
-            onChange={handleOnChange} 
-            onBlur = {validateEmail}/> 
-            { emailError && <div className="registerErr">{emailError}</div>}
-        <InputGroup 
-            className="register"
-            id = "password" 
-            type="password" 
-            name="password" 
-            placeholder="**********" 
-            label="비밀번호" 
-            value={value.password} 
-            onChange={handleOnChange} 
-            onBlur = {validatePassword}/> 
-            {passwordError && <div className="registerErr">{passwordError}</div>}
-        <InputGroup 
-            className="register"
-            id = "passwordConfirm" 
-            type="password" 
-            name="passwordConfirm" 
-            placeholder="**********" 
-            label="비밀번호 확인" 
-            value={value.passwordConfirm} 
-            onChange={handleOnChange} 
-            onBlur = {pwConfirm}/> 
-            {passwordConfirmError && <div className="registerErr">{passwordConfirmError}</div>}
-        <Button 
-            className="register"
-            disabled={isRegisterError}
-            onClick = {() => {
-                //api 회원가입 요청
-                registerReq()
-            }}
-        >
-            회원가입</Button >
-            {apiErr && <div>{apiErr}</div>}
-            <Link 
-            className="register"
-            href={"/"}>홈화면</Link>
+        <Box className="mt-14">
+            <span className="block text-[30px] font-semibold m-auto w-[88px]">kakao</span>
+        </Box>
+            <Box className="my-[40px] border max-w-[580px] mx-auto">
+                <Box className="py-12 px-[70px]">
+                    <Box className="w-[440px]">
+                        <div className="emailPart border-b-2 border-#ccc focus-within:border-black"> 
+                            <input 
+                                type="text" 
+                                name="username" 
+                                id="username" 
+                                placeholder="사용자 이름을 입력해주세요." 
+                                value={value.username}
+                                onChange={handleOnChange}
+                                className="w-[100%] text-lg py-2.5 focus:outline-none"
+                            />
+                        </div>
+                        <div className={`emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${emailError ? "border-red-600" : ""}`}>
+                            <input 
+                                type="text" 
+                                name="email" 
+                                id="email" 
+                                placeholder="이메일(아이디)을 입력해주세요." 
+                                value={value.email}
+                                onChange={handleOnChange} 
+                                onBlur = {validateEmail}
+                                className="w-[100%] text-lg py-2.5 focus:outline-none"
+                            />
+                        </div>
+                        { emailError && <div><span className="ml-2 text-red-600">! </span><span className="text-sm">{emailError}</span></div>}
+                        
+                        <div className={`emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${passwordError ? "border-red-600" : ""}`}>
+                            <input 
+                                type="password" 
+                                id = "password"  
+                                name="password"
+                                placeholder="비밀번호를 입력해주세요."
+                                value={value.password} 
+                                onChange={handleOnChange} 
+                                onBlur = {validatePassword}
+                                className="w-[100%] text-lg py-2.5 focus:outline-none"
+                            />
+                        </div>
+                        {passwordError && <div><span className="ml-2 text-red-600">! </span><span className="text-sm">{passwordError}</span></div>}
+
+                        <div className={`emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${passwordConfirmError ? "border-red-600" : ""}`}>
+                            <input 
+                                type="password" 
+                                id = "passwordConfirm"
+                                name="passwordConfirm"
+                                placeholder="비밀번호를 확인하기 위해 다시 입력해주세요."     
+                                value={value.passwordConfirm} 
+                                onChange={handleOnChange} 
+                                onBlur = {pwConfirm}
+                                className="w-[100%] text-lg py-2.5 focus:outline-none"
+                            />
+                        </div>
+                        {passwordConfirmError && <div><span className="ml-2 text-red-600">! </span><span className="text-sm">{passwordConfirmError}</span></div>}
+
+                        {apiErr && <div className="w-full bg-gray-100 text-center py-4 mt-10">
+                                    <span className="text-xs text-red-600">{apiErr}</span>
+                                </div>
+                        }
+                        <Button 
+                            disabled={isRegisterError}
+                            onClick = {() => {
+                                //api 회원가입 요청
+                                registerReq()
+                            }}
+                            className="w-full p-4 font-medium mt-10 bg-#ffeb00 text-black hover:bg-yellow-300"
+                        >회원가입</Button>
+                        <Box className="flex place-content-end mt-10 text-xs">
+                            <Link href={"/"}>Home</Link>
+                        </Box>
+                    </Box>
+                </Box>
+            </Box>
     </Container>
 };
 

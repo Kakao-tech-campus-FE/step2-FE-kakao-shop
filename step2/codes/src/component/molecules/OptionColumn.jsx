@@ -88,8 +88,6 @@ const OptionColumn = ({ product }) => {
                         <span className="name">{option.name}</span>
                         <span className="price">{comma(option.price)}원</span>
                         <Counter
-                            // quantity = {option.quantity}
-                            // optionId = {option.optionId}
                             option={option}
                             onIncrease={handleOnChange}
                             onDecrease={handleOnChange}
