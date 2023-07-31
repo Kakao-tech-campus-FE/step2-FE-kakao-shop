@@ -46,7 +46,7 @@ const OrderCompletePage = () => {
       <Container className="mx-auto w-3/5 h-1/2 border-solid my-auto">
         <Box className="card p-5">
           <div className="text-center font-bold text-2xl p-3">구매 완료!</div>
-          <div className="text-center">구매한 상품의 정보를 확인하세요</div>
+          <div className="text-center">상품의 구매가 정상적으로 완료되었습니다.</div>
           <hr className="m-3" />
           <OrderItems />
         </Box>
@@ -62,7 +62,7 @@ const OrderCompletePage = () => {
           }}
           className="w-full p-4 text-lg bg-yellow-300 text-black"
         >
-          메인 페이지로 돌아가기
+          쇼핑 계속하기
         </button>
       </Container>
     </div>

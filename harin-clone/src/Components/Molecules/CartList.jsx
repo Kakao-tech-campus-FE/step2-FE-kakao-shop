@@ -11,7 +11,6 @@ import "../../Styles/Card.css";
 import DeleteButton from "../Atoms/DeleteButton";
 
 const CartList = ({ data }) => {
-  console.log("이것은 카트 데이터: " + data);
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -124,15 +123,15 @@ const CartList = ({ data }) => {
         <Button
           className="bg-yellow-300 w-full p-3 font-bold mb-20"
           onClick={() => {
-            if (!cartItems) {
-              alert("주문할 수 있는 상품이 없습니다!");
-              return;
-            }
             mutate(updatePayload, {
               onSuccess: (data) => {
                 navigate("/order");
               },
-              onError: (error) => {},
+              onError: (error) => {
+                if (error.response.status === 404) {
+                  alert("주문할 장바구니 상품이 없습니다.");
+                }
+              },
             });
           }}
         >

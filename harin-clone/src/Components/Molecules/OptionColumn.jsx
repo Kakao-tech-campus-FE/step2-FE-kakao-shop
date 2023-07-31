@@ -57,13 +57,13 @@ const OptionColumn = ({ product }) => {
   return (
     <div className="option-column">
       <h3 className="font-bold pb-5">옵션 선택</h3>
-      <Container className="option-container">
+      <Container className="option-container w-auto">
         <div className="bg-stone-100 w-full">
           <button
             onClick={() => {
               setIsOpen(!isOpen);
             }}
-            className="flex items-center p-3 justify-between w-full"
+            className=" flex items-center p-3 justify-between"
           >
             <div>-주문 선택-</div>
             {isOpen ? (
@@ -76,26 +76,16 @@ const OptionColumn = ({ product }) => {
               </div>
             )}
           </button>
+          {isOpen && (
+            <div className="grid bg-white">
+              <OptionList
+                options={product.options}
+                // 사용자가 선택한 option
+                onClick={handleOnClickOption}
+              />
+            </div>
+          )}
         </div>
-        {/* <Dropdown
-          isOpen={isOpen}
-          children={
-            <OptionList
-              options={product.options}
-              // 사용자가 선택한 option
-              onClick={handleOnClickOption}
-            />
-          }
-        /> */}
-        {isOpen && (
-          <div className="grid bg-white">
-            <OptionList
-              options={product.options}
-              // 사용자가 선택한 option
-              onClick={handleOnClickOption}
-            />
-          </div>
-        )}
       </Container>
 
       {/* 담긴 옵션이 표기 */}
