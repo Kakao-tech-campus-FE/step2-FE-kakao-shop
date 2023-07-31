@@ -4,8 +4,10 @@ import { order } from "../../apis/order";
 import OrderList from "../molecules/OrderList";
 import { useState } from "react";
 import * as Order from '../../styles/templates/OrderTemplate';
+import { useNavigate } from "react-router-dom";
 
 const OrderTemplate = ({data}) => {
+    const navigate = useNavigate();
     const {products, totalPrice} = data?.data?.response;
     const [agreePayment, setAgreePayment] = useState(false);
     const [agreePolicy, setAgreePolicy] = useState(false);
@@ -92,9 +94,9 @@ const OrderTemplate = ({data}) => {
                             alert('주문에 실패했습니다.');
                         },
                         onSuccess: (res) => {
-                            //const id = res.response.id;
+                            const id = res.data.response.id;
                             alert('주문이 완료되었습니다.');
-                            //페이지 이동
+                            navigate(`/order/complete/${id}`);
                         }
                     })
                 }}>결제하기</Order.Button>
