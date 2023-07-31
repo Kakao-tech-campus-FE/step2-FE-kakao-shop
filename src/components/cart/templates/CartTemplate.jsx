@@ -15,7 +15,6 @@ export default function CartTemplate({ data }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartCount = useSelector((state) => state.cart.cartCount);
-  console.log("CartTemplate data", data);
   useEffect(() => {
     // validataion 필요
     setCartItems(data?.response?.products);

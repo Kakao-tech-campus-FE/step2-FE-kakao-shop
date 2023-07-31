@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../components/common/atoms/Loader";
 import { useQuery } from "react-query";
@@ -11,40 +11,17 @@ export default function ProductDetailPage() {
   const { data, isLoading, error } = useQuery(`product/${id}`, () =>
     getProductById(parsedId)
   );
-
   const product = data;
-  // data는 비동기 요청으로 처음에는 null이고, 요청이 완료되면 data에 데이터가 담김
-  // product에 우리가 원하는 데이터가 정확하게 존재하느냐?
-  // 검증 함수: data가 정확히 들어왔는지 체크, validate function
 
-  const validateData = () => {
-    if (!data) return false;
-    const requiredKeys = [
-      "id",
-      "productName",
-      "description",
-      "image",
-      "price",
-      "starCount",
-      "options",
-    ];
-    const keys = Object.keys(product); // ["id", "productName", "price", "image", "options"]
-    for (const requiredKey of requiredKeys) {
-      if (!keys.includes(requiredKey)) {
-        alert(`product 객체에 ${requiredKey}가 존재하지 않습니다.`);
-        return false;
-      }
+  useEffect(() => {
+    if (error) {
+      console.log("ProductDetailPage Error", error.message);
+      alert("서버에 문제가 있습니다. 잠시 후 다시 시도해주세요.");
     }
-    return true;
-  };
+  }, [error]);
 
-  return (
-    <div>
-      {isLoading && <Loader />}
-      {error && <div>{error.message}</div>}
-      {product && <ProductDetailTemplate product={product} />}
-    </div>
-  );
+  if (isLoading) return <Loader />;
+  return <div>{product && <ProductDetailTemplate product={product} />}</div>;
 }
 
 // ⭐️ 개념
