@@ -10,6 +10,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import OrderCompletePage from "./pages/OrderCompletePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Footer from './components/atoms/Footer';
 
 import './styles/App.css';
 
@@ -36,6 +37,7 @@ function App() {
                 <Route path="orders/complete/*" element={<OrderCompletePage/>}/>
                 <Route path="/*" element={<NotFoundPage/>}/>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 }

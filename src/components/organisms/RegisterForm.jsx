@@ -1,6 +1,5 @@
 import Container from "./../atoms/Container";
 import InputGroup from "./../molecules/InputGroup";
-import Button from "./../atoms/Button";
 import useInput from "./../../hooks/useInput";
 import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage, usernameErrorMessage, passwordComparisonErrorMessage } from "../../utils/constants";
@@ -40,44 +39,46 @@ const RegisterForm = () => {
 
   return (
     <RegisterFormContainer>
-      <span>회원가입</span>
-      <InputGroup
-        id="username"
-        type="text"
-        name="username"
-        placeholder="사용자 이름을 입력해주세요."
-        label="이름"
-        value={value.username}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="email"
-        type="email"
-        name="email"
-        placeholder="이메일(아이디)를 입력해주세요."
-        label="이메일"
-        value={value.email}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        name="password"
-        placeholder="********"
-        label="비밀번호"
-        value={value.password}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="passwordConfirm"
-        type="password"
-        name="passwordConfirm"
-        placeholder="********"
-        label="비밀번호 확인"
-        value={value.passwordConfirm}
-        onChange={handleOnChange}
-      />
-      <Button onClick={handleClick}>회원가입</Button>
+      <RegisterFormContentBox>
+        <p>회원가입</p>
+        <InputGroup
+          id="username"
+          type="text"
+          name="username"
+          placeholder="사용자 이름을 입력해주세요."
+          label="이름"
+          value={value.username}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          id="email"
+          type="email"
+          name="email"
+          placeholder="이메일(아이디)를 입력해주세요."
+          label="이메일"
+          value={value.email}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          name="password"
+          placeholder="********"
+          label="비밀번호"
+          value={value.password}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          id="passwordConfirm"
+          type="password"
+          name="passwordConfirm"
+          placeholder="********"
+          label="비밀번호 확인"
+          value={value.passwordConfirm}
+          onChange={handleOnChange}
+        />
+        <RegisterButton onClick={handleClick}>회원가입</RegisterButton>
+      </RegisterFormContentBox>
     </RegisterFormContainer>
   );
 };
@@ -88,8 +89,23 @@ const RegisterFormContainer = styled(Container)`
   margin: 0 auto;
   width: 50%;
   border: 1px solid #ddd;
-  text-align: center;
   & > span {
     font-size: 2.2rem;
   }
+`
+
+const RegisterFormContentBox = styled.div`
+  padding : 3% 30%;
+  & > p {
+    text-align: center;
+    font-size : 2.2rem;
+  }
+`
+const RegisterButton = styled.div`
+    width: 100%;
+    margin-top : 20px;
+    padding: 8px 0 8px 0;
+    text-align: center;
+    cursor: pointer;
+    background-color : #ffe100
 `
