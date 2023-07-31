@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 import { getCart } from "../apis/cart";
 
 const OrderPage = () => {
-    const {data: cart, isLoading} = useQuery("cart", getCart);
+    const {data: cart, isLoading} = useQuery(["cart"], getCart);
 
     return(
         <Suspense fallback={<Loader />}>
