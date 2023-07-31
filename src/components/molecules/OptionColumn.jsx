@@ -130,7 +130,7 @@ const optionColumn = ({ product }) => {
                 }
               )
             }
-            className="button-cart w-[124px] h-[60px] mr-[4px] rounded-[5px] bg-gray-900 text-white"
+            className="button-cart w-[144px] h-[60px] mr-[4px] rounded-[5px] bg-gray-900 text-white"
           >
             장바구니 담기
           </Button>
@@ -148,7 +148,7 @@ const optionColumn = ({ product }) => {
             // 톡딜가로 구매하기는 과제 구현 요소 아님
             alert("준비중입니다.");
           }}
-          className="button-buy w-[202px] h-[60px] rounded-[5px] bg-yellow-kakao text-[18px]"
+          className="button-buy w-[182px] h-[60px] rounded-[5px] bg-yellow-kakao text-[18px]"
         >
           톡딜가로 구매하기
         </Button>
