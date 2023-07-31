@@ -7,7 +7,6 @@ const OrderCompleteTemplate = ({ data }) => {
   const totalPrice = data?.data?.response?.totalPrice;
   const OrderItems = ({ products }) => {
     return products?.map((item) => {
-      console.log(item);
       // 해당 상품의 모든 옵션의 상품 수가 0이지 않을 경우에만 표현
       if (!item?.items.every((option) => option.quantity === 0))
         return (
