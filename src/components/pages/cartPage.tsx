@@ -4,6 +4,7 @@ import { LOCALSTORAGE_KEY_TOKEN } from '../../utils/common';
 import { getItemWithExpireDate } from '../../utils/localStorage';
 import Loader from '../atoms/loader';
 import CartTemplate from '../templates/cartTemplate';
+import { removeEmptyCarts } from '../../utils/filterCartData';
 
 export default function CartPage() {
   const { data, isLoading } = useGetCart(getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
@@ -43,7 +44,7 @@ export default function CartPage() {
       {isLoading ? <Loader /> : null}
       {data ? (
         <CartTemplate
-          cartData={data.data.response}
+          cartData={removeEmptyCarts(data.data.response)}
           handleOption={handleOption}
         />
       ) : null}

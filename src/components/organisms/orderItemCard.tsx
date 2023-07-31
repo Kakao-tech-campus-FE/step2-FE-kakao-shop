@@ -19,27 +19,25 @@ export default function OrderItemCard({
       </section>
       <ul>
         {carts.map((cart) => (
-          cart.quantity > 0 ? (
-            <li key={`product-${id}-option-${cart.option.id}`}>
-              <div className="py-4">
-                <div className="mb-2 flex flex-row justify-between">
-                  <h3>{cart.option.optionName}</h3>
-                </div>
-                <div className="flex flex-row justify-between font-bold">
-                  <span>
-                    {cart.quantity}
-                    {' '}
-                    개
-                  </span>
-                  <span>
-                    {comma(cart.price)}
-                    {' '}
-                    원
-                  </span>
-                </div>
+          <li key={`product-${id}-option-${cart.option.id}`}>
+            <div className="py-4">
+              <div className="mb-2 flex flex-row justify-between">
+                <h3>{cart.option.optionName}</h3>
               </div>
-            </li>
-          ) : null
+              <div className="flex flex-row justify-between font-bold">
+                <span>
+                  {cart.quantity}
+                  {' '}
+                  개
+                </span>
+                <span>
+                  {comma(cart.price)}
+                  {' '}
+                  원
+                </span>
+              </div>
+            </div>
+          </li>
         ))}
       </ul>
     </div>

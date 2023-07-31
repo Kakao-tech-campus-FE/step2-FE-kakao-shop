@@ -3,6 +3,7 @@ import { CartData } from '../../types/product';
 import AgreeOrderTerms from '../molecules/agreeOrderTerms';
 import OrderItemList from '../organisms/orderItemList';
 import Button from '../atoms/button';
+import { comma } from '../../utils/comma';
 
 interface OrderTemplateProps {
   cartData: CartData;
@@ -20,11 +21,21 @@ export default function OrderTemplate({
 
   return (
     <div className="w-[40rem]">
-      <h1 className="py-2 text-center text-2xl font-bold">주문 상품 정보</h1>
-      <OrderItemList
-        products={cartData.products}
-        totalPrice={cartData.totalPrice}
-      />
+      <section>
+        <h1 className="py-2 text-center text-2xl font-bold">주문 상품 정보</h1>
+        <OrderItemList
+          products={cartData.products}
+        />
+        <div className="border-t border-stone-300 py-4 text-right text-lg font-bold">
+          총 주문 금액
+          {' '}
+          <span className="text-xl text-kakao-red">
+            {comma(cartData.totalPrice)}
+            {' '}
+            원
+          </span>
+        </div>
+      </section>
       <AgreeOrderTerms
         isAllAgreed={isAllAgreed}
         setIsAllAgreed={setIsAllAgreed}
