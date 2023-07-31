@@ -105,14 +105,11 @@ const CartList = ({data}) => {
     }, [cartItems]);
 
     const getTotalCartCountIncludeOptions = useCallback(() => {
-        let count = 0;
-        cartItems.forEach((item) => {
-            item.carts.forEach((cart) => {
-                count += cart.quantity;
-            });
-        });
-
-        return count;
+        const count = cartItems
+            .flatMap((item) => item.carts)
+            .reduce((total, cart) => total + cart.quantity, 0);
+        
+            return count;
     }, [cartItems]);
 
     useEffect(() => {
