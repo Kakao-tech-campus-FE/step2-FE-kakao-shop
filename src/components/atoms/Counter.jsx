@@ -18,7 +18,7 @@ const Counter = ({ onIncrease, onDecrease, value }) => {
   };
 
   return (
-    <div className="counter">
+    <div className="counter border border-2 w-20 flex justify-between items-center">
       <button onClick={handleOnDecrease}>-</button>
       <span className="count">{count}</span>
       <button onClick={handleOnIncrease}>+</button>

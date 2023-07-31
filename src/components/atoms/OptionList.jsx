@@ -8,13 +8,13 @@ const OptionList = ({ options, onClick }) => {
       {options.map((option, index) => (
         <div
           key={option.id}
-          className="option my-2 flex justify-between items-center"
+          className="option p-2 my-2 flex justify-between items-center"
           onClick={() => onClick(option)}
         >
-          <span className="name">
+          <span className="name max-w-[200px]">
             {index + 1}. {option.optionName}
           </span>
-          <span className="price">{comma(option.price)}원</span>
+          <span className="px-2 price">{comma(option.price)}원</span>
         </div>
       ))}
     </ol>

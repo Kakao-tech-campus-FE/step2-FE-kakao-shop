@@ -32,15 +32,35 @@ function GNB() {
 
   return (
     <header className="header bg-white px-4 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
-      <div className="contents flex items-center justify-between">
-        <Link to="/">
-          <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
-        </Link>
-        <nav className="navigation flex items-center text-base  text-gray-700">
-          <Link to="/carts" className="mr-4">
+      <div className="inner flex items-center justify-between">
+        <div className="flex items-center">
+          <Link to="/">
+            <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
+          </Link>
+          <div className="sub-menu ml-40 mt-2 ">
+            <ul className="menu flex ">
+              <li>
+                <a href="/">홈</a>
+              </li>
+              <li>
+                <a href="javascript:void(0) ">브랜드데이</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">베스트</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">라이브</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">기획전</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <nav className="navigation flex items-center text-base text-gray-700">
+          <Link to="/carts" className="relative cart mr-4">
             <img src={cart} alt="장바구니 버튼" className="h-8" />
           </Link>
-          <span>ㅣ</span>
           {email ? (
             <div className="flex items-center">
               <span className="mr-2">{username}</span>
@@ -50,7 +70,7 @@ function GNB() {
             </div>
           ) : (
             <>
-              <Link to="/login" className="text-black mr-2">
+              <Link to="/login" className="login text-black mr-2">
                 로그인
               </Link>
               <Link to="/signup" className="text-black">

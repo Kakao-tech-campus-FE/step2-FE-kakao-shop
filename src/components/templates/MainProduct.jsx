@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { fetchProducts } from "../../services/product";
 import Loading from "../atoms/Loader";
+import Box from "../atoms/Box";
+import Notice from "../atoms/notice";
 
 const MainProduct = () => {
   const bottomObserverRef = useRef(null);
@@ -56,9 +58,17 @@ const MainProduct = () => {
 
   return (
     <Container>
-      {isError && <p>{error.message}</p>}
-      {isLoading ? <Loading /> : <ProductGrid products={products} />}
-      <div ref={bottomObserverRef}></div>
+      <div className="carousel h-[200px] w-[100px] mt-14">캐러셀</div>
+      <Notice className="notice"></Notice>
+      <Box className="mainProduct flex  items-center justify-center">
+        {isError && <p>{error.message}</p>}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <ProductGrid className="product-grid" products={products} />
+        )}
+        <div ref={bottomObserverRef}></div>
+      </Box>
     </Container>
   );
 };

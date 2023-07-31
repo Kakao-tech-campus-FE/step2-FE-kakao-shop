@@ -1,0 +1,49 @@
+/* notice */
+.notice {
+}
+
+.notice .notice-line {
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.notice .notice-line .inner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 160px 0px 50px;
+}
+
+.notice .notice-line h2 {
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+}
+
+.notice .notice-line .swiper {
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  margin: 0;
+}
+
+.today::after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 12%;
+  height: 2px;
+  background-color: #fff13f;
+  position: absolute;
+  left: 10;
+  z-index: 20px;
+}

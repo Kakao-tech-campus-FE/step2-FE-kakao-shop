@@ -5,6 +5,7 @@ import { register } from "../../services/user";
 import { useState } from "react";
 import Title from "../atoms/Title";
 import { useLocation, useNavigate } from "react-router-dom";
+import Box from "../atoms/Box";
 
 const RegisterForm = (props) => {
   // const { value, handleOnChange } = useInput({   username: "",   email: "",
@@ -90,47 +91,45 @@ const RegisterForm = (props) => {
 
   return (
     <Container>
-      <Title> 회원가입 </Title>
-      <InputGroup
-        id="username"
-        type="text"
-        placeholder="사용자 이름을 입력해주세요."
-        label="이름"
-        value={name}
-        onChange={onNameHandler}
-        name="username"
-      />
-      <InputGroup
-        id="email"
-        type="email"
-        placeholder="아이디(메일)를 입력해주세요."
-        label="아이디"
-        value={email}
-        onChange={onEmailHandler}
-        onBlur={handleID}
-        name="email"
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        placeholder="비밀번호를 입력해주세요."
-        label="비밀번호"
-        value={password}
-        onChange={onPasswordHandler}
-        onBlur={handlePW}
-        name="password"
-      />
-      <InputGroup
-        id="passwordCheck"
-        type="password"
-        placeholder="비밀번호를 확인해주세요."
-        label="비밀번호 확인"
-        value={passwordCheck}
-        onChange={onPasswordCheckHandler}
-        onBlur={handlePWCHECK}
-        name="passwordCheck"
-      />
-      <Button onClick={handleRegister}>회원가입</Button>
+      <Title> kakao </Title>
+      <Box className="registerForm">
+        <InputGroup
+          id="username"
+          type="text"
+          placeholder="사용자 이름을 입력해주세요."
+          value={name}
+          onChange={onNameHandler}
+          name="username"
+        />
+        <InputGroup
+          id="email"
+          type="email"
+          placeholder="아이디(메일)를 입력해주세요."
+          value={email}
+          onChange={onEmailHandler}
+          onBlur={handleID}
+          name="email"
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          placeholder="비밀번호를 입력해주세요."
+          value={password}
+          onChange={onPasswordHandler}
+          onBlur={handlePW}
+          name="password"
+        />
+        <InputGroup
+          id="passwordCheck"
+          type="password"
+          placeholder="비밀번호를 확인해주세요."
+          value={passwordCheck}
+          onChange={onPasswordCheckHandler}
+          onBlur={handlePWCHECK}
+          name="passwordCheck"
+        />
+        <Button onClick={handleRegister}>회원가입</Button>
+      </Box>
     </Container>
   );
 };

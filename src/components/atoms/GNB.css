@@ -1,56 +1,51 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Helvetica+Neue&display=swap");
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  top: 0;
+/* sub menu 요소들 */
+header .sub-menu {
+  position: absolute;
+  top: 10px;
   left: 0;
-  right: 0;
-  padding: 10px;
-  background-color: #ffffff;
+  display: flex;
+}
+
+header .sub-menu ul.menu {
+  display: flex;
+}
+header .sub-menu ul.menu li {
   position: relative;
 }
 
-.contents {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: flex-start;
+header .sub-menu ul.menu li:first-child:before {
+  display: none;
 }
 
-.contents .logo {
+header .sub-menu ul.menu li a {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 11px 16px;
+  display: block;
+  color: #656565;
+  position: relative;
+}
+
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+.menu li a:hover::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
   position: absolute;
+  top: 68px;
+  left: 0;
 }
-.contents .navigation {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  line-height: 1.5;
-  font-family: "Helvetica Neue", sans-serif;
-  color: #333;
+
+.cart::before {
+  content: "";
+  width: 1px;
+  height: 20px;
+  background-color: #c6c6c7;
   position: absolute;
-  right: 0px;
+  left: 40px;
+  top: 20%;
 }
-
-.navigation span {
-  margin: 0 10px;
-}
-
-.navigation span:first-child {
-  margin-left: 0;
-}
-
-.navigation span:last-child {
-  margin-right: 0;
-}
-
-.navigation a {
-  text-decoration: none;
-  color: black;
-  margin: 0 10px;
-}
-
-.navigation button {
-  margin-left: 10px;
-} */
