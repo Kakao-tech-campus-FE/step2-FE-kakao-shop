@@ -22,7 +22,7 @@ export const GNBContainer = styled.header`
   margin-bottom: 30px;
 `
 
-export const GNBButton = styled.div`
+export const GNBButton = styled.button`
   display : flex;
   align-items : center;
   text-decoration: none;
