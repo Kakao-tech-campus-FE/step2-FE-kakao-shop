@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div className="border py-10 w-full">
+    <div className="border border-x-0 py-10">
       <div className="w-[840px] m-auto">
         <Link to={"/"} className="inline-block">
           <img
