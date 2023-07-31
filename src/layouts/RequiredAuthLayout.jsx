@@ -3,10 +3,12 @@ import { useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import GNB from "../components/organisms/GNB";
 import Footer from "../components/atoms/Footer";
+import { getUserCookie } from "../services/cookie";
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
-  const userInfo = useSelector((state) => state.user);
+  //const userInfo = useSelector((state) => state.user);
+  const userInfo = getUserCookie();
 
   useEffect(() => {
     console.log(userInfo.token);
