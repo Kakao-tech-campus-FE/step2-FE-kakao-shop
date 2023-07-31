@@ -7,6 +7,8 @@ import { store, persistor } from "./store/index";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { PersistGate } from "redux-persist/integration/react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const queryClient = new QueryClient();
 
@@ -17,6 +19,7 @@ root.render(
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
+        <ReactQueryDevtools initialIsOpen={true} />
       </QueryClientProvider>
     </Provider>
   </React.StrictMode>

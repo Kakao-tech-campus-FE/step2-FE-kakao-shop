@@ -3,11 +3,14 @@ import ProductCard from "../molecules/ProductCard";
 const ProductGrid = ({ products }) => {
   return (
     <div className="product-grid">
-      {/* isLoading일 때 스켈레톤, 아니면 product 리턴 */}
-      {products.pages?.map((page) =>
-        page.data.response.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))
+      {products.pages ? (
+        products.pages.map((page) =>
+          page.data.response.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))
+        )
+      ) : (
+        <p>"유효한 데이터가 없습니다"</p>
       )}
     </div>
   );

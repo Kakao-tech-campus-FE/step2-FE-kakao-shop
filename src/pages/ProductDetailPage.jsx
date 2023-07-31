@@ -14,7 +14,7 @@ const ProductDetailPage = () => {
 
   const dispatch = useDispatch();
   // const parseId = parseInt(id, 10); //-> 전처리
-  const { data, error, isLoading } = useQuery(`product/${id}`, () =>
+  const { data, error, isLoading } = useQuery(["products", id], () =>
     getProductById(id)
   ); //구분자, API 요청 함수
 

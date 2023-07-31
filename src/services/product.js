@@ -9,7 +9,7 @@ export const getProductById = (id) => {
   if (!id) {
     throw Error("id가 없습니다. ");
   }
-  return instance.get("/products/" + +id);
+  return instance.get("/products/" + id);
 };
 
 // export const getProductById = async (id) =>

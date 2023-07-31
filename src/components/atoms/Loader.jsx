@@ -21,7 +21,7 @@ const LoadingText = styled.div`
   text-align: center;
 `;
 
-export const Loading = () => {
+const Loading = () => {
   return (
     <Background>
       {/* <LoadingText>잠시만 기다려 주세요</LoadingText> */}
@@ -29,5 +29,4 @@ export const Loading = () => {
     </Background>
   );
 };
-
 export default Loading;

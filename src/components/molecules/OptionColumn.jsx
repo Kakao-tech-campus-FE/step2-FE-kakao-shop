@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Counter from "../atoms/Counter";
 import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
@@ -58,6 +58,20 @@ const OptionColumn = ({ product }) => {
     });
   };
 
+  const totalquantity = useMemo(() => {
+    return selectedOptions.reduce((acc, cur) => {
+      return acc + cur.quantity;
+    }, 0);
+  }, [selectedOptions]);
+
+  const totalqprice = useMemo(() => {
+    return comma(
+      selectedOptions.reduce((acc, cur) => {
+        return acc + cur.quantity * cur.price;
+      }, 0)
+    );
+  }, [selectedOptions]);
+
   // const token = localStorage.getItem("token");
   // if (token) {
   //   console.log("true");
@@ -71,7 +85,7 @@ const OptionColumn = ({ product }) => {
 
   return (
     <div className="option-column">
-      <h3>옵션 선택</h3>
+      <h3 className="pb-6 text-xl font-bold">옵션 선택</h3>
       {/* 옵션 담기 할 수 있는 영역 */}
       <OptionList
         options={product.options}
@@ -79,39 +93,27 @@ const OptionColumn = ({ product }) => {
         onClick={handleOnClickOption}
         //장바구니 담기 api
       />
+      <hr></hr>
 
       {/* 담긴 옵션 표기  */}
       {selectedOptions.map((item) => (
         <ol key={`selected-${item.optionId}`} className="selected-option-list">
           <li className="selected-option">
+            <span className="name flex gap-2">{item.name}</span>
+            <span className="price">{comma(item.price)}원</span>
             <Counter
               value={item.quantity}
               onIncrease={(count) => handleOnChange(count, item)}
               onDecrease={(count) => handleOnChange(count, item)}
             />
-            <span className="name">{item.name}</span>
-            <span className="price">{comma(item.price)}원</span>
           </li>
         </ol>
       ))}
       <hr />
-      <div className="total-price">
-        <span>
-          총 수량 :{" "}
-          {selectedOptions.reduce((acc, cur) => {
-            return acc + cur.quantity;
-          }, 0)}
-          개
-        </span>
-        <span>
-          총 상품금액 :{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
-          원
-        </span>
+      <div className="total-price mt-3">
+        <span>총 수량 : {totalquantity}개</span>
+        <hr className="mt-2 mb-3"></hr>
+        <span>총 상품금액 : {totalqprice}원</span>
       </div>
       <div className="button-group">
         <Button

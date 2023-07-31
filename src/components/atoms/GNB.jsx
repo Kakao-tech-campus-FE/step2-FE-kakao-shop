@@ -16,9 +16,12 @@ function GNB() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
-    localStorage.removeItem("token");
+    // localStorage.removeItem("access_token");
     alert("정상적으로 로그아웃 되었습니다.");
+
     navigate("/");
+    // 새로고침
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -28,44 +31,33 @@ function GNB() {
   useAutoLogout();
 
   return (
-    <header className="header">
-      <div className="contents">
-        <Link to="/ ">
-          <img className="logo" src={logo} alt="카카오 쇼핑 로고" height={30} />
+    <header className="header bg-white px-4 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
+      <div className="contents flex items-center justify-between">
+        <Link to="/">
+          <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
         </Link>
-        <nav>
-          <div className="navigation">
-            <span>
-              <Link to="/carts">
-                <img src={cart} alt="장바구니 버튼" height={30} />
+        <nav className="navigation flex items-center text-base  text-gray-700">
+          <Link to="/carts" className="mr-4">
+            <img src={cart} alt="장바구니 버튼" className="h-8" />
+          </Link>
+          <span>ㅣ</span>
+          {email ? (
+            <div className="flex items-center">
+              <span className="mr-2">{username}</span>
+              <button className="ml-2" onClick={handleLogout}>
+                로그아웃
+              </button>
+            </div>
+          ) : (
+            <>
+              <Link to="/login" className="text-black mr-2">
+                로그인
               </Link>
-            </span>
-            <span>|</span>
-            <span>
-              {email ? (
-                <>
-                  {/* 왜 username 받아오는게 안되는지?? */}
-                  <span>{username}</span>
-                  <button onClick={handleLogout}>로그아웃</button>
-                </>
-              ) : (
-                <>
-                  <Link
-                    to="/login"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    로그인
-                  </Link>
-                  <Link
-                    to="/signup"
-                    style={{ textDecoration: "none", color: "black" }}
-                  >
-                    회원가입
-                  </Link>
-                </>
-              )}
-            </span>
-          </div>
+              <Link to="/signup" className="text-black">
+                회원가입
+              </Link>
+            </>
+          )}
         </nav>
       </div>
     </header>

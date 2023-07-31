@@ -2,7 +2,7 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { login } from "../../services/user";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Title from "../atoms/Title";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -34,6 +34,7 @@ const LoginForm = (props) => {
           })
         );
         navigate("/");
+
         // 메인 페이지로 이동
       } else {
         // 로그인 실패 처리
