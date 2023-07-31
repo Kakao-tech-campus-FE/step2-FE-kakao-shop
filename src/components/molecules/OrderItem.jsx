@@ -2,9 +2,6 @@ import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import styled from "styled-components";
 
-const ProductName = styled.p`
-  font-size: 1.2rem;
-`;
 const Option = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,13 +14,6 @@ const Option = styled.div`
 
 const EachOption = styled.div`
   border: 1px solid #979797;
-  width: 32rem;
-  padding: 0.8rem;
-`;
-
-const TotalPrice = styled.div`
-  display: flex;
-  justify-content: space-between;
   width: 32rem;
   padding: 0.8rem;
 `;
