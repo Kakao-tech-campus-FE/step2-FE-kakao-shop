@@ -8,7 +8,10 @@ const OrderCheckTemplate = ({ data }) => {
   const OrderItems = ({ products }) => {
     return products?.map((item) => {
       return (
-        <div key={item.id} className="border rounded bg-white p-4 my-2">
+        <div
+          key={item.productName}
+          className="border rounded bg-white p-4 my-2"
+        >
           {item.items.map((option) => {
             if (option.quantity !== 0) {
               return (
@@ -38,12 +41,12 @@ const OrderCheckTemplate = ({ data }) => {
   return (
     <div className="w-[800px] py-10 mx-auto">
       <p className="text-center text-3xl">주문이 완료되었습니다.</p>
-      <div className="p-4 text-right">
-        <p className="text-lg">주문번호: {orderId}</p>
+      <div className="p-2 text-right">
+        <p className="text-base">주문번호: {orderId}</p>
       </div>
 
       <OrderItems products={products} />
-      <div className="border rounded p-4">
+      <div className="border rounded p-4 mt-6">
         <span className="text-lg font-semibold">총 주문금액</span>
         <span className="float-right text-xl font-semibold text-blue-500">
           {comma(totalPrice)}원
