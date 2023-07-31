@@ -18,7 +18,7 @@ const CartPage = () => {
     // console.log('cart data', data?.data?.response);
 
     return (
-        <div style={{backgroundColor:"#f4f4f4"}}>
+        <div className="bg-bg_gray">
             <Suspense fallback={<Loader />}>
                 <CartList data={data?.data?.response} />
             </Suspense>

@@ -77,8 +77,8 @@ const CartList = ({ data }) => {
 
     return (
         <Container className="card_list w-[870px] overflow-hidden">
-            <Box className="title_wrap text-center leading-[44px] bg-white border border-gray-300 border-b-0">
-                <h1 className={styles.title}>장바구니</h1>
+            <Box className="title_wrap text-center leading-[44px] bg-white border border-border_gray border-b-0 mt-[11px]">
+                <h1 className="font-semibold">장바구니</h1>
             </Box>
             <Box className={styles.product_list}>
                 {Array.isArray(cartItems) &&
@@ -93,24 +93,29 @@ const CartList = ({ data }) => {
                     })
                 }
             </Box>
-            <Box className="order_data_wrap bg-white">
+            <Box className="order_data_wrap bg-white border border-border_gray">
                 <div className={styles.row}>
                     <span className="price_title float-left text-[18px] font-semibold leading-[21px] p-[20px] pr-[24px] pl-[16px]">
                         주문 예상금액
                     </span>
-                    <span className="total_price block text-right text-[16px] font-semibold leading-[19px] text-blue-500 p-[21px] pl-0">
+                    <span className="total_price block text-right text-[18px] text-blue font-semibold leading-[21px] text-blue-500 p-[20px] pl-0">
                         {comma(totalPrice)}원
                     </span>
                 </div>
                 <Button
                     className={styles.order_btn}
                     onClick={() => {
+                        if(cartItems.length === 0) {
+                            alert("주문할 상품이 존재하지 않습니다.");
+                            return;
+                        }
+
                         const payload = getUpdatePayload();
                         console.log('payload', payload);
                         cartUpdataMutation.mutate(payload);
                         
                     }}
-                >주문하기</Button>
+                ><strong>{`${cartItems.length}건 주문하기`}</strong></Button>
             </Box>
             
         </Container>

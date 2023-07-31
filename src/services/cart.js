@@ -7,6 +7,7 @@ import cookie from "react-cookies";
  */
 export const addCart = (payload) => {
     console.log('addCart', payload);
+    tokenInterceptor();
     return instance.post("/carts/add", payload);
 }
 

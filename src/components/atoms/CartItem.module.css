@@ -5,9 +5,22 @@
     border: 1px solid #dee0e6;
 }
 .cart_item_title {
-    margin-bottom: 30px;
+    margin: 10px 0 30px 10px;
     max-height: 60px;
     padding-left: 12px;
+    cursor: pointer;
+}
+.cart_item_image {
+    display: block;
+    width: 60px;
+    height: 60px;
+    float: left;
+}
+.cart_item_name {
+    height: 60px;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
 }
 .cart_item > strong {
     text-overflow: ellipsis;
