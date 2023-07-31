@@ -37,6 +37,7 @@ instance.interceptors.response.use(
       const status = error.response.status;
       switch (status) {
         case 401:
+          // 장바구니에 물품이 담겨있는데 사용자 정보가 유실된 경우_ 에러캐칭
           // 로그인이 필요한 페이지로 리다이렉트
           window.location.href = "/signin";
           break;
