@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from 'react-query'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getOrders } from 'api/order'
 import Section from 'components/atoms/Section'
 import PageTitleBox from 'components/atoms/PageTitleBox'
@@ -9,7 +9,6 @@ import AccordionBox from 'components/molecules/AccordionBox'
 import strPrice from 'utils/price'
 
 const MyOrderPage = () => {
-  const location = useLocation()
   const param = useParams()
   const orderId = param.orderId
   
