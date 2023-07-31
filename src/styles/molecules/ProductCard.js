@@ -4,14 +4,14 @@ export const Delivery = styled.div`
     font-size: 0.5em;
     display: inline-block;
     padding: 0.2em 0.6em;
-    decoration-text: none;
+    text-decoration: none;
     margin-bottom: 0.7em;
     color: #505050;
     background-color: #E1F6FA;
 `
 
 export const Title = styled.div`
-    decoration-text: none;
+    text-decoration: none;
     display: inline-block;
     font-size: 1em;
     color: black;
