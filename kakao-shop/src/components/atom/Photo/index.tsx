@@ -2,8 +2,6 @@ import { SerializedStyles } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PropsWithChildren } from 'react';
 
-import useViewport from '@hooks/@common/useViewport';
-
 type Props = {
   src: string;
   alt: string;
