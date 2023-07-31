@@ -1,9 +1,10 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { ordersComplete } from "../services/order";
 import { useParams } from "react-router-dom";
+
 const CompletOrderPage = () => {
   const { id } = useParams();
-  const { data, error, isLoading } = useQuery("carts", () =>
+  const { data, error, isLoading } = useQuery(["ordersComplete"], () =>
     ordersComplete(id)
   );
 

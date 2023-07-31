@@ -4,7 +4,7 @@ import TotalPrice from "../atoms/TotalPrice";
 import SubmitButton from "../atoms/SubmitButton";
 import styled from "styled-components";
 import { useState, useRef } from "react";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { ordersSave } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 

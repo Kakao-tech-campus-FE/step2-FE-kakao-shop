@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getProductById } from "../services/product";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
@@ -16,7 +16,7 @@ const Container = styled.div`
 const ProductDetailPage = () => {
   const { id } = useParams();
 
-  const { data, error, isLoading } = useQuery("products", () =>
+  const { data, error, isLoading } = useQuery(["products", id], () =>
     getProductById(id)
   );
 

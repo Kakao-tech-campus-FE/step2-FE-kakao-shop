@@ -3,10 +3,10 @@ import Gnb from "../components/organisms/Gnb";
 import Loader from "../components/atoms/Loader";
 import NotFoundPage from "./NotFoundPage";
 import { getCart } from "../services/cart";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 const CartPage = () => {
-  const { data, isLoading, isError } = useQuery("carts", getCart);
+  const { data, isLoading, isError } = useQuery(["carts"], getCart);
 
   return (
     <>

@@ -4,7 +4,7 @@ import Button from "../atoms/Button";
 import Counter from "../molecules/Counter";
 import { comma } from "../../utils/convert";
 import styled from "styled-components";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { addCarts } from "../../services/cart";
 
 const SelectedOrderedList = styled.ol`
