@@ -69,9 +69,6 @@ const OptionColumn = ({ product }) => {
 
   const { mutate } = useMutation({
     mutationFn: addCarts,
-    headers: {
-      Authorization: localStorage.getItem("token"),
-    },
     onSuccess: () => {
       alert("장바구니에 담겼습니다.");
     },
@@ -79,6 +76,18 @@ const OptionColumn = ({ product }) => {
       alert("장바구니 담기에 실패했습니다.");
     },
   });
+
+  const addCart = () => {
+    if (selectedOptions.length === 0) alert("옵션을 선택해주세요.");
+    else {
+      mutate(
+        selectedOptions.map((el) => ({
+          optionId: el.optionId,
+          quantity: el.quantity,
+        }))
+      );
+    }
+  };
 
   return (
     <>
@@ -124,18 +133,7 @@ const OptionColumn = ({ product }) => {
           </span>
         </TotalPrice>
         <ButtonGroup className="button-group">
-          <Button
-            color="white"
-            backgroundColor="black"
-            onClick={() => {
-              mutate(
-                selectedOptions.map((el) => ({
-                  optionId: el.optionId,
-                  quantity: el.quantity,
-                }))
-              );
-            }}
-          >
+          <Button color="white" backgroundColor="black" onClick={addCart}>
             장바구니 담기
           </Button>
           <Button width="10rem" backgroundColor="yellow">
