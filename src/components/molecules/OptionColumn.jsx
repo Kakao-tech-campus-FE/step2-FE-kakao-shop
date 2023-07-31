@@ -191,6 +191,11 @@ const OptionColumn = ({ product }) => {
         <Button
           className="w-48 h-14 rounded bg-[#FFEB00] hover:bg-yellow-400"
           onClick={() => {
+            if (selectedOptions.length === 0) {
+              alert("선택된 옵션이 없습니다.");
+              return;
+            }
+
             // mutate(selectedOptions)
             /* 위의 코드처럼 바로 전달해 주면 안된다. 
           api에서는 id와 quantity만을 필요로 하는데, 
@@ -210,7 +215,10 @@ const OptionColumn = ({ product }) => {
                 },
                 onError: (error) => {
                   if (error.status === 401) alert("로그인이 필요합니다.");
-                  else alert(`${error?.message}\n요청에 실패했습니다.`);
+                  else {
+                    alert(`요청에 실패했습니다.`);
+                    console.log(error?.message);
+                  }
                 },
               }
             );
