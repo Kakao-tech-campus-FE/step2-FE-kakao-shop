@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { comma } from "../../utils/convert";
 
-const OrderCheckTemplate = ({ data }) => {
+const OrderCompleteTemplate = ({ data }) => {
   const orderId = data?.data?.response?.id;
   const products = data?.data?.response?.products;
   const totalPrice = data?.data?.response?.totalPrice;
@@ -62,4 +62,4 @@ const OrderCheckTemplate = ({ data }) => {
     </div>
   );
 };
-export default OrderCheckTemplate;
+export default OrderCompleteTemplate;
