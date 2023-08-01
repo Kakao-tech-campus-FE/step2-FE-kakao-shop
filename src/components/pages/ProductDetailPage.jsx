@@ -18,7 +18,7 @@ const ProductDetailPage = () => {
 
     const RequireLoginModal = ({isOpen}) =>
         <Alert
-            message={"상품 페이지입니다."}
+            message={"로그인이 필요한 서비스입니다."}
             buttonText={"로그인"}
             onClickButton={() => {
                 window.location.href = "/login"
@@ -36,7 +36,7 @@ const ProductDetailPage = () => {
                     <RequireLoginModal isOpen={alertIsOpened}/>
 
                     {data && <div className={"h-28 flex justify-center items-center  w-full border-b-light-gray"}>
-                        <h1 className={"text-3xl font-bold bg-amber-200"}>상품 페이지</h1>
+                        <h1 className={"text-3xl font-bold"}>상품 페이지</h1>
                     </div>}
                     <div className={"w-full flex flex-col items-center"}>
                         {isLoading && <Loader/>}

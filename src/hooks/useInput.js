@@ -15,9 +15,7 @@ const useInput = (initialValue) => {
 
     const handleOnChange = (event) => {
         const {id, value} = event.target;
-        // console.log(id, value)
         setValue((prev) => {
-            // console.log(prev);
             return {...prev, [id]: value}
         })
     };

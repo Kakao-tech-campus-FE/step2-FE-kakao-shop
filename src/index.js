@@ -7,19 +7,22 @@ import {store, persistor} from "./store";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
 import {QueryClient, QueryClientProvider} from 'react-query'
+import {HelmetProvider} from "react-helmet-async";
 
 const queryClient = new QueryClient()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <Provider store={store}>
-                <PersistGate loading={null} persistor={persistor}>
-                    <App/>
-                </PersistGate>
-            </Provider>
-        </QueryClientProvider>
+        <HelmetProvider>
+            <QueryClientProvider client={queryClient}>
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <App/>
+                    </PersistGate>
+                </Provider>
+            </QueryClientProvider>
+        </HelmetProvider>
     </React.StrictMode>
 );
 
