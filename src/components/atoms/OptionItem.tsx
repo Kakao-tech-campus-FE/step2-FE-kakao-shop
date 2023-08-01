@@ -1,5 +1,7 @@
-import { OrderedOptionData } from '@api/dto';
 import React from 'react';
+import { OrderedOptionData } from '@api/dto';
+import InnerFlatCard from './InnerFlatCard';
+import OrderedOption from './OrderedOption';
 
 interface OptionItemProps {
   items: OrderedOptionData[];
@@ -9,13 +11,11 @@ const OptionItem = ({ items }: OptionItemProps) => {
     <>
       {items.map((item: OrderedOptionData, idx) => {
         return (
-          <div key={item.id}>
-            <div>옵션 {idx + 1}</div>
-            <p>{item.optionName}</p>
-            <div>구매 수량</div>
-            <p>{item.quantity}</p>
-            <div>금액(옵션 금액*수량)</div>
-            <p>{item.price * item.quantity}</p>
+          <div key={item.id} className="my-2 space-y-2">
+            <InnerFlatCard>
+              <span className="font-bold mr-3">옵션 {idx + 1}</span>
+              <OrderedOption optionName={item.optionName} quantity={item.quantity} price={item.price * item.quantity} />
+            </InnerFlatCard>
           </div>
         );
       })}
