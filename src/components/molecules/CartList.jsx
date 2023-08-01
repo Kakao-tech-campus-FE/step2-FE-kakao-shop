@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
-import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +12,7 @@ const CartList = () => {
   const { data } = useQuery(["cart"], getCart, {
     suspense: true,
   });
+
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -23,8 +23,6 @@ const CartList = () => {
   });
 
   useEffect(() => {
-    // ?. 연산자를 계속 쓰는 것이 별로 안좋은 패턴이기 때문에
-    // validate 또는 구조분해 할당을 사용하는 편이 좋음.
     setCartItems(data.data.response.products);
     setTotalPrice(data.data.response.totalPrice);
   }, [data]);
@@ -38,12 +36,6 @@ const CartList = () => {
     });
     return comma(count);
   }, [cartItems]);
-
-  // 장바구니에서 수량 변경이 가능
-
-  // 예상 질문
-  // 장바구니 수량 변경 API 요청 > 변경된 후에 리턴 받은 데이터만 다시 보여주면 되지 않나요?
-  // 맞는 말이긴 한데, 이 방식으로 하게 되었을 때 코드가 많이 지저분해짐.
 
   /**
    * @param {number} optionId : 옵션의 아이디
@@ -87,13 +79,13 @@ const CartList = () => {
   };
 
   return (
-    <Container className="cart-list">
+    <Container className="cart-list w-[981px]">
       {/* 제목 */}
-      <Box className="flex justify-center p-4">
-        <h1 className="text-lg font-bold">장바구니</h1>
+      <Box className="pl-4 pb-4">
+        <h1 className="text-2xl font-bold">장바구니</h1>
       </Box>
       {/* 장바구니에 담긴 품목 카드 */}
-      <Card>
+      <Box>
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
@@ -103,24 +95,23 @@ const CartList = () => {
                   item={item}
                   onChange={handleOnChangeCount}
                 />
-                <br />
               </>
             );
           })}
-      </Card>
-      <br />
+      </Box>
+      <hr />
       {/* 주문 예상금액 박스 */}
-      <Card>
-        <div className="row border flex justify-between p-4">
+      <Box>
+        <div className="row flex justify-between p-4 text-xl">
           <div className="expect font-bold">주문 예상 금액</div>
           <div className="sum-price font-bold text-sky-600">
             {comma(totalPrice)}원
           </div>
         </div>
-      </Card>
+      </Box>
       {/* 주문하기 버튼 */}
       <Button
-        className="order-btn bg-yellow-300 p-4 rounded-xl font-bold w-96 mt-4"
+        className="order-btn bg-yellow-300 p-4 rounded-xl font-bold w-full mt-4"
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: (data) => {

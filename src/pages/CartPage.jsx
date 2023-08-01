@@ -4,9 +4,11 @@ import CartList from "../components/molecules/CartList";
 
 const CartPage = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <CartList />
-    </Suspense>
+    <div className="my-8 max-w-screen-xl">
+      <Suspense fallback={<Loader />}>
+        <CartList />
+      </Suspense>
+    </div>
   );
 };
 

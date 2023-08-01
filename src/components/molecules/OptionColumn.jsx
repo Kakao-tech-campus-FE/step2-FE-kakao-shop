@@ -9,7 +9,7 @@ import Box from "../atoms/Box";
 import Badge from "../atoms/Badge";
 
 const OptionColumn = ({ product }) => {
-  const { productName, price } = product;
+  const { starCount, productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
@@ -54,6 +54,7 @@ const OptionColumn = ({ product }) => {
 
   return (
     <Box className="w-[512px] m-4">
+      <div className="starCount text-blue-500">★★★★★ {starCount}점</div>
       <h1 className="text-2xl">{productName}</h1>
       <div className="flex justify-between my-4 items-center">
         <div>
@@ -64,9 +65,7 @@ const OptionColumn = ({ product }) => {
             톡딜가 {comma(price)}원~
           </Badge>
         </div>
-        <div className="text-3xl text-blue-500">
-          50%
-        </div>
+        <div className="text-3xl text-blue-500">50%</div>
       </div>
 
       <h3 className=" text-lg font-bold">옵션 선택</h3>
@@ -122,10 +121,23 @@ const OptionColumn = ({ product }) => {
           원
         </div>
       </div>
-      <div className="button-group">
+      <div className="button-group flex justify-between">
         {/* 장바구니 담기 버튼 위치 */}
         <Button
-          className="w-36 h-12 bg-gray-900 rounded-lg text-white text-sm"
+          className="w-20 h-20 bg-gray-600 rounded-lg"
+          onClick={() => {
+            alert("준비중입니다.");
+          }}
+        >
+          <img
+            className="inline"
+            src="/icons/heart.svg"
+            alt="장바구니 담기"
+            width={24}
+          />
+        </Button>
+        <Button
+          className="w-20 h-20 bg-gray-900 rounded-lg text-white"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
@@ -135,8 +147,7 @@ const OptionColumn = ({ product }) => {
                 };
               }),
               {
-                onSuccess: () => {
-                },
+                onSuccess: () => {},
                 onError: (error) => {
                   alert("장바구니 담기에 실패했습니다: " + error);
                 },
@@ -144,15 +155,26 @@ const OptionColumn = ({ product }) => {
             );
           }}
         >
-          장바구니 담기
+          <img
+            className="inline"
+            src="/icons/cart.svg"
+            alt="장바구니 담기"
+            width={24}
+          />
         </Button>
         <Button
-          className=" w-80 h-12 bg-yellow-300 rounded-lg text-sm ml-4"
+          className="w-72 h-20 bg-yellow-300 rounded-lg font-bold"
           onClick={() => {
             alert("준비중입니다.");
           }}
         >
-          구매하기
+          <img
+            className="inline"
+            src="/icons/talk.svg"
+            alt="장바구니 담기"
+            width={24}
+          />
+           {" "}구매하기
         </Button>
       </div>
     </Box>

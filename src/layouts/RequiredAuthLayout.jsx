@@ -12,15 +12,7 @@ function RequiredAuthLayout() {
     }
   }, [navigate]);
 
-  return (
-    <>
-      <div className="flex justify-center">
-        <main>
-          <Outlet />
-        </main>
-      </div>
-    </>
-  );
+  return <Outlet />;
 }
 
 export default RequiredAuthLayout;

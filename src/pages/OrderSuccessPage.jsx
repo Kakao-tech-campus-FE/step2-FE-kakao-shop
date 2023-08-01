@@ -4,9 +4,11 @@ import Loader from "../components/atoms/Loader";
 
 const OrderSuccessPage = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <OrderSuccessTemplate />
-    </Suspense>
+    <div className="my-8 max-w-screen-xl">
+      <Suspense fallback={<Loader />}>
+        <OrderSuccessTemplate />
+      </Suspense>
+    </div>
   );
 };
 

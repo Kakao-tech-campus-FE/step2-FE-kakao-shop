@@ -7,15 +7,9 @@ import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
-import Toast from "./components/Toast";
-import Carousel from "./components/Carousel";
-import RadioButton from "./components/RadioButton";
-import ToggleButton from "./components/ToggleButton";
-import CheckList from "./components/molecules/CheckList";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderPage from "./pages/OrderPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
-import Sidebar from "./components/molecules/Sidebar";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {

@@ -4,19 +4,29 @@ import { comma } from "../../utils/convert";
 import Card from "./Card";
 import Counter from "./Counter";
 import Button from "./Button";
+import Photo from "./Photo";
 
 const CartItem = ({ item, onChange }) => {
   return (
-    <Box className="cart-item-box border w-96 p-4">
-      <h5 className="font-bold mb-4">{item.productName}</h5>
+    <Box className="cart-item-box border w-full p-4 mb-4">
+      {/* Response에 Image 정보 없어 임의로 추가 */}
+      <div className="title flex items-center">
+        <Photo
+          src={process.env.REACT_APP_API_URL + "/images/" + item.id + ".jpg"}
+          alt={item.productName}
+          className="w-16 rounded-lg"
+        />
+        <h5 className="font-bold ml-4">{item.productName}</h5>
+      </div>
+
       {item.carts.map((cart) => (
         <Card key={cart.id} className="cart">
-          <div className="option border p-4 my-4">
+          <div className="option bg-gray-100 p-4 my-4">
             <div className="option-name">{cart.option.optionName}</div>
             <div className="row flex justify-between">
               <div className="flex">
                 <Button
-                  className="border w-10 mr-2"
+                  className="border border-gray-400 bg-white w-10 mr-2"
                   onClick={() => {
                     onChange(cart.id, 0, 0);
                   }}
@@ -41,9 +51,9 @@ const CartItem = ({ item, onChange }) => {
         </Card>
       ))}
       <Card className="total-price">
-        <div className="row border p-4 mt-4 flex justify-between">
+        <div className="row bg-gray-100 p-4 flex justify-between font-bold">
           <h5>주문금액</h5>
-          <div className="price text-sky-600 font-bold">
+          <div className="price text-blue-500">
             {comma(
               item.carts.reduce((acc, cur) => {
                 return acc + cur.option.price * cur.quantity;

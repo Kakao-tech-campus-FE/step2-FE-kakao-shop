@@ -4,10 +4,10 @@ import Carousel from "../components/Carousel";
 
 const HomePage = () => {
   return (
-    <div className="">
+    <>
       <Carousel />
       <MainProductTemplate />
-    </div>
+    </>
   );
 };
 

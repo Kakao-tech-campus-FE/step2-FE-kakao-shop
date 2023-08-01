@@ -14,19 +14,16 @@ const ProductDetailPage = () => {
   const product = data?.data?.response;
 
   return (
-    <>
-      <div className="my-8">
-        {isLoading && <Loader />}
-        {error && <div>{error.message}</div>}
-        {product && <ProductDetailTemplate product={product} />}
-      </div>
-      
+    <div className="my-8 max-w-screen-lg">
+      {isLoading && <Loader />}
+      {error && <div>{error.message}</div>}
+      {product && <ProductDetailTemplate product={product} />}
       <div className="text-2xl font-bold m-4">
         <span className="text-blue-500">이런 상품</span>
         <span>은 어때요?</span>
       </div>
       <MainProductTemplate />
-    </>
+    </div>
   );
 };
 
