@@ -1,4 +1,187 @@
-<h1>카카오 테크 캠퍼스 2단계 FE 과제용 Repo</h1>
+<h1>카카오 테크 캠퍼스 2단계 FE 과제: 카카오 쇼핑하기</h1>
+
+<img src="./ReadmeImg/kakao-shop.png" alt="KaKao Shop" />
+
+<br />
+
+## 🏁 시작하기
+
+배포 주소에 방문하세요!(카카오 크램폴린 IDE을 통해 배포하였습니다.)
+
+<br />
+
+## 🧐 프로젝트 소개
+
+개발 기간 : 2023년 6월 26일 ~ 8월 3일
+
+카카오 테크 캠퍼스(이하 카테캠) 2단계 FE 과제 수행 프로젝트입니다.
+
+프로젝트는 카테캠 레포지토리에 PR을 보내고, 현업자에게 멘토링과 코드 리뷰를 받으며 진행했습니다.
+
+리액트를 사용한 사실상의 첫 프로젝트이며 리액트를 공부하고, 다양한 라이브러리를 사용해보는 시간을 가졌습니다.
+
+\+ 아토믹 패턴의 폴더 구조를 가집니다.
+
+```
+라이브러리 선택 이유
+
+✔️ react-hook-form
+회원가입, 로그인을 위해 react-hook-form을 사용했습니다.
+react-hook-form은 비제어 컴포넌트의 장점을 살리면서 제어 컴포넌트처럼 실시간성을 제공합니다.
+
+✔️ redux
+로그인 상태를 전역적으로 파악하기 위해 redux tool kit을 사용했습니다.
+로컬스토리지에 로그인 유무를 token으로 저장합니다.
+
+✔️ axios, react-query
+통신을 위해 axios, react-query를 사용했습니다.
+axios는 fetch와 비교하여 timeout, 인터셉터, JSON 데이터를 반환 등 다양한 기능을 제공합니다.
+react-query는 데이터페칭을 편하게 관리할 수 있는 기능을 제공합니다.
+
+✔️ styled-components, ant design, react spinners
+전체적인 css 작업을 위해 styled-components를 사용했습니다.
+3주차, 4주차 과제에서 UI 라이브러리를 사용해보라는 요구가 있어 ant design과 react spinners를 사용해보았습니다.
+
+✔️ puppeteer
+결제 프로세스(로그인 -> 장바구니 담기 -> 결제 -> 로그아웃)를 테스팅하기 위해 puppeteer을 사용했습니다.
+크롬 개발자 도구 recorder를 사용하면 테스트 코드를 직접 작성하지 않아도 된다는 장점이 있습니다.
+```
+
+### 기능
+
+- 회원가입
+- 로그인
+- 로그아웃
+- 전체 상품 목록 조회
+- 개별 상품 상세 조회
+- 상품 옵션 선택
+- 옵션 확인 및 수량 선택
+- 장바구니 담기
+- 장바구니 상품 목록 조회
+- 장바구니 상품 옵션 확인 및 수량 선택
+- 장바구니 상품 주문
+- 주문 상품 결제
+- 주문 결과 확인
+
+### 목적
+
+- 과제 수행
+
+### 회고
+
+맨땅에 헤딩하기였던 나의 프로젝트.
+
+프로젝트를 진행하면서 깨달은 점과 앞으로의 다짐(방향?)을 정리하고자 한다.
+
+1️⃣ 설계의 중요성
+
+코딩을 시작하기 전에, 프로젝트가 어떤 구조를 가질지 미리 설계하는 것이 중요하다는 것을 알게 되었다.
+
+라우터를 다루거나 컴포넌트를 만들 때 큰 틀을 생각해보지 않았기 때문에 필요할 때마다 갖다붙이는 식의 어글리한 코드를 작성한 듯..
+
+라우터의 예시로, 다음부터는 [auth 처리와 리다이렉트를 담당하는 컴포넌트를 하나 만들어서 래핑 해주는 방법](https://blog.logrocket.com/complete-guide-authentication-with-react-router-v6/#using-nested-routes-and-outlet)으로 처리할 수 있겠다.
+
+2️⃣ 컴포넌트의 재사용성과 확장성
+
+컴포넌트를 만들 때 화면에 어떻게 배치될지 너무 구체적으로 작성하면 재사용성이 떨어진다.
+
+추가적인 스타일이 필요한 경우 오버라이딩될 수 있게 만들자.
+
+절대 바뀌지 않을 부분과 그렇지 않을 부분을 명확하게 구분하여 합성 컴포넌트에 익숙해지자.
+
+3️⃣ 폴더 구조
+
+점점 코드가 쌓일수록 아토믹 패턴에 대해 불편함을 느꼈다.
+
+-> atoms, molecules 등 단계를 나눌 때마다 애매하여 판단의 어려움이 있었다.
+
+-> 컴포넌트가 많아질수록 컴포넌트를 구분하기 위해 이름이 길어지고, 사용할 컴포넌트를 찾는 데 어려움이 있었다.
+
+물론 사용하면서 느끼는 장점도 있었기에, 선택적으로 수용하여 폴더 구조에 대한 주관을 가지려고 한다.
+
+다음 프로젝트는 다음과 같은 구조를 사용해볼까 생각한다. 계속 고쳐나갈 듯!
+
+```
+my-app
+├── node_modules
+├── public
+│   ├── index.html
+│   ├── favicon.ico
+│   └── manifest.json
+├── src
+│   ├── api
+│   │   ├── index.js
+│   │   └── ... (다른 API 관련 파일들)
+│   ├── components
+│   │   ├── CommonComponent1
+│   │   ├── CommonComponent2
+│   │   └── ... (다른 공통 컴포넌트들)
+│   ├── lib
+│   │   ├── index.js
+│   │   └── ... (다른 라이브러리 관련 파일들)
+│   ├── pages
+│   │   ├── Page1
+│   │   │   ├── components
+│   │   │   │   ├── Page1Component1
+│   │   │   │   ├── Page1Component2
+│   │   │   │   └── ... (다른 페이지 1의 컴포넌트들)
+│   │   │   └── Page1.js (or Page1.jsx)
+│   │   ├── Page2
+│   │   │   ├── components
+│   │   │   │   ├── Page2Component1
+│   │   │   │   ├── Page2Component2
+│   │   │   │   └── ... (다른 페이지 2의 컴포넌트들)
+│   │   │   └── Page2.js (or Page2.jsx)
+│   │   └── ... (다른 페이지들)
+│   ├── utils
+│   │   ├── index.js
+│   │   └── ... (다른 유틸리티 함수들)
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── package.json
+├── package-lock.json
+└── ...
+```
+
+4️⃣ 최적화 관련 고민
+
+리액트에 대한 이해가 부족한 상태로 코딩을 시작했기 때문에 프로젝트가 기능의 구현에 초점이 맞춰져 있다.
+
+다음부터는 Suspense와 lazy를 사용하여 코드 스플리팅을 시도할 수 있겠다.
+
+5️⃣ 적응형 웹 디자인
+
+현재 프로젝트는 가로 화면의 컴퓨터에서만 나의 의도대로 보일 것 같다.
+
+앞으로 브라우저와 디바이스에 따라 적응형 웹으로 만들 수 있겠다.
+
+<br />
+
+## ⚙️ 기술 스택
+
+### Config
+
+<img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
+
+### Development
+
+<div style="display: flex; gap: 4px;">
+  <img src="https://img.shields.io/badge/create react app-09D3AC?style=for-the-badge&logo=create react app&logoColor=white">
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/react hook form-EC5990?style=for-the-badge&logo=react hook form&logoColor=white">
+  <img src="https://img.shields.io/badge/react router dom-CA4245?style=for-the-badge&logo=react router&logoColor=white">
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+  <img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=react query&logoColor=white">
+  <img src="https://img.shields.io/badge/puppeteer-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white">
+  <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled components&logoColor=white">
+  <img src="https://img.shields.io/badge/ant design-0170FE?style=for-the-badge&logo=ant design&logoColor=white">
+  <img src="https://img.shields.io/badge/react spinners-37D3B4?style=for-the-badge&logo=react&logoColor=white">
+</div>
+
+<br />
+
+<h1>주차별 과제 내용</h1>
 
 <details>
 <summary>Step-2.-Week-1</summary>
