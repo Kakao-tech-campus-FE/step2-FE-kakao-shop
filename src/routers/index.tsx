@@ -14,70 +14,67 @@ import CartPage from "@/pages/Cart/Cart.page";
 import OrderTotalCheckPage from "@/pages/Cart/OrderTotalCheck.page";
 import PayPage from "@/pages/Cart/Pay.page";
 
-const router = createBrowserRouter(
-  [
-    {
-      element: <HomePage />,
-      path: "/",
-    },
-    {
-      element: <SignUpPage />,
-      path: "/signup",
-    },
-    {
-      element: <SignInPage />,
-      path: "/signin",
-    },
-    {
-      element: <ProductDetailPage />,
-      path: "/product/:productId",
-    },
-    {
-      element: <CartPage />,
-      path: "/cart",
-    },
-    {
-      element: <OrderTotalCheckPage />,
-      path: "/cart/check",
-    },
-    {
-      element: <PayPage />,
-      path: "/cart/save",
-    },
-    {
-      element: <Toast />,
-      path: "/toast",
-    },
-    {
-      element: <BreadcrumbPage />,
-      path: "/breadcrumb",
-    },
-    {
-      element: <CarouselPage />,
-      path: "/carousel",
-    },
-    {
-      element: <RadioButtonPage />,
-      path: "/radio-button",
-    },
-    {
-      element: <TogglePage />,
-      path: "/toggle",
-    },
-    {
-      element: <CheckListPage />,
-      path: "/check-list",
-    },
-    {
-      element: <ErrorPage />,
-      path: "/error/:id",
-    },
-    {
-      element: <ErrorPage />,
-      path: "*",
-    },
-  ],
-  { basename: process.env.REACT_APP_PATH }
-);
+const router = createBrowserRouter([
+  {
+    element: <HomePage />,
+    path: "/",
+  },
+  {
+    element: <SignUpPage />,
+    path: "/signup",
+  },
+  {
+    element: <SignInPage />,
+    path: "/signin",
+  },
+  {
+    element: <ProductDetailPage />,
+    path: "/product/:productId",
+  },
+  {
+    element: <CartPage />,
+    path: "/cart",
+  },
+  {
+    element: <OrderTotalCheckPage />,
+    path: "/cart/check",
+  },
+  {
+    element: <PayPage />,
+    path: "/cart/save",
+  },
+  {
+    element: <Toast />,
+    path: "/toast",
+  },
+  {
+    element: <BreadcrumbPage />,
+    path: "/breadcrumb",
+  },
+  {
+    element: <CarouselPage />,
+    path: "/carousel",
+  },
+  {
+    element: <RadioButtonPage />,
+    path: "/radio-button",
+  },
+  {
+    element: <TogglePage />,
+    path: "/toggle",
+  },
+  {
+    element: <CheckListPage />,
+    path: "/check-list",
+  },
+  {
+    element: <ErrorPage />,
+    path: "/error/:id",
+  },
+  {
+    element: <ErrorPage />,
+    path: "*",
+  },
+]);
 
 export { router };
