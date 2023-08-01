@@ -3,7 +3,7 @@ import OptionList from "../atoms/OptionList";
 import Button from "../atoms/Button";
 import { addCart } from "../../services/cart";
 import Container from "../atoms/Container";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 

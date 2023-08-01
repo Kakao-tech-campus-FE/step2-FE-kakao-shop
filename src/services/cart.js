@@ -9,30 +9,25 @@ export const addCart = (payload) => {
   });
 };
 
-export const getCart = async () => {
+export const getCart = () => {
   const bearerToken = JSON.parse(localStorage.getItem("user")).value;
-  try {
-    const response = await instance.get("/carts", {
-      headers: {
-        Authorization: `${bearerToken}`,
-      },
-    });
-    return response.data.response;
-  } catch (error) {
-    console.error("Error retrieving cart:", error);
-    return null;
-  }
+  console.log(bearerToken);
+  return instance.get("/carts", {
+    headers: {
+      Authorization: `${bearerToken}`,
+    },
+  });
 };
 
-export const updateCart = async (payload) => {
+/**
+ * 장바구니 아이디와 수량을 받아서 업데이트를 진행
+ * @param {object} items: cartId, quantity
+ */
+export const updateCart = (items) => {
   const bearerToken = JSON.parse(localStorage.getItem("user")).value;
-  try {
-    await instance.post("/carts/update", payload, {
-      headers: {
-        Authorization: `${bearerToken}`,
-      },
-    });
-  } catch (error) {
-    console.error("Error updating cart:", error);
-  }
+  return instance.post("carts/update", items, {
+    headers: {
+      Authorization: `${bearerToken}`,
+    },
+  })
 };
