@@ -14,7 +14,6 @@ const MainProductTemplate = () => {
         fetchNextPage, 
         hasNextPage,
         isError,
-        error,
     } = useInfiniteQuery(['products'], ({pageParam = 0}) => fetchProducts(pageParam), {
         getNextPageParam: (lastPage, pages) => {
             if(lastPage.response && lastPage.response.length === 0) {
@@ -47,8 +46,6 @@ const MainProductTemplate = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
-
-    console.log('error: ',error);
     
     return(
         <Container>
