@@ -51,6 +51,7 @@ function GNB() {
             onClick={() => {
               navigate("/search");
             }}
+            className="text-black"
           >
             검색
           </button>

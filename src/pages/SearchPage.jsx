@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { fetchProducts } from "../apis/product";
-import { comma } from "../utils/convert";
 import ProductGrid from "../components/organisms/ProductGrid";
 
 const SearchPage = () => {
@@ -19,7 +18,7 @@ const SearchPage = () => {
         setAllProducts(response.data.response);
       }
     } catch (error) {
-      console.error("Error fetching products:", error);
+      console.error("상품검색에 실패했습니다.");
     }
   };
 
@@ -28,7 +27,6 @@ const SearchPage = () => {
   };
 
   const handleSearchClick = () => {
-    // Filter products based on the search query
     const filteredProducts = allProducts.filter((product) =>
       product.productName.includes(searchQuery)
     );
@@ -39,15 +37,19 @@ const SearchPage = () => {
   console.log(searchResults);
 
   return (
-    <div className="mt-40">
-      <input
-        type="text"
-        className="bg-yellow-100"
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
-      <button onClick={handleSearchClick}>Search</button>
-
+    <div className="px-20">
+      <div className="flex justify-center mt-24 mb-8">
+        <input
+          type="text"
+          className="bg-slate-50 rounded-sm max-w-xl w-[100%] h-10 mr-2"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          placeholder="검색어를 입력하세요."
+        />
+        <button onClick={handleSearchClick} className="text-black">
+          검색
+        </button>
+      </div>
       <ProductGrid products={searchResults} />
     </div>
   );
