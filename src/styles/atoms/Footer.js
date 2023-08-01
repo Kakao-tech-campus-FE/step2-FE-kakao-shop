@@ -6,4 +6,5 @@ export const Bottom = styled.footer`
     font-size: 0.7em;
     text-align: center;
     justify-content: center;
+    margin-top: 2em;
 `
