@@ -99,14 +99,14 @@ const MainProductTemplate = () => {
 
   if (error) {
     return (
-      <Container className="w-full px-24 py-6 m-auto">
+      <Container className="w-full px-24 py-16 m-auto">
         <div>{error.message}</div>
       </Container>
     );
   }
 
   return (
-    <Container className="w-full px-24 py-6 m-auto">
+    <Container className="w-full px-24 py-16 m-auto">
       <ProductGrid products={products} isLoading={isLoading} />
       <div ref={bottomObserver}></div>
     </Container>
