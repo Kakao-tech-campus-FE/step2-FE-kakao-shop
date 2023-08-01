@@ -100,7 +100,7 @@ function BannerImageList({ isMobile }: IsMobile): ReactElement {
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
           disabled={isDisabled}>
-          <LeftChevron />
+          <LeftChevron src={`${process.env.REACT_APP_IMAGE_CDN}/next.webp`} alt="슬라이드 왼쪽 이동 화살표" />
         </ArrowButtonStyled>
 
         <ArrowButtonStyled
@@ -109,7 +109,7 @@ function BannerImageList({ isMobile }: IsMobile): ReactElement {
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
           disabled={isDisabled}>
-          <RightChevron />
+          <RightChevron src={`${process.env.REACT_APP_IMAGE_CDN}/next.webp`} alt="슬라이드 오른쪽 이동 화살표" />
         </ArrowButtonStyled>
       </BannerImageListWrapper>
     </Wrapper>
@@ -180,28 +180,15 @@ const ArrowButtonStyled = styled.button<IButtonDirection>`
         `}
 `;
 
-const LeftChevron = styled.span`
-  width: 9px;
+const LeftChevron = styled.img`
+  width: 18px;
   height: 18px;
-
-  background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
-    no-repeat;
-  background-size: 800px 500px;
-  background-position: -760px 0;
-
-  font-size: 0;
-  vertical-align: top;
+  filter: invert(100%) sepia(95%) saturate(21%) hue-rotate(321deg) brightness(105%) contrast(105%);
+  transform: rotate(180deg);
 `;
 
-const RightChevron = styled.span`
-  width: 9px;
+const RightChevron = styled.img`
+  width: 18px;
   height: 18px;
-
-  background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
-    no-repeat;
-  background-size: 800px 500px;
-  background-position: -770px 0;
-
-  font-size: 0;
-  vertical-align: top;
+  filter: invert(100%) sepia(95%) saturate(21%) hue-rotate(321deg) brightness(105%) contrast(105%);
 `;

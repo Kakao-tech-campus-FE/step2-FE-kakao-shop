@@ -1,4 +1,4 @@
-import asideImage from '@assets/asideImage.png';
+import asideImage from '@assets/asideImage.webp';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { getProductsRequestAction, resetHomeStateAction, setPageStateAction } from '@store/Home/reducers';

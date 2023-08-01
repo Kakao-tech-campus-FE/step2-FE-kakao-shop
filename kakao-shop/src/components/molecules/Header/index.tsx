@@ -164,10 +164,8 @@ const S = {
       width: 30px;
       height: 30px;
 
-      background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230705/152013/ico_store_pc.82c1fd4bf8ec030b.svg')
-        no-repeat;
-      background-size: 800px 500px;
-      background-position: -60px 0;
+      background: url('https://d32iktdt9peqz2.cloudfront.net/shopping-cart.webp') no-repeat;
+      background-size: 26px 26px;
 
       font-size: 0;
       line-height: 0;
