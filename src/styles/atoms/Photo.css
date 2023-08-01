@@ -8,7 +8,7 @@
   }
 
   .photo-img.product-card-photo {
-    @apply h-64 border border-neutral-200 rounded-xl;
+    @apply hover:scale-110 transition-all duration-300
   }
 }
 

@@ -5,12 +5,14 @@ import "../../styles/molecules/ProductCard.css";
 
 const ProductCard = ({ product }) => {
   return (
-    <Card to={`/product/${product.id}`}>
-      <Photo
-        className={"product-card-photo"}
-        alt={product.productName}
-        src={`${process.env.REACT_APP_API_URL}${product.image}`}
-      />
+    <Card to={`/product/${product.id}`} className="">
+      <div className="overflow-hidden h-64 border border-neutral-200 rounded-xl">
+        <Photo
+          className={"product-card-photo"}
+          alt={product.productName}
+          src={`${process.env.REACT_APP_API_URL}${product.image}`}
+        />
+      </div>
       <div className="mt-2 text-sm">{product.productName}</div>
       <div className="font-bold text-xl">
         <span className="text-lg text-blue-500">톡딜가 </span>
