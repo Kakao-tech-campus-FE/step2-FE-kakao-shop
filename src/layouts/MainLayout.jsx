@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../components/molecules/Sidebar";
+import Footer from "../components/molecules/Footer";
 
 const MainLayout = () => {
   return (
@@ -15,9 +16,8 @@ const MainLayout = () => {
       {/* 콘텐츠 영역: 페이지마다 달라지는 영역 */}
       <main className="ml-64">
         <Outlet />
+        <Footer />
       </main>
-      {/* 푸터 영역 */}
-      {/* <Footer /> */}
     </div>
   );
 };

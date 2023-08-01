@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import GNB from "../components/atoms/GNB";
 
 function RequiredAuthLayout() {
   const navigate = useNavigate();
