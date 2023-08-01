@@ -1,16 +1,19 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import Button from "../atoms/Button";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { addCart } from "../../apis/cart";
+import { order } from "../../apis/order";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cart_white from "../../assets/cart_white.png";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const navigate = useNavigate();
 
   const handleOnClickOption = (option) => {
     // 이미 선택된 옵션인지 확인
@@ -74,6 +77,10 @@ const OptionColumn = ({ product }) => {
   // 장바구니 담기 api 처리
   const { mutate } = useMutation({
     mutationFn: addCart,
+  });
+  const { mutate: mutateOrder } = useMutation({
+    mutationKey: "order",
+    mutationFn: order,
   });
 
   const totalQuantity = selectedOptions.reduce(
@@ -161,9 +168,18 @@ const OptionColumn = ({ product }) => {
         </Button>
         <Button
           onClick={() => {
-            toast.info("바로 구매하시겠습니까?", {
-              hideProgressBar: true,
-              autoClose: 2000,
+            mutateOrder(null, {
+              onError: (error) => {
+                toast.info("장바구니에 먼저 담아주세요!", {
+                  hideProgressBar: true,
+                  autoClose: 2000,
+                });
+              },
+              onSuccess: (response) => {
+                const id = response?.data?.response.id;
+                alert("주문이 완료되었습니다.");
+                navigate(`/orders/complete/${id}`);
+              },
             });
           }}
           className="bg-amber-300 text-white font-semibold rounded-lg flex-1 h-12 mt-6" // Used flex-1 to allow the button to take up the remaining space
