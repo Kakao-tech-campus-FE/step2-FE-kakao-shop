@@ -28,5 +28,3 @@ const OrderCompletePage = () => {
 };
 
 export default OrderCompletePage;
-
-module.exports = OrderCompletePage;

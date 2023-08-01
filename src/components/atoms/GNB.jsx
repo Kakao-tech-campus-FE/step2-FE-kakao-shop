@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/userSlice";
 import logoKakao from "../../assets/logoKakao.png";
@@ -10,6 +10,7 @@ const LOGOUT_TIMER = 30 * 60 * 1000; // 30분 후 자동 로그아웃
 
 function GNB() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const email = useSelector((state) => state.user.email);
 
@@ -46,6 +47,13 @@ function GNB() {
           <Logo src={logoKakao} alt="카카오 쇼핑하기 로고" />
         </Link>
         <Nav>
+          <button
+            onClick={() => {
+              navigate("/search");
+            }}
+          >
+            검색
+          </button>
           <Link to="/cart">
             <img src={cart} alt="장바구니 버튼" className="h-10" />
           </Link>
@@ -114,4 +122,8 @@ const StyledButton = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+`;
+
+const SearchButton = styled.button`
+  // Add your styling for the search button here.
 `;
