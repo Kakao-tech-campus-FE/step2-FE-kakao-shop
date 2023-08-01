@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../components/atoms/Loader';
@@ -7,7 +7,6 @@ import ProductDetailTemplate from '../components/templates/ProductDetailTemplate
 import { ErrorPage } from './ErrorPage';
 
 const ProductDetailPage = () => {
-  const route = useNavigate();
   const { id } = useParams(); // string
   //   const parsedId = parseInt(id, 10);
   const { data, error, isLoading } = useQuery([`/product/${id}`, id], () =>
@@ -16,14 +15,10 @@ const ProductDetailPage = () => {
   // useEffect(() => {
   //   console.log(data); // data 객체를 콘솔에 출력
   // }, [data]);
-
-  const product = data?.data?.response;
   return (
-    <div>
-      {isLoading && <Loader />}
-      {error && <ErrorPage message={error.message} />}
-      {data && <ProductDetailTemplate product={product} />}
-    </div>
+    <Suspense fallback={<Loader />}>
+      <ProductDetailTemplate product={data?.data?.response} />
+    </Suspense>
   );
 };
 

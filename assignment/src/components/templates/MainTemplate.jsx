@@ -29,12 +29,9 @@ const MainTemplate = () => {
       refetch();
     }
   };
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <div className="main-template">
         <ProductGrid products={data?.data.response} error={isError} />
         <div className="flex gap-4">
@@ -58,7 +55,7 @@ const MainTemplate = () => {
           </button>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };
 

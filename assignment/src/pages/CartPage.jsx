@@ -13,7 +13,9 @@ const CartPage = () => {
   //   console.log('data', data);
   // }
   return (
-    <>{isLoading ? <Loader /> : <CartList data={data?.data?.response} />}</>
+    <Suspense fallback={<Loader />}>
+      <CartList data={data?.data?.response} />
+    </Suspense>
   );
 };
 
