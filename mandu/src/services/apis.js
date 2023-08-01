@@ -73,3 +73,7 @@ export const updateCart = (options) => {
 export const saveOrder = async () => {
     return await api.post("/orders/save ");
 }
+
+export const getOrders = async (id) => {
+    return await api.get("/orders/" + id);
+}

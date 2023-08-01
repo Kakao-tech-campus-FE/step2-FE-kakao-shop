@@ -29,7 +29,7 @@ function App() {
                             <Route path='/cart' element={<CartPage/>}/>
                             <Route path='/product/:productId' element={<ProductPage/>}/>
                             <Route path='/payment' element={<PaymentPage/>}/>
-                            <Route path='/ordered' element={<OrderedPage/>}/>
+                            <Route path='/ordered/:orderedId' element={<OrderedPage/>}/>
                         </Route>
                         <Route path='/*'
                                element={<ErrorPage error={notFound}/>}/>

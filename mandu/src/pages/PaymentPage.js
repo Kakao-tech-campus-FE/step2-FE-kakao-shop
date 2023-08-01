@@ -20,9 +20,12 @@ const PaymentPage = () => {
         const navigate = useNavigate();
 
         const orderMutation = useMutation(saveOrder, {
-            onSuccess: () => {
-                alert("주문이 완료되었습니다.");
-                navigate("/ordered");
+            onSuccess: (data) => {
+                if (data.id === undefined || typeof data.id !== "number") {
+                    alert("응답이 잘못되었습니다.");
+                    return;
+                }
+                navigate(`/ordered/${data.id}`);
             },
             onError: () => {
                 alert("주문에 실패하였습니다.");
