@@ -28,7 +28,7 @@ const Toast = () => {
 
     return () => { clearTimeout(timer) }
 
-  }, [toastState.isOn])
+  }, [dispatch, toastState.isOn])
   
   const btnHandler = () => {
     if (toastState.moveTo !== "") {
