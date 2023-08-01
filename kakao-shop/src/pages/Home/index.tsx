@@ -151,6 +151,7 @@ const S = {
 
   TodayProductSection: styled.section`
     width: 324px;
+    height: 310px;
 
     margin-left: 31px;
     padding: 30px 0 100px 32px;
