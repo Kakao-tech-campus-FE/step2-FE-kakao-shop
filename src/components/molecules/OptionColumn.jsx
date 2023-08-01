@@ -53,42 +53,51 @@ const OptionColumn = ({ product }) => {
   });
 
   return (
-    <Box className="w-[512px] m-4">
-      <div className="starCount text-blue-500">★★★★★ {starCount}점</div>
-      <h1 className="text-2xl">{productName}</h1>
-      <div className="flex justify-between my-4 items-center">
-        <div>
-          <Badge color="yellow" className="bg-black text-white">
-            {comma(price * 2)}원~
-          </Badge>
-          <Badge color="yellow" className="bg-yellow-300 ml-2 font-bold">
-            톡딜가 {comma(price)}원~
-          </Badge>
+    <Box className="w-[512px] m-4 flex flex-col gap-4">
+      {/* 상품 정보 */}
+      <div className="wrapper flex flex-col gap-2">
+        <div className="starCount text-blue-500">★★★★★ {starCount}점</div>
+        <h1 className="text-2xl">{productName}</h1>
+        <div className="flex justify-between items-center">
+          <div>
+            <Badge color="yellow" className="bg-black text-white">
+              {comma(price * 2)}원~
+            </Badge>
+            <Badge color="yellow" className="bg-yellow-300 ml-2 font-bold">
+              톡딜가 {comma(price)}원~
+            </Badge>
+          </div>
+          <div className="text-3xl text-blue-500">50%</div>
         </div>
-        <div className="text-3xl text-blue-500">50%</div>
       </div>
 
-      <h3 className=" text-lg font-bold">옵션 선택</h3>
-      {/* 옵션 담기를 할 수 있는 영역 */}
-      <OptionList options={product.options} onClick={handleOnClickOption} />
-      <Box>
-        <div className="shippingMethod mt-4">
-          <span className="font-bold">배송방법 </span>
-          <span>택배배송</span>
+      {/* 옵션 선택 */}
+      <div className="wrapper-option flex flex-col gap-2">
+        <h3 className=" text-lg font-bold">옵션 선택</h3>
+        <OptionList options={product.options} onClick={handleOnClickOption} />
+      </div>
+
+      {/* 배송 방법 */}
+      <div>
+        <div className="flex gap-4">
+          <div className="font-bold">
+            <div>배송방법</div>
+            <div>배송비</div>
+          </div>
+          <div>
+            <div>택배배송</div>
+            <div>무료배송</div>
+          </div>
         </div>
-        <div className="shippingCost">
-          <span className="font-bold">배송비</span>
-          <Box className="bg-gray-200 border border-gray-400 text-sm p-1">
-            무료배송
-          </Box>
+        <div className="text-sm text-gray-500">
+          제주 추가 3,000원, 제주 외 도서지역 추가 6,000원
         </div>
-        제주 추가 3,000원, 제주 외 도서지역 추가 6,000원
-      </Box>
-      {/* 담긴 옵션이 표시 */}
+      </div>
+
+      {/* 선택된 옵션 */}
       {selectedOptions.map((option) => (
         <ol key={option.optionId} className="selected-option-list">
-          {/* 수량 변경 기능 */}
-          <li className="bg-gray-100 my-2 p-2">
+          <li className="bg-gray-100 p-2">
             <div className="flex justify-between">
               <div className="name">{option.name}</div>
               <div className="price">
@@ -102,8 +111,11 @@ const OptionColumn = ({ product }) => {
           </li>
         </ol>
       ))}
+
       <hr />
-      <div className="flex justify-between my-4">
+
+      {/* 총 수량, 총 상품금액 */}
+      <div className="flex justify-between text-xl">
         <div>
           총 수량:{" "}
           {selectedOptions.reduce((acc, cur) => {
@@ -113,14 +125,18 @@ const OptionColumn = ({ product }) => {
         </div>
         <div>
           총 상품금액:{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
+          <span className="font-bold text-red-500">
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price;
+              }, 0)
+            )}
+          </span>
           원
         </div>
       </div>
+
+      {/* 찜, 장바구니, 구매하기 버튼 */}
       <div className="button-group flex justify-between">
         {/* 장바구니 담기 버튼 위치 */}
         <Button
@@ -173,8 +189,8 @@ const OptionColumn = ({ product }) => {
             src="/icons/talk.svg"
             alt="장바구니 담기"
             width={24}
-          />
-           {" "}구매하기
+          />{" "}
+          구매하기
         </Button>
       </div>
     </Box>
