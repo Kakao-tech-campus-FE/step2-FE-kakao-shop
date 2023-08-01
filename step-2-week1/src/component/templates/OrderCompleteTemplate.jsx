@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import OptionItem from '../atoms/OptionItem';
 import { comma } from '../../utils/convert';
+import { useNavigate } from 'react-router-dom';
+
 
 const ProductList = styled.div`
     padding: 1rem;
@@ -28,30 +30,17 @@ const productItems = (products) => {
 };
 
 
-const OrderCompleteTemplate = ({data}) => {
+const OrderCompleteTemplate = ({ data }) => {
+    const navigate = useNavigate();
+    // console.log(data.data.response);
     // data : 주문 완료 정보
 
-    const example = {
-        success: true,
-        response: {
-            id: 1,
-            products: [
-                {
-                    productName: "상품명",
-                    items: [
-                        {
-                            id: 1,
-                            optionName: "옵션명1",
-                            quantity: 1,
-                            price: 1000
-                        }
-                    ]
-                }
-            ],
-            totalPrice: 1000,
-        },
-        error: null,
-    };
+    const example = data?.data;
+
+    if (!example) {
+        return <></>
+    }
+
 
     const ProductItems = productItems(example.response.products);
 
@@ -72,12 +61,15 @@ return (
         </ProductList>
     </div>
     <div className="border">
-        <div className="">
-            <span>일반 결제 금액</span>
+        <div className="flex justify-between p-4">
+            <span className="font-bold text-xl">일반 결제 금액</span>
+            <span className="font-bold text-xl text-indigo-700">
+                {comma(example.response.totalPrice)}원</span>
             </div>
-        <button
+        <button 
+            className="w-full py-4 text-black font-bold text-xl bg-yellow-400"
             onClick={() => {
-
+                navigate("/");
             }}
         >쇼핑 계속하기</button>
     </div>
