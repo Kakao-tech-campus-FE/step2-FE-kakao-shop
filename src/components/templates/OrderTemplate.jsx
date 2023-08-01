@@ -40,7 +40,7 @@ const OrderTemplate = ({ data, id }) => {
 
   const { mutate } = useMutation({
     mutationKey: "order",
-    queryFn: () => order,
+    mutationFn: orderCart,
   });
 
   const { data } = useQuery("carts", getCart, {
@@ -51,12 +51,12 @@ const OrderTemplate = ({ data, id }) => {
   });
 
   const OrderItems = () => {
-    let renderComponent = [];
-    if (Array.isArray(products) === false) return;
-    products.forEach((item) => {
-      renderComponent.push(
-        item.carts.map((cart) => {
-          return (
+    if (Array.isArray(products) === false) return null;
+
+    return (
+      <>
+        {products.map((item) =>
+          item.carts.map((cart) => (
             <div key={cart.id} className="p-4 border-t">
               <div className="product-name font-bold">
                 <span>{`${item.productName} = ${cart.optionName}`}</span>
@@ -68,11 +68,10 @@ const OrderTemplate = ({ data, id }) => {
                 <span>{comma(cart.price * cart.quantity)}원</span>
               </div>
             </div>
-          );
-        })
-      );
-    });
-    return renderComponent;
+          ))
+        )}
+      </>
+    );
   };
 
   return (

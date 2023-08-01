@@ -8,21 +8,20 @@ const InputGroup = ({
   type,
   value,
   onChange,
-  className,
-  label,
   placeholder,
+  label,
   onBlur,
 }) => {
   return (
-    <Box className={className}>
+    <Box className="mt-2">
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
         type={type}
         name={name}
         value={value}
-        onChange={onChange}
         placeholder={placeholder}
+        onChange={onChange}
         onBlur={onBlur}
       />
     </Box>

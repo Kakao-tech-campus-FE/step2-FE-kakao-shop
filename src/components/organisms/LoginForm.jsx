@@ -17,7 +17,7 @@ const LoginForm = () => {
     value,
     emailError,
     passwordError,
-    handleOnChange,
+    handleChange,
     validateEmail,
     validPassword,
   } = useInput({
@@ -66,7 +66,7 @@ const LoginForm = () => {
           placeholder="이메일을 입력해주세요"
           label="이메일"
           value={value.email}
-          onChange={handleOnChange}
+          onChange={handleChange}
           onBlur={validateEmail}
         />
         {emailError && <div>{emailError}</div>}
@@ -77,7 +77,7 @@ const LoginForm = () => {
           placeholder="********"
           label="비밀번호"
           value={value.password}
-          onChange={handleOnChange}
+          onChange={handleChange}
           onBlur={validPassword}
         />
         {passwordError && <div>{passwordError}</div>}

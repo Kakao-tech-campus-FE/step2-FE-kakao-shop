@@ -3,8 +3,8 @@ import CardSkeleton from "../atoms/CardSkeleton";
 const SkeletonGroup = ({ arr }) => {
   return (
     <div>
-      {arr.map((arr) => (
-        <CardSkeleton />
+      {arr.map((item, index) => (
+        <CardSkeleton key={index} uniqueKey={index} />
       ))}
     </div>
   );

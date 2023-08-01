@@ -13,7 +13,7 @@ const RegisterForm = () => {
     value,
     emailError,
     passwordError,
-    handleOnChange,
+    handleChange,
     validateEmail,
     validPassword,
   } = useInput({
@@ -27,7 +27,7 @@ const RegisterForm = () => {
   const isPasswordCorrect = value.password === value.passwordConfirm;
   const isError = emailError || passwordError || !isPasswordCorrect;
 
-  const RegisterRequirement = () => {
+  const registerRequirement = () => {
     register({
       email: value.email,
       password: value.password,
@@ -58,7 +58,7 @@ const RegisterForm = () => {
           placeholder="사용자의 이름을 입력해주세요"
           label="이름"
           value={value.username}
-          onChange={handleOnChange}
+          onChange={handleChange}
         />
         <InputGroup
           id="email"
@@ -67,7 +67,7 @@ const RegisterForm = () => {
           placeholder="이메일을 입력해주세요"
           label="이메일"
           value={value.email}
-          onChange={handleOnChange}
+          onChange={handleChange}
           onBlur={validateEmail}
         />
         {emailError && <div>{emailError}</div>}
@@ -78,7 +78,7 @@ const RegisterForm = () => {
           placeholder="********"
           label="비밀번호"
           value={value.password}
-          onChange={handleOnChange}
+          onChange={handleChange}
           onBlur={validPassword}
         />
         {passwordError && <div>{passwordError}</div>}
@@ -89,14 +89,14 @@ const RegisterForm = () => {
           placeholder="********"
           label="비밀번호 확인"
           value={value.passwordConfirm}
-          onChange={handleOnChange}
+          onChange={handleChange}
         />
         {!isPasswordCorrect && <div>비밀번호와 비밀번호 확인이 다릅니다.</div>}
         <div>{error}</div>
         <Button
           disabled={isError || !value.password || !value.passwordConfirm}
           onClick={() => {
-            RegisterRequirement();
+            registerRequirement();
           }}
         >
           회원가입

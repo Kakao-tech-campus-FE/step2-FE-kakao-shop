@@ -6,7 +6,7 @@ import { useQuery } from "react-query";
 import Loader from "../components/atoms/Loader";
 
 //장바구니 페이지
-const Cartpage = () => {
+const CartPage = () => {
   const { data } = useQuery("cart", getCart);
 
   return (
@@ -16,4 +16,4 @@ const Cartpage = () => {
   );
 };
 
-export default Cartpage;
+export default CartPage;
