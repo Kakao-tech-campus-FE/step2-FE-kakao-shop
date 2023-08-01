@@ -56,7 +56,7 @@ const OrderTemplate = () => {
           <InnerFlatCard>
             {item.carts.map((cart: CartedOptionData) => {
               return (
-                <div key={cart.id} className="grid grid-cols-3 items-center">
+                <div key={cart.id} className="grid grid-cols-3 items-center mb-3">
                   <div>{cart.option.optionName}</div>
                   <div className="text-right">{comma(cart.quantity)}개</div>
                   <div className="text-[12px] text-right">
