@@ -14,3 +14,4 @@ export const getCart = () => {
 export const updateCart = (items) => {
     return instance.post("/carts/update", items);
 }
+
