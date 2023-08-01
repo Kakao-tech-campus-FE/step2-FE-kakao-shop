@@ -1,4 +1,3 @@
-import { OrderResult } from '@api/dto';
 import { orderResult } from '@api/orderApi';
 import Loader from '@components/atoms/Loader';
 import OrderCompleteTemplate from '@components/templates/OrderCompleteTemplate';

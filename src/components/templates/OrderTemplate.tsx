@@ -3,7 +3,6 @@ import { CartProductData, CartedOptionData } from '@api/dto';
 import { order } from '@api/orderApi';
 import Card from '@components/atoms/Card';
 import InnerFlatCard from '@components/atoms/InnerFlatCard';
-import PriceTag from '@components/atoms/PriceTag';
 import Checkbox from '@components/atoms/Checkbox';
 import comma from '@utils/commaUtils';
 import React, { useState, useRef } from 'react';
