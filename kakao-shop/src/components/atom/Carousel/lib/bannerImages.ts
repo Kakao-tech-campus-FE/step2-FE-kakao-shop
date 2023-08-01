@@ -6,31 +6,31 @@ export type BannerImageItem = {
 export const bannerImages = [
   {
     id: 1,
-    imageUrl: '/banner/carouselItem1.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem1.webp`,
   },
   {
     id: 2,
-    imageUrl: '/banner/carouselItem2.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem2.webp`,
   },
   {
     id: 3,
-    imageUrl: '/banner/carouselItem3.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem3.webp`,
   },
   {
     id: 4,
-    imageUrl: '/banner/carouselItem4.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem4.webp`,
   },
   {
     id: 5,
-    imageUrl: '/banner/carouselItem1.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem1.webp`,
   },
   {
     id: 6,
-    imageUrl: '/banner/carouselItem2.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem2.webp`,
   },
   {
     id: 7,
-    imageUrl: '/banner/carouselItem3.webp',
+    imageUrl: `${process.env.REACT_APP_IMAGE_CDN}/carouselItem3.webp`,
   },
 ];
 
