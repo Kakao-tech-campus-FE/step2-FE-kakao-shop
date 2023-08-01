@@ -67,13 +67,13 @@ const PaymentPage = () => {
                     <div className="divide-y-4">
                         {
                             products.map((item) => {
-                                let filteredProduct = item.carts.filter((cart) => cart.quantity > 0);
-                                if (filteredProduct.length !== 0) {
+                                let filteredCarts = item.carts.filter((cart) => cart.quantity > 0);
+                                if (filteredCarts.length !== 0) {
                                     return (
                                         <div className="p-2">
                                             <ProductWithOptionCard key={"cartItem_" + item.id} id={item.id}
                                                                    productName={item.productName}
-                                                                   carts={item.carts} canControl={false}/>
+                                                                   carts={filteredCarts} canControl={false}/>
                                         </div>
                                     );
                                 }

@@ -47,12 +47,12 @@ const ProductWithOptionList = ({products}) => {
         <div className="divide-y-8 divide-gray-100 bg-white">
             {
                 products.map((item) => {
-                    let filteredCart = item.carts.filter((cart) => cart.quantity > 0);
-                    if (filteredCart.length !== 0) {
+                    let filteredCarts = item.carts.filter((cart) => cart.quantity > 0);
+                    if (filteredCarts.length !== 0) {
                         return (
                             <ProductWithOptionCard key={"cartItem_" + item.id} id={item.id}
                                                    productName={item.productName}
-                                                   carts={filteredCart}/>);
+                                                   carts={filteredCarts}/>);
                     }
                     return null;
                 })}
