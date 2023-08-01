@@ -14,7 +14,12 @@ const ShippingAddress = () => {
 
   const handleSelectChange = (e) => {
     setShippingRequestOption(e.target.value);
-    setShippingRequestText(e.target.options[e.target.selectedIndex].innerText);
+    if (e.target.options[e.target.selectedIndex].innerText === "직접입력")
+      setShippingRequestText("");
+    else
+      setShippingRequestText(
+        e.target.options[e.target.selectedIndex].innerText
+      );
   };
 
   const handleTextareaChange = (e) => {
