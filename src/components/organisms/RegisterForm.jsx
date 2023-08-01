@@ -2,67 +2,106 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
+import Title from "../atoms/Title";
 import { register } from "../../services/user";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const RegisterForm = () => {
-  const { value, handleOnChange } = useInput({
+  const navigate = useNavigate();
+  const {
+    value,
+    emailError,
+    passwordError,
+    handleOnChange,
+    validateEmail,
+    validPassword,
+  } = useInput({
     username: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
 
+  const [error, setError] = useState("");
+  const isPasswordCorrect = value.password === value.passwordConfirm;
+  const isError = emailError || passwordError || !isPasswordCorrect;
+
+  const RegisterRequirement = () => {
+    register({
+      email: value.email,
+      password: value.password,
+      username: value.username,
+    })
+      .then((res) => {
+        console.log(res);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("err", err);
+        if (err.data && err.data.error && err.data.error.message) {
+          setError(`Error 발생${err.data.error.message} :(`);
+        } else {
+          setError("회원가입에 실패했습니다.");
+        }
+      });
+  };
+
   return (
     <Container>
-      <InputGroup
-        id="username"
-        type="text"
-        name="username"
-        placeholder="사용자 이름을 입력해주세요"
-        label="이름"
-        value={value.username}
-        onChange={handleOnChange}
-      />
-
-      <InputGroup
-        id="email"
-        type="email"
-        name="email"
-        placeholder="이메일(아이디)를 입력해주세요"
-        label="이메일"
-        value={value.email}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        name="password"
-        placeholder="***********"
-        label="비밀번호"
-        value={value.password}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        id="passwordConfirm"
-        type="password"
-        name="passwordConfirm"
-        placeholder="***********"
-        label="비밀번호 확인"
-        value={value.passwordConfirm}
-        onChange={handleOnChange}
-      />
-      <Button
-        onClick={() => {
-          //api 회원가입 요청
-          register({
-            email: value.email,
-            password: value.password,
-            username: value.username,
-          });
-        }}
-      >
-        회원가입
-      </Button>
+      <div>
+        <Title>회원가입</Title>
+        <InputGroup
+          id="username"
+          type="text"
+          name="username"
+          placeholder="사용자의 이름을 입력해주세요"
+          label="이름"
+          value={value.username}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          id="email"
+          type="email"
+          name="email"
+          placeholder="이메일을 입력해주세요"
+          label="이메일"
+          value={value.email}
+          onChange={handleOnChange}
+          onBlur={validateEmail}
+        />
+        {emailError && <div>{emailError}</div>}
+        <InputGroup
+          id="password"
+          type="password"
+          name="password"
+          placeholder="********"
+          label="비밀번호"
+          value={value.password}
+          onChange={handleOnChange}
+          onBlur={validPassword}
+        />
+        {passwordError && <div>{passwordError}</div>}
+        <InputGroup
+          id="passwordConfirm"
+          type="password"
+          name="passwordConfirm"
+          placeholder="********"
+          label="비밀번호 확인"
+          value={value.passwordConfirm}
+          onChange={handleOnChange}
+        />
+        {!isPasswordCorrect && <div>비밀번호와 비밀번호 확인이 다릅니다.</div>}
+        <div>{error}</div>
+        <Button
+          disabled={isError || !value.password || !value.passwordConfirm}
+          onClick={() => {
+            RegisterRequirement();
+          }}
+        >
+          회원가입
+        </Button>
+      </div>
     </Container>
   );
 };

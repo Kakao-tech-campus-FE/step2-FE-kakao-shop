@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState, useRef, useMemo } from "react";
 import { getProducts } from "../../store/slices/productSlice";
 import Carousel from "../molecules/Carousel";
-import CardSkeleton from "../atoms/CardSkeleton";
+import SkeletonGroup from "../molecules/SkeletonGroup";
 import { loader } from "react-global-loader";
 
 const MainProductTemplate = () => {
@@ -39,7 +39,7 @@ const MainProductTemplate = () => {
   };
 
   useEffect(() => {
-    io.observer(bottomObserver.current);
+    io.observe(bottomObserver.current);
   }, [io]);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ const MainProductTemplate = () => {
   return (
     <Container>
       <Carousel />
-      {loading && <CardSkeleton arr={new Array(8).fill(1)} />}
+      {loading && <SkeletonGroup arr={new Array(8).fill(1)} />}
       {products && <ProductGrid products={products} />}
       <div ref={bottomObserver}></div>
     </Container>

@@ -5,7 +5,6 @@ import Loader from "../components/atoms/Loader";
 import Button from "../components/atoms/Button";
 
 const checkout = async () => {
-  // 예시로 1초 후에 결제가 성공한 것으로 간주
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ success: true });

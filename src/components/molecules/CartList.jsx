@@ -140,11 +140,11 @@ const CartList = ({ data }) => {
         onClick={() => {
           // update cart api
           // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우)
-          //post method
+          // post method
 
           mutate(updatePayload, {
             onSuccess: (data) => {
-              //navigate to order page
+              // navigate to order page
               route.push(paths.ORDER_PATH);
             },
             onError: (error) => {
