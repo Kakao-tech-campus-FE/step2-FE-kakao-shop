@@ -32,7 +32,12 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
     const { children } = this.props;
 
     if (hasError) {
-      return <ErrorPage errorMessage={error?.response?.data.error.message} />;
+      return (
+        <ErrorPage
+          errorMessage={error?.response?.data.error.message}
+          resetError={() => this.setState({ hasError: false, error: null })}
+        />
+      );
     }
 
     return children;
