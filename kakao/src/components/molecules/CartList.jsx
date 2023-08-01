@@ -1,19 +1,21 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Conatiner";
-import Box from "../atoms/Box";
 import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import Button from "../atoms/Button";
 import { comma } from "../../utils/convert";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { updateCart } from "../../services/cart";
+import { getCart } from "../../services/cart";
 
-const CartList = ({ data }) => {
+const CartList = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
+
+  const { data, error } = useQuery("carts", getCart, { suspense: true });
 
   const { mutate } = useMutation({
     mutationFn: updateCart,

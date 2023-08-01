@@ -92,7 +92,7 @@ const OrderTemplate = ({ data }) => {
               </div>
 
               <div className="option-price">
-                <span>{comma(cart.price * cart.quantity)}원</span>
+                <span>{comma(cart.price)}원</span>
               </div>
             </div>
           );

@@ -28,7 +28,6 @@ const userSlice = createSlice({
     builder.addCase(loginRequest.fulfilled, (state, action) => {
       state.loading = false;
       state.email = action.payload.email;
-      console.log(action); //
       localStorage.setItem("token", action.payload.token);
       state.token = action.payload.token;
     });
