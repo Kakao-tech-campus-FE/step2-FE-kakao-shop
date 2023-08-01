@@ -81,8 +81,8 @@ const OrderTemplate = () => {
           <div className="grid grid-cols-6 ">
             <div className="grid grid-rows-3 font-bold col-span-1 space-y-2 items-center">
               <span>이름</span>
-              <span>배송주소</span>
               <span>연락처</span>
+              <span>배송주소</span>
             </div>
             <div className="grid grid-rows-3 col-span-5 space-y-2 items-center">
               <span>임연후</span>
