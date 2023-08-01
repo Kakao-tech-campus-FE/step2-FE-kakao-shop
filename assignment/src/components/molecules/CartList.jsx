@@ -10,7 +10,6 @@ import Button from '../atoms/Button';
 import { updateCart } from '../../services/cart';
 
 const CartList = ({ data }) => {
-  console.log('cartlist', data);
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -21,18 +20,15 @@ const CartList = ({ data }) => {
   });
 
   useEffect(() => {
-    setCartItems(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
+    setCartItems(data.products);
+    setTotalPrice(data.totalPrice);
   }, [data]);
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
-    let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
-      });
-    });
-    return comma(count);
+    const count = cartItems
+      .flatMap((item) => item.carts)
+      .reduce((total, cart) => total + cart.quantity, 0);
+    return count;
   }, [cartItems]);
   // 옵션의 수량 변경과 가격 변경을 관리
   const handleOnChangeCount = (optionId, quantity, price) => {
@@ -71,7 +67,7 @@ const CartList = ({ data }) => {
       });
     });
   };
-  const handleOnDelete = (optionId, quantity) => {
+  const handleOnDelete = (optionId, quantity, price) => {
     setUpdatePayload((prev) => {
       const isExist = prev.find((item) => item.cartId === optionId);
 
@@ -92,6 +88,7 @@ const CartList = ({ data }) => {
         },
       ];
     });
+    setTotalPrice((prev) => prev - price * quantity);
     setCartItems((prev) => {
       return prev.map((item) => {
         return {
@@ -136,18 +133,18 @@ const CartList = ({ data }) => {
       <Button
         className="order-btn"
         onClick={() => {
-          route('/order');
-          // mutate(updatePayload, {
-          //   onSuccess: (data) => {
-          //     route.push('/order');
-          //   },
-          //   onError: (error) => {},
-          // });
+          mutate(updatePayload, {
+            onSuccess: (data) => {
+              route('/order');
+            },
+            onError: (error) => {
+              console.log('error', error);
+              route('/error');
+            },
+          });
         }}
       >
-        <span>
-          총 {cartItems ? getTotalCartCountIncludeOptions() : 0}건 주문하기
-        </span>
+        <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
       </Button>
     </Container>
   );

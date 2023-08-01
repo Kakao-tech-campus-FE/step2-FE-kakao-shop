@@ -12,7 +12,7 @@ const MainTemplate = () => {
   const { isLoading, isError, data, refetch } = useQuery(
     ['products'],
     () => fetchProducts(page),
-    {},
+    { keepPreviousData: true, refetchWindowFocus: false },
   );
 
   const onNextPage = () => {
@@ -37,12 +37,26 @@ const MainTemplate = () => {
     <>
       <div className="main-template">
         <ProductGrid products={data?.data.response} error={isError} />
-        <Button onClick={onPreviousPage} disabled={able}>
-          Previous Page
-        </Button>
-        <Button onClick={onNextPage} disabled={!able}>
-          Next Page
-        </Button>
+        <div className="flex gap-4">
+          <button
+            className={`p-2 font-medium rounded-md ${
+              !able ? 'bg-yellow-400 text-black' : 'bg-gray-40 text-gray-300'
+            }`}
+            onClick={onPreviousPage}
+            disabled={able}
+          >
+            다음 페이지
+          </button>
+          <button
+            className={`p-2 font-medium rounded-md ${
+              able ? 'bg-yellow-400 text-black' : 'bg-gray-40 text-gray-300'
+            }`}
+            onClick={onNextPage}
+            disabled={!able}
+          >
+            이전 페이지
+          </button>
+        </div>
       </div>
     </>
   );

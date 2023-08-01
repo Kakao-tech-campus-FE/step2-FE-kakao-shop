@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiTwotoneStar } from 'react-icons/ai';
 import { comma } from '../../utils/convert';
 import Photo from '../atoms/Photo';
 
@@ -10,8 +11,16 @@ const ProductInformationColumn = ({ product }) => {
         <Photo src={image} alt={productName} />
       </div>
       <div className="col-span-3 sm:col-span-3">
-        <h1 className="name">{productName}</h1>
-        <p className="price">{comma(price)}원</p>
+        <div style={{ display: 'flex' }}>
+          {Array.from({ length: product.starCount }, (_, index) => (
+            <AiTwotoneStar key={index} style={{ color: '#0343f4' }} />
+          ))}
+        </div>
+        <h1 className="name font-bold text-xl">{productName}</h1>
+        <div className="price">{comma(price)}원</div>
+        <span className="bg-yellow-400 text-black px-2 py-2 rounded-full text-l">
+          톡딜가 OOOO원 ~{' '}
+        </span>
       </div>
     </div>
   );

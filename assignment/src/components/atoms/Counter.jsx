@@ -6,27 +6,27 @@ const Counter = ({
   onIncrease,
   onDecrease,
 }) => {
-  const [count, setCount] = useState(value);
+  // const [count, setCount] = useState(value);
 
-  useEffect(() => {
-    setCount(count);
-    onIncrease(count);
-  }, value);
+  // useEffect(() => {
+  //   setCount(count);
+  //   onIncrease(count);
+  // }, value);
 
   const handleOnIncrease = () => {
-    setCount(count + 1);
-    onIncrease(count + 1);
+    // setCount(value + 1);
+    onIncrease(value + 1);
   };
 
   const handleOnDecrease = () => {
-    setCount(count - 1);
-    onDecrease(count - 1);
+    // setCount(value - 1);
+    onDecrease(value - 1);
   };
   return (
     <div className="counter">
-      <button onClick={handleOnDecrease}>-</button>
-      <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
+      <button onClick={handleOnDecrease}> - </button>
+      <span className="count">{value}</span>
+      <button onClick={handleOnIncrease}> + </button>
     </div>
   );
 };

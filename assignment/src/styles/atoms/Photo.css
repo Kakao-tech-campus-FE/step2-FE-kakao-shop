@@ -4,6 +4,7 @@ picture.card {
 
 picture > img {
   width: inherit;
+  border-radius: 10%;
 }
 
 img.card {

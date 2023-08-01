@@ -23,9 +23,6 @@ const useInput = (initialValue) => {
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
-    console.log('name', name);
-    console.log('value', value);
-
     setValue((prev) => ({ ...prev, [name]: value }));
     // setLoading(false);
   };
@@ -40,7 +37,6 @@ const useInput = (initialValue) => {
     } else {
       setPasswordError('');
       setIsPwOk(true);
-      console.log('실행체크');
     }
     setValue((prev) => ({ ...prev, [name]: value }));
     // setLoading(false);

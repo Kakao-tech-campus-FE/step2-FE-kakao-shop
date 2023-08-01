@@ -3,7 +3,7 @@
    License: none (public domain)
 */
 
-html,
+/* html,
 body,
 div,
 span,
@@ -87,7 +87,7 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-}
+} */
 
 /* HTML5 display-role reset for older browsers */
 article,
@@ -105,7 +105,7 @@ section {
 }
 
 * {
-  font-family: 'yg-jalnan', Helvetica, sans-serif;
+  font-family: 'omyu_pretty';
   font-size: 1rem;
 }
 
@@ -124,6 +124,30 @@ section {
   font-family: 'yg-jalnan';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff')
     format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GangwonEdu_OTFBoldA';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/GangwonEdu_OTFBoldA.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'AppleSanFrancisco';
+  src:
+    local('SF Pro Display'),
+    local('SF Pro Icons'),
+    url(https://example.com/san-francisco.woff2) format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'omyu_pretty';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/omyu_pretty.woff2')
+    format('woff2');
   font-weight: normal;
   font-style: normal;
 }
