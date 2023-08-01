@@ -21,7 +21,7 @@ const ProductDetailPage = () => {
 
     return (
         <Product.Container>
-            {isError ? <ErrorPage error={error.status}/> : null}
+            {isError ? <ErrorPage /> : null}
             {isLoading || !product?.data ? <Loader /> : (
                 <>
                     <ProductDetailInfo product={product.data}/>
