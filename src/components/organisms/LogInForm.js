@@ -47,6 +47,10 @@ export default function LogInForm() {
       });
   };
 
+  const handleInputKeyUp = (event) => {
+    if (event.key === "Enter") handleButtonClick();
+  };
+
   return (
     <Container className="p-16 border">
       <Input
@@ -62,6 +66,7 @@ export default function LogInForm() {
         type="password"
         name="password"
         onChange={handleInputChange}
+        onKeyUp={handleInputKeyUp}
         placeholder="비밀번호"
         value={inputValue.password}
       />

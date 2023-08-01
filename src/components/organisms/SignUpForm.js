@@ -42,6 +42,10 @@ export default function SignUpForm() {
       });
   };
 
+  const handleInputKeyUp = (event) => {
+    if (event.key === "Enter") handleButtonClick();
+  };
+
   return (
     <Container className="p-16 border">
       <Input
@@ -73,6 +77,7 @@ export default function SignUpForm() {
         type="password"
         name="confirmPassword"
         onChange={handleInputChange}
+        onKeyUp={handleInputKeyUp}
         placeholder="비밀번호 확인"
         value={inputValue.confirmPassword}
       />
