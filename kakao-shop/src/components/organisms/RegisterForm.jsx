@@ -83,10 +83,10 @@ const RegisterForm = () => {
       if (
         error.response &&
         error.response.status === 400 &&
-        error.response.data.error.message.split(" : ") === value.email
+        error.response.data.error.message.split(" : ")[1] === value.email
       ) {
         const errorMessage = "이미 존재하는 이메일입니다.";
-        setErrorMessage(errorMessage);
+        setErrorMessage((prev) => ({ ...prev, email: errorMessage }));
       }
     }
   };
