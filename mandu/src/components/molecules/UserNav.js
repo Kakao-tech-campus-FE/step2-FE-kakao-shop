@@ -53,13 +53,13 @@ const UserNav = () => {
                 {userId
                     ?
                     <div className="flex">
-                        <div className="my-2">{`유저 id : ${userId}`}</div>
+                        <div id="header-user-id" className="my-2">{`유저 id : ${userId}`}</div>
                         <button onClick={logout}>
                             <img alt="로그아웃" className="h-4 mx-4" src={process.env.PUBLIC_URL + "/logout.png"}/>
                         </button>
                     </div> :
-                    <Link to="/login"
-                          className="text-sm ">
+                    <Link id="header-login-btn" to="/login"
+                          className="text-sm">
                         로그인
                     </Link>}
             </div>

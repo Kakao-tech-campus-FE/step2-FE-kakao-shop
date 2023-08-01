@@ -75,7 +75,7 @@ const LoginPage = () => {
                             placeholder="비밀번호를 입력하세요"
                         />
                     </div>
-                    <ElevatedButton className="mt-8 bg-amber-300" type="submit" disabled={submitting}>
+                    <ElevatedButton id="login-btn" className="mt-8 bg-amber-300" type="submit" disabled={submitting}>
                         로그인
                     </ElevatedButton>
                     <Link to="/signup"
