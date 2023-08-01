@@ -47,10 +47,12 @@ const MainProductTemplate = () => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
+
+    console.log('error: ',error);
     
     return(
         <Container>
-            {isError ? <ErrorPage error={error.status}/> : null}
+            {isError ? <ErrorPage /> : null}
             {products ? 
                 <ProductGrid products={products.pages.flatMap(page => page.response)} />
                 : <MainPageSkeleton />}

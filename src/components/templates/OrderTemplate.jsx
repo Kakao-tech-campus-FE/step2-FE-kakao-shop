@@ -94,8 +94,8 @@ const OrderTemplate = ({data}) => {
                             alert('주문에 실패했습니다.');
                         },
                         onSuccess: (res) => {
+                            console.log('res: ', res);
                             const id = res.data.response.id;
-                            alert('주문이 완료되었습니다.');
                             navigate(`/order/complete/${id}`);
                         }
                     })
