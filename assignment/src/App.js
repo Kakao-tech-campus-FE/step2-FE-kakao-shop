@@ -12,6 +12,7 @@ import { ErrorPage } from './pages/ErrorPage';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import RequiredAuthLayout from './layouts/RequiredAuthLayout';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<NewHomePage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route
+              path="/orders/complete/:id"
+              element={<OrderCompletePage />}
+            />
           </Route>
 
           <Route element={<RequiredAuthLayout />}>
