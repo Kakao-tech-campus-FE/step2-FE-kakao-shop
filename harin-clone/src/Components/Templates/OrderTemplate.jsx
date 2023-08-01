@@ -6,7 +6,8 @@ import { useEffect, useRef, useState } from "react";
 import Container from "../Atoms/Container";
 import Box from "../Atoms/Box";
 import "../../Styles/Card.css";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { BsChevronUp } from "react-icons/bs";
+import { IoMdArrowDropdown } from "react-icons/io";
 import { saveId } from "../../Store/Slices/orderSlice";
 import { useDispatch } from "react-redux";
 
@@ -105,7 +106,7 @@ const OrderTemplate = ({ data }) => {
           <div className=" border rounded mx-5 mb-3 ">
             <div className="flex items-center justify-between p-3">
               <div className="text-sm">배송 요청사항을 선택해 주세요</div>
-              <BsChevronDown />
+              <IoMdArrowDropdown />
             </div>
           </div>
           <div className="border rounded p-3 mx-5 mb-5 text-sm pb-14 text-stone-500">

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { setEmail } from "../../Store/Slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { BsTruck, BsSearch, BsList } from "react-icons/bs";
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -19,22 +20,37 @@ const Navigation = () => {
 
   return (
     <>
-      <header className="flex items-center">
+      <header className="flex items-center justify-between">
         {/* 로고 -> 메인 페이지 */}
-        <div className="ml-3">
-          <Link to="/">
-            <picture height={30}>
-              <img src="/logoKakao.png" alt="logoKakao.png" width={125} />
-            </picture>
-          </Link>
+        <div className="flex">
+          <div className="my-6 ml-24 mr-10">
+            <Link to="/">
+              <picture height={15}>
+                <img src="/logoKakao.png" alt="logoKakao.png" width={100} />
+              </picture>
+            </Link>
+          </div>
+          <div className="flex items-center gap-5">
+            <div className="font-bold">홈</div>
+            <div>브랜드데이</div>
+            <div>베스트</div>
+            <div>라이브</div>
+            <div className="border-r pr-4">기획전</div>
+            <div className="flex items-center font-bold text-blue-500">
+              <BsList />
+              카테고리
+            </div>
+          </div>
         </div>
 
-        <nav className="ml-auto mr-3">
-          <div className="flex items-center">
+        <nav className="">
+          <div className="flex items-center gap-5">
+            <BsSearch className="h-[25px] w-[25px]" />
+            <BsTruck className="h-[28px] w-[28px]" />
             {/* 장바구니 */}
             <Link
               to="/cart"
-              className="content-center m-2 p-3 border-r-2 border-stone-100"
+              className="content-center border-r-2 pr-4 border-stone-100"
               onClick={
                 token === null
                   ? (e) => {
@@ -54,10 +70,10 @@ const Navigation = () => {
             {/* 로그인 */}
             {token ? (
               <>
-                <p className="p-3">
+                <p className="pl-3">
                   <b>{email}님</b>
                 </p>
-                <Link to="/loginpage" onClick={handleLogout} className="text-center text-sm font-bold m-2 p-2">
+                <Link to="/loginpage" onClick={handleLogout} className="text-center text-sm font-bold p-2">
                   로그아웃
                 </Link>
               </>
