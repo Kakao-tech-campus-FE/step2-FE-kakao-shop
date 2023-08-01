@@ -10,6 +10,7 @@ import React, { useState, useRef } from 'react';
 import { useMutation, useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import FilledButton from '@components/atoms/button/FilledButton';
+import OrderedOption from '@components/atoms/OrderedOption';
 
 const OrderTemplate = () => {
   const { data, error, isLoading } = useQuery('cart', queryCart);
@@ -55,15 +56,7 @@ const OrderTemplate = () => {
           <span>{item.productName}</span>
           <InnerFlatCard>
             {item.carts.map((cart: CartedOptionData) => {
-              return (
-                <div key={cart.id} className="grid grid-cols-3 items-center mb-3">
-                  <div>{cart.option.optionName}</div>
-                  <div className="text-right">{comma(cart.quantity)}개</div>
-                  <div className="text-[12px] text-right">
-                    <PriceTag>{cart.price}원</PriceTag>
-                  </div>
-                </div>
-              );
+              return <OrderedOption optionName={cart.option.optionName} quantity={cart.quantity} price={cart.price} />;
             })}
           </InnerFlatCard>
         </div>,
@@ -74,7 +67,7 @@ const OrderTemplate = () => {
 
   return (
     <Card>
-      <div className="p-10 space-y-5">
+      <div className="space-y-5">
         <h2 className="text-xl font-bold">배송지 정보</h2>
         <hr />
         <InnerFlatCard>

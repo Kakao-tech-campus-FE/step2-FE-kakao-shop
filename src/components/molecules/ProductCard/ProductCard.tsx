@@ -17,13 +17,15 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <>
       <div className="mb-5">
         <Card>
-          <Link to={`/product/${product.id}`}>
-            <Photo
-              setImgLoaded={setImgLoaded}
-              src={`${process.env.REACT_APP_API_URL}${product.image}`}
-              alt={product.productName}
-            />
-          </Link>
+          <div className="-mx-7 -my-7">
+            <Link to={`/product/${product.id}`}>
+              <Photo
+                setImgLoaded={setImgLoaded}
+                src={`${process.env.REACT_APP_API_URL}${product.image}`}
+                alt={product.productName}
+              />
+            </Link>
+          </div>
         </Card>
       </div>
       <div className="px-[10px]">
