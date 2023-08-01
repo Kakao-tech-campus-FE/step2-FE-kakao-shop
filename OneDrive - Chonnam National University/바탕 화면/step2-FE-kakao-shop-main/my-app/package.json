@@ -21,6 +21,7 @@
     "redux": "^4.2.1",
     "redux-saga": "^1.2.3",
     "redux-thunk": "^2.4.2",
+    "styled-components": "^6.0.5",
     "styled-reset": "^4.5.1",
     "swr": "^2.2.0",
     "web-vitals": "^2.1.4"
@@ -48,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }

@@ -25,6 +25,7 @@ const InputGroup = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        className={className}
       />
       {error ? errorMsg : ""}
     </Box>

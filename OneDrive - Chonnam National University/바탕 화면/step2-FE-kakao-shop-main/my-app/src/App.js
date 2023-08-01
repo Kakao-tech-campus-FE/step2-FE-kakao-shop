@@ -6,26 +6,27 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import CartPage from "./pages/CartPage";
+import Carousel from "./components/atoms/Carousel";
 
 function App() {
 
   return (
-    <div className="App">
-      <BrowserRouter>
-        <Routes>
-          {/* 단독 레이아웃 */}
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<RegisterPage />}></Route>
-          {/* 공통 레이아웃: GNB, Footer */}
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
-          </Route>
-          <Route path="/*" element={<NotFoundPage />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/signup" element={<RegisterPage />}></Route>
+
+        {/* UI Components */}
+        <Route path="/carousel" element={<Carousel />}></Route>
+
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />}></Route>
+          <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+          <Route path="/cart" element={<CartPage />}></Route>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

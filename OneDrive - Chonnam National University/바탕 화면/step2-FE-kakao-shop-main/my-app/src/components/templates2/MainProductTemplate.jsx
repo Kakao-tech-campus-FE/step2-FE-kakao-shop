@@ -16,10 +16,6 @@ const MainProductTemplate = () => {
   const error = useSelector((state) => state.product.error); // eslint-disable-line no-unused-vars
   const isEnd = useSelector((state) => state.product.isEnd);
 
-  // const { data, error, isError, isLoading } = useQuery(`/products?page=${page}`, () =>
-  //   fetchProducts(page)
-  // );
-
   const io = new IntersectionObserver(
     (entries, observer) => { // eslint-disable-line no-unused-vars
       entries.forEach((entry) => {
@@ -29,7 +25,7 @@ const MainProductTemplate = () => {
       });
     },
     {
-      threshold: 0.1,
+      threshold: 1,
     }
   );
 
@@ -42,8 +38,6 @@ const MainProductTemplate = () => {
   useEffect(() => {
     dispatch(getProducts(page));
   }, [dispatch, page]);
-
-  console.log(products);
 
   return (
     <Container>

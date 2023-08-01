@@ -40,9 +40,11 @@ const HomePage = () => {
   return (
     <div>
       <Carousel>
-        {slides.map((s, index) => ( // Add the 'key' prop here
-          <img key={index} src={s} width={width} />
-        ))}
+        {slides.map((s) => ( // Add the 'key' prop here
+          <li key={s} className="carousel-item">
+          <img src={s} width={width} />
+        </li>
+      ))}
       </Carousel>
       <h1>Home Page</h1>
       <MainProductTemplate />

@@ -1,14 +1,7 @@
-import PropTypes from 'prop-types';
+import React from "react"; // eslint-disable-line no-unused-vars
+import "../../styles/atoms/Container.css";
 
-const Container = ({ children, className = "" }) => {
+const Container = ({ className = "", children }) => {
   return <div className={`container ${className}`}>{children}</div>;
 };
-
-Container.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-};
-
 export default Container;
-  
-  // RegisterForm에서 inputGroup을 모아놓은 역할

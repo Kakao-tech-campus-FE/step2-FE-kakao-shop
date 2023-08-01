@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types';
+import React from "react"; // eslint-disable-line no-unused-vars
 
-const Input = ({ type, value, name, onChange, placeholder, className, id }) => {
+const Input = ({ type, value, name, onChange, onBlur, placeholder, className="", id, }) => { // eslint-disable-line no-unused-vars
   return (
     <input
       id={id}
@@ -10,18 +10,8 @@ const Input = ({ type, value, name, onChange, placeholder, className, id }) => {
       value={value}
       onChange={onChange}
       placeholder={placeholder}
+      // className={className}
     />
   );
 };
-
-Input.propTypes = {
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  className: PropTypes.string,
-  id: PropTypes.string,
-};
-
 export default Input;

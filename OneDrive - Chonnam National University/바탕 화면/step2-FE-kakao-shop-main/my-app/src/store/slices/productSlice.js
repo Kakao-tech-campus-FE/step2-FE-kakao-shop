@@ -18,7 +18,7 @@ const productsSlice = createSlice({
     });
     // Promise.resolve()
     builder.addCase(getProducts.fulfilled, (state, action) => {
-      if (action.payload.response.length < 10) {
+      if (action.payload.response.length < 9) {
         state.isEnd = true;
       }
       state.loading = false;
@@ -37,7 +37,6 @@ export const getProducts = createAsyncThunk(
   "products/getProducts",
   async (page) => {
     const response = await fetchProducts(page);
-    console.log(response.data);
     return response.data;
   }
 );

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
-import Title from "../atoms/Title";
-import { Link, useNavigate } from "react-router-dom";
+import Title from "../atoms/Title"; // eslint-disable-line no-unused-vars
+import { Link, useNavigate } from "react-router-dom"; // eslint-disable-line no-unused-vars
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, logOut } from "../../store/slices/userSlice";
-import Button from "../atoms/Button";
+import { setEmail, logOut } from "../../store/slices/userSlice"; 
+import Button from "../atoms/Button"; // eslint-disable-line no-unused-vars
 import GNB from "../atoms/GNB";
 
 const HomeForm = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // eslint-disable-line no-unused-vars
   const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.user.isLogined);
 
@@ -17,7 +17,7 @@ const HomeForm = () => {
     if (email) {
         dispatch(setEmail({ email }));
       }
-    }, [dispatch, email]);
+    }, [dispatch]); // eslint-disable-line no-unused-vars
   
     // 일정 시간 이후 자동으로 로그아웃
     const logoutTimeSecond = 60 * 60; // 1시간
@@ -33,7 +33,7 @@ const HomeForm = () => {
       }
     }
     return () => clearInterval(id);
-  }, [count]);
+  }, [count]);// eslint-disable-line no-unused-vars
 
   return <GNB />;
   // return (

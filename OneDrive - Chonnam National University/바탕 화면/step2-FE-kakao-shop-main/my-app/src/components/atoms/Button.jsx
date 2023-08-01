@@ -1,24 +1,16 @@
-import PropTypes from 'prop-types';
+import React from "react"; // eslint-disable-line no-unused-vars
 
-const Button = ({ onClick, disabled, children }) => {
+const Button = ({ onClick, children, className }) => {
   return (
     <button
+      className={className}
       onClick={(e) => {
         e.preventDefault();
-        onClick(e);
+        onClick();
       }}
-      disabled={disabled}
     >
       {children}
     </button>
   );
 };
-
-Button.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string, // Add className prop if needed
-};
-
 export default Button;

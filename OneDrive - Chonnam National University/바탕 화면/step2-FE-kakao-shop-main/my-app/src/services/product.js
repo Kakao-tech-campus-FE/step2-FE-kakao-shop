@@ -8,10 +8,10 @@ export const fetchProductFromCursor = (cursor) => {
     return instance.get("/products" + "?cursor=" + cursor);
 };
 
-export const getProductById = (id) => {
-    if (!id) {
-        throw Error("id가 필요합니다.");
-    }
+export const getProductsById = (id) => {
+    // if (!id) {
+    //     throw Error("id가 필요합니다.");
+    // }
 
     return instance.get("/products/" + id);
 };

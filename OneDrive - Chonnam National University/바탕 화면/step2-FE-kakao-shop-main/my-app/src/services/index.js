@@ -5,10 +5,10 @@ import axios from "axios";
 
 // AXIOS 인스턴스 선언
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
   timeout: 1000, // 보다 나은 사용자 경험을 위해 timeout 추가
   headers: {
-    "Content-Type": "application/json",
+    "Content-Type": "application/json;charset=UTF-8",
   },
 });
 
@@ -40,15 +40,15 @@ instance.interceptors.response.use(
   (error) => {
     const errorCode = error.response.status;
     if (errorCode >= 100 && errorCode <= 199) {
-      throw new Error("100번대 상태 코드 수신: " + errorCode)
+      throw Error("100번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 200 && errorCode <= 299) {
-      throw new Error("200번대 상태 코드 수신: " + errorCode)
+      throw Error("200번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 300 && errorCode <= 399) {
-      throw new Error("300번대 상태 코드 수신: " + errorCode)
+      throw Error("300번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 400 && errorCode <= 499) {
-      throw new Error("400번대 상태 코드 수신: " + errorCode)
+      throw Error("400번대 상태 코드 수신: " + errorCode)
     } else {
-      throw new Error("500번대 상태 코드 수신: " + errorCode)
+      throw Error("500번대 상태 코드 수신: " + errorCode)
     }
   }
 );
