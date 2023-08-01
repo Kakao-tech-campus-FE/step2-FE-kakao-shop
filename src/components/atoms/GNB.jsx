@@ -17,11 +17,15 @@ function GNB() {
 
   useEffect(() => {
     if (isLoggedIn) {
+      // 로그인된 상태일 경우 타이머 설정
       const timer = setTimeout(() => {
         dispatch(logout());
       }, LOGOUT_TIMER);
 
       setLogoutTimer(timer);
+    } else {
+      // 로그인된 상태가 아닐 경우 타이머 해제
+      clearTimeout(logoutTimer);
     }
 
     return () => {
@@ -29,6 +33,7 @@ function GNB() {
     };
   }, [dispatch, isLoggedIn]);
 
+  // 로그아웃 버튼 클릭시 실행
   const handleLogout = () => {
     clearTimeout(logoutTimer);
     dispatch(logout());

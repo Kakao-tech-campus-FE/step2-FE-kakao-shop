@@ -155,6 +155,7 @@ const OrderTemplate = ({ data }) => {
             }
             mutate(null, {
               onError: (error) => {
+                // 주문 시 에러 처리
                 alert("주문에 실패했습니다.");
               },
               onSuccess: (response) => {

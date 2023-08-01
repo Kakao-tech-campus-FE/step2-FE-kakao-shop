@@ -78,6 +78,7 @@ const OptionColumn = ({ product }) => {
   const { mutate } = useMutation({
     mutationFn: addCart,
   });
+
   const { mutate: mutateOrder } = useMutation({
     mutationKey: "order",
     mutationFn: order,
@@ -87,10 +88,24 @@ const OptionColumn = ({ product }) => {
     (acc, cur) => acc + cur.quantity,
     0
   );
+
   const totalPrice = selectedOptions.reduce(
     (acc, cur) => acc + cur.quantity * cur.price,
     0
   );
+
+  const handleAddToCart = (selectedOptions) => {
+    mutate(
+      selectedOptions.map((el) => {
+        return {
+          name: el.name,
+          optionId: el.optionId,
+          quantity: el.quantity,
+          price: el.price,
+        };
+      })
+    );
+  };
 
   return (
     <div className="mr-24 ml-6 w-3/5 text-black">
@@ -125,7 +140,6 @@ const OptionColumn = ({ product }) => {
                           handleOnChange(count, option.optionId)
                         }
                       />
-
                       <span className="mt-4">
                         {comma(option.price * option.quantity)}원
                       </span>
@@ -151,16 +165,7 @@ const OptionColumn = ({ product }) => {
       <div className="button-group flex">
         <Button
           onClick={() => {
-            mutate(
-              selectedOptions.map((el) => {
-                return {
-                  name: el.name,
-                  optionId: el.optionId,
-                  quantity: el.quantity,
-                  price: el.price,
-                };
-              })
-            );
+            handleAddToCart(selectedOptions);
           }}
           className="bg-black text-white font-semibold rounded-lg w-12 h-12 mt-6 flex items-center justify-center mr-2" // Adjusted width to w-1/4 and added mr-2 for some spacing between the buttons
         >
@@ -176,13 +181,21 @@ const OptionColumn = ({ product }) => {
                 });
               },
               onSuccess: (response) => {
-                const id = response?.data?.response.id;
-                alert("주문이 완료되었습니다.");
-                navigate(`/orders/complete/${id}`);
+                if (response) {
+                  const id = response?.data?.response.id;
+                  alert("주문이 완료되었습니다.");
+                  navigate(`/orders/complete/${id}`);
+                } else {
+                  // 요청 성공했지만, 로그인을 안 했을 경우 에러 처리
+                  toast.error("로그인이 필요합니다.", {
+                    hideProgressBar: true,
+                    autoClose: 2000,
+                  });
+                }
               },
             });
           }}
-          className="bg-amber-300 text-white font-semibold rounded-lg flex-1 h-12 mt-6" // Used flex-1 to allow the button to take up the remaining space
+          className="bg-amber-300 text-white font-semibold rounded-lg flex-1 h-12 mt-6"
         >
           구매하기
         </Button>
