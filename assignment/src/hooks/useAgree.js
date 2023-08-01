@@ -9,7 +9,6 @@ const useAgree = () => {
   const agreePolicyRef = useRef(null);
 
   const handleAllAgree = (e) => {
-    console.log('e', e.target.checked);
     const value = e.target.checked;
     setAgreePayment(value);
     setAgreePolicy(value);
