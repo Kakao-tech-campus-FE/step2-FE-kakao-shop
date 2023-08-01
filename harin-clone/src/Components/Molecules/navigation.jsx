@@ -43,52 +43,54 @@ const Navigation = () => {
           </div>
         </div>
 
-        <nav className="">
-          <div className="flex items-center gap-5">
-            <BsSearch className="h-[25px] w-[25px]" />
-            <BsTruck className="h-[28px] w-[28px]" />
-            {/* 장바구니 */}
-            <Link
-              to="/cart"
-              className="content-center border-r-2 pr-4 border-stone-100"
-              onClick={
-                token === null
-                  ? (e) => {
-                      e.preventDefault();
-                      alert("로그인이 필요합니다");
-                      navigate("/loginpage");
-                      return;
-                    }
-                  : null
-              }
-            >
-              <picture height={30}>
-                <img src="/cart.png" alt="cart.png" width={35} />
-              </picture>
-            </Link>
+        <nav className="flex items-center gap-5 mr-24">
+          <BsSearch className="h-[25px] w-[25px]" />
+          <BsTruck className="h-[28px] w-[28px]" />
+          {/* 장바구니 */}
+          <Link
+            to="/cart"
+            className="content-center border-r-2 pr-4 border-stone-100"
+            onClick={
+              token === null
+                ? (e) => {
+                    e.preventDefault();
+                    alert("로그인이 필요합니다");
+                    navigate("/loginpage");
+                    return;
+                  }
+                : null
+            }
+          >
+            <picture height={30}>
+              <img src="/cart.png" alt="cart.png" width={35} />
+            </picture>
+          </Link>
 
-            {/* 로그인 */}
-            {token ? (
-              <>
-                <p className="pl-3">
-                  <b>{email}님</b>
-                </p>
-                <Link to="/loginpage" onClick={handleLogout} className="text-center text-sm font-bold p-2">
-                  로그아웃
-                </Link>
-              </>
-            ) : (
-              <>
-                <Link to="/loginpage" className="text-center text-sm font-bold m-2 p-2">
-                  로그인
-                </Link>
-                <Link to="/registerpage" className="text-center text-sm font-bold m-2 p-2">
-                  회원가입
-                </Link>
-              </>
-            )}
-            {/* 회원가입 */}
-          </div>
+          {/* 로그인 */}
+          {token ? (
+            <>
+              <p className="pl-3">
+                <b>{email}님</b>
+              </p>
+              <Link
+                to="/loginpage"
+                onClick={handleLogout}
+                className="text-center text-xs p-1 rounded bg-stone-50 border-[1.5px]"
+              >
+                로그아웃
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="/loginpage" className="text-center text-sm font-bold my-2 ml-2 p-2">
+                로그인
+              </Link>
+              <Link to="/registerpage" className="text-center text-sm font-bold my-2 mr-2 p-2">
+                회원가입
+              </Link>
+            </>
+          )}
+          {/* 회원가입 */}
         </nav>
       </header>
       <hr />

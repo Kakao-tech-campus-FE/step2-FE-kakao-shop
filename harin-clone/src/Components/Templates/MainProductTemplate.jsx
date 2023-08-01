@@ -6,6 +6,7 @@ import { getProducts } from "../../Store/Slices/productSlice";
 import Loader from "../Atoms/Loader";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import SkeletonItem from "../Molecules/SkeletonItem";
+import MainCarousel from "../Atoms/MainCarousel";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -52,10 +53,13 @@ const MainProductTemplate = () => {
   }
 
   return (
-    <Container className="mt-12">
-      <ProductGrid products={products} />
-      <div ref={bottomObserver}></div>
-    </Container>
+    <div>
+      <MainCarousel />
+      <Container className="mt-12">
+        <ProductGrid products={products} />
+        <div ref={bottomObserver}></div>
+      </Container>
+    </div>
   );
 };
 
