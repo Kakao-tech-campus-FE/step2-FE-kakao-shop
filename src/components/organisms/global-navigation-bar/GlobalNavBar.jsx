@@ -12,10 +12,13 @@ const Styled = {
   Container: styled.nav`
     position: ${({ $isStorybookMode }) => $isStorybookMode || "fixed"};
 
-    min-width: 80rem;
+    width: 100%;
     height: 4rem;
     padding: 0 calc((100vw - 80rem) / 2);
-    box-sizing: content-box;
+
+    @media screen and (max-width: 80rem) {
+      padding: 0 2rem;
+    }
 
     display: flex;
     justify-content: space-between;
