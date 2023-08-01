@@ -3,18 +3,19 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import React from "react";
-import { login } from "../../services/user";
+import React, { useState } from "react"; // eslint-disable-line no-unused-vars
+// import { login } from "../../services/user";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { setEmail } from "../../store/slices/userSlice";
 import { loginRequest, logOut } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-  // 이메일 가져오기
   const email = useSelector((state) => state.user.email);
+
+  const [setErrorMsg] = useState("");
 
   const { value, handleOnChange } = useInput({
     email: "",
@@ -28,11 +29,18 @@ const LoginForm = () => {
         password: value.password,
       })
     )
-      .then(() => {
+      .then((res) => {
+        dispatch(
+          setEmail({
+            email: value.email,
+            loggedInAt: new Date().getTime(),
+          })
+        );
+        localStorage.setItem("token", res.headers.authorization);
         navigate("/");
       })
-      .catch((err) => {
-        console.log("err", err);
+      .catch((error) => {
+        setErrorMsg(error.message);
       });
     };
 

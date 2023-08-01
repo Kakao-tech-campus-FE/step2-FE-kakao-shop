@@ -1,12 +1,11 @@
 import ProductCard from "../molecules/ProductCard";
-import "../../styles/organisms/ProductGrid.css";
+import "../../styles/organisms/ProductGrid.css"
 
-const ProductGrid = ({ products }) => {
-  // presentation components: 데이터를 단순히 표기만 하는 용도의 컴포넌트
+const ProductGrid = ({ products, loading }) => {
   return (
-    <div className="product-grid">
+    <div className="product-grid" style={{minHeight: "2000px"}}>
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} loading={loading} />
       ))}
     </div>
   );

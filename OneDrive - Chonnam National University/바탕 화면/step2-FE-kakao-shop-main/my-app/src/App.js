@@ -1,3 +1,4 @@
+import React from "react"; // eslint-disable-line no-unused-vars
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
@@ -8,6 +9,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
+
   return (
     <div className="App">
       <BrowserRouter>

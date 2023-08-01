@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import "../../styles/molecules/ProductInformationColumn.css";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
@@ -15,6 +16,14 @@ const ProductInformationColumn = ({ product }) => {
       </div>
     </div>
   );
+};
+
+ProductInformationColumn.propTypes = {
+  product: PropTypes.shape({
+    productName: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 export default ProductInformationColumn;

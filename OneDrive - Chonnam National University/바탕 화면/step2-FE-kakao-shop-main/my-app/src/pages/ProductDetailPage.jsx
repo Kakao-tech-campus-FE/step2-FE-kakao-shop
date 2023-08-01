@@ -1,30 +1,25 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react"; // eslint-disable-line no-unused-vars
+import { useDispatch, useSelector } from "react-redux"; // eslint-disable-line no-unused-vars
 import { useParams } from "react-router-dom";
 import Loader from "../components/atoms/Loader";
-import { getProductById } from "../services/product";
-import { getDetail } from "../store/slices/detailSlice";
 import { useQuery } from "react-query";
-import ProductDetailTemplate from "../components/oTemplates/ProductDetailTemplate";
+import { getProductById } from "../services/product";   // eslint-disable-line no-unused-vars
+import Photo from "../components/atoms/Photo"; // eslint-disable-line no-unused-vars
+import ProductCard from "../components/molecules/ProductCard";
 
 const ProductDetailPage = () => {
-  const dispatch = useDispatch();
-  const { id } = useParams(); //string
-  const { data, error, isLoading } = useQuery(`product/${id}`, () =>
-    getProductById(id)
-  ); // 구분자, API 요청 함수
-
-  // useEffect(() => {
-  //   dispatch(getDetail(id));
-  // }, [dispatch, id]);
-
-  const product = data?.data?.response; // null, undefined
-
+  const { id } = useParams(); // 언제나 string으로 받아옴
+  const dispatch = useDispatch(); // eslint-disable-line no-unused-vars
+  const { data, error, isLoading } = useQuery(`product/${id}`, () => getProductById(id)); // 따로 따로 관리하는 단일 비동기 요청
   return (
     <div>
       {isLoading && <Loader />}
+
       {error && <div>{error.message}</div>}
-      {product && <ProductDetailTemplate product={product} />}
+      {data && <ProductCard product={data.data.response} />}
+      {data && <div>{data.data.response.productName}</div>}
+      {data && <div>{data.data.response.price}</div>}
+      {data && <div>평점: {data.data.response.starCount}점</div>}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //아래 파일 경로 고치기
 import Carousel from "../components/atoms/Carousel";
-import ProductMain from "./ProductMain"
+import MainProductTemplate from "../components/templates2/MainProductTemplate";
 
 function Main() {
     return (
@@ -32,7 +32,7 @@ function Main() {
             </Carousel>
 
             {/* 판매 상품 */}
-            <ProductMain />
+            <MainProductTemplate />
         </>
     );
 }

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import GNB from "../components/atoms/GNB";
-import MainProductTemplate from "../components/oTemplates/MainProductTemplate";
+import MainProductTemplate from "../components/templates2/MainProductTemplate"; // eslint-disable-line no-unused-vars
 
 const MainLayout = () => {
   return (
