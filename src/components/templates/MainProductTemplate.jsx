@@ -1,7 +1,5 @@
 import ProductGrid from "../organisms/ProductGrid";
 
-import "../../styles/templates/mainProductTemplate.css";
-
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 
@@ -9,6 +7,7 @@ import useProducts from "../../hooks/useProducts";
 import { fetchProductsByPage } from "../../services/product";
 import ErrorSign from "../atoms/ErrorSign";
 import Loader from "../atoms/Loader";
+import Carousel from "../molecules/Carousel";
 
 const dummy = {
   data: {
@@ -21,6 +20,13 @@ const dummy = {
     ],
   },
 };
+
+const IMAGES = [
+  'images/carousel/carouselItem1.jpeg',
+  'images/carousel/carouselitem2.jpeg',
+  'images/carousel/carouselitem3.jpeg'
+]
+
 const MainProductTemplate = ({ children }) => {
   const bottomObserver = useRef(null);
   const { products, addProducts } = useProducts();
@@ -88,7 +94,8 @@ const MainProductTemplate = ({ children }) => {
   }, [io]);
 
   return (
-    <div className="main-product-template">
+    <div className="main-product-template flex flex-col justify-center items-center max-w-[1380px] gap-4">
+      <Carousel images={IMAGES}/>
       {!isError && <ProductGrid products={products} isLoading={isLoading} />}
       {isLoading && <Loader />}
       {isError && <ErrorSign error={errorCode} />}

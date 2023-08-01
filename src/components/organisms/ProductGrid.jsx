@@ -1,10 +1,9 @@
 import ProductCard from "../molecules/ProductCard";
-import "../../styles/organisms/productGrid.css";
 import SkeletonProductCard from "../molecules/SkeletonProductCard";
 
 const ProductGrid = ({ products, isLoading }) => {
   return (
-    <div className="product-grid">
+    <div className="product-grid w-[100%] max-w-[1024px] grid md:grid-cols-4 grid-cols-2 gap-4 p-4">
       {products.map((product) =>
         product ? (
           <ProductCard key={product.id} product={product} />
