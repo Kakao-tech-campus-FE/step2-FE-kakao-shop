@@ -179,6 +179,10 @@ const OptionColumn = ({ product }) => {
         <Button
           className="w-14 h-14 rounded bg-black flex items-center justify-center"
           onClick={() => {
+            if (selectedOptions.length === 0) {
+              alert("선택된 옵션이 없습니다.");
+              return;
+            }
             mutate(
               selectedOptions.map((el) => {
                 return {
