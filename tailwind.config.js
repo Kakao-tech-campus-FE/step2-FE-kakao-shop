@@ -41,6 +41,7 @@ module.exports = {
       },
       fontFamily: {
         exo: ['"Exo 2"', 'system-ui', 'sans-serif'],
+        gasoek: ['"Gasoek One"', 'system-ui', 'sans-serif'],
       },
       spacing: {
         header: '100px',

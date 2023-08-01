@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@900&family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@900&family=Nanum+Gothic&display=swap&family=Gasoek+One&display=swap');
 
 @layer base {
   html {
