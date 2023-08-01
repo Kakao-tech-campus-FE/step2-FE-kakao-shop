@@ -14,7 +14,7 @@ const ProductDetailTemplate = ({ product }: ProductDetailTemplateProps) => {
   return (
     <Card>
       {isLoaded ? (
-        <div className="flex space-x-5 p-[30px]">
+        <div className="flex space-x-5">
           <ProductInformationColumn product={product} />
           <OptionColumn product={product} />
         </div>
