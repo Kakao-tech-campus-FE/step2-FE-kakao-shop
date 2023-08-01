@@ -8,7 +8,7 @@ COPY . /usr/src/app
 
 # build
 FROM base AS build
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 
 # copy build files to nginx and start nginx
