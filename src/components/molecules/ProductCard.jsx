@@ -9,7 +9,7 @@ const ProductCard = ({ product, loading }) => {
       {loading ? (
         <ProductCardSkeleton />
       ) : (
-        <Card to={`product/${product.id}`}>
+        <Card to={`/product/${product.id}`}>
           <Photo
             className="rounded-lg"
             src={process.env.REACT_APP_API_URL + product.image}
