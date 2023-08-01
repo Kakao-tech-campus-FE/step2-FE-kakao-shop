@@ -1,0 +1,11 @@
+.breadcrumb {
+  color: #007bff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.breadcrumb:last-child {
+  color: black;
+  cursor: default;
+  pointer-events: none;
+}
