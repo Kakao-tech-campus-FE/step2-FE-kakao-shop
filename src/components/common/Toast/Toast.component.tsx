@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from "react";
+import { FC } from "react";
 import { Toast as ToastType, useToast } from "@/hooks/useToast";
 import Button from "@components/common/Button.component";
 

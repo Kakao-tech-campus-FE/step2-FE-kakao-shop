@@ -2,8 +2,6 @@ import { FC, useState } from "react";
 import ButtonFormItem from "@components/Form/FormItem/ButtonFormItem.component";
 import InputFormItem from "@components/Form/FormItem/InputFormItem.component";
 import { SIGN } from "@/assets/sign.ko";
-import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { RootState } from "@/store";
 import { isPassword, isEmail } from "@/functions/validator";
 import { ERROR } from "@/assets/error.ko";
 
