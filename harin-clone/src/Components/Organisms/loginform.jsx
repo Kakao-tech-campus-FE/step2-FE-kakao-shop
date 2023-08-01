@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const LoginForm = () => {
   const dispatch = useDispatch();
 
-  const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
+  const inputStyle = "text-justify items-center pb-2 text-lg border-b-2 border-stone-200";
 
   const { value, handleOnChange } = useInput({
     email: "",
@@ -28,8 +28,6 @@ const LoginForm = () => {
   };
 
   const navigate = useNavigate();
-  // const token = useSelector((state) => state.user.token);
-  // const name = useSelector((state) => state.user.name);
 
   const loginHandler = () => {
     dispatch(
@@ -48,21 +46,20 @@ const LoginForm = () => {
         // window.location.reload();
       } else if (response.payload.data.error) {
         alert("유효하지 않은 아이디/비밀번호 입니다.");
-        window.history.go(0); // 이렇게 리로드 해도 괜찮나요..?
+        navigate(0);
       }
     });
   };
 
   return (
-    <div className="flex min-h-screen justify-center items-center">
-      <Container className="mx-auto w-1/3 h-2/3 align-middle  border-solid border-2 ">
-        <header className="object-center text-xl p-3 m-3 font-semibold text-center">Sign in</header>
+    <div className="flex flex-col min-h-screen justify-center items-center align-middle gap-8">
+      <img src="./logoKakaoText.png" width={120}></img>
+      <Container className="mx-auto w-4/12 h-4/12 border-[1.5px] p-16">
         <InputGroup
           id="email"
           name="email"
           type="email"
-          placeholder="아이디(이메일)을 입력하세요"
-          label="아이디(이메일)"
+          placeholder="카카오메일 아이디, 이메일, 전화번호"
           value={value?.email}
           onChange={handleOnChange}
           className={inputStyle}
@@ -71,27 +68,38 @@ const LoginForm = () => {
           id="password"
           name="password"
           type="password"
-          placeholder="비밀번호를 입력하세요"
-          label="비밀번호"
+          placeholder="비밀번호"
           value={value?.password}
           onChange={handleOnChange}
           className={inputStyle}
         />
-        <Box className="m-3">
+        <div className="flex items-center gap-3 mt-5">
+          <div className="border-[2px] border-stone-400 rounded-full w-5 h-5"></div>
+          <div className="text-xs">간편로그인 정보 저장</div>
+        </div>
+        <Box className="mt-3">
           <Button
             onClick={loginHandler}
             disabled={validAll()}
             className={
               validAll()
-                ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 transition-colors	"
-                : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"
+                ? "items-center text-center w-full h-12 mt-5 rounded bg-stone-100 transition-colors	"
+                : "items-center text-center w-full h-12 mt-5 rounded bg-amber-300"
             }
           >
             로그인
           </Button>
+          <div className="text-xs text-stone-500 text-center p-4">또는</div>
+          <Button disabled={true} className="items-center text-center w-full h-12 rounded bg-stone-100">
+            QR코드 로그인
+          </Button>
         </Box>
-        <div className="text-center text-xs text-stone-500 p-3 ">
-          <Link to="/">홈으로</Link>
+        <div className="flex justify-between text-center text-xs pt-6 font-semibold">
+          <Link to="/registerpage">회원가입</Link>
+          <div>
+            <span className="border-r border-stone-300 pr-2 mr-2">계정 찾기</span>
+            <span>비밀번호 찾기</span>
+          </div>
         </div>
       </Container>
     </div>

@@ -98,9 +98,11 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen justify-center items-center">
-      <Container className="mx-auto w-1/3 h-2/3 align-middle  border-solid border-2">
-        <div className="object-center	text-xl p-3 m-3 font-semibold text-center">Sign up</div>
+    <div className="flex flex-col min-h-screen justify-center items-center align-middle gap-5 mt-5">
+      <img src="./logoKakaoText.png" width={120}></img>
+
+      {/* <div className="flex min-h-screen justify-center items-center"> */}
+      <Container className="mx-auto w-2/5 h-2/5 border-[1.5px] p-14 mb-5">
         <InputGroup
           id="username"
           type="text"
@@ -176,10 +178,11 @@ const RegisterForm = () => {
             회원가입
           </Button>
         </Box>
-        <div className="text-center text-xs text-stone-500 p-3 ">
+        <div className="text-center text-xs text-stone-500 pt-3 ">
           <Link to="/">홈으로</Link>
         </div>
       </Container>
+      {/* </div> */}
     </div>
   );
 };
