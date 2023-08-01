@@ -167,7 +167,7 @@ const OptionColumn = ({ product }) => {
           onClick={() => {
             handleAddToCart(selectedOptions);
           }}
-          className="bg-black text-white font-semibold rounded-lg w-12 h-12 mt-6 flex items-center justify-center mr-2" // Adjusted width to w-1/4 and added mr-2 for some spacing between the buttons
+          className="bg-black text-white font-semibold rounded-lg w-12 h-12 mt-6 flex items-center justify-center mr-2"
         >
           <img src={cart_white} alt="장바구니 버튼" className="h-10" />
         </Button>

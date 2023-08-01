@@ -34,8 +34,6 @@ const SearchPage = () => {
     setSearchResults(filteredProducts);
   };
 
-  console.log(searchResults);
-
   return (
     <div className="px-20">
       <div className="flex justify-center mt-24 mb-8">

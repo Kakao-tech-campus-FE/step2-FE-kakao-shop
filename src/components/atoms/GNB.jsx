@@ -124,7 +124,3 @@ const StyledButton = styled.button`
   border: none;
   cursor: pointer;
 `;
-
-const SearchButton = styled.button`
-  // Add your styling for the search button here.
-`;
