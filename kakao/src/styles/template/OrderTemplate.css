@@ -92,28 +92,37 @@
 }
 
 .order-option {
-  border-bottom: 1px solid #ebebeb;
   padding: 8px 0;
+  border-top: 1px solid #ebebeb;
 }
 
 .order-option .namegroup {
   display: flex;
 }
-
-.namegroup .product-name {
-  font-size: 18px;
-  font-weight: 700;
+.order-option .namegroup #shop-icon {
+  margin: 5px 3px 0 0;
 }
 
-.order-option .optionNamegroup span {
+.order-option .namegroup .product-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.order-option-item {
+  padding: 5px;
+  background-color: #f2f3f5;
+  margin: 0 0 9px 20px;
+}
+
+.order-option-item .optionNamegroup span {
   font-size: 14px;
   margin-right: 5px;
 }
 
-.order-option .option-price {
+.order-option-item .option-price {
   display: inline-block;
   font-weight: 700;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 16px;
 }
 
@@ -121,6 +130,7 @@
   padding: 16px 10px 0;
   display: flex;
   justify-content: space-between;
+  border-top: 1px solid #ebebeb;
 }
 
 .order-total-price span {
@@ -129,7 +139,7 @@
 }
 
 .order-total-price .won {
-  color: red;
+  color: #4684e9;
 }
 
 /* ----- 정보동의 ----- */
