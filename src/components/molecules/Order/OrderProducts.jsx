@@ -1,37 +1,13 @@
 import React from 'react'
 import strPrice from 'utils/price'
 
-const OrderProducts = ( { products, isOrderResultPage } ) => {
 
-  /** 0인 항목 거르기 */ 
-  const isExist = (collection) => {
-    // POST orders/orderID 에서 받은 데이터일 때
-    if (isOrderResultPage) {
-      const exist = collection.items.filter(
-        (optionItem) => optionItem.quantity > 0)
-      return exist
-    } 
-    
-    // GET carts/ 에서 받은 데이터일 때
-    const exist = collection.carts.map((optionItem) => (
-      (optionItem.quantity > 0) ?
-        {
-          id: optionItem.option.id, 
-          optionName: optionItem.option.optionName,
-          quantity: optionItem.quantity,
-          price: optionItem.option.price,
-        } : undefined
-      )).filter(e => e)
-
-    return exist
-  }
-
+const OrderProducts = ( { data } ) => {
   return (
     <CollectionContainer>
-      {products?.map((collection) => 
-        isExist(collection).length > 0 && 
+      {data?.map((collection) => 
         <CollectionBox collectionName={collection.productName}>
-          {isExist(collection).map((option) => (
+          {collection.options.map((option) => (
             <OptionBox
               optionName={option.optionName} 
               quantity={option.quantity}

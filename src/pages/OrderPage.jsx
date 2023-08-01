@@ -1,16 +1,16 @@
 import React from 'react'
 import Order from 'components/organisms/Order'
 import { useQuery } from 'react-query'
-import { getCarts } from 'api/cart'
 import { useNavigate } from 'react-router-dom'
+import { getOrder } from 'api/order'
 
 const OrderPage = () => {
 
   const navigate = useNavigate()
   /** 장바구니 객체 get */ 
   const query = useQuery(
-    ["getCarts"],
-    getCarts,
+    ["getorder"],
+    getOrder,
     {suspense: true,
     onSuccess: (res) => {
       if (res.totalPrice === 0) {
@@ -43,7 +43,7 @@ const OrderPage = () => {
 
   return (
     <Order
-      data={query.data} 
+      data={!query.isFetching && query.data} 
       userAddress={userAddress} 
       agreeList={agreeList}
       paymentList={payMethods} />

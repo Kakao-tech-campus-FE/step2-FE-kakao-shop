@@ -18,6 +18,8 @@ import { useNavigate } from 'react-router-dom'
 
 const Order = ( { data, userAddress, agreeList, paymentList } ) => {
 
+  const navigate = useNavigate()
+
   const [value, setValue] = useState(null)
   const [checkedSet, setCheckedSet, allChecked] = useCheckbox( agreeList )
   const [payment, setPayment] = useState(null)
@@ -25,8 +27,7 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
   const radioOnChange = (event) => {
     setPayment(prev => event.target.id)
   }
-  
-  const navigate = useNavigate()
+
   /** 제출버튼 클릭 시 주문 요청 */
   const submitHandler = () => {
     saveOrder()
@@ -47,7 +48,7 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
       </AccordionBox>
 
       <AccordionBox title='주문상품 정보' initialOpen>
-        <OrderProducts products={data.products} />
+        <OrderProducts data={data.products} />
       </AccordionBox>
 
       <KakaoBox>
