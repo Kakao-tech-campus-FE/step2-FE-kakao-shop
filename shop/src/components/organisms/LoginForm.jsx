@@ -3,11 +3,11 @@ import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button"
 import useInput from "../../hooks/useInput"
 import { login } from "../../services/user"
-import Title from "../atoms/Title"
 import { useDispatch,useSelector } from "react-redux"
 import { setEmail } from "../../store/slices/userSlice"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
+import Footer from "../atoms/Footer"
 
 
 const LoginForm = () => {
@@ -57,37 +57,34 @@ const LoginForm = () => {
   }
 
   return (
-    <Container className="mx-96 mt-10 items-center justify-center">
-      <div className="w-max p-52 bg-white shadow">
-        <Title>로그인</Title>
+    <div class="flex flex-col h-screen">
+    <Container className="inner flex flex-col gap-7 justify-center items-center h-screen">
+      <img src='/logoKakaoText.png' alt='로그인' />
+      <div className="py-10 px-20 border">
         <span>{email}</span>
         <InputGroup 
           id="email" 
           type="email" 
           name="email"
-          placeholder="이메일을 입력해주세요" 
-          label="이메일"
+          placeholder="이메일" 
           value={value.email}
           onChange={handleOnChange}
           onBlur={validateEmail}
         />
-        {emailErr && <div className="mb-5">{emailErr}</div>}
+        {emailErr && <div className="mt-3 text-red-400">{emailErr}</div>}
         <InputGroup 
           id="password" 
           type="password" 
           name="password"
-          placeholder="******" 
-          label="비밀번호"
+          placeholder="비밀번호" 
           value={value.password}
           onChange={handleOnChange}
           onBlur={validPassword}
         />
-        {pwErr && <div className="mb-5">{pwErr}</div>}
-
-        <div className="mt-5 text-lg font-semibold text-red-400">{error}</div>
-
+        {pwErr && <div className="mt-3 text-red-400">{pwErr}</div>}
+        {error && <div className="bg-gray-300/75 p-5 rounded my-5 text-lg text-red-400"> {error} </div> }
         <Button
-          className="btn-primary py-2 px-4 mt-20 "
+          className={`btn-order block w-full p-4 mt-10 text-lg ${isError?'cursor-not-allowed bg-gray-300 hover:bg-gray-300':'cursor-pointer'}`}
           disabled={isError}
           onClick={()=>{
             //api 요청 
@@ -95,8 +92,16 @@ const LoginForm = () => {
           }}>
           로그인
         </Button>
+        <Button
+            className="block w-full p-4 mt-10 text-lg"
+            onClick={()=>{navigate('/signup')}}
+          >
+            회원가입
+          </Button>
       </div>
     </Container>
+    <Footer/>
+    </div>
   )
 }
 
