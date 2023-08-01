@@ -171,7 +171,7 @@ const RegisterForm = () => {
             disabled={!validAll(value)}
             className={
               !validAll(value)
-                ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-300 text-stone-500 transition-colors	"
+                ? "items-center text-center w-full h-12 mt-4 rounded bg-stone-100 text-stone-500 transition-colors	"
                 : "items-center text-center w-full h-12 mt-4 rounded bg-amber-300"
             }
           >

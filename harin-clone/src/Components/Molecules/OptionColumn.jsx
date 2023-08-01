@@ -9,8 +9,10 @@ import "../../Styles/OptionColumns.css";
 import Dropdown from "../Atoms/Dropdown";
 import { Button, Container } from "react-bootstrap";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
+  const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -128,6 +130,10 @@ const OptionColumn = ({ product }) => {
           btnClass="w-14 h-14 rounded-lg bg-black m-0.5"
           onClick={() => {
             // 로그인 상태가 아닌 경우 처리하기
+            if (localStorage.getItem("token") === null) {
+              alert("로그인이 필요합니다!");
+              navigate("/loginpage");
+            }
             mutate(
               selectedOptions.map((el) => {
                 return {
