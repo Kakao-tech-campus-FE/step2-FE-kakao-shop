@@ -1,6 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import CartList from "../components/molecules/CartList";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { getCart } from "../services/cart";
 import React from "react";
 import { useQuery } from "react-query";

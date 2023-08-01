@@ -170,7 +170,8 @@ const OrderTemplate = ({ data, id }) => {
                     alert("주문에 실패하였습니다. 다시 시도해주세요.");
                   }
                 },
-                onSuccess: () => {
+                onSuccess: (res) => {
+                  const id = res.data.response.id;
                   alert("주문이 완료되었습니다.");
                   navigate(`/orders/complete/${id}`);
                 },
