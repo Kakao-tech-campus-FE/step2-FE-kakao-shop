@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { getProducts } from "../../Store/Slices/productSlice";
 import Loader from "../Atoms/Loader";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import SkeletonItem from "../Molecules/SkeletonItem";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -43,12 +44,11 @@ const MainProductTemplate = () => {
     }
   }, [dispatch, page]);
 
-  if (loading) {
-    return <Loader />;
-  }
-
   if (error) {
     return <span>Error!</span>;
+  }
+  if (loading) {
+    return <SkeletonItem />;
   }
 
   return (

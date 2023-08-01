@@ -1,6 +1,8 @@
 import Card from "../Atoms/Card";
 import { comma } from "../../Utils/convert";
 import Photo from "../Atoms/Photo";
+import { useSelector } from "react-redux";
+import SkeletonItem from "./SkeletonItem";
 
 const ProductCard = ({ product }) => {
   return (

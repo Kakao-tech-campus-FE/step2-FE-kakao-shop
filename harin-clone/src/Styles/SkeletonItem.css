@@ -8,15 +8,8 @@
   max-width: inherit;
 }
 
-
 @media screen and (max-width: 768px) {
   .skeleton-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-
-
-.skeleton-box {
-  background-color: rgb(204, 204, 204);
-  border-radius: 10%;
 }
