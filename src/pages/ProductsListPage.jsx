@@ -7,13 +7,14 @@ import ErrorFallback from "components/organisms/ErrorFallback";
 import { ProductCardSkeleton } from 'components/molecules/ProductCard';
 import Section from 'components/atoms/Section';
 import repeat from 'utils/repeat';
+import Carousel from 'components/molecules/Carousel';
 
 
 const ProductsListPage = () => {
 
   const { 
     data: listData, 
-    isError, error,
+    isError, 
     fetchNextPage,
     isFetching,
     hasNextPage,
@@ -54,10 +55,12 @@ const ProductsListPage = () => {
 
     return () => {io.disconnect();}
     
-  }, [hasNextPage]) 
+  }, [hasNextPage, fetchNextPage]) 
 
   return (
+
     <Section>
+      <Carousel/>
       <ListContainer>
         {listData && <ProductsList obj={listData} />}
                 
