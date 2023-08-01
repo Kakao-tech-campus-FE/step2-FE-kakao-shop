@@ -89,6 +89,7 @@ function BannerImageList({ isMobile }: IsMobile): ReactElement {
                 imageWidth={imageWidth}
                 imagePadding={slideImagePadding}
                 isMobile={isMobile}
+                alt={image.alt}
               />
             ))}
           </ImageList>

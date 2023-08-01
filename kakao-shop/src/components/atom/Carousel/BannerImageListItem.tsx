@@ -8,6 +8,7 @@ type BannerImageListItemProps = {
   imageWidth: number;
   imagePadding: number;
   isMobile: boolean;
+  alt: string;
 };
 
 function BannerImageListItem({
@@ -15,11 +16,12 @@ function BannerImageListItem({
   imageWidth,
   imagePadding,
   isMobile,
+  alt,
 }: BannerImageListItemProps): ReactElement {
   const { imageUrl } = imageItem;
   return (
     <BannerImageListItemBlock imagePadding={imagePadding} imageWidth={imageWidth}>
-      <ItemImage src={imageUrl} imageWidth={imageWidth} isMobile={isMobile} />
+      <ItemImage src={imageUrl} imageWidth={imageWidth} isMobile={isMobile} alt={alt} />
     </BannerImageListItemBlock>
   );
 }
