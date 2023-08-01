@@ -39,7 +39,6 @@ const OrderTemplate = ({ data }) => {
 
   const OrderItems = () => {
     return products?.map((item) => {
-      console.log(item);
       // 해당 상품의 모든 옵션의 상품 수량이 0이라면 표현하지 않는다
       if (!item?.carts.every((option) => option.quantity === 0))
         return (
@@ -211,7 +210,6 @@ const OrderTemplate = ({ data }) => {
                 // 엉뚱한 상품 데이터가 들어왔을 경우 404 페이지
               },
               onSuccess: (res) => {
-                console.log(res);
                 const id = res.data.response.id;
                 alert("주문이 완료되었습니다.");
                 navigate(`/order/complete/${id}`);
