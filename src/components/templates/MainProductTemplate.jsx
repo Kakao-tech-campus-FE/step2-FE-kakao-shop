@@ -3,13 +3,12 @@ import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { fetchProducts } from "../../apis/product";
 import { useInfiniteQuery } from "react-query";
-import CardSkeleton from "../atoms/CardSkeleton";
+import MainPageSkeleton from "../molecules/MainPageSkeleton";
 import { useInView } from "react-intersection-observer";
 
 const MainProductTemplate = () => {
     const {ref, inView} = useInView();
     const {data: products, 
-        isLoading,
         isFetchingNextPage, 
         fetchNextPage, 
         hasNextPage
@@ -36,21 +35,23 @@ const MainProductTemplate = () => {
             } else {
                 console.error('Unknown error occurred: ', error);
             }
-        }
+        },
+        suspense: true,
     }); // 구분자, API 요청 함수
 
     useEffect(() => {
         if(inView && hasNextPage) {
             fetchNextPage();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inView]);
     
     return(
         <Container>
-            <Suspense fallback={<CardSkeleton />}>
-                {isLoading ? (<CardSkeleton />) :  <ProductGrid products={products.pages.flatMap(page => page.response)}/>}
+            <Suspense fallback={<MainPageSkeleton />}>
+                <ProductGrid products={products.pages.flatMap(page => page.response)}/>
                 <div ref={ref}></div>
-                {isFetchingNextPage && <CardSkeleton />}
+                {isFetchingNextPage && <MainPageSkeleton />}
             </Suspense>
         </Container>
     );

@@ -28,7 +28,7 @@ const Counter = ({
     return (
         <span>
             <button onClick={handleOnDecrease} style={{borderColor: '#D8D8D8', outline: 'none'}} disabled={count === 1}>-</button>
-            <span>{count}</span>
+            <span style={{padding: '0.16em 0.4em', border: '1px solid #D8D8D8'}}>{count}</span>
             <button onClick={handleOnIncrease} style={{borderColor: '#D8D8D8', outline: 'none'}}>+</button>
         </span>
     )

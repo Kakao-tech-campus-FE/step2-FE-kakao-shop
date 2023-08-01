@@ -11,5 +11,5 @@ export const comma = (num) => {
         num = parseInt(num);
     }
 
-    return num.toString().replace()
+    return num.toLocaleString();
 }

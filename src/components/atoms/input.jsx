@@ -1,22 +1,9 @@
-const Input = ({
-    type,
-    value,
-    onChange,
-    placeholder,
-    className,
-    id,
-    name,
-}) => {
+const Input = ({ className, children, ...props }) => {
     return (
         <>
-            <input 
-            id={id} // labeling을 위해 id 사용
-            name={name}
-            className={className}
-            type={type} 
-            value={value}
-            onChange={onChange} 
-            placeholder={placeholder} /> 
+            <input className={`myStyle ${className}`} {...props}>
+                {children}
+            </input>
         </>
     );
 };

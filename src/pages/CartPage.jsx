@@ -6,7 +6,12 @@ import CartList from "../components/molecules/CartList";
 
 // 장바구니 페이지
 const CartPage = () => {
-    const {data, isLoading} = useQuery("cart", getCart);
+    const {data, isError, error, isLoading} = useQuery("cart", getCart);
+    
+    if(isError) {
+        alert('에러!');
+    };
+    
     return(
         <Suspense fallback={<Loader />}>
             {isLoading ? <Loader /> : <CartList data={data}/>}

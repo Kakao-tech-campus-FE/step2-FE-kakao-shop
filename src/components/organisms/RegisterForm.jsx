@@ -1,5 +1,5 @@
 import InputGroup from "../molecules/InputGroup";
-import useInput from "../../hooks/useInput";
+import useAuthInput from "../../hooks/useAuthInput";
 import * as Form from '../../styles/organisms/RegisterForm';
 import Footer from "../atoms/Footer";
 import LinkText from "../atoms/LinkText";
@@ -11,7 +11,7 @@ import Msg from "../atoms/Msg";
 
 const RegisterForm = () => {
     const [error, setError] = useState('');
-    const {value, handleOnChange, handleOnCheck, invalidCheck} = useInput({
+    const {value, handleOnChange, handleOnCheck, invalidCheck} = useAuthInput({
         username: "",
         email: "",
         password: "",
