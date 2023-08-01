@@ -7,7 +7,6 @@ import removeTokenByExpiration from "./utils/removeTokenByExpiration";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { useSelector } from "react-redux";
 
 import "antd/dist/antd";
@@ -112,7 +111,6 @@ function App() {
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }
