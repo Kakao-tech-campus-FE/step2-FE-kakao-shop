@@ -13,7 +13,7 @@ const ProductItems = ({products, id}) => {
                 <S.Container className="product" key={idx}>
                     <S.ProductTitleContainer>
                         <span className="title">상품명</span>
-                        <span clasName="product">{product.productName}</span>
+                        <span className="product">{product.productName}</span>
                     </S.ProductTitleContainer>
                     <OptionItem key={idx} items={product.items} idx={idx} />
                 </S.Container>
