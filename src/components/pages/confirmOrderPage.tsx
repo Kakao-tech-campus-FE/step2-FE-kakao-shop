@@ -5,7 +5,6 @@ import ErrorTemplate from '../templates/errorTemplate';
 import { useConfirmOrder } from '../../hooks/query';
 import { LOCALSTORAGE_KEY_TOKEN } from '../../utils/common';
 import { getItemWithExpireDate } from '../../utils/localStorage';
-import Loader from '../atoms/loader';
 
 export default function ConfirmOrderPage() {
   const { orderId } = useParams();
@@ -15,7 +14,7 @@ export default function ConfirmOrderPage() {
     return <ErrorTemplate errorMessage="잘못된 상품 번호입니다." />;
   }
 
-  const { data, isLoading, error } = useConfirmOrder(+orderId, getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
+  const { data, error } = useConfirmOrder(+orderId, getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
 
   // 주문결과 확인 API 요청 중 error가 발생한 경우
   if (error !== null && error instanceof AxiosError) {
@@ -23,9 +22,6 @@ export default function ConfirmOrderPage() {
   }
 
   return (
-    <>
-      {isLoading ? <Loader /> : null}
-      {data ? <ConfirmOrderTemplate orderData={data.data.response} /> : null}
-    </>
+    <ConfirmOrderTemplate orderData={data?.data.response} />
   );
 }

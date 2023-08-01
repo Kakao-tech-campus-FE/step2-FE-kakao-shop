@@ -2,7 +2,6 @@ import { useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { useProductDetail } from '../../hooks/query';
 import ProductDetailTemplate from '../templates/productDetailTemplate';
-import Loader from '../atoms/loader';
 import { ProductDetail } from '../../types/product';
 import { useOptionReducer } from '../../hooks/useOptionReducer';
 import ErrorTemplate from '../templates/errorTemplate';
@@ -15,7 +14,7 @@ export default function ProductDetailPage() {
     return <ErrorTemplate errorMessage="잘못된 상품 번호입니다." />;
   }
 
-  const { data, isLoading, error } = useProductDetail(+productId);
+  const { data, error } = useProductDetail(+productId);
   const productDetail: ProductDetail = data?.data.response;
 
   const { selectedOptions, dispatch } = useOptionReducer();
@@ -26,15 +25,10 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <>
-      {isLoading ? <Loader /> : null}
-      {productDetail ? (
-        <ProductDetailTemplate
-          data={productDetail}
-          selectedOptions={selectedOptions}
-          dispatch={dispatch}
-        />
-      ) : null}
-    </>
+    <ProductDetailTemplate
+      data={productDetail}
+      selectedOptions={selectedOptions}
+      dispatch={dispatch}
+    />
   );
 }
