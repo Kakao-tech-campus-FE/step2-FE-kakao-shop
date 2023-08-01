@@ -50,7 +50,7 @@ export default function LogInForm() {
   return (
     <Container className="p-16 border">
       <Input
-        className="block w-full mb-4 py-2 border-b-2 text-lg"
+        className="block w-full mb-4 p-2 border-b-2 text-lg"
         type="text"
         name="email"
         onChange={handleInputChange}
@@ -58,7 +58,7 @@ export default function LogInForm() {
         value={inputValue.email}
       />
       <Input
-        className="block w-full mb-12 py-2 border-b-2 text-lg"
+        className="block w-full mb-12 p-2 border-b-2 text-lg"
         type="password"
         name="password"
         onChange={handleInputChange}

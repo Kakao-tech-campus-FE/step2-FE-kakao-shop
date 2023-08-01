@@ -6,8 +6,27 @@ import logoKakaoText from "assets/icon/logoKakaoText.png";
 export default function SignUpSection() {
   return (
     <div className="inline-block w-[600px]">
-      <ImageLink to="/" src={logoKakaoText} alt="logoKakaoText" />
+      <ImageLink
+        LinkClassName="block my-12 mx-auto"
+        ImageClassName="h-12"
+        to="/"
+        src={logoKakaoText}
+        alt="logoKakaoText"
+      />
       <SignUpForm />
+      <div className="my-12 space-y-2 text-xs">
+        <p className="flex justify-center space-x-4">
+          <span> 이용약관</span>
+          <span className="font-bold">개인정보 처리방침</span>
+          <span>운영정책</span>
+          <span>고객센터</span>
+          <span>공지사항</span>
+          <span>한국어</span>
+        </p>
+        <p className="text-gray-500">
+          Copyright <span className="font-bold">JsH</span>. All rights reserved.
+        </p>
+      </div>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { isValidSignUp } from "utils/validate.js";
 
 import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
-import LabeledInput from "components/molecules/LabeledInput.js";
+import Input from "components/atoms/Input.js";
 
 export default function SignUpForm() {
   const { inputValue, handleInputChange } = useInput({
@@ -43,44 +43,45 @@ export default function SignUpForm() {
   };
 
   return (
-    <Container>
-      <LabeledInput
+    <Container className="p-16 border">
+      <Input
+        className="block w-full mb-4 p-2 border-b-2 text-lg"
         type="email"
-        id="email"
         name="email"
         onChange={handleInputChange}
-        label="이메일"
         placeholder="이메일"
         value={inputValue.email}
       />
-      <LabeledInput
+      <Input
+        className="block w-full mb-4 p-2 border-b-2 text-lg"
         type="text"
-        id="name"
         name="name"
         onChange={handleInputChange}
-        label="이름"
         placeholder="이름"
         value={inputValue.name}
       />
-      <LabeledInput
+      <Input
+        className="block w-full mb-4 p-2 border-b-2 text-lg"
         type="password"
-        id="password"
         name="password"
         onChange={handleInputChange}
-        label="비밀번호"
         placeholder="비밀번호"
         value={inputValue.password}
       />
-      <LabeledInput
+      <Input
+        className="block w-full mb-4 p-2 border-b-2 text-lg"
         type="password"
-        id="confirmPassword"
         name="confirmPassword"
         onChange={handleInputChange}
-        label="비밀번호 확인"
         placeholder="비밀번호 확인"
         value={inputValue.confirmPassword}
       />
-      <Button onClick={handleButtonClick}>회원가입</Button>
+      <Button
+        className="block w-full py-2 bg-yellow-300 rounded text-lg"
+        onClick={handleButtonClick}
+      >
+        회원가입
+      </Button>
     </Container>
   );
 }
