@@ -1,11 +1,11 @@
-import OptionList from '../atoms/OptionList.jsx';
-import Counter from '../atoms/Counter.jsx';
-import Button from '../atoms/Button.jsx';
-import { comma } from '../../utils/convert';
-import { useState } from 'react';
-import { useMutation } from 'react-query';
-import { addCart } from '../../services/cart';
-import { Card } from 'react-bootstrap';
+import OptionList from "../atoms/OptionList.jsx";
+import Counter from "../atoms/Counter.jsx";
+import Button from "../atoms/Button.jsx";
+import { comma } from "../../utils/convert";
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { addCart } from "../../services/cart";
+import { Card } from "react-bootstrap";
 
 /**
  * 옵션 선택 컬럼
@@ -22,7 +22,11 @@ const OptionColums = ({ product }) => {
     const isOptionSelected = selectedOptions.find((el) => el.Id === option.id);
 
     if (isOptionSelected) {
-      setSelectedOptions((prev) => prev.map((el) => (el.Id === option.id ? { ...el, quantity: el.quantity + 1 } : el)));
+      setSelectedOptions((prev) =>
+        prev.map((el) =>
+          el.Id === option.id ? { ...el, quantity: el.quantity + 1 } : el
+        )
+      );
       setCount((prev) => prev + 1); // Counter의 value 값 증가
     } else {
       setSelectedOptions((prev) => [
@@ -40,11 +44,19 @@ const OptionColums = ({ product }) => {
   };
 
   const handleOnIncrease = (count, optionId) => {
-    setSelectedOptions((prev) => prev.map((el) => (el.Id === optionId ? { ...el, quantity: el.quantity + 1 } : el)));
+    setSelectedOptions((prev) =>
+      prev.map((el) =>
+        el.Id === optionId ? { ...el, quantity: el.quantity + 1 } : el
+      )
+    );
   };
 
   const handleOnDecrease = (count, optionId) => {
-    setSelectedOptions((prev) => prev.map((el) => (el.Id === optionId ? { ...el, quantity: el.quantity - 1 } : el)));
+    setSelectedOptions((prev) =>
+      prev.map((el) =>
+        el.Id === optionId ? { ...el, quantity: el.quantity - 1 } : el
+      )
+    );
   };
 
   const handleOnClickDelete = (option) => {
@@ -75,7 +87,10 @@ const OptionColums = ({ product }) => {
           <ol key={option.id} className="seleted-option-list m-1">
             <div className="my-2">
               <span className="name">{option.name}</span>
-              <span className="delete float-right mx-1 font-thin" onClick={() => handleOnClickDelete(option)}>
+              <span
+                className="delete float-right mx-1 font-thin"
+                onClick={() => handleOnClickDelete(option)}
+              >
                 X
               </span>
             </div>
@@ -88,7 +103,9 @@ const OptionColums = ({ product }) => {
 
               {/* option 삭제 버튼 */}
 
-              <span className="price flex-1 text-right">{comma(option.price)}원</span>
+              <span className="price flex-1 text-right">
+                {comma(option.price)}원
+              </span>
             </div>
           </ol>
         </Card>
@@ -97,7 +114,7 @@ const OptionColums = ({ product }) => {
       <hr />
       <div className="total-price my-3 ">
         <span className="text-lg">
-          총 수량:{' '}
+          총 수량:{" "}
           {/* reduce 함수는 배열을 순회하면서 하나의 값으로 만들어준다.
           배열의 합산에 가장 많이 사용 */}
           {selectedOptions.reduce((acc, cur) => {
@@ -108,7 +125,7 @@ const OptionColums = ({ product }) => {
           개
         </span>
         <span className="float-right text-xl">
-          총 주문금액:{' '}
+          총 주문금액:{" "}
           <span className="font-bold text-kakao_red">
             {comma(
               selectedOptions.reduce((acc, cur) => {
@@ -134,20 +151,24 @@ const OptionColums = ({ product }) => {
               }),
               {
                 onSuccess: () => {
-                  alert('장바구니에 담겼습니다.');
+                  alert("장바구니에 담겼습니다.");
                 },
                 onError: () => {
-                  alert('장바구니에 담기 실패했습니다.');
+                  alert("장바구니에 담기 실패했습니다.");
                 },
               }
             );
           }}
-          className={'mx-2 my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400'}
+          className={
+            "mx-2 my-8 w-full rounded bg-yellow-300 px-4 py-3 font-semibold hover:bg-yellow-400"
+          }
         >
           장바구니 담기
         </Button>
         <Button
-          className={'mx-2  my-8 w-full rounded bg-[#333333] px-4 py-3 font-semibold text-white hover:bg-[#292929]'}
+          className={
+            "mx-2  my-8 w-full rounded bg-[#333333] px-4 py-3 font-semibold text-white hover:bg-[#292929]"
+          }
         >
           바로 구매
         </Button>

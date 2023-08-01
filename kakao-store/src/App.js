@@ -5,11 +5,14 @@ import LoginPage from './pages/LoginPage';
 import { useDispatch } from 'react-redux';
 import { setEmailandPassword } from './store/slices/userSlice';
 import MainLayout from './layouts/MainLayout';
+import RequiredAythLayout from './layouts/RequiredAuthLayout';
 import HomePage from './pages/HomePage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import ErrorPage from './pages/ErrorPage';
 import 'tailwindcss/tailwind.css';
+import OrderPage from './pages/OrderPage';
+import OrderResultPage from './pages/OrderResultPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -34,16 +37,23 @@ function App() {
       <BrowserRouter>
         {/* 단독 레이아웃 */}
 
-        <Routes>
+        <Routes> 
           <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
           <Route path="/signup" element={<RegisterPage />} />
         </Routes>
         <Routes>
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
-            <Route path="/cart" element={<CartPage />} />
+            {/* <Route path="/cart" element={<CartPage />} /> */}
             <Route path="/products/:id" element={<ProductDetailPage />} />
             <Route path="/error" element={<ErrorPage />} />
+          </Route>
+
+          {/* 사용자가 로그인 됐을 때만 접근 가능한 레이아웃*/}
+          <Route element={<RequiredAythLayout />}>
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/order" element={<OrderPage />} />
+            <Route path="/orders/:id" element={<OrderResultPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
