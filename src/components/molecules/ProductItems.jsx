@@ -1,0 +1,27 @@
+import OptionItem from "../atoms/OptionItem";
+import * as S from '../../styles/molecules/ProductItems';
+
+const ProductItems = ({products, id}) => {
+    return(
+        <>
+            <S.OrderNumber>
+                <span className="title">주문번호</span>
+                <span>{id}</span>
+            </S.OrderNumber>
+            {products.map((product, idx) => {
+                return (
+                <S.Container className="product" key={idx}>
+                    <S.ProductTitleContainer>
+                        <span className="title">상품명</span>
+                        <span clasName="product">{product.productName}</span>
+                    </S.ProductTitleContainer>
+                    <OptionItem key={idx} items={product.items} idx={idx} />
+                </S.Container>
+            )
+        })}
+        </>
+
+    );
+};
+
+export default ProductItems;
