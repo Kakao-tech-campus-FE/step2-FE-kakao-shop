@@ -21,11 +21,11 @@ const StyledP = styled.p`
   font-weight: 500;
 `;
 
-const EmptyCart = () => {
+const EmptyCart = ({ text }) => {
   return (
     <Container>
       <StyledH1>텅...</StyledH1>
-      <StyledP>장바구니에 담긴 상품이 없습니다.</StyledP>
+      <StyledP>{text}</StyledP>
     </Container>
   );
 };

@@ -89,17 +89,18 @@ const ProductOption = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const { mutate } = useMutation(addCart, {
     onSuccess: () => {
-      alert("주문되었습니다.");
+      alert("장바구니에 상품이 담겼습니다.");
       setSelectedOptions([]);
-      // window.location.reload();
     },
     onError: (error) => {
+      // 비회원이 장바구니에 상품을 담으려고 할 때, alert로 로그인 유도
       if (error.response.status === 401) {
         alert("로그인이 필요합니다.");
       }
-      if (error.response.status === 500) {
-        alert("장바구니에 담긴 상품입니다.");
-      }
+      // 백엔드 API 수정으로 발생하지 않을 에러
+      // if (error.response.status === 500) {
+      //   alert("장바구니에 담긴 상품입니다.");
+      // }
     },
   });
 
@@ -187,8 +188,8 @@ const ProductOption = ({ options }) => {
             <SelectResultRow>
               <Counter
                 value={item.quantity}
-                onIncrease={(count) => handleOnChange(count, item)}
-                onDecrease={(count) => handleOnChange(count, item)}
+                onClickIncrease={(count) => handleOnChange(count, item)}
+                onClickDecrease={(count) => handleOnChange(count, item)}
               />
               <div>{(item.quantity * item.price).toLocaleString()}원</div>
             </SelectResultRow>

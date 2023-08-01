@@ -64,15 +64,23 @@ const CartList = ({ cart }) => {
     onSuccess: () => {
       navigate("/order");
     },
-    onError: (err) => {
-      console.log(err);
+
+    onError: (error) => {
+      // 로그인 토큰이 사라진 경우
+      if (error.response.status === 401) {
+        alert("로그인 시간이 만료되었습니다. 다시 로그인해주세요.");
+        window.location.reload();
+        return;
+      }
+      // 사용자에게 alert로 문제를 알림
+      alert("네트워크 연결이 원활하지 않습니다. 네트워크 상태를 확인해주세요.");
     },
   });
 
   useEffect(() => {
     setCartItems(cart.data.response.products);
     setTotalPrice(cart.data.response.totalPrice);
-  }, []);
+  }, [cart]);
 
   const handleOnChange = (optionId, quantity, price) => {
     setCartItems((prev) =>
@@ -152,7 +160,7 @@ const CartList = ({ cart }) => {
           </ShipContainer>
         </div>
       ) : (
-        <EmptyCart />
+        <EmptyCart text="장바구니에 담긴 상품이 없습니다." />
       )}
     </Container>
   );

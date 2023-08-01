@@ -7,11 +7,11 @@ import removeTokenByExpiration from "./utils/removeTokenByExpiration";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductPage from "./pages/ProductPage";
 import CartPage from "./pages/CartPage";
-import { ReactQueryDevtools } from "react-query/devtools";
 import { useSelector } from "react-redux";
 
 import "antd/dist/antd";
 import OrderPage from "./pages/OrderPage";
+import ResultPage from "./pages/ResultPage";
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -95,12 +95,22 @@ function App() {
               isLoggedIn ? <CartPage /> : <Navigate to="/signin" replace />
             }
           ></Route>
-          <Route path="/order" element={<OrderPage />}></Route>
+          <Route
+            path="/order"
+            element={
+              isLoggedIn ? <OrderPage /> : <Navigate to="/signin" replace />
+            }
+          ></Route>
+          <Route
+            path="/orders/:id"
+            element={
+              isLoggedIn ? <ResultPage /> : <Navigate to="/signin" replace />
+            }
+          ></Route>
           <Route path="/products/:id" element={<ProductPage />}></Route>
           <Route path="*" element={<NotFoundPage />}></Route>
         </Routes>
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={true} />
     </>
   );
 }
