@@ -1,11 +1,7 @@
 import { Link } from "react-router-dom";
+import { thisYear } from "../../utils/formatYear";
 
 function Footer() {
-  const thisYear = () => {
-    const year = new Date().getFullYear();
-    return year;
-  };
-
   return (
     <footer className="mt-4 bg-slate-100">
       <div className="max-w-screen-lg h-full flex text-center justify-center m-auto py-8">
