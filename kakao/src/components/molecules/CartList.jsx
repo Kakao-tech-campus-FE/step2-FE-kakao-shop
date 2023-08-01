@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Conatiner";
 import Card from "../atoms/Card";
@@ -14,7 +14,6 @@ const CartList = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
-
   const { data, error } = useQuery("carts", getCart, { suspense: true });
 
   const { mutate } = useMutation({

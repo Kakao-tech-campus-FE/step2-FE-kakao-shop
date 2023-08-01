@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 const Counter = ({ quantity, onIncrease, onDecrease }) => {
   const [count, setCount] = useState(0);
-  console.log("카운터 수량", quantity);
 
   useEffect(() => {
     if (quantity !== undefined) {
