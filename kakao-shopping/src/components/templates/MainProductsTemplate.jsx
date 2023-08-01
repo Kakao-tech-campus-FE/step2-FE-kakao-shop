@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import MainProductsSkeleton from "../organisms/MainProductsSkeleton";
+import MainProductsSkeleton from "../molecules/MainProductsSkeleton";
 import PageSetButton from "../molecules/PageSetButton";
 import MainProducts from "../organisms/MainProducts";
 import { useQuery } from "react-query";
 import { getProducts } from '../../apis/api';
-import Error from "../molecules/Error";
+import Error from "../atoms/Error";
 
 const MainProductsTemplate = () => {
   const storedPage = sessionStorage.getItem("currentPage");

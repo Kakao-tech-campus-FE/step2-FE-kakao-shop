@@ -58,7 +58,7 @@ export const getIdProduct = async (id) => {
 export const addCart = async (data) => {
   try {
     const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
-    const response = await instance.post('carts/add', data, {
+    const response =  await instance.post('carts/add', data, {
       headers: {
         Authorization: userAuthToken
       }
@@ -69,18 +69,13 @@ export const addCart = async (data) => {
   }
 };
 
-export const getCart = async () => {
-  try {
-    const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
-    const response = await instance.get('carts', {
+export const getCart = () => {
+    const userAuthToken = JSON.parse(localStorage.getItem("userInfo"))?.token;
+    return instance.get('carts', {
       headers: {
         Authorization: userAuthToken
       }
     });
-    return response;
-  } catch (error) {
-    throw error;
-  }
 };
 
 export const modifyCart = async (data) => {
@@ -95,4 +90,24 @@ export const modifyCart = async (data) => {
   } catch (error) {
     throw error;
   }
+}
+
+//주문하기 
+export const orderProducts = () => {
+  const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
+
+  return instance.post('orders/save', null ,{
+    headers: {
+      Authorization: userAuthToken
+    }
+  });
+}
+
+export const getOrderById = (id) => {
+  const userAuthToken = JSON.parse(localStorage.getItem("userInfo")).token;
+  return instance.get(`orders/${id}`, {
+    headers: {
+      Authorization: userAuthToken
+    }
+  });
 }

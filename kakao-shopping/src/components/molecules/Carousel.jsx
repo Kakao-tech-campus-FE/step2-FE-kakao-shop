@@ -42,7 +42,7 @@ const Carousel = ({images}) => {
 
   return (
     <>
-    <div className="carousel mt-5" style={carouselStyle}>
+    <div className="carousel" style={carouselStyle}>
       <div className="slide-container" style={transformStyle}>
         {images.map((image, index) => (
           <img

@@ -3,7 +3,7 @@ import { getIdProduct } from "../apis/api";
 import { useQuery } from "react-query";
 import ProductDetail from "../components/organisms/ProductDetail";
 import ProductOptions from "../components/organisms/ProductOptions";
-import Error from "../components/molecules/Error";
+import Error from "../components/atoms/Error";
 
 const ProductPage = () => {
   const { id } = useParams();

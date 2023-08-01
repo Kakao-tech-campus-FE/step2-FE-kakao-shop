@@ -1,5 +1,6 @@
 import CartTemplate from "../components/templates/CartTemplate";
 import { Suspense } from "react";
+import ErrorBoundary from "../components/atoms/ErrorBoundary";
 
 const CartPage = () => {
   
@@ -12,9 +13,11 @@ const CartPage = () => {
   }
   
   return (
-    <Suspense fallback={<Loader />}>
-      <CartTemplate />
-    </Suspense>
+    <ErrorBoundary>
+      <Suspense fallback={<Loader />}>
+        <CartTemplate />
+      </Suspense>
+    </ErrorBoundary>
   )
 }
 export default CartPage;

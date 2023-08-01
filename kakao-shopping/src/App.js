@@ -8,6 +8,8 @@ import LoginPage from './pages/LoginPage';
 import Main from './pages/Main';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
+import OrderPage from './pages/OrderPage';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 const queryClient = new QueryClient();
 
@@ -23,6 +25,8 @@ const App = () => {
           <Route path="/main" element={<Main />} />
           <Route path="/product/:id" element={<ProductPage />} /> 
           <Route path="/cart" element={<CartPage />} /> 
+          <Route path="/order" element={<OrderPage />} /> 
+          <Route path="/ordercomplete" element={<OrderCompletePage />} /> 
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>
