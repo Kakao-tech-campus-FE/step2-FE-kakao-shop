@@ -89,7 +89,7 @@ const CartList = () => {
         })
     }
 
-    const getTotalCartCount =  useCallback(() => {
+    const getTotalCartCount = useCallback(() => {
         // console.log(cartItems);
         // 초기 렌더링 시 중간에 undefined가 되는 순간이 있어 cartItems이 존재할때만 실행
         let count = 0;

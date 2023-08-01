@@ -72,6 +72,7 @@ const OptionColumn = ({ product }) => {
                 options={product.options} 
                 onClick={handleOnClickOption} 
             />
+            <hr></hr>
             {/* 담긴 옵션을 표시할 부분 - 옵션 이름 + 가격 + 수량 + 총 가격 */}
             {/* Counter : 옵션 개수를 변경할 수 있는 기능을 제공하는 컴포넌트! */}
             {selectedOptions.map((option) => (
@@ -82,13 +83,14 @@ const OptionColumn = ({ product }) => {
                             onDecrease={(count) => handleOnChange(count, option.optionId)}
                             onIncrease={(count) => handleOnChange(count, option.optionId)}
                         />
-                        <span className="name">{option.name} </span>
-                        <span className="quantity">{option.quantity}개 </span>
-                        <span className="price">{`${comma(option.price)} * ${option.quantity} = ${comma(option.price * option.quantity)}`}원</span>
+                        <div>
+                            <span className="name">{option.name}</span>
+                            <span className="quantity">{option.quantity}개</span>
+                            <span className="price">{`${comma(option.price)} * ${option.quantity} = ${comma(option.price * option.quantity)}`}원</span>
+                        </div>
                     </li>
                 </ol>
-            ))}
-            <hr></hr>
+            ))}     
             <TotalListContainer>
                 <span>총 수량: {
                     comma(selectedOptions.reduce((acc, cur) => {
@@ -137,7 +139,7 @@ const OptionColumnContainer = styled.div`
     border-left: 1px solid #ddd;
     padding-top: 100px;
     padding-left: 50px;
-    min-width: 520px;
+    min-width: 550px;
 `
 
 const TotalListContainer = styled.div`
@@ -147,7 +149,7 @@ const TotalListContainer = styled.div`
 const ButtonGroupContainer = styled.div`
 margin-top: 20px;
     Button {
-        margin-right: 60px;
+        margin-right: 100px;
     }
 `
 const PurchaseButton = styled.button`
