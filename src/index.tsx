@@ -10,9 +10,10 @@ import './tailwind.css';
 import Router from './Router';
 import { store, persistor } from './store';
 
+const token = localStorage.getItem('token');
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.timeout = 1000;
-axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+axios.defaults.headers.common.Authorization = token ? `Bearer ${token}` : null;
 
 const queryClient = new QueryClient({
   defaultOptions: {
