@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { RootState } from 'src/store';
 import { loginStore } from '@store/slices/userSlice';
 import { BsCart, BsPerson, BsBoxArrowInLeft } from 'react-icons/bs';
-import { ReactComponent as HomeIcon } from '@assets/svg/HomeIcon.svg';
+import { ReactComponent as HomeIcon } from '@assets/icon/HomeIcon.svg';
 
 const Header = () => {
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
