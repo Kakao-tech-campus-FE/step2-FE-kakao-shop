@@ -51,25 +51,24 @@ const Carousel = () => {
   const slideRef = useRef(null); 
 
   const NextSlide = () => {
-    if(currentSlide >= TOTAL_SLIDES){
-      // 더이상 넘어갈 슬라이드가 없음
-      setCurrentSlide(0) //처음 사진으로 넘어감 
-    } else{
-      setCurrentSlide(currentSlide + 1)
-    }
+    setCurrentSlide(currentSlide === TOTAL_SLIDES ? 0 : currentSlide + 1);
   }
 
   const PrevSlide = () =>{
-    if (currentSlide ===0){
-      setCurrentSlide(2) // 마지막 사진으로 넘어간다.
-    }else{
-      setCurrentSlide(currentSlide -1)
-    }
+    setCurrentSlide(currentSlide === 0 ? TOTAL_SLIDES : currentSlide - 1)
   }
 
-   useEffect(() => {
+  useEffect(() => {
     slideRef.current.style.transition = 'all 0.5s ease-in-out';
     slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+  }, [currentSlide]);
+
+  useEffect(() => {
+    // 3초마다 NextSlide 함수 호출
+    const interval = setInterval(NextSlide, 3000);
+    return () => {
+      clearInterval(interval);
+    };
   }, [currentSlide]);
 
   return (
