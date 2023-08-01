@@ -271,24 +271,24 @@
 
 /* 카카오 쇼핑 클론 */
 .homepage {
-  margin-top: 80px;
+  margin-top: 75px;
 }
 
 .product-detail-page {
-  margin-top: 80px;
+  margin-top: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .cartpage {
-  margin-top: 80px;
+  margin-top: 75px;
 }
 
 .orderpage {
-  margin-top: 80px;
+  margin-top: 75px;
 }
 
 .orderCompletepage {
-  margin-top: 80px;
+  margin-top: 75px;
 }
