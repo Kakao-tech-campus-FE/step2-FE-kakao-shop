@@ -1,7 +1,6 @@
 import Box from "./Box";
 import Counter from './Counter';
 import { comma } from "../../utils/comma";
-import { Button } from "react-bootstrap";
 import { styled } from "styled-components";
 
 const CartItem = ({ item, onChange, onDelete }) => {
@@ -14,9 +13,9 @@ const CartItem = ({ item, onChange, onDelete }) => {
                     <span>{cart.option.optionName}</span>
                 </div>
                 <OptionButtons>
-                <Button onClick={() => {onDelete(cart.id, 0, cart.option.price * cart.quantity);}}>
-                    삭제하기
-                </Button>
+                    <button onClick={() => {onDelete(cart.id, 0, cart.option.price * cart.quantity);}}>
+                        삭제하기
+                    </button>
                     <Counter className="counter"
                         initialCount={cart.quantity}
                         onIncrease={(count) => {
@@ -74,6 +73,15 @@ const OptionButtons = styled.div`
     }
     & > .price-box {
         justify-content: flex-end;
+    }
+    & > button {
+        margin-right : 10px;
+        border : 1px solid #c5c5c5;
+        cursor: pointer;
+        transition: all 0.5s;
+    }
+    & > button:hover {
+        background-color: #bababa;
     }
 `
 

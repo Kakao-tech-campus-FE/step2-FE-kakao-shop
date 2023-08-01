@@ -160,7 +160,7 @@ const OptionColumnContainer = styled.div`
     border-left: 1px solid #ddd;
     padding-top: 100px;
     padding-left: 50px;
-    min-width: 550px;
+    min-width: 650px;
 `
 
 const TotalListContainer = styled.div`
