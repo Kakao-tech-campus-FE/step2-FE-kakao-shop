@@ -7,7 +7,6 @@ class PaymentInstance extends ApiInstance {
     partner_user_id: "partner_user_id",
     vat_amount: 0,
     tax_free_amount: 0,
-    approval_url: "http://localhost:3000/pay_redirect",
     fail_url: "http://localhost:3000/order",
     cancel_url: "http://localhost:3000/cart",
   };
@@ -19,12 +18,13 @@ class PaymentInstance extends ApiInstance {
     partner_user_id: "partner_user_id",
   };
 
-  payRequest = async (item_name, quantity, total_amount) => {
+  payRequest = async (item_name, quantity, total_amount, address, request) => {
     const params = {
       ...this.payParams,
       item_name,
       quantity,
       total_amount,
+      approval_url: `http://localhost:3000/pay_redirect?address=${address}&request=${request}`,
     };
     return this.instance.post("/v1/payment/ready", params, {
       headers: {

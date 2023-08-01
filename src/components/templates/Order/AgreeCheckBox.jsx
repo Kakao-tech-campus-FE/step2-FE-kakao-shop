@@ -44,7 +44,9 @@ export default function AgreeCheckBox({
       const response = await paymentInstance.payRequest(
         productsName,
         quantity,
-        price
+        price,
+        address,
+        selected
       );
       const {
         data: { next_redirect_pc_url, tid },

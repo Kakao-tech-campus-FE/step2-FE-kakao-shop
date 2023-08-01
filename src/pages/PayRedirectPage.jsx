@@ -11,11 +11,17 @@ export default function PayRedirectPage() {
     const approveReq = async () => {
       const urlParams = new URL(window.location.href).searchParams;
       const pg_token = urlParams.get("pg_token");
+      const address = urlParams.get("address");
+      const request = urlParams.get("request");
+
       try {
         await paymentInstance.payApproveRequest(pg_token);
         orderCart.mutate(null, {
-          onSuccess: async () => {
-            navigate("/result");
+          onSuccess: async (data) => {
+            navigate("/result", {
+              replace: true,
+              state: { address, request, orderId: data.data.response.id },
+            });
           },
         });
       } catch (error) {

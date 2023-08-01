@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import cartInstance from "../apis/cart";
+import orderInstance from "../apis/order";
 
 export default function useCart() {
   const queryClient = useQueryClient();
@@ -13,7 +14,7 @@ export default function useCart() {
   const updateCart = useMutation(cartInstance.updateCart, {
     onSuccess: () => queryClient.invalidateQueries(["carts"]),
   });
-  const orderCart = useMutation(cartInstance.order, {
+  const orderCart = useMutation(orderInstance.order, {
     onSuccess: () => queryClient.invalidateQueries(["carts"]),
   });
 

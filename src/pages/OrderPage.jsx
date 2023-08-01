@@ -55,5 +55,10 @@ export default function OrderPage() {
 }
 
 const getProductName = (products) => {
-  return products.map((product) => product.productName).join(", ");
+  const nameList = products.map((product) => product.productName);
+
+  if (nameList.length === 1) {
+    return nameList[0];
+  }
+  return `${nameList[0]} 외 ${nameList.length - 1}종`;
 };
