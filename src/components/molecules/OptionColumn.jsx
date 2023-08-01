@@ -161,12 +161,19 @@ const OptionColumnContainer = styled.div`
     padding-top: 100px;
     padding-left: 50px;
     min-width: 650px;
+    & > h3 { 
+        font-size : 1.4rem;
+        margin-bottom : 10px;
+    }
+    & > hr {
+        margin : 20px 0;
+    }
 `
 
 const TotalListContainer = styled.div`
     display : flex;
     justify-content: space-between;
-    margin-bottom : 10px;
+    margin-bottom : 20px;
     & > div > span {
         color : #ff6200;
         margin-left : 5px;
