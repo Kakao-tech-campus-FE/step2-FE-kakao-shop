@@ -94,23 +94,25 @@ function BannerImageList({ isMobile }: IsMobile): ReactElement {
           </ImageList>
         </ImageListBox>
 
-        <ArrowButtonStyled
+        <ArrowButton
           direction="left"
           onClick={onPrevSlide}
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
-          disabled={isDisabled}>
+          disabled={isDisabled}
+          aria-label="슬라이드 왼쪽 이동 화살표">
           <LeftChevron src={`${process.env.REACT_APP_IMAGE_CDN}/next.webp`} alt="슬라이드 왼쪽 이동 화살표" />
-        </ArrowButtonStyled>
+        </ArrowButton>
 
-        <ArrowButtonStyled
+        <ArrowButton
           direction="right"
           onClick={onNextSlide}
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
-          disabled={isDisabled}>
+          disabled={isDisabled}
+          aria-label="슬라이드 오른쪽 이동 화살표">
           <RightChevron src={`${process.env.REACT_APP_IMAGE_CDN}/next.webp`} alt="슬라이드 오른쪽 이동 화살표" />
-        </ArrowButtonStyled>
+        </ArrowButton>
       </BannerImageListWrapper>
     </Wrapper>
   );
@@ -118,7 +120,7 @@ function BannerImageList({ isMobile }: IsMobile): ReactElement {
 
 export default BannerImageList;
 
-type IButtonDirection = {
+type ButtonDirection = {
   direction: 'left' | 'right';
 };
 
@@ -151,7 +153,7 @@ const ImageList = styled.div`
   display: flex;
 `;
 
-const ArrowButtonStyled = styled.button<IButtonDirection>`
+const ArrowButton = styled.button<ButtonDirection>`
   display: flex;
   align-items: center;
   justify-content: center;
