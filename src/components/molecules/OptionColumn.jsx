@@ -5,7 +5,7 @@ import Counter from "../atoms/Counter";
 import { useMutation } from "react-query";
 import { addCart } from "../../services/api/cart";
 import Button from "../atoms/Button";
-import { BsCart2, BsFillHeartFill } from "react-icons/bs";
+import { BsCart2, BsFillHeartFill, BsXLg } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
@@ -54,6 +54,10 @@ const OptionColumn = ({ product }) => {
     });
   };
 
+  const handleDeleteOption = (targetId) => {
+    setSelectedOptions((prev) => prev.filter((el) => el.optionId !== targetId));
+  };
+
   /* 장바구니 담기 api 처리
   리액트 쿼리에서 get 메소드는 useQuery를 이용하여 요청, 관리했다.
   post 메소드는 useMutation을 이용하여 관리한다.
@@ -86,11 +90,20 @@ const OptionColumn = ({ product }) => {
         <hr />
         {/* 담긴 옵션이 표기 */}
         {/* ui에서 필요한 정보: 옵션의 이름, 가격, 수량, 총 가격 */}
-        {selectedOptions.map((option) => {
-          return (
-            <ol key={option.optionId} className="selected-option-list">
-              <li className="bg-neutral-100 mt-[10px] p-5">
+        <ol className="selected-option-list">
+          {selectedOptions.map((option) => {
+            return (
+              <li
+                key={option.optionId}
+                className="bg-neutral-100 mt-[10px] p-5"
+              >
                 <span className="text-sm">{option.name}</span>
+                <button
+                  className="float-right border bg-white w-6 h-6 items-center"
+                  onClick={() => handleDeleteOption(option.optionId)}
+                >
+                  <BsXLg className="m-auto" />
+                </button>
                 <div className="flex justify-between items-center pt-3">
                   <Counter
                     value={option.quantity}
@@ -110,9 +123,9 @@ const OptionColumn = ({ product }) => {
                   <span className="text-sm">{comma(option.price)}</span>
                 </div>
               </li>
-            </ol>
-          );
-        })}
+            );
+          })}
+        </ol>
       </div>
       <div className="border-b border-neutral-200">
         <div>
