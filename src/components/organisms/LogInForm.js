@@ -8,7 +8,7 @@ import useInput from "hooks/useInput.js";
 
 import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
-import LabeledInput from "components/molecules/LabeledInput.js";
+import Input from "components/atoms/Input.js";
 import { expireTime } from "utils/constants";
 
 export default function LogInForm() {
@@ -48,27 +48,36 @@ export default function LogInForm() {
   };
 
   return (
-    <Container>
-      <LabeledInput
+    <Container className="p-16 border">
+      <Input
+        className="block w-full mb-4 py-2 border-b-2 text-lg"
         type="text"
-        id="email"
         name="email"
         onChange={handleInputChange}
-        label="이메일"
         placeholder="이메일"
         value={inputValue.email}
       />
-      <LabeledInput
+      <Input
+        className="block w-full mb-12 py-2 border-b-2 text-lg"
         type="password"
-        id="password"
         name="password"
         onChange={handleInputChange}
-        label="비밀번호"
         placeholder="비밀번호"
         value={inputValue.password}
       />
-      <Button onClick={handleButtonClick}>로그인</Button>
       <Button
+        className="block w-full py-2 bg-yellow-300 rounded text-lg"
+        onClick={handleButtonClick}
+      >
+        로그인
+      </Button>
+      <p className="my-4 text-xs text-gray-400">
+        <span className="inline-block w-[45%] h-[1px] border-b" />
+        <span className="inline-block w-[10%]">또는</span>
+        <span className="inline-block w-[45%] h-[1px] border-b" />
+      </p>
+      <Button
+        className="block w-full py-2 bg-gray-100 rounded text-lg"
         onClick={() => {
           navigate("/signup");
         }}
