@@ -8,7 +8,7 @@ import { addCartReq } from "apis/cart";
 import Button from "components/atoms/Button";
 import OptionList from "components/atoms/OptionList";
 import Counter from "components/atoms/Counter";
-import Photo from "components/atoms/Photo";
+import Image from "components/atoms/Image";
 
 import cart_white from "assets/icon/cart_white.png";
 
@@ -146,7 +146,7 @@ export default function ProductOption({ product }) {
       {/* 장바구니 및 바로구매 */}
       <div className="space-x-1">
         <Button onClick={handleCartClick}>
-          <Photo
+          <Image
             className="w-12 rounded-xl"
             src={cart_white}
             alt={"cart_white"}

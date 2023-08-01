@@ -1,12 +1,12 @@
 import { convertToPrice } from "utils/convert";
 
-import Photo from "components/atoms/Photo";
+import Image from "components/atoms/Image";
 import Stars from "components/atoms/Stars";
 
 export default function ProductInformation({ product }) {
   return (
     <div className="inline-flex border">
-      <Photo
+      <Image
         className="w-[22rem]"
         src={process.env.REACT_APP_API_URL + product.image}
         alt={product.productName}

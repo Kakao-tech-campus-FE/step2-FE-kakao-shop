@@ -22,13 +22,13 @@ export default function GNB() {
     <nav className="fixed top-0 w-full h-16 bg-white border flex items-center justify-between">
       <ImageLink
         LinkClassName="ml-32"
-        PhotoClassName="h-8"
+        ImageClassName="h-8"
         to="/"
         src={logoKakao}
         alt="logoKakao"
       />
       <span className="flex items-center mr-32 space-x-4">
-        <ImageLink PhotoClassName="h-8" to="/cart" src={cart} alt="cart" />
+        <ImageLink ImageClassName="h-8" to="/cart" src={cart} alt="cart" />
         <span className="border-x w-0 h-6" />
         {email ? (
           <>
