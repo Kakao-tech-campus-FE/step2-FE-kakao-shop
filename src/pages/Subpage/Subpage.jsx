@@ -1,6 +1,4 @@
 import React from "react";
-import Carousel from "../../components/Carousel/Carousel";
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 
 const mainCarouselImages = [
   "https://st.kakaocdn.net/thumb/C1920x300/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fmain_top_banner_pc%2F20230628164610_6c0ddb94182e498ca2bb5d193958790f.png",

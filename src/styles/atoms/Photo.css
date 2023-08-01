@@ -5,10 +5,15 @@ picture > img {
 
 picture.card {
   width: 200px;
+  overflow: hidden;
 }
-img.card {
+picture.card > img {
   width: 100%;
   max-width: 360px;
+}
+picture.card > img:hover {
+  transform: scale(1.15);
+  transition: transform 0.3s;
 }
 
 picture.detail-photo {

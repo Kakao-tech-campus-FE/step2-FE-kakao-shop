@@ -1,14 +1,11 @@
 import React from "react";
-import Carousel from "../components/Carousel/Carousel";
-import carouselItem1 from "../assets/carouselItems/carouselItem1.jpeg";
-import carouselItem2 from "../assets/carouselItems/carouselItem2.jpeg";
-import carouselItem3 from "../assets/carouselItems/carouselItem3.jpeg";
+import OrderTemplate from "../components/order/templates/OrderTemplate";
+import Loader from "../components/common/atoms/Loader";
+import { useQuery } from "react-query";
+import { getCart } from "../apis/cart";
 
-const carouselItems = [carouselItem1, carouselItem2, carouselItem3];
 export default function OrderPage() {
-  return (
-    <div>
-      <Carousel images={carouselItems} />
-    </div>
-  );
+  const { data, isLoading } = useQuery("cart", getCart);
+  if (isLoading) return <Loader />;
+  return <>{data && <OrderTemplate data={data.response} />}</>;
 }

@@ -1,7 +1,7 @@
 import React from "react";
-import GlobalNavBar from "../components/molecules/GlobalNavBar";
+import GlobalNavBar from "../components/common/molecules/GlobalNavBar";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/atoms/Footer";
+import Footer from "../components/common/atoms/Footer";
 
 export default function MainLayout() {
   return (
@@ -9,7 +9,7 @@ export default function MainLayout() {
       {/* 로그인 버튼, 장바구니 버튼, 메인 로고 */}
       <GlobalNavBar />
       {/* 콘텐츠 영역: 페이지마다 달라지는 영역 */}
-      <div className=" w-full h-20 "></div>
+      <div className=" w-full h-20 box-border"></div>
       <Outlet />
       {/* Footer 영역 */}
       <Footer />
