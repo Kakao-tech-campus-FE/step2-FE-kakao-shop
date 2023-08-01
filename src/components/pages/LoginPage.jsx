@@ -4,14 +4,14 @@ import Container from "../atoms/Container";
 import "../../styles/pages/formPage.css";
 
 const LoginPage = () => {
-    return (
-        <div className={"page login-page"}>
-            <Container className={"form-page"}>
-                <Title>로그인</Title>
-                <LoginForm/>
-            </Container>
-        </div>
-    )
-}
+  return (
+    <div className={"page login-page"}>
+      <Container className={"form-page"}>
+        <Title>로그인</Title>
+        <LoginForm />
+      </Container>
+    </div>
+  );
+};
 
 export default LoginPage;
