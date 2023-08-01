@@ -57,36 +57,32 @@ const OptionColumn = ({ product }) => {
   return (
     <div className="option-column">
       <h3 className="font-bold pb-5">옵션 선택</h3>
-      <Container className="option-container w-auto">
-        <div className="bg-stone-100 w-full">
-          <button
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
-            className=" flex items-center p-3 justify-between"
-          >
-            <div>-주문 선택-</div>
-            {isOpen ? (
-              <div>
-                <BsChevronUp />
-              </div>
-            ) : (
-              <div>
-                <BsChevronDown />
-              </div>
-            )}
-          </button>
-          {isOpen && (
-            <div className="grid bg-white">
-              <OptionList
-                options={product.options}
-                // 사용자가 선택한 option
-                onClick={handleOnClickOption}
-              />
-            </div>
+      <div className="option-container">
+        <button
+          onClick={() => {
+            setIsOpen(!isOpen);
+          }}
+          className="flex items-center p-3 justify-between bg-stone-100 w-full"
+        >
+          <span>-주문 선택-</span>
+          {isOpen ? (
+            <span>
+              <BsChevronUp />
+            </span>
+          ) : (
+            <span>
+              <BsChevronDown />
+            </span>
           )}
-        </div>
-      </Container>
+        </button>
+        {isOpen && (
+          <OptionList
+            options={product.options}
+            // 사용자가 선택한 option
+            onClick={handleOnClickOption}
+          />
+        )}
+      </div>
 
       {/* 담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
