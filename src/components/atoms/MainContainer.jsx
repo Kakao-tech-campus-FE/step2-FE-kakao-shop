@@ -3,8 +3,6 @@ import styled from 'styled-components';
 
 const Container = styled.main`
     display: flex;
-    flex-direction: ${props => props.direction};
-    align-items: ${props => props.direction === 'column' ? 'center' : null};
     margin: 0 auto;
     max-width: 1200px;
 `
@@ -18,7 +16,7 @@ const Container = styled.main`
  */
 const MainContainer = (props) => {
     return (
-        <Container direction={props.direction}>{props.children}</Container>
+        <Container>{props.children}</Container>
     );
 };
 

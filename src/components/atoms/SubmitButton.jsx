@@ -2,36 +2,39 @@ import React from 'react';
 import styled from 'styled-components';  
 
 const StyledButton = styled.button`
-  height: 40px;
   border-radius: 10px;
-  border: ${props => props.border ? props.border : "none"};
-  text-align: center;
-  margin: 10px 0;
+  margin: 10px auto;
+  padding: 10px;
+  width: 100%;
   cursor: pointer;
-  background-color: ${props => 
-            props.disabled ? 
-              "lightgray" : props.color ? 
-                props.color : "yellow"};
+  background-color: ${props => props.color};
 `
 
-/**
- * 제출 버튼 컴포넌트
- * @param {object} props  
- * @param {boolean} props.disabled - 버튼 비활성화 여부
- * @param {function} props.onClick - 버튼 클릭시 실행되는 함수
- * @param {*} props.children - 버튼 내용
- * @returns {*}
- */
-const SubmitButton = (props) => {
+const SubmitButton = 
+  ({
+    disabled, 
+    onClick, 
+    className, 
+    activeColor, 
+    disabledColor,
+    children }) => {
+
+  const [activeBG, disabledBG] = [
+    activeColor ? activeColor : 'yellow', 
+    disabledColor ? disabledColor : 'lightgray'
+  ]
+
+  const color = disabled ? disabledBG : activeBG
+  
   return (
       <StyledButton
-        color={props.color}
-        border={props.border}
         type="submit"
-        disabled={props.disabled} 
-        onClick={props.onClick}
-        >
-        {props.children}
+        disabled={disabled}
+        onClick={onClick}
+        className={className}
+        color={color}
+      >
+        <span>{children}</span>
       </StyledButton>
   );
 };

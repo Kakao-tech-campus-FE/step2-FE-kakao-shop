@@ -1,7 +1,5 @@
 import React from 'react'
-import strPrice from '../../utils/price';
-import ProductCard from '../molecules/ProductCard';
-import ListContainer from '../atoms/productsList/ListContainer';
+import { ProductCard } from 'components/molecules/ProductCard';
 
 /**
  * 상품 리스트
@@ -15,14 +13,14 @@ const ProductsList = (props) => {
   return (
       <>
         {
-          props.obj.pages.map(( pageData, i ) => (
+          props.obj.pages.map(( pageData ) => (
             pageData?.map((item) => (
               <ProductCard 
                 link={`/products/${item.id}`}
                 image={item.image} 
                 productName={item.productName} 
                 key={item.productName}
-                price={strPrice(item.price)}
+                price={item.price}
               />
             ))
           ))

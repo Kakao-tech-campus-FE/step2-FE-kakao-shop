@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import OptionContainer from '../atoms/option/OptionContainer'
-import OptionListBox from 'components/atoms/option/OptionListBox'
-import OptionItem from 'components/molecules/OptionItem'
+
+import OptionSelected from 'components/molecules/DetailPageOption/OptionSelected'
+import ChoiceList from 'components/molecules/DetailPageOption/ChoiceList'
+import TotalPrice from 'components/molecules/TotalPrice'
 import SubmitButton from 'components/atoms/SubmitButton'
-import TotalPrice from 'components/atoms/option/TotalPrice'
-import OptionSelected from 'components/molecules/OptionSelected'
-import strPrice from 'utils/price'
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
+import { OptionContainer, SelectedItemBox, ButtonContainer, SelectedItemsContainer } from 'components/atoms/option/'
+
 import { useSelector } from 'react-redux';
-import addToCart from 'api/addToCart'
-import SelectedItemBox from 'components/atoms/option/SelectedItemBox'
+import { addToCart } from 'api/cart'
 import { useToast } from 'components/molecules/Toast'
 
 /**
@@ -126,56 +124,37 @@ const DetailOption = (props) => {
 
   return (
     <OptionContainer>
-      <OptionListBox open={open}>
-        <OptionItem title={true} onClick={()=>setOpen(prev=>!prev)}> 
-          <span className="flex"> 
-            선택하기 
-            {open 
-              ? <RiArrowUpSLine className='w-5 h-5 ml-auto'/>
-              : <RiArrowDownSLine className='w-5 h-5 ml-auto'/>
-            }
-          </span>
-        </OptionItem>
+      <ChoiceList 
+        open={open}
+        titleOnClick={ () => setOpen(prev => !prev) }
+        listOnClickHandler={selectOption}
+        options={props.options}
+      />
 
-        {open 
-          ? props.options?.map((item)=>(
-            <OptionItem 
-              key={item.optionName}
-              optionPrice={strPrice(item.price)}
-              onClick={() => selectOption(item.id)}
-            >
-              {item.optionName}
-            </OptionItem>
-            ))
-          : null
-        } 
-        
-      </OptionListBox> 
-
-      {selected.map((item) => {
-        if (item.quantity > 0) {
-          return (
+      <SelectedItemsContainer>
+        {selected.map((item) => 
+          item.quantity === 0 ? null :
             <SelectedItemBox>
               <OptionSelected 
                 optionId={item.id}
                 key={item.optionName} 
                 optionName={item.optionName} 
-                price={strPrice(item.quantity * item.price)}
+                price={item.quantity * item.price}
                 quantity={item.quantity}
                 changeQuantity={changeQuantity}
                 clear={() => changeQuantity(item.id, 0, true)}
               />
             </SelectedItemBox> 
-          )} 
-        })
-      }
+        )}
+      </SelectedItemsContainer>
 
-      <TotalPrice price={strPrice(totalPrice)} quantity={totalQuantity}/>
+      <TotalPrice price={totalPrice} quantity={totalQuantity}/>
 
-      <div className='grid grid-cols-2 gap-4'>
+      <ButtonContainer>
         <SubmitButton 
-          color="white" 
-          border="1px solid orange"
+          activeColor="white" 
+          disabledColor="white" 
+          className='border border-solid border-amber-400'
           onClick={submitHandler}
         >
           장바구니
@@ -183,7 +162,7 @@ const DetailOption = (props) => {
         <SubmitButton>
           구매하기
         </SubmitButton>
-      </div>
+      </ButtonContainer>
 
     </OptionContainer>
   )

@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
-import SubmitButton from '../atoms/SubmitButton';
-import CartContainer from 'components/atoms/cart/CartContainer';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from 'react-query';
-import getCarts from 'api/getCarts';
-import TotalPrice from 'components/atoms/option/TotalPrice';
-import strPrice from 'utils/price';
-import OptionSelected from 'components/molecules/OptionSelected';
-import updateCart from 'api/updateCart';
-import postOrder from 'api/postOrder';
-import CartOptionBox from 'components/atoms/cart/CartOptionBox';
-import CartCollectionBox from 'components/atoms/cart/CartCollectionBox';
+import { useNavigate } from 'react-router-dom';
+
+import Section from 'components/atoms/Section';
+import SubmitButton from 'components/atoms/SubmitButton';
+import PageTitleBox from 'components/atoms/PageTitleBox';
+import TotalPrice from 'components/molecules/TotalPrice';
+import OptionSelected from 'components/molecules/DetailPageOption/OptionSelected';
+import { CartOptionBox, CartCollectionBox } from 'components/atoms/cart/';
+
+import { getCarts, updateCart } from 'api/cart';
 
 
 const Cart = () => {
@@ -20,12 +19,16 @@ const Cart = () => {
   const query = useQuery(
     ["getCarts"],
     getCarts,
-    {suspense: true}
+    { suspense: true,
+      onError: () => navigate('/login')
+    }
   )
   
   const mutation = useMutation(
     updateCart, 
-    { onSuccess: () => query.refetch() }
+    { onSuccess: () => query.refetch(),
+      onError: () => navigate('/login')
+    }
   );
   
   /**
@@ -43,11 +46,7 @@ const Cart = () => {
 
   /** 제출버튼 클릭 시 주문 요청 */
   const submitHandler = () => {
-    postOrder()
-    .then((res) => {
-      console.log(res)
-      navigate("/orders")
-    })
+    navigate("/orders")
   }
 
   /** 모음전 별 총 수량 { 모음전_id : 모음전_총_수량 } */
@@ -74,49 +73,60 @@ const Cart = () => {
   
 
   return (
-    <CartContainer>
+    <Section>
 
+      <PageTitleBox title="장바구니"/>
       {
-        query.data.products?.map((collection) => {
-          if (productsQ[collection.id] === 0) {return null}
-          return (
-          <CartCollectionBox id={ collection.id }>
-              <span className='font-bold m-2'> 
-                {collection.productName} 
-              </span>
-              
-              {collection.carts.map((optionItem) => (
-                optionItem.quantity === 0 
-                ? null 
-                : <CartOptionBox>
-                    <OptionSelected 
-                      optionId={optionItem.id}
-                      key={optionItem.option.optionName} 
-                      optionName={optionItem.option.optionName} 
-                      price={strPrice(optionItem.price)}
-                      quantity={optionItem.quantity}
-                      changeQuantity={changeCart}
-                      clear={() => {changeCart(optionItem.id, 0, true)}}
-                    />
-                  </CartOptionBox> 
-                ))
-              }
+        query.data.products?.map((collection) => (
+          productsQ[collection.id] > 0 &&
 
-          </CartCollectionBox> )
-        })
-      }
+          <CartCollectionBox id={ collection.id }>
+            <span className='font-bold m-2'> 
+              {collection.productName} 
+            </span>
+            
+            {collection.carts.map((optionItem) => (
+              optionItem.quantity > 0 &&
+
+                <CartOptionBox>
+                  <OptionSelected 
+                    optionId={optionItem.id}
+                    key={optionItem.option.optionName} 
+                    optionName={optionItem.option.optionName} 
+                    price={optionItem.price}
+                    quantity={optionItem.quantity}
+                    changeQuantity={changeCart}
+                    clear={() => {changeCart(optionItem.id, 0, true)}}
+                  />
+                </CartOptionBox> 
+
+            ))}
+
+          </CartCollectionBox> 
+      ))}
+
+      { totalQ === 0 && <Empty /> }
       
       <TotalPrice 
-          price={!query.isFetching ? strPrice(query.data.totalPrice) : "- 원"} 
-          quantity={totalQ}
+        price={!query.isFetching ? query.data.totalPrice : "-"} 
+        quantity={totalQ}
       />
 
-      <SubmitButton onClick={submitHandler}> 
+      <SubmitButton onClick={submitHandler} disabled={totalQ === 0}> 
         주문하기 
       </SubmitButton>
 
-    </CartContainer>
+    </Section>
   )
 }
 
 export default Cart
+
+
+const Empty = () => {
+  return (
+    <div className='flex h-40'>
+      <span className='m-auto'>장바구니가 비어있습니다</span>
+    </div>
+  )
+}

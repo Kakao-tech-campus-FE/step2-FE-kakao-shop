@@ -1,32 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import FormContainer from "../atoms/form/FormContainer"
-import SubmitGroup from "../molecules/SubmitGroup"
-import InputGroup from "../molecules/InputGroup"
-import {postCheck, postJoin} from "../../api/register"
 import { useNavigate } from 'react-router-dom';
-import { emailValidate, passwordValidate } from '../../utils/validator'
-import CheckGroup from "../molecules/CheckGroup"
+import { postCheck, postJoin } from "api/register"
+import { emailValidate, passwordValidate } from 'utils/validator'
+
+import { FormContainer } from 'components/atoms/form'
+import InputGroup from "components/molecules/InputGroup"
+import SubmitButton from 'components/atoms/SubmitButton';
+import useForm from 'hooks/useForm';
 
 const RegisterForm = () => {
 
   /** 현재 입력 상태 */
-  const [user, setUser] = useState({
+  const [user, setUser] = useForm({
     username: "",
     email: "",
     password: "",
     passwordCheck: "",
   })
 
-  /**
-   * 입력값 바뀔 때마다 user 객체를 변경
-   * @param {object} event 
-   * @param {string} key 
-   */
-  const inputChange = ( event, key ) => {
-    setUser(prevObj => {
-      return {...prevObj, [key]: event.target.value};
-    })
-  }
 
   /** 이메일 중복 여부 상태 */
   const [duple, setDuple] = useState(false);
@@ -73,23 +64,20 @@ const RegisterForm = () => {
         id="username" 
         type="text" 
         label="아이디" 
-        onChange={event => inputChange(event, 'username')}
+        onChange={setUser}
         />
-      
       
       <InputGroup 
         id="email" 
         type="email" 
         label="이메일"
-        onChange={event => inputChange(event, 'email')} 
+        onChange={setUser} 
         message={
-          (!user.email) 
-            ? null 
-            : (emailValidate(user.email) 
-              ? (duple 
-                ? "이미 사용중인 메일입니다 "
-                : null)
-              : "형식이 올바르지 않습니다.")
+          user.email && 
+            ( emailValidate(user.email) 
+                ? (duple && "이미 사용중인 메일입니다.")
+                : "형식이 올바르지 않습니다."
+            )
           }
         />
       
@@ -97,10 +85,9 @@ const RegisterForm = () => {
         id="password" 
         type="password" 
         label="비밀번호" 
-        onChange={event => inputChange(event, 'password')} 
-        message={( user.password && !passwordValidate(user.password) )
-        ? "영문, 숫자, 특수문자 포함 8~20자" 
-        : null }
+        onChange={setUser} 
+        message={user.password && !passwordValidate(user.password) &&
+          "영문, 숫자, 특수문자 포함 8~20자"}
         />
       
 
@@ -108,39 +95,21 @@ const RegisterForm = () => {
         id="passwordCheck" 
         type="password" 
         label="비밀번호 확인"
-        onChange={event => inputChange(event, 'passwordCheck')}
+        onChange={setUser}
         message={user.passwordCheck && user.passwordCheck !== user.password 
-          ? "비밀번호가 일치하지 않습니다" : null } 
+          && "비밀번호가 일치하지 않습니다"} 
         />
 
-      {/* Props
-          onChange : 상태 객체 user에서 passwordCheck 값을 입력값으로
-          message : 형식 안맞을 경우 입력칸 아래에 출력할 메세지
-      */}
-
-      <SubmitGroup
-        disabled={
-            duple
-            || !passwordValidate(user.password)
-            || user.passwordCheck !== user.password
-            } 
+      <SubmitButton
+        disabled={ !passwordValidate(user.password) || duple 
+          || user.passwordCheck !== user.password } 
         onClick={click}
-        message={null}
-        >
+      >
         가입하기
-      </SubmitGroup>       
-      
-
-      {/* Props
-          active : 버튼 활성화 여부 (양식이 맞을 때 활성화, 활성화되면 색이 바뀜)
-          onClick : 제출시 동작
-      */}
+      </SubmitButton>
 
     </FormContainer>
   )
 }
-
-/* abcdef abcdef@naver.com aaaa1111!*/
-
 
 export default RegisterForm
