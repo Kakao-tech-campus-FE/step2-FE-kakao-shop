@@ -5,8 +5,8 @@ import StarRating from "../atoms/StarRatinig";
 const ProductInformationColumn = ({ product, className }) => {
   const { productName, price, image, starCount } = product;
   return (
-    <>
-      <div className="flex pt-8 pr-8 pb-40 max-w-4xl border-r border-neutral-200">
+    <div className="product-info-col border-r border-neutral-200">
+      <div className="flex py-8 pr-8 max-w-4xl ">
         <div className="col flex-none">
           <Photo
             className="min-w-[430px] min-h-[430px] max-w-[430px] max-h-[430px]"
@@ -29,8 +29,15 @@ const ProductInformationColumn = ({ product, className }) => {
           </div>
         </div>
       </div>
-      <div className="w-7 h-[3333px] bg-black" />
-    </>
+      <div className="product-detail m-auto">
+        <p className="border p-3 text-lg text-center">상품 상세정보</p>
+        <div className="pt-10 h-[3000px] text-center">
+          <span className="text-4xl text-neutral-500">
+            상품 정보 준비 중입니다.
+          </span>
+        </div>
+      </div>
+    </div>
   );
 };
 export default ProductInformationColumn;
