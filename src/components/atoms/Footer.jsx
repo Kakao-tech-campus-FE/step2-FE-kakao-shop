@@ -4,10 +4,10 @@ import { thisYear } from "../../utils/formatYear";
 function Footer() {
   return (
     <footer className="mt-4 bg-slate-100">
-      <div className="max-w-screen-lg h-full flex text-center justify-center m-auto py-8">
-        <div className="w-96 font-extrabold text-xl">
+      <nav className="max-w-screen-lg h-full flex text-center justify-center m-auto py-8">
+        <ul className="w-96 font-extrabold text-xl">
           <Link to="/">카카오톡 쇼핑하기</Link>
-        </div>
+        </ul>
         <div className="text-left pr-4">
           <div className="text-sm pb-2">
             <span>
@@ -27,7 +27,7 @@ function Footer() {
             </span>
           </div>
         </div>
-      </div>
+      </nav>
     </footer>
   );
 }
