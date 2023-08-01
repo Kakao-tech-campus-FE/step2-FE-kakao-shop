@@ -8,6 +8,8 @@ export const order = (items) => {
   return instance.post("/orders/save", items);
 };
 
+const getOrderFromIdPath = (orderId) => `/orders/${orderId}`;
+
 export const getOrderFromId = (id) => {
-  return instance.get(`/orders/${id}`);
+  return instance.get(getOrderFromIdPath(id));
 };

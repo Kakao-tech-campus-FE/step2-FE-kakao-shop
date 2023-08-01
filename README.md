@@ -78,3 +78,28 @@
 ┣ 📜index.css
 ┗ 📜index.js
 ```
+
+# KAKAO_CLONE_CODING
+
+카카오 쇼핑하기 홈페이지 클론코딩입니다.
+
+# Command
+
+```bash
+npm install # 의존성 모듈 설치
+npm run build # 패키지 번들링
+npm run start # 프로젝트 실행
+```
+
+# Directory
+
+- sec/apis : 통신 모듈과 개별 API 함수
+- src/components: Atomic pattern으로 구성
+
+# 크램폴린 IDE를 통해 배포
+
+1. 크램폴린 IDE로 접속한다. ()
+2. 컨테이너를 생성한다.
+
+3. terminal을 열고, ./start.sh를 통해 백엔드 환경을 실행한다.
+4. 또 다른 터미널을 생성해 npm start로 3000번 포트에 리액트를 실행한다.
