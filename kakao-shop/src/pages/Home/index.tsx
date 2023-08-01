@@ -85,7 +85,7 @@ const Home = () => {
 
         {!isMobile && (
           <S.TodayProductSection>
-            <img src={asideImage} alt="아이스크림" />
+            <img width={320} height={310} src={asideImage} alt="아이스크림" />
           </S.TodayProductSection>
         )}
       </S.LayoutSplit>
