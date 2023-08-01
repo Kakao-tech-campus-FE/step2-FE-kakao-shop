@@ -10,6 +10,7 @@ import ProductDetailPage from '@components/pages/ProductDetailPage';
 import CartPage from '@components/pages/CartPage';
 import PNFPage from '@components/pages/PNFPage';
 import OrderPage from '@components/pages/OrderPage';
+import OrderComplete from '@components/pages/OrderComplete';
 
 const mainRouter = () =>
   useRoutes([
@@ -51,7 +52,16 @@ const mainRouter = () =>
             },
             {
               path: 'order',
-              element: <OrderPage />,
+              children: [
+                {
+                  index: true,
+                  element: <OrderPage />,
+                },
+                {
+                  path: 'complete/:id',
+                  element: <OrderComplete />,
+                },
+              ],
             },
             {
               path: '*',
