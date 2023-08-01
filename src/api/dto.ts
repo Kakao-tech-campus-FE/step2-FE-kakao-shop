@@ -105,19 +105,26 @@ export interface EditCartedItem {
  * 주문 API
  */
 
-export interface OrderedProducdtData {
+export interface OrderedOptionData {
+  id: number; // 옵션 id
+  optionName: string; // 선택된 옵션
+  quantity: number; // 수량
+  price: number; // 해당 옵션 총합 가격
+}
+
+export interface OrderedProductData {
   productName: string;
-  items: CartedOptionData[];
+  items: OrderedOptionData[];
 }
 
 export interface OrderData {
   id: number;
-  products: OrderedProducdtData[];
+  products: OrderedProductData[];
   totalPrice: number;
 }
 
 export interface OrderResult {
   success: boolean;
-  response: OrderData[];
+  response: OrderData;
   error: null;
 }
