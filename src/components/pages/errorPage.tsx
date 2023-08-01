@@ -1,13 +1,13 @@
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-interface ErrorTemplateProps {
-  errorMessage: string;
+interface ErrorPageProps {
+  errorMessage?: string;
 }
 
-export default function ErrorTemplate({
+export default function ErrorPage({
   errorMessage,
-}: ErrorTemplateProps) {
+}: ErrorPageProps) {
   return (
     <main>
       <div className="text-center">
@@ -18,7 +18,7 @@ export default function ErrorTemplate({
           />
         </div>
         <h1>페이지를 가져오지 못했습니다.</h1>
-        <p>{errorMessage}</p>
+        {errorMessage ? <p>{errorMessage}</p> : null}
       </div>
     </main>
   );

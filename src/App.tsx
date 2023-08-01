@@ -15,28 +15,31 @@ import { queryClient } from './utils/query';
 import OrderPage from './components/pages/orderPage';
 import ConfirmOrderPage from './components/pages/confirmOrderPage';
 import GlobalLoader from './components/atoms/globalLoader';
+import ErrorBoundary from './components/layouts/errorBoundary';
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <BrowserRouter>
-          <Suspense fallback={<GlobalLoader />}>
-            <Routes>
-              {/* 단독 레이아웃 */}
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/login" element={<LoginPage />} />
+          <ErrorBoundary>
+            <Suspense fallback={<GlobalLoader />}>
+              <Routes>
+                {/* 단독 레이아웃 */}
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/login" element={<LoginPage />} />
 
-              {/* 공통 레이아웃 */}
-              <Route element={<MainLayout />}>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/product/:productId" element={<ProductDetailPage />} />
-                <Route path="/cart" element={<CartPage />} />
-                <Route path="/order" element={<OrderPage />} />
-                <Route path="/confirmOrder/:orderId" element={<ConfirmOrderPage />} />
-              </Route>
-            </Routes>
-          </Suspense>
+                {/* 공통 레이아웃 */}
+                <Route element={<MainLayout />}>
+                  <Route path="/" element={<MainPage />} />
+                  <Route path="/product/:productId" element={<ProductDetailPage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/order" element={<OrderPage />} />
+                  <Route path="/confirmOrder/:orderId" element={<ConfirmOrderPage />} />
+                </Route>
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </BrowserRouter>
       </Provider>
     </QueryClientProvider>
