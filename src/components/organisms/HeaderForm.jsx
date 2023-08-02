@@ -96,13 +96,6 @@ const HeaderForm = () => {
             로그인
           </LinkButton>
         )}
-        {/* <LinkButton */}
-        {/*  to="/signup" */}
-        {/*  onClick={() => {}} */}
-        {/*  className="pt-[25px] pb-[25px] pl-[25px] text-[14px] leading-[30px]" */}
-        {/* > */}
-        {/*  회원가입 */}
-        {/* </LinkButton> */}
       </Container>
     </div>
   );
