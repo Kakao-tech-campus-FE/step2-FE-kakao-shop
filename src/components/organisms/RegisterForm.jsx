@@ -72,40 +72,36 @@ const RegisterForm = () => {
           type="text"
           name="username"
           placeholder="이름"
-          label="이름"
           value={values.username}
           onChange={handleChange}
-          className="relative border-b-2 border-gray-300 mt-4 mb-3"
+          className="relative border-b-2 border-gray-300"
         />
         <InputGroup
           id="email"
           type="email"
           name="email"
           placeholder="이메일"
-          label="이메일"
           value={values.email}
           onChange={handleChange}
-          className="relative border-b-2 border-gray-300 mt-4 mb-3"
+          className="relative border-b-2 border-gray-300"
         />
         <InputGroup
           id="password"
           type="password"
           name="password"
           placeholder="비밀번호"
-          label="비밀번호"
           value={values.password}
           onChange={handleChange}
-          className="relative border-b-2 border-gray-300 mt-4 mb-3"
+          className="relative border-b-2 border-gray-300"
         />
         <InputGroup
           id="passwordConfirm"
           type="password"
           name="passwordConfirm"
           placeholder="비밀번호 확인"
-          label="비밀번호 확인"
           value={values.passwordConfirm}
           onChange={handleChange}
-          className="relative border-b-2 border-gray-300 mt-4 mb-3"
+          className="relative border-b-2 border-gray-300"
         />
         {errorMessage && (
           <AlertBox
