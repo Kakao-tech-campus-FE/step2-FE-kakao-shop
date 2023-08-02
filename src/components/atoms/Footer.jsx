@@ -14,14 +14,15 @@ const Footer = () => {
         <div className="footer-info">
           <div className="info-txt text-sm text-neutral-500">
             <p>
-              (주)카카오대표이사 : 홍은택주소 : 제주특별자치도 제주시 첨단로 242
+              (주)카카오대표이사 : 홍은택 주소 : 제주특별자치도 제주시 첨단로
+              242
             </p>
             <p>
               사업자등록번호 : 120-81-47521 통신판매업신고 : 제2015 - 제주아라 -
               0032호 호스팅 사업자 : (주)카카오
             </p>
             <p>
-              이메일 : cs.shopping@kakaocorp.com고객센터 : 1544-5664 (통화료
+              이메일 : cs.shopping@kakaocorp.com 고객센터 : 1544-5664 (통화료
               발생 / 평일 09:00~18:00) 톡상담하기 (평일 09:00~18:00)
             </p>
             <div className="kakao-corp py-2">
