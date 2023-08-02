@@ -16,8 +16,7 @@ const ProductOption = ({ product }) => {
   const handleOnClickOption = (option) => {
     // 동일한 옵션 클릭을 방지해주어야 하는 코드
     let isOptionSelected;
-    console.log('getLocalStorage: ', getLocalStorage('user'));
-    if (getLocalStorage('user') && JSON.parse(getLocalStorage('user')?.value)) {
+    if (getLocalStorage('user') && JSON.parse(getLocalStorage('user')).value) {
       isOptionSelected = selectedOptions.find(
         (selectedOption) => selectedOption.optionId === option.id
       );
@@ -149,7 +148,7 @@ const ProductOption = ({ product }) => {
           onClick={() => {
             if (
               getLocalStorage('user') &&
-              JSON.parse(getLocalStorage('user')?.value)
+              JSON.parse(getLocalStorage('user')).value
             ) {
               mutateAddCart(
                 selectedOptions.map((el) => {
@@ -180,7 +179,7 @@ const ProductOption = ({ product }) => {
           onClick={() => {
             if (
               getLocalStorage('user') &&
-              JSON.parse(getLocalStorage('user'))?.value
+              JSON.parse(getLocalStorage('user')).value
             ) {
               mutateAddCart(
                 selectedOptions.map((el) => {
