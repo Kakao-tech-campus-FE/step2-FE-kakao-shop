@@ -14,7 +14,7 @@ export default function ProductCard({ product }) {
         src={process.env.REACT_APP_API_URL + product.image}
         alt={product.productName}
       />
-      <h3 className="inline-block text-sm leading-tight">
+      <h3 className="text-sm">
         {product.productName}
       </h3>
       <p className="text-[1.3rem] font-bold">
