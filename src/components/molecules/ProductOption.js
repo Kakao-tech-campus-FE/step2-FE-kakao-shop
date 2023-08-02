@@ -9,11 +9,14 @@ import Button from "components/atoms/Button";
 import OptionList from "components/atoms/OptionList";
 import Counter from "components/atoms/Counter";
 import Image from "components/atoms/Image";
+import Toast from "components/atoms/Toast";
 
 import cart_white from "assets/icon/cart_white.png";
 
 export default function ProductOption({ product }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [timeoutId, setTimeoutId] = useState(-1);
   const { mutate } = useMutation({ mutationFn: addCartReq });
   const navigate = useNavigate();
 
@@ -76,7 +79,13 @@ export default function ProductOption({ product }) {
     mutate(formattedData, {
       onSuccess: () => {
         setSelectedOptions([]);
-        alert("장바구니에 상품이 담겼습니다.");
+        setVisible(true);
+        if (timeoutId !== -1) clearTimeout(timeoutId);
+        setTimeoutId(
+          setTimeout(() => {
+            setVisible(false);
+          }, 1000 * 3)
+        );
       },
       onError: (err) => {
         console.dir(err);
@@ -164,6 +173,7 @@ export default function ProductOption({ product }) {
           </Button>
         </div>
       </div>
+      {visible && <Toast />}
     </div>
   );
 }

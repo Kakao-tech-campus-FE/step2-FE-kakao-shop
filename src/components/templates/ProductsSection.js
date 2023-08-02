@@ -5,6 +5,11 @@ import { getProductspReq } from "apis/product.js";
 import ProductsGrid from "components/organisms/ProductsGrid.js";
 import Loader from "components/atoms/Loader.js";
 import Skeleton from "components/atoms/Skeleton";
+import Carousel from "components/atoms/Carousel";
+
+import carouselImage1 from "assets/carousel/carouselItem1.jpeg";
+import carouselImage2 from "assets/carousel/carouselItem2.jpeg";
+import carouselImage3 from "assets/carousel/carouselItem3.jpeg";
 
 export default function ProductSections() {
   const { isLoading, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
@@ -44,15 +49,18 @@ export default function ProductSections() {
     <>
       {isLoading && <Loader />}
       {data && (
-        <ProductsGrid
-          products={data.pages.flatMap((page) => page.data.response)}
-        >
-          {isFetchingNextPage &&
-            Array(9)
-              .fill(null)
-              .map((_, index) => <Skeleton key={index} />)}
-          <div ref={observerRef}></div>
-        </ProductsGrid>
+        <>
+          <Carousel images={[carouselImage1, carouselImage2, carouselImage3]} />
+          <ProductsGrid
+            products={data.pages.flatMap((page) => page.data.response)}
+          >
+            {isFetchingNextPage &&
+              Array(9)
+                .fill(null)
+                .map((_, index) => <Skeleton key={index} />)}
+            <div ref={observerRef}></div>
+          </ProductsGrid>
+        </>
       )}
     </>
   );

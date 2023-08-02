@@ -19,7 +19,7 @@ export default function GNB() {
   };
 
   return (
-    <nav className="fixed top-0 w-full h-16 bg-white border flex items-center justify-between">
+    <nav className="fixed top-0 w-full h-16 bg-white border z-10 flex items-center justify-between">
       <ImageLink
         LinkClassName="ml-32"
         ImageClassName="h-8"

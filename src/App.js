@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setEmail, setLogInTime } from "store/slices/userSlice";
 
-import Test from "pages/Test.js";
 import LogIn from "pages/LogIn.js";
 import SignUp from "pages/SignUp.js";
 import Layout from "components/templates/Layout";
@@ -16,7 +15,6 @@ import Result from "pages/Result.js";
 import NotFound from "pages/NotFound.js";
 
 import { expireTime } from "utils/constants";
-import "App.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +34,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App relative">
+    <div className="relative text-center">
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<LogIn />} />
@@ -50,7 +48,6 @@ function App() {
               <Route path="/result/:orderId" element={<Result />} />
             </Route>
           </Route>
-          <Route path="/test" element={<Test />} />
           {/* 잘못된 경로 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
