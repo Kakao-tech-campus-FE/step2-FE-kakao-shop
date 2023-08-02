@@ -17,10 +17,12 @@ import AgreeCheckBoxGroup from "../molecules/AgreeCheckBoxGroup";
 import Text from "../../common/atoms/Text";
 import { PAYMENT_AGREE_OPTION } from "../../../utils/constant";
 import { useNavigate } from "react-router-dom";
+import Modal from "../../common/atoms/Modal";
 
 export default function OrderTemplate({ data }) {
   const [isUserInfoOpen, setIsUserInfoOpen] = useState(true);
   const [isOrderProductInfoOpen, setIsOrderProductInfoOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { mutate } = useMutation(order);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,6 +46,14 @@ export default function OrderTemplate({ data }) {
 
   return (
     <Container className="flex w-full min-w-[1280px] items-center justify-center border-0 border-b border-solid border-zinc-300 bg-zinc-100">
+      {isModalOpen && (
+        <Modal
+          setIsModalOpen={setIsModalOpen}
+          children={
+            "카카오페이 구매조건(결제조건)확인 및 개인정보 제 3자 제공 동의를 체크해주세요."
+          }
+        />
+      )}
       <Container className="flex w-[870px] flex-col items-center gap-3 p-5">
         <Box className="w-full bg-white">
           <Title className="m-0 border-0 border-b border-solid border-zinc-300 py-3 text-center text-base">
@@ -93,14 +103,13 @@ export default function OrderTemplate({ data }) {
             onClick={() => {
               // 모두 체크되어있는지 확인
               if (!Object.values(checkboxState).every((checked) => checked)) {
-                alert("카카오페이 구매조건(결제조건)확인 동의를 체크해주세요.");
+                setIsModalOpen(true);
                 return;
               }
               mutate(null, {
                 onSuccess: (res) => {
                   const id = res.data.response.id;
                   dispatch(initializeCart());
-                  alert("주문이 완료되었습니다.");
                   navigate(`/orders/complete/${id}`);
                 },
                 onError: (error) => {
