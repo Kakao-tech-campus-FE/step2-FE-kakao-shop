@@ -9,9 +9,41 @@ npm run start # 프로젝트 실행
 ₩₩₩
 
 # Directory Pattern
-- src/apis : 통신 모듈과 개별 API 함수
-- src/components : Atomic pattern으로 구성된 컴포넌트 디렉터리
-- src/hooks : 커스텀 훅
+- apiTest
+	- apiTest.js : api를 test하기 위해 생성
+- public
+- src
+- component
+- atoms
+	- Box.jsx
+	- Button.jsx
+	- Card.jsx
+	- Carousel.jsx
+	- CartItem.jsx
+	- Container.jsx
+	- Counter.jsx
+	- GNB.jsx
+	- Input.jsx
+	- Label.jsx
+	- Loader.jsx
+	- OptionItem.jsx
+	- OptionList.jsx
+	- Photo.jsx
+	- Skeleton.jsx
+	- Title.jsx
+- molecules
+	- CartList.jsx
+	- InputGroup.jsx
+	- OptionColumn.jsx
+	- ProductCard.jsx
+	- ProductInformation.jsx
+- Organisms
+- LoginForm.jsx
+- ProductGrid.jsx
+- RegisterForm.jsx
+- templates
+- Main
+
 
 # 크램폴린 IDE를 통해 배포
 1. 크램폴린 IDE로 접속한다. (http://something.com)
