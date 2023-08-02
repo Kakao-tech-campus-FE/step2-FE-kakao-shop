@@ -30,7 +30,7 @@ const Breadcrumb = () => {
             {item}
             {index !== path.length - 1 && (
               <>
-                <span class="material-symbols-outlined">navigate_next</span>
+                <span className="material-symbols-outlined">navigate_next</span>
               </>
             )}
           </li>

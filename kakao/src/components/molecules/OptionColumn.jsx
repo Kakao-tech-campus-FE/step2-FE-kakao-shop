@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/molecules/OptionColumn.css";
 
 const OptionColumn = ({ product }) => {

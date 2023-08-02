@@ -63,7 +63,7 @@ const GNB = () => {
             </nav>
             <div className="head-cate">
               <a href="#">
-                <span class="material-symbols-outlined">menu</span>
+                <span className="material-symbols-outlined">menu</span>
                 <span className="cate">카테고리</span>
               </a>
             </div>
@@ -72,7 +72,7 @@ const GNB = () => {
 
         <div className="header-menu">
           <a className="menu-search">
-            <span class="material-symbols-outlined">search</span>
+            <span className="material-symbols-outlined">search</span>
           </a>
           <span className="menu-util">
             <Link to="/cart" className="link-util">

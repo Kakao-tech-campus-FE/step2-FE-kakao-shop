@@ -1,7 +1,8 @@
 .card {
-  width: 270px;
+  width: 280px;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
   padding-bottom: 25px;
+  box-sizing: border-box;
 }
