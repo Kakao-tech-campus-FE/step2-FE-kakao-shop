@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { styled } from 'styled-components';
 import { useInfiniteQuery } from 'react-query';
-import getProducts from 'api/getProducts';
+import { getProducts } from 'api/product';
 import ProductsList from 'components/organisms/ProductsList';
 import ErrorFallback from "components/organisms/ErrorFallback";
 import { ProductCardSkeleton } from 'components/molecules/ProductCard';
@@ -55,7 +55,7 @@ const ProductsListPage = () => {
 
     return () => {io.disconnect();}
     
-  }, [hasNextPage, fetchNextPage]) 
+  }, [hasNextPage]) 
 
   return (
 
