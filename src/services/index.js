@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 // const passwordReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*-=])(?=.*[0-9]).{8,20}$/;
@@ -42,6 +43,10 @@ instance.interceptors.response.use(
     } else if (errorCode >= 300 && errorCode <= 399) {
       throw Error("300번대 상태 코드 수신: " + errorCode)
     } else if (errorCode >= 400 && errorCode <= 499) {
+      if(errorCode === 404) {
+        const navigate = useNavigate();
+        navigate('/404');
+      }
       throw Error("400번대 상태 코드 수신: " + errorCode)
     } else {
       throw Error("500번대 상태 코드 수신: " + errorCode)
