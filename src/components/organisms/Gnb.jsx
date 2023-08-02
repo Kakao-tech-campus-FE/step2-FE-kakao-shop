@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
 import { useSelector } from "react-redux";
+import { persistor } from "../../index";
 
 const GnbOrganism = styled.div`
   overflow: hidden;
@@ -34,10 +35,13 @@ const Gnb = () => {
     }
   };
 
+  const purge = async () => {
+    await persistor.purge();
+  };
+
   const handleLogoutButtonClick = () => {
-    window.localStorage.removeItem("userInfo");
-    window.localStorage.removeItem("token");
     navigate(routes.home);
+    localStorage.removeItem("token");
   };
 
   return (
@@ -58,7 +62,10 @@ const Gnb = () => {
           <LinkButton
             className="login"
             type="click"
-            onClick={handleLogoutButtonClick}
+            onClick={async () => {
+              await handleLogoutButtonClick();
+              await setTimeout(() => purge(), 200);
+            }}
             styles={{
               width: "5rem",
               margin: "1rem",
