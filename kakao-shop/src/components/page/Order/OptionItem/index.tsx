@@ -15,7 +15,11 @@ const OptionItem = ({ cart, productName, image }: Props) => {
   return (
     <S.Root>
       <S.Container>
-        <Photo imageClassName={S.ImageCSS} src={`${process.env.REACT_APP_PROD_SERVER}${image}`} alt={productName} />
+        <Photo
+          imageClassName={S.ImageCSS}
+          src={`${process.env.REACT_APP_IMAGE_CDN}${image.replace('/images', '')}?w=120&h=120&f=webp&q=80`}
+          alt={productName}
+        />
         <S.Info>
           <S.Tit>{productName}</S.Tit>
           <S.OptionTit>{`[옵션] ${cart.option.optionName}, ${cart.quantity}개`}</S.OptionTit>
