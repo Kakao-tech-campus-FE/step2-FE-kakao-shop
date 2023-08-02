@@ -12,9 +12,6 @@
   color: inherit;
 }
 
-picture > img {
-  width: inherit;
-}
 
 .main-container {
   display: flex;
