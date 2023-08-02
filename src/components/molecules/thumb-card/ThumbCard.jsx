@@ -5,8 +5,8 @@ import Badge from "@/components/atoms/badge/Badge.jsx";
 const Styled = {
   Card: styled.a`
     position: relative;
-    width: 17.75rem;
-    height: 10rem;
+    width: 100%;
+    aspect-ratio: 16 / 9;
 
     display: inline-block;
     overflow: hidden;
@@ -14,8 +14,9 @@ const Styled = {
     cursor: pointer;
   `,
   Image: styled.img`
-    width: 17.75rem;
-    height: 10rem;
+    width: 100%;
+    height: 100%;
+
     object-fit: cover;
     border-radius: 0.35rem;
     transition: all 0.35s ease-in-out;

@@ -6,12 +6,9 @@ import routes from "@/constants/routes.js";
 import ThumbCard from "@/components/molecules/thumb-card/ThumbCard.jsx";
 
 const Styled = {
-  Container: styled.div`
-    height: 17.75rem;
-  `,
+  Container: styled.div``,
   Card: styled.div`
-    width: 17.75rem;
-    margin: 0 10px auto;
+    width: 100%;
     box-sizing: content-box;
     cursor: pointer;
   `,
