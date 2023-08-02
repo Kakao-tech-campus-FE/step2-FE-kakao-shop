@@ -7,7 +7,7 @@ interface ImageProps {
 }
 
 const Image: FC<ImageProps> = ({ src, alt, className }) => {
-  return <img className={className} src={"%BASE_URL%" + src} alt={alt} />;
+  return <img className={className} src={src} alt={alt} />;
 };
 
 export default Image;

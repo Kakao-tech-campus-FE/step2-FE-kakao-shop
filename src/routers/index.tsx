@@ -77,7 +77,7 @@ const router = createBrowserRouter(
       path: "*",
     },
   ],
-  { basename: "%BASE_URL%" }
+  { basename: process.env.VITE_BASE_URL }
 );
 
 export { router };

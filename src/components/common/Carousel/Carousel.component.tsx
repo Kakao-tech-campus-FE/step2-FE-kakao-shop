@@ -26,7 +26,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
           <CarouselItem
             key={index}
             alt={item.alt}
-            src={"%BASE_URL%" + item.src}
+            src={item.src}
             position={getPosition(index)}
           />
         ))}
@@ -45,7 +45,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
             setItemIndex((index) => (index - 1 > 0 ? index - 1 : 0))
           }
         >
-          <Image className="h-8" src="/icons/next.png" alt="prev" />
+          <Image className="h-8" src="/icons/next.svg" alt="prev" />
         </Button>
         <Button
           color="none"
@@ -56,7 +56,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
             )
           }
         >
-          <Image className="h-8" src="/icons/next.png" alt="next" />
+          <Image className="h-8" src="/icons/next.svg" alt="next" />
         </Button>
       </div>
     </div>
