@@ -1,5 +1,3 @@
-import minusIcon from '@assets/minus.webp';
-import plusIcon from '@assets/plus.webp';
 import { SerializedStyles, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import hideWithA11y from '@styles/a11y';
@@ -66,11 +64,11 @@ RegularInput.Counter = function CounterInput({
   return (
     <C.Root>
       <C.MinusButton onClick={onClickMinusButton}>
-        <Photo imageClassName={C.IconCSS} src={minusIcon} alt={'마이너스 버튼'} />
+        <Photo imageClassName={C.IconCSS} src={`${process.env.REACT_APP_IMAGE_CDN}/minus.webp`} alt={'마이너스 버튼'} />
       </C.MinusButton>
       <Input css={C.InputCSS} id={id} type="number" value={value} {...props} aria-label={'옵션 수량 인풋'} />
       <C.PlusButton onClick={onClickPlusButton}>
-        <Photo imageClassName={C.IconCSS} src={plusIcon} alt={'플러스 버튼'} />
+        <Photo imageClassName={C.IconCSS} src={`${process.env.REACT_APP_IMAGE_CDN}/plus.webp`} alt={'플러스 버튼'} />
       </C.PlusButton>
     </C.Root>
   );

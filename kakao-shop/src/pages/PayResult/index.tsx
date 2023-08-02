@@ -24,6 +24,8 @@ const PayResult = () => {
     };
   }, [pageAllow]);
 
+  if (!pageAllow) return null;
+
   return (
     <S.Root>
       <S.Container>
