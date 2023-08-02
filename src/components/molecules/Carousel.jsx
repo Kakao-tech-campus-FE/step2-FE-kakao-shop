@@ -55,7 +55,7 @@ const CarouselSlide = ({ image, index, state }) => {
 
 
 const Carousel = ({ images }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
 
 
 
