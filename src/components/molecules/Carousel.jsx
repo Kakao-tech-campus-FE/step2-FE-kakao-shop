@@ -47,7 +47,8 @@ const CarouselSlide = ({ image, index, state }) => {
     setSlideState(getSlideState(index, state));
   }, [state, index]);
   return (
-    <div className={`carousel-slide-prev h-full w-full absolute transform ${getTranslateX(slideState)} ease-in-out duration-[400ms]`}>
+    <div
+      className={`carousel-slide-prev h-full w-full absolute transform ${getTranslateX(slideState)} ease-in-out duration-[400ms]`}>
       <img src={image} alt="carousel" className="carousel-image object-cover" />
     </div>
   );
@@ -56,7 +57,6 @@ const CarouselSlide = ({ image, index, state }) => {
 
 const Carousel = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(1);
-
 
 
   const mountImages = useMemo(() => {
@@ -93,6 +93,8 @@ const Carousel = ({ images }) => {
     setCurrentSlide(currentSlide + 1);
   };
 
+  const [enabled, setEnabled] = useState(true);
+
   return (
     <div className={"carousel w-full"}>
       <div className={"carousel-slide-slot relative w-full overflow-hidden"}>
@@ -109,13 +111,32 @@ const Carousel = ({ images }) => {
         </div>
         <button
           className={"carousel-button-right h-10 w-10 bg-black rounded-full text-white opacity-50 left-0 absolute flex justify-center items-center top-[50%] bottom-[50%] translate-y-[-50%] cursor-pointer z-10"}
-          onClick={prevSlide}>
+          onClick={() => {
+            if (enabled) {
+              prevSlide();
+              setEnabled(false);
+              setTimeout(() => {
+                setEnabled(true);
+              }, 400);
+            }
+          }
+          }>
           <AiOutlineLeft />
         </button>
 
         <button
           className={"carousel-button-left h-10 w-10 bg-black rounded-full text-white opacity-50 right-0 absolute flex justify-center items-center top-[50%] bottom-[50%] translate-y-[-50%] cursor-pointer z-10"}
-          onClick={nextSlide}>
+          onClick={
+            () => {
+              if (enabled) {
+                nextSlide();
+                setEnabled(false);
+                setTimeout(() => {
+                  setEnabled(true);
+                }, 400);
+              }
+            }
+          }>
           <AiOutlineRight />
         </button>
       </div>
