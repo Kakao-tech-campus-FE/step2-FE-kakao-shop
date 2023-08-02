@@ -1,8 +1,10 @@
 import styled from '@emotion/styled';
 import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
+import { Fragment } from 'react';
 
 import { CustomSuspense } from '@components/atom';
 import PageLoader from '@components/molecules/PageLoader';
+import EmptyCart from '@components/page/Cart/EmptyCart';
 import Header from '@components/page/Cart/Header';
 import ItemList from '@components/page/Cart/ItemList';
 import Submit from '@components/page/Cart/Submit';
@@ -16,19 +18,29 @@ const Cart = withRouteGuard('/login', () => {
     handler: { onIncreaseQuantity, onDecreaseQuantity, onDeleteCartItem, onSubmit },
   } = useCartPage();
 
+  const totalQuantity = products?.reduce((total, product) => {
+    return total + product.carts.reduce((cartTotal, cart) => cartTotal + cart.quantity, 0);
+  }, 0);
+
   return (
     <CustomSuspense isLoading={isLoading} error={error} fallback={<PageLoader />}>
       <S.Root>
         <S.Container>
           <Header />
-          <ItemList
-            products={products}
-            onIncreaseQuantity={onIncreaseQuantity}
-            onDecreaseQuantity={onDecreaseQuantity}
-            onDeleteCartItem={onDeleteCartItem}
-          />
-          <TotalResult totalPrice={totalPrice} />
-          <Submit onSubmit={onSubmit} />
+          {totalQuantity === 0 ? (
+            <EmptyCart />
+          ) : (
+            <Fragment>
+              <ItemList
+                products={products}
+                onIncreaseQuantity={onIncreaseQuantity}
+                onDecreaseQuantity={onDecreaseQuantity}
+                onDeleteCartItem={onDeleteCartItem}
+              />
+              <TotalResult totalPrice={totalPrice} />
+              <Submit onSubmit={onSubmit} />
+            </Fragment>
+          )}
         </S.Container>
       </S.Root>
     </CustomSuspense>
