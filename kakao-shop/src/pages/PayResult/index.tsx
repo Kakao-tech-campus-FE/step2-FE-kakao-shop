@@ -12,15 +12,15 @@ const PayResult = () => {
   const pageAllow = localStorage.getItem('PayResultPageAllow') ? localStorage.getItem('PayResultPageAllow') : undefined;
 
   useEffect(() => {
+    if (!!pageAllow) {
+      alert('접근 권한이 없습니다.');
+      window.location.href = '/';
+    }
+
     return () => {
       localStorage.removeItem('PayResultPageAllow');
     };
   }, []);
-
-  if (!!pageAllow) {
-    alert('접근 권한이 없습니다.');
-    window.location.href = '/';
-  }
 
   return (
     <S.Root>
