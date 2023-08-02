@@ -40,8 +40,8 @@ const OptionColumn = ({ product }) => {
         id: option.id,
         quantity: 1,
         price: option.price,
-        optionName: option.optionName
-      }
+        optionName: option.optionName,
+      },
     ]);
   };
 
@@ -51,7 +51,7 @@ const OptionColumn = ({ product }) => {
         if (el.id === optionId) {
           return {
             ...el,
-            quantity: value
+            quantity: value,
           };
         } else {
           return el;
@@ -68,27 +68,27 @@ const OptionColumn = ({ product }) => {
     onError: (error) => {
       console.log("error", error);
       alert(error.response.data.error.message);
-    }
+    },
   });
 
   return (
-    <div className="option-column h-full w-1/4 p-2 border-l sticky top-20">
-      <h3 className={"font-medium text-lg"}>옵션 선택</h3>
-      <div className={"overflow-y-auto h-80 pe-3"}>
+    <div className="option-column sticky top-20 h-full w-1/4 border-l p-2">
+      <h3 className={"text-lg font-medium"}>옵션 선택</h3>
+      <div className={"h-80 overflow-y-auto pe-3"}>
         <OptionList options={product.options} onClick={handleOnClickOption} />
 
         {selectedOption.map((option) => (
           <ol key={option.id} className="selected-option-list w-full">
             <li className="selected-option">
               <div className={"flex flex-row justify-between p-1"}>
-                <span className="block option-name text-ellipsis text-justify whitespace-nowrap overflow-hidden">
+                <span className="option-name block overflow-hidden text-ellipsis whitespace-nowrap text-justify">
                   {option.optionName}
                 </span>
                 <button
                   className={"delete-button"}
                   onClick={() =>
                     setSelectedOption((prev) =>
-                      prev.filter((el) => el.id !== option.id)
+                      prev.filter((el) => el.id !== option.id),
                     )
                   }
                 >
@@ -96,7 +96,7 @@ const OptionColumn = ({ product }) => {
                 </button>
               </div>
               <div className={"flex flex-row justify-between p-1"}>
-                <span className="text-sm block option-price">
+                <span className="option-price block text-sm">
                   {comma(option.price * option.quantity)}원
                 </span>
                 <div className={"w-1/3"}>
@@ -123,8 +123,8 @@ const OptionColumn = ({ product }) => {
         ))}
       </div>
 
-      <div className={"total-option-group bottom-0 relative"}>
-        <div className={"total-price mt-5 mb-3"}>
+      <div className={"total-option-group relative bottom-0"}>
+        <div className={"total-price mb-3 mt-5"}>
           <div className={"flex flex-row justify-between px-1"}>
             <span>
               총 수량 :{" "}
@@ -135,17 +135,17 @@ const OptionColumn = ({ product }) => {
               {comma(
                 selectedOption.reduce(
                   (acc, cur) => acc + cur.quantity * cur.price,
-                  0
-                )
+                  0,
+                ),
               )}
               원
             </span>
           </div>
         </div>
-        <div className={"button-group h-12 flex flex-row justify-between"}>
+        <div className={"button-group flex h-12 flex-row justify-between"}>
           <button
             className={
-              "add-cart w-1/4 cursor-pointer bg-kakao-dark-gray rounded-lg py-2 flex justify-center items-center"
+              "add-cart flex w-1/4 cursor-pointer items-center justify-center rounded-lg bg-kakao-dark-gray py-2"
             }
             onClick={() => {
               if (localStorage.getItem("token") === null) {
@@ -157,9 +157,9 @@ const OptionColumn = ({ product }) => {
                   selectedOption.map((option) => {
                     return {
                       optionId: option.id,
-                      quantity: option.quantity
+                      quantity: option.quantity,
                     };
-                  })
+                  }),
                 );
                 showToast("장바구니에 추가되었습니다.");
               }
@@ -169,7 +169,7 @@ const OptionColumn = ({ product }) => {
           </button>
           <button
             className={
-              "buy-directly w-2/4 bg-kakao-yellow rounded-lg flex justify-center items-center"
+              "buy-directly flex w-2/4 items-center justify-center rounded-lg bg-kakao-yellow"
             }
             onClick={() => {
               if (localStorage.getItem("token") === null) {
@@ -181,9 +181,9 @@ const OptionColumn = ({ product }) => {
                   selectedOption.map((option) => {
                     return {
                       optionId: option.id,
-                      quantity: option.quantity
+                      quantity: option.quantity,
                     };
-                  })
+                  }),
                 );
                 navigator("/carts");
               }

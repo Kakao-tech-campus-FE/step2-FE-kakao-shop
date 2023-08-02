@@ -34,15 +34,19 @@ const ProductDetailPage = () => {
 
   return (
     <AlertContext.Provider value={{ alertIsOpened, setAlertIsOpened }}>
-      <div className={"product-detail-page page flex flex-col w-max-[1024px]"}>
+      <div className={"product-detail-page page w-max-[1024px] flex flex-col"}>
         <RequireLoginModal isOpen={alertIsOpened} />
 
         {data && (
-          <div className={"h-28 flex justify-center items-center  w-full border-b-light-gray"}>
+          <div
+            className={
+              "border-b-light-gray flex h-28 w-full  items-center justify-center"
+            }
+          >
             <h1 className={"text-3xl font-bold"}>상품 페이지</h1>
           </div>
         )}
-        <div className={"flex f-full flex-col items-center"}>
+        <div className={"f-full flex flex-col items-center"}>
           {isLoading && <Loader />}
           {error && <ErrorSign error={error} />}
           {data && <ProductDetailTemplate product={data.data.response} />}

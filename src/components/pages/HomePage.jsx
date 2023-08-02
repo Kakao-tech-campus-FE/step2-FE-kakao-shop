@@ -1,5 +1,6 @@
 import MainProductTemplate from "../templates/MainProductTemplate";
 import "../../styles/pages/page.css";
+
 const HomePage = () => {
   return (
     <>

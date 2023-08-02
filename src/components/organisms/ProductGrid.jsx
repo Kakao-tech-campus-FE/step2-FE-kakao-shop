@@ -3,7 +3,7 @@ import SkeletonProductCard from "../molecules/SkeletonProductCard";
 
 const ProductGrid = ({ products, isLoading }) => {
   return (
-    <div className="product-grid w-[100%] max-w-[1024px] grid md:grid-cols-4 grid-cols-2 gap-4 p-4">
+    <div className="product-grid grid w-[100%] max-w-[1024px] grid-cols-2 gap-4 p-4 md:grid-cols-4">
       {products.map((product) =>
         product ? (
           <ProductCard key={product.id} product={product} />

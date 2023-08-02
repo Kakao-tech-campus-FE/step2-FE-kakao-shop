@@ -48,7 +48,7 @@ const RegisterForm = () => {
   }, [errorFromBE]);
 
   return (
-    <Container className={`form flex flex-col gap-4 w-full`}>
+    <Container className={`form flex w-full flex-col gap-4`}>
       <InputGroup
         id="email"
         type="text"
@@ -91,7 +91,7 @@ const RegisterForm = () => {
       />
 
       <Button
-        className="register-button mt-10 w-full bg-kakao-yellow text-black text-xl font-bold py-2 px-4 rounded"
+        className="register-button mt-10 w-full rounded bg-kakao-yellow px-4 py-2 text-xl font-bold text-black"
         onClick={() => {
           if (!Object.keys(value).find((key) => validateInput(key) === false))
             register({

@@ -1,4 +1,3 @@
-
 const Button = ({ children, className, onClick = () => {} }) => (
   <button
     className={`button ${className}`}

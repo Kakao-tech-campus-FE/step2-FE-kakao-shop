@@ -76,11 +76,11 @@ const Counter = ({
   };
 
   return (
-    <div className={`counter w-full flex flex-row ${className}`}>
+    <div className={`counter flex w-full flex-row ${className}`}>
       <button
         onClick={handleOnDecrease}
         className={
-          "w-1/4 border border-light-gray-700 flex justify-center items-center"
+          "flex w-1/4 items-center justify-center border border-light-gray-700"
         }
       >
         <BiMinus />
@@ -94,7 +94,7 @@ const Counter = ({
       <button
         onClick={handleOnIncrease}
         className={
-          "w-1/4 border border-light-gray-700 flex justify-center items-center"
+          "flex w-1/4 items-center justify-center border border-light-gray-700"
         }
       >
         <BsPlusLg />

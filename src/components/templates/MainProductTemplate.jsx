@@ -22,10 +22,10 @@ const dummy = {
 };
 
 const IMAGES = [
-  'images/carousel/carouselItem1.jpeg',
-  'images/carousel/carouselitem2.jpeg',
-  'images/carousel/carouselitem3.jpeg'
-]
+  "images/carousel/carouselItem1.jpeg",
+  "images/carousel/carouselitem2.jpeg",
+  "images/carousel/carouselitem3.jpeg",
+];
 
 const MainProductTemplate = ({ children }) => {
   const bottomObserver = useRef(null);
@@ -94,8 +94,8 @@ const MainProductTemplate = ({ children }) => {
   }, [io]);
 
   return (
-    <div className="main-product-template flex flex-col justify-center items-center max-w-[1380px] gap-4">
-      <Carousel images={IMAGES}/>
+    <div className="main-product-template flex max-w-[1380px] flex-col items-center justify-center gap-4">
+      <Carousel images={IMAGES} />
       {!isError && <ProductGrid products={products} isLoading={isLoading} />}
       {isLoading && <Loader />}
       {isError && <ErrorSign error={errorCode} />}

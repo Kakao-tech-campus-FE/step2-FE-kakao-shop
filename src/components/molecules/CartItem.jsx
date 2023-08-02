@@ -15,10 +15,14 @@ const CartItem = ({ item, onChange }) => {
     getItemAmount() !== 0 && (
       <div
         className={
-          "cart-item w-full flex flex-col box-border text-left gap-4 p-4 border border-gray-300"
+          "cart-item box-border flex w-full flex-col gap-4 border border-gray-300 p-4 text-left"
         }
       >
-        <span className={"block cart-product-name text-xl font-semibold w-full break-normal"}>
+        <span
+          className={
+            "cart-product-name block w-full break-normal text-xl font-semibold"
+          }
+        >
           {item.productName}
         </span>
         {item.carts
@@ -27,24 +31,27 @@ const CartItem = ({ item, onChange }) => {
             <div
               key={cart.id}
               className={
-                "cart-item-option flex flex-col items-end p-4 m-auto w-full border border-gray-300"
+                "cart-item-option m-auto flex w-full flex-col items-end border border-gray-300 p-4"
               }
             >
-              <div className={"flex flex-row justify-between w-full"}>
-              <span className={"font-semibold"}>{cart.option.optionName}</span>
-              <button
-                className={"del-button flex justify-end items-end"}
-                onClick={() =>
-                  onChange(cart.id, 0, -cart.quantity * cart.option.price)
-                }
-              >
-                <RxCross2 className={"text-right"} />
-              </button>
+              <div className={"flex w-full flex-row justify-between"}>
+                <span className={"font-semibold"}>
+                  {cart.option.optionName}
+                </span>
+                <button
+                  className={"del-button flex items-end justify-end"}
+                  onClick={() =>
+                    onChange(cart.id, 0, -cart.quantity * cart.option.price)
+                  }
+                >
+                  <RxCross2 className={"text-right"} />
+                </button>
               </div>
-              <div className={"flex flex-col w-full"}>
-                <div className="option-name flex flex-row justify-between my-2 text-lg">
-
-                  <span className={"text-sm text-gray-500 font-semibold"}>{comma(cart.option.price)}원</span>
+              <div className={"flex w-full flex-col"}>
+                <div className="option-name my-2 flex flex-row justify-between text-lg">
+                  <span className={"text-sm font-semibold text-gray-500"}>
+                    {comma(cart.option.price)}원
+                  </span>
                 </div>
 
                 <div className={"row flex flex-row"}>
@@ -55,7 +62,7 @@ const CartItem = ({ item, onChange }) => {
                         return onChange(
                           cart.id,
                           value,
-                          (value - cart.quantity) * cart.option.price
+                          (value - cart.quantity) * cart.option.price,
                         );
                       }}
                       handleOnLowerBound={() => {
@@ -80,7 +87,7 @@ const CartItem = ({ item, onChange }) => {
               {comma(
                 item.carts.reduce((acc, cur) => {
                   return acc + cur.option.price * cur.quantity;
-                }, 0)
+                }, 0),
               )}
               원
             </div>

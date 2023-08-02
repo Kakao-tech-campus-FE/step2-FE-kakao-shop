@@ -10,7 +10,7 @@ const CartPage = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Helmet title={"카카오톡 쇼핑하기 - 장바구니"}></Helmet>
-        <CartList data={data} />
+      <CartList data={data} />
       {isError && <div>{error.message}</div>}
     </Suspense>
   );

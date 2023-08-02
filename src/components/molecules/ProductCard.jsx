@@ -9,15 +9,25 @@ const ProductCard = ({ product }) => {
     <Card to={`/product/${product.id}`}>
       <div className={"overflow-hidden"}>
         <Photo
-          className={"product-photo hover:scale-[1.1] hover:shadow-xl transition-all duration-300 ease-in-out"}
+          className={
+            "product-photo transition-all duration-300 ease-in-out hover:scale-[1.1] hover:shadow-xl"
+          }
           src={product.image}
           alt={product.productName}
         />
       </div>
-      <div className={"text-md font-semibold line-clamp-2 text-left overflow-hidden"}>
+      <div
+        className={
+          "text-md line-clamp-2 overflow-hidden text-left font-semibold"
+        }
+      >
         {product.productName || <Skeleton />}
       </div>
-      <div className={"product-price text-sm font-semibold text-left w-full text-gray-500"}>
+      <div
+        className={
+          "product-price w-full text-left text-sm font-semibold text-gray-500"
+        }
+      >
         {comma(product.price || <Skeleton />)}원
       </div>
     </Card>

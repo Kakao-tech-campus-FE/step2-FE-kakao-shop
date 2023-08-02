@@ -20,16 +20,16 @@ const Alert = ({
 }) => {
   if (!isOpen) return null;
   return (
-    <div className={`w-full h-full static flex justify-center`}>
-      <div className="alert-box bg-white fixed top-40 p-4 z-10 rounded-lg flex flex-col justify-center items-center border border-gray-300">
+    <div className={`static flex h-full w-full justify-center`}>
+      <div className="alert-box fixed top-40 z-10 flex flex-col items-center justify-center rounded-lg border border-gray-300 bg-white p-4">
         <RxCross2
-          className={"text-2xl cursor-pointer absolute right-2 top-2"}
+          className={"absolute right-2 top-2 cursor-pointer text-2xl"}
           onClick={onClose}
         />
         <div className={"alert-contents p-4"}>{message}</div>
         <botton
           className={
-            "bg-kakao-dark-gray rounded-lg py-1 px-4 text-white cursor-pointer"
+            "cursor-pointer rounded-lg bg-kakao-dark-gray px-4 py-1 text-white"
           }
           onClick={onClickButton}
         >

@@ -53,10 +53,10 @@ const OrderTemplate = ({ data }) => {
           <div
             key={cart.id}
             className={
-              "flex flex-col p-4 items-start text-gray-700 gap-2 border border-gray-300"
+              "flex flex-col items-start gap-2 border border-gray-300 p-4 text-gray-700"
             }
           >
-            <div className={"order-product-name font-bold text-left"}>
+            <div className={"order-product-name text-left font-bold"}>
               <span>{`${item.productName} - ${cart.option.optionName}`}</span>
             </div>
             <div className={"product-quantity text-sm"}>
@@ -70,8 +70,12 @@ const OrderTemplate = ({ data }) => {
     );
 
   return (
-    <div className={"order-template flex flex-col mx-auto max-w-4xl w-[100%] gap-2"}>
-      <div className={"h-20 flex items-center justify-center"}>
+    <div
+      className={
+        "order-template mx-auto flex w-[100%] max-w-4xl flex-col gap-2"
+      }
+    >
+      <div className={"flex h-20 items-center justify-center"}>
         <h1 className={"text-4xl font-bold"}>주문하기</h1>
       </div>
       <div className={"delivery-info border border-gray-300 px-10 pb-10"}>
@@ -83,7 +87,7 @@ const OrderTemplate = ({ data }) => {
             <span className={"text-lg"}>박동진</span>
             <span
               className={
-                "badge text-blue-400 bg-blue-100 rounded-md p-1 text-sm"
+                "badge rounded-md bg-blue-100 p-1 text-sm text-blue-400"
               }
             >
               기본배송지
@@ -91,21 +95,21 @@ const OrderTemplate = ({ data }) => {
           </div>
           <input
             type={"text"}
-            className={"px-4 py-2 border-b border-b-gray-300 font-semibold"}
+            className={"border-b border-b-gray-300 px-4 py-2 font-semibold"}
             placeholder={"휴대폰 번호 '-' 제외"}
           />
           <input
             type={"text"}
-            className={"px-4 py-2 border-b border-b-gray-300"}
+            className={"border-b border-b-gray-300 px-4 py-2"}
             placeholder={"주소"}
           />
           <input
             type={"text"}
-            className={"px-4 py-2 border-b border-b-gray-300"}
+            className={"border-b border-b-gray-300 px-4 py-2"}
             placeholder={"상세주소"}
           />
           <SelectBox
-            className={"px-3 py-2 border-b border-b-gray-300"}
+            className={"border-b border-b-gray-300 px-3 py-2"}
             options={[
               {
                 label: "배송 전 연락바랍니다.",
@@ -127,20 +131,20 @@ const OrderTemplate = ({ data }) => {
           />
           <input
             type={"text"}
-            className={"px-4 py-2 border-b border-b-gray-300"}
+            className={"border-b border-b-gray-300 px-4 py-2"}
             placeholder={"배송 메모"}
             onChange={handleOnChangeSelectBox}
             value={selectBoxValue}
           />
         </div>
       </div>
-      <div className={"border border-gray-300 flex flex-col gap-4 px-4 pb-10"}>
+      <div className={"flex flex-col gap-4 border border-gray-300 px-4 pb-10"}>
         <h2 className={"p-4 text-2xl font-bold"}>주문상품 정보</h2>
         <OrderItems />
       </div>
       <div
         className={
-          "border border-gray-300 p-4 flex items-center justify-between"
+          "flex items-center justify-between border border-gray-300 p-4"
         }
       >
         <h3 className={"text-xl font-bold"}>총 주문 금액</h3>
@@ -194,7 +198,7 @@ const OrderTemplate = ({ data }) => {
               </label>
             </div>
             <div className={"low-info text-justify"}>
-              <span className={" block text-sm text-gray-700 font-bold"}>
+              <span className={" block text-sm font-bold text-gray-700"}>
                 법적고지
               </span>
               <span className={"text-xs text-gray-500"}>
@@ -246,10 +250,10 @@ const OrderTemplate = ({ data }) => {
               },
             });
           }}
-          className={`order-button w-full text-center font-bold text-2xl py-4 ${
+          className={`order-button w-full py-4 text-center text-2xl font-bold ${
             agreePayment && agreePolicy
               ? "cursor-pointer bg-kakao-yellow text-black"
-              : "cursor-not-allowed bg-grey-300 text-gray-500 bg-gray-300"
+              : "bg-grey-300 cursor-not-allowed bg-gray-300 text-gray-500"
           }
                         `}
         >

@@ -7,7 +7,7 @@ const ProductDetailTemplate = ({ product }) => {
   return (
     <>
       <Helmet title={`${product.productName} - 카카오톡 쇼핑하기`}></Helmet>
-      <Container className={"flex flex-row justify-center w-full h-full"}>
+      <Container className={"flex h-full w-full flex-row justify-center"}>
         <ProductInformationColumn product={product} />
         <OptionColumn product={product} />
       </Container>

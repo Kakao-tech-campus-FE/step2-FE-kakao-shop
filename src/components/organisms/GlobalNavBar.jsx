@@ -29,7 +29,7 @@ const GlobalNavBar = () => {
         </div>
         <div
           className={
-            "gnb-buttons- flex flex-row h-full justify-center items-center"
+            "gnb-buttons- flex h-full flex-row items-center justify-center"
           }
         >
           {user.isLogin ? (
@@ -37,14 +37,16 @@ const GlobalNavBar = () => {
               <Link
                 to={"/carts"}
                 className={
-                  "cart-button px-5 font-bold border-l border-gray-300"
+                  "cart-button border-l border-gray-300 px-5 font-bold"
                 }
               >
                 <BsCart2 size="20" className={"cart-icon"} />
               </Link>
               <div>
                 <button
-                  className={"logout-button px-5 font-bold border-l border-gray-300"}
+                  className={
+                    "logout-button border-l border-gray-300 px-5 font-bold"
+                  }
                   onClick={() => {
                     dispatch(reducerLogout());
                     navigate("/");
@@ -58,13 +60,15 @@ const GlobalNavBar = () => {
             <>
               <Link
                 to={"/login"}
-                className={"login-button font-bold px-5 block text-center"}
+                className={"login-button block px-5 text-center font-bold"}
               >
                 로그인
               </Link>
               <Link
                 to={"/signup"}
-                className={"signup-button font-bold px-5 block border-l border-gray-300"}
+                className={
+                  "signup-button block border-l border-gray-300 px-5 font-bold"
+                }
               >
                 회원가입
               </Link>

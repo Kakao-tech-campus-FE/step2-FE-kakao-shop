@@ -11,13 +11,13 @@ const Toast = ({ message, time, isShow, onClose }) => {
   }, [isShow, onClose, time]);
 
   return (
-    <div className={"toast-wrapper w-full flex justify-center"}>
+    <div className={"toast-wrapper flex w-full justify-center"}>
       <div
-        className={`toast fixed flex w-[50%] z-10 justify-center items-center p-2 bg-black bg-opacity-70 text-white rounded-xl bottom-10 font-size-xl
+        className={`toast font-size-xl fixed bottom-10 z-10 flex w-[50%] items-center justify-center rounded-xl bg-black bg-opacity-70 p-2 text-white
         ${
           isShow
-            ? "show transform -translate-y-0 transition-all"
-            : "hide transform -translate-y-[-200%] transition-all duration-350 ease-in-out"
+            ? "show -translate-y-0 transform transition-all"
+            : "hide duration-350 -translate-y-[-200%] transform transition-all ease-in-out"
         }
       `}
       >

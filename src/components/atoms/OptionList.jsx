@@ -9,17 +9,17 @@ const OptionList = ({ options, onClick }) => {
             key={option.id}
             onClick={() => onClick(option)}
             className={
-              "w-full p-1 flex flex-col items-start box-border border-solid border border-gray-500 box-s cursor-pointer"
+              "box-border flex w-full cursor-pointer flex-col items-start border border-solid border-gray-500 p-1"
             }
           >
             <span
               className={
-                "p-0.5 w-full text-ellipsis text-justify whitespace-nowrap overflow-hidden"
+                "w-full overflow-hidden text-ellipsis whitespace-nowrap p-0.5 text-justify"
               }
             >
               {option.optionName}
             </span>
-            <span className={"p-0.5 block text-sm"}>
+            <span className={"block p-0.5 text-sm"}>
               {comma(option.price)}원
             </span>
           </li>

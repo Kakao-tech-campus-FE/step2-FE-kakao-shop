@@ -24,7 +24,7 @@ const CartList = ({ data }) => {
     onError: (error) => {
       console.log("error", error);
       alert(error.response.data.error.message);
-    }
+    },
   });
 
   const getTotalQuantity = useCallback(() => {
@@ -40,8 +40,8 @@ const CartList = ({ data }) => {
     mutate([
       {
         cartId: optionId,
-        quantity: quantity
-      }
+        quantity: quantity,
+      },
     ]);
     setCartItems((prev) => {
       return prev.map((item) => {
@@ -51,12 +51,12 @@ const CartList = ({ data }) => {
             if (cart.id === optionId) {
               return {
                 ...cart,
-                quantity: quantity
+                quantity: quantity,
               };
             } else {
               return cart;
             }
-          })
+          }),
         };
       });
     });
@@ -66,11 +66,15 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <div className={"flex flex-col w-full max-w-4xl m-auto gap-2"}>
-      <div className={"h-20 flex items-center justify-center"}>
+    <div className={"m-auto flex w-full max-w-4xl flex-col gap-2"}>
+      <div className={"flex h-20 items-center justify-center"}>
         <h1 className={"text-4xl font-bold"}>장바구니</h1>
       </div>
-      <div className={"cart-items flex flex-col w-full justify-center items-center gap-10"}>
+      <div
+        className={
+          "cart-items flex w-full flex-col items-center justify-center gap-10"
+        }
+      >
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
@@ -82,19 +86,23 @@ const CartList = ({ data }) => {
             );
           })}
         {getTotalQuantity() === 0 && (
-          <div className={"h-40 flex items-center justify-center"}>
+          <div className={"flex h-40 items-center justify-center"}>
             <h1 className={"text-2xl font-bold"}>장바구니가 비었습니다.</h1>
           </div>
         )}
       </div>
       {getTotalQuantity() > 0 && (
-        <div className={"w-full flex flex-col items-center justify-center"}>
-          <div className={"w-full flex flex-row justify-end text-xl font-bold text-indigo-500 py-5"}>
+        <div className={"flex w-full flex-col items-center justify-center"}>
+          <div
+            className={
+              "flex w-full flex-row justify-end py-5 text-xl font-bold text-indigo-500"
+            }
+          >
             <span className={"total-price pr-3"}>최종 금액</span>
             <span>{comma(totalPrice)}원</span>
           </div>
           <button
-            className={"w-full mx-5 py-5 text-xl box-content bg-kakao-yellow"}
+            className={"mx-5 box-content w-full bg-kakao-yellow py-5 text-xl"}
             onClick={() => {
               navigate("/order");
             }}

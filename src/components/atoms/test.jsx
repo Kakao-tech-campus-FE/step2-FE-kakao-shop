@@ -1,5 +1,3 @@
-const Test = () => (<div className="sticky p-2 hello-golwd">
-  dropdown
-</div>);
+const Test = () => <div className="hello-golwd sticky p-2">dropdown</div>;
 
 export default Test;

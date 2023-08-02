@@ -29,13 +29,17 @@ const InputGroup = ({
 }) => {
   return (
     <Box className={`input-group ${id}`}>
-      <Container className="input-group-label w-full flex justify-between p-1">
+      <Container className="input-group-label flex w-full justify-between p-1">
         <div>
           <Label htmlFor={id} className={`${id} `}>
             {label}
           </Label>
         </div>
-        {<div className={`error-msg text-red-600 text-sm ${id}`}>{errorMsg}</div>}
+        {
+          <div className={`error-msg text-sm text-red-600 ${id}`}>
+            {errorMsg}
+          </div>
+        }
       </Container>
       <div>
         <Input

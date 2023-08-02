@@ -5,7 +5,7 @@ const SLIDE_STATE = {
   PREV_INDEX: -1,
   CURRENT_INDEX: 0,
   NEXT_INDEX: 1,
-  HIDDEN_INDEX: 2
+  HIDDEN_INDEX: 2,
 };
 
 const getSlideState = (index, current) => {
@@ -41,23 +41,23 @@ const getTranslateX = (slideState) => {
  * @constructor
  */
 const CarouselSlide = ({ image, index, state }) => {
-
   const [slideState, setSlideState] = useState(SLIDE_STATE.HIDDEN_INDEX);
   useEffect(() => {
     setSlideState(getSlideState(index, state));
   }, [state, index]);
   return (
     <div
-      className={`carousel-slide-prev h-full w-full absolute transform ${getTranslateX(slideState)} ease-in-out duration-[400ms]`}>
+      className={`carousel-slide-prev absolute h-full w-full transform ${getTranslateX(
+        slideState,
+      )} duration-[400ms] ease-in-out`}
+    >
       <img src={image} alt="carousel" className="carousel-image object-cover" />
     </div>
   );
 };
 
-
 const Carousel = ({ images }) => {
   const [currentSlide, setCurrentSlide] = useState(1);
-
 
   const mountImages = useMemo(() => {
     if (images.length === 1) {
@@ -107,10 +107,16 @@ const Carousel = ({ images }) => {
           />
         ))}
         <div className="carousel-dummy h-full w-full opacity-0">
-          <img src={images[0]} alt="carousel-dummy" className="carousel-image object-cover" />
+          <img
+            src={images[0]}
+            alt="carousel-dummy"
+            className="carousel-image object-cover"
+          />
         </div>
         <button
-          className={"carousel-button-right h-10 w-10 bg-black rounded-full text-white opacity-50 left-0 absolute flex justify-center items-center top-[50%] bottom-[50%] translate-y-[-50%] cursor-pointer z-10"}
+          className={
+            "carousel-button-right absolute bottom-[50%] left-0 top-[50%] z-10 flex h-10 w-10 translate-y-[-50%] cursor-pointer items-center justify-center rounded-full bg-black text-white opacity-50"
+          }
           onClick={() => {
             if (enabled) {
               prevSlide();
@@ -119,24 +125,25 @@ const Carousel = ({ images }) => {
                 setEnabled(true);
               }, 400);
             }
-          }
-          }>
+          }}
+        >
           <AiOutlineLeft />
         </button>
 
         <button
-          className={"carousel-button-left h-10 w-10 bg-black rounded-full text-white opacity-50 right-0 absolute flex justify-center items-center top-[50%] bottom-[50%] translate-y-[-50%] cursor-pointer z-10"}
-          onClick={
-            () => {
-              if (enabled) {
-                nextSlide();
-                setEnabled(false);
-                setTimeout(() => {
-                  setEnabled(true);
-                }, 400);
-              }
+          className={
+            "carousel-button-left absolute bottom-[50%] right-0 top-[50%] z-10 flex h-10 w-10 translate-y-[-50%] cursor-pointer items-center justify-center rounded-full bg-black text-white opacity-50"
+          }
+          onClick={() => {
+            if (enabled) {
+              nextSlide();
+              setEnabled(false);
+              setTimeout(() => {
+                setEnabled(true);
+              }, 400);
             }
-          }>
+          }}
+        >
           <AiOutlineRight />
         </button>
       </div>

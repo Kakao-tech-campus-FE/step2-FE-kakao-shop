@@ -1,11 +1,8 @@
 const Footer = () => {
   return (
     <footer>
-      <div className={"footer-dummy h-[192px] mt-10"}>
-
-      </div>
-      <div
-        className="footer w-full text-muted bg-kakao-dark-gray text-white text-xs py-8 text-left flex flex-col gap-4 bottom-0 absolute pl-6">
+      <div className={"footer-dummy mt-10 h-[192px]"}></div>
+      <div className="footer text-muted absolute bottom-0 flex w-full flex-col gap-4 bg-kakao-dark-gray py-8 pl-6 text-left text-xs text-white">
         (주)카카오대표이사 : 홍은택 주소 : 제주특별자치도 제주시 첨단로 242
         <br />
         사업자등록번호 : 120-81-47521 통신판매업신고 : 제2015 - 제주아라 -
@@ -13,9 +10,7 @@ const Footer = () => {
         <br />
         이메일 : cs.shopping@kakaocorp.com 고객센터 : 1544-5664 (통화료 발생 /
         평일 09:00~18:00) 톡 상담하기 (평일 09:00~18:00)
-        <div>
-          Copyright © Kakao Corp. All rights reserved
-        </div>
+        <div>Copyright © Kakao Corp. All rights reserved</div>
         (주)카카오에서 판매하는 상품 중에는 개별판매자가 판매하는 상품이
         포함되어 있습니다.
         <br />
