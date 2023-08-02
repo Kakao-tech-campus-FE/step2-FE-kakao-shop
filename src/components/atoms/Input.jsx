@@ -1,5 +1,3 @@
-import "../../styles/atoms/input.css";
-
 /**
  *
  * @param id 해당 input의 id입니다. input의 유일성을 위해 사용됩니다.
@@ -28,7 +26,7 @@ const Input = ({
       onChange(e);
     }}
     onBlur={onBlur}
-    className={`input ${id}`}
+    className={`input ${id} w-full border border-gray-300 p-2`}
   />
 );
 

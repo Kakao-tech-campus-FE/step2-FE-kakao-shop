@@ -1,15 +1,14 @@
 import RegisterForm from "../organisms/RegisterForm";
 import Title from "../atoms/Title";
 import Container from "../atoms/Container";
-import "../../styles/pages/formPage.css";
 
 const RegisterPage = () => {
   return (
-    <div className={"page"}>
-      <Container className={"form-page"}>
-        <Title>회원가입</Title>
+    <div className={"page h-full justify-center"}>
+      <div className={"w-full max-w-[540px] absolute top-[20%]"}>
+        <h1 className={"text-3xl font-bold"}>회원가입</h1>
         <RegisterForm />
-      </Container>
+      </div>
     </div>
   );
 };

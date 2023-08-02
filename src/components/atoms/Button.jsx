@@ -1,4 +1,3 @@
-import "../../styles/atoms/button.css";
 
 const Button = ({ children, className, onClick = () => {} }) => (
   <button

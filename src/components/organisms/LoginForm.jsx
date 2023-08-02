@@ -60,7 +60,7 @@ const LoginForm = () => {
   };
 
   return (
-    <Container className={`form`}>
+    <Container className={`form flex flex-col gap-4 w-full`}>
       <InputGroup
         id="email"
         type="text"
@@ -82,7 +82,7 @@ const LoginForm = () => {
         onBlur={() => validateInput("password")}
       />
       <Button
-        className="login-button"
+        className="login-button mt-10 w-full bg-kakao-yellow text-black text-xl font-bold py-2 px-4 rounded"
         onClick={() => {
           if (validateInput("email") && validateInput("password")) loginReq();
         }}

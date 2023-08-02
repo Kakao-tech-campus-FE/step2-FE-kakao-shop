@@ -3,7 +3,7 @@ import "../../styles/pages/page.css";
 const HomePage = () => {
   return (
     <>
-      <div className="home-page page">
+      <div className="page home-page">
         <div className={"home-page-content"}>
           <MainProductTemplate />
         </div>

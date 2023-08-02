@@ -2,9 +2,6 @@ import Label from "../atoms/Label";
 import Input from "../atoms/Input";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
-import "../../styles/molecules/inputGroup.css";
-
-// @ts-check
 
 /**
  *
@@ -32,13 +29,13 @@ const InputGroup = ({
 }) => {
   return (
     <Box className={`input-group ${id}`}>
-      <Container className="input-group-label">
+      <Container className="input-group-label w-full flex justify-between p-1">
         <div>
-          <Label htmlFor={id} className={id}>
+          <Label htmlFor={id} className={`${id} `}>
             {label}
           </Label>
         </div>
-        {<div className={`error-msg ${id}`}>{errorMsg}</div>}
+        {<div className={`error-msg text-red-600 text-sm ${id}`}>{errorMsg}</div>}
       </Container>
       <div>
         <Input

@@ -1,5 +1,3 @@
-import "../../styles/atoms/footer.css";
-
 const Footer = () => {
   return (
     <footer>

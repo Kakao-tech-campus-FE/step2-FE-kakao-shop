@@ -5,7 +5,6 @@ import Button from "../atoms/Button";
 import { register } from "../../services/api";
 import { useEffect, useState } from "react";
 
-import "../../styles/organisms/form.css";
 import useInput from "../../hooks/useInput";
 
 const PW_REGEX = new RegExp(
@@ -49,7 +48,7 @@ const RegisterForm = () => {
   }, [errorFromBE]);
 
   return (
-    <Container className={`form`}>
+    <Container className={`form flex flex-col gap-4 w-full`}>
       <InputGroup
         id="email"
         type="text"
@@ -92,7 +91,7 @@ const RegisterForm = () => {
       />
 
       <Button
-        className="register-button"
+        className="register-button mt-10 w-full bg-kakao-yellow text-black text-xl font-bold py-2 px-4 rounded"
         onClick={() => {
           if (!Object.keys(value).find((key) => validateInput(key) === false))
             register({
