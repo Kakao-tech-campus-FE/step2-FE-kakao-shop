@@ -3,18 +3,23 @@ import { convertToPrice } from "utils/convert";
 import Card from "components/atoms/Card";
 import Image from "components/atoms/Image";
 
-import "styles/molecules/ProductCard.css";
-
 export default function ProductCard({ product }) {
   return (
-    <Card className="product-card" to={`/product/${product.id}`}>
+    <Card
+      className="w-[200px] text-left space-y-1"
+      to={`/product/${product.id}`}
+    >
       <Image
-        className="product-photo"
+        className="w-full rounded border"
         src={process.env.REACT_APP_API_URL + product.image}
         alt={product.productName}
       />
-      <h3 className="product-h3">{product.productName}</h3>
-      <p className="product-p">{convertToPrice(product.price)}~</p>
+      <h3 className="inline-block text-sm leading-tight">
+        {product.productName}
+      </h3>
+      <p className="text-[1.3rem] font-bold">
+        {convertToPrice(product.price)}~
+      </p>
     </Card>
   );
 }

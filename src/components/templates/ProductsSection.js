@@ -9,35 +9,21 @@ import Skeleton from "components/atoms/Skeleton";
 
 export default function ProductSections() {
   const { isLoading, data, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useInfiniteQuery(
-      ["products"],
-      ({ pageParam = 0 }) => getProductspReq(pageParam),
-      {
-        getNextPageParam: (lastPage, allPages) => {
-          if (lastPage.data.response.length === 0) return undefined;
-          return allPages.length;
-        },
-        onError: (error) => {
-          let state;
-          switch (error.response.status / 100) {
-            case 3:
-              state = "리다이렉션";
-              break;
-            case 4:
-              state = "클라이언트";
-              break;
-            case 5:
-              state = "서버";
-              break;
-            default:
-              state = "기타";
-          }
-          console.log(
-            `[Products Request Error] ${error.response.status}(${state}): ${error.message}`
-          );
-        },
-      }
-    );
+    useInfiniteQuery({
+      queryKey: ["products"],
+      queryFn: ({ pageParam = 0 }) => getProductspReq(pageParam),
+      getNextPageParam: (lastPage, allPages) => {
+        if (lastPage.data.response.length === 0) return undefined;
+        return allPages.length;
+      },
+      onError: (error) => {
+        const states = { 3: "리다이렉션", 4: "클라이언트", 5: "서버" };
+        const state = states[error.response.status / 100];
+        console.log(
+          `[Products Request Error] ${error.response.status}(${state}): ${error.message}`
+        );
+      },
+    });
 
   const observerRef = useRef(null);
 
@@ -65,7 +51,7 @@ export default function ProductSections() {
           {isFetchingNextPage &&
             Array(9)
               .fill(null)
-              .map(() => <Skeleton />)}
+              .map((_, index) => <Skeleton key={index} />)}
           <div ref={observerRef}></div>
         </ProductsGrid>
       )}
