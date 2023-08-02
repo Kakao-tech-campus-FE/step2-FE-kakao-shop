@@ -14,7 +14,7 @@ type Props = {
 
 const ListSection = ({ orderProducts }: Props) => {
   const [isOpen, , onToggle] = useToggle(true);
-  const totalQuantity = orderProducts.reduce((acc, product) => {
+  const totalQuantity = orderProducts?.reduce((acc, product) => {
     return acc + product.items.reduce((total, cart) => total + cart.quantity, 0);
   }, 0);
 
