@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
