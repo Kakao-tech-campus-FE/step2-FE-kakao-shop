@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { RiAddFill, RiSubtractFill } from "react-icons/ri";
 
-const Counter = ( {value, optionId, postValue} ) => {
+const Counter = ( {value, id, changeValue} ) => {
 
   // state: int
   const [state, setState] = useState(value)
 
-  // 외부의 값 업데이트를 반영 (새탭에서 항목을 추가했을 때 등)
+  // 외부에서 일어나는 값 업데이트를 반영 (새탭에서 항목을 추가했을 때 등)
   useEffect(()=> {
     setState(prev=> value)
   }, [value])
@@ -25,12 +25,12 @@ const Counter = ( {value, optionId, postValue} ) => {
       setState(prev => value)
     }
     if (state !== value) {
-      postValue(optionId, state)
+      changeValue(id, state)
     }
   }
 
   const handlerBtn = (dx) => {
-    postValue(optionId, state + dx)
+    changeValue(id, state + dx)
     setState(prev => prev + dx)
   }
 
