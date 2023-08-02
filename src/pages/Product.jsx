@@ -11,11 +11,14 @@ import Loader from "@/components/atoms/loader/Loader.jsx";
 const Styled = {
   Container: styled.section`
     width: 100%;
-    min-width: 1280px;
     min-height: calc(100vh - 65px);
 
     display: grid;
     grid-template-columns: 1fr 360px;
+
+    @media screen and (max-width: 1400px) {
+      display: block;
+    }
   `,
 };
 

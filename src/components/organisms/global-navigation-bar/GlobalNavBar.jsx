@@ -16,7 +16,7 @@ const Styled = {
     height: 4rem;
     padding: 0 calc((100vw - 80rem) / 2);
 
-    @media screen and (max-width: 80rem) {
+    @media screen and (max-width: 84rem) {
       padding: 0 2rem;
     }
 

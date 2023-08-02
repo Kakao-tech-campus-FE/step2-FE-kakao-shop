@@ -4,13 +4,23 @@ import PropTypes from "prop-types";
 
 const Styled = {
   Container: styled.article`
-    padding: 30px 30px 0 0;
+    padding: 2rem 2rem 0 0;
 
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
 
     border-right: ${({ theme }) => theme.border.default};
+
+    @media screen and (max-width: 1400px) {
+      padding: 2rem 0;
+      border-right: none;
+      border-bottom: ${({ theme }) => theme.border.default};
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   `,
   ThumbImage: styled.img`
     width: 430px;
@@ -20,6 +30,10 @@ const Styled = {
   Detail: styled.div`
     width: 430px;
     margin-left: 30px;
+
+    @media screen and (max-width: 768px) {
+      margin: 0;
+    }
   `,
   Title: styled.strong`
     font-size: 1.5rem;

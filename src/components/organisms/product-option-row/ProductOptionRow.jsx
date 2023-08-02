@@ -9,13 +9,18 @@ import ProductOptionResult from "@/components/molecules/product-option-result/Pr
 
 const Styled = {
   Container: styled.article`
-    padding: 30px 0 0 30px;
+    padding: 2rem 0 0 2rem;
     width: 100%;
 
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+
+    @media screen and (max-width: 1400px) {
+      width: 100%;
+      padding: 2rem 0 0;
+    }
   `,
   SelectPurchase: styled.div`
     width: 100%;
