@@ -7,6 +7,8 @@ import SubmitButton from 'components/atoms/SubmitButton';
 import PageTitleBox from 'components/atoms/PageTitleBox';
 import TotalPrice from 'components/molecules/TotalPrice';
 import OptionSelected from 'components/molecules/DetailPageOption/OptionSelected';
+import Counter from 'components/molecules/Counter';
+
 import { CartOptionBox, CartCollectionBox } from 'components/atoms/cart/';
 
 import { getCarts, updateCart } from 'api/cart';
@@ -30,18 +32,10 @@ const Cart = () => {
       onError: () => navigate('/login')
     }
   );
-  
-  /**
-   * 장바구니 업데이트
-   * @param {number} id - cartId
-   * @param {int} q - 바뀐 후 수량 
-   * @param {boolean} clear - 삭제버튼 클릭 여부 
-   * @returns 
-   */
-  const changeCart = (id, q, clear=false) => {
-    if (q === 0 && !clear) return;
-    mutation.mutate( [ {cartId: id, quantity: q} ] )
-    console.log("update data", [ {cartId: id, quantity: q} ])
+
+  const changeCart = (id, newQuantity, clear=false) => {
+    if (newQuantity === 0 && !clear) return;
+    mutation.mutate( [ {cartId: id, quantity: newQuantity} ] )
   }
 
   /** 제출버튼 클릭 시 주문 요청 */
@@ -90,13 +84,17 @@ const Cart = () => {
 
                 <CartOptionBox key={optionItem.option.optionName}>
                   <OptionSelected 
-                    optionId={optionItem.id}
-                     
                     optionName={optionItem.option.optionName} 
                     price={optionItem.price}
-                    quantity={optionItem.quantity}
-                    changeQuantity={changeCart}
                     clear={() => {changeCart(optionItem.id, 0, true)}}
+                    
+                    counterComponent={
+                      <Counter 
+                        id={optionItem.id}
+                        value={optionItem.quantity}
+                        changeValue={changeCart}
+                      />
+                    }
                   />
                 </CartOptionBox> 
 
