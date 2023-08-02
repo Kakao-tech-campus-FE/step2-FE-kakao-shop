@@ -1,17 +1,42 @@
 import Container from "../atoms/Container";
-import InputGroup from "../atoms/InputGroup";
+import InputGroup from "../molecules/InputGroups";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import { login } from "../../services/api";
+import Title from "../atoms/Title";
+import { setEmail } from "../../store/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginForm = () => {
-  const { value, handleOnchange } = useInput({
+  const dispatch = useDispatch();
+  const email = useSelector((state) => state.user(email));
+
+  const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
 
+  const loginReq = () => {
+    login({
+      email: value.email,
+      password: value.password,
+    })
+      .then((res) => {
+        console.log(res);
+        dispatch(
+          setEmail({
+            email: value.email,
+          })
+        );
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  };
+
   return (
     <Container>
+      <Title>로그인</Title>
       <InputGroup
         id="email"
         type="email"
@@ -32,13 +57,13 @@ const LoginForm = () => {
 
       <Button
         onClick={() => {
-          login({
+          loginReq({
             email: value.email,
             password: value.password,
           });
         }}
       >
-        회원가입
+        로그인
       </Button>
     </Container>
   );

@@ -9,29 +9,32 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    setEmail: (State, action) => {
+    setEmail: (state, action) => {
       state.email = action.payload.email;
     },
-    extraReducers: (builder) => {
-      builder.addCase(loginRequest.pending, (state, acti = n) => {
-        state.loading = true;
-      });
-      builder.addCase(loginRequest.fulfilled, (state, action) => {
-        state.loading = false;
-        state.email = action.payload.email;
-      });
-    },
+
+    // redux-thunk
+
+    // extraReducers: (builder) => {
+    //   builder.addCase(loginRequest.pending, (state, action = n) => {
+    //     state.loading = true;
+    //   });
+    //   builder.addCase(loginRequest.fulfilled, (state, action) => {
+    //     state.loading = false;
+    //     state.email = action.payload.email;
+    //   });
+    // },
   },
 });
 
-export const loginReq = createAsyncThunk("user/login", async (data) => {
-  const { email, password } = data;
-  const response = await login({ email, password });
-  return {
-    email: email,
-    token: response.headers.authorization,
-  };
-});
+// export const loginRequest = createAsyncThunk("user/loginRequest", async (data) => {
+//   const { email, password } = data;
+//   const response = await login({ email, password });
+//   return {
+//     email: email,
+//     token: response.headers.authorization,
+//   };
+// });
 
 export const { setEmail } = userSlice.actions;
 export default userSlice.reducer;
