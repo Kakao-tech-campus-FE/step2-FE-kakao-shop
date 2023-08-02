@@ -16,6 +16,7 @@ import OrderPage from './components/pages/orderPage';
 import ConfirmOrderPage from './components/pages/confirmOrderPage';
 import GlobalLoader from './components/atoms/globalLoader';
 import ErrorBoundary from './components/layouts/errorBoundary';
+import AuthLayout from './components/layouts/authLayout';
 
 function App() {
   return (
@@ -33,9 +34,13 @@ function App() {
                 <Route element={<MainLayout />}>
                   <Route path="/" element={<MainPage />} />
                   <Route path="/product/:productId" element={<ProductDetailPage />} />
-                  <Route path="/cart" element={<CartPage />} />
-                  <Route path="/order" element={<OrderPage />} />
-                  <Route path="/confirmOrder/:orderId" element={<ConfirmOrderPage />} />
+
+                  {/* 로그인 필요 */}
+                  <Route element={<AuthLayout />}>
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/order" element={<OrderPage />} />
+                    <Route path="/confirmOrder/:orderId" element={<ConfirmOrderPage />} />
+                  </Route>
                 </Route>
               </Routes>
             </Suspense>

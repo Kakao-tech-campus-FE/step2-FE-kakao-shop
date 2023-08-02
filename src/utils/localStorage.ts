@@ -11,6 +11,8 @@ export function getItemWithExpireDate(key: string) {
   const itemString = localStorage.getItem(key);
 
   if (itemString === null) {
+    localStorage.removeItem(key);
+
     return null;
   }
 

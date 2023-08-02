@@ -15,31 +15,33 @@ export default function NavigationBar() {
 
   useEffect(() => {
     const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
-
     if (token === null) {
-      localStorage.removeItem(LOCALSTORAGE_KEY_USERINFO);
-    } else {
-      const userInfoString = localStorage.getItem(LOCALSTORAGE_KEY_USERINFO);
-      if (userInfoString !== null) {
-        const userInfo = JSON.parse(userInfoString);
+      dispatch(logout());
 
-        dispatch(login({
-          isLogin: true,
-          email: userInfo.email,
-        }));
-      }
+      return;
     }
+
+    const userInfoString = localStorage.getItem(LOCALSTORAGE_KEY_USERINFO);
+    if (userInfoString === null) {
+      dispatch(logout());
+
+      return;
+    }
+
+    const userInfo = JSON.parse(userInfoString);
+    dispatch(login({
+      isLogin: true,
+      email: userInfo.email,
+    }));
   }, []);
 
   const handleLogout = () => {
     dispatch(logout());
-    localStorage.removeItem(LOCALSTORAGE_KEY_TOKEN);
-    localStorage.removeItem(LOCALSTORAGE_KEY_USERINFO);
     navigator('/');
   };
 
   return (
-    <div className="sticky inset-x-0 top-0 z-50 flex w-full items-center justify-between bg-white px-6 py-4">
+    <header className="sticky inset-x-0 top-0 z-50 flex w-full items-center justify-between bg-white px-6 py-4">
       <Link to="/">
         <div className="h-10">
           <Photo src="/logoKakao.png" alt="카카오톡 쇼핑하기" />
@@ -77,6 +79,6 @@ export default function NavigationBar() {
           </div>
         )}
       </div>
-    </div>
+    </header>
   );
 }
