@@ -129,7 +129,7 @@ const OrderTemplate = ({ data }) => {
                             mutate(null, {
                                 onSuccess: (res) => {
                                     alert("주문이 완료되었습니다.");
-                                    navigate(`/orders/complete/${res.response.id}`);
+                                    navigate(`/orders/complete/${res.data.response.id}`);
                                 },
                                 onError: () => {
                                     alert("주문에 실패했습니다.");
