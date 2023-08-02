@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Header from '@components/page/PayResult/Header';
 import Info from '@components/page/PayResult/Info';
@@ -8,19 +9,20 @@ import Submit from '@components/page/PayResult/Submit';
 import TotalResult from '@components/page/PayResult/TotalResult';
 
 const PayResult = () => {
+  const navigate = useNavigate();
   const orderProducts = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')!) : undefined;
   const pageAllow = localStorage.getItem('PayResultPageAllow') ? localStorage.getItem('PayResultPageAllow') : undefined;
 
   useEffect(() => {
-    if (!!pageAllow) {
+    if (!pageAllow) {
       alert('접근 권한이 없습니다.');
-      window.location.href = '/';
+      navigate('/');
     }
 
     return () => {
       localStorage.removeItem('PayResultPageAllow');
     };
-  }, []);
+  }, [pageAllow]);
 
   return (
     <S.Root>
