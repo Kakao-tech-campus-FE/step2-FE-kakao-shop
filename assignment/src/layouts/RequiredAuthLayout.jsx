@@ -2,10 +2,11 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import GNB from '../components/atoms/GNB';
+import { useEffectOnce } from '../hooks/useEffectOnce';
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
-  useEffect(() => {
+  useEffectOnce(() => {
     if (localStorage.getItem('user') === null) {
       alert('로그인이 필요한 서비스입니다.');
       navigate('/login');
