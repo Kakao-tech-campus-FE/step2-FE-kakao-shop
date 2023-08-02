@@ -33,6 +33,7 @@ module.exports = {
       colors: {
         backgroundPupple: '#f2f0f9',
         pointPupple: '#A50FFF',
+        subPupple: '#e7def7',
         lightPupple: '#fcfbfe',
         middleGray: '#979797',
         subGray: '#F0F0F0',
@@ -45,6 +46,7 @@ module.exports = {
       },
       spacing: {
         header: '100px',
+        footer: '100px',
       },
       maxWidth: {
         container: '1080px',
