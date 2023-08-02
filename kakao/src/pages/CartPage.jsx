@@ -34,7 +34,6 @@ const CartPage = () => {
   return (
     <div className="cartpage">
       <Suspense fallback={<Loader />}>
-        {/* <CartList data={cartItems} /> */}
         {cartItems.length !== 0 && <CartList data={cartItems} />}
       </Suspense>
     </div>
