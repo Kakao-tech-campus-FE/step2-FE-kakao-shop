@@ -8,7 +8,7 @@ interface Props {
   color?: string;
   fontSize?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Button = ({
