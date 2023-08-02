@@ -66,7 +66,7 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <div className={"flex flex-col w-full max-w-[1024px] min-w-[786px] m-auto px-20 gap-2"}>
+    <div className={"flex flex-col w-full max-w-4xl m-auto gap-2"}>
       <div className={"h-20 flex items-center justify-center"}>
         <h1 className={"text-4xl font-bold"}>장바구니</h1>
       </div>

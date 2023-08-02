@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ProductOption = ({ item, key }) => {
   return (
     <div
-      className={"product-option p-4 text-start border border-gray-300"}
+      className={"product-option mx-auto w-full text-start border border-gray-300 p-2"}
       key={key}
     >
       <div className={"product-item-option-name font-semibold"}>
@@ -24,14 +24,14 @@ const Product = ({ product, key }) => {
   return (
     <div
       className={
-        "product mx-6 pb-4 border-b border-b-gray-300 flex flex-col gap-4"
+        "product mx-auto pb-4 border-b border-b-gray-300 flex flex-col gap-4 w-full"
       }
       key={key}
     >
       <div className={"product-name-order text-start font-bold text-lg"}>
         {product.productName}
       </div>
-      <div className={"product-options flex flex-col gap-4"}>
+      <div className={"product-options flex flex-col gap-4 w-full"}>
         {product.items.map((item, index) => (
           <ProductOption item={item} key={index} />
         ))}
@@ -52,7 +52,7 @@ const OrderCompleteTemplate = ({ data }) => {
   return (
     <section
       className={
-        "order-complete-session flex flex-col mx-auto min-w-[480px] max-w-[1024px] px-20"
+        "order-complete-session flex flex-col mx-auto max-w-4xl w-[100%] gap-2"
       }
     >
       <div className={"complete-message w-full"}>
@@ -61,15 +61,14 @@ const OrderCompleteTemplate = ({ data }) => {
         </div>
         <h2 className={"text-2xl pb-4"}>구매가 정상적으로 완료됐습니다</h2>
       </div>
-      <div className={"flex flex-col gap-4 order-info border border-gray-300"}>
+      <div className={"flex flex-col gap-4 order-info border border-gray-300 p-2"}>
         <div
           className={
-            "order-info-header text-2xl font-semibold mx-10 py-4 border-b border-b-gray-300"
-          }
-        >
+            "order-info-header text-2xl font-semibold mx-auto py-4 border-b border-b-gray-300"
+          }>
           주문상품 정보
         </div>
-        <div className={"product-list flex flex-col gap-4 px-10 "}>
+        <div className={"product-list flex flex-col gap-4 mx-auto w-full"}>
           <Products products={data.data} />
         </div>
         <div className={"total-info"}>
@@ -84,6 +83,7 @@ const OrderCompleteTemplate = ({ data }) => {
             </div>
           </div>
         </div>
+      </div>
         <div className={"payment-box"}>
           <button
             className={
@@ -96,7 +96,6 @@ const OrderCompleteTemplate = ({ data }) => {
             쇼핑 계속하기
           </button>
         </div>
-      </div>
     </section>
   );
 };

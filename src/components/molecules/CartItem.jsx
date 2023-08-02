@@ -15,7 +15,7 @@ const CartItem = ({ item, onChange }) => {
     getItemAmount() !== 0 && (
       <div
         className={
-          "cart-item w-full flex flex-col box-border text-left gap-4 p-10 border border-gray-300"
+          "cart-item w-full flex flex-col box-border text-left gap-4 p-4 border border-gray-300"
         }
       >
         <span className={"block cart-product-name text-xl font-semibold w-full break-normal"}>
@@ -27,7 +27,7 @@ const CartItem = ({ item, onChange }) => {
             <div
               key={cart.id}
               className={
-                "cart-item-option flex flex-col items-end p-4 mx-4 border border-gray-300"
+                "cart-item-option flex flex-col items-end p-4 m-auto w-full border border-gray-300"
               }
             >
               <div className={"flex flex-row justify-between w-full"}>
