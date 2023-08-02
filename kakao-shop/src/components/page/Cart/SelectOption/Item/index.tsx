@@ -31,7 +31,6 @@ const SelectOptionItem = ({
             삭제
           </Button>
           <RegularInput.Counter
-            label={'옵션 수량 선택'}
             value={quantity}
             onClickPlusButton={onIncreaseQuantity(id)}
             onClickMinusButton={onDecreaseQuantity(id)}

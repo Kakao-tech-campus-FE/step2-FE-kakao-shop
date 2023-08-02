@@ -52,7 +52,6 @@ RegularInput.HiddenLabel = function ({
 
 type CounterInputProps = {
   value: number;
-  label: string;
   onClickPlusButton?: MouseEventHandler<HTMLButtonElement>;
   onClickMinusButton?: MouseEventHandler<HTMLButtonElement>;
 } & InputHTMLAttributes<HTMLInputElement>;
@@ -60,7 +59,6 @@ type CounterInputProps = {
 RegularInput.Counter = function CounterInput({
   id,
   value,
-  label,
   onClickMinusButton,
   onClickPlusButton,
   ...props
@@ -70,8 +68,7 @@ RegularInput.Counter = function CounterInput({
       <C.MinusButton onClick={onClickMinusButton}>
         <Photo imageClassName={C.IconCSS} src={minusIcon} alt={'마이너스 버튼'} />
       </C.MinusButton>
-      <S.Label htmlFor={id}>{label}</S.Label>
-      <Input css={C.InputCSS} id={id} type="number" value={value} {...props} />
+      <Input css={C.InputCSS} id={id} type="number" value={value} {...props} aria-label={'옵션 수량 인풋'} />
       <C.PlusButton onClick={onClickPlusButton}>
         <Photo imageClassName={C.IconCSS} src={plusIcon} alt={'플러스 버튼'} />
       </C.PlusButton>
