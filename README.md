@@ -121,6 +121,7 @@
 | styles     | css(scss) 파일                                       |
 | utils      | 상수나 공통 함수, 유틸리티                           |
 
+---
 
 <details>
 <summary>Step-2.-Week-6</summary>
