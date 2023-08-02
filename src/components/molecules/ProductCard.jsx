@@ -11,7 +11,6 @@ const Container = styled.div`
   }
 
   p {
-    margin-top: -1rem;
     font-size: 1.2rem;
     font-weight: bold;
   }
