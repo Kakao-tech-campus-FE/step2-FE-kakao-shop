@@ -105,7 +105,7 @@ const CartList = ({ data }) => {
 
     return (
         <Container className="w-1/2 mx-auto mb-20">
-            <Box className="text-lg font-bold border flex items-center justify-center h-18 my-1">장바구니</Box>
+            <Box className="text-lg font-bold border flex items-center justify-center h-18 my-4">장바구니</Box>
             <Card className="mb-4">
                 {/* 상품별 장바구니 */}
                 {Array.isArray(cartItems) &&

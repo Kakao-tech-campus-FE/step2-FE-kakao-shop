@@ -28,7 +28,7 @@ const OrderTemplate = ({ data }) => {
 
     const getTotalQuantity = () => {
         let totalQuantity = 0;
-    
+        console.log("총 수량 계산", products)
         totalQuantity = products.reduce((acc, items) => {
             return acc + items.carts.reduce((cartTotal, option) => {
                 return cartTotal + option.quantity;
@@ -58,9 +58,9 @@ const OrderTemplate = ({ data }) => {
         mutationFn: order,
     });
 
-    const OrderItems = () => {
+    const OrderItems = ({ products }) => {
         let renderComponent = [];
-
+    
         products.forEach((item) => {
             renderComponent.push(item.carts.map(cart => {
                 return (
@@ -79,7 +79,8 @@ const OrderTemplate = ({ data }) => {
             }));
         });
         return renderComponent;
-    }
+    };
+
 
     return (
         <div>
@@ -108,7 +109,7 @@ const OrderTemplate = ({ data }) => {
                         <span>(총 {getTotalQuantity()}개)</span>
                     </div>
                     {/* 각 주문의 정보 */}
-                    <OrderItems />
+                    <OrderItems products={products} />
                     <div className="h-[46px] text-center leading-[46px]">
                         <span className="text-sky-600">무료배송</span>
                     </div>
@@ -116,7 +117,7 @@ const OrderTemplate = ({ data }) => {
                 {/* 총 주문 금액 */}
                 <div className="p-4 flex items-center justify-between border my-4">
                     <h3 className="text-lg">총 주문 금액</h3>
-                    <span className="text-lg font-bold">{comma(totalPrice)}원</span>
+                    <span className="text-lg font-bold text-sky-600">{comma(totalPrice)}원</span>
                 </div>
                 {/* 전체 동의, 구매 조건 확인 및 결제 진행 동의 */}
                 <div className="flex flex-col gap-2 border">
