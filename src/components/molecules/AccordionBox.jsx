@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 
-const AccordionBox = (props) => {
+const AccordionBox = ( { fixed, initialOpen, title, titleStyle, children } ) => {
 
   const handler = () => {
-    if (props.fixed) {return}
+    if (fixed) {return}
     setOpen(prev => !prev)
   }
-  const [open, setOpen] = useState(props.initialOpen)
+  const [open, setOpen] = useState(initialOpen)
 
   return (
     <AccordionContainer>
         <TitleBox title={true}
           onClick={handler} 
-          titleStyle={props.titleStyle}
+          titleStyle={titleStyle}
         >
           
           <div className='flex items-center w-full'>
-            { props.title }
-            { !props.fixed && 
+            { title }
+            { !fixed && 
               ( open 
                 ? <RiArrowUpSLine className='ml-auto w-5 h-5'/> 
                 : <RiArrowDownSLine className='ml-auto w-5 h-5'/>
@@ -27,8 +27,7 @@ const AccordionBox = (props) => {
           </div>
         </TitleBox>
         
-        
-        { open ? <ContentBox> {props.children} </ContentBox> : null }
+        { open ? <ContentBox> {children} </ContentBox> : null }
         
     </AccordionContainer>
   )
