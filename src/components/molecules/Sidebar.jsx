@@ -1,8 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import SidebarItem from "../atoms/SidebarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoggedIn } from "../../store/slices/userSlice";
+// import { setSearchResult } from "../../store/slices/searchResultSlice";
 
 const Sidebar = () => {
   const menus = [
@@ -10,11 +11,24 @@ const Sidebar = () => {
     { name: "장바구니", path: "/cart", icon: "/sidebarIcons/cart.svg" },
   ];
 
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch(setIsLoggedIn({ isLoggedIn: false }));
+  };
+
+  const [query, setQuery] = useState("");
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setQuery(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search/${query}`);
   };
 
   return (
@@ -25,12 +39,13 @@ const Sidebar = () => {
         </Link>
       </div>
       <div>
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* <img src="/sidebarIcons/search.svg" alt="icon" className="absolute w-5" /> */}
           <input
             type="search"
             placeholder="검색"
             className="w-full rounded-lg p-3 my-2 box-border focus:outline-none"
+            onChange={handleChange}
           />
         </form>
 

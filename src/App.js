@@ -11,6 +11,7 @@ import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderPage from "./pages/OrderPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SearchResultPage from "./pages/SearchResultPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+          <Route path="/search/:query" element={<SearchResultPage />}></Route>
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
