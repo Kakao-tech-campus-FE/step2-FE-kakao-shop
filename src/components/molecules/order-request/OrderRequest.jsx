@@ -51,25 +51,17 @@ const OPTIONS_INFO = [
 ];
 
 function OrderRequest() {
-  const selectedValueRef = useRef(0);
+  const selectRef = useRef(0);
   const messageRef = useRef();
 
   const handleSelectChange = (e) => {
     if (e.target.value === "placeholder") return;
-    selectedValueRef.current = e.target.value;
     messageRef.current.value = OPTIONS_INFO[e.target.value]["value"];
-  };
-
-  const handleTextareaChange = (e) => {
-    messageRef.current.value = e.target.value;
   };
 
   return (
     <Styled.RequestInfo>
-      <Styled.Select
-        value={selectedValueRef.current}
-        onChange={handleSelectChange}
-      >
+      <Styled.Select ref={selectRef} onChange={handleSelectChange}>
         {OPTIONS_INFO.map((item, index) => (
           <Styled.Option
             key={index}
@@ -81,7 +73,7 @@ function OrderRequest() {
           </Styled.Option>
         ))}
       </Styled.Select>
-      <Styled.Textarea ref={messageRef} onChange={handleTextareaChange} />
+      <Styled.Textarea ref={messageRef} />
     </Styled.RequestInfo>
   );
 }
