@@ -28,7 +28,7 @@ export default function ResultSection() {
       )}
       {error && <span>Error</span>}
       {data && (
-        <div className="flex-grow bg-gray-100">
+        <div className="w-full flex-grow bg-gray-100">
           <div className="inline-block w-[800px] mx-auto mt-4 mb-16">
             <div className="mb-2 py-8 bg-white border">
               <p className="text-lg font-bold">구매완료!</p>

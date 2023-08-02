@@ -87,7 +87,7 @@ export default function OrderSection() {
       )}
       {error && <span>Error</span>}
       {data && (
-        <div className="flex-grow bg-gray-100">
+        <div className="w-full flex-grow bg-gray-100">
           <div className="inline-block w-[800px] mx-auto mt-4 mb-16">
             <h1 className="block py-2 bg-white border text-sm font-bold">
               주문하기
