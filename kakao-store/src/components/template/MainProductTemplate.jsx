@@ -55,6 +55,7 @@ const MainProductTemplate = () => {
 
   useEffect(() => {
     dispatch(getProduct(page));
+    setIsLoading(false);
   }, [dispatch, page]);
 
   return (
