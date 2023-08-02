@@ -7,6 +7,7 @@ import CartPage from "./pages/CartPage";
 import MainLayout from "./layouts/MainLayout";
 import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
+            <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>
