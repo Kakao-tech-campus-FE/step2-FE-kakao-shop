@@ -10,14 +10,13 @@ const SignUp = lazy(() => import("@/pages/SignUp.jsx"));
 const Product = lazy(() => import("@/pages/Product.jsx"));
 const Cart = lazy(() => import("@/pages/Cart.jsx"));
 const NotFound = lazy(() => import("@/pages/NotFound.jsx"));
-import OrderResult from "@/pages/OrderResult.jsx";
-// import NotFound from "@/pages/NotFound.jsx";
+const OrderResult = lazy(() => import("@/pages/OrderResult.jsx"));
 
 const router = createBrowserRouter([
   {
     path: "",
     loader: GlobalLoader,
-    // errorElement: <NotFound />,
+    errorElement: <NotFound />,
     children: [
       {
         path: routes.home,
