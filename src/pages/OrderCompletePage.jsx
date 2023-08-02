@@ -1,9 +1,12 @@
 import { useQuery } from "react-query";
-import OrderCompleteTemplate from "../components/templates/OrderCompleteTemplate";
 import { getOrderFromId } from "../services/api/order";
 import { useParams } from "react-router-dom";
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import Loader from "../components/atoms/Loader";
+
+const OrderCompleteTemplate = React.lazy(() =>
+  import("../components/templates/OrderCompleteTemplate")
+);
 
 const OrderCompletePage = () => {
   const { id } = useParams();
