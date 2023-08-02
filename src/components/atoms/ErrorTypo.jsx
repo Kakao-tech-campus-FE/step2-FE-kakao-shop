@@ -1,3 +1,5 @@
+import Container from "./Container";
+
 const ErrorTypo = () => {
   return (
     <Container className="w-full px-24 py-16 m-auto">
