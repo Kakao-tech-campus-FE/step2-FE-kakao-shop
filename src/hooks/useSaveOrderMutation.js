@@ -4,12 +4,12 @@ import API from "@/constants/API.js";
 import orderAPI from "@/api/orderAPI.js";
 import routes from "@/constants/routes.js";
 
-function usePostOrderMutation() {
+function useSaveOrderMutation() {
   const navigate = useNavigate();
   const { mutate } = useMutation(
     [API.KEYS.POST_ORDER],
     async () => {
-      const { data } = await orderAPI.postOrder();
+      const { data } = await orderAPI.saveOrder();
       return data.response;
     },
     {
@@ -23,4 +23,4 @@ function usePostOrderMutation() {
   return { mutate };
 }
 
-export default usePostOrderMutation;
+export default useSaveOrderMutation;
