@@ -8,7 +8,7 @@ export const register = async (data) => {
       password,
       username,
     });
-    console.log("Register Api data", response);
+    // console.log("Register Api data", response);
     return response;
   } catch (error) {
     console.log("Register Api Error", error);
@@ -25,7 +25,7 @@ export const login = async (data) => {
     });
     // 로그인 성공 시 토큰을 localStorage에 저장
     localStorage.setItem("token", response.headers.authorization);
-    console.log("Login Api data", response);
+    // console.log("Login Api data", response);
     return response;
   } catch (error) {
     console.log("Login Api Error", error);

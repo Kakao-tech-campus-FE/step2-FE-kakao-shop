@@ -16,10 +16,10 @@ export const updateCart = (items) => {
 export const getCart = async () => {
   try {
     const response = await instance.get("/carts");
-    console.log("getCart Api data", response.data.response);
+    // console.log("getCart Api data", response.data.response);
     return response.data;
   } catch (error) {
-    console.log("getCart Api Error", error);
+    // console.log("getCart Api Error", error);
     throw error;
   }
 };

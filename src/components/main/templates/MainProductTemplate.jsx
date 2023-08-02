@@ -17,7 +17,7 @@ export default function MainProductTemplate() {
   } = useFetchProducts();
 
   useEffect(() => {
-    console.log("MainProductTemplate products", products);
+    // console.log("MainProductTemplate products", products);
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
@@ -36,7 +36,7 @@ export default function MainProductTemplate() {
 
   useEffect(() => {
     if (error) {
-      console.log("MainProductTemplate Error", error.message);
+      console.error(error.message);
       alert("서버에 문제가 있습니다. 잠시 후 다시 시도해주세요.");
     }
   }, [error]);

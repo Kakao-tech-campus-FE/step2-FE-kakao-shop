@@ -19,10 +19,10 @@ export const getOrderFromId = async (id) => {
       throw new Error("id는 0보다 작을 수 없습니다.");
     }
     const response = await instance.get(`/orders/${id}`);
-    console.log("getOrderFromId Api response", response);
+    // console.log("getOrderFromId Api response", response);
     return response.data.response;
   } catch (error) {
-    console.log("getOrderFromId Api error", error);
+    // console.log("getOrderFromId Api error", error);
     throw error;
   }
 };

@@ -19,11 +19,11 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    console.log("Axios Interceptors Data", response);
+    // console.log("Axios Interceptors Data", response);
     return response;
   },
   (error) => {
-    console.log("Axios Interceptors Error", error);
+    // console.log("Axios Interceptors Error", error);
     // TimeoutError 발생 시 처리
     if (error.code === "ECONNABORTED") {
       console.error("요청이 시간 초과되었습니다.");
