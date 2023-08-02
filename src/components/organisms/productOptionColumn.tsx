@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ProductOption, SelectedOption } from '../../types/product';
 import { OptionReducerAction } from '../../types/reducerAction';
 import Option from '../molecules/option';
@@ -25,12 +25,13 @@ export default function ProductOptionColumn({
   const { mutate } = useAddCart();
   const { isLogin } = useUserSelector((state) => state.user);
   const navigator = useNavigate();
+  const { pathname } = useLocation();
 
   const handleAddCart = () => {
     if (!isLogin) {
       const response = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
       if (response) {
-        navigator('/login');
+        navigator('/login', { state: pathname });
 
         return;
       }
