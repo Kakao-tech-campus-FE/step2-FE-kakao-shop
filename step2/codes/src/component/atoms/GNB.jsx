@@ -1,24 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/atoms/GNB.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setEmail } from "../../store/slices/userSlice"
 import { useEffect } from "react";
+import Button from "./Button";
 
 function GNB() {
     const email = useSelector((state) => state.user.email);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     
     // 로그아웃 버튼 클릭 시 상태 초기화
     const handleLogout = () => {
-      dispatch(setEmail({ email: "" }));
-      localStorage.removeItem("email"); // 로컬 스토리지에서도 제거
-      localStorage.removeItem("token");
+        localStorage.removeItem("email"); // 로컬 스토리지에서도 제거
+        dispatch(setEmail({ email: "" }));
+        localStorage.removeItem("token");
+        alert("정상적으로 로그아웃 되었습니다.");
     }
-
 
     useEffect(()=> {
         dispatch(setEmail({ setEmail: email}))
-    }, [email])
+    }, [dispatch, email])
 
     return (
         <header className="header">
@@ -38,15 +40,15 @@ function GNB() {
                         <span>
                             {/* 로그인 버튼 */}
                         {email ? (
-                                <Link className = "logButton" onClick={handleLogout} to="/"  style = {{textDecoration: "none", color: "black"}}>
+                                <Button className = "logButton" onClick={handleLogout} style = {{textDecoration: "none", color: "black"}}>
                                     {" "}로그아웃
                                     {" "}
-                                </Link>
+                                </Button>
                              ) : (
-                                 <Link className = "logButton" to="/login" style = {{textDecoration: "none", color: "black"}}>
+                                 <Button className = "logButton" onClick={() => {navigate("/login")}} style = {{textDecoration: "none", color: "black"}}>
                                  {" "}로그인
                                  {" "}
-                                 </Link>
+                                 </Button>
                              )}
                         </span>
                     </div>
