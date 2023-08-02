@@ -1,4 +1,5 @@
 import axios from "axios";
+import routes from "@/constants/routes.js";
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_SHOP_API,
@@ -40,8 +41,8 @@ instance.interceptors.response.use(
 
     switch (error.response.status) {
       case 401:
-        // window.location.href = routes.signIn;
-        break;
+        window.location.href = routes.signIn;
+        return Promise.reject(error);
       case 404:
         return Promise.reject(error);
       default:

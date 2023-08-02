@@ -1,14 +1,14 @@
 import { Suspense, useEffect, useState } from "react";
+import styled from "styled-components";
+import routes from "@/constants/routes.js";
+import { useNavigate } from "react-router-dom";
 
 import GlobalTemplate from "@/components/templates/global-template/GlobalTemplate.jsx";
 import Loader from "@/components/atoms/loader/Loader.jsx";
 import useGetCartItemsQuery from "@/hooks/useGetCartItemsQuery.js";
-import styled from "styled-components";
 import CartProductColumn from "@/components/organisms/cart-product-column/CartProductColumn.jsx";
 import useUpdateCartItemsMutation from "@/hooks/useUpdateCartItemsMutation.js";
 import Button from "@/components/atoms/button/Button.jsx";
-import routes from "@/constants/routes.js";
-import { useNavigate } from "react-router-dom";
 
 const Styled = {
   Container: styled.div`
@@ -50,7 +50,7 @@ function Cart() {
   const navigate = useNavigate();
 
   const totalPrice = data?.products
-    .map((product) =>
+    ?.map((product) =>
       product?.carts.reduce((sum, option) => sum + option.price, 0)
     )
     .reduce((sum, productPrice) => sum + productPrice, 0);
@@ -113,6 +113,7 @@ function Cart() {
                   padding: "1rem",
                   fontWeight: 600,
                 }}
+                disabled={data?.products?.length === 0}
                 onClick={handleOrderButtonClick}
               >
                 {data?.products?.length}건 주문하기

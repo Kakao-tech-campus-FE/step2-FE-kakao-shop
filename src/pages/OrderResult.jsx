@@ -18,6 +18,19 @@ const Styled = {
     font-weight: 600;
     text-align: center;
     background-color: white;
+    border-bottom: ${({ theme }) => theme.border.default};
+  `,
+  Description: styled.div`
+    width: 100%;
+    padding: 1.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #fffef0;
   `,
 };
 function OrderResult() {
@@ -31,6 +44,7 @@ function OrderResult() {
     >
       <Styled.Container>
         <Styled.Title>주문 결과</Styled.Title>
+        <Styled.Description>주문이 완료되었습니다 🎉</Styled.Description>
         {data?.products?.map((product) => (
           <OrderProductColumn
             key={product.productName}

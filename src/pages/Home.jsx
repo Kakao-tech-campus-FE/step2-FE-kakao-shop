@@ -59,9 +59,12 @@ function Home() {
         slideArray={CAROUSEL.SLIDE}
         dotButton
         arrowButton
-        width="100vw"
         time={2000}
-        style={{ width: "100vw", position: "relative", left: "-5rem" }}
+        style={{
+          width: "100vw",
+          position: "relative",
+          left: "-4rem",
+        }}
       />
       <Suspense fallback={<Loader />}>
         <Styled.Grid>

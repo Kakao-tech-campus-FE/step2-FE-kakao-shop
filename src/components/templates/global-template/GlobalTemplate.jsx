@@ -13,6 +13,9 @@ const Styled = {
     width: 100vw;
     padding: 4rem 4rem 0;
     box-sizing: border-box;
+    @media screen and (max-width: 576px) {
+      padding: 4rem 0 0;
+    }
   `,
 };
 

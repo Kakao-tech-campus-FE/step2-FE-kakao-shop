@@ -72,9 +72,12 @@ function GlobalNavBar({ isStorybookMode }) {
         }}
       />
       <Styled.ButtonBox>
-        <Styled.CartButton onClick={handleCartButtonClick}>
-          <CartIcon />
-        </Styled.CartButton>
+        {accessToken && (
+          <Styled.CartButton onClick={handleCartButtonClick}>
+            <CartIcon />
+          </Styled.CartButton>
+        )}
+
         <Styled.AuthButton onClick={handleAuthButtonClick}>
           {accessToken ? "로그아웃" : "로그인"}
         </Styled.AuthButton>

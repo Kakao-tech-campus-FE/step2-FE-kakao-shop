@@ -120,13 +120,13 @@ function Carousel({ time, arrowButton, dotButton, slideArray, ...props }) {
 
       {arrowButton && (
         <>
-          <Button onClick={handlePrevSlide} style={{ left: 0 }}>
+          <Button onClick={handlePrevSlide} style={{ left: "1rem" }}>
             <img
               alt="previous"
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAfElEQVR4nO2XMQqAMBAEh1Ms9C/6AittlXxB/IL+3yYBG8HGbJAbSD3LkhwX+DG1SmzAChxAn1teAQE445mU8g1oc9YebvId6Fz+Nea14xcOf2p5GFXjtZgAphw4CQ+R8CYS3kTCmyiqiUq5lj+FmBFgwBK/ZgNCGqX8NRevhSysSiahIgAAAABJRU5ErkJggg=="
             />
           </Button>
-          <Button onClick={handleNextSlide} style={{ right: 0 }}>
+          <Button onClick={handleNextSlide} style={{ right: "2rem" }}>
             <img
               alt="next"
               src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAe0lEQVR4nO2XMQqAMBAEBxWLe4z4ASuxVAQ/YP6g/xckgo1lPCW7kHqH5e7Iwk9UeZo3wAZMQOEB0AN7fDNQvg1gQPgCxHqDWASBkkAzcUrbcUlJPJ3tjpwAzPM2mMxR7Gjg0suyXrXg+S0fvDtBG6vZ6FXNAGov4+Q6AC9HLK6rbqMeAAAAAElFTkSuQmCC"

@@ -10,7 +10,9 @@ function useGetCartItemsQuery() {
       return data.response;
     },
     {
-      onError: (err) => console.log(err),
+      onError: (err) => {
+        console.log(err.response.status);
+      },
       suspense: true,
     }
   );

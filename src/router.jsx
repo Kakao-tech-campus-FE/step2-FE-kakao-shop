@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: "",
     loader: GlobalLoader,
-    errorElement: <NotFound />,
+    // errorElement: <NotFound />,
     children: [
       {
         path: routes.home,
