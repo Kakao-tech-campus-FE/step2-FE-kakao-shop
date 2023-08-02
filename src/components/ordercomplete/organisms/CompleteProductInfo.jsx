@@ -36,13 +36,18 @@ export default function CompleteProductInfo({
       {isOrderProductInfoOpen && (
         <div>
           {products.map((product) =>
-            product.items.map((item) => (
-              <CompleteOptionItem
-                key={item.id}
-                item={item}
-                productName={product.productName}
-              />
-            )),
+            product.items.map((item) => {
+              if (item.quantity > 0) {
+                return (
+                  <CompleteOptionItem
+                    key={item.id}
+                    item={item}
+                    productName={product.productName}
+                  />
+                );
+              }
+              return null; // cart.quantity가 0인 경우 null을 반환하여 렌더링하지 않음
+            }),
           )}
         </div>
       )}

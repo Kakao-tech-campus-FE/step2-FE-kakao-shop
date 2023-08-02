@@ -36,14 +36,19 @@ export default function OrderProductInfo({
       {isOrderProductInfoOpen && (
         <div>
           {products.map((product) =>
-            product.carts.map((cart) => (
-              <OrderOptionItem
-                key={cart.id}
-                cart={cart}
-                id={product.id}
-                productName={product.productName}
-              />
-            )),
+            product.carts.map((cart) => {
+              if (cart.quantity > 0) {
+                return (
+                  <OrderOptionItem
+                    key={cart.id}
+                    cart={cart}
+                    id={product.id}
+                    productName={product.productName}
+                  />
+                );
+              }
+              return null; // cart.quantity가 0인 경우 null을 반환하여 렌더링하지 않음
+            }),
           )}
         </div>
       )}
