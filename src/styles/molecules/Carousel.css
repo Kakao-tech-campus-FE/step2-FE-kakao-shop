@@ -4,7 +4,7 @@
   width: 100vw;
   position: relative;
   min-width: 1280px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .carousel-container img {
   width: 100%;

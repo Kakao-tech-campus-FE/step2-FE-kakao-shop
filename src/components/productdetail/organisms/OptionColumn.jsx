@@ -105,7 +105,7 @@ export default function OptionColumn({ product }) {
                   setSelectedOption([]);
                 },
                 onError: () => {
-                  alert("장바구니 담기에 실패했습니다.");
+                  alert("로그인이 필요한 메뉴입니다.");
                 },
               }
             );

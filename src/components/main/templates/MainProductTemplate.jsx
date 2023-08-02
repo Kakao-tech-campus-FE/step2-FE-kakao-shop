@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Container from "../../common/atoms/Container";
-import ProductGrid from "../organism/ProductGrid";
+import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../../common/atoms/Loader";
 import useFetchProducts from "../../../hooks/useFetchProducts";
 
@@ -24,9 +24,9 @@ export default function MainProductTemplate() {
           fetchNextPage();
         }
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
-    if (hasNextPage && !isFetchingNextPage) {
+    if (bottomObserver.current && hasNextPage) {
       io.observe(bottomObserver.current);
     }
     return () => {
@@ -43,7 +43,7 @@ export default function MainProductTemplate() {
 
   if (isLoading) return <Loader />;
   return (
-    <Container className=" flex justify-center flex-col items-center ">
+    <Container className=" flex flex-col items-center justify-center ">
       {products && <ProductGrid products={products} isFetching={isFetching} />}
       <div ref={bottomObserver}></div>
     </Container>

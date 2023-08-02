@@ -24,7 +24,6 @@ export default function MainCarousel({ images }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleNextImg = () => {
     const nextImgIdx = curImgIdx + 1;
-    console.log(nextImgIdx);
     if (nextImgIdx === images.length + 1) {
       moveToNthSlide(1);
     }
@@ -45,10 +44,10 @@ export default function MainCarousel({ images }) {
     });
   };
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => handleNextImg(), 3000);
-  //   return () => clearInterval(interval);
-  // }, [handleNextImg]);
+  useEffect(() => {
+    const interval = setInterval(() => handleNextImg(), 3000);
+    return () => clearInterval(interval);
+  }, [handleNextImg]);
 
   useEffect(() => {
     setExtendedImages([images.at(-1), ...images, images[0]]);
