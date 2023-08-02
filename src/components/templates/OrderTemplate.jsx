@@ -180,13 +180,13 @@ const OrderTemplate = ({ data }) => {
             및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.
           </p>
         </div>
-        {/* 결제하기 버튼 */}
         <button
           className="w-full bg-kakao p-4 text-xl font-bold text-[#333]"
           onClick={() => {
             if (checkedOptions.length === 2) {
               mutate(null, {
                 onError: () => {
+                  // 결제 실패 시 모달 창이 뜨고, 메인 페이지로 이동한다.
                   setFailModal(true);
                 },
                 onSuccess: (res) => {

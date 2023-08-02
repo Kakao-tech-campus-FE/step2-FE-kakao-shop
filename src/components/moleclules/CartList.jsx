@@ -54,7 +54,7 @@ const CartList = ({ data }) => {
     setCheckedOptions,
     handleOnChangeCheck,
     handleOnChangeCheckAll,
-  } = useCheckBox([], existProducts);
+  } = useCheckBox(existProducts, existProducts);
 
   const handleOnChangeCount = (optionId, quantity) => {
     mutate([{ cartId: optionId, quantity }], {
@@ -94,7 +94,7 @@ const CartList = ({ data }) => {
 
   return (
     <div className="bg-[#f4f4f4]">
-      <Container className="max-w-[870px] px-0 pb-5">
+      <Container className="max-w-[870px] px-0">
         <Box className="border-b border-gray-200 bg-white leading-[44px]">
           <h1 className="text-center text-[15px] font-bold">장바구니</h1>
         </Box>
