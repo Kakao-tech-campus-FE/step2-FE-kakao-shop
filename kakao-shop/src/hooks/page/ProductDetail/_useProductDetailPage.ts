@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Toast } from '@components/atom';
+import NavigateCart from '@components/page/ProductDetail/NavigateCart';
 
 import { useToggle } from '@hooks/@common';
 import { useProductOption } from '@hooks/page/ProductDetail/useProductOption';
@@ -54,7 +55,7 @@ export const useProductDetail = () => {
 
     dispatch(addCartItemAction(getProductDetailRequest));
     initializeOptionsAfterRequest();
-    Toast.show('장바구니에 담겼습니다');
+    Toast.show(NavigateCart);
   };
 
   const onNavigateCart = () => {

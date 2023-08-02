@@ -19,6 +19,7 @@ const ToastComponent = new Toast({
 });
 
 export default ToastComponent;
+
 const S = {
   Root: styled.div`
     display: flex;
