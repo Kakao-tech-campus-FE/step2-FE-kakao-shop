@@ -1,57 +1,79 @@
-import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useInfiniteQuery } from "react-query";
+import _ from "lodash";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
-import { getProducts } from "../../store/slices/productsSlice";
+import { fetchProducts } from "../../api/product";
 
 /** 상품 목록 템플릿
  *
  * @return {JSX.Element}
  */
 const ProductSectionTemplate = () => {
-  const dispatch = useDispatch();
-  const { products, isLoading, error } = useSelector(
-    (state) => state?.products
-  );
-  const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
-  const prevPage = useRef(null);
-  const isEnd = useSelector((state) => state.products.isEnd);
+  const { page } = useParams();
 
-  const io = new IntersectionObserver(
-    // eslint-disable-next-line no-unused-vars
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-
-        if (!isLoading && entry.isIntersecting && bottomObserver.current) {
-          // eslint-disable-next-line no-shadow
-          setPage((page) => page + 1);
-        }
-      });
-    },
-    { threshold: 1 }
+  const [products, setProducts] = useState([]);
+  const [isEnd, setIsEnd] = useState(false);
+  const pageNumber = useMemo(
+    // eslint-disable-next-line no-restricted-globals
+    () => (!isNaN(page) ? parseInt(page, 10) : 0),
+    [page]
   );
 
-  useEffect(() => {
-    io.observe(bottomObserver.current);
-  }, []);
+  const { data, error, isLoading, fetchNextPage, hasNextPage } =
+    useInfiniteQuery("main", ({ pageParam = 0 }) => fetchProducts(pageParam), {
+      getNextPageParam: (lastPage) => {
+        return lastPage.data.response.length === 9 ? pageNumber + 1 : null;
+      },
+    });
 
   useEffect(() => {
-    if (prevPage.current === page || isEnd) return;
-    dispatch(getProducts(page));
-    prevPage.current = page;
-  }, [dispatch, page]);
+    if (data) {
+      // eslint-disable-next-line no-shadow
+      const newProducts = data.pages.flatMap((page) => page.data.response);
+      setProducts((prevProducts) =>
+        _.uniqBy([...prevProducts, ...newProducts], "id")
+      );
+      setIsEnd(!hasNextPage);
+    }
+  }, [data, hasNextPage]);
+
+  useEffect(() => {
+    const options = {
+      threshold: 1.0,
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !isEnd) {
+        fetchNextPage();
+      }
+    }, options);
+
+    if (bottomObserver.current) {
+      observer.observe(bottomObserver.current);
+    }
+
+    return () => {
+      if (bottomObserver.current) {
+        observer.unobserve(bottomObserver.current);
+      }
+    };
+  }, [bottomObserver, fetchNextPage, isEnd]);
 
   if (error) {
     return <div>{error.message}</div>;
   }
 
   return (
-    <Container className="product-section flex max-w-none mx-auto w-[1280px] mt-[80px]">
-      <ProductGrid products={products} loading={isLoading} />
+    <>
+      <Container className="product-section flex max-w-none mx-auto w-[1280px] mt-[80px]">
+        <div className="w-[892px]">
+          <ProductGrid products={products} loading={isLoading} />
+        </div>
+      </Container>
       <div ref={bottomObserver} />
-    </Container>
+    </>
   );
 };
 
