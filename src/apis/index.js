@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  timeout: 3000,
+  timeout: process.env.REACT_APP_API_TIMEOUT,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },
@@ -36,7 +36,7 @@ instance.interceptors.response.use(
       window.location.href = "/404";
     }
     throw error.response.data.error;
-  }
+  },
 );
 
 // ⭐️ axios.인터셉터
