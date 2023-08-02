@@ -16,6 +16,7 @@ import OrderPage from "./pages/OrderPage";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import ResultPage from "./pages/ResultPage";
 import PayRedirectPage from "./pages/PayRedirectPage";
+import CanceledOrderPage from "./pages/CanceledOrderPage";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <PayRedirectPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/canceled-order",
+        element: (
+          <ProtectedRoute>
+            <CanceledOrderPage />
           </ProtectedRoute>
         ),
       },

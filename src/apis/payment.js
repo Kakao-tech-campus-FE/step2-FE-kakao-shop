@@ -7,8 +7,8 @@ class PaymentInstance extends ApiInstance {
     partner_user_id: "partner_user_id",
     vat_amount: 0,
     tax_free_amount: 0,
-    fail_url: "http://localhost:3000/order",
-    cancel_url: "http://localhost:3000/cart",
+    fail_url: "http://localhost:3000/canceled-order",
+    cancel_url: "http://localhost:3000/canceled-order",
   };
 
   approveParams = {
