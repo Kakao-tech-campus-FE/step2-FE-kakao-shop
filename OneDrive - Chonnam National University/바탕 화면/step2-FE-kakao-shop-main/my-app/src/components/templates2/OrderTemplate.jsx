@@ -1,16 +1,19 @@
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { comma } from "../../utils/convert";
 import Container from "../atoms/Container";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import { getCart } from "../../services/cart";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom"; // eslint-disable-line no-unused-vars
 
-const OrderTemplate = ({ data }) => {
+const OrderTemplate = () => {
   // 사용자의 장바구니 목록을 조회해서 보여주는 것
   // 임시 배열
-  const { products = [], totalPrice = 0 } = data?.data?.response || {};
-//   const { products, totalPrice } = data?.data?.response;
+//   const { products = [], totalPrice = 0 } = data?.data?.response || {};
+  const { data } = useQuery(["cart"], getCart, { suspense: true });
+  const { products, totalPrice } = data?.data?.response ?? {};
   const navigate = useNavigate();
   const loggedIn = useSelector((state) => state.user.isLogined);
   const [agreePayment, setAgreePayment] = useState(false);
@@ -38,7 +41,7 @@ const OrderTemplate = ({ data }) => {
 
   const { mutate } = useMutation({
     mutationKey: "order",
-    queryFn: () => order,
+    queryFn: (orderData) => order(orderData), // Pass the required data to the order function
   });
 
   // 목표
@@ -169,17 +172,12 @@ const OrderTemplate = ({ data }) => {
                 navigate("/login");
               }
 
-              // POST: /orders/save
-              // DB: 장바구니에 있는 모든 항목이 결제로 저장
-              // 장바구니는 비워짐
-              // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
-              // /orders/complete/:id
               mutate(null, {
                 onError: () => {
                   alert("주문에 실패했습니다.");
                 },
                 onSuccess: (res) => {
-                  const id = res.response.id;
+                  const id = res.data.response.id; // 이 부분에서 문제 생김!
                   alert("주문이 완료되었습니다.");
                   navigate(`/orders/complete/${id}`);
                 },

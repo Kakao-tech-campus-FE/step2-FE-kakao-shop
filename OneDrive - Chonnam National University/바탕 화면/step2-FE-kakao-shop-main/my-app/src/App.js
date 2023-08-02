@@ -10,7 +10,7 @@ import CartPage from "./pages/CartPage";
 import Carousel from "./components/atoms/Carousel";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderPage from "./pages/OrderPage";
-import OrderSuccessPage from "./pages/OrderSuccessPage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools"; // eslint-disable-line no-unused-vars
@@ -35,7 +35,7 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
-            <Route path="/order/complete/:id" element={<OrderSuccessPage />}></Route>
+            <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
           </Route>
         </Route>
         <Route path="/*" element={<NotFoundPage />}></Route>
