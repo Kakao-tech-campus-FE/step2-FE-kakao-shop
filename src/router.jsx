@@ -10,11 +10,13 @@ const SignUp = lazy(() => import("@/pages/SignUp.jsx"));
 const Product = lazy(() => import("@/pages/Product.jsx"));
 const Cart = lazy(() => import("@/pages/Cart.jsx"));
 import OrderResult from "@/pages/OrderResult.jsx";
+import NotFound from "@/pages/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
     path: "",
     loader: GlobalLoader,
+    errorElement: <NotFound />,
     children: [
       {
         path: routes.home,
@@ -31,7 +33,12 @@ const router = createBrowserRouter([
       {
         path: `${routes.product}/:productId`,
         element: <Product />,
-        errorElement: <div>product id error</div>,
+        errorElement: (
+          <NotFound
+            title="상품 아이디 에러"
+            description="해당 상품 아이디가 존재하지 않습니다"
+          />
+        ),
       },
       {
         path: routes.cart,
