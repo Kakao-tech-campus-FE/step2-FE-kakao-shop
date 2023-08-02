@@ -37,8 +37,10 @@ describe('login-test', () => {
         const loginButton = await page.$('#login-btn');
         await loginButton.click();
         await page.waitForNavigation();
-        const cookieAccessToken = cookie.load('access_token');
-        const cookieUserId = cookie.load('user_id');
+        const cookieAccessToken = await cookie.load('access_token');
+        const cookieUserId = await cookie.load('user_id');
+        console.log(cookieAccessToken);
+        console.log(cookieUserId);
         expect(cookieAccessToken).not.toBe(undefined || null || "");
         expect(cookieUserId).toBe(email);
     });
