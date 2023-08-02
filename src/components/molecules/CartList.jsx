@@ -142,9 +142,7 @@ const CartList = ({ data, isLoading }) => {
     });
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <main className="pt-2 pb-10 bg-[#F4F4F4] bg-opacity-70">
       <Container className="w-[870px] mx-auto">
         <Box className="h-12 border rounded bg-white text-center">
