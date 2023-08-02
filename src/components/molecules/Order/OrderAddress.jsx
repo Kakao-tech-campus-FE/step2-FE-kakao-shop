@@ -14,7 +14,7 @@ const OrderAddress = (props) => {
       <input 
         className='border border-solid border-gray-400 w-[80%] mt-3' 
         type="text" placeholder='요청사항을 입력해주세요' 
-        value={props.value} onChange={props.onChange}
+        value={props.value || ""} onChange={props.onChange}
       />
     </>
   )
