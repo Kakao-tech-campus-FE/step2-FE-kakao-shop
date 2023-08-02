@@ -17,6 +17,8 @@ export const APPROVE_FAILURE = 'order/APPROVE_FAILURE';
 
 export const POPUP_CLOSE = 'order/POPUP_CLOSE';
 
+export const UPDATE_IS_ENTER_NEXT_PAGE = 'order/UPDATE_IS_ENTER_NEXT_PAGE';
+
 export const orderProductRequestAction = (): OrderProductRequestAction => ({
   type: ORDER_PRODUCT_REQUEST,
 });
@@ -51,12 +53,18 @@ export const popupCloseAction = (): PopupCloseAction => ({
   type: POPUP_CLOSE,
 });
 
+export const updateIsEnterNextPage = (isEnterNextPage: boolean) => ({
+  type: UPDATE_IS_ENTER_NEXT_PAGE,
+  payload: isEnterNextPage,
+});
+
 // Initial State
 export const initialState: OrderState = {
   isLoading: false,
   error: null,
   order: {} as OrderResponse,
   payment: {} as PaymentResponse,
+  isEnterNextPage: false,
 };
 
 // Reducer
@@ -95,6 +103,10 @@ export const OrderReducer = produce((draft: Draft<OrderState>, action) => {
 
     case POPUP_CLOSE:
       window.close();
+      break;
+
+    case UPDATE_IS_ENTER_NEXT_PAGE:
+      draft.isEnterNextPage = action.payload;
       break;
   }
 }, initialState);
@@ -142,6 +154,7 @@ export type OrderState = {
   error: AxiosError | null;
   order: OrderResponse;
   payment: PaymentResponse;
+  isEnterNextPage: boolean;
 };
 
 const openCenteredWindow = (url: string, title: string, w: number, h: number) => {

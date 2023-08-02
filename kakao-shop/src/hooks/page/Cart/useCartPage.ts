@@ -1,4 +1,5 @@
 import { getCartsRequestAction, updateCartsRequestAction } from '@store/Cart/reducers';
+import { updateIsEnterNextPage } from '@store/Order/reducers';
 import { RootState } from '@store/index';
 import { produce } from 'immer';
 import { useEffect, useState, MouseEventHandler } from 'react';
@@ -54,6 +55,7 @@ export const useCartPage = () => {
 
   const onSubmit: MouseEventHandler<HTMLButtonElement> = () => {
     dispatch(updateCartsRequestAction(submitData));
+    dispatch(updateIsEnterNextPage(true));
     navigate('/order');
   };
 
