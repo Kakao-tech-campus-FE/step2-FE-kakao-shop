@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { RiAddFill, RiSubtractFill } from "react-icons/ri";
 
-const Counter = (props) => {
+const Counter = ( {value, optionId, postValue} ) => {
 
-  const [state, setState] = useState(props.quantity)
+  // state: int
+  const [state, setState] = useState(value)
 
+  // 외부의 값 업데이트를 반영 (새탭에서 항목을 추가했을 때 등)
   useEffect(()=> {
-    const number = parseInt(state)
-    if (Number.isNaN(number)) {
-      setState(prev => props.quantity)
-    }
-    else if (typeof state === 'string') {
-      setState(prev=> number)
-    }
-  }, [state])
+    setState(prev=> value)
+  }, [value])
 
-  useEffect(()=> {
-    setState(prev=> props.quantity)
-  }, [props.quantity])
+  // input 입력값 val: string 을 int로 변경, 이상한 값 입력시 서버 값으로 초기화 
+  const makeValue = (val) => {
+    let number = parseInt(val)
+    if (Number.isNaN(number) || typeof val !== 'string') {
+      number = value
+    }
+    return number
+  }
 
   const handlerOnBlur = () => {
     if (state === 0) {
-      setState(prev => props.quantity)
+      setState(prev => value)
     }
-    if (state !== props.quantity) {
-      props.changeQuantity(props.optionId, state)
+    if (state !== value) {
+      postValue(optionId, state)
     }
   }
 
   const handlerBtn = (dx) => {
-    props.changeQuantity(props.optionId, state + dx)
+    postValue(optionId, state + dx)
     setState(prev => prev + dx)
   }
 
@@ -48,7 +49,7 @@ const Counter = (props) => {
 
         <input className='text-center' 
           value={state} 
-          onChange={event => setState(prev => event.target.value)}
+          onChange={e => setState(prev => makeValue(e.target.value))}
           onBlur={handlerOnBlur}
         />
 
