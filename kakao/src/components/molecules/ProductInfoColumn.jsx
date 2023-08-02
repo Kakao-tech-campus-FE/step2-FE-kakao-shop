@@ -12,13 +12,13 @@ const ProductInfoColumn = ({ product }) => {
       </div>
       <div className="col">
         <div className="stars">
-          <span className="material-symbols-outlined">star_rate_half</span>
-          <span className="material-symbols-outlined">star_rate_half</span>
-          <span className="material-symbols-outlined">star_rate_half</span>
-          <span className="material-symbols-outlined">star_rate_half</span>
-          <span className="material-symbols-outlined">star_rate_half</span>
+          <img src="/star.png" alt="별점" />
         </div>
         <p className="name">{productName}</p>
+        <div className="product-info-coupon">
+          <span>고객님을 위한 혜택</span>
+          <button>쿠폰받기</button>
+        </div>
         <p className="price">{comma(price)}원</p>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../../styles/atoms/Counter.css";
 
 const Counter = ({ quantity, onIncrease, onDecrease }) => {
   const [count, setCount] = useState(0);

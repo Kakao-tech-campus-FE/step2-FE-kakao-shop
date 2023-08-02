@@ -3,6 +3,13 @@
   position: relative;
 }
 
+button {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  cursor: pointer;
+}
+
 /* ToggleBtn */
 .ToggleBtn {
   width: 80px;

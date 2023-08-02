@@ -1,8 +1,13 @@
+/* ----- 선택한 옵션 표시 영역 ----- */
 .selected-option-list {
   border: 1px solid #ccc;
   margin: 5px 0;
-  list-style: none;
+  /* list-style: none; */
   padding: 4px;
+}
+
+.selected-option-item {
+  padding: 6px;
 }
 
 .selected-option-update {
@@ -55,14 +60,33 @@
   height: 60px;
   display: flex;
 }
-
-.button-group .btn-l {
-  width: 100px;
+.button-group button {
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 5px;
 }
 
-.option-column .button-group .order-btn {
+.button-group .like-btn {
+  width: 60px;
+  margin-right: 5px;
+  background-color: #555;
+  color: white;
+}
+
+.button-group .cart-btn {
+  width: 60px;
+  margin-right: 5px;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.button-group .order-btn {
+  flex: 1;
   background-color: #fcea26;
   width: 150px;
+}
+
+.button-group .order-btn span {
+  font-size: 18px;
+  font-weight: 700;
 }

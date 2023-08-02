@@ -6,7 +6,6 @@ import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/molecules/OptionColumn.css";
 
 const OptionColumn = ({ product }) => {
@@ -120,7 +119,7 @@ const OptionColumn = ({ product }) => {
       </div>
 
       <div className="button-group">
-        <Button className="btn-l">
+        <Button className="like-btn">
           <span className="material-symbols-outlined">favorite</span>
         </Button>
         <Button
@@ -145,13 +144,13 @@ const OptionColumn = ({ product }) => {
               }
             );
           }}
-          className="btn-l"
+          className="cart-btn"
         >
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
         {/* <Button className="order-btn">구매하기</Button> */}
         <Button variant="order-btn" className="order-btn">
-          구매하기
+          <span>구매하기</span>
         </Button>
       </div>
     </div>

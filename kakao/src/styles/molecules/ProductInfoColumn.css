@@ -7,8 +7,9 @@
   height: 300px;
 }
 
-.product-info-column .stars span {
-  color: rgb(22, 97, 228);
+.product-info-column .stars img {
+  width: 120px;
+  margin-bottom: 5px;
 }
 
 .product-info-column .name {
@@ -16,6 +17,33 @@
   font-weight: 500;
   text-align: left;
   margin: 0;
+}
+
+.product-info-coupon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(245, 250, 254, 0.5);
+  border: 1px solid #e8eef3;
+  border-radius: 5px;
+}
+
+.product-info-coupon span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.product-info-coupon button {
+  width: 75px;
+  height: 30px;
+  border-radius: 2px;
+  font-weight: 700;
+  font-size: 14px;
+  background-color: #f94c4c;
+  color: #fff;
+  border: none;
 }
 
 .product-info-column .price {
