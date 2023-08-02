@@ -21,18 +21,19 @@ const Styled = {
     justify-content: center;
     align-items: flex-start;
 
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, 300px);
     grid-gap: 2rem;
   `,
   Loader: styled.article`
     width: 100%;
-    padding-bottom: 120px;
+    padding: 4rem 0;
 
     display: grid;
     justify-content: center;
     align-items: center;
 
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 2rem;
   `,
 };
 
@@ -76,13 +77,11 @@ function Home() {
               />
             ))
           )}
-        </Styled.Grid>
 
-        <Styled.Loader ref={loaderRef}>
-          <ProductInfoCardLoader />
-          <ProductInfoCardLoader />
-          <ProductInfoCardLoader />
-        </Styled.Loader>
+          <Styled.Loader ref={loaderRef}>
+            <ProductInfoCardLoader />
+          </Styled.Loader>
+        </Styled.Grid>
       </Suspense>
     </GlobalTemplate>
   );
