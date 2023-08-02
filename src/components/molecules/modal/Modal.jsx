@@ -1,9 +1,11 @@
+import { useRef } from "react";
 import styled from "styled-components";
-import Portal from "@/components/atoms/portal/Portal.jsx";
-import { useRef, useEffect } from "react";
-import Close from "@/assets/Close.jsx";
-import useOutsideClick from "@/hooks/useOutsideClick.js";
 import PropTypes from "prop-types";
+
+import useOutsideClick from "@/hooks/useOutsideClick.js";
+import useBodyStyleFixed from "@/hooks/useBodyStyleFixed.js";
+import Portal from "@/components/atoms/portal/Portal.jsx";
+import Close from "@/assets/Close.jsx";
 
 const Styled = {
   Backdrop: styled.section`
@@ -40,18 +42,7 @@ function Modal({ setIsOpen, children, ...props }) {
   const modalRef = useRef();
   useOutsideClick(modalRef, () => setIsOpen(false));
 
-  useEffect(() => {
-    document.body.style.cssText = `
-    position: fixed; 
-    top: -${window.scrollY}px;
-    overflow-y: ${scroll};
-    width: 100%;`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = "";
-      window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
-    };
-  }, []);
+  useBodyStyleFixed();
   return (
     <Portal>
       <Styled.Backdrop>

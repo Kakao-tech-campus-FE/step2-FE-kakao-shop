@@ -4,6 +4,7 @@ import OrderDelivery from "@/components/organisms/order-delivery/OrderDelivery.j
 import useGetCartItemsQuery from "@/hooks/useGetCartItemsQuery.js";
 import OrderProductColumn from "@/components/organisms/order-product-column/OrderProductColumn.jsx";
 import OrderAgreeTerm from "@/components/organisms/order-agree-term/OrderAgreeTerm.jsx";
+import { useParams } from "react-router-dom";
 
 const Styled = {
   Container: styled.div`
@@ -15,7 +16,9 @@ const Styled = {
   `,
 };
 function Order() {
-  const { data } = useGetCartItemsQuery();
+  const { orderId } = useParams();
+  const { data } = useGetCartItemsQuery({ id: orderId });
+  const { products = [] } = data ?? {};
   return (
     <GlobalTemplate
       title="장바구니"
@@ -25,11 +28,12 @@ function Order() {
     >
       <Styled.Container>
         <OrderDelivery />
-        {data?.products?.map((product) => (
+        {products?.map((product) => (
           <OrderProductColumn
             key={product.id}
             id={product.id}
             productName={product.productName}
+            optionName={product?.option?.optionName}
             carts={product.carts}
           />
         ))}

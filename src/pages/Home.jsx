@@ -45,6 +45,7 @@ function Home() {
   const { data, fetchNextPage } = useGetInfiniteProductsQuery({
     loader: loaderRef?.current,
   });
+  const { pages = [] } = data ?? {};
 
   useEffect(() => {
     const unobserve = observer.observe(loaderRef.current);
@@ -68,7 +69,7 @@ function Home() {
       />
       <Suspense fallback={<Loader />}>
         <Styled.Grid>
-          {data?.pages.map((page) =>
+          {pages?.map((page) =>
             page.map((info) => (
               <ProductInfoCard
                 key={info.id}

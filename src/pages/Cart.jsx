@@ -44,7 +44,9 @@ const Styled = {
 };
 
 function Cart() {
-  const { data } = useGetCartItemsQuery();
+  const { data } = useGetCartItemsQuery({ id: undefined });
+  const { products = [] } = data ?? {};
+
   const [cartOptions, setCartOptions] = useState([]);
   const { mutate } = useUpdateCartItemsMutation();
   const navigate = useNavigate();
@@ -60,7 +62,7 @@ function Cart() {
   };
 
   useEffect(() => {
-    const cart = data?.products
+    const cart = products
       ?.map((product) =>
         product?.carts?.map((cart) => {
           return { cartId: cart.id, quantity: cart.quantity };
@@ -69,7 +71,7 @@ function Cart() {
       .flat();
 
     setCartOptions([...cart]);
-  }, [data]);
+  }, [products]);
 
   useEffect(() => {
     const updateCartItems = () => {
@@ -89,7 +91,7 @@ function Cart() {
       <Suspense fallback={<Loader />}>
         <Styled.Container>
           <div style={{ maxWidth: "870px", width: "100%" }}>
-            {data?.products?.map((item) => (
+            {products?.map((item) => (
               <CartProductColumn
                 key={item.id}
                 productId={item.id}
@@ -113,10 +115,10 @@ function Cart() {
                   padding: "1rem",
                   fontWeight: 600,
                 }}
-                disabled={data?.products?.length === 0}
+                disabled={products?.length === 0}
                 onClick={handleOrderButtonClick}
               >
-                {data?.products?.length}건 주문하기
+                {products?.length}건 주문하기
               </Button>
             </Styled.PriceBox>
           </div>

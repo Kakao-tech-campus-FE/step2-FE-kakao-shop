@@ -3,7 +3,8 @@ import CheckBox from "@/components/atoms/check-box/CheckBox.jsx";
 import { useState } from "react";
 import OrderTermItem from "@/components/molecules/order-term-item/OrderTermItem.jsx";
 import Button from "@/components/atoms/button/Button.jsx";
-import usePostOrderMutation from "@/hooks/usePostOrderMutation.js";
+import useSaveOrderMutation from "@/hooks/useSaveOrderMutation.js";
+import PropTypes from "prop-types";
 
 const Styled = {
   Container: styled.section`
@@ -50,7 +51,7 @@ const AGREE_TERM = [
 function OrderAgreeTerm({ totalPrice }) {
   const [isTermChecked, setIsTermChecked] = useState([false, false]);
 
-  const postOrderMutation = usePostOrderMutation();
+  const postOrderMutation = useSaveOrderMutation();
 
   return (
     <Styled.Container>
@@ -94,7 +95,7 @@ function OrderAgreeTerm({ totalPrice }) {
         ))}
       </Styled.TermGroup>
       <Button
-        disabled={!isTermChecked[0] || !isTermChecked[1]}
+        disabled={!isTermChecked[0] || !isTermChecked[1] || totalPrice === 0}
         onClick={() => {
           if (!isTermChecked[0] || !isTermChecked[1]) return;
           postOrderMutation.mutate();
@@ -112,5 +113,9 @@ function OrderAgreeTerm({ totalPrice }) {
     </Styled.Container>
   );
 }
+
+OrderAgreeTerm.propTypes = {
+  totalPrice: PropTypes.number,
+};
 
 export default OrderAgreeTerm;

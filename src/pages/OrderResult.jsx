@@ -35,6 +35,8 @@ const Styled = {
 };
 function OrderResult() {
   const { data } = useGetOrderResult();
+  const { products = [] } = data ?? {};
+
   return (
     <GlobalTemplate
       title="주문 결과"
@@ -45,12 +47,13 @@ function OrderResult() {
       <Styled.Container>
         <Styled.Title>주문 결과</Styled.Title>
         <Styled.Description>주문이 완료되었습니다 🎉</Styled.Description>
-        {data?.products?.map((product) => (
+        {products.map((product) => (
           <OrderProductColumn
             key={product.productName}
             id={product.productName}
             productName={product.productName}
             carts={product.items}
+            optionName={product?.optionName}
             isOrderResult={true}
           />
         ))}
