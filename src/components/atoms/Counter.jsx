@@ -39,6 +39,7 @@ const CounterContainer = styled.div`
         width : 17px;
         padding : 0 12px;
         text-align: center;
+        background-color : #fff;
     }
     & > button {
         border : none;
