@@ -27,6 +27,7 @@ const Styled = {
   `,
 
   ButtonBox: styled.div`
+    padding-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
