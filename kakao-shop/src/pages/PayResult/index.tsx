@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
 
 import Header from '@components/page/PayResult/Header';
 import Info from '@components/page/PayResult/Info';
@@ -7,7 +7,7 @@ import ListSection from '@components/page/PayResult/ListSection';
 import Submit from '@components/page/PayResult/Submit';
 import TotalResult from '@components/page/PayResult/TotalResult';
 
-const PayResult = () => {
+const PayResult = withRouteGuard('/login', () => {
   const orderProducts = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')!) : null;
 
   return (
@@ -21,7 +21,7 @@ const PayResult = () => {
       </S.Container>
     </S.Root>
   );
-};
+});
 
 export default PayResult;
 
