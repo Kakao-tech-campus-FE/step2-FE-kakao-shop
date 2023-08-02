@@ -18,7 +18,6 @@ function GNB() {
 
     useEffect(()=> {
         dispatch(setEmail({ setEmail: email}))
-        console.log(email)
     }, [email])
 
     return (

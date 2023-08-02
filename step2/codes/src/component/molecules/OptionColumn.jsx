@@ -61,15 +61,22 @@ const OptionColumn = ({ product }) => {
             quantity: el.quantity
         }
     });
+
+
     const addCartReq = async () => {
         if (email) {
-            await addCart(addCartArr)
-                .then(response => {
-                    alert("장바구니에 담았습니다.")
-                    navigate("/cart")
-                }).catch(err => {
-                    alert("장바구니 담기에 실패했습니다.")});
-        } else {
+            if (addCartArr && addCartArr.length === 0) {
+                alert("담을 상품이 없습니다.");
+                return
+            } else {
+                await addCart(addCartArr)
+                    .then(response => {
+                        alert("장바구니에 담았습니다.")
+                        navigate("/cart")
+                    }).catch(err => {
+                        alert("장바구니 담기에 실패했습니다.")});
+                }
+        }else {
             alert("로그인 하세요");
     }}
 
