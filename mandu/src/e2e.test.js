@@ -1,26 +1,35 @@
 import puppeteer from "puppeteer";
 
+let browser;
+let page;
+
+const email = 'hi@naver.com';
+const asciiEmail = 'hi%40naver.com';
+const password = '1q2w3e4r5t!';
+const productId = 1;
+const optionId = 1;
+const productName = '기본에 슬라이딩 지퍼백 크리스마스/플라워에디션 에디션 외 주방용품 특가전';
+const optionName = '01. 슬라이딩 지퍼백 크리스마스에디션 4종';
+
+
+beforeAll(async () => {
+    browser = await puppeteer.launch();
+    page = await browser.newPage();
+    await page.goto('http://localhost:3000');
+    page.on('dialog', async dialog => {
+        console.log(dialog.message());
+        await dialog.accept();
+    })
+    //delete all cookies before test
+    const cookies = await page.cookies();
+    console.log(cookies);
+    await page.deleteCookie(...cookies);
+});
+
+afterAll(() => browser.close());
+
 
 describe('login-test', () => {
-    let browser;
-    let page;
-
-    const email = 'hi@naver.com';
-    const asciiEmail = 'hi%40naver.com';
-    const password = '1q2w3e4r5t!';
-
-    beforeAll(async () => {
-
-        browser = await puppeteer.launch();
-        page = await browser.newPage();
-        const cookies = await page.cookies()
-        console.log(cookies);
-        await page.goto('http://localhost:3000');
-        page.on('dialog', async dialog => {
-            console.log(dialog.message());
-            await dialog.accept();
-        })
-    });
 
     it('go to login page', async () => {
         const loginButton = await page.waitForSelector('#header-login-btn');
@@ -38,14 +47,61 @@ describe('login-test', () => {
         await page.waitForNavigation();
         const cookies = await page.cookies()
         console.log(cookies);
-        expect(cookies.find(e => e.name === 'access_token')["value"]).not.toBe(undefined || null || "");
-        expect(cookies.find(e => e.name === 'user_id')["value"]).toBe(asciiEmail);
+        expect(cookies.find(e => e.name === 'access_token')?.["value"]).toBeDefined();
+        expect(cookies.find(e => e.name === 'user_id')?.["value"]).toBe(asciiEmail);
     });
 
-    it('check header user id', async () => {
+    it('check header has user id', async () => {
         const userId = await page.$eval('#header-user-id', el => el?.innerText);
         expect(userId).toContain(email);
     });
 
-    afterAll(() => browser.close());
 })
+
+describe('cart-test', () => {
+    it('select option', async () => {
+        await page.goto(`http://localhost:3000/product/${productId}`);
+        for (let i = 0; i < 2; i++) {
+            const optionShowButton = await page.waitForSelector('#option-show-btn');
+            await optionShowButton.click();
+            const optionSelectButton = await page.waitForSelector(`#option-${optionId}`);
+            await optionSelectButton.click();
+        }
+        const optionQuantity = await page.$eval(`#option-${optionId}-quantity`, el => el?.innerText);
+        expect(optionQuantity).toBe('2');
+    });
+
+    it('add to cart', async () => {
+        const addToCartButton = await page.waitForSelector('#add-cart-btn');
+        await addToCartButton.click();
+        await page.goto('http://localhost:3000/cart');
+        const cartProductCard = await page.waitForSelector('.cart-product-card');
+        const cartProductName = await cartProductCard.$eval('.product-name', el => el?.innerText);
+        const cartProductOptionName = await cartProductCard.$eval('.option-name', el => el?.innerText);
+        const cartProductOptionQuantity = await cartProductCard.$eval('.option-quantity', el => el?.innerText);
+        expect(cartProductName).toBe(productName);
+        expect(cartProductOptionName).toBe(optionName);
+        expect(cartProductOptionQuantity).toBe('2');
+    });
+
+
+});
+
+describe('logout-test', () => {
+
+    it('logout', async () => {
+        const logoutButton = await page.waitForSelector('#header-logout-btn');
+        await logoutButton.click();
+        const cookies = await page.cookies()
+        console.log(cookies);
+        expect(cookies.find(e => e.name === 'access_token')?.["value"]).toBeUndefined();
+        expect(cookies.find(e => e.name === 'user_id')?.["value"]).toBeUndefined();
+    })
+
+    it('check header has no user id', async () => {
+        const userIdHeader = await page.$('#header-user-id');
+        expect(userIdHeader).toBeNull();
+    });
+});
+
+

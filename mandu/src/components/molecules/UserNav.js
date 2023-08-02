@@ -54,7 +54,7 @@ const UserNav = () => {
                     ?
                     <div className="flex">
                         <div id="header-user-id" className="my-2">{`유저 id : ${userId}`}</div>
-                        <button onClick={logout}>
+                        <button id="header-logout-btn" onClick={logout}>
                             <img alt="로그아웃" className="h-4 mx-4" src={process.env.PUBLIC_URL + "/logout.png"}/>
                         </button>
                     </div> :

@@ -92,7 +92,7 @@ const ProductInfo = ({product, showDialog}) => {
                 <h1 className="text-lg font-bold">상품 옵션 선택</h1>
                 <div className="w-full border-2 border-gray-500">
                     <div>
-                        <button className="w-full bg-gray-100 flex p-3 justify-between"
+                        <button id="option-show-btn" className="w-full bg-gray-100 flex p-3 justify-between"
                                 onClick={() => setIsOptionOpen((prev) => !prev)}>
                             <p>상품 옵션을 선택해 주세요</p>
                             <span>{isOptionOpen ? "△" : "▽"}</span>
@@ -115,6 +115,7 @@ const ProductInfo = ({product, showDialog}) => {
                     </div>
                     <div className="flex">
                         <OutlinedButton
+                            id="add-cart-btn"
                             className="mr-2"
                             onClick={onAddInCart}
                             disabled={cartAddMutation.isLoading}>

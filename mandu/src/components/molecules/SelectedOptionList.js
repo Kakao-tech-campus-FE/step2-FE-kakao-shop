@@ -16,7 +16,7 @@ const SelectedOptionList = ({selectedOptions, rawOptions, onIncrease, onRemove, 
                         <div className="flex justify-between items-center">
                             <div className="flex items-center">
                                 <button className="px-2 m-2" onClick={() => onDecrease(optionId)}>-</button>
-                                <p className="px-2">{quantity}</p>
+                                <p id={`option-${optionId}-quantity`} className="px-2">{quantity}</p>
                                 <button className="px-2 m-2" onClick={() => onIncrease(optionId)}>+</button>
                             </div>
                             <p>{priceFormat(price * quantity)}</p>
