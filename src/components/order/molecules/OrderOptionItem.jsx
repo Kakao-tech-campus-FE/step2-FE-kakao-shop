@@ -6,7 +6,7 @@ import { comma } from "../../../utils/convert";
 export default function OrderOptionItem({ cart, productName, id }) {
   return (
     <Card
-      className="flex flex-col border-solid border-1 border-zinc-50 no-underline text-black p-3 tracking-tight"
+      className="border-1 flex flex-col border-solid border-zinc-50 p-5 text-black no-underline"
       to={`/product/${id}`}
     >
       <Text className="text-sm font-bold">{productName}</Text>
