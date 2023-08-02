@@ -57,7 +57,7 @@ const ProductDetailPage = () => {
   };
 
   if (isLoading) return <Loader />;
-  else if (error) return <div>{error.message}</div>;
+  else if (error) return <ErrorTypo />;
   else if (validate() === false) return <ErrorTypo />;
   else return <ProductDetailTemplate product={product} />;
 };
