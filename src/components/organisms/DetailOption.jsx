@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import OptionSelected from 'components/molecules/DetailPageOption/OptionSelected'
 import ChoiceList from 'components/molecules/DetailPageOption/ChoiceList'
 import TotalPrice from 'components/molecules/TotalPrice'
+import Counter from 'components/molecules/Counter';
 import SubmitButton from 'components/atoms/SubmitButton'
 import { OptionContainer, SelectedItemBox, ButtonContainer, SelectedItemsContainer } from 'components/atoms/option/'
 
@@ -136,12 +137,17 @@ const DetailOption = (props) => {
           item.quantity === 0 ? null :
             <SelectedItemBox key={item.optionName} >
               <OptionSelected 
-                optionId={item.id}
                 optionName={item.optionName} 
                 price={item.quantity * item.price}
-                quantity={item.quantity}
-                changeQuantity={changeQuantity}
                 clear={() => changeQuantity(item.id, 0, true)}
+
+                counterComponent={
+                  <Counter 
+                    id={item.id}
+                    value={item.quantity}
+                    changeValue={changeQuantity}
+                  />
+                }
               />
             </SelectedItemBox> 
         )}
