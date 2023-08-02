@@ -129,6 +129,7 @@ const OrderTemplate = () => {
           </section>
           <button
             type='button'
+            data-testid='order-button'
             disabled={!agreePayment || !agreePolicy}
             onClick={handleOrderClick}
             className='w-full bg-yellow-300 p-4 font-medium disabled:opacity-60'
