@@ -1,7 +1,8 @@
 import ProductCard from '../molecules/ProductCard';
 import * as Grid from '../../styles/organisms/ProductGrid';
+import Loader from '../atoms/Loader';
 
-const ProductGrid = ({ products }) => {
+const ProductGrid = ({ products, isFetchingNextPage }) => {
   return (
     <Grid.Product>
       {products
@@ -9,6 +10,7 @@ const ProductGrid = ({ products }) => {
             <ProductCard key={product.id} product={product} />
           ))
         : null}
+      {isFetchingNextPage && <Loader className="mainLoader" />}
     </Grid.Product>
   );
 };
