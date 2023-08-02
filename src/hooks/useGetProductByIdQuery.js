@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import productAPI from "@/api/productAPI.js";
 import API from "@/constants/API.js";
-import { useNavigate } from "react-router-dom";
 
 function useGetProductByIdQuery({ productId }) {
-  const navigate = useNavigate();
   const { data } = useQuery(
     [API.KEYS.GET_PRODUCT_BY_ID],
     async () => {
@@ -12,11 +10,7 @@ function useGetProductByIdQuery({ productId }) {
       return data.response;
     },
     {
-      onError: () => {
-        navigate("/not-found");
-      },
       suspense: true,
-      useErrorBoundary: true,
     }
   );
 

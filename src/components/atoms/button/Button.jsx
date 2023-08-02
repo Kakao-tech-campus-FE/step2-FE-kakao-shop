@@ -11,7 +11,13 @@ const Styled = {
     color: white;
 
     border-radius: 0.1rem;
-    background-color: ${({ backgroundColor }) => backgroundColor};
+    background-color: ${({ $backgroundColor }) => $backgroundColor};
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: gray;
+      color: white;
+    }
   `,
 };
 
@@ -20,7 +26,7 @@ function Button({ onClick, type, backgroundColor, children, ...props }) {
     <Styled.Button
       onClick={onClick}
       type={type}
-      backgroundColor={backgroundColor}
+      $backgroundColor={backgroundColor}
       {...props}
     >
       {children}
