@@ -6,6 +6,9 @@ import ProductOptionAccordion from "@/components/molecules/product-option-accord
 import SelectedProductOption from "@/components/molecules/selected-product-option/SelectedProductOption.jsx";
 import useAddCartItemMutation from "@/hooks/useAddCartItemMutation.js";
 import ProductOptionResult from "@/components/molecules/product-option-result/ProductOptionResult.jsx";
+import { useAtomValue } from "jotai";
+import accessTokenAtom from "@/storage/common/accessToken.atom.js";
+import Modal from "@/components/molecules/modal/Modal.jsx";
 
 const Styled = {
   Container: styled.article`
@@ -41,9 +44,15 @@ const Styled = {
 
 function ProductOptionRow({ options }) {
   const [cart, setCart] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const addCartMutation = useAddCartItemMutation();
+  const accessToken = useAtomValue(accessTokenAtom);
 
   const handleAddCart = () => {
+    if (!accessToken) {
+      return setIsModalOpen(true);
+    }
+
     const items = cart.map((item) => {
       return { optionId: item.optionId, quantity: item.quantity };
     });
@@ -73,7 +82,14 @@ function ProductOptionRow({ options }) {
           ))}
         </div>
       </Styled.SelectPurchase>
+
       <ProductOptionResult handleAddCart={handleAddCart} cart={cart} />
+
+      {isModalOpen && (
+        <Modal setIsOpen={setIsModalOpen} style={{ width: "17rem" }}>
+          상품을 장바구니에 담으려면 먼저 로그인을 해야 합니다
+        </Modal>
+      )}
     </Styled.Container>
   );
 }
