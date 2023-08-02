@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Order from 'components/organisms/Order'
 import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
@@ -19,6 +19,17 @@ const OrderPage = () => {
       }
     }}
   )
+  
+  /* 
+    query가 refetching 될때마다 데이터가 사라졌다가 나타나서 이상해짐
+    -> 별도의 state 만들어서 업데이트시에만 state를 변경
+    -> cart에서는 안이런데 order 에서만 이러는 이유는..? */
+  const [data, setData] = useState(query.data)
+  useEffect(() => {
+    if (query.data !== data && query.data !== undefined) {
+      setData(prev => query.data)
+    }
+  }, [query.data]) 
   
   /** 임의 주문 정보 */
   const userAddress = {
@@ -43,7 +54,7 @@ const OrderPage = () => {
 
   return (
     <Order
-      data={!query.isFetching && query.data} 
+      data={data} 
       userAddress={userAddress} 
       agreeList={agreeList}
       paymentList={payMethods} />
