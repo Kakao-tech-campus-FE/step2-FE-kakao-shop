@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
 import { getCartsRequestAction } from '@store/Cart/reducers';
 import { RootState } from '@store/index';
 import { useEffect, useState } from 'react';
@@ -18,7 +17,7 @@ const CHECKBOX_DATA = [
   { name: '개인정보 제3자 제공 동의', 'data-testid': 'order-checkbox2' },
 ];
 
-const Order = withRouteGuard('/login', () => {
+const Order = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state: RootState) => state.cart.cart);
   const totalPrice = useSelector((state: RootState) => state.cart.totalPrice);
@@ -45,7 +44,7 @@ const Order = withRouteGuard('/login', () => {
       </S.Container>
     </S.Root>
   );
-});
+};
 
 export default Order;
 

@@ -1,12 +1,11 @@
-import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
 import { Fragment, useEffect } from 'react';
 
-const Cancel = withRouteGuard('/login', () => {
+const Cancel = () => {
   useEffect(() => {
     window.close();
   }, []);
 
   return <Fragment />;
-});
+};
 
 export default Cancel;

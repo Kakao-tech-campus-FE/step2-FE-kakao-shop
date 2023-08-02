@@ -1,10 +1,9 @@
-import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
 import { approveRequestAction } from '@store/Order/reducers';
 import { Fragment, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
-const Approve = withRouteGuard('/login', () => {
+const Approve = () => {
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
   const pgToken = searchParams.get('pg_token');
@@ -18,6 +17,6 @@ const Approve = withRouteGuard('/login', () => {
   }, [pgToken]);
 
   return <Fragment />;
-});
+};
 
 export default Approve;
