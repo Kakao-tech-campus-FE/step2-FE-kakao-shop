@@ -9,6 +9,7 @@ import { useMutation } from 'react-query'
 import { updateCart } from '../../services/cart'
 import { getCart } from '../../services/cart'
 import { useQuery } from 'react-query'
+import EmptyCartPage from '../../pages/EmptyCartPage'
 
 const CartList = () => {
   const navigate = useNavigate()
@@ -88,6 +89,10 @@ const CartList = () => {
     return comma(count) 
   },[cartItems])
 
+  if(!!data){
+    console.log(data)
+    return <EmptyCartPage/>
+  }
   return (
     <div className="bg-gray-100 py-5">
       <div className="max-w-[1024px] w-[100%] mx-auto" >
