@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addCart } from "../../services/Cart";
+import { addCart } from "../../services/cart";
 import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
 import OptionList from "../atoms/OptionList";
@@ -61,7 +61,6 @@ const OptionColumn = ({ product }) => {
             quantity: el.quantity
         }
     });
-
     const addCartReq = async () => {
         if (email) {
             await addCart(addCartArr)
@@ -115,10 +114,10 @@ const OptionColumn = ({ product }) => {
                 원
             </span>
         </div>
-        <div className="flex align-center m-auto w-80 space-x-36">
+        <div className="flex align-center m-auto w-80 justify-between">
             {/* 장바구니 담기 버튼 */}
-            <Button className="w-12" onClick={addCartReq}>
-                <Photo className="w-12" src="/cart.png" />
+            <Button className="w-10" onClick={addCartReq}>
+                <Photo className="w-10" src="/cart.png" />
             </Button>
             <Button className="w-40 h-16 text-xl text-center rounded bg-#ffeb00" >구매하기</Button>
         </div>

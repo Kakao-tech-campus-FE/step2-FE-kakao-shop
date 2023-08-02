@@ -8,6 +8,8 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import "./App.css";
 import { useQueryClient } from "react-query";
 import useApiError from "./hooks/useApiError";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
 
@@ -34,7 +36,10 @@ function App() {
                     <Route element={<MainLayout />}> {/* 레이아웃은 별도의 경로를 지정하지 않음 */}
                         <Route path="/" element={<HomePage />}></Route>
                         <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+                    </Route>
+                    <Route element={<RequiredAuthLayout />} >
                         <Route path="/cart" element={<CartPage />}></Route>
+                        <Route path="/order" element={<OrderPage />}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

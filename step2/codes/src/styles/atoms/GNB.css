@@ -35,22 +35,9 @@ div.navigation{
 img.cartImg{
     margin-right: 20px;
 }
-/* 
-span.menu_util::after{
-    margin-left: 5px;
-    content: ' ';
-    display: block;
-    width: 2px;
-    background-color: rgba(34, 34, 34, .2);
-    height: 20px;
-    position: relative;
-    top: 1px;
-    right: 20px;
-} */
 
 a.logButton{
     font-size: 14px;
     padding-left: 20px;
     position: relative;
-    /* border-left: 1px solid rgba(34,34,34,.2);; */
 }

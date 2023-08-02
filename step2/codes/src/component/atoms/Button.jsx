@@ -1,5 +1,3 @@
-import '../../styles/atoms/Button.css';
-
 const Button = ({ className, disabled, onClick, children} ) => {
 
     return <button className = {className} disabled={disabled} onClick={(e)=>{

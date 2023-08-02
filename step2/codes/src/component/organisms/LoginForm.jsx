@@ -1,15 +1,14 @@
 import Container from "../atoms/Container";
-import Link from "../atoms/Link";
+// import Link from "../atoms/Link";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
+import Box from "../atoms/Box";
 import useInput from "../../hooks/useInput";
 import { setEmail } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from 'react';
 import { login } from "../../services/user";
-import { useDispatch } from "react-redux"
-import GNB from "../atoms/GNB";
-
+import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -58,42 +57,55 @@ const LoginForm = () => {
     };
 
     return <Container>
-        <GNB />
-        <InputGroup 
-            id = "email" 
-            type="email" 
-            name="email" 
-            placeholder="이메일(아이디)을 입력해주세요." 
-            label="이메일" 
-            value={value.email} 
-            onChange={handleOnChange} 
-            onBlur = {validateEmail}
-            /> 
-            { emailError && <div>{emailError}</div>}
-        <InputGroup 
-            id = "password" 
-            type="password" 
-            name="password" 
-            placeholder="**********" 
-            label="비밀번호" 
-            value={value.password} 
-            onChange={handleOnChange}
-            onBlur = {validatePassword}
-            />
-            {passwordError && <div>{passwordError}</div>}
-        <Button
-            disabled={isLoginError}
-            onClick = {
-                //api 요청
-                loginReq
-            }
-            >
-            로그인</Button>
-            {apiErr && <div>{apiErr}</div>}
-            <Link href={"/"}>홈화면</Link>
+        <Box className="my-[40px] border max-w-[580px] mx-auto">
+            <Box className="py-12 px-[70px]">
+                <Box className="w-[440px]">
+                    <div className="emailPart">
+                        <label htmlFor="email"><span>이메일</span></label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="이메일(아이디)을 입력해주세요." 
+                            value={value.email}
+                            onChange={handleOnChange} 
+                            onBlur = {validateEmail}
+                            />
+                    </div>
+                    { emailError && <div>{emailError}</div>}
+                    <div className="passWordPart">
+                        <label htmlFor="password"><span>비밀번호</span></label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="**********" 
+                            value={value.password}
+                            onChange={handleOnChange}
+                            onBlur = {validatePassword}
+                        />
+                    </div>
+                    {passwordError && <div>{passwordError}</div>}
+                    <Button
+                        disabled={isLoginError}
+                        onClick = {
+                            //api 요청
+                            loginReq
+                        }
+                        className={`
+                        w-full p-4 font-medium 
+                        ${isLoginError ? "bg-gray-300 text-gray-500" : "bg-#ffeb00 text-black"}
+                        `}
+                        >
+                        <span className="">로그인</span>
+                    </Button>
+                    {apiErr && <div>{apiErr}</div>}
+
+                    {/* <Link href={"/"}>홈화면</Link> */}
+                </Box>
+            </Box>
+        </Box>
     </Container>
 };
 
 export default LoginForm;
-
-
