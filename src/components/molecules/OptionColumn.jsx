@@ -12,13 +12,21 @@ const OptionColumn = ({ product }) => {
   const { starCount, productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
 
-  const handleOnClickOption = (option) => {
+  const { mutate } = useMutation({
+    mutationFn: addCart,
+  });
+
+  /**
+   * 클릭된 상품을 selectedOptions 상태에 추가
+   * @param {object} option 클릭된 옵션
+   */
+  const handleClickOption = (option) => {
+    console.log(option);
     // 동일 옵션 클릭 방지
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
 
-    // 이미 선택된 옵션이면 증가 없이 처리
     if (isOptionSelected) {
       return;
     }
@@ -34,7 +42,12 @@ const OptionColumn = ({ product }) => {
     ]);
   };
 
-  const handleOnChange = (count, optionId) => {
+  /**
+   * 선택된 옵션의 수량을 변경
+   * @param {number} count 옵션 수량
+   * @param {number} optionId 수량 변경할 옵션 아이디
+   */
+  const handleChange = (count, optionId) => {
     setSelectedOptions((prev) => {
       return prev.map((el) => {
         if (el.optionId === optionId) {
@@ -48,9 +61,15 @@ const OptionColumn = ({ product }) => {
     });
   };
 
-  const { mutate } = useMutation({
-    mutationFn: addCart,
-  });
+  /**
+   * 선택된 옵션을 삭제하여 selecedOptions 상태 업데이트
+   * @param {number} optionId 삭제할 옵션 ID
+   */
+  const handleRemove = (optionId) => {
+    setSelectedOptions(
+      selectedOptions.filter((option) => option.optionId !== optionId)
+    );
+  };
 
   return (
     <Box className="w-[512px] m-4 flex flex-col gap-4">
@@ -74,7 +93,7 @@ const OptionColumn = ({ product }) => {
       {/* 옵션 선택 */}
       <div className="wrapper-option flex flex-col gap-2">
         <h3 className=" text-lg font-bold">옵션 선택</h3>
-        <OptionList options={product.options} onClick={handleOnClickOption} />
+        <OptionList options={product.options} onClick={handleClickOption} />
       </div>
 
       {/* 배송 방법 */}
@@ -97,21 +116,31 @@ const OptionColumn = ({ product }) => {
       {/* 선택된 옵션 */}
       {selectedOptions.map((option) => (
         <ol key={option.optionId} className="selected-option-list">
-          <li className="bg-gray-100 p-2">
+          <li className="bg-gray-100 p-4 flex flex-col gap-2">
             <div className="flex justify-between">
               <div className="name">{option.name}</div>
+              <button
+                className="text-gray-500"
+                children="✕"
+                onClick={() => {
+                  handleRemove(option.optionId);
+                }}
+              />
+            </div>
+            <div className="flex justify-between">
+              <Counter
+                onIncrease={(count) => handleChange(count, option.optionId)}
+                onDecrease={(count) => handleChange(count, option.optionId)}
+              />
               <div className="price">
                 {comma(option.price * option.quantity)}원
               </div>
             </div>
-            <Counter
-              onIncrease={(count) => handleOnChange(count, option.optionId)}
-              onDecrease={(count) => handleOnChange(count, option.optionId)}
-            />
           </li>
         </ol>
       ))}
 
+      {/* 구분선 */}
       <hr />
 
       {/* 총 수량, 총 상품금액 */}
