@@ -144,7 +144,7 @@ const RegisterForm = () => {
         onChange={handleOnChange}
       />
       <Button
-        className="w-1/5 h-9 rounded bg-yellow mt-3"
+        className="w-1/5 h-9 rounded bg-yellow-500 mt-3"
         onClick={handleDuplicate}
       >
         중복체크
@@ -176,7 +176,7 @@ const RegisterForm = () => {
         <div className="error">{errors.passwordConfirm}</div>
       )}
       <Button
-        className="w-full h-9 rounded bg-yellow mt-3"
+        className="w-full h-9 rounded bg-yellow-500 mt-3"
         onClick={handleOnSubmit}
       >
         회원가입

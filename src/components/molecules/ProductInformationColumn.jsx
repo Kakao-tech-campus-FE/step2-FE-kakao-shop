@@ -21,7 +21,7 @@ const ProductInformationColumn = ({ product }) => {
         <h1 className="max-w-full text-left text-2xl font-normal text-black mb-5">
           {productName}{" "}
         </h1>
-        <div className="inline-block bg-yellow rounded-3xl h-15 p-3">
+        <div className="inline-block bg-yellow-500 rounded-3xl h-15 p-3">
           <p className="text-lg">{comma(price)}원~</p>
         </div>
       </div>

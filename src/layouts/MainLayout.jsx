@@ -1,7 +1,28 @@
 import { Outlet } from "react-router-dom";
 import GNB from "../components/atoms/GNB";
+import { useEffect } from "react";
+import { setUser, setToken, clearUser } from "../store/slices/userSlice";
+import { useDispatch } from "react-redux";
 
 const MainLayout = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const expirationTime = user.expirationTime;
+
+      if (expirationTime && Date.now() < parseInt(expirationTime, 10)) {
+        dispatch(setUser(user));
+        dispatch(setToken(token));
+      } else {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        dispatch(clearUser());
+      }
+    }
+  }, []);
   return (
     <>
       {/* 로그인 버튼, 장바구니 버튼, 메인 로그 */}

@@ -63,7 +63,7 @@ const OptionColumn = ({ product }) => {
       {/*담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
         <ol key={option.optionId} className="selected-option-list">
-          <li className="selected-option mt-2.5 block bg-gray h-full">
+          <li className="selected-option mt-2.5 block bg-gray-200 h-full">
             <span className="name text-sm">{option.name}</span>
             <div className="block text-sm pt-2.5">
               <Counter
@@ -104,7 +104,7 @@ const OptionColumn = ({ product }) => {
 
       {/* 장바구니 버튼 */}
       <Button
-        className="h-14 bg-yellow w-full text-white"
+        className="h-14 bg-yellow-500 w-full text-white"
         onClick={() => {
           mutate(
             selectedOptions.map((el) => {

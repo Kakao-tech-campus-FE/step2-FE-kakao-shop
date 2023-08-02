@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import clearUser from "../../store/slices/userSlice";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 
 //header bar components
+useEffect;
 
 const GNB = () => {
   const token = useSelector((state) => state.user.token); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
