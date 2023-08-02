@@ -12,6 +12,7 @@ const OptionList = ({ productName, items }: Props) => {
   return (
     <S.Container>
       {items.map(item => {
+        if (item.quantity === 0) return null;
         return <OptionItem key={item.id} productName={productName} {...item} />;
       })}
     </S.Container>

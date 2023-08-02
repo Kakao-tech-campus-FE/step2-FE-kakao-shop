@@ -12,6 +12,12 @@ const List = ({ orderProducts }: Props) => {
   return (
     <S.Root>
       {orderProducts.map(product => {
+        const totalSubquantities = product.items.reduce((acc, item) => {
+          return acc + item.quantity;
+        }, 0);
+
+        if (totalSubquantities === 0) return null;
+
         return <Item key={product.productName} product={product} />;
       })}
     </S.Root>
