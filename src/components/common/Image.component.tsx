@@ -7,7 +7,13 @@ interface ImageProps {
 }
 
 const Image: FC<ImageProps> = ({ src, alt, className }) => {
-  return <img className={className} src={src} alt={alt} />;
+  return (
+    <img
+      className={className}
+      src={process.env.VITE_BASE_URL + src}
+      alt={alt}
+    />
+  );
 };
 
 export default Image;
