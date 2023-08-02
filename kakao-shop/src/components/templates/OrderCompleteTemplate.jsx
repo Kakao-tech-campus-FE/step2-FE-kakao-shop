@@ -34,7 +34,7 @@ const OrderCompleteTemplate = ({ data }) => {
             </span>
             <span className="col-span-5">
               <span className="font-bold">{data?.products[0].productName}</span>
-              {data?.products.length > 2 &&
+              {data?.products.length > 1 &&
                 ` 외 ${data?.products.length - 1}건`}
             </span>
           </div>
