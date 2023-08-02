@@ -25,7 +25,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
           <CarouselItem
             key={index}
             alt={item.alt}
-            src={item.src}
+            src={"%BASE_URL%" + item.src}
             position={getPosition(index)}
           />
         ))}
