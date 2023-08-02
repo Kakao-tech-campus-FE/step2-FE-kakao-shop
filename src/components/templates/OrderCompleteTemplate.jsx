@@ -28,6 +28,15 @@ const OrderCompleteTemplate = ({ data }) => {
           <p className="text-[14px]">
             주문번호 <span className="font-semibold">{id}</span>
           </p>
+          <p className="text-[14px] pt-[3px]">
+            주문내역{" "}
+            <span className="font-bold">
+              {data?.data?.response?.products[0].productName}
+            </span>
+            {data?.data?.response?.products.length > 1 &&
+              // eslint-disable-next-line no-unsafe-optional-chaining
+              ` 외 ${data?.data?.response?.products.length - 1}건`}
+          </p>
         </Box>
         <div className="h-[12px] bg-gray-100" />
 
