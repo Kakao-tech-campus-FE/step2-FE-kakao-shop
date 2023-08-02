@@ -102,6 +102,7 @@ export const OrderReducer = produce((draft: Draft<OrderState>, action) => {
       break;
 
     case POPUP_CLOSE:
+      localStorage.setItem('PayResultPageAllow', 'true');
       window.close();
       break;
 

@@ -33,9 +33,9 @@ const Router = () => {
 
           <Route element={<PayRoute />}>
             <Route path={'/order'} element={<Order />} />
-            <Route path={'/payResult'} element={<PayResult />} />
           </Route>
         </Route>
+        <Route path={'/payResult'} element={<PayResult />} />
         <Route path={'/pay/cancel'} element={<Cancel />} />
         <Route path={'/pay/Approve'} element={<Approve />} />
         <Route path={'/signup'} element={<SignUp />} />

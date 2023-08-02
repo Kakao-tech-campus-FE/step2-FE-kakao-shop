@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useEffect } from 'react';
 
 import Header from '@components/page/PayResult/Header';
 import Info from '@components/page/PayResult/Info';
@@ -7,15 +8,27 @@ import Submit from '@components/page/PayResult/Submit';
 import TotalResult from '@components/page/PayResult/TotalResult';
 
 const PayResult = () => {
-  const orderProducts = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')!) : null;
+  const orderProducts = localStorage.getItem('order') ? JSON.parse(localStorage.getItem('order')!) : undefined;
+  const pageAllow = localStorage.getItem('PayResultPageAllow') ? localStorage.getItem('PayResultPageAllow') : undefined;
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('PayResultPageAllow');
+    };
+  }, []);
+
+  if (!!pageAllow) {
+    alert('접근 권한이 없습니다.');
+    window.location.href = '/';
+  }
 
   return (
     <S.Root>
       <S.Container>
         <Header />
         <Info />
-        <ListSection orderProducts={orderProducts.products} />
-        <TotalResult totalPrice={orderProducts.totalPrice} />
+        <ListSection orderProducts={orderProducts?.products} />
+        <TotalResult totalPrice={orderProducts?.totalPrice} />
         <Submit />
       </S.Container>
     </S.Root>
