@@ -45,38 +45,40 @@ const OrderTemplate = ({ data }) => {
     mutationFn: order,
   });
 
+  // eslint-disable-next-line react/no-unstable-nested-components
   const OrderItems = () => {
-    const renderComponent = [];
-    if (products && Array.isArray(products)) {
-      products.forEach((item) => {
-        renderComponent.push(
-          item.carts.map((cart) => {
-            return cart.quantity ? (
-              <Box
-                key={cart.id}
+    return (
+      <>
+        {products.map((item) => (
+          <Box key={item.id}>
+            {item.carts.map((cart) => (
+              <div
                 className="order-item p-[16px] border-y border-gray-100"
+                key={cart.id}
               >
                 <div className="product-name text-[14px] font-bold text-gray-800">
                   <span>{item.productName}</span>
                 </div>
-                <div className="option-quantity text-[13px] text-gray-700">
+                <div className="product-option text-[13px] text-gray-700">
                   <span>{`${cart.option.optionName}, `}</span>
-                  <span>{comma(cart.quantity)}개</span>
+                  <span>{cart.quantity}개</span>
                 </div>
-                <div className="price text-16px">
-                  <span className="font-bold">{comma(cart.price)}</span>
-                  <span>원</span>
-                </div>
-              </Box>
-            ) : (
-              []
-            );
-          })
-        );
-      });
-    }
 
-    return renderComponent;
+                <div className="price text-16px">
+                  <span>
+                    <span className="font-bold">{comma(cart.price)}</span>원
+                  </span>
+                </div>
+              </div>
+            ))}
+            <div className="flex justify-center p-[10px] text-[14px] text-blue-kakao font-semibold">
+              <span>무료배송</span>
+            </div>
+            <div className="h-[12px] bg-gray-100" />
+          </Box>
+        ))}
+      </>
+    );
   };
 
   const AddressInfo = {
@@ -113,8 +115,7 @@ const OrderTemplate = ({ data }) => {
         <Box className="order-data-title py-[20px] pl-[16px] border-y border-gray-100 text-[18px] font-bold">
           <h2 className="">주문상품 정보</h2>
         </Box>
-        <OrderItems />
-        <div className="h-[12px] bg-gray-100" />
+        {products && <OrderItems />}
 
         <Box className="total-receipt px-[16px] py-[20px] border border-gray-100 text-[18px] flex items-center justify-between">
           <h3 className="font-bold">총 주문 금액</h3>
