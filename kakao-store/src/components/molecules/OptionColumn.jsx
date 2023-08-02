@@ -95,8 +95,6 @@ const OptionColumn = ({ product }) => {
             <div>
                 {/* 장바구니 담기 버튼 */}
                 <Button className="p-2 mx-2 border w-[170px] bg-yellow-300 justify-center inline-flex" onClick={() => {
-                    console.log(product);
-
                     mutate(selectedOptions.map(el => {
                         return {
                             optionId: el.optionId,
