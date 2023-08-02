@@ -6,17 +6,16 @@ import MainPage from "./pages/MainPage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
-import Subpage from "./pages/Subpage/Subpage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* 단독 레이아웃 */}
-        <Route path="/sub" element={<Subpage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<RegisterPage />}></Route>
         <Route path="/404" element={<NotFoundPage />}></Route>
@@ -29,6 +28,10 @@ function App() {
         <Route element={<RequiredAuthLayout />}>
           <Route path="/carts" element={<CartPage />}></Route>
           <Route path="/order" element={<OrderPage />}></Route>
+          <Route
+            path="/orders/complete/:id"
+            element={<OrderCompletePage />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
