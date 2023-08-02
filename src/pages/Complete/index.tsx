@@ -1,7 +1,11 @@
-import React from "react";
+import CompleteTemplate from "@components/templates/CompleteTemplate";
 
 const Complete = () => {
-  return <div>Complete</div>;
+  return (
+    <div>
+      <CompleteTemplate />
+    </div>
+  );
 };
 
 export default Complete;

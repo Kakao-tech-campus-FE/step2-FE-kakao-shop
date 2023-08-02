@@ -2,7 +2,7 @@ import OrderContainer from "@components/atoms/OrderContainer";
 import { styled } from "styled-components";
 import { useRef } from "react";
 import { Item } from "../CartForm";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import OrderItem from "@components/atoms/OrderItem";
 import { comma } from "@utils/regex";
 import Button from "@components/atoms/Button";
@@ -50,7 +50,6 @@ const OrderForm = ({ item }: Props) => {
     mutate(payload, {
       onSuccess: (res) => {
         const id = res.data.response.id;
-        console.log(res);
         navigate(`/orders/complete/${id}`);
       },
       onError: (err: any) => {
@@ -76,10 +75,6 @@ const OrderForm = ({ item }: Props) => {
       );
     }, 0);
   };
-
-  useEffect(() => {
-    console.log(products);
-  });
 
   return (
     <OrderContainer>
