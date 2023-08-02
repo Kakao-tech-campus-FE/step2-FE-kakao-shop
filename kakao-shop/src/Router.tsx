@@ -34,10 +34,10 @@ const Router = () => {
           <Route element={<PayRoute />}>
             <Route path={'/order'} element={<Order />} />
             <Route path={'/payResult'} element={<PayResult />} />
-            <Route path={'/pay/cancel'} element={<Cancel />} />
-            <Route path={'/pay/Approve'} element={<Approve />} />
           </Route>
         </Route>
+        <Route path={'/pay/cancel'} element={<Cancel />} />
+        <Route path={'/pay/Approve'} element={<Approve />} />
         <Route path={'/signup'} element={<SignUp />} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'/500'} element={<Error />} />
