@@ -4,9 +4,9 @@ const SkeletonProductCard = ({ cards = 1 }) => {
   return Array(cards)
     .fill()
     .map((_, index) => (
-      <div className={"skeleton-product-card card"} key={index}>
+      <div className={"skeleton-product-card card p-3 border border-gray-300"} key={index}>
         <div className={"product-photo"}>
-          <Skeleton height={"100%"} />
+          <Skeleton className={"w-full h-0 pt-[100%]"}/>
         </div>
         <div className={"product-name"}>
           <Skeleton height={"100%"} />

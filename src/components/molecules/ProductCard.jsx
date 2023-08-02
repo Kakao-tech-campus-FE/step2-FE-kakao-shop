@@ -7,11 +7,13 @@ import "react-loading-skeleton/dist/skeleton.css";
 const ProductCard = ({ product }) => {
   return (
     <Card to={`/product/${product.id}`}>
-      <Photo
-        className={"product-photo"}
-        src={product.image}
-        alt={product.productName}
-      />
+      <div className={"overflow-hidden"}>
+        <Photo
+          className={"product-photo hover:scale-[1.1] hover:shadow-xl transition-all duration-300 ease-in-out"}
+          src={product.image}
+          alt={product.productName}
+        />
+      </div>
       <div className={"text-md font-semibold line-clamp-2 text-left overflow-hidden"}>
         {product.productName || <Skeleton />}
       </div>
