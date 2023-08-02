@@ -10,8 +10,8 @@ const OrderPage = () => {
 
   return (
     <>
-      <Helmet title={"카카오톡 쇼핑하기 - 주문"}></Helmet>
       <Suspense fallback={<Loader />}>
+        <Helmet title={"카카오톡 쇼핑하기 - 주문"}></Helmet>
         {data && <OrderTemplate data={data} />}
         {error && <div>{error}</div>}
         {isLoading && <div>Loading...</div>}

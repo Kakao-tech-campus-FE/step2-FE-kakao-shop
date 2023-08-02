@@ -15,10 +15,10 @@ const CartItem = ({ item, onChange }) => {
     getItemAmount() !== 0 && (
       <div
         className={
-          "cart-item w-full flex flex-col box-border my-5 p-5 text-left bg-light-gray-900 drop-shadow-lg "
+          "cart-item w-full flex flex-col box-border text-left gap-4 p-10 border border-gray-300"
         }
       >
-        <span className={"block cart-product-name text-xl w-full break-normal"}>
+        <span className={"block cart-product-name text-xl font-semibold w-full break-normal"}>
           {item.productName}
         </span>
         {item.carts
@@ -27,9 +27,11 @@ const CartItem = ({ item, onChange }) => {
             <div
               key={cart.id}
               className={
-                "cart-item pb-5 px-5 m-3 border-s-4 border-light-gray-700 flex flex-col items-end"
+                "cart-item-option flex flex-col items-end p-4 mx-4 border border-gray-300"
               }
             >
+              <div className={"flex flex-row justify-between w-full"}>
+              <span className={"font-semibold"}>{cart.option.optionName}</span>
               <button
                 className={"del-button flex justify-end items-end"}
                 onClick={() =>
@@ -38,10 +40,11 @@ const CartItem = ({ item, onChange }) => {
               >
                 <RxCross2 className={"text-right"} />
               </button>
+              </div>
               <div className={"flex flex-col w-full"}>
-                <div className="option-name flex flex-row justify-between my-2">
-                  <span>{cart.option.optionName}</span>
-                  <span>{comma(cart.option.price)}원</span>
+                <div className="option-name flex flex-row justify-between my-2 text-lg">
+
+                  <span className={"text-sm text-gray-500 font-semibold"}>{comma(cart.option.price)}원</span>
                 </div>
 
                 <div className={"row flex flex-row"}>
@@ -63,7 +66,7 @@ const CartItem = ({ item, onChange }) => {
                       }}
                     />
                   </div>
-                  <div className="option-price w-full text-right">
+                  <div className="option-price w-full text-right font-semibold">
                     <span>{comma(cart.option.price * cart.quantity)}원</span>
                   </div>
                 </div>
@@ -71,9 +74,9 @@ const CartItem = ({ item, onChange }) => {
             </div>
           ))}
         <div className={"cart-price text-right"}>
-          <div className="row">
+          <div className="row text-lg">
             <h5>주문금액</h5>
-            <div className={"price font-medium"}>
+            <div className={"price text-xl font-bold"}>
               {comma(
                 item.carts.reduce((acc, cur) => {
                   return acc + cur.option.price * cur.quantity;

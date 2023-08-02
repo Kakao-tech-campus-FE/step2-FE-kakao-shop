@@ -10,9 +10,7 @@ const CartPage = () => {
   return (
     <Suspense fallback={<Loader />}>
       <Helmet title={"카카오톡 쇼핑하기 - 장바구니"}></Helmet>
-      <div className={"page flex"}>
         <CartList data={data} />
-      </div>
       {isError && <div>{error.message}</div>}
     </Suspense>
   );

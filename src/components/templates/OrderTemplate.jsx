@@ -63,18 +63,14 @@ const OrderTemplate = ({ data }) => {
               <span>{comma(cart.quantity)}개</span>
             </div>
             <div className={"order-product-price"}>
-              <span>{comma(cart.price * cart.quantity)}원</span>
+              <span>{comma(cart.price)}원</span>
             </div>
           </div>
         )),
     );
 
   return (
-    <div
-      className={
-        "order-template flex flex-col mx-auto max-w-[1024px] w-[100%] px-20 gap-2"
-      }
-    >
+    <div className={"order-template flex flex-col mx-auto max-w-[1024px] w-[100%] min-w-[786px] px-20 gap-2"}>
       <div className={"h-20 flex items-center justify-center"}>
         <h1 className={"text-4xl font-bold"}>주문하기</h1>
       </div>

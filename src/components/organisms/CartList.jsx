@@ -24,7 +24,7 @@ const CartList = ({ data }) => {
     onError: (error) => {
       console.log("error", error);
       alert(error.response.data.error.message);
-    },
+    }
   });
 
   const getTotalQuantity = useCallback(() => {
@@ -40,8 +40,8 @@ const CartList = ({ data }) => {
     mutate([
       {
         cartId: optionId,
-        quantity: quantity,
-      },
+        quantity: quantity
+      }
     ]);
     setCartItems((prev) => {
       return prev.map((item) => {
@@ -51,12 +51,12 @@ const CartList = ({ data }) => {
             if (cart.id === optionId) {
               return {
                 ...cart,
-                quantity: quantity,
+                quantity: quantity
               };
             } else {
               return cart;
             }
-          }),
+          })
         };
       });
     });
@@ -66,15 +66,11 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <div className={"cart-list lg:w-160 md:w-96 flex flex-col items-center"}>
+    <div className={"flex flex-col w-full max-w-[1024px] min-w-[786px] m-auto px-20 gap-2"}>
       <div className={"h-20 flex items-center justify-center"}>
-        <h1 className={"text-3xl font-bold"}>장바구니</h1>
+        <h1 className={"text-4xl font-bold"}>장바구니</h1>
       </div>
-      <div
-        className={
-          "cart-items flex flex-col w-full justify-center items-center"
-        }
-      >
+      <div className={"cart-items flex flex-col w-full justify-center items-center gap-10"}>
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
@@ -93,7 +89,7 @@ const CartList = ({ data }) => {
       </div>
       {getTotalQuantity() > 0 && (
         <div className={"w-full flex flex-col items-center justify-center"}>
-          <div className={"w-full flex flex-row justify-end text-lg pb-5"}>
+          <div className={"w-full flex flex-row justify-end text-xl font-bold text-indigo-500 py-5"}>
             <span className={"total-price pr-3"}>최종 금액</span>
             <span>{comma(totalPrice)}원</span>
           </div>
