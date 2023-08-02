@@ -18,14 +18,15 @@ export default function useFetchProducts() {
         }
         return allPages.length;
       },
-    }
+      keepPreviousData: true,
+    },
   );
 
   useEffect(() => {
     // 한번 더 데이터를 검증해서 중복되는 데이터를 제거한다.
     if (infiniteQuery.data) {
-      const lastPage = infiniteQuery.data.pages.at(-1);
-      setProducts((prev) => _.unionBy([...prev, ...lastPage], "id"));
+      const allFetchedProducts = infiniteQuery.data.pages.flat();
+      setProducts((prev) => _.unionBy([...prev, ...allFetchedProducts], "id"));
     }
   }, [infiniteQuery.data]);
 
