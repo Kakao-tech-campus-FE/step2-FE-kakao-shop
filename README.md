@@ -1,5 +1,38 @@
 ## 카카오톡 쇼핑하기 클론
 
+[카카오톡 쇼핑하기](https://store.kakao.com/)를 클론 코딩한 프로젝트입니다.
+
+### Commands
+
+```bash
+npm install
+npm run build
+npm run start
+```
+
+### Directory Pattern
+
+```
+├─ /src
+│  ├─ /api : api 호출을 위한 모듈
+│  ├─ /assets : 이미지 파일을 담는 곳
+│  ├─ /components : Atomic pattern으로 구성된 여러 페이지에서 사용되는 컴포넌트
+│  │  ├─ /atoms
+│  │  ├─ /molecules
+│  │  ├─ /organisms
+│  │  └─ /templates
+│  ├─ /hooks : 커스텀 훅
+│  ├─ /layouts : 레이아웃 컴포넌트
+│  ├─ /pages : 페이지 컴포넌트
+│  ├─ /store : redux store
+│  │  └─ /slices : redux slice
+│  ├─ App.js
+│  ├─ index.js
+│  └─ ...
+```
+
+---
+
 <details>
 <summary>과제 1 - 페이지 구성</summary>
 <div>
