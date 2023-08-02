@@ -43,7 +43,7 @@ const ProductDetail = () => {
                 src={`${process.env.REACT_APP_IMAGE_CDN}${product?.image?.replace(
                   '/images',
                   '',
-                )}?w=430&h=430&f=webp&q=80`}
+                )}?w=860&h=860&f=webp&q=80`}
                 alt={'HERO 이미지'}
               />
             ) : (
@@ -52,7 +52,7 @@ const ProductDetail = () => {
                 src={`${process.env.REACT_APP_IMAGE_CDN}${product?.image?.replace(
                   '/images',
                   '',
-                )}?w=430&h=430&f=webp&q=80`}
+                )}?w=860&h=860&f=webp&q=80`}
                 alt={'HERO 이미지'}
               />
             )}
