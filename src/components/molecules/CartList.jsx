@@ -9,10 +9,9 @@ import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
-import * as paths from "../../constants/urls";
 
 const CartList = ({ data }) => {
-  const route = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -28,11 +27,13 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
+    if (Array.isArray(cartItems)) {
+      cartItems.forEach((item) => {
+        item.carts.forEach((cart) => {
+          count += cart.quantity;
+        });
       });
-    });
+    }
     return comma(count);
   }, [cartItems]);
 
@@ -145,10 +146,10 @@ const CartList = ({ data }) => {
           mutate(updatePayload, {
             onSuccess: (data) => {
               // navigate to order page
-              route.push(paths.ORDER_PATH);
+              navigate("/order");
             },
             onError: (error) => {
-              route.push(paths.ERROR_PATH);
+              navigate("/error");
             },
           });
         }}

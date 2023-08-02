@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import GNB from "../components/atoms/GNB";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from "react-query";
 import Loader from "../components/atoms/Loader";
 import Button from "../components/atoms/Button";
 

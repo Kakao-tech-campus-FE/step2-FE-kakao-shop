@@ -1,36 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-const Button = ({ onClick, children, className }) => {
-  /** children: 버튼 내부에 표시될 내용 */
+const Button = ({ children, onClick, disabled, className }) => {
   return (
     <button
-      className={
-        "bg-yellow-500 text-black px-4 py-2 rounded"
-      } /**className: 클래스 이름 */
+      className={className}
+      disabled={disabled}
       onClick={(e) => {
         e.preventDefault();
-        onClick(); // onClick이 없으면 빈 함수가 호출됩니다.
+        onClick(e);
       }}
     >
       {children}
     </button>
   );
-};
-
-Button.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  className: PropTypes.string,
-};
-
-Button.defaultProps = {
-  onClick: () => {},
-  children: null,
-  className: "",
 };
 
 export default Button;

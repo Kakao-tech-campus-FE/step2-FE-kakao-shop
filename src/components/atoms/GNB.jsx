@@ -17,10 +17,14 @@ function GNB() {
   };
 
   return (
-    <header className="header">
-      <div className="contents">
+    <header className="fixed top-0 left-0 p-5 bg-white border-b border-gray-300 flex items-center inner">
+      <div style={{ width: "2000px" }} className="ml-20 md:flex items-center ">
         <Link to={paths.HOME_PATH}>
-          <img src={"/logoKaKao.png"} alt="logoKaKao.png" height={30} />
+          <img
+            className="h-10 inline cursor-pointer mr-4"
+            src={"/logoKaKao.png"}
+            alt="logoKaKao.png"
+          />
         </Link>
         <nav>
           <div className="navigation">
@@ -44,11 +48,21 @@ function GNB() {
               ) : (
                 <Link
                   to={paths.LOGIN_PATH}
-                  style={{ textDecoration: "none", color: "black" }}
+                  className="text-black text-xl hover:underline text-black-200"
                 >
                   로그인
                 </Link>
               )}
+            </span>
+            <span>|</span>
+            <span>
+              {/* 회원가입 버튼 */}
+              <Link
+                to={paths.SIGNUP_PATH}
+                className="text-black text-xl hover:underline text-black-200"
+              >
+                회원가입
+              </Link>
             </span>
           </div>
         </nav>
