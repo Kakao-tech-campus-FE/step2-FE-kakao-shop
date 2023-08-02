@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useCallback, useEffect, useRef } from 'react';
 import type { UserSelectOption } from 'types/product';
 
 import OptionList from '@components/page/ProductDetail/OptionList';
@@ -24,8 +24,21 @@ const OptionListSection = ({
   onDecreaseQuantity,
   onToggle,
 }: Props) => {
+  const endOfPageRef = useRef<HTMLDivElement>(null);
+
+  const handleClick = () => {
+    if (!endOfPageRef.current) return;
+
+    // scrollTop 높이를 scrollHeight 높이로 설정하면 옵션을 선택할 때 스크롤이 가장 아래에 위치하게 된다.
+    endOfPageRef.current.scrollTop = endOfPageRef.current.scrollHeight;
+  };
+
+  useEffect(() => {
+    handleClick();
+  }, [options]);
+
   return (
-    <S.Root>
+    <S.Root ref={endOfPageRef}>
       <S.Tit>옵션 선택</S.Tit>
       <OptionList isOpenList={isOpenList} options={options} onSelectOption={onSelectOption} onToggle={onToggle} />
       <SelectOptionItemList
