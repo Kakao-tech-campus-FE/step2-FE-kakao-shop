@@ -13,6 +13,8 @@ RUN pnpm run build
 # Run stage
 FROM nginx
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
+COPY startup.sh /startup.sh
+RUN chmod +x /startup.sh
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/bin/bash", "-c", "/startup.sh && nginx -g \"daemon off;\""]
