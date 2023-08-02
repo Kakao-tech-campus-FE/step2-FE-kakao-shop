@@ -26,7 +26,22 @@ const LoginForm = () => {
       // 로그인 상태일 때 자동으로 이동
       navigate('/');
     }
-  });
+  }, [isLoggedIn, navigate]);
+  
+  const loginReq = () => {
+    dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
+      .then((res) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
   
   const goRegister = () => {
     navigate('/signup');
@@ -88,21 +103,16 @@ const LoginForm = () => {
       onBlur={handlePasswordBlur}
       errorMsg={pwError}
     />
-    <Button
-      onClick={() => {
-        dispatch(
-          loginRequest({
-            email: value.email,
-            password: value.password,
-          })
-        );
-      }}
-    >로그인</Button>
-    <p>
-      <a href='#' onClick={goRegister}>
-        회원가입
-      </a>
-    </p>
+    <div className="flex gap-3">
+      <Button
+        onClick={loginReq}
+      >로그인</Button>
+      <p>
+        <a href='#' onClick={goRegister}>
+          회원가입
+       </a>
+      </p>
+    </div>
   </Container>
   );
 }

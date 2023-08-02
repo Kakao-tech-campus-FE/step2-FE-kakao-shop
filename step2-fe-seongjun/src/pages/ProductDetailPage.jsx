@@ -1,14 +1,12 @@
-import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProductById } from "../components/services/product";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 const ProductDetailPage = () => {
   const {id} = useParams();
-  const dispatch = useDispatch();
   const route = useNavigate();
   const { data, error, isLoading,} = useQuery(`product/${id}`, () => 
     getProductById(id)
@@ -27,11 +25,9 @@ const ProductDetailPage = () => {
   // 2. 검증 함수
 
   return (
-    <div>
-      {isLoading && <Loader/>}
-      {error && <div>{error.message}</div>}
-      {data && <div>{product.productName}</div>}
-    </div>
+    <Suspense fallback={<Loader/>}>
+      {data && <ProductDetailTemplate product={product}/>}
+    </Suspense>
   );
 
 }

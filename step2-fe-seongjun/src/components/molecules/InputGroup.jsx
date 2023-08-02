@@ -16,7 +16,7 @@ const InputGroup = ({ // errorMsg: 에러 메세지 출력
 }) => {
   return (
     <Box className = {className}>
-      <Label htmlFor={id}>{label}</Label>
+      <Label htmlFor={id} className=" px-2">{label}</Label>
       <Input id = {id}
         type={type}
         value = {value} 
