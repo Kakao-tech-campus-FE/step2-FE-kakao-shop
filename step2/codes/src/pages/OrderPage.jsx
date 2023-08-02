@@ -5,10 +5,7 @@ import OrderTemplate from "../component/templates/OrderTemplate";
 import { getCart } from "../services/cart";
 
 const OrderPage = () => {
-
-    const { data, error, isLoading } = useQuery( "cart" , getCart, {
-        suspense: true
-    });
+    const { data } = useQuery("cart", getCart);
 
     return (
         <Suspense fallback={<Loader />}>

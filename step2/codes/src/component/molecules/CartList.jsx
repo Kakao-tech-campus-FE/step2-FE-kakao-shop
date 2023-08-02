@@ -13,8 +13,8 @@ const CartList = ({ data }) => {
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
-    const updatePayload = useRef([]);
     const [disable, setDisable] = useState(false);
+    const updatePayload = useRef([]);
 
     const { mutate } = useMutation({
         mutationFn: updateCart,
@@ -35,8 +35,6 @@ const CartList = ({ data }) => {
         } else {
             setDisable(false);
         }
-        console.log(disable)
-        
     }, [cartItems])
 
     const getTotalCartCountIncludeOptions = useCallback(() => {

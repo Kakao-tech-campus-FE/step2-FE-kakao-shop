@@ -12,7 +12,7 @@ const Homepage = () => {
     return(
         <div>
             {loading && <Loader />}
-            <MainProductTemplate></MainProductTemplate>
+            <MainProductTemplate />
         </div>
         
     )

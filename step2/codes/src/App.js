@@ -10,6 +10,7 @@ import { useQueryClient } from "react-query";
 import useApiError from "./hooks/useApiError";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderPage from "./pages/OrderPage";
+import OrderCompletePage from './pages/OrderCompletePage';
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
                     <Route element={<RequiredAuthLayout />} >
                         <Route path="/cart" element={<CartPage />}></Route>
                         <Route path="/order" element={<OrderPage />}></Route>
+                        <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>

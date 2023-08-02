@@ -7,7 +7,6 @@ import { getCart } from "../services/cart";
 // 장바구니 페이지
 const CartPage = () => {
     const { data } = useQuery("cart", getCart);
-    // console.log(data);
     
     return (
         <Suspense fallback={<Loader />}>

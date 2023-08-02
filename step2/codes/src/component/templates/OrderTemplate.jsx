@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { order } from "../../services/order";
@@ -7,14 +7,24 @@ import { comma } from "../../utils/convert";
 
 const OrderTemplate = ({ data }) => {
     // 사용자의 장바구니 목록을 조회해서 보여주는 것
-    const { products, totalPrice } = data?.data?.response;
+    const [ products, setProducts ] = useState([]);
+    const [ totalPrice, setTotalPrice ] = useState(0);
+
     const navigate = useNavigate();
     const [agreePayment, setAgreePayment] = useState(false);
     const [agreePolicy, setAgreePolicy] = useState(false);
-
+    
     const allAgreeRef = useRef(null); 
     const agreePaymentRef = useRef(null);
     const agreePolicyRef = useRef(null);
+    
+    useEffect(() => {
+        data?.data?.response?.products !== undefined &&
+            setProducts(data?.data?.response?.products);
+        data?.data?.response?.totalPrice !== undefined &&
+            setTotalPrice(data?.data?.response?.totalPrice);
+    },[data]);
+
 
     const getTotalQuantity = () => {
         let totalQuantity = 0;

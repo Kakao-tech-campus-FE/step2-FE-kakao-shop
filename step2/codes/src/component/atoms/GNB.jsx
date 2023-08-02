@@ -2,17 +2,24 @@ import { useDispatch, useSelector } from "react-redux";
 import "../../styles/atoms/GNB.css";
 import { Link } from "react-router-dom";
 import { setEmail } from "../../store/slices/userSlice"
+import { useEffect } from "react";
 
 function GNB() {
-    const email = useSelector((state) => state.user.email) 
+    const email = useSelector((state) => state.user.email);
     const dispatch = useDispatch();
+    
+    // 로그아웃 버튼 클릭 시 상태 초기화
+    const handleLogout = () => {
+      dispatch(setEmail({ email: "" }));
+      localStorage.removeItem("email"); // 로컬 스토리지에서도 제거
+      localStorage.removeItem("token");
+    }
 
-    const handelLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("email");
-        dispatch(setEmail(null));
-        alert("정상적으로 로그아웃되었습니다.");
-    };
+
+    useEffect(()=> {
+        dispatch(setEmail({ setEmail: email}))
+        console.log(email)
+    }, [email])
 
     return (
         <header className="header">
@@ -32,7 +39,7 @@ function GNB() {
                         <span>
                             {/* 로그인 버튼 */}
                         {email ? (
-                                <Link className = "logButton" to="/" onClick={handelLogout} style = {{textDecoration: "none", color: "black"}}>
+                                <Link className = "logButton" onClick={handleLogout} to="/"  style = {{textDecoration: "none", color: "black"}}>
                                     {" "}로그아웃
                                     {" "}
                                 </Link>

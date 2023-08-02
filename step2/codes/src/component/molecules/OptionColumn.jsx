@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 const OptionColumn = ({ product }) => {
     const navigate = useNavigate();
     const [selectedOptions, setSelectedOptions] = useState([]);
-    const email = useSelector((state) => state.user.email);
+    const email = localStorage.getItem("email");
 
     const handleOnClickOption = (option) => {
         // 동일한 옵션 선택을 방지해주는 코드
