@@ -2,8 +2,8 @@
 FROM node:20-slim AS build
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-ENV VITE_KAKAO_STORE_URL="http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com"
-ENV VITE_KAKAO_IMAGE_URL="http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com"
+ENV VITE_KAKAO_STORE_URL="%SERVER_URL%"
+ENV VITE_KAKAO_IMAGE_URL="%SERVER_URL%"
 WORKDIR /usr/src/app
 RUN corepack enable
 COPY . /usr/src/app
