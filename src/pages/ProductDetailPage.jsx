@@ -27,7 +27,3 @@ const ProductDetailPage = () => {
 };
 
 export default ProductDetailPage;
-
-// const { data, error, isLoading } = useSWR(`/product/${id}`, getProductById) // 구분자로는 해당 라우트의 경로를 관례로 사용함(useSWR 방식)
-// const loading = useSelector((state) => state.detail.loading)
-// const error = useSelector((state) => state.detail.error)
