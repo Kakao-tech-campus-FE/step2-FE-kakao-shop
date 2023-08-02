@@ -5,6 +5,7 @@ import _ from "lodash";
 import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { fetchProducts } from "../../api/product";
+import SideSection from "../organisms/SideSection";
 
 /** 상품 목록 템플릿
  *
@@ -70,6 +71,9 @@ const ProductSectionTemplate = () => {
       <Container className="product-section flex max-w-none mx-auto w-[1280px] mt-[80px]">
         <div className="w-[892px]">
           <ProductGrid products={products} loading={isLoading} />
+        </div>
+        <div className="w-[388px]">
+          <SideSection />
         </div>
       </Container>
       <div ref={bottomObserver} />
