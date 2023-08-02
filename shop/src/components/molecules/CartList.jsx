@@ -89,7 +89,7 @@ const CartList = () => {
     return comma(count) 
   },[cartItems])
 
-  if(!!data){
+  if(!data){
     console.log(data)
     return <EmptyCartPage/>
   }
@@ -101,8 +101,7 @@ const CartList = () => {
         </Box>
         <Box className='bg-white my-1 py-1 border'>
           {/* 상품별 장바구니 */}
-          {Array.isArray(cartItems)&&
-            cartItems.map((item)=>{
+          {cartItems.map((item)=>{
               console.log('item')
               console.log(item)
               return (
@@ -122,7 +121,7 @@ const CartList = () => {
               <span className='sum-price text-blue-500'>{comma(totalPrice)}원</span>
             </div>
             <Button
-              className="btn-order p-4 w-full"
+              className="btn-order p-4 w-full font-bold"
               onClick={()=>{
                 //update cart : 장바구니 정보 수정 
                 mutate(updatePayload, {
