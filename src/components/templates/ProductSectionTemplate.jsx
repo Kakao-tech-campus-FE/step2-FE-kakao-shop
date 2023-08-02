@@ -68,7 +68,7 @@ const ProductSectionTemplate = () => {
 
   return (
     <>
-      <Container className="product-section flex max-w-none mx-auto w-[1280px] mt-[80px]">
+      <Container className="product-section flex max-w-none mx-auto w-[1280px]">
         <div className="w-[892px]">
           <ProductGrid products={products} loading={isLoading} />
         </div>
