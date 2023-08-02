@@ -4,7 +4,7 @@ import React from 'react';
 
 const LoginPage = () => {
   return (
-    <div className="w-[400px] mx-auto my-[100px]">
+    <div className="mx-auto my-[100px]">
       <Title>Login</Title>
       <LoginForm />
     </div>

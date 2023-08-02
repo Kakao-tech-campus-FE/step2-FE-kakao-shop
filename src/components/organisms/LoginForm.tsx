@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { loginStore } from '@store/slices/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import login from '@api/loginApi';
-import { Card } from '@mui/material';
+import Card from '@components/atoms/Card';
 import InputGroup from '../molecules/InputGroup';
 
 const LoginForm = () => {
@@ -48,7 +48,7 @@ const LoginForm = () => {
 
   return (
     <Card>
-      <div className="flex flex-col space-y-2 mx-[100px] mt-[20px] mb-[50px]">
+      <div className="flex flex-col w-[500px] space-y-2 px-[50px] my-[50px]">
         <InputGroup
           inputName="email"
           labelName="이메일"
