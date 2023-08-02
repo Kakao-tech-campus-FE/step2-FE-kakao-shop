@@ -1,5 +1,3 @@
-import "../../styles/molecules/productCard.css";
-
 const Photo = ({ className, src, alt }) => {
   src = `${process.env.REACT_APP_API_URL}${src}`;
   return (

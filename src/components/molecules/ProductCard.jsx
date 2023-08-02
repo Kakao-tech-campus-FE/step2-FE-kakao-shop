@@ -12,10 +12,10 @@ const ProductCard = ({ product }) => {
         src={product.image}
         alt={product.productName}
       />
-      <div className={"product-name"}>
+      <div className={"text-md font-semibold line-clamp-2 text-left overflow-hidden"}>
         {product.productName || <Skeleton />}
       </div>
-      <div className={"product-price"}>
+      <div className={"product-price text-sm font-semibold text-left w-full text-gray-500"}>
         {comma(product.price || <Skeleton />)}원
       </div>
     </Card>

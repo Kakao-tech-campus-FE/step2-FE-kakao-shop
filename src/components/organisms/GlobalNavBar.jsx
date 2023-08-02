@@ -44,7 +44,7 @@ const GlobalNavBar = () => {
               </Link>
               <div>
                 <button
-                  className={"logout-button px-5 border-l border-gray-300"}
+                  className={"logout-button px-5 font-bold border-l border-gray-300"}
                   onClick={() => {
                     dispatch(reducerLogout());
                     navigate("/");
@@ -64,9 +64,7 @@ const GlobalNavBar = () => {
               </Link>
               <Link
                 to={"/signup"}
-                className={
-                  "signup-button font-bold px-5 block border-l border-gray-300"
-                }
+                className={"signup-button font-bold px-5 block border-l border-gray-300"}
               >
                 회원가입
               </Link>
@@ -74,7 +72,7 @@ const GlobalNavBar = () => {
           )}
         </div>
       </nav>
-      <div className={"global-nav-bar-dummy"}></div>
+      <div className={"global-nav-bar-dummy w-full"}></div>
     </>
   );
 };
