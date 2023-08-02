@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getProductspReq } from "apis/product.js";
-import Container from "components/atoms/Container.js";
 import ProductsGrid from "components/organisms/ProductsGrid.js";
 import Loader from "components/atoms/Loader.js";
 import Skeleton from "components/atoms/Skeleton";
@@ -42,7 +41,7 @@ export default function ProductSections() {
   }, [observerRef, isLoading, hasNextPage, fetchNextPage]);
 
   return (
-    <Container>
+    <>
       {isLoading && <Loader />}
       {data && (
         <ProductsGrid
@@ -55,6 +54,6 @@ export default function ProductSections() {
           <div ref={observerRef}></div>
         </ProductsGrid>
       )}
-    </Container>
+    </>
   );
 }

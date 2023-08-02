@@ -108,56 +108,61 @@ export default function ProductOption({ product }) {
   };
 
   return (
-    <div className="inline-block w-96 p-4 border">
-      {/* 옵션 리스트 */}
-      <h3 className="text-left font-bold">옵션 선택</h3>
-      <OptionList options={product.options} onClick={handleOptionClick} />
-      {/* 선택 옵션 리스트 */}
-      <div className="text-center space-y-2">
-        {selectedOptions.map((opt) => (
-          <div
-            key={`selected-${opt.id}`}
-            className="block w-72 mx-auto overflow-x-hidden bg-gray-100"
-          >
-            <span>{opt.optionName}</span>
-            <Button
-              className="w-8 text-gray-400 font-bold"
-              onClick={() => handleXClick(opt)}
+    <div className="inline-flex w-96 h-[28rem] p-6 flex-col justify-between">
+      <div className="overflow-y-auto">
+        <h3 className="mb-2 text-left font-bold">옵션선택</h3>
+        <OptionList options={product.options} onClick={handleOptionClick} />
+        <div className="space-y-2">
+          {selectedOptions.map((opt) => (
+            <div
+              key={`selected-${opt.id}`}
+              className="block w-full p-3 bg-gray-100 space-y-2"
             >
-              ×
-            </Button>
-            <br />
-            <Counter value={opt} setCount={handleCounterClick} />
-            <span className="text-right">
-              {convertToPrice(opt.price * opt.quantity)}
-            </span>
-          </div>
-        ))}
+              <p className="flex justify-between">
+                <span className="inline-block w-[95%] overflow-hidden whitespace-nowrap text-ellipsis text-left text-sm">
+                  {opt.optionName}
+                </span>
+                <Button
+                  className="w-[5%] text-gray-400 font-bold"
+                  onClick={() => handleXClick(opt)}
+                >
+                  ×
+                </Button>
+              </p>
+              <p className="flex justify-between">
+                <Counter value={opt} setCount={handleCounterClick} />
+                <span className="text-right">
+                  {convertToPrice(opt.price * opt.quantity)}
+                </span>
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
-      <hr />
-      {/* 총 수량 및 가격 */}
-      <div className="space-x-8 text-xl">
-        <span>총 수량 {totalQuantity}개</span>
-        <span>
-          총 주문금액{" "}
-          <span className="font-bold text-red-600">{totalPrice}</span>
-        </span>
-      </div>
-      {/* 장바구니 및 바로구매 */}
-      <div className="space-x-1">
-        <Button onClick={handleCartClick}>
-          <Image
-            className="w-12 rounded-xl"
-            src={cart_white}
-            alt={"cart_white"}
-          />
-        </Button>
-        <Button
-          className=" bg-yellow-300 p-2 rounded text-[1.2rem]"
-          onClick={handleBuyClick}
-        >
-          바로구매
-        </Button>
+      <div>
+        <hr className="my-4" />
+        <p className="flex justify-between text-xl">
+          <span>총 수량 {totalQuantity}개</span>
+          <span>
+            총 주문금액{" "}
+            <span className="font-bold text-red-600">{totalPrice}</span>
+          </span>
+        </p>
+        <div className="flex mt-3 items-center justify-between gap-1">
+          <Button className="w-14" onClick={handleCartClick}>
+            <Image
+              className="w-14 rounded-lg"
+              src={cart_white}
+              alt={"cart_white"}
+            />
+          </Button>
+          <Button
+            className=" bg-yellow-300 w-[80%] p-3 rounded text-[1.2rem]"
+            onClick={handleBuyClick}
+          >
+            바로구매
+          </Button>
+        </div>
       </div>
     </div>
   );

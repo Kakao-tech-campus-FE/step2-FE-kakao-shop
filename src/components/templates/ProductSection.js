@@ -13,10 +13,17 @@ export default function ProductSection() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products", productId],
     queryFn: () => getProductReq(productId),
+    onError: (error) => {
+      const states = { 3: "리다이렉션", 4: "클라이언트", 5: "서버" };
+      const state = states[error.response.status / 100];
+      console.log(
+        `[Product Request Error] ${error.response.status}(${state}): ${error.message}`
+      );
+    },
   });
 
   return (
-    <Container className="m-8 inline-flex">
+    <Container className="inline-flex my-8 border justify-center">
       {isLoading && <Loader />}
       {error && <div>{error}</div>}
       {data && (
