@@ -17,7 +17,7 @@ const CartPage = () => {
 
   return (
     <>
-      {isError ? <ErrorPage error={error.status} /> : null}
+      {isError ? navigate('/error') : null}
       {isLoading ? <Loader /> : <CartList data={data} />}
     </>
   );

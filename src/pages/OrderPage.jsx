@@ -1,17 +1,20 @@
-import { Suspense } from "react";
-import OrderTemplate from "../components/templates/OrderTemplate";
-import Loader from "../components/atoms/Loader";
-import { useQuery } from "react-query";
-import { getCart } from "../apis/cart";
+import { Suspense } from 'react';
+import OrderTemplate from '../components/templates/OrderTemplate';
+import Loader from '../components/atoms/Loader';
+import { useQuery } from 'react-query';
+import { getCart } from '../apis/cart';
+import { useNavigate } from 'react-router-dom';
 
 const OrderPage = () => {
-    const {data: cart, isLoading} = useQuery(["cart"], getCart);
+  const navigate = useNavigate();
+  const { data: cart, isLoading, isError } = useQuery(['cart'], getCart);
 
-    return(
-        <Suspense fallback={<Loader />}>
-            {isLoading ? <Loader /> : <OrderTemplate data={cart}/>}
-        </Suspense>
-    );
+  return (
+    <>
+      {isError ? navigate('/error') : null}
+      {isLoading ? <Loader /> : <OrderTemplate data={cart} />}
+    </>
+  );
 };
 
 export default OrderPage;
