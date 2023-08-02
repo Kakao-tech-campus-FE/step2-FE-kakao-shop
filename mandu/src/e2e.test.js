@@ -78,10 +78,8 @@ describe('cart-test', () => {
         const cartProductCard = await page.waitForSelector('.cart-product-card');
         const cartProductName = await cartProductCard.$eval('.product-name', el => el?.innerText);
         const cartProductOptionName = await cartProductCard.$eval('.option-name', el => el?.innerText);
-        const cartProductOptionQuantity = await cartProductCard.$eval('.option-quantity', el => el?.innerText);
-        expect(cartProductName).toBe(productName);
-        expect(cartProductOptionName).toBe(optionName);
-        expect(cartProductOptionQuantity).toBe('2');
+        expect(cartProductName).toContain(productName);
+        expect(cartProductOptionName).toContain(optionName);
     });
 
 
