@@ -1,5 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef } from 'react'
-import Container from "../atoms/Container"
+import React, { useCallback, useEffect, useState} from 'react'
 import Box from "../atoms/Box"
 import Card from "../atoms/Card"
 import CartItem from '../atoms/CartItem'
@@ -7,20 +6,30 @@ import { comma } from '../../utils/convert'
 import Button from '../atoms/Button'
 import { useNavigate } from 'react-router-dom'
 import { useMutation } from 'react-query'
-import { orderCart, updateCart } from '../../services/cart'
+import { updateCart } from '../../services/cart'
+import { getCart } from '../../services/cart'
+import { useQuery } from 'react-query'
 
-const CartList = ({data}) => {
-  // console.log('dataddd')
-  // console.log(data)
-  const route = useNavigate()
+const CartList = () => {
+  const navigate = useNavigate()
   const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
   const [updatePayload, setUpdatePayload] = useState([])
-
+  const {data, error} = useQuery("carts", 
+    getCart,
+    {suspense: true}
+  )
+  
   const {mutate} = useMutation({
     mutationFn: updateCart 
   })
-
+  
+  useEffect(() => {
+    if (error) {
+      navigate('/404')
+    }
+  }, [error, navigate]);
+  
   useEffect(()=>{
     setCartItems(data?.data?.response?.products)
     setTotalPrice(data?.data?.response?.totalPrice)
@@ -71,8 +80,8 @@ const CartList = ({data}) => {
   // cartItem의 수량이 변경될 때만 실행 
   const getTotalOrder = useCallback(() =>{
     let count = 0
-    cartItems.map((item) => {
-      item.carts.map((cart) => {
+    cartItems.forEach((item) => {
+      item.carts.forEach((cart) => {
         count += cart.quantity //개별옵션 
       })
     })
@@ -80,53 +89,56 @@ const CartList = ({data}) => {
   },[cartItems])
 
   return (
-    <Container className="my-20 shadow bg-gray-100 py-2 flex justify-center mx-auto" >
-      <div className="w-full">
-      <Box className='text-2xl font-semibold text-center bg-white py-2 mx-1'>
-        <h1>장바구니</h1>
-      </Box>
-      <Box className='bg-white mx-1 my-1 py-1'>
-        {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems)&&
-          cartItems.map((item)=>{
-            console.log('item')
-            console.log(item)
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount} // 개수 변화 
-              />
-            )
-          })
-        }
-      </Box>
-      <Card>
-        <div className='bg-white flex justify-between mx-1 font-bold text-xl px-4 py-4'>
-          <span className='expect-price'>주문 예상금액</span>
-          <span className='sum-price text-blue-500'>{comma(totalPrice)}원</span>
-        </div>
-      </Card>
-      <Button
-        className="btn-order py-4 mr-2 w-full"
-        onClick={()=>{
-          //update cart : 장바구니 정보 수정 
-          mutate(updatePayload, {
-            onSuccess: (data) =>{
-              //navigate to order page 
-              route("/order")
-              console.log(data)
-            },
-            onError: (err)=> {
-              console.log(err)
-            }
-          })
-        }}
-      >
-        <span>{getTotalOrder()}건 주문하기 </span>
-      </Button>
+    <div className="bg-gray-100 py-5">
+      <div className="max-w-[1024px] w-[100%] mx-auto" >
+        <Box className='text-xl font-bold text-center border bg-white py-2'>
+          <h1>장바구니</h1>
+        </Box>
+        <Box className='bg-white my-1 py-1 border'>
+          {/* 상품별 장바구니 */}
+          {Array.isArray(cartItems)&&
+            cartItems.map((item)=>{
+              console.log('item')
+              console.log(item)
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onChange={handleOnChangeCount} // 개수 변화 
+                />
+              )
+            })
+          }
+        </Box>
+        <Card>
+          <div className='bg-white border p-4'>
+            <div className='flex justify-between mb-3 font-bold text-xl'>
+              <span className='expect-price'>주문 예상금액</span>
+              <span className='sum-price text-blue-500'>{comma(totalPrice)}원</span>
+            </div>
+            <Button
+              className="btn-order p-4 w-full"
+              onClick={()=>{
+                //update cart : 장바구니 정보 수정 
+                mutate(updatePayload, {
+                  onSuccess: (data) =>{
+                    //navigate to order page 
+                    navigate("/orders")
+                    console.log(data)
+                  },
+                  onError: (err)=> {
+                    console.log(err)
+                  }
+                })
+              }}
+            >
+              <span>{getTotalOrder()}건 주문하기 </span>
+            </Button>
+          </div>
+        </Card>
       </div>
-    </Container>
+
+    </div>
   )
 }
 

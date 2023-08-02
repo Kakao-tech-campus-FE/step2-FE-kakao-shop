@@ -1,9 +1,15 @@
-import React from 'react'
+import OrderTemplate from '../components/templates/OrderTemplate'
+import { Suspense } from 'react'
+import Loader from '../components/atoms/Loader'
+
 
 const OrderPage = () => {
   return (
-    <div>OrderPage</div>
+    <Suspense fallback={<Loader/>}>
+      <OrderTemplate/>
+    </Suspense>
   )
 }
+
 
 export default OrderPage

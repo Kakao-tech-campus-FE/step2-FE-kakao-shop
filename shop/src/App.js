@@ -8,6 +8,7 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 function App() {
   return (
@@ -22,9 +23,10 @@ function App() {
             <Route path='/' element={<HomePage/>}></Route>
             <Route path='/product/:id' element={<ProductDetailPage/>}></Route>
             <Route path='/carts' element={<CartPage/>}></Route>
-            <Route path='/order' element={<OrderPage/>}></Route>
+            <Route path='/orders' element={<OrderPage/>}></Route>
+            <Route path='/orders/:id' element={<OrderCompletePage/>}></Route>
             {/* 404 에러 페이지 */}
-            <Route path="/product/404" element={<NotFoundPage />} />
+            <Route path="/404" element={<NotFoundPage />} />
           </Route>
 
         </Routes>

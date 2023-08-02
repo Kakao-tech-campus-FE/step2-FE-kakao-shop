@@ -2,8 +2,8 @@ import {useState,useEffect} from 'react'
 import Button from './Button'
 
 const Counter = ({
-  onIncrease, //수량 증가시 호출되는 함수
-  onDecrease, // 수량 감소시 호출되는 함수
+  onClickIncrease, //수량 증가시 호출되는 함수
+  onClickDecrease, // 수량 감소시 호출되는 함수
   quantity, // 이전 quantity 값
   optionId,
   className
@@ -17,25 +17,25 @@ const Counter = ({
     setIsDisabled(quantity <= 0);
   }, [quantity]);
 
-  const handleOnIncrease = () => {
+  const handleClickIncrease = () => {
     setCount(count+1)
-    onIncrease(count+1, optionId)
+    onClickIncrease(count+1, optionId)
     setIsDisabled(false)
 
   }
 
-  const handleOnDecrease = () => {
+  const handleClickDecrease = () => {
     setCount(count-1)
-    onDecrease(count-1, optionId)
+    onClickDecrease(count-1, optionId)
     setIsDisabled(count <= 1)
 
   }
 
   return (
     <div className={className}>
-      <Button className="btn-counter px-3" disabled={isDisabled} onClick={handleOnDecrease}>-</Button>
+      <Button className="btn-counter px-3" disabled={isDisabled} onClick={handleClickDecrease}>-</Button>
       <span className='px-6'>{count}</span>
-      <Button className="btn-counter px-2" onClick={handleOnIncrease}>+</Button>
+      <Button className="btn-counter px-2" onClick={handleClickIncrease}>+</Button>
     </div>
   )
 }
