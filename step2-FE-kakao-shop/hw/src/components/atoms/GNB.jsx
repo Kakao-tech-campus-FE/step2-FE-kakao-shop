@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setToken } from "../../store/slices/userSlice";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setEmail, logOut } from "../../store/slices/userSlice";
 
 function GNB() {
@@ -22,6 +22,22 @@ function GNB() {
     dispatch(logOut());
     alert("정상적으로 로그아웃되었습니다.");
   };
+
+  // 이부분이 일정 시간 지나면 자동으로 로그아웃 되는 부분
+  const logoutTimeSecond = 60 * 60; // 1시간 뒤 자동 로그아웃
+  const [count, setCount] = useState(logoutTimeSecond);
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount((count) => count - 1);
+    }, 1000);
+    if (count === 0) {
+      clearInterval(id);
+      if (loggedIn === true) {
+        dispatch(logOut());
+      }
+    }
+    return () => clearInterval(id);
+  }, [count]);
 
   return (
     <header className="header">

@@ -6,6 +6,9 @@ import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
+import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 function App() {
   return (
@@ -15,12 +18,16 @@ function App() {
           {/* 단독 레이아웃 */}
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
+          <Route path="/*" element={<NotFoundPage />}></Route>
           {/* 공통 레이아웃: GNB, Footer */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
           </Route>
-          <Route path="/*" element={<NotFoundPage />}></Route>
+          <Route element={<RequiredAuthLayout />}>
+            <Route path="/cart" element={<CartPage />}></Route>
+            <Route path="/order" element={<OrderPage />}></Route>
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
