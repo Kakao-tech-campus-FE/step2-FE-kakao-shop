@@ -4,8 +4,8 @@
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>
-</br>
 
+  
 ## ✅**과제 1.**
 
 페이지별 구성
@@ -121,6 +121,9 @@
 | styles     | css(scss) 파일                                       |
 | utils      | 상수나 공통 함수, 유틸리티                           |
 
+</div>
+</details>
+
 ---
 
 <details>
@@ -154,45 +157,78 @@
 
 **1. 페이지 설명**
 1. 로그인 페이지
+   
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/17077216-b797-4a6b-99f6-5cae128e84d4)
 - 이메일과 비밀번호를 입력받는다.
 - 이메일 아이디의 유효성 검사: 영문+숫자@영문+숫자.영문+숫자
 - 비밀번호 유효성 검사: (영문,숫자,특수문자) 포함, 공백 없음, 8~20자
 - 이메일(아이디)와 비밀번호의 유효성 검사 통과시 로그인 버튼 활성화
 
+</br>
+
+---
+
 2. 회원가입 페이지
+   
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/30f0b36f-99cb-49cb-968e-c6a047cabbce)
 - 회원가입시 이메일, 이름, 비밀번호 필수 작성
 - 로그인과 같은 유효성 검사 진행
 - 유효성 검사 통과시 회원가입 버튼 활성화
 
+</br>
+
+---
+
 3. 메인 페이지
+
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/efb09182-8ad1-4fbe-8b87-f69e86876121)
 - 상품 로드중일 때 스켈레톤 적용
 - 무한스크롤 적용
 
+</br>
+
+---
+
 4. 개별 상품 페이지
+
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/eccd404c-bfdb-4037-b1d6-ae28c3218b2c)
 - 상품 로드중일 때 로더 적용
 - 옵션 선택시 선택 상품 하단에 추가
 - 추가한 상품 수량 버튼으로 수정 가능
 - 옵션 선택, 장바구니 담기, 톡딜가로 구매하기 모두 로그인 상태일 때만 클릭 가능
 
+</br>
+
+---
+
 5. 장바구니 페이지
+
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/fa7f03bc-fb49-486f-8629-03b66a1c07b0)
 - 수량 버튼으로 수량 수정 가능
 - 상품이 있을 때만 주문하기 버튼 활성화
 
+</br>
+
+---
+
 6. 주문하기 페이지
+
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/45202a9f-531e-4163-bf6c-424a4662d5f3)
 - 수량 수정 불가
 - 전체 동의 상태, 상품이 있을 때만 결제하기 버튼 활성화
 
+</br>
+
+---
+
 7. 결제완료 페이지
+
 ![image](https://github.com/H-sooyeon/step2-FE-kakao-shop/assets/56586470/d16185bb-ede6-4d2b-960d-e075755a9a47)
 - 쇼핑 계속하기 버튼 클릭 시 메인 페이지 이동
 
 </br>
+
+---
 
 **2. 배포 환경 설명**
 ```
