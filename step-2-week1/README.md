@@ -1,3 +1,29 @@
+# KAKAO_CLONE_CODING
+카카오 쇼핑 홈페이지 간단하게 클론 코딩한 프로젝트 입니다.
+
+# Command
+₩₩₩ bash
+npm install # 의존성 모듈 설치
+npm run build # 패키지 번들링
+npm run start # 프로젝트 실행
+₩₩₩
+
+# Directory Pattern
+- src/apis : 통신 모듈과 개별 API 함수
+- src/components : Atomic pattern으로 구성된 컴포넌트 디렉터리
+- src/hooks : 커스텀 훅
+
+# 크램폴린 IDE를 통해 배포
+1. 크램폴린 IDE로 접속한다. (http://something.com)
+2. 컨테이너를 생성한다.
+...
+9. 터미널을 열고, ./start.sh를 통해 백엔드 환경을 실행한다.
+10. 또 다른 터미널을 생성해 npm startfh 2000번대 포트에 리액트를 실행한다.
+
+아무도 모르는 사람이 이 코드 받았을때 코드에 대해 파악할 수 있도록 작성
+
+
+
 # Step-2.-Week-1
 카카오 테크 캠퍼스 2단계 - FE - 1주차 클론 과제
 </br>

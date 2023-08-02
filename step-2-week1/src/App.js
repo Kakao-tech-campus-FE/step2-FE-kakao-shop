@@ -48,7 +48,7 @@ function App() {
             {/* 공통 레이아웃 GNB, Footer */}
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
-              <Route path="/" element={<ProductGrid />}></Route>
+              {/* <Route path="/" element={<ProductGrid />}></Route> */}
               <Route path="/product/:id" element={<ProductDetailPage />}></Route>
               {/* 사용자가 로그인됐을 때만 접근 가능한 부분 */}
               <Route element ={<RequiredAuthLayout />}>
