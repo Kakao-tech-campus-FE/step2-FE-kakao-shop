@@ -12,8 +12,7 @@ const Background = ({ children }: Props) => {
 export default Background;
 
 const Wrapper = styled.div`
-  height: auto;
-  min-height: 100vh;
+  height: 100vh;
   min-width: 1280px;
   background-color: #f4f4f4;
   overflow: auto;
