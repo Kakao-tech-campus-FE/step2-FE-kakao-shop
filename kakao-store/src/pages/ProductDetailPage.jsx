@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getProductById } from "../apis/product";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
-import Gnb from "../components/organisms/Gnb";
+import Error404Page from "./Error404Page";
 
 const ProductDetailPage = () => {
     const { id } = useParams(); // string
@@ -41,8 +41,8 @@ const ProductDetailPage = () => {
     return (
         <div>
             {isLoading && <Loader />}
-            {error &&  <Error404 />}
-            {isValidate === false && <Error404 />  }
+            {error &&  <Error404Page />}
+            {isValidate === false && <Error404Page />  }
             {product && <ProductDetailTemplate product={product} />}
         </div>
     );
