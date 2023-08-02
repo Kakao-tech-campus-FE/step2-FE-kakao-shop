@@ -2,10 +2,12 @@ import Container from "../atoms/Container";
 import Link from "../atoms/Link";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/user";
+import { register, emailCheck } from "../../services/user";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
+import CartList from './../molecules/CartList';
+import { useRef } from 'react';
 
 const RegisterForm = () => {
     const navigate = useNavigate();
@@ -23,6 +25,8 @@ const RegisterForm = () => {
         passwordConfirm: "",
     });
 
+    const [emailCheckErr, setEmailCheckErr] = useState("");
+    const duplication = useRef(false);
     const [apiErr, setApiErr] = useState("");
     const [passwordConfirmError, setPasswordConfirmError] = useState("");
     const isRegisterError = (emailError || passwordError || value.username === "" || value.email === "" || value.password === "" || value.passwordConfirm==="") ? true: false ;
@@ -43,6 +47,19 @@ const RegisterForm = () => {
                 } else {
                     setApiErr("회원가입이 실패했습니다.");
                 }
+            })
+    }
+
+    const emailCheckReq = () => {
+        emailCheck({
+            email : value.email,
+        })
+            .then((res => {
+                alert("사용 가능한 이메일입니다.");
+            }))
+            .catch((err) => {
+                setEmailCheckErr(err);
+                alert(err);
             })
     }
 
@@ -76,7 +93,7 @@ const RegisterForm = () => {
                                 className="w-[100%] text-lg py-2.5 focus:outline-none"
                             />
                         </div>
-                        <div className={`emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${emailError ? "border-red-600" : ""}`}>
+                        <div className={`flex emailPart border-b-2 border-#ccc mt-4 focus-within:border-black ${emailError ? "border-red-600" : ""}`}>
                             <input 
                                 type="text" 
                                 name="email" 
@@ -87,6 +104,13 @@ const RegisterForm = () => {
                                 onBlur = {validateEmail}
                                 className="w-[100%] text-lg py-2.5 focus:outline-none"
                             />
+                            <div className="flex items-center ml-2 px-2">
+                                <button onClick={() => emailCheckReq()} 
+                                    className = "w-14 h-8 bg-#ffeb00 "
+                                >
+                                    <span className="text-xs">중복체크</span>
+                                </button>
+                            </div>
                         </div>
                         { emailError && <div><span className="ml-2 text-red-600">! </span><span className="text-sm">{emailError}</span></div>}
                         
