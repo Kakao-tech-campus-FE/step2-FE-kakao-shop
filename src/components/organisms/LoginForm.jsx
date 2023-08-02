@@ -46,6 +46,13 @@ const LoginForm = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleLogin();
+    }
+  };
+
   //redux-thunk 사용 이전 비동기 처리 코드, 이래의 버튼 onClick의 dispatch(loginRequest)로 대체됨
   // const loginReq = () => {
   //   login({
@@ -67,7 +74,10 @@ const LoginForm = () => {
   // };
   const [isFocus, setIsFocus] = useState([false, false]);
   return (
-    <Container className="border-neutral-300 border px-16 py-14 w-[560px] min-w-fit h-full my-10 mx-auto">
+    <Container
+      className="border-neutral-300 border px-16 py-14 w-[560px] min-w-fit h-full my-10 mx-auto"
+      onKeyDown={handleKeyDown}
+    >
       <div className="text-center font-normal text-3xl mx-auto my-10">
         로그인
       </div>
