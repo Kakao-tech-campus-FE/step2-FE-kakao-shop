@@ -15,7 +15,7 @@ const CARTS = {
 };
 
 const ORDERS = {
-  POST: "/orders/save",
+  SAVE: "/orders/save",
   GET: "/orders/",
 };
 

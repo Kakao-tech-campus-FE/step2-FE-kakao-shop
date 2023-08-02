@@ -14,7 +14,6 @@ function useSaveOrderMutation() {
     },
     {
       onSuccess: (data) => {
-        console.log(data);
         navigate(`${routes.orderResult}/${data.id}`);
       },
     }
