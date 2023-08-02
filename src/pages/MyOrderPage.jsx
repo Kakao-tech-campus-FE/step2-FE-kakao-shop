@@ -29,7 +29,7 @@ const MyOrderPage = () => {
       </AccordionBox>
 
       <AccordionBox title="주문 상품 정보" initialOpen>
-          <OrderProducts data={!query.isFetching && query.data.products} isOrderResultPage />
+        <OrderProducts data={query.data.products} isOrderResultPage />
       </AccordionBox>
 
       <AccordionBox title="결제 정보" initialOpen>
