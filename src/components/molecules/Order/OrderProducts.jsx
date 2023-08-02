@@ -6,9 +6,10 @@ const OrderProducts = ( { data } ) => {
   return (
     <CollectionContainer>
       {data?.map((collection) => 
-        <CollectionBox collectionName={collection.productName}>
+        <CollectionBox collectionName={collection.productName} key={collection.productName}>
           {collection.options.map((option) => (
             <OptionBox
+              key={option.optionName}
               optionName={option.optionName} 
               quantity={option.quantity}
               price={strPrice(option.price)}

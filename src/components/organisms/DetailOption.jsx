@@ -134,10 +134,9 @@ const DetailOption = (props) => {
       <SelectedItemsContainer>
         {selected.map((item) => 
           item.quantity === 0 ? null :
-            <SelectedItemBox>
+            <SelectedItemBox key={item.optionName} >
               <OptionSelected 
                 optionId={item.id}
-                key={item.optionName} 
                 optionName={item.optionName} 
                 price={item.quantity * item.price}
                 quantity={item.quantity}

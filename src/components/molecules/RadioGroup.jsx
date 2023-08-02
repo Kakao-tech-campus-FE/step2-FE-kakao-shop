@@ -8,7 +8,7 @@ const RadioGroup = ( { itemList, state, onChange } ) => {
 			{itemList.map((item) => (
 				<RadioItem 
 					id={item.id} checked={state === item.id} 
-					onChange={onChange} label={item.label}
+					onChange={onChange} label={item.label} key={item.label}
 				/>
 			))}
 		</>

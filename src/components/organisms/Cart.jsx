@@ -80,7 +80,7 @@ const Cart = () => {
         query.data.products?.map((collection) => (
           productsQ[collection.id] > 0 &&
 
-          <CartCollectionBox id={ collection.id }>
+          <CartCollectionBox id={ collection.id } key={collection.productName}>
             <span className='font-bold m-2'> 
               {collection.productName} 
             </span>
@@ -88,10 +88,10 @@ const Cart = () => {
             {collection.carts.map((optionItem) => (
               optionItem.quantity > 0 &&
 
-                <CartOptionBox>
+                <CartOptionBox key={optionItem.option.optionName}>
                   <OptionSelected 
                     optionId={optionItem.id}
-                    key={optionItem.option.optionName} 
+                     
                     optionName={optionItem.option.optionName} 
                     price={optionItem.price}
                     quantity={optionItem.quantity}

@@ -65,7 +65,7 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
       <AccordionBox 
         title={
           <CheckItem 
-            id='all' checked={allChecked} 
+            id='all' checked={allChecked}
             onChange={setCheckedSet} label='전체 동의'
           />
         } 
@@ -74,7 +74,7 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
         {agreeList.map(item => (
           <CheckItem 
             id={item.id} checked={checkedSet.has(item.id)} 
-            onChange={setCheckedSet} label={item.title}
+            onChange={setCheckedSet} label={item.title}  key={item.title}
           />
         ))}
       </AccordionBox>

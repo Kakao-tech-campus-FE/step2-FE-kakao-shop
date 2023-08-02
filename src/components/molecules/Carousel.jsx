@@ -44,7 +44,6 @@ const Carousel = () => {
   }
 
   useEffect(()=> {
-    console.log(page)
     const movetimer = setTimeout(() => {
       setIsMoving(prev => false) 
       const newPNN = [page-1, page, page+1]
@@ -67,16 +66,16 @@ const Carousel = () => {
   
   return (
     <CarouselContainer>
-      <CarouselContent page={page} center={center} isMoving={isMoving}>
+      <CarouselContent page={page} center={center} $isMoving={isMoving}>
         {prevNowNext.map((n) => (
-          <CarouselImage src={banners.at(n - 1).image} />
+          <CarouselImage src={banners.at(n - 1).image} key={n}/>
         ))}
       </CarouselContent>
       
       <PageBox>
         {banners.map((e, i) => (
           <PageIcon 
-            opacity={i + 1 === page ? 1 : 0.5} />
+            opacity={i + 1 === page ? 1 : 0.5} key={i}/>
           )
         )}
       </PageBox>
@@ -108,7 +107,7 @@ const CarouselContainer = styled.div`
 const CarouselContent = styled.div`
   display: flex;
   width: 300vw;
-  transition: ${props => props.isMoving ? "all, 0.5s" : "none"};
+  transition: ${props => props.$isMoving ? "all, 0.5s" : "none"};
   transform: translateX(${props => -100 * props.center}vw);
 `;
 
