@@ -77,7 +77,7 @@ const router = createBrowserRouter(
       path: "*",
     },
   ],
-  { basename: process.env.REACT_APP_PATH }
+  { basename: "%BASE_URL%" }
 );
 
 export { router };
