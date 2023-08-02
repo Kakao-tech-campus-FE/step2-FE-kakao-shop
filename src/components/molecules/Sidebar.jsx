@@ -3,23 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 import SidebarItem from "../atoms/SidebarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoggedIn } from "../../store/slices/userSlice";
-// import { setSearchResult } from "../../store/slices/searchResultSlice";
 
 const Sidebar = () => {
+  const [query, setQuery] = useState("");
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const menus = [
     { name: "홈", path: "/", icon: "/sidebarIcons/home.svg" },
     { name: "장바구니", path: "/cart", icon: "/sidebarIcons/cart.svg" },
   ];
 
   const navigate = useNavigate();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch(setIsLoggedIn({ isLoggedIn: false }));
   };
-
-  const [query, setQuery] = useState("");
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -27,7 +26,6 @@ const Sidebar = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
     navigate(`/search/${query}`);
   };
 
