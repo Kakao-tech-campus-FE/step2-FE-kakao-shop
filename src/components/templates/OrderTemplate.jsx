@@ -1,11 +1,12 @@
 import { useMutation } from "react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/api/order";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import logOut from "../../services/logout";
 import { BsTruck } from "react-icons/bs";
 import ErrorTypo from "../atoms/ErrorTypo";
+import { BsFillQuestionSquareFill } from "react-icons/bs";
 
 const OrderTemplate = ({ data }) => {
   const products = data?.data?.response?.products;
@@ -18,6 +19,8 @@ const OrderTemplate = ({ data }) => {
   const allAgreeRef = useRef(null);
   const agreePaymentRef = useRef(null);
   const agreePolicyRef = useRef(null);
+
+  const route = useNavigate();
 
   const handleAllAgree = (e) => {
     const value = e.target.checked;
@@ -92,7 +95,26 @@ const OrderTemplate = ({ data }) => {
         </div>
         {products.length === 0 ? (
           <div className="ship-info-not-found border rounded my-2 bg-white">
-            주문할 상품이 존재하지 않습니다.
+            <div className="h-[600px] min-h-fit flex flex-col items-center justify-center">
+              <BsFillQuestionSquareFill className="text-8xl text-neutral-400" />
+              <p className="mt-10 mb-6 text-2xl text-neutral-600">
+                주문할 상품이 존재하지 않습니다.
+              </p>
+              <div className="flex w-fit mx-auto my-4">
+                <button
+                  className="w-[100px] mx-2 px-3 py-2 rounded border border-neutral-300 bg-white"
+                  onClick={() => route(-1)}
+                >
+                  <span className="text-sm text-black">이전화면</span>
+                </button>
+                <button
+                  className="w-[100px] mx-2 px-3 py-2 rounded bg-black"
+                  onClick={() => route("/")}
+                >
+                  <span className="text-sm text-white">쇼핑하기 홈</span>
+                </button>
+              </div>
+            </div>
           </div>
         ) : (
           <div>
