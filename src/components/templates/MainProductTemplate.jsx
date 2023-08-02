@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import Container from '../atoms/Container';
 import ProductGrid from '../organisms/ProductGrid';
 import { fetchProducts } from '../../apis/product';
@@ -27,7 +27,7 @@ const MainProductTemplate = () => {
           return null;
         }
         // 다음 페이지를 요청하기 위해 현재 페이지의 개수를 계산하여 반환
-        return pages.length + 1;
+        return pages.length;
       },
       onError: (error) => {
         if (error?.status) {
@@ -48,7 +48,8 @@ const MainProductTemplate = () => {
           console.error('Unknown error occurred: ', error);
         }
       },
-    }
+    },
+    { suspense: true }
   ); // 구분자, API 요청 함수
 
   useEffect(() => {
@@ -58,19 +59,20 @@ const MainProductTemplate = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView]);
 
+  if (isError) {
+    navigate('/error');
+  }
+
   return (
-    <Container>
-      {isError ? navigate('/error') : null}
-      {products ? (
+    <Suspense fallback={<MainPageSkeleton />}>
+      <Container>
         <ProductGrid
           products={products.pages.flatMap((page) => page.response)}
+          isFetchingNextPage={isFetchingNextPage}
         />
-      ) : (
-        <MainPageSkeleton />
-      )}
-      <div ref={ref}></div>
-      {isFetchingNextPage && <MainPageSkeleton />}
-    </Container>
+        <div ref={ref}></div>
+      </Container>
+    </Suspense>
   );
 };
 
