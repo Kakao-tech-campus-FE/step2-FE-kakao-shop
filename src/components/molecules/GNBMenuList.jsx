@@ -6,7 +6,7 @@ import { BsList } from "react-icons/bs";
  */
 const GNBMenuList = () => {
   return (
-    <ul className="flex">
+    <ul className="flex min-w-fit">
       <li className="font-semibold px-3 pt-8 pb-5 hover:border-b-4 hover:border-neutral-700">
         홈
       </li>

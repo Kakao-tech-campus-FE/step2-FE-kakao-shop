@@ -20,7 +20,7 @@ const GNBMenuMy = ({ className = "" }) => {
           // 메인 페이지로 이동
           window.location.href = "/";
         }}
-        className={"block pt-4 pb-3 px-2 leading-7 ml-2"}
+        className={"min-w-fit block pt-4 pb-3 px-2 leading-7 ml-2"}
       >
         로그아웃
       </Button>
