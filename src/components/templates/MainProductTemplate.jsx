@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchProducts } from "../../services/api/product";
 import { useQuery } from "react-query";
 import _ from "lodash";
+import ErrorTypo from "../atoms/ErrorTypo";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -98,14 +99,7 @@ const MainProductTemplate = () => {
   //console.log("Products:", products);
 
   if (error) {
-    return (
-      <Container className="w-full px-24 py-16 m-auto">
-        <div className="text-center">
-          <p className="text-2xl my-6">데이터 로드중 오류가 발생했습니다.</p>
-          <p className="text-lg">새로고침을 눌러 다시 시도 바랍니다.</p>
-        </div>
-      </Container>
-    );
+    return <ErrorTypo />;
   }
 
   return (
