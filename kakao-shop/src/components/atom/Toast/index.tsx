@@ -36,5 +36,9 @@ const S = {
     border-radius: 10px;
 
     color: #ffffff;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   `,
 };
