@@ -7,9 +7,14 @@ const ProductCard = ({product})=>{
   return (
     <StyledCard>
     <Card to={`/product/${product.id}`}>
-      <Photo src={product.image} alt={product.productName}/>
+      <div className="rounded-lg lg:overflow-hidden lg:w-[300px] lg:h-[200px] mb-2">
+        <Photo src={product.image} alt={product.productName} className="lg:hover:scale-110 transition-transform ease-in-out duration-500"/>
+      </div>
       <StyledProductName>{product.productName}</StyledProductName>
-      <StyledProductPrice>{comma(product.price)}원</StyledProductPrice>
+      <StyledProductPrice>
+        <span className="text-blue-500 mr-3">톡딜가</span>
+        {comma(product.price)}원
+        </StyledProductPrice>
     </Card>
     </StyledCard>
   )
@@ -26,7 +31,7 @@ const StyledProductName = styled.h1`
   margin-bottom: 10px;
 `
 const StyledProductPrice = styled.p`
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 700;
 `;
 export default ProductCard
