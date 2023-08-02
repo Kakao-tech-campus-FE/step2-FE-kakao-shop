@@ -130,6 +130,7 @@ const OrderTemplate = ({ data }) => {
               ref={allAgreeRef}
               checked={agreePayment && agreePolicy}
               onChange={handleAllAgree}
+              className="w-[20px] h-[20px] mt-[4px] border-gray-300 cursor-pointer accent-yellow-kakao"
             />
             {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
             <label htmlFor="all-agree" className="text-[18px] font-bold">
@@ -148,6 +149,7 @@ const OrderTemplate = ({ data }) => {
                 ref={agreePaymentRef}
                 checked={agreePayment}
                 onChange={handleAgreement}
+                className="w-[20px] h-[20px] mt-[1px] border-gray-300 cursor-pointer accent-yellow-kakao"
               />
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="agree" className="text-[14px]">
@@ -164,6 +166,7 @@ const OrderTemplate = ({ data }) => {
                 ref={agreePolicyRef}
                 checked={agreePolicy}
                 onChange={handleAgreement}
+                className="w-[20px] h-[20px] mt-[1px] border-gray-300 cursor-pointer accent-yellow-kakao"
               />
               {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
               <label htmlFor="policy" className="text-[14px]">
