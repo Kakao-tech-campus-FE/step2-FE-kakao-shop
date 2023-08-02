@@ -1,4 +1,3 @@
-import { useRedirect } from "@hooks/useRedirect";
 import axios from "axios";
 
 const AxiosInstance = axios.create({
