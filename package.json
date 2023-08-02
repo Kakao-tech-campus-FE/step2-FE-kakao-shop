@@ -52,5 +52,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "axios-mock-adapter": "^1.21.5"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+    "/node_modules/(?!(axios)/)"
+    ]
   }
 }
