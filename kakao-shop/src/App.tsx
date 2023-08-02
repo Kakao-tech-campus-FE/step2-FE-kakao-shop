@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { Fragment, lazy, Suspense } from 'react';
 import { Route, Routes, BrowserRouter, Outlet } from 'react-router-dom';
 
 import Approve from '@pages/Pay/Approve';
@@ -21,7 +21,7 @@ const NotFound = lazy(() => import('@pages/404'));
 function App() {
   return (
     <BrowserRouter>
-      <Suspense fallback={<PageLoader />}>
+      <Suspense fallback={<Fallback />}>
         <Routes>
           <Route element={<Layout />}>
             <Route path={'/'} element={<Home />} />
@@ -47,6 +47,16 @@ const Layout = () => {
     <>
       <Header />
       <Outlet />
+      <Footer />
+    </>
+  );
+};
+
+const Fallback = () => {
+  return (
+    <>
+      <Header />
+      <PageLoader />
       <Footer />
     </>
   );
