@@ -1,3 +1,8 @@
+ul,
+li {
+  list-style: none;
+}
+
 .header {
   height: 75px;
   position: fixed;
@@ -15,7 +20,7 @@
 .header-innerwrap {
   position: absolute;
   width: 1200px;
-  height: 70px;
+  height: 75px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -26,11 +31,53 @@
   height: 35px;
 }
 
+/* ----- 헤더 네비게이션바(네브바, 카테고리) ----- */
+.header-nav {
+  display: flex;
+}
+
+.header-nav .head-nav ul {
+  display: flex;
+  margin: 0;
+}
+
+.header-nav .head-nav li {
+  font-size: 17px;
+  font-weight: 500;
+  padding: 0 8px;
+}
+
+.header-nav .head-cate {
+  padding: 0 15px;
+}
+
+.header-nav .head-cate a {
+  display: flex;
+  text-decoration: none;
+  color: #4684e9;
+  font-weight: 700;
+}
+.header-nav .head-cate .cate {
+  font-size: 17px;
+  margin-left: 5px;
+}
+
+/* ----- 헤더 우측 메뉴(검색, 장바구니, 로그인) ----- */
 .header-menu {
   position: relative;
   margin-left: auto;
   display: flex;
   align-items: center;
+}
+
+.header-menu .menu-search {
+  cursor: pointer;
+}
+
+.header-menu .menu-search span {
+  font-size: 30px;
+  padding-top: 6px;
+  color: black;
 }
 
 .header-menu .menu-util {

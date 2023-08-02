@@ -1,13 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../../styles/atoms/Header.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setToken } from "../../store/slices/userSlice";
+import { setEmail } from "../../store/slices/userSlice";
 import "../../styles/atoms/GNB.css";
 import { useEffect } from "react";
 
 const GNB = () => {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
+  const location = useLocation(); // 현재 위치 정보가져오기
 
   const handleLogout = () => {
     dispatch(setEmail({ email: "" }));
@@ -23,6 +24,9 @@ const GNB = () => {
     }
   }, [dispatch]);
 
+  //현재 위치 따라서 헤더 네비게이션 바 표시 여부 결정.
+  const showNavbar = location.pathname === "/";
+
   return (
     <header className="header">
       <div className="header-innerwrap">
@@ -34,7 +38,42 @@ const GNB = () => {
             height={30}
           />
         </Link>
+
+        {showNavbar && (
+          <div className="header-nav">
+            <nav className="head-nav">
+              <ul>
+                <li>
+                  <Link
+                    to="/"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                      fontWeight: 800,
+                    }}
+                  >
+                    홈
+                  </Link>
+                </li>
+                <li>브랜드데이</li>
+                <li>베스트</li>
+                <li>라이브</li>
+                <li>기획전</li>
+              </ul>
+            </nav>
+            <div className="head-cate">
+              <a href="#">
+                <span class="material-symbols-outlined">menu</span>
+                <span className="cate">카테고리</span>
+              </a>
+            </div>
+          </div>
+        )}
+
         <div className="header-menu">
+          <a className="menu-search">
+            <span class="material-symbols-outlined">search</span>
+          </a>
           <span className="menu-util">
             <Link to="/cart" className="link-util">
               <img src={"/cart.png"} alt="장바구니" height={30} />
