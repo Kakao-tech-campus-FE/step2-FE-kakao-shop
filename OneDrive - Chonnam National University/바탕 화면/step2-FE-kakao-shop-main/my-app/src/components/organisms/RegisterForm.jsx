@@ -1,25 +1,25 @@
 import React, { useState } from "react"; // eslint-disable-line no-unused-vars
 import useInput from "../../hooks/useInput";
-import Container from "../atoms/Container";
+import Container from "../atoms/Container"; // eslint-disable-line no-unused-vars
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import { register } from "../../services/user";
-import Title from "../atoms/Title";
+import Title from "../atoms/Title"; // eslint-disable-line no-unused-vars
 import { useDispatch } from "react-redux"; // eslint-disable-line no-unused-vars
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"; // eslint-disable-line no-unused-vars
+// import useInputError from "../../hooks/useInputError";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
-
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
-
   const [errorMsg, setErrorMsg] = useState("");
-
+  // const { errorMsg, handleOnBlur } = useInputError("");
   const registerReq = () => {
     register({
       email: value.email,
@@ -35,9 +35,13 @@ const RegisterForm = () => {
         setErrorMsg(error.message);
       });
   };
+
   return (
-    <Container>
-      <Title>회원가입</Title>
+    <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 border p-16 grid gap-8">
+      <Link to="/">
+        <img src="/logoKakao.png" alt="카카오톡 쇼핑하기" className="w-32 block m-auto" />
+      </Link>
+
       <InputGroup
         id="username"
         type="text"
@@ -45,8 +49,9 @@ const RegisterForm = () => {
         placeholder="사용자 이름"
         value={value.username}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
+        // onBlur={handleOnBlur}
       />
-
       <InputGroup
         id="email"
         type="email"
@@ -54,8 +59,9 @@ const RegisterForm = () => {
         placeholder="아이디(이메일)"
         value={value.email}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
+        // onBlur={handleOnBlur}
       />
-
       <InputGroup
         id="password"
         type="password"
@@ -63,8 +69,9 @@ const RegisterForm = () => {
         placeholder="비밀번호"
         value={value.password}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
+        // onBlur={handleOnBlur}
       />
-
       <InputGroup
         id="passwordConfirm"
         type="password"
@@ -72,9 +79,11 @@ const RegisterForm = () => {
         placeholder="비밀번호 확인"
         value={value.passwordConfirm}
         onChange={handleOnChange}
+        className="w-96 h-10 border-b-2 focus:outline-none focus:border-b-2 focus:border-b-black"
+        // onBlur={handleOnBlur}
       />
-
       <Button
+        className="w-96 h-12 bg-yellow-300 rounded-lg hover:bg-yellow-400"
         onClick={() => {
           registerReq();
         }}
@@ -82,7 +91,7 @@ const RegisterForm = () => {
         회원가입
       </Button>
       <>{errorMsg}</>
-    </Container>
+    </div>
   );
 };
 

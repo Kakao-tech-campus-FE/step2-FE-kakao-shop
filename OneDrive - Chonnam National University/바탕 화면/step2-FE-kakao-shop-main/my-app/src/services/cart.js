@@ -14,12 +14,10 @@ import { instance } from "./index"; // axios instance
 export const addCart = (payload) => {
   return instance.post("/carts/add", payload);
 };
-
-export const getCart = (token) => {
-  instance.defaults.headers.common["Authorization"] = token;
+export const getCart = () => {
   return instance.get("/carts");
 };
 
-export const updateCart = (payload) => {
-  return instance.post("carts/update", payload);
+export const updateCart = (items) => {
+  return instance.post("carts/update", items);
 };
