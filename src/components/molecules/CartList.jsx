@@ -9,6 +9,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getCart, updateCart } from "../../services/cart";
 import Title from "../atoms/Title";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const CartList = () => {
   const { data } = useQuery(["cart"], getCart, {
     suspense: true,
@@ -20,17 +22,27 @@ const CartList = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
 
+  /**
+   * 장바구니 담기 에러 캐칭 시나리오
+   * 1. 401 에러
+   *    로그인 정보가 없어 헤더에 authorization이 없는 경우 401 에러를 처리하여 로그인 페이지로 이동한다.
+   * 2. 404 에러
+   *    페이지를 찾을 수 없는 경우, NotFoundPage(404)로 이동한다.
+   * 3. 서버 에러 
+   *    서버 요청 실패의 경우 alert창을 띄운다.
+   */
+
   const { mutate } = useMutation({
     mutationFn: updateCart,
     onError: (error) => {
       if (error.response && error.response.status === 401) {
         // 로그인 정보가 없어 헤더에 authorization이 없는 경우 401 에러를 처리하여 로그인 페이지로 이동한다.
         alert("로그인 정보가 없습니다. 로그인 페이지로 이동합니다.");
-        navigate("/login");
+        navigate(staticServerUri + "/login");
       } else if (error.response && error.response.status === 404) {
         // 페이지를 찾을 수 없는 경우 404 페이지로 이동한다.
         alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
-        navigate("/*");
+        navigate(staticServerUri + "/*");
       } else {
         // 서버 에러의 경우 alert창을 띄운다.
         alert("주문에 실패했습니다. 다시 시도해주세요.");
@@ -159,7 +171,7 @@ const CartList = () => {
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: (data) => {
-              navigate("/order");
+              navigate(staticServerUri + "/order");
             },
             onError: (error) => {
               alert("주문 페이지 이동에 실패했습니다.");

@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useNavigate } from "react-router";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: staticServerUri + "/api",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -27,10 +28,10 @@ instance.interceptors.response.use(
     if (errorstatus === 401) {
       const navigate = useNavigate();
       alert("회원 정보가 존재하지 않습니다.");
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     } else if (errorstatus === 404) {
       const navigate = useNavigate();
-      navigate("/*");
+      navigate(staticServerUri + "/*");
     } else if (errorstatus >= 400 && errorstatus <= 499) {
       return Promise.reject(new Error("400번대 오류: " + errorstatus));
     }

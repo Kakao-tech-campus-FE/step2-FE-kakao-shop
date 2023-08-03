@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import styled from "styled-components";
 import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
@@ -10,6 +10,8 @@ import { setLocalStorageWithExp } from "../../utils/localStorage";
 import { useNavigate } from 'react-router-dom';
 import Title from "../atoms/Title";
 import { EMAIL_REGEX, PW_REGEX } from "../../utils/regex";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const Container = styled.main`
     display: flex;
@@ -83,10 +85,10 @@ const LoginForm = () => {
                 }));
                 
                 setLocalStorageWithExp("user", res.headers.authorization, 1000 * 60 * 60 * 24);
-                navigate("/");
+                navigate(staticServerUri + "/");
             })
-            .catch((err) => {
-                console.log(err.request.response);
+             .catch((err) => {
+				alert("회원 정보가 존재하지 않습니다.");
                 const errObject = JSON.parse(err.request.response);
                 setError(errObject.error.message)
             });
@@ -125,8 +127,9 @@ const LoginForm = () => {
                     />
                     {error !== '' ? <div className="bg-gray-50 border border-gray-100 text-red-600">{error}</div> : null}
                     <Button disabled={!isValid} onClick={loginReq} >로그인</Button>
-                    <div className="text-0.8em mt-1.5em">
-                        <LinkText to="/signup" text="회원가입" />
+                    {error && <div>{setError}</div>}
+					<div className="text-0.8em mt-1.5em">
+                        <LinkText to={staticServerUri + "/signup"} text="회원가입" />
                     </div>
                 </Box>
             </Container>
