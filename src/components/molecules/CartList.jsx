@@ -50,7 +50,6 @@ const CartList = ({ data }) => {
       }
     });
   }, [cartItems]);
-
   const getTotalCart = () => {
     if (Array.isArray(cartItems)) {
       return comma(
@@ -112,7 +111,7 @@ const CartList = ({ data }) => {
     });
   };
   return (
-    <Container className="cart-list ">
+    <Container className="cart-list">
       <Box className="pt-4">
         <h1>장바구니</h1>
       </Box>
@@ -120,6 +119,8 @@ const CartList = ({ data }) => {
         {/*상품 별 장바구니 항목 */}
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
+            if (!item.carts.reduce((arr, cur) => arr + cur.quantity, 0))
+              return null;
             return (
               <CartItem
                 key={item.id}

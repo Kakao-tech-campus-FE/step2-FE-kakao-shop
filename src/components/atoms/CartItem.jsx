@@ -1,10 +1,15 @@
 import { comma } from "../../utils/convert";
 import Box from "./Box";
-import Card from "./Card";
 import Counter from "./Counter";
 import Photo from "./Photo";
 import Button from "./Button";
+import { useMutation } from "react-query";
+import { modifiedCart } from "../../services/cart";
+
 const CartItem = ({ item, onChange, onClick }) => {
+  const { mutate } = useMutation({
+    mutationFn: modifiedCart,
+  });
   return (
     <Box className="cart-item-box border-t-2 border-b-2 border-solid bg-white p-16 rounded-lg">
       <div className="flex ">
@@ -15,17 +20,26 @@ const CartItem = ({ item, onChange, onClick }) => {
         <Button
           className="border-2 bg-slate-200 rounded-md ml-auto mb-auto"
           onClick={() => {
-            //onClick(item.id);
-            console.log("삭제");
+            const target = item.carts.map((cart) => {
+              return {
+                cartId: cart.id,
+                quantity: 0,
+              };
+            });
+            mutate(target, {
+              onSuccess: () => {
+                alert("삭제되었습니다.");
+              },
+            });
           }}
         >
           삭제
         </Button>
       </div>
       {item.carts.map((cart) => {
-        //if (cart.quantity === 0) return null;
+        if (cart.quantity === 0) return null;
         return (
-          <Card
+          <div
             key={cart.id}
             className="cart block border-2 border-slate-200 m-2"
           >
@@ -46,11 +60,11 @@ const CartItem = ({ item, onChange, onClick }) => {
                 <span>{comma(cart.option.price * cart.quantity)}원</span>
               </div>
             </div>
-          </Card>
+          </div>
         );
       })}
 
-      <Card className="total-price ">
+      <div className="total-price ">
         <div className="row">
           <h5 className="px-10 text-center font-bold">주문금액</h5>
           <div className="price">
@@ -62,7 +76,7 @@ const CartItem = ({ item, onChange, onClick }) => {
             원
           </div>
         </div>
-      </Card>
+      </div>
     </Box>
   );
 };
