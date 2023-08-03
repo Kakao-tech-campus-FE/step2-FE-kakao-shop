@@ -19,7 +19,7 @@ const OrderResultTemplate = ({ data }) => {
         if(productCnt === 1){
             return (
                 <span>
-                    <strong className="font-semibold">data.products[0].productName</strong>
+                    <strong className="font-semibold">{data.products[0].productName}</strong>
                 </span>
             );
         }

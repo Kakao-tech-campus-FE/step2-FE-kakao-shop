@@ -9,10 +9,13 @@ import { useState, useEffect, useRef } from "react";
 // toss payments
 import { PaymentWidgetInstance, loadPaymentWidget, ANONYMOUS } from "@tosspayments/payment-widget-sdk";
 import { nanoid } from "nanoid";
+import { useSelector } from "react-redux";
 
 const selector = "#payment-widget";
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const OrderTemplate = ({ data }) => {
     const [agreeAll, setAgreeAll] = useState(false);
@@ -21,14 +24,14 @@ const OrderTemplate = ({ data }) => {
 
     const paymentWidgetRef = useRef(null);
     const paymentMethodsWidgetRef = useRef(null);
-    const [price, setPrice] = useState(data.totalPrice);
-
-    // console.log('data', data);
+    const [price] = useState(data.totalPrice);
+    const email = useSelector(state => state.user.email);
+    console.log('data', data);
 
     useEffect(() => {
         if(data.products.length === 0) {
             alert("결제할 상품이 존재하지 않습니다.");
-            window.location.href="/";
+            window.location.href=staticServerUri + "/";
         }
 
         (async () => {
@@ -85,6 +88,16 @@ const OrderTemplate = ({ data }) => {
         setAgreePrivacy(checked);
     }
 
+    const getOrderName = () => {
+        console.log('getOrderName', data.products)
+        const orderCnt = data.products.length;
+
+        if(orderCnt == 1)
+            return `${data.products[0].prouctName}`
+            
+        return `${data.products[0].productName} 외 ${orderCnt - 1}건`;
+    }
+
     const handleRequestPayment = async () => {
         const paymentWidget = paymentWidgetRef.current;
 
@@ -93,9 +106,9 @@ const OrderTemplate = ({ data }) => {
             // https://docs.tosspayments.com/reference/widget-sdk#requestpayment결제-정보
             await paymentWidget?.requestPayment({
             orderId: nanoid(),
-            orderName: "토스 티셔츠 외 2건",
+            orderName: getOrderName(),
             customerName: "김토스",
-            customerEmail: ``, //"customer123@gmail.com",
+            customerEmail: `${email}`, //"customer123@gmail.com",
             successUrl: `${window.location.origin}/order/temp`,
             failUrl: `${window.location.origin}/order/fail`,
             });
