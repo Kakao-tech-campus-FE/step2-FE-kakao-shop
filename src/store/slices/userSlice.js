@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login,register } from "../../services/user";
+import { setCookie } from "../../services/user";
 
 const initialState = {
     email: null,
@@ -17,8 +18,9 @@ const userSlice = createSlice({
         setToken: (state, action) => {
             state.token = action.payload.token;
     },
-    clearEmail: (state) => {
+        logout: (state) => {
         state.email = null;
+        state.token = null;
       },
       setUserInfo: (state, action) => {
         state.email = action.payload.email;
@@ -85,5 +87,5 @@ export const registerRequest = createAsyncThunk(
 
 
 
-export const { setEmail, setCookie } = userSlice.actions;
+export const { logout, setEmail, setUserInfo } = userSlice.actions;
 export default userSlice.reducer;
