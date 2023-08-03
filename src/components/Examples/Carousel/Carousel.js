@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Carousel.css';
 
-// import image1 from "../../../images/carouselItem1.jpeg";
-// import image2 from "../../../images/carouselItem2.jpeg";
-// import image3 from "../../../images/carouselItem3.jpeg";
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 export const RadioIndicator = ({ index, currentSlide, onClick }) => {
   return (
@@ -39,9 +37,9 @@ export const Slide = ({ img }) => {
 
 export const Carousel = () => {
   const images = [
-    "/images/carouselItem1.jpeg",
-    "/images/carouselItem2.jpeg",
-    "/images/carouselItem3.jpeg"
+    staticServerUri + "/images/carouselItem1.jpeg",
+    staticServerUri + "/images/carouselItem2.jpeg",
+    staticServerUri + "/images/carouselItem3.jpeg"
   ];
   const LAST_SLIDE_INDEX = images.length - 1;
 
@@ -133,10 +131,10 @@ export const Carousel = () => {
         }
       </div>
       <button className="carousel-button prev" onClick={prevSlide}>
-        &lt;
+        <
       </button>
       <button className="carousel-button next" onClick={nextSlide}>
-        &gt;
+        >
       </button>
     </div>
   );

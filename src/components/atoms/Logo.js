@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Logo = () => {
   return (
     <Link to="/">
-      <img src="/images/logoKakao.png" alt="Logo" class="img_logo" />
+      <img src={staticServerUri + "/images/logoKakao.png"} alt="Logo" class="img_logo" />
     </Link>
   );
 };
