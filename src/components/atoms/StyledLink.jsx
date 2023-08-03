@@ -9,7 +9,7 @@ const Styled = styled(Link)`
 
 const path = process.env.REACT_APP_PATH || "";
 
-const StyledLink = (to, children) => {
+const StyledLink = ({to, children}) => {
   return (
     <Styled to={path + to}>{children}</Styled>
   )
