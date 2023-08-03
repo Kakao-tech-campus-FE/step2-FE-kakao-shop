@@ -10,8 +10,6 @@ import { updateCart } from "../../services/cart";
 import { useNavigate } from "react-router";
 import cart from "../../assets/cart.png";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 const CartList = ({ data }) => {
     const [cartItems, setCartItems] = useState(data?.products);
     const [updatedItems, setUpdatedItems] = useState([]);
@@ -22,7 +20,7 @@ const CartList = ({ data }) => {
     const cartUpdataMutation = useMutation({
         mutationFn: updateCart,
         onSuccess: () => {
-            window.location.href=staticServerUri + "/order";
+            window.location.href="/order";
         },
         onError: () => {
             alert("문제가 발생하였습니다.");
@@ -32,7 +30,6 @@ const CartList = ({ data }) => {
     const optionDeleteMutation = useMutation({
         mutationFn: updateCart,
         onSuccess: () => {
-            // window.location.href= staticServerUri + "/cart";
         },
         onError: () => {
             alert("문제가 발생하였습니다.");

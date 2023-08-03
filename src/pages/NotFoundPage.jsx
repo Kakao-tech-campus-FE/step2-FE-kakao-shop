@@ -4,8 +4,6 @@ import Button from "../components/atoms/Button";
 import Container from "../components/atoms/Container";
 import Box from "../components/atoms/Box";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 const NotFoundPage = () => {
     return (
         <div className="bg-bg_gray">
@@ -20,7 +18,7 @@ const NotFoundPage = () => {
                     <div className="w-[400px] mx-auto">
                         <Button
                             className={styles.home_btn}
-                            onClick={() => { window.location.href=staticServerUri + "/"; }}
+                            onClick={() => { window.location.href = "/"; }}
                             >
                             카카오 쇼핑하기 홈으로 이동
                         </Button>

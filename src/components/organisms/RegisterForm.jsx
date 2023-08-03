@@ -30,8 +30,6 @@ const ValidMsgBox = styled(Box)`
     }
 `;
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function RegisterForm(){
     const [validMsg, setValidMsg] = useState("");
     const [isValid, setIsValid] = useState({
@@ -102,7 +100,7 @@ export default function RegisterForm(){
         .then(res => {
             console.log("register res: ", res);
 
-            window.location.href = staticServerUri + "/"; // 메인페이지 리다이렉트
+            window.location.href = "/"; // 메인페이지 리다이렉트
             alert("register success !!");
         })
         .catch(err => {

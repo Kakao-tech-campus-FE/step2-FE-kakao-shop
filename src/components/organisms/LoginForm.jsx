@@ -45,8 +45,6 @@ const ValidMsgBox = styled(Box)`
     }
 `;
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 const LoginForm = () => {
     const dispatch = useDispatch();
     const email = useSelector(state => state.user.email);
@@ -101,7 +99,7 @@ const LoginForm = () => {
                 token: res.headers.authorization,
             }));
 
-            window.location.href = staticServerUri + "/"; // 메인페이지 리다이렉트
+            window.location.href = "/"; // 메인페이지 리다이렉트
             alert(`login success !!`);
         })
         .catch(err => {
@@ -155,7 +153,7 @@ const LoginForm = () => {
                 onClick={() => { onSubmit() }}
             >로그인</Button>
             <UserInfo>
-                <JoinLink href={staticServerUri + "/register"}>회원가입</JoinLink>
+                <JoinLink href={"/register"}>회원가입</JoinLink>
             </UserInfo>
         </StyledContainer>
     );

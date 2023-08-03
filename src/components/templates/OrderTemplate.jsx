@@ -15,8 +15,6 @@ const selector = "#payment-widget";
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 const OrderTemplate = ({ data }) => {
     const [agreeAll, setAgreeAll] = useState(false);
     const [agreePayment, setAgreePayment] = useState(false);
@@ -31,7 +29,7 @@ const OrderTemplate = ({ data }) => {
     useEffect(() => {
         if(data.products.length === 0) {
             alert("결제할 상품이 존재하지 않습니다.");
-            window.location.href=staticServerUri + "/";
+            window.location.href = "/";
         }
 
         (async () => {

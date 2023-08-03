@@ -28,22 +28,22 @@ function App() {
             <BrowserRouter basename={staticServerUri}>
               <Routes>
                 {/* 단독 레이아웃 */}
-                <Route path={staticServerUri + "/login"} element={<LoginPage />}/>
-                <Route path={staticServerUri + "/register"} element={<RegisterPage />}/>
-                <Route path={staticServerUri + "/notFound"} element={<NotFoundPage />} />
-                <Route path={staticServerUri + "/error"} element={<ErrorPage />} />
+                <Route path="/login" element={<LoginPage />}/>
+                <Route path="/register" element={<RegisterPage />}/>
+                <Route path="/notFound" element={<NotFoundPage />} />
+                <Route path="/error" element={<ErrorPage />} />
                 
                 {/* 공통 레이아웃 */}
                 <Route element={<MainLayout />}>
-                  <Route path={staticServerUri + "/"} element={<HomePage />} />
+                  <Route path="/" element={<HomePage />} />
                 </Route>
                 <Route element={<GeneralLayout />}>
-                  <Route path={staticServerUri + "/product/:id"} element={<ProductDetailPage />} />
-                  <Route path={staticServerUri + "/cart"} element={<CartPage />} />
-                  <Route path={staticServerUri + "/order"} element={<OrderPage />} />
-                  <Route path={staticServerUri + "/order/temp"} element={<OrderTempPage />} />
-                  <Route path={staticServerUri + "/order/success"} element={<OrderSuccessPage />} />
-                  <Route path={staticServerUri + "/order/fail"} element={<OrderFailPage />} />
+                  <Route path="/product/:id" element={<ProductDetailPage />} />
+                  <Route path="/cart" element={<CartPage />} />
+                  <Route path="/order" element={<OrderPage />} />
+                  <Route path="/order/temp" element={<OrderTempPage />} />
+                  <Route path="/order/success" element={<OrderSuccessPage />} />
+                  <Route path="/order/fail" element={<OrderFailPage />} />
                 </Route>
               </Routes>
             </BrowserRouter>
