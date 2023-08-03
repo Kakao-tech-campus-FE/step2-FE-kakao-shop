@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Product = styled.div`
-  min-width: 1200px;
+  min-width: 1500px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 4rem;
