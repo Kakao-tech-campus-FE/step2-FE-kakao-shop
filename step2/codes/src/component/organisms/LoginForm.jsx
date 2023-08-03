@@ -42,7 +42,7 @@ const LoginForm = () => {
                 localStorage.setItem("email", value.email);
                 localStorage.setItem("token", res.headers.authorization);
 
-            navigate("/");// 홈페이지로 리다이렉트
+            navigate(staticServerUri + "/");// 홈페이지로 리다이렉트
         })
             .catch((err) => {
                 console.log("err", err)

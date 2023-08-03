@@ -25,14 +25,14 @@ function GNB() {
     return (
         <header className="header">
             <div className="contents">
-                <Link to="/">
+                <Link to={staticServerUri + "/"}>
                     <img className = "logoImg" src={"/logoKakao.png"} alt="logoKakao.png" height={30}/>
                 </Link>
                 <nav>
                     <div className="navigation">
                         <span className="menu_util">
                             {/* 장바구니 버튼 */}
-                            <Link to="/cart">
+                            <Link to={staticServerUri + "/cart"}>
                                 <img className = "cartImg" src={"/cart.png"} alt="cart.png" height={30}/>
                             </Link>
                         </span>
@@ -45,7 +45,7 @@ function GNB() {
                                     {" "}
                                 </Button>
                              ) : (
-                                 <Button className = "logButton" onClick={() => {navigate("/login")}} style = {{textDecoration: "none", color: "black"}}>
+                                 <Button className = "logButton" onClick={() => {navigate(staticServerUri + "/login")}} style = {{textDecoration: "none", color: "black"}}>
                                  {" "}로그인
                                  {" "}
                                  </Button>

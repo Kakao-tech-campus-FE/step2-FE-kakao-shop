@@ -148,7 +148,7 @@ const CartList = ({ data }) => {
                             disabled={disable}
                             onClick={() => {
                                 //update cart api 장바구니 정보 수정 api
-                                navigate("/order");
+                                navigate(staticServerUri + "/order");
                             }}    
                         ><div className=" text-center">총 {cartItems ? getTotalCartCountIncludeOptions() : 0} 건 주문하기</div>
                         </Button>

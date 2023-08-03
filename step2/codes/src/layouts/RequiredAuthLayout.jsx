@@ -9,7 +9,7 @@ function RequiredAuthLayout() {
     useEffect(() => {
         if (localStorage.getItem("token") === null ) {
             alert("로그인이 필요합니다.");
-            navigate("/login");
+            navigate(staticServerUri + "/login");
         }
     }, [navigate]);
 

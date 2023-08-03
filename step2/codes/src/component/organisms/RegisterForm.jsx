@@ -38,7 +38,7 @@ const RegisterForm = () => {
             username : value.username,
         })
             .then((res) => {
-                navigate("/")
+                navigate(staticServerUri + "/")
             })
             .catch((err) => {
                 console.log("err", err)
