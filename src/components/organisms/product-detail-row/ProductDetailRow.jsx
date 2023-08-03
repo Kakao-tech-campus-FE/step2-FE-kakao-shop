@@ -20,12 +20,17 @@ const Styled = {
 
     @media screen and (max-width: 768px) {
       flex-direction: column;
+      padding: 0 1rem;
     }
   `,
   ThumbImage: styled.img`
     width: 430px;
     height: 430px;
     object-fit: cover;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
   `,
   Detail: styled.div`
     width: 430px;
@@ -33,9 +38,12 @@ const Styled = {
 
     @media screen and (max-width: 768px) {
       margin: 0;
+      padding: 0 1rem 1rem;
+      width: 100%;
     }
   `,
-  Title: styled.strong`
+  Title: styled.div`
+    width: 100%;
     font-size: 1.5rem;
     line-height: 2rem;
   `,

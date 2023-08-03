@@ -22,23 +22,21 @@ const Styled = {
 
     @media screen and (max-width: 1400px) {
       width: 100%;
-      padding: 2rem 0 0;
+      padding: 2rem 0;
     }
   `,
   SelectPurchase: styled.div`
     width: 100%;
     max-height: 22.5rem;
     overflow-y: auto;
+
+    @media screen and (max-width: 768px) {
+      padding: 0 1rem;
+    }
   `,
   Strong: styled.div`
     font-weight: 600;
     padding: 0 0 0.75rem 0.1rem;
-  `,
-  ButtonBox: styled.div`
-    padding-top: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   `,
 };
 
@@ -69,7 +67,7 @@ function ProductOptionRow({ options }) {
           setCart={setCart}
         />
 
-        <div>
+        <div style={{ paddingBottom: "1rem" }}>
           {cart.map((item) => (
             <SelectedProductOption
               key={item.optionId}

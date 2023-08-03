@@ -19,6 +19,10 @@ const Styled = {
     @media screen and (max-width: 1400px) {
       display: block;
     }
+
+    @media screen and (max-width: 768px) {
+      padding: 0;
+    }
   `,
 };
 
