@@ -1,4 +1,4 @@
-const staticServerUri = import.meta.env.REACT_APP_PATH || "";
+const staticServerUri = "";
 
 const routes = {
   home: staticServerUri + "/",
