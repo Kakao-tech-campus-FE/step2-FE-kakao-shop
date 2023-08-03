@@ -3,13 +3,15 @@ import ProductPrice from "../atoms/ProductPrice";
 import { useDispatch } from "react-redux";
 import { clearItem } from "../../redux/cartRedux";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const MainProducts = ({responseData}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleProductClick = (id) => {
     dispatch(clearItem());
-    navigate(`/product/${id}`);
+    navigate(`${staticServerUrl}/product/${id}`);
   };
   
   return (

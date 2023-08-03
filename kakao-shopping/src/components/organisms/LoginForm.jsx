@@ -4,7 +4,10 @@ import { loginApi } from "../../apis/api";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { loginSuccess } from "../../redux/redux";
+import { loginSuccess } from "../../redux/authRedux";
+  
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
   const [value, handleOnChange] = useInput({
     email:"",
@@ -30,7 +33,7 @@ const LoginForm = () => {
       const token = response.headers.authorization;
       dispatch(loginSuccess({token: token}));
       localStorage.setItem('userInfo', JSON.stringify({token: token, expirationTime: Date.now() + 1000 * 60 * 60}));
-      navigate('/');
+      navigate(staticServerUrl + '/');
     } catch (error) {
       setLoginFailed(error.response.data.error.message);
     }

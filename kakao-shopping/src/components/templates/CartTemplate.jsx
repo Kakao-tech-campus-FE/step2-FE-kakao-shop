@@ -1,37 +1,66 @@
-import { getCart } from "../../apis/api";
-import { useQuery } from "react-query";
-import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { loginSuccess, logout } from "../../redux/authRedux";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import GNB from "./GNB";
-import CartLIst from "../organisms/CartList";
 
-const CartTemplate = () => {
-  const { data : cart } = useQuery('cart', getCart, {suspense: true}); // api 호출로 카트 정보 가져오기
-  const [totalPrice, setTotalPrice] = useState(cart?.data.response.totalPrice);
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
+const GNB = () => {
+
+  const dispatch = useDispatch();
+  
+  // 새로고침해도 로그인 지속
   useEffect(() => {
-    setTotalPrice(cart.data.response.totalPrice);
-  }, [cart])
+    try {
+      const storedUser = JSON.parse(localStorage.getItem('userInfo'));
+      if(!storedUser) return;
+      else if(storedUser.expirationTime > Date.now()) {
+        dispatch(loginSuccess(storedUser));
+      } else {
+        dispatch(logout());
+      }
+    } catch (error) {
+      console.log("Parse error", error);
+    }
+    
+  },[dispatch]);
 
   const navigate = useNavigate();
-
-  const handleBuyClick = () => {
-    navigate('/order');
+  const handleLogoutClick = () => {
+    dispatch(logout());                     // 상태 초기화
+    navigate(staticServerUrl + '/');
+    localStorage.removeItem('userInfo');    // 로그인 유지 삭제
   }
 
+  const isLoggedIn = useSelector((state) => state.auth.userInfo);
+
+  const handleCartClick = () => {
+    if(!isLoggedIn) {
+      navigate(staticServerUrl + '/login');
+    }
+    else {
+      navigate(staticServerUrl + '/cart');
+    }
+  }
+
+  // 삼항 연산자로 로그인 상태일 때는 로그아웃만 보이도록
   return (
-    <>
-      <GNB></GNB>
-      <div className="py-5 border font-bold text-center">장바구니</div>
-      <CartLIst cart={cart} setTotalPrice={setTotalPrice}></CartLIst>
-      <div className="fixed bottom-0 w-full border bg-white">
-        <div className="p-5 flex justify-between font-bold">
-          <span>주문 예상 금액</span> 
-          <span className="text-blue-700">{totalPrice} 원</span>
+    <div className="h-16">
+      <div className="h-px border border-t-grey border-solid"/>
+        <div className="flex justify-between my-4 items-center h-8">
+          <Link to={staticServerUrl + '/'}><img className="w-28 ml-4" src="/assets/logoKakao.png" alt="logoKakao"/></Link>
+          <div className="flex items-center">
+            <button><img className="w-8" src="/assets/cart.png" alt="cart" onClick={handleCartClick}/></button>
+            <span className="px-4">|</span>
+              {!!isLoggedIn ?
+              <button className="text-sm" onClick={handleLogoutClick}>로그아웃</button> :
+              <Link className="text-sm mr-4" to={staticServerUrl + '/login'}>로그인</Link>
+              }
+          </div>
         </div>
-        <button onClick={handleBuyClick} className="w-full text-center bg-yellow-300 py-3 font-bold"> 주문하기 </button>
-      </div>
-    </>
+      <div className="h-px border border-grey border-solid"/>
+    </div>
   )
 }
-export default CartTemplate;
+export default GNB;

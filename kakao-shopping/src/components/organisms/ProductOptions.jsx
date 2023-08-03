@@ -5,25 +5,48 @@ import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
 import { addCart } from "../../apis/api";
 import { clearItem } from "../../redux/cartRedux";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const ProductOptions = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const sumOptionPrice = selectedOptions.reduce((acc, cur) => acc + cur.sumPrice, 0);
-  const sumOptionCount = selectedOptions.reduce((acc, cur) => acc + cur.sumCount, 0);
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  const sumOptionCount = cartItems.reduce((acc, cur) => acc + cur.quantity, 0);
+  const sumOptionPrice = useSelector((state) => state.cart.cartSumPrice);
 
   const dispatch = useDispatch();
   const options = product.options;
 
-  const cartItems = useSelector((state) => state.cart.cartItems);
-
   const handleAddCartClick = () => {
+    const expirationTime = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).expirationTime : null;
+    if(!expirationTime || expirationTime < Date.now()) {
+      alert('로그인 후 이용해주세요.');
+      return;
+    }
 
     addCart(cartItems)
     .then((res) => {
-      console.log(res);
       dispatch(clearItem());
       setSelectedOptions([]);
+      alert('장바구니에 담겼습니다.');
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+    
+  }
+  const navigate = useNavigate();
+  const handlePurchaseClick = () => {
+
+    addCart(cartItems)
+    .then((res) => {
+      dispatch(clearItem());
+      setSelectedOptions([]);
+    })
+    .then(() => {
+      navigate(staticServerUrl + '/cart');
     })
     .catch((err) => {
       console.log(err);
@@ -63,7 +86,7 @@ const ProductOptions = ({ product }) => {
 
       <div className="flex w-full mt-3">
         <button className="w-2/5 p-2 mr-1 text-sm h-10 bg-gray-900 rounded-md text-white" onClick={handleAddCartClick}>장바구니 담기</button>
-        <button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md">톡딜가로 구매하기</button>
+        <button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md" onClick={handlePurchaseClick}>톡딜가로 구매하기</button>
       </div>
     </div>
   )

@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { setOrderId } from "../../redux/cartRedux";
 import { orderProducts } from "../../apis/api";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const OrderCheckGroup = ({totalPrice}) => {
 
   const checkPaymentRef = useRef();
@@ -37,7 +39,7 @@ const OrderCheckGroup = ({totalPrice}) => {
     } catch (e) {
       // 실제 PG 서비스 연결이 안 되어있으니, 실제 에러가 발생하는 장바구니가 비어있는 경우로 가정
       alert('장바구니가 비어있는지 확인해주세요');
-      navigate('/cart');
+      navigate(staticServerUrl + '/cart');
     }
   }
 

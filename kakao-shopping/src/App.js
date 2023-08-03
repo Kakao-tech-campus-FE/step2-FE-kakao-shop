@@ -13,20 +13,22 @@ import OrderCompletePage from './pages/OrderCompletePage';
 
 const queryClient = new QueryClient();
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/componentTest" element={<ComponentTest />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/main" element={<Main />} />
-          <Route path="/product/:id" element={<ProductPage />} /> 
-          <Route path="/cart" element={<CartPage />} /> 
-          <Route path="/order" element={<OrderPage />} /> 
-          <Route path="/ordercomplete" element={<OrderCompletePage />} /> 
+          <Route path={ staticServerUrl + "/" } element={<HomePage />} />
+          <Route path={ staticServerUrl + "/componentTest" } element={<ComponentTest />} />
+          <Route path={ staticServerUrl + "/register" } element={<RegisterPage />} />
+          <Route path={ staticServerUrl + "/login" } element={<LoginPage />} />
+          <Route path={ staticServerUrl + "/main" } element={<Main />} />
+          <Route path={ staticServerUrl + "/product/:id" } element={<ProductPage />} /> 
+          <Route path={ staticServerUrl + "/cart" } element={<CartPage />} /> 
+          <Route path={ staticServerUrl + "/order" } element={<OrderPage />} /> 
+          <Route path={ staticServerUrl + "/ordercomplete" } element={<OrderCompletePage />} /> 
         </Routes>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} position='bottom-right'/>

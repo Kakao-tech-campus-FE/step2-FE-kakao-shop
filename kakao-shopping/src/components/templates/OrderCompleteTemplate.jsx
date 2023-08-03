@@ -4,6 +4,8 @@ import { useQuery } from "react-query";
 import OrderCompleteList from "../organisms/OrderCompleteList";
 import { Link } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const OrderCompleteTemplate = () => {
   const cartId = useSelector((state) => state.cart.orderId);
 
@@ -13,7 +15,6 @@ const OrderCompleteTemplate = () => {
 
   const products = data?.data.response.products;
 
-  console.log(data?.data.response);
   return (
     <div className="w-screen flex flex-col items-center">
       <div className="w-5/6 border rounded-md mb-10">
@@ -28,7 +29,7 @@ const OrderCompleteTemplate = () => {
             {data?.data.response.totalPrice}원
           </span>
         </div>
-        <Link to='/' className="bg-yellow-300 text-white rounded-b-md py-4 text-black text-center">쇼핑 계속하기</Link>
+        <Link to={staticServerUrl + '/'} className="bg-yellow-300 rounded-b-md py-4 text-black text-center">쇼핑 계속하기</Link>
       </div>
     </div>
   );

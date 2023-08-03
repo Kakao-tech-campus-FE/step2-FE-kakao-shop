@@ -1,9 +1,11 @@
 import LoginForm from "../components/organisms/LoginForm";
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginSuccess, logout } from '../redux/redux';
+import { loginSuccess, logout } from '../redux/authRedux';
 import { useNavigate } from 'react-router-dom';
 import MainLogo from "../components/molecules/MainLogo";
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ const LoginPage = () => {
 
       if(storedUser && storedUser.expirationTime > Date.now()) { // 로컬스토리지에 저장이 돼있고, 시간도 하루가 안 지났다면
         dispatch(loginSuccess(storedUser));
-        navigate('/');
+        navigate(staticServerUrl + '/');
       } else {
         dispatch(logout());
       }

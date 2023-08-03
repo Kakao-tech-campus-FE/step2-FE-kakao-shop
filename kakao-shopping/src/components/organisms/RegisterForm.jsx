@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = () => {
   const [value, handleOnChange] = useInput({
     username:'',
@@ -32,7 +34,7 @@ const RegisterForm = () => {
           username: value.username,
           password: value.password
         });
-        navigate('/main');
+        navigate(staticServerUrl + '/main');
       } else {
         setduplicateEmail(true);
       }
@@ -118,7 +120,7 @@ const RegisterForm = () => {
           회원가입
       </button>}
     <div className="absolute left-4 bottom-0 m-3">
-      <Link to='/login'><span className="text-sm">로그인</span></Link>
+      <Link to={staticServerUrl + '/login'}><span className="text-sm">로그인</span></Link>
       </div>
     </div>
   );
