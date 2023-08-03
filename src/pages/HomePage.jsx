@@ -4,11 +4,13 @@ import MainProductTemplate from '../components/templates/MainProductTemplate';
 import { Suspense } from 'react';
 import SkeletonGrid from '../components/organisms/SkeletonGrid';
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const HomePage = () => {
     const carousel_items = [
-        "\carouselItem1.jpeg",
-        "\carouselItem2.jpeg",
-        "\carouselItem3.jpeg",
+        staticServerUri + "\carouselItem1.jpeg",
+        staticServerUri + "\carouselItem2.jpeg",
+        staticServerUri + "\carouselItem3.jpeg",
     ];
 
     return (
