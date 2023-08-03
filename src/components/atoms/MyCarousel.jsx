@@ -12,13 +12,13 @@ const MyCarousel = () => {
   return (
     <Carousel showArrows={true} showThumbs={false} autoPlay={true} infiniteLoop={true}>
       <div>
-        <img src=staticServerUri + {image1} alt="Image 1" />
+        <img src={image1} alt="Image 1" />
       </div>
       <div>
-        <img src=staticServerUri + {image2} alt="Image 2" />
+        <img src={image2} alt="Image 2" />
       </div>
       <div>
-        <img src=staticServerUri + {image3} alt="Image 3" />
+        <img src={image3} alt="Image 3" />
       </div>
     </Carousel>
   );

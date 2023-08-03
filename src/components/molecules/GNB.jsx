@@ -57,15 +57,15 @@ const GNB = () => {
 
   return (
     <header className="w-full border-b-2 border-gray-300">
-      <Link to=staticServerUri + "/" className="flex items-center px-4 py-3">
-        <img src=staticServerUri + {img} alt="카카오 쇼핑하기" className="w-30 h-10" />
+      <Link to={staticServerUri + "/"} className="flex items-center px-4 py-3">
+        <img src={img} alt="카카오 쇼핑하기" className="w-30 h-10" />
         <div className="ml-auto flex items-center space-x-4">
-          <Link to=staticServerUri + "/cart">
-            <img src=staticServerUri + {cart} alt="장바구니 버튼" className="w-8 h-8" />
+          <Link to={staticServerUri + "/cart"}>
+            <img src={cart} alt="장바구니 버튼" className="w-8 h-8" />
           </Link>
           {user ? (
             <Link
-              to=staticServerUri + "/"
+              to={staticServerUri + "/"}
               className="text-300 border-l pl-4"
               onClick={handleLogOut}
             >
@@ -73,11 +73,11 @@ const GNB = () => {
             </Link>
           ) : (
             <>
-              <Link to= staticServerUri + "/login" className="text-300">
+              <Link to= {staticServerUri + "/login"} className="text-300">
                 로그인
               </Link>
               <Link
-                to=staticServerUri + "/signup"
+                to={staticServerUri + "/signup"}
                 className="text-300 border-l pl-4"
               >
                 회원가입

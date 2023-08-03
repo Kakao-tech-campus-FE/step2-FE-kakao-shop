@@ -170,7 +170,7 @@ const RegisterForm = () => {
                         회원가입
                     </Button>
                     <div className="text-0.8em mt-1.5em">
-                        <LinkText to=staticServerUri + "/login" text="로그인" />
+                         <LinkText to="/login" text="로그인" />
                     </div>
                 </Box>
             </Container>
