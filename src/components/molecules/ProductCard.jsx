@@ -40,9 +40,9 @@ const PriceText = styled.span`
 
 const ProductCard = ({ product }) => {
   return (
-    <ProductContainer to={staticServerUri + `/products/${product.id}`}>
+    <ProductContainer to={`${staticServerUri}/products/${product.id}`}>
       <ImageContainer>
-        <Photo src={product.image} alt={product.productName} className="card" />
+        <Photo src={`${staticServerUri}/assets${product.image}`} alt={product.productName} className="card" />
       </ImageContainer>
       <div>
         <Title>{product.productName}</Title>

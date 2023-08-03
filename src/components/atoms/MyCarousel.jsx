@@ -5,9 +5,6 @@ import image1 from "../../assets/carouselItem1.jpeg";
 import image2 from "../../assets/carouselItem2.jpeg";
 import image3 from "../../assets/carouselItem3.jpeg";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
-
 const MyCarousel = () => {
   return (
     <Carousel showArrows={true} showThumbs={false} autoPlay={true} infiniteLoop={true}>
