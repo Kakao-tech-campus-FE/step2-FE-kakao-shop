@@ -63,7 +63,14 @@ export const loginRequest = createAsyncThunk(
   }
 );
 
-export const { setEmail, setToken, logOut } = userSlice.actions;
+export const { setToken, logOut } = userSlice.actions;
+
+export const setEmail = (payload) => {
+  return (dispatch) => {
+    dispatch(userSlice.actions.setEmail(payload));
+    localStorage.setItem("isLogined", true);
+  };
+};
 
 export const selectUser = (state) => state.user.user;
 

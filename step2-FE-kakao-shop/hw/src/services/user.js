@@ -17,3 +17,8 @@ export const login = (data) => {
     password,
   });
 };
+
+export const checkEmail = (data) => {
+  const { email } = data;
+  return instance.post("/check", { email });
+};

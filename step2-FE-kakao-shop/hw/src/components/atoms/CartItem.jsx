@@ -5,21 +5,21 @@ import "../../styles/atoms/CartItem.css";
 import { comma } from "../../utils/convert";
 
 // 각 상품별 장바구니 항목
-// 야러 옵션이 저장될 수 있음
+// 여러 옵션이 저장될 수 있음
 const CartItem = ({ item, onChange }) => {
   return (
-    <Box className="cart-item-box">
-      <h5>{item.productName}</h5>
+    <Box className="cart-item-box flex flex-col gap-8 mb-4">
+      <h5 className="text-xl">{item.productName}</h5>
       {item.carts.map((cart) => (
         <Card
           // 옵션 아이디
           key={cart.id}
-          className="cart"
+          className="cart pl-4 flex flex-col gap-2 mb-4"
         >
           <div className="option-name">
             <span>{cart.option.optionName}</span>
           </div>
-          <div className="row">
+          <div className="row flex flex-col gap-2 mb-4">
             <Counter
               onIncrease={(count) => {
                 // 아이디, 변경된 수량, 해당 옵션 상품의 가격
@@ -37,8 +37,8 @@ const CartItem = ({ item, onChange }) => {
       ))}
       <Card className="total-price">
         <div className="row">
-          <h5>주문금액</h5>
-          <div className="price">
+          <h5 className="text-2xl">주문금액</h5>
+          <div className="price text-2xl">
             {/* item.carts = 옵션들이 저장된 배열 */}
             {comma(
               item.carts.reduce((acc, cur) => {

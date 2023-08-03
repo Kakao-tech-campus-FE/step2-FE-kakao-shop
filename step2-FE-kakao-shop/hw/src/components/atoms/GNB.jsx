@@ -8,7 +8,7 @@ import { setEmail, logOut } from "../../store/slices/userSlice";
 function GNB() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const loggedIn = useSelector((state) => state.user.isLogined);
+  const isLogined = useSelector((state) => state.user.isLogined);
   const email = localStorage.getItem("email");
 
   // 이부분이 새로고침해도 로그인 유지 하는 부분
@@ -32,7 +32,7 @@ function GNB() {
     }, 1000);
     if (count === 0) {
       clearInterval(id);
-      if (loggedIn === true) {
+      if (isLogined === true) {
         dispatch(logOut());
       }
     }
@@ -41,7 +41,7 @@ function GNB() {
 
   return (
     <header className="header">
-      <div className="contents">
+      <div className="flex justify-between p-4">
         <Link to="/">
           <img
             className="logoKakao"
@@ -51,8 +51,8 @@ function GNB() {
           />
         </Link>
         <nav>
-          <div className="navigation">
-            <span>
+          <div className="">
+            <span className="">
               {/* 장바구니 버튼 */}
               <Link to="/cart">
                 <img
@@ -66,7 +66,7 @@ function GNB() {
             <span className="bar">|</span>
             <span className="login">
               {/* 로그인 버튼 */}
-              {loggedIn ? (
+              {isLogined ? (
                 <Link
                   to="/"
                   onClick={handleLogout}

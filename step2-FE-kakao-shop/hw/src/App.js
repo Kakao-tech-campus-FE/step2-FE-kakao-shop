@@ -9,10 +9,13 @@ import NotFoundPage from "./pages/NotFoundPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import { Reset } from "styled-reset";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
     <div className="App">
+      <Reset />
       <BrowserRouter>
         <Routes>
           {/* 단독 레이아웃 */}
@@ -27,6 +30,10 @@ function App() {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/order" element={<OrderPage />}></Route>
+            <Route
+              path="/orders/complete/:id"
+              element={<OrderCompletePage />}
+            ></Route>
           </Route>
         </Routes>
       </BrowserRouter>

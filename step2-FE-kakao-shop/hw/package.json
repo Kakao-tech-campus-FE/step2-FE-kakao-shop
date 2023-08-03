@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.5",
@@ -23,13 +24,13 @@
     "redux-saga": "^1.2.3",
     "redux-thunk": "^2.4.2",
     "styled-components": "^6.0.4",
-    "styled-reset": "^4.4.7",
+    "styled-reset": "^4.5.1",
     "swr": "^2.2.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
+    "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

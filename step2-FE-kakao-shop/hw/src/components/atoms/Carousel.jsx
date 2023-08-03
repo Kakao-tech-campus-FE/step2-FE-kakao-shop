@@ -10,10 +10,10 @@ const Carousel = ({ children: slides }) => {
     setCurr((curr) => (curr === slides.length - 1 ? 0 : curr + 1));
 
   return (
-    <div className="viewport">
+    <div className="viewport mx-auto max-w-[1500px] w-full">
       <div
         className="pics"
-        style={{ transform: `translateX(-${curr * 100}%)` }}
+        style={{ transform: `translateX(-${curr * 33.33333}%)` }}
       >
         {slides}
       </div>
