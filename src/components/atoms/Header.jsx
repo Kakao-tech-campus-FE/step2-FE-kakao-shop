@@ -1,7 +1,8 @@
+import GNB from "./GNB";
 const Header = () => {
   return (
     <header>
-      <h1></h1>
+      <GNB />
     </header>
   );
 };

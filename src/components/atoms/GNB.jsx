@@ -5,10 +5,10 @@ import clearUser from "../../store/slices/userSlice";
 import { Fragment, useEffect } from "react";
 
 //header bar components
-useEffect;
+
 
 const GNB = () => {
-  const token = useSelector((state) => state.user.token); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
+  const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const label = token ? "로그아웃" : "로그인";
   const loginoutpath = token ? "/" : "/login";

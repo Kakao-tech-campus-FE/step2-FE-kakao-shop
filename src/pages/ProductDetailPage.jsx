@@ -5,6 +5,25 @@ import Container from "../components/atoms/Container";
 import { useQuery } from "react-query";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 
+/*
+ProductDetailPage
+|_id
+|_data
+|_error
+|_isLoading
+|_product
+|_requiredKeys
+|_keys
+
+  return
+  |_div
+    |_Loader(isLoading)
+    |_div (error message)
+    |_ProductDetailTemplate
+
+*/
+
+
 const ProductDetailPage = () => {
   const { id } = useParams(); //string,
   const { data, error, isLoading } = useQuery(

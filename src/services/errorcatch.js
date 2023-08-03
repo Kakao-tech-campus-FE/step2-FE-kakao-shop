@@ -1,6 +1,11 @@
 import { useQueryClient } from "react-query";
 import axios from "axios";
 
+// handleAPIError (API 요청 중 발생하는 에러 처리)
+// useAxiosInterceptor 
+// (응답이 성공적이라면 response 객체 콜백, 
+//  아니라면 handleAPIError 호출, promise 거부)
+
 export const handleAPIError = (error) => {
   console.error("API 요청 에러:", error);
 
