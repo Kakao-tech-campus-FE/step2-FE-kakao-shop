@@ -1,7 +1,7 @@
-import { convertToPrice } from "utils/convert";
+import { convertToPrice } from "utils/convert.js";
 
-import Image from "components/atoms/Image";
-import Stars from "components/atoms/Stars";
+import Image from "components/atoms/Image.js";
+import Stars from "components/atoms/Stars.js";
 
 export default function ProductInformation({ product }) {
   return (

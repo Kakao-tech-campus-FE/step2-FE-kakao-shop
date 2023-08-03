@@ -2,14 +2,14 @@ import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 
-import { convertToPrice } from "utils/convert";
-import { addCartReq } from "apis/cart";
+import { convertToPrice } from "utils/convert.js";
+import { addCartReq } from "apis/cart.js";
 
-import Button from "components/atoms/Button";
-import OptionList from "components/atoms/OptionList";
-import Counter from "components/atoms/Counter";
-import Image from "components/atoms/Image";
-import Toast from "components/atoms/Toast";
+import Button from "components/atoms/Button.js";
+import OptionList from "components/atoms/OptionList.js";
+import Counter from "components/atoms/Counter.js";
+import Image from "components/atoms/Image.js";
+import Toast from "components/atoms/Toast.js";
 
 import cart_white from "assets/icon/cart_white.png";
 

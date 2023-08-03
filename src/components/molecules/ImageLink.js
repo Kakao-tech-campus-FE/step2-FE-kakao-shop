@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import Image from "components/atoms/Image";
+import Image from "components/atoms/Image.js";
 
 export default function ImageLink({
   LinkClassName = null,

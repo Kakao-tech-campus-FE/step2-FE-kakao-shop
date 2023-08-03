@@ -1,4 +1,4 @@
-import Button from "./Button";
+import Button from "components/atoms/Button.js";
 
 export default function Counter({ value, setCount }) {
   const handlePlusClick = () => {

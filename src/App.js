@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setLogInTime } from "store/slices/userSlice";
+
+import { setEmail, setLogInTime } from "store/slices/userSlice.js";
+import { expireTime } from "utils/constants.js";
 
 import LogIn from "pages/LogIn.js";
 import SignUp from "pages/SignUp.js";
-import Layout from "components/templates/Layout";
-import CheckAuth from "components/templates/CheckAuth";
+import Layout from "components/templates/Layout.js";
+import CheckAuth from "components/templates/CheckAuth.js";
 import Products from "pages/Products.js";
 import Product from "pages/Product.js";
 import Cart from "pages/Cart.js";
 import Order from "pages/Order.js";
 import Result from "pages/Result.js";
 import NotFound from "pages/NotFound.js";
-
-import { expireTime } from "utils/constants";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,7 +48,6 @@ function App() {
               <Route path="/result/:orderId" element={<Result />} />
             </Route>
           </Route>
-          {/* 잘못된 경로 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

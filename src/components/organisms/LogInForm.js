@@ -4,12 +4,12 @@ import { useDispatch } from "react-redux";
 import { logInReq } from "apis/user.js";
 import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 import { isValidLogIn } from "utils/validate.js";
-import useInput from "hooks/useInput.js";
+import { useInput } from "hooks/useInput.js";
+import { expireTime } from "utils/constants.js";
 
 import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
 import Input from "components/atoms/Input.js";
-import { expireTime } from "utils/constants";
 
 export default function LogInForm() {
   const { inputValue, handleInputChange } = useInput({

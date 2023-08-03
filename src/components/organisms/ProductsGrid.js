@@ -1,4 +1,4 @@
-import ProductCard from "components/molecules/ProductCard";
+import ProductCard from "components/molecules/ProductCard.js";
 
 export default function ProductsGrid({ products, children }) {
   return (

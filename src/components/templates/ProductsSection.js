@@ -2,10 +2,11 @@ import { useEffect, useRef } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { getProductspReq } from "apis/product.js";
+
 import ProductsGrid from "components/organisms/ProductsGrid.js";
 import Loader from "components/atoms/Loader.js";
-import Skeleton from "components/atoms/Skeleton";
-import Carousel from "components/atoms/Carousel";
+import Skeleton from "components/atoms/Skeleton.js";
+import Carousel from "components/atoms/Carousel.js";
 
 import carouselImage1 from "assets/carousel/carouselItem1.jpeg";
 import carouselImage2 from "assets/carousel/carouselItem2.jpeg";

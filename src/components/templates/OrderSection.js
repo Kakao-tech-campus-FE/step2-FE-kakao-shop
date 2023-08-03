@@ -2,13 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { getCartReq } from "apis/cart";
-import { orderReq } from "apis/order";
-import { convertToPrice } from "utils/convert";
+import { getCartReq } from "apis/cart.js";
+import { orderReq } from "apis/order.js";
+import { convertToPrice } from "utils/convert.js";
 
-import Loader from "components/atoms/Loader";
-import OrderInformation from "components/molecules/OrderInformation";
-import Button from "components/atoms/Button";
+import Loader from "components/atoms/Loader.js";
+import Button from "components/atoms/Button.js";
+import OrderInformation from "components/molecules/OrderInformation.js";
 
 export default function OrderSection() {
   const navigate = useNavigate();

@@ -1,15 +1,15 @@
 import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 
-import { getCartReq } from "apis/cart";
-import { orderReq } from "apis/order";
-import { convertToPrice } from "utils/convert";
+import { getCartReq } from "apis/cart.js";
+import { orderReq } from "apis/order.js";
+import { convertToPrice } from "utils/convert.js";
 
-import Container from "components/atoms/Container";
-import Loader from "components/atoms/Loader";
-import Image from "components/atoms/Image";
-import Button from "components/atoms/Button";
-import CartList from "components/molecules/CartList";
+import Container from "components/atoms/Container.js";
+import Loader from "components/atoms/Loader.js";
+import Image from "components/atoms/Image.js";
+import Button from "components/atoms/Button.js";
+import CartList from "components/molecules/CartList.js";
 
 import cart from "assets/icon/cart.png";
 

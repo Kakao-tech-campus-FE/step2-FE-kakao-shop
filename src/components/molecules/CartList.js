@@ -1,4 +1,4 @@
-import CartItem from "components/atoms/CartItem";
+import CartItem from "components/atoms/CartItem.js";
 
 export default function CartList({ products }) {
   return (

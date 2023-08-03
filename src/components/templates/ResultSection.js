@@ -1,11 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-import { getOrderResultReq } from "apis/order";
+import { getOrderResultReq } from "apis/order.js";
 
-import Loader from "components/atoms/Loader";
-import ResultInformation from "components/molecules/ResultInformation";
-import Button from "components/atoms/Button";
+import Loader from "components/atoms/Loader.js";
+import Button from "components/atoms/Button.js";
+import ResultInformation from "components/molecules/ResultInformation.js";
 
 export default function ResultSection() {
   const { orderId } = useParams();

@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
-import { getProductReq } from "apis/product";
+import { getProductReq } from "apis/product.js";
 
-import Container from "components/atoms/Container";
-import Loader from "components/atoms/Loader";
-import ProductInformation from "components/molecules/ProductInformation";
-import ProductOption from "components/molecules/ProductOption";
+import Container from "components/atoms/Container.js";
+import Loader from "components/atoms/Loader.js";
+import ProductInformation from "components/molecules/ProductInformation.js";
+import ProductOption from "components/molecules/ProductOption.js";
 
 export default function ProductSection() {
   const { productId } = useParams();

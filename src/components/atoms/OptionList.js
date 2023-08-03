@@ -1,4 +1,4 @@
-import { convertToPrice } from "utils/convert";
+import { convertToPrice } from "utils/convert.js";
 
 export default function OptionList({ options, onClick }) {
   return (

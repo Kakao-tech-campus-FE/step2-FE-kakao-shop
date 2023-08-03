@@ -1,11 +1,11 @@
+import { useMemo } from "react";
 import { useQueryClient, useMutation } from "@tanstack/react-query";
 
-import { updateCartReq } from "apis/cart";
-import { convertToPrice } from "utils/convert";
+import { updateCartReq } from "apis/cart.js";
+import { convertToPrice } from "utils/convert.js";
 
-import Button from "./Button";
-import Counter from "./Counter";
-import { useMemo } from "react";
+import Button from "./Button.js";
+import Counter from "./Counter.js";
 
 export default function CartItem({ product }) {
   const queryClient = useQueryClient();

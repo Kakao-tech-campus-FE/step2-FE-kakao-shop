@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import { checkEmailReq, signUpReq } from "apis/user.js";
-import useInput from "hooks/useInput.js";
+import { useInput } from "hooks/useInput.js";
 import { isValidSignUp } from "utils/validate.js";
 
 import Container from "components/atoms/Container.js";
