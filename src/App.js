@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderCompletePage from "./pages/OrderCompletePage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Route>
           {/* 사용자가 로그인됐을 때만 접근 가능한 레이아웃 */}
           <Route element={<RequiredAuthLayout />}>

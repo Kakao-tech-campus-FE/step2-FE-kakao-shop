@@ -7,18 +7,31 @@ import "react-toastify/dist/ReactToastify.css";
  * @param {object} payload
  */
 export const addCart = (payload) => {
-  return instance.post("/carts/add", payload).then((response) => {
-    if (response) {
-      toast.success("장바구니에 담겼습니다.", {
-        position: "top-center",
-        hideProgressBar: true,
-        autoClose: 2000,
-      });
-      return {
-        products: payload,
-      };
-    }
-  });
+  return instance
+    .post("/carts/add", payload)
+    .then((response) => {
+      if (response) {
+        toast.success("장바구니에 담겼습니다.", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 2000,
+        });
+        return {
+          products: payload,
+        };
+      } else {
+        // 장바구니 담기 실패 에러 처리
+        toast.error("로그인이 필요한 서비스입니다.", {
+          position: "top-center",
+          hideProgressBar: true,
+          autoClose: 2000,
+        });
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      throw error;
+    });
 };
 
 /**

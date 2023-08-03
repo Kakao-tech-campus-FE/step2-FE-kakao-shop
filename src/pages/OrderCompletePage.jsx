@@ -7,7 +7,12 @@ import OrderCompleteTemplate from "../components/templates/OrderCompleteTemplate
 
 const OrderCompletePage = () => {
   const { id } = useParams();
-  const { data, error } = useQuery(`order/${id}`, () => getOrderFromId(id));
+  const { data, error } = useQuery(`order/${id}`, () => getOrderFromId(id), {
+    onError: (error) => {
+      // 추가적으로 에러 발견시 추가 예정
+      console.error("주문 처리 중 에러 발생:", error);
+    },
+  });
 
   if (error) {
     alert("결제에 실패했습니다.");

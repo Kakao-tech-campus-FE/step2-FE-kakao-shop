@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { comma } from "../../utils/convert";
 
 const OrderCompleteTemplate = ({ data }) => {
-  console.log(data);
   const [id, setId] = useState();
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState();
