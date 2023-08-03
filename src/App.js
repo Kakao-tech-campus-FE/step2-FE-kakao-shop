@@ -40,13 +40,13 @@ function App() {
               path={staticServerUri + routes.orders}
               element={<OrderPage />}
             />
-            <Route path="/*" element={<NotFoundPage />} />
+            <Route path={`${staticServerUri}/*`} element={<NotFoundPage />} />
             <Route
-              path={staticServerUri + "/product/:id"}
+              path={`${staticServerUri}/product/:id`}
               element={<ProductDetailPage />}
             ></Route>
             <Route
-              path={staticServerUri + "/orders/:id"}
+              path={`${staticServerUri}/orders/:id`}
               element={<OrderCompletePage />}
             ></Route>
           </Routes>
