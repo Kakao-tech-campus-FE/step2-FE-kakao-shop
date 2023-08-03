@@ -94,7 +94,7 @@ const CartTemplate = ({ data }) => {
         <div className="row flex justify-between px-4 py-2">
           <span className="expect font-bold text-xl">주문 예상금액</span>
           <div className="sum-price font-bold text-xl  text-indigo-500">
-            {comma(totalPrice)}원
+            {totalPrice < 0 ? setTotalPrice(0) : comma(totalPrice)}원
           </div>
         </div>
         <Button
