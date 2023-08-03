@@ -5,6 +5,8 @@ import { getOrderFromId } from "../../services/order";
 import Container from "../atoms/Container";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderSuccessTemplate = () => {
   const { id } = useParams();
   const { data } = useQuery([`orders/${id}}`], () => getOrderFromId(id), {
@@ -72,7 +74,7 @@ const OrderSuccessTemplate = () => {
         {/* 쇼핑 계속하기 버튼 */}
         <button
           onClick={() => {
-            navigate("/");
+            navigate(staticServerUri + "/");
           }}
           className={"w-full p-4 rounded-lg bg-yellow-300 font-bold"}
         >

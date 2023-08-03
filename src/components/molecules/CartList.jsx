@@ -8,6 +8,8 @@ import { comma } from "../../utils/convert";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getCart, updateCart } from "../../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 /**
  * @todo 
  */
@@ -122,7 +124,7 @@ const CartList = () => {
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: (data) => {
-              navigate("/order");
+              navigate(staticServerUri + "/order");
             },
             onError: (error) => {
               alert("업데이트에 실패했습니다.");

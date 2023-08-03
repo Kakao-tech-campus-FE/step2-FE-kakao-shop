@@ -31,7 +31,7 @@ const RegisterForm = () => {
     })
       // 정상적인 로그인 시
       .then((res) => {
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       // 에러 났을 시
       .catch((error) => {

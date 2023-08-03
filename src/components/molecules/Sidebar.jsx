@@ -28,7 +28,7 @@ const Sidebar = () => {
   };
 
   const handleSubmit = (e) => {
-    navigate(`/search/${query}`);
+    navigate(staticServerUri + `/search/${query}`);
   };
 
   return (

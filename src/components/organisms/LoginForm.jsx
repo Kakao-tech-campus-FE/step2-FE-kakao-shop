@@ -26,7 +26,7 @@ const LoginForm = () => {
       })
     )
       .then((res) => {
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       .catch((error) => {
         setErrorMsg(error.toString());
