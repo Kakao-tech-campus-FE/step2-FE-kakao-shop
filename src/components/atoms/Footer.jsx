@@ -8,7 +8,7 @@ const Footer = () => {
     <Container className='absolute bottom-0 left-0 inner'>
       <div className="my-10 flex justify-space gap-10">
         <Link to='/'>
-          <img className="h-10 inline cursor-pointer" src={staticServerUrl +"/logoKakaoText.png"} alt="logoKakao"/>
+          <img className="h-10 inline cursor-pointer"src={staticServerUrl +"/logoKakaoText.png"} alt="logoKakao"/>
         </Link>
         <div className="description">
           (주)카카오대표이사 : 홍은택주소 : 제주특별자치도 제주시 첨단로 242
