@@ -3,6 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import GNB from '../components/atoms/GNB';
 import { useEffectOnce } from '../hooks/useEffectOnce';
+import Footer from '../components/atoms/Footer';
 
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const RequiredAuthLayout = () => {
     <div>
       <GNB />
       <Outlet />
+      <Footer />
     </div>
   );
 };

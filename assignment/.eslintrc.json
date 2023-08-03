@@ -46,6 +46,7 @@
     "react/jsx-no-useless-fragment": "off",
     "no-nested-ternary": "off",
     "indent": "off",
-    "no-plusplus": "off"
+    "no-plusplus": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }

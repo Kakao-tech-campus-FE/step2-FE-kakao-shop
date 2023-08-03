@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { useParam } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../components/atoms/Loader';
 import { getProductById } from '../services/product';

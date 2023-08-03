@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import React from 'react';
 import GNB from '../components/atoms/GNB';
+import Footer from '../components/atoms/Footer';
 
 function MainLayout() {
   return (
@@ -10,6 +11,7 @@ function MainLayout() {
       {/* 콘텐츠 영역 : 페이지마다 달라지는 영역 */}
       <Outlet />
       {/* 푸터 영역 */}
+      <Footer />
     </>
   );
 }

@@ -28,7 +28,7 @@ instance.interceptors.response.use(
       if (response.status >= 300 && response.status < 400) {
         console.error('Redirection:', response.data.error.message);
       } else if (response.status >= 400 && response.status < 500) {
-        alert(response.data.error.message);
+        // alert(response.data.error.message);
         console.error('Client Error:', response.data.error.message);
       } else if (response.status >= 500) {
         console.error('Server Error:', response.data.error.message);
