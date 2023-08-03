@@ -6,6 +6,20 @@ import { register } from "../../services/api";
 import { useEffect } from "react";
 
 const RegisterForm = () => {
+import InputGroup from "../atoms/InputGroup";
+import Button from "../atoms/Button";
+import useInput from "../../hooks/useInput";
+
+const RegisterForm = () => {
+  const [value, handleOnchange]= useInput({
+    username: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    onChange={handleOnChange},
+  });
+  
+  const [form, setForm] = useState
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
@@ -37,12 +51,14 @@ const RegisterForm = () => {
         placeholder="이메일(아이디)"
         label="이메일"
         value={value.email}
+        value={value.username}
         onChange={handleOnChange}
       />
       <InputGroup
         id="password"
         type="password"
         name="password"
+        name= "password"
         placeholder="비밀번호"
         label="비밀번호"
         onChange={handleOnChange}

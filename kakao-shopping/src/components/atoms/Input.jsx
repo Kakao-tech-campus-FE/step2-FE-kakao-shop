@@ -8,6 +8,9 @@
 
 const Input = ({ id, type, value, name, onChange, placeholder, className }) => {
   return (
+const Input = ({ type, value, name, onChange, placeholder, id }) => {
+  return;
+  <>
     <input
       id={id}
       type={type}
@@ -18,6 +21,8 @@ const Input = ({ id, type, value, name, onChange, placeholder, className }) => {
       className={`input ${className}`}
     />
   );
+    />
+  </>;
 };
 
 export default Input;
