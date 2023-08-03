@@ -7,7 +7,8 @@ import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
-import PayPage from "./pages/PayPage";
+import OrderPage from "./pages/OrderPage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
@@ -23,7 +24,11 @@ function App() {
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
             <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/pay" element={<PayPage />}></Route>
+            <Route path="/order" element={<OrderPage />}></Route>
+            <Route
+              path="/orders/complete/:id"
+              element={<OrderCompletePage />}
+            ></Route>
           </Route>
           <Route path="/404" element={<NotFound />} />
         </Routes>

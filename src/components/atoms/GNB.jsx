@@ -56,10 +56,10 @@ const GNB = () => {
             ) : (
               <Link
                 className="text-[13px]"
-                to="/"
                 onClick={() => {
                   dispatch(setEmail(null));
-                  window.location.reload(false);
+                  navigate("/", { replace: true });
+                  window.location.reload();
                 }}
               >
                 로그아웃

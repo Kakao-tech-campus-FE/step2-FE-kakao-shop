@@ -8,11 +8,11 @@ import { updateCart } from "../../apis/cart";
 import CheckBox from "../atoms/CheckBox";
 import { BiCart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
+import useCheckBox from "../../hooks/useCheckBox";
 
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [checkedProducts, setCheckedProducts] = useState([]);
   const [existProducts, setExistProducts] = useState([]);
 
   const queryClient = useQueryClient();
@@ -33,8 +33,8 @@ const CartList = ({ data }) => {
   }, [cartItems]);
 
   useEffect(() => {
-    setCartItems(data?.data?.response?.products);
-    setTotalPrice(data?.data?.response?.totalPrice);
+    setCartItems(data?.data.response.products);
+    setTotalPrice(data?.data.response.totalPrice);
   }, [data]);
 
   useEffect(() => {
@@ -49,9 +49,12 @@ const CartList = ({ data }) => {
     }
   }, [cartItems]);
 
-  useEffect(() => {
-    console.log(checkedProducts);
-  }, [checkedProducts]);
+  const {
+    checkedOptions,
+    setCheckedOptions,
+    handleOnChangeCheck,
+    handleOnChangeCheckAll,
+  } = useCheckBox(existProducts, existProducts);
 
   const handleOnChangeCount = (optionId, quantity) => {
     mutate([{ cartId: optionId, quantity }], {
@@ -59,23 +62,6 @@ const CartList = ({ data }) => {
         queryClient.invalidateQueries("cart");
       },
     });
-  };
-
-  const handleOnChangeCheck = (e) => {
-    const productId = Number(e.target.value);
-    if (!checkedProducts.includes(productId)) {
-      setCheckedProducts((prev) => [...prev, productId]);
-    } else {
-      setCheckedProducts((prev) => prev.filter((el) => el !== productId));
-    }
-  };
-
-  const handleOnChangeCheckAll = (e) => {
-    if (e.target.checked) {
-      setCheckedProducts([...existProducts]);
-    } else {
-      setCheckedProducts([]);
-    }
   };
 
   const handleOnClickOptionDelete = (optionId) => {
@@ -89,7 +75,7 @@ const CartList = ({ data }) => {
   const handleOnClickProductDelete = () => {
     const allOptions = [];
     cartItems
-      .filter((item) => checkedProducts.includes(item.id))
+      .filter((item) => checkedOptions.includes(item.id.toString()))
       .forEach((item) => {
         item.carts.forEach((option) => {
           if (option.quantity > 0) allOptions.push(option.id);
@@ -103,12 +89,12 @@ const CartList = ({ data }) => {
         },
       }
     );
-    setCheckedProducts([]);
+    setCheckedOptions([]);
   };
 
   return (
     <div className="bg-[#f4f4f4]">
-      <Container className="max-w-[870px] px-0 pb-5">
+      <Container className="max-w-[870px] px-0">
         <Box className="border-b border-gray-200 bg-white leading-[44px]">
           <h1 className="text-center text-[15px] font-bold">장바구니</h1>
         </Box>
@@ -119,7 +105,7 @@ const CartList = ({ data }) => {
                 <CheckBox
                   labelClassName="flex items-center text-sm"
                   onChange={handleOnChangeCheckAll}
-                  checked={checkedProducts.length === existProducts.length}
+                  checked={checkedOptions.length === existProducts.length}
                 >
                   전체선택
                 </CheckBox>
@@ -141,7 +127,7 @@ const CartList = ({ data }) => {
                       onChangeCount={handleOnChangeCount}
                       onChangeCheck={handleOnChangeCheck}
                       onClick={handleOnClickOptionDelete}
-                      checked={checkedProducts.includes(item.id)}
+                      checked={checkedOptions.includes(item.id.toString())}
                     />
                   ) : null
                 )}
@@ -156,7 +142,7 @@ const CartList = ({ data }) => {
             <button
               className="mb-5 w-full bg-kakao py-4"
               onClick={() => {
-                navigate("/pay");
+                navigate("/order");
               }}
             >
               <span className="font-bold">
