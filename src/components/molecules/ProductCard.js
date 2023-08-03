@@ -13,7 +13,7 @@ export default function ProductCard({ product }) {
     >
       <Image
         className="w-full rounded border"
-        src={`%PUBLIC_URL%${product.image}`}
+        src={staticServerUri + product.image}
         alt={product.productName}
       />
       <h3 className="text-sm">{product.productName}</h3>
