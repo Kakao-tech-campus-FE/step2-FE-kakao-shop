@@ -8,9 +8,13 @@ import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 import { useNavigate } from "react-router";
+import cart from "../../assets/cart.png";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const CartList = ({ data }) => {
     const [cartItems, setCartItems] = useState(data?.products);
+    const [updatedItems, setUpdatedItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(data?.totalPrice);
     const navigate = useNavigate();
 
@@ -18,8 +22,17 @@ const CartList = ({ data }) => {
     const cartUpdataMutation = useMutation({
         mutationFn: updateCart,
         onSuccess: () => {
-            // alert('결제 페이지로 이동합니다.');
-            navigate("/order");
+            window.location.href=staticServerUri + "/order";
+        },
+        onError: () => {
+            alert("문제가 발생하였습니다.");
+            navigate("/cart");
+        }
+    })
+    const optionDeleteMutation = useMutation({
+        mutationFn: updateCart,
+        onSuccess: () => {
+            // window.location.href= staticServerUri + "/cart";
         },
         onError: () => {
             alert("문제가 발생하였습니다.");
@@ -28,9 +41,14 @@ const CartList = ({ data }) => {
     })
 
     useEffect(() => {
+        console.log('changed', data);
         setCartItems(data?.products);
         setTotalPrice(data?.totalPrice);
     }, [data]);
+    
+    useEffect(() => {
+        console.log('cartItems changed', cartItems);
+    }, [cartItems]);
 
     /**
      * 옵션의 수량과 가격을 변경을 관리
@@ -39,7 +57,6 @@ const CartList = ({ data }) => {
      * @param {number} price 
      */
     const handleOnChangeCount = (optionId, quantity) => {
-        
         setCartItems(prev => {
             return prev.map(item => {
                 return {
@@ -59,6 +76,12 @@ const CartList = ({ data }) => {
                 
             })
         })
+
+        if(quantity === 0){
+            const payload = getUpdatePayload();
+            console.log('payload', payload);
+            optionDeleteMutation.mutate(payload); 
+        }
     }
 
     const getUpdatePayload = () => {
@@ -75,8 +98,29 @@ const CartList = ({ data }) => {
         return JSON.stringify(payload);
     }
 
+    if(data.products.length === 0){
+        return (
+            <Container className="w-[870px] overflow-hidden">
+                <Box className="title_wrap text-center leading-[44px] bg-white border border-border_gray border-b-0 mt-[11px]">
+                    <h1 className="font-semibold">장바구니</h1>
+                </Box> 
+                <Box className="text-center bg-white border border-border_gray py-[200px]">
+                    <img className="mx-auto" src={cart}/>
+                    <span className="block py-[14px] leading-5 text-lg">
+                        장바구니에 담긴 상품이 없습니다.
+                    </span>
+                    <div className="w-[200px] mx-auto">
+                        <Button onClick={() => {
+                            navigate("/");
+                        }}><strong>홈으로 이동</strong></Button>
+                    </div>
+                </Box>
+            </Container>
+        );
+    }
+
     return (
-        <Container className="card_list w-[870px] overflow-hidden">
+        <Container className="cart_list w-[870px] overflow-hidden">
             <Box className="title_wrap text-center leading-[44px] bg-white border border-border_gray border-b-0 mt-[11px]">
                 <h1 className="font-semibold">장바구니</h1>
             </Box>
