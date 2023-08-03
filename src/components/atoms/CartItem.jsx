@@ -5,7 +5,10 @@ import styled from "styled-components";
 
 const ProductName = styled.p`
   font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 `;
+
 const Option = styled.div`
   display: flex;
   justify-content: space-between;
@@ -22,6 +25,11 @@ const TotalPrice = styled.div`
   justify-content: space-between;
   width: 32rem;
   padding: 0.8rem;
+
+  .price {
+    color: #4949ff;
+    font-weight: bold;
+  }
 `;
 
 const CartItem = ({ item, onChange, onClick }) => {
