@@ -16,9 +16,11 @@ const Container = styled.div`
   }
 `;
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductCard = ({ product }) => {
-  const { id, image, productName, price } = product;
-  const imagePath = `${process.env.REACT_APP_API_URL}${image}`;
+  const { id, productName, price, image } = product;
+  const imagePath = staticServerUri + `/product/${image}`;
 
   return (
     <Container>
