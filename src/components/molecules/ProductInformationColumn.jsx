@@ -17,12 +17,6 @@ const ProductColumn = styled.div`
   }
 `;
 
-const StyledPhoto = styled(Photo)`
-  img {
-    width: 380px;
-  }
-`;
-
 const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const ProductInformationColumn = ({ product }) => {
@@ -32,7 +26,7 @@ const ProductInformationColumn = ({ product }) => {
   return (
     <ProductInfoColumn className="product-information-column">
       <div className="col">
-        <StyledPhoto src={`${imagePath}`} alt={productName} />
+        <Photo src={`${imagePath}`} alt={productName} />
       </div>
       <ProductColumn className="col">
         <p className="name">{productName}</p>
