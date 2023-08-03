@@ -4,6 +4,7 @@ export const fetchProducts = (page = 0) => {
   const result = instance
     .get(`/products?page=${page}`)
     .then((response) => response.data);
+  console.log('result: ', result);
   return result;
 };
 
