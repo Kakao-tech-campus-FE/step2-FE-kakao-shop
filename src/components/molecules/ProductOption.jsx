@@ -95,7 +95,7 @@ const ProductOption = ({ product }) => {
 
   // 장바구니 담기 api 처리
   const { mutate: mutateAddCart } = useMutation({
-    mutationFn: updateCart,
+    mutationFn: addCart,
   });
 
   return (
@@ -165,8 +165,13 @@ const ProductOption = ({ product }) => {
                     setSelectedOptions([]);
                   },
                   onError: (error) => {
-                    console.error(error);
-                    alert('장바구니 담기에 실패했습니다.');
+                    if (error.status === 500) {
+                      alert(
+                        '장바구니에 같은 상품이 존재합니다.\n같은 상품은 장바구니에서 수정해주세요.'
+                      );
+                    } else {
+                      alert('장바구니 담기에 실패했습니다.');
+                    }
                   },
                 }
               );
@@ -194,11 +199,16 @@ const ProductOption = ({ product }) => {
                 }),
                 {
                   onSuccess: () => {
-                    navigate(staticServerUrl + '/cart');
+                    navigate(staticServerUrl + '/order');
                   },
                   onError: (error) => {
-                    console.error(error);
-                    alert('주문하기가 실패했습니다.');
+                    if (error.status === 500) {
+                      alert(
+                        '장바구니에 같은 상품이 존재합니다.\n같은 상품은 장바구니를 통해 주문해주세요.'
+                      );
+                    } else {
+                      alert('주문하기에 실패했습니다.');
+                    }
                   },
                 }
               );
