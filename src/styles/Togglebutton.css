@@ -1,0 +1,31 @@
+.toggleBox {
+    width: 150px;
+    height: 80px;
+    border-radius: 45px;
+    background-color: rgb(175, 175, 175);
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.toggleBox.toggle--on {
+    background-color: rgb(0, 255, 149);
+    transition: 0.5s;
+}
+
+.toggleBox--circle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: white;
+    margin-right: 70px;
+    transition: 0.5s;
+    box-shadow: 2px 2px grey;
+}
+
+.toggleBox--circle.toggle--on {
+    margin-right: -70px;
+    transition: 0.5s;
+}

@@ -1,0 +1,21 @@
+.toast {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    background-color: rgba(9, 255, 0, 0.6) ;
+    width: 500px;
+    height: 65px;
+    border-radius: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    font-size: 20px;
+}
+
+.toast.show {
+    opacity: 1;
+    visibility: visible;
+  }

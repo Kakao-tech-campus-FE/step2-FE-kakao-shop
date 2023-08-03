@@ -1,0 +1,39 @@
+/* display : grid - 명시적으로 행과 열을 나누어서 동작할 때 */
+/* display : flex - 유동적으로 바뀌어야 할 때 */
+
+.product-grid {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr); /* column을 1:1:1:1 비율로 가져감*/
+    grid-gap: 2rem;
+    padding: 0 2rem 0 2rem;
+    /* max-width: inherit; */
+    width: 70%;
+}
+
+/* grid-template-columns을 사용할 때는 미디어 쿼리를 통해 유동적으로 대응해주어야 한다. */
+/* 화면사이즈에 따른 그리드 column 적용 */
+@media screen and (max-width: 1500px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* 이 경우에는 사이즈에 따라 유동적으로 바뀌는 flex */
+/* .product-grid {
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+/* flex인 경우에는 그리드 columns이 아닌 콘텐츠의 사이즈 조절 */
+/* @media screen and (max-width: 768px) {
+    .product-grid > .product-card {
+        width: 180px;
+    }
+} */
