@@ -16,7 +16,7 @@ const ProductsList = (props) => {
           props.obj.pages.map(( pageData ) => (
             pageData?.map((item) => (
               <ProductCard 
-                link={`/product/${item.id}`}
+                link={`/products/${item.id}`}
                 image={item.image} 
                 productName={item.productName} 
                 key={item.productName}
