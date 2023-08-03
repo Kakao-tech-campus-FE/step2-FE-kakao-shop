@@ -9,7 +9,7 @@ export default function MainCarousel({ images }) {
   // 기존 이미지 배열을 복제하여 사용할 새로운 배열을 만듭니다.
   const [extendedImages, setExtendedImages] = useState([...images]);
   const [carouselTransition, setCarouselTransition] = useState(
-    "transform 0.25s ease-in-out"
+    "transform 0.25s ease-in-out",
   );
 
   const moveToNthSlide = (index) => {
@@ -45,7 +45,7 @@ export default function MainCarousel({ images }) {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => handleNextImg(), 3000);
+    const interval = setInterval(() => handleNextImg(), 2500);
     return () => clearInterval(interval);
   }, [handleNextImg]);
 
