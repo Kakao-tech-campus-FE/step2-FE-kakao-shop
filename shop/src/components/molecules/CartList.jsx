@@ -89,8 +89,7 @@ const CartList = () => {
     return comma(count) 
   },[cartItems])
 
-  if(!data){
-    console.log(data)
+  if(data.data.response.products.length===0){
     return <EmptyCartPage/>
   }
   return (
@@ -102,8 +101,6 @@ const CartList = () => {
         <Box className='bg-white my-1 py-1 border'>
           {/* 상품별 장바구니 */}
           {cartItems.map((item)=>{
-              console.log('item')
-              console.log(item)
               return (
                 <CartItem
                   key={item.id}
