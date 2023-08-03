@@ -42,7 +42,7 @@ const LoginForm = () => {
         localStorage.setItem("token", response.payload.headers.authorization);
 
         alert("로그인 되었습니다");
-        navigate(`${staticServerUri}/`);
+        navigate("/");
         // window.location.reload();
       } else if (response.payload.data.error) {
         alert("유효하지 않은 아이디/비밀번호 입니다.");

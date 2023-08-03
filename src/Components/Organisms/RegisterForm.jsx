@@ -90,7 +90,7 @@ const RegisterForm = () => {
     ).then((response) => {
       if (response.payload?.success) {
         alert("회원가입이 완료되었습니다.");
-        navigate(`${staticServerUri}/loginpage`);
+        navigate("/loginpage");
       } else {
         console.log(response);
         alert(response.payload?.error.message);

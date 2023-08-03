@@ -1,7 +1,9 @@
 const Photo = ({ src, alt, imgClass }) => {
+  const staticServerUri = process.env.REACT_APP_PATH || "";
+
   return (
     <picture>
-      <img className={imgClass} src={process.env.REACT_APP_API_URL + src} alt={alt} />
+      <img className={imgClass} src={staticServerUri + src} alt={alt} />
     </picture>
   );
 };
