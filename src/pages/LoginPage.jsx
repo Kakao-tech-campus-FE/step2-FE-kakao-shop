@@ -28,7 +28,7 @@ const LoginPage = () => {
 
   return (
     <div className="h-screen relative border border-slate-500 border-solid rounded-md flex flex-col justify-center items-center">
-      <MainLogo className="absolute w-40 top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
+      <MainLogo className="w-40 top-1/4 left-1/2 transform mb-5"/>
       <div className="w-fit border border-solid rounded-lg border-gray">
         <LoginForm />
       </div>

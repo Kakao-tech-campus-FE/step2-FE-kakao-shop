@@ -35,7 +35,7 @@ const MainProductsTemplate = () => {
     )
   }
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center  w-screen max-w-240">
       <MainProducts responseData={responseData} />
       <PageSetButton page={2} setPage={setPage} />
     </div>
