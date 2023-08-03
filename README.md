@@ -97,24 +97,24 @@
 
 ### 디렉터리 구조
 ```
-    -/public : 정적 파일이 포함되는 곳으로, 컴파일이 필요 없는 파일들
-        - index.html
-    -/src
-        -/components : 커스텀 컴포넌트
-            -Footer.jsx
-            -Sidebar.jsx
-            - ...
-        -/assets : 이미지, 폰트와 같은 파일이 저장 
-        -/hooks : 커스텀 훅
-        -/pages : react router 등을 이용해 라우팅 적용할 때 페이지 컴포넌트를 위치
-            -Main.js
-            -Shop.js
-            -Login,Logout.js
-            -Review.js
-            -Pay.js
-            -Search.js
-            - ...
-        -/styles : css 파일들이 포함되는 폴더
-        -/services : api관련 로직의 모듈 파일이 위치 
-        -/utils : 정규표현식 패턴이나 공통함수 등 공통으로 사용하는 유틸 파일들 위치 
+-/public : 정적 파일이 포함되는 곳으로, 컴파일이 필요 없는 파일들
+  - index.html
+-/src
+  -/components : 커스텀 컴포넌트
+    -Footer.jsx
+    -Sidebar.jsx
+    - ...
+  -/assets : 이미지, 폰트와 같은 파일이 저장 
+  -/hooks : 커스텀 훅
+  -/pages : react router 등을 이용해 라우팅 적용할 때 페이지 컴포넌트를 위치
+  -Main.js
+  -Shop.js
+  -Login,Logout.js
+  -Review.js
+  -Pay.js
+  -Search.js
+  - ...
+  -/styles : css 파일들이 포함되는 폴더
+  -/services : api관련 로직의 모듈 파일이 위치 
+  -/utils : 정규표현식 패턴이나 공통함수 등 공통으로 사용하는 유틸 파일들 위치 
 ```

@@ -4,11 +4,11 @@ import Label from "../atoms/Label"
 
 //id : input과 label을 바인딩해 줄 값
 //name : event.target에서 체크하기 위한 값 
-const InputGroup = ({id, name, type, value, onChange, className, placeholder, label, onBlur }) => {
+const InputGroup = ({id, name, type, value, onChange, placeholder, label, onBlur }) => {
   return (
-    <Box className="mt-2">
+    <Box>
         <Label htmlFor={id}>{label}</Label>
-          <Input id={id} type={type} name={name} value={value} placeholder={placeholder} onChange={onChange} onBlur={onBlur}/>
+        <Input id={id} type={type} name={name} value={value} placeholder={placeholder} onChange={onChange} onBlur={onBlur}/>
     </Box>
   )
 }

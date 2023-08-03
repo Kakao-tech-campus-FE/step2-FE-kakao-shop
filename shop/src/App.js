@@ -9,11 +9,12 @@ import NotFoundPage from './pages/NotFoundPage';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import OrderCompletePage from './pages/OrderCompletePage';
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={staticServerUrl}>
         {/* 단독 레이아웃 */}
         <Routes>
           <Route path='/login' element={<LoginPage/>}></Route>

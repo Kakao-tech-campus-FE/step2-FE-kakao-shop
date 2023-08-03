@@ -25,15 +25,22 @@ const OrderCompleteTemplate = () => {
     let renderComponent = []
     products.forEach((product)=>{
       renderComponent.push(product.items.map((item)=>{
-        return <div key={item.id} className='p-4 border bg-white'>
-          <div className="product-name font-bold">
-            <span>{`${product.productName} - ${item.optionName}`}</span>
+        return <div key={item.id} className='p-4 border bg-white flex flex-col gap-4'>
+          <div className="product-name">
+            <div className='font-bold text-lg'>상품명</div>
+            <span className='text-gray-500'>{product.productName}</span>
+          </div>
+          <div className="product-name">
+            <div className='font-bold text-lg'>옵션명</div>
+            <span className='text-gray-500'>{item.optionName}</span>
           </div>
           <div className="quantity">
-            <span>{comma(item.quantity)}개</span>
+            <div className='font-bold text-lg'>수량</div>
+            <span className='text-gray-500'>{comma(item.quantity)}개</span>
           </div>
-          <div className="price font-bold">
-            <span>{comma(item.quantity * item.price)}원</span>
+          <div className="price">
+            <div className='font-bold text-lg'>구매 가격</div>
+            <span className='text-gray-500' >{comma(item.quantity * item.price)}원</span>
           </div>
         </div>
       }))
@@ -60,7 +67,7 @@ const OrderCompleteTemplate = () => {
             className='btn-order p-4 w-full'
             onClick={()=>navigate('/')}
           >
-            홈으로 돌아가기
+            쇼핑 계속하기
           </Button>
         </div>
       </div>

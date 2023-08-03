@@ -3,9 +3,10 @@ import Button from "../atoms/Button"
 import {useMutation} from "react-query"
 import { orderCart } from '../../services/order'
 import { useNavigate } from 'react-router-dom'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { useQuery } from 'react-query'
 import { getCart } from '../../services/cart'
+import OrderItems from '../atoms/OrderItems'
 
 const OrderTemplate = () => {
   const navigate = useNavigate()
@@ -19,13 +20,9 @@ const OrderTemplate = () => {
       suspense: true
     }
   )
-  const {products, totalPrice} = data?.data?.response
-  const [allAgree, setAllAgree] = useState(false)
+  const {totalPrice} = data?.data?.response
   const [agreePayment, setAgreePayment] = useState(false)
   const [agreePollcy, setAgreePollcy] = useState(false)
-  const allAgreeRef = useRef(null)
-  const agreePaymentRef = useRef(null)
-  const agreePollcyRef = useRef(null)
 
   const handleAllAgree = (e)=>{
     const value = e.target.checked
@@ -42,36 +39,12 @@ const OrderTemplate = () => {
     } else if(name === 'pollcy-agree'){
       setAgreePollcy(checked)
     }
-
-    if(!checked){
-      setAllAgree(false)
-    }
   }
 
   const {mutate} = useMutation({
     mutationKey: "orders",
     mutationFn: orderCart
   })
-
-  const OrderItems = () =>{
-    let renderComponent = []
-    products.forEach((item)=>{
-      renderComponent.push(item.carts.map((cart)=>{
-        return <div key={cart.id} className='p-4 border bg-white'>
-          <div className="product-name font-bold">
-            <span>{`${item.productName} - ${cart.option.optionName}`}</span>
-          </div>
-          <div className="quantity">
-            <span>{comma(cart.quantity)}개</span>
-          </div>
-          <div className="price font-bold">
-            <span>{comma(cart.quantity * cart.price)}원</span>
-          </div>
-        </div>
-      }))
-    })
-    return renderComponent
-  }
 
   return (
     <div className='bg-gray-100 py-5'>
@@ -113,7 +86,6 @@ const OrderTemplate = () => {
             <input 
               type="checkbox" 
               id='all-agree'
-              ref={allAgreeRef}
               checked={agreePayment && agreePollcy}
               onChange={handleAllAgree}
             />
@@ -124,7 +96,6 @@ const OrderTemplate = () => {
               type="checkbox" 
               id='agree'
               name='payment-agree'
-              ref={agreePaymentRef}
               checked={agreePayment}
               onChange={handleAgree}
             />
@@ -137,7 +108,6 @@ const OrderTemplate = () => {
               type="checkbox" 
               id='policy'
               name='pollcy-agree'
-              ref={agreePollcyRef}
               checked={agreePollcy}
               onChange={handleAgree}
             />
@@ -155,7 +125,7 @@ const OrderTemplate = () => {
             }
             
             onClick={()=>{
-              if(agreePayment === false || agreePollcy === false){
+              if(!agreePayment || !agreePollcy){
                 alert("모든 항목에 동의가 필요합니다.")
                 return
               }

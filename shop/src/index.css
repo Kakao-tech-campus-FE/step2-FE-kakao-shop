@@ -21,7 +21,7 @@ code {
     @apply bg-yellow-400 text-white font-semibold rounded-lg shadow-md hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75;
   }
   .btn-order{
-    @apply bg-yellow-300 text-black font-semibold rounded-sm shadow-sm hover:bg-yellow-400 ;
+    @apply bg-yellow-300 text-black rounded-sm shadow-sm hover:bg-yellow-400 ;
   }
   .btn-counter{
     @apply  border text-2xl bg-gray-300/50 rounded-sm hover:bg-gray-300

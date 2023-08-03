@@ -2,10 +2,10 @@ import Container from "../atoms/Container"
 import InputGroup from "../molecules/InputGroup"
 import Button from "../atoms/Button"
 import useInput from "../../hooks/useInput"
-import { register } from "../../services/user"
+import { check, register } from "../../services/user"
 import { useNavigate } from "react-router-dom";
-import Title from "../atoms/Title"
 import { useState } from "react"
+import Footer from "../atoms/Footer"
 
 const RegisterForm = () => {
   const navigate = useNavigate()
@@ -41,79 +41,94 @@ const RegisterForm = () => {
         navigate("/")
       })
       .catch((err)=>{ // 에러 
-        console.log("err",err)
-        // 회원가입 실패 시 에러 처리
-        if (err.data && err.data.error && err.data.error.message){
-          setError(`[Error 발생] ${err.data.error.message} :(`); // API에서 받아온 오류 메시지 설정
-        } else {
-          setError("회원가입에 실패했습니다."); // 기본 오류 메시지 설정
-        }
+        console.log(err)
+        setError(`${err.response.data.error.message}`);
       })
   }
 
+  const handleOnClick = (e) => {
+    check({email:value.email})
+      .then((res)=>{
+        alert('사용 가능한 이메일입니다.')
+        e.target.disabled=true
+        setError('')
+      })
+      .catch((err)=>{
+        setError(`${err.response.data.error.message}`); 
+      })
+  }
 
   return (
-    <Container className="mx-96 mt-10 items-center justify-center">
-      <div className="w-max p-52 bg-white shadow">
-        <Title>회원가입</Title>
-        <InputGroup 
-          id="username"
-          type="text" 
-          name="username"
-          placeholder="사용자의 이름을 입력해주세요" 
-          label="이름"
-          value={value.username}
-          onChange={handleOnChange}
-        />
-        <InputGroup 
-          id="email" 
-          type="email" 
-          name="email"
-          placeholder="이메일을 입력해주세요" 
-          label="이메일"
-          value={value.email}
-          onChange={handleOnChange}
-          onBlur={validateEmail}
-        />
-        {emailErr && <div className="mb-5">{emailErr}</div>}
-        <InputGroup 
-          id="password" 
-          type="password" 
-          name="password"
-          placeholder="******" 
-          label="비밀번호"
-          value={value.password}
-          onChange={handleOnChange}
-          onBlur={validPassword}
-        />
-        {pwErr && <div className="mb-5">{pwErr}</div>}
-        <InputGroup 
-          id="passwordConfirm" 
-          type="password" 
-          name="passwordConfirm"
-          placeholder="******" 
-          label="비밀번호 확인"
-          value={value.passwordConfirm}
-          onChange={handleOnChange}
-        />
-        {!isPasswordMatch && (
-          <div className="mb-5">비밀번호와 비밀번호 확인이 일치하지 않습니다.</div>
-        )}
-        
-        <div className="mt-5 text-lg font-semibold text-red-400"> {error} </div>
-
-
-        <Button
-          className="mt-10 btn-primary py-2 px-4"
-          disabled={isError || !value.password || !value.passwordConfirm }
-          onClick={()=>{
-            //api 요청 
-            // register(value) 로 보내면 passwordConfirm 이라는 불필요한 값까지 섞여있음
-            RegisReq()
-          }}
-        >회원가입</Button>
-      </div>
+    <div class="flex flex-col h-screen">
+    <Container className="inner flex-1 flex flex-col gap-7 justify-center items-center h-screen">
+        <img src='/logoKakaoText.png' alt='회원가입'/>
+        <div className="py-10 px-20 border">
+          <InputGroup 
+            id="username"
+            type="text" 
+            name="username"
+            placeholder="이름" 
+            value={value.username}
+            onChange={handleOnChange}
+          />
+          <div className="flex justify-stretch gap-4">
+          <InputGroup 
+            id="email" 
+            type="email" 
+            name="email"
+            placeholder="이메일" 
+            value={value.email}
+            onChange={handleOnChange}
+            onBlur={validateEmail}
+          />
+          <Button
+            className='btn-order px-4 h-[60px] mt-5'
+            onClick={handleOnClick}
+            >
+              중복확인
+          </Button>
+          </div>
+          {emailErr && <div className="mt-3 text-red-400">{emailErr}</div>}
+          <InputGroup 
+            id="password" 
+            type="password" 
+            name="password"
+            placeholder="비밀번호" 
+            value={value.password}
+            onChange={handleOnChange}
+            onBlur={validPassword}
+          />
+          {pwErr && <div className="mt-3 text-red-400">{pwErr}</div>}
+          <InputGroup 
+            id="passwordConfirm" 
+            type="password" 
+            name="passwordConfirm"
+            placeholder="비밀번호 확인" 
+            value={value.passwordConfirm}
+            onChange={handleOnChange}
+          />
+          {!isPasswordMatch && (
+            <div className="mt-3 text-red-400">비밀번호와 비밀번호 확인이 일치하지 않습니다.</div>
+          )}
+          {error && <div className="bg-gray-300/75 p-5 rounded my-5 text-lg text-red-400"> {error} </div> }
+          <Button
+            className={`btn-order block w-full p-4 mt-10 text-lg ${isError?'cursor-not-allowed bg-gray-300 hover:bg-gray-300':'cursor-pointer'}`}
+            disabled={isError}
+            onClick={()=>{
+              RegisReq()
+            }}>
+            회원가입
+          </Button>
+          <Button
+            className="block w-full p-4 mt-10 text-lg"
+            onClick={()=>{navigate('/login')}}
+          >
+            로그인
+          </Button>
+        </div>
     </Container>
+    <Footer/>
+    </div>
   )
 }
 

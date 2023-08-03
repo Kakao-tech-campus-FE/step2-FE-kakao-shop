@@ -23,3 +23,10 @@ export const login = async (data) =>{
     localStorage.setItem('token', token);
   })
 }
+
+export const check = (data) =>{
+  const {email} = data
+  return instance.post('/check',{
+    email
+  })
+}

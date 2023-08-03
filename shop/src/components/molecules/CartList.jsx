@@ -9,6 +9,7 @@ import { useMutation } from 'react-query'
 import { updateCart } from '../../services/cart'
 import { getCart } from '../../services/cart'
 import { useQuery } from 'react-query'
+import EmptyCartPage from '../../pages/EmptyCartPage'
 
 const CartList = () => {
   const navigate = useNavigate()
@@ -88,6 +89,9 @@ const CartList = () => {
     return comma(count) 
   },[cartItems])
 
+  if(data.data.response.products.length===0){
+    return <EmptyCartPage/>
+  }
   return (
     <div className="bg-gray-100 py-5">
       <div className="max-w-[1024px] w-[100%] mx-auto" >
@@ -96,10 +100,7 @@ const CartList = () => {
         </Box>
         <Box className='bg-white my-1 py-1 border'>
           {/* 상품별 장바구니 */}
-          {Array.isArray(cartItems)&&
-            cartItems.map((item)=>{
-              console.log('item')
-              console.log(item)
+          {cartItems.map((item)=>{
               return (
                 <CartItem
                   key={item.id}
@@ -117,7 +118,7 @@ const CartList = () => {
               <span className='sum-price text-blue-500'>{comma(totalPrice)}원</span>
             </div>
             <Button
-              className="btn-order p-4 w-full"
+              className="btn-order p-4 w-full font-bold"
               onClick={()=>{
                 //update cart : 장바구니 정보 수정 
                 mutate(updatePayload, {
