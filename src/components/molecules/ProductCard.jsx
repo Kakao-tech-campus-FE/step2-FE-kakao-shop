@@ -2,9 +2,14 @@ import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductCard = ({ product }) => {
   return (
-    <Card className="card group" to={`/product/${product.id}`}>
+    <Card
+      className="card group"
+      to={staticServerUri + `/product/${product.id}`}
+    >
       <div className="rounded-2xl overflow-hidden">
         <Photo
           className=" photo group-hover:scale-110 rounded-2xl transition-transform duration-300 ease-in-out"

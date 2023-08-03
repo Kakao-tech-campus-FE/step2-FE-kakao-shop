@@ -41,7 +41,7 @@ function GNB() {
           <div className="sub-menu ml-40 mt-2 ">
             <ul className="menu flex ">
               <li>
-                <a href="/">홈</a>
+                <a href={staticServerUri + "/"}>홈</a>
               </li>
               <li>
                 <a href="javascript:void(0) ">브랜드데이</a>

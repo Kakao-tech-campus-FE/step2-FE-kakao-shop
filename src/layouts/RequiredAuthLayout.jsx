@@ -3,6 +3,8 @@ import Footer from "../components/atoms/Footer";
 import GNB from "../components/atoms/GNB";
 import { Outlet, useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export const useEffectOnce = (effect) => {
   const destroyFunc = useRef();
   const effectCalled = useRef(false);
@@ -39,7 +41,7 @@ const RequiredAuthLayout = () => {
   useEffectOnce(() => {
     if (localStorage.getItem("access_token") === null) {
       alert("로그인이 필요한 서비스입니다.");
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     }
   });
 
