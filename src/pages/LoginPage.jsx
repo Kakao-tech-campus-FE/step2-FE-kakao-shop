@@ -14,10 +14,13 @@ const LogoKakao = styled.img`
     display: block;
     margin: 50px auto 0;
 `;
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const LoginPage = () => {
     return (
         <>
-            <LogoKakao src={`${process.env.PUBLIC_URL}\logoKakaoText.png`} />
+            <LogoKakao src={staticServerUri + "\logoKakaoText.png"} />
             <StyledContainer>
                 <LoginForm />
             </StyledContainer>

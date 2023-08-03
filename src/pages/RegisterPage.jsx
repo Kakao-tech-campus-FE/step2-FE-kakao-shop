@@ -13,10 +13,13 @@ const LogoKakao = styled.img`
     display: block;
     margin: 50px auto 0;
 `;
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function RegisterPage() {
     return (
         <>
-            <LogoKakao src={`${process.env.PUBLIC_URL}\logoKakaoText.png`} />
+            <LogoKakao src={staticServerUri + "\logoKakaoText.png"} />
             <StyledContainer>
                 <RegisterForm />
             </StyledContainer>

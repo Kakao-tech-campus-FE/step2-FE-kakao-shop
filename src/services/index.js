@@ -4,7 +4,8 @@ import cookies from "react-cookies";
 const staticServerUri = process.env.REACT_APP_PATH || "";
 
 export const instance = axios.create({
-    baseURL: process.env.REACT_APP_API_URL || "/api",
+    baseURL: staticServerUri ? 
+        staticServerUri + "/api" : process.env.REACT_APP_API_URL,
     timeout: 1000,
     headers: {
         "Content-Type" : "application/json",
