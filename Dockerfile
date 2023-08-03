@@ -1,7 +1,5 @@
 FROM krmp-d2hub-idock.9rum.cc/goorm/node:16
-
-WORKDIR step2-FE-kakao-shop2/my-app
-
+WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm ci
