@@ -88,12 +88,11 @@ const LoginForm = () => {
                 navigate(staticServerUri + "/");
             })
             .catch((error) => {
-				console.log(error.response.status);
-				console.log(error.response.error.status);
-				console.log(error.status);
-				console.log(error.payload.error?.status);
-				console.error(error);
-                console.log(error);
+				if (error.response && error.response.status === 401) {
+					console.log(error.response.data.message);
+				} else {
+					console.log(error);
+				}
                 setError(error.toString());
             });
     };
