@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { useMutation } from "@tanstack/react-query";
 import { addCarts } from "../../services/cart";
 import { BsCart2 } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 const SelectedOrderedList = styled.ol`
   list-style: none;
@@ -91,8 +92,11 @@ const OptionColumn = ({ product }) => {
     },
   });
 
+  const token = useSelector((state) => state.user.token);
   const addCart = () => {
-    if (selectedOptions.length === 0) alert("옵션을 선택해주세요.");
+    if (!token) {
+      alert("로그인 후 이용해주세요.");
+    } else if (selectedOptions.length === 0) alert("옵션을 선택해주세요.");
     else {
       mutate(
         selectedOptions.map((el) => ({
