@@ -52,7 +52,7 @@ const Sidebar = () => {
         {menus.map((menu, index) => {
           return (
             <Link key={index} to={staticServerUri + menu.path}>
-              <SidebarItem menu={menu} icon={menu.icon} />
+              <SidebarItem menu={menu} icon={staticServerUri + menu.icon} />
             </Link>
           );
         })}

@@ -3,6 +3,8 @@ import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
 import ProductCardSkeleton from "../skeletons/ProductCardSkeleton";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductCard = ({ product, loading }) => {
   return (
     <>
@@ -12,7 +14,7 @@ const ProductCard = ({ product, loading }) => {
         <Card to={`/product/${product.id}`}>
           <Photo
             className="rounded-lg"
-            src={process.env.REACT_APP_API_URL + product.image}
+            src={staticServerUri + product.image}
             alt={product.productName}
           />
           <div className="text-sm font-medium">{product.productName}</div>
