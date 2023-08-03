@@ -4,6 +4,8 @@ import SidebarItem from "../atoms/SidebarItem";
 import { useDispatch, useSelector } from "react-redux";
 import { setIsLoggedIn } from "../../store/slices/userSlice";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Sidebar = () => {
   const [query, setQuery] = useState("");
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -32,7 +34,7 @@ const Sidebar = () => {
   return (
     <div className="fixed w-64 bg-gray-100 border-r-2 border-gray-300 top-0 bottom-0 left-0 h-full z-50 p-3">
       <div className="my-8 ml-3">
-        <Link to="/">
+        <Link to={staticServerUri + "/"}>
           <img src="/logoKakao.svg" width={100} alt="카카오톡 쇼핑하기" />
         </Link>
       </div>
@@ -49,7 +51,7 @@ const Sidebar = () => {
 
         {menus.map((menu, index) => {
           return (
-            <Link key={index} to={menu.path}>
+            <Link key={index} to={staticServerUri + menu.path}>
               <SidebarItem menu={menu} icon={menu.icon} />
             </Link>
           );
@@ -66,7 +68,7 @@ const Sidebar = () => {
               />
             </Link>
           ) : (
-            <Link to="/login">
+            <Link to={staticServerUri + "/login"}>
               <SidebarItem
                 menu={{
                   name: "로그인",
