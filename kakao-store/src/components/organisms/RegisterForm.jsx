@@ -4,6 +4,7 @@ import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
 import { register } from "../../apis/user";
 import Title from "../atoms/Title";
+import { useNavigate } from "react-router-dom";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const PASSWORD_REGEX = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,20}$/;
@@ -18,6 +19,7 @@ const PASSWORD_CONFIRM_MESSAGE = "비밀번호가 일치하지 않습니다.";
  * @returns 회원가입 폼 컴포넌트
  */
 const RegisterForm = () => {
+    const navigate = useNavigate();
     const { value, handleOnChange } = useInput({
         username: "",
         email: "",
@@ -57,7 +59,9 @@ const RegisterForm = () => {
                                 email: value.email,
                                 password: value.password,
                                 username: value.username,
-                            });
+                            })
+                            alert("회원가입 되었습니다.")
+                            navigate("/")
                         }
                     }}
                 >회원가입</Button>
