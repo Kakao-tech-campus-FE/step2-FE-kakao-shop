@@ -20,16 +20,6 @@ const SignUpForm = () => {
   const [isValid, setIsValid] = useState(false);
   const navigate = useNavigate();
 
-  const style = {
-    backgroundColor: "#ffe342",
-    border: "none",
-    borderRadius: "8px",
-    textAlign: "center",
-    padding: "10px",
-    width: "100px",
-    cursor: "pointer",
-  };
-
   const openModal = () => {
     setModalOpen(true);
   };
@@ -43,48 +33,49 @@ const SignUpForm = () => {
   };
 
   return (
-    <Container>
-      <SignUpInputGroup
-        id="email"
-        className="email"
-        type="email"
-        placeholder="이메일"
-        label="이메일 (아이디)"
-        value={value.email}
-        onChange={handleOnChange}
-      />
-      <Button
-        className="check"
-        style={style}
-        onClick={() => {
-          let title = "";
-          let description = "";
-          checkEmail({ email: value.email })
-            .then((res) => res.data)
-            .then((data) => {
-              if (data.success) {
-                title = "이 이메일을 사용할 수 있습니다.";
-                description = "사용하시겠습니까?";
+    <Container className="border border-gray-200 flex flex-col justify-center gap-4 w-[580px] max-h-max px-16 py-6">
+      <div className="email grid grid-flow-col gap-4">
+        <SignUpInputGroup
+          id="email"
+          className="email h-11 outline-none border-b-2 border-gray-400 focus:border-black"
+          type="email"
+          placeholder="이메일"
+          label="이메일 (아이디)"
+          value={value.email}
+          onChange={handleOnChange}
+        />
+        <Button
+          className="email-confirm inline-block border-0 bg-yellow-300 w-[100%] h-[50%] mt-[20%] hover:bg-yellow-400 focus:bg-yellow-500"
+          onClick={() => {
+            let title = "";
+            let description = "";
+            checkEmail({ email: value.email })
+              .then((res) => res.data)
+              .then((data) => {
+                if (data.success) {
+                  title = "이 이메일을 사용할 수 있습니다.";
+                  description = "사용하시겠습니까?";
+                  setTitle(title);
+                  setDes(description);
+                  openModal();
+                }
+              })
+              .catch((err) => {
+                title = "다른 이메일을 사용해주세요.";
+                description = err.response.data.error.message;
+                description = description.slice(0, description.indexOf(":"));
                 setTitle(title);
                 setDes(description);
                 openModal();
-              }
-            })
-            .catch((err) => {
-              title = err.response.data.error.message;
-              title = title.slice(0, title.indexOf(":"));
-              description = "다른 이메일을 사용해주세요.";
-              setTitle(title);
-              setDes(description);
-              openModal();
-            });
-        }}
-      >
-        이메일 확인
-      </Button>
+              });
+          }}
+        >
+          이메일 확인
+        </Button>
+      </div>
       <SignUpInputGroup
         id="username"
-        className="username"
+        className="username h-11 outline-none border-b-2 border-gray-400 focus:border-black"
         type="text"
         placeholder="이름"
         label="이름"
@@ -93,7 +84,7 @@ const SignUpForm = () => {
       />
       <SignUpInputGroup
         id="password"
-        className="password"
+        className="password w-[100%] h-11 outline-none border-b-2 border-gray-400 focus:border-black"
         type="password"
         placeholder="비밀번호"
         label="비밀번호"
@@ -102,7 +93,7 @@ const SignUpForm = () => {
       />
       <SignUpInputGroup
         id="passwordConfirm"
-        className="passwordConfirm"
+        className="passwordConfirm w-[100%] h-11 outline-none border-b-2 border-gray-400 focus:border-black"
         type="password"
         placeholder="비밀번호 확인"
         label="비밀번호 확인"
@@ -110,8 +101,7 @@ const SignUpForm = () => {
         onChange={handleOnChange}
       />
       <Button
-        style={style}
-        className="register"
+        className="register inline-block border-0 bg-yellow-300 w-[100%] py-4 hover:bg-yellow-400 focus:bg-yellow-500"
         onClick={() => {
           let title = "";
           let description = "";
@@ -140,6 +130,7 @@ const SignUpForm = () => {
               .catch((err) => {
                 description = err.response.data.error.message;
                 description = description.slice(0, description.indexOf(":"));
+                console.log("des", description);
                 title = "다시 작성해주세요.";
                 setTitle(title);
                 setDes(description);

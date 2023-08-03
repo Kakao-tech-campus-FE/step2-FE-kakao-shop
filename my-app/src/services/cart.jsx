@@ -10,7 +10,7 @@ export const addCart = (payload) => {
   const filteredPayload = payload
     .filter((el) => el.optionId !== 0)
     .map(({ token, ...rest }) => rest);
-  console.log("장바구니로 넘어가는 데이터: ", filteredPayload);
+
   return instance.post("/carts/add", filteredPayload);
 };
 
@@ -18,8 +18,7 @@ export const addCart = (payload) => {
  * 장바구니 정보 가져오기
  * @param {String} token
  */
-export const getCart = (token) => {
-  instance.defaults.headers.common["Authorization"] = token;
+export const getCart = () => {
   return instance.get("/carts");
 };
 

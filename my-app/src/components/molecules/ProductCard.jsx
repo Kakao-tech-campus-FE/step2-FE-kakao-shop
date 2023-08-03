@@ -1,7 +1,7 @@
 import { comma } from "../../utils/convert";
 import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
-import "../../styles/molecules/ProductCard.css";
+// import "../../styles/molecules/ProductCard.css";
 
 const ProductCard = ({ product }) => {
   return (
@@ -11,8 +11,8 @@ const ProductCard = ({ product }) => {
         src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
         alt={product.productName}
       />
-      <div className="product-name">{product.productName}</div>
-      <div className="product-price">{comma(product.price)}원</div>
+      <div className="product-name py-2 font-medium">{product.productName}</div>
+      <div className="product-price font-bold">{comma(product.price)}원</div>
     </Card>
   );
 };

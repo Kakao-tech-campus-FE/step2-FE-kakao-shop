@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../store/slices/productSlice";
 import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../atoms/Loader";
+import { fetchProducts } from "../../services/product";
+import { useQuery } from "react-query";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const bottomObserver = useRef(null);
   const dispatch = useDispatch();
+  const { isLoading } = useQuery("products", () => fetchProducts());
   const products = useSelector((state) => state.product.products);
-  const loading = useSelector((state) => state.product.loading);
   const isEnd = useSelector((state) => state.product.isEnd);
 
   const io = new IntersectionObserver(
@@ -37,12 +39,13 @@ const MainProductTemplate = () => {
   }, [dispatch, page]);
 
   return (
-    <Container>
-      <ProductGrid products={products} isLoading={loading} />
-      <div ref={bottomObserver}></div>
-      {loading && <Loader />}
-      {/* <Loader /> */}
-    </Container>
+    <Suspense fallback={<Loader />}>
+      <Container className="bg-[#fafafa]">
+        <ProductGrid products={products} isLoading={isLoading} />
+        <div ref={bottomObserver}></div>
+        {isLoading && <Loader />}
+      </Container>
+    </Suspense>
   );
 };
 

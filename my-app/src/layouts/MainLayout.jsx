@@ -23,6 +23,7 @@ const MainLayout = () => {
       navigate("/login");
     } else {
       setText("로그아웃");
+      navigate("/login");
     }
   };
 

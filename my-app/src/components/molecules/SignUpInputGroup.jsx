@@ -12,7 +12,7 @@ const SignUpInputGroup = ({
   placeholder,
 }) => {
   return (
-    <Box className={className}>
+    <div className="flex flex-col">
       <Label htmlFor={id}>{label}</Label>
       <Input
         id={id}
@@ -21,8 +21,9 @@ const SignUpInputGroup = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        className={className}
       />
-    </Box>
+    </div>
   );
 };
 

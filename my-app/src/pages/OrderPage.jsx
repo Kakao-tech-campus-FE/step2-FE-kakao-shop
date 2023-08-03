@@ -1,4 +1,4 @@
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import Loader from "../components/atoms/Loader";
 import OrderTemplate from "../components/templates/OrderTemplate";
 import { useQuery } from "react-query";

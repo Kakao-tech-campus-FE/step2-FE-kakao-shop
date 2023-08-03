@@ -20,7 +20,6 @@ const AppRoutes = () => {
           {/* 단독 레이아웃 */}
           <Route path="/login" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/orders/complete/:id" element={<OrderDetailPage />} />
           {/* 공통 레이아웃 */}
           <Route element={<MainLayout />}>
             <Route path="/" element={<HomePage />} />
@@ -29,6 +28,7 @@ const AppRoutes = () => {
           <Route element={<RequiredAuthLayout />}>
             <Route path="/cart" element={<CartsPage />} />
             <Route path="/order" element={<OrderPage />} />
+            <Route path="/orders/:id" element={<OrderDetailPage />} />
           </Route>
           {/* 에러페이지: 정해진 경로가 아닌 경우에 해당 페이지로 이동 */}
           <Route path="/error/:id/:message" element={<ErrorPage />} />

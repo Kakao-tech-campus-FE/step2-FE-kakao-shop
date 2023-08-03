@@ -20,6 +20,8 @@ const CartTemplate = ({ data }) => {
         .flatMap((item) => item.carts)
         .reduce((acc, cur) => acc + cur.quantity, 0);
       return count;
+    } else {
+      return 0;
     }
   }, [cartItems]);
 
@@ -71,11 +73,12 @@ const CartTemplate = ({ data }) => {
     });
   };
   return (
-    <Container className="cart-list">
-      <Box>
-        <span className="text-center font-bold text-xl">장바구니</span>
+    <Container className="cart-list pb-6">
+      <Box className="cart-title border rounded-lg bg-white py-2">
+        <div className="text-center font-bold text-xl">장바구니</div>
       </Box>
-      <Box>
+
+      <Box className="cart-items border rounded-md bg-white">
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
@@ -87,31 +90,32 @@ const CartTemplate = ({ data }) => {
             );
           })}
       </Box>
-      <Box>
-        <div className="row">
-          <span className="expect font-bold text-lg">주문 예상금액</span>
-          <div className="sum-price font-bold text-sm text-blue-500">
+      <Box className="cart-total border rounded-lg bg-white pt-2">
+        <div className="row flex justify-between px-4 py-2">
+          <span className="expect font-bold text-xl">주문 예상금액</span>
+          <div className="sum-price font-bold text-xl  text-indigo-500">
             {comma(totalPrice)}원
           </div>
         </div>
+        <Button
+          className="order-button m-auto px-10 py-2 bg-yellow-300 border-none rounded w-full"
+          onClick={() => {
+            mutate(updatedPayload, {
+              onSuccess: () => {
+                navigate("/order");
+              },
+              onError: (error) => {
+                alert("에러가 발생했습니다.");
+              },
+            });
+          }}
+        >
+          <span className="font-bold">
+            총 <span className=" text-red-500">{totalQuantity()}</span>건
+            주문하기
+          </span>
+        </Button>
       </Box>
-      <Button
-        className="order-button m-auto px-10 py-2 bg-yellow-300 border-none"
-        onClick={() => {
-          mutate(updatedPayload, {
-            onSuccess: () => {
-              navigate("/order");
-            },
-            onError: (error) => {
-              alert("에러가 발생했습니다.");
-            },
-          });
-        }}
-      >
-        <span className="font-bold">
-          총 <span className=" text-red-500">{totalQuantity()}</span>건 주문하기
-        </span>
-      </Button>
     </Container>
   );
 };

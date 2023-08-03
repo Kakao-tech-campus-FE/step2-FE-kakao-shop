@@ -21,21 +21,23 @@ const Counter = ({ onIncrease, onDecrease, value = 1 }) => {
     });
   }, []);
   return (
-    <div className="counter">
+    <span className="counter border rounded px-2 py-1 ">
       <button
-        className="decrease-button rounded-l-md w-4"
+        className="decrease-button p-1 text-center w-8"
         onClick={handleOnDecrease}
       >
         -
       </button>
-      <div className="count inline-block w-4 text-center">{count}</div>
+      <span className="count inline-block border-x w-10 h-full text-center">
+        {count}
+      </span>
       <button
-        className="increase-button rounded-r-md w-4"
+        className="increase-button p-1 text-center w-8"
         onClick={handleOnIncrease}
       >
         +
       </button>
-    </div>
+    </span>
   );
 };
 export default Counter;

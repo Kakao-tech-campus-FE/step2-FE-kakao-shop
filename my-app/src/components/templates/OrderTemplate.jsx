@@ -3,6 +3,7 @@ import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
+import OrderItems from "../organisms/OrderItems";
 
 const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
@@ -32,30 +33,6 @@ const OrderTemplate = ({ data }) => {
     } else if (name === "policy-agree") {
       setAgreePolicy(checked);
     }
-  };
-
-  const OrderItems = () => {
-    if (!Array.isArray(products)) return;
-
-    const renderComponent = products.map((item) => {
-      return item.carts.map((cart) => {
-        return (
-          <div key={cart.id} className="p-4 border-t">
-            <div className="product-name font-bold">
-              <span>{`${item.productName} - ${cart.option.optionName}`}</span>
-            </div>
-            <div className="quantity">
-              <span>{comma(cart.quantity)}개</span>
-            </div>
-            <div className="price font-bold">
-              <span>{comma(cart.price * cart.quantity)}원</span>
-            </div>
-          </div>
-        );
-      });
-    });
-
-    return renderComponent;
   };
 
   return (
@@ -88,7 +65,7 @@ const OrderTemplate = ({ data }) => {
         <div className="border py-4">
           <span className="mx-2">주문상품 정보</span>
         </div>
-        <OrderItems />
+        <OrderItems products={products} />
 
         {/* 총 주문금액 */}
         <div className="border p-4 flex items-center justify-between">

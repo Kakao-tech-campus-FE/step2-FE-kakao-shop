@@ -62,61 +62,66 @@ const OptionColumn = ({ product }) => {
   });
 
   return (
-    <div className="option-column rounded divide-y divide-slate-300 ...">
-      <h3>옵션 선택</h3>
+    <div className="option-column">
+      <h3 className="font-bold text-lg my-2">옵션 선택</h3>
       {/* 옵션 담기 - optionId, quantity */}
       <OptionList options={product.options} onClick={handleOnClickOption} />
       <hr />
       {/* 담긴 옵션 표기 */}
-      {selectedOptions.map(
-        (option) =>
-          option.optionId !== 0 && (
-            <ul
-              key={option.optionId}
-              className="selected-option-list border-slate-300 my-3"
-            >
-              <li className="selected-option">
-                <span className="name">선택한 상품 : {option.name}</span>
-                <span className="price">{comma(option.price)}원</span>
-                <Counter
-                  onIncrease={(count) => {
-                    handleOnChange(count, option.optionId);
-                  }}
-                  onDecrease={(count) => {
-                    handleOnChange(count, option.optionId);
-                  }}
-                />
-              </li>
-            </ul>
-          )
-      )}
+      {selectedOptions
+        .filter((option) => option.optionId !== 0)
+        .map((option) => (
+          <ul
+            key={option.optionId}
+            className="selected-option-list border rounded my-2"
+          >
+            <li className="selected-option p-2 bg-gray-100">
+              <div className="name font-bold text-lg">{option.name}</div>
+              <div className="price text-right font-medium">
+                {comma(option.price)}원
+              </div>
+              {/* Counter */}
+              <Counter
+                onIncrease={(count) => {
+                  handleOnChange(count, option.optionId);
+                }}
+                onDecrease={(count) => {
+                  handleOnChange(count, option.optionId);
+                }}
+              />
+            </li>
+          </ul>
+        ))}
       <div className="total-quantity-price grid gap-2">
-        <span>
-          총 수량 :{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity;
-            }, 0)
-          )}
-          개{" "}
+        <span className="font-semibold">
+          총 수량{" "}
+          <span className="font-bold">
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity;
+              }, 0)
+            )}
+            개{" "}
+          </span>
         </span>
-        <span>
-          총 주문금액 :{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
+        <span className="font-semibold">
+          총 주문금액{" "}
+          <span className="font-bold text-red-500">
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price;
+              }, 0)
+            )}
+          </span>
+          원
         </span>
       </div>
       <div className="button-group">
-        {/* 장바구니 담기 버튼 위치 */}
         <Button
-          className="w-80 h-10 rounded bg-yellow-300 text-sm"
+          className="w-80 h-10 rounded bg-black text-white font-semibold"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
-                console.log("OptionColumn/Token: ", token);
                 return {
                   optionId: el.optionId,
                   quantity: el.quantity,
@@ -142,7 +147,7 @@ const OptionColumn = ({ product }) => {
         >
           장바구니 담기
         </Button>
-        <Button className="w-80 h-10 rounded bg-black text-sm text-white">
+        <Button className="w-80 h-10 rounded bg-yellow-300 font-semibold">
           구매하기
         </Button>
       </div>

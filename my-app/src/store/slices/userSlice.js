@@ -29,9 +29,10 @@ const userSlice = createSlice({
       state.email = action.payload.email;
       state.loading = false;
       state.isLogined = true;
-      state.token = action.payload.headers.authorization;
       state.username = action.payload.username;
       state.error = null;
+      state.token = action.payload.headers.authorization;
+      localStorage.setItem("token", state.token);
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;

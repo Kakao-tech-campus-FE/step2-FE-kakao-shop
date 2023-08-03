@@ -28,7 +28,6 @@ const productsSlice = createSlice({
         "id"
       );
       state.statusCode = "200";
-      console.log("데이터 처리 완료", `${state.statusCode}`);
     });
     builder.addCase(getProducts.rejected, (state, action) => {
       state.loading = false;

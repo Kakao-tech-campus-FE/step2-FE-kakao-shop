@@ -3,15 +3,15 @@ import { useQuery } from "react-query";
 import { Suspense } from "react";
 import Loader from "../components/atoms/Loader";
 import { getCart } from "../services/cart";
-import { useSelector } from "react-redux";
 
 const CartsPage = () => {
-  const token = useSelector((state) => state.user.token);
-  const { data } = useQuery("carts", () => getCart(token));
+  const { data } = useQuery("carts", () => getCart());
 
   return (
     <Suspense fallback={<Loader />}>
-      <CartsTemplate data={data} />
+      <div className="bg-gray-100">
+        <CartsTemplate data={data} />
+      </div>
     </Suspense>
   );
 };

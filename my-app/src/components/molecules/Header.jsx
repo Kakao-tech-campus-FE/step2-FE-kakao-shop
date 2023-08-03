@@ -1,7 +1,5 @@
-import "../../styles/molecules/Header.css";
 import { FiShoppingCart } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import Photo from "../atoms/Photo";
 
 // children: GNB 영역에 있는 구성요소들
 // onClick: 버튼의 클릭 핸들러
@@ -9,7 +7,7 @@ import Photo from "../atoms/Photo";
 const Header = ({ onClick, text }) => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="py-4 border-b-2">
       <header className="header flex justify-between px-4">
         <div className="home-logo">
           <button

@@ -8,21 +8,28 @@ const SignInInputGroup = ({
   type,
   value,
   onChange,
+  onFocus,
+  onBlur,
   label,
   placeholder,
+  ref,
 }) => {
   return (
-    <Box className={className}>
+    <div>
       <Input
         id={id}
         name={id}
         type={type}
         value={value}
         onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
         placeholder={placeholder}
+        className={className}
+        ref={ref}
       />
       <Label htmlFor={id}>{label}</Label>
-    </Box>
+    </div>
   );
 };
 

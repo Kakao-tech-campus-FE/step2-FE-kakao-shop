@@ -5,7 +5,6 @@ import "./App.css";
 import store from "./store";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Loader from "./components/atoms/Loader";
 
 const queryClient = new QueryClient(); // status 관리 부분 -> option 값
 
