@@ -8,7 +8,7 @@ const Btn = styled.button`
 
   cursor: pointer;
 
-  width: ${(props) => props.width};
+  width: ${(props) => props.width}||max-width;
   color: ${(props) => colors[props.color]};
   background-color: ${(props) => colors[props.backgroundColor]};
 `;
