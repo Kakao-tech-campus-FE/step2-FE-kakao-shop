@@ -20,7 +20,7 @@ const detailSlice= createSlice({
             state.error=null;
         })
         .addCase(getDetail.fulfilled, (state, action)=>{
-           state.detail=action.payload; //success, error, response;
+           state.detail=action.payload.response; //success, error, response;
            state.loading=false;
            state.error=null;
         })

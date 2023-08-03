@@ -8,25 +8,26 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const CartPage=()=>{
-    const [carts, setCarts] = useState([]);
+  const { data, isLoading } = useQuery("cart", getCart);
+    // const [carts, setCarts] = useState([]);
 
 
-    useEffect(() => {
-        getCart()
-          .then((res) => {
-            console.log(res);
-            setCarts(res);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, []);
+    // useEffect(() => {
+    //     getCart()
+    //       .then((res) => {
+    //         console.log(res);
+    //         setCarts(res);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       });
+    //   }, []);
 
       return (
         <div className="cartpage">
           <Suspense fallback={<Loader />}>
             {/* <CartList data={carts} /> */}
-            {carts.length !== 0 && <CartList data={carts} />}
+            <CartList data={data} isLoading={isLoading}/>
           </Suspense>
         </div>
       );

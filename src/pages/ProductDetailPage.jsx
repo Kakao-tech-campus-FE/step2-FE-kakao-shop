@@ -50,21 +50,21 @@ const ProductDetailPage = ()=>{
   };
 
 
-  const handleOnError = useCallback(() => {
-    console.error("Error occurred:", error);
-    navigate("/error"); // 404 페이지로 이동합니다.
-  }, [error, navigate]);
+  // const handleOnError = useCallback(() => {
+  //   console.error("Error occurred:", error);
+  //   navigate("/error"); // 404 페이지로 이동합니다.
+  // }, [error, navigate]);
 
-  useEffect(() => {
-    if (error) {
-      handleOnError();
-    }
-  }, [error, handleOnError]);
+  // useEffect(() => {
+  //   if (error) {
+  //     handleOnError();
+  //   }
+  // }, [error, handleOnError]);
 
   return (
     <div className="product-detail-page">
       {isLoading && <Loader />}
-      {error && handleOnError}
+      {error && <div>{error.message}</div>}
       {product && <ProductDetailTemplate product={product} />}
       
     </div>

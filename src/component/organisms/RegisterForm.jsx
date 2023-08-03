@@ -11,13 +11,7 @@ import { useDispatch } from "react-redux";
 
 
 const RegisterForm =() =>{
-  const navigate=useNavigate();
-    const{value, handleOnChange, validateEmail,
-      validatePassword,
-      validatePasswordConfirm,
-      emailError,
-      pwError,
-      pwConfirmError,}= useInput({
+    const{value, handleOnChange}= useInput({
         username:"",
         email:"",
         password:"",
