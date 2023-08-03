@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ProductThumbnail } from '../../types/product';
 import ProductCard from '../molecules/productCard';
+import { staticServerUri } from '../../utils/serverUri';
 
 interface ProductListProps {
   productData: ProductThumbnail[] | undefined;
@@ -17,7 +18,7 @@ export default function ProductList({ productData }: ProductListProps) {
             <ProductCard
               productName={productName}
               description={description}
-              image={`${new URL(image, process.env.REACT_APP_KAKAO_API_URL).toString()}`}
+              image={`${new URL(image, `${staticServerUri}/api`).toString()}`}
               price={price}
             />
           </Link>
