@@ -7,8 +7,8 @@ const ProductGrid = ({ products, isFetchingNextPage }) => {
   return (
     <Grid.Product>
       {products
-        ? products.map((product, idx) => (
-            <ProductCard key={idx} product={product} />
+        ? products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))
         : null}
       {isFetchingNextPage && <Loader className="mainLoader" />}
