@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL:
+    "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com",
   timeout: 1000 * 5,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
