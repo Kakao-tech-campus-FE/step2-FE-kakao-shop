@@ -1,5 +1,5 @@
 FROM krmp-d2hub-idock.9rum.cc/goorm/node:16
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/mandu
 COPY package*.json ./
 RUN npm ci
 COPY . .
