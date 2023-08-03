@@ -25,7 +25,7 @@
 
 ---
 
-[여기]()에서 확인할 수 있습니다.
+[여기](https://user-app.krampoline.com/ke1747bb20edfa)에서 확인할 수 있습니다.
 
 <br>
 
@@ -50,6 +50,30 @@
 #### 📂 Architecture
 
 ---
+
+📦src
+┣ 📂Components -> atomic pattern 적용
+┃ ┣ 📂Atoms
+┃ ┣ 📂Molecules
+┃ ┣ 📂Organisms
+┃ ┗ 📂Templates
+┣ 📂Hooks -> 커스텀훅
+┣ 📂Layouts -> 페이지에 공통으로 들어가는 레이아웃
+┣ 📂Pages -> 페이지
+┣ 📂Servicies -> api 요청
+┣ 📂Store
+┃ ┣ 📂Slices
+┃ ┗ 📜index.js
+┣ 📂Styles -> css
+┣ 📂Utils -> 함수
+┣ 📜App.css
+┣ 📜App.js
+┣ 📜App.test.js
+┣ 📜index.css
+┣ 📜index.js
+┣ 📜logo.svg
+┣ 📜reportWebVitals.js
+┗ 📜setupTests.js
 
 <br>
 
