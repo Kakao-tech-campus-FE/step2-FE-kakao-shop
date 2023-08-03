@@ -4,7 +4,6 @@ import Photo from "../atoms/Photo";
 import "../../styles/molecules/ProductCard.css"
 
 const ProductCard =({ product }) => {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
     const { id, productName, price, image } = product;
 
 

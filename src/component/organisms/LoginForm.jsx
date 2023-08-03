@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();  //redux 의 액션을 발생시키는 함수!!
-    const staticServerUri = process.env.REACT_APP_PATH || "";
 
     const {
         value,
@@ -43,7 +42,7 @@ const LoginForm = () => {
                 localStorage.setItem("email", value.email);
                 localStorage.setItem("token", res.headers.authorization);
 
-            navigate(staticServerUri + "/");// 홈페이지로 리다이렉트
+            navigate("/");// 홈페이지로 리다이렉트
         })
             .catch((err) => {
                 console.log("err", err)

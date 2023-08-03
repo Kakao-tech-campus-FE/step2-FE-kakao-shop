@@ -6,7 +6,6 @@ import { comma } from "../../utils/convert";
 
 
 const OrderTemplate = ({ data }) => {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
 
     // 사용자의 장바구니 목록을 조회해서 보여주는 것
     const [ products, setProducts ] = useState([]);
@@ -177,7 +176,7 @@ const OrderTemplate = ({ data }) => {
                                 onSuccess: (res) =>{
                                     const id = res.data.response.id;
                                     alert("주문이 완료됐습니다.");
-                                    navigate(staticServerUri + `/orders/complete/${id}`);
+                                    navigate(`/orders/complete/${id}`);
                                 }
                             })
 

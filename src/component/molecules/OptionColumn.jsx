@@ -9,7 +9,6 @@ import Photo from "../atoms/Photo";
 
 
 const OptionColumn = ({ product }) => {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
     
     const navigate = useNavigate();
     const [selectedOptions, setSelectedOptions] = useState([]);
@@ -73,7 +72,7 @@ const OptionColumn = ({ product }) => {
                 await addCart(addCartArr)
                     .then(response => {
                         alert("장바구니에 담았습니다.")
-                        navigate(staticServerUri + "/cart")
+                        navigate("/cart")
                     }).catch(err => {
                         alert("장바구니 담기에 실패했습니다.")});
                 }

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 
 const RegisterForm = () => {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
 
     const navigate = useNavigate();
     const {
@@ -36,7 +35,7 @@ const RegisterForm = () => {
             username : value.username,
         })
             .then((res) => {
-                navigate(staticServerUri + "/")
+                navigate("/")
             })
             .catch((err) => {
                 console.log("err", err)
