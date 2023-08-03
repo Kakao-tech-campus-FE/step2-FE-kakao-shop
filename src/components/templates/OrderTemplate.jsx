@@ -40,6 +40,15 @@ const OrderTemplate = () => {
    * 3. 서버 에러 
    *    서버 요청 실패의 경우 alert창을 띄운다.
    */
+	
+
+	
+	
+	
+	
+	
+	
+	
 
   const { mutate } = useMutation({
     mutationFn: order,
