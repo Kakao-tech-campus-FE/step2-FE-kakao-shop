@@ -18,7 +18,9 @@ const Main = () => {
           staticServerUrl + '/assets/carouselItem3.jpeg',
         ]
       }/>
-      <MainProductsTemplate />
+      <div className='flex justify-center'>
+        <MainProductsTemplate />
+      </div>
     </div>
   );
 };
