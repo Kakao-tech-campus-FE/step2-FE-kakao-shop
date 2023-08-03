@@ -7,8 +7,8 @@ class PaymentInstance extends ApiInstance {
     partner_user_id: "partner_user_id",
     vat_amount: 0,
     tax_free_amount: 0,
-    fail_url: "http://localhost:3000/canceled-order",
-    cancel_url: "http://localhost:3000/canceled-order",
+    fail_url: "https://user-app.krampoline.com/ke3fef0952eb9a/canceled-order",
+    cancel_url: "https://user-app.krampoline.com/ke3fef0952eb9a/canceled-order",
   };
 
   approveParams = {
@@ -24,7 +24,7 @@ class PaymentInstance extends ApiInstance {
       item_name,
       quantity,
       total_amount,
-      approval_url: `http://localhost:3000/pay_redirect?address=${address}&request=${request}`,
+      approval_url: `https://user-app.krampoline.com/ke3fef0952eb9a/pay_redirect?address=${address}&request=${request}`,
     };
     return this.instance.post("/v1/payment/ready", params, {
       headers: {
