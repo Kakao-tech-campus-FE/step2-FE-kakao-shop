@@ -42,27 +42,8 @@ const OrderTemplate = () => {
    */
 	
 
-	
-	
-	
-	
-	
-	
-	
-
-  const { mutate } = useMutation({
+   const { mutate } = useMutation({
     mutationFn: order,
-    onError: (error) => {
-      if (error.response && error.response.status === 401) {
-        alert("로그인 정보가 없습니다. 로그인 페이지로 이동합니다.");
-        navigate(staticServerUri + "/login");
-      } else if (error.response && error.response.status === 404) {
-        alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
-        navigate(staticServerUri + "/*");
-      } else {
-        alert("주문에 실패했습니다. 다시 시도해주세요.");
-      }
-    },
   });
 
   const OrderItems = () => {
