@@ -284,5 +284,10 @@ const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 **앱 배포 후 수정사항이 발생하면 수정사항 반영 후 앱 재배포를 수행한다**
 
+---
+
+배포완료, 웹 URL
+https://user-app.krampoline.com/kf78d595a431fa/
+
 </div>
 </details>
