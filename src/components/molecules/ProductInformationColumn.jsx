@@ -16,7 +16,7 @@ return
       |_a (price 원)
 
 */
-
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
@@ -26,7 +26,7 @@ const ProductInformationColumn = ({ product }) => {
       <div className="basis-1/2">
         <Photo
           className="w-full h-96 block"
-          src={process.env.REACT_APP_API_URL + image}
+          src={staticServerUrl + image}
           alt={productName}
         />
       </div>

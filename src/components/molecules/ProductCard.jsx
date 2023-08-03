@@ -20,7 +20,7 @@ const ProductCard = ({ product, isLoading }) => {
       >
         <Photo
           className="img_thumb"
-          src={process.env.REACT_APP_API_URL + product.image}
+          src={staticServerUrl + product.image}
           alt={product.productName}
         />
         <div className="product_name">{product.productName}</div>
