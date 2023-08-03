@@ -20,12 +20,24 @@ const Carousel = () => {
   };
 
   return (
-    <div className="carousel hidden">
+    <div className="carousel hidden w-[1045px] relative">
       <div className="carousel-images">
         <img src={images[currentIndex]} alt={`Image ${currentIndex + 1}`} />
       </div>
-      <button onClick={handlePrevious}>Prev</button>
-      <button onClick={handleNext}>Next</button>
+      <div className="flex justify-between px-2">
+        <button
+          className="badge text-blue-400 bg-slate-100 rounded-md text-xs p-1"
+          onClick={handlePrevious}
+        >
+          Prev
+        </button>
+        <button
+          className="badge text-blue-400 bg-slate-100 rounded-md text-xs p-1"
+          onClick={handleNext}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

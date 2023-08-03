@@ -1,6 +1,5 @@
 import "../styles/pages/error.css";
 const ErrorPage = () => {
-  let errorNum = 404;
   return (
     <div id="notfound">
       <div class="notfound">
