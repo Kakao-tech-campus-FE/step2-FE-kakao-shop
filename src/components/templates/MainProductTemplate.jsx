@@ -28,11 +28,13 @@ function MainProductTemplate() {
     if(!isLoading && !end && !isError){
       io.observe(bottomObserver.current)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 },[isLoading]) // 최초 렌더링 마운트 1회만 선언 
 
   useEffect(()=>{
     if(isError || end)
       io.unobserve(bottomObserver.current)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[isError,end]) //에러가 발생하거나, end가 true이면 더이상 bottomObserver는 관측 되지 않는다.
 
 

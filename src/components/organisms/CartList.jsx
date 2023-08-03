@@ -10,6 +10,7 @@ import { comma } from '../../utils/convert'
 import Button from '../atoms/Button'
 import LinkTo from '../atoms/LinkTo'
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function CartList( {data, } ) {
   const route = useNavigate()
@@ -26,6 +27,7 @@ function CartList( {data, } ) {
     console.log("reloading")
     setCartItems(data?.data?.response?.products)
     setTotalPrice(data?.data?.response?.totalPrice)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   /** 
@@ -151,7 +153,7 @@ function CartList( {data, } ) {
         </div>
       </div>
 
-      <LinkTo to={'/order'}>
+      <LinkTo to={staticServerUri + '/order'}>
       <div className='bg-yellow-300 py-[20px]'>
         <Button onClick={onClickHandler}>
           <span className='font-bold text-xl'>총 {getTotalCartCountIncludeOption()}건 주문하기</span>

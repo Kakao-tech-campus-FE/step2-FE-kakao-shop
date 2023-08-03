@@ -3,6 +3,8 @@ import Menu from "../atoms/Menu";
 import { useEffect, useState, } from 'react'
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function LoginMenu({style, }) {
   const [ loginCheck, setLoginCheck ] = useState(false)
   const navigate = useNavigate()
@@ -17,14 +19,14 @@ function LoginMenu({style, }) {
       setTimeout(()=>{
         localStorage.setItem('token', null);
         setLoginCheck(false)
-        navigate("/")
+        navigate(staticServerUri + "/")
       },1000*60*60)
     }
-  })
+  },[navigate])
 
   return (
     <Menu style={style}>
-      <LinkTo to={'/signup'} style={{
+      <LinkTo to={staticServerUri + '/signup'} style={{
         textDecoration: 'none',
         display: 'block',
         padding: '12px 0',
@@ -34,7 +36,7 @@ function LoginMenu({style, }) {
         marginRight: '20px',
       }}>회원가입</LinkTo>
 
-      {loginCheck ? <LinkTo to={'/'} style={{
+      {loginCheck ? <LinkTo to={staticServerUri + '/'} style={{
       textDecoration: 'none',
       display: 'block',
       padding: '12px 0',
@@ -45,7 +47,7 @@ function LoginMenu({style, }) {
       setLoginCheck(false)
       localStorage.removeItem('token')
       }}>로그아웃</LinkTo> :
-      <LinkTo to={'/login'} style={{
+      <LinkTo to={staticServerUri + '/login'} style={{
         textDecoration: 'none',
         display: 'block',
         padding: '12px 0',
