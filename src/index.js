@@ -7,7 +7,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/index';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+    },
+  },
+});
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
