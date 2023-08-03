@@ -8,7 +8,7 @@ import { setEmail } from "../../store/slices/userSlice"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import Footer from "../atoms/Footer"
-
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -59,7 +59,7 @@ const LoginForm = () => {
   return (
     <div class="flex flex-col h-screen">
     <Container className="inner flex flex-col gap-7 justify-center items-center h-screen">
-      <img src='/logoKakaoText.png' alt='로그인' />
+      <img src={staticServerUrl +'/logoKakaoText.png'} alt='로그인' />
       <div className="py-10 px-20 border">
         <span>{email}</span>
         <InputGroup 

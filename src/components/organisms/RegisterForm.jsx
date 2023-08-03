@@ -6,7 +6,7 @@ import { check, register } from "../../services/user"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react"
 import Footer from "../atoms/Footer"
-
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const RegisterForm = () => {
   const navigate = useNavigate()
   const {
@@ -61,7 +61,7 @@ const RegisterForm = () => {
   return (
     <div class="flex flex-col h-screen">
     <Container className="inner flex-1 flex flex-col gap-7 justify-center items-center h-screen">
-        <img src='/logoKakaoText.png' alt='회원가입'/>
+        <img src={staticServerUrl +'/logoKakaoText.png'} alt='회원가입'/>
         <div className="py-10 px-20 border">
           <InputGroup 
             id="username"
