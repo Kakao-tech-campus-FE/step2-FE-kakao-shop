@@ -5,7 +5,7 @@ import { comma } from '../../utils/convert';
 import { order } from '../../services/order';
 import useAgree from '../../hooks/useAgree';
 // 사용자의 장바구니 목록을 조회해서 보여주는 것
-
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data.data.response;
   const {
@@ -130,9 +130,9 @@ const OrderTemplate = ({ data }) => {
                 onError: (error) => {
                   if (error.response.request.status === 401) {
                     alert('로그인 세션이 만료되었습니다 다시 로그인해 주세요');
-                    navigate('/login');
+                    navigate(staticServerUrl+'/login');
                   } else {
-                    navigate('/error');
+                    navigate(staticServerUrl+'/error');
                   }
                 },
                 onSuccess: (res) => {

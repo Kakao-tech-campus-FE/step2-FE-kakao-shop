@@ -7,7 +7,7 @@ import useInput from '../../hooks/useInput';
 import { register } from '../../services/user';
 import Title from '../atoms/Title';
 // import { BrowserRouter as Redirect } from 'react-router-dom';
-
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 function RegisterForm() {
   const navigate = useNavigate();
   const {
@@ -33,7 +33,7 @@ function RegisterForm() {
     })
       .then((res) => {
         alert('성공');
-        navigate('/');
+        navigate(staticServerUrl+'/');
       })
       .catch((error) => {
         alert(error.response.data.error.message);

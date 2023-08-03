@@ -6,7 +6,7 @@ import Counter from '../atoms/Counter';
 import { comma } from '../../utils/convert';
 import { addCart } from '../../services/cart';
 import Button from '../atoms/Button';
-
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 const OptionColumn = ({ product }) => {
   const navigate = useNavigate();
   // 선택 옵션들을 담는 배열
@@ -116,9 +116,9 @@ const OptionColumn = ({ product }) => {
               onError: (error) => {
                 if (error.response.request.status === 401) {
                   alert('로그인 세션이 만료되었습니다 다시 로그인해 주세요');
-                  navigate('/login');
+                  navigate(staticServerUrl+'/login');
                 } else {
-                  navigate('/error');
+                  navigate(staticServerUrl+'/error');
                 }
               },
             },
