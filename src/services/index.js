@@ -38,7 +38,10 @@ instance.interceptors.response.use(
             } else if (parseInt(err.status) >= 200) {
                 console.log('200번 대 에러 처리');
             }
-            alert(err.message);
+
+            if (err.status === 401) {
+                localStorage.removeItem('token');
+            }
             return Promise.reject(error);
         }
     }

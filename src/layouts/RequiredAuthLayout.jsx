@@ -10,13 +10,14 @@ const RequiredAuthLayout = () => {
 
     useEffect(() => {
         if (localStorage.getItem('token') === null) {
+            console.log('hi');
             alert('로그인이 필요한 서비스입니다.');
             navigate(URL.LOGIN);
         }
     }, [navigate]);
 
     return (
-        <div className="flex-col w-[100%]">
+        <div className="flex-col w-full h-screen">
             <GNB />
             <Outlet />
             <Footer />

@@ -18,17 +18,24 @@ const GNB = () => {
     };
 
     return (
-        <div className="header w-[100%] sticky top-0 flex justify-around p-3 bg-white">
-            <Link to={-1}>
-                <AiOutlineLeft color="#000" size="1.5rem" />
-            </Link>
+        <div className="header w-full sticky top-0 flex justify-between p-4 px-20 bg-white mb-2 self-start">
             <Link to={URL.HOME}>
-                <img src={logo} alt="Kakao Logo" height={20} className="h-10" />
+                <img src={logo} alt="Kakao Logo" height={20} className="h-8" />
             </Link>
-            <nav>
+            <nav className="flex items-center">
                 <Link to={URL.CART}>
-                    <AiOutlineShoppingCart color="#000" size="1.5rem" />
+                    <AiOutlineShoppingCart color="#000" size="1.5rem" className="mr-4" />
                 </Link>
+
+                {!isLogin ? (
+                    <Link to={URL.LOGIN}>
+                        <span className="pl-4 border-l-2">로그인</span>
+                    </Link>
+                ) : (
+                    <span className="pl-4 border-l-2" onClick={handleLogout}>
+                        로그아웃
+                    </span>
+                )}
             </nav>
         </div>
     );
