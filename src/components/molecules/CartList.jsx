@@ -10,6 +10,8 @@ import Button from "../atoms/Button";
 import { updateCart } from "../../services/cart";
 import { useMutation } from "react-query";
 
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const CartList = ({ data }) => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -122,7 +124,7 @@ const CartList = ({ data }) => {
             onSuccess: (data) => {
               console.log("success");
               // navigate to order page
-              navigate("/order");
+              navigate(staticServerUrl + "/order");
             },
             onError: (error) => {
               console.log("error");

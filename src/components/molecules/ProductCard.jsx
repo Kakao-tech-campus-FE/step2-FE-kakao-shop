@@ -12,7 +12,7 @@ const ProductCard = ({ product, isLoading }) => {
     <div className="card_deal">
       {/* while loading, use skeleton instead. */}
       {isLoading ? <Skeleton /> : null}
-      <Card className="link_card" to={`/product/${product.id}`}>
+      <Card className="link_card" to={staticServerUrl +`/product/${product.id}`}>
         <Photo
           className="img_thumb"
           src={process.env.REACT_APP_API_URL + staticServerUrl + product.image}

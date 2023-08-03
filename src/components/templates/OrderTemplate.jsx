@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import InputGroup from "../molecules/InputGroup";
 
+
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
@@ -177,7 +180,7 @@ const OrderTemplate = ({ data }) => {
                   console.log(res);
                   const id = res.data.response.id;
                   alert("주문이 완료되었습니다.");
-                  navigate(`/order/complete/${id}`);
+                  navigate(staticServerUrl + `/order/complete/${id}`);
                 },
               });
             }}

@@ -26,6 +26,8 @@ import { Link } from "react-router-dom";
 // |_InputGroup(비밀번호 그룹)
 // |_Button(로그인 버튼)
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ const LoginForm = () => {
       localStorage.setItem("user", JSON.stringify(user)); // save at localStorage
       dispatch(setToken(token));
       localStorage.setItem("token", token);
-      navigate("/"); // login success then go to home
+      navigate(staticServerUrl + "/"); // login success then go to home
     } catch (error) {
       setError("로그인에 실패했습니다.");
     }

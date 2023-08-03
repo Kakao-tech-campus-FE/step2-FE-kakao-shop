@@ -41,6 +41,8 @@ import { register, duplicate } from "../../services/users";
 //   |_div(비밀번호 확인 에러) * 에러 시에만
 //   |_Button  (회원가입 버튼)
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [errors, setError] = useState({});
@@ -87,7 +89,7 @@ const RegisterForm = () => {
     try {
       const { email, password, username } = data;
       const response = await register({ email, password, username });
-      navigate("/login");
+      navigate(staticServerUrl + "/login");
     } catch (errors) {
       setError(regierror);
     }

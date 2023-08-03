@@ -5,13 +5,14 @@ import clearUser from "../../store/slices/userSlice";
 import { Fragment, useEffect } from "react";
 
 //header bar components
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const GNB = () => {
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const label = token ? "로그아웃" : "로그인";
-  const loginoutpath = token ? "/" : "/login";
-  const cartpath = token ? "/cart" : "/login";
+  const loginoutpath = token ? staticServerUrl + "/" : staticServerUrl + "/login";
+  const cartpath = token ? staticServerUrl+"/cart" : staticServerUrl+"/login";
 
   const handleClick = () => {
     if (token) {
@@ -30,7 +31,7 @@ const GNB = () => {
         <nav className="inner_head">
           <div className="inner_wrap">
             <h1 className="tit_logo">
-              <Link className="link_logo" to="/">
+              <Link className="link_logo" to={staticServerUrl+"/"}>
                 <img
                   className="img_logo"
                   src={
