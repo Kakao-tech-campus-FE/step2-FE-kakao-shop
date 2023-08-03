@@ -1,5 +1,3 @@
-import { styled } from 'styled-components';
-
 /**
  * 페이지 Heading 컴포넌트
  * @param {ReactNode} children - 하위 컴포넌트
@@ -7,13 +5,7 @@ import { styled } from 'styled-components';
  */
 
 const Title = ({ children }) => {
-    return <StyledTitle>{children}</StyledTitle>;
+    return <h1 className="text-xl font-bold mb-10">{children}</h1>;
 };
-
-const StyledTitle = styled.h1`
-    margin: ${({ theme }) => theme.margin.xl};
-    font-size: ${({ theme }) => theme.fontSize.xxxl};
-    font-weight: 700;
-`;
 
 export default Title;

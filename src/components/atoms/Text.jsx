@@ -8,7 +8,7 @@ import { styled } from 'styled-components';
  */
 
 const Text = ({ children, className = '' }) => {
-    return <StyledText className={className}>{children}</StyledText>;
+    return <span className={className}>{children}</span>;
 };
 
 const StyledText = styled.p`

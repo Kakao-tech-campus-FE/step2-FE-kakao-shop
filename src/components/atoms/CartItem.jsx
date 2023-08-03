@@ -15,13 +15,13 @@ const CartItem = ({ key, item, onChange }) => {
             gap={'1rem'}
             align="flex-start"
         >
-            <Text className="lg bold">{item.productName}</Text>
+            <Text className="text-base font-semibold">{item.productName}</Text>
             {item.carts.map((cart) => (
                 <Box key={cart.id} className="cart" direction="column" align="flex-start">
                     <div className="option-name">
                         <Text className="base">{cart.option.optionName}</Text>
                     </div>
-                    <Container justify="space-between" className="width-100">
+                    <div className="flex justify-between w-full p-3 mt-2">
                         <Counter
                             onIncrease={(count) => {
                                 onChange(cart.id, count, cart.option.price);
@@ -34,7 +34,7 @@ const CartItem = ({ key, item, onChange }) => {
                         <div className="price">
                             <span>{comma(cart.option.price * cart.quantity)}원</span>
                         </div>
-                    </Container>
+                    </div>
                 </Box>
             ))}
         </Container>
