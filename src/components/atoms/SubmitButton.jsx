@@ -6,10 +6,8 @@ const Btn = styled.button`
   font-weight: bold;
   cursor: pointer;
 
-  width: 32rem;
-
-  margin-top: 1.5rem;
-  padding: 0.6rem;
+  margin: 1.5rem 0;
+  padding: 0.6rem 0;
   border-radius: 6px;
 
   background-color: #ffe600;

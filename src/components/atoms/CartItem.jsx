@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const ProductName = styled.p`
   font-size: 1.2rem;
-  text-align: center;
   margin-bottom: 2rem;
 `;
 
@@ -15,19 +14,23 @@ const Option = styled.div`
 `;
 
 const EachOption = styled.div`
-  border: 1px solid #979797;
-  width: 32rem;
+  border: 1px solid #e5e7eb;
+  width: 50rem;
   padding: 0.8rem;
 `;
 
 const TotalPrice = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 32rem;
+  width: 50rem;
+
   padding: 0.8rem;
+  margin: 0.2rem 0 2rem 0;
+
+  font-size: 1.2rem;
 
   .price {
-    color: #4949ff;
+    color: #2986ff;
     font-weight: bold;
   }
 `;
@@ -64,7 +67,7 @@ const CartItem = ({ item, onChange, onClick }) => {
         ))}
         <Card className="total-price">
           <TotalPrice className="row">
-            <div>주문 예상 금액</div>
+            <div>주문 금액</div>
             <div className="price">
               {comma(
                 item.carts.reduce((acc, cur) => {
