@@ -1,8 +1,9 @@
 import { instance } from "./index"
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export const register = (data) => {
   const {email, password, username} = data;
-  return instance.post("/join", { //baseURL/join
+  return instance.post(apiUrl + "/join", { //baseURL/join
       email, 
       password,
       username,
@@ -11,7 +12,7 @@ export const register = (data) => {
 
 export const login = (data) => {
   const {email, password} = data;
-  return instance.post("/login", { // baseURL/login
+  return instance.post(apiUrl + "/login", { // baseURL/login
     email, 
     password,
   });

@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import { getCart, updateCart } from "../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH||"";
+
 const CartList = () => {
   const {data} = useQuery(["cart"], getCart, {
     suspense: true,
@@ -132,7 +134,7 @@ const CartList = () => {
           mutate(updatePayload, { 
             onSuccess: (data) => {
               //navigate to order page
-              route("/order");
+              route(staticServerUri + "/order");
             },
             onError: (error) => {
 

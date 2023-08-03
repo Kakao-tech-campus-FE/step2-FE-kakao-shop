@@ -7,6 +7,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import { useEffect, useState } from 'react';
 import { loginRequest } from '../../store/slices/userSlice';
 
+const staticServerUri = process.env.REACT_APP_PATH||"";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const [emailError, setEmailError] = useState("");
@@ -23,7 +25,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (isLoggedIn === 'true') {
       // 로그인 상태일 때 자동으로 이동
-      navigate('/');
+      navigate(staticServerUri + '/');
     }
   }, [isLoggedIn, navigate]);
   
@@ -35,7 +37,7 @@ const LoginForm = () => {
       })
     )
       .then((res) => {
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       .catch((error) => {
         alert(error);
@@ -43,7 +45,7 @@ const LoginForm = () => {
   };
   
   const goRegister = () => {
-    navigate('/signup');
+    navigate(staticServerUri + '/signup');
   }
   const validateValue = (value, validationRegex, errorMessage) => {
     if (!validationRegex.test(value)) {

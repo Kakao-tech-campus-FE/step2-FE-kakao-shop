@@ -3,6 +3,8 @@ import OptionItem from "../atoms/OptionItem";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri=process.env.REACT_APP_PATH||"";
+
 const ProductList = styled.div`
   padding: 1rem;
   .label {
@@ -62,7 +64,7 @@ const OrderCompleteTemplate = ({data}) => {
       <button
         className="w-full py-4 text-black font-bold text-xl bg-yellow-400"
         onClick={() => {
-          navigate('/');
+          navigate(staticServerUri + '/');
         }}
       >쇼핑 계속하기</button>
     </div>
