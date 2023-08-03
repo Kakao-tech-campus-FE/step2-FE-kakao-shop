@@ -12,20 +12,43 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <Routes>
-            <Route path={routes.register} element={<RegisterPage />} />
-            <Route path={routes.home} element={<HomePage />} />
-            <Route path={routes.login} element={<LoginPage />} />
-            <Route path={routes.cart} element={<CartPage />} />
-            <Route path={routes.orders} element={<OrderPage />} />
+            <Route
+              path={staticServerUri + routes.register}
+              element={<RegisterPage />}
+            />
+            <Route
+              path={staticServerUri + routes.home}
+              element={<HomePage />}
+            />
+            <Route
+              path={staticServerUri + routes.login}
+              element={<LoginPage />}
+            />
+            <Route
+              path={staticServerUri + routes.cart}
+              element={<CartPage />}
+            />
+            <Route
+              path={staticServerUri + routes.orders}
+              element={<OrderPage />}
+            />
             <Route path="/*" element={<NotFoundPage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
-            <Route path="/orders/:id" element={<OrderCompletePage />}></Route>
+            <Route
+              path={staticServerUri + "/product/:id"}
+              element={<ProductDetailPage />}
+            ></Route>
+            <Route
+              path={staticServerUri + "/orders/:id"}
+              element={<OrderCompletePage />}
+            ></Route>
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
