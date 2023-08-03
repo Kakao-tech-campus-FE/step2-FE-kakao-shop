@@ -1,5 +1,6 @@
 import Card from "../atoms/Card";
 import OrderItem from "../molecules/OrderItem";
+import CheckList from "../molecules/CheckList";
 import TotalPrice from "../atoms/TotalPrice";
 import SubmitButton from "../atoms/SubmitButton";
 import styled from "styled-components";
@@ -77,7 +78,7 @@ const OrderTemplate = ({ data }) => {
   return (
     <>
       <Container>
-        <h3>주문상품 정보</h3>
+        <h3 className="mb-6">주문상품 정보</h3>
         <Card>
           {Array.isArray(products) &&
             products.map((item) => {
@@ -89,34 +90,37 @@ const OrderTemplate = ({ data }) => {
         </Card>
         <div>
           <div>
-            <input
-              type="checkbox"
+            <CheckList
+              htmlFor="all-agree"
               id="all-agree"
               checked={agreePayment && agreePolicy}
               ref={allAgreeRef}
               onChange={handleAllAgree}
-            />
-            <LabelTitle htmlFor="all-agree">전체 동의</LabelTitle>
+            >
+              전체 동의
+            </CheckList>
           </div>
           <div>
-            <input
-              type="checkbox"
+            <CheckList
+              htmlFor="agree"
               id="agree"
               checked={agreePayment}
               name="payment-agree"
               onChange={handleAgreement}
-            />
-            <label htmlFor="agree">구매조건 확인 및 결제 진행 동의</label>
+            >
+              확인 및 결제 진행 동의
+            </CheckList>
           </div>
           <div>
-            <input
-              type="checkbox"
+            <CheckList
+              htmlFor="policy"
               name="policy-agree"
               id="policy"
               checked={agreePolicy}
               onChange={handleAgreement}
-            />
-            <label htmlFor="policy">개인정보 제 3자 제공동의</label>
+            >
+              개인정보 제 3자 제공동의
+            </CheckList>
           </div>
         </div>
         <SubmitButton onClick={beforeOrderFailure}>결제하기</SubmitButton>
