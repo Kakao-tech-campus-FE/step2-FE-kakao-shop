@@ -6,7 +6,6 @@ import { register, emailCheck } from "../../services/user";
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
-import { useRef } from 'react';
 
 const RegisterForm = () => {
     const staticServerUri = process.env.REACT_APP_PATH || "";
@@ -26,7 +25,6 @@ const RegisterForm = () => {
         passwordConfirm: "",
     });
 
-    const [emailCheckErr, setEmailCheckErr] = useState("");
     const [apiErr, setApiErr] = useState("");
     const [passwordConfirmError, setPasswordConfirmError] = useState("");
     const isRegisterError = (emailError || passwordError || value.username === "" || value.email === "" || value.password === "" || value.passwordConfirm==="") ? true: false ;
@@ -58,7 +56,6 @@ const RegisterForm = () => {
                 alert("사용 가능한 이메일입니다.");
             }))
             .catch((err) => {
-                setEmailCheckErr(err);
                 alert(err);
             })
     }
