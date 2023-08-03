@@ -1,6 +1,8 @@
 import React from "react";
 import "../styles/pages/NotFoundPage.css";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 /**
  * 코드펜에서 가져옴
  * @returns 404 페이지
@@ -18,7 +20,7 @@ export default function NotFoundPage() {
               <div className="contant_box_404">
                 <h3 className="h2">Look like you're lost</h3>
                 <p>the page you are looking for not avaible!</p>
-                <a href="/" className="link_404">
+                <a href={staticServerUrl + "/"} className="link_404">
                   Go to Home
                 </a>
               </div>
