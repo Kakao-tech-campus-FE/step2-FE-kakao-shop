@@ -10,7 +10,26 @@ import { login } from "../../services/users";
 import { setToken, setUser } from "../../store/slices/userSlice";
 import { Link } from "react-router-dom";
 
-import "../../styles/organisms/LoginForm.css";
+
+
+// LoginForm
+// |_value
+// | |_email
+// | |_password
+// |_error
+// |_handleLogin (login attempt, save userdata)
+//   |_token
+//   |_user
+//     |_user
+
+
+// LoginForm return
+// Container
+  // |_InputGroup(이메일 그룹)
+  // |_InputGroup(비밀번호 그룹)
+  // |_Button(로그인 버튼)
+
+
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -31,11 +50,16 @@ const LoginForm = () => {
     try {
       const response = await login({ email, password }); //use apis and recieve response
       const token = response?.headers?.authorization;
-      const user = response.data;
+      
+      const oneHourInMs = 60*60*1000;
+      const expirationTime = new Date().getTime() + oneHourInMs;
 
-      const expirationTime = new Date().getTime() + 60 * 60 * 1000; //expiration time setting, 60min
-      user.expirationTime = expirationTime;
-      user.email = value.email;
+      const user = {...response.data,
+        expirationTime,
+        email:value.email,
+      };
+
+
 
       dispatch(setUser(user)); // redux, exec setUser , store expirationTime, email
       localStorage.setItem("user", JSON.stringify(user)); // save at localStorage
@@ -46,6 +70,8 @@ const LoginForm = () => {
       setError("로그인에 실패했습니다.");
     }
   };
+
+
 
   return (
     <Container className="w-1/2 h-full block align-middle border rounded border-gray-light p-16">

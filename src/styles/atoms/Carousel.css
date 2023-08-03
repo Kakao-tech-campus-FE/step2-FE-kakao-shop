@@ -15,12 +15,15 @@
 }
 
 .bnr_home .btn_img {
-  position: relative;
-  top: 14px;
+
 }
 
 .bnr_home .btn_flick {
   position: absolute;
+  display : flex;
+  flex-direction:  column;
+  justify-content: center;
+  align-items: center;
 
   top: 200px;
   z-index: 10;

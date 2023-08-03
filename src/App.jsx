@@ -7,7 +7,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import OrderPage from "./pages/OrderPage";
-import CompletePage from "./pages/CompletePage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
 const App = () => {
@@ -27,7 +27,7 @@ const App = () => {
             <Route path="/order" element={<OrderPage />}></Route>
             <Route
               path="/order/complete/:id"
-              element={<CompletePage />}
+              element={<OrderCompletePage />}
             ></Route>
           </Route>
           <Route path="*" element={<NotFoundPage />}></Route>
@@ -38,3 +38,4 @@ const App = () => {
 };
 
 export default App;
+

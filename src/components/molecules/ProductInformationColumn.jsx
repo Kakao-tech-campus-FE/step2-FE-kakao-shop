@@ -2,6 +2,21 @@ import "../../styles/molecules/ProductInformationColumn.css";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
+/*
+return
+|_div (product infromation column, basis-3/4)
+  |_div (basis-1/2)
+  | |_Photo
+  |_div(basis-1/2)
+    |_span(리뷰보기)
+    |_h1({productname})
+    |_div(가격 표시)
+      |_a (price 원)
+
+*/
+
+
+
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (

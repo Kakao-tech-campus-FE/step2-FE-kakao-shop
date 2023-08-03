@@ -8,6 +8,32 @@ import "../../styles/templates/MainProductTemplate.css";
 import { union } from "lodash";
 import { handleAPIError, useAxiosInterceptor } from "../../services/errorcatch";
 
+/*
+MainProductTemplate
+|_page
+|_isEnd
+|_allProduct
+|_bottomObserver
+|_data
+  |_products
+  |_isLoading
+  |_isFetched
+
+
+|_setAllProduct 
+|_setIsEnd
+|_io
+  |_IntersectionObserver
+
+return 
+|_div
+  |_Container
+    |_Loader(is Loading)
+    |_ProductGrid
+    |_div(bottomObserver)
+*/
+
+
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const [isEnd, setIsEnd] = useState(false);
