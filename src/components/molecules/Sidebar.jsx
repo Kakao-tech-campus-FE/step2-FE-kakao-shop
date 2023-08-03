@@ -10,8 +10,8 @@ const Sidebar = () => {
   const [query, setQuery] = useState("");
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const menus = [
-    { name: "홈", path: "/", icon: "/sidebarIcons/home.svg" },
-    { name: "장바구니", path: "/cart", icon: "/sidebarIcons/cart.svg" },
+    { name: "홈", path: "/", icon: staticServerUri + "/sidebarIcons/home.svg" },
+    { name: "장바구니", path: "/cart", icon: staticServerUri + "/sidebarIcons/cart.svg" },
   ];
 
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Sidebar = () => {
     <div className="fixed w-64 bg-gray-100 border-r-2 border-gray-300 top-0 bottom-0 left-0 h-full z-50 p-3">
       <div className="my-8 ml-3">
         <Link to={staticServerUri + "/"}>
-          <img src="/logoKakao.svg" width={100} alt="카카오톡 쇼핑하기" />
+          <img src={staticServerUri + "/logoKakao.svg"} width={100} alt="카카오톡 쇼핑하기" />
         </Link>
       </div>
       <div>
@@ -52,7 +52,7 @@ const Sidebar = () => {
         {menus.map((menu, index) => {
           return (
             <Link key={index} to={staticServerUri + menu.path}>
-              <SidebarItem menu={menu} icon={staticServerUri + menu.icon} />
+              <SidebarItem menu={menu} icon={menu.icon} />
             </Link>
           );
         })}
@@ -73,7 +73,7 @@ const Sidebar = () => {
                 menu={{
                   name: "로그인",
                   path: "/login",
-                  icon: "/sidebarIcons/account.svg",
+                  icon: staticServerUri + "/sidebarIcons/account.svg",
                 }}
               />
             </Link>
