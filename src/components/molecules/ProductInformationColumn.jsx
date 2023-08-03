@@ -15,8 +15,6 @@ return
 
 */
 
-
-
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
@@ -26,7 +24,7 @@ const ProductInformationColumn = ({ product }) => {
       <div className="basis-1/2">
         <Photo
           className="w-full h-96 block"
-          src={import.meta.env.VITE_API_URL + image}
+          src={process.env.REACT_APP_API_URL + image}
           alt={productName}
         />
       </div>

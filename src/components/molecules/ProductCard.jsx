@@ -5,6 +5,8 @@ import "../../styles/molecules/ProductCard.css";
 import Skeleton from "../atoms/Skeleton";
 
 // Components of each product card
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const ProductCard = ({ product, isLoading }) => {
   return (
     <div className="card_deal">
@@ -13,7 +15,7 @@ const ProductCard = ({ product, isLoading }) => {
       <Card className="link_card" to={`/product/${product.id}`}>
         <Photo
           className="img_thumb"
-          src={import.meta.env.VITE_API_URL + product.image}
+          src={process.env.REACT_APP_API_URL + staticServerUrl + product.image}
           alt={product.productName}
         />
         <div className="product_name">{product.productName}</div>

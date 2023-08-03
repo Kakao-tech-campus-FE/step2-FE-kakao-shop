@@ -1,7 +1,7 @@
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import useInput from "../../hooks/useInput";
+import useInput from "../../hooks/useinput";
 import Title from "../atoms/Title";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,6 @@ import { useDispatch } from "react-redux";
 import { login } from "../../services/users";
 import { setToken, setUser } from "../../store/slices/userSlice";
 import { Link } from "react-router-dom";
-
-
 
 // LoginForm
 // |_value
@@ -22,14 +20,11 @@ import { Link } from "react-router-dom";
 //   |_user
 //     |_user
 
-
 // LoginForm return
 // Container
-  // |_InputGroup(이메일 그룹)
-  // |_InputGroup(비밀번호 그룹)
-  // |_Button(로그인 버튼)
-
-
+// |_InputGroup(이메일 그룹)
+// |_InputGroup(비밀번호 그룹)
+// |_Button(로그인 버튼)
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -50,16 +45,11 @@ const LoginForm = () => {
     try {
       const response = await login({ email, password }); //use apis and recieve response
       const token = response?.headers?.authorization;
-      
-      const oneHourInMs = 60*60*1000;
+
+      const oneHourInMs = 60 * 60 * 1000;
       const expirationTime = new Date().getTime() + oneHourInMs;
 
-      const user = {...response.data,
-        expirationTime,
-        email:value.email,
-      };
-
-
+      const user = { ...response.data, expirationTime, email: value.email };
 
       dispatch(setUser(user)); // redux, exec setUser , store expirationTime, email
       localStorage.setItem("user", JSON.stringify(user)); // save at localStorage
@@ -70,8 +60,6 @@ const LoginForm = () => {
       setError("로그인에 실패했습니다.");
     }
   };
-
-
 
   return (
     <Container className="w-1/2 h-full block align-middle border rounded border-gray-light p-16">

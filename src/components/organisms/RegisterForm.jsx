@@ -1,15 +1,13 @@
 import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
-import useInput from "../../hooks/useInput";
+import useInput from "../../hooks/useinput";
 import Title from "../atoms/Title";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register, duplicate } from "../../services/users";
 
-
-
-// RegisterForm  
+// RegisterForm
 // |_value
 // | |_username
 // | |_email
@@ -24,7 +22,7 @@ import { register, duplicate } from "../../services/users";
 // |_handleDuplicate  * email duplicate check
 // | |_response
 // |_handleRegister   * register error check, redirect
-// |_validateEmail    
+// |_validateEmail
 // | |_emailRange
 // |_valdiatePassword
 // | |_passwordRange
@@ -43,13 +41,7 @@ import { register, duplicate } from "../../services/users";
 //   |_div(비밀번호 확인 에러) * 에러 시에만
 //   |_Button  (회원가입 버튼)
 
-
-
-
-
-
 const RegisterForm = () => {
-
   const navigate = useNavigate();
   const [errors, setError] = useState({});
   const { value, handleOnChange } = useInput({
@@ -59,23 +51,23 @@ const RegisterForm = () => {
     passwordConfirm: "",
   });
 
-
-
   //Duplicate check handle
 
-  const emailresponse = new Array('이 이메일을 사용할 수 있습니다', '동일한 이메일이 존재하거나 올바르지 않은 입력입니다.');
+  const emailresponse = new Array(
+    "이 이메일을 사용할 수 있습니다",
+    "동일한 이메일이 존재하거나 올바르지 않은 입력입니다."
+  );
   const regierror = "회원가입에 실패했습니다.";
   const emailerror = "유효한 이메일 형식이 아닙니다.";
-  const passwderror = "비밀번호는 영문, 숫자, 특수문자를 포함하고, 공백이 없으며 8~20자여야 합니다.";
+  const passwderror =
+    "비밀번호는 영문, 숫자, 특수문자를 포함하고, 공백이 없으며 8~20자여야 합니다.";
   const passwdconfirmerror = "입력한 비밀번호와 다릅니다.";
 
-
   const handleDuplicate = async () => {
-
     const email = value.email;
     try {
       const response = await duplicate(email);
-  
+
       if (response.request.status === 200) {
         setError((prevState) => ({
           ...prevState,
@@ -85,7 +77,7 @@ const RegisterForm = () => {
     } catch (error) {
       setError((prevState) => ({
         ...prevState,
-        duplicate: emailresponse[1],   //동일한 이메일이 존재하거나 올바르지 않은 입력입니다
+        duplicate: emailresponse[1], //동일한 이메일이 존재하거나 올바르지 않은 입력입니다
       }));
     }
   };
@@ -126,8 +118,7 @@ const RegisterForm = () => {
     if (!passwordRange.test(value.password)) {
       setError((prevState) => ({
         ...prevState,
-        password:
-          passwderror,
+        password: passwderror,
       }));
       return false;
     } else {
@@ -199,7 +190,9 @@ const RegisterForm = () => {
       >
         중복체크
       </Button>
-      {errors.duplicate && <div className="text-red-500">{errors.duplicate}</div>}
+      {errors.duplicate && (
+        <div className="text-red-500">{errors.duplicate}</div>
+      )}
       {errors.email && <div className="text-red-500">{errors.email}</div>}
 
       <InputGroup
