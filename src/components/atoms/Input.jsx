@@ -28,6 +28,7 @@ function Input({
         onChange={onChange}
         placeholder={placeholder}
       />
+      <br />
       <span>{message}</span>
     </>
   );
