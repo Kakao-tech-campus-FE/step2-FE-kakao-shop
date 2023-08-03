@@ -26,7 +26,12 @@ const CartTemplate = () => {
       {cartProducts && (
         <>
           {cartProducts.products.map((product) => (
-            <CartItem setUpdatedCartOptions={setUpdatedCartOptions} key={product.id} product={product} />
+            <CartItem
+              updatedCartOptions={updatedCartOptions}
+              setUpdatedCartOptions={setUpdatedCartOptions}
+              key={product.id}
+              product={product}
+            />
           ))}
           <div className='flex items-center justify-between bg-white p-4'>
             <strong className='text-lg'>주문 예상금액</strong>

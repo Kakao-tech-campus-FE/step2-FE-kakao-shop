@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Counter from '../atoms/Counter';
 import { CartInfo, UpdateCart } from '../../dto/productDto';
 import { comma } from '../../utils/convert';
 import SimpleButton from '../atoms/SimpleButton';
+import { useUpdateCartMutation } from '../../apis/productApi';
 
 interface CartOptionItemProps {
   cart: CartInfo;
+  updatedCartOptions: UpdateCart[];
   setUpdatedCartOptions: React.Dispatch<React.SetStateAction<UpdateCart[]>>;
 }
 
-const CartOptionItem = ({ cart, setUpdatedCartOptions }: CartOptionItemProps) => {
+const CartOptionItem = ({ cart, updatedCartOptions, setUpdatedCartOptions }: CartOptionItemProps) => {
   const [updatedQuantity, setUpdatedQuantity] = useState(cart.quantity);
+  const { mutate: updateCart } = useUpdateCartMutation();
 
   const handleDecrementClick = (id: number) => {
     setUpdatedCartOptions((prevOptions) => {
@@ -59,6 +62,10 @@ const CartOptionItem = ({ cart, setUpdatedCartOptions }: CartOptionItemProps) =>
     });
     setUpdatedQuantity(0);
   };
+
+  useEffect(() => {
+    updateCart(updatedCartOptions);
+  }, [updatedCartOptions]);
 
   return (
     <div className='space-y-2 border p-3'>

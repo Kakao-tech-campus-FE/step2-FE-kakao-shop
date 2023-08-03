@@ -15,7 +15,8 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.timeout = 1000;
 axios.defaults.headers.common.Authorization = token ? `Bearer ${token}` : null;
 
-const queryClient = new QueryClient({
+// eslint-disable-next-line import/prefer-default-export
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,
