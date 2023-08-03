@@ -26,7 +26,7 @@ export default function GlobalNavBar() {
   };
 
   return (
-    <Container className=" fixed top-0 z-10 box-border flex h-20 w-full min-w-[1280px] items-center justify-between bg-white px-10">
+    <Container className=" fixed top-0 z-10 box-border flex h-20 w-full min-w-[1280px] items-center justify-between border-0 border-b border-solid border-zinc-300 bg-white px-10">
       {isLoginModalOpen && (
         <LoginModal setIsLoginModalOpen={setIsLoginModalOpen} />
       )}
