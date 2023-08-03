@@ -2,6 +2,8 @@ import { client } from '@apis/client';
 import { kakaoPay } from '@apis/kakaoPay';
 import { AxiosResponse } from 'axios';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 export type OrderResponse = {
   id: number;
   products: OrderProduct[];
@@ -39,9 +41,9 @@ export const paymentAPI = async ({ itemName, quantity, totalAmount }: PaymentReq
     quantity,
     total_amount: totalAmount,
     tax_free_amount: 0,
-    approval_url: 'https://kdykakaoshop.netlify.app/pay/approve',
-    cancel_url: 'https://kdykakaoshop.netlify.app/pay/cancel',
-    fail_url: 'https://kdykakaoshop.netlify.app/pay/fail',
+    approval_url: `${staticServerUrl}/pay/approve`,
+    cancel_url: `${staticServerUrl}/pay/cancel`,
+    fail_url: `${staticServerUrl}/pay/fail`,
   });
 
   return res;
