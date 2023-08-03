@@ -13,7 +13,7 @@ import OrderPage from "./pages/OrderPage";
 import OrderCompletePage from './pages/OrderCompletePage';
 
 function App() {
-
+    const staticServerUri = process.env.REACT_APP_PATH || "";
     const { handleError } = useApiError();
     const queryClient = useQueryClient();
 
