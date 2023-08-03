@@ -23,9 +23,11 @@ const StyledPhoto = styled(Photo)`
   }
 `;
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
-  const imagePath = `${process.env.REACT_APP_API_URL}${image}`;
+  const imagePath = `${staticServerUri}/assets${image}`;
 
   return (
     <ProductInfoColumn className="product-information-column">
