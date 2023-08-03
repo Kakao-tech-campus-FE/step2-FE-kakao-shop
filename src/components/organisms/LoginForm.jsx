@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import styled from "styled-components";
 import InputGroup from "../molecules/InputGroup";
 import useInput from "../../hooks/useInput";
@@ -90,10 +90,13 @@ const LoginForm = () => {
             .catch((error) => {
 				if (error.response && error.response.status === 401) {
 					console.log(error.response.data.message);
+					alert("회원 정보가 존재하지 않습니다.");
+					console.log("401 에러");
 				} else {
 					console.log(error);
 				}
                 setError(error.toString());
+				회원정보가 존재하지 않습니다.
             });
     };
 
