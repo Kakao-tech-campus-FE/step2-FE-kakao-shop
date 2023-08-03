@@ -7,6 +7,8 @@ import ErrorSign from "../atoms/ErrorSign";
 import Alert from "../atoms/Alert";
 import { createContext, useState } from "react";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export const AlertContext = createContext(null);
 
 const ProductDetailPage = () => {
@@ -22,7 +24,7 @@ const ProductDetailPage = () => {
       message={"로그인이 필요한 서비스입니다."}
       buttonText={"로그인"}
       onClickButton={() => {
-        window.location.href = "/login";
+        window.location.href = staticServerUri + "/login";
       }}
       className={"require-login-alert"}
       isOpen={isOpen}

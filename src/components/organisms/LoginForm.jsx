@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { useContext } from "react";
 import { ToastContext } from "../../App";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const EMAIL_REGEX = new RegExp(
   "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
 );
@@ -49,7 +51,7 @@ const LoginForm = () => {
         localStorage.clear();
         localStorage.setItem("token", res.headers.authorization);
         alert(value.email + "님 환영합니다.");
-        window.location.href = "/";
+        window.location.href = staticServerUri + "/";
       })
       .catch((err) => {
         console.log(err);

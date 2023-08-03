@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 import useInput from "../../hooks/useInput";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const PW_REGEX = new RegExp(
   "^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,20}$",
 );
@@ -102,7 +104,7 @@ const RegisterForm = () => {
               .then((res) => {
                 console.log(res);
                 alert("회원가입이 완료되었습니다. 로그인해주세요.");
-                window.location.href = "/";
+                window.location.href = staticServerUri + "/";
               })
               .catch((err) => {
                 console.log(err);

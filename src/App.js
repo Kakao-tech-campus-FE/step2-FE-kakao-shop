@@ -18,12 +18,12 @@ import Toast from "./components/atoms/Toast";
 import OrderCompletePage from "./components/pages/OrderCompletePage";
 
 export const ToastContext = createContext(null);
-
+const basename = process.env.REACT_APP_PATH;
 function App() {
   const { toastMessage, toastShow, showToast, hideToast } = useToast();
 
   return (
-    <div className="App min-h-screen relative">
+    <div className="App relative min-h-screen">
       <ToastContext.Provider
         value={{ toastMessage, toastShow, showToast, hideToast }}
       >
@@ -36,18 +36,18 @@ function App() {
               hideToast();
             }}
           />
-          <BrowserRouter>
+          <BrowserRouter basename={basename}>
             <Routes>
               <Route element={<MainLayout />}>
-                <Route path="/signup" element={<RegisterPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/" element={<HomePage />} />
-                <Route path="/product/:id" element={<ProductDetailPage />} />
+                <Route path={"/signup"} element={<RegisterPage />} />
+                <Route path={"/login"} element={<LoginPage />} />
+                <Route path={"/"} element={<HomePage />} />
+                <Route path={"/product/:id"} element={<ProductDetailPage />} />
                 <Route element={<RequiredAuthLayout />}>
-                  <Route path="/carts" element={<CartPage />} />
-                  <Route path="/order" element={<OrderPage />} />
+                  <Route path={"/carts"} element={<CartPage />} />
+                  <Route path={"/order"} element={<OrderPage />} />
                   <Route
-                    path="/order/complete/:id"
+                    path={"/order/complete/:id"}
                     element={<OrderCompletePage />}
                   />
                 </Route>
