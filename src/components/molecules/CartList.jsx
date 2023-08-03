@@ -9,6 +9,7 @@ import { comma } from '../../utils/convert';
 import Button from '../atoms/Button';
 import { updateCart } from '../../services/cart';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -135,11 +136,11 @@ const CartList = ({ data }) => {
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: (data) => {
-              route('/order');
+              route(staticServerUrl + '/order');
             },
             onError: (error) => {
               console.log('error', error);
-              route('/error');
+              route(staticServerUrl + '/error');
             },
           });
         }}

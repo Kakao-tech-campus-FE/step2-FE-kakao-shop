@@ -9,7 +9,7 @@ import Button from '../atoms/Button';
 const ProductCard = ({ product }) => {
   return (
     <>
-      <Card to={`/product/${product.id}`}>
+      <Card to={`${staticServerUrl}/product/${product.id}`}>
         <Photo
           className="card border-rounded"
           src={product.image}

@@ -69,7 +69,7 @@ const OptionColumn = ({ product }) => {
         };
       }),
     );
-    navigate('/cart');
+    navigate(staticServerUrl + '/cart');
   };
   return (
     <div className="option-column">

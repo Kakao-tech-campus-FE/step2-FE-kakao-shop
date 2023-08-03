@@ -44,7 +44,7 @@ function HomePage() {
       <div className="logo-wrapper">
         <Link to="/">
           <img
-            src={`${staticServerUrl}/logoKaKao.png`}
+            src={`${staticServerUrl}/logoKakao.png`}
             alt="로고"
             className="logo"
           />
