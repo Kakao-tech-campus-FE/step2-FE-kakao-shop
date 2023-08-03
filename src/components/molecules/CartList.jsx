@@ -8,14 +8,17 @@ import { comma } from "../../utils/convert";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getCart, updateCart } from "../../services/cart";
 
+/**
+ * @todo 
+ */
 const CartList = () => {
   const { data } = useQuery(["cart"], getCart, {
     suspense: true,
   });
 
   const [cartItems, setCartItems] = useState([]);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
 
   const { mutate } = useMutation({
@@ -27,8 +30,13 @@ const CartList = () => {
     setTotalPrice(data.data.response.totalPrice);
   }, [data]);
 
+  useEffect(() => {
+    mutate(updatePayload);
+  }, [updatePayload]);
+
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
+
     cartItems.forEach((item) => {
       item.carts.forEach((cart) => {
         count += cart.quantity; // 개별 옵션에 해당
@@ -42,9 +50,10 @@ const CartList = () => {
    * @param {number} quantity : 옵션 수량
    * @param {number} price : 옵션 가격
    */
-  const handleOnChangeCount = (optionId, quantity, price) => {
+  const handleChangeCount = (optionId, quantity, price) => {
     setUpdatePayload((prev) => {
       const isExist = prev.find((item) => item.cartId === optionId);
+      // 기존에 값이 존재하면
       if (isExist) {
         return [
           ...prev.filter((item) => item.cartId !== optionId),
@@ -89,13 +98,11 @@ const CartList = () => {
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
-              <>
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  onChange={handleOnChangeCount}
-                />
-              </>
+              <CartItem
+                key={item.id}
+                item={item}
+                onChange={handleChangeCount}
+              />
             );
           })}
       </Box>
