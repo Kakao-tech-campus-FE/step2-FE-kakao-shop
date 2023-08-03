@@ -38,11 +38,13 @@ const CartList = ({ data }) => {
 
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
-    cartItems.forEach((item) => {
-      item.carts.forEach((cart) => {
-        count += cart.quantity;
+    cartItems &&
+      cartItems.forEach((item) => {
+        item.carts.forEach((cart) => {
+          count += cart.quantity;
+        });
       });
-    });
+
     return count;
   }, [cartItems]);
 
