@@ -5,7 +5,7 @@ import ProductGrid from "../organisms/ProductGrid";
 import { loader } from "react-global-loader";
 import SkeletonGrid from "../organisms/SkeletonGrid";
 import Container from "../atoms/Container";
-import Carousel from "../week1/Carousel";
+import Carousel from "../atoms/Carousel";
 
 const ProductSection = () => {
   const [page, setPage] = useState(0);
