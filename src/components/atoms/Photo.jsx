@@ -10,7 +10,7 @@ const Photo = ({ src, alt }) => {
     setIsHovered(false);
   };
 
-  const photoSrc = process.env.REACT_APP_API_URL + src;
+  const photoSrc = process.env.REACT_APP_PATH + src;
 
   return (
     <ImageContainer
