@@ -31,10 +31,7 @@ npm run start # 프로젝트 실행
 3. terminal을 열고, ./start.sh를 통해 백엔드 환경을 실행한다.
 4. 또 다른 터미널을 생성해 npm start로 3000번 포트에 리액트를 실행한다.
 
-```
-
 [TailwindCSS]: https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat-square&logo=Tailwind%20CSS&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-```
