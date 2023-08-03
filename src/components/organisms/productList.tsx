@@ -18,7 +18,7 @@ export default function ProductList({ productData }: ProductListProps) {
             <ProductCard
               productName={productName}
               description={description}
-              image={`${new URL(image, `${staticServerUri}/api`).toString()}`}
+              image={`${staticServerUri}/api${image}`}
               price={price}
             />
           </Link>

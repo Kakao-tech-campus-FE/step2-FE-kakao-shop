@@ -22,7 +22,7 @@ export default function ProductDetailColumn({
     <div className="flex flex-row">
       <div className="w-[30rem] rounded px-4">
         <Photo
-          src={`${new URL(image, `${staticServerUri}/api`).toString()}`}
+          src={`${staticServerUri}/api${image}`}
           alt="productName"
         />
       </div>
