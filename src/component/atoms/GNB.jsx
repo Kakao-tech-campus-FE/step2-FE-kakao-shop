@@ -26,14 +26,14 @@ function GNB() {
     return (
         <header className="header">
             <div className="contents">
-                <Link to={staticServerUri + "/"}>
+                <Link to={"/"}>
                     <img className = "logoImg" src={"/logoKakao.png"} alt="logoKakao.png" height={30}/>
                 </Link>
                 <nav>
                     <div className="navigation">
                         <span className="menu_util">
                             {/* 장바구니 버튼 */}
-                            <Link to={staticServerUri + "/cart"}>
+                            <Link to={"/cart"}>
                                 <img className = "cartImg" src={"/cart.png"} alt="cart.png" height={30}/>
                             </Link>
                         </span>
