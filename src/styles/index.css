@@ -63,3 +63,8 @@ body {
 .flex-col {
   flex-direction: column;
 }
+@media (max-width: 414px) {
+  html {
+    font-size: 8px; /* 기본 폰트 사이즈의 0.5배 */
+  }
+}
