@@ -16,7 +16,7 @@ import OrderPage from '../src/pages/OrderPage';
 import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 import "../src/App.css";
 import CartPage from './pages/CartPage';
-
+import OrderCompletePage from './pages/OrderCompletePage';
 function App() {
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -48,12 +48,13 @@ function App() {
             {/* 공통 레이아웃 GNB, Footer */}
             <Route element={<MainLayout />}>
               <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
-              <Route path="/" element={<ProductGrid />}></Route>
+              {/* <Route path="/" element={<ProductGrid />}></Route> */}
               <Route path="/product/:id" element={<ProductDetailPage />}></Route>
               {/* 사용자가 로그인됐을 때만 접근 가능한 부분 */}
               <Route element ={<RequiredAuthLayout />}>
                 <Route path="/cart" element={<CartPage />}></Route>
                 <Route path="/order" element={<OrderPage />}></Route>
+                <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
               </Route>
               
     

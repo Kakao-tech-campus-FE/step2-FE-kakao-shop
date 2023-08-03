@@ -57,12 +57,15 @@ const { mutate } = useMutation({
     },
     onSuccess: (res) => {
         // console.log(res);
-        const id = res.id;
+        // console.dir(res);
+        
+        
+        const id = res.data.response.id;
         alert("주문이 완료되었습니다.");
-        // navigate(`/orders/save/${id}`);
+        navigate(`/orders/complete/${id}`);
         // 주문 결과 보여주기
-        navigate('/');
-        window.location.reload();
+        // navigate('/');
+        // window.location.reload();
 
     },
 });
