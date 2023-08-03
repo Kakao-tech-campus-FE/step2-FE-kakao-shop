@@ -29,7 +29,7 @@ function MainProductTemplate() {
       io.observe(bottomObserver.current)
     }
 
-},[isLoading]) // 최초 렌더링 마운트 1회만 선언 
+},[reRender]) // 최초 렌더링 마운트 1회만 선언 
 
   useEffect(()=>{
     if(isError || end)
