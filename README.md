@@ -1,27 +1,21 @@
-## 🍪 카테캠 Step 2 FE: 카카오톡 쇼핑하기 클론 코딩
-
-<hr/>
+# 🍪 카테캠 Step 2 FE: 카카오톡 쇼핑하기 클론 코딩
 
 <br>
 
-### 📅 제작 기간
-
-<hr/>
+## 📅 제작 기간
 
 2023.06.26~2023.08.03 (약 6주)
 
 <br>
 
-### 📒 프로젝트 소개
-
-<hr/>
+## 📒 프로젝트 소개
 
 카카오 테크 캠퍼스 프로그램의 2단계 과정을 학습하며 만든 프로젝트입니다.
 카카오톡 쇼핑하기의 기능 일부를 클론 코딩 하였습니다.
 
 <br>
 
-### 👇 배포 주소
+## 👇 배포 주소
 
 <hr/>
 
@@ -29,9 +23,7 @@
 
 <br>
 
-### ⚙️ Built with
-
-<hr/>
+## ⚙️ Built with
 
 **environment**
 
@@ -56,9 +48,7 @@
 
 <br>
 
-### 📂 Architecture
-
-<hr/>
+## 📂 Architecture
 
 ```
 📦src
@@ -88,17 +78,14 @@
 
 <br>
 
-### 👀 Project screenshot
-
-<hr/>
+## 👀 Project screenshot
 
 ![screenshot](https://github.com/harin9/step2-FE-clone/assets/83578728/163b4c56-71c3-4101-8adb-6f4578c82c44)
 
 <br>
 
-### 📌 Features
+## 📌 Features
 
-<hr/>
 ```
 ☑️ 메인 페이지에서 상품 확인
 ☑️ 로그인(validation 체크)
