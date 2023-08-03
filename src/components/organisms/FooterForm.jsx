@@ -10,7 +10,7 @@ import Box from "../atoms/Box";
 const FooterForm = ({ className = "bg-white" }) => {
   return (
     <div
-      className={`flex max-w-none h-[210px] mx-auto left-0 right-0 top-0 border-t border-gray-200 ${className}`}
+      className={`flex max-w-none min-w-[1280px] h-[210px] mx-auto left-0 right-0 top-0 border-t border-gray-200 ${className}`}
     >
       <Container className="flex max-w-none w-[1280px] h-[210px] pt-[40px] mx-auto left-0 right-0 top-0">
         <Logo
