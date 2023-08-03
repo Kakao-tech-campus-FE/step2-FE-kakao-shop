@@ -42,7 +42,7 @@ const ProductCard = ({ product }) => {
   return (
     <ProductContainer to={staticServerUri + `/products/${product.id}`}>
       <ImageContainer>
-        <Photo src={process.env.REACT_APP_API_URL + product.image} alt={product.productName} className="card" />
+        <Photo src={product.image} alt={product.productName} className="card" />
       </ImageContainer>
       <div>
         <Title>{product.productName}</Title>
