@@ -1,15 +1,15 @@
 import Container from "../Atoms/Container";
 import Button from "../Atoms/Button";
 import InputGroup from "../Molecules/InputGroup";
-import { login, checkUnique } from "../../Servicies/user";
 import useInput from "../../Hooks/useinput";
 import Box from "../Atoms/Box";
-import { loginRequest, setEmail } from "../../Store/Slices/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { loginRequest } from "../../Store/Slices/userSlice";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const LoginForm = () => {
+  const staticServerUri = process.env.REACT_APP_PATH || "";
+
   const dispatch = useDispatch();
 
   const inputStyle = "text-justify items-center pb-2 text-lg border-b-2 border-stone-200";
@@ -42,7 +42,7 @@ const LoginForm = () => {
         localStorage.setItem("token", response.payload.headers.authorization);
 
         alert("로그인 되었습니다");
-        navigate("/");
+        navigate(`${staticServerUri}/`);
         // window.location.reload();
       } else if (response.payload.data.error) {
         alert("유효하지 않은 아이디/비밀번호 입니다.");
@@ -53,7 +53,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center align-middle gap-8">
-      <img src="./logoKakaoText.png" width={120}></img>
+      <img src={staticServerUri + "./logoKakaoText.png"} width={120}></img>
       <Container className="mx-auto w-4/12 h-4/12 border-[1.5px] p-16">
         <InputGroup
           id="email"
@@ -95,7 +95,7 @@ const LoginForm = () => {
           </Button>
         </Box>
         <div className="flex justify-between text-center text-xs pt-6 font-semibold">
-          <Link to="/registerpage">회원가입</Link>
+          <Link to={staticServerUri + "/registerpage"}>회원가입</Link>
           <div>
             <span className="border-r border-stone-300 pr-2 mr-2">계정 찾기</span>
             <span>비밀번호 찾기</span>

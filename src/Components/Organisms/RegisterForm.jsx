@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
+  const staticServerUri = process.env.REACT_APP_PATH || "";
+
   const dispatch = useDispatch();
   // const [isValidPw, setIsValidPw] = useState(false);
 
@@ -88,20 +90,18 @@ const RegisterForm = () => {
     ).then((response) => {
       if (response.payload?.success) {
         alert("회원가입이 완료되었습니다.");
-        navigate("/loginpage");
+        navigate(`${staticServerUri}/loginpage`);
       } else {
         console.log(response);
         alert(response.payload?.error.message);
-        // window.history.go(0) // 이렇게 리로드 해도 괜찮나요..?
       }
     });
   };
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center align-middle gap-5 mt-5">
-      <img src="./logoKakaoText.png" width={120}></img>
+      <img src={staticServerUri + "./logoKakaoText.png"} width={120}></img>
 
-      {/* <div className="flex min-h-screen justify-center items-center"> */}
       <Container className="mx-auto w-2/5 h-2/5 border-[1.5px] p-14 mb-5">
         <InputGroup
           id="username"
@@ -179,10 +179,9 @@ const RegisterForm = () => {
           </Button>
         </Box>
         <div className="text-center text-xs text-stone-500 pt-3 ">
-          <Link to="/">홈으로</Link>
+          <Link to={staticServerUri + "/"}>홈으로</Link>
         </div>
       </Container>
-      {/* </div> */}
     </div>
   );
 };

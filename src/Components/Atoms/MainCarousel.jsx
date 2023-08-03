@@ -4,6 +4,7 @@ import { BsChevronRight, BsChevronLeft } from "react-icons/bs";
 import { useRef } from "react";
 
 const MainCarousel = () => {
+  const staticServerUri = process.env.REACT_APP_PATH || "";
   const [current, setCurrent] = useState(0);
   const itemsRef = useRef(null);
 
@@ -30,9 +31,9 @@ const MainCarousel = () => {
     <>
       <div className="carousel-container">
         <div className="carousel-items" ref={itemsRef}>
-          <img src="./carouselItem1.jpeg"></img>
-          <img src="./carouselItem2.jpeg"></img>
-          <img src="./carouselItem3.jpeg"></img>
+          <img src={staticServerUri + "/carouselItem1.jpeg"}></img>
+          <img src={staticServerUri + "/carouselItem2.jpeg"}></img>
+          <img src={staticServerUri + "/carouselItem3.jpeg"}></img>
         </div>
         <div className="btns">
           <button className="carousel-btn" onClick={goPrev}>

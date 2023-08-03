@@ -12,6 +12,8 @@ import { BsChevronUp, BsChevronDown, BsHeart } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
+  const staticServerUri = process.env.REACT_APP_PATH || "";
+
   const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -149,7 +151,7 @@ const OptionColumn = ({ product }) => {
             // 로그인 상태가 아닌 경우 처리하기
             if (localStorage.getItem("token") === null) {
               alert("로그인이 필요합니다!");
-              navigate("/loginpage");
+              navigate(`${staticServerUri}/loginpage`);
             }
             mutate(
               selectedOptions.map((el) => {
@@ -169,7 +171,7 @@ const OptionColumn = ({ product }) => {
             );
           }}
           imgClass="w-8 mx-auto"
-          src="/cart_white.png"
+          src={staticServerUri + "/cart_white.png"}
           alt="장바구니에 담기"
         ></ImgButton>
         <Button className="w-42 h-14 rounded-lg bg-yellow-300 m-0.5 text-center items-center text-lg">구매하기</Button>
