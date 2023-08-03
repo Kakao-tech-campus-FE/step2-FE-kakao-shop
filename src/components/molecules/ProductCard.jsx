@@ -2,6 +2,7 @@ import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
 import comma from "../../utils/convert";
 import SkeletonCard from "../atoms/SkeletonCard";
+import staticServerUri from "../../utils/krampoline";
 
 /** 상품 카드
  *
@@ -21,10 +22,10 @@ const ProductCard = ({ product, loading }) => {
   return (
     <Card to={`/product/${product.id}`} className="product-card pb-[50px]">
       <Photo
-        src={
-          process.env.REACT_APP_API_URL +
-          product.image.substring(1, product.image.length)
-        }
+        src={`${staticServerUri}/api/${product.image.substring(
+          1,
+          product.image.length
+        )}`}
         alt={product.productName}
         className="product-image rounded-[8px]"
       />

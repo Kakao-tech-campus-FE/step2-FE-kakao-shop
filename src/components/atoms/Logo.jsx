@@ -18,7 +18,7 @@ const Logo = ({
   return (
     <Link
       onClick={() => {
-        window.location.replace("/");
+        window.location.replace(`${staticServerUri}/`);
       }}
       to={staticServerUri + to}
       className={`logo ${className}`}
