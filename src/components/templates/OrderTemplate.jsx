@@ -6,6 +6,8 @@ import { useState, useRef } from "react";
 import { useQuery } from "react-query";
 import { getCart } from "../../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = ({ data, id }) => {
   // 사용자의 장바구니 목록을 조회해서 보여준다.
   const products = [];
@@ -40,36 +42,23 @@ const OrderTemplate = ({ data, id }) => {
 
   const { mutate } = useMutation({
     mutationKey: "order",
-<<<<<<< HEAD
     mutationFn: orderCart,
-=======
-    queryFn: () => order,
->>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
   });
 
   const { data } = useQuery("carts", getCart, {
     onError: () => {
-      navigate("/error");
+      navigate(staticServerUri + "/error");
     },
     suspense: true,
   });
 
   const OrderItems = () => {
-<<<<<<< HEAD
     if (Array.isArray(products) === false) return null;
 
     return (
       <>
         {products.map((item) =>
           item.carts.map((cart) => (
-=======
-    let renderComponent = [];
-    if (Array.isArray(products) === false) return;
-    products.forEach((item) => {
-      renderComponent.push(
-        item.carts.map((cart) => {
-          return (
->>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
             <div key={cart.id} className="p-4 border-t">
               <div className="product-name font-bold">
                 <span>{`${item.productName} = ${cart.optionName}`}</span>
@@ -81,18 +70,10 @@ const OrderTemplate = ({ data, id }) => {
                 <span>{comma(cart.price * cart.quantity)}원</span>
               </div>
             </div>
-<<<<<<< HEAD
           ))
         )}
       </>
     );
-=======
-          );
-        })
-      );
-    });
-    return renderComponent;
->>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
   };
 
   return (
@@ -184,20 +165,16 @@ const OrderTemplate = ({ data, id }) => {
                   alert("주문에 실패했습니다.");
                   if (error.response.status === 404) {
                     // product 정보가 올바르지 않을 경우
-                    navigate("/error");
+                    navigate(staticServerUri + "/error");
                   } else {
                     // 서버 에러
                     alert("주문에 실패하였습니다. 다시 시도해주세요.");
                   }
                 },
-<<<<<<< HEAD
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-=======
-                onSuccess: () => {
->>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
                   alert("주문이 완료되었습니다.");
-                  navigate(`/orders/complete/${id}`);
+                  navigate(staticServerUri + `/orders/complete/${id}`);
                 },
               });
             }}
