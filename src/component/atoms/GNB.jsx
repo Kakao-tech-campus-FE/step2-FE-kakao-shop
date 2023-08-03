@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import Button from "./Button";
 
 function GNB() {
+    const staticServerUri = process.env.REACT_APP_PATH || "";
+
     const email = useSelector((state) => state.user.email);
     const dispatch = useDispatch();
     const navigate = useNavigate();

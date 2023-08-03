@@ -1,6 +1,9 @@
 import axios from "axios";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export const instance = axios.create({
+
     baseURL: staticServerUri + process.env.REACT_APP_API_URL,
     timeout: 1000,
     headers: {

@@ -6,10 +6,11 @@ import OptionList from "../atoms/OptionList";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import Photo from "../atoms/Photo";
-import { useSelector } from "react-redux";
 
 
 const OptionColumn = ({ product }) => {
+    const staticServerUri = process.env.REACT_APP_PATH || "";
+    
     const navigate = useNavigate();
     const [selectedOptions, setSelectedOptions] = useState([]);
     const email = localStorage.getItem("email");
