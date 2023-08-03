@@ -20,7 +20,6 @@ const ProductColumn = styled.div`
 const StyledPhoto = styled(Photo)`
   img {
     width: 380px;
-    height: 380px;
   }
 `;
 
