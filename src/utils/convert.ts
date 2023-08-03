@@ -18,7 +18,7 @@ const staticUrl = (url: string) => {
 };
 
 const fullUrl = (url: string) => {
-  return staticUrl('/api') + url;
+  return staticUrl('/public') + url;
 };
 
 export { comma, fullUrl, staticUrl };
