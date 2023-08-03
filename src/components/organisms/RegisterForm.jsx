@@ -33,7 +33,7 @@ function RegisterForm() {
     })
       .then((res) => {
         alert('성공');
-        navigate(staticServerUrl+'/');
+        navigate(staticServerUrl + '/');
       })
       .catch((error) => {
         alert(error.response.data.error.message);

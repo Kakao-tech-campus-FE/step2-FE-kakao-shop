@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import '../../styles/atoms/GNB.css';
 import { useSelector, useDispatch } from 'react-redux';
+
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 function GNB() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function GNB() {
   const handleLogout = () => {
     localStorage.removeItem('user');
     setToken(null);
-    navigate(staticServerUrl+'/');
+    navigate(staticServerUrl + '/');
   };
   useEffect(() => {
     const tokenObject = JSON.parse(localStorage.getItem('user'));

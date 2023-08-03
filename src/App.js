@@ -13,26 +13,32 @@ import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 
-const staticServerUrl = process.env.REACT_APP_PATH || "";
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path={staticServerUrl + "/login"} element={<LoginPage />} />
-          <Route path={staticServerUrl + "/signup"} element={<RegisterPage />} />
-          <Route path={staticServerUrl +"/*"} element={<ErrorPage />} />
-          <Route path={staticServerUrl+ "/error"} element={<ErrorPage />} />
+          <Route path={staticServerUrl + '/login'} element={<LoginPage />} />
+          <Route
+            path={staticServerUrl + '/signup'}
+            element={<RegisterPage />}
+          />
+          <Route path={staticServerUrl + '/*'} element={<ErrorPage />} />
+          <Route path={staticServerUrl + '/error'} element={<ErrorPage />} />
 
           <Route element={<MainLayout />}>
-            <Route path={staticServerUrl + "/"} element={<NewHomePage />} />
-            <Route path={staticServerUrl + "/product/:id"} element={<ProductDetailPage />} />
+            <Route path={staticServerUrl + '/'} element={<NewHomePage />} />
+            <Route
+              path={staticServerUrl + '/product/:id'}
+              element={<ProductDetailPage />}
+            />
           </Route>
 
           <Route element={<RequiredAuthLayout />}>
-            <Route path={staticServerUrl + "/order"} element={<OrderPage />} />
-            <Route path={staticServerUrl + "/cart"} element={<CartPage />} />
+            <Route path={staticServerUrl + '/order'} element={<OrderPage />} />
+            <Route path={staticServerUrl + '/cart'} element={<CartPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

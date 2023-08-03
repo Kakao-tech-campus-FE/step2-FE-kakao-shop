@@ -9,6 +9,7 @@ import { login } from '../../services/user';
 import Title from '../atoms/Title';
 import { setEmail } from '../../store/slices/userSlice';
 import Label from '../atoms/Label';
+
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 function LoginForm() {
   // 모든 reducer함수를 호출하려면 먼저 dispatch
@@ -38,7 +39,7 @@ function LoginForm() {
         };
         localStorage.setItem('user', JSON.stringify(item));
         alert('로그인 성공!');
-        navigate(staticServerUrl+'/');
+        navigate(staticServerUrl + '/');
       })
       .catch((err) => {
         console.log(err.response.data.error.message);
@@ -46,7 +47,7 @@ function LoginForm() {
       });
   };
   const handleOnClick = () => {
-    navigate(staticServerUrl+'/signup');
+    navigate(staticServerUrl + '/signup');
   };
   return (
     <Container className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">

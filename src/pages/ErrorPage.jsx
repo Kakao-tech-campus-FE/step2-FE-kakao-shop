@@ -1,10 +1,11 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 export const ErrorPage = ({ message }) => {
   const navigate = useNavigate();
   const goHome = () => {
-    navigate(staticServerUrl+'/');
+    navigate(staticServerUrl + '/');
   };
   return (
     <div className="flex justify-center items-center h-screen">
