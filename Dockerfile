@@ -1,5 +1,5 @@
 # Build stage
-FROM krmp-d2hub-idock.9rum.cc/goorm/node:16
+FROM krmp-d2hub-idock.9rum.cc/goorm/node:16 as build
 RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 ENV VITE_KAKAO_STORE_URL="%SERVER_URL%"
 ENV VITE_KAKAO_IMAGE_URL="%IMAGE_URL%"
@@ -11,7 +11,7 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 
 # Run stage
-FROM krmp-d2hub-idock.9rum.cc/goorm/node:16
+FROM build as run
 RUN apt-get update && \
   apt-get install -y nginx && \
   rm -rf /var/lib/apt/lists/* && \
