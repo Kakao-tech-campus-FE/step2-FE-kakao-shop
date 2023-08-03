@@ -8,6 +8,8 @@ import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const navigate = useNavigate();
@@ -117,12 +119,12 @@ const OptionColumn = ({ product }) => {
               }),
               {
                 onSuccess: () => {
-                  navigate("/cart");
+                  navigate(staticServerUri + "/cart");
                 },
                 onError: (error) => {
                   if (localStorage.getItem("user") === null) {
                     alert("로그인이 필요한 서비스입니다.");
-                    navigate("/login");
+                    navigate(staticServerUri + "/login");
                   }
                   else{
                     alert("장바구니 담기에 실패했습니다: " + error);

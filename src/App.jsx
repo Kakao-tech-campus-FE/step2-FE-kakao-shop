@@ -17,17 +17,17 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path={`${staticServerUri}/signup`} element={<RegisterPage />} />
-          <Route path={`${staticServerUri}/login`} element={<LoginPage />} />
+          <Route path=staticServerUri + "/signup" element={<RegisterPage />} />
+          <Route path=staticServerUri + "/login" element={<LoginPage />} />
           <Route element={<MainLayout />}>
-            <Route path={`${staticServerUri}/`} element={<MainPage />} />
-            <Route path={`${staticServerUri}/products/:id`} element={<ProductDetailPage />} />
-            <Route path={`${staticServerUri}/notfound`} element={<NotFoundPage />} />
+            <Route path=staticServerUri + "/" element={<MainPage />} />
+            <Route path=staticServerUri + "/products/:id" element={<ProductDetailPage />} />
+            <Route path=staticServerUri + "/*" element={<NotFoundPage />} />
           </Route>
           <Route element={<RequiredAuthLayout />}>
-            <Route path={`${staticServerUri}/cart`} element={<CartPage />} />
-            <Route path={`${staticServerUri}/order`} element={<OrderPage />} />
-            <Route path={`${staticServerUri}/orders/complete/:id`} element={<OrderSuccessPage />} />
+            <Route path=staticServerUri + "/cart" element={<CartPage />} />
+            <Route path=staticServerUri + "/order" element={<OrderPage />} />
+            <Route path=staticServerUri + "/orders/complete/:id" element={<OrderSuccessPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

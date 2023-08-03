@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import { instance } from "./index";
 
 export const addCart = (payload) => {

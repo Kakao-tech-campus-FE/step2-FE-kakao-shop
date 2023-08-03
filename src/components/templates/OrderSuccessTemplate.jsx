@@ -6,6 +6,8 @@ import Title from "../atoms/Title";
 import Box from "../atoms/Box";
 import Button from "../atoms/Button";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderSuccessTemplate = () => {
   const { id } = useParams();
   const { data } = useQuery([`orders/${id}}`], () => getOrderFromId(id), {
@@ -52,7 +54,7 @@ const OrderSuccessTemplate = () => {
         <Button
           className="p-2 font-bold text-center bg-yellow-300 rounded-md mt-10 ml-[3%] w-[95%]"
           onClick={() => {
-          navigate("/");
+          navigate(staticServerUri + "/");
         }}
       >
         <span>쇼핑 계속하기</span>

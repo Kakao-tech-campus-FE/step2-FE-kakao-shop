@@ -4,6 +4,8 @@ import Card from '../atoms/Card';
 import { comma } from '../../utils/convert';
 import Photo from '../atoms/Photo';
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductContainer = styled(Card)`
   display: flex;
   flex-direction: column;
@@ -38,7 +40,7 @@ const PriceText = styled.span`
 
 const ProductCard = ({ product }) => {
   return (
-    <ProductContainer to={`/products/${product.id}`}>
+    <ProductContainer to={staticServerUri + `/products/${product.id}`}>
       <ImageContainer>
         <Photo src={process.env.REACT_APP_API_URL + product.image} alt={product.productName} className="card" />
       </ImageContainer>

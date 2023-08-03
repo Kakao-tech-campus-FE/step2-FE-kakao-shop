@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getCart } from "../../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = () => {
   const { data } = useQuery(["cart"], getCart, { suspense: true });
   const { products, totalPrice } = data?.data?.response;
@@ -44,10 +46,10 @@ const OrderTemplate = () => {
     onError: (error) => {
       if (error.response && error.response.status === 401) {
         alert("로그인 정보가 없습니다. 로그인 페이지로 이동합니다.");
-        navigate("/login");
+        navigate(staticServerUri + "/login");
       } else if (error.response && error.response.status === 404) {
         alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
-        navigate({`${staticServerUri}/notfound`});
+        navigate(staticServerUri + "/*");
       } else {
         alert("주문에 실패했습니다. 다시 시도해주세요.");
       }
@@ -159,7 +161,7 @@ const OrderTemplate = () => {
                 },
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  navigate(`/orders/complete/${id}`);
+                  navigate(staticServerUri + `/orders/complete/${id}`);
                 },
               });
             }}
