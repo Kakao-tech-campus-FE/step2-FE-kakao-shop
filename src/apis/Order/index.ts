@@ -41,9 +41,9 @@ export const paymentAPI = async ({ itemName, quantity, totalAmount }: PaymentReq
     quantity,
     total_amount: totalAmount,
     tax_free_amount: 0,
-    approval_url: `${staticServerUrl}/pay/approve`,
-    cancel_url: `${staticServerUrl}/pay/cancel`,
-    fail_url: `${staticServerUrl}/pay/fail`,
+    approval_url: `https://user-app.krampoline.com${staticServerUrl}/pay/approve`,
+    cancel_url: `https://user-app.krampoline.com${staticServerUrl}/pay/cancel`,
+    fail_url: `https://user-app.krampoline.com${staticServerUrl}/pay/fail`,
   });
 
   return res;
