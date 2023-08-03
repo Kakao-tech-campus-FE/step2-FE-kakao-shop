@@ -22,6 +22,16 @@ const CartList = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
 
+  /**
+   * 장바구니 담기 에러 캐칭 시나리오
+   * 1. 401 에러
+   *    로그인 정보가 없어 헤더에 authorization이 없는 경우 401 에러를 처리하여 로그인 페이지로 이동한다.
+   * 2. 404 에러
+   *    페이지를 찾을 수 없는 경우, NotFoundPage(404)로 이동한다.
+   * 3. 서버 에러 
+   *    서버 요청 실패의 경우 alert창을 띄운다.
+   */
+
   const { mutate } = useMutation({
     mutationFn: updateCart,
     onError: (error) => {

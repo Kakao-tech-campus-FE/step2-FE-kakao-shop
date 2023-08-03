@@ -87,9 +87,11 @@ const LoginForm = () => {
                 setLocalStorageWithExp("user", res.headers.authorization, 1000 * 60 * 60 * 24);
                 navigate(staticServerUri + "/");
             })
-            .catch((error) => {
-                setError(error);
-				alert("회원정보가 존재하지 않습니다.");
+             .catch((err) => {
+				alert("회원 정보가 존재하지 않습니다.");
+                console.log(err.request.response);
+                const errObject = JSON.parse(err.request.response);
+                setError(errObject.error.message)
             });
     };
 
