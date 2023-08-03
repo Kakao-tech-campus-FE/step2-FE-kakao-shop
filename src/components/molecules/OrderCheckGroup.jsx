@@ -35,7 +35,7 @@ const OrderCheckGroup = ({totalPrice}) => {
       const res = await orderProducts();
       dispatch(setOrderId(res.data.response.id));
       alert('주문이 완료되었습니다.');
-      navigate('/ordercomplete');
+      navigate(staticServerUrl + '/ordercomplete');
     } catch (e) {
       // 실제 PG 서비스 연결이 안 되어있으니, 실제 에러가 발생하는 장바구니가 비어있는 경우로 가정
       alert('장바구니가 비어있는지 확인해주세요');
