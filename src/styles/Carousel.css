@@ -1,0 +1,27 @@
+.carousel {
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  width: 1024px;
+  justify-content: center;
+}
+
+.carouselImg {
+  width: 1024px;
+  transition: 0.5s;
+}
+
+.dots {
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  margin: 5px;
+  border-radius: 10px;
+  background-color: white;
+}

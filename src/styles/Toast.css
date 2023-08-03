@@ -1,0 +1,17 @@
+.toast {
+  display: none;
+  justify-content: center;
+  position: fixed;
+  margin: 0 54px 30px;
+  border-radius: 5px;
+  padding: 24px;
+  z-index: 1;
+  box-shadow: 0 3px 5px gray;
+  transition: .5s;
+  
+  /* Kakao Store Attrs */
+  font-size: 14px;
+  line-height: 1.5;
+  color: white;
+  background-color: #333;
+}
