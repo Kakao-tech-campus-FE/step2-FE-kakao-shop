@@ -16,6 +16,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
+    console.log(config);
     const loginState = store.getState().login;
 
     // 토큰 필요한 요청일 때
@@ -57,6 +58,7 @@ instance.interceptors.response.use(
   },
   (error) => {
     // fallback 에서 처리
+    console.log(error);
   }
 );
 
