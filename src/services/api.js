@@ -1,13 +1,13 @@
 import axios from "axios";
 
 export const staticServerUri = process.env.REACT_APP_PATH || "";
+export const apiUri = staticServerUri + "/api";
 
 //REACT_APP_API_URL=http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com
-
 const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL
     ? process.env.REACT_APP_API_URL
-    : staticServerUri + "/api",
+    : apiUri,
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",

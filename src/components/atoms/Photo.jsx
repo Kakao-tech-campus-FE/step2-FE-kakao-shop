@@ -1,8 +1,8 @@
-import { staticServerUri } from "../../services/api";
+import { apiUri, staticServerUri } from "../../services/api";
 
 const Photo = ({ className, src, alt }) => {
   src = `${
-    process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : ""
+    process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL : apiUri
   }${src}`;
   return (
     <picture>

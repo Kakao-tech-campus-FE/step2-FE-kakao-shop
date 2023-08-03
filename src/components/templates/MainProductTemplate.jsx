@@ -22,9 +22,9 @@ const dummy = {
 };
 
 const IMAGES = [
-  "images/carousel/carouselItem1.jpeg",
-  "images/carousel/carouselitem2.jpeg",
-  "images/carousel/carouselitem3.jpeg",
+  "/images/carousel/carouselItem1.jpeg",
+  "/images/carousel/carouselitem2.jpeg",
+  "/images/carousel/carouselitem3.jpeg",
 ];
 
 const MainProductTemplate = ({ children }) => {
