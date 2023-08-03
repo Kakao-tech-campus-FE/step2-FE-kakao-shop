@@ -4,9 +4,10 @@ import { useDispatch } from "react-redux";
 import { clearUserReducer } from "reducers/loginSlice";
 
 const path = process.env.REACT_APP_PATH || "";
+const apiURL = process.env.REACT_APP_API_URL || "";
 
 const instance = axios.create({
-  baseURL: path + "/api",
+  baseURL: apiURL,
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
@@ -18,7 +19,7 @@ instance.interceptors.request.use(
     const loginState = store.getState().login;
 
     // 토큰 필요한 요청일 때
-    if (config.url.includes("cart") || config.url.includes("order")) {
+    if (config.url.includes("carts") || config.url.includes("orders")) {
       if (loginState.islogin) {
         config.headers.Authorization = loginState.token;
       } else {
