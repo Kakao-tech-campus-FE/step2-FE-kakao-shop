@@ -1,9 +1,9 @@
 import axios from "axios";
 
-const staticId = process.env.REACT_APP_PATH;
+const staticId = process.env.REACT_APP_PATH ? process.env.REACT_APP_PATH+'/api/' : "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/";
 const instance = axios.create({
-  baseURL: `${staticId}/api/`,
-  timeout: 1000,
+  baseURL: staticId,
+  timeout: 1000 * 5,
   headers: {
     "Content-Type": "application/json",
   }

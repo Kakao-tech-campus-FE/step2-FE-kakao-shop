@@ -3,7 +3,7 @@ import SelectedOption from "../molecules/SelectedOption";
 import DeliveryInformation from "../atoms/DeliveryInformation";
 import OptionsList from "../molecules/OptionsList";
 import { useSelector } from "react-redux";
-import { addCart } from "../../apis/api";
+import { addCart, getCart, modifyCart } from "../../apis/api";
 import { clearItem } from "../../redux/cartRedux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -26,13 +26,47 @@ const ProductOptions = ({ product }) => {
       return;
     }
 
-    addCart(cartItems)
-    .then((res) => {
+    let finalItems = [];
+    const tempItems = [];
+    getCart().then((res) => {
+      console.log(res.data.response.products);
+      res.data.response.products.forEach((product) => {
+        product.carts.forEach((option) => {
+          tempItems.push({
+            optionId: option.option.id,
+            quantity: option.quantity,
+            cartId: option.id
+          })
+        })
+      })
+    }).then(() => {
+
+      // 중복된 요소 처리
+      const tempItemsToRemove = [];
+      cartItems.forEach((cartItem, index) => {
+        tempItems.forEach((tempItem) => {
+          if (tempItem.optionId === cartItem.optionId) {
+            modifyCart([{
+              cartId: tempItem.cartId,
+              quantity: tempItem.quantity + cartItem.quantity
+            }]);
+
+            tempItemsToRemove.push(cartItem);
+          }
+        });
+      });
+
+      // 중복된 요소를 tempItems 배열에서 삭제 <- 이게 안됨
+      finalItems = cartItems.filter((item) => {
+        return !tempItemsToRemove.includes(item);
+      })
+
+    }).then(() => {
+      addCart(finalItems);
       dispatch(clearItem());
       setSelectedOptions([]);
       alert('장바구니에 담겼습니다.');
-    })
-    .catch((err) => {
+    }).catch((err) => {
       console.log(err);
     });
     
@@ -86,7 +120,7 @@ const ProductOptions = ({ product }) => {
 
       <div className="flex w-full mt-3">
         <button className="w-2/5 p-2 mr-1 text-sm h-10 bg-gray-900 rounded-md text-white" onClick={handleAddCartClick}>장바구니 담기</button>
-        <button className="w-3/5 p-2 text-sm h-10 bg-yellow-300 rounded-md" onClick={handlePurchaseClick}>톡딜가로 구매하기</button>
+        <button className="w-3/5  p-2 text-sm h-10 bg-yellow-300 rounded-md" onClick={handlePurchaseClick}>톡딜가로 구매하기</button>
       </div>
     </div>
   )
