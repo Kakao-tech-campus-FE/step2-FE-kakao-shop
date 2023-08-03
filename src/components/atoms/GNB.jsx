@@ -26,7 +26,7 @@ const GNB = () => {
   }, [dispatch]);
 
   //현재 위치 따라서 헤더 네비게이션 바 표시 여부 결정.
-  const showNavbar = location.pathname === "/";
+  const showNavbar = location.pathname === staticServerUrl + "/";
 
   return (
     <header className="header">
