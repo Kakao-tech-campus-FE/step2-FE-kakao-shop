@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../styles/pages/Homepage.css';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 function HomePage() {
   const getUserToken = () => {
     const tokenString = localStorage.getItem('user');
@@ -42,7 +43,11 @@ function HomePage() {
     <div className="link-container">
       <div className="logo-wrapper">
         <Link to="/">
-          <img src="logoKaKao.png" alt="로고" className="logo" />
+          <img
+            src={`${staticServerUrl}/logoKaKao.png`}
+            alt="로고"
+            className="logo"
+          />
         </Link>
       </div>
       <div className="link-wrapper">{renderAuthButton()}</div>

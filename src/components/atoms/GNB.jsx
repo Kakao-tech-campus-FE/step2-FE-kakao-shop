@@ -45,7 +45,7 @@ function GNB() {
     <header className="header">
       <div className="left-content">
         <Link to="/">
-          <img src="/logoKaKao.png" alt="logoKakao.png" />
+          <img src={`${staticServerUrl}/logoKaKao.png`} alt="logoKakao.png" />
         </Link>
       </div>
       <nav>
@@ -53,7 +53,7 @@ function GNB() {
           <div className="navigation">
             <span>
               <Link to="/cart">
-                <img src="/cart.png" alt="cart.png" />
+                <img src={`${staticServerUrl}/cart.png`} alt="cart.png" />
               </Link>
             </span>
             <span> | </span>

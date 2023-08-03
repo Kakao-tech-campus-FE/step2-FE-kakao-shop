@@ -1,11 +1,12 @@
 import React from 'react';
 import '../../styles/atoms/Photo.css';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 const Photo = ({ className, src, alt }) => {
   return (
     <picture className={className}>
-      <source srcSet={process.env.REACT_APP_API_URL + src} />
-      <img src={process.env.REACT_APP_API_URL + src} alt={alt} />
+      <source srcSet={staticServerUrl + src} />
+      <img src={staticServerUrl + src} alt={alt} />
     </picture>
   );
 };
