@@ -7,10 +7,10 @@ import ProductDetailPage from '../pages/ProductDetailPage';
 import SkeletonPage from '../components/skeleton/SkeletonPage';
 import OrderPage from '../pages/OrderPage';
 import OrderCompletePage from '../pages/OrderCompletePage'
-
+const staticServerUri = process.env.REACT_APP_PATH || "";
 export const RouterInfo = [
     {
-        path: `${routes.home}`,
+        path: `${staticServerUri}${routes.home}`,
         element: <Home />,
         children: [
             // {
@@ -23,36 +23,36 @@ export const RouterInfo = [
 
     },
     {
-        path: `${routes.logIn}`,
+        path: `${staticServerUri}${routes.logIn}`,
         element: <Login></Login>,
         label: 'login'
     },
     {
-        path: `${routes.signUp}`,
+        path: `${staticServerUri}${routes.signUp}`,
         element: <SignUp />,
         label: 'signup'
     },
     {
-        path: `${routes.cart}`,
+        path: `${staticServerUri}${routes.cart}`,
         element: <Cart/>,
         label: 'cart'
     },
     {
-        path: `${routes.productDetail}`,
+        path: `${staticServerUri}${routes.productDetail}`,
         element: <ProductDetailPage />,
         label: 'productDetail'
     },
     {
-        path: `${routes.skeletonTest}`,
+        path: `${staticServerUri}${routes.skeletonTest}`,
         element: <SkeletonPage />,
         label: 'skeletonTest'
     },
     {
-        path: `${routes.order}`,
+        path: `${staticServerUri}${routes.order}`,
         element: <OrderPage />,
         label: 'order'
     }, {
-        path: `${routes.orderComplete}`,
+        path: `${staticServerUri}${routes.orderComplete}`,
         element: <OrderCompletePage/>,
         label: 'order'
     },
