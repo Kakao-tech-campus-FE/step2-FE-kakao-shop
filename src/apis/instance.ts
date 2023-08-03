@@ -1,6 +1,7 @@
-import { KAKAO_API_BASEURL, createFetchInstance } from '../utils/fetch';
+import { createFetchInstance } from '../utils/fetch';
+import { staticServerUri } from '../utils/serverUri';
 
 export const kakaoInstance = createFetchInstance(
-  KAKAO_API_BASEURL,
+  `${staticServerUri}/api`,
   3000,
 );
