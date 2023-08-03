@@ -88,6 +88,8 @@ const LoginForm = () => {
                 navigate(staticServerUri + "/");
             })
             .catch((error) => {
+				console.log(error.response.status);
+				console.log(error.response.error.status);
 				console.log(error.status);
 				console.log(error.payload.error?.status);
 				console.error(error);
