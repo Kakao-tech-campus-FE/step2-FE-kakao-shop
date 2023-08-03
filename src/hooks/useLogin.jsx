@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setUserReducer } from 'reducers/loginSlice'
 
-const url = process.env.REACT_APP_PATH || "";
+const path = process.env.REACT_APP_PATH || "";
 
 const useLogin = (user) => {
   const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const useLogin = (user) => {
         } ))
 
         localStorage.removeItem("failCnt")  // 로그인실패횟수 초기화
-        navigate(url + "/")
+        navigate(path + "/")
       })
       .catch((error) => {
         // 로그인 실패 시 실패횟수 +1, 실패 상태 true

@@ -8,7 +8,7 @@ import InputGroup from "components/molecules/InputGroup"
 import SubmitButton from 'components/atoms/SubmitButton';
 import useForm from 'hooks/useForm';
 
-const url = process.env.REACT_APP_PATH || "";
+const path = process.env.REACT_APP_PATH || "";
 
 const RegisterForm = () => {
 
@@ -47,7 +47,7 @@ const RegisterForm = () => {
   const click = () => {
     postJoin(user)
       .then((response) => {
-        navigate(url + "/")
+        navigate(path + "/")
       })
       .then(() => {
         alert("가입완료")

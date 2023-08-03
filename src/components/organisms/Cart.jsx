@@ -13,7 +13,7 @@ import { CartOptionBox, CartCollectionBox } from 'components/atoms/cart/';
 
 import { getCarts, updateCart } from 'api/cart';
 
-const url = process.env.REACT_APP_PATH || "";
+const path = process.env.REACT_APP_PATH || "";
 
 const Cart = () => {
   const navigate = useNavigate()
@@ -23,14 +23,14 @@ const Cart = () => {
     ["getCarts"],
     getCarts,
     { suspense: true,
-      onError: () => navigate(url + '/login')
+      onError: () => navigate(path + '/login')
     }
   )
   
   const mutation = useMutation(
     updateCart, 
     { onSuccess: () => query.refetch(),
-      onError: () => navigate(url + '/login')
+      onError: () => navigate(path + '/login')
     }
   );
 
@@ -41,7 +41,7 @@ const Cart = () => {
 
   /** 제출버튼 클릭 시 주문 요청 */
   const submitHandler = () => {
-    navigate(url + "/order")
+    navigate(path + "/order")
   }
 
   /** 모음전 별 총 수량 { 모음전_id : 모음전_총_수량 } */

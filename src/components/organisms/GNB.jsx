@@ -7,7 +7,7 @@ import { clearUserReducer } from '../../reducers/loginSlice'
 import { GNBContainer, GNBInnerBox, GNBButton, GNBMenuGroup, Logobox } from 'components/atoms/GNB'
 import StyledLink from 'components/atoms/StyledLink';
 
-const url = process.env.REACT_APP_PATH || "";
+const path = process.env.REACT_APP_PATH || "";
 
 const GNB = () => {
   const navigate = useNavigate()
@@ -15,7 +15,7 @@ const GNB = () => {
   const loginState = useSelector((state) => state.login)
 
   const logout = () => {
-    navigate(url + "/")
+    navigate(path + "/")
     dispatch(clearUserReducer())
   }
   
@@ -28,7 +28,7 @@ const GNB = () => {
           <StyledLink to ="/">
             <Logobox />
           </StyledLink>
-          <GNBButton onClick={()=>{navigate(url + "/")}}>상품목록</GNBButton>
+          <GNBButton onClick={()=>{navigate(path + "/")}}>상품목록</GNBButton>
         </GNBMenuGroup>
 
         <GNBMenuGroup className="ml-auto">
@@ -36,13 +36,13 @@ const GNB = () => {
           {loginState.islogin
             ? 
               <>  
-                <GNBButton onClick={()=>{navigate(url + "/cart")}}>장바구니</GNBButton>
+                <GNBButton onClick={()=>{navigate(path + "/cart")}}>장바구니</GNBButton>
                 <GNBButton onClick={logout}>로그아웃</GNBButton>
               </>
             : 
               <>
-                <GNBButton onClick={()=>{navigate(url + "/login")}}>로그인</GNBButton>
-                <GNBButton onClick={()=>{navigate(url + "/signup")}}>회원가입</GNBButton>
+                <GNBButton onClick={()=>{navigate(path + "/login")}}>로그인</GNBButton>
+                <GNBButton onClick={()=>{navigate(path + "/signup")}}>회원가입</GNBButton>
               </>
           }
         </GNBMenuGroup>

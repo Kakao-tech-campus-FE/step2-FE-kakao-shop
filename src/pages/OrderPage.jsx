@@ -4,7 +4,7 @@ import { useQuery } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { getOrder } from 'api/order'
 
-const url = process.env.REACT_APP_PATH || "";
+const path = process.env.REACT_APP_PATH || "";
 
 const OrderPage = () => {
 
@@ -17,7 +17,7 @@ const OrderPage = () => {
     onSuccess: (res) => {
       if (res.totalPrice === 0) {
         alert('선택된 상품이 없습니다')
-        navigate(url + '/cart')
+        navigate(path + '/cart')
       }
     }}
   )
