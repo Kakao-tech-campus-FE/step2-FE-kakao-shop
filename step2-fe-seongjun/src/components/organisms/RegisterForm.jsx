@@ -1,6 +1,4 @@
-import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
-import Button from '../atoms/Button';
 import useInput from '../../hooks/useInput';
 import { register } from '../services/user';
 import { useNavigate } from 'react-router-dom';
@@ -72,55 +70,59 @@ const RegisterForm = () => {
   }
 
   return (
-  <Container>
-    <InputGroup 
-      id="username" 
-      type="text" 
-      name="username"
-      placeholder="사용자 이름을 입력해주세요."
-      label="이름"
-      value = {value.username}
-      onChange={handleOnChange}
-      onBlur = {checkRegexRegister}
-      errorMsg = {error.username ? ERROR_MSG[error.username] : ''}
-    />
-    <InputGroup
-      id="email" 
-      type="email"
-      name="email" 
-      placeholder="이메일(아이디)를 입력해주세요."
-      label="이메일"
-      value={value.email}
-      onChange={handleOnChange}
-      onBlur={checkRegexRegister}
-      errorMsg = {error.email ? ERROR_MSG[error.email] : ''}
-    />
-    <InputGroup 
-      id="password" 
-      type="password" 
-      name="password"
-      placeholder="**********"
-      label="비밀번호"
-      value={value.password}
-      onChange={handleOnChange}
-      onBlur={checkRegexRegister}
-      errorMsg = {error.password ? ERROR_MSG[error.password] : ''}
-    />
-    <InputGroup 
-      id="passwordConfirm" 
-      type="password" 
-      name="passwordConfirm"
-      placeholder="**********"
-      label="비밀번호 확인"
-      value={value.passwordConfirm}
-      onChange={handleOnChange}
-      onBlur={checkRegexRegister}
-      errorMsg = {error.passwordConfirm ? ERROR_MSG[error.passwordConfirm] : ''}
-    />
-    <Button
-      onClick={registerReq}
-    >회원가입</Button>
-  </Container>
+    <div className="mt-32">
+      <h1 className="text-center text-4xl text-black font-medium pb-10">kakao</h1>
+      <div className='border max-w-[500px] mx-auto py-10 px-10'> 
+        <InputGroup 
+          id="username" 
+          type="text" 
+          name="username"
+          placeholder="사용자 이름을 입력해주세요."
+          label="이름"
+          value = {value.username}
+          onChange={handleOnChange}
+          onBlur = {checkRegexRegister}
+          errorMsg = {error.username ? ERROR_MSG[error.username] : ''}
+        />
+        <InputGroup
+          id="email" 
+          type="email"
+          name="email" 
+          placeholder="이메일(아이디)를 입력해주세요."
+          label="이메일"
+          value={value.email}
+          onChange={handleOnChange}
+          onBlur={checkRegexRegister}
+          errorMsg = {error.email ? ERROR_MSG[error.email] : ''}
+        />
+        <InputGroup 
+          id="password" 
+          type="password" 
+          name="password"
+          placeholder="**********"
+          label="비밀번호"
+          value={value.password}
+          onChange={handleOnChange}
+          onBlur={checkRegexRegister}
+          errorMsg = {error.password ? ERROR_MSG[error.password] : ''}
+        />
+        <InputGroup 
+          id="passwordConfirm" 
+          type="password" 
+          name="passwordConfirm"
+          placeholder="**********"
+          label="비밀번호 확인"
+          value={value.passwordConfirm}
+          onChange={handleOnChange}
+          onBlur={checkRegexRegister}
+          errorMsg = {error.passwordConfirm ? ERROR_MSG[error.passwordConfirm] : ''}
+        />
+        <button
+          className=" w-full bg-yellow-400 text-black py-3 mb-4 rounded"
+          onClick={registerReq}
+        >회원가입</button>
+      </div>
+  </div>
   );
 }
 

@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import GNB from "../components/atoms/GNB";
-import NewCarousel from "../components/atoms/Carousel";
 import styled from "styled-components";
 
 const MainLayout = () => {
@@ -11,7 +10,7 @@ const MainLayout = () => {
       <br/>
       <br/>
       <br/>
-      <NewCarousel/>
+      <br />
       {/*콘텐츠 영역: 페이지마다 달라지는 영역*/}
       <Outlet />
       {/*footer 영역*/}

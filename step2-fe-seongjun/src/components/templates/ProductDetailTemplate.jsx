@@ -6,7 +6,7 @@ import { ToastContainer } from "react-toastify";
 const ProductDetailTemplate = ({ product }) => {
   return (
     <>
-      <Container>
+      <Container className="flex">
         <ProductInformationColumn product={product}/>
         <OptionColumn product={product}/>
       </Container>

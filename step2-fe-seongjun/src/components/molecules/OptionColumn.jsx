@@ -1,19 +1,15 @@
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import { comma } from "../../utils/convert";
 import { useState } from "react";
 import Button from "../atoms/Button";
 import { addCart } from "../services/cart";
 import {toast} from "react-toastify";
+import CartItem from "../atoms/CartItem";
 
 const OptionColumn = ({product}) => {
-  const [selectedOptions, setSelectedOptions] = useState([{
-     optionId : 1,
-     quantity: 1,
-     name: "옵션 이름",
-     price: 1000,
-  }]);
+  const [selectedOptions, setSelectedOptions] = useState([]);
 
   const handleOnClickOption = (option) => {
 
@@ -78,58 +74,70 @@ const OptionColumn = ({product}) => {
 
 
   return (
-    <div className="option-column">
-      <h3>옵션 선택</h3>
-      <OptionList 
-        options={product.options}
-        onClick={handleOnClickOption}
-      />
+    <div className="mr-24 ml-6 w-3/5 text-black">
+      <div className="mt-2 border rounded-1">
+        <OptionList options={product.options} onClick={handleOnClickOption}/>
+      </div>
       <hr/>
-      {selectedOptions.map((option) => (
-        <ol key={option.optionId} className="selected-option-list"> 
-          <div>
-            <span>{option.name}</span>
-            <button
-              onClick={() => {
-                handleOnRemove(option.optionId)
-              }}
-            >X</button>
-          </div>
-          <div>
-            <li className="selected-option">
-              <Counter
-                  onIncrease={(count) => handleOnChange(count, option.optionId)}
-                  onDecrease={(count) => handleOnChange(count, option.optionId)}
-              />
-              <span className="name">{option.name}</span>
-              <span className="price">{comma(option.price)}원</span>
-            </li>
-          </div>
-        </ol>
-      ))}
+      <div className="my-4">
+        {selectedOptions.length > 0 && (
+          <>
+            {selectedOptions.map((option) => (
+              <div className="mb-2 p-3 border">
+                <ol key={option.optionId} className="selected-option-list"> 
+                <li className="selected-option">
+                <div className="flex justify-between">
+                <span>{option.name}</span>
+                <button
+                  className="border px-2"
+                  onClick={() => {
+                    handleOnRemove(option.optionId)
+                  }}
+                >X</button>
+              </div>
+              <div>
+                
+                  <Counter
+                    onIncrease={(count) => handleOnChange(count, option.optionId)}
+                    onDecrease={(count) => handleOnChange(count, option.optionId)}
+                  />
+                  {/* <span className="name">{option.name}</span> */}
+                  <span className="price">{comma(option.price)}원</span>
+              </div>
+              </li>
+              </ol>
+            </div>
+          ))}
+          </>
+          
+        )}
+      </div>
       <hr/>
-      <div className="total-price">
-        <span>총 수량 {" "}
+      <div className="mt-4 flex justify-between">
+        <span className="text-xl">총 수량 {" "}
         {comma(selectedOptions.reduce((acc, cur) => {
           return acc + cur.quantity;
         }, 0))}
         개
         </span>
-        <span>총 주문금액 {" "}
-        {comma(selectedOptions.reduce((acc, cur) => {
-          return acc + cur.quantity * cur.price;
-        }, 0))}
-        원
+        <span className="text-xl">총 주문금액 {" "}
+          <span className="font-bold text-red-500">{comma(selectedOptions.reduce((acc, cur) => {
+            return acc + cur.quantity * cur.price;
+             }, 0))}
+            원
+          </span>
         </span>
       </div>
-      <div className="button-group">
+      <div className="flex justify-center mt-4">
         <Button
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
                 return {
+                  name: el.name,
                   optionId: el.optionId,
                   quantity: el.quantity,
+                  price: el.price,
                 };
               }), {
                 onSuccess: () => {
@@ -142,9 +150,11 @@ const OptionColumn = ({product}) => {
             )
           }}
         >
-          <img src="/cart_white.png" alt="장바구니 담기" />
+          <img src={"/cart_white.png"} alt="장바구니 담기" className="h-15" />
         </Button>
-        <Button>구매하기</Button>
+        <div>
+          <button className="text-xl block w-full h-15 mx-4 px-10 py-5 bg-yellow-400 rounded">구매하기</button>
+        </div>
       </div>
     </div>
   ); 

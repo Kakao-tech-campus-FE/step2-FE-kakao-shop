@@ -15,7 +15,7 @@ function GNB() {
   };
 
   const timeout = useCallback(() => {
-    const time = 10 * 1000; // test를 위해 10초로 설정해두었습니다.
+    const time = 24 * 60 * 60 * 1000; // test를 위해 10초로 설정해두었습니다.
     const currentTime = new Date().getTime();
     const lastTime = localStorage.getItem("loginTime");
     if(lastTime && currentTime - parseInt(lastTime) >= time) {
@@ -94,12 +94,6 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Logo = styled.img`
-  font-size: 2rem;
-  width: 5rem;
-  height: 2.25rem;
-  margin: 1.3rem;
-`;
 
 const Nav = styled.nav`
   display: flex;
@@ -117,9 +111,3 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const StyledButton = styled.button`
-  color: #000;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-`;
