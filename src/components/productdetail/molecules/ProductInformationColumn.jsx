@@ -9,13 +9,13 @@ import { comma } from "../../../utils/convert";
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 export default function ProductInformationColumn({ product }) {
-  const { productName, price, image } = product;
+  const { productName, price, id } = product;
   return (
     <Container className=" flex min-h-[700px] w-[890px] border-0 border-r-[1px] border-solid border-zinc-300 pt-5 ">
       <div>
         <Photo
           className="detail-photo"
-          src={staticServerUrl + image}
+          src={staticServerUrl + `/public/images/${id}.jpg`}
           alt={productName}
         />
       </div>
