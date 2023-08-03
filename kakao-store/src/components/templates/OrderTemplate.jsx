@@ -91,7 +91,9 @@ const OrderTemplate = ({ data }) => {
                     <h2>주문상품 정보</h2>
                 </div>
                 {/* 각 주문의 정보 */}
-                {<OrderItems />}
+                <div className="p-4 border">
+                    {<OrderItems />}
+                </div>
                 {/* 총 주문 금액 */}
                 <div className="flex items-center justify-between p-4 border">
                     <h3 className="text-xl font-bold">총 주문 금액</h3>
