@@ -9,6 +9,10 @@ import React, { useState } from 'react';
 import { login } from "../../services/user";
 import { useDispatch } from "react-redux";
 
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
+
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();  //redux 의 액션을 발생시키는 함수!!
@@ -109,13 +113,13 @@ const LoginForm = () => {
                         after:inline-block after:content-[''] after:w-[190px] after:h-[1px] after:bg-opacity-10 after:bg-black  
                         "><span className="block w-[40px] text-center mx-auto my-4 text-gray-400 text-xs">또는</span></span>
                     </div>
-                    <Link href={"/signup"}
+                    <Link href={staticServerUri + "/signup"}
                         className="block w-full p-4 font-medium bg-gray-200 text-black text-center hover:bg-gray-300"
                     ><span className="font-medium">회원가입</span>
                     </Link>
                 </Box>
                 <Box className="flex place-content-end mt-10 text-xs">
-                    <Link href={"/"}>Home</Link>
+                    <Link href={staticServerUri + "/"}>Home</Link>
                 </Box>
             </Box>
         </Box>
