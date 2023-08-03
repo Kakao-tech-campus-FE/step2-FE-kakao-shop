@@ -10,7 +10,7 @@ const OrderList = ({ items }) => {
       <OptionItem options={id}>주문번호</OptionItem>
       <OptionItem
         options={items?.items.map((item) => {
-          return <span key={id + 1}>{item.optionName}</span>;
+          return <div key={id + 1}>{item.optionName}</div>;
         })}
       >
         옵션
