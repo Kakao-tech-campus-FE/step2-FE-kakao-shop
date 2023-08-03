@@ -1,0 +1,10 @@
+.layout_splits {
+  display: flex;
+  width: 1280px;
+  margin: 0 auto;
+}
+
+.layout_splits .main_sections {
+  flex: 0 0 892px;
+  padding: 30px 0 120px;
+}

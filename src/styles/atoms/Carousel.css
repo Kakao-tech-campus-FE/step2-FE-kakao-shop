@@ -1,0 +1,87 @@
+.carousel {
+  padding: 0px;
+}
+
+.bnr_home {
+  height: 300px;
+  padding: 0px;
+}
+
+.bnr_home .btn_next {
+  right: 10%;
+}
+.bnr_home .btn_prev {
+  left: 10%;
+}
+
+.bnr_home .btn_img {
+
+}
+
+.bnr_home .btn_flick {
+  position: absolute;
+  display : flex;
+  flex-direction:  column;
+  justify-content: center;
+  align-items: center;
+
+  top: 200px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(255, 255, 255 0.23);
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.bnr_home .slide_bnr {
+  position: absolute;
+  height: 300px;
+  left: 0px;
+  right: 0px;
+  top: 80px;
+}
+.slide {
+  border-radius: 0.5rem;
+  box-shadow: 0px 0px 7px #666;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-hidden {
+  display: none;
+}
+
+.btn_flick:hover {
+  cursor: pointer;
+}
+
+.bnr_home .paging_dot {
+  position: absolute;
+  left: 50%;
+  top: 340px;
+  z-index: 10;
+  font-size: 0;
+  white-space: nowrap;
+  transform: translate(-50%);
+}
+
+.indicator {
+  display: inline-block;
+  overflow: hidden;
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+  margin: 0 4px;
+  line-height: 0;
+
+  background-color: rgba(255, 255, 255, 0.2);
+  vertical-align: top;
+  outline: none;
+}
+
+.indicator-inactive {
+  background-color: rgb(41, 41, 41);
+}
