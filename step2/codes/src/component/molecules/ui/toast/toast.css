@@ -1,0 +1,25 @@
+.toastcontainer{
+  margin: 30px;
+}
+
+.toastunview{
+  text-align: center;
+  position: fixed;
+  bottom:0px;
+  right: 10px;
+  width: 300px;
+  border: 1px solid black;
+  transition: transform 0.3s;
+  transform: translateY(100%);
+}
+
+.toastview{
+  text-align: center;
+  position: fixed;
+  bottom:0px;
+  right: 10px;
+  width: 300px;
+  border: 1px solid black;
+  transition: transform 0.3s;
+  transform: translateY(-100%);
+}
