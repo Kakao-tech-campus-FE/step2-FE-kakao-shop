@@ -18,7 +18,7 @@ function MainProductTemplate() {
       }
     })
   },{
-    threshold: 0.5,
+    threshold: 0.9,
   })
 
   const {productData,isLoading,end,reRender,isError, errorMessage} = useInfinite(page)
