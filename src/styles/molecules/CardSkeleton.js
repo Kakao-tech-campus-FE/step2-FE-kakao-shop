@@ -4,15 +4,15 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 4.5rem;
-  margin: 3rem 0;
+  margin: 1rem 0;
   width: 100%;
   padding: 0 5rem;
   max-width: 1200px;
 `;
 
 export const ImageLoader = styled.div`
-  width: 20rem;
-  height: 13rem;
+  width: 28rem;
+  height: 11rem;
   background-color: #f2f2f2;
   border-radius: 10px;
   animation: skeleton-gradient 1.5s infinite ease-in-out;
