@@ -104,7 +104,6 @@ const CartList = ({ data }) => {
             }
         });
     };
-    console.log(cartItems && cartItems.length === 0);
     return (
         <Container className="max-w-[870px] mx-auto mb-20">
             <Box className="text-lg font-bold border flex items-center justify-center h-18 mt-4 py-2">장바구니</Box>
