@@ -44,7 +44,6 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 const Gnb = () => {
   const navigate = useNavigate();
   const email = useSelector((state) => state.user.email);
-  const isLoggedin = email === null ? false : true;
 
   const handleLoginButtonClick = () => {
     try {
@@ -85,12 +84,16 @@ const Gnb = () => {
             <LinkButton
               className="cart icon"
               type="click"
-              onClick={() => navigate(staticServerUri + routes.cart)}
+              onClick={() =>
+                email
+                  ? navigate(staticServerUri + routes.cart)
+                  : alert("로그인 후 이용 가능합니다.")
+              }
             >
               <BsCart2 />
             </LinkButton>
           </div>
-          {isLoggedin ? (
+          {email ? (
             <LinkButton
               className="login"
               type="click"
