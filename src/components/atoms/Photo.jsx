@@ -8,8 +8,8 @@ function Photo({ src, alt, size }) {
   src = `${staticServerUri}/src/assets/img/products`+`${src}`
   return (
     <Picture size={size}>
-      <source srcSet={src}/>
-      <img src={src} alt={alt}/>
+      <source srcSet={staticServerUri + src}/>
+      <img src={staticServerUri + src} alt={alt}/>
     </Picture>
   )
 }
