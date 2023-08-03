@@ -18,14 +18,14 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
+          <Route path={staticServerUri + "/login"} element={<LoginPage />} />
+          <Route
+            path={staticServerUri + "/signup"}
+            element={<RegisterPage />}
+          />
           <Route path={staticServerUri + "/error"} element={<ErrorPage />} />
           {/* 공통 레이아웃 : GNB, Footer */}
           <Route element={<MainLayout />}>
-            <Route path={staticServerUri + "/login"} element={<LoginPage />} />
-            <Route
-              path={staticServerUri + "/signup"}
-              element={<RegisterPage />}
-            />
             <Route path={staticServerUri + "/"} element={<HomePage />} />
             <Route
               path={staticServerUri + "/product/:id"}

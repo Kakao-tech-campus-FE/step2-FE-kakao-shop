@@ -61,14 +61,14 @@ function GNB() {
             <img src={cart} alt="장바구니 버튼" className="h-10" />
           </Link>
           {!isLoggedIn ? (
-            <StyledLink to="/login">로그인</StyledLink>
+            <StyledLink to={staticServerUri + "/login"}>로그인</StyledLink>
           ) : (
             <>
               <span>{email}</span>
               <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
             </>
           )}
-          <StyledLink to="/signup">회원가입</StyledLink>
+          <StyledLink to={staticServerUri + "/signup"}>회원가입</StyledLink>
         </Nav>
       </Container>
     </Header>

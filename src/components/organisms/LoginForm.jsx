@@ -9,6 +9,8 @@ import Button from "../atoms/Button";
 import GNB from "../atoms/GNB";
 import { loginRequest } from "../../store/slices/userSlice";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -97,7 +99,7 @@ const LoginForm = () => {
         {passwordError && <p className="text-red-500 mb-2">{passwordError}</p>}
         <div className="text-right mt-2 pr-4">
           <Link
-            to="/signup"
+            to={staticServerUri + "/signup"}
             className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
           >
             회원가입
