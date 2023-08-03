@@ -33,7 +33,7 @@ const MainProductTemplate = () => {
   return (
     <Container className="productsView">
         {/* <Carousel className="carousel"/> */}
-        <img src={staticServerUrl + "carouselItem1.jpeg"} alt="" />
+        <img src={staticServerUrl + "/carouselItem1.jpeg"} alt="" />
         {isLoading ? ( //로딩 중일 경우 isLoading이 true가 되면서 skeleton card를 출력
             <>
             <ProductGrid isLoading="true" products={productArray} />
