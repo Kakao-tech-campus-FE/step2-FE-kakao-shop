@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="64px" viewBox="0 0 64 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_shop</title>
+    <defs>
+        <circle id="path-1" cx="-21830.2609" cy="347.826087" r="39.6521739"></circle>
+        <polygon id="path-3" points="9.59207261 8.86956522 0 8.86956522 0 0 9.59207261 0 19.1841452 0 19.1841452 8.86956522"></polygon>
+        <polygon id="path-5" points="9.60869565 8.86956522 0 8.86956522 0 0 9.60869565 0 19.2173913 0 19.2173913 8.86956522"></polygon>
+        <polygon id="path-7" points="42.8780472 40 0 40 0 0.116781955 42.8780472 0.116781955"></polygon>
+        <circle id="path-9" cx="44" cy="44" r="44"></circle>
+        <circle id="path-11" cx="-21830.2609" cy="347.826087" r="39.6521739"></circle>
+        <circle id="path-13" cx="31.875" cy="31.875" r="31.875"></circle>
+        <path d="M83.2510801,44.875 L44.1842365,44.875 C47.9802111,35.9261909 49.8781984,28.6626969 49.8781984,23.0845179 C49.8781984,14.7185299 40.5781437,13 40.5781437,13 L20,45.7737226 L20,103 L79.2409934,103 C79.2409934,103 86.3111988,68.872711 88.5017912,57.0427712 C89.9621862,49.1561446 88.2119491,45.1002209 83.2510801,44.875 Z" id="path-15"></path>
+        <path d="M45,25 L24,25 C26.040489,20.2273018 27.0607336,16.3534383 27.0607336,13.3784095 C27.0607336,8.91654928 22.0615801,8 22.0615801,8 L11,25.4793187 L11,56 L42.8444171,56 C42.8444171,56 46.6449369,37.7987792 47.8224685,31.489478 C48.6074895,27.2832771 47.6666667,25.1201178 45,25 Z" id="path-16"></path>
+        <polygon id="path-17" points="0.434164706 0.405058824 15.9115294 0.405058824 15.9115294 21.6471373 0.434164706 21.6471373"></polygon>
+        <rect id="path-19" x="0" y="0" width="88" height="88"></rect>
+        <path d="M30,60 C46.5685425,60 60,46.5685425 60,30 C60,13.4314575 46.5685425,0 30,0 C13.4314575,0 0,13.4314575 0,30 C0,46.5685425 13.4314575,60 30,60 Z" id="path-21"></path>
+        <mask id="mask-22" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="60" height="60" fill="white">
+            <use xlink:href="#path-21"></use>
+        </mask>
+        <polygon id="path-23" points="0 0.410056233 57.6754468 0.410056233 57.6754468 52.961295 0 52.961295"></polygon>
+        <polygon id="path-25" points="0 0.0373454545 25.6119836 0.0373454545 25.6119836 24.6867564 0 24.6867564"></polygon>
+        <polygon id="path-27" points="0.0114272989 0.0225963636 16.2726628 0.0225963636 16.2726628 24.34536 0.0114272989 24.34536"></polygon>
+        <polygon id="path-29" points="0.0002 0.0003 45.5 0.0003 45.5 42.321 0.0002 42.321"></polygon>
+        <polygon id="path-31" points="0 0.0287428571 39.9076457 0.0287428571 39.9076457 36.8857143 0 36.8857143"></polygon>
+        <path d="M44,88 C11.6112857,88 0,76.3895 0,44 C0,12.8330714 11.6112857,0 44,0 C76.3895,0 88,11.6112857 88,44 C88,76.3895 76.3895,88 44,88 Z" id="path-33"></path>
+        <path d="M30,60 C7.91678571,60 0,52.08375 0,30 C0,8.74982143 7.91678571,0 30,0 C52.08375,0 60,7.91678571 60,30 C60,52.08375 52.08375,60 30,60 Z" id="path-35"></path>
+        <mask id="mask-36" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="60" height="60" fill="white">
+            <use xlink:href="#path-35"></use>
+        </mask>
+        <path d="M39,78 C10.2918214,78 0,67.708875 0,39 C0,11.3747679 10.2918214,0 39,0 C67.708875,0 78,10.2918214 78,39 C78,67.708875 67.708875,78 39,78 Z" id="path-37"></path>
+        <mask id="mask-38" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="78" height="78" fill="white">
+            <use xlink:href="#path-37"></use>
+        </mask>
+        <path d="M59.8560022,119.712004 C15.7955714,119.712004 0,103.917502 0,59.8560022 C0,17.4576444 15.7955714,0 59.8560022,0 C103.917502,0 119.712004,15.7955714 119.712004,59.8560022 C119.712004,103.917502 103.917502,119.712004 59.8560022,119.712004 Z" id="path-39"></path>
+        <mask id="mask-40" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="119.712004" height="119.712004" fill="white">
+            <use xlink:href="#path-39"></use>
+        </mask>
+        <polygon id="path-41" points="0.522666667 0.2748 19.5584242 0.2748 19.5584242 23.40408 0.522666667 23.40408"></polygon>
+        <path d="M35,70 C9.23625,70 0,60.764375 0,35 C0,10.208125 9.23625,0 35,0 C60.764375,0 70,9.23625 70,35 C70,60.764375 60.764375,70 35,70 Z" id="path-43"></path>
+        <mask id="mask-44" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="70" height="70" fill="white">
+            <use xlink:href="#path-43"></use>
+        </mask>
+        <path d="M63.6575147,127.315029 C16.7987634,127.315029 0,110.517403 0,63.6575147 C0,18.5663962 16.7987634,0 63.6575147,0 C110.517403,0 127.315029,16.7987634 127.315029,63.6575147 C127.315029,110.517403 110.517403,127.315029 63.6575147,127.315029 Z" id="path-45"></path>
+        <mask id="mask-46" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="127.315029" height="127.315029" fill="white">
+            <use xlink:href="#path-45"></use>
+        </mask>
+        <polygon id="path-47" points="0.423756648 0.403457801 15.5300886 0.403457801 15.5300886 21.5615754 0.423756648 21.5615754"></polygon>
+        <rect id="path-49" x="4.54747351e-12" y="0" width="24" height="16"></rect>
+        <polygon id="path-51" points="0.00136880075 1.36224634 59.7295525 1.36224634 59.7295525 45.6722637 0.00136880075 45.6722637"></polygon>
+        <polygon id="path-53" points="0.105361656 0.763076923 31.790535 0.763076923 31.790535 22.7581538 0.105361656 22.7581538"></polygon>
+        <polygon id="path-55" points="0.507424398 0.814098965 61.8966787 0.814098965 61.8966787 61.5384615 0.507424398 61.5384615"></polygon>
+    </defs>
+    <g id="icon_shop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-3" transform="translate(0.000000, 0.000000)">
+            <rect id="Rectangle-9" fill="#BBBBBB" x="0" y="0" width="64" height="64"></rect>
+            <g id="Group" transform="translate(28.000000, 14.000000)" fill="#FFFFFF">
+                <rect id="Rectangle-10" x="0" y="0" width="8" height="24"></rect>
+                <rect id="Rectangle-10-Copy" x="0" y="28" width="8" height="8"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
