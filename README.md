@@ -2,7 +2,7 @@
 
 <br />
 
-[카카오 스토어](https://store.kakao.com)에 접속해서 참고하여 작성했습니다. 
+[카카오 스토어](https://store.kakao.com)를 참고하여 작성했습니다. 
 
 1. 메인 페이지
 - 핵심 기능: 전면 배너와 함께 전체적인 제품과 로그인 버튼을 보여줍니다.
@@ -11,7 +11,7 @@
 
 2. 로그인 페이지
 - 핵심 기능: 로그인 요청 및 사용자의 로그인 정보를 저장합니다.
-- 기능 상세 설명: 입력된 이메일과 비밀번호를 통해 로그인을 진행하며, 이에 대한 상태 처리를 합니다. JWT를 활용한 토큰 기반 인증으로 로그인한다.
+- 기능 상세 설명: 입력된 이메일과 비밀번호를 통해 로그인을 진행하며, 이에 대한 상태 처리를 합니다. JWT를 활용한 토큰 기반 인증으로 로그인합니다.
 - 인터페이스 요구사항: 이메일 또는 비밀번호에 들어온 값이 적절하지 않은 경우 알림을 보냅니다.
 
 3. 개별 제품 상세 페이지
@@ -36,37 +36,36 @@
 
 <br />
 
+```bash
+npm install # 의존성 모듈 설치
+npm run build # 패키지 번들링
+npm run start # 프로젝트 실행
+```
+
+
 ## **디렉토리 구조**
 
 ```
 ├── /build
 ├── /node_modules
 ├── package.json
-├── README.md
 ├── .gitignore
 ├── /public
 │ └── /assets
-│   └── /images
 └── /src
-  ├── /actions
   ├── /apis
   ├── /components
-  │ └── /atoms
-  │ └── /molecules
-  │ └── /organisms
-  │ └── /templates
-  ├── /styles
   ├── /hooks
   ├── /pages
-  ├── /reducers
+  ├── /redux
+  ├── /styles
   ├── App.js
   └── index.js
 ```
-+ actions: Redux 액션
-+ apis: API 요청
-+ assets: 이미지, 폰트 등
-+ components: 재사용 가능한 컴포넌트들
-+ styles: css 파일들 포함
++ apis: API 요청 함수
++ assets: 이미지
++ components: Atomic pattern으로 구성된 컴포넌트
 + hooks: 커스텀 훅
 + pages: 페이지
-+ reducers: Redux 리듀서
++ redux: 리덕스 툴킷
++ styles: css 파일
