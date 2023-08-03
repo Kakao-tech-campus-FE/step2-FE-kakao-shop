@@ -12,13 +12,15 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  width: 50rem;
+`;
 
-  h3 {
-    margin-bottom: 1.5rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
-  }
+const Title = styled.div`
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: center;
 `;
 
 const Group = styled.div`
@@ -83,13 +85,23 @@ const OrderTemplate = ({ data }) => {
     <>
       <Group>
         <Container>
-          <h3>주문상품 정보</h3>
-          <Card>
-            {Array.isArray(products) &&
-              products.map((item) => {
-                return <OrderItem key={item.id} item={item} />;
-              })}
-          </Card>
+          <Title>주문하기</Title>
+          <div className="border mb-4 p-4">
+            <div className="text-xl font-bold mb-5">배송지 정보</div>
+            <div className="text-lg font-bold">홍길동</div>
+            <div>010-1234-5678</div>
+            <div>광주 북구 용봉로77</div>
+          </div>
+
+          <div className="border mb-4 p-4">
+            <div className="text-xl font-bold mb-5">주문상품 정보</div>
+            <Card>
+              {Array.isArray(products) &&
+                products.map((item) => {
+                  return <OrderItem key={item.id} item={item} />;
+                })}
+            </Card>
+          </div>
           <Card className="total-price">
             <TotalPrice item={products} />
           </Card>
