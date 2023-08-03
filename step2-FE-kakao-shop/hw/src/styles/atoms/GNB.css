@@ -1,0 +1,13 @@
+.header .contents {
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 11000;
+  border-bottom: 1px solid #e5e5e5;
+  background-color: #fff;
+}
+
+.navigation span {
+  position: relative;
+}

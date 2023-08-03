@@ -19,6 +19,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* 단독 레이아웃 */}
+          {/* 단독 레이아웃 */}
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/signup" element={<RegisterPage />}></Route>
           <Route path="/*" element={<NotFoundPage />}></Route>
