@@ -10,27 +10,47 @@ import OrderPage from "./pages/OrderPage";
 import OrderCompletePage from "./pages/OrderCompletePage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/register" element={<RegisterPage />}></Route>
+          <Route
+            path={staticServerUrl + "/login"}
+            element={<LoginPage />}
+          ></Route>
+          <Route
+            path={staticServerUrl + "/register"}
+            element={<RegisterPage />}
+          ></Route>
           {/*공통 레이아웃 : GNB, Footer */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<Homepage />}></Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path={staticServerUrl + "/"} element={<Homepage />}></Route>
+            <Route
+              path={staticServerUrl + "/product/:id"}
+              element={<ProductDetailPage />}
+            ></Route>
           </Route>
           <Route element={<RequiredAuthLayout />}>
-            <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/order" element={<OrderPage />}></Route>
             <Route
-              path="/order/complete/:id"
+              path={staticServerUrl + "/cart"}
+              element={<CartPage />}
+            ></Route>
+            <Route
+              path={staticServerUrl + "/order"}
+              element={<OrderPage />}
+            ></Route>
+            <Route
+              path={staticServerUrl + "/order/complete/:id"}
               element={<OrderCompletePage />}
             ></Route>
           </Route>
-          <Route path="*" element={<NotFoundPage />}></Route>
+          <Route
+            path={staticServerUrl + "*"}
+            element={<NotFoundPage />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
@@ -38,4 +58,3 @@ const App = () => {
 };
 
 export default App;
-

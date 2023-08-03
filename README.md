@@ -1,4 +1,3 @@
-
 # 1. Project Name
 
 카카오 쇼핑하기 클론코딩 프로젝트
@@ -180,6 +179,7 @@ return
     |_div(가격 표시)
       |_a (price 원)
 ```
+
 ```ini
 OptionColumn
 

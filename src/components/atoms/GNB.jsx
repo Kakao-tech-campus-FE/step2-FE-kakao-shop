@@ -6,7 +6,6 @@ import { Fragment, useEffect } from "react";
 
 //header bar components
 
-
 const GNB = () => {
   const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
@@ -47,7 +46,9 @@ const GNB = () => {
               <Link className="link_util" to={cartpath}>
                 <img
                   className="ico_cart"
-                  src={"/cart.png"}
+                  src={
+                    "https://img.freepik.com/free-icon/shopping-cart-of-checkered-design_318-50865.jpg?w=2000"
+                  }
                   alt="장바구니 버튼"
                 />
               </Link>
