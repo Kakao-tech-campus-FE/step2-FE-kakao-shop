@@ -1,11 +1,13 @@
+const staticServerUri = import.meta.env.REACT_APP_PATH || "";
+
 const routes = {
-  home: "/",
-  signIn: "/sign-in",
-  signUp: "/sign-up",
-  product: "/product",
-  cart: "/cart",
-  order: "/order",
-  orderResult: "/order-result",
+  home: staticServerUri + "/",
+  signIn: staticServerUri + "/sign-in",
+  signUp: staticServerUri + "/sign-up",
+  product: staticServerUri + "/product",
+  cart: staticServerUri + "/cart",
+  order: staticServerUri + "/order",
+  orderResult: staticServerUri + "/order-result",
 };
 
 export default routes;
