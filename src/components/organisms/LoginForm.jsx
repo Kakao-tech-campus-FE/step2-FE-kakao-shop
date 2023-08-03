@@ -88,14 +88,7 @@ const LoginForm = () => {
                 navigate(staticServerUri + "/");
             })
             .catch((error) => {
-				if (error.response && error.response.status === 401) {
-					console.log(error.response.data.message);
-					alert("회원 정보가 존재하지 않습니다.");
-					console.log("401 에러");
-				} else {
-					console.log(error);
-				}
-                setError(error.toString());
+                setError(error);
 				alert("회원정보가 존재하지 않습니다.");
             });
     };
