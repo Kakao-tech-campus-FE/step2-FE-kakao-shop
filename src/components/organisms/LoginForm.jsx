@@ -26,8 +26,9 @@ const LoginForm = () => {
         password: value.password,
       })
     )
-      .then((response) => {
-        if (response.status === 200) {
+      .then((action) => {
+        const response = action.payload;
+        if (response.email && response.token) {
           navigate("/");
           alert("로그인 성공!");
         }
