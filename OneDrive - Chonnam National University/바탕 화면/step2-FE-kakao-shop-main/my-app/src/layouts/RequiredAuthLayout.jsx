@@ -15,7 +15,9 @@ function RequiredAuthLayout() {
     <>
       <div className="flex justify-center">
         <main>
+          {/* <Header /> */}
           <Outlet />
+          {/* <Footer /> */}
         </main>
       </div>
     </>

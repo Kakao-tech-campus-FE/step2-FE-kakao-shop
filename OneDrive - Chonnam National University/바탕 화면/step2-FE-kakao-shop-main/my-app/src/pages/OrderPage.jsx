@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query"; // eslint-disable-line no-unus
 import { getCart } from "../services/cart"; // eslint-disable-line no-unused-vars
 
 const OrderPage = () => {
-  const { data, error, isLoading } = useQuery(getCart); // eslint-disable-line no-unused-vars
+  const { data, error, isLoading } = useQuery("cart", getCart); // eslint-disable-line no-unused-vars
   return (
     <Suspense fallback={<Loader />}>
       <OrderTemplate data={data} />

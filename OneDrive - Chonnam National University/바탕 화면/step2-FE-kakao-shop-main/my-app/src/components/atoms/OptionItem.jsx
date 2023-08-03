@@ -21,3 +21,5 @@ const OptionItem = ({ items }) => { // eslint-disable-line no-unused-vars
         </>
     );
 };
+
+export default OptionItem;

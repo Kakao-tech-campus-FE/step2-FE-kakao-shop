@@ -5,8 +5,8 @@ import { instance } from "./index";
  * headers: { Authorization: `bearer ${token}` }
  */
 
-export const order = (orderData) => {
-  return instance.post("/orders/save", orderData);
+export const order = () => {
+  return instance.post("/orders/save");
 };
 
 export const getOrderFromId = (id) => {

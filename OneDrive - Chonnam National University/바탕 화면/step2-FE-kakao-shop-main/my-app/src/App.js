@@ -32,11 +32,11 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/product/:id" element={<ProductDetailPage />}></Route>
-          <Route element={<RequiredAuthLayout />}>
-            <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/order" element={<OrderPage />}></Route>
-            <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
-          </Route>
+        </Route>
+        <Route element={<RequiredAuthLayout />}>
+          <Route path="/cart" element={<CartPage />}></Route>
+          <Route path="/order" element={<OrderPage />}></Route>
+          <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
         </Route>
         <Route path="/*" element={<NotFoundPage />}></Route>
       </Routes>
