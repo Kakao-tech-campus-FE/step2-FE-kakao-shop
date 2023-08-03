@@ -7,6 +7,7 @@ import { getItemWithExpireDate } from '../../utils/localStorage';
 import { LOCALSTORAGE_KEY_TOKEN, LOCALSTORAGE_KEY_USERINFO } from '../../utils/common';
 import { useUserDispatch, useUserSelector } from '../../hooks/store';
 import Photo from '../atoms/photo';
+import { staticServerUri } from '../../utils/serverUri';
 
 export default function NavigationBar() {
   const user = useUserSelector((state) => state.user);
@@ -44,7 +45,7 @@ export default function NavigationBar() {
     <header className="sticky inset-x-0 top-0 z-50 flex w-full items-center justify-between bg-white px-6 py-4">
       <Link to="/">
         <div className="h-10">
-          <Photo src="/logoKakao.png" alt="카카오톡 쇼핑하기" />
+          <Photo src={`${staticServerUri}/logoKakao.png`} alt="카카오톡 쇼핑하기" />
         </div>
       </Link>
       <div className="flex items-center gap-6">
