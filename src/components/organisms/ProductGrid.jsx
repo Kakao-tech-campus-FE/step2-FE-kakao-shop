@@ -3,11 +3,12 @@ import * as Grid from '../../styles/organisms/ProductGrid';
 import Loader from '../atoms/Loader';
 
 const ProductGrid = ({ products, isFetchingNextPage }) => {
+  console.log('products: ', products);
   return (
     <Grid.Product>
       {products
         ? products.map((product, idx) => (
-            <ProductCard key={product.idx} product={product} />
+            <ProductCard key={idx} product={product} />
           ))
         : null}
       {isFetchingNextPage && <Loader className="mainLoader" />}
