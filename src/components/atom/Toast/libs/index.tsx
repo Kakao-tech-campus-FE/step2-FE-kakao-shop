@@ -5,8 +5,6 @@ import { DefaultToastItem } from './DefaultItem';
 import Manager from './Manager';
 import type { Options } from './types';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
 class Toast {
   portal: HTMLElement | null = null;
 
@@ -19,6 +17,24 @@ class Toast {
   ) {
     // FunctionComponent<{ isShow, options, children }>
     const { ToastItem } = options;
+
+    const portalElement = document.getElementById('toast-portal');
+
+    if (portalElement) {
+      this.portal = portalElement;
+    } else {
+      const newPortal = document.createElement('div');
+      newPortal.id = 'toast-portal';
+      newPortal.style.left = '0';
+      newPortal.style.right = '0';
+      newPortal.style.bottom = '0';
+      newPortal.style.zIndex = '9999';
+      newPortal.style.position = 'fixed';
+      this.portal = newPortal;
+      document.body.appendChild(this.portal);
+    }
+
+    const root = ReactDOM.createRoot(this.portal as HTMLElement);
 
     root.render(
       <Manager
