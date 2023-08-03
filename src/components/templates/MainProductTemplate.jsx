@@ -56,7 +56,7 @@ const MainProductTemplate = () => {
   
 
   return (
-    <Container className="mx-96">
+    <Container className="mx-auto">
       {loading ? <Loader/> : (
         <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
       )}
