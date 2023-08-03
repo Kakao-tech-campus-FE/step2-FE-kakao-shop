@@ -9,7 +9,6 @@ const queryClient = new QueryClient();
 const server = setupWorker(
   rest.get("/order/:id", (req, res, ctx) => {
     const { id } = req.params;
-    // 여기에서 적절한 모의 데이터를 반환합니다.
     return res(ctx.json({ orderId: id }));
   })
 );
