@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import { comma } from "../../utils/convert";
 import { useMemo } from "react";
 import "../../styles/atoms/OptionList.css";

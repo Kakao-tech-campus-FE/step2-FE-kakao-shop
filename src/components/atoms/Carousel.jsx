@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import { useState } from "react"; //eslint-disable-line no-unused-vars
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 import "../../styles/atoms/Carousel.css";
@@ -8,22 +9,17 @@ import "../../styles/atoms/Carousel.css";
 // |_nextSlide
 // |_prevSlide
 
-
 // return
 // |_div (carousel)
 //  |_div(bnr_home)
 //    |_div(btn_prev)
 //    |_div(slide_bnr)
 //    |  |_img(slide)
-//    |  |_img(slide-hidden)         
+//    |  |_img(slide-hidden)
 //    |_div(btn_next)
 //    |_div(paging_dot)
 //       |_button(indicator)
 //       |_button(indicator-inactive)
-
-
-
-
 
 export const Carousel = ({ data }) => {
   const [slide, setSlide] = useState(0);

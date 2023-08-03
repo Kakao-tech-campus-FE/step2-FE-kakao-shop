@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import { Card } from "react-bootstrap";
 import Box from "./Box";
 import Counter from "./Counter";

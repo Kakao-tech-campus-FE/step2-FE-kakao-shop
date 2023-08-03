@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+/*eslint-disable react/prop-types */
+import { useState, useEffect, useCallback, useRef } from "react"; //eslint-disable-line no-unused-vars
+import { useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
@@ -9,7 +10,6 @@ import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { updateCart } from "../../services/cart";
 import { useMutation } from "react-query";
-
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 const CartList = ({ data }) => {

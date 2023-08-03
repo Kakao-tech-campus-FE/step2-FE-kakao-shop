@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import { useState } from "react";
 import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
@@ -36,8 +38,6 @@ OptionColumn
     | |_span(총 상품금액 n원)
     |_Button(장바구니 버튼)
 */
-
-
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);

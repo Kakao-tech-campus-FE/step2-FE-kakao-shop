@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import { useState } from "react";
 
 // Counter components use both in Cart, ProductDetailPage

@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import { comma } from "../../utils/convert";
 import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
@@ -12,7 +14,10 @@ const ProductCard = ({ product, isLoading }) => {
     <div className="card_deal">
       {/* while loading, use skeleton instead. */}
       {isLoading ? <Skeleton /> : null}
-      <Card className="link_card" to={staticServerUrl +`/product/${product.id}`}>
+      <Card
+        className="link_card"
+        to={staticServerUrl + `/product/${product.id}`}
+      >
         <Photo
           className="img_thumb"
           src={process.env.REACT_APP_API_URL + product.image}

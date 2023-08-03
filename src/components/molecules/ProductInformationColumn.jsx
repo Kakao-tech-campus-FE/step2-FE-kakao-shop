@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import "../../styles/molecules/ProductInformationColumn.css";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";

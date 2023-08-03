@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import styled from "styled-components";
 import OptionItem from "../atoms/OptionItem";
 import { comma } from "../../utils/convert";
@@ -32,12 +34,11 @@ const OrderCompleteTemplate = ({ data }) => {
   const navigate = useNavigate();
   const orderdata = data?.data;
 
-
   if (!orderdata) {
     return <></>;
   }
 
-/* 
+  /* 
 return
 |_section
   |_div
@@ -58,7 +59,6 @@ return
 
 
 */
-
 
   return (
     <section className="py-10 my-10 mx-auto max-w-[500px] w-full">
