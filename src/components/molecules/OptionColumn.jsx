@@ -60,11 +60,9 @@ const OptionColumn = ({ product }) => {
         // 페이지를 찾을 수 없는 경우 404 페이지로 이동한다.
         alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
         navigate(staticServerUri + "/*");
-      } else if (error.response && error.response.status === 500) {
-		  alert("같은 옵션의 상품은 장바구니 페이지에서 수량을 조정해주세요");
 	  } else {
         // 서버 에러의 경우 alert창을 띄운다.
-        alert("주문에 실패했습니다. 다시 시도해주세요.");
+        alert("주문에 실패했습니다. 다시 시도해주세요. 같은 옵션의 상품을 담으려는 경우, 장바구니에서 수량을 조정해주세요");
       }
     },
   });
