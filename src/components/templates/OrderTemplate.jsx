@@ -151,7 +151,7 @@ const OrderTemplate = () => {
                 },
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  navigate(staticServerUri + `/orders/complete/${id}`);
+                  navigate(staticServerUri + "/orders/complete/" + id);
                 },
               });
             }}
