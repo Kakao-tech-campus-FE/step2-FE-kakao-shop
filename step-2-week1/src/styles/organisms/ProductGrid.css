@@ -1,0 +1,32 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  grid-template-rows: repeat;
+  grid-gap: 30px;
+  margin-left : 30px;
+
+  /* margin: 1rem 0;
+  width: 1000px;
+
+  height: auto;
+  max-width: inherit; */
+}
+
+/* .product-grid {
+  display: flex;
+  flex-wrap: wrap;
+} */
+
+/* .product-grid img {
+display: flex;
+}
+
+.product-grid > .product-card {
+  width: 360px;
+}
+
+@media screen and (max-width: 768px) {
+  .product-grid > .product-card {
+    width: 180px;
+  }  
+} */
