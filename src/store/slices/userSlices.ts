@@ -17,6 +17,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.email = null;
       state.expirationDate = null;
+      localStorage.removeItem('token');
     },
   },
 });

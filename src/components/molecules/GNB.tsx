@@ -13,6 +13,13 @@ const GNB = () => {
   const expirationDate = useSelector(selectExpirationDate);
   const dispatch = useDispatch();
 
+  const handleChartLinkClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (!localStorage.getItem('token')) {
+      e.preventDefault();
+      alert('로그인이 필요합니다.');
+    }
+  };
+
   const handleLogoutButtonClick = () => {
     dispatch(logout());
   };
@@ -30,7 +37,7 @@ const GNB = () => {
       <Container className='flex items-center justify-between py-4'>
         <KaKaoShopLogo />
         <div className='flex items-center space-x-6'>
-          <Link to='cart'>
+          <Link to='cart' onClick={handleChartLinkClick}>
             <HiOutlineShoppingCart size={25} />
           </Link>
           {currentEmail ? <Button onClick={handleLogoutButtonClick}>로그아웃</Button> : <LoginLink />}
