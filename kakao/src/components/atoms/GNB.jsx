@@ -22,7 +22,7 @@ const GNB = () => {
         <Link to={staticServerUrl + "/"}>
           <img
             className="header-imglogo"
-            src={"/logoKakao.png"}
+            src={staticServerUrl + "/logoKakao.png"}
             alt="카카오로고"
             height={30}
           />
@@ -30,7 +30,11 @@ const GNB = () => {
         <div className="header-menu">
           <span className="menu-util">
             <Link to={staticServerUrl + "/cart"} className="link-util">
-              <img src={"/cart.png"} alt="장바구니" height={30} />
+              <img
+                src={staticServerUrl + "/cart.png"}
+                alt="장바구니"
+                height={30}
+              />
             </Link>
           </span>
           <span className="menu-account">

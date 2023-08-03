@@ -3,6 +3,8 @@ import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 import "../../styles/molecules/ProductInfoColumn.css";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const ProductInfoColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
@@ -12,7 +14,7 @@ const ProductInfoColumn = ({ product }) => {
       </div>
       <div className="col">
         <div className="stars">
-          <img src="/star.png" alt="별점" />
+          <img src={staticServerUrl + "/star.png"} alt="별점" />
         </div>
         <p className="name">{productName}</p>
         <div className="product-info-coupon">
