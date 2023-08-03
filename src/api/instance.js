@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { clearUserReducer } from "reducers/loginSlice";
 
 const path = process.env.REACT_APP_PATH || "";
-const apiURL = process.env.REACT_APP_API_URL || process.env.REACT_APP_PATH;
+const apiURL = path !== "" ? path + "/api" : process.env.REACT_APP_API_URL;
 
 const instance = axios.create({
   baseURL: apiURL,
