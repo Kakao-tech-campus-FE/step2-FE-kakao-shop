@@ -22,6 +22,7 @@ const banners = [
   },
 ]
 
+const path = process.env.REACT_APP_PATH || "";
 
 const Carousel = () => {
   
@@ -68,7 +69,7 @@ const Carousel = () => {
     <CarouselContainer>
       <CarouselContent page={page} center={center} $isMoving={isMoving}>
         {prevNowNext.map((n) => (
-          <CarouselImage src={banners.at(n - 1).image} key={n}/>
+          <CarouselImage src={path + banners.at(n - 1).image} key={n}/>
         ))}
       </CarouselContent>
       
