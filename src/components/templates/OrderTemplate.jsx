@@ -47,7 +47,7 @@ const OrderTemplate = () => {
         navigate("/login");
       } else if (error.response && error.response.status === 404) {
         alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
-        navigate("/*");
+        navigate({`${staticServerUri}/notfound`});
       } else {
         alert("주문에 실패했습니다. 다시 시도해주세요.");
       }
