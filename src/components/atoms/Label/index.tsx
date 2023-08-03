@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "styled-components";
 
 interface Props {
@@ -6,7 +5,7 @@ interface Props {
   color?: string;
   fontSize?: string;
   htmlFor?: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const Label = ({ color, fontSize, htmlFor, children }: Props) => {

@@ -1,5 +1,4 @@
 import { Product } from "@components/organisms/CartForm";
-import React from "react";
 import { styled } from "styled-components";
 import { comma } from "@utils/regex";
 import Option from "../Option";

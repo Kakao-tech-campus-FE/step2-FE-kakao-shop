@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 
 interface Props {
   // link url을 나타내는 to
   to: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const TextLink = ({ to, children }: Props) => {

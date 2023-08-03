@@ -1,6 +1,5 @@
 import { Cart, Product } from "@components/organisms/CartForm";
 import { comma } from "@utils/regex";
-import React from "react";
 import { styled } from "styled-components";
 import Counter from "../Counter";
 

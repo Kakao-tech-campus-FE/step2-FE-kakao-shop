@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 interface Props {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const InnerContainer = ({ children }: Props) => {

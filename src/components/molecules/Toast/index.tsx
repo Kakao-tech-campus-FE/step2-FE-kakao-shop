@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import ToastItem from "./ToastItem";
 import { ErrorIcon, SuccessIcon, WarningIcon } from "@components/Icons";

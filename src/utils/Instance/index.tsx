@@ -1,9 +1,7 @@
-import { useRedirect } from "@hooks/useRedirect";
 import axios from "axios";
 
 const AxiosInstance = axios.create({
-  baseURL:
-    "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com",
+  baseURL: process.env.REACT_APP_API_URL,
   timeout: 2000,
   headers: {
     "Content-Type": "application/json",

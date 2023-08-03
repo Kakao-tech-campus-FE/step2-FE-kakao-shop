@@ -4,28 +4,28 @@ interface Props {
   children: React.ReactNode;
 }
 
-const CartContainer = ({ children }: Props) => {
+const OrderContainer = ({ children }: Props) => {
   return (
     <Container>
       <Header>
-        <p>장바구니</p>
+        <p>주문하기</p>
       </Header>
       {children}
     </Container>
   );
 };
 
-export default CartContainer;
+export default OrderContainer;
 
 const Container = styled.div`
-  margin: 0 auto;
+  margin: 100px auto 50px;
   width: 870px;
-  background-color: #fff;
 `;
 
 const Header = styled.div`
   height: 44px;
   border-top: 1px solid #ebebeb;
+  background-color: #fff;
   text-align: center;
 
   & > p {

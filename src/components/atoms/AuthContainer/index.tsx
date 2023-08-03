@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "styled-components";
 
 interface Props {
@@ -7,7 +6,7 @@ interface Props {
   height?: string;
   margin?: string;
   padding?: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
 const AuthContainer = ({ width, height, margin, padding, children }: Props) => {

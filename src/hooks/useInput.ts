@@ -10,6 +10,7 @@ export const useInput = ({ initValue = "" }: any) => {
     const { name, value } = e.target;
     setInputValue((prev: any) => ({ ...prev, [name]: value }));
   };
+
   const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === "password") {
