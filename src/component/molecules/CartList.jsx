@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const CartList = ({ data }) => {
 
     const navigate = useNavigate();
@@ -112,7 +114,7 @@ const CartList = ({ data }) => {
                 <div className="w-full border-x border-b">
                     <div className="text-center pt-52 pb-80">
                         <span className="text-lg">장바구니에 담긴 상품이 없습니다.</span>
-                        <Link href="/" className='block w-36 h-9 text-center m-auto bg-slate-900 text-white text-sm leading-9 mt-2'>
+                        <Link href={staticServerUrl + "/"} className='block w-36 h-9 text-center m-auto bg-slate-900 text-white text-sm leading-9 mt-2'>
                             <span>쇼핑하기 홈</span>
                         </Link>
                     </div>

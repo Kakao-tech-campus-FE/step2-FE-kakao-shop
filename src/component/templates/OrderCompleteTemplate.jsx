@@ -2,6 +2,8 @@ import { comma } from './../../utils/convert';
 import { useEffect, useState } from 'react';
 import Link from './../atoms/Link';
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const OrderCompleteTemplate = ({ data }) => {
     const [ products, setProducts ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
@@ -58,7 +60,7 @@ const OrderCompleteTemplate = ({ data }) => {
                         <h2 className='text-xl font-light mt-2'>구매가 정상적으로 완료되었습니다.</h2>
                     </div>
                     <div className='my-8'>
-                        <Link href="/" className='block w-36 p-2 text-center m-auto bg-slate-900 text-white'>
+                        <Link href={staticServerUrl+ "/"} className='block w-36 p-2 text-center m-auto bg-slate-900 text-white'>
                             <span>쇼핑 계속하기</span>
                         </Link>
                     </div>
