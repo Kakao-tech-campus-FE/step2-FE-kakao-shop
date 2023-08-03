@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = () => {
 
     const navigate = useNavigate();
@@ -152,7 +154,7 @@ const RegisterForm = () => {
                             className="w-full p-4 font-medium mt-10 bg-#ffeb00 text-black hover:bg-yellow-300"
                         >회원가입</Button>
                         <Box className="flex place-content-end mt-10 text-xs">
-                            <Link href={"/"}>Home</Link>
+                            <Link href={staticServerUrl + "/"}>Home</Link>
                         </Box>
                     </Box>
                 </Box>
