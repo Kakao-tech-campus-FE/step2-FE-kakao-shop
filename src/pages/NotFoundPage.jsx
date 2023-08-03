@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const NotFoundPage = () => {
   const navigate = useNavigate();
   return (
@@ -10,7 +12,7 @@ const NotFoundPage = () => {
         <div>페이지를 찾을 수 없습니다.</div>
         <button
           onClick={() => {
-            navigate("/");
+            navigate(staticServerUri + "/");
           }}
           className="p-4 rounded-lg bg-yellow-300"
         >

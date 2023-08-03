@@ -9,6 +9,8 @@ import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import Photo from "../atoms/Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = () => {
   const { data } = useQuery(["cart"], getCart, { suspense: true });
   const { products, totalPrice } = data?.data?.response;
@@ -168,11 +170,11 @@ const OrderTemplate = () => {
                 onError: (err) => {
                   // 사용자 정보가 유실된 경우 로그인 페이지로 리다이렉트
                   alert("로그인이 필요합니다.");
-                  navigate("/login");
+                  navigate(staticServerUri + "/login");
                 },
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  navigate(`/orders/complete/${id}`);
+                  navigate(staticServerUri + `/orders/complete/${id}`);
                 },
               });
             }}
