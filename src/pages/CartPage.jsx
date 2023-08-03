@@ -8,20 +8,11 @@ import Loader from '../components/atoms/Loader';
 // 장바구니 페이지
 const CartPage = () => {
   const { data, isLoading } = useQuery(['cart'], getCart);
-
-  // if (!isLoading) {
-  //   console.log('data', data);
-  // }
   return (
-    <>{isLoading ? <Loader /> : <CartList data={data?.data?.response} />}</>
+    <Suspense fallback={<Loader />}>
+      <CartList data={data?.data?.response} />
+    </Suspense>
   );
 };
 
 export default CartPage;
-
-// suspense : 상태 변화 감지
-/**
- * data.data.response = {
-    products,
-    totalPrice
-} */

@@ -5,6 +5,7 @@ import ProductGrid from '../organisms/ProductGrid';
 import Loader from '../atoms/Loader';
 import Button from '../atoms/Button';
 import '../../styles/templates/maintemplate.css';
+import ControlledCarousel from '../atoms/ControlledCarousel';
 
 const MainTemplate = () => {
   const [able, setAble] = useState(true);
@@ -29,12 +30,10 @@ const MainTemplate = () => {
       refetch();
     }
   };
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
+      <ControlledCarousel />
       <div className="main-template">
         <ProductGrid products={data?.data.response} error={isError} />
         <div className="flex gap-4">
@@ -58,7 +57,7 @@ const MainTemplate = () => {
           </button>
         </div>
       </div>
-    </>
+    </Suspense>
   );
 };
 
