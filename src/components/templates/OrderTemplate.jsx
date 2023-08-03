@@ -2,7 +2,7 @@ import { useMutation } from "react-query";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { comma } from "../../utils/convert";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Photo from "../atoms/Photo";
 import { pgpay } from "../../services/pgpay";
 
@@ -10,29 +10,7 @@ const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
   const { mutate } = useMutation({
     mutationFn: () => {
-      order();
-    },
-    onError: (e) => {
-      console.log(e);
-      if (e?.error?.status === 404) {
-        //정상적으로 요청이 보내지지만 장바구니에 내역이 없을 경우
-        alert("장바구니에 아무 내역도 존재하지 않습니다");
-        navigate("/");
-      } else if (e?.error?.status === 401) {
-        //인증 정보가 아예 없을 경우
-        alert("인증되지 않았습니다.");
-        navigate("/login");
-      } else if (e?.status === 500) {
-        //토큰이 유효하지 않거나 서버에 문제가 있는경우 객체에 바로 error, status가 담김
-        alert("서버에 문제가 있거나 인증이 만료되었습니다.");
-        navigate("/login");
-      }
-    },
-    onSuccess: (res) => {
-      const id = res;
-      //console.log(id);
-      alert("주문 완료되었습니다.");
-      navigate("/");
+      return order();
     },
   });
   const { mutate: pgMutate } = useMutation({
@@ -56,7 +34,33 @@ const OrderTemplate = ({ data }) => {
       setAgreePayment(false);
     }
   };
-
+  const handleOnPay = () => {
+    if (!agreePayment || !agreePolicy) {
+      return alert("모든 동의가 필요합니다.");
+    }
+    mutate(null, {
+      onSuccess: (res) => {
+        alert("주문 완료되었습니다.");
+        navigate(`/orders/complete/${res.data.response.id}`);
+      },
+      onError: (e) => {
+        console.log(e);
+        if (e?.error?.status === 404) {
+          //정상적으로 요청이 보내지지만 장바구니에 내역이 없을 경우
+          alert("장바구니에 아무 내역도 존재하지 않습니다");
+          navigate("/");
+        } else if (e?.error?.status === 401) {
+          //인증 정보가 아예 없을 경우
+          alert("인증되지 않았습니다.");
+          navigate("/login");
+        } else if (e?.status === 500) {
+          //토큰이 유효하지 않거나 서버에 문제가 있는경우 객체에 바로 error, status가 담김
+          alert("서버에 문제가 있거나 인증이 만료되었습니다.");
+          navigate("/login");
+        }
+      },
+    });
+  };
   const handleAgreement = (e) => {
     const { id, checked } = e.target;
     if (id === "agree") {
@@ -97,7 +101,6 @@ const OrderTemplate = ({ data }) => {
         );
       });
     }
-
     return renderComponents;
   };
   return (
@@ -129,6 +132,16 @@ const OrderTemplate = ({ data }) => {
       </div>
       {/*각 주문의 정보 */}
       <OrderItems />
+
+      <div className="border p-4 flex items-center justify-between">
+        <h3 className="font-bold text-xl">배송 금액</h3>
+        <div className="flex gap-2">
+          <span className="badge text-blue-400 bg-slate-100 block bt-2 rounded-md text-xs p-1">
+            무료 배송
+          </span>
+          <span className="font-bold text-xl text-indigo-500">0원</span>
+        </div>
+      </div>
       <div className="border p-4 flex items-center justify-between">
         <h3 className="font-bold text-xl">총 주문 금액</h3>
         <span className="price font-bold text-xl text-indigo-500">
@@ -173,11 +186,8 @@ const OrderTemplate = ({ data }) => {
           </label>
         </div>
         <button
-          onClick={() => {
-            if (!agreePayment || !agreePolicy) {
-              return alert("모든 동의가 필요합니다.");
-            }
-            mutate(null);
+          onClick={
+            handleOnPay
             /*pgMutate(
               {
                 cid: "TC0ONETIME",
@@ -192,9 +202,9 @@ const OrderTemplate = ({ data }) => {
                 fail_url: "http://localhost:3000/carts",
               }
 
-              //navigate(`/orders/complete/${id}`);
+              //
             );*/
-          }}
+          }
           className={
             agreePayment && agreePolicy
               ? "bg-yellow-500 w-full p-4 font-medium text-black"
