@@ -24,7 +24,7 @@ function GNB() {
     <header className="header">
       <div className="contents">
         <Link to={staticServerUrl + "/"}>
-          <img src={"logokakao.png"} alt="장바구니 쇼핑 로고" height={30} />
+          <img src={staticServerUrl + "logokakao.png"} alt="장바구니 쇼핑 로고" height={30} />
         </Link>
         <nav>
           <div className="navigation">
