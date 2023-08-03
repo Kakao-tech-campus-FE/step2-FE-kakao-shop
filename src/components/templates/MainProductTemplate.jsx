@@ -56,14 +56,12 @@ const MainProductTemplate = () => {
   
 
   return (
-    <Container className="flex justify-center">
-      <div className="mx-[300px]">
-        {loading ? <Loader/> : (
-          <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
-        )}
-        <div ref={ref}></div>
-        {isFetchingNextPage && <Loader/>}
-      </div>
+    <Container className="mx-[300px]">
+      {loading ? <Loader/> : (
+        <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
+      )}
+      <div ref={ref}></div>
+      {isFetchingNextPage && <Loader/>}
     </Container>
   )
 }
