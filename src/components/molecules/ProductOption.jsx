@@ -164,7 +164,8 @@ const ProductOption = ({ product }) => {
                     alert('장바구니에 담겼습니다.');
                     setSelectedOptions([]);
                   },
-                  onError: () => {
+                  onError: (error) => {
+                    console.error(error);
                     alert('장바구니 담기에 실패했습니다.');
                   },
                 }
@@ -195,7 +196,8 @@ const ProductOption = ({ product }) => {
                   onSuccess: () => {
                     navigate(staticServerUrl + '/cart');
                   },
-                  onError: () => {
+                  onError: (error) => {
+                    console.error(error);
                     alert('주문하기가 실패했습니다.');
                   },
                 }
