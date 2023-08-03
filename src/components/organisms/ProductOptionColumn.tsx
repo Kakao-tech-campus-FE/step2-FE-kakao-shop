@@ -23,7 +23,11 @@ const ProductOptionColumn = ({ options }: ProductOptionColumnProps) => {
   };
 
   const handleDarkButtonClick = () => {
-    addCart(cartOptions);
+    addCart(cartOptions, {
+      onSuccess: () => {
+        alert('장바구니 담기 완료');
+      },
+    });
   };
 
   return (
