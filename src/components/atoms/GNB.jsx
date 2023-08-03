@@ -71,7 +71,7 @@ const GNB = () => {
     <header className="fixed top-0 left-0 p-5 bg-white border-b border-gray-300 flex items-center inner">
       <div style={{width :'2000px'}} className='ml-20 md:flex items-center '>
       <Link to='/'>
-        <img className="h-10 inline cursor-pointer mr-4" src="/logoKakao.png" alt="logoKakao"/>
+        <img className="h-10 inline cursor-pointer mr-4" src={staticServerUrl + "/logoKakao.png"} alt="logoKakao"/>
       </Link>
       <nav>
         <ul className = "flex space-x-4">
@@ -94,7 +94,7 @@ const GNB = () => {
       </nav>
     
       <div className="flex flex-1 justify-end space-x-4 ">
-        <Link to='/carts'><img src="/cart.png" style={{width:'30px'}} alt="장바구니 아이콘"/></Link>
+        <Link to='/carts'><img src={staticServerUrl + "/cart.png"} style={{width:'30px'}} alt="장바구니 아이콘"/></Link>
         {renderAuthLink()}
       </div>
       </div>
