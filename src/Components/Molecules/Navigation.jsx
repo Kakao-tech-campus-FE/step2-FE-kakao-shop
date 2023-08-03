@@ -26,7 +26,7 @@ const Navigation = () => {
         {/* 로고 -> 메인 페이지 */}
         <div className="flex">
           <div className="my-6 ml-24 mr-10">
-            <Link to={staticServerUri + "/"}>
+            <Link to="/">
               <picture height={15}>
                 <img src={staticServerUri + "/logoKakao.png"} alt="logoKakao.png" width={100} />
               </picture>
@@ -50,7 +50,7 @@ const Navigation = () => {
           <BsTruck className="h-[28px] w-[28px]" />
           {/* 장바구니 */}
           <Link
-            to={staticServerUri + "/cart"}
+            to="/cart"
             className="content-center border-r-2 pr-4 border-stone-100"
             onClick={
               token === null
@@ -75,7 +75,7 @@ const Navigation = () => {
                 <b>{email}님</b>
               </p>
               <Link
-                to={staticServerUri + "/loginpage"}
+                to="/loginpage"
                 onClick={handleLogout}
                 className="text-center text-xs p-1 rounded bg-stone-50 border-[1.5px]"
               >
@@ -83,7 +83,7 @@ const Navigation = () => {
               </Link>
             </>
           ) : (
-            <Link to={staticServerUri + "/loginpage"} className="text-center text-sm my-2">
+            <Link to="/loginpage" className="text-center text-sm my-2">
               로그인
             </Link>
           )}
