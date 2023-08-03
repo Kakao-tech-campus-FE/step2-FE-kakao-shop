@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../atoms/Card';
-import { comma, fullUrl } from '../../utils/convert';
+import { comma, staticUrl } from '../../utils/convert';
 import { productInfo } from '../../dto/productDto';
 
 interface ProductCardProps {
@@ -12,7 +12,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card to={`/product/${product.id}`}>
       <img
         className='aspect-[3/2] w-full rounded-2xl object-cover'
-        src={fullUrl(product.image)}
+        src={staticUrl(product.image)}
         alt={product.productName}
       />
       <div className='pt-6'>

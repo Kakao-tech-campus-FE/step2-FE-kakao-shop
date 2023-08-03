@@ -13,12 +13,12 @@ const comma = (num: number) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
-const staticUrl = (url: string) => {
-  return (process.env.REACT_APP_PATH || '') + url;
+const fullUrl = (url: string) => {
+  return process.env.REACT_APP_API_URL + url;
 };
 
-const fullUrl = (url: string) => {
-  return staticUrl('/public') + url;
+const staticUrl = (url: string) => {
+  return (process.env.REACT_APP_PATH || '') + url;
 };
 
 export { comma, fullUrl, staticUrl };
