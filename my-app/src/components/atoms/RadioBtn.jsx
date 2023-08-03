@@ -11,6 +11,7 @@ const RadioBtn = ({
   defaultChecked,
   disabled,
   onChange,
+  onClick,
 }) => {
   return (
     <>
@@ -22,6 +23,7 @@ const RadioBtn = ({
           defaultChecked={defaultChecked}
           disabled={disabled}
           onChange={onChange}
+          onClick={onClick}
         />
         {children}
       </label>
