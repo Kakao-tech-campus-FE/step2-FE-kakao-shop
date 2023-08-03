@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  picture .product-card-photo {
+    @apply h-fit;
+  }
+
+  .photo-img.product-card-photo {
+    @apply hover:scale-110 transition-all duration-300
+  }
+}
+
+/* 부모 엘리먼트*/
+/* 자식 요소는 부모의 너비를 상속받을 수 있도록*/
+picture > img {
+  width: inherit;
+  height: inherit;
+}

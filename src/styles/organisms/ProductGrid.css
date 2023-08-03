@@ -1,0 +1,34 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 4rem;
+  grid-column-gap: 2rem;
+  width: 100%;
+  //max-width: inherit;
+}
+
+/* grid는 명시적으로 column의 수를 정해주므로 
+반응형 컴포넌트로 구현하기 위해
+미디어 쿼리와 항상 함께 사용 */
+/* media-query : width가 0 ~ 768px 까지는 2개의 column으로 보여줘라 */
+@media screen and (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* flex로 구현 시 grid와 달리 미디어 쿼리로 내부의 사이즈를 조절 */
+/* .product-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-grid > .product-card {
+  width: 360px;
+}
+@media screen and (max-width: 768px){
+  .product-grid > .product-card {
+    width: 200px;
+  }
+}
+*/

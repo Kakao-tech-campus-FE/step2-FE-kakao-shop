@@ -1,0 +1,13 @@
+.li.checked-true {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.check-list li{
+  list-style-type: none;
+}
+
+.check-list ul{
+  padding: 0;
+  margin: 0;
+}

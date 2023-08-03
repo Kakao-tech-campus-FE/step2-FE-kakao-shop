@@ -1,0 +1,14 @@
+.main {
+  position: absolute;
+  top: 15%;
+  width: 80vw;
+  min-width: 500px;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  
+  background-color: white;
+  border: 2px solid gainsboro;
+  border-radius: 16px;
+}

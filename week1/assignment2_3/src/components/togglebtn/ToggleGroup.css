@@ -1,0 +1,24 @@
+.toggle-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-wrapper {
+  margin-bottom: 20px;
+}
+
+.tg-image {
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  transform: translateX(50%);
+}
+
+.tg-image.hide {
+  opacity: 0;
+}
+
+.full-moon {
+  transform: translateX(-50%);
+}
