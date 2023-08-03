@@ -1,9 +1,11 @@
 import type { ComponentProps, FunctionComponent, ReactNode } from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom/client';
 
 import { DefaultToastItem } from './DefaultItem';
 import Manager from './Manager';
 import type { Options } from './types';
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 class Toast {
   portal: HTMLElement | null = null;
@@ -18,23 +20,7 @@ class Toast {
     // FunctionComponent<{ isShow, options, children }>
     const { ToastItem } = options;
 
-    const portalElement = document.getElementById('toast-portal');
-
-    if (portalElement) {
-      this.portal = portalElement;
-    } else {
-      const newPortal = document.createElement('div');
-      newPortal.id = 'toast-portal';
-      newPortal.style.left = '0';
-      newPortal.style.right = '0';
-      newPortal.style.bottom = '0';
-      newPortal.style.zIndex = '9999';
-      newPortal.style.position = 'fixed';
-      this.portal = newPortal;
-      document.body.appendChild(this.portal);
-    }
-
-    render(
+    root.render(
       <Manager
         // bind 함수를 통해 토스트를 생성할 수 있는 함수를 Manager.tsx에서 받아온다.
         // createToast: (content: FunctionComponent<{}> | ReactNode, options: Options) => void
@@ -43,7 +29,6 @@ class Toast {
         }}
         ToastItem={ToastItem ?? DefaultToastItem}
       />,
-      this.portal,
     );
   }
 
