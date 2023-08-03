@@ -18,7 +18,7 @@ const ProductCard = ({ product, loading }) => {
     <div className="p-4 rounded-lg shadow-md">
       <Card to={staticServerUri + `/product/${product.id}`}>
         <Photo
-          src={staticServerUri + `/public${product.image}`}
+          src={staticServerUri + `${product.image}`}
           alt={product.productName}
         />
         <div className="pt-4 text-black">{product.productName}</div>
