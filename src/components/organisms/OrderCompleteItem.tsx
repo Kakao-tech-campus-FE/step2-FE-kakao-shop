@@ -17,7 +17,7 @@ const OrderCompleteItem = ({ product }: OrderCompleteItemProps) => {
         <span>옵션</span>
         <span>
           {product.items.map((item) => (
-            <p>{`${item.optionName} / ${item.quantity}개`}</p>
+            <p key={item.id}>{`${item.optionName} / ${item.quantity}개`}</p>
           ))}
         </span>
       </div>
