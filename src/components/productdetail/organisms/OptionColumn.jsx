@@ -114,7 +114,7 @@ export default function OptionColumn({ product }) {
         </Button>
       </Toast>
       <h3 className=" mt-0 text-base font-bold ">옵션 선택</h3>
-      <Box className="max-h-[360px] w-[360px] overflow-y-scroll">
+      <Box className="max-h-[360px] w-[360px] overflow-y-auto">
         {/* 옵션 담기를 하는 영역 */}
         <OptionList
           options={options}
