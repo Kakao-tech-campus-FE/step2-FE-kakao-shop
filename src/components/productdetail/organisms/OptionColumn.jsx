@@ -15,6 +15,7 @@ import { addProduct } from "../../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import LoginModal from "../../common/molecules/LoginModal";
 import Toast from "../../common/atoms/Toast";
+import { useQueryClient } from "react-query";
 
 export default function OptionColumn({ product }) {
   const { options, id } = product;
@@ -28,6 +29,7 @@ export default function OptionColumn({ product }) {
   const [isOptionToastVisible, setIsOptionToastVisible] = useState(false);
   const [isSelectToastVisible, setIsSelectToastVisible] = useState(false);
   const [isCartToastVisible, setIsCartToastVisible] = useState(false);
+  const queryClient = useQueryClient();
 
   const handleOnClickOption = (option, index) => {
     if (!isLogged) {
@@ -50,25 +52,31 @@ export default function OptionColumn({ product }) {
       },
     ]);
   };
-  const handleOnClickCart = async () => {
+
+  const handleOnClickCart = async (navigateCart) => {
     if (selectedOption.length === 0) {
       setIsSelectToastVisible(true);
       return false;
     }
-    try {
-      await mutate(
-        selectedOption.map((item) => {
-          return { optionId: item.id, quantity: item.quantity };
-        }),
-      );
-      setIsCartToastVisible(true);
-      dispatch(addProduct(id));
-      setSelectedOption([]);
-      return true;
-    } catch (error) {
-      console.error(error.message);
-      return false;
-    }
+    mutate(
+      selectedOption.map((item) => {
+        return { optionId: item.id, quantity: item.quantity };
+      }),
+      {
+        onSuccess: () => {
+          setIsCartToastVisible(true);
+          dispatch(addProduct(id));
+          queryClient.invalidateQueries("cart");
+          setSelectedOption([]);
+          if (navigateCart) {
+            navigate("/carts");
+          }
+        },
+        onError: (error) => {
+          console.error("Request failed:", error.message);
+        },
+      },
+    );
   };
 
   return (
@@ -147,18 +155,14 @@ export default function OptionColumn({ product }) {
         <Button
           className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-md border-0 bg-black"
           onClick={() => {
-            handleOnClickCart();
+            handleOnClickCart(false);
           }}
         >
           <Logo src={cartWhite} alt="whiteCartIcon" className=" w-12 " />
         </Button>
         <Button
-          onClick={async () => {
-            const isSuccess = await handleOnClickCart();
-            if (!isSuccess) {
-              return;
-            }
-            navigate("/carts");
+          onClick={() => {
+            handleOnClickCart(true);
           }}
           className="ml-1 grow cursor-pointer rounded-md border-0 bg-[#ffe342] text-xl font-bold tracking-tighter"
         >
