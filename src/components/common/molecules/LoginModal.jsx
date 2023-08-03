@@ -2,6 +2,8 @@ import "../../../styles/atoms/Modal.css";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function LoginModal({ setIsLoginModalOpen }) {
   const navigate = useNavigate();
   return (
@@ -23,7 +25,7 @@ export default function LoginModal({ setIsLoginModalOpen }) {
           <Button
             className="h-10 w-full border-collapse cursor-pointer border border-solid border-zinc-300 bg-white text-base font-semibold"
             onClick={() => {
-              navigate("/login");
+              navigate(staticServerUrl + "/login");
             }}
           >
             확인

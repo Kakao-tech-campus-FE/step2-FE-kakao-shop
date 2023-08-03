@@ -19,6 +19,8 @@ import { PAYMENT_AGREE_OPTION } from "../../../utils/constant";
 import { useNavigate } from "react-router-dom";
 import Modal from "../../common/atoms/Modal";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function OrderTemplate({ data }) {
   const [isUserInfoOpen, setIsUserInfoOpen] = useState(true);
   const [isOrderProductInfoOpen, setIsOrderProductInfoOpen] = useState(true);
@@ -110,7 +112,7 @@ export default function OrderTemplate({ data }) {
                 onSuccess: (res) => {
                   const id = res.data.response.id;
                   dispatch(initializeCart());
-                  navigate(`/orders/complete/${id}`);
+                  navigate(staticServerUrl + `/orders/complete/${id}`);
                 },
                 onError: (error) => {
                   alert(error.response.data.message);

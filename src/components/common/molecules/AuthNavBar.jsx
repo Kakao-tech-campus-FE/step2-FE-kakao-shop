@@ -8,6 +8,8 @@ import cartIcon from "../../../assets/icons/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function AuthNavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,17 +19,17 @@ export default function AuthNavBar() {
     if (isLogged) {
       dispatch(LogOut());
     } else {
-      navigate("/login");
+      navigate(staticServerUrl + "/login");
     }
   };
 
   return (
     <Container className=" border-y-1 fixed top-0 z-10 box-border flex h-12 w-full min-w-[1280px] place-content-between items-center border-x-0 border-solid border-slate-300 bg-white px-10">
-      <Link to="/">
+      <Link to={staticServerUrl + "/"}>
         <Logo src={logoKakao} alt="KakaoLogo" className="w-24" />
       </Link>
       <Container className="flex items-center">
-        <Link to="/carts">
+        <Link to={staticServerUrl + "/carts"}>
           <div className=" relative ">
             <Logo src={cartIcon} alt="cartIcon" className="mr-4 w-9" />
             {/* 로그인 중 && 장바구니에 물건이 있을 때 */}

@@ -6,23 +6,30 @@ import Photo from "../../common/atoms/Photo";
 import Container from "../../common/atoms/Container";
 import ProductCardSkeleton from "../atoms/ProductCardSkeleton";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function ProductCard({ product, isFetching }) {
   return (
     <>
       {isFetching ? (
         <ProductCardSkeleton />
       ) : (
-        <Card to={`/product/${product.id}`} className="no-underline">
-          <Container className="flex flex-col items-start h-96 border-slate-200 border-solid p-5 w-64">
+        <Card
+          to={staticServerUrl + `/product/${product.id}`}
+          className="no-underline"
+        >
+          <Container className="flex h-96 w-64 flex-col items-start border-solid border-slate-200 p-5">
             <Photo
               className="card"
-              src={process.env.REACT_APP_API_URL + product.image}
+              src={
+                process.env.REACT_APP_API_URL + staticServerUrl + product.image
+              }
               alt={product.productName}
             />
-            <Box className=" font-bold text-black no-underline pt-5">
+            <Box className=" pt-5 font-bold text-black no-underline">
               {product.productName}
             </Box>
-            <Box className=" text-slate-500 pt-5">{comma(product.price)}원</Box>
+            <Box className=" pt-5 text-slate-500">{comma(product.price)}원</Box>
           </Container>
         </Card>
       )}

@@ -11,25 +11,45 @@ import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderCompletePage from "./pages/OrderCompletePage";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         {/* 단독 레이아웃 */}
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/signup" element={<RegisterPage />}></Route>
-        <Route path="/404" element={<NotFoundPage />}></Route>
+        <Route
+          path={staticServerUrl + "/login"}
+          element={<LoginPage />}
+        ></Route>
+        <Route
+          path={staticServerUrl + "/signup"}
+          element={<RegisterPage />}
+        ></Route>
+        <Route
+          path={staticServerUrl + "/404"}
+          element={<NotFoundPage />}
+        ></Route>
         {/* 공통 레이아웃(path 선언X): GNB, Footer */}
         <Route element={<MainLayout />}>
-          <Route path="/" element={<MainPage />}></Route>
+          <Route path={staticServerUrl + "/"} element={<MainPage />}></Route>
           {/* 동적매개변수 */}
-          <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+          <Route
+            path={staticServerUrl + "/product/:id"}
+            element={<ProductDetailPage />}
+          ></Route>
         </Route>
         <Route element={<RequiredAuthLayout />}>
-          <Route path="/carts" element={<CartPage />}></Route>
-          <Route path="/order" element={<OrderPage />}></Route>
           <Route
-            path="/orders/complete/:id"
+            path={staticServerUrl + "/carts"}
+            element={<CartPage />}
+          ></Route>
+          <Route
+            path={staticServerUrl + "/order"}
+            element={<OrderPage />}
+          ></Route>
+          <Route
+            path={staticServerUrl + "/orders/complete/:id"}
             element={<OrderCompletePage />}
           ></Route>
         </Route>
