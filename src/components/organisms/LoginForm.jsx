@@ -88,6 +88,7 @@ const LoginForm = () => {
                 navigate(staticServerUri + "/");
             })
             .catch((err) => {
+				console.error(err);
                 console.log(err.request.error);
                 const errObject = JSON.parse(err.request.response);
                 setError(errObject.error.message)
