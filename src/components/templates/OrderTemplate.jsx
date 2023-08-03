@@ -41,15 +41,6 @@ const OrderTemplate = ({ data }) => {
           <Order.Title>주문하기</Order.Title>
         </div>
         <div>
-          <Order.DeliveryInfoTitle>배송지 정보</Order.DeliveryInfoTitle>
-          <Order.DeliveryContainer>
-            <Order.DeliveryInfoName>
-              <span>황수연</span>
-              <Order.DeliveryDefalt>기본배송지</Order.DeliveryDefalt>
-            </Order.DeliveryInfoName>
-            <div>010-9690-8798</div>
-            <div>광주광역시 사암로340번길 30</div>
-          </Order.DeliveryContainer>
           <div>
             <Order.ProductInfo>주문상품정보</Order.ProductInfo>
             <OrderList products={products} />

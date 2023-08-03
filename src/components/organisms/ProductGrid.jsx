@@ -3,7 +3,6 @@ import * as Grid from '../../styles/organisms/ProductGrid';
 import Loader from '../atoms/Loader';
 
 const ProductGrid = ({ products, isFetchingNextPage }) => {
-  console.log('products: ', products);
   return (
     <Grid.Product>
       {products

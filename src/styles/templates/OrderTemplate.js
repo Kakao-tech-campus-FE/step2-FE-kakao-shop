@@ -21,37 +21,8 @@ export const Title = styled.h1`
   padding: 1rem;
   margin-bottom: 0;
 `;
-export const DeliveryContainer = styled.div`
-  border: 2px solid #ffe6eb;
-  border-top: none;
-  padding: 0.7em;
-`;
-
-export const DeliveryInfoTitle = styled.h2`
-  font-size: 1.1rem;
-  font-weight: bold;
-  border: 2px solid #ffe6eb;
-  border-top: none;
-  padding: 0.7rem;
-  margin: 0;
-`;
-
-export const DeliveryInfoName = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 0.3rem;
-`;
-
-export const DeliveryDefalt = styled.span`
-  background-color: #cdecfa;
-  border-radius: 5px;
-  padding: 0.3rem;
-  font-size: 0.7rem;
-  color: blue;
-`;
 
 export const ProductInfo = styled.div`
-  margin-top: 1rem;
   font-size: 1.1rem;
   font-weight: bold;
   border: 2px solid #ffe6eb;

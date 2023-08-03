@@ -4,7 +4,7 @@ import Button from '../atoms/Button';
 import { useEffect, useState } from 'react';
 import Counter from '../atoms/Counter';
 import { useMutation } from 'react-query';
-import { addCart } from '../../apis/cart';
+import { addCart, updateCart } from '../../apis/cart';
 import { comma } from '../../utils/convert';
 import { getLocalStorage } from '../../utils/localStorage';
 import { useNavigate } from 'react-router-dom';
@@ -95,7 +95,7 @@ const ProductOption = ({ product }) => {
 
   // 장바구니 담기 api 처리
   const { mutate: mutateAddCart } = useMutation({
-    mutationFn: addCart,
+    mutationFn: updateCart,
   });
 
   return (
