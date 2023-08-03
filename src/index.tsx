@@ -12,7 +12,7 @@ import { store, persistor } from './store';
 import { staticUrl } from './utils/convert';
 
 const token = localStorage.getItem('token');
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = staticUrl('/api');
 axios.defaults.timeout = 1000;
 axios.defaults.headers.common.Authorization = token ? `Bearer ${token}` : null;
 
