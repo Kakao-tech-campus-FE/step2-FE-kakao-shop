@@ -2,11 +2,23 @@
 
 [카카오톡 쇼핑하기](https://store.kakao.com/)를 클론 코딩한 프로젝트입니다.
 
-### Commands
+### Run Locally
+
+Clone the project
+
+```bash
+git clone https://github.com/blackhblee/step2-FE-kakao-shop-public.git
+```
+
+Install dependencies
 
 ```bash
 npm install
-npm run build
+```
+
+Start the server
+
+```bash
 npm run start
 ```
 
@@ -16,7 +28,7 @@ npm run start
 ├─ /src
 │  ├─ /api : api 호출을 위한 모듈
 │  ├─ /assets : 이미지 파일을 담는 곳
-│  ├─ /components : Atomic pattern으로 구성된 여러 페이지에서 사용되는 컴포넌트
+│  ├─ /components : Atomic pattern으로 구성된 컴포넌트
 │  │  ├─ /atoms
 │  │  ├─ /molecules
 │  │  ├─ /organisms
@@ -26,6 +38,7 @@ npm run start
 │  ├─ /pages : 페이지 컴포넌트
 │  ├─ /store : redux store
 │  │  └─ /slices : redux slice
+│  ├─ /utils : 유틸리티 함수
 │  ├─ App.js
 │  ├─ index.js
 │  └─ ...
