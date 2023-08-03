@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import staticServerUri from "../../utils/krampoline";
 
 /** 카드
  *
@@ -9,7 +10,7 @@ import { Link } from "react-router-dom";
  */
 const Card = ({ children, to, className = "" }) => {
   return (
-    <Link className={`card-link ${className}`} to={to}>
+    <Link className={`card-link ${className}`} to={staticServerUri + to}>
       {children}
     </Link>
   );
