@@ -43,6 +43,10 @@ function App() {
                 path={staticServerUrl + '/order'}
                 element={<OrderPage />}
               />
+              <Route
+                path={staticServerUrl + '/orders/complete/:id'}
+                element={<OrderCompletePage />}
+              />
               <Route path={staticServerUrl + '/cart'} element={<CartPage />} />
             </Route>
           </Routes>
