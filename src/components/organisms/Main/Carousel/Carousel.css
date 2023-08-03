@@ -1,0 +1,13 @@
+.swiper-button-prev,
+.swiper-button-next {
+  @apply flex justify-center items-center;
+  @apply w-12 h-12;
+  @apply text-black bg-white;
+  @apply duration-150;
+  @apply rounded-full opacity-30 hover:opacity-100;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  @apply text-lg font-semibold;
+}
