@@ -14,7 +14,6 @@ export const Header = styled.header`
 
 export const MenuUtil = styled.span`
   display: flex;
-  min-width: 1200px;
   align-items: center;
   margin-left: auto;
   .header-login {
