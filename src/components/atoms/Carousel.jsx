@@ -2,7 +2,7 @@ import {useState, useRef, useEffect} from 'react'
 import styled from 'styled-components';
 
 const TOTAL_SLIDES = 2; 
-
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const StyledContainer = styled.div`
   overflow:hidden;
   position:relative;
@@ -74,9 +74,9 @@ const Carousel = () => {
   return (
     <StyledContainer>
       <StyledSliderContainer ref={slideRef} >
-      <img src="/carouselItem1.jpeg" alt='carousel'/>
-      <img src="/carouselItem2.jpeg" alt='carousel'/>
-      <img src="/carouselItem3.jpeg" alt='carousel'/>
+      <img src={staticServerUrl + "/carouselItem1.jpeg"} alt='carousel'/>
+      <img src={staticServerUrl +"/carouselItem2.jpeg"} alt='carousel'/>
+      <img src={staticServerUrl +"/carouselItem3.jpeg"} alt='carousel'/>
       </StyledSliderContainer>
       <StyledPrevButton onClick={PrevSlide}>
         <ButtonText>{'<'}</ButtonText>
