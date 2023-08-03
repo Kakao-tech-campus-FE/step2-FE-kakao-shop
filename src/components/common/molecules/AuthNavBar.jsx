@@ -24,7 +24,7 @@ export default function AuthNavBar() {
   };
 
   return (
-    <Container className=" border-y-1 fixed top-0 z-10 box-border flex h-12 w-full min-w-[1280px] place-content-between items-center border-x-0 border-solid border-slate-300 bg-white px-10">
+    <Container className=" fixed top-0 z-10 box-border flex h-12 w-full min-w-[1280px] items-center justify-between border-0 border-b border-solid border-zinc-300 bg-white px-10">
       <Link to={staticServerUrl + "/"}>
         <Logo src={logoKakao} alt="KakaoLogo" className="w-24" />
       </Link>
