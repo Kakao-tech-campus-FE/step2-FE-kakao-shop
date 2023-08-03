@@ -30,7 +30,7 @@ const MainProductTemplate = () => {
     // 2번째 파라미터 - options(보통은 threshold가 들어감)
     const io = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry) => {
-            console.log(entry);
+            // console.log(entry);
             if (entry.isIntersecting && !end) {
                 setPage((page) => page + 1);
             }
@@ -55,9 +55,9 @@ const MainProductTemplate = () => {
     useEffect(() => {
         if(!isLoading && page === 0) {
             io.observe(bottomObserver.current);
-            console.log("감시시작")
-            console.log("page number", page)
-            console.log(end);
+            // console.log("감시시작")
+            // console.log("page number", page)
+            // console.log(end);
         }
     // eslint-disable-next-line
     }, [isLoading, page])

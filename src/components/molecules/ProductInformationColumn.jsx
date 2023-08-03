@@ -23,6 +23,7 @@ export default ProductInformationColumn;
 const ProductInformationColumnContainer = styled.div`
     display:flex;
     padding-top: 100px;
+    min-width : 900px;
 `
 
 const ProductInformationBox = styled.div`
@@ -30,10 +31,10 @@ const ProductInformationBox = styled.div`
 `
 
 const ProductInformationTitle = styled.p`
-    font-size: 2rem;
+    font-size: 28px;
     max-width: 360px;
 `
 
 const ProductInformationPrice = styled.p`
-    font-size: 1.2rem;
+    font-size: 20px;
 `

@@ -34,7 +34,7 @@ function App() {
                 <Route path="/product/:id" element={<ProductDetailPage/>}/>
                 <Route path="cart" element={<CartPage/>}/>
                 <Route path="order" element={<OrderPage/>}/>
-                <Route path="orders/complete/*" element={<OrderCompletePage/>}/>
+                <Route path="orders/complete/:id" element={<OrderCompletePage/>}/>
                 <Route path="/*" element={<NotFoundPage/>}/>
             </Routes>
             <Footer/>

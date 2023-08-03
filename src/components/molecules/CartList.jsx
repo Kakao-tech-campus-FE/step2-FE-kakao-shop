@@ -8,6 +8,8 @@ import { updateCart } from '../services/cart';
 import { styled } from 'styled-components';
 import { getCart } from '../services/cart';
 import { useQuery } from '@tanstack/react-query';
+import Swal from 'sweetalert2';
+import { cartNoItemMessage } from '../../utils/constants';
 
 const CartList = () => {
     const navigate = useNavigate();
@@ -89,7 +91,7 @@ const CartList = () => {
         })
     }
 
-    const getTotalCartCount =  useCallback(() => {
+    const getTotalCartCount = useCallback(() => {
         // console.log(cartItems);
         // 초기 렌더링 시 중간에 undefined가 되는 순간이 있어 cartItems이 존재할때만 실행
         let count = 0;
@@ -133,7 +135,12 @@ const CartList = () => {
                         // cart 업데이트(update cart API) 
                         // 주문 페이지 이동(navigate)
                         // post 요청
-                        mutate(updatePayload)
+                        if(totalPrice === 0) {
+                            Swal.fire(cartNoItemMessage);
+                            navigate("/")
+                        } else {
+                            mutate(updatePayload)
+                        }
                     }}
                 >
                 총 {getTotalCartCount()}건 주문하기(결제하기)
