@@ -1,6 +1,7 @@
 import { ReactComponent as ErrorIcon } from "../assets/error.svg";
 import Container from "../components/atoms/Container";
 import LinkButton from "../components/atoms/LinkButton";
+import staticServerUri from "../utils/krampoline";
 
 /** 에러 페이지
  *
@@ -18,7 +19,7 @@ const ErrorPage = () => {
       <div className="error-icon flex justify-center mt-[10px]">
         <LinkButton
           onClick={() => {
-            window.location.replace("/");
+            window.location.replace(`${staticServerUri}/`);
           }}
           to="/"
           className="main-button w-[120px] h-[40px] mr-[4px] rounded-[5px] bg-gray-500 text-white text-[15px]"

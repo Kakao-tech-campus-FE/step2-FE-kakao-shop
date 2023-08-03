@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import staticServerUri from "../../utils/krampoline";
 
 /** 로고 버튼
  *
@@ -17,9 +18,9 @@ const Logo = ({
   return (
     <Link
       onClick={() => {
-        window.location.replace("/");
+        window.location.replace(`${staticServerUri}/`);
       }}
-      to={to}
+      to={staticServerUri + to}
       className={`logo ${className}`}
     >
       <img src={imgSrc} alt="카카오톡 쇼핑하기" className={imgClassName} />

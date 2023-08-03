@@ -7,6 +7,7 @@ import Title from "../atoms/Title";
 import Box from "../atoms/Box";
 import instance from "../../api";
 import AlertBox from "../molecules/AlertBox";
+import staticServerUri from "../../utils/krampoline";
 
 /** 회원가입 폼
  *
@@ -54,7 +55,7 @@ const RegisterForm = () => {
     const data = await instance.post("/join", JSON.stringify(values));
     if (data.data?.success) {
       alert("회원가입이 완료되었습니다.");
-      window.location.replace("/");
+      window.location.replace(`${staticServerUri}/`);
     } else {
       // eslint-disable-next-line no-alert
       setErrorMessage(data?.error?.message);

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import staticServerUri from "../../utils/krampoline";
 
 /** 라우터 네비게이트 버튼
  *
@@ -15,7 +16,7 @@ const LinkButton = ({ onClick, children, to, className = "" }) => {
       onClick={(e) => {
         e.preventDefault();
         onClick();
-        navigate(to);
+        navigate(staticServerUri + to);
       }}
       className={`button ${className}`}
     >

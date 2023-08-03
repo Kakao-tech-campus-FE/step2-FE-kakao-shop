@@ -10,6 +10,7 @@ import instance from "../../api";
 import { login } from "../../store/slices/authSlice";
 import AlertBox from "../molecules/AlertBox";
 import LinkButton from "../atoms/LinkButton";
+import staticServerUri from "../../utils/krampoline";
 
 /** 로그인 폼
  *
@@ -48,7 +49,7 @@ const LoginForm = () => {
     const data = await instance.post("/login", JSON.stringify(values));
     if (data.data?.success) {
       dispatch(login(data.token));
-      window.location.replace("/");
+      window.location.replace(`${staticServerUri}/`);
     } else {
       // eslint-disable-next-line no-alert
       setErrorMessage(data?.error?.message);

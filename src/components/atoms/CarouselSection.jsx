@@ -34,9 +34,18 @@ const CarouselSection = () => {
   return (
     <div className="product-section flex mx-auto mt-[79px] min-w-[1280px] max-w-[1500px] h-[300px] z-0">
       <Carousel theme={customTheme}>
-        <img alt="carousel-img-1" src="carousel1.jpeg" />
-        <img alt="carousel-img-2" src="carousel2.jpeg" />
-        <img alt="carousel-img-3" src="carousel3.jpeg" />
+        <img
+          alt="carousel-img-1"
+          src={`${process.env.PUBLIC_URL}/carousel1.jpeg`}
+        />
+        <img
+          alt="carousel-img-2"
+          src={`${process.env.PUBLIC_URL}/carousel2.jpeg`}
+        />
+        <img
+          alt="carousel-img-3"
+          src={`${process.env.PUBLIC_URL}/carousel3.jpeg`}
+        />
       </Carousel>
     </div>
   );

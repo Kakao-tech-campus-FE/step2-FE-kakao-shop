@@ -3,7 +3,7 @@ import Card from "../atoms/Card";
 const SideSection = () => {
   return (
     <div className="side-section ml-[31px] pl-[32px] pt-[30px] h-[1000px] border-l border-gray-100">
-      <Card>
+      <Card to="/">
         <img
           className="product-image rounded-t-[10px]"
           src="https://st.kakaocdn.net/thumb/C750x422.fjpg/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fshoppingstore%2Fhome%2Fspecial_card%2F20230731190048_3104764de79c45ecac529145667a8bde.png"

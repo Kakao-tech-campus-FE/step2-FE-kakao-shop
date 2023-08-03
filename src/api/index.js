@@ -1,7 +1,8 @@
 import axios from "axios";
+import staticServerUri from "../utils/krampoline";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: `${staticServerUri}/api/`, // process.env.REACT_APP_API_URL,
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -22,7 +23,7 @@ instance.interceptors.response.use(
     // eslint-disable-next-line default-case
     switch (e.response.status) {
       case 404:
-        window.location.replace("/error");
+        window.location.replace(`${staticServerUri}/error`);
         break;
     }
     return e.response.data;

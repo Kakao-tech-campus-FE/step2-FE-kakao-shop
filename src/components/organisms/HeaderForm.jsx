@@ -5,6 +5,7 @@ import LinkButton from "../atoms/LinkButton";
 import { logout } from "../../store/slices/authSlice";
 import { ReactComponent as Cart } from "../../assets/cart.svg";
 import { ReactComponent as List } from "../../assets/list.svg";
+import staticServerUri from "../../utils/krampoline";
 
 /** 헤더
  *
@@ -81,7 +82,7 @@ const HeaderForm = () => {
             to="/"
             onClick={() => {
               dispatch(logout());
-              window.location.replace("/");
+              window.location.replace(`${staticServerUri}/`);
             }}
             className="pt-[25px] pb-[25px] pl-[25px] text-[14px]"
           >

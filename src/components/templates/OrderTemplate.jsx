@@ -6,6 +6,7 @@ import comma from "../../utils/convert";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import Button from "../atoms/Button";
+import staticServerUri from "../../utils/krampoline";
 
 /** 주문하기 페이지
  *
@@ -198,12 +199,12 @@ const OrderTemplate = ({ data }) => {
               mutate(null, {
                 onSuccess: (res) => {
                   const { id } = res.data.response;
-                  navigate(`/orders/complete/${id}`);
+                  navigate(`${staticServerUri}/orders/complete/${id}`);
                 },
                 onError: () => {
                   // 사용자 정보가 유실된 경우
                   alert("로그인이 필요합니다.");
-                  navigate("/login");
+                  navigate(`${staticServerUri}/login`);
                 },
               });
             }}
