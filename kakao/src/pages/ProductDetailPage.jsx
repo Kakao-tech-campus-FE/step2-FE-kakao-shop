@@ -5,6 +5,8 @@ import { useQuery } from "react-query";
 import { getProductById } from "../services/product";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const ProductDetailPage = () => {
   const { id } = useParams(); //Params로 받은 값은 언제나 string
   const navigate = useNavigate();
@@ -35,7 +37,7 @@ const ProductDetailPage = () => {
 
   const handleOnError = (error) => {
     console.error("Error occurred:", error);
-    navigate("/error"); // 404 페이지로 이동합니다.
+    navigate(staticServerUrl + "/error"); // 404 페이지로 이동합니다.
   };
 
   return (

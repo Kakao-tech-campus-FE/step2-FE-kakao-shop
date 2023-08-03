@@ -5,10 +5,11 @@ import useInput from "../../hooks/useInput";
 import { login } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmail, setToken } from "../../store/slices/userSlice";
+import { setEmail } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 // hook으로
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -39,12 +40,16 @@ const LoginForm = () => {
       password: value.password,
     })
       .then((res) => {
+        console.log(res);
+        // const token = res.data.token;
         const token = res.headers.authorization;
         localStorage.setItem("token", token);
-        localStorage.setItem("email", value.email);
-        dispatch(setEmail({ email: value.email }));
-        dispatch(setToken({ token }));
-        navigate("/");
+        dispatch(
+          setEmail({
+            email: value.email,
+          })
+        );
+        navigate(staticServerUrl + "/");
       })
       .catch((err) => {
         console.log("err", err);
@@ -90,7 +95,7 @@ const LoginForm = () => {
         <Button onClick={loginReq}>로그인</Button>
         <Button
           onClick={() => {
-            navigate("/signup");
+            navigate(staticServerUrl + "/signup");
           }}
         >
           회원가입

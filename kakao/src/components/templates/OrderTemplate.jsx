@@ -3,8 +3,9 @@ import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
-
 import "../../styles/template/OrderTemplate.css";
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OrderTemplate = ({ data }) => {
   const { products, totalPrice } = data?.data?.response;
@@ -24,11 +25,11 @@ const OrderTemplate = ({ data }) => {
     onError: (error) => {
       // 404 에러 발생 시 error 페이지로 이동
       if (error?.response?.status === 404) {
-        navigate("/error");
+        navigate(staticServerUrl + "/error");
       } else if (error?.response?.status === 401) {
         // 사용자 정보 유실 에러 (예: 토큰 만료 등)
         // 로그인 페이지로 이동
-        navigate("/login");
+        navigate(staticServerUrl + "/login");
       } else {
         // 기타 에러 처리
         alert("주문에 실패했습니다🥲");
@@ -37,7 +38,7 @@ const OrderTemplate = ({ data }) => {
     onSuccess: (res) => {
       const id = res.data.response.id;
       alert("주문이 완료되었습니다!😉");
-      navigate(`/orders/complete/${id}`);
+      navigate(staticServerUrl + `/orders/complete/${id}`);
     },
   });
 
@@ -70,42 +71,36 @@ const OrderTemplate = ({ data }) => {
 
   // OrderItems
   const OrderItems = () => {
-    const groupedProducts = {};
-    // 상품들을 productName을 기준으로 그룹화
-    products.forEach((product) => {
-      if (!groupedProducts[product.productName]) {
-        groupedProducts[product.productName] = [];
-      }
-      groupedProducts[product.productName].push(product);
-    });
-    // 그룹화된 상품들을 UI에 렌더링
-    return Object.keys(groupedProducts).map((productName) => (
-      <div key={productName} className="order-option">
-        <div className="namegroup">
-          <span className="material-symbols-outlined" id="shop-icon">
-            storefront
-          </span>
-          <span className="product-name">{`${productName}`}</span>
-        </div>
-
-        {groupedProducts[productName].map((product) =>
-          product.carts.map((cart) => (
-            <div key={cart.id} className="order-option-item">
+    let renderComponent = [];
+    //각각 상품들
+    products.forEach((item) => {
+      // item: 각각의 상품. carts: 옵션들의 모임
+      // 상품하나에 대한 각각의 옵션들
+      renderComponent.push(
+        item.carts.map((cart) => {
+          return (
+            <div key={cart.id} className="order-option">
+              <div className="namegroup">
+                <span className="material-symbols-outlined">storefront</span>
+                <span className="prodcut-name">{`${item.productName}`}</span>
+              </div>
               <div className="optionNamegroup">
-                <span className="option-name">{`[옵션] ${cart.option.optionName}`}</span>
+                <span className="option-name">{`[옵션]${cart.option.optionName}`}</span>
                 <span className="product-quantity">
                   {comma(cart.quantity)}개
                 </span>
               </div>
 
               <div className="option-price">
-                <span>{comma(cart.price)}원</span>
+                <span>{comma(cart.price * cart.quantity)}원</span>
               </div>
             </div>
-          ))
-        )}
-      </div>
-    ));
+          );
+        })
+      );
+    });
+
+    return renderComponent;
   };
 
   return (
