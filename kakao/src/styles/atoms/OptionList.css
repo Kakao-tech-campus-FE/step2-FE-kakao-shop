@@ -1,0 +1,12 @@
+.option-list {
+  border: 1px solid #ccc;
+}
+
+.option-list .list li {
+  list-style-type: decimal;
+}
+
+.option-list .option-item {
+  padding: 5px 0;
+  border: 1px slid black;
+}

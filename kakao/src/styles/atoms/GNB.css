@@ -1,0 +1,104 @@
+ul,
+li {
+  list-style: none;
+}
+
+.header {
+  height: 75px;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+}
+
+.header-innerwrap {
+  position: absolute;
+  width: 1280px;
+  height: 75px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-imglogo {
+  width: 110px;
+  height: 35px;
+}
+
+/* ----- 헤더 네비게이션바(네브바, 카테고리) ----- */
+.header-nav {
+  display: flex;
+}
+
+.header-nav .head-nav ul {
+  display: flex;
+  margin: 0;
+}
+
+.header-nav .head-nav li {
+  font-size: 17px;
+  font-weight: 500;
+  padding: 0 8px;
+}
+
+.header-nav .head-cate {
+  padding: 0 15px;
+}
+
+.header-nav .head-cate a {
+  display: flex;
+  text-decoration: none;
+  color: #4684e9;
+  font-weight: 700;
+}
+.header-nav .head-cate .cate {
+  font-size: 17px;
+  margin-left: 5px;
+}
+
+/* ----- 헤더 우측 메뉴(검색, 장바구니, 로그인) ----- */
+.header-menu {
+  position: relative;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-menu .menu-search {
+  cursor: pointer;
+}
+
+.header-menu .menu-search span {
+  font-size: 30px;
+  padding-top: 6px;
+  color: black;
+}
+
+.header-menu .menu-util {
+  padding: 12px;
+}
+
+.menu-util .link-util img {
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
+}
+
+.header-menu .menu-account a {
+  font-size: 40;
+}
+
+/* 창에맞게 */
+@media screen and (max-width: 768px) {
+  .header-innerwrap {
+    width: 100%;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+}

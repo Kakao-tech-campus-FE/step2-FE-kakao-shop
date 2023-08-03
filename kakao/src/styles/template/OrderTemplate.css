@@ -1,0 +1,201 @@
+/* ----- 공통영역 ----- */
+.order-container {
+  display: flex;
+  justify-content: center;
+  background-color: #f2f3f5;
+}
+
+.order-innerwrap {
+  width: 900px;
+  margin: 15px 0 50px;
+  background-color: #fff;
+}
+
+.info-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  display: inline-block;
+  padding-bottom: 20px;
+}
+
+.order-info::before {
+  display: block;
+  height: 12px;
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  background-color: #f2f3f5;
+  box-sizing: border-box;
+  content: "";
+}
+
+/* ---- 주문하기 타이틀 ----- */
+.order-top {
+  border-top: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+}
+
+.order-top span {
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ----- 배송지 정보 ----- */
+.order-delivery-info {
+  padding: 16px;
+}
+
+.delivery-customer-info p {
+  margin: 0;
+}
+
+.delivery-customer-info .name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.delivery-customer-info .destination {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 4px 10px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #4684e9;
+  border-radius: 12px;
+  background-color: #f3f4f9;
+}
+
+.delivery-customer-info .number {
+  font-size: 15px;
+  line-height: 17px;
+  display: block;
+  padding: 6px 0;
+}
+
+.delivery-customer-info .address {
+  display: block;
+  width: 234px;
+  font-size: 14px;
+  line-height: 21px;
+  color: #666;
+}
+
+/* ----- 주문상품 정보 ----- */
+.order-product-info {
+  padding: 16px;
+}
+
+.order-option {
+  padding: 8px 0;
+  border-top: 1px solid #ebebeb;
+}
+
+.order-option .namegroup {
+  display: flex;
+}
+.order-option .namegroup #shop-icon {
+  margin: 5px 3px 0 0;
+}
+
+.order-option .namegroup .product-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.order-option-item {
+  padding: 5px;
+  background-color: #f2f3f5;
+  margin: 0 0 9px 20px;
+}
+
+.order-option-item .optionNamegroup span {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+.order-option-item .option-price {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 16px;
+}
+
+.order-total-price {
+  padding: 16px 10px 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ebebeb;
+}
+
+.order-total-price span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.order-total-price .won {
+  color: #4684e9;
+}
+
+/* ----- 정보동의 ----- */
+.order-agree .agree-title {
+  padding: 19px 16px;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.order-agree .agree-title span {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.order-agree label {
+  padding-left: 12px;
+}
+
+.order-agree .agree-group {
+  padding: 16px;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-agree .agree-group span {
+  font-size: 14px;
+}
+
+.agree-title input {
+  width: 17px;
+  height: 17px;
+}
+
+.agree-group input {
+  width: 15px;
+  height: 15px;
+}
+
+/* ----- 법적고지 및 결제버튼 ----- */
+.order-bottom {
+  position: relative;
+}
+.order-bottom .legal-notice {
+  padding: 16px;
+  background-color: #fafafa;
+}
+
+.order-bottom .legal-notice span {
+  font-size: 13px;
+}
+
+.order-bottom .checkout-btn {
+  width: 100%;
+  padding: 12px 0;
+  background-color: #ffea00;
+  font-weight: 700;
+  font-size: 18px;
+  border: none;
+}
