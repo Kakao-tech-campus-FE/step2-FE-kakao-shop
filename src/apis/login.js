@@ -1,5 +1,7 @@
 import { instance } from "./index";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export const login = (data) => {
   const { email, password } = data;
 
@@ -10,7 +12,7 @@ export const login = (data) => {
         const dataObject = JSON.parse(response.config.data);
 
         window.alert(`환영합니다 🥳 ${dataObject.email} 님`);
-        window.location.href = "/";
+        window.location.href = staticServerUri + "/";
         return {
           email: email,
           token: response.headers.authorization,
@@ -31,7 +33,7 @@ export const login = (data) => {
           window.alert("인증에 실패했습니다.");
           break;
         case 404:
-          window.location.href = "/error";
+          window.location.href = staticServerUri + "/error";
           break;
         default:
           window.alert("로그인에 실패했습니다.");

@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import { thisYear } from "../../utils/formatYear";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function Footer() {
   return (
     <footer className="mt-4 bg-slate-100">
       <nav className="max-w-screen-lg h-full flex text-center justify-center m-auto py-8">
         <ul className="w-96 font-extrabold text-xl">
-          <Link to="/">카카오톡 쇼핑하기</Link>
+          <Link to={staticServerUri + "/"}>카카오톡 쇼핑하기</Link>
         </ul>
         <div className="text-left pr-4">
           <div className="text-sm pb-2">

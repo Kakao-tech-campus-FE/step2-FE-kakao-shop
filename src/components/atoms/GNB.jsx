@@ -8,6 +8,8 @@ import cart from "../../assets/cart.png";
 
 const LOGOUT_TIMER = 30 * 60 * 1000; // 30분 후 자동 로그아웃
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function GNB() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ function GNB() {
         <Nav>
           <button
             onClick={() => {
-              navigate("/search");
+              navigate(staticServerUri + "/search");
             }}
             className="text-black"
           >

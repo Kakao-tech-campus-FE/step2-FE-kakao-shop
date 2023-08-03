@@ -4,6 +4,8 @@ import { order } from "../../apis/order";
 import { useNavigate } from "react-router-dom";
 import { useCallback, useRef, useState } from "react";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = ({ data }) => {
   const totalPrice = data?.data?.response.totalPrice;
   const navigate = useNavigate();
@@ -161,7 +163,7 @@ const OrderTemplate = ({ data }) => {
               onSuccess: (response) => {
                 const id = response?.data?.response.id;
                 alert("주문이 완료되었습니다.");
-                navigate(`/orders/complete/${id}`);
+                navigate(staticServerUri + `/orders/complete/${id}`);
               },
             });
           }}

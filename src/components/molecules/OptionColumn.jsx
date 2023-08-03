@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import cart_white from "../../assets/cart_white.png";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const navigate = useNavigate();
@@ -184,7 +186,7 @@ const OptionColumn = ({ product }) => {
                 if (response) {
                   const id = response?.data?.response.id;
                   alert("주문이 완료되었습니다.");
-                  navigate(`/orders/complete/${id}`);
+                  navigate(staticServerUri + `/orders/complete/${id}`);
                 } else {
                   // 요청 성공했지만, 로그인을 안 했을 경우 에러 처리
                   toast.error("로그인이 필요합니다.", {

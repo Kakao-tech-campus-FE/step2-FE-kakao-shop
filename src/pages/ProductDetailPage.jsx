@@ -5,6 +5,8 @@ import { getProductById } from "../apis/product";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 import { Suspense, useEffect } from "react";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductDetailPage = () => {
   const { id } = useParams();
   const route = useNavigate();
@@ -17,7 +19,7 @@ const ProductDetailPage = () => {
 
   useEffect(() => {
     if (!id || error) {
-      route("/error");
+      route(staticServerUri + "/error");
     }
   }, [id, error, route]);
 
