@@ -8,8 +8,6 @@ import NullCart from "../components/organisms/Cart/NullCart";
 import { comma, filterCartData } from "../utils/convert";
 import useCart from "../hooks/useCart";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function CartPage() {
   const navigate = useNavigate();
   const {

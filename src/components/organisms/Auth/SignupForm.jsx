@@ -7,7 +7,6 @@ import useSignupValidation from "../../../hooks/useSignupValidation";
 import useInput from "../../../hooks/useInput";
 import authInstance from "../../../apis/auth";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
 const initialState = {
   email: "",
   username: "",
@@ -43,7 +42,7 @@ export default function SignupForm() {
           username: form.username,
           password: form.password,
         });
-        navigate(staticServerUri + "/");
+        navigate("/");
       } catch (error) {
         const errorResponse = error.response.data.error.message;
         setError(getErrorMessage(errorResponse));

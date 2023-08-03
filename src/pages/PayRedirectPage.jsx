@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import paymentInstance from "../apis/payment";
 import useCart from "../hooks/useCart";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function PayRedirectPage() {
   const navigate = useNavigate();
   const { orderCart } = useCart();

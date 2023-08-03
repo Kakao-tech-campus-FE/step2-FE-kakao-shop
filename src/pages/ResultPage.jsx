@@ -9,7 +9,6 @@ import Button from "../components/atoms/Button";
 import ResultProductsInfo from "../components/organisms/Result/ResultProductsInfo";
 import ResultDelInfo from "../components/organisms/Result/ResultDelInfo";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
 export default function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
