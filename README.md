@@ -13,7 +13,7 @@
 
 개발 버전 : https://user-app.krampoline.com/kd6735217eccca
 
-![default](shop/public/images/구현화면.png)
+![default](./public/images/구현화면.png)
 
 ## 시작 가이드
 #### Requirements
@@ -81,5 +81,5 @@
 
 ### Communication
 <img src="https://img.shields.io/badge/slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
-<img src="https://img.shields.io/badge/notion-#000000?style=for-the-badge&logo=notion&logoColor=white">
+<img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">
 
