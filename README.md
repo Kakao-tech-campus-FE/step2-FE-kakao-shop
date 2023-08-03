@@ -4,7 +4,7 @@
 
 # 2. Project Info
 
-이 프로젝트는 프론트엔드에 React, 개발 환경에 Vite, CSS 패키지에 tailwind를 이용하여 간단하게 카카오 쇼핑하기와 비슷한 페이지를 만들어본 프로젝트입니다.
+이 프로젝트는 프론트엔드에 React, 개발 환경에 RCA, CSS 패키지에 tailwind를 이용하여 간단하게 카카오 쇼핑하기와 비슷한 페이지를 만들어본 프로젝트입니다.
 
 메인페이지, 제품 상세 페이지,
 로그인, 회원가입 페이지,  
@@ -19,7 +19,7 @@
 3. 프로젝트의 루트 디렉토리에 .env 파일을 생성합니다. 환경변수는 다음과 같습니다.
 
 ```ini
-VITE_API_URL = "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com"
+REACT_APP_API_URL = "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com"
 ```
 
 # 4. Project Usage
