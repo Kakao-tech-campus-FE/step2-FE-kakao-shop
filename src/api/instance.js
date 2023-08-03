@@ -3,8 +3,10 @@ import store from "store/store";
 import { useDispatch } from "react-redux";
 import { clearUserReducer } from "reducers/loginSlice";
 
+const path = process.env.REACT_APP_PATH || "";
+
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: path + "/api",
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
@@ -14,15 +16,14 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const loginState = store.getState().login;
-    const urlGroup = config.url.split("/")[1];
 
     // 토큰 필요한 요청일 때
-    if (["carts", "orders"].includes(urlGroup)) {
+    if (config.url.includes("cart") || config.url.includes("order")) {
       if (loginState.islogin) {
         config.headers.Authorization = loginState.token;
       } else {
         alert("로그인이 필요합니다.");
-        window.location.href = "/login";
+        window.location.href = path + "/login";
         return Promise.resolve();
       }
     }
