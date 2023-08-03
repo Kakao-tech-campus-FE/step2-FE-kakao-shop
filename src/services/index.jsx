@@ -40,8 +40,7 @@ instance.interceptors.response.use(
             }
 
             alert(err.message);
-        } else {
-            throw new Error(error);
+            Promise.reject(error);
         }
     }
 );

@@ -13,7 +13,7 @@ const ProductInformationColumn = () => {
         <Container align="flex-start" gap={'1rem'} className="detail-product-info">
             <div className="col">
                 <Photo
-                    src={`${import.meta.env.VITE_APP_API_URL}${image}`}
+                    src={`${import.meta.env.VITE_API_URL}${image}`}
                     alt={productName}
                     className="productImage"
                 />
