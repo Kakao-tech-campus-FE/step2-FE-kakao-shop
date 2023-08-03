@@ -1,6 +1,8 @@
 import useForm from '../../hooks/useForm';
 import { login } from '../../services/user';
 import validationLoginForm from '../../utils/validationLoginForm';
+import { login } from '../../services/user';
+import validationLoginForm from '../../utils/validationLoginForm';
 import SubmitButton from '../atoms/SubmitButton';
 import Form from '../atoms/Form';
 import Text from '../atoms/Text';
