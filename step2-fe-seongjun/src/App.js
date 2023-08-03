@@ -16,13 +16,13 @@ function App() {
       <BrowserRouter>
         {/* 단독 레이아웃 */}
         <Routes>
-          <Route path='/login' element={<LoginPage />}></Route>
           <Route path='/signup' element={<RegisterPage/>}></Route>
           <Route path='/error' element={<ErrorPage/>}></Route>
           {/* 공통 레이아웃 */}
           <Route element={<MainLayout/>}>
+            <Route path='/login' element={<LoginPage />}></Route>
             <Route path='/' element = {<HomePage/>}></Route>
-            <Route path='/product/:id' element = {<ProductDetailPage/>}></Route>
+            <Route path='/products/:id' element = {<ProductDetailPage/>}></Route>
           </Route>
           {/* 사용자가 로그인됐을 때만 접근 가능한 레이아웃*/}
           <Route element={<RequiredAuthLayout/>}>

@@ -1,68 +1,72 @@
+import { comma } from "postcss/lib/list";
+import OptionItem from "../atoms/OptionItem";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { comma } from "../../utils/convert";
 
-const OrderCompleteTemplate = ({ data }) => {
-  console.log(data);
-  const [id, setId] = useState();
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [products, setProducts] = useState();
+const ProductList = styled.div`
+  padding: 1rem;
+  .label {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+  }
+`;
 
+const productItems = (products) => {
+  return products.map((product) => {
+    return (
+      <div className="flex flex-col gap-2 mb-4" key={product.id}>
+        <div className="font-bold text-sm">상품명</div>
+        <p className="text-lg text-gray-600">{product.productName}</p>
+        <OptionItem items={product.items} />;
+      </div>
+    );
+  });
+};
+
+
+const OrderCompleteTemplate = ({data}) => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setId(data?.data?.response.id);
-    setTotalPrice(data?.data?.response.totalPrice);
-    setProducts(data?.data?.response.products[0]);
-  }, [data]);
+  const example = data?.data;
 
-  return (
-    <div className="text-black py-4">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold">구매완료!</h1>
-        <span>구매가 정상적으로 완료되었습니다.</span>
-      </div>
-      <div className="block mx-auto max-w-[1024px] w-[100%]">
-        <div className="order-product border text-center mt-10 p-2">
-          <h2 className="text-lg font-bold">주문상품 정보</h2>
-        </div>
-        <table className="order-list flex border">
-          <tbody>
-            <tr>
-              <td className="p-4">상품명</td>
-              <td>{products?.productName}</td>
-            </tr>
-            <tr>
-              <td className="p-4">주문번호</td>
-              <td>{id}</td>
-            </tr>
-            <tr>
-              <td className="p-4">옵션</td>
-              <td>
-                {products?.items
-                  .filter((item) => item.quantity > 0)
-                  .map((item) => (
-                    <div key={item.id}>- {item.optionName}</div>
-                  ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <div className="border p-4 mt-4 flex items-center justify-between">
-          <h3 className=" text-lg font-bold p-2 ">일반 결제 금액</h3>
-          <span className="text-lg font-bold text-blue-600">
-            {comma(totalPrice)}원
-          </span>
-        </div>
-        <button
-          className="bg-yellow-300 text-black w-full p-4 font-medium"
-          onClick={() => navigate("/")}
-        >
-          쇼핑 계속하기
-        </button>
-      </div>
+  if (!example) {
+    return <></>
+  }
+
+  return <section className="py-10 my-10 mx-auto max-w-[500px] w-full bg-gray-100">
+    {/* 구매완료! */}
+    {/* 구매가 정상적으로 완료됐습니다. */}
+    <div className="text-center py-10">
+      <h1 className="text-xl font-bold">구매완료!</h1>
+      <h2 className="text-lg">구매가 정상적으로 완료됐습니다.</h2>
     </div>
-  );
+    <div className="border mb-4">
+      <div className="text-sm border-b p-4 border-gray-200 text-center font-bold">
+        주문상품 정보
+      </div>
+      <ProductList>
+        {productItems(example.response.products)}
+        <div className="font-bold text-lg">총 금액</div>
+        <p className="text-xl">{comma(example.response.totalPrice)}원</p>
+      </ProductList>
+    </div>
+    <div className="border">
+      <div className="flex justify-between p-4">
+        <span className="font-bold text-xl">일반 결제 금액</span>
+        <span className=" text-blue-500 font-bold text-xl">{comma(example.response.totalPrice)}원</span>
+      </div>
+      <button
+        className="w-full py-4 text-black font-bold text-xl bg-yellow-400"
+        onClick={() => {
+          navigate('/');
+        }}
+      >쇼핑 계속하기</button>
+    </div>
+  </section>
 };
 
 export default OrderCompleteTemplate;

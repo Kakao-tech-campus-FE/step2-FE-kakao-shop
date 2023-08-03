@@ -2,15 +2,18 @@ import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
 const ProductInformationColumn = ({product}) => {
+
   const {productName, price, image} = product;
   return (
-    <div className="product-information-column">
+    <div className="flex pl-32">
       <div className="col">
-        <Photo src={image} alt={productName}/>
+        <Photo src={process.env.REACT_APP_API_URL + image} alt={productName}/>
       </div>
-      <div className="col">
-        <h1 className="name">{productName}</h1>
-        <p className="price">{comma(price)}원</p>
+      <div className="px-6 py-2 flex-col items-center border-r">
+        <h1 className="text-2xl mb-2 text-black">{productName}</h1>
+        <div className=" bg-stone-800 rounded-full w-24 h-12 flex items-center justify-center">
+          <p className="text-lg text-white">{comma(price)}원</p>
+        </div>
       </div>
     </div>
   );

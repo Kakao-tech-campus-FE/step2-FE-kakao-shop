@@ -1,15 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
-import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
 import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
-import {useMutation} from "@tanstack/react-query";
-import { updateCart } from "../services/cart";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import { getCart, updateCart } from "../services/cart";
 
-const CartList = ({data}) => {
+const CartList = () => {
+  const {data} = useQuery(["cart"], getCart, {
+    suspense: true,
+  });
+  
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -129,7 +132,7 @@ const CartList = ({data}) => {
           mutate(updatePayload, { 
             onSuccess: (data) => {
               //navigate to order page
-              route.push("/order");
+              route("/order");
             },
             onError: (error) => {
 
