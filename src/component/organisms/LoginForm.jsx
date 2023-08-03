@@ -16,34 +16,43 @@ const LoginForm =() =>{
     const navigate = useNavigate();
     const email=useSelector((state)=> state.user.email);
     const [error, setError] = useState("");
-    const{value, handleOnChange,validateEmail,
-        validatePassword,}= useInput({
+    const{value, handleOnChange}= useInput({
         email:"",
         password:"",
     });
 
-    const loginRequest = ()=> {
-      
-        login({
+    const handleOnClick = () => {     
+        dispatch(
+          loginRequest({
             email: value.email,
             password: value.password,
-        })
-        .then((res)=>{
-            console.log(res);
-            const token = res.headers.authorization;
-            localStorage.setItem("token", token);
-            dispatch(
-                setEmail({
-                  email: value.email,
-                })
-              );
-              navigate("/");
-        })
-        .catch((error)=> {
-            console.log("error", error);
-            setError("아이디와 비밀번호를 다시 확인해주세요.")
-        });
+          })
+        );
+      
     };
+
+    // const loginRequest = ()=> {
+      
+    //     login({
+    //         email: value.email,
+    //         password: value.password,
+    //     })
+    //     .then((res)=>{
+    //         console.log(res);
+    //         const token = res.headers.authorization;
+    //         localStorage.setItem("token", token);
+    //         dispatch(
+    //             setEmail({
+    //               email: value.email,
+    //             })
+    //           );
+    //           navigate("/");
+    //     })
+    //     .catch((error)=> {
+    //         console.log("error", error);
+    //         setError("아이디와 비밀번호를 다시 확인해주세요.")
+    //     });
+    // };
 
     return (
     <Container className="flex justify-center items-center">
@@ -61,22 +70,9 @@ const LoginForm =() =>{
         <Box>
         <span className="error">{error}</span>
         <Button className=" py-2 px-4 font-semibold rounded-lg shadow-md bg-yellow-300 hover:bg-yellow-400 "
-            onClick={()=>{
-                //로그인 요청
-                const emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
-                const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,20}$/;
-                    if (!emailRegex.test(value.email)) {
-                      setError("이메일 형식을 다시 확인해주세요.");
-                     return;
-                      }
-          if (!passwordRegex.test(value.password)) {
-            setError("비밀번호는 영문, 숫자, 특수문자를 모두 포함해야하며 8자에서 20자 사이여야 합니다.");
-            return;
-          }
-      
-          setError(""); // 에러가 없을 경우에는 빈 메시지
-                    loginRequest();
-            }}
+            onClick={
+            handleOnClick
+            }
             >
                 로그인
         </Button>

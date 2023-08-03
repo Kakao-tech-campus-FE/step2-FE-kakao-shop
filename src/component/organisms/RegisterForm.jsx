@@ -48,9 +48,9 @@ dispatch(registerRequest({
       password: value.password,
       username: value.username
     }))
-    }
+    };
         
-      }
+      };
     return (
     <Container>
         <InputGroup name="email" id="email" type="email" placeholder="이메일" label="이메일(아이디)"
