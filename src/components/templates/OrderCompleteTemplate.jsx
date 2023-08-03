@@ -2,6 +2,7 @@ import React from "react";
 import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import "../../styles/template/OrderCompleteTemplate.css";
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OrderCompleteTemplate = ({ data }) => {
   const navigate = useNavigate();
@@ -53,7 +54,11 @@ const OrderCompleteTemplate = ({ data }) => {
       <div className="complete-innerwrap">
         <div className="complete-messagebox">
           <div className="complete-messages">
-            <img src="/춘식이.png" alt="주문완료!춘식이" width={65} />
+            <img
+              src={staticServerUrl + "/춘식이.png"}
+              alt="주문완료!춘식이"
+              width={65}
+            />
             <span className="message1">구매완료!</span>
             <span className="message2">구매가 정상적으로 완료되었습니다.</span>
           </div>
@@ -69,7 +74,7 @@ const OrderCompleteTemplate = ({ data }) => {
               <strong>지금 친구 추가하면 500포인트 적립!</strong>
             </span>
             <img
-              src="/add-kakao.png"
+              src={staticServerUrl + "/add-kakao.png"}
               alt="카카오 친구추가"
               style={{ width: "45px", borderRadius: "5px" }}
             />
