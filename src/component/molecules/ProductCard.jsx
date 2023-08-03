@@ -5,12 +5,14 @@ import "../../styles/molecules/ProductCard.css"
 
 const ProductCard =({ product }) => {
     const staticServerUri = process.env.REACT_APP_PATH || "";
+    const { id, productName, price, image } = product;
+
 
     return ( 
-        <Card to={`/product/${product.id}`}>
-            <Photo className = "card" src={staticServerUri + process.env.REACT_APP_API_URL + product.image} alt={product.productName}/>
-            <div className="product-name">{product.productName}</div>
-            <div className="product-price">{comma(product.price)}원</div>
+        <Card to={`/product/${id}`}>
+            <Photo src={`${staticServerUri}${image}`} alt={productName} />
+            <div className="product-name">{productName}</div>
+            <div className="product-price">{comma(price)}원</div>
         </Card>
     )
 }
