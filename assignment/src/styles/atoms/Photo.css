@@ -1,0 +1,13 @@
+picture.card {
+  width: 200px;
+}
+
+picture > img {
+  width: inherit;
+  border-radius: 10%;
+}
+
+img.card {
+  width: 100%;
+  max-width: 360px;
+}
