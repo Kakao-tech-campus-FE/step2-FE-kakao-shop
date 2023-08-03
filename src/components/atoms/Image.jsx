@@ -13,10 +13,9 @@ const path = process.env.REACT_APP_PATH || "";
 
 const Image = ({image, alt}) => {
   return (
-    <div></div>
-    // <StyledPicture>
-    //   <StyledImg src={`${path}${image}`} alt={alt}/>
-    // </StyledPicture>
+    <StyledPicture>
+      <StyledImg src={`${path}${image}`} alt={alt}/>
+    </StyledPicture>
   )
 }
 
