@@ -2,6 +2,8 @@ import type { ApproveRequest, OrderResponse, PaymentRequest, PaymentResponse } f
 import type { AxiosError, AxiosResponse } from 'axios';
 import { produce, Draft } from 'immer';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 // ActionTypes
 export const ORDER_PRODUCT_REQUEST = 'order/ORDER_PRODUCT_REQUEST';
 export const ORDER_PRODUCT_SUCCESS = 'order/ORDER_PRODUCT_SUCCESS';
@@ -98,7 +100,7 @@ export const OrderReducer = produce((draft: Draft<OrderState>, action) => {
       break;
 
     case APPROVE_SUCCESS:
-      window.opener.location.href = '/payResult';
+      window.opener.location.href = `${staticServerUrl}/payResult`;
       break;
 
     case POPUP_CLOSE:
