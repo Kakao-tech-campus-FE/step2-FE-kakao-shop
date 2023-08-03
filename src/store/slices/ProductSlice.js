@@ -30,11 +30,11 @@ const productsSlice = createSlice({
           [...state.products, ...action.payload.response],
           "id"
         );
-        state.error = action.error;
+        state.error = action.payload.error;
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error;
+        state.error = action.payload.error;
       });
   },
 });
