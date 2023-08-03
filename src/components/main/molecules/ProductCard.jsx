@@ -21,7 +21,7 @@ export default function ProductCard({ product, isFetching }) {
           <Container className="flex h-96 w-64 flex-col items-start border-solid border-slate-200 p-5">
             <Photo
               className="card"
-              src={staticServerUrl + `/public/images/${product.id}.jpg`}
+              src={staticServerUrl + `/images/${product.id}.jpg`}
               alt={product.productName}
             />
             <Box className=" pt-5 font-bold text-black no-underline">
