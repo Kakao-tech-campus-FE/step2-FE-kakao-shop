@@ -16,6 +16,8 @@ export const useToast = () => {
   return setToast
 }
 
+const url = process.env.REACT_APP_PATH || "";
+
 const Toast = () => {
   const dispatch = useDispatch()
   const toastState = useSelector((state) => state.toast)
@@ -32,7 +34,7 @@ const Toast = () => {
   
   const btnHandler = () => {
     if (toastState.moveTo !== "") {
-      navigate(toastState.moveTo)
+      navigate(url + toastState.moveTo)
     }
     dispatch(toastOffReducer())
   }

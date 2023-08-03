@@ -16,6 +16,7 @@ import strPrice from 'utils/price'
 import { saveOrder } from 'api/order'
 import { useNavigate } from 'react-router-dom'
 
+const url = process.env.REACT_APP_PATH || "";
 
 const Order = ( { data, userAddress, agreeList, paymentList } ) => {
 
@@ -29,7 +30,7 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
   const submitHandler = () => {
     saveOrder()
     .then((res) => {
-      navigate(`/orders/${res.id}`)
+      navigate(`${url}/order/${res.id}`)
     })
     .catch((err) => {
       console.log(err)

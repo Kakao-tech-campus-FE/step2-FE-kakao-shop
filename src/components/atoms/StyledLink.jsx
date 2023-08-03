@@ -7,9 +7,11 @@ const Styled = styled(Link)`
     color: black;
 `
 
-const StyledLink = (props) => {
+const url = process.env.REACT_APP_PATH || "";
+
+const StyledLink = (to, children) => {
   return (
-    <Styled to={props.to}>{props.children}</Styled>
+    <Styled to={url + to}>{children}</Styled>
   )
 }
 

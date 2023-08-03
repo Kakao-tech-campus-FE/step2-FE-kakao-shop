@@ -19,6 +19,8 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "components/organisms/ErrorFallback";
 
+const url = process.env.REACT_APP_PATH || "";
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,13 +30,16 @@ function App() {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<Loader />}>
               <Routes>
-                <Route path="*" element={<ProductsListPage />} />
-                <Route path="/signup" element={<RegisterPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/products/:id" element={<DetailPage />} />
-                <Route path="/carts" element={<CartPage />} />
-                <Route path="/orders" element={<OrderPage />} />
-                <Route path="/orders/:orderId" element={<MyOrderPage />} />
+                <Route path={url + "/"} element={<ProductsListPage />} />
+                <Route path={url + "/signup"} element={<RegisterPage />} />
+                <Route path={url + "/login"} element={<LoginPage />} />
+                <Route path={url + "/product/:id"} element={<DetailPage />} />
+                <Route path={url + "/cart"} element={<CartPage />} />
+                <Route path={url + "/order"} element={<OrderPage />} />
+                <Route
+                  path={url + "/order/:orderId"}
+                  element={<MyOrderPage />}
+                />
               </Routes>
             </Suspense>
           </ErrorBoundary>
