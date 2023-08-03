@@ -19,73 +19,76 @@ import PayRedirectPage from "./pages/PayRedirectPage";
 import CanceledOrderPage from "./pages/CanceledOrderPage";
 import PublicRoute from "./utils/PublicRoute";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <NotFound />,
-    children: [
-      { index: true, element: <MainPage /> },
-      { path: "/product/:id", element: <ProductDetailPage /> },
-      {
-        path: "/cart",
-        element: (
-          <PrivateRoute>
-            <CartPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/order",
-        element: (
-          <PrivateRoute>
-            <OrderPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/result",
-        element: (
-          <PrivateRoute>
-            <ResultPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/pay_redirect",
-        element: (
-          <PrivateRoute>
-            <PayRedirectPage />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/canceled_order",
-        element: (
-          <PrivateRoute>
-            <CanceledOrderPage />
-          </PrivateRoute>
-        ),
-      },
-    ],
-  },
-  {
-    path: "/login",
-    element: (
-      <PublicRoute>
-        <LoginPage />
-      </PublicRoute>
-    ),
-  },
-  {
-    path: "/signup",
-    element: (
-      <PublicRoute>
-        <SignupPage />
-      </PublicRoute>
-    ),
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <App />,
+      errorElement: <NotFound />,
+      children: [
+        { index: true, element: <MainPage /> },
+        { path: "/product/:id", element: <ProductDetailPage /> },
+        {
+          path: "/cart",
+          element: (
+            <PrivateRoute>
+              <CartPage />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/order",
+          element: (
+            <PrivateRoute>
+              <OrderPage />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/result",
+          element: (
+            <PrivateRoute>
+              <ResultPage />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/pay_redirect",
+          element: (
+            <PrivateRoute>
+              <PayRedirectPage />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/canceled_order",
+          element: (
+            <PrivateRoute>
+              <CanceledOrderPage />
+            </PrivateRoute>
+          ),
+        },
+      ],
+    },
+    {
+      path: "/login",
+      element: (
+        <PublicRoute>
+          <LoginPage />
+        </PublicRoute>
+      ),
+    },
+    {
+      path: "/signup",
+      element: (
+        <PublicRoute>
+          <SignupPage />
+        </PublicRoute>
+      ),
+    },
+  ],
+  { basename: process.env.REACT_APP_PATH || "" }
+);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

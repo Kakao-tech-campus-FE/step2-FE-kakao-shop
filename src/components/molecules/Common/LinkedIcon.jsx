@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../../atoms/Icon";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 /**
  * @description LinkedIcon 컴포넌트
  *
@@ -21,7 +23,7 @@ export default function LinkedIcon({
   onClick = () => {},
 }) {
   return (
-    <Link to={to} className="p-2" onClick={onClick}>
+    <Link to={staticServerUri + to} className="p-2" onClick={onClick}>
       <Icon alt={alt} width={width}>
         {children}
       </Icon>

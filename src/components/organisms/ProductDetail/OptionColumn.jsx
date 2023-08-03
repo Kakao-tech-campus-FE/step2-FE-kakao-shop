@@ -8,6 +8,8 @@ import optionReducer from "../../../reducer/option-reducer";
 import useCart from "../../../hooks/useCart";
 import useToasts from "../../../hooks/useToast";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function OptionColumn({ productData, modalRef }) {
   const { options } = productData;
   const navigate = useNavigate();
@@ -69,7 +71,7 @@ export default function OptionColumn({ productData, modalRef }) {
       })),
       {
         onSuccess: async () => {
-          navigate("/order");
+          navigate(staticServerUri + "/order");
         },
         onError: (error) => {
           showToast(`잠시 후 다시 시도해주세요.`, false);

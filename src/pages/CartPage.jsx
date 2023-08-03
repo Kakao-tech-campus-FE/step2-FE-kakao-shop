@@ -8,6 +8,8 @@ import NullCart from "../components/organisms/Cart/NullCart";
 import { comma, filterCartData } from "../utils/convert";
 import useCart from "../hooks/useCart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function CartPage() {
   const navigate = useNavigate();
   const {
@@ -39,7 +41,7 @@ export default function CartPage() {
               textsize="lg"
               font="bold"
               color="yellow"
-              onClick={() => navigate("/order")}
+              onClick={() => navigate(staticServerUri + "/order")}
             >
               주문하기
             </Button>

@@ -1,11 +1,13 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function Toast({ text, button, closeToast }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/cart");
+    navigate(staticServerUri + "/cart");
     closeToast();
   };
   return (

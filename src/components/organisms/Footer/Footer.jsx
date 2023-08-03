@@ -5,12 +5,14 @@ import Container from "../../atoms/Container";
 import Menus from "../../molecules/Footer/Menus";
 import Texts from "../../molecules/Footer/Texts";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-50 min-w-max border-t">
       <Container className="relative flex gap-8 w-inner py-8 mx-auto">
         <Box>
-          <Link to="/" className="text-lg">
+          <Link to={staticServerUri + "/"} className="text-lg">
             카카오<span className="font-semibold">톡 쇼핑하기</span>
           </Link>
         </Box>

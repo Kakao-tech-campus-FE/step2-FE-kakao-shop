@@ -9,6 +9,7 @@ import Button from "../components/atoms/Button";
 import ResultProductsInfo from "../components/organisms/Result/ResultProductsInfo";
 import ResultDelInfo from "../components/organisms/Result/ResultDelInfo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 export default function ResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (!orderId) {
-      navigate("/");
+      navigate(staticServerUri + "/");
       return;
     }
   }, [orderId, navigate]);
@@ -50,7 +51,7 @@ export default function ResultPage() {
             padding="py-4"
             font="bold"
             color="yellow"
-            onClick={() => navigate("/")}
+            onClick={() => navigate(staticServerUri + "/")}
           >
             쇼핑 계속하기
           </Button>
