@@ -6,6 +6,7 @@ import Button from '../atoms/Button';
 import FormContainer from '../atoms/FormContainer';
 import registerApi from '../../apis/registerApi';
 import { checkSignUpValidation } from '../../utils/checkValidation';
+import { staticUrl } from '../../utils/convert';
 
 const RegisterForm = () => {
   const [userNameValidator, setUserNameValidator] = useState({
@@ -66,7 +67,7 @@ const RegisterForm = () => {
       })
       .then((data) => {
         if (data.success) {
-          navigate('/');
+          navigate(staticUrl('/'));
         } else {
           setServerValidateMsg(data.error.message);
         }

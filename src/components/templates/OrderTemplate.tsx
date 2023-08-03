@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SimpleButton from '../atoms/SimpleButton';
 import { useGetCartQuery, useOrderSaveMutation } from '../../apis/productApi';
 import OrderItem from '../organisms/OrderItem';
-import { comma } from '../../utils/convert';
+import { comma, staticUrl } from '../../utils/convert';
 
 const OrderTemplate = () => {
   const [agreePayment, setAgreePayment] = useState(false);
@@ -33,7 +33,7 @@ const OrderTemplate = () => {
       onSuccess: (res) => {
         const { id } = res;
         alert('주문 완료');
-        navigate(`/orders/complete/${id}`);
+        navigate(staticUrl(`/orders/complete/${id}`));
       },
     });
   };

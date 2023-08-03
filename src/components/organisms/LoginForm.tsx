@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import useForm from '../../hooks/useForm';
 import InputGroup from '../molecules/InputGroup';
@@ -8,6 +7,7 @@ import FormContainer from '../atoms/FormContainer';
 import loginApi from '../../apis/loginApi';
 import { login } from '../../store/slices/userSlices';
 import { isEmpty } from '../../utils/checkValidation';
+import { staticUrl } from '../../utils/convert';
 
 const LoginForm = () => {
   const [emailValidator, setEmailValidator] = useState({
@@ -24,7 +24,7 @@ const LoginForm = () => {
     email: '',
     password: '',
   });
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const handleSignInBtnClick = () => {
@@ -50,7 +50,7 @@ const LoginForm = () => {
           const today = new Date();
           const tomorrow = new Date(today.setDate(today.getDate() + 1));
           dispatch(login({ email, expirationDate: tomorrow }));
-          window.location.href = '/';
+          window.location.href = staticUrl('/');
         } else {
           setServerValidateMsg(data.error.message);
         }

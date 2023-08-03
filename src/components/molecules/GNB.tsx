@@ -7,6 +7,7 @@ import LoginLink from '../atoms/LoginLink';
 import { selectEmail, selectExpirationDate, logout } from '../../store/slices/userSlices';
 import Button from '../atoms/Button';
 import Container from '../atoms/Container';
+import { staticUrl } from '../../utils/convert';
 
 const GNB = () => {
   const currentEmail = useSelector(selectEmail);
@@ -37,7 +38,7 @@ const GNB = () => {
       <Container className='flex items-center justify-between py-4'>
         <KaKaoShopLogo />
         <div className='flex items-center space-x-6'>
-          <Link to='cart' onClick={handleChartLinkClick}>
+          <Link to={staticUrl('cart')} onClick={handleChartLinkClick}>
             <HiOutlineShoppingCart size={25} />
           </Link>
           {currentEmail ? <Button onClick={handleLogoutButtonClick}>로그아웃</Button> : <LoginLink />}

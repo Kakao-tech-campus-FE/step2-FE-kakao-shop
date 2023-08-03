@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '..';
+import { staticUrl } from '../../utils/convert';
 
 const initialState: { email: string | null; expirationDate: Date | null } = {
   email: null,
@@ -19,7 +20,7 @@ const userSlice = createSlice({
       state.expirationDate = null;
       localStorage.removeItem('token');
 
-      window.location.href = '/login';
+      window.location.href = staticUrl('/login');
     },
   },
 });

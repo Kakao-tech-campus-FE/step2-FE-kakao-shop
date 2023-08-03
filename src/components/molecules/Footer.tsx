@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../atoms/Container';
+import { staticUrl } from '../../utils/convert';
 
 const Footer = () => {
   return (
     <footer className='h-44 border-t border-gray-200 bg-slate-50'>
       <Container className='flex py-4'>
-        <Link to='/'>
+        <Link to={staticUrl('/')}>
           <img
             width='144'
             height='20'

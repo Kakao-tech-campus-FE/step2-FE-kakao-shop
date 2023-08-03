@@ -17,4 +17,8 @@ const fullUrl = (url: string) => {
   return process.env.REACT_APP_API_URL + url;
 };
 
-export { comma, fullUrl };
+const staticUrl = (url: string) => {
+  return (process.env.REACT_APP_PATH || '') + url;
+};
+
+export { comma, fullUrl, staticUrl };

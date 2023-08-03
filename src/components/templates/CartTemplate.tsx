@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../atoms/Button';
 import CartItem from '../organisms/CartItem';
-import { comma } from '../../utils/convert';
+import { comma, staticUrl } from '../../utils/convert';
 import { useGetCartQuery, useUpdateCartMutation } from '../../apis/productApi';
 import { UpdateCart } from '../../dto/productDto';
 
@@ -15,7 +15,7 @@ const CartTemplate = () => {
 
   const handleOrderClick = () => {
     updateCart(updatedCartOptions);
-    navigate('/order');
+    navigate(staticUrl('/order'));
   };
 
   return (

@@ -1,10 +1,11 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import OrderPage from '../../pages/OrderPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import OrderPage from '../../pages/OrderPage';
 import { server } from '../../mocks/server';
 import { handlers } from '../../mocks/handlers';
+import { staticUrl } from '../../utils/convert';
 
 describe('Order', () => {
   it('결제하기 버튼 있는가?', async () => {
@@ -20,9 +21,9 @@ describe('Order', () => {
 
     const { getByTestId } = render(
       <QueryClientProvider client={queryClient}>
-        <MemoryRouter initialEntries={['/order']}>
+        <MemoryRouter initialEntries={[staticUrl('/order')]}>
           <Routes>
-            <Route path='/order' element={<OrderPage />} />
+            <Route path={staticUrl('/order')} element={<OrderPage />} />
           </Routes>
         </MemoryRouter>
       </QueryClientProvider>,
