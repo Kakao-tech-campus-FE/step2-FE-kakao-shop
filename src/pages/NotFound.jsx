@@ -1,8 +1,8 @@
 import React from "react";
-import logoImage from "../assets/logoKakao.png";
-import LinkedIcon from "../components/molecules/LinkedIcon";
-import Button from "../components/atoms/Button";
 import { useNavigate } from "react-router-dom";
+import LinkedIcon from "../components/molecules/Common/LinkedIcon";
+import Button from "../components/atoms/Button";
+import logoImage from "../assets/logoKakao.png";
 
 export default function NotFound() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function NotFound() {
       </header>
       <section className="grow flex flex-col justify-center items-center w-full">
         <strong className="text-lg text-gray-600 font-extrabold">
-          현재 운영되지 않는 스토어 입니다
+          페이지를 찾을 수 없습니다
         </strong>
         <p className="mt-2 mb-4 text-center text-sm text-gray-400">
           관련 문의는 고객센터로

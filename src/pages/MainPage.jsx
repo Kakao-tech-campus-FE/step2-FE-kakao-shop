@@ -1,10 +1,12 @@
 import React, { Suspense } from "react";
-import ProductGrid from "../components/organisms/ProductGrid";
-import ProductsGridSkeleton from "../components/organisms/ProductsGridSkeleton";
+import ProductGrid from "../components/organisms/Main/ProductGrid";
+import ProductsGridSkeleton from "../components/organisms/Main/ProductsGridSkeleton";
+import Carousel from "../components/organisms/Main/Carousel/Carousel";
 
 export default function MainPage() {
   return (
-    <main className="relative mx-auto px-10 max-w-7xl">
+    <main className="relative">
+      <Carousel />
       <Suspense fallback={<ProductsGridSkeleton />}>
         <ProductGrid />
       </Suspense>

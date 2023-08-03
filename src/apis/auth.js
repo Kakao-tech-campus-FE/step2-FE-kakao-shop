@@ -24,6 +24,9 @@ class AuthInstance extends ApiInstance {
   };
 }
 
-const authInstance = new AuthInstance();
+const authInstance = new AuthInstance(
+  process.env.REACT_APP_API_URL,
+  "application/json"
+);
 
 export default authInstance;

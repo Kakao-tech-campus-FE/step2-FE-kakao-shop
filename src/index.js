@@ -12,8 +12,12 @@ import store from "./store";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFound from "./pages/NotFound";
 import CartPage from "./pages/CartPage";
-import PurchasePage from "./pages/PurchasePage";
-import ProtectedRoute from "./pages/ProtectedRoute";
+import OrderPage from "./pages/OrderPage";
+import PrivateRoute from "./utils/PrivateRoute";
+import ResultPage from "./pages/ResultPage";
+import PayRedirectPage from "./pages/PayRedirectPage";
+import CanceledOrderPage from "./pages/CanceledOrderPage";
+import PublicRoute from "./utils/PublicRoute";
 
 const router = createBrowserRouter([
   {
@@ -26,28 +30,60 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: (
-          <ProtectedRoute>
+          <PrivateRoute>
             <CartPage />
-          </ProtectedRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "/order",
         element: (
-          <ProtectedRoute>
-            <PurchasePage />
-          </ProtectedRoute>
+          <PrivateRoute>
+            <OrderPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/result",
+        element: (
+          <PrivateRoute>
+            <ResultPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/pay_redirect",
+        element: (
+          <PrivateRoute>
+            <PayRedirectPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/canceled_order",
+        element: (
+          <PrivateRoute>
+            <CanceledOrderPage />
+          </PrivateRoute>
         ),
       },
     ],
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: (
+      <PublicRoute>
+        <LoginPage />
+      </PublicRoute>
+    ),
   },
   {
     path: "/signup",
-    element: <SignupPage />,
+    element: (
+      <PublicRoute>
+        <SignupPage />
+      </PublicRoute>
+    ),
   },
 ]);
 

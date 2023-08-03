@@ -13,6 +13,9 @@ class ProductInstance extends ApiInstance {
   };
 }
 
-const productInstance = new ProductInstance();
+const productInstance = new ProductInstance(
+  process.env.REACT_APP_API_URL,
+  "application/json"
+);
 
 export default productInstance;
