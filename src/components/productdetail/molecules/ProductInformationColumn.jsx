@@ -15,7 +15,7 @@ export default function ProductInformationColumn({ product }) {
       <div>
         <Photo
           className="detail-photo"
-          src={staticServerUrl + `/public/images/${id}.jpg`}
+          src={staticServerUrl + `/images/${id}.jpg`}
           alt={productName}
         />
       </div>
