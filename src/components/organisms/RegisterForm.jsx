@@ -7,6 +7,7 @@ import { register, emailCheck } from '../../services/user'
 import { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 
 function RegisterForm() {
@@ -76,7 +77,7 @@ function RegisterForm() {
      password: form.password,
      username: form.username,
    }).then((res)=>{
-       navigate("/")
+       navigate(staticServerUri + "/")
    }).catch(error=>{setValid(false)
      setErrorMsg(error.data.error.message)})
 
