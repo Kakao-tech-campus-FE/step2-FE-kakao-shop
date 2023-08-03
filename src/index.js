@@ -9,7 +9,9 @@ import App from "App.js";
 
 import "index.css";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { retry: false, suspense: true } },
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

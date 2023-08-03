@@ -4,7 +4,6 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { getProductspReq } from "apis/product.js";
 
 import ProductsGrid from "components/organisms/ProductsGrid.js";
-import Loader from "components/atoms/Loader.js";
 import Skeleton from "components/atoms/Skeleton.js";
 import Carousel from "components/atoms/Carousel.js";
 
@@ -48,21 +47,14 @@ export default function ProductSections() {
 
   return (
     <>
-      {isLoading && <Loader />}
-      {data && (
-        <>
-          <Carousel images={[carouselImage1, carouselImage2, carouselImage3]} />
-          <ProductsGrid
-            products={data.pages.flatMap((page) => page.data.response)}
-          >
-            {isFetchingNextPage &&
-              Array(9)
-                .fill(null)
-                .map((_, index) => <Skeleton key={index} />)}
-            <div ref={observerRef}></div>
-          </ProductsGrid>
-        </>
-      )}
+      <Carousel images={[carouselImage1, carouselImage2, carouselImage3]} />
+      <ProductsGrid products={data.pages.flatMap((page) => page.data.response)}>
+        {isFetchingNextPage &&
+          Array(9)
+            .fill(null)
+            .map((_, index) => <Skeleton key={index} />)}
+        <div ref={observerRef}></div>
+      </ProductsGrid>
     </>
   );
 }

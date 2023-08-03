@@ -4,13 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductReq } from "apis/product.js";
 
 import Container from "components/atoms/Container.js";
-import Loader from "components/atoms/Loader.js";
 import ProductInformation from "components/molecules/ProductInformation.js";
 import ProductOption from "components/molecules/ProductOption.js";
 
 export default function ProductSection() {
   const { productId } = useParams();
-  const { isLoading, error, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ["products", productId],
     queryFn: () => getProductReq(productId),
     onError: (error) => {
@@ -24,14 +23,8 @@ export default function ProductSection() {
 
   return (
     <Container className="inline-flex my-8 border justify-center">
-      {isLoading && <Loader />}
-      {error && <div>{error}</div>}
-      {data && (
-        <>
-          <ProductInformation product={data.data.response} />
-          <ProductOption product={data.data.response} />
-        </>
-      )}
+      <ProductInformation product={data.data.response} />
+      <ProductOption product={data.data.response} />
     </Container>
   );
 }
