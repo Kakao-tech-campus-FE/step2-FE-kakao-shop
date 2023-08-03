@@ -7,6 +7,8 @@ import { validateSignup, validateLogin } from '../constants/validate';
 import { signup, login } from "../services/user";
 import { setCookie } from "../constants/cookie";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
   const navigate = useNavigate();
@@ -34,7 +36,7 @@ const useInput = (initialValue) => {
 
         if (success) {
           window.alert("회원가입 성공");
-          navigate("/login");
+          navigate(staticServerUri + "/login");
         } else {
           window.alert(`회원가입 실패! (${error.message})`);
         }
@@ -59,7 +61,7 @@ const useInput = (initialValue) => {
           console.log("로그인 성공 jwt:", token);
           setCookie("accessToken", token, 1)
           dispatch(setLoggedIn(true))
-          navigate("/");
+          navigate(staticServerUri + "/");
         } else {
           console.log("로그인2", response)
           window.alert(`로그인 실패! (${error.message})`);

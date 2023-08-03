@@ -9,16 +9,18 @@ import CartPage from "../components/pages/CartPage";
 import OrderPage from "../components/pages/OrderPage";
 import OrderResultPage from "../components/pages/OrderResultPage";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Router = () => (
   <>
     <Routes>
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/product/:productId" element={<ProductDetailPage />} />
-      <Route path="/cart" element={<CartPage />} />
-      <Route path="/order" element={<OrderPage />} />
-      <Route path="/order-result/:orderId" element={<OrderResultPage />} />
-      <Route path="/*" element={<MainPage />} />
+      <Route path={ staticServerUri + "/signup" } element={<SignupPage />} />
+      <Route path={ staticServerUri + "/login" } element={<LoginPage />} />
+      <Route path={ staticServerUri + "/product/:productId" } element={<ProductDetailPage />} />
+      <Route path={ staticServerUri + "/cart" } element={<CartPage />} />
+      <Route path={ staticServerUri + "/order" } element={<OrderPage />} />
+      <Route path={ staticServerUri + "/order-result/:orderId" } element={<OrderResultPage />} />
+      <Route path={ staticServerUri + "/*" } element={<MainPage />} />
     </Routes>
   </>
 );
