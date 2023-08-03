@@ -59,8 +59,7 @@ const OrderTemplate = ({ data }) => {
   const { mutate } = useMutation(ordersSave);
 
   const beforeOrderFailure = () => {
-    if (allAgreeRef.current?.checked === false)
-      alert("약관 동의가 필요합니다.");
+    if (!agreePayment || !agreePolicy) alert("약관 동의가 필요합니다.");
     else if (products.length === 0) alert("주문할 상품이 없습니다.");
     else {
       afterOrder();
