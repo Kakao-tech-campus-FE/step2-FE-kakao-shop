@@ -45,7 +45,7 @@ function GNB() {
   return (
     <Header>
       <Container>
-        <Link to="/">
+        <Link to={staticServerUri + "/"}>
           <Logo src={logoKakao} alt="카카오 쇼핑하기 로고" />
         </Link>
         <Nav>
@@ -57,7 +57,7 @@ function GNB() {
           >
             검색
           </button>
-          <Link to="/cart">
+          <Link to={staticServerUri + "/cart"}>
             <img src={cart} alt="장바구니 버튼" className="h-10" />
           </Link>
           {!isLoggedIn ? (

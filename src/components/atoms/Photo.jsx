@@ -10,16 +10,14 @@ const Photo = ({ src, alt }) => {
     setIsHovered(false);
   };
 
-  const photoSrc = process.env.REACT_APP_PATH + src;
-
   return (
     <ImageContainer
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <picture>
-        <source srcSet={photoSrc} className="h-48 w-full" />
-        <Image src={photoSrc} alt={alt} isHovered={isHovered} />
+        <source srcSet={src} className="h-48 w-full" />
+        <Image src={src} alt={alt} isHovered={isHovered} />
       </picture>
     </ImageContainer>
   );
