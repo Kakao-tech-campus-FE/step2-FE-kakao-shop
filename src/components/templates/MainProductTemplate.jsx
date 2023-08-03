@@ -43,7 +43,7 @@ function MainProductTemplate() {
       {isError ? <Toast>{errorMessage}</Toast> : isLoading && !reRender ? <Loader/> : <ProductGrid products={productData}/>}
       {/*에러가 났다면 에러 메시지를 띄우고 에러가 없다면 로딩상태 + 리랜더를 안해도 되면 Loader를 띄워주고, 
       로딩이 끝났거나 리랜더 해야 하는 상황이면 상품 목록을 랜더링 합니다*/}
-      <div ref={bottomObserver}>1</div>
+      {isLoading ? " ":<div ref={bottomObserver}>1</div>}
     </Containor>
 
     
