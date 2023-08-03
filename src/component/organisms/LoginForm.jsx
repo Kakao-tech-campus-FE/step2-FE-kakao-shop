@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 const LoginForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();  //redux 의 액션을 발생시키는 함수!!
+    const staticServerUri = process.env.REACT_APP_PATH || "";
 
     const {
         value,

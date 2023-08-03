@@ -3,6 +3,9 @@ import Photo from "../atoms/Photo";
 
 
 const ProductInformationColumn = ({ product }) => {
+    const staticServerUri = process.env.REACT_APP_PATH || "";
+
+
     const { productName, price } = product;
     return (
         <div className="flex">

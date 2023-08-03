@@ -11,6 +11,8 @@ import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 
 const CartList = ({ data }) => {
+    const staticServerUri = process.env.REACT_APP_PATH || "";
+
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);

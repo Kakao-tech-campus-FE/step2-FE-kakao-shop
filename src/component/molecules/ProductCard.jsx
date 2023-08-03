@@ -4,6 +4,8 @@ import Photo from "../atoms/Photo";
 import "../../styles/molecules/ProductCard.css"
 
 const ProductCard =({ product }) => {
+    const staticServerUri = process.env.REACT_APP_PATH || "";
+    
     return ( 
         <Card to={`/product/${product.id}`}>
             <Photo className = "card" src={staticServerUri + process.env.REACT_APP_API_URL.slice(0, -1) + product.image} alt={product.productName}/>

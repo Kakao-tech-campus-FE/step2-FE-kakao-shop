@@ -6,6 +6,8 @@ import { comma } from "../../utils/convert";
 
 
 const OrderTemplate = ({ data }) => {
+    const staticServerUri = process.env.REACT_APP_PATH || "";
+
     // 사용자의 장바구니 목록을 조회해서 보여주는 것
     const [ products, setProducts ] = useState([]);
     const [ totalPrice, setTotalPrice ] = useState(0);
