@@ -17,7 +17,7 @@ export default function CartPage() {
     const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
     if (token === null) {
       alert('토큰이 만료되었습니다.');
-      navigator('/login');
+      navigator(0);
 
       return;
     }
