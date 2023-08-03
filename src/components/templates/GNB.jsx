@@ -49,9 +49,9 @@ const GNB = () => {
     <div className="h-16">
       <div className="h-px border border-t-grey border-solid"/>
         <div className="flex justify-between my-4 items-center h-8">
-          <Link to={staticServerUrl + '/'}><img className="w-28 ml-4" src="/assets/logoKakao.png" alt="logoKakao"/></Link>
+          <Link to={staticServerUrl + '/'}><img className="w-28 ml-4" src={staticServerUrl + "/assets/logoKakao.png"} alt="logoKakao"/></Link>
           <div className="flex items-center">
-            <button><img className="w-8" src="/assets/cart.png" alt="cart" onClick={handleCartClick}/></button>
+            <button><img className="w-8" src={staticServerUrl + "/assets/cart.png"} alt="cart" onClick={handleCartClick}/></button>
             <span className="px-4">|</span>
               {!!isLoggedIn ?
               <button className="text-sm" onClick={handleLogoutClick}>로그아웃</button> :
