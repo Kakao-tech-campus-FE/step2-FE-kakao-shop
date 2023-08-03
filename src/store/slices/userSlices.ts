@@ -18,6 +18,8 @@ const userSlice = createSlice({
       state.email = null;
       state.expirationDate = null;
       localStorage.removeItem('token');
+
+      window.location.href = '/login';
     },
   },
 });
