@@ -56,7 +56,7 @@ const MainProductTemplate = () => {
   
 
   return (
-    <Container style={{ marginLeft: '300px', marginRight: '300px' }}>
+    <Container styled={{ marginLeft: '300px', marginRight: '300px' }}>
       {loading ? <Loader/> : (
         <ProductGrid products={products?.pages.flatMap((page) => page.data.response)}/>
       )}
