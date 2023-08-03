@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginTime, setEmail, logout } from "../../store/slices/userSlice";
 import styled from "styled-components";
 
+const staticServerUri = process.env.REACT_APP_PATH||"";
+
 function GNB() {
   const token = useSelector((state) => state.user.token);;
   const dispatch = useDispatch();
@@ -38,19 +40,19 @@ function GNB() {
   return (
     <Header>
       <Container>
-        <Link to="/" className="root_page" >
+        <Link to={staticServerUri + "/"} className="root_page" >
           <img src={"/logoKakao.png"} alt="카카오 쇼핑 로고" className=" h-8 mt-6"/>
         </Link>
         <Nav>
               {/* 장바구니 버튼 */}
-              <Link to="/cart">
+              <Link to={staticServerUri + "/cart"}>
                 <img src={"/cart.png"} alt="장바구니 버튼" className=" h-8 "/>
               </Link>
             <span className="divison">|</span>
               {/* 로그인 버튼 */}
               {token ? (
                 <StyledLink
-                  to="/login"
+                  to={staticServerUri + "/login"}
                   onClick={handleLogout}
                   className=" font-bold no-underline text-black"
                 >
@@ -59,7 +61,7 @@ function GNB() {
                 </StyledLink>
               ) : (
                 <Link
-                  to="/login"
+                  to={staticServerUri + "/login"}
                   className=" font-bold no-underline text-black"
                 >
                   {" "}

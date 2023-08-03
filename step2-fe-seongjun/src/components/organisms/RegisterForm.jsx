@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$/;
+const staticServerUri = process.env.REACT_APP_PATH||"";
 
 const ERROR_MSG = {
   required: '필수 정보 입니다.',
@@ -62,7 +63,7 @@ const RegisterForm = () => {
       username: value.username
     })
       .then(() => {
-          navigate('/login');
+          navigate(staticServerUri + '/login');
       })
       .catch((error) => {
         console.error('signup error:', error);
