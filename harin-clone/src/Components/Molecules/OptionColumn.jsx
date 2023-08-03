@@ -8,7 +8,7 @@ import { addCart } from "../../Servicies/cart";
 import "../../Styles/OptionColumns.css";
 import Dropdown from "../Atoms/Dropdown";
 import { Button, Container } from "react-bootstrap";
-import { BsChevronUp, BsChevronDown } from "react-icons/bs";
+import { BsChevronUp, BsChevronDown, BsHeart } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const OptionColumn = ({ product }) => {
@@ -101,10 +101,23 @@ const OptionColumn = ({ product }) => {
           </li>
         </ol>
       ))}
+      {/* 배송관련 */}
+      <div>
+        <div className="flex gap-4 text-sm my-2">
+          <span className="font-bold">배송방법</span>
+          <span>택배배송</span>
+        </div>
+        <div className="flex gap-4 my-2 items-center">
+          <span className="font-bold  text-sm">배송비</span>
+          <div className="bg-stone-50 text-xs p-1.5 text-stone-500 border-[1.5px] border-stone-200 w-4/5 rounded">
+            무료
+          </div>
+        </div>
+      </div>
       <hr className="mt-6 mb-3" />
-      <div className="total-price">
+      <div className="total-price flex justify-between text-lg font-medium py-3">
         <span>
-          총 수량:{" "}
+          총 수량{" "}
           {comma(
             selectedOptions.reduce((acc, cur) => {
               return acc + cur.quantity; // acc: 이전 값, cur: 햔재 선택된 element
@@ -113,19 +126,23 @@ const OptionColumn = ({ product }) => {
           개
         </span>
         <span>
-          총 상품금액:{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price; // acc: 이전 값, cur: 현재 선택된 element
-            }, 0)
-          )}
+          총 주문금액{" "}
+          <span className="text-red-500 text-center">
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price; // acc: 이전 값, cur: 현재 선택된 element
+              }, 0)
+            )}
+          </span>
           원
         </span>
       </div>
 
       {/* 장바구니 담기 버튼 */}
       <div className="button-group">
-        <div className="w-14 h-14 rounded-lg bg-stone-600 m-0.5"></div>
+        <div className="w-14 h-14 rounded-lg bg-stone-600 m-0.5 flex items-center">
+          <BsHeart className="text-stone-50 text-2xl mx-auto" />
+        </div>
         <ImgButton
           btnClass="w-14 h-14 rounded-lg bg-black m-0.5"
           onClick={() => {

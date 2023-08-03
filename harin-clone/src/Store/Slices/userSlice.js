@@ -15,9 +15,6 @@ const userSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload.email;
     },
-    delEmail: (state) => {
-      state.email = initialState;
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginRequest.pending, (state, action) => {
@@ -52,6 +49,6 @@ export const checkUnique = createAsyncThunk("user/checkUnique", async (data) => 
   return response.data;
 });
 
-export const { setEmail, delEmail } = userSlice.actions;
+export const { setEmail } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -14,7 +14,8 @@ const Navigation = () => {
     localStorage.removeItem("token"); // 로그아웃 시 토큰을 삭제함
     localStorage.removeItem("email");
 
-    dispatch(setEmail(null)); // 이메일 상태도 null로 바꾸기
+    dispatch(setEmail(null));
+    // 이메일 상태도 null로 바꾸기
     alert("정상적으로 로그아웃 되었습니다.");
   };
 
@@ -81,16 +82,10 @@ const Navigation = () => {
               </Link>
             </>
           ) : (
-            <>
-              <Link to="/loginpage" className="text-center text-sm font-bold my-2 ml-2 p-2">
-                로그인
-              </Link>
-              <Link to="/registerpage" className="text-center text-sm font-bold my-2 mr-2 p-2">
-                회원가입
-              </Link>
-            </>
+            <Link to="/loginpage" className="text-center text-sm my-2">
+              로그인
+            </Link>
           )}
-          {/* 회원가입 */}
         </nav>
       </header>
       <hr />

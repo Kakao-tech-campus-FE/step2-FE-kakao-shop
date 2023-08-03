@@ -14,7 +14,7 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
   // const [isValidPw, setIsValidPw] = useState(false);
 
-  const inputStyle = "text-justify items-center m-3 p-3 border-solid border-2 rounded";
+  const inputStyle = "text-justify items-center mx-3 mb-3 p-3 border-solid border-2 rounded";
 
   const { value, handleOnChange } = useInput({
     username: "",

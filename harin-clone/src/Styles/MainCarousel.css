@@ -17,9 +17,12 @@
 
 .btns {
   position: absolute;
+  top: 30%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: auto;
   left: 0;
   right: 0;
 }
