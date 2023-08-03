@@ -84,7 +84,7 @@ const LoginForm = () => {
           로그인
       </button>}
     <div className="absolute left-2 bottom-0">
-      <Link to='/register'><span className="text-sm">회원가입</span></Link>
+      <Link to={staticServerUrl= + '/register'}><span className="text-sm">회원가입</span></Link>
       </div>
     </div>
 
