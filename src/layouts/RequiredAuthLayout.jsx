@@ -16,7 +16,7 @@ const RequiredAuthLayout = () => {
   useEffect(() => {
     if (!isLogin) {
       alert("로그인이 필요한 서비스입니다.");
-      navigate(staticServerUri + "/login");
+      navigate(`${staticServerUri}/login`);
     }
   }, [navigate]);
 

@@ -199,12 +199,12 @@ const OrderTemplate = ({ data }) => {
               mutate(null, {
                 onSuccess: (res) => {
                   const { id } = res.data.response;
-                  navigate(staticServerUri + `/orders/complete/${id}`);
+                  navigate(`${staticServerUri}/orders/complete/${id}`);
                 },
                 onError: () => {
                   // 사용자 정보가 유실된 경우
                   alert("로그인이 필요합니다.");
-                  navigate(staticServerUri + "/login");
+                  navigate(`${staticServerUri}/login`);
                 },
               });
             }}

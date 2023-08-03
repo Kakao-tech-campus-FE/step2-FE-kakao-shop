@@ -19,7 +19,7 @@ const ErrorPage = () => {
       <div className="error-icon flex justify-center mt-[10px]">
         <LinkButton
           onClick={() => {
-            window.location.replace(staticServerUri + "/");
+            window.location.replace(`${staticServerUri}/`);
           }}
           to="/"
           className="main-button w-[120px] h-[40px] mr-[4px] rounded-[5px] bg-gray-500 text-white text-[15px]"

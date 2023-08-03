@@ -48,7 +48,7 @@ const OrderCompleteTemplate = ({ data }) => {
         <Button
           className="w-full p-4 text-[20px] font-bold bg-yellow-kakao text-black"
           onClick={() => {
-            window.location.replace(staticServerUri + "/");
+            window.location.replace(`${staticServerUri}/`);
           }}
         >
           쇼핑 계속하기

@@ -49,7 +49,7 @@ const LoginForm = () => {
     const data = await instance.post("/login", JSON.stringify(values));
     if (data.data?.success) {
       dispatch(login(data.token));
-      window.location.replace(staticServerUri + "/");
+      window.location.replace(`${staticServerUri}/`);
     } else {
       // eslint-disable-next-line no-alert
       setErrorMessage(data?.error?.message);

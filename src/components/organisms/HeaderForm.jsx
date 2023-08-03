@@ -82,7 +82,7 @@ const HeaderForm = () => {
             to="/"
             onClick={() => {
               dispatch(logout());
-              window.location.replace(staticServerUri + "/");
+              window.location.replace(`${staticServerUri}/`);
             }}
             className="pt-[25px] pb-[25px] pl-[25px] text-[14px]"
           >

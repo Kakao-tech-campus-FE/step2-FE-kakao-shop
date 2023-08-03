@@ -20,17 +20,23 @@ const LayoutRoute = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path={staticServerUri + "/"} element={<MainPage />} />
-          <Route path={staticServerUri + "/product/:id"} element={<ProductDetailPage />} />
+          <Route path={`${staticServerUri}/`} element={<MainPage />} />
+          <Route
+            path={`${staticServerUri}/product/:id`}
+            element={<ProductDetailPage />}
+          />
         </Route>
         <Route element={<RequiredAuthLayout />}>
-          <Route path={staticServerUri + "/cart"} element={<CartPage />} />
-          <Route path={staticServerUri + "/order"} element={<OrderPage />} />
-          <Route path={staticServerUri + "/orders/complete/:id"} element={<OrderCompletePage />} />
+          <Route path={`${staticServerUri}/cart`} element={<CartPage />} />
+          <Route path={`${staticServerUri}/order`} element={<OrderPage />} />
+          <Route
+            path={`${staticServerUri}/orders/complete/:id`}
+            element={<OrderCompletePage />}
+          />
         </Route>
-        <Route path={staticServerUri + "/login"} element={<LoginPage />} />
-        <Route path={staticServerUri + "/signup"} element={<RegisterPage />} />
-        <Route path={staticServerUri + "/error"} element={<ErrorPage />} />
+        <Route path={`${staticServerUri}/login`} element={<LoginPage />} />
+        <Route path={`${staticServerUri}/signup`} element={<RegisterPage />} />
+        <Route path={`${staticServerUri}/error`} element={<ErrorPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
