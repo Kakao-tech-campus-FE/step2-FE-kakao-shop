@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector,useDispatch } from "react-redux"
 import { setEmail } from "../../store/slices/userSlice"
-
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const GNB = () => {
     // 로그인 상태 확인
@@ -59,10 +59,10 @@ const GNB = () => {
     } else {
       return (
         <>
-        <a href="/login" className="text-black text-xl hover:underline text-black-200">
+        <a href={staticServerUrl +"/login"} className="text-black text-xl hover:underline text-black-200">
           로그인
         </a>
-        <a href="/signup" className="text-black text-xl hover:underline text-black-200">회원가입</a>
+        <a href={staticServerUrl +"/signup"} className="text-black text-xl hover:underline text-black-200">회원가입</a>
         </>
       );
     }

@@ -1,5 +1,6 @@
 import axios from 'axios'
 const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export const instance = axios.create({
   baseURL:staticServerUrl + "/api",
   timeout: 1000,
@@ -7,6 +8,7 @@ export const instance = axios.create({
       "Content-Type":"application/json"
   }
 })
+
 export const cartsInstance = axios.create({
   baseURL:staticServerUrl + "/api",
   timeout: 1000,
