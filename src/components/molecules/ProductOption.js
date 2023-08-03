@@ -13,6 +13,8 @@ import Toast from "components/atoms/Toast.js";
 
 import cart_white from "assets/icon/cart_white.png";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function ProductOption({ product }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -36,7 +38,7 @@ export default function ProductOption({ product }) {
   const handleOptionClick = (option) => {
     if (!window.localStorage.getItem("token"))
       if (window.confirm("로그인이 필요한 메뉴입니다.\n로그인 하시겠습니까?"))
-        navigate("/login");
+        navigate(staticServerUri + "/login");
       else return;
     if (selectedOptions.find((opt) => opt.id === option.id)) {
       alert("이미 선택된 옵션입니다.");
@@ -66,7 +68,7 @@ export default function ProductOption({ product }) {
   const handleCartClick = () => {
     if (!window.localStorage.getItem("token"))
       if (window.confirm("로그인이 필요한 메뉴입니다.\n로그인 하시겠습니까?"))
-        navigate("/login");
+        navigate(staticServerUri + "/login");
       else return;
     if (selectedOptions.length === 0) {
       alert("옵션을 먼저 선택해주세요.");
@@ -96,7 +98,7 @@ export default function ProductOption({ product }) {
   const handleBuyClick = () => {
     if (!window.localStorage.getItem("token"))
       if (window.confirm("로그인이 필요한 메뉴입니다.\n로그인 하시겠습니까?"))
-        navigate("/login");
+        navigate(staticServerUri + "/login");
       else return;
     if (selectedOptions.length === 0) {
       alert("옵션을 먼저 선택해주세요.");
@@ -108,7 +110,7 @@ export default function ProductOption({ product }) {
     }));
     mutate(formattedData, {
       onSuccess: () => {
-        navigate("/order");
+        navigate(staticServerUri + "/order");
       },
       onError: (err) => {
         console.dir(err);
