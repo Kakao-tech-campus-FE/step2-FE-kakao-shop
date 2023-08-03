@@ -2,6 +2,8 @@ import { comma } from "../../utils/convert";
 import { Link } from "react-router-dom";
 import Photo from "./Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderOptionItem = ({ productName, productId, option }) => {
     if(option.quantity === 0) return;
     
@@ -11,7 +13,12 @@ const OrderOptionItem = ({ productName, productId, option }) => {
             <span className="block w-[60px] h-[60px] float-left">
                 <Photo 
                     className="rounded-[4px]"
-                    src={`${process.env.REACT_APP_API_URL}images/${productId}.jpg`}
+                    src={
+                        staticServerUri ?
+                        staticServerUri + '/api' + `/images/${productId}.jpg`
+                        :
+                        `${process.env.REACT_APP_API_URL}images/${productId}.jpg`
+                    }
                     alt={productName}
                 />
             </span>

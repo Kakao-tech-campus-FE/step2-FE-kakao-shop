@@ -2,12 +2,21 @@ import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 import styles from "./ProductInformationColumn.module.css";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductInformaionColumn = ({ product }) => {
     const { productName, price, image } = product;
     return (
         <div className={styles.product_information_column}>
             <div className={styles.image_section}>
-                <Photo className={styles.product_image} src={`${process.env.REACT_APP_API_URL}${image.substr(1)}`} alt={`상품 이미지 - ${productName}`} />
+                <Photo 
+                    className={styles.product_image} 
+                    src={
+                        staticServerUri ?
+                        staticServerUri + "/api" + image
+                        :
+                        `${process.env.REACT_APP_API_URL}${image.substr(1)}`} 
+                    alt={`상품 이미지 - ${productName}`} />
             </div>
             <div className={styles.info_section}>
                 <h1 className={styles.product_name}>{productName}</h1>

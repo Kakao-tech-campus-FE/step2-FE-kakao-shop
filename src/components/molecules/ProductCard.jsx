@@ -4,13 +4,20 @@ import Photo from "../atoms/Photo";
 import styles from "./ProductCard.module.css";
 import Badge from "../atoms/Badge";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductCard = ({ product }) => {
     return (
         <Card className={styles.card} to={`/product/${product.id}`}>
             <span>
                 <Photo
                     className={`${styles.product_image} rounded-[8px]`}
-                    src={`${process.env.REACT_APP_API_URL}${product.image.substr(1)}`}
+                    src={
+                        staticServerUri ?
+                        staticServerUri + "/api" + product.image
+                        :
+                        `${process.env.REACT_APP_API_URL}${product.image.substr(1)}`
+                    }
                     alt={product.productName} 
                 />
             </span>
