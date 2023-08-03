@@ -9,6 +9,8 @@ import { comma } from '../../utils/convert';
 import { getLocalStorage } from '../../utils/localStorage';
 import { useNavigate } from 'react-router-dom';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 const ProductOption = ({ product }) => {
   const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -22,7 +24,7 @@ const ProductOption = ({ product }) => {
       );
     } else {
       alert('로그인이 필요합니다.');
-      navigate('/login');
+      navigate(staticServerUrl + '/login');
     }
 
     // 이미 선택된 옵션이면 증가
@@ -168,7 +170,7 @@ const ProductOption = ({ product }) => {
               );
             } else {
               alert('로그인이 필요합니다.');
-              navigate('/login');
+              navigate(staticServerUrl + '/login');
             }
           }}
         >
@@ -190,7 +192,7 @@ const ProductOption = ({ product }) => {
                 }),
                 {
                   onSuccess: () => {
-                    navigate('/order');
+                    navigate(staticServerUrl + '/order');
                   },
                   onError: () => {
                     alert('주문하기가 실패했습니다.');
@@ -199,7 +201,7 @@ const ProductOption = ({ product }) => {
               );
             } else {
               alert('로그인이 필요합니다.');
-              navigate('/login');
+              navigate(staticServerUrl + '/login');
             }
           }}
         >

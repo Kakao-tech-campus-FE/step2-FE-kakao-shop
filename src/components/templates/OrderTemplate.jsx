@@ -6,6 +6,8 @@ import { useState } from 'react';
 import * as Order from '../../styles/templates/OrderTemplate';
 import { useNavigate } from 'react-router-dom';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
   const { products, totalPrice } = data?.data?.response;
@@ -111,7 +113,7 @@ const OrderTemplate = ({ data }) => {
               },
               onSuccess: (res) => {
                 const id = res.data.response.id;
-                navigate(`/order/complete/${id}`);
+                navigate(staticServerUrl + `/order/complete/${id}`);
               },
             });
           }}

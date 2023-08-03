@@ -7,6 +7,8 @@ import { useMutation } from 'react-query';
 import { updateCart } from '../../apis/cart';
 import * as Cart from '../../styles/molecules/CartList';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 const CartList = ({ data }) => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
@@ -165,7 +167,7 @@ const CartList = ({ data }) => {
             //navigate to order page
             mutateCart(updatePayload, {
               onSuccess: () => {
-                navigate('/order');
+                navigate(staticServerUrl + '/order');
               },
               onError: (error) => {
                 alert(error);

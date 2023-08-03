@@ -7,6 +7,8 @@ import MainPageSkeleton from '../molecules/MainPageSkeleton';
 import { useInView } from 'react-intersection-observer';
 import { useNavigate } from 'react-router-dom';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 const MainProductTemplate = () => {
   const navigate = useNavigate();
 
@@ -60,7 +62,7 @@ const MainProductTemplate = () => {
   }, [inView]);
 
   if (isError) {
-    navigate('/error');
+    navigate(staticServerUrl + '/error');
   }
 
   return (
