@@ -51,11 +51,9 @@ export const RouterInfo = [
         path: `${routes.order}`,
         element: <OrderPage />,
         label: 'order'
-    },
-    {
-        path: `${routes.orderComplete}/:id`,
-        element: <OrderCompletePage />,
+    }, {
+        path: `${routes.orderComplete}`,
+        element: <OrderCompletePage/>,
         label: 'order'
     },
-
 ]
