@@ -1,20 +1,25 @@
-import { Link } from "react-router-dom"
-import "../../styles/atoms/GNB.css"
-import { useDispatch, useSelector } from "react-redux"
-import { setToken } from "../../store/slices/userSlice"
+import { Link } from "react-router-dom";
+import "../../styles/atoms/GNB.css";
+import { useDispatch, useSelector } from "react-redux";
+import { setToken } from "../../store/slices/userSlice";
 
 function GNB() {
-  const token = useSelector((state) => state.user.token)
-  const dispatch = useDispatch() //reducer 호출할 때 먼저 dispatch 선언
+  const token = useSelector((state) => {
+    return state.user.token;
+  });
+  const username = useSelector((state) => {
+    return state.user.username;
+  });
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    localStorage.removeItem("token")
-    dispatch(setToken(null))
-    alert("정상적으로 로그아웃되었습니다.")
-  }
+    localStorage.removeItem("token");
+    dispatch(setToken(null));
+    alert("정상적으로 로그아웃되었습니다.");
+  };
 
   return (
-    <header className="header"> 
+    <header className="header">
       <div className="contents">
         <Link to="/">
           <img src={"logokakao.png"} alt="장바구니 쇼핑 로고" height={30} />
@@ -22,38 +27,52 @@ function GNB() {
         <nav>
           <div className="navigation">
             <span>
-              {/* 장바구니 버튼 */}
               <Link to="/cart">
                 <img src={"/cart.png"} alt="장바구니 버튼" height={30} />
               </Link>
             </span>
-            <span>|</span>
+            <span className="line">|</span>
             <span>
-              {/* 로그인 버튼 */}
               {token ? (
-                <Link
-                  to="/login"
-                  onClick={handleLogout}
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그아웃{" "}
-                </Link>
+                <>
+                  {/* 로그인 상태일 때 사용자 이름과 로그아웃 버튼 */}
+                  <span>{username}님</span>
+                  <span className="line">|</span>
+                  <button
+                    onClick={handleLogout}
+                    style={{
+                      border: "none",
+                      background: "none",
+                      color: "black",
+                      cursor: "pointer",
+                    }}
+                  >
+                    로그아웃
+                  </button>
+                </>
               ) : (
-                <Link
-                  to="/login"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  {" "}
-                  로그인{" "}
-                </Link>
+                <>
+                  <Link
+                    to="/login"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    로그인
+                  </Link>
+                  <span className="line">|</span>
+                  <Link
+                    to="/signup"
+                    style={{ textDecoration: "none", color: "black" }}
+                  >
+                    회원가입
+                  </Link>
+                </>
               )}
             </span>
           </div>
         </nav>
       </div>
     </header>
-  )
+  );
 }
 
-export default GNB
+export default GNB;

@@ -1,5 +1,6 @@
 const Title = ({ children }) => {
-  return <h1>{children}</h1>
-}
+  // children 버튼 내부에 표시할 내용
+  return <h1>{children}</h1>;
+};
 
-export default Title
+export default Title;

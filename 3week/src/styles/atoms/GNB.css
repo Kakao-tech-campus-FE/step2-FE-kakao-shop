@@ -1,5 +1,5 @@
 .header {
-  background-color: #f1f1f1;
+  background-color: white;
   padding: 10px;
 }
 
@@ -7,4 +7,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  margin: 0 10px; /* 여기서 좌우 간격 조정 가능 */
 }

@@ -1,9 +1,9 @@
-import "../../styles/molecules/ProductInformationColumn.css"
-import { comma } from "../../utils/convert"
-import Photo from "../atoms/Photo"
+import "../../styles/molecules/ProductInformationColumn.css";
+import { comma } from "../../utils/convert";
+import Photo from "../atoms/Photo";
 
 const ProductInformationColumn = ({ product }) => {
-  const { productName, price, image } = product
+  const { productName, price, image } = product;
   return (
     <div className="product-information-column">
       <div className="col">
@@ -14,7 +14,7 @@ const ProductInformationColumn = ({ product }) => {
         <p className="price">{comma(price)}원</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductInformationColumn
+export default ProductInformationColumn;

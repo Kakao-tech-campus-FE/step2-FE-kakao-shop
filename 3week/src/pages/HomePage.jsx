@@ -1,8 +1,8 @@
-import React from "react"
-import MainProductTemplate from "../components/templates/MainProductTemplate"
+import React from "react";
+import MainProductTemplate from "../components/templates/MainProductTemplate";
 
 const HomePage = () => {
-  return <MainProductTemplate />
-}
+  return <MainProductTemplate />;
+};
 
-export default HomePage
+export default HomePage;

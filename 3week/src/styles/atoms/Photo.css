@@ -1,7 +1,6 @@
 picture.card {
   width: 200px;
   padding: 0 15px;
-  
 }
 
 /* 부모 엘리먼트 */
@@ -14,6 +13,4 @@ picture > img {
 img.card {
   width: 100%;
   max-width: 360px;
-  object-fit: cover;
 }
-

@@ -1,29 +1,28 @@
-import { useState } from "react"
+import { useState } from "react";
 
 const Counter = ({
   onIncrease, // 수량 증가 함수
   onDecrease, // 수량 감소 함수
 }) => {
-  const [ count, setCount ] = useState(1)
-  
-  const handleOnIncrease = () => {
-    setCount(count + 1)
-    onIncrease(count + 1)
-  }
+  const [count, setCount] = useState(1);
 
-  const handleOnDecrease = () => {
-    setCount(count - 1)
-    onDecrease(count - 1)
-  }
+  const handleClickIncrease = () => {
+    setCount(count + 1);
+    onIncrease(count + 1);
+  };
+
+  const handleClickDecrease = () => {
+    setCount(count - 1);
+    onDecrease(count - 1);
+  };
 
   return (
     <div>
-      <button onClick={handleOnDecrease}>-</button>
+      <button onClick={handleClickDecrease}>-</button>
       <span className="count">{count}</span>
-      <button onClick={handleOnIncrease}>+</button>
-
+      <button onClick={handleClickIncrease}>+</button>
     </div>
-  )
-}
+  );
+};
 
-export default Counter
+export default Counter;

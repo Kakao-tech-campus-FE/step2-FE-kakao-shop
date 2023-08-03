@@ -1,28 +1,21 @@
-import React from 'react'
+import React from "react";
+import { useIsFetching } from "react-query";
 
-const Spinner = () => {
-  const spinnerStyle = {
-    width: '4em',
-    height: '4em',
-    border: '0.5em solid rgba(0, 0, 0, 0.1)',
-    borderLeftColor: '#7983ff',
-    borderRadius: '50%',
-    animation: 'spin 1s linear infinite',
+const GlobalLoading = () => {
+  const isFetching = useIsFetching();
+
+  console.log(isFetching);
+
+  if (!isFetching) {
+    return null;
   }
 
   return (
-    <div style={{
-      padding: 0,
-      margin: 0,
-      display: 'flex',
-      width: '100vw',
-      height: '100vh',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}>
-      <div className="spinner" style={spinnerStyle}></div>
+    <div className="global-loading-container">
+      <div className="global-loading-spinner"></div>
+      <p>Loading...</p>
     </div>
-  )
-}
+  );
+};
 
-export default Spinner
+export default GlobalLoading;

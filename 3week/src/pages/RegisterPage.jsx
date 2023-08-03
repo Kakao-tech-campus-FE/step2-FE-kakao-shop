@@ -1,10 +1,10 @@
-import RegisterForm from "../components/organisms/RegisterForm"
+import RegisterForm from "../components/organisms/RegisterForm";
 
 const RegisterPage = () => {
-  return <RegisterForm />
-}
+  return <RegisterForm />;
+};
 
-export default RegisterPage
+export default RegisterPage;
 
 /* 
   RegisterPage는 RegisterForm밖에 불러오지 않는데 나누는 이유

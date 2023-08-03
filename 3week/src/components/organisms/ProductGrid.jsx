@@ -1,5 +1,5 @@
-import ProductCard from "../molecules/ProductCard"
-import "../../styles/organisms/ProductGrid.css"
+import ProductCard from "../molecules/ProductCard";
+import "../../styles/organisms/ProductGrid.css";
 
 const ProductGrid = ({ products }) => {
   // presentaion components(데이터를 단순히 표기만 하는 용도의 컴포넌트)로 두면
@@ -10,7 +10,7 @@ const ProductGrid = ({ products }) => {
         <ProductCard key={product.id} product={product} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default ProductGrid
+export default ProductGrid;

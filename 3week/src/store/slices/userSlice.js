@@ -1,10 +1,12 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import { login } from "../../services/user.js"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { login } from "../../services/user.js";
+
+const storedToken = localStorage.getItem("token");
 
 const initialState = {
   email: null,
   loading: false,
-  token: null,
+  token: storedToken ? storedToken : null,
 };
 
 const userSlice = createSlice({
@@ -12,24 +14,24 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setEmail: (state, action) => {
-      state.email = action.payload.email
+      state.email = action.payload.email;
     },
     setToken: (state, action) => {
-      state.token = action.payload.token
-    }
+      state.token = action.payload.token;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(loginRequest.pending, (state, action) => {
-      state.loading = true
+      state.loading = true;
     });
     builder.addCase(loginRequest.fulfilled, (state, action) => {
-      state.loading = false
-      state.email = action.payload.email
-      localStorage.setItem("token", action.payload.token)
-      state.token = action.payload.token //임시
+      state.loading = false;
+      state.email = action.payload.email;
+      localStorage.setItem("token", action.payload.token);
+      state.token = action.payload.token; //임시
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
-      state.loading = false
+      state.loading = false;
     });
   },
 });
@@ -37,15 +39,15 @@ const userSlice = createSlice({
 export const loginRequest = createAsyncThunk(
   "user/loginRequest",
   async (data) => {
-    const { email, password } = data
-    const response = await login({ email, password }) // post: 데이터 생성, 데이터를 조회 보안이 필요한 경우
+    const { email, password } = data;
+    const response = await login({ email, password }); // post: 데이터 생성, 데이터를 조회 보안이 필요한 경우
     return {
       email,
       token: response.headers.authorization,
-    }
+    };
   }
 );
 
-export const { setEmail, setToken } = userSlice.actions
+export const { setEmail, setToken } = userSlice.actions;
 
-export default userSlice.reducer
+export default userSlice.reducer;

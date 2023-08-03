@@ -1,24 +1,48 @@
-import Container from "../atoms/Container"
-import InputGroup from "../molecules/InputGroup"
-import Button from "../atoms/Button"
-import useInput from "../../hooks/useInput"
-import Title from "../atoms/Title"
-import { useDispatch, useSelector } from "react-redux"
-import { loginRequest } from "../../store/slices/userSlice"
+import Container from "../atoms/Container";
+import InputGroup from "../molecules/InputGroup";
+import Button from "../atoms/Button";
+import useInput from "../../hooks/useInput";
+import Title from "../atoms/Title";
+import { useDispatch } from "react-redux";
+import { loginRequest } from "../../store/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-  const dispatch = useDispatch()
-  const email = useSelector((state) => state.user.email)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { value, handleOnChange } = useInput({
     email: "",
     password: "",
   });
 
+  const handleLogin = () => {
+    dispatch(
+      loginRequest({
+        email: value.email,
+        password: value.password,
+      })
+    )
+      .then((res) => {
+        // 응답 데이터를 이용하여 로그인 성공 여부를 확인하고, 처리
+        if (res.success) {
+          // 로그인 성공 시 '/' 경로로 이동
+          alert("로그인 성공!");
+          navigate("/");
+        } else {
+          // 로그인 실패 시 에러 메시지 출력 또는 다른 처리
+          alert("로그인 실패. 다시 시도해주세요.");
+        }
+      })
+      .catch((error) => {
+        // 에러 처리
+        alert("로그인 요청에 실패했습니다. 다시 시도해주세요.");
+      });
+  };
+
   return (
     <Container>
       <Title>로그인</Title>
-      <span>{email}</span>
       <InputGroup
         id="email"
         type="email"
@@ -37,19 +61,9 @@ const LoginForm = () => {
         value={value.password}
         onChange={handleOnChange}
       />
-      <Button onClick={() => {
-        // api 로그인 요청
-        dispatch(
-          loginRequest({
-            email: value.email,
-            password: value.password,
-          })
-        )
-      }}>
-      로그인
-      </Button>
+      <Button onClick={handleLogin}>로그인</Button>
     </Container>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
