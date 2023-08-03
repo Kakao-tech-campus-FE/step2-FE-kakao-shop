@@ -25,7 +25,7 @@ function MainProductTemplate() {
 
 
   useEffect(()=>{
-    if(!isLoading && !end && !isError){
+    if(!isLoading && !end && !isError && !reRender){
       io.observe(bottomObserver.current)
     }
 
