@@ -1,3 +1,5 @@
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const Footer = () => {
 
     return(
@@ -5,7 +7,7 @@ const Footer = () => {
             <div className="max-w-[1280px] py-10 m-auto  flex">
                 <div>
                     <a href="/">
-                        <img src="/pc_foot_logo.png" alt="카카오톡 쇼핑하기" width="144" height="20"/>
+                        <img src={staticServerUrl + "/pc_foot_logo.png"} alt="카카오톡 쇼핑하기" width="144" height="20"/>
                     </a>
                 </div>
                 <div className="pl-8">

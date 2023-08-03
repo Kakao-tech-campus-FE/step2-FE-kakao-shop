@@ -5,6 +5,8 @@ import { setEmail } from "../../store/slices/userSlice"
 import { useEffect } from "react";
 import Button from "./Button";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 function GNB() {
 
     const email = useSelector((state) => state.user.email);
@@ -27,14 +29,14 @@ function GNB() {
         <header className="header">
             <div className="contents">
                 <Link to="/">
-                    <img className = "logoImg" src={"/logoKakao.png"} alt="logoKakao.png" height={30}/>
+                    <img className = "logoImg" src={staticServerUrl + "/logoKakao.png"} alt="logoKakao.png" height={30}/>
                 </Link>
                 <nav>
                     <div className="navigation">
                         <span className="menu_util">
                             {/* 장바구니 버튼 */}
                             <Link to="/cart">
-                                <img className = "cartImg" src={"/cart.png"} alt="cart.png" height={30}/>
+                                <img className = "cartImg" src={staticServerUrl + "/cart.png"} alt="cart.png" height={30}/>
                             </Link>
                         </span>
                         <span></span>
