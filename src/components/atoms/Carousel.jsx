@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../../styles/Carousel.css";
 import photo1 from "../../assets/carouselItem1.jpeg";
 import photo2 from "../../assets/carouselItem2.jpeg";
@@ -33,6 +33,16 @@ const Carousel = () => {
     setCurrentIndex((currentIndex - 1 + photos.length) % photos.length);
   };
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      next();
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [currentIndex]);
+
   return (
     <>
       <div className="slider-container">
@@ -42,7 +52,6 @@ const Carousel = () => {
             className={index === currentIndex ? "fade" : "slide fade"}
           >
             <img src={photo.url} alt={photo.title} className="photo" />
-            <div className="caption">{photo.title}</div>
           </div>
         ))}
         <button onClick={prev} className="prev">

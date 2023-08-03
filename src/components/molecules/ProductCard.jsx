@@ -25,7 +25,7 @@ const ProductCard = ({ product, loading }) => {
         <div className="flex flex-row pt-2 items-baseline">
           <p className="font-bold text-lg text-sky-600">톡딜가</p>
           <div className="pl-2 font-bold text-black">
-            {comma(product.price)} 원
+            {comma(product.price)} 원 부터 ~
           </div>
         </div>
       </Card>

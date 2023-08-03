@@ -5,7 +5,6 @@
 .slider-container {
   position: relative;
   margin: 50px auto 20px auto;
-  width: 600px;
   height: 300px;
 }
 
@@ -27,23 +26,18 @@
   position: absolute;
   top: 50%;
   width: auto;
-  padding: 16px;
-  margin-top: -22px;
-  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin-top: 0px;
   color: white;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
   border: none;
+  transform: translateY(-50%);
 }
 
 .next {
   right: 0;
-}
-
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .caption {
@@ -58,14 +52,19 @@
 }
 
 .dots {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  top: 320px;
+  z-index: 10;
+  white-space: nowrap;
+  transform: translateX(-50%);
 }
 
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
+  height: 10px;
+  width: 10px;
   margin: 0 5px;
   background-color: #ccc;
   border-radius: 50%;
