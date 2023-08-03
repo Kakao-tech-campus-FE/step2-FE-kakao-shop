@@ -3,7 +3,7 @@ const Photo = ({ src, alt, imgClass }) => {
 
   return (
     <picture>
-      <img className={imgClass} src={staticServerUri + "/api" + src} alt={alt} />
+      <img className={imgClass} src={staticServerUri + src} alt={alt} />
     </picture>
   );
 };
