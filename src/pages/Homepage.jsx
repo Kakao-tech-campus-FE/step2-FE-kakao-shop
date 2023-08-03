@@ -33,8 +33,8 @@ function HomePage() {
     }
     return (
       <>
-        <Link to="/signup">회원가입</Link>
-        <Link to="/login">로그인</Link>
+        <Link to={staticServerUrl + '/signup'}>회원가입</Link>
+        <Link to={staticServerUrl + '/login'}>로그인</Link>
       </>
     );
   };
@@ -42,7 +42,7 @@ function HomePage() {
   return (
     <div className="link-container">
       <div className="logo-wrapper">
-        <Link to="/">
+        <Link to={staticServerUrl + '/'}>
           <img
             src={`${staticServerUrl}/logoKakao.png`}
             alt="로고"
