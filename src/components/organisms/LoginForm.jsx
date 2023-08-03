@@ -91,7 +91,7 @@ const LoginForm = () => {
             로그인
           </Form.Button>
           <Link.SignUp>
-            <LinkText to={staticServerUrl + '/signup'} text="회원가입" />
+            <LinkText to="/signup" text="회원가입" />
           </Link.SignUp>
         </Form.Box>
       </Form.Container>
