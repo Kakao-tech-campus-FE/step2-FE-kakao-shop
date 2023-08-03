@@ -25,7 +25,7 @@ function App() {
     return (
         <div className="App">
           <Suspense fallback={<Loader />}>
-            <BrowserRouter>
+            <BrowserRouter basename={staticServerUri}>
               <Routes>
                 {/* 단독 레이아웃 */}
                 <Route path={staticServerUri + "/login"} element={<LoginPage />}/>
