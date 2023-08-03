@@ -9,12 +9,12 @@ const StyledImg = styled.img`
   width: inherit;
   object-fit: cover;
 `
-const path = process.env.REACT_APP_PATH || "";
+const imagePath = process.env.REACT_APP_IMAGE || "";
 
 const Image = ({image, alt}) => {
   return (
     <StyledPicture>
-      <StyledImg src={`${path}${image}`} alt={alt}/>
+      <StyledImg src={`${imagePath}${image}`} alt={alt}/>
     </StyledPicture>
   )
 }
