@@ -1,6 +1,7 @@
 import ApiInstance from "./index";
 import { getCookie } from "../utils/cookie";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 class CartInstance extends ApiInstance {
   constructor(baseURL, contentType) {
     super(baseURL, contentType);
@@ -44,7 +45,7 @@ class CartInstance extends ApiInstance {
 }
 
 const cartInstance = new CartInstance(
-  process.env.REACT_APP_API_URL,
+  staticServerUri + "/api",
   "application/json"
 );
 

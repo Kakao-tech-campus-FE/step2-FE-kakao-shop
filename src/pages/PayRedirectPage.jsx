@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import paymentInstance from "../apis/payment";
 import useCart from "../hooks/useCart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function PayRedirectPage() {
   const navigate = useNavigate();
   const { orderCart } = useCart();
@@ -18,7 +20,7 @@ export default function PayRedirectPage() {
         await paymentInstance.payApproveRequest(pg_token);
         orderCart.mutate(null, {
           onSuccess: async (data) => {
-            navigate("/result", {
+            navigate(staticServerUri + "/result", {
               replace: true,
               state: {
                 address,

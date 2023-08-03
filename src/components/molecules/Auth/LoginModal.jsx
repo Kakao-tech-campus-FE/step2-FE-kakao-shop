@@ -4,6 +4,8 @@ import Box from "../../atoms/Box";
 import Button from "../../atoms/Button";
 import Container from "../../atoms/Container";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const LoginModal = forwardRef((props, ref) => {
   const navigate = useNavigate();
 
@@ -30,7 +32,7 @@ const LoginModal = forwardRef((props, ref) => {
           <Button
             padding="py-3"
             width="w-1/2"
-            onClick={() => navigate("/login")}
+            onClick={() => navigate(staticServerUri + "/login")}
           >
             확인
           </Button>

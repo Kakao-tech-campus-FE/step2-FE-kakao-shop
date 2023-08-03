@@ -1,4 +1,6 @@
 import ApiInstance from "./index";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 class AuthInstance extends ApiInstance {
   checkEmail = (email) => {
     return this.instance.post("/check", { email });
@@ -25,7 +27,7 @@ class AuthInstance extends ApiInstance {
 }
 
 const authInstance = new AuthInstance(
-  process.env.REACT_APP_API_URL,
+  staticServerUri + "/api",
   "application/json"
 );
 
