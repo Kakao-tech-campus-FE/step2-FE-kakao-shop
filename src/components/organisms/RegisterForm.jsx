@@ -41,18 +41,27 @@ const RegisterForm = () => {
   };
 
   const handleSubmit = async () => {
-    register({
-      email: value.email,
-      password: value.password,
-      username: value.username,
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          alert("회원가입 성공!");
-          navigate(staticServerUri + routes.home);
-        }
+    if (
+      value.email === "" ||
+      value.password === "" ||
+      value.passwordConfirm === "" ||
+      value.username === ""
+    ) {
+      alert("항목을 입력해주세요.");
+    } else {
+      register({
+        email: value.email,
+        password: value.password,
+        username: value.username,
       })
-      .catch((error) => console.log(error));
+        .then((response) => {
+          if (response.status === 200) {
+            alert("회원가입 성공!");
+            navigate(staticServerUri + routes.home);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   };
 
   return (

@@ -33,23 +33,27 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    dispatch(
-      loginRequest({
-        email: value.email,
-        password: value.password,
-      })
-    )
-      .then((action) => {
-        const response = action.payload;
-        if (response.email && response.token) {
-          navigate(staticServerUri + "/");
-          alert("로그인 성공!");
-        }
-      })
-      .catch((error) => {
-        console.error("로그인 실패:", error);
-        alert("로그인에 실패했습니다.");
-      });
+    if (value.email === "" || value.password === "")
+      alert("항목을 입력해주세요.");
+    else {
+      dispatch(
+        loginRequest({
+          email: value.email,
+          password: value.password,
+        })
+      )
+        .then((action) => {
+          const response = action.payload;
+          if (response.email && response.token) {
+            navigate(staticServerUri + "/");
+            alert("로그인 성공!");
+          }
+        })
+        .catch((error) => {
+          console.error("로그인 실패:", error);
+          alert("로그인에 실패했습니다.");
+        });
+    }
   };
 
   return (
