@@ -131,10 +131,10 @@ export const Carousel = () => {
         }
       </div>
       <button className="carousel-button prev" onClick={prevSlide}>
-        <
+        &lt;
       </button>
       <button className="carousel-button next" onClick={nextSlide}>
-        >
+        &gt;
       </button>
     </div>
   );
