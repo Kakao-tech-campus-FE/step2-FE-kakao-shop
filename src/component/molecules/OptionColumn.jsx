@@ -80,6 +80,22 @@ const OptionColumn = ({ product }) => {
             alert("로그인 하세요");
     }}
 
+    const purchase = async () => {
+        if (email) {
+            if (addCartArr && addCartArr.length === 0) {
+                alert("구매할 상품이 없습니다.");
+                return
+            } else {
+                await addCart(addCartArr)
+                    .then(response => {
+                        navigate("/order");
+                    }).catch(err => {
+                        alert("구매를 실패했습니다.")});
+                }
+        }else {
+            alert("로그인 하세요");
+    }}
+
     return <div className="p-8 border-l w-1/3">
         <h3 className="font-semibold mb-6 text-xl">옵션 선택</h3>
         {/* 옵션 담기 영역 */}
@@ -125,12 +141,8 @@ const OptionColumn = ({ product }) => {
                 <Photo className="w-10" src="/cart.png" />
             </Button>
             <Button className="w-40 h-16 text-xl text-center rounded bg-#ffeb00" 
-                onClick={() => {
-                    addCartReq;
-                    navigate("/order");
-                }}
-            >
-                구매하기</Button>
+                onClick={purchase}
+            >구매하기</Button>
         </div>
     </div>
 }
