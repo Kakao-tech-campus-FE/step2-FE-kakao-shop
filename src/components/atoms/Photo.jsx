@@ -5,7 +5,6 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function Photo({ src, alt, size }) {
 
-  src = `${staticServerUri}/src/assets/img/products`+`${src}`
   return (
     <Picture size={size}>
       <source srcSet={staticServerUri + src}/>
