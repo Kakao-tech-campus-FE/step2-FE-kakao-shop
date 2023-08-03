@@ -1,3 +1,4 @@
+import { getCookie } from "../store/cookies";
 import { instance } from "./index";
 
 /**
@@ -9,7 +10,8 @@ export const addCart = (payload) => {
 };
 
 export const inCart = () => {
-  return instance.get("/carts");
+  if (getCookie("token")) return instance.get("/carts");
+  return null;
 };
 
 /**
