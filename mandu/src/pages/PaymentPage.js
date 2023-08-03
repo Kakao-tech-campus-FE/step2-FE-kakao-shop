@@ -88,7 +88,7 @@ const PaymentPage = () => {
                     <h3 className="font-semibold text-2xl">총 결제금액</h3>
                     <h3 className="font-semibold text-2xl">{priceFormat(totalPrice)}</h3>
                 </div>
-                <ElevatedButton className="bg-amber-300 my-4 py-4 font-bold"
+                <ElevatedButton id="payment-btn" className="bg-amber-300 my-4 py-4 font-bold"
                                 disabled={totalQuantity === 0 || orderMutation.isLoading}
                                 onClick={() => {
                                     orderMutation.mutate();

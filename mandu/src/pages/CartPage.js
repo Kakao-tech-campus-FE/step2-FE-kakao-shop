@@ -28,7 +28,8 @@ const CartPage = () => {
             <h1 className="text-xl font-bold bg-white text-gray-800 text-center py-2 mb-4">장바구니</h1>
             <ProductWithOptionList products={data.products}/>
             {data.products.length !== 0 &&
-                <ElevatedButton className="bg-amber-300 mt-4" onClick={onPurchase}>주문하기</ElevatedButton>
+                <ElevatedButton id="payment-route-btn" className="bg-amber-300 mt-4"
+                                onClick={onPurchase}>주문하기</ElevatedButton>
             }
         </MdLayOut>
     )

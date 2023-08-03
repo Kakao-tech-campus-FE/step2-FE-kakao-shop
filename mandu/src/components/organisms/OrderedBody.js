@@ -24,7 +24,7 @@ const OrderedBody = ({orderedId}) => {
                             const {productName, items} = product;
                             return (
                                 <div key={index} className="p-2">
-                                    <h2 className="text-lg font-bold">{productName}</h2>
+                                    <h2 className="ordered-product text-lg font-bold">{productName}</h2>
                                     {
                                         items.map((item, index) => {
                                             const {optionName, quantity, price} = item;

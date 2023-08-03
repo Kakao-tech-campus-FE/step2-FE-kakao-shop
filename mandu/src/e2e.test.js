@@ -82,6 +82,24 @@ describe('cart-test', () => {
         expect(cartProductOptionName).toContain(optionName);
     });
 
+    it('go to payment page', async () => {
+        const orderRouteButton = await page.waitForSelector('#payment-route-btn');
+        await orderRouteButton.click();
+        expect(page.url()).toBe('http://localhost:3000/payment');
+    });
+
+    it('pay', async () => {
+        const payButton = await page.waitForSelector('#payment-btn');
+        await payButton.click();
+        expect(page.url()).toContain('http://localhost:3000/ordered');
+    });
+
+    it('check pay product', async () => {
+        //ordered-product
+        const orderedProductName = await page.$eval('.ordered-product', el => el?.innerText);
+        expect(orderedProductName).toContain(productName);
+    });
+
 
 });
 
