@@ -5,8 +5,8 @@ import Container from "../atoms/Container";
 import ProductGrid from "../organisms/ProductGrid";
 import { getProducts } from "../../store/slices/productSlice";
 import "../../styles/templates/MainProductTemplate.css"
-import Carousel from "../molecules/ui/carousel/Carousel";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const MainProductTemplate = () => {
   return (
     <Container className="productsView">
         {/* <Carousel className="carousel"/> */}
-        <img src="carouselItem1.jpeg" alt="" />
+        <img src={staticServerUrl + "carouselItem1.jpeg"} alt="" />
         {isLoading ? ( //로딩 중일 경우 isLoading이 true가 되면서 skeleton card를 출력
             <>
             <ProductGrid isLoading="true" products={productArray} />
