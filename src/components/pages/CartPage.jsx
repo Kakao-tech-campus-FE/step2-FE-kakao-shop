@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
 import { useQuery } from 'react-query'
-import Loader from '../molecules/Loader'
 import { getCart } from '../../services/cart'
+import Loader from '../molecules/Loader'
 import CartList from '../organisms/CartList'
+import MissedUrl from '../pages/MissedUrl'
 
 function CartPage() {
   const { data, isLoading, error, isError } = useQuery("cart", getCart)
@@ -10,8 +11,16 @@ function CartPage() {
   //  바로 데이터가 불러 왔으면 좋겠는데, 새로고침을 해야 데이터를 새로 불러와 반영이 됩니다. 
   //  해결해야하는 방법을 알려주세요!
 
+  if(isError) {
+    return error?.data?.status === 404 ? <MissedUrl /> : <div>{error.data.error.message}</div>
+  }
+
+  if(isLoading) {
+    return <Loader />
+  }
+
   return (
-      isLoading ? <Loader/> : isError ? <>{error?.data?.error?.message}</> : <CartList data={data} />
+      <CartList data={data} />
   )
 }
 

@@ -9,6 +9,7 @@ import CartPage from "./components/pages/CartPage";
 import OrderPage from "./components/pages/OrderPage";
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import RequiredAuthLayout from './layouts/RequiredAuthLayout'
+import OrderCompletePage from "./components/pages/OrderCompletePage";
 
 function App() {
 
@@ -21,19 +22,20 @@ function App() {
         <BrowserRouter> 
          <Routes>
             {/* {단독 레이아웃} */}
-            <Route path="/login" element={<LoginPage/>}></Route>    
-            <Route path="/signup" element={<RegisterPage/>}></Route> 
+            <Route path="/login" element={<LoginPage/>}/>
+            <Route path="/signup" element={<RegisterPage/>}/>
           
             {/* 공통 레이아웃 */}
             <Route element={<MainLayout/>}>
-              <Route path="/" element={<HomePage/>}></Route>   
-              <Route path="/product/:id" element={<ProductDetailPage/>}></Route>   
+              <Route path="/" element={<HomePage/>}/>  
+              <Route path="/product/:id" element={<ProductDetailPage/>}/>  
               {/* 사용자가 로그인됐을 때만 사용 가능한 페이지 */}
             </Route>
             
             <Route element={<RequiredAuthLayout/>}>
-              <Route path="/order" element={<OrderPage />}></Route>
-              <Route path="/cart" element={<CartPage />}></Route> 
+              <Route path="/order" element={<OrderPage />}/>
+              <Route path="/cart" element={<CartPage />}/>
+              <Route path="/orders/complete/:id" element={<OrderCompletePage/>}/>
             </Route>
          </Routes> 
         </BrowserRouter>

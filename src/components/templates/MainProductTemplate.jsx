@@ -35,6 +35,7 @@ function MainProductTemplate() {
       io.unobserve(bottomObserver.current)
   },[isError,end]) //에러가 발생하거나, end가 true이면 더이상 bottomObserver는 관측 되지 않는다.
 
+
   return (
     <Containor>
       {isError ? <Toast>{errorMessage}</Toast> : isLoading && !reRender ? <Loader/> : <ProductGrid products={productData}/>}

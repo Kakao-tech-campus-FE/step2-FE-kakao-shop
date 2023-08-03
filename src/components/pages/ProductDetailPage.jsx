@@ -39,10 +39,20 @@ function ProductDetailPage() {
     return true
   }
 
+  if(!validate()) {
+    return;
+  }
+
+  if(isError) {
+    return error?.data?.status === 404 ? <MissedUrl /> : <div>{error.data.error.message}</div>
+  }
+
+  if(isLoading) {
+    return <Loader />
+  }
+
   return (
-    <>
-      {isError ? error.status === 404 ? <MissedUrl/>: <div>ohtererror</div>: isLoading ? <Loader/> :  <ProductDetailTemplate product={product} />}
-    </>
+    <ProductDetailTemplate product={product} />
   )
 }
 
