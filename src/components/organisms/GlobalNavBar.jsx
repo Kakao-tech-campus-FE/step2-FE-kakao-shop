@@ -4,6 +4,7 @@ import "../../styles/organisms/globalNavBar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { BsCart2 } from "react-icons/bs";
+import { staticServerUri } from "../../services/api";
 
 const GlobalNavBar = () => {
   const user = useSelector((state) => state.user);
@@ -24,7 +25,7 @@ const GlobalNavBar = () => {
       <nav className={"global-nav-bar"}>
         <div className={"logo"}>
           <Link className={"logo button object-contain"} to={"/"}>
-            <img src={"/images/logoKakao.png"} alt={"logo"} />
+            <img src={staticServerUri + "/images/logoKakao.png"} alt={"logo"} />
           </Link>
         </div>
         <div

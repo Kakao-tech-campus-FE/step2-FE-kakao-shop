@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 
+import { staticServerUri } from "../../services/api";
+
 const SLIDE_STATE = {
   PREV_INDEX: -1,
   CURRENT_INDEX: 0,
@@ -51,7 +53,11 @@ const CarouselSlide = ({ image, index, state }) => {
         slideState,
       )} duration-[400ms] ease-in-out`}
     >
-      <img src={image} alt="carousel" className="carousel-image object-cover" />
+      <img
+        src={staticServerUri + image}
+        alt="carousel"
+        className="carousel-image object-cover"
+      />
     </div>
   );
 };
@@ -108,7 +114,7 @@ const Carousel = ({ images }) => {
         ))}
         <div className="carousel-dummy h-full w-full opacity-0">
           <img
-            src={images[0]}
+            src={staticServerUri + images[0]}
             alt="carousel-dummy"
             className="carousel-image object-cover"
           />

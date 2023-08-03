@@ -50,7 +50,7 @@ const ProductDetailPage = () => {
         )}
         <div className={"f-full flex flex-col items-center"}>
           {isLoading && <Loader />}
-          {error && <ErrorSign error={error} />}
+          {error && <ErrorSign error={error.response} />}
           {data && <ProductDetailTemplate product={data.data.response} />}
         </div>
       </div>
