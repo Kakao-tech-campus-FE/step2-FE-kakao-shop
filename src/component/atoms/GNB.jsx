@@ -10,6 +10,10 @@ import instance from "../../services";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
+
 /** 상단바. 홈 화면 및 로그인 회원가입 로그아웃 버튼 존재 */
 const GNB = () => {
   // use store/userSlice state
@@ -51,13 +55,13 @@ const GNB = () => {
       <div className="container">
         <h1 className="navigation">
 
-          <Link to ="/" replace>
+          <Link to ={staticServerUrl + "/"} replace>
             <img src={logoKakao} alt="Logo" />
           </Link>
 
         </h1>
         <ul>
-          <Link to ="/cart">
+          <Link to = {staticServerUrl + "/cart"}>
             <img src={cart} alt="cart" height={30} />
           </Link>
           {isLogin && (
@@ -70,11 +74,11 @@ const GNB = () => {
           {!isLogin && (
             <Fragment>
               
-                <Link to ="/login">로그인</Link>
+                <Link to ={staticServerUrl + "/login"}>로그인</Link>
                 
               
               
-                <Link to ="/register">회원가입</Link>
+                <Link to ={staticServerUrl + "/register"}>회원가입</Link>
               
             </Fragment>
           )}

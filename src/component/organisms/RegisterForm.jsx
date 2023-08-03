@@ -13,6 +13,9 @@ import Title from "../atoms/Title";
 import { register } from "../../services/user";
 
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
+
 const RegisterForm = () => {
 
   const navigate = useNavigate();
@@ -53,7 +56,7 @@ const RegisterForm = () => {
       const { email, password, username } = data;
       const response = await register({ email, password, username });
       console.log(response);
-      navigate("/login");
+      navigate(staticServerUrl+"/login");
     } catch (errors) {
       setError("회원가입에 실패했습니다.");
     }

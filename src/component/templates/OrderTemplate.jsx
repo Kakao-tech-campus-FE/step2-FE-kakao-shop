@@ -9,6 +9,10 @@ import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { orderSave } from "../../services/order";
 
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
+
 const OrderTemplate = ({ data }) => {
 // 사용자의 장바구니 목록을 조회해 보여주는 것
 
@@ -62,7 +66,7 @@ const { mutate } = useMutation({
         
         const id = res.data.response.id;
         alert("주문이 완료되었습니다.");
-        navigate(`/orders/complete/${id}`);
+        navigate(staticServerUrl+`/orders/complete/${id}`);
         // 주문 결과 보여주기
         // navigate('/');
         // window.location.reload();

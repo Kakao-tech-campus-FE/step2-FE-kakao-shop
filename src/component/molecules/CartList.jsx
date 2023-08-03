@@ -9,6 +9,10 @@ import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 import "../../styles/molcules/CartList.css";
 
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
+
 const CartList = ({cart}) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -109,7 +113,7 @@ const CartList = ({cart}) => {
 
         //   mutate(updatePayload, {
         //     onSuccess: (data) => {
-              navigate("/order", { state: { cartItems, totalPrice } });
+              navigate(staticServerUrl+"/order", { state: { cartItems, totalPrice } });
         //       // <Link to ="/order"></Link>
         //     },
         //     onError: (error) => console.log(error),

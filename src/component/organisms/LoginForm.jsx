@@ -11,7 +11,13 @@ import React, {useState} from 'react';
 import { setUser } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
+
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
+
+  
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,7 +53,7 @@ const LoginForm = () => {
       }))
       .then(() => {
         console.log('Success!');
-        navigate('/');
+        navigate(staticServerUrl+'/');
         window.location.reload(); // 페이지 리로드
       })
       .catch((error) => alert(error));

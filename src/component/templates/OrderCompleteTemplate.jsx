@@ -4,6 +4,10 @@ import { comma } from '../../utils/convert';
 import { useNavigate } from 'react-router-dom';
 
 
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
+
 const ProductList = styled.div`
     padding: 1rem;
     .label {
@@ -69,7 +73,7 @@ return (
         <button 
             className="w-full py-4 text-black font-bold text-xl bg-yellow-400"
             onClick={() => {
-                navigate("/");
+                navigate(staticServerUrl+"/");
             }}
         >쇼핑 계속하기</button>
     </div>

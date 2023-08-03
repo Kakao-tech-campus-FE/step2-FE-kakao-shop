@@ -17,6 +17,9 @@ import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 import "../src/App.css";
 import CartPage from './pages/CartPage';
 import OrderCompletePage from './pages/OrderCompletePage';
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 function App() {
 
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -43,18 +46,18 @@ function App() {
       <BrowserRouter>
           {/* 단독 레이아웃 */}
           <Routes>
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/register" element={<RegisterPage />}></Route>   
+            <Route path={staticServerUrl +"/login"} element={<LoginPage />}></Route>
+            <Route path={staticServerUrl + "/register"} element={<RegisterPage />}></Route>   
             {/* 공통 레이아웃 GNB, Footer */}
             <Route element={<MainLayout />}>
-              <Route path="/" element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
+              <Route path={staticServerUrl + "/" } element={<HomePage />}>isLoggedIn={isLoggedIn}</Route>
               {/* <Route path="/" element={<ProductGrid />}></Route> */}
-              <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+              <Route path={staticServerUrl + "/product/:id" } element={<ProductDetailPage />}></Route>
               {/* 사용자가 로그인됐을 때만 접근 가능한 부분 */}
               <Route element ={<RequiredAuthLayout />}>
-                <Route path="/cart" element={<CartPage />}></Route>
-                <Route path="/order" element={<OrderPage />}></Route>
-                <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
+                <Route path={staticServerUrl + "/cart" } element={<CartPage />}></Route>
+                <Route path={staticServerUrl + "/order" } element={<OrderPage />}></Route>
+                <Route path={staticServerUrl + "/orders/complete/:id" } element={<OrderCompletePage />}></Route>
               </Route>
               
     
