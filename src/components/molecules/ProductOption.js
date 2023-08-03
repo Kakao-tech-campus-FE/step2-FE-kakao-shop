@@ -127,7 +127,7 @@ export default function ProductOption({ product }) {
               key={`selected-${opt.id}`}
               className="block w-full p-3 bg-gray-100 space-y-2"
             >
-              <p className="flex justify-between">
+              <div className="flex justify-between">
                 <span className="inline-block w-[95%] overflow-hidden whitespace-nowrap text-ellipsis text-left text-sm">
                   {opt.optionName}
                 </span>
@@ -137,13 +137,13 @@ export default function ProductOption({ product }) {
                 >
                   ×
                 </Button>
-              </p>
-              <p className="flex justify-between">
+              </div>
+              <div className="flex justify-between">
                 <Counter value={opt} setCount={handleCounterClick} />
                 <span className="text-right">
                   {convertToPrice(opt.price * opt.quantity)}
                 </span>
-              </p>
+              </div>
             </div>
           ))}
         </div>

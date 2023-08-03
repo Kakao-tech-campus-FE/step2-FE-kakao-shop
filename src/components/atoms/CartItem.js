@@ -46,8 +46,8 @@ export default function CartItem({ product }) {
       <h3 className="mb-4 text-left font-bold">{product.productName}</h3>
       {product.carts.map((cart) => (
         <div key={`cart-${cart.id}`} className="p-3 border">
-          <p className="mb-2 text-left text-sm">{cart.option.optionName}</p>
-          <p className="flex justify-between items-center">
+          <div className="mb-2 text-left text-sm">{cart.option.optionName}</div>
+          <div className="flex justify-between items-center">
             <span className="space-x-2">
               <Button
                 className="px-2 py-1 border text-sm"
@@ -58,7 +58,7 @@ export default function CartItem({ product }) {
               <Counter value={cart} setCount={handleCounterClick} />
             </span>
             <span className="font-bold">{convertToPrice(cart.price)}</span>
-          </p>
+          </div>
         </div>
       ))}
       <p className="flex p-3 bg-gray-50 border justify-between items-center font-bold">
