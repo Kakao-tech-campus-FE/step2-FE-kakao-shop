@@ -32,7 +32,7 @@ function GNB() {
                 <nav>
                     <div className="navigation">
                         <span className="menu_util">
-                            {/* 장바구니 버튼 *s/}
+                            {/* 장바구니 버튼 */}
                             <Link to="/cart">
                                 <img className = "cartImg" src={"/cart.png"} alt="cart.png" height={30}/>
                             </Link>
