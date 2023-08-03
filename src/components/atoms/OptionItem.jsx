@@ -12,6 +12,7 @@ const OrderContainer = styled.div`
 `;
 
 const OrderItem = ({ orderList }) => {
+  console.log('orderlist', orderList);
   return orderList.products.map((orders) => {
     return (
       <OrderContainer key={orders.id} className="flex flex-col gap-2 px-4 py-4">
@@ -29,7 +30,7 @@ const OrderItem = ({ orderList }) => {
                 <div className="label"> 구매수량 </div>
                 <p>{order.quantity}</p>
                 <div className="label"> 금액 </div>
-                <p>{comma(order.price * order.quantity)}원</p>
+                <p>{comma(order.price)}원</p>
               </OrderContainer>
             );
           })}
