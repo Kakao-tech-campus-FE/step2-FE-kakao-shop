@@ -12,21 +12,24 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+
+  h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
 `;
 
-const LabelTitle = styled.label`
-  font-size: 1.2rem;
-  font-weight: bold;
+const Group = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
   const { products } = data?.data?.response;
-  const totalProducts = [];
-  products.map((item) => {
-    totalProducts.push(item);
-  });
 
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
@@ -52,8 +55,9 @@ const OrderTemplate = ({ data }) => {
   const { mutate } = useMutation(ordersSave);
 
   const beforeOrderFailure = () => {
-    if (allAgreeRef.current.checked === false) alert("약관 동의가 필요합니다.");
-    else if (totalProducts.length === 0) alert("주문할 상품이 없습니다.");
+    if (allAgreeRef.current?.checked === false)
+      alert("약관 동의가 필요합니다.");
+    else if (products.length === 0) alert("주문할 상품이 없습니다.");
     else {
       afterOrder();
     }
@@ -77,54 +81,56 @@ const OrderTemplate = ({ data }) => {
 
   return (
     <>
-      <Container>
-        <h3 className="mb-6">주문상품 정보</h3>
-        <Card>
-          {Array.isArray(products) &&
-            products.map((item) => {
-              return <OrderItem key={item.id} item={item} />;
-            })}
-        </Card>
-        <Card className="total-price">
-          <TotalPrice item={totalProducts} />
-        </Card>
-        <div>
+      <Group>
+        <Container>
+          <h3>주문상품 정보</h3>
+          <Card>
+            {Array.isArray(products) &&
+              products.map((item) => {
+                return <OrderItem key={item.id} item={item} />;
+              })}
+          </Card>
+          <Card className="total-price">
+            <TotalPrice item={products} />
+          </Card>
           <div>
-            <CheckList
-              htmlFor="all-agree"
-              id="all-agree"
-              checked={agreePayment && agreePolicy}
-              ref={allAgreeRef}
-              onChange={handleAllAgree}
-            >
-              전체 동의
-            </CheckList>
+            <div>
+              <CheckList
+                htmlFor="all-agree"
+                id="all-agree"
+                checked={agreePayment && agreePolicy}
+                ref={allAgreeRef}
+                onChange={handleAllAgree}
+              >
+                전체 동의
+              </CheckList>
+            </div>
+            <div>
+              <CheckList
+                htmlFor="agree"
+                id="agree"
+                checked={agreePayment}
+                name="payment-agree"
+                onChange={handleAgreement}
+              >
+                확인 및 결제 진행 동의
+              </CheckList>
+            </div>
+            <div>
+              <CheckList
+                htmlFor="policy"
+                name="policy-agree"
+                id="policy"
+                checked={agreePolicy}
+                onChange={handleAgreement}
+              >
+                개인정보 제 3자 제공동의
+              </CheckList>
+            </div>
           </div>
-          <div>
-            <CheckList
-              htmlFor="agree"
-              id="agree"
-              checked={agreePayment}
-              name="payment-agree"
-              onChange={handleAgreement}
-            >
-              확인 및 결제 진행 동의
-            </CheckList>
-          </div>
-          <div>
-            <CheckList
-              htmlFor="policy"
-              name="policy-agree"
-              id="policy"
-              checked={agreePolicy}
-              onChange={handleAgreement}
-            >
-              개인정보 제 3자 제공동의
-            </CheckList>
-          </div>
-        </div>
-        <SubmitButton onClick={beforeOrderFailure}>결제하기</SubmitButton>
-      </Container>
+          <SubmitButton onClick={beforeOrderFailure}>결제하기</SubmitButton>
+        </Container>
+      </Group>
     </>
   );
 };

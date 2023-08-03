@@ -1,9 +1,16 @@
 import SubmitButton from "../atoms/SubmitButton";
 import OrderList from "../molecules/OrderList";
 import { comma } from "../../utils/convert";
+import { useNavigate } from "react-router-dom";
+import routes from "../../routes.js";
 
 const OrderCompleteTemplate = ({ data }) => {
   const orderData = data?.data.response;
+  const navigate = useNavigate();
+
+  const continueShopping = () => {
+    navigate(routes.home);
+  };
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -22,7 +29,9 @@ const OrderCompleteTemplate = ({ data }) => {
           {comma(orderData?.totalPrice)}원
         </div>
       </div>
-      <SubmitButton type="click">쇼핑 계속하기</SubmitButton>
+      <SubmitButton type="click" onClick={continueShopping}>
+        쇼핑 계속하기
+      </SubmitButton>
     </div>
   );
 };
