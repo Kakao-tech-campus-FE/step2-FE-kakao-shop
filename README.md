@@ -1,5 +1,6 @@
 # KAKAO_CLONE_CODING
 
+(개발 브랜치)
 카카오 쇼핑하기 홈페이지 클론 코딩 프로젝트입니다.
 
 ### Built With
@@ -21,8 +22,6 @@ npm install # 의존성 모듈 설치
 npm run build # 패키지 번들링
 npm run start # 프로젝트 실행
 ```
-
-## Flow Chart
 
 ### 크램폴린 IDE를 통해 배포
 
