@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import styled from "styled-components";
 import { comma } from "../../utils/convert";
 
@@ -12,9 +13,6 @@ return
 | |_p(실제 계산된 금액)
 
 */
-
-
-
 
 //입력받은 매개변수에 대해 내부의 아이템을 순회하며 옵션 아이템의 정보를 표시
 const Container = styled.div``;

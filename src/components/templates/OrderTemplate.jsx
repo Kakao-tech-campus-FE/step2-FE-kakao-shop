@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import { useMutation } from "react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../services/order";
@@ -5,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import InputGroup from "../molecules/InputGroup";
 
-
-
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 const OrderTemplate = ({ data }) => {
-  const { products, totalPrice } = data?.data?.response;
+  const response = data?.data?.response;
+  const products = response ? response.products : null;
+  const totalPrice = response ? response.totalPrice : null;
   const navigate = useNavigate();
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);

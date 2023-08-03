@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import "../../styles/atoms/Photo.css";
 
 //Photo components

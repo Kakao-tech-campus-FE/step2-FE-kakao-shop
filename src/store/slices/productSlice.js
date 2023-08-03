@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts } from "../../services/product";
+import _ from "lodash";
 
 const initialState = {
   products: [],
@@ -12,7 +13,7 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getProducts.pending, (state, action) => {
+    builder.addCase(getProducts.pending, (state) => {
       state.loading = true;
     });
     builder.addCase(getProducts.fulfilled, (state, action) => {
