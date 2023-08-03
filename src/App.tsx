@@ -17,12 +17,13 @@ import ConfirmOrderPage from './components/pages/confirmOrderPage';
 import GlobalLoader from './components/atoms/globalLoader';
 import ErrorBoundary from './components/layouts/errorBoundary';
 import AuthLayout from './components/layouts/authLayout';
+import { staticServerUri } from './utils/serverUri';
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename={staticServerUri}>
           <ErrorBoundary>
             <Suspense fallback={<GlobalLoader />}>
               <Routes>
