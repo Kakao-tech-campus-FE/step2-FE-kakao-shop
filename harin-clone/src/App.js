@@ -13,8 +13,9 @@ import RequiredAuthLayout from "./Layouts/RequiredAuthLayout";
 import OrderCompletePage from "./Pages/OrderCompletePage";
 
 function App() {
+  const staticServerUri = process.env.REACT_APP_PATH || "";
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={staticServerUri}>
       <Routes>
         {/* 단독 레이아웃 */}
         <Route path="/loginpage" Component={LoginPage} />
