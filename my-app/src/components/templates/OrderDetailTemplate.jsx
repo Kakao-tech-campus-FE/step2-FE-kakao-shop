@@ -17,6 +17,7 @@ const ProductItems = (products) => {
 };
 
 const OrderDetailTemplate = ({ data }) => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const navigate = useNavigate();
   const productData = data?.data;
 
@@ -52,7 +53,7 @@ const OrderDetailTemplate = ({ data }) => {
         <button
           className="w-full p-4 text-black font-bold text-xl bg-yellow-300"
           onClick={() => {
-            navigate("/");
+            navigate(staticServerUrl + "/");
           }}
         >
           쇼핑 계속하기

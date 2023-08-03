@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import AppRoutes from '../routes/route';
 
 const Breadcrumb = () => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname.split("/").filter(path => path !== "")
@@ -16,10 +17,10 @@ const Breadcrumb = () => {
   const handleClick = (page) => {
     switch (page) {
       case 'home':
-        navigate('/')
+        navigate(staticServerUrl + '/')
         break
       case 'subpage':
-        navigate('/home/subpage')
+        navigate(staticServerUrl + '/home/subpage')
         break
       default:
         alert('경로가 잘못되었습니다.')

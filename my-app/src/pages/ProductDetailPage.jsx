@@ -6,6 +6,7 @@ import ProductDetailTemplate from "../components/templates/ProductDetailTemplate
 import Container from "../components/atoms/Container";
 
 const ProductDetailPage = () => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const { id } = useParams();
   const { data, error, isLoading } = useQuery(`/product/${id}`, () =>
     getProductById(id)
@@ -18,7 +19,7 @@ const ProductDetailPage = () => {
       // id - status / message - error message
       const id = error.response.data.error.status;
       const errorMessage = error.response.data.error.message;
-      navigate(`/error/${id}/${errorMessage}`);
+      navigate(staticServerUrl + `/error/${id}/${errorMessage}`);
     }
     if (product) {
       return <ProductDetailTemplate product={product} />;

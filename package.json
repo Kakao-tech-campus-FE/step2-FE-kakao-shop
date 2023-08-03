@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "nginx": "^1.0.8"
+  }
+}

@@ -8,6 +8,7 @@ import { setUserInfo } from "../store/slices/userSlice";
 import { FaRegUser } from "react-icons/fa6";
 
 const MainLayout = () => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const isLogined = useSelector((state) => state.user.isLogined);
   const [text, setText] = useState(null);
   const navigate = useNavigate();
@@ -20,10 +21,10 @@ const MainLayout = () => {
           isLogined: false,
         })
       );
-      navigate("/login");
+      navigate(staticServerUrl + "/login");
     } else {
       setText("로그아웃");
-      navigate("/login");
+      navigate(staticServerUrl + "/login");
     }
   };
 

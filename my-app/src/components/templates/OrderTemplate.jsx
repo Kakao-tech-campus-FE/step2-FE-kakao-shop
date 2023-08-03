@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import OrderItems from "../organisms/OrderItems";
 
 const OrderTemplate = ({ data }) => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
   const [agreePayment, setAgreePayment] = useState(false);
@@ -126,7 +127,7 @@ const OrderTemplate = ({ data }) => {
               mutate(null, {
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  navigate(`/orders/${id}`);
+                  navigate(staticServerUrl + `/orders/${id}`);
                 },
                 onError: (err) => {
                   const errorMessage = err.response.data.error.message;
@@ -139,7 +140,7 @@ const OrderTemplate = ({ data }) => {
                     return;
                   } // 인증이 되지 않았을 경우(로그인 정보가 없을 때, token 만료), 알림창 이후 로그인 화면으로 돌아가도록
                   else if (errorMessage === "인증되지 않았습니다") {
-                    navigate("/login");
+                    navigate(staticServerUrl + "/login");
                     return;
                   }
                   /**
@@ -148,7 +149,7 @@ const OrderTemplate = ({ data }) => {
                    * @status - 에러 status 코드(401, 403, 404, ...)
                    * @errorMessage - 백엔드 API에서 가져오는 Error Message
                    */
-                  navigate(`/error/${status}/${errorMessage}`);
+                  navigate(staticServerUrl + `/error/${status}/${errorMessage}`);
                 },
               });
             }}

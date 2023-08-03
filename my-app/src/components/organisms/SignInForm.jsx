@@ -8,6 +8,7 @@ import { loginRequest } from "../../store/slices/userSlice";
 import { useRef, useState } from "react";
 
 const SignInForm = () => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const error = useSelector((state) => state.user.error);
@@ -68,7 +69,7 @@ const SignInForm = () => {
               alert("로그인 에러 발생");
               return;
             }
-            navigate("/");
+            navigate(staticServerUrl + "/");
           }}
         >
           로그인
@@ -92,7 +93,7 @@ const SignInForm = () => {
         <Button
           className="border-none text-sm text-gray-600"
           onClick={() => {
-            navigate("/signup");
+            navigate(staticServerUrl + "/signup");
           }}
         >
           회원가입

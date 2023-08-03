@@ -4,6 +4,7 @@ import '../styles/Carousel.css'
 import { useNavigate } from 'react-router-dom'
 
 const Carousel = () => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
   const [activeIndex, setActiveIndex] = useState(0)
   const navigate = useNavigate()
 
@@ -48,7 +49,7 @@ const Carousel = () => {
                 <CarouselItem 
                   item={item} 
                   width={"100%"} 
-                  onClick={() => navigate('/home/subpage')}
+                  onClick={() => navigate(staticServerUrl + '/home/subpage')}
                   cursor={'cursor'}
                 />
               </>

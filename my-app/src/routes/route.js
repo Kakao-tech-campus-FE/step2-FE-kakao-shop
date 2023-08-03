@@ -13,25 +13,28 @@ import RequiredAuthLayout from "../layouts/RequiredAuthLayout";
 import OrderDetailPage from "../pages/OrderDetailPage";
 
 const AppRoutes = () => {
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
+	
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          {/* 단독 레이아웃 */}
-          <Route path="/login" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          {/* 공통 레이아웃 */}
+          
+          <Route path={staticServerUrl + "/login"} element={<SignInPage />} />
+          <Route path={staticServerUrl + "/signup"} element={<SignUpPage />} />
+          
           <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path={staticServerUrl + "/"} element={<HomePage />} />
+            <Route path={staticServerUrl + "/product/:id"} element={<ProductDetailPage />} />
           </Route>
+			
           <Route element={<RequiredAuthLayout />}>
-            <Route path="/cart" element={<CartsPage />} />
-            <Route path="/order" element={<OrderPage />} />
-            <Route path="/orders/:id" element={<OrderDetailPage />} />
+            <Route path={staticServerUrl + "/cart"} element={<CartsPage />} />
+            <Route path={staticServerUrl + "/order"} element={<OrderPage />} />
+            <Route path={staticServerUrl + "/orders/:id"} element={<OrderDetailPage />} />
           </Route>
-          {/* 에러페이지: 정해진 경로가 아닌 경우에 해당 페이지로 이동 */}
-          <Route path="/error/:id/:message" element={<ErrorPage />} />
+          
+          <Route path={staticServerUrl + "/error/:id/:message"} element={<ErrorPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>

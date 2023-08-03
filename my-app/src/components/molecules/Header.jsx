@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 // text: 로그인, 로그아웃을 알려주는 버튼의 text
 const Header = ({ onClick, text }) => {
   const navigate = useNavigate();
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
+	const mainLogo = "https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230726/143041/assets/images/pc/pc_logo.png"
   return (
     <div className="py-4 border-b-2">
       <header className="header flex justify-between px-4">
@@ -13,11 +15,11 @@ const Header = ({ onClick, text }) => {
           <button
             className="kakao-logo-button border-0"
             onClick={() => {
-              navigate("/");
+              navigate(staticServerUrl + "/");
             }}
           >
             <img
-              src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230726/143041/assets/images/pc/pc_logo.png"
+              src=mainLogo
               alt="톡쇼핑하기"
               className=" w-32 border-0"
             />
@@ -26,7 +28,7 @@ const Header = ({ onClick, text }) => {
         <div className="userInfo flex gap-6">
           <button
             className="cart-button border-0 text-gray-500"
-            onClick={() => navigate("/cart")}
+            onClick={() => navigate(staticServerUrl + "/cart")}
           >
             <FiShoppingCart size="26" />
           </button>
