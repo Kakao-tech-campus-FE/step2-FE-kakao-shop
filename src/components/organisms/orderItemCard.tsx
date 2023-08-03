@@ -12,7 +12,7 @@ export default function OrderItemCard({
     <div>
       <section className="flex flex-row items-center gap-2">
         <div className="w-16 rounded-sm">
-          <Photo src={`${staticServerUri}/api/images/${id}.jpg`} alt={productName} />
+          <Photo src={`${staticServerUri}/images/${id}.jpg`} alt={productName} />
         </div>
         <h2 className="my-2 font-bold">
           {productName}
