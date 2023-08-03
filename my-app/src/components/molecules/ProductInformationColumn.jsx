@@ -26,7 +26,7 @@ const ProductInformationColumn = ({ product }) => {
       <div className="col">
         <div className="starCount">
           <StarCount count={starCount} />
-        </div>
+        </div> 
         <h3 className="product-detail-name text-lg font-semibold">
           {productName}
         </h3>
