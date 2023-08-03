@@ -19,7 +19,7 @@ const GNB = () => {
         <div className="m-auto flex max-w-[1280px] items-center justify-between">
           <Link to={staticServerUri + "/"} replace={true}>
             <Photo
-              src={"/logoKakao.png"}
+              src={staticServerUri + "/logoKakao.png"}
               alt="logoKakao"
               className={"w-[80px] lg:w-[100px]"}
             ></Photo>
@@ -28,7 +28,7 @@ const GNB = () => {
             {email ? (
               <Link to={staticServerUri + "/cart"}>
                 <Photo
-                  src={"/cart.png"}
+                  src={staticServerUri + "/cart.png"}
                   alt="cart"
                   className={"w-[30px] lg:w-[40px]"}
                 />
@@ -40,7 +40,7 @@ const GNB = () => {
                 }}
               >
                 <Photo
-                  src={"/cart.png"}
+                  src={staticServerUri + "/cart.png"}
                   alt="cart"
                   className={"w-[30px] lg:w-[40px]"}
                 />

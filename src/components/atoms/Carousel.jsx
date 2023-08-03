@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { staticServerUri } from "../../constants/serverUri";
 
 const Carousel = () => {
   const [imgIndex, setImgIndex] = useState(0);
@@ -38,9 +39,21 @@ const Carousel = () => {
           className="flex transition-transform duration-300 ease-in-out"
           style={{ transform: `translateX(-${imgIndex * 100}%)` }}
         >
-          <img className="w-full" src="/carouselItem1.jpeg" alt="" />
-          <img className="w-full" src="/carouselItem2.jpeg" alt="" />
-          <img className="w-full" src="/carouselItem3.jpeg" alt="" />
+          <img
+            className="w-full"
+            src={staticServerUri + "/carouselItem1.jpeg"}
+            alt=""
+          />
+          <img
+            className="w-full"
+            src={staticServerUri + "/carouselItem2.jpeg"}
+            alt=""
+          />
+          <img
+            className="w-full"
+            src={staticServerUri + "/carouselItem3.jpeg"}
+            alt=""
+          />
         </div>
       </div>
     </div>
