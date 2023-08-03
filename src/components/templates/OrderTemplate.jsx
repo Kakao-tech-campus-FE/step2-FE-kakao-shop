@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useRef } from 'react';
 import OptionList from '../atoms/OptionList';
 import Button from '../atoms/Button';
-
+const staticServerUri = process.env.REACT_APP_PATH || "";
 const OrderTemplate = ({ data }) => {
     console.log(data)
 
@@ -152,11 +152,11 @@ const OrderTemplate = ({ data }) => {
                   onError: (err) => {
                     // 사용자 정보가 유실된 경우 로그인 페이지로 리다이렉트
                     alert("로그인이 필요합니다.");
-                    navigate("/login");
+                    navigate(staticServerUri+"/login");
                   },
                   onSuccess: (res) => {
                     const id = res.data.response.id;
-                    navigate(`${routes.orderComplete}/${id}`);
+                    navigate(`{routes.orderComplete}/${id}`);
                   },
                 });
               }}> 결제하기

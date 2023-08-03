@@ -10,7 +10,7 @@ import OrderCompletePage from '../pages/OrderCompletePage'
 const staticServerUri = process.env.REACT_APP_PATH || "";
 export const RouterInfo = [
     {
-        path: `${staticServerUri}${routes.home}`,
+        path: `${routes.home}`,
         element: <Home />,
         children: [
             // {
@@ -23,36 +23,36 @@ export const RouterInfo = [
 
     },
     {
-        path: `${staticServerUri}${routes.logIn}`,
+        path: `${routes.logIn}`,
         element: <Login></Login>,
         label: 'login'
     },
     {
-        path: `${staticServerUri}${routes.signUp}`,
+        path: `${routes.signUp}`,
         element: <SignUp />,
         label: 'signup'
     },
     {
-        path: `${staticServerUri}${routes.cart}`,
+        path: `${routes.cart}`,
         element: <Cart/>,
         label: 'cart'
     },
     {
-        path: `${staticServerUri}${routes.productDetail}`,
+        path: `${routes.productDetail}`,
         element: <ProductDetailPage />,
         label: 'productDetail'
     },
     {
-        path: `${staticServerUri}${routes.skeletonTest}`,
+        path: `${routes.skeletonTest}`,
         element: <SkeletonPage />,
         label: 'skeletonTest'
     },
     {
-        path: `${staticServerUri}${routes.order}`,
+        path: `${routes.order}`,
         element: <OrderPage />,
         label: 'order'
     }, {
-        path: `${staticServerUri}${routes.orderComplete}`,
+        path: `${routes.orderComplete}`,
         element: <OrderCompletePage/>,
         label: 'order'
     },
