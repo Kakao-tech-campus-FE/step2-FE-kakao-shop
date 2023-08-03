@@ -6,23 +6,16 @@ import { useMutation } from "react-query";
 import { addCart } from "../../services/addCart";
 import Button from "../atoms/Button";
 import "../atoms/OptionList.css";
-import Toast from "../atoms/Toast";
-import { useEffect } from "react";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [showAddToast, setShowAddToast] = useState(false);
-  const [showSelectToast, setShowSelectToast] = useState(false);
-  const [toastKey, setToastKey] = useState(0);
 
   const { mutate } = useMutation(addCart, {
     onSuccess: () => {
-      setShowAddToast(true);
-      setToastKey((prevKey) => prevKey + 1);
+      alert("장바구니에 정상적으로 담겼습니다.");
     },
     onError: (error) => {
-      // alert(`${error.message}`);
-      alert("로그인 후 다시 시도해주세요");
+      alert(`${error.message}`);
     },
   });
 
@@ -74,16 +67,6 @@ const OptionColumn = ({ product }) => {
       }, 0)
     );
   }, [selectedOptions]);
-
-  useEffect(() => {
-    if (showAddToast || showSelectToast) {
-      const timer = setTimeout(() => {
-        setShowAddToast(false);
-        setShowSelectToast(false);
-      }, 3000); // 3초
-      return () => clearTimeout(timer);
-    }
-  }, [showAddToast, showSelectToast]);
 
   return (
     <div className="option-column p-6">
@@ -141,21 +124,13 @@ const OptionColumn = ({ product }) => {
                   quantity: item.quantity,
                 }))
               );
-              setShowAddToast(true);
             } else {
-              setShowSelectToast(true);
+              alert("옵션을 선택해주세요.");
             }
           }}
         >
           장바구니 담기
         </Button>
-        {/* 오류 수정 필요 */}
-        {showAddToast && (
-          <Toast message={"장바구니에 정상적으로 담겼습니다."} key={toastKey} />
-        )}
-        {showSelectToast && (
-          <Toast message={"옵션을 선택해주세요."} key={toastKey} />
-        )}
       </div>
     </div>
   );

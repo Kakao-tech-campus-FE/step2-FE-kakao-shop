@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Toast.css";
 
-const Toast = ({ message, key }) => {
-  // Add 'key' prop
+const Toast = ({ message, error, onClose }) => {
   const [selected, setSelected] = useState(false);
 
   const dismissToast = () => {
     setSelected(false);
+    onClose();
   };
 
   const showToast = () => {
@@ -21,10 +21,18 @@ const Toast = ({ message, key }) => {
       const timer = setTimeout(dismissToast, toastDuration);
       return () => clearTimeout(timer);
     }
-  }, [message, key]); // Include 'key' in the dependency array
+  }, [message]);
 
   return (
-    <>{selected && <div className="toast toast-notification">{message}</div>}</>
+    <>
+      {selected && (
+        <div
+          className={`toast ${error ? "toast-error" : "toast-notification"}`}
+        >
+          {message}
+        </div>
+      )}
+    </>
   );
 };
 
