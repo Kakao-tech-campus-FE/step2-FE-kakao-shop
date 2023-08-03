@@ -1,8 +1,8 @@
 import axios from "axios";
 
-
+const staticId = process.env.REACT_APP_PATH;
 const instance = axios.create({
-  baseURL: `/api/`,
+  baseURL: `${staticId}/api/`,
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
