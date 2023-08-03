@@ -95,7 +95,7 @@ const LoginForm = () => {
           </Button>
         </Box>
         <div className="flex justify-between text-center text-xs pt-6 font-semibold">
-          <Link to={staticServerUri + "/registerpage"}>회원가입</Link>
+          <Link to="/registerpage">회원가입</Link>
           <div>
             <span className="border-r border-stone-300 pr-2 mr-2">계정 찾기</span>
             <span>비밀번호 찾기</span>

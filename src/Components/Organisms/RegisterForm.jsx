@@ -100,7 +100,7 @@ const RegisterForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center align-middle gap-5 mt-5">
-      <img src={staticServerUri + "./logoKakaoText.png"} width={120}></img>
+      <img src={staticServerUri + "/logoKakaoText.png"} width={120}></img>
 
       <Container className="mx-auto w-2/5 h-2/5 border-[1.5px] p-14 mb-5">
         <InputGroup
@@ -179,7 +179,7 @@ const RegisterForm = () => {
           </Button>
         </Box>
         <div className="text-center text-xs text-stone-500 pt-3 ">
-          <Link to={staticServerUri + "/"}>홈으로</Link>
+          <Link to="/">홈으로</Link>
         </div>
       </Container>
     </div>
