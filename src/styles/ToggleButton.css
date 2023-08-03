@@ -1,0 +1,56 @@
+.toggle-button {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.5s;
+}
+
+.toggle-slider {
+  position: absolute;
+  top: 5px;
+  left: 2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: transform 0.3s;
+}
+
+.toggle-label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 12px;
+  color: #a59f9f;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  pointer-events: none;
+}
+
+.toggle-button.on {
+  background-color: #0A6EBD;
+}
+
+.toggle-slider.on {
+  transform: translateX(30px);
+}
+
+.toggle-label.on {
+  color: #ffffff;
+}
+
+.toggle-button.off {
+  background-color: #c9c6c6;
+}
+
+.toggle-slider.off {
+  transform: translateX(2px);
+}
+
+.toggle-label.off {
+  color: #999;
+}
