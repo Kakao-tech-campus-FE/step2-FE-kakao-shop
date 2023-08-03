@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
       <Card to={`${staticServerUrl}/product/${product.id}`}>
         <Photo
           className="card border-rounded"
-          src={product.image}
+          src={staticServerUrl + product.image}
           alt={product.productName}
         />
 
