@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/organisms/Form.css";
 import React, { useState } from "react";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 //hook으로
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const RegisterForm = () => {
       username: value.username,
     })
       .then((res) => {
-        navigate("/"); //회원가입 성공하면 메인 페이지로 리다이렉트
+        navigate(staticServerUrl + "/"); //회원가입 성공하면 메인 페이지로 리다이렉트
       })
       .catch((err) => {
         console.log("err", err);

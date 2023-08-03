@@ -1,12 +1,15 @@
 import { useState } from "react";
+import OptionList from "../atoms/OptionList";
+import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { addCart } from "../../services/cart";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import OptionList from "../atoms/OptionList";
-import Counter from "../atoms/Counter";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/molecules/OptionColumn.css";
+import { useNavigate } from "react-router-dom";
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OptionColumn = ({ product }) => {
   const navigate = useNavigate();
@@ -21,24 +24,31 @@ const OptionColumn = ({ product }) => {
     );
 
     if (isOptionSelected) {
-      alert("이미 선택된 옵션입니다🧐");
+      alert("이미 장바구니에 담긴 상품입니다🧐");
       return;
-    } else {
-      setSelectedOptions((prev) => [
-        ...prev,
-        {
-          optionId: option.id,
-          quantity: 1,
-          price: option.price,
-          name: option.optionName,
-        },
-      ]);
+      // setSelectedOptions((prev) =>
+      //   prev.map((prevOption) =>
+      //     prevOption.optionId === option.id
+      //       ? { ...prevOption, quantity: prevOption.quantity + 1 }
+      //       : prevOption
+      //   )
+      // );
+      // return;
     }
+
+    setSelectedOptions((prev) => [
+      ...prev,
+      {
+        optionId: option.id,
+        quantity: 1,
+        price: option.price,
+        name: option.optionName,
+      },
+    ]);
   };
 
   const handleOnChange = (count, optionId) => {
     setSelectedOptions((prev) => {
-      console.log("이거 옵션아이디", optionId, count);
       return prev.map((el) => {
         if (el.optionId === optionId) {
           return {
@@ -46,7 +56,6 @@ const OptionColumn = ({ product }) => {
             quantity: count,
           };
         }
-        console.log(el);
         return el;
       });
     });
@@ -60,17 +69,20 @@ const OptionColumn = ({ product }) => {
   return (
     <div className="option-column">
       <h3>옵션선택</h3>
-      <OptionList options={product.options} onClick={handleOnClickOption} />
+      <OptionList
+        options={product.options}
+        //사용자가 선택한 옵션이 담긴다.
+        onClick={handleOnClickOption}
+      />
 
       {/* 담긴 옵션 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={option.optionId} className="selected-option-list">
+        <ol key={option.id} className="selected-option-list">
           <li className="selected-option-item">
             <span className="selected-option-name">{option.name}</span>
             <div className="selected-option-update">
               <Counter
                 className="selected-option-count"
-                quantity={option.quantity}
                 onIncrease={(count) => handleOnChange(count, option.optionId)}
                 onDecrease={(count) => handleOnChange(count, option.optionId)}
               />
@@ -119,12 +131,11 @@ const OptionColumn = ({ product }) => {
       </div>
 
       <div className="button-group">
-        <Button className="like-btn">
+        <Button className="btn-l">
           <span className="material-symbols-outlined">favorite</span>
         </Button>
         <Button
           onClick={() => {
-            console.log(selectedOptions);
             mutate(
               // selectedOptions에서 필요한 데이터만 id와 수량만
               selectedOptions.map((el) => {
@@ -136,7 +147,7 @@ const OptionColumn = ({ product }) => {
               {
                 onSuccess: () => {
                   alert("장바구니에 담겼습니다😊");
-                  navigate("/cart");
+                  navigate(staticServerUrl + "/cart");
                 },
                 onError: () => {
                   alert("장바구니 담기에 실패했습니다😥");
@@ -144,13 +155,13 @@ const OptionColumn = ({ product }) => {
               }
             );
           }}
-          className="cart-btn"
+          className="btn-l"
         >
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
         {/* <Button className="order-btn">구매하기</Button> */}
         <Button variant="order-btn" className="order-btn">
-          <span>구매하기</span>
+          구매하기
         </Button>
       </div>
     </div>

@@ -12,29 +12,48 @@ import ErrorPage from "./pages/ErrorPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import OrderCompletePage from "./pages/OrderCompletePage";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           {/* 단독 레이아웃 */}
-          <Route path="/login" element={<LoginPage />}></Route>
-          <Route path="/signup" element={<RegisterPage />}></Route>
+          <Route
+            path={staticServerUrl + "/login"}
+            element={<LoginPage />}
+          ></Route>
+          <Route
+            path={staticServerUrl + "/signup"}
+            element={<RegisterPage />}
+          ></Route>
           {/* 공통 레이아웃: GNB, Footer */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />}></Route>
-            <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+            <Route path={staticServerUrl + "/"} element={<HomePage />}></Route>
+            <Route
+              path={staticServerUrl + "/product/:id"}
+              element={<ProductDetailPage />}
+            ></Route>
           </Route>
           {/* 로그인된 사용자만 접근 가능 영역 */}
           <Route element={<RequiredAuthLayout />}>
-            <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/order" element={<OrderPage />}></Route>
             <Route
-              path="/orders/complete/:id"
+              path={staticServerUrl + "/cart"}
+              element={<CartPage />}
+            ></Route>
+            <Route
+              path={staticServerUrl + "/order"}
+              element={<OrderPage />}
+            ></Route>
+            <Route
+              path={staticServerUrl + "/orders/complete/:id"}
               element={<OrderCompletePage />}
             ></Route>
           </Route>
-          <Route path="/error" element={<ErrorPage />}></Route>
+          <Route
+            path={staticServerUrl + "/error"}
+            element={<ErrorPage />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>
@@ -42,5 +61,3 @@ function App() {
 }
 
 export default App;
-
-// 1주차 컴포넌트들 삭제.(주석처리 했더니 너무 많아 코드가 지저분..)
