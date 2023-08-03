@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20-slim AS build
+FROM krmp-d2hub-idock.9rum.cc/goorm/node:16  AS build
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 ENV VITE_KAKAO_STORE_URL="%SERVER_URL%"
