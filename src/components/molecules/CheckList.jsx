@@ -35,17 +35,11 @@ const Container = styled.div`
   margin: 1rem 0;
 `;
 
-const CheckList = ({ id, name, htmlFor, children, checked, onChange }) => {
+const CheckList = ({ htmlFor, children, ...inputProps }) => {
   return (
     <>
       <Container>
-        <InputCheck
-          type="checkbox"
-          id={id}
-          name={name}
-          checked={checked}
-          onChange={onChange}
-        />
+        <InputCheck type="checkbox" {...inputProps} />
         <label htmlFor={htmlFor}>{children}</label>
       </Container>
     </>
