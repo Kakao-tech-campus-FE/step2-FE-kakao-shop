@@ -10,6 +10,7 @@ import ProductWithOptionCard from "../components/organisms/ProductWithOptionCard
 import {priceFormat} from "../util/Format";
 import {ElevatedButton} from "../components/atoms/Buttons";
 import {useNavigate} from "react-router-dom";
+import {convertUrl} from "../const";
 
 const PaymentPage = () => {
         const {isLoading, isError, data, error} = useQuery(['cart'],
@@ -25,7 +26,7 @@ const PaymentPage = () => {
                     alert("응답이 잘못되었습니다.");
                     return;
                 }
-                navigate(`/ordered/${data.id}`);
+                navigate(convertUrl(`/ordered/${data.id}`));
             },
             onError: () => {
                 alert("주문에 실패하였습니다.");

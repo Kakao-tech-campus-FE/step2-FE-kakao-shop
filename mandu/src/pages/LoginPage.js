@@ -6,6 +6,7 @@ import cookie from "react-cookies";
 import {useDispatch} from "react-redux";
 import {setId} from "../redux/userSlice";
 import {ElevatedButton} from "../components/atoms/Buttons";
+import {convertUrl} from "../const";
 
 const LoginPage = () => {
     const navigate = useNavigate();
@@ -36,7 +37,7 @@ const LoginPage = () => {
         });
         dispatch(setId(id));
         alert("로그인이 완료되었습니다!")
-        navigate("/");
+        navigate(convertUrl("/"));
     }
     const onLoginFail = (message) => {
         alert(message ?? "로그인에 실패했습니다!");
@@ -78,7 +79,7 @@ const LoginPage = () => {
                     <ElevatedButton id="login-btn" className="mt-8 bg-amber-300" type="submit" disabled={submitting}>
                         로그인
                     </ElevatedButton>
-                    <Link to="/signup"
+                    <Link to={convertUrl("/signup")}
                           className="inline-block text-sm font-medium w-full bg-gray-400 text-center rounded-md p-3 mt-2">
                         회원가입
                     </Link>

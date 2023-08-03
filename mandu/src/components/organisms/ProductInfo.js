@@ -8,6 +8,7 @@ import {addInCart} from "../../services/apis";
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {convertUrl} from "../../const";
 
 const ProductInfo = ({product, showDialog}) => {
     const {productName, price, starCount, options} = product;
@@ -80,7 +81,7 @@ const ProductInfo = ({product, showDialog}) => {
     const onPurchase = (e) => {
         if (!userId) return alert("로그인이 필요합니다.");
         e.preventDefault();
-        navigate("/payment");
+        navigate(convertUrl("/payment"));
     }
 
     return (

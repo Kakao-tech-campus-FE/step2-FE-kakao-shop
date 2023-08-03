@@ -4,6 +4,7 @@ import cookie from "react-cookies";
 import {setId} from "../../redux/userSlice";
 import {useEffect, useRef} from "react";
 import Dialog from "../atoms/Dialog";
+import {convertUrl} from "../../const";
 
 const UserNav = () => {
 
@@ -28,7 +29,7 @@ const UserNav = () => {
 
     const goToCart = () => {
         if (!!userId) {
-            navigate('/cart');
+            navigate(convertUrl('/cart'));
         } else {
             modalRef.current.showModal();
         }
@@ -58,7 +59,7 @@ const UserNav = () => {
                             <img alt="로그아웃" className="h-4 mx-4" src={process.env.PUBLIC_URL + "/logout.png"}/>
                         </button>
                     </div> :
-                    <Link id="header-login-btn" to="/login"
+                    <Link id="header-login-btn" to={convertUrl("/login")}
                           className="text-sm">
                         로그인
                     </Link>}

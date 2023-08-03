@@ -4,6 +4,7 @@ import {userValidation} from "../util/validation";
 import {checkDuplicateEmail, signUp} from "../services/apis";
 import {useNavigate} from "react-router-dom";
 import {ElevatedButton} from "../components/atoms/Buttons";
+import {convertUrl} from "../const";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const SignUpPage = () => {
         try {
             await signUp({email: value.id, password: value.password, username: value.name});
             alert("회원가입이 완료되었습니다!");
-            navigate("/login");
+            navigate(convertUrl("/login"));
         } catch (e) {
             alert(e.message);
         }

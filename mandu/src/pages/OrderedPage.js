@@ -4,6 +4,7 @@ import ErrorPage from "./ErrorPage";
 import OrderedBody from "../components/organisms/OrderedBody";
 import OrderedHeader from "../components/molecules/OrderedTop";
 import {ElevatedButton} from "../components/atoms/Buttons";
+import {convertUrl} from "../const";
 
 const OrderedPage = () => {
     const {orderedId} = useParams();
@@ -13,7 +14,7 @@ const OrderedPage = () => {
         <div className="mx-auto max-w-screen-sm my-10">
             <OrderedHeader/>
             <OrderedBody orderedId={orderedId}/>
-            <Link to="/">
+            <Link to={convertUrl("/")}>
                 <ElevatedButton className="w-full h-12 bg-amber-300 font-semibold">쇼핑 계속하기</ElevatedButton>
             </Link>
         </div>

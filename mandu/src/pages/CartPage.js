@@ -6,6 +6,7 @@ import ProductWithOptionCard from "../components/organisms/ProductWithOptionCard
 import {ElevatedButton} from "../components/atoms/Buttons";
 import {useNavigate} from "react-router-dom";
 import MdLayOut from "../components/templates/MdLayOut";
+import {convertUrl} from "../const";
 
 const CartPage = () => {
 
@@ -20,7 +21,7 @@ const CartPage = () => {
 
     const onPurchase = (e) => {
         e.preventDefault();
-        navigate("/payment");
+        navigate(convertUrl("/payment"));
     }
 
     return (

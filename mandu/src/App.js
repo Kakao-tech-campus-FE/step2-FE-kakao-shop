@@ -11,8 +11,10 @@ import ErrorPage from "./pages/ErrorPage";
 import {ErrorType} from "./services/type";
 import PaymentPage from "./pages/PaymentPage";
 import OrderedPage from "./pages/OrderedPage";
+import {convertUrl} from "./const";
 
 const queryClient = new QueryClient()
+
 
 function App() {
     const notFound = new ErrorType({message: "찾을 수 없는 페이지 입니다.", status: 404});
@@ -22,14 +24,14 @@ function App() {
             <div className="App">
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/login" element={<LoginPage/>}/>
-                        <Route path="/signup" element={<SignUpPage/>}/>
+                        <Route path={convertUrl("/login")} element={<LoginPage/>}/>
+                        <Route path={convertUrl("/signup")} element={<SignUpPage/>}/>
                         <Route element={<MainLayout/>}>
-                            <Route path='/' element={<MainPage/>}/>
-                            <Route path='/cart' element={<CartPage/>}/>
-                            <Route path='/product/:productId' element={<ProductPage/>}/>
-                            <Route path='/payment' element={<PaymentPage/>}/>
-                            <Route path='/ordered/:orderedId' element={<OrderedPage/>}/>
+                            <Route path={convertUrl('/')} element={<MainPage/>}/>
+                            <Route path={convertUrl('/cart')} element={<CartPage/>}/>
+                            <Route path={convertUrl('/product/:productId')} element={<ProductPage/>}/>
+                            <Route path={convertUrl('/payment')} element={<PaymentPage/>}/>
+                            <Route path={convertUrl('/ordered/:orderedId')} element={<OrderedPage/>}/>
                         </Route>
                         <Route path='/*'
                                element={<ErrorPage error={notFound}/>}/>
