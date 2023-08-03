@@ -1,0 +1,30 @@
+.toast-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease; /* opacity와 transform 속성 변경 시 애니메이션 효과 추가 */
+  transform: translateY(100%); /* 초기에는 화면 아래 숨겨져 있도록 설정 */
+  z-index: 1;
+}
+
+.toast-background.active {
+  opacity: 1;
+  transform: translateY(
+    0
+  ); /* 토스트가 보일 때 화면 위쪽으로부터 보이는 위치로 이동 */
+}
+
+.toast-container {
+  position: fixed;
+  bottom: 5%; /* 토스트가 보이는 초기 위치 */
+  left: 50%;
+  transform: translate(-50%, 0); /* 토스트가 보이는 초기 위치 (화면 중앙) */
+  width: 700px;
+  height: auto;
+  background-color: black;
+}

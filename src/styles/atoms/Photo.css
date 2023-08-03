@@ -1,0 +1,25 @@
+/* picture의 크기를 상속 */
+picture > img {
+  width: inherit;
+}
+
+picture.card {
+  width: 200px;
+  overflow: hidden;
+}
+picture.card > img {
+  width: 100%;
+  max-width: 360px;
+}
+picture.card > img:hover {
+  transform: scale(1.15);
+  transition: transform 0.3s;
+}
+
+picture.detail-photo {
+  width: 430px;
+}
+img.detail-photo {
+  width: 100%;
+  max-width: 500px;
+}

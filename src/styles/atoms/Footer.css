@@ -1,0 +1,70 @@
+.pc_footer .inner_foot {
+  overflow: hidden;
+  position: relative;
+  width: 1280px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+.pc_footer {
+  background-color: #fafafa;
+}
+.ng-star-inserted {
+  font-size: 14px;
+  line-height: 1.5;
+  font-family: HelveticaNeue, AppleSDGothicNeo-Regular, tahoma, Malgun Gothic,
+    \b9d1\c740\ace0\b515, dotum, \b3cb\c6c0, sans-serif;
+  color: #333;
+}
+.pc_footer .tit_logo {
+  float: left;
+  width: 144px;
+  height: 20px;
+}
+.pc_footer .corp_info {
+  overflow: hidden;
+  padding-left: 30px;
+}
+.pc_footer .kakao_info {
+  overflow: hidden;
+  padding-bottom: 2px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #a6a6a6;
+}
+.pc_footer .kakao_info .txt_info {
+  float: left;
+  padding-right: 8px;
+}
+.pc_footer .txt_copyright {
+  display: block;
+  padding: 6px 0 8px;
+  font-size: 12px;
+  line-height: 18px;
+  color: #a6a6a6;
+}
+.pc_footer .service_info {
+  position: absolute;
+  right: 0;
+  top: 40px;
+  font-size: 0;
+}
+.pc_footer .kakao_info .link_info {
+  color: #a6a6a6;
+  text-decoration: underline;
+}
+.pc_footer .mark_info {
+  display: block;
+  font-size: 0;
+  padding-top: 13px;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+.pc_footer .img_isolation {
+  display: inline-block;
+  width: 111px;
+  height: 31px;
+  margin: 5px 0 0 22px;
+  vertical-align: top;
+}
