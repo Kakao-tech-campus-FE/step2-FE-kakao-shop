@@ -119,7 +119,7 @@ const DetailOption = (props) => {
     addToCart(newList)
     .then((res)=> {
       setSelected(prev => [])
-      setToast("장바구니에 상품을 담았습니다.", '/carts')
+      setToast("장바구니에 상품을 담았습니다.", '/cart')
     })
   }
 
