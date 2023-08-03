@@ -11,7 +11,6 @@ import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 
 const CartList = ({ data }) => {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
 
     const navigate = useNavigate();
     const [cartItems, setCartItems] = useState([]);
@@ -150,7 +149,7 @@ const CartList = ({ data }) => {
                             disabled={disable}
                             onClick={() => {
                                 //update cart api 장바구니 정보 수정 api
-                                navigate(staticServerUri + "/order");
+                                navigate("/order");
                             }}    
                         ><div className=" text-center">총 {cartItems ? getTotalCartCountIncludeOptions() : 0} 건 주문하기</div>
                         </Button>

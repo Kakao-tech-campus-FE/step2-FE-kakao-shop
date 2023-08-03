@@ -3,15 +3,12 @@ import Photo from "../atoms/Photo";
 
 
 const ProductInformationColumn = ({ product }) => {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
 
-    const { productName, price, image  } = product;
-    const imagePath = `${staticServerUri}${image}`;
-    
+    const { productName, price, image  } = product;    
     return (
         <div className="flex">
             <div className="h-80 w-80 m-8">
-                <Photo src={`${staticServerUri}${image}`} alt={productName} />
+                <Photo src={image} alt={productName} />
             </div>
             <div className="p-8">
                 <h1 className="text-3xl">{productName}</h1>

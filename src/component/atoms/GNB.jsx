@@ -6,7 +6,6 @@ import { useEffect } from "react";
 import Button from "./Button";
 
 function GNB() {
-    const staticServerUri = process.env.REACT_APP_PATH || "";
 
     const email = useSelector((state) => state.user.email);
     const dispatch = useDispatch();
@@ -47,7 +46,7 @@ function GNB() {
                                     {" "}
                                 </Button>
                              ) : (
-                                 <Button className = "logButton" onClick={() => {navigate(staticServerUri + "/login")}} style = {{textDecoration: "none", color: "black"}}>
+                                 <Button className = "logButton" onClick={() => {navigate("/login")}} style = {{textDecoration: "none", color: "black"}}>
                                  {" "}로그인
                                  {" "}
                                  </Button>
