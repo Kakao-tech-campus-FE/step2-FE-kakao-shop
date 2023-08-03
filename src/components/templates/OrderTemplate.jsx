@@ -4,6 +4,8 @@ import { useMutation } from 'react-query'
 import { order, } from '../../services/order'
 import { useNavigate } from 'react-router-dom'
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function OrderTemplate({ data }) {
   const { products, totalPrice } = data.data.response
   const navigate = useNavigate()
@@ -50,7 +52,7 @@ function OrderTemplate({ data }) {
       onSuccess: (res) => {
         const id = res.data.response.id
         alert("주문이 완료되었습니다.")
-        navigate(`../orders/complete/${id}`)
+        navigate(staticServerUri + `../orders/complete/${id}`)
       },
       onError: (error) => {
         console.log(error)
@@ -61,7 +63,7 @@ function OrderTemplate({ data }) {
 
         // 장바구니에 아무것도 존재하지 않을 때, == 404status 상황
         alert(error.data.error.message)
-        navigate(`/`)
+        navigate(staticServerUri + `/`)
       },
     })   
 }

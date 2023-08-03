@@ -1,9 +1,11 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function Photo({ src, alt, size }) {
 
-  src = process.env.REACT_APP_API_URL + src
+  src = staticServerUri + src
   return (
     <Picture size={size}>
       <source srcSet={src}/>

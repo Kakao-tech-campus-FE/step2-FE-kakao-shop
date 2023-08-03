@@ -16,6 +16,7 @@ const ProductsList = styled.div`
     line-height: 1.5;
   }
 `
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const ProductItems = (products) => products.map((product) => {
   return (
@@ -32,7 +33,7 @@ function OrderCompleteTemplate({ data }) {
   const navigation = useNavigate()
 
   function Home() {
-    navigation('/')
+    navigation(staticServerUri + '/')
   }
 
   return (
