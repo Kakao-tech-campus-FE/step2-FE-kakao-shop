@@ -3,7 +3,7 @@ import '../../styles/organisms/ProductGrid.css'
 
 
 const ProductGrid = ({ products }) => 
-  <div className="flex justify-center items-center w-full">
+  <div className="product-grid">
     {
       products.map((product) => (
         <ProductCard key={product.id} product={product}/>
