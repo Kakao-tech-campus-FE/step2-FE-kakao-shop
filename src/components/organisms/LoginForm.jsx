@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../store/userSlice";
 import Box from "../atoms/Box";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 const LoginForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -33,7 +34,7 @@ const LoginForm = (props) => {
             username: user.username,
           })
         );
-        navigate("/");
+        navigate(staticServerUri + "/");
 
         // 메인 페이지로 이동
       } else {
@@ -116,7 +117,7 @@ const LoginForm = (props) => {
           <br />
           <br />
           <Link
-            to="/signup"
+            to={staticServerUri + "/signup"}
             style={{ textDecoration: "none", color: "black", fontSize: "16px" }}
           >
             회원가입

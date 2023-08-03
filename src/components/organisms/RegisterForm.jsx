@@ -7,6 +7,8 @@ import Title from "../atoms/Title";
 import { useLocation, useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = (props) => {
   // const { value, handleOnChange } = useInput({   username: "",   email: "",
   // password: "",   passwordCheck: "", });
@@ -30,7 +32,7 @@ const RegisterForm = (props) => {
       if (response.data.success === true) {
         // 성공적으로 로그인한 경우 메인 페이지로 이동
         alert("정상적으로 회원가입 되었습니다.");
-        navigate("/");
+        navigate(staticServerUri + "/");
       } else {
         // 로그인 실패 처리
         console.error("sign up failed");

@@ -7,6 +7,8 @@ import Loading from "../atoms/Loader";
 import Box from "../atoms/Box";
 import Notice from "../atoms/notice";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const MainProduct = () => {
   const bottomObserverRef = useRef(null);
   const {

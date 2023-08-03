@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/updateCart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const CartList = ({ data }) => {
   const [cartItems, setCartItem] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -120,7 +122,7 @@ const CartList = ({ data }) => {
           onClick={() => {
             mutate(updatePayload, {
               onSuccess: () => {
-                navigate("/order");
+                navigate(staticServerUri + "/order");
               },
               onError: (error) => {
                 alert({ error });

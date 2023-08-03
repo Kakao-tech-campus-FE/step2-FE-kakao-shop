@@ -3,6 +3,9 @@ import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
 import Badge from "../atoms/Badge";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderDone = ({ orderData, totalPrice, products }) => {
   const navigate = useNavigate();
 
@@ -81,7 +84,9 @@ const OrderDone = ({ orderData, totalPrice, products }) => {
             {comma(totalPrice)}원
           </div>
         </div>
-        <Button onClick={() => navigate("/")}>쇼핑 계속하기</Button>
+        <Button onClick={() => navigate(staticServerUri + "/")}>
+          쇼핑 계속하기
+        </Button>
       </div>
     </div>
   );

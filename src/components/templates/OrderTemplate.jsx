@@ -6,6 +6,9 @@ import Loading from "../atoms/Loader";
 import { useState } from "react";
 import Button from "../atoms/Button";
 import Badge from "../atoms/Badge";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
 
@@ -41,7 +44,7 @@ const OrderTemplate = ({ data }) => {
           const id = res?.data?.response?.id;
           console.log(id);
           alert("주문이 완료 되었습니다.");
-          navigate(`/orders/${id}`);
+          navigate(staticServerUri + `/orders/${id}`);
         },
       });
     }

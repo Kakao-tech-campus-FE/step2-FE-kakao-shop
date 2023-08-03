@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import logo from "../../imgs/logoKakao.png";
 import cart from "../../imgs/cart.png";
 import "./GNB.css";
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function GNB() {
   const email = useSelector((state) => state.user.email);
@@ -19,7 +20,7 @@ function GNB() {
     // localStorage.removeItem("access_token");
     alert("정상적으로 로그아웃 되었습니다.");
 
-    navigate("/");
+    navigate(staticServerUri + "/");
     // 새로고침
     window.location.reload();
   };
@@ -34,7 +35,7 @@ function GNB() {
     <header className="header bg-white px-4 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
       <div className="inner flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/">
+          <Link to={staticServerUri + "/"}>
             <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
           </Link>
           <div className="sub-menu ml-40 mt-2 ">
@@ -58,7 +59,7 @@ function GNB() {
           </div>
         </div>
         <nav className="navigation flex items-center text-base text-gray-700">
-          <Link to="/carts" className="relative cart mr-4">
+          <Link to={staticServerUri + "/carts"} className="relative cart mr-4">
             <img src={cart} alt="장바구니 버튼" className="h-8" />
           </Link>
           {email ? (
@@ -70,10 +71,13 @@ function GNB() {
             </div>
           ) : (
             <>
-              <Link to="/login" className="login text-black mr-2">
+              <Link
+                to={staticServerUri + "/login"}
+                className="login text-black mr-2"
+              >
                 로그인
               </Link>
-              <Link to="/signup" className="text-black">
+              <Link to={staticServerUri + "/signup"} className="text-black">
                 회원가입
               </Link>
             </>

@@ -19,7 +19,7 @@ const ProductInformationColumn = ({ product }) => {
             <span className="flex">
               <p className="text-2xl text-blue-500">★★★★</p>
               <a
-                href="#" // 리뷰 링크를 적절한 주소로 변경해주세요.
+                href="#"
                 className="text-blue-500 m-2 underline hover:text-blue-700"
               >
                 리뷰 5,767건
