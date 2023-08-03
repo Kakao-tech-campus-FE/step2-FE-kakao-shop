@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Photo = ({ src, alt }) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -10,14 +12,16 @@ const Photo = ({ src, alt }) => {
     setIsHovered(false);
   };
 
+  const photoSrc = staticServerUri + src;
+
   return (
     <ImageContainer
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <picture>
-        <source srcSet={src} className="h-48 w-full" />
-        <Image src={src} alt={alt} isHovered={isHovered} />
+        <source srcSet={photoSrc} className="h-48 w-full" />
+        <Image src={photoSrc} alt={alt} isHovered={isHovered} />
       </picture>
     </ImageContainer>
   );
