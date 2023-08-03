@@ -7,7 +7,7 @@ const MainLogo = ({className}) => {
     <div className={className}>
       <Link to={staticServerUrl + "/main"} >
         <h1>
-          <img className="block" src="/assets/kakaologo.png" alt="main_Logo"></img>
+          <img className="block" src={staticServerUrl + "/assets/kakaologo.png"} alt="main_Logo"></img>
         </h1>
       </Link>
     </div>

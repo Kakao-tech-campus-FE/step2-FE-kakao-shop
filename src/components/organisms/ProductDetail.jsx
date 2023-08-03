@@ -1,10 +1,12 @@
 import StarRating from "../atoms/StarRating.tsx"
 import ProducePrice from "../atoms/ProductPrice"
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const ProductDetail = ({product}) => {
   return (
     <div className="flex w-128">
-      <img src={`/assets/${product.image}`}  alt={product.name} className="w-60 h-60 rounded-lg" />
+      <img src={`${staticServerUrl}/assets${product.image}`}  alt={product.name} className="w-60 h-60 rounded-lg" />
       <div className="w-96">
         <StarRating starCount={product.starCount} />
         <div className="pb-1 text-xl">{product.productName}</div>
