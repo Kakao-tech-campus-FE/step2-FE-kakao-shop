@@ -22,7 +22,7 @@ const ProductCard = ({ product, loading }) => {
   return (
     <Card to={`/product/${product.id}`} className="product-card pb-[50px]">
       <Photo
-        src={`${staticServerUri}/api/${product.image.substring(
+        src={`${staticServerUri}/${product.image.substring(
           1,
           product.image.length
         )}`}
