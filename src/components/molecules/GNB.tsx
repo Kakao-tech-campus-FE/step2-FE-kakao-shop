@@ -38,7 +38,7 @@ const GNB = () => {
       <Container className='flex items-center justify-between py-4'>
         <KaKaoShopLogo />
         <div className='flex items-center space-x-6'>
-          <Link to={staticUrl('cart')} onClick={handleChartLinkClick}>
+          <Link to={staticUrl('/cart')} onClick={handleChartLinkClick}>
             <HiOutlineShoppingCart size={25} />
           </Link>
           {currentEmail ? <Button onClick={handleLogoutButtonClick}>로그아웃</Button> : <LoginLink />}
