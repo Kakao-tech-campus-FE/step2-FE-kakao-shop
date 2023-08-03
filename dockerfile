@@ -12,4 +12,4 @@ COPY default.conf /etc/nginx/conf.d/
 
 RUN npm install -g serve
 
-CMD npm run build && service nginx start && serve -s build
+CMD npm run build && service nginx start && serve -s build 
