@@ -18,7 +18,7 @@ export default function ProductCard({ product, isFetching }) {
           to={staticServerUrl + `/product/${product.id}`}
           className="no-underline"
         >
-          <Container className="flex h-96 w-64 flex-col items-start border-solid border-slate-200 p-5">
+          <Container className="flex h-96 w-64 flex-col items-start border-solid border-zinc-300 p-5">
             <Photo
               className="card"
               src={staticServerUrl + `/images/${product.id}.jpg`}

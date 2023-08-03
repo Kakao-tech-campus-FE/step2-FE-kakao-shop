@@ -19,7 +19,7 @@ export default function CartOptionItem({ cart, onChange }) {
           <div className="flex items-center justify-between">
             <div className="flex gap-1">
               <Button
-                className="inline-flex h-8 w-10 cursor-pointer items-center border-[1px]  border-solid border-zinc-300 bg-white"
+                className="inline-flex h-8 cursor-pointer items-center border-[1px]  border-solid border-zinc-300 bg-white"
                 onClick={() => {
                   mutate([{ cartId: cart.id, quantity: 0 }], {
                     onSuccess: (data) => {
