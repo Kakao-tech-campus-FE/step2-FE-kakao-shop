@@ -61,7 +61,15 @@ const OptionColumn = ({ product }) => {
     });
   };
   const handleOnOrder = () => {
-    alert('미구현 기능입니다');
+    mutate(
+      selectedOptions.map((el) => {
+        return {
+          optionId: el.optionId,
+          quantity: el.quantity,
+        };
+      }),
+    );
+    navigate('/cart');
   };
   return (
     <div className="option-column">
@@ -102,6 +110,7 @@ const OptionColumn = ({ product }) => {
       톡딜가 구매 : 개발 X */}
       <div className="button-group" />
       <Button
+        disabled={!totalQuantity}
         onClick={() => {
           mutate(
             selectedOptions.map((el) => {
@@ -113,6 +122,7 @@ const OptionColumn = ({ product }) => {
             {
               onSuccess: () => {
                 alert('장바구니에 담겼습니다.');
+                setSelectedOptions([]);
               },
               onError: (error) => {
                 if (error.response.request.status === 401) {
@@ -129,7 +139,9 @@ const OptionColumn = ({ product }) => {
         장바구니담기
       </Button>
       <br />
-      <Button onClick={handleOnOrder}>결제하기</Button>
+      <Button onClick={handleOnOrder} disabled={!totalQuantity}>
+        결제하기
+      </Button>
     </div>
   );
 };

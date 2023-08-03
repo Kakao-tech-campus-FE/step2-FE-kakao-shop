@@ -136,9 +136,9 @@ const OrderTemplate = ({ data }) => {
                   }
                 },
                 onSuccess: (res) => {
-                  // const { id } = res.response;
+                  const { id } = res.data.response;
                   alert('주문완료');
-                  // navigate(`/orders/complete/${id}`);
+                  navigate(`/orders/complete/${id}`);
                 },
               });
               // Post :/orders/save

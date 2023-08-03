@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import React from 'react';
+import React, { Suspense } from 'react';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 // import HomePage from './pages/Homepage'
@@ -12,6 +12,7 @@ import { ErrorPage } from './pages/ErrorPage';
 import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import RequiredAuthLayout from './layouts/RequiredAuthLayout';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 const staticServerUrl = process.env.REACT_APP_PATH || '';
 
