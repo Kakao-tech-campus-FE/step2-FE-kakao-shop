@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 const Photo = ({ src, alt }) => {
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -12,7 +10,7 @@ const Photo = ({ src, alt }) => {
     setIsHovered(false);
   };
 
-  const photoSrc = staticServerUri + "/public" + src;
+  const photoSrc = `/images/` + src;
 
   return (
     <ImageContainer
