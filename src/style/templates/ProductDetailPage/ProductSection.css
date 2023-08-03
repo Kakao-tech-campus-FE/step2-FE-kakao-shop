@@ -1,0 +1,29 @@
+.product-section {
+  @apply flex col-span-2 py-4 px-4 border-r border-gray-300;
+}
+
+.product-info {
+  @apply flex grid-cols-2;
+}
+
+.product-info > .split {
+  @apply w-1/2 py-2 px-2;
+}
+
+.product-information > .product-name,
+.product-description,
+.product-price {
+  @apply text-xl leading-snug py-2;
+}
+
+.product-price {
+  @apply font-bold;
+}
+
+.area-star {
+  @apply pb-2;
+}
+
+.star-icon {
+  @apply text-lg text-blue-500;
+}

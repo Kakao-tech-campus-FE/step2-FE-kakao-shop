@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.content {
+  @apply pt-20 flex justify-center;
+}
+
+.btn {
+  @apply py-2 px-4 my-2 rounded-md w-full bg-gray-300 hover:bg-gray-400 active:bg-gray-500;
+}
+
+.primary {
+  @apply bg-primary hover:bg-primary-hover active:bg-primary-active;
+}
+
+.container {
+  @apply relative w-75% min-w-400 max-w-750;
+}
+
+.box_form {
+  @apply w-full my-4 border-solid border-b border-t-0 border-x-0 border-gray-500;
+}
+
+.label_form {
+  @apply w-full;
+}
+
+.input_form {
+  @apply w-full border-none focus:outline-none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  margin-bottom: 1rem;
+}
+
+.example {
+  background-color: whitesmoke;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.example-header {
+  font-weight: bold;
+}
