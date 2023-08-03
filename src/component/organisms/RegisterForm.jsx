@@ -6,6 +6,9 @@ import { register } from "../../services/user";
 import React, { useState } from "react";
 import Box from "../atoms/Box";
 import { useNavigate } from "react-router-dom";
+import { registerRequest } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
+
 
 const RegisterForm =() =>{
   const navigate=useNavigate();
@@ -22,6 +25,7 @@ const RegisterForm =() =>{
     });
     const [error, setError] = useState("");
   
+    const dispatch=useDispatch();
     
     
 
@@ -45,25 +49,12 @@ const RegisterForm =() =>{
     }
     else{
  // 에러가 없을 경우에는 빈 메시지
-
-    register({
+dispatch(registerRequest({
       email: value.email,
       password: value.password,
       username: value.username
-    })
-      .then(res => {
-            navigate("/");})
-        // 회원가입 성공 처리
-        .catch((error) => {
-          console.log("error", error);
-          if (error.data?.error?.message) {
-            setError(error.data.error.message);
-          } else {
-            navigate("/");
-            
-            setError("회원가입 실패");
-          }
-        });}
+    }))
+    }
         
       }
     return (
@@ -86,7 +77,7 @@ const RegisterForm =() =>{
         />
         <Box>
         <span 
-        className="error"> {alert
+        className="error"> {error
         }
         </span>
         

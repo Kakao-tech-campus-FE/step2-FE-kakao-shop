@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect} from "react";
 import Photo from "../atoms/Photo";
 
-const ProductGrid = ({products})=>{
+
     const ProductGrid = ({ product }) => {
         const [products, setData] = useState(null);
         // const [loding, setLoding] = useState(true);
@@ -21,15 +21,17 @@ const ProductGrid = ({products})=>{
           };
           fetchData();
         }, []);
-    }
+    
+  
 
 //presentation components: 데이어를 단순히 표기만 하는 용도
     return(
         <div className="product-grid">
-            {products.map((product)=>(
+            {products && products.map((product)=>(
                 <ProductCard key={product.id} product={product} />
             ))}
         </div>
     )
-}
+            }
+
 export default ProductGrid;

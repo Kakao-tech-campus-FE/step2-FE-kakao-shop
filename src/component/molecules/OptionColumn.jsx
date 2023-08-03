@@ -5,6 +5,7 @@ import { useMutation } from "react-query";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { addCart } from "../../services/addCart";
+import Button from "../atoms/Button";
 
 
 const OptionColumn = ({ product }) => {
@@ -81,7 +82,7 @@ const{mutate}=useMutation({
         <ol key={option.id} className="selected-option-list">  
           <li className="selected-option">
             <Counter
-            onIncrease={(count)=>handleOnChang(count, option.id)}
+            onIncrease={(count)=>handleOnChange(count, option.id)}
             onDecrease={(count)=>handleOnChange(count, option.id)}
             />
           <span className="name">{option.name}</span>

@@ -145,7 +145,7 @@ const OrderTemplate=({data})=>{
 
 
             mutate(null, {
-                onError:()=>{
+                onError:(err)=>{
                 alert("주문에 실패했습니다.")
             },
             onSuccess: (res)=>{
@@ -157,7 +157,7 @@ const OrderTemplate=({data})=>{
 
 
         }}
-
+        // className={`w-full p-4 font-medium`}
 
         >
             결제하기

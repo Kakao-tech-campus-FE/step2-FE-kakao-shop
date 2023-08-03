@@ -5,6 +5,7 @@ import _ from "lodash";
 const initialState = {
     detail: null,
     loading: false,
+    token:null,
     error: null, //error exist: { message, status}
     isEnd: false,
 };
@@ -33,13 +34,11 @@ const detailSlice= createSlice({
 export const getDetail = createAsyncThunk(
     "detail/getDetail",
     async(id, thunkAPI)=>{
-        try{
             const response = await getProductById(id);
             return response.data;
-        } catch(e){
-            return thunkAPI.rejectWithValue(e.response.data);
-        }
     }
+           
+    
 );
 
 export default detailSlice.reducer;

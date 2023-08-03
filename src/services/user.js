@@ -1,8 +1,8 @@
 import { instance } from "./index";
 
-export const register = (data) => {
+export const register = async (data) => {
     const { email, password, username } = data;
-    return instance.post("/join", {
+    return await instance.post("/join", {
       email,
       password,
       username,

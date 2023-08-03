@@ -2,7 +2,6 @@ import {configureStore} from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
 import productReducer from "./slices/ProductSlice"
 import detailReducer from "./slices/detailSlice"
-import thunkMiddleware from "redux-thunk"
 
 const store = configureStore({
     reducer: {
@@ -13,7 +12,6 @@ const store = configureStore({
         //프로덕브 리듀서
         product: productReducer,
     },
-    middleware: [thunkMiddleware],
 });
 
 //리덕스+리덕스 thunk or toolkit or saga 하나만 사용

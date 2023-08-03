@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import Box from "../atoms/Box";
 import { useNavigate } from "react-router-dom";
-import { setEmail } from "../../store/slices/userSlice";
+import { loginRequest, setEmail } from "../../store/slices/userSlice";
 // import { setUser } from "../../store/slices/userSlice";
 
 const LoginForm =() =>{
@@ -22,7 +22,7 @@ const LoginForm =() =>{
         password:"",
     });
 
-    const loginReq = ()=> {
+    const loginRequest = ()=> {
       
         login({
             email: value.email,
@@ -75,7 +75,7 @@ const LoginForm =() =>{
           }
       
           setError(""); // 에러가 없을 경우에는 빈 메시지
-                    loginReq();
+                    loginRequest();
             }}
             >
                 로그인
