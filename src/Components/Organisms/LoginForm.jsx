@@ -53,7 +53,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex flex-col min-h-screen justify-center items-center align-middle gap-8">
-      <img src={staticServerUri + "./logoKakaoText.png"} width={120}></img>
+      <img src={staticServerUri + "/logoKakaoText.png"} width={120}></img>
       <Container className="mx-auto w-4/12 h-4/12 border-[1.5px] p-16">
         <InputGroup
           id="email"
