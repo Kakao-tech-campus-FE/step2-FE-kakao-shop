@@ -162,7 +162,7 @@ const ProductOption = ({ product }) => {
                 {
                   onSuccess: () => {
                     alert('장바구니에 담겼습니다.');
-                    window.location.reload();
+                    setSelectedOptions([]);
                   },
                   onError: () => {
                     alert('장바구니 담기에 실패했습니다.');
@@ -193,7 +193,7 @@ const ProductOption = ({ product }) => {
                 }),
                 {
                   onSuccess: () => {
-                    navigate(staticServerUrl + '/order');
+                    navigate(staticServerUrl + '/cart');
                   },
                   onError: () => {
                     alert('주문하기가 실패했습니다.');
