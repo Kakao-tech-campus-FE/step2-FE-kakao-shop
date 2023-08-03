@@ -7,7 +7,7 @@ import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
-import CompleteOrderPage from "./pages/CompleteOrderPage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -25,7 +25,7 @@ function App() {
             <Route path={routes.orders} element={<OrderPage />} />
             <Route path="/*" element={<NotFoundPage />} />
             <Route path="/product/:id" element={<ProductDetailPage />}></Route>
-            <Route path="/orders/:id" element={<CompleteOrderPage />}></Route>
+            <Route path="/orders/:id" element={<OrderCompletePage />}></Route>
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
