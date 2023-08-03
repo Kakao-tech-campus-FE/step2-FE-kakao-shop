@@ -1,6 +1,6 @@
 # Build stage
 FROM krmp-d2hub-idock.9rum.cc/goorm/node:16 as build
-RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
+RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
 ENV VITE_KAKAO_STORE_URL="%SERVER_URL%"
 ENV VITE_KAKAO_IMAGE_URL="%IMAGE_URL%"
 ENV VITE_BASE_URL="%BASE_URL%"
