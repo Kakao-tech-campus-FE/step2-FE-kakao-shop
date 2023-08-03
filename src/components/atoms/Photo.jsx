@@ -12,7 +12,7 @@ const Photo = ({ src, alt }) => {
     setIsHovered(false);
   };
 
-  const photoSrc = staticServerUri + src;
+  const photoSrc = staticServerUri + "/public" + src;
 
   return (
     <ImageContainer
