@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import DarkButton from '../atoms/DarkButton';
-import { comma } from '../../utils/convert';
+import { comma, staticUrl } from '../../utils/convert';
 import { useGetOrderQuery } from '../../apis/productApi';
 import OrderCompleteItem from '../organisms/OrderCompleteItem';
 
@@ -21,7 +21,7 @@ const OrderCompleteTemplate = () => {
             <div className='mt-4 w-fit'>
               <DarkButton
                 onClick={() => {
-                  navigate('/');
+                  navigate(staticUrl('/'));
                 }}
               >
                 쇼핑 계속하기
