@@ -15,7 +15,7 @@ export default function ProductInformationColumn({ product }) {
       <div>
         <Photo
           className="detail-photo"
-          src={process.env.REACT_APP_API_URL + staticServerUrl + image}
+          src={staticServerUrl + image}
           alt={productName}
         />
       </div>
