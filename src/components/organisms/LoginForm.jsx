@@ -86,38 +86,45 @@ const LoginForm = (props) => {
 
   return (
     <Container>
-      <Title>Kakao</Title>
-      <Box className="inputform">
-        <InputGroup
-          id="email"
-          type="email"
-          placeholder="아이디(메일)를 입력해주세요."
-          // label="아이디"
-          value={email}
-          onChange={onEmailHandler}
-          onBlur={handleID}
-          name="email"
-        />
-        <InputGroup
-          id="password"
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          // label="비밀번호"
-          value={password}
-          onChange={onPasswordHandler}
-          onBlur={handlePW}
-          name="password"
-        />
-        <Button onClick={handleLogin}>로그인</Button>
-        <br />
-        <br />
-        <br />
-        <Link to="/signup" style={{ textDecoration: "none", color: "black" }}>
-          회원가입
-        </Link>
-        <br />
-        <br />
-      </Box>
+      <div className="loginform relative bottom-40">
+        <Title className="min-h-[50px]">CaCao</Title>
+        <Box className="inputform mt-20 min-w-[700px]">
+          <InputGroup
+            className="mt-20 mb-4"
+            id="email"
+            type="email"
+            placeholder="카카오메일 아이디, 이메일, 전화번호"
+            // label="아이디"
+            value={email}
+            onChange={onEmailHandler}
+            onBlur={handleID}
+            name="email"
+          />
+          <InputGroup
+            className="mb-32"
+            id="password"
+            type="password"
+            placeholder="비밀번호"
+            // label="비밀번호"
+            value={password}
+            onChange={onPasswordHandler}
+            onBlur={handlePW}
+            name="password"
+          />
+          <Button onClick={handleLogin}>로그인</Button>
+          <br />
+          <br />
+          <br />
+          <Link
+            to="/signup"
+            style={{ textDecoration: "none", color: "black", fontSize: "16px" }}
+          >
+            회원가입
+          </Link>
+          <br />
+          <br />
+        </Box>
+      </div>
     </Container>
   );
 };

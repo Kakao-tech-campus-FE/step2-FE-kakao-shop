@@ -2,7 +2,7 @@ import React from "react";
 import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
-
+import Badge from "../atoms/Badge";
 const OrderDone = ({ orderData, totalPrice, products }) => {
   const navigate = useNavigate();
 
@@ -21,32 +21,32 @@ const OrderDone = ({ orderData, totalPrice, products }) => {
           구매가 정상적으로 완료되었습니다.{" "}
         </h1>
         <div className="border p-4 ">
-          <h2 className="text-xl mb-4 flex items-center font-bold">
+          <h2 className=" text-xl mb-4 flex items-center font-bold">
             주문상품 정보
           </h2>
           <hr />
           <div className=" pt-6 ">
-            <span className="font-bold text-yellow-500 bg-orange-100 rounded-2xl text-m p-1.5">
+            <Badge className=" font-bold text-yellow-500 bg-orange-100 text-m p-1.5">
               상품명
-            </span>
-            <ul className="pt-4 font-bold">
-              {products.map((product) => (
-                <li key={product.id}>
-                  <p>{product.productName}</p>
+            </Badge>
+            <ul className="pt-4 font-bold ">
+              {products.map((product, index) => (
+                <li key={product.id} className="py-2">
+                  <p>{`${index + 1}. ${product.productName}`}</p>
                 </li>
               ))}
             </ul>
             <div className=" pt-6 ">
-              <span className="font-bold text-yellow-500 bg-orange-100 rounded-2xl text-m p-1.5">
+              <Badge className=" font-bold  text-yellow-500 bg-orange-100 text-m p-1.5">
                 주문 번호
-              </span>
+              </Badge>
               <span className="text-m mx-6 font-bold">{orderData}</span>
             </div>
 
             <div className=" pt-6 ">
-              <span className="font-bold text-yellow-500 bg-orange-100 rounded-2xl text-m p-1.5">
+              <Badge className=" font-bold  text-yellow-500 bg-orange-100 text-m p-1.5">
                 결제 금액
-              </span>
+              </Badge>
               <span className="text-m mx-6 font-bold">
                 {comma(totalPrice)}원
               </span>
@@ -56,9 +56,9 @@ const OrderDone = ({ orderData, totalPrice, products }) => {
               주문 상세 정보
             </div>
             <ul>
-              {products.map((product) => (
-                <li key={product.id}>
-                  <p>상품명: {product.productName}</p>
+              {products.map((product, index) => (
+                <li key={product.id} className="py-2">
+                  <p>{`${index + 1}. 상품명: ${product.productName}`}</p>
                   {product.items.map((item) => (
                     <div key={item.id}>
                       <p>옵션명: {item.optionName}</p>

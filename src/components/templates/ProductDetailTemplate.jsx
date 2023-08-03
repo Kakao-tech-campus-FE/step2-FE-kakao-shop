@@ -23,7 +23,7 @@ const ProductDetailTemplate = ({ product }) => {
     <Container className="flex justify-between w-screen h-screen ">
       <div
         className="grid grid-cols-2 gap-4 border "
-        style={{ paddingBottom: "500px", marginTop: "179px" }}
+        style={{ paddingBottom: "500px" }}
       >
         <div className="product-information-column relative left-40 mt-6  ">
           <ProductInformationColumn product={product} />

@@ -58,17 +58,17 @@ const MainProduct = () => {
 
   return (
     <Container>
-      <div className="carousel h-[200px] w-[100px] mt-14">캐러셀</div>
+      <div className="carousel h-[100px] w-[100px]"></div>
       <Notice className="notice"></Notice>
-      <Box className="mainProduct flex  items-center justify-center">
+      <div className=" mainProduct border p-4 relative right-40">
         {isError && <p>{error.message}</p>}
         {isLoading ? (
           <Loading />
         ) : (
-          <ProductGrid className="product-grid" products={products} />
+          <ProductGrid className="product-grid " products={products} />
         )}
         <div ref={bottomObserverRef}></div>
-      </Box>
+      </div>
     </Container>
   );
 };

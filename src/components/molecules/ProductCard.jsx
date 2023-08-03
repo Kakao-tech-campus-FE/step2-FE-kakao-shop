@@ -15,11 +15,14 @@ const ProductCard = ({ product }) => {
       <div className="product-name group-hover:opacity-100">
         {product.productName}
       </div>
-      <div className="flex items-center justify-between mt-2">
-        <div className="text-2xl font-bold text-blue-500">톡딜가</div>
-        <div className="product-price text-2xl font-bold mr-20">
+      <span className=" text-gray-400 bg-gray-100 rounded-m text-s p-1 mt-4">
+        무료배송
+      </span>
+      <div className="mt-2 ">
+        <span className="text-xl font-bold text-blue-500">톡딜가</span>
+        <span className="product-price text-xl font-bold ml-2 ">
           {comma(product.price)}원
-        </div>
+        </span>
       </div>
     </Card>
   );

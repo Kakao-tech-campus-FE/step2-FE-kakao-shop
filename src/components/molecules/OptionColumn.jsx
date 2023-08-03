@@ -6,16 +6,23 @@ import { useMutation } from "react-query";
 import { addCart } from "../../services/addCart";
 import Button from "../atoms/Button";
 import "../atoms/OptionList.css";
+import Toast from "../atoms/Toast";
+import { useEffect } from "react";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [showAddToast, setShowAddToast] = useState(false);
+  const [showSelectToast, setShowSelectToast] = useState(false);
+  const [toastKey, setToastKey] = useState(0);
 
   const { mutate } = useMutation(addCart, {
     onSuccess: () => {
-      alert("장바구니에 정상적으로 담겼습니다.");
+      setShowAddToast(true);
+      setToastKey((prevKey) => prevKey + 1);
     },
     onError: (error) => {
-      alert(`${error.message}`);
+      // alert(`${error.message}`);
+      alert("로그인 후 다시 시도해주세요");
     },
   });
 
@@ -26,11 +33,6 @@ const OptionColumn = ({ product }) => {
     );
     // 수량증가
     if (isOptionSelected) {
-      // setSelectedOptions((prev) =>
-      //   prev.map((el) =>
-      //     el.optionId === option.id ? { ...el, quantity: el.quantity + 1 } : el
-      //   )
-      // );
       return;
     }
     // 아니면 그냥 담기
@@ -73,16 +75,15 @@ const OptionColumn = ({ product }) => {
     );
   }, [selectedOptions]);
 
-  // const token = localStorage.getItem("token");
-  // if (token) {
-  //   console.log("true");
-  //   // 토큰이 존재하는 경우
-  //   // 원하는 동작을 수행하세요.
-  // } else {
-  //   console.log("false");
-  //   // 토큰이 없는 경우
-  //   // 원하는 동작을 수행하세요.
-  // }
+  useEffect(() => {
+    if (showAddToast || showSelectToast) {
+      const timer = setTimeout(() => {
+        setShowAddToast(false);
+        setShowSelectToast(false);
+      }, 3000); // 3초
+      return () => clearTimeout(timer);
+    }
+  }, [showAddToast, showSelectToast]);
 
   return (
     <div className="option-column p-6">
@@ -140,13 +141,21 @@ const OptionColumn = ({ product }) => {
                   quantity: item.quantity,
                 }))
               );
+              setShowAddToast(true);
             } else {
-              alert("옵션을 선택해주세요.");
+              setShowSelectToast(true);
             }
           }}
         >
           장바구니 담기
         </Button>
+        {/* 오류 수정 필요 */}
+        {showAddToast && (
+          <Toast message={"장바구니에 정상적으로 담겼습니다."} key={toastKey} />
+        )}
+        {showSelectToast && (
+          <Toast message={"옵션을 선택해주세요."} key={toastKey} />
+        )}
       </div>
     </div>
   );

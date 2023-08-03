@@ -91,45 +91,58 @@ const RegisterForm = (props) => {
 
   return (
     <Container>
-      <Title> kakao </Title>
-      <Box className="registerForm">
-        <InputGroup
-          id="username"
-          type="text"
-          placeholder="사용자 이름을 입력해주세요."
-          value={name}
-          onChange={onNameHandler}
-          name="username"
-        />
-        <InputGroup
-          id="email"
-          type="email"
-          placeholder="아이디(메일)를 입력해주세요."
-          value={email}
-          onChange={onEmailHandler}
-          onBlur={handleID}
-          name="email"
-        />
-        <InputGroup
-          id="password"
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          value={password}
-          onChange={onPasswordHandler}
-          onBlur={handlePW}
-          name="password"
-        />
-        <InputGroup
-          id="passwordCheck"
-          type="password"
-          placeholder="비밀번호를 확인해주세요."
-          value={passwordCheck}
-          onChange={onPasswordCheckHandler}
-          onBlur={handlePWCHECK}
-          name="passwordCheck"
-        />
-        <Button onClick={handleRegister}>회원가입</Button>
-      </Box>
+      <div className=" registerform relative bottom-40">
+        <Title className="min-h-[50px]">CaCao</Title>
+        <Box className=" mt-20 min-w-[700px] max-h-[600px]">
+          <InputGroup
+            className="mt-20 mb-4"
+            id="email"
+            type="email"
+            placeholder="이메일 (아이디)"
+            value={email}
+            onChange={onEmailHandler}
+            onBlur={handleID}
+            name="email"
+          />
+          {/* 기능 구현  */}
+          <button className="border border-3 text-gray-500 text-sm font-bold h-10 min-w-[100%] bg-gray-100">
+            이메일 중복 확인
+          </button>
+          <InputGroup
+            className="mb-4"
+            id="username"
+            type="text"
+            placeholder="이름"
+            value={name}
+            onChange={onNameHandler}
+            name="username"
+          />
+
+          <InputGroup
+            className="mb-4"
+            id="password"
+            type="password"
+            placeholder="비밀번호"
+            value={password}
+            onChange={onPasswordHandler}
+            onBlur={handlePW}
+            name="password"
+          />
+          <InputGroup
+            className="mb-32"
+            id="passwordCheck"
+            type="password"
+            placeholder="비밀번호 확인"
+            value={passwordCheck}
+            onChange={onPasswordCheckHandler}
+            onBlur={handlePWCHECK}
+            name="passwordCheck"
+          />
+          <Button className="mb-20" onClick={handleRegister}>
+            회원가입
+          </Button>
+        </Box>
+      </div>
     </Container>
   );
 };

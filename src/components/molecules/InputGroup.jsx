@@ -2,13 +2,6 @@ import Input from "../atoms/Input";
 import Label from "../atoms/Label";
 import styled from "styled-components";
 
-const StyledInputGroup =
-  // 아래의 style이 입혀진 button 태그를 생성
-  styled.div`
-    margin-top: 40px;
-    margin-bottom: 30px;
-  `;
-
 const InputGroup = ({
   onBlur,
   id,
@@ -21,9 +14,10 @@ const InputGroup = ({
   name,
 }) => {
   return (
-    <StyledInputGroup>
-      <Label htlmFor={id}>{label}</Label>
+    <div>
+      <Label htmlFor={id}>{label}</Label>
       <Input
+        className={className}
         id={id}
         value={value}
         placeholder={placeholder}
@@ -31,8 +25,8 @@ const InputGroup = ({
         onBlur={onBlur}
         type={type}
         name={name}
-      ></Input>
-    </StyledInputGroup>
+      />
+    </div>
   );
 };
 
