@@ -6,6 +6,18 @@ import useValidation from "../../hooks/useValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../store/slices/userSlice";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+
+  #email,
+  #password {
+    width: 30rem;
+  }
+`;
 
 const LoginForm = () => {
   const { value, handleOnChange } = useInput({
@@ -42,33 +54,39 @@ const LoginForm = () => {
   return (
     <>
       <Form>
-        <InputGroup
-          id="email"
-          name="email"
-          type="email"
-          value={value.email}
-          placeholder="이메일"
-          onChange={(e) => {
-            handleOnChange(e);
-            handleSetEmailMsg(e);
-          }}
-          errorMsg={emailMsg}
-        />
-        <InputGroup
-          id="password"
-          name="password"
-          type="password"
-          value={value.password}
-          placeholder="비밀번호"
-          onChange={(e) => {
-            handleOnChange(e);
-            handleSetPwMsg(e);
-          }}
-          helperMsg={pwMsg}
-        />
-        <SubmitButton type="submit" onClick={handleSubmit}>
-          로그인
-        </SubmitButton>
+        <Container>
+          <InputGroup
+            id="email"
+            name="email"
+            type="email"
+            value={value.email}
+            placeholder="이메일"
+            onChange={(e) => {
+              handleOnChange(e);
+              handleSetEmailMsg(e);
+            }}
+            errorMsg={emailMsg}
+          >
+            이메일
+          </InputGroup>
+          <InputGroup
+            id="password"
+            name="password"
+            type="password"
+            value={value.password}
+            placeholder="비밀번호"
+            onChange={(e) => {
+              handleOnChange(e);
+              handleSetPwMsg(e);
+            }}
+            helperMsg={pwMsg}
+          >
+            비밀번호
+          </InputGroup>
+          <SubmitButton type="submit" onClick={handleSubmit}>
+            로그인
+          </SubmitButton>
+        </Container>
       </Form>
     </>
   );
