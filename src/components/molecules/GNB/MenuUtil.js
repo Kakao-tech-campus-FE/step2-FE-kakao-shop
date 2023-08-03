@@ -7,7 +7,7 @@ const MenuUtil = () => {
     <div className="menu-util">
       <Link to="/cart">
         <img
-          src={staticServerUri + "0/images/cart.png"}
+          src={staticServerUri + "/images/cart.png"}
           alt="장바구니"
           className="util-icon"
         />
