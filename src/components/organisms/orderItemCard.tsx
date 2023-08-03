@@ -1,5 +1,6 @@
 import { CartItem } from '../../types/product';
 import { comma } from '../../utils/comma';
+import { staticServerUri } from '../../utils/serverUri';
 import Photo from '../atoms/photo';
 
 export default function OrderItemCard({
@@ -11,7 +12,7 @@ export default function OrderItemCard({
     <div>
       <section className="flex flex-row items-center gap-2">
         <div className="w-16 rounded-sm">
-          <Photo src={`${new URL(`/images/${id}.jpg`, process.env.REACT_APP_KAKAO_API_URL).toString()}`} alt={productName} />
+          <Photo src={`${new URL(`/images/${id}.jpg`, `${staticServerUri}/api`).toString()}`} alt={productName} />
         </div>
         <h2 className="my-2 font-bold">
           {productName}
