@@ -4,6 +4,7 @@ import Container from "../atoms/Container";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
+import Link from "../atoms/Link";
 import { comma } from "../../utils/convert"; 
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "react-query";
@@ -38,7 +39,7 @@ const CartList = ({ data }) => {
     }, [cartItems])
 
     const getTotalCartCountIncludeOptions = useCallback(() => {
-        let count = 0;  
+        let count = 0;
         cartItems.forEach((item) => {
             item.carts.forEach((cart) => {
                 count += cart.quantity;
@@ -102,42 +103,57 @@ const CartList = ({ data }) => {
             }
         });
     };
-
+    console.log(cartItems && cartItems.length === 0);
     return (
-        <Container className="w-1/2 mx-auto mb-20">
-            <Box className="text-lg font-bold border flex items-center justify-center h-18 my-4">장바구니</Box>
-            <Card className="mb-4">
-                {/* 상품별 장바구니 */}
-                {Array.isArray(cartItems) &&
-                    cartItems.map((item) => {
-                        return (
-                            <CartItem 
-                                key={item.id}
-                                item = {item}
-                                onChange = {handleOnChangeCount}
-                                //onIncrease 와 onDecrease가 동시에 구현되어야함
-                            />
-                        )
-                    })}
-            </Card>
-            <Card className="border">
-                <div className="flex place-content-between p-4">
-                    <span className="text-xl font-bold">주문 예상금액</span>
-                    <div className="text-xl font-bold text-sky-600">{comma(totalPrice)}원</div>
+        <Container className="max-w-[870px] mx-auto mb-20">
+            <Box className="text-lg font-bold border flex items-center justify-center h-18 mt-4 py-2">장바구니</Box>
+            {(cartItems && cartItems.length === 0) ? (
+                //장바구니에 상품이 없을 때
+                <div className="w-full border-x border-b">
+                    <div className="text-center pt-52 pb-80">
+                        <span className="text-lg">장바구니에 담긴 상품이 없습니다.</span>
+                        <Link href="/" className='block w-36 h-9 text-center m-auto bg-slate-900 text-white text-sm leading-9 mt-2'>
+                            <span>쇼핑하기 홈</span>
+                        </Link>
+                    </div>
+                    
                 </div>
-            </Card>
+                ) : (
+                    //장바구니에 상품이 있을 때
+                    <div>
+                        <Card className="mb-4">
+                            {/* 상품별 장바구니 */}
+                            {Array.isArray(cartItems) &&
+                                cartItems.map((item) => {
+                                    return (
+                                        <CartItem 
+                                            key={item.id}
+                                            item = {item}
+                                            onChange = {handleOnChangeCount}
+                                            //onIncrease 와 onDecrease가 동시에 구현되어야함
+                                        />
+                                    )
+                                })}
+                        </Card>
+                        <Card className="border">
+                            <div className="flex place-content-between p-4">
+                                <span className="text-xl font-bold">주문 예상금액</span>
+                                <div className="text-xl font-bold text-sky-600">{comma(totalPrice)}원</div>
+                            </div>
+                        </Card>
 
-            <Button className={`order-btn w-full h-14 
-                ${ disable ? "bg-gray-300 text-gray-500": "bg-#ffeb00" }
-            `}
-                disabled={disable}
-                onClick={() => {
-                    //update cart api 장바구니 정보 수정 api
-                    navigate("/order");
-                }}    
-            >
-                <div className=" text-center">총 {cartItems ? getTotalCartCountIncludeOptions() : 0} 건 주문하기</div>
-            </Button>
+                        <Button className={`order-btn w-full h-14 
+                            ${ disable ? "bg-gray-300 text-gray-500": "bg-#ffeb00" }
+                            `}
+                            disabled={disable}
+                            onClick={() => {
+                                //update cart api 장바구니 정보 수정 api
+                                navigate("/order");
+                            }}    
+                        ><div className=" text-center">총 {cartItems ? getTotalCartCountIncludeOptions() : 0} 건 주문하기</div>
+                        </Button>
+                    </div>
+                )}
         </Container>
     )
 

@@ -153,7 +153,7 @@ const OrderTemplate = ({ data }) => {
                     <button 
                         onClick={() => {
                             // 동의가 이루어지지 않은 경우 처리
-                            if (agreePayment === false || agreePolicy === false) {
+                            if (!agreePayment || !agreePolicy) {
                                 alert("동의가 필요합니다");
                                 return;
                             }

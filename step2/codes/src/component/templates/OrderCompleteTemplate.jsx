@@ -49,9 +49,6 @@ const OrderCompleteTemplate = ({ data }) => {
     };
     
 
-
-
-
     return (
         <section>
             <div className='max-w-[870px] w-full mx-auto'>

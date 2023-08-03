@@ -15,9 +15,9 @@ function RequiredAuthLayout() {
 
     return (
         <>
-            <GNB />
+            <GNB/>
             <Outlet/>
-            <Footer />
+            <Footer/>
         </>
     )
 }
