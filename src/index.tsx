@@ -31,11 +31,19 @@ export const queryClient = new QueryClient({
         const statusCode = error.response?.status;
         if (!statusCode) console.error('알 수 없는 에러가 발생했습니다.');
         else if (statusCode >= 300 && statusCode < 400) {
-          console.error('리다이렉션 에러가 발생했습니다.');
+          alert('리다이렉션 에러가 발생했습니다.');
+          window.location.href = '/';
         } else if (statusCode >= 400 && statusCode < 500) {
-          console.error('클라이언트 에러가 발생했습니다.');
+          if (statusCode === 401) {
+            alert('로그인이 필요합니다.');
+            window.location.href = '/login';
+          } else {
+            alert('클라이언트 에러가 발생했습니다.');
+          }
+          window.location.href = '/';
         } else if (statusCode >= 500) {
-          console.error('서버 에러가 발생했습니다.');
+          alert('서버 에러가 발생했습니다.');
+          window.location.href = '/';
         }
       }
     },

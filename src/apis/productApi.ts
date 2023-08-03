@@ -54,7 +54,13 @@ const useGetCartQuery = () => {
 };
 
 const useAddCartMutation = () => {
-  const fetcher = (cartOptions: AddCart[]) => axios.post(`/carts/add`, cartOptions);
+  const fetcher = (cartOptions: AddCart[]) =>
+    axios
+      .post(`/carts/add`, cartOptions)
+      .then(({ data }) => data.response)
+      .catch((error) => {
+        throw error;
+      });
 
   return useMutation({ mutationFn: fetcher });
 };

@@ -50,7 +50,7 @@ const LoginForm = () => {
           const today = new Date();
           const tomorrow = new Date(today.setDate(today.getDate() + 1));
           dispatch(login({ email, expirationDate: tomorrow }));
-          navigate('/');
+          window.location.href = '/';
         } else {
           setServerValidateMsg(data.error.message);
         }
