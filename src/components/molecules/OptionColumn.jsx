@@ -6,9 +6,11 @@ import Container from "../atoms/Container";
 import { useMutation } from "@tanstack/react-query";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
+import { useNavigate } from "react-router";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const navigate = useNavigate();
 
   const handleOnClickOption = (option) => {
     const isOptionSelected = selectedOptions.find(
@@ -115,10 +117,17 @@ const OptionColumn = ({ product }) => {
               }),
               {
                 onSuccess: () => {
-                  alert("장바구니에 담겼습니다.");
+                  navigate("/cart");
                 },
                 onError: (error) => {
-                  alert("장바구니 담기에 실패했습니다: " + error);
+                  if (localStorage.getItem("user") === null) {
+                    alert("로그인이 필요한 서비스입니다.");
+                    navigate("/login");
+                  }
+                  else{
+                    alert("장바구니 담기에 실패했습니다: " + error);
+                  }
+                  
                 },
               }
             );

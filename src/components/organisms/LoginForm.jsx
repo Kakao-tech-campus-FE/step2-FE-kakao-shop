@@ -81,6 +81,7 @@ const LoginForm = () => {
                 dispatch(setUser({
                     user: value.user,
                 }));
+                
                 setLocalStorageWithExp("user", res.headers.authorization, 1000 * 60 * 60 * 24);
                 navigate("/");
             })
@@ -123,7 +124,7 @@ const LoginForm = () => {
                         invalid={invalidCheck}
                     />
                     {error !== '' ? <div className="bg-gray-50 border border-gray-100 text-red-600">{error}</div> : null}
-                    <Button onClick={loginReq} disabled={!isValid}>로그인</Button>
+                    <Button disabled={!isValid} onClick={loginReq} >로그인</Button>
                     <div className="text-0.8em mt-1.5em">
                         <LinkText to="/signup" text="회원가입" />
                     </div>

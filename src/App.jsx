@@ -8,6 +8,7 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import OrderSuccessPage from "./pages/OrderSuccessPage.jsx";
 import OrderPage from "./pages/OrderPage";
+import RequiredAuthLayout from "./components/layouts/RequiredAuthLayout";
 
 const App = () => {
   return(
@@ -19,8 +20,10 @@ const App = () => {
           <Route element={<MainLayout />}>
             <Route path="/" element={<MainPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
-            <Route path="/cart" element={<CartPage />} />
             <Route path="*" element={<NotFoundPage />} />
+          </Route>
+          <Route element={<RequiredAuthLayout />}>
+            <Route path="/cart" element={<CartPage />} />
             <Route path="/order" element={<OrderPage />} />
             <Route path="/orders/complete/:id" element={<OrderSuccessPage />} />
           </Route>

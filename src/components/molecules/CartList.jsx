@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
-import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
@@ -131,7 +130,7 @@ const CartList = () => {
   return (
     <Container className="cart-list">
       <Box>
-        <Title> 장바구니</Title>
+        <Title className="ml-[100px]"> 장바구니</Title>
       </Box>
       <div>
         {Array.isArray(cartItems) &&
@@ -148,20 +147,18 @@ const CartList = () => {
             );
           })}
       </div>
-      <div>
-        <div className="row flex justify-between border p-4">
-          <div className="">주문 예상 금액</div>
+      <div className="row flex justify-between border p-4 ml-[100px]">
+          <div>주문 예상 금액</div>
           <div className="mr-[15px] font-bold text-blue-600">
             {comma(totalPrice)}원
           </div>
         </div>
-      </div>
+      
       <Button
-        className="p-2 font-bold text-center bg-yellow-300 rounded-md mt-10 ml-[3%] w-[95%]"
+        className="p-2 font-bold text-center bg-yellow-300 rounded-md mt-10 ml-[100px] w-[94%]"
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: (data) => {
-              alert("주문 페이지로 이동합니다.")
               navigate("/order");
             },
             onError: (error) => {
@@ -170,7 +167,7 @@ const CartList = () => {
           });
         }}
       >
-        <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
+        <span>주문하기</span>
       </Button>
     </Container>
   );

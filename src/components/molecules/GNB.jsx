@@ -6,15 +6,35 @@ import { setEmail } from "../../store/slices/userSlice";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { setUser } from "../../store/slices/userSlice";
+import { useState } from "react";
+
 const GNB = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const setExpired = useState(false);
+
+  useEffect(() => {
+    try {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      if (storedUser) {
+        const { value, expires } = storedUser;
+        if (expires && Date.now() > expires) {
+          handleLogOut();
+          setExpired(true);
+        } else {
+          dispatch(setUser({ user: value }));
+        }
+      }
+    } catch (error) {
+      console.error("parsing error", error);
+    }
+  }, [user, dispatch]);
+
 
   const handleLogOut = () => {
     if (user) {
       dispatch(setEmail({ user: null }));
       localStorage.removeItem("user");
-      alert("로그아웃 성공");
       window.location.reload();
     }
   };
@@ -30,6 +50,8 @@ const GNB = () => {
         console.error("parsing error", error);
     }
     }, [user, dispatch]);
+
+    
 
   return (
     <header className="w-full border-b-2 border-gray-300">
