@@ -10,9 +10,9 @@ const ProductCard = ({product, loading}) => {
         {loading ? (
           <ProductCardSkeleton/>
         ) : (
-          <Container to={`/product/${product.id}`}>
+          <Container to={`/products/${product.id}`}>
             <ProductImage>
-              <Photo src={product.image} alt={product.productName}/>
+              <Photo src={process.env.REACT_APP_API_URL + product.image} alt={product.productName}/>
             </ProductImage>
             <ProductName className="product-name">{product.productName}</ProductName>
             <ProductPrice className="product-price">{comma(product.price)}원</ProductPrice>

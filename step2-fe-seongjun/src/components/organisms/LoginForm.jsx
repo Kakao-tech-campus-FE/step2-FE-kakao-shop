@@ -1,7 +1,6 @@
 import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
-import Title from '../atoms/Title';
 import useInput from '../../hooks/useInput';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
@@ -76,44 +75,42 @@ const LoginForm = () => {
 
 
   return (
-  <Container>
-    <Title>
-      로그인
-    </Title>
-    <span>{email}</span>
-    <InputGroup
-      id="email" 
-      type="email"
-      name="email" 
-      placeholder="이메일(아이디)를 입력해주세요."
-      label="이메일"
-      value={value.email}
-      onChange={handleOnChange}
-      onBlur={handleEmailBlur}
-      errorMsg={emailError}
-    />
-    <InputGroup 
-      id="password" 
-      type="password" 
-      name="password"
-      placeholder="**********"
-      label="비밀번호"
-      value={value.password}
-      onChange={handleOnChange}
-      onBlur={handlePasswordBlur}
-      errorMsg={pwError}
-    />
-    <div className="flex gap-3">
-      <Button
-        onClick={loginReq}
-      >로그인</Button>
-      <p>
-        <a href='#' onClick={goRegister}>
-          회원가입
-       </a>
-      </p>
+    <div className=" mt-32">
+      <h1 className="text-center text-4xl text-black font-medium pb-10">kakao</h1>
+      <div className='border max-w-[500px] mx-auto py-10 px-10'>
+        <InputGroup
+          id="email" 
+          type="email"
+          name="email" 
+          placeholder="이메일(아이디)를 입력해주세요."
+          label="이메일"
+          value={value.email}
+          onChange={handleOnChange}
+          onBlur={handleEmailBlur}
+          errorMsg={emailError}
+        />
+        <InputGroup 
+          id="password" 
+          type="password" 
+          name="password"
+          placeholder="**********"
+          label="비밀번호"
+          value={value.password}
+          onChange={handleOnChange}
+          onBlur={handlePasswordBlur}
+          errorMsg={pwError}
+        />
+        <button
+            className=" w-full bg-yellow-400 text-black py-3 mb-4 rounded"
+            onClick={loginReq}
+        >로그인</button>
+        <p>
+          <a className=" text-black text-sm" href='#' onClick={goRegister}>
+            회원가입
+          </a>
+        </p>
+      </div>
     </div>
-  </Container>
   );
 }
 

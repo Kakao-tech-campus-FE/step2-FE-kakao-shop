@@ -1,7 +1,10 @@
 import MainProductTemplate from "../components/templates/MainProductTemplate";
-
+import NewCarousel from "../components/atoms/Carousel"
 const HomePage = () => {
-  return <MainProductTemplate/>;
+  return <>
+    <NewCarousel/>
+    <MainProductTemplate/>
+  </>
 };
 
 export default HomePage;
