@@ -1,0 +1,27 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:tailwindcss/recommended"
+  ],
+  "parserOptions": {
+    "project": "./**/tsconfig.json"
+  },
+  "rules": {
+    "import/prefer-default-export": "off",
+    "max-len": "off",
+    "react/require-default-props": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "no-param-reassign": "off",
+    "react/button-has-type": "off",
+    "import/no-extraneous-dependencies":[
+      "error",
+      {
+         "devDependencies":[
+            "./src/test/**/*.*"
+         ]
+      }
+    ]
+  }
+}

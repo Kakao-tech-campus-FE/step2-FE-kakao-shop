@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Open Sans', 'Nanum Gothic', Tahoma, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,78 @@
+.carousel {
+  position: relative;
+  display: flex;
+  width: 48rem;
+  height: 27rem;
+  overflow: hidden;
+}
+
+.contentsContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.carouselContent {
+  width: 48rem;
+  height: 27rem;
+  object-fit: contain;
+  transition: 500ms ease-in-out;
+}
+
+.carouselIndicators {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+}
+
+.carouselIndicator {
+  text-indent: -9999px;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  border: 1px solid #888888;
+  z-index: 12;
+  cursor: pointer;
+}
+
+.carouselIndicator:hover {
+  outline: 2px solid #3f6cff;
+}
+
+.carouselControlPrev {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background: inherit;
+  border: 0;
+  cursor: pointer;
+  padding: 0 1rem;
+  opacity: 0.5;
+  z-index: 12;
+}
+
+.carouselControlNext {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: inherit;
+  border: 0;
+  cursor: pointer;
+  padding: 0 1rem;
+  opacity: 0.5;
+  z-index: 12;
+}
+
+.carouselControlPrev:hover,
+.carouselControlNext:hover {
+  opacity: 1;
+  background-color: #0000001f;
+}
