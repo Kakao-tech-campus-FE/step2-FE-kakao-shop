@@ -1,11 +1,13 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 const NavigateCart = () => {
   return (
     <S.Root>
       <span>장바구니에 담겼습니다.</span>
-      <a href="/cart">바로가기</a>
+      <a href={`${staticServerUrl}/cart`}>바로가기</a>
     </S.Root>
   );
 };
