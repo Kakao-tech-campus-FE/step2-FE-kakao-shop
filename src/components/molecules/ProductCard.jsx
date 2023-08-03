@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
   return (
     <Container>
       <Card to={`/product/${id}`}>
-        <Photo src={`${staticServerUri}/public${image}`} alt={productName} />
+        <Photo src={`${staticServerUri}${image}`} alt={productName} />
         <h5 className="product-name">{productName}</h5>
         <p className="product-price">{comma(price)}원</p>
       </Card>

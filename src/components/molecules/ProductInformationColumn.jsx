@@ -27,7 +27,7 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
-  const imagePath = `${staticServerUri}/public${image}`;
+  const imagePath = `${staticServerUri}${image}`;
 
   return (
     <ProductInfoColumn className="product-information-column">
