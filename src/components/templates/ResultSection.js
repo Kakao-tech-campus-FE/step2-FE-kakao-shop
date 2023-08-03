@@ -6,6 +6,8 @@ import { getOrderResultReq } from "apis/order.js";
 import Button from "components/atoms/Button.js";
 import ResultInformation from "components/molecules/ResultInformation.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function ResultSection() {
   const { orderId } = useParams();
   const navigate = useNavigate();
@@ -15,7 +17,7 @@ export default function ResultSection() {
   });
 
   const handleButtonClick = () => {
-    navigate("/");
+    navigate(staticServerUri + "/");
   };
 
   return (

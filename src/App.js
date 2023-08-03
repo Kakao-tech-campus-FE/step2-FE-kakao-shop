@@ -16,6 +16,8 @@ import Order from "pages/Order.js";
 import Result from "pages/Result.js";
 import NotFound from "pages/NotFound.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function App() {
   const dispatch = useDispatch();
   const logInTime = useSelector((state) => state.user.logInTime);
@@ -27,7 +29,7 @@ function App() {
       dispatch(setLogInTime({ logInTime: null }));
       window.localStorage.removeItem("token");
       alert("로그인이 만료되었습니다.");
-      window.location.href = "/";
+      window.location.href = staticServerUri + "/";
     }, expireTime - (new Date().getTime() - logInTime));
     return () => clearTimeout(timeoutId);
     // eslint-disable-next-line
@@ -37,15 +39,15 @@ function App() {
     <div className="relative text-center">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path={staticServerUri + "/login"} element={<LogIn />} />
+          <Route path={staticServerUri + "/signup"} element={<SignUp />} />
           <Route element={<Layout />}>
-            <Route path="/" element={<Products />} />
-            <Route path="/product/:productId" element={<Product />} />
+            <Route path={staticServerUri + "/"} element={<Products />} />
+            <Route path={staticServerUri + "/product/:productId"} element={<Product />} />
             <Route element={<CheckAuth />}>
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/order" element={<Order />} />
-              <Route path="/result/:orderId" element={<Result />} />
+              <Route path={staticServerUri + "/cart"} element={<Cart />} />
+              <Route path={staticServerUri + "/order"} element={<Order />} />
+              <Route path={staticServerUri + "/result/:orderId"} element={<Result />} />
             </Route>
           </Route>
           <Route path="*" element={<NotFound />} />

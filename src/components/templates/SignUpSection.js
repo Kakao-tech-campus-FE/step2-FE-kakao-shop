@@ -3,13 +3,15 @@ import SignUpForm from "components/organisms/SignUpForm.js";
 
 import logoKakaoText from "assets/icon/logoKakaoText.png";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function SignUpSection() {
   return (
     <div className="inline-block w-[600px]">
       <ImageLink
         LinkClassName="block my-12 mx-auto"
         ImageClassName="h-12"
-        to="/"
+        to={staticServerUri + "/"}
         src={logoKakaoText}
         alt="logoKakaoText"
       />

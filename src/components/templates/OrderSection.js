@@ -9,6 +9,8 @@ import { convertToPrice } from "utils/convert.js";
 import Button from "components/atoms/Button.js";
 import OrderInformation from "components/molecules/OrderInformation.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function OrderSection() {
   const navigate = useNavigate();
   const [agreement, setAgreement] = useState({
@@ -22,7 +24,7 @@ export default function OrderSection() {
     onSuccess: (res) => {
       if (res.data.response.totalPrice !== 0) return;
       alert("장바구니가 비어있습니다. 메인 페이지로 돌아갑니다.");
-      navigate("/");
+      navigate(staticServerUri + "/");
     },
   });
   const { mutate } = useMutation({ mutationFn: orderReq });
@@ -53,7 +55,7 @@ export default function OrderSection() {
     else
       mutate(null, {
         onSuccess: (response) => {
-          navigate(`/result/${response.data.response.id}`);
+          navigate(staticServerUri + `/result/${response.data.response.id}`);
         },
         onError: (error) => {
           let state;

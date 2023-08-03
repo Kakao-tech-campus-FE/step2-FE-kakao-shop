@@ -11,6 +11,8 @@ import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
 import Input from "components/atoms/Input.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function LogInForm() {
   const { inputValue, handleInputChange } = useInput({
     email: "",
@@ -38,9 +40,9 @@ export default function LogInForm() {
           dispatch(setLogInTime({ logInTime: null }));
           window.localStorage.removeItem("token");
           alert("로그인이 만료되었습니다.");
-          window.location.href = "/";
+          window.location.href = staticServerUri + "/";
         }, expireTime);
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       .catch((err) => {
         alert(err.response.data.error.message);
@@ -84,7 +86,7 @@ export default function LogInForm() {
       <Button
         className="block w-full py-2 bg-gray-100 rounded text-lg"
         onClick={() => {
-          navigate("/signup");
+          navigate(staticServerUri + "/signup");
         }}
       >
         회원가입

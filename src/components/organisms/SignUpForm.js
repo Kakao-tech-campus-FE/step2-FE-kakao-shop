@@ -8,6 +8,8 @@ import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
 import Input from "components/atoms/Input.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function SignUpForm() {
   const { inputValue, handleInputChange } = useInput({
     email: "",
@@ -31,7 +33,7 @@ export default function SignUpForm() {
           username: inputValue.name,
         })
           .then(() => {
-            navigate("/login");
+            navigate(staticServerUri + "/login");
           })
           .catch((err) => {
             alert(err.response.data.error.message);

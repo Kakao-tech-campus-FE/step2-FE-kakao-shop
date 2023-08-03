@@ -3,6 +3,8 @@ import { convertToPrice } from "utils/convert.js";
 import Card from "components/atoms/Card.js";
 import Image from "components/atoms/Image.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function ProductCard({ product }) {
   return (
     <Card
@@ -11,7 +13,7 @@ export default function ProductCard({ product }) {
     >
       <Image
         className="w-full rounded border"
-        src={process.env.REACT_APP_API_URL + product.image}
+        src={staticServerUri + product.image}
         alt={product.productName}
       />
       <h3 className="text-sm">{product.productName}</h3>

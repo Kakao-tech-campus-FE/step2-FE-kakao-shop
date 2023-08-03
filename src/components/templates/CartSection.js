@@ -12,6 +12,8 @@ import CartList from "components/molecules/CartList.js";
 
 import cart from "assets/icon/cart.png";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function CartSection() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -30,7 +32,7 @@ export default function CartSection() {
   });
 
   const handleButtonClick = () => {
-    navigate("/");
+    navigate(staticServerUri + "/");
   };
 
   const handleDeleteAllClick = () => {
@@ -76,7 +78,7 @@ export default function CartSection() {
               </div>
               <Link
                 className="block px-32 py-4 bg-yellow-300 font-bold"
-                to="/order"
+                to={staticServerUri + "/order"}
               >{`${data.data.response.products.length}건 주문하기`}</Link>
             </div>
           </>

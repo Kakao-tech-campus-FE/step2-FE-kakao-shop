@@ -3,12 +3,14 @@ import { convertToPrice } from "utils/convert.js";
 import Image from "components/atoms/Image.js";
 import Stars from "components/atoms/Stars.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function ProductInformation({ product }) {
   return (
     <div className="inline-flex p-6 border-r gap-8">
       <Image
         className="w-[25rem] h-[25rem] border"
-        src={process.env.REACT_APP_API_URL + product.image}
+        src={staticServerUri + product.image}
         alt={product.productName}
       />
       <div className="inline-block w-[25rem] text-left">
