@@ -63,7 +63,6 @@ README.md의 예시 형식입니다. 아래를 참고해 작성해주세요.
 
 
 ```
-#디렉터리 구조
 
 ├── node_modules
 ├── public
