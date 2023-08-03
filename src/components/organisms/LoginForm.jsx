@@ -17,7 +17,11 @@ const LoginForm = () => {
     value,
     emailError,
     passwordError,
+<<<<<<< HEAD
     handleChange,
+=======
+    handleOnChange,
+>>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
     validateEmail,
     validPassword,
   } = useInput({
@@ -66,7 +70,11 @@ const LoginForm = () => {
           placeholder="이메일을 입력해주세요"
           label="이메일"
           value={value.email}
+<<<<<<< HEAD
           onChange={handleChange}
+=======
+          onChange={handleOnChange}
+>>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
           onBlur={validateEmail}
         />
         {emailError && <div>{emailError}</div>}
@@ -77,7 +85,11 @@ const LoginForm = () => {
           placeholder="********"
           label="비밀번호"
           value={value.password}
+<<<<<<< HEAD
           onChange={handleChange}
+=======
+          onChange={handleOnChange}
+>>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
           onBlur={validPassword}
         />
         {passwordError && <div>{passwordError}</div>}

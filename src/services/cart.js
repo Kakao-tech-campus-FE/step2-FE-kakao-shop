@@ -1,11 +1,11 @@
 import { instance } from "./index";
 
 export const addCart = (items) => {
-  return instance.post("/cart/add", items);
+  return instance.post("/carts/add", items);
 };
 
 export const getCart = () => {
-  return instance.get("/cart");
+  return instance.get("/carts");
 };
 
 /**
@@ -13,5 +13,5 @@ export const getCart = () => {
  * @param {object} items: cartId, quantity
  */
 export const updateCart = (items) => {
-  return instance.post("/cart/update", items);
+  return instance.post("/carts/update", items);
 };

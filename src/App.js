@@ -35,6 +35,12 @@ function App() {
               element={<OrderCompletePage />}
             />
           </Route>
+          <Route path={paths.CART_PATH} element={<CartPage />} />
+          <Route path={paths.ORDER_PATH} element={<OrderPage />} />
+          <Route
+            path={paths.ORDER_COMPLETE_PATH}
+            element={<OrderCompletePage />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

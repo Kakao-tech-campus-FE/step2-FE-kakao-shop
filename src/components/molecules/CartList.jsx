@@ -146,7 +146,11 @@ const CartList = ({ data }) => {
           mutate(updatePayload, {
             onSuccess: (data) => {
               // navigate to order page
+<<<<<<< HEAD
               navigate("/order");
+=======
+              route.push(paths.ORDER_PATH);
+>>>>>>> 003f6137052531724667909b8aee43a2ed641ab1
             },
             onError: (error) => {
               navigate("/error");
