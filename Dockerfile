@@ -1,6 +1,6 @@
 FROM krmp-d2hub-idock.9rum.cc/goorm/node:16
 
-WORKDIR /usr/src/my-app
+WORKDIR step2-FE-kakao-shop2/my-app
 
 COPY package*.json ./
 
