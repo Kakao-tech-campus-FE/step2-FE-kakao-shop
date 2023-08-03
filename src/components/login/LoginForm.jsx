@@ -13,6 +13,8 @@ import Logo from "../common/atoms/Logo";
 import kakaoLogoText from "../../assets/icons/logoKakaoText.png";
 import Box from "../common/atoms/Box";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function LoginForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,7 +46,7 @@ export default function LoginForm() {
         password: value.password,
       });
       dispatch(LogIn()); // 로그인 상태 변경
-      navigate("/"); // 메인페이지 리다이렉트
+      navigate(staticServerUrl + "/"); // 메인페이지 리다이렉트
     } catch (error) {
       console.error(error.message);
       setIsFailLogin(true);
@@ -113,7 +115,10 @@ export default function LoginForm() {
         </Button>
         {/* 회원가입, 계정 찾기, 비밀번호 찾기 */}
         <Box className="flex justify-between pt-5 text-xs font-semibold">
-          <Link className=" text-black no-underline " to={"/signup"}>
+          <Link
+            className=" text-black no-underline "
+            to={staticServerUrl + "/signup"}
+          >
             회원가입
           </Link>
           <div>

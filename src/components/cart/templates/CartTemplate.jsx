@@ -9,6 +9,8 @@ import Text from "../../common/atoms/Text";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, removeProduct } from "../../../store/slices/cartSlice";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function CartTemplate({ data }) {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -74,7 +76,7 @@ export default function CartTemplate({ data }) {
             <Button
               className="m-3 cursor-pointer border-solid border-black bg-black p-2 px-4 font-bold text-white"
               onClick={() => {
-                navigate("/");
+                navigate(staticServerUrl + "/");
               }}
             >
               쇼핑하기 홈
@@ -104,7 +106,7 @@ export default function CartTemplate({ data }) {
                 // 결제 프로세스
                 // 1. 장바구니에 있는 모든 항목 그대로 결제 페이지에 담김
                 // 2. 결제 페이지에서는 수량 변경X, 그대로 결제 진행만 수행
-                navigate("/order");
+                navigate(staticServerUrl + "/order");
               }}
             >
               {/* 장바구니 수량: 전역 State */}

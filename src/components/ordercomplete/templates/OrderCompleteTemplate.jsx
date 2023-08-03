@@ -6,6 +6,8 @@ import CompleteUserInfo from "../atoms/CompleteUserInfo";
 import CompleteProductInfo from "../organisms/CompleteProductInfo";
 import { comma } from "../../../utils/convert";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function OrderCompleteTemplate({ data }) {
   const navigate = useNavigate();
   const [isOrderProductInfoOpen, setIsOrderProductInfoOpen] = useState(true);
@@ -29,7 +31,7 @@ export default function OrderCompleteTemplate({ data }) {
           <Button
             className="m-3 cursor-pointer border-solid border-black bg-black p-2 px-4 font-bold text-white"
             onClick={() => {
-              navigate("/");
+              navigate(staticServerUrl + "/");
             }}
           >
             쇼핑 계속하기
