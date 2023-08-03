@@ -11,9 +11,10 @@ const StyledImg = styled.img`
 `
 
 const path = process.env.REACT_APP_PATH || "";
-const imagePath = path !== "" ? path : process.env.REACT_APP_IMAGE;
+const imagePath = !!path ? path : process.env.REACT_APP_IMAGE ;
 
 const Image = ({image, alt}) => {
+  
   return (
     <StyledPicture>
       <StyledImg src={`${imagePath}${image}`} alt={alt}/>

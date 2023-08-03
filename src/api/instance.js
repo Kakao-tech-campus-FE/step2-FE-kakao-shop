@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { clearUserReducer } from "reducers/loginSlice";
 
 const path = process.env.REACT_APP_PATH || "";
-const apiURL = path !== "" ? path + "/api" : process.env.REACT_APP_API_URL;
+const apiURL = !!path ? path + "/api" : process.env.REACT_APP_API_URL;
 
 const instance = axios.create({
   baseURL: apiURL,
@@ -16,7 +16,6 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    console.log(config);
     const loginState = store.getState().login;
 
     // 토큰 필요한 요청일 때
@@ -49,7 +48,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    console.log(response);
     // 로그인일때만 토큰 응답 사용
     if (response.config.url === "/login") {
       return response.headers.authorization;
@@ -57,8 +55,7 @@ instance.interceptors.response.use(
     return response.data.response;
   },
   (error) => {
-    // fallback 에서 처리
-    console.log(error);
+    return Promise.reject(error);
   }
 );
 
