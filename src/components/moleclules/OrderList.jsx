@@ -27,7 +27,7 @@ export default function OrderList({ item, options }) {
           >
             {options === item.carts && (
               <Photo
-                src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${data.data.response.image}`}
+                src={staticServerUri + data.data.response.image}
                 alt={item.productName}
                 className="mx-2 block h-[60px] w-[60px] rounded-md border border-gray-100"
               ></Photo>

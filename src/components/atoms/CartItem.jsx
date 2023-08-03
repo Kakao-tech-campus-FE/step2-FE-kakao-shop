@@ -24,7 +24,7 @@ const CartItem = ({ item, onChangeCount, onChangeCheck, onClick, checked }) => {
           checked={checked}
         ></CheckBox>
         <Photo
-          src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${data.data.response.image}`}
+          src={staticServerUri + data.data.response.image}
           alt={item.productName}
           className="mx-2 block w-[60px] rounded-md border border-gray-100"
         ></Photo>
