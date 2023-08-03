@@ -2,7 +2,7 @@ import axios from "axios";
 import staticServerUri from "../utils/krampoline";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: `${staticServerUri}/api/`, // process.env.REACT_APP_API_URL,
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
