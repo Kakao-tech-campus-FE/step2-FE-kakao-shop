@@ -4,9 +4,11 @@ import ScrollToTop from '@components/@common/ScrollToTop';
 
 import Router from './Router';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={`${staticServerUrl}`}>
       <ScrollToTop />
       <Router />
     </BrowserRouter>
