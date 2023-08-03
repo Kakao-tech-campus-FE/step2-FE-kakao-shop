@@ -89,7 +89,6 @@ const LoginForm = () => {
             })
              .catch((err) => {
 				alert("회원 정보가 존재하지 않습니다.");
-                console.log(err.request.response);
                 const errObject = JSON.parse(err.request.response);
                 setError(errObject.error.message)
             });
