@@ -11,6 +11,7 @@ import { addCart } from "../../apis/cart";
 import { useSelector } from "react-redux";
 import Modal from "../moleclules/Modal";
 import { useNavigate } from "react-router-dom";
+import { staticServerUri } from "../../constants/serverUri";
 
 const OptionColumn = ({ product }) => {
   const email = useSelector((state) => state.user.email);
@@ -204,7 +205,7 @@ const OptionColumn = ({ product }) => {
           buttonText={"로그인"}
           secondButton={"취소"}
           onClick={() => {
-            navigate("/login");
+            navigate(staticServerUri + "/login");
           }}
           setModal={setModal}
         ></Modal>

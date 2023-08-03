@@ -43,10 +43,7 @@ instance.interceptors.response.use(
       case 403:
         console.error("접근할 권한이 없습니다.");
         break;
-      // 에러의 status code가 404일 경우 404주소로 라우팅
-      // 그 후 `NotFound` 페이지 출력
       case 404:
-        window.location.replace("/404");
         break;
       case 500:
         console.error("서버에 에러가 있습니다.");

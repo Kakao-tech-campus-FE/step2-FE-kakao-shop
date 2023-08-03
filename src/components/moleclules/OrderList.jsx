@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductById } from "../../apis/product";
 import { comma } from "../../utils/convert";
 import { Link } from "react-router-dom";
+import { staticServerUri } from "../../constants/serverUri";
 
 export default function OrderList({ item, options }) {
   const { data } = useQuery(
@@ -17,7 +18,7 @@ export default function OrderList({ item, options }) {
       {options.map((option) =>
         option.quantity ? (
           <Link
-            to={`/product/${item.id}`}
+            to={staticServerUri + `/product/${item.id}`}
             style={{ pointerEvents: options === item.items ? "none" : "auto" }}
             key={option.id}
             className={`mx-3 flex ${

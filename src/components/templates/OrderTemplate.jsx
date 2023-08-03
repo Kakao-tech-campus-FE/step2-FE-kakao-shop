@@ -9,6 +9,7 @@ import CheckBox from "../atoms/CheckBox";
 import { useState } from "react";
 import { BsChevronUp, BsChevronDown } from "react-icons/bs";
 import Modal from "../moleclules/Modal";
+import { staticServerUri } from "../../constants/serverUri";
 
 const OrderTemplate = ({ data }) => {
   const navigate = useNavigate();
@@ -191,7 +192,9 @@ const OrderTemplate = ({ data }) => {
                 },
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  navigate(`/orders/complete/${id}`, { replace: true });
+                  navigate(staticServerUri + `/orders/complete/${id}`, {
+                    replace: true,
+                  });
                 },
               });
             } else {
@@ -217,7 +220,7 @@ const OrderTemplate = ({ data }) => {
             type={"one"}
             buttonText={"홈으로"}
             onClick={() => {
-              navigate("/", { replace: true });
+              navigate(staticServerUri + "/", { replace: true });
             }}
           ></Modal>
         )}

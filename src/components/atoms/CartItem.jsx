@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getProductById } from "../../apis/product";
 import Photo from "../atoms/Photo";
 import { Link } from "react-router-dom";
+import { staticServerUri } from "../../constants/serverUri";
 
 const CartItem = ({ item, onChangeCount, onChangeCheck, onClick, checked }) => {
   const { data } = useQuery(
@@ -27,7 +28,10 @@ const CartItem = ({ item, onChangeCount, onChangeCheck, onClick, checked }) => {
           alt={item.productName}
           className="mx-2 block w-[60px] rounded-md border border-gray-100"
         ></Photo>
-        <Link to={`/product/${item.id}`} className="text-[15px] font-semibold">
+        <Link
+          to={staticServerUri + `/product/${item.id}`}
+          className="text-[15px] font-semibold"
+        >
           {item.productName}
         </Link>
       </div>

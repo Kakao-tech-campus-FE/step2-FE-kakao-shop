@@ -4,6 +4,7 @@ import { getOrderFromId } from "../apis/order";
 import OrderList from "../components/moleclules/OrderList";
 import Container from "../components/atoms/Container";
 import { comma } from "../utils/convert";
+import { staticServerUri } from "../constants/serverUri";
 
 const OrderCompletePage = () => {
   const { id } = useParams();
@@ -52,7 +53,7 @@ const OrderCompletePage = () => {
         className="w-full bg-kakao p-5 font-extrabold"
         onClick={(e) => {
           e.preventDefault();
-          navigate("/");
+          navigate(staticServerUri + "/");
         }}
       >
         쇼핑 계속하기

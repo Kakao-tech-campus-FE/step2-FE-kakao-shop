@@ -10,6 +10,7 @@ import Modal from "../moleclules/Modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { staticServerUri } from "../../constants/serverUri";
 
 // 유효성 검사의 에러 메세지
 const ERROR_MSG = {
@@ -139,7 +140,7 @@ const RegisterForm = () => {
           contentText={"카카오톡 쇼핑하기 가입이 완료되었습니다."}
           buttonText={"시작하기"}
           onClick={() => {
-            navigate("/", { replace: true });
+            navigate(staticServerUri + "/", { replace: true });
             window.location.reload(false);
           }}
           type={modal}
@@ -154,7 +155,7 @@ const RegisterForm = () => {
           }
           buttonText={"로그인"}
           onClick={() => {
-            navigate("/login", { replace: false });
+            navigate(staticServerUri + "/login", { replace: false });
           }}
           type={"two"}
           secondButton={"다시 입력"}
