@@ -96,7 +96,7 @@ const LoginForm = () => {
 					console.log(error);
 				}
                 setError(error.toString());
-				회원정보가 존재하지 않습니다.
+				alert("회원정보가 존재하지 않습니다.");
             });
     };
 
