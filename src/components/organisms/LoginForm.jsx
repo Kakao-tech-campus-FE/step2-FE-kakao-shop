@@ -18,6 +18,7 @@ const Container = styled.div`
     width: 30rem;
   }
 `;
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const LoginForm = () => {
   const { value, handleOnChange } = useInput({
@@ -41,7 +42,7 @@ const LoginForm = () => {
       .then((action) => {
         const response = action.payload;
         if (response.email && response.token) {
-          navigate("/");
+          navigate(staticServerUri + "/");
           alert("로그인 성공!");
         }
       })

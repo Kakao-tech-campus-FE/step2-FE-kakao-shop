@@ -39,6 +39,7 @@ const GnbOrganism = styled.div`
     margin-left: 2rem;
   }
 `;
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const Gnb = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const Gnb = () => {
 
   const handleLoginButtonClick = () => {
     try {
-      navigate(routes.login);
+      navigate(staticServerUri + routes.login);
     } catch (error) {
       console.log("로그인 실패:", error);
     }
@@ -58,7 +59,7 @@ const Gnb = () => {
   };
 
   const handleLogoutButtonClick = () => {
-    navigate(routes.home);
+    navigate(staticServerUri + routes.home);
     localStorage.removeItem("token");
   };
 
@@ -70,7 +71,7 @@ const Gnb = () => {
             src={logo}
             alt="kakao-shoping"
             style={{ width: "100px", cursor: "pointer" }}
-            onClick={() => navigate(routes.home)}
+            onClick={() => navigate(staticServerUri + routes.home)}
           />
         </div>
         <div className="right-header">
@@ -84,7 +85,7 @@ const Gnb = () => {
             <LinkButton
               className="cart icon"
               type="click"
-              onClick={() => navigate(routes.cart)}
+              onClick={() => navigate(staticServerUri + routes.cart)}
             >
               <BsCart2 />
             </LinkButton>

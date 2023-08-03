@@ -20,6 +20,8 @@ const Container = styled.div`
   }
 `;
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = () => {
   const navigate = useNavigate();
 
@@ -46,7 +48,7 @@ const RegisterForm = () => {
     })
       .then((response) => {
         if (response.status === 200) {
-          navigate(routes.home);
+          navigate(staticServerUri + routes.home);
         }
       })
       .catch((error) => console.log(error));

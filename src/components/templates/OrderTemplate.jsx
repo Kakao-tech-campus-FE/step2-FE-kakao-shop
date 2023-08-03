@@ -9,6 +9,8 @@ import { useMutation } from "@tanstack/react-query";
 import { ordersSave } from "../../services/order";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -76,7 +78,7 @@ const OrderTemplate = ({ data }) => {
       onSuccess: (res) => {
         const id = res.data.response.id;
         alert("주문이 완료되었습니다.");
-        navigate(`/orders/${id}`);
+        navigate(staticServerUri + `/orders/${id}`);
       },
     });
   };

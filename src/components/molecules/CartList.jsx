@@ -9,6 +9,8 @@ import routes from "../../routes.js";
 import { updateCart } from "../../services/cart";
 import { comma } from "../../utils/convert";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -125,7 +127,7 @@ const CartList = ({ data }) => {
           onClick={() => {
             mutate(updatePayload.current, {
               onSuccess: (data) => {
-                navigate(routes.orders);
+                navigate(staticServerUri + routes.orders);
               },
               onError: (error) => {
                 console.log(error);

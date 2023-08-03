@@ -14,6 +14,8 @@ const AnchorRegister = styled.div`
   }
 `;
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const GoRegister = () => {
   const navigate = useNavigate();
   return (
@@ -23,7 +25,7 @@ const GoRegister = () => {
         <LinkButton
           className="go-register"
           type="click"
-          onClick={() => navigate(routes.register)}
+          onClick={() => navigate(staticServerUri + routes.register)}
         >
           회원가입
         </LinkButton>

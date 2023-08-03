@@ -4,12 +4,14 @@ import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderCompleteTemplate = ({ data }) => {
   const orderData = data?.data.response;
   const navigate = useNavigate();
 
   const continueShopping = () => {
-    navigate(routes.home);
+    navigate(staticServerUri + routes.home);
   };
 
   return (
