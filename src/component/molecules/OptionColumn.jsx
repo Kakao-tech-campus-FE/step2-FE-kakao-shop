@@ -4,7 +4,7 @@ import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
 import OptionList from "../atoms/OptionList";
 import Button from "../atoms/Button";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Photo from "../atoms/Photo";
 
 
@@ -124,7 +124,13 @@ const OptionColumn = ({ product }) => {
             <Button className="w-10" onClick={addCartReq}>
                 <Photo className="w-10" src="/cart.png" />
             </Button>
-            <Button className="w-40 h-16 text-xl text-center rounded bg-#ffeb00" >구매하기</Button>
+            <Button className="w-40 h-16 text-xl text-center rounded bg-#ffeb00" 
+                onClick={() => {
+                    addCartReq;
+                    navigate("/order");
+                }}
+            >
+                구매하기</Button>
         </div>
     </div>
 }
