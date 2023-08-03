@@ -18,14 +18,14 @@ function MainProductTemplate() {
       }
     })
   },{
-    threshold: 0.9,
+    threshold: 0.1,
   })
 
   const {productData,isLoading,end,reRender,isError, errorMessage} = useInfinite(page)
 
 
   useEffect(()=>{
-    if(!isLoading && !end && !isError && !reRender){
+    if(!isLoading && !end && !isError){
       io.observe(bottomObserver.current)
     }
 
