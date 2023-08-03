@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const instance = axios.create({
-  // baseURL: process.env.REACT_APP_API_URL, -> 이렇게 하니까 인식을 못하는 것 같은데...?
   baseURL: process.env.REACT_APP_API_URL,
   timeout: 5000,
   headers: {
