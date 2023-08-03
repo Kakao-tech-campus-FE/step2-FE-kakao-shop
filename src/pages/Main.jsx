@@ -3,6 +3,7 @@ import GNB from '../components/templates/GNB';
 import Carousel from '../components/molecules/Carousel';
 import MainProductsTemplate from '../components/templates/MainProductsTemplate';
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const Main = () => {
 
@@ -12,9 +13,9 @@ const Main = () => {
       <GNB />
       <Carousel images={
         [
-          '/assets/carouselItem1.jpeg',
-          '/assets/carouselItem2.jpeg',
-          '/assets/carouselItem3.jpeg',
+          staticServerUrl + '/assets/carouselItem1.jpeg',
+          staticServerUrl + '/assets/carouselItem2.jpeg',
+          staticServerUrl + '/assets/carouselItem3.jpeg',
         ]
       }/>
       <MainProductsTemplate />
