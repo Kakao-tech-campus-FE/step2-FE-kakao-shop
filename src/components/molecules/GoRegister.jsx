@@ -8,6 +8,10 @@ const AnchorRegister = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  .go-register {
+    font-weight: bold;
+  }
 `;
 
 const GoRegister = () => {
@@ -17,9 +21,9 @@ const GoRegister = () => {
       <AnchorRegister>
         <Label>계정이 없으신가요?</Label>
         <LinkButton
+          className="go-register"
           type="click"
           onClick={() => navigate(routes.register)}
-          styles={{ fontWeight: "bold" }}
         >
           회원가입
         </LinkButton>

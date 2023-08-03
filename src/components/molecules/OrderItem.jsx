@@ -13,9 +13,8 @@ const Option = styled.div`
 `;
 
 const EachOption = styled.div`
-  border: 1px solid #979797;
-  width: 32rem;
-  padding: 0.8rem;
+  width: 50rem;
+  margin-top: 2rem;
 `;
 
 const OrderItem = ({ item, onChange, onClick }) => {

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const InputCheck = styled.input`
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   appearance: none;
   outline: none;
   border: 2px solid gray;
@@ -29,17 +29,25 @@ const InputCheck = styled.input`
   }
 `;
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+`;
+
 const CheckList = ({ id, name, htmlFor, children, checked, onChange }) => {
   return (
     <>
-      <InputCheck
-        type="checkbox"
-        id={id}
-        name={name}
-        checked={checked}
-        onChange={onChange}
-      />
-      <label htmlFor={htmlFor}>{children}</label>
+      <Container>
+        <InputCheck
+          type="checkbox"
+          id={id}
+          name={name}
+          checked={checked}
+          onChange={onChange}
+        />
+        <label htmlFor={htmlFor}>{children}</label>
+      </Container>
     </>
   );
 };

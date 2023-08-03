@@ -7,18 +7,42 @@ import SubmitButton from "../atoms/SubmitButton";
 import { useMutation } from "@tanstack/react-query";
 import routes from "../../routes.js";
 import { updateCart } from "../../services/cart";
+import { comma } from "../../utils/convert";
+
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Title = styled.div`
-  font-size: 1.5rem;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
   text-align: center;
-  margin: 2rem;
 `;
 
 const StyledGroup = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 50rem;
+`;
+
+const TotalPrice = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 50rem;
+
+  padding: 0.8rem;
+  margin: 0.2rem 0 2rem 0;
+
+  font-size: 1.2rem;
+
+  .price {
+    color: #0044ff;
+    font-weight: bold;
+  }
 `;
 
 const CartList = ({ data }) => {
@@ -31,6 +55,8 @@ const CartList = ({ data }) => {
   useEffect(() => {
     setCartItems(data?.data?.response?.products);
   }, [data]);
+
+  const totalPrice = data?.data?.response.totalPrice;
 
   const { mutate } = useMutation({
     mutationFn: updateCart,
@@ -74,37 +100,43 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <StyledGroup className="cart-list">
-      <Title>장바구니</Title>
-      <Card>
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                ref={updatePayload}
-                onChange={handleOnChangeCount}
-              />
-            );
-          })}
-      </Card>
-      <SubmitButton
-        className="order-btn"
-        onClick={() => {
-          mutate(updatePayload.current, {
-            onSuccess: (data) => {
-              navigate(routes.orders);
-            },
-            onError: (error) => {
-              console.log(error);
-            },
-          });
-        }}
-      >
-        총 {getTotalCartCountIncludeOptions()}건 결제하기
-      </SubmitButton>
-    </StyledGroup>
+    <Container>
+      <StyledGroup className="cart-list">
+        <Title>장바구니</Title>
+        <Card>
+          {Array.isArray(cartItems) &&
+            cartItems.map((item) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  ref={updatePayload}
+                  onChange={handleOnChangeCount}
+                />
+              );
+            })}
+        </Card>
+        <TotalPrice>
+          <div>주문 예상 금액</div>
+          <div className="price">{comma(totalPrice)}원</div>
+        </TotalPrice>
+        <SubmitButton
+          className="order-btn"
+          onClick={() => {
+            mutate(updatePayload.current, {
+              onSuccess: (data) => {
+                navigate(routes.orders);
+              },
+              onError: (error) => {
+                console.log(error);
+              },
+            });
+          }}
+        >
+          총 {getTotalCartCountIncludeOptions()}건 결제하기
+        </SubmitButton>
+      </StyledGroup>
+    </Container>
   );
 };
 
