@@ -6,11 +6,10 @@ import SkeletonCard from '../atoms/Skeleton';
 import Loader from '../atoms/Loader';
 import Button from '../atoms/Button';
 
-const staticServerUrl = process.env.REACT_APP_PATH || '';
 const ProductCard = ({ product }) => {
   return (
     <>
-      <Card to={`${staticServerUrl}/product/${product.id}`}>
+      <Card to={`/product/${product.id}`}>
         <Photo
           className="card border-rounded"
           src={product.image}
