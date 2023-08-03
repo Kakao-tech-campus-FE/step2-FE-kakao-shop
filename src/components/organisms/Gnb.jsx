@@ -4,21 +4,39 @@ import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
 import { useSelector } from "react-redux";
 import { persistor } from "../../index";
+import logo from "../../assets/pc_logo.png";
+import { BsCart2, BsTruck } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
 
 const GnbOrganism = styled.div`
   overflow: hidden;
   padding: 2rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  .home {
-    float: left;
+  .img {
+    display: inline-block;
   }
 
-  .cart {
-    float: right;
+  .right-header {
+    display: flex;
+    align-items: center;
+    width: 15rem;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    width: 8rem;
+  }
+
+  .icon {
+    font-size: 1.6rem;
   }
 
   .login {
-    float: right;
+    margin-left: 2rem;
   }
 `;
 
@@ -47,57 +65,51 @@ const Gnb = () => {
   return (
     <>
       <GnbOrganism>
-        <LinkButton
-          className="home"
-          type="click"
-          onClick={() => navigate(routes.home)}
-          styles={{
-            margin: "1rem",
-            fontWeight: "bold",
-          }}
-        >
-          쇼핑하기
-        </LinkButton>
-        {isLoggedin ? (
-          <LinkButton
-            className="login"
-            type="click"
-            onClick={async () => {
-              await handleLogoutButtonClick();
-              await setTimeout(() => purge(), 200);
-            }}
-            styles={{
-              width: "5rem",
-              margin: "1rem",
-            }}
-          >
-            로그아웃
-          </LinkButton>
-        ) : (
-          <LinkButton
-            className="login"
-            type="click"
-            onClick={handleLoginButtonClick}
-            styles={{
-              width: "5rem",
-              margin: "1rem",
-            }}
-          >
-            로그인
-          </LinkButton>
-        )}
-
-        <LinkButton
-          className="cart"
-          type="click"
-          onClick={() => navigate(routes.cart)}
-          styles={{
-            width: "5rem",
-            margin: "1rem",
-          }}
-        >
-          장바구니
-        </LinkButton>
+        <div className="img">
+          <img
+            src={logo}
+            alt="kakao-shoping"
+            style={{ width: "100px", cursor: "pointer" }}
+            onClick={() => navigate(routes.home)}
+          />
+        </div>
+        <div className="right-header">
+          <div className="icons">
+            <LinkButton className="icon">
+              <IoIosSearch />
+            </LinkButton>
+            <LinkButton className="icon">
+              <BsTruck />
+            </LinkButton>
+            <LinkButton
+              className="cart icon"
+              type="click"
+              onClick={() => navigate(routes.cart)}
+            >
+              <BsCart2 />
+            </LinkButton>
+          </div>
+          {isLoggedin ? (
+            <LinkButton
+              className="login"
+              type="click"
+              onClick={async () => {
+                await handleLogoutButtonClick();
+                await setTimeout(() => purge(), 200);
+              }}
+            >
+              로그아웃
+            </LinkButton>
+          ) : (
+            <LinkButton
+              className="login"
+              type="click"
+              onClick={handleLoginButtonClick}
+            >
+              로그인
+            </LinkButton>
+          )}
+        </div>
       </GnbOrganism>
     </>
   );
