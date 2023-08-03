@@ -1,4 +1,5 @@
-import { Card } from "@material-tailwind/react";
+// import { Card } from "@material-tailwind/react";
+import Card from "./Card";
 import Box from "./Box";
 import Counter from "./Counter";
 import { comma } from "../../utils/convert";
@@ -10,20 +11,23 @@ const CartItems = ({item,onChange}) => {
        <Box>
         <h5>{item.productName}</h5>
         {item.carts.map((cart)=>{
+           return(
             <Card key={cart.id}>
                 <div>
-                    <span>{cart.option.optionName}</span>
+                    {cart.option.optionName}
                 </div>
                 <Counter
                 onIncrease={(count)=>{
-                    onChange(cart.id,count,cart.option.price)
+                    onChange(cart.option.id,count,cart.option.price)
                 }}
                 onDecrease={(count)=>{
-                    onChange(cart.id,count,-cart.option.price)}}/>
+                    onChange(cart.option.id,count,-cart.option.price)}}/>
                 <div>
                     <span>{comma(cart.option.price * cart.quantity)} 원</span>
                 </div>
             </Card>
+           )
+            
         })}
          <Card>
             <h5>주문금액</h5>
@@ -33,6 +37,7 @@ const CartItems = ({item,onChange}) => {
                 },0)
             )}</div>
             </Card>
+            <hr></hr>
        </Box>
     );
 };

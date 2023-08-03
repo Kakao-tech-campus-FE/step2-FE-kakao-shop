@@ -2,7 +2,7 @@ import { useState } from "react";
 import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
 import { addCart } from "../../services/cart";
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -95,11 +95,11 @@ const OptionColum = ({ product }) => {
             <button
                 className="bg-transparent hover:font-semibold text-bubble-gum py-2 px-4 border rounded hover:bg-bubble-gum hover:text-white"
                 onClick={() => {
-                    
+                    console.log(selectedOptions)
                     mutate(
                         selectedOptions.map((el) => {
                             return {
-                                optionId:el.id,
+                                optionId:el.optionId,
                                 quantity:el.quantity,
                             };
                         }),//payload

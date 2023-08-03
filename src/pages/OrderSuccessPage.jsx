@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { comma } from "../utils/convert";
+import { comma } from "../../utils/convert";
 import { useParams } from "react-router-dom";
-import { getOrderFromId } from "../services/order";
+import { getOrderFromId } from "../../services/order";
 
-const OrderCompletePage = () => {
+const OrderSuccessTemplate = () => {
   const { id } = useParams();
-  const { data } = useQuery(['orderComplete'], () => getOrderFromId(id), {
+  const { data } = useQuery([`orders/${id}}`], () => getOrderFromId(id), {
     suspense: true,
   });
 
@@ -46,4 +46,4 @@ const OrderCompletePage = () => {
   );
 };
 
-export default OrderCompletePage;
+export default OrderSuccessTemplate;

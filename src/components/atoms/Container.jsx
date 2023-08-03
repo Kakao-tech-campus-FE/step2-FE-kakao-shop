@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const ContainerCss = styled.div`
 
-   // width: 25rem;
+   /* width: 25rem; */
     height: auto;
 
     display: flex;
