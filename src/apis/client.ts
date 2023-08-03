@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { getCookie } from '@utils/cookie';
 
-export const BASE_URL = window.location.hostname === 'localhost' ? `${process.env.REACT_APP_PROD_SERVER}` : '/api';
+export const BASE_URL = `${process.env.REACT_APP_PATH}` + '/api';
 
 export const client = axios.create({
   baseURL: BASE_URL,
