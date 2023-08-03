@@ -4,7 +4,7 @@ import "../../styles/atoms/Card.css"
 const Card = ({ className, to, children }) => {
     return (
         <div className={className}>
-            <Link className="card" to={to}>
+            <Link className="card" to={staticServerUri + to}>
                 {children}
             </Link>
         </div>

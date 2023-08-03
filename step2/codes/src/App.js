@@ -31,17 +31,17 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     {/*단독 레이아웃*/}
-                    <Route path="/login" element={<LoginPage />}></Route>
-                    <Route path="/signup" element={<RegisterPage />}></Route>
+                    <Route path={staticServerUri + "/login"} element={<LoginPage />}></Route>
+                    <Route path={staticServerUri + "/signup"} element={<RegisterPage />}></Route>
                     {/*공통 레이아웃: GNB, FOOTER*/}
                     <Route element={<MainLayout />}> {/* 레이아웃은 별도의 경로를 지정하지 않음 */}
-                        <Route path="/" element={<HomePage />}></Route>
-                        <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+                        <Route path={staticServerUri + "/"} element={<HomePage />}></Route>
+                        <Route path={staticServerUri + "/product/:id"} element={<ProductDetailPage />}></Route>
                     </Route>
                     <Route element={<RequiredAuthLayout />} >
-                        <Route path="/cart" element={<CartPage />}></Route>
-                        <Route path="/order" element={<OrderPage />}></Route>
-                        <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
+                        <Route path={staticServerUri + "/cart"} element={<CartPage />}></Route>
+                        <Route path={staticServerUri + "/order"} element={<OrderPage />}></Route>
+                        <Route path={staticServerUri + "/orders/complete/:id"} element={<OrderCompletePage />}></Route>
                     </Route>
                 </Routes>
             </BrowserRouter>
