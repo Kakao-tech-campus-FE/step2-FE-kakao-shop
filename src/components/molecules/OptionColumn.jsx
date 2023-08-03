@@ -6,22 +6,36 @@ import { comma } from "../../utils/convert";
 import styled from "styled-components";
 import { useMutation } from "@tanstack/react-query";
 import { addCarts } from "../../services/cart";
+import { BsCart2 } from "react-icons/bs";
 
 const SelectedOrderedList = styled.ol`
   list-style: none;
-  padding: 0;
+  margin: 1rem;
+  padding: 0.5rem;
+
+  .counter {
+    margin-top: 0.8rem;
+  }
 `;
 
 const TotalPrice = styled.div`
   span:last-child {
     float: right;
+    color: red;
   }
+
+  padding: 1.1rem;
 `;
 
 const ButtonGroup = styled.div`
   text-align: center;
   > button {
+    padding: 0 1rem;
     margin: 1rem;
+  }
+
+  > button:nth-child(2) {
+    width: 12rem;
   }
 `;
 
@@ -91,27 +105,33 @@ const OptionColumn = ({ product }) => {
 
   return (
     <>
+      <div className="border-l-2 mr-5" />
       <div className="option-column">
-        <h3>옵션 선택</h3>
+        <h3 className="font-bold mb-6">옵션 선택</h3>
         <OptionList options={product.options} onClick={handleOnClickOption} />
-        <hr />
         {selectedOptions.map((option) => (
-          <SelectedOrderedList
-            key={`${option.optionId}`}
-            className="selected-option-list"
-          >
-            <li className="selected-option">
-              <span className="name">선택한 상품: {option.name}</span>
-              <div>
-                <Counter
-                  value={option.quantity}
-                  onIncrease={(count) => handleOnChange(count, option.optionId)}
-                  onDecrease={(count) => handleOnChange(count, option.optionId)}
-                />
-              </div>
-            </li>
+          <>
+            <SelectedOrderedList
+              key={`${option.optionId}`}
+              className="selected-option-list"
+            >
+              <li className="selected-option">
+                <span className="name">선택한 상품: {option.name}</span>
+                <div className="counter">
+                  <Counter
+                    value={option.quantity}
+                    onIncrease={(count) =>
+                      handleOnChange(count, option.optionId)
+                    }
+                    onDecrease={(count) =>
+                      handleOnChange(count, option.optionId)
+                    }
+                  />
+                </div>
+              </li>
+            </SelectedOrderedList>
             <hr />
-          </SelectedOrderedList>
+          </>
         ))}
 
         <TotalPrice className="total-price">
@@ -134,7 +154,7 @@ const OptionColumn = ({ product }) => {
         </TotalPrice>
         <ButtonGroup className="button-group">
           <Button color="white" backgroundColor="black" onClick={addCart}>
-            장바구니 담기
+            <BsCart2 />
           </Button>
           <Button width="10rem" backgroundColor="yellow">
             톡딜가로 구매하기
