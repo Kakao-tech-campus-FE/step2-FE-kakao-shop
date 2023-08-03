@@ -48,6 +48,7 @@ const RegisterForm = () => {
     })
       .then((response) => {
         if (response.status === 200) {
+          alert("회원가입 성공!");
           navigate(staticServerUri + routes.home);
         }
       })
