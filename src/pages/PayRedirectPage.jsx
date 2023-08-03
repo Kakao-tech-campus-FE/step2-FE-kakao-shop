@@ -20,7 +20,7 @@ export default function PayRedirectPage() {
         await paymentInstance.payApproveRequest(pg_token);
         orderCart.mutate(null, {
           onSuccess: async (data) => {
-            navigate(staticServerUri + "/result", {
+            navigate("/result", {
               replace: true,
               state: {
                 address,

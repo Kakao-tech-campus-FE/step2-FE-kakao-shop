@@ -4,8 +4,6 @@ import Box from "../components/atoms/Box";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/atoms/Button";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function CanceledOrderPage() {
   const navigate = useNavigate();
 
@@ -26,7 +24,7 @@ export default function CanceledOrderPage() {
             color="white"
             radius="xs"
             border="border"
-            onClick={() => navigate(staticServerUri + "/order")}
+            onClick={() => navigate("/order")}
           >
             다시 주문
           </Button>
@@ -34,7 +32,7 @@ export default function CanceledOrderPage() {
             padding="px-5 py-2"
             color="black"
             radius="xs"
-            onClick={() => navigate(staticServerUri + "/")}
+            onClick={() => navigate("/")}
           >
             쇼핑하기 홈
           </Button>

@@ -6,8 +6,6 @@ import Box from "../../atoms/Box";
 import productInstance from "../../../apis/product";
 import { comma } from "../../../utils/convert";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function OrderProductItem({
   cartItem,
   productId,
@@ -31,7 +29,7 @@ export default function OrderProductItem({
       className={`flex items-center gap-4 py-5 ${
         border ? "border-b" : ""
       } cursor-pointer`}
-      onClick={() => navigate(staticServerUri + `/product/${productId}`)}
+      onClick={() => navigate(`/product/${productId}`)}
     >
       <Box className="border rounded overflow-hidden">
         <Photo className="w-16 h-16" src={data.image} alt={data.productName} />

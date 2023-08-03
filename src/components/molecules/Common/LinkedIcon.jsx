@@ -23,7 +23,7 @@ export default function LinkedIcon({
   onClick = () => {},
 }) {
   return (
-    <Link to={staticServerUri + to} className="p-2" onClick={onClick}>
+    <Link to={to} className="p-2" onClick={onClick}>
       <Icon alt={alt} width={width}>
         {children}
       </Icon>

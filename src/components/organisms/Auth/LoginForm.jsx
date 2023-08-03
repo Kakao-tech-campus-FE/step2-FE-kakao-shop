@@ -9,7 +9,6 @@ import useLoginValidation from "../../../hooks/useLoginValidation";
 import { loginRequest } from "../../../store/slices/userSlice";
 import { setCookie } from "../../../utils/cookie";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
 const initialState = { email: "", password: "" };
 
 export default function LoginForm() {
@@ -40,7 +39,7 @@ export default function LoginForm() {
 
         const accessToken = response.payload.accessToken.split(" ")[1];
         setCookie("accessToken", accessToken, 1000 * 60 * 60 * 24);
-        navigate(staticServerUri + "/");
+        navigate("/");
       } catch (error) {
         setError("인증되지 않았습니다");
       }

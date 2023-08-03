@@ -25,7 +25,7 @@ export default function ResultPage() {
 
   useEffect(() => {
     if (!orderId) {
-      navigate(staticServerUri + "/");
+      navigate("/");
       return;
     }
   }, [orderId, navigate]);
@@ -51,7 +51,7 @@ export default function ResultPage() {
             padding="py-4"
             font="bold"
             color="yellow"
-            onClick={() => navigate(staticServerUri + "/")}
+            onClick={() => navigate("/")}
           >
             쇼핑 계속하기
           </Button>

@@ -9,8 +9,6 @@ import { setUser } from "../../../store/slices/userSlice";
 import { removeCookie } from "../../../utils/cookie";
 import cartImage from "../../../assets/cart.png";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function NavBar({ modalRef }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,11 +16,11 @@ export default function NavBar({ modalRef }) {
 
   const handleLoginClick = () => {
     if (!user) {
-      navigate(staticServerUri + "/login");
+      navigate("/login");
     } else {
       removeCookie("accessToken");
       dispatch(setUser({ isLoggedIn: false }));
-      navigate(staticServerUri + "/");
+      navigate("/");
     }
   };
   const handleCartClick = (e) => {

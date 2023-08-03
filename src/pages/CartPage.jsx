@@ -41,7 +41,7 @@ export default function CartPage() {
               textsize="lg"
               font="bold"
               color="yellow"
-              onClick={() => navigate(staticServerUri + "/order")}
+              onClick={() => navigate("/order")}
             >
               주문하기
             </Button>

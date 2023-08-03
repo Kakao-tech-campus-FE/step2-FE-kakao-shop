@@ -5,8 +5,6 @@ import Box from "../../atoms/Box";
 import Container from "../../atoms/Container";
 import Button from "../../atoms/Button";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
-
 export default function NullCart() {
   const navigate = useNavigate();
 
@@ -31,7 +29,7 @@ export default function NullCart() {
             padding="px-5 py-2"
             color="black"
             radius="xs"
-            onClick={() => navigate(staticServerUri + "/")}
+            onClick={() => navigate("/")}
           >
             쇼핑하기 홈
           </Button>
