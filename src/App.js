@@ -14,7 +14,6 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
-import Checkout from "./pages/Checkout";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import OrderFailPage from "./pages/OrderFailPage";
 import OrderTempPage from "./pages/OrderTempPage";
@@ -31,9 +30,6 @@ function App() {
                 <Route path="/login" element={<LoginPage />}/>
                 <Route path="/register" element={<RegisterPage />}/>
                 <Route path="/notFound" element={<NotFoundPage />} />
-                {/* <Route path="/payment" element={<Checkout />} />
-                <Route path="/payment/success" element={<OrderSuccessPage />} />
-                <Route path="/payment/fail" element={<OrderFailPage />} /> */}
                 
                 {/* 공통 레이아웃 */}
                 <Route element={<MainLayout />}>
