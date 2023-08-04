@@ -1,20 +1,22 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import Container from "../atoms/Conatiner";
 import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
 import Button from "../atoms/Button";
 import { comma } from "../../utils/convert";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { updateCart } from "../../services/cart";
+import { getCart } from "../../services/cart";
+import "../../styles/molecules/CartList.css";
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
-const CartList = ({ data }) => {
+const CartList = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
+  const { data, error } = useQuery("carts", getCart, { suspense: true });
 
   const { mutate } = useMutation({
     mutationFn: updateCart,
@@ -80,45 +82,47 @@ const CartList = ({ data }) => {
   };
 
   return (
-    <Container className="cart-list">
-      <h1>장바구니</h1>
-      <div>
-        {/* 상품별 장바구니 */}
-        {Array.isArray(cartItems) &&
-          cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount}
-              />
-            );
-          })}
-      </div>
-
-      <Card>
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="total-expect-price">{comma(totalPrice)}원</div>
+    <div className="cart-container">
+      <div className="cart-innerwrap">
+        <div className="cart-top">
+          <span>장바구니</span>
         </div>
-      </Card>
+        <div>
+          {/* 상품별 장바구니 */}
+          {Array.isArray(cartItems) &&
+            cartItems.map((item) => {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onChange={handleOnChangeCount}
+                />
+              );
+            })}
+        </div>
 
-      <Button
-        className="order-button"
-        onClick={() => {
-          //장바구니 정보 수정하는 api호출(개수 변경 있을 경우)
-          mutate(updatePayload, {
-            onSuccess: (data) => {
-              //주문 페이지로 이동
-              navigate(staticServerUrl + "/order");
-            },
-            onError: (error) => {},
-          });
-        }}
-      >
-        <span>총 {getTotalCartCount()}건 주문하기</span>
-      </Button>
-    </Container>
+        <div className="expect-total-price">
+          <span>주문 예상금액</span>
+          <span style={{ color: "#4684e9" }}>{comma(totalPrice)}원</span>
+        </div>
+
+        <Button
+          className="cart-order-btn"
+          onClick={() => {
+            //장바구니 정보 수정하는 api호출(개수 변경 있을 경우)
+            mutate(updatePayload, {
+              onSuccess: (data) => {
+                //주문 페이지로 이동
+                navigate(staticServerUrl + "/order");
+              },
+              onError: (error) => {},
+            });
+          }}
+        >
+          <span>총 {getTotalCartCount()}건 주문하기</span>
+        </Button>
+      </div>
+    </div>
   );
 };
 

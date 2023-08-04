@@ -1,13 +1,12 @@
 import { useState } from "react";
-import OptionList from "../atoms/OptionList";
-import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { addCart } from "../../services/cart";
 import { Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/molecules/OptionColumn.css";
 import { useNavigate } from "react-router-dom";
+import OptionList from "../atoms/OptionList";
+import Counter from "../atoms/Counter";
+import "../../styles/molecules/OptionColumn.css";
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
@@ -24,27 +23,19 @@ const OptionColumn = ({ product }) => {
     );
 
     if (isOptionSelected) {
-      alert("이미 장바구니에 담긴 상품입니다🧐");
+      alert("이미 선택된 옵션입니다🧐");
       return;
-      // setSelectedOptions((prev) =>
-      //   prev.map((prevOption) =>
-      //     prevOption.optionId === option.id
-      //       ? { ...prevOption, quantity: prevOption.quantity + 1 }
-      //       : prevOption
-      //   )
-      // );
-      // return;
+    } else {
+      setSelectedOptions((prev) => [
+        ...prev,
+        {
+          optionId: option.id,
+          quantity: 1,
+          price: option.price,
+          name: option.optionName,
+        },
+      ]);
     }
-
-    setSelectedOptions((prev) => [
-      ...prev,
-      {
-        optionId: option.id,
-        quantity: 1,
-        price: option.price,
-        name: option.optionName,
-      },
-    ]);
   };
 
   const handleOnChange = (count, optionId) => {
@@ -69,20 +60,17 @@ const OptionColumn = ({ product }) => {
   return (
     <div className="option-column">
       <h3>옵션선택</h3>
-      <OptionList
-        options={product.options}
-        //사용자가 선택한 옵션이 담긴다.
-        onClick={handleOnClickOption}
-      />
+      <OptionList options={product.options} onClick={handleOnClickOption} />
 
       {/* 담긴 옵션 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={option.id} className="selected-option-list">
+        <ol key={option.optionId} className="selected-option-list">
           <li className="selected-option-item">
             <span className="selected-option-name">{option.name}</span>
             <div className="selected-option-update">
               <Counter
                 className="selected-option-count"
+                quantity={option.quantity}
                 onIncrease={(count) => handleOnChange(count, option.optionId)}
                 onDecrease={(count) => handleOnChange(count, option.optionId)}
               />
@@ -131,7 +119,7 @@ const OptionColumn = ({ product }) => {
       </div>
 
       <div className="button-group">
-        <Button className="btn-l">
+        <Button className="like-btn">
           <span className="material-symbols-outlined">favorite</span>
         </Button>
         <Button
@@ -155,13 +143,13 @@ const OptionColumn = ({ product }) => {
               }
             );
           }}
-          className="btn-l"
+          className="cart-btn"
         >
           <span className="material-symbols-outlined">shopping_cart</span>
         </Button>
         {/* <Button className="order-btn">구매하기</Button> */}
         <Button variant="order-btn" className="order-btn">
-          구매하기
+          <span>구매하기</span>
         </Button>
       </div>
     </div>
