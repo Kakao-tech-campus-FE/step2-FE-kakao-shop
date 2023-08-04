@@ -44,8 +44,16 @@
       "react-app/jest"
     ],
     "rules": {
-      "no-unused-vars": "off"
-    }
+		"no-unused-vars": "warn"
+    },
+	"overrides": [
+      {
+        "files": ["**/*.ts?(x)"],
+        "rules": {
+          "max-len": "warn"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
