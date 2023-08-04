@@ -7,12 +7,14 @@ import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import Badge from "../atoms/Badge";
+import { useNavigate } from "react-router-dom";
 
 const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const OptionColumn = ({ product }) => {
   const { starCount, productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const navigate = useNavigate();
 
   const { mutate } = useMutation({
     mutationFn: addCart,
@@ -179,7 +181,7 @@ const OptionColumn = ({ product }) => {
           <img
             className="inline"
             src={staticServerUri + "/icons/heart.svg"}
-            alt="장바구니 담기"
+            alt="찜하기"
             width={24}
           />
         </Button>
@@ -194,7 +196,9 @@ const OptionColumn = ({ product }) => {
                 };
               }),
               {
-                onSuccess: () => {},
+                onSuccess: () => {
+                  alert("장바구니에 담겼습니다.");
+                },
                 onError: (error) => {
                   alert("장바구니 담기에 실패했습니다: " + error);
                 },
@@ -212,13 +216,25 @@ const OptionColumn = ({ product }) => {
         <Button
           className="w-72 h-20 bg-yellow-300 rounded-lg font-bold"
           onClick={() => {
-            alert("준비중입니다.");
+            mutate(
+              selectedOptions.map((el) => {
+                return {
+                  optionId: el.optionId,
+                  quantity: el.quantity,
+                };
+              }),
+              {
+                onSuccess: () => {
+                  navigate(staticServerUri + "/order");
+                },
+              }
+            );
           }}
         >
           <img
             className="inline"
             src={staticServerUri + "/icons/talk.svg"}
-            alt="장바구니 담기"
+            alt="구매하기"
             width={24}
           />{" "}
           구매하기
