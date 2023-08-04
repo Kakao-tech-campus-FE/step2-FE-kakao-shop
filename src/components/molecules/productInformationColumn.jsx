@@ -1,5 +1,5 @@
 
-//import { comma } from '../../utils/convert'
+import { comma } from '../../utils/convert'
 const staticServerUri = process.env.REACT_APP_PATH || "";
 const ProductInformationColumn = ({ product }) => {
     const { productName, price, image } = product;
@@ -7,7 +7,7 @@ const ProductInformationColumn = ({ product }) => {
         <div>
             <img src={`${staticServerUri}${image}`} alt="name"></img>
             <h1>{productName}</h1>
-            <p>{price}원</p>
+            <p>{comma(price)}원</p>
         </div>
     );
 };
