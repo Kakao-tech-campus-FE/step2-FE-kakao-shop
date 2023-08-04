@@ -1,10 +1,8 @@
 import { useAtom } from 'jotai';
 import { useEffect, useRef, useState } from 'react';
-import { fetchProducts, getProductById } from '../../services/product';
-import { errorAtom, isEndAtom, loadingAtom, productAtom } from '../../store/product';
-import Container from '../atoms/Container';
+import { fetchProducts} from '../../services/product';
+import { productAtom } from '../../store/product';
 import ProductGrid from '../organisms/ProductGrid';
-import ProductCardSkeleton from '../molecules/ProductCardSkeleton';
 import _ from 'lodash';
 import { sleep } from '../../utils/sleep';
 import { useQuery } from '@tanstack/react-query';
@@ -16,8 +14,6 @@ const MainProductTemplate = () => {
     const bottomObserver = useRef(null);
 
     const {
-        data,
-        error,
         isLoading: loading,
     } = useQuery(['product', page], () => fetchData(), {
         onSuccess: (data) => {
@@ -26,7 +22,7 @@ const MainProductTemplate = () => {
     });
 
     const io = new IntersectionObserver(
-        (entries, observer) => {
+        (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting && !isEndRef.current) {
                     setPage((page) => page + 1);

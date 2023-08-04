@@ -8,18 +8,14 @@ import { styled } from 'styled-components';
  * @returns {JSX.Element} 컴포넌트 반환
  */
 
-const Button = ({ children, className = 'default', onClick }) => {
+const Button = ({ children, className = '', onClick }) => {
     return (
-        <button className={`${style[className]}`} onClick={onClick} type="button">
+        <StyledButton className={className} onClick={onClick} type="button">
             {children}
-        </button>
+        </StyledButton>
     );
 };
 
-const style = {
-    default: 'p-3 min-w-[20rem] mt-3 mb-1 bg-yellow-300 hover:bg-yellow-400 m-2 rounded-lg',
-    container: 'p-2 w-2 m-2 bg-white',
-};
 
 const StyledButton = styled.button`
     padding: ${({ theme }) => theme.padding.lg};

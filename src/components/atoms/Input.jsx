@@ -14,8 +14,7 @@ import { styled } from 'styled-components';
 
 const Input = ({ id, type, onChange, name, value, placeholder, required = false }) => {
     return (
-        <input
-            className="py-2 min-w-[23rem] outline-none border-b-2 focus:border-yellow-300 placeholder:text-sm"
+        <StyledInput
             id={id}
             type={type}
             onChange={onChange}
@@ -26,5 +25,18 @@ const Input = ({ id, type, onChange, name, value, placeholder, required = false 
         />
     );
 };
+
+const StyledInput = styled.input`
+    padding: ${({ theme }) => theme.padding.lg};
+    min-width: 20rem;
+
+    border: 2.5px solid ${({ theme }) => theme.color.gray};
+    border-radius: ${({ theme }) => theme.border.rad_base};
+    outline: none;
+
+    &:focus {
+        border-color: ${({ theme }) => theme.color.light_green};
+    }
+`;
 
 export default Input;
