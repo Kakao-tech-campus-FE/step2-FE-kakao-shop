@@ -156,7 +156,7 @@ const OrderTemplate = ({ data }) => {
                   },
                   onSuccess: (res) => {
                     const id = res.data.response.id;
-                    navigate(`${routes.orderComplete}/${id}`);
+                    navigate(`${staticServerUri}/orders/complete/${id}`);
                   },
                 });
               }}> 결제하기
