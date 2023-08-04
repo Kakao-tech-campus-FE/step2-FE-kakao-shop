@@ -1,3 +1,4 @@
+/*eslint-disable react/prop-types */
 import Container from "../atoms/Container";
 import ProductInformationColumn from "../molecules/ProductInformationColumn";
 import OptionColumn from "../molecules/OptionColumn";
