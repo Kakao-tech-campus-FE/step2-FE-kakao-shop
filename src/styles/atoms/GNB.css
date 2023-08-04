@@ -26,3 +26,12 @@
 .navigation > * {
   margin-right: 10px;
 }
+
+.navigation img {
+  width: 50%; /* 이미지의 가로 크기를 50%로 설정 */
+  height: auto; /* 세로 크기는 가로 크기에 비례하여 자동으로 조정됨 */
+}
+.left-content img {
+  width: 50%;
+  height: auto;
+}

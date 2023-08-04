@@ -3,12 +3,13 @@ import { AiTwotoneStar } from 'react-icons/ai';
 import { comma } from '../../utils/convert';
 import Photo from '../atoms/Photo';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
     <div className="product-information-column grid grid-cols-5 gap-4">
       <div className="col-span-2 sm:col-span-2">
-        <Photo src={image} alt={productName} />
+        <Photo src={staticServerUrl + image} alt={productName} />
       </div>
       <div className="col-span-3 sm:col-span-3">
         <div style={{ display: 'flex' }}>

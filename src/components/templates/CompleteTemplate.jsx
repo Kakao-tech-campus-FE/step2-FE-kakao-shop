@@ -5,6 +5,7 @@ import { comma } from '../../utils/convert';
 import Container from '../atoms/Container';
 import OrderItem from '../atoms/OptionItem';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 const CompleteTemplate = ({ data }) => {
   const orderList = data;
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const CompleteTemplate = ({ data }) => {
         <button
           className="w-full py-4 text-black font-bold text-xl bg-yellow-400"
           onClick={() => {
-            navigate('/');
+            navigate(staticServerUrl + '/');
             // 주문 완료 후 메인페이지로 이동
           }}
         >

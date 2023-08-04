@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import '../styles/pages/Homepage.css';
 
+const staticServerUrl = process.env.REACT_APP_PATH || '';
 function HomePage() {
   const getUserToken = () => {
     const tokenString = localStorage.getItem('user');
@@ -32,8 +33,8 @@ function HomePage() {
     }
     return (
       <>
-        <Link to="/signup">회원가입</Link>
-        <Link to="/login">로그인</Link>
+        <Link to={staticServerUrl + '/signup'}>회원가입</Link>
+        <Link to={staticServerUrl + '/login'}>로그인</Link>
       </>
     );
   };
@@ -41,8 +42,12 @@ function HomePage() {
   return (
     <div className="link-container">
       <div className="logo-wrapper">
-        <Link to="/">
-          <img src="logoKaKao.png" alt="로고" className="logo" />
+        <Link to={staticServerUrl + '/'}>
+          <img
+            src={`${staticServerUrl}/logoKakao.png`}
+            alt="로고"
+            className="logo"
+          />
         </Link>
       </div>
       <div className="link-wrapper">{renderAuthButton()}</div>

@@ -35,25 +35,25 @@ function GNB() {
     }
     return (
       <>
-        <Link to="/signup">회원가입</Link>
+        <Link to={staticServerUrl + '/signup'}>회원가입</Link>
         <span> | </span>
-        <Link to="/login">로그인</Link>
+        <Link to={staticServerUrl + '/login'}>로그인</Link>
       </>
     );
   };
   return (
     <header className="header">
       <div className="left-content">
-        <Link to="/">
-          <img src="/logoKaKao.png" alt="logoKakao.png" />
+        <Link to={staticServerUrl + '/'}>
+          <img src={`${staticServerUrl}/logoKakao.png`} alt="logoKakao.png" />
         </Link>
       </div>
       <nav>
         <div className="right-content">
           <div className="navigation">
             <span>
-              <Link to="/cart">
-                <img src="/cart.png" alt="cart.png" />
+              <Link to={staticServerUrl + '/cart'}>
+                <img src={`${staticServerUrl}/cart.png`} alt="cart.png" />
               </Link>
             </span>
             <span> | </span>

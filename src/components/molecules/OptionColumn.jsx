@@ -69,7 +69,7 @@ const OptionColumn = ({ product }) => {
         };
       }),
     );
-    navigate('/cart');
+    navigate(staticServerUrl + '/cart');
   };
   return (
     <div className="option-column">
@@ -128,6 +128,8 @@ const OptionColumn = ({ product }) => {
                 if (error.response.request.status === 401) {
                   alert('로그인 세션이 만료되었습니다 다시 로그인해 주세요');
                   navigate(staticServerUrl + '/login');
+                } else if (error.response.request.status === 500) {
+                  alert('같은 상품을 2번 담을 수 없습니다.');
                 } else {
                   navigate(staticServerUrl + '/error');
                 }
