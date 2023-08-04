@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2020: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended', 'plugin:storybook/recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:react-hooks/recommended'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'

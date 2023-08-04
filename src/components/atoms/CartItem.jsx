@@ -7,8 +7,8 @@ import Button from "./Button";
 
 const CartItem = ({ item, onChange }) => {
   return (
-    <Box className="cart-item-box border w-96 p-4">
-      <h5>{item.productName}</h5>
+    <Box className="cart-item-box flex flex-col gap-8 mb-4">
+      <h5 className="text-xl">{item.productName}</h5>
       {item.carts.map((cart) => (
         <Card key={cart.id} className="cart">
           <div className="option border p-4 my-4">

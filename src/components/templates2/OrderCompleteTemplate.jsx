@@ -33,7 +33,7 @@ const OrderCompleteTemplate = ( { data } ) => { // eslint-disable-line no-unused
 
   const example = data?.data;
 
-  if (example) {
+  if (!example) {
     return <></>
   }
 

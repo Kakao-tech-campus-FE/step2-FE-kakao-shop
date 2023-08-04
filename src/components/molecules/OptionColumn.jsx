@@ -137,11 +137,11 @@ const OptionColumn = ({ product }) => {
               {
                 onSuccess: () => {
                   if (selectedOptions.length === 1) {
-                    alert("장바구니가 비었습니다.");
+                    alert("장바구니 담기에 성공하였습니다.");
                   }
                 },
-                onError: (error) => {
-                  alert("장바구니 담기에 실패했습니다: " + error);
+                onError: (error) => { // eslint-disable-line no-unused-vars
+                  alert("장바구니 담기에 실패했습니다.");
                 },
               }
             );

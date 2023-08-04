@@ -36,8 +36,9 @@ const OrderTemplate = () => {
   };
 
   const { mutate } = useMutation({
-    mutationKey: "order",
-    queryFn: () => order // Pass the required data to the order function
+    // mutationKey: "order",
+    // queryFn: () => order // Pass the required data to the order function
+    mutationFn: order,
   });
 
   const OrderItem = () => {
@@ -164,6 +165,7 @@ const OrderTemplate = () => {
                 {},
                 {
                   onError: () => {
+                    console.log(); // eslint-disable-line no-unused-vars
                     alert("주문에 실패했습니다.");
                   },
                   onSuccess: (res) => {
