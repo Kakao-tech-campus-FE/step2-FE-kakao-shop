@@ -11,9 +11,9 @@ import HomePage from "../../pages/HomePage";
 import { useNavigate } from "react-router-dom";
 import Title from "../atoms/Title";
 import { register } from "../../services/user";
+import staticServerUrl from '../../services/index';
 
 
-const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 
 const RegisterForm = () => {

@@ -10,10 +10,9 @@ import { loginRequest, setEmail } from "../../store/slices/userSlice";
 import React, {useState} from 'react';
 import { setUser } from "../../store/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import staticServerUrl from '../../services/index';
 
 
-
-const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const LoginForm = () => {
 

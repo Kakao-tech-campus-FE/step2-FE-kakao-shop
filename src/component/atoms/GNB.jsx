@@ -9,9 +9,8 @@ import RegisterPage from "../../pages/RegisterPage";
 import instance from "../../services";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import staticServerUrl from '../../services/index';
 
-
-const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 
 /** 상단바. 홈 화면 및 로그인 회원가입 로그아웃 버튼 존재 */

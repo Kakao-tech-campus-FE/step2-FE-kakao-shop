@@ -8,9 +8,7 @@ import { useRef } from "react";
 // import cartItems from "../molecules/CartList";
 import { useLocation } from "react-router-dom";
 import { orderSave } from "../../services/order";
-
-
-const staticServerUrl = process.env.REACT_APP_PATH || "";
+import staticServerUrl from '../../services/index';
 
 
 const OrderTemplate = ({ data }) => {

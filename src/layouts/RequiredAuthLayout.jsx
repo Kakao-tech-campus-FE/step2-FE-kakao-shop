@@ -1,8 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
-
-const staticServerUrl = process.env.REACT_APP_PATH || "";
+import staticServerUrl from '../../services/index';
 
 
 function RequiredAuthLayout() {

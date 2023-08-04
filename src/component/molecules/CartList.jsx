@@ -8,9 +8,8 @@ import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 import "../../styles/molcules/CartList.css";
+import staticServerUrl from '../../services/index';
 
-
-const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 
 const CartList = ({cart}) => {
