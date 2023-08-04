@@ -44,7 +44,7 @@ export default function Carousel({ images }) {
           <button
             key={`c-b-${idx}`}
             className="w-[3rem] h-[3rem] rounded-full bg-[#fff3] shadow-lg"
-            onClick={prevImage}
+            onClick={val === "<" ? prevImage : nextImage}
           >
             <p className="translate-y-[-10%] text-3xl text-[#fff]">{val}</p>
           </button>
