@@ -7,7 +7,7 @@ const ProductCard = ({ product }) => {
         <>
             < Card to={`${staticServerUri}/product/${product.id}`
             }>
-                <img src={`${staticServerUri}/${product.image}`} alt={product.name} width='200px'></img>
+                <img src={`${staticServerUri}${product.image}`} alt={product.name} width='200px'></img>
                 <div>{product.productName}</div>
                 <div>{product.price}원</div>
             </Card ></>
