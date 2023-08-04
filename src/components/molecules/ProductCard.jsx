@@ -3,8 +3,6 @@ import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
 import ProductCardSkeleton from "../skeletons/ProductCardSkeleton";
 
-const staticServerUrl = process.env.REACT_APP_PATH || "";
-
 const ProductCard = ({ product, loading }) => {
   return (
     <>
