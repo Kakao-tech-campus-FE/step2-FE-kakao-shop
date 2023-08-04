@@ -8,7 +8,7 @@ const ProductCard = ({ product }) => {
     <Card to={`/product/${product.id}`}>
       <Photo
         className="card"
-        src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
+        src={product.image}
         alt={product.productName}
       />
       <div className="product-name py-2 font-medium">{product.productName}</div>
