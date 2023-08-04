@@ -6,6 +6,8 @@ import { fetchProducts } from "../../services/product";
 import _ from "lodash";
 import Loader from "../atoms/Loader";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const SearchResultTemplate = ({ query }) => {
   const [result, setResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +47,7 @@ const SearchResultTemplate = ({ query }) => {
   const SearchFailed = () => {
     return (
       <div className="flex flex-col items-center gap-4 m-16">
-        <img src="/search_failed.png" alt="검색 실패" width={144} />
+        <img src={staticServerUri + "/search_failed.png"} alt="검색 실패" width={144} />
         <p className="text-sm">찾으시는 상품이 없습니다.</p>
       </div>
     );
