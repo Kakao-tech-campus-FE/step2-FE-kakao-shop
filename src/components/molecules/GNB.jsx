@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import setToken from '../../store/slices/userSlice';
 
-
+const staticServerUri = process.env.REACT_APP_PATH || "";
 const GNB = () => {
     const token = useSelector((state) => state.user.token);
     const dispatch = useDispatch();
@@ -39,7 +39,7 @@ const GNB = () => {
                 <HeaderList name="회원가입" slash={false} onClick={() => { navigate(routes.signUp); }}></HeaderList>
             </>}
             <Link to={routes.cart}>
-                <img src={'/cart.png'} alt='cart.png'></img>
+                <img src={`${staticServerUri}/cart.png`} alt='cart.png'></img>
             </Link>
         </HeaderStyle>
     );
