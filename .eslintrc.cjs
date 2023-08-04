@@ -12,6 +12,6 @@ module.exports = {
   },
   plugins: ['eslint-plugin-react'],
   rules: {
-    'react/react-in-jsx-scope': off,
+    'react/react-in-jsx-scope': "off",
   },
 };
