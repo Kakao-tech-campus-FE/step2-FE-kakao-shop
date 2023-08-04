@@ -2,6 +2,9 @@ import "../../styles/molcules/ProductInformationColumn.css";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
+
 const ProductInformationColumn = ({ product }) => {
 
     
@@ -9,7 +12,7 @@ const ProductInformationColumn = ({ product }) => {
     return (
         <div className="product-information-column">
             <div className="col">
-                <Photo src={process.env.REACT_APP_API_URL+ product.image} alt={product.productName} />
+                <Photo src={staticServerUrl + product.image} alt={product.productName} />
             </div>
             <div className="col">
                 <p className="review">★★★★★ 리뷰 1,501건</p>
