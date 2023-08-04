@@ -36,14 +36,33 @@
 
 <br />
 
+## **배포 환경**
+
+
+크램폴린을 통해 배포하였습니다. 
+
+[배포 링크](https://user-app.krampoline.com/ke15625760cfba/)
+
+배포에 영향을 받는 브랜치는 [hjiwon / step2-FE-kakao-shop-2](https://github.com/hjiwon/step2-FE-kakao-shop-2)입니다.
+
+## **실행 방법**
+
+
+startServer.sh 파일을 실행하면, Nginx, MariaDB, 완성된 Spring 서버를 빌드 및 실행합니다.
+sh 파일 생성 시 실행 권한이 바로 부여되지는 않으므로, 터미널로 다음 명령어를 실행하여 해당 파일에 실행 권한을 추가합니다.
+```bash
+chmod +x ./startServer.sh # 실행 권한 추가
+./startServer.sh # 실행
+```
+
+npm start를 통해 React 프로젝트를 실행합니다.
 ```bash
 npm install # 의존성 모듈 설치
-npm run build # 패키지 번들링
 npm run start # 프로젝트 실행
 ```
 
-
 ## **디렉토리 구조**
+
 
 ```
 ├── /build
