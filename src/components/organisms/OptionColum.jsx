@@ -1,6 +1,6 @@
 import { useState } from "react";
 import OptionList from "../atoms/OptionList";
-import { comma } from "../../utils/convert";
+// import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
 import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
@@ -84,7 +84,7 @@ const OptionColum = ({ product }) => {
                         >
                         </Counter>
                         <span>{option.name}</span>
-                        <span>{comma(option.price)}원</span>
+                        <span>{option.price}원</span>
                        
                     </li>
                     </ol>
@@ -128,9 +128,9 @@ const OptionColum = ({ product }) => {
             <span>
                 총 상품금액 : {''}
                 {
-                   comma( selectedOptions.reduce((acc, cur) => {
+                  selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity * cur.price;
-                    }, 0))
+                    }, 0)
                 }원
             </span>
         </div >

@@ -2,7 +2,7 @@
 import Card from "./Card";
 import Box from "./Box";
 import Counter from "./Counter";
-import { comma } from "../../utils/convert";
+// import { comma } from "../../utils/convert";
 
 //각 상품별 장바구니 항목
 //여러 옵션이 저장될 수 있음.
@@ -23,7 +23,7 @@ const CartItems = ({item,onChange}) => {
                 onDecrease={(count)=>{
                     onChange(cart.option.id,count,-cart.option.price)}}/>
                 <div>
-                    <span>{comma(cart.option.price * cart.quantity)} 원</span>
+                    <span>{cart.option.price * cart.quantity} 원</span>
                 </div>
             </Card>
            )
@@ -31,11 +31,11 @@ const CartItems = ({item,onChange}) => {
         })}
          <Card>
             <h5>주문금액</h5>
-            <div>{comma(
+            <div>{
                 item.carts.reduce((acc,cur)=>{
                     return acc+cur.option.price* cur.quantity;
                 },0)
-            )}</div>
+            }</div>
             </Card>
             <hr></hr>
        </Box>

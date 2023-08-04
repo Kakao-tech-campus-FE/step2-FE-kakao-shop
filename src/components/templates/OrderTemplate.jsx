@@ -2,7 +2,7 @@ import React from 'react';
 import { getCart } from '../../services/cart';
 import {useQuery,useMutation} from '@tanstack/react-query';
 import {useNavigate} from 'react-router-dom'
-import { comma } from '../../utils/convert';
+// import { comma } from '../../utils/convert';
 import { order } from '../../services/order';
 import routes from '../../routes/routes';
 import { useState } from 'react';
@@ -64,10 +64,10 @@ const OrderTemplate = ({ data }) => {
                                 <span>{`${item.productName}-${cart.option.optionName}`}</span>
                             </div>
                             <div className='quantity'>
-                                <span>{comma(cart.quantity)}개</span>
+                                <span>{cart.quantit)}개</span>
                             </div>
                             <div className='price'>
-                                <span>{comma(cart.price*cart.quantity)}원</span>
+                                <span>{cart.price*cart.quantity}원</span>
                             </div>
                         </div>
 
@@ -105,7 +105,7 @@ const OrderTemplate = ({ data }) => {
                 <OrderItems/>
                 <div className='border p-4 flex items-center justify-between'></div>
                     <h3>총 주문 금액</h3>
-                    <span className='price'>{comma(totalPrice)}원</span>
+                    <span className='price'>{totalPrice}원</span>
                 </div>
 
                 {/* 결제 동의 */}

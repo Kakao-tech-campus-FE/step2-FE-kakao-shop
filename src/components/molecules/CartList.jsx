@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState,useRef } from "react";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
 import CartItems from "../atoms/CartItems";
-import { comma } from "../../utils/convert";
+// import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { updateCart } from "../../services/cart";
@@ -108,7 +108,7 @@ const CartList = ({data}) => {
                 count+=cart.quantity;
             });      
         });
-        return comma(count);
+        return count;
     },[cartItems])
     
     return (
@@ -134,7 +134,7 @@ const CartList = ({data}) => {
             <Card>
                 <div>
                     <span>주문 예상금액</span>
-                    <div>{comma(totalPrice)}원</div>
+                    <div>{totalPrice}원</div>
                 </div>
             </Card>
             <Button
