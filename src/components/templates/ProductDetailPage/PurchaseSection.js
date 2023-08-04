@@ -4,6 +4,8 @@ import PurchaseSelect from "../../organisms/ProductDetailPage/PurchaseSelect";
 import PurchaseConfirm from "../../organisms/ProductDetailPage/PurchaseConfirm";
 import { addCart } from "../../../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const PurchaseSection = ({ options }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const navigate = useNavigate();
@@ -74,7 +76,7 @@ const PurchaseSection = ({ options }) => {
     try {
       await addCart(getCart());
       setSelectedOptions([]);
-      navigate("/cart");
+      navigate(staticServerUri + "/cart");
     } catch (error) {
       console.log("error:", error);
       alert("장바구니 추가 중 오류가 발생했습니다.");

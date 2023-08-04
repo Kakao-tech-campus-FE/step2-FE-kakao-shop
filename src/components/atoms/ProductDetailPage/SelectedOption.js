@@ -1,6 +1,8 @@
 import { comma } from "../../../utils/convert";
 import { useMatch } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Quantity = ({
   isEditAble,
   quantity,
@@ -28,8 +30,8 @@ const Quantity = ({
 };
 
 const SelectedOption = ({ option, quantity, onQuantityChange, onRemove }) => {
-  const isCartPage = useMatch("/cart");
-  const isProductPage = useMatch("/product/:productId");
+  const isCartPage = useMatch(staticServerUri + "/cart");
+  const isProductPage = useMatch(staticServerUri + "/product/:productId");
   const isEditAble = !!isCartPage || !!isProductPage;
 
   const handleQuantityChange = (e) => onQuantityChange(option.id, +e.target.value)
