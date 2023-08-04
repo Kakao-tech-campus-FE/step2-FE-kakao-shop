@@ -5,8 +5,16 @@ import axios from 'axios';
  */
 
 
+let staticServerUrl = "";
+if(process.env.REACT_APP_PATH){
+    staticServerUrl = `${process.env.REACT_APP_PATH}/api`
+}
+if(process.env.REACT_APP_KAKAO_STORE_URL){
+    staticServerUrl = process.env.REACT_APP_KAKAO_STORE_URL
+}
+
 export const instance = axios.create({
-    baseURL: process.env.REACT_APP_KAKAO_STORE_URL,
+    baseURL: staticServerUrl,
     timeout: 1000 * 5,
     headers: {
         'Content-Type': 'application/json',
