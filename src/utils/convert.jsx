@@ -5,8 +5,6 @@ export function comma(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
-console.log(comma(10000));
-
 export function url_id(URL, id) {
     if (!!id) {
         return URL.replace(':id', id.toString());

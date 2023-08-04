@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import OrderPage from './pages/OrderPage';
 import ErrorPage from './pages/ErrorPage';
 import RequiredAuthLayout from './layouts/RequiredAuthLayout';
+import OrderCompletePage from './pages/OrderCompletePage';
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
@@ -31,6 +32,7 @@ const App = () => {
                     <Route element={<RequiredAuthLayout />}>
                         <Route path={URL.CART} element={<CartPage />} />
                         <Route path={URL.ORDER} element={<OrderPage />} />
+                        <Route path={URL.ORDER_COMPLETE} element={<OrderCompletePage/>} />
                     </Route>
                 </Routes>
             </Router>
