@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
                     className={`${styles.product_image} rounded-[8px]`}
                     src={
                         staticServerUri ?
-                        staticServerUri + "/images" + product.image
+                        staticServerUri + product.image
                         :
                         `${process.env.REACT_APP_API_URL}${product.image.substr(1)}`
                     }

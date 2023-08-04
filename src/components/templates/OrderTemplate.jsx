@@ -15,6 +15,8 @@ const selector = "#payment-widget";
 const clientKey = "test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq";
 const customerKey = "YbX2HuSlsC9uVJW6NMRMj";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = ({ data }) => {
     const [agreeAll, setAgreeAll] = useState(false);
     const [agreePayment, setAgreePayment] = useState(false);
@@ -107,8 +109,8 @@ const OrderTemplate = ({ data }) => {
             orderName: getOrderName(),
             customerName: "김토스",
             customerEmail: `${email}`, //"customer123@gmail.com",
-            successUrl: `${window.location.origin}/order/temp`,
-            failUrl: `${window.location.origin}/order/fail`,
+            successUrl: window.location.origin + staticServerUri + "/order/temp",
+            failUrl: window.location.origin + staticServerUri + "/order/fail",
             });
         } catch (error) {
             // 에러 처리하기

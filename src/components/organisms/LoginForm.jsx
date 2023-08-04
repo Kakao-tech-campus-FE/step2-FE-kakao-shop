@@ -101,7 +101,7 @@ const LoginForm = () => {
                 token: res.headers.authorization,
             }));
 
-            window.location.href = "/"; // 메인페이지 리다이렉트
+            window.location.href = staticServerUri + "/"; // 메인페이지 리다이렉트
             alert(`login success !!`);
         })
         .catch(err => {

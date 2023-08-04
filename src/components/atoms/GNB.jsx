@@ -37,9 +37,9 @@ const GNB = () => {
                     <span className={styles.partition}></span>
                     <div className={styles.user_menu}>
                         { token ? 
-                            <Link to={staticServerUri + "/"} onClick={handleLogout}>로그아웃</Link>
+                            <Link to={"/"} onClick={handleLogout}>로그아웃</Link>
                             :
-                            <Link className={styles.link_login} to={staticServerUri + "/login"}>로그인</Link>
+                            <Link className={styles.link_login} to={"/login"}>로그인</Link>
                         }
                     </div>
                 </div>

@@ -8,9 +8,9 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const HomePage = () => {
     const carousel_items = [
-        staticServerUri + "\carouselItem1.jpeg",
-        staticServerUri + "\carouselItem2.jpeg",
-        staticServerUri + "\carouselItem3.jpeg",
+        staticServerUri + "/carouselItem1.jpeg",
+        staticServerUri + "/carouselItem2.jpeg",
+        staticServerUri + "/carouselItem3.jpeg",
     ];
 
     return (

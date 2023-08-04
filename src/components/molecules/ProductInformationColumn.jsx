@@ -13,7 +13,7 @@ const ProductInformaionColumn = ({ product }) => {
                     className={styles.product_image} 
                     src={
                         staticServerUri ?
-                        staticServerUri + "/images" + image
+                        staticServerUri + image
                         :
                         `${process.env.REACT_APP_API_URL}${image.substr(1)}`} 
                     alt={`상품 이미지 - ${productName}`} />
