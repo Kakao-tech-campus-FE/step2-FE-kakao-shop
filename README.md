@@ -1,3 +1,83 @@
+# 카카오테크캠퍼스 2단계 프로젝트 > 카카오 쇼핑하기
+
+### 프로젝트 소개
+카카오 테크 캠퍼스 2단계 FE 과제 수행 프로젝트 입니다.
+
+카카오 쇼핑하기 웹사이트를 클론 코딩을 진행하였습니다.
+
+### 구현 기능
+- 회원가입
+- 로그인
+- 로그아웃
+- 전체 상품 목록 조회
+- 개별 상품 상세 조회
+- 상품 옵션 선택
+- 옵션 확인 및 수량 선택
+- 장바구니 담기
+- 장바구니 상품 목록 조회
+- 장바구니 상품 옵션 확인 및 수량 선택
+- 장바구니 상품 주문
+- 주문 상품 결제
+- 주문 결과 확인
+
+### 배포
+<hr/>
+#### 배포주소
+https://user-app.krampoline.com/k1f87aedd7787a
+
+카카오 크램폴린 IDE를 통해 배포하였습니다. 
+
+#### 배포 환경
+카카오 크램폴린 IDE를 통해 배포하였습니다. 
+
+#### 배포 순서
+- Dockerfile, default.conf 파일을 루트 디렉터리에 추가한다.
+- url path를 사용한 코드에 staticServerUri 설정을 추가한다.
+- 카카오 크램폴린 ide에 자신의 레포지토리를 연결한다.
+- D2hub를 빌드하고 Kargo를 배포한다.
+- 배포 이후 코드에 수정사항이 있는 경우 수정 후 반영하여 재빌드, 재배포한다.
+
+#### 배포에 영향 받는 브랜치
+- frontend 코드는 main 브랜치에 포함되어있다. main 브랜치를 통해 배포를 진행한다.
+
+
+<hr/>
+### 회고
+하나의 프론트엔드 프로젝트를 처음 완성하는 것이어서 성취감을 느끼고 있다.
+1주차 때는 환경설정부터 작은 부분들까지 어려움을 겪었다. 에러가 생겼을 경우 에러가 난 부분이 어디인지, 무엇이 원인인지를
+찾는 것도 어려웠다. 이제는 아직 부족하나, 로그를 찍어가며 해결을 해나갈 수 있다. 
+코드를 작성하고 그 코드에 대해 현업 개발자에게 피드백을 받는 것은 처음이었는데 많은 도움을 받았다.
+프로젝트를 아토믹 컴포넌트를 이용하여 관리하고, 컴포넌트를 생성할 때는 재사용성을 고려하는 것 등 다양한 생각하지 못한 부분에서 
+피드백을 받았다. 
+그리고 처음 설계하는 부분이 가장 중요하다는 생각이 많이 들었다. 주차마다 주어진 과제 명세의 기능이 동작하는 것을 목표로 하다보니 
+폴더의 구조나 재사용성 등 놓치고 있는 부분이 있었다. 앞으로의 프로젝트에서는 설계를 명확하게 해야겠다는 생각이 든다.
+이번 프로젝트를 통해 한 단계 성장했다고 느끼며, 앞으로의 개발 공부도 꾸준히 나아갈 예정이다!
+
+### 기술 스택
+
+#### Enviroment
+<div style="display: flex; gap: 4px;">
+  <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=GITHUB&logoColor=white">
+  <img src="https://img.shields.io/badge/GIT-F05032?style=for-the-badge&logo=GIT&logoColor=white">
+  <img src="https://img.shields.io/badge/VISUAL STUDIO CODE-007ACC?style=for-the-badge&logo=VISUAL STUDIO CODE&logoColor=white">
+</div>
+
+#### Config
+<img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
+
+#### Development
+<div style="display: flex; gap: 4px;">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=react query&logoColor=white">
+  <img src="https://img.shields.io/badge/puppeteer-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white">
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+  <img src="https://img.shields.io/badge/react router-CA4245?style=for-the-badge&logo=react router&logoColor=white">
+  <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled components&logoColor=white">
+   <img src="https://img.shields.io/badge/tailwind CSS-06B6D4?style=for-the-badge&logo=tailwind CSS&logoColor=white">
+
+</div>
+
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>
@@ -33,28 +113,100 @@
 그리고 어떠한 디렉터리 구조로 프로젝트를 진행할지 작성해주세요. (README.md 파일에 작성)
 ```
 
+## 전체 페이지 구성
+* 회원가입 페이지
+* 로그인 페이지
+* 메인 페이지
+* 개별 상품 상세 페이지
+* 장바구니 페이지
+* 주문 및 결제 페이지
+* 결제 완료 페이지
+
+## 페이지별 구성
+### 1. 회원가입 페이지
+* 핵심 기능 : 가입정보를 입력하여 회원가입
+* 기능 상세 설명 :
+    * 가입 정보 입력 - 이메일(ID) / 이름 / 비밀번호 / 비밀번호 확인 
+    * 이메일, 비밀번호 유효성 검사
+* 인터페이스 요구사항 :
+    * 가입 정보 입력 후 회원가입 클릭 시 로그인 페이지로 이동
+
+### 2. 로그인 페이지
+* 핵심 기능 : 로그인 요청 및 사용자 로그인 정보 저장
+* 기능 상세 설명 :
+    * 이메일과 비밀번호를 이용하여 로그인 진행, 이에 대한 상태 처리
+* 인터페이스 요구사항 :
+    * 이메일 또는 비밀번호에 들어온 값이 적합하지 않은 경우 적절한 알림
+    * 로그인을 클릭하여 적합한 경우 로그인 완료 처리하여 메인 페이지로 이동
+
+### 3. 메인 페이지
+* 핵심 기능 : 전체 상품 목록을 조회하여 상품 리스트 출력
+* 기능 상세 설명 :
+    * 전체 상품 조회를 통해 상품 목록을 가져와 화면에 출력 - 상품명 / 상품 이미지 / 상품 가격
+* 인터페이스 요구사항 :
+    * 전체 상품 출력
+
+### 4. 개별 상품 상세 페이지
+* 핵심 기능 : 상품 상제 정보 표시, 옵션 선택 및 수량 조정, 장바구니 추가
+* 기능 상세 설명 :
+    * 상품 상세 정보 표시 - 상품명, 상품 이미지, 상품 가격, 설명
+    * 옵션 선택 및 수량 조정 - 상품 옵션을 선택하고 수량 선택
+    * 장바구니 추가: 옵션과 수량을 결정하여 장바구니에 상품을 추가 
+* 인터페이스 요구사항 :
+    *  전체 상품 페이지에서 상품 선택 시에 해당 상품 정보 출력
+    *  개별 상품 상세 페이지에서 상품 옵션, 수량 선택
+    * 장바구니 클릭 시 상품이 장바구니에 담김 
+
+### 5. 장바구니 페이지
+* 핵심 기능 : 장바구니 상품 목록 표시, 상품 수량 조정 및 삭제, 주문 예상 가격, 주문하기
+* 기능 상세 설명 :
+    * 장바구니에 담긴 상품 목록 표시 : 상품명 / 상품 이미지 / 옵션 / 수량 / 가격
+    * 상품 수량 조정 및 삭제 : + / - / 삭제 버튼을 통해 상품 수량을 조정하거나 삭제
+    * 주문 예상 가격 : 각 상품별 가격 소계와 총 합계 가격 출력
+    * 주문하기 : 주문 및 결제 페이지로 이동
+* 인터페이스 요구사항 :
+    * 장바구니 상품 목록 출력
+    * 장바구니 상품 목록에서 수량 조정 및 삭제
+    * 장바구니 상품 목록에서 주문하기 클릭 시 주문 및 결제 페이지로 이동
+
+### 6. 주문 및 결제 페이지
+* 핵심 기능 : 주문 상품 데이터 출력, 총 주문 가격, 결제 동의, 결제하기
+* 기능 상세 설명 :
+    * 주문 상품 데이터 출력 - 상품명 / 옵션 / 수량 / 가격
+    * 총 주문 가격 - 옵션 및 수량을 기반으로 총 상품의 주문 가격 표시
+    * 결제 동의 - 주문 내역 확인, 결제 진행 동의, 개인정보 제 3자 제공 동의
+    * 결제하기 - 결제 진행 (실제 결제 절차 X)
+* 인터페이스 요구사항 :
+    * 장바구니 페이지에서 주문하기 클릭 시 주문 및 결제 페이지로 이동
+    * 결제하기 클릭 시 결제한 것으로 주문 처리 
+
+### 7. 결제 완료 페이지
+* 핵심 기능 : 주문 정보 표시, 결제 완료 메시지 표시 
+* 기능 상세 설명 :
+    * 주문 정보 표시 - 주문번호 / 상품명 / 옵션 / 수량 / 가격
+    * 결제 완료 메시지 표시 - 결제가 성공적으로 완료되었음을 알림
+* 인터페이스 요구사항 :
+    * 주문 정보와 결제 완료 메시지 출력
+
+## 디렉터리 구조
 ```
-README.md의 예시 형식입니다. 아래를 참고해 작성해주세요. 
-각 페이지마다 핵심 기능, 기능 상세 설명, 인터페이스 요구사항이 어떤 것이 있을지 고민해서 작성해주세요.
-
-###예시
-
-#페이지별 구성
-1. 로그인 페이지
-- 핵심 기능: 로그인 요청 및 사용자 로그인 정보 저장
-- 기능 상세 설명: 이메일과 비밀번호를 이용해 로그인을 진행하고, 이에 대한 상태 처리를 합니다.
-- 인터페이스 요구사항: 이메일 또는 비밀번호에 들어온 값이 적합하지 않은 경우 적절한 알림을 보냅니다. 
--- ...
-
-#디렉터리 구조
-- public
-- src
-- components
-- hooks
-- routes
-- styles
-- dto
-- ...
+my-app
+├── public (정적 파일)
+├── src
+│   ├── apis (api 관련 파일)
+│   ├── assets (이미지, 폰트 등 미디어 파일)
+│   ├── components (공통 컴포넌트 파일)
+│   ├── config (config 파일)
+│   ├── constants (공통 상수 파일)
+│   ├── contexts (context 파일)
+│   ├── hooks (커스텀 훅)
+│   ├── pages (페이지 컴포넌트 파일)
+│   ├── styles (css 파일)
+│   └── utils (정규표현식 패턴, 공통함수 등 공통 유틸 파일)
+├── .gitignore
+├── package-lock.json
+├── package.json
+└── README.md
 ```
 
 </br>
@@ -386,9 +538,9 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 
 ✅**과제 1. 배포**
 ```
-- 카카오 배포환경을 통해 배포를 진행합니다.
+- Netlify를 통해 배포를 진행합니다.
 - 계정을 생성하고 자신의 레포지토리를 연결해 배포합니다.
-- 배포 레벨에서 사용될 환경 변수는 인스턴스에 적용되도록 직접 설정해줍니다.
+- 배포 레벨에서 사용될 환경 변수는 인스턴스에 적용되도록 직접 설정해줍니다.
 - 배포에 사용될 브랜치는 개발 브랜치와 꼭 분리합니다.
 ```
 
