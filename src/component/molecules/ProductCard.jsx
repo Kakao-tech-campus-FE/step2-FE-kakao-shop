@@ -6,6 +6,7 @@ import '../../../src/styles/molcules/ProductCard.css';
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
+// ${process.env.PUBLIC_URL}
 // REACT_APP_API_URL=
 // process.env.REACT_APP_API_URL
 // ₩${process.env.REACT_APP_API_URL}
@@ -16,7 +17,7 @@ const ProductCard = ({ product }) => {
       
     <Card to={`${staticServerUrl}/product/${product.id}`} >
       <div className="product-photo">
-        <Photo src={ `${process.env.PUBLIC_URL}/assets${product.image}` } alt={product.productName} />
+        <Photo src={ `${staticServerUrl}${product.image}` } alt={product.productName} />
         </div>
         <div className="product-name">{product.productName}</div>
         <div className="product-price">{comma(product.price)}원</div>
