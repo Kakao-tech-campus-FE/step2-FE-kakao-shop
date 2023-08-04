@@ -64,7 +64,7 @@ const OrderTemplate = ({ data }) => {
                                 <span>{`${item.productName}-${cart.option.optionName}`}</span>
                             </div>
                             <div className='quantity'>
-                                <span>{cart.quantit)}개</span>
+                                <span>{cart.quantity}개</span>
                             </div>
                             <div className='price'>
                                 <span>{cart.price*cart.quantity}원</span>
