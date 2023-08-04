@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
       <div className="rounded-2xl overflow-hidden">
         <Photo
           className=" photo group-hover:scale-110 rounded-2xl transition-transform duration-300 ease-in-out"
-          src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
+          src={`${staticServerUri}${product.image}`}
           alt={product.productName}
         />
       </div>

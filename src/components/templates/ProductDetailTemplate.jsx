@@ -20,7 +20,7 @@ const ProductDetailTemplate = ({ product }) => {
   }, []);
 
   return (
-    <Container className="flex justify-between w-screen h-screen ">
+    <Container className="flex justify-between  ">
       <div
         className="grid grid-cols-2 gap-4 border "
         style={{ paddingBottom: "500px" }}

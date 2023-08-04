@@ -3,6 +3,8 @@ import Photo from "../atoms/Photo";
 import Container from "../atoms/Container";
 import Box from "../atoms/Box";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductInformationColumn = ({ product }) => {
   return (
     <>
@@ -10,7 +12,7 @@ const ProductInformationColumn = ({ product }) => {
         <div className="grid grid-cols-2 gap-4">
           <Photo
             className="photo max-w-[430px] max-h-[430px]"
-            src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
+            src={`${staticServerUri}${product.image}`}
             alt={product.productName}
             // 이미지의 높이를 컨테이너의 높이에 맞추도록 설정
           />

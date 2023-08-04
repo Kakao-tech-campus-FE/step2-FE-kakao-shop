@@ -24,7 +24,8 @@ header .sub-menu ul.menu li {
 }
 
 header .sub-menu ul.menu li a {
-  font-size: 0.5rem;
+  margin: 10px 10px;
+  font-size: 1rem;
   font-weight: bold;
   color: #656565;
   white-space: nowrap;
@@ -32,10 +33,11 @@ header .sub-menu ul.menu li a {
 
 /* 네비게이션 스타일 */
 .navigation {
-  font-size: 0.5rem;
+  line-height: 4rem;
+  font-size: 1rem;
   white-space: nowrap;
   position: relative;
-  right: 0px;
+  left: 13rem;
 }
 
 @media only screen and (min-width: 480px) {
@@ -89,7 +91,7 @@ header .sub-menu ul.menu li a {
     height: 2px;
     background-color: #000;
     position: absolute;
-    top: 68px;
+    top: 70px;
     left: 0;
   }
 
