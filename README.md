@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Kakao step2-[카카오 샵 클론 프로젝트]
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+본프로젝트는 카카오테크캠퍼스1기 2단계[FE] 클론 프로젝트입니다.<br/>
+카카오톡 쇼핑하기 사이트를 참고하여 원하는 상품을 담아 주문 및 결제 할 수 있는 쇼핑몰사이트로 리액트로 제작하였습니다.<br/>
+매 주차별 페이지를 제작하고 기능을 구현하였고 개인프로젝트로 진행하였습니다.
 
-## Available Scripts
+### 📌 개발기간
+23.07.26(월) ~ 23.08.04(금)
+<br/>
+<br/>
 
-In the project directory, you can run:
+### 📌 배포환경 / 주소
++ 카카오 크램폴린IDE(D2Hub, Kargo)
++ 주소(https://user-app.krampoline.com/ka8da40cd5844a)
+<br/>
 
-### `npm start`
+### 📌 주요기능
++ 회원가입 및 로그인
++ 전체 상품목록 조회
++ 개별 상품정보 조회
++ 옵션선택 및 수량조절
++ 장바구니 담기
++ 주문 및 결제
++ 주문정보 확인
+<br/>
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 📌 화면구성
+1. 메인페이지<br/>
+   
+![CF79453B-42BA-482C-BD58-9B8B0F532B6A_1_105_c](https://github.com/sihyonn/step2-FE-kakao-shop2/assets/124874266/295fc406-88ed-4809-afc6-1141429197ad)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. 개별상품 페이지<br/>
+![C28AF294-EC67-4442-88D9-538902D3BB6B](https://github.com/sihyonn/step2-FE-kakao-shop2/assets/124874266/37ee627f-b2df-426c-a6c3-a811b5e431da)
 
-### `npm test`
+3. 장바구니 페이지<br/>
+![F78BD336-34C0-459C-A65E-BFE4B45436C9](https://github.com/sihyonn/step2-FE-kakao-shop2/assets/124874266/1d2391a7-b71b-4e66-a09f-f7e5c9938ea6)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. 주문 페이지<br/>
+   ![10384237-3AD1-4614-83AB-8FB6C6DF1620](https://github.com/sihyonn/step2-FE-kakao-shop2/assets/124874266/697bc574-6768-4a1e-aeee-2b8a1689f2e2)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5. 주문 결과페이지<br/>
+   ![C6425557-4ED6-41AC-BB88-4B509A380002](https://github.com/sihyonn/step2-FE-kakao-shop2/assets/124874266/1caea42a-d0ab-417f-9282-31d57cc48c12)
