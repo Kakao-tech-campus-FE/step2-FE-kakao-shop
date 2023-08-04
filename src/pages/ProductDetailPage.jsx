@@ -7,7 +7,7 @@ import MainProductTemplate from "../components/templates2/MainProductTemplate"; 
 
 const ProductDetailPage = () => {
   const { id } = useParams();
-  const { data, error, isLoading } = useQuery([`product/${id}}`], () =>
+  const { data, error, isLoading } = useQuery([`/product/${id}}`], () =>
     getProductsById(id)
   );
 

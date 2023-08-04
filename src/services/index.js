@@ -6,7 +6,7 @@ const staticServerUrl = process.env.REACT_APP_PATH || "";
 // AXIOS 인스턴스 선언
 export const instance = axios.create({
   baseURL: staticServerUrl + "/api",
-  timeout: 5000, // 보다 나은 사용자 경험을 위해 timeout 추가
+  timeout: 1000, // 보다 나은 사용자 경험을 위해 timeout 추가
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },

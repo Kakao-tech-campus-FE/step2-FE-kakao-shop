@@ -11,7 +11,7 @@ const ProductCard = ({ product, loading }) => {
       {loading ? (
         <ProductCardSkeleton />
       ) : (
-        <Card to={staticServerUrl + `product/${product.id}`}>
+        <Card to={staticServerUrl + `/product/${product.id}`}>
           <Photo 
             className="rounded-lg"
             src={staticServerUrl.slice(0, -1) + product.image} 

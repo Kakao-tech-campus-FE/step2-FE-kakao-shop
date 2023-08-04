@@ -10,23 +10,25 @@ import ErrorPage from "../pages/ErrorPage";
 import CartsPage from "../pages/CartsPage";
 import OrderPage from "../pages/OrderPage";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
           {/* 단독 레이아웃 */}
-          <Route path="/login" element={<SignInPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/carts" element={<CartsPage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route path={staticServerUrl + "/login"} element={<SignInPage />} />
+          <Route path={staticServerUrl + "/signup"} element={<SignUpPage />} />
+          <Route path={staticServerUrl + "/cart"} element={<CartsPage />} />
+          <Route path={staticServerUrl + "/order"} element={<OrderPage />} />
           {/* 공통 레이아웃 */}
           <Route element={<MainLayout />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path={staticServerUrl + "/"} element={<HomePage />} />
+            <Route path={staticServerUrl + "/product/:id"} element={<ProductDetailPage />} />
           </Route>
           {/* 에러페이지: 정해진 경로가 아닌 경우에 해당 페이지로 이동 */}
-          <Route path="/*" element={<ErrorPage />} />
+          <Route path={staticServerUrl + "/*"} element={<ErrorPage />} />
         </Routes>
       </Suspense>
     </BrowserRouter>
