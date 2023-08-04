@@ -2,7 +2,10 @@ import styled from 'styled-components';
 import OptionItem from '../atoms/OptionItem';
 import { comma } from '../../utils/convert';
 import { useNavigate } from 'react-router-dom';
-import staticServerUrl from '../../services/index';
+
+
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 
 const ProductList = styled.div`

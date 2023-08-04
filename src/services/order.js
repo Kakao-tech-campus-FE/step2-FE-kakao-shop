@@ -1,4 +1,4 @@
-import { instance } from "./index";
+import  instance  from "./index";
 
 export const order = () => {
     return instance.post("/orders/save");

@@ -17,8 +17,9 @@ import RequiredAuthLayout from './layouts/RequiredAuthLayout';
 import "../src/App.css";
 import CartPage from './pages/CartPage';
 import OrderCompletePage from './pages/OrderCompletePage';
-import staticServerUrl from './services/index';
 
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 function App() {
 
