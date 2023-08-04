@@ -59,7 +59,7 @@ const OptionColumn = () => {
                     {selectedOptions.map((option) => (
                         <StyledLi key={option.optionId} className="selected-option">
                             <Counter
-                                value={option.quantity}
+                                initValue={option.quantity}
                                 onIncrease={(count) => handleOnCountChange(count, option.optionId)}
                                 onDecrease={(count) => handleOnCountChange(count, option.optionId)}
                             />

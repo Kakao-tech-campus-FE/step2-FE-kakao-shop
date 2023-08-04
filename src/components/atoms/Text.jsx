@@ -8,33 +8,7 @@ import { styled } from 'styled-components';
  */
 
 const Text = ({ children, className = '' }) => {
-    return <StyledText className={className}>{children}</StyledText>;
+    return <span className={className}>{children}</span>;
 };
-
-const StyledText = styled.p`
-    margin: ${({ theme }) => theme.margin.small} 0;
-    font-size: ${({ theme }) => theme.fontSize.small};
-    font-weight: 400;
-
-    &.error {
-        color: ${({ theme }) => theme.color.red};
-    }
-
-    &.base {
-        font-size: ${({ theme }) => theme.fontSize.base};
-    }
-
-    &.lg {
-        font-size: ${({ theme }) => theme.fontSize.lg};
-    }
-
-    &.xl {
-        font-size: ${({ theme }) => theme.fontSize.xl};
-    }
-
-    &.bold {
-        font-weight: 600;
-    }
-`;
 
 export default Text;

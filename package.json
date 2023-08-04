@@ -27,7 +27,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/main.css"
   },
   "eslintConfig": {
     "extends": [
@@ -51,13 +52,9 @@
     "autoprefixer": "^10.4.14",
     "css-loader": "^6.8.1",
     "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
     "postcss-loader": "^7.3.3",
     "style-loader": "^3.3.3",
     "tailwindcss": "^3.3.3"
-  },
-  "tailwind": {
-    "build": [
-      "npx tailwindcss-cli@latest build -i ./src/styles/tailwind.css -o ./src/styles/styles.css"
-    ]
   }
 }
