@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { FaRegUser } from "react-icons/fa6";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const RequiredAuthLayout = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.user.token);
@@ -20,10 +22,10 @@ const RequiredAuthLayout = () => {
           isLogined: false,
         })
       );
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     } else {
       setText(<FaRegUser size="26" />);
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     }
   };
 
@@ -34,7 +36,7 @@ const RequiredAuthLayout = () => {
   useEffect(() => {
     if (!token) {
       alert("로그인이 필요합니다.");
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     }
   }, [navigate]);
   return (

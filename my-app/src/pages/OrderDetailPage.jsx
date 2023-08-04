@@ -1,17 +1,15 @@
 import { useParams } from "react-router-dom";
-import { getOrderFromId, order } from "../services/order";
+import { getOrderFromId } from "../services/order";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import Loader from "../components/atoms/Loader";
 import OrderDetailTemplate from "../components/templates/OrderDetailTemplate";
 
 const OrderDetailPage = () => {
   const { id } = useParams();
   const token = useSelector((state) => state.user.token);
-  const { data, error, isLoading } = useQuery(`/orders/${id}`, () =>
-    getOrderFromId(id, token)
-  );
+  const { data } = useQuery(`/orders/${id}`, () => getOrderFromId(id, token));
 
   return (
     <Suspense fallback={<Loader />}>

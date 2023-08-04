@@ -7,6 +7,8 @@ import { checkEmail, register } from "../../services/user";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const SignUpForm = () => {
   const { value, handleOnChange } = useInput({
     username: "",
@@ -26,7 +28,7 @@ const SignUpForm = () => {
   const closeModal = () => {
     if (isValid) {
       setModalOpen(false);
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     } else {
       setModalOpen(false);
     }

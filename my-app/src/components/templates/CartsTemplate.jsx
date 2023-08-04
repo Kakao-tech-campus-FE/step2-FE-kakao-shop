@@ -8,6 +8,8 @@ import { useMutation } from "react-query";
 import { updateCart } from "../../services/cart";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const CartTemplate = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -102,7 +104,7 @@ const CartTemplate = ({ data }) => {
           onClick={() => {
             mutate(updatedPayload, {
               onSuccess: () => {
-                navigate("/order");
+                navigate(staticServerUri + "/order");
               },
               onError: (error) => {
                 alert("에러가 발생했습니다.");

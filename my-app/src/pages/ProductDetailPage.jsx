@@ -5,6 +5,8 @@ import { useQuery } from "react-query";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
 import Container from "../components/atoms/Container";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductDetailPage = () => {
   const { id } = useParams();
   const { data, error, isLoading } = useQuery(`/product/${id}`, () =>
@@ -18,7 +20,7 @@ const ProductDetailPage = () => {
       // id - status / message - error message
       const id = error.response.data.error.status;
       const errorMessage = error.response.data.error.message;
-      navigate(`/error/${id}/${errorMessage}`);
+      navigate(staticServerUri + `/error/${id}/${errorMessage}`);
     }
     if (product) {
       return <ProductDetailTemplate product={product} />;

@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { useRef, useState } from "react";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const SignInForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -68,7 +70,7 @@ const SignInForm = () => {
               alert("로그인 에러 발생");
               return;
             }
-            navigate("/");
+            navigate(staticServerUri + "/");
           }}
         >
           로그인
@@ -92,7 +94,7 @@ const SignInForm = () => {
         <Button
           className="border-none text-sm text-gray-600"
           onClick={() => {
-            navigate("/signup");
+            navigate(staticServerUri + "/signup");
           }}
         >
           회원가입

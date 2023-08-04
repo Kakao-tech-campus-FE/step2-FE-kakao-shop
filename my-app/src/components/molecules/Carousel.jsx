@@ -1,66 +1,69 @@
-import { useState } from "react"
-import CarouselItem from "../atoms/CarouselItem"
-import '../styles/Carousel.css'
-import { useNavigate } from 'react-router-dom'
+import { useState } from "react";
+import CarouselItem from "../atoms/CarouselItem";
+import "../styles/Carousel.css";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const navigate = useNavigate()
+  const staticServerUri = process.env.REACT_APP_PATH || "";
+  const [activeIndex, setActiveIndex] = useState(0);
+  const navigate = useNavigate();
 
   const items = [
     {
-      title: 'InCorrect Slide',
-      description: 'There\'s nothing... Next Slide!!',
-      bgColor: "orange"
+      title: "InCorrect Slide",
+      description: "There's nothing... Next Slide!!",
+      bgColor: "orange",
     },
     {
-      title: 'Correct Slide',
-      description: 'Click here!!',
-      bgColor: "lightBlue"
+      title: "Correct Slide",
+      description: "Click here!!",
+      bgColor: "lightBlue",
     },
     {
-      title: 'InCorrect Slide',
-      description: 'There\'s nothing... Previous Slide!!',
-      bgColor: "lightGreen"
-    }
-  ]
+      title: "InCorrect Slide",
+      description: "There's nothing... Previous Slide!!",
+      bgColor: "lightGreen",
+    },
+  ];
 
   const updateIndex = (newIndex) => {
     if (newIndex < 0) {
-      newIndex = 0
+      newIndex = 0;
     } else if (newIndex >= items.length) {
-      newIndex = items.length -1
+      newIndex = items.length - 1;
     }
 
-    setActiveIndex(newIndex)
-  }
+    setActiveIndex(newIndex);
+  };
 
   return (
     <div className="wrapper">
       <div className="carousel">
-        <div 
-          className="inner" 
+        <div
+          className="inner"
           style={{ transform: `translate(-${activeIndex * 100}%)` }}
         >
           {items.map((item) => {
-            if (item.title === 'Correct Slide') {
-              return <>
-                <CarouselItem 
-                  item={item} 
-                  width={"100%"} 
-                  onClick={() => navigate('/home/subpage')}
-                  cursor={'cursor'}
-                />
-              </>
+            if (item.title === "Correct Slide") {
+              return (
+                <>
+                  <CarouselItem
+                    item={item}
+                    width={"100%"}
+                    onClick={() => navigate(staticServerUri + "/home/subpage")}
+                    cursor={"cursor"}
+                  />
+                </>
+              );
             }
-            return <CarouselItem item={item} width={"100%"} />
+            return <CarouselItem item={item} width={"100%"} />;
           })}
         </div>
         <div className="buttons">
-          <button 
+          <button
             className="button-arrow"
             onClick={() => {
-              updateIndex(activeIndex-1)
+              updateIndex(activeIndex - 1);
             }}
           >
             <span className="material-symbols-outlined">arrow_back_ios</span>{" "}
@@ -68,27 +71,29 @@ const Carousel = () => {
           <div className="indicators">
             {items.map((item, index) => {
               return (
-                <button 
+                <button
                   className="indicator-buttons"
                   onClick={() => {
-                    updateIndex(index)
+                    updateIndex(index);
                   }}
                 >
-                  <span 
+                  <span
                     className={`material-symbols-outlined ${
-                      index === activeIndex 
-                      ? "indicator-symbol-active" 
-                      : "indicator-symbol"
+                      index === activeIndex
+                        ? "indicator-symbol-active"
+                        : "indicator-symbol"
                     }`}
-                  >radio_button_unchecked</span>
+                  >
+                    radio_button_unchecked
+                  </span>
                 </button>
-              )
+              );
             })}
           </div>
-          <button 
+          <button
             className="button-arrow"
             onClick={() => {
-              updateIndex(activeIndex+1)
+              updateIndex(activeIndex + 1);
             }}
           >
             <span className="material-symbols-outlined">arrow_forward_ios</span>
@@ -96,7 +101,7 @@ const Carousel = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Carousel
+export default Carousel;

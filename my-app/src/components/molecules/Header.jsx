@@ -1,11 +1,11 @@
 import { FiShoppingCart } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
-// children: GNB 영역에 있는 구성요소들
-// onClick: 버튼의 클릭 핸들러
-// text: 로그인, 로그아웃을 알려주는 버튼의 text
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Header = ({ onClick, text }) => {
   const navigate = useNavigate();
+
   return (
     <div className="py-4 border-b-2">
       <header className="header flex justify-between px-4">
@@ -13,7 +13,7 @@ const Header = ({ onClick, text }) => {
           <button
             className="kakao-logo-button border-0"
             onClick={() => {
-              navigate("/");
+              navigate(staticServerUri + "/");
             }}
           >
             <img
@@ -26,7 +26,7 @@ const Header = ({ onClick, text }) => {
         <div className="userInfo flex gap-6">
           <button
             className="cart-button border-0 text-gray-500"
-            onClick={() => navigate("/cart")}
+            onClick={() => navigate(staticServerUri + "/cart")}
           >
             <FiShoppingCart size="26" />
           </button>
