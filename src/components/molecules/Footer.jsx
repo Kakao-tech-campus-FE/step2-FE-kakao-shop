@@ -1,12 +1,14 @@
 import React from "react";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Footer = () => {
   return (
     <div className="bg-gray-100 p-8 max-w-screen-lg">
       <div className="wrapper-footer relative flex gap-8 ">
         <div className="footer-logo">
           <img
-            src="/logoKakao_footer.png"
+            src={staticServerUri + "/logoKakao_footer.png"}
             alt="카카오톡 쇼핑하기"
             width={144}
           />
@@ -47,9 +49,13 @@ const Footer = () => {
             </p>
           </div>
           <div className="mark-info flex gap-4">
-            <img src="/familymark_pc.png" alt="가족친화 우수기업" width={128} />
             <img
-              src="/img_isolation.png"
+              src={staticServerUri + "/familymark_pc.png"}
+              alt="가족친화 우수기업"
+              width={128}
+            />
+            <img
+              src={staticServerUri + "/img_isolation.png"}
               alt="위해상품차단시스템 운영매장"
               width={128}
             />
@@ -61,10 +67,17 @@ const Footer = () => {
               <a href="https://ccs.kakao.com/web/help?service=149">고객센터</a>
             </li>
             <li>
-              <a href="https://buy.kakao.com/shopping-front/user/term-detail/PAY?channel=STORE">이용약관</a>
+              <a href="https://buy.kakao.com/shopping-front/user/term-detail/PAY?channel=STORE">
+                이용약관
+              </a>
             </li>
             <li>
-              <a className="font-bold" href="https://www.kakao.com/policy/privacy?lang=ko">개인정보처리방침</a>
+              <a
+                className="font-bold"
+                href="https://www.kakao.com/policy/privacy?lang=ko"
+              >
+                개인정보처리방침
+              </a>
             </li>
             <li>
               <a href="https://cipr.kakao.com/guide">지식재산권보호센터</a>
