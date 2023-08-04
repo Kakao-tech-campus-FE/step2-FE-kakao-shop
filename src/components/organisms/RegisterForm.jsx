@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom"; // eslint-disable-line no-unused-vars
 // import useInputError from "../../hooks/useInputError";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = () => {
   const navigate = useNavigate();
   const { value, handleOnChange } = useInput({
@@ -28,7 +30,7 @@ const RegisterForm = () => {
     })
       // 정상적인 로그인 시
       .then((res) => { // eslint-disable-line no-unused-vars
-        navigate("/");
+        navigate(staticServerUrl + "/");
       })
       // 에러 났을 시
       .catch((error) => {
@@ -38,8 +40,8 @@ const RegisterForm = () => {
 
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 border p-16 grid gap-8">
-      <Link to="/">
-        <img src="/logoKakao.png" alt="카카오톡 쇼핑하기" className="w-32 block m-auto" />
+      <Link to={staticServerUrl + "/"}>
+        <img src={staticServerUrl + "/logoKakao.png"} alt="카카오톡 쇼핑하기" className="w-32 block m-auto" />
       </Link>
 
       <InputGroup

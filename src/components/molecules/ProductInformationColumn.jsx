@@ -3,13 +3,15 @@ import { comma } from "../../utils/convert"; // eslint-disable-line no-unused-va
 import Photo from "../atoms/Photo";
 import Box from "../atoms/Box";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const ProductInformationColumn = ({ product }) => {
-  const { productName, image } = product;
+  const { productName } = product;
   return (
     <Box className="w-[512px] m-4">
       <Photo
         className="rounded-lg"
-        src={"http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/" + image}
+        src={staticServerUrl + product.image}
         alt={productName}
       />
     </Box>

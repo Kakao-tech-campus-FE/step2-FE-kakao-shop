@@ -8,6 +8,8 @@ import { getCart } from "../../services/cart"; // eslint-disable-line no-unused-
 import { useSelector } from "react-redux"; // eslint-disable-line no-unused-vars
 import { Link } from "react-router-dom"; // eslint-disable-line no-unused-vars
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = () => {
   const { data } = useQuery(["cart"], getCart, { suspense: true });
   const { products, totalPrice } = data?.data?.response ?? {};
@@ -171,7 +173,7 @@ const OrderTemplate = () => {
                   onSuccess: (res) => {
                     const id = res.data.response.id; // 이 부분에서 문제 생김!
                     alert("주문이 완료되었습니다.");
-                    navigate(`/orders/complete/${id}`);
+                    navigate(staticServerUrl + `/orders/complete/${id}`);
                   },
                 }
               );

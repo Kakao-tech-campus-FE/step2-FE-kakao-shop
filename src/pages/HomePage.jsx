@@ -1,25 +1,14 @@
 import React from "react"; // eslint-disable-line no-unused-vars
-
-// const HomePage = () => {
-//   return (
-//     <>
-//       <Carousel />
-//       <MainProductTemplate />
-//     </>
-//   );
-// };
-
-// export default HomePage;
-
-
 import MainProductTemplate from "../components/templates2/MainProductTemplate";
 import Carousel from "../components/atoms/Carousel";
 import { useState, useEffect } from "react";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const slides = [
-  "/carouselItem1.jpeg",
-  "/carouselItem2.jpeg",
-  "/carouselItem3.jpeg",
+  staticServerUrl + "/carouselItem1.jpeg",
+  staticServerUrl + "/carouselItem2.jpeg",
+  staticServerUrl + "/carouselItem3.jpeg",
 ];
 
 const HomePage = () => {

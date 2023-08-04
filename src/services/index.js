@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-// const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-// const passwordReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*-=])(?=.*[0-9]).{8,20}$/;
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 // AXIOS 인스턴스 선언
 export const instance = axios.create({
-  baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
-  timeout: 1000, // 보다 나은 사용자 경험을 위해 timeout 추가
+  baseURL: staticServerUrl + "/api",
+  timeout: 5000, // 보다 나은 사용자 경험을 위해 timeout 추가
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },
@@ -49,7 +48,7 @@ instance.interceptors.response.use(
     } else if (errorCode >= 400 && errorCode <= 499) {
       if(errorCode === 404) {
         const navigate = useNavigate();
-        navigate('/404');
+        navigate(staticServerUrl + '/404');
       }
       throw Error("400번대 상태 코드 수신: " + errorCode)
     } else {

@@ -17,7 +17,7 @@ const Header = ({ onClick, text }) => {
           >
             <img
               src="https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230726/143041/assets/images/pc/pc_logo.png"
-              alt="톡쇼핑하기"
+              alt="카카오톡쇼핑하기"
               className=" w-32 border-0"
             />
           </button>

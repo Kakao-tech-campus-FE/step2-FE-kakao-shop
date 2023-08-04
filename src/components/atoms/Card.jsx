@@ -1,18 +1,14 @@
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import "../../styles/atoms/Card.css";
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const Card = ({ to, children }) => {
   return (
-    <Link className="card" to={to}>
+    <Link className="card" to={staticServerUrl + to}>
       {children}
     </Link>
   );
-};
-
-Card.propTypes = {
-  to: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
 };
 
 export default Card;

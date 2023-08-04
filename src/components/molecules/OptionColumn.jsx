@@ -5,9 +5,12 @@ import Counter from "../atoms/Counter";
 import { addCart } from "../../services/cart";
 import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
+import { useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 import Badge from "../atoms/Badge";
 import { Link, useNavigate } from "react-router-dom"; // eslint-disable-line no-unused-vars
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OptionColumn = ({ product }) => {
   const { productName, price } = product;
@@ -136,9 +139,8 @@ const OptionColumn = ({ product }) => {
               }),
               {
                 onSuccess: () => {
-                  if (selectedOptions.length === 1) {
-                    alert("장바구니 담기에 성공하였습니다.");
-                  }
+                  alert("장바구니 담기에 성공하였습니다.");
+                  navigate(staticServerUrl + "/cart");
                 },
                 onError: (error) => { // eslint-disable-line no-unused-vars
                   alert("장바구니 담기에 실패했습니다.");
@@ -152,12 +154,22 @@ const OptionColumn = ({ product }) => {
         <Button
           className=" w-80 h-12 bg-yellow-300 rounded-lg text-sm ml-4"
           onClick={() => {
-            alert("주문 결제 페이지로 이동합니다.");
+            mutate(
+              selectedOptions.map((el) => {
+                return {
+                  optionId: el.optionId,
+                  quantity: el.quantity,
+                };
+              }),
+              {
+                onSuccess: () => {
+                  navigate(staticServerUrl + "/order");
+                },
+              }
+            );
           }}
         >
-          <Link to="/order" className="block m-auto">
           구매하기
-          </Link>
         </Button>
       </div>
     </Box>

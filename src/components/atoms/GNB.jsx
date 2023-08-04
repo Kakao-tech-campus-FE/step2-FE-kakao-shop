@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { setIsLoggedIn } from "../../store/slices/userSlice";
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const GNB = () => {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -12,17 +13,17 @@ const GNB = () => {
   // fixed z-50 bg-white border-gray-200 border-solid border-b-2 p-3 mx-auto left-0 right-0
   return (
     <nav className="w-96 flex justify-between">
-      <Link className="block p-3" to="/">
-        <img className="w-24" src="/logoKakao.png" alt="카카오톡 쇼핑하기" />
+      <Link to={staticServerUrl + "/"} className="block p-3" >
+        <img className="w-24" src={staticServerUrl + "/logoKakao.png"} alt="카카오톡 쇼핑하기" />
       </Link>
       <div className="flex items-center">
-        <Link className="block p-3" to="/cart">
-          <img className="w-9" src="/cart.png" alt="장바구니" />
+        <Link to={staticServerUrl + "/cart"} className="block p-3">
+          <img className="w-9" src={staticServerUrl + "/cart.png"} alt="장바구니" />
         </Link>
         <span className="bar">[---</span>
         {isLoggedIn ? (
           <Link
-            to="/login"
+            to={staticServerUrl + "/login"}
             onClick={handleLogout}
             style={{ textDecoration: "none", color: "black" }}
           >
@@ -31,7 +32,7 @@ const GNB = () => {
           </Link>
         ) : (
           <Link
-            to="/login"
+            to={staticServerUrl + "/login"}
             onClick={handleLogout}
             style={{ textDecoration: "none", color: "black" }}
           >

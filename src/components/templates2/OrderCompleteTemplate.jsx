@@ -3,6 +3,8 @@ import OptionItem from "../atoms/OptionItem";
 import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const ProductList = styled.div` // eslint-disable-line no-unused-vars
   padding: 1rem;
   .label {
@@ -62,7 +64,7 @@ const OrderCompleteTemplate = ( { data } ) => { // eslint-disable-line no-unused
           className="w-full py-4 text-black font-bold text-xl bg-yellow-400"
           onClick={() => {
             // 주문 완료 후 메인 페이지로 이동
-            navigate("/");
+            navigate(staticServerUrl + "/");
           }}
         >쇼핑 계속하기</button>
       </div>

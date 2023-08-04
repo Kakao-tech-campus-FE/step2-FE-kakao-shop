@@ -14,6 +14,9 @@ import OrderCompletePage from "./pages/OrderCompletePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools"; // eslint-disable-line no-unused-vars
+import SearchResultPage from "./pages/SearchResultPage"; // eslint-disable-line no-unused-vars
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const queryClient = new QueryClient();
 
@@ -23,22 +26,22 @@ function App() {
     <QueryClientProvider client={queryClient}>
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/signup" element={<RegisterPage />}></Route>
+        <Route path={staticServerUrl + "/login"} element={<LoginPage />}></Route>
+        <Route path={staticServerUrl + "/signup"} element={<RegisterPage />}></Route>
 
         {/* UI Components */}
-        <Route path="/carousel" element={<Carousel />}></Route>
+        <Route path={staticServerUrl + "/carousel"} element={<Carousel />}></Route>
 
         <Route element={<MainLayout />}>
-          <Route path="/" element={<HomePage />}></Route>
-          <Route path="/product/:id" element={<ProductDetailPage />}></Route>
+          <Route path={staticServerUrl + "/"} element={<HomePage />}></Route>
+          <Route path={staticServerUrl + "/product/:id"} element={<ProductDetailPage />}></Route>
         </Route>
         <Route element={<RequiredAuthLayout />}>
-          <Route path="/cart" element={<CartPage />}></Route>
-          <Route path="/order" element={<OrderPage />}></Route>
-          <Route path="/orders/complete/:id" element={<OrderCompletePage />}></Route>
+          <Route path={staticServerUrl + "/cart"} element={<CartPage />}></Route>
+          <Route path={staticServerUrl + "/order"} element={<OrderPage />}></Route>
+          <Route path={staticServerUrl + "/orders/complete/:id"} element={<OrderCompletePage />}></Route>
         </Route>
-        <Route path="/*" element={<NotFoundPage />}></Route>
+        <Route path={staticServerUrl + "/*"} element={<NotFoundPage />}></Route>
       </Routes>
     </BrowserRouter>
     </QueryClientProvider>
