@@ -20,7 +20,7 @@ const ProductCard = ({ product, isLoading }) => {
       >
         <Photo
           className="img_thumb"
-          src={staticServerUrl + product.image}
+          src={`${staticServerUrl}${product.image}`}
           alt={product.productName}
         />
         <div className="product_name">{product.productName}</div>
