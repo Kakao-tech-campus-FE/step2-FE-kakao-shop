@@ -1,4 +1,4 @@
-import { instance } from "./index";
+import { instance } from "./index"
 import {logout}  from "../store/slices/userSlice";
 import {Cookies} from "react-cookie"
 import store from "../store";

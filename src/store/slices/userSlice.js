@@ -77,7 +77,7 @@ export const registerRequest = createAsyncThunk(
     async(data)=>{
         const {email, password, username}=data;
         const response=await register({email, password, username}); // action.payload
-
+        console.log(email)
         return response.data
         
         
