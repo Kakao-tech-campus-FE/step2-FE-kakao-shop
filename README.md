@@ -45,6 +45,8 @@
 
 배포에 영향을 받는 브랜치는 [hjiwon / step2-FE-kakao-shop-2](https://github.com/hjiwon/step2-FE-kakao-shop-2)입니다.
 
+<br />
+
 ## **실행 방법**
 
 
@@ -60,6 +62,8 @@ npm start를 통해 React 프로젝트를 실행합니다.
 npm install # 의존성 모듈 설치
 npm run start # 프로젝트 실행
 ```
+
+<br />
 
 ## **디렉토리 구조**
 
