@@ -9,6 +9,7 @@ const StyledContainer = styled.div`
   width: 100%; /* 뷰포트의 가로 너비 전체를 차지 */
   min-height: 100%; /* 뷰포트의 세로 높이 전체를 차지 */
   padding-top: 179px;
+  overflow-x: hidden;
 `;
 
 const Container = ({ children }) => {
