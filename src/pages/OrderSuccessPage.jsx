@@ -5,7 +5,7 @@ import { getOrderFromId } from "/workspace/step2-FE-kakao-shop2/src/services/ord
 
 const OrderSuccessTemplate = () => {
   const { id } = useParams();
-  const { data } = useQuery([`orders/${id}}`,id], () => getOrderFromId(id), {
+  const { data } = useQuery([`orders`,id], () => getOrderFromId(id), {
     suspense: true,
   });
 
