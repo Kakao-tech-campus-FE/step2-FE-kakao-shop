@@ -6,7 +6,8 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 const Header = ({ onClick, text }) => {
   const navigate = useNavigate();
 	
-	const mainLogo = "https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230726/143041/assets/images/pc/pc_logo.png"
+	const mainLogo = staticServerUri + "images/logoKakao"
+	
   return (
     <div className="py-4 border-b-2">
       <header className="header flex justify-between px-4">
