@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/userSlice";
 import { useAutoLogout } from "../../components/autoLogout";
 import { useEffect } from "react";
-import logo from "../../imgs/logokakao.png";
+import logo from "../../imgs/logoKaKao.png";
 import cart from "../../imgs/cart.png";
 import "./GNB.css";
 const staticServerUri = process.env.REACT_APP_PATH || "";
