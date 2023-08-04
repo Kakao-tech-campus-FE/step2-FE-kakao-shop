@@ -231,3 +231,18 @@ window|새 창
 system<br />(alert/comfirm/prompt)|브라우저 제공
 layer<br />(modal/modaless)|레이어 덧씌우기
 toast|상호작용X
+
+### 프로젝트 배포
+
+# 배포 환경
+- 카카오 크램폴린IDE(D2Hub, Kargo)
+
+# 배포 순서
+- 크램폴린IDE 접속
+- main 브랜치 최신화
+- D2Hub 빌드하기
+- 배포하기
+- Kargo에서 URL 확인
+
+# 배포 주의사항
+- default.conf, Dockerfile에 문제 발생 시 배포가 정상적으로 진행되지 않을 수 있음
