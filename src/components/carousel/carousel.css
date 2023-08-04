@@ -1,0 +1,26 @@
+.Carousel {
+    width: 312px;
+    height: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.ImageBox {
+    margin: 10px 0 0 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+}
+
+.ImageList {
+    list-style: none;
+}
+
+button {
+    border-style: none;
+}
+
+.button-container {
+    display: flex;
+}
