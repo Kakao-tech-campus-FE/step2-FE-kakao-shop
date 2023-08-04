@@ -22,5 +22,9 @@ module.exports = {
     'react/react-in-jsx-scope': "off",
     "react/prop-types": "off",
     "no-extra-boolean-cast": "off",
+	"react/no-children-prop": "off",
+	"react/no-unknown-property":"off",
+	"no-dupe-keys":"off",
+	
   },
 };
