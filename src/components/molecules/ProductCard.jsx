@@ -11,10 +11,10 @@ const ProductCard = ({ product, loading }) => {
       {loading ? (
         <ProductCardSkeleton />
       ) : (
-        <Card to={staticServerUrl + `/product/${product.id}`}>
+        <Card to={`/product/${product.id}`}>
           <Photo 
             className="rounded-lg"
-            src={staticServerUrl.slice(0, -1) + product.image} 
+            src={product.image} 
             alt={product.productName} />
           <div className="product-name">{product.productName}</div>
           <div className="product-price">{comma(product.price)}원</div>
