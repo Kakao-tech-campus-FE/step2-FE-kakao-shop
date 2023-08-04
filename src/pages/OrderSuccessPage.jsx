@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 // import { comma } from "../../utils/convert";
 import { useParams } from "react-router-dom";
-import { getOrderFromId } from "/workspace/step2-FE-kakao-shop2/src/services/order.jsx";
+import { getOrderFromId } from "../../services/order";
 
 const OrderSuccessTemplate = () => {
   const { id } = useParams();

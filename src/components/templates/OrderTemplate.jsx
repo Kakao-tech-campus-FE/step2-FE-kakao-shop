@@ -3,7 +3,7 @@ import { getCart } from '../../services/cart';
 import {useQuery,useMutation} from '@tanstack/react-query';
 import {useNavigate} from 'react-router-dom'
 // import { comma } from '../../utils/convert';
-import { order } from '/workspace/step2-FE-kakao-shop2/src/services/order.jsx';
+import { order } from '../../services/order';
 import routes from '../../routes/routes';
 import { useState } from 'react';
 import { useRef } from 'react';
