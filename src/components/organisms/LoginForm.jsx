@@ -45,6 +45,8 @@ const ValidMsgBox = styled(Box)`
     }
 `;
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
     const dispatch = useDispatch();
     const email = useSelector(state => state.user.email);
@@ -153,7 +155,7 @@ const LoginForm = () => {
                 onClick={() => { onSubmit() }}
             >로그인</Button>
             <UserInfo>
-                <JoinLink href={"/register"}>회원가입</JoinLink>
+                <JoinLink href={staticServerUri + "/register"}>회원가입</JoinLink>
             </UserInfo>
         </StyledContainer>
     );

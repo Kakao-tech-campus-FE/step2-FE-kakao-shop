@@ -20,7 +20,7 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 const LoginPage = () => {
     return (
         <>
-            <LogoKakao src={staticServerUri + "\logoKakaoText.png"} />
+            <LogoKakao src={staticServerUri + "/logoKakaoText.png"} />
             <StyledContainer>
                 <LoginForm />
             </StyledContainer>

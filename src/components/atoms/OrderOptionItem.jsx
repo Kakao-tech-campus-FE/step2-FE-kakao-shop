@@ -15,7 +15,7 @@ const OrderOptionItem = ({ productName, productId, option }) => {
                     className="rounded-[4px]"
                     src={
                         staticServerUri ?
-                        staticServerUri + '/api' + `/images/${productId}.jpg`
+                        staticServerUri + `/images/${productId}.jpg`
                         :
                         `${process.env.REACT_APP_API_URL}images/${productId}.jpg`
                     }

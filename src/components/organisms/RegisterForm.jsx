@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-
+import { useNavigate } from "react-router";
 
 // components
 import Container from "../atoms/Container";
@@ -31,6 +31,7 @@ const ValidMsgBox = styled(Box)`
 `;
 
 export default function RegisterForm(){
+    const navigate = useNavigate();
     const [validMsg, setValidMsg] = useState("");
     const [isValid, setIsValid] = useState({
         username: false,
@@ -99,8 +100,7 @@ export default function RegisterForm(){
         })
         .then(res => {
             console.log("register res: ", res);
-
-            window.location.href = "/"; // 메인페이지 리다이렉트
+            navigate("/"); // 메인페이지 리다이렉트
             alert("register success !!");
         })
         .catch(err => {

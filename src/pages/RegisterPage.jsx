@@ -19,7 +19,7 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 export default function RegisterPage() {
     return (
         <>
-            <LogoKakao src={staticServerUri + "\logoKakaoText.png"} />
+            <LogoKakao src={staticServerUri + "/logoKakaoText.png"} />
             <StyledContainer>
                 <RegisterForm />
             </StyledContainer>
