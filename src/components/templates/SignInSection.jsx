@@ -9,7 +9,7 @@ const SignInSection = () => {
       <div className="kakao-login-logo">
         <img
           className="border-0 w-24 h-20"
-          src= {staticServerUri + "images/logoKakaoText"}
+          src= {staticServerUri + "/images/logoKakaoText"}
           alt="kakao-login-logo"
         />
       </div>
