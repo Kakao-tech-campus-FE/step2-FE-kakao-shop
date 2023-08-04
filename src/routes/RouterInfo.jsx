@@ -7,6 +7,7 @@ import ProductDetailPage from '../pages/ProductDetailPage';
 import SkeletonPage from '../components/skeleton/SkeletonPage';
 import OrderPage from '../pages/OrderPage';
 import OrderCompletePage from '../pages/OrderCompletePage'
+import OrderSuccessTemplate from '../pages/OrderSuccessPage';
 const staticServerUri = process.env.REACT_APP_PATH || "";
 export const RouterInfo = [
     {
