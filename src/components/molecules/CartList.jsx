@@ -8,6 +8,7 @@ import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { updateCart } from "../../services/cart";
+const staticServerUri = process.env.REACT_APP_PATH || "";
 const CartList = ({data}) => {
    
     const route=useNavigate();
@@ -143,7 +144,7 @@ const CartList = ({data}) => {
                 console.log(getPayload())
                 mutate(getPayload(),{
                     onSuccess:(data)=>{
-                        route('/order')
+                        route(`${staticServerUri}/order`)
                     },
                     onError:(error)=>{
 

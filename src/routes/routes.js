@@ -7,7 +7,7 @@ const routes = {
     productDetail: `${staticServerUri}/product/:id`,
     skeletonTest: `${staticServerUri}/skeleton-test`,
     order:`${staticServerUri}/order`,
-    orderComplete:'/orders/complete',
+    orderComplete:staticServerUri+'/orders/complete',
     productDetail: `${staticServerUri}/product/:id`,
     skeletonTest: `${staticServerUri}/skeleton-test`
 };
