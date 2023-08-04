@@ -36,7 +36,7 @@ const Header = () => {
                 {isLogin ? < HeaderList name="로그아웃" slash={false}
                     onClick={() => {
                         localStorage.removeItem('token')
-                        setIsLoginT(false)
+                        setIsLogin(false)
                     }
 
                     }></ HeaderList > : <>
