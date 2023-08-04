@@ -5,14 +5,14 @@ import Counter from "../atoms/Counter";
 import { addCart } from "../../services/cart";
 import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
-import { useNavigate } from "react-router-dom";
 import Box from "../atoms/Box";
 import Badge from "../atoms/Badge";
-import { Link, useNavigate } from "react-router-dom"; // eslint-disable-line no-unused-vars
+import { useNavigate } from "react-router-dom";
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OptionColumn = ({ product }) => {
+  const navigate = useNavigate();
   const { productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
 
