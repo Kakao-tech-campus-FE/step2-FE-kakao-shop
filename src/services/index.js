@@ -4,7 +4,7 @@ import axios from "axios";
 
 const staticServerUri = process.env.REACT_APP_PATH || "";
 
-const instance = axios.create({
+export const instance = axios.create({
   baseURL:
     staticServerUri + "/api",
   timeout: 1000,

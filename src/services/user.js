@@ -1,4 +1,4 @@
-import  instance  from "../services/index";
+import  {instance}  from "../services/index";
 
 export const register = (data) => {
   const { email, password, username } = data;
