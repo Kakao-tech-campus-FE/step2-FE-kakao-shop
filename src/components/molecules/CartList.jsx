@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import CartItem from "../atoms/CartItem";
 import Card from "../atoms/Card";
+import NoCartItem from "../atoms/NoCartItem";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import SubmitButton from "../atoms/SubmitButton";
@@ -105,38 +106,44 @@ const CartList = ({ data }) => {
     <Container>
       <StyledGroup className="cart-list">
         <Title>장바구니</Title>
-        <Card>
-          {Array.isArray(cartItems) &&
-            cartItems.map((item) => {
-              return (
-                <CartItem
-                  key={item.id}
-                  item={item}
-                  ref={updatePayload}
-                  onChange={handleOnChangeCount}
-                />
-              );
-            })}
-        </Card>
-        <TotalPrice>
-          <div>주문 예상 금액</div>
-          <div className="price">{comma(totalPrice)}원</div>
-        </TotalPrice>
-        <SubmitButton
-          className="order-btn"
-          onClick={() => {
-            mutate(updatePayload.current, {
-              onSuccess: (data) => {
-                navigate(staticServerUri + routes.orders);
-              },
-              onError: (error) => {
-                console.log(error);
-              },
-            });
-          }}
-        >
-          총 {getTotalCartCountIncludeOptions()}건 결제하기
-        </SubmitButton>
+        {cartItems.length === 0 ? (
+          <NoCartItem />
+        ) : (
+          <>
+            <Card>
+              {Array.isArray(cartItems) &&
+                cartItems.map((item) => {
+                  return (
+                    <CartItem
+                      key={item.id}
+                      item={item}
+                      ref={updatePayload}
+                      onChange={handleOnChangeCount}
+                    />
+                  );
+                })}
+            </Card>
+            <TotalPrice>
+              <div>주문 예상 금액</div>
+              <div className="price">{comma(totalPrice)}원</div>
+            </TotalPrice>
+            <SubmitButton
+              className="order-btn"
+              onClick={() => {
+                mutate(updatePayload.current, {
+                  onSuccess: (data) => {
+                    navigate(staticServerUri + routes.orders);
+                  },
+                  onError: (error) => {
+                    console.log(error);
+                  },
+                });
+              }}
+            >
+              총 {getTotalCartCountIncludeOptions()}건 결제하기
+            </SubmitButton>
+          </>
+        )}
       </StyledGroup>
     </Container>
   );
