@@ -50,9 +50,7 @@ const TotalPrice = styled.div`
 
 const CartList = ({ data }) => {
   const navigate = useNavigate();
-
   const [cartItems, setCartItems] = useState([]);
-
   const updatePayload = useRef([]);
 
   useEffect(() => {
@@ -106,19 +104,17 @@ const CartList = ({ data }) => {
           <NoCartItem />
         ) : (
           <>
-            <Card>
-              {Array.isArray(cartItems) &&
-                cartItems.map((item) => {
-                  return (
-                    <CartItem
-                      key={item.id}
-                      item={item}
-                      ref={updatePayload}
-                      onChange={handleOnChangeCount}
-                    />
-                  );
-                })}
-            </Card>
+            {Array.isArray(cartItems) &&
+              cartItems.map((item) => {
+                return (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    ref={updatePayload}
+                    onChange={handleOnChangeCount}
+                  />
+                );
+              })}
             <TotalPrice>
               <div>주문 예상 금액</div>
               <div className="price">{comma(totalPrice)}원</div>

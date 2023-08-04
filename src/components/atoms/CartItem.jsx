@@ -36,11 +36,7 @@ const TotalPrice = styled.div`
   }
 `;
 
-const CartItem = forwardRef(({ item, onChange }, ref) => {
-  const handleOnChange = (optionId, quantity, price) => {
-    onChange(item.id, optionId, quantity, price);
-  };
-
+const CartItem = forwardRef(({ item, onChange, onClick }, ref) => {
   return (
     <>
       <div className="cart-item-box">
@@ -55,12 +51,12 @@ const CartItem = forwardRef(({ item, onChange }, ref) => {
                 <span className="counter">
                   <Counter
                     value={cart.quantity}
-                    onIncrease={(count) =>
-                      handleOnChange(cart.optionId, count, cart.option.price)
-                    }
-                    onDecrease={(count) =>
-                      handleOnChange(cart.optionId, count, -cart.option.price)
-                    }
+                    onIncrease={(count) => {
+                      onChange(cart.option.id, count, cart.option.price);
+                    }}
+                    onDecrease={(count) => {
+                      onChange(cart.option.id, count, -cart.option.price);
+                    }}
                   />
                 </span>
                 <div className="price">
