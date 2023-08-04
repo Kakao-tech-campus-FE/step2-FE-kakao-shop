@@ -155,9 +155,6 @@ const OptionColumn = ({product}) => {
         <div>
           <button 
             className="text-xl block w-full h-15 mx-4 px-10 py-5 bg-yellow-400 rounded"
-            onClick={() => {
-              Navigate('/')
-            }}
           >구매하기</button>
         </div>
       </div>
