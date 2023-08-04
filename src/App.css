@@ -34,7 +34,7 @@ header {
   top: 0;
 }
 header > .inner {
-  height: 79px;
+  height: 100%;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../store/userSlice";
 import { useAutoLogout } from "../../components/autoLogout";
 import { useEffect } from "react";
-import logo from "../../imgs/logoKakao.png";
+import logo from "../../imgs/logokakao.png";
 import cart from "../../imgs/cart.png";
 import "./GNB.css";
 const staticServerUri = process.env.REACT_APP_PATH || "";
@@ -32,7 +32,7 @@ function GNB() {
   useAutoLogout();
 
   return (
-    <header className="header bg-white px-4 py-2 justify-between flex items-center fixed top-0 left-0 right-0 z-10">
+    <header className="header px-4 py-2 justify-between flex items-center fixed top-0 left-0 right-0 z-10">
       <div className="wrapper inner items-center justify-between">
         <div className="elements items-center">
           <div>
@@ -73,13 +73,10 @@ function GNB() {
             </div>
           ) : (
             <>
-              <Link
-                to={staticServerUri + "/login"}
-                className="login text-black mr-2"
-              >
+              <Link to={staticServerUri + "/login"} className="login  mr-2">
                 로그인
               </Link>
-              <Link to={staticServerUri + "/signup"} className="text-black">
+              <Link to={staticServerUri + "/signup"} className="">
                 회원가입
               </Link>
             </>

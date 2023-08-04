@@ -3,6 +3,7 @@ header {
   text-align: center;
   align-items: center;
   height: 20vh;
+  background-color: #fee500;
 }
 
 /* 로고 스타일 */
@@ -37,7 +38,7 @@ header .sub-menu ul.menu li a {
   font-size: 1rem;
   white-space: nowrap;
   position: relative;
-  left: 13rem;
+  font-weight: 700;
 }
 
 @media only screen and (min-width: 480px) {
@@ -45,6 +46,7 @@ header .sub-menu ul.menu li a {
     flex-direction: row;
     justify-content: center;
     height: 95px;
+    background-color: #fff;
   }
   .inner {
     display: flex;
