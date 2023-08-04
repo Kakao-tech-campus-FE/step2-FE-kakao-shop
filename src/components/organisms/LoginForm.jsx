@@ -4,7 +4,7 @@ import SubmitButton from '../atoms/SubmitButton';
 import Form from '../atoms/Form';
 import Text from '../atoms/Text';
 import LabelInput from '../molecules/LabelInput';
-import { useAtom } from 'jotai';
+import { useSetAtom } from 'jotai';
 import { tokenAtom } from '../../store';
 import { useNavigate } from 'react-router-dom';
 import URL from '../../constants/URL';
@@ -12,8 +12,8 @@ import useForm from '../../hooks/useForm';
 
 const LoginForm = ({ inputInfo, defaultValue, buttonLabel }) => {
     const navigate = useNavigate();
-    const [token, setToken] = useAtom(tokenAtom);
-    const { values, errors, isLoading, handleChange, handleSubmit, validation } = useForm({
+    const setToken = useSetAtom(tokenAtom);
+    const { values, errors, handleChange, handleSubmit, validation } = useForm({
         initValue: defaultValue,
         onSubmit: (setValidate, values) => {
             login(values)

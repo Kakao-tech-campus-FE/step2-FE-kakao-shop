@@ -23,7 +23,7 @@ const Counter = ({ onIncrease, onDecrease, initValue = 1 }) => {
         });
     };
     return (
-        <div className="counter flex justify-start gap-4">
+        <Container className="counter">
             <Button className="counter" onClick={handleOnDecrease}>
                 -
             </Button>
@@ -31,7 +31,7 @@ const Counter = ({ onIncrease, onDecrease, initValue = 1 }) => {
             <Button className="counter" onClick={handleOnIncrease}>
                 +
             </Button>
-        </div>
+        </Container>
     );
 };
 

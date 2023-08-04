@@ -1,6 +1,4 @@
-import { useAtomValue } from 'jotai';
 import { styled } from 'styled-components';
-import { loadingAtom } from '../../store/product';
 import ProductCard from '../molecules/ProductCard';
 import ProductCardSkeleton from '../molecules/ProductCardSkeleton';
 

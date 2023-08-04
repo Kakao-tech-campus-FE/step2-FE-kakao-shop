@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { comma } from '../../utils/convert';
 import OptionList from '../atoms/OptionList';
 import { useMutation } from '@tanstack/react-query';

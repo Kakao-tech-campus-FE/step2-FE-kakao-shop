@@ -9,7 +9,6 @@ const validationLoginForm = ({ email, password }) => {
     const passwordValidation = info.find((e) => e.id === 'password').validation;
 
     // email
-    let emailCheckUrl = '';
     if (!email) {
         errors.email = emailValidation.required.message;
     } else if (!emailValidation.pattern.value.test(email)) {

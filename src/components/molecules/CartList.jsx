@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Container from '../atoms/Container';
 import Box from '../atoms/Box';
-import Card from '../atoms/Card';
 import Button from '../atoms/Button';
 import CartItem from '../atoms/CartItem';
 import { comma } from '../../utils/convert';
@@ -116,11 +115,11 @@ const CartList = ({ data }) => {
                 onClick={() => {
                     // 장바구니 정보를 수정하는 api 호출 (개수 변경이 있는 경우)
                     mutate(updatePayload.current, {
-                        onSuccess: (data) => {
+                        onSuccess: () => {
                             // 주문 페이지로 이동
                             navigate(URL.ORDER);
                         },
-                        onError: (error) => {},
+                        onError: () => {},
                     });
                 }}
             >

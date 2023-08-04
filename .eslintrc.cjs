@@ -1,8 +1,14 @@
 /* eslint-disable no-undef */
 module.exports = {
   env: {
-    browser: true,
+    node: true,
     es2021: true,
+  },
+  "globals": {
+        "localStorage": true,
+        "fetch": true,
+        "alert": true,
+        "IntersectionObserver" : true,
   },
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   overrides: [],
@@ -12,6 +18,9 @@ module.exports = {
   },
   plugins: ['eslint-plugin-react'],
   rules: {
+    "no-unused-vars": "off",
     'react/react-in-jsx-scope': "off",
+    "react/prop-types": "off",
+    "no-extra-boolean-cast": "off",
   },
 };

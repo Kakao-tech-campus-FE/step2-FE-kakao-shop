@@ -1,6 +1,5 @@
 import { comma } from '../../utils/convert';
 import Box from './Box';
-import Card from './Card';
 import Counter from './Counter';
 import Container from './Container';
 import Text from './Text';
@@ -14,6 +13,7 @@ const CartItem = ({ key, item, onChange }) => {
             direction="column"
             gap={'1rem'}
             align="flex-start"
+            key={key}
         >
             <Text className="text-base font-semibold">{item.productName}</Text>
             {item.carts.map((cart) => (

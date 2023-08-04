@@ -1,4 +1,5 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+/* eslint-disable-next-line no-unsafe-optional-chaining */
+import { useMutation } from '@tanstack/react-query';
 import { order } from '../../services/order';
 import { comma } from '../../utils/convert';
 import { useNavigate } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 
 const OrderTemplate = ({ data }) => {
     // 사용자의 장바구니 목록을 조회해서 보여주는 것
-    const { products, totalPrice } = data?.data?.response;
+    const { products, totalPrice } = data.data.response || undefined;
     const navigate = useNavigate();
     const { mutate } = useMutation({
         mutationKey: 'order',

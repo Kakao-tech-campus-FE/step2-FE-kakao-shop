@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/product';
-import Container from '../components/atoms/Container';
 import { useSetAtom } from 'jotai';
 import { productDetailAtom } from '../store/product';
 import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
