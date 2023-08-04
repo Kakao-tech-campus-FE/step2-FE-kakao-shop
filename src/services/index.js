@@ -8,8 +8,7 @@ import axios from 'axios';
 let staticServerUrl = "";
 if(process.env.REACT_APP_PATH){
     staticServerUrl = `${process.env.REACT_APP_PATH}/api`
-}
-if(process.env.REACT_APP_KAKAO_STORE_URL){
+}else if(process.env.REACT_APP_KAKAO_STORE_URL){
     staticServerUrl = process.env.REACT_APP_KAKAO_STORE_URL
 }
 
