@@ -15,9 +15,9 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
       
-    <Card to={`${staticServerUrl}/product/${product.id}`} >
+    <Card to={staticServerUrl + `/product/${product.id}`} >
       <div className="product-photo">
-        <Photo src={ `${staticServerUrl}${product.image}` } alt={product.productName} />
+        <Photo src={ staticServerUrl + product.image } alt={product.productName} />
         </div>
         <div className="product-name">{product.productName}</div>
         <div className="product-price">{comma(product.price)}원</div>
