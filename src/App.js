@@ -8,12 +8,14 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App(){
 
+  
+
   return (
   <div className="App">
     <BrowserRouter>
     <Routes>
       {/*단독레이이아웃*/}
-      <Route path="/login" element={<LoginPage/>}></Route>
+      <Route path={ "/login"} element={<LoginPage/>}></Route>
       <Route path="/signup" element={<RegisterPage/>}></Route>
       {/*공통레이아웃:GNB, footer*/}
       <Route element={<MainLayout/>}>
