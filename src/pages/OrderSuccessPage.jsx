@@ -5,7 +5,7 @@ import { getOrderFromId } from "../../services/order";
 
 const OrderSuccessTemplate = () => {
   const { id } = useParams();
-  const { data } = useQuery([`orders/${id}}`], () => getOrderFromId(id), {
+  const { data } = useQuery([`orders/${id}}`,id], () => getOrderFromId(id), {
     suspense: true,
   });
 

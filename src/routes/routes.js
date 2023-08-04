@@ -9,7 +9,8 @@ const routes = {
     order:`${staticServerUri}/order`,
     orderComplete:staticServerUri+'/orders/complete/:id',
     productDetail: `${staticServerUri}/product/:id`,
-    skeletonTest: `${staticServerUri}/skeleton-test`
+    skeletonTest: `${staticServerUri}/skeleton-test`,
+	orderSuccess:staticServerUri+'/orders/complete/:id',
 };
 
 export default routes;

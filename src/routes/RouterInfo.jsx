@@ -52,8 +52,8 @@ export const RouterInfo = [
         element: <OrderPage />,
         label: 'order'
     }, {
-        path: `${routes.orderComplete}`,
-        element: <OrderCompletePage/>,
+        path: `${routes.orderSuccess}`,
+        element: <OrderSuccessTemplate/>,
         label: 'orderComplete'
     },
 ]
