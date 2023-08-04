@@ -71,21 +71,29 @@ const OrderTemplate = ({ data }) => {
 
   // OrderItems
   const OrderItems = () => {
-    let renderComponent = [];
-    //각각 상품들
-    products.forEach((item) => {
-      // item: 각각의 상품. carts: 옵션들의 모임
-      // 상품하나에 대한 각각의 옵션들
-      renderComponent.push(
-        item.carts.map((cart) => {
-          return (
-            <div key={cart.id} className="order-option">
-              <div className="namegroup">
-                <span className="material-symbols-outlined">storefront</span>
-                <span className="prodcut-name">{`${item.productName}`}</span>
-              </div>
+    const groupedProducts = {};
+    // 상품들을 productName을 기준으로 그룹화
+    products.forEach((product) => {
+      if (!groupedProducts[product.productName]) {
+        groupedProducts[product.productName] = [];
+      }
+      groupedProducts[product.productName].push(product);
+    });
+    // 그룹화된 상품들을 UI에 렌더링
+    return Object.keys(groupedProducts).map((productName) => (
+      <div key={productName} className="order-option">
+        <div className="namegroup">
+          <span className="material-symbols-outlined" id="shop-icon">
+            storefront
+          </span>
+          <span className="product-name">{`${productName}`}</span>
+        </div>
+
+        {groupedProducts[productName].map((product) =>
+          product.carts.map((cart) => (
+            <div key={cart.id} className="order-option-item">
               <div className="optionNamegroup">
-                <span className="option-name">{`[옵션]${cart.option.optionName}`}</span>
+                <span className="option-name">{`[옵션] ${cart.option.optionName}`}</span>
                 <span className="product-quantity">
                   {comma(cart.quantity)}개
                 </span>
@@ -95,12 +103,10 @@ const OrderTemplate = ({ data }) => {
                 <span>{comma(cart.price * cart.quantity)}원</span>
               </div>
             </div>
-          );
-        })
-      );
-    });
-
-    return renderComponent;
+          ))
+        )}
+      </div>
+    ));
   };
 
   return (

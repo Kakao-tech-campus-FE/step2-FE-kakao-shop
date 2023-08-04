@@ -1,6 +1,5 @@
 import Counter from "./Counter";
 import { comma } from "../../utils/convert";
-import Card from "../atoms/Card";
 import "../../styles/atoms/CartItem.css";
 
 // 각 상품별 장바구니 항목

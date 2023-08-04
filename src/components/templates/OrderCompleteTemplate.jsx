@@ -2,6 +2,7 @@ import React from "react";
 import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
 import "../../styles/template/OrderCompleteTemplate.css";
+
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OrderCompleteTemplate = ({ data }) => {
