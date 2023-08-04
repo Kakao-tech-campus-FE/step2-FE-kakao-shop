@@ -2,15 +2,30 @@ import axios from "axios";
 
 // 원래 api.js였는데 index.js로 이름 변경
 
-export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  timeout: process.env.REACT_APP_TIMEOUT,
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
+const instance = axios.create({
+  baseURL:
+    staticServerUri + "/api",
+  timeout: 1000,
   headers: {
     "Content-Type": "application/json",
-    // "Authorization": `Bearer ${localStorage.getItem('token')}`,
-
-  }
+  },
 });
+
+const getProducts = async () => {
+  return await instance.get('/products');
+};
+
+// export const instance = axios.create({
+//   baseURL: process.env.REACT_APP_API_URL,
+//   timeout: process.env.REACT_APP_TIMEOUT,
+//   headers: {
+//     "Content-Type": "application/json",
+//     // "Authorization": `Bearer ${localStorage.getItem('token')}`,
+
+//   }
+// });
 
 // 요청 인터셉터
 instance.interceptors.request.use((config) => {
