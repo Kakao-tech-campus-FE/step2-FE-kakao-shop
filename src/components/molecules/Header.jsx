@@ -6,7 +6,7 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 const Header = ({ onClick, text }) => {
   const navigate = useNavigate();
 	
-	const mainLogo = staticServerUri + "/images/logoKakao"
+	const mainLogo = staticServerUri + "/images/logoKakao.png"
 	
   return (
     <div className="py-4 border-b-2">
