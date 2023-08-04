@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
 import { useSelector } from "react-redux";
 import { persistor } from "../../index";
-import logo from "../../assets/pc_logo.png";
+import logo from "../../assets/logoKakao.png";
 import { BsCart2, BsTruck } from "react-icons/bs";
 import { IoIosSearch } from "react-icons/io";
 
