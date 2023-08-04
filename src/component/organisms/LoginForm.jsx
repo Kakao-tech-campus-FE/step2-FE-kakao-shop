@@ -21,38 +21,38 @@ const LoginForm =() =>{
         password:"",
     });
 
-    const handleOnClick = () => {     
-        dispatch(
-          loginRequest({
-            email: value.email,
-            password: value.password,
-          })
-        );
-      
-    };
-
-    // const loginRequest = ()=> {
-      
-    //     login({
+    // const handleOnClick = () => {     
+    //     dispatch(
+    //       loginRequest({
     //         email: value.email,
     //         password: value.password,
-    //     })
-    //     .then((res)=>{
-    //         console.log(res);
-    //         const token = res.headers.authorization;
-    //         localStorage.setItem("token", token);
-    //         dispatch(
-    //             setEmail({
-    //               email: value.email,
-    //             })
-    //           );
-    //           navigate("/");
-    //     })
-    //     .catch((error)=> {
-    //         console.log("error", error);
-    //         setError("아이디와 비밀번호를 다시 확인해주세요.")
-    //     });
+    //       })
+    //     );
+      
     // };
+
+    const loginRequest = ()=> {
+      
+        login({
+            email: value.email,
+            password: value.password,
+        })
+        .then((res)=>{
+            console.log(res);
+            const token = res.headers.authorization;
+            localStorage.setItem("token", token);
+            dispatch(
+                setEmail({
+                  email: value.email,
+                })
+              );
+              navigate("/");
+        })
+        .catch((error)=> {
+            console.log("error", error);
+            setError("아이디와 비밀번호를 다시 확인해주세요.")
+        });
+    };
 
     return (
     <Container className="flex justify-center items-center">
@@ -71,7 +71,7 @@ const LoginForm =() =>{
         <span className="error">{error}</span>
         <Button className=" py-2 px-4 font-semibold rounded-lg shadow-md bg-yellow-300 hover:bg-yellow-400 "
             onClick={
-            handleOnClick
+              loginRequest
             }
             >
                 로그인
