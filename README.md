@@ -32,8 +32,5 @@ npm run start # 프로젝트 실행
 ```
 
 ## 크램폴린 IDE를 통해 배포
-1. 크램폴린 IDE로 접속한다.(https://somthing.com)
-2. 컨테이너를 생성한다.
-...
-9. 터미널을 열고, ./start.sh를 통해 백엔드 환경을 실행한다.
-10. 또 다른 터미널을 생성해 npm start로 3000번 포트에 리액트를 실행한다.
+- 크램폴린 사이트 주소(https://krampoline.kakao.com/)
+- 프로젝트 사이트 주소(https://user-app.krampoline.com/kf1c3bf775501a/)
