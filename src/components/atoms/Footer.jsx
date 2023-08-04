@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <footer className="bg-gray-100 p-10 z-20 mt-20">
-      <div className="max-w-3xl mx-auto">
+      <div className="wrapper max-w-3xl mx-auto">
         <p className="text-sm text-gray-600">
           (주)카카오대표이사 : 홍은택주소 : 제주특별자치도 제주시 첨단로 242
           사업자등록번호 : 120-81-47521통신판매업신고 : 제2015 - 제주아라 -

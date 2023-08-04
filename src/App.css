@@ -9,7 +9,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
-  overflow-x: hidden;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.4;
@@ -39,4 +38,10 @@ header > .inner {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.wrapper {
+  max-width: 1024px;
+  width: 90%;
+  margin: 0 auto;
 }

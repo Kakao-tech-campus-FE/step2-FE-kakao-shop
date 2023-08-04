@@ -32,13 +32,15 @@ function GNB() {
   useAutoLogout();
 
   return (
-    <header className="header bg-white px-4 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
-      <div className="inner flex items-center justify-between">
-        <div className="flex items-center">
-          <Link to={staticServerUri + "/"}>
-            <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
-          </Link>
-          <div className="sub-menu ml-40 mt-2 ">
+    <header className="header bg-white px-4 py-2 justify-between flex items-center fixed top-0 left-0 right-0 z-10">
+      <div className="wrapper inner items-center justify-between">
+        <div className="elements items-center">
+          <div>
+            <Link to={staticServerUri + "/"}>
+              <img className="logo " src={logo} alt="카카오 쇼핑 로고" />
+            </Link>
+          </div>
+          <nav className="sub-menu">
             <ul className="menu flex ">
               <li>
                 <a href={staticServerUri + "/"}>홈</a>
@@ -56,7 +58,7 @@ function GNB() {
                 <a href="javascript:void(0)">기획전</a>
               </li>
             </ul>
-          </div>
+          </nav>
         </div>
         <nav className="navigation flex items-center text-base text-gray-700">
           <Link to={staticServerUri + "/carts"} className="relative cart mr-4">

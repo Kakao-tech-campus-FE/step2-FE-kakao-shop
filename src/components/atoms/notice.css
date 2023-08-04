@@ -1,23 +1,26 @@
 /* notice */
 .notice {
+  position: relative;
+  width: 100%;
 }
 
 .notice .notice-line {
   position: relative;
-  top: 0;
-  right: 0;
   width: 50%;
+  right: 0;
   height: 80px;
   display: flex;
   align-items: center;
+  margin: 0;
 }
 
 .notice .notice-line .inner {
+  position: absolute;
+  top: 0;
   flex: 1;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 160px 0px 50px;
+  padding: 0 0 0 4rem;
 }
 
 .notice .notice-line h2 {
@@ -26,6 +29,7 @@
   font-weight: 700;
   line-height: 24px;
   margin: 0;
+  padding-right: 4rem;
 }
 
 .notice .notice-line .swiper {
@@ -34,13 +38,14 @@
   font-weight: 700;
   line-height: 24px;
   margin: 0;
+  padding-right: 4rem;
 }
 
 .today::after {
   position: absolute;
   content: "";
   display: block;
-  width: 12%;
+  width: 6%;
   height: 2px;
   background-color: #fff13f;
   position: absolute;

@@ -60,9 +60,8 @@ const MainProduct = () => {
 
   return (
     <Container>
-      <div className="carousel h-[100px] w-[100px]"></div>
       <Notice className="notice"></Notice>
-      <div className=" mainProduct border p-4 relative right-40">
+      <div className=" mainProduct border p-4">
         {isError && <p>{error.message}</p>}
         {isLoading ? (
           <Loading />

@@ -1,51 +1,116 @@
-/* sub menu 요소들 */
+/* 중앙 정렬된 헤더 */
+header {
+  text-align: center;
+  align-items: center;
+  height: 20vh;
+}
+
+/* 로고 스타일 */
+.logo {
+  width: 6rem;
+  height: 2rem;
+  margin: auto; /* 가로 중앙 정렬 */
+  display: block; /* 줄바꿈을 위해 블록 요소로 설정 */
+}
+
+/* 서브 메뉴 스타일 */
 header .sub-menu {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  display: flex;
+  margin: 0.5rem 0; /* 상하 여백을 주어 줄바꿈 */
 }
 
-header .sub-menu ul.menu {
-  display: flex;
-}
 header .sub-menu ul.menu li {
-  position: relative;
-}
-
-header .sub-menu ul.menu li:first-child:before {
-  display: none;
+  display: inline-block; /* 메뉴 항목을 가로로 나열하여 줄바꿈 방지 */
+  margin-right: 10px; /* 각 메뉴 항목 사이의 간격 */
 }
 
 header .sub-menu ul.menu li a {
-  font-size: 15px;
+  font-size: 0.5rem;
   font-weight: bold;
-  padding: 11px 16px;
-  display: block;
   color: #656565;
+  white-space: nowrap;
+}
+
+/* 네비게이션 스타일 */
+.navigation {
+  font-size: 0.5rem;
+  white-space: nowrap;
   position: relative;
+  right: 0px;
 }
 
-header .sub-menu ul.menu li a:hover {
-  color: #000;
-}
-.menu li a:hover::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #000;
-  position: absolute;
-  top: 68px;
-  left: 0;
-}
+@media only screen and (min-width: 480px) {
+  header {
+    flex-direction: row;
+    justify-content: center;
+    height: 95px;
+  }
+  .inner {
+    display: flex;
+  }
+  .elements {
+    display: flex;
+  }
+  header .sub-menu {
+    position: static;
+    top: 10px;
+    left: 0;
+    display: flex;
+    margin-left: 40px;
+    margin-top: 2px;
+  }
 
-header .cart::before {
-  content: "";
-  width: 1px;
-  height: 20px;
-  background-color: #c6c6c7;
-  position: absolute;
-  left: 40px;
-  top: 20%;
+  header .sub-menu ul.menu {
+    display: flex;
+  }
+  header .sub-menu ul.menu li {
+    position: relative;
+  }
+
+  header .sub-menu ul.menu li:first-child:before {
+    display: none;
+  }
+
+  header .sub-menu ul.menu li a {
+    font-size: 15px;
+    font-weight: bold;
+    padding: 11px 16px;
+    display: block;
+    color: #656565;
+    position: relative;
+  }
+
+  header .sub-menu ul.menu li a:hover {
+    color: #000;
+  }
+  .menu li a:hover::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    position: absolute;
+    top: 68px;
+    left: 0;
+  }
+
+  header .cart::before {
+    content: "";
+    width: 1px;
+    height: 20px;
+    background-color: #c6c6c7;
+    position: absolute;
+    left: 40px;
+    top: 20%;
+  }
+
+  .navigation {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .logo {
+    width: 7rem;
+    height: 2.3rem;
+    flex-shrink: 0;
+  }
 }

@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 const StyledContainer = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw; /* 뷰포트의 가로 너비 전체를 차지 */
-  min-height: 100vh; /* 뷰포트의 세로 높이 전체를 차지 */
-  overflow-x: hidden;
+  width: 100%; /* 뷰포트의 가로 너비 전체를 차지 */
+  min-height: 100%; /* 뷰포트의 세로 높이 전체를 차지 */
   padding-top: 179px;
 `;
 
