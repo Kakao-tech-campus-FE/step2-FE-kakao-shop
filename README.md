@@ -70,9 +70,7 @@ npm run start # 프로젝트 실행
 
 ```
 ├── /build
-├── /node_modules
 ├── package.json
-├── .gitignore
 ├── /public
 │ └── /assets
 └── /src
