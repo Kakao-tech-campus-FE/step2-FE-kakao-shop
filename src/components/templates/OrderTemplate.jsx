@@ -51,7 +51,7 @@ const OrderTemplate = () => {
             <div className="flex gap-2">
               <Photo
                 src={
-                  process.env.REACT_APP_API_URL + "/images/" + item.id + ".jpg"
+                  staticServerUri + "/images/" + item.id + ".jpg"
                 }
                 alt={item.productName}
                 className="w-16 rounded-lg"

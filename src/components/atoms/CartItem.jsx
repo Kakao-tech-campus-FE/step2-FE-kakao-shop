@@ -6,6 +6,8 @@ import Counter from "./Counter";
 import Button from "./Button";
 import Photo from "./Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const CartItem = ({ item, onChange }) => {
   return (
     <Box className="cart-item-box border w-full p-4 mb-4">
@@ -13,7 +15,7 @@ const CartItem = ({ item, onChange }) => {
       {/* Response에 Image 정보 없어 임의로 추가 */}
       <div className="title flex items-center">
         <Photo
-          src={process.env.REACT_APP_API_URL + "/images/" + item.id + ".jpg"}
+          src={staticServerUri + "/images/" + item.id + ".jpg"}
           alt={item.productName}
           className="w-16 rounded-lg"
         />

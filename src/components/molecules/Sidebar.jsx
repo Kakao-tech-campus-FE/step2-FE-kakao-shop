@@ -63,7 +63,7 @@ const Sidebar = () => {
                 menu={{
                   name: "로그아웃",
                   path: "/",
-                  icon: "/sidebarIcons/account.svg",
+                  icon: staticServerUri + "/sidebarIcons/account.svg",
                 }}
               />
             </Link>

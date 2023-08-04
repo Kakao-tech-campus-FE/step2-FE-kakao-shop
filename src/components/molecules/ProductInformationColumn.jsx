@@ -1,13 +1,15 @@
 import Photo from "../atoms/Photo";
 import Box from "../atoms/Box";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductInformationColumn = ({ product }) => {
-  const { productName, image } = product;
+  const { productName } = product;
   return (
     <Box className="w-[512px] m-4">
       <Photo
         className="rounded-lg"
-        src={process.env.REACT_APP_API_URL + image}
+        src={staticServerUri + product.image}
         alt={productName}
       />
     </Box>

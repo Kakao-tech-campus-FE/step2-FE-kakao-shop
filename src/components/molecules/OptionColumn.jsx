@@ -8,6 +8,8 @@ import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import Badge from "../atoms/Badge";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OptionColumn = ({ product }) => {
   const { starCount, productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -176,7 +178,7 @@ const OptionColumn = ({ product }) => {
         >
           <img
             className="inline"
-            src="/icons/heart.svg"
+            src={staticServerUri + "/icons/heart.svg"}
             alt="장바구니 담기"
             width={24}
           />
@@ -202,7 +204,7 @@ const OptionColumn = ({ product }) => {
         >
           <img
             className="inline"
-            src="/icons/cart.svg"
+            src={staticServerUri + "/icons/cart.svg"}
             alt="장바구니 담기"
             width={24}
           />
@@ -215,7 +217,7 @@ const OptionColumn = ({ product }) => {
         >
           <img
             className="inline"
-            src="/icons/talk.svg"
+            src={staticServerUri + "/icons/talk.svg"}
             alt="장바구니 담기"
             width={24}
           />{" "}
