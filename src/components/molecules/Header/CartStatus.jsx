@@ -11,7 +11,7 @@ export default function CartStatus() {
   if (error) {
     return <div>{error.message}</div>;
   }
-  const filteredData = filterCartData(data);
+  const filteredData = data ? filterCartData(data) : [];
   return (
     <Suspense fallback={<div></div>}>
       {filteredData.length !== 0 ? (
