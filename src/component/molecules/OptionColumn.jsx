@@ -10,7 +10,7 @@ import Button from "../atoms/Button";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setselectedOptions]=useState([ ]);
-    
+  const {productName, price, image} = product;
   const handleOnClickOption=(option)=>{
 
     // const sampleArray= [1,2,3];
@@ -66,7 +66,17 @@ const{mutate}=useMutation({
 });
 
   return (
-    <div className="option-column">
+    
+    <div className="flex-none sticky top-20 pt-8 pl-8 pb-8 w-[380px] h-fit">
+      <div className="flex-none w-[430px] ml-7 mt-4">
+          <strong className="font-normal text-[26px] tracking-tight">
+            {productName}
+          </strong>
+          <p className="price">{comma(price)}원</p>
+          </div>
+      <div className="col">
+        
+      </div>
       <h3>옵션 선택</h3>
       {/* // 옵션담기 할수있는영역 */}
       <OptionList 
@@ -76,11 +86,13 @@ const{mutate}=useMutation({
 //장바구니 담기 api = optionId, quantity
         
       /> 
-      
+      <hr />
       {/* 담긴옵션 표기 */}
-      {selectedOptions.map((option)=>(
-        <ol key={option.id} className="selected-option-list">  
-          <li className="selected-option">
+      <ol className="selected-option-list">  
+      {selectedOptions.map((option)=>{
+        return(
+          <li key={option.optionId}
+          className=" bg-yellow-100 mt-[10px] p-5">
             <Counter
             onIncrease={(count)=>handleOnChange(count, option.id)}
             onDecrease={(count)=>handleOnChange(count, option.id)}
@@ -88,8 +100,9 @@ const{mutate}=useMutation({
           <span className="name">{option.name}</span>
           <span className="price">{comma(option.price)}원</span>
           </li>
-        </ol>
-      ))}
+        );
+      })}
+      </ol>
 <hr />
 <div className="total-price">
   <span>
@@ -123,7 +136,9 @@ const{mutate}=useMutation({
         }
         );
       }}
+      
 >
+  주문하기
 </Button>
     </div>
   );
