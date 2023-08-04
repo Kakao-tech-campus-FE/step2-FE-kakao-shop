@@ -2,7 +2,7 @@ import "../../styles/molcules/ProductInformationColumn.css";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
-const staticServerUri = process.env.REACT_APP_PATH || "";
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 
 const ProductInformationColumn = ({ product }) => {
