@@ -14,7 +14,7 @@ import { emailCheck, passwordCheck } from "../../services/regex";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest, setEmail } from "../../store/slices/userSlice";
 import { login } from "../../services/user";
-
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 
 const LoginForm = () => {
@@ -101,7 +101,7 @@ const LoginForm = () => {
                               }).then((res)=>{
                                 localStorage.setItem("token", res.headers.authorization);
                                 localStorage.setItem("email", whatEmail);
-                                window.location.href = "/";
+                                window.location.href = staticServerUri+'/';
                               })
                         }
                     }}>로그인</Button>
