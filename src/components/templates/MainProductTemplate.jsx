@@ -10,16 +10,17 @@ import _ from "lodash";
 const MainProductTemplate = () => {
   const bottomObserver = useRef(null);
 
-  const { data, isLoading, fetchNextPage, hasNextPage } = useInfiniteQuery(
-    ["products"],
-    ({ pageParam = 0 }) => fetchProducts(pageParam),
-    {
-      getNextPageParam: (currentPage, allPages) => {
-        const nextPage = allPages.length;
-        return nextPage > 2 ? null : nextPage;
-      },
-    }
-  );
+  const { data, isLoading, isError, fetchNextPage, hasNextPage } =
+    useInfiniteQuery(
+      ["products"],
+      ({ pageParam = 0 }) => fetchProducts(pageParam),
+      {
+        getNextPageParam: (currentPage, allPages) => {
+          const nextPage = allPages.length;
+          return nextPage > 2 ? null : nextPage;
+        },
+      }
+    );
 
   useEffect(() => {
     const io = new IntersectionObserver(
@@ -54,7 +55,9 @@ const MainProductTemplate = () => {
 
     return (
       <Group>
-        {isLoading ? <SkeletonGrid /> : <ProductGrid products={responseData} />}
+        <ProductGrid products={responseData} />
+        {isLoading && <SkeletonGrid />}
+        {isError && <div>error</div>}
         <div style={{ height: "80px" }} ref={bottomObserver}></div>
         {isLoading && !hasNextPage && <Loader />}
       </Group>
