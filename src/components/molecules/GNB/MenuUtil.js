@@ -5,7 +5,7 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 const MenuUtil = () => {
   return (
     <div className="menu-util">
-      <Link to="/cart">
+      <Link to={staticServerUri + "/cart"}>
         <img
           src={staticServerUri + "/images/cart.png"}
           alt="장바구니"

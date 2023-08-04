@@ -5,6 +5,8 @@ import Container from '../atoms/Container';
 import InputGroup from '../molecules/InputGroup';
 import Button from '../atoms/Button';
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
   const { value, handleOnChange, handleOnClick } = useInput({
     email: "",
@@ -36,7 +38,7 @@ const LoginForm = () => {
         onClick={() => { handleOnClick("login") }}>
         로그인
       </Button>
-      <Link to="/signup">
+      <Link to={staticServerUri + "/signup"}>
         <Button>회원가입</Button>
       </Link>
 

@@ -6,6 +6,8 @@ import { comma } from "../../../utils/convert";
 import { getCart } from "../../../services/cart";
 import { updateCart } from "../../../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const CartSection = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [changedCarts, setChangedCarts] = useState([]);
@@ -104,7 +106,7 @@ const CartSection = () => {
       return;
     }
 
-    navigate("/order");
+    navigate(staticServerUri + "/order");
   };
 
   const handleUpdateCart = async () => {
@@ -112,7 +114,7 @@ const CartSection = () => {
       const res = await updateCart(changedCarts);
       if (res.status === 200) {
         alert("장바구니가 수정되었습니다.");
-        navigate("/cart");
+        navigate(staticServerUri + "/cart");
       } else {
         alert("장바구니 수정 실패");
       }

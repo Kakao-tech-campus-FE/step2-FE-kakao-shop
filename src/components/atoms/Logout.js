@@ -4,6 +4,8 @@ import { setLoggedIn } from "../../modules/isLoggedIn";
 import { Link } from "react-router-dom";
 import { deleteCookie } from "../../constants/cookie";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Logout = () => {
   const dispatch = useDispatch();
 
@@ -14,7 +16,7 @@ const Logout = () => {
   };
 
   return (
-    <Link to="/" onClick={handleLogout}>로그아웃</Link>
+    <Link to={staticServerUri + "/"} onClick={handleLogout}>로그아웃</Link>
   );
 };
 

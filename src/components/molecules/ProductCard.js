@@ -6,7 +6,7 @@ const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const ProductCard = ({ product }) => {
   return (
-    <Card to={`/product/${product.id}`}>
+    <Card to={staticServerUri + `/product/${product.id}`}>
       <Photo src={staticServerUri + product.image} alt={product.productName} />
       {/* <h3>{product.productName}</h3>
       <p>{comma(product.price)}</p> */}

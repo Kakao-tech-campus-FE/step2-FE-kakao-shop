@@ -1,6 +1,9 @@
 import { comma } from "../../../utils/convert";
 import Button from "../../atoms/Button";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
+
 const PurchaseConfirm = ({
   getTotalQuantity,
   getTotalPrice,
@@ -17,7 +20,7 @@ const PurchaseConfirm = ({
         <button className="btn-add-cart" onClick={handleAddCart}>
           <img
             className="cart-image"
-            src="/images/cart_white.png"
+            src={staticServerUri + "/images/cart_white.png"}
             alt="장바구니 담기"
           />
         </button>

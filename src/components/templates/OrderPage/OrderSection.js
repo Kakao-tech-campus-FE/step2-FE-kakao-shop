@@ -6,6 +6,8 @@ import { comma } from "../../../utils/convert";
 import { getCart } from "../../../services/cart";
 import { makeOrder } from "../../../services/order";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderSection = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -91,7 +93,7 @@ const OrderSection = () => {
       const res = await makeOrder();
       if (res.status === 200) {
         alert("주문 완료하였습니다.");
-        navigate(`/order-result/${res.data.response.id}`);
+        navigate(staticServerUri + `/order-result/${res.data.response.id}`);
       } else {
         // 응답이 정상적으로 반환되었지만 상태코드가 200이 아닌 경우
         // 결제에 실패했다고 가정하고 사용자에게 에러가 발생했음을 알린다.
