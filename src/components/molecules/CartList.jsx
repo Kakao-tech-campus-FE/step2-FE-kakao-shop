@@ -106,7 +106,7 @@ const CartList = () => {
           <span style={{ color: "#4684e9" }}>{comma(totalPrice)}원</span>
         </div>
 
-        <Button
+        <button
           className="cart-order-btn"
           onClick={() => {
             //장바구니 정보 수정하는 api호출(개수 변경 있을 경우)
@@ -120,7 +120,7 @@ const CartList = () => {
           }}
         >
           <span>총 {getTotalCartCount()}건 주문하기</span>
-        </Button>
+        </button>
       </div>
     </div>
   );
