@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from './Button';
-import Container from './Container';
 import Text from './Text';
 
 const Counter = ({ onIncrease, onDecrease, initValue = 1 }) => {
     const [count, setCount] = useState(initValue);
+
+    useEffect(()=>{setCount(initValue)}, [initValue])
 
     const handleOnIncrease = () => {
         setCount((prev) => {
@@ -23,7 +24,7 @@ const Counter = ({ onIncrease, onDecrease, initValue = 1 }) => {
         });
     };
     return (
-        <Container className="counter">
+        <div className="counter flex justify-start gap-4">
             <Button className="counter" onClick={handleOnDecrease}>
                 -
             </Button>
@@ -31,7 +32,7 @@ const Counter = ({ onIncrease, onDecrease, initValue = 1 }) => {
             <Button className="counter" onClick={handleOnIncrease}>
                 +
             </Button>
-        </Container>
+        </div>
     );
 };
 

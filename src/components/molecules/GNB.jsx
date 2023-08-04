@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import logo from '../../assets/logoKakao.png';
 import { Link } from 'react-router-dom';
 import URL from '../../constants/URL';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineShoppingCart, AiOutlineLeft } from 'react-icons/ai';
 import Container from '../atoms/Container';
 
 const GNB = () => {
@@ -18,7 +18,7 @@ const GNB = () => {
     };
 
     return (
-        <Container className="header">
+        <div className="header w-full sticky top-0 flex justify-between p-4 px-20 bg-white mb-2 self-start">
             <Link to={URL.HOME}>
                 <img src={logo} alt="Kakao Logo" height={20} className="h-8" />
             </Link>
@@ -37,7 +37,7 @@ const GNB = () => {
                     </span>
                 )}
             </nav>
-        </Container>
+        </div>
     );
 };
 
