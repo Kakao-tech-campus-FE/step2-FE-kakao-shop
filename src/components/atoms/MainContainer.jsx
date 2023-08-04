@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Container = styled.main`
     display: flex;
-    overflow: hidden;
     margin: 0 auto;
     max-width: 1200px;
 `
