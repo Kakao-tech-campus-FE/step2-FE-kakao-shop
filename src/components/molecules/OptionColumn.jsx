@@ -12,10 +12,9 @@ import { useSelector } from "react-redux";
 const SelectedOrderedList = styled.ol`
   list-style: none;
   margin: 1rem;
-  padding: 0.5rem;
 
   .counter {
-    margin-top: 0.8rem;
+    margin-top: 0.3rem;
   }
 `;
 
