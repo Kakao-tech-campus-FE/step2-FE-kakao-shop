@@ -100,6 +100,7 @@ const CarouselContainer = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 100vw;
+  height: 14vw;
   overflow: hidden;
   margin-bottom: 30px;
 `;
