@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 
-import Section from 'components/atoms/Section'
 import SubmitButton from 'components/atoms/SubmitButton'
-import PageTitleBox from 'components/atoms/PageTitleBox'
-
 import AccordionBox from 'components/molecules/AccordionBox'
 import CheckItem from 'components/molecules/CheckItem'
 import OrderProducts from 'components/molecules/Order/OrderProducts'
@@ -15,13 +12,14 @@ import useRadioBtn from 'hooks/useRadio'
 import strPrice from 'utils/price'
 import { saveOrder } from 'api/order'
 import { useNavigate } from 'react-router-dom'
+import useCartData from 'hooks/useCartData'
 
 const path = process.env.REACT_APP_PATH || "";
 
-const Order = ( { data, userAddress, agreeList, paymentList } ) => {
+const Order = ( { userAddress, agreeList, paymentList } ) => {
 
   const navigate = useNavigate()
-
+  const query = useCartData()
   const [request, setRequest] = useState("")
   const [checkedSet, setCheckedSet, allChecked] = useCheckbox( agreeList )
   const [payment, radioOnChange] = useRadioBtn(null)
@@ -38,15 +36,14 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
   }
 
   return (
-    <Section>
-      <PageTitleBox title="주문하기"/>
+    <>
       <AccordionBox title='배송 정보' initialOpen>
         <OrderAddress info={userAddress} value={request} 
           onChange={(e) => setRequest(prev=> e.target.value)}/>
       </AccordionBox>
 
       <AccordionBox title='주문상품 정보' initialOpen>
-        <OrderProducts data={data.products} />
+        <OrderProducts data={query.data.products} />
       </AccordionBox>
 
       <KakaoBox>
@@ -91,9 +88,9 @@ const Order = ( { data, userAddress, agreeList, paymentList } ) => {
         disabled={!allChecked || payment === null} 
         disabledColor='yellow'
       >
-        {strPrice(data.totalPrice)} 결제하기
+        {strPrice(query.data.totalPrice)} 결제하기
       </SubmitButton>
-    </Section>
+    </>
   )
 }
 
