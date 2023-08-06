@@ -37,28 +37,29 @@ const LoginForm = () => {
     },
   });
 
-  const loginReq = () => {
-    login({
-      email: value.email,
-      password: value.password,
-    })
-      .then((res) => {
-        console.log(res);
-        const today = new Date();
-        const tomorrow = new Date(today.setDate(today.getDate() + 1));
-        dispatch(reducerLogin(value.email));
-        dispatch(setExpirationTime(tomorrow));
-        localStorage.clear();
-        localStorage.setItem("token", res.headers.authorization);
-        alert(value.email + "님 환영합니다.");
-        window.location.href = staticServerUri + "/";
-      })
-      .catch((err) => {
-        console.log(err);
-        if (err.response.status === 401) {
-          showToast("잘못된 아이디, 비밀번호입니다.");
-        }
+  const loginReq = async () => {
+    try {
+      const res = await login({
+        email: value.email,
+        password: value.password,
       });
+
+      const today = new Date();
+      const tomorrow = new Date(today.setDate(today.getDate() + 1));
+
+      dispatch(reducerLogin(value.email));
+      dispatch(setExpirationTime(tomorrow));
+
+      localStorage.clear();
+      localStorage.setItem("token", res.headers.authorization);
+
+      alert(value.email + "님 환영합니다.");
+      window.location.href = staticServerUri + "/";
+    } catch (err) {
+      if (err.response.status === 401) {
+        showToast("잘못된 아이디, 비밀번호입니다.");
+      }
+    }
   };
 
   return (
