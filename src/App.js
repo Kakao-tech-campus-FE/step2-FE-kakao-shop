@@ -18,6 +18,7 @@ import GNB from "components/organisms/GNB";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "components/organisms/ErrorFallback";
+import PrivateRoute from "auth/PrivateRoute";
 
 const path = process.env.REACT_APP_PATH || "";
 
@@ -34,12 +35,15 @@ function App() {
                 <Route path={path + "/signup"} element={<RegisterPage />} />
                 <Route path={path + "/login"} element={<LoginPage />} />
                 <Route path={path + "/products/:id"} element={<DetailPage />} />
-                <Route path={path + "/cart"} element={<CartPage />} />
-                <Route path={path + "/order"} element={<OrderPage />} />
-                <Route
-                  path={path + "/order/:orderId"}
-                  element={<MyOrderPage />}
-                />
+
+                <Route element={<PrivateRoute />}>
+                  <Route path={path + "/cart"} element={<CartPage />} />
+                  <Route path={path + "/order"} element={<OrderPage />} />
+                  <Route
+                    path={path + "/order/:orderId"}
+                    element={<MyOrderPage />}
+                  />
+                </Route>
               </Routes>
             </Suspense>
           </ErrorBoundary>
