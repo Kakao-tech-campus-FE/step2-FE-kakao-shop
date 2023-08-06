@@ -66,7 +66,7 @@ const Carousel = () => {
   
   return (
     <CarouselContainer>
-      <CarouselContent page={page} center={center} $isMoving={isMoving}>
+      <CarouselContent $center={center} $isMoving={isMoving}>
         {prevNowNext.map((n) => (
           <CarouselImage src={banners.at(n - 1).image} key={n}/>
         ))}
@@ -109,7 +109,7 @@ const CarouselContent = styled.div`
   display: flex;
   width: 300vw;
   transition: ${props => props.$isMoving ? "all, 0.5s" : "none"};
-  transform: translateX(${props => -100 * props.center}vw);
+  transform: translateX(${props => -100 * props.$center}vw);
 `;
 
 
