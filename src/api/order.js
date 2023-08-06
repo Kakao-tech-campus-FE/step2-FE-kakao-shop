@@ -39,7 +39,7 @@ export const getOrderResult = async (id) => {
           ?.map((optionItem) =>
             optionItem.quantity > 0 ? optionItem : undefined
           )
-          .filter((e) => e),
+          .filter(Boolean),
       }))
       .filter((arr) => arr.options.length > 0);
     return newProductData;
