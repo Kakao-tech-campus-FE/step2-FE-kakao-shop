@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { RiAddFill, RiSubtractFill } from "react-icons/ri";
 
-const Counter = ( {value, id, changeValue} ) => {
+/**
+ * 감소버튼 | 입력input | 증가버튼 으로 값을 업데이트하는 컴포넌트
+ * @param {interger} value - 받은 값
+ * @param {interger} id - 값이 속해있는 id
+ * @param {function} valueUpdateHandler - 업데이트된 값을 부모쪽으로 올려주는 함수 
+ * @returns 
+ */
+const Counter = ( {value, id, valueUpdateHandler} ) => {
 
-  // state: int
   const [state, setState] = useState(value)
 
   // 외부에서 일어나는 값 업데이트를 반영 (새탭에서 항목을 추가했을 때 등)
@@ -25,12 +31,12 @@ const Counter = ( {value, id, changeValue} ) => {
       setState(prev => value)
     }
     if (state !== value) {
-      changeValue(id, state)
+      valueUpdateHandler(id, state)
     }
   }
 
-  const handlerBtn = (dx) => {
-    changeValue(id, state + dx)
+  const handlerBtnClick = (dx) => {
+    valueUpdateHandler(id, state + dx)
     setState(prev => prev + dx)
   }
 
@@ -43,7 +49,7 @@ const Counter = ( {value, id, changeValue} ) => {
       divide-x divide-gray-500
     `}> 
 
-        <button onClick={() => handlerBtn(-1)} disabled={state <= 1}>
+        <button onClick={() => handlerBtnClick(-1)} disabled={state <= 1}>
             <RiSubtractFill className='w-3 h-3 m-auto' />
         </button>
 
@@ -53,7 +59,7 @@ const Counter = ( {value, id, changeValue} ) => {
           onBlur={handlerOnBlur}
         />
 
-        <button onClick={() => handlerBtn(1)} >
+        <button onClick={() => handlerBtnClick(1)} >
             <RiAddFill className='w-3 h-3 m-auto' />
         </button>
     </div>
