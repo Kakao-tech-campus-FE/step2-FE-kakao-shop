@@ -1,7 +1,8 @@
 import { CART } from "@/assets/product.ko";
-import Button from "@/components/common/Button.component";
 import Txt from "@/components/common/Txt.component";
-import { useReducer } from "react";
+import { ProductOrder } from "@/dtos/product.dto";
+import { FC, useReducer } from "react";
+import { Link } from "react-router-dom";
 
 const checkReducer = (
   state: typeof initialStatus,
@@ -38,7 +39,11 @@ const initialStatus = {
   thirdParty: false,
 };
 
-const OrderCheckAndPay = () => {
+interface OrderCheckAndPayProps {
+  products: ProductOrder[] | undefined;
+}
+
+const OrderCheckAndPay: FC<OrderCheckAndPayProps> = ({ products }) => {
   const [checks, setChecks] = useReducer(checkReducer, initialStatus);
 
   return (
@@ -87,7 +92,24 @@ const OrderCheckAndPay = () => {
           </Txt>
         </div>
       </div>
-      <Button className="w-full p-4 rounded">{CART.TO_PAY}</Button>
+      <Link
+        onClick={(e) => {
+          if (!checks.hole) {
+            e.preventDefault();
+            alert(CART.HOLE_AGREE_ALERT);
+            return;
+          }
+          if (products?.length === 0) {
+            e.preventDefault();
+            alert(CART.EMPTY_CART_ALERT);
+            return;
+          }
+        }}
+        to="/cart/save"
+        className="w-full p-4 rounded bg-blue-500 hover:bg-blue-600 text-white block text-center"
+      >
+        {CART.TO_PAY}
+      </Link>
     </>
   );
 };

@@ -31,7 +31,7 @@ const ProductOptionSelector: FC<ProductOptionSelectorProps> = ({
   options,
   addOrder,
 }) => {
-  if (!options) return <ProductOptionSelectorSkeleton />;
+  if (options === undefined) return <ProductOptionSelectorSkeleton />;
 
   return (
     <div className="flex flex-col gap-2">

@@ -1,4 +1,4 @@
-import { Carts, Product, ProductDetail } from "@/dtos/product.dto";
+import { Carts, Pay, Product, ProductDetail } from "@/dtos/product.dto";
 
 export interface responseError {
   message: string;
@@ -36,6 +36,14 @@ export class ProductsResDto extends DefaultResDto {
 export class CartsResDto extends DefaultResDto {
   response: Carts;
   constructor(data: CartsResDto) {
+    super(data);
+    this.response = data.response;
+  }
+}
+
+export class PayResDto extends DefaultResDto {
+  response: Pay;
+  constructor(data: PayResDto) {
     super(data);
     this.response = data.response;
   }

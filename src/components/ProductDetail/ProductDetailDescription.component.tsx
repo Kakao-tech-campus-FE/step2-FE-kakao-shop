@@ -29,7 +29,7 @@ const ProductDetailDescription = () => {
     }
   );
 
-  if (!data || isLoading || !data.data.response) {
+  if (!data || isLoading || data?.data?.response === undefined) {
     return <ProductDetailSkeleton />;
   }
 
@@ -40,7 +40,7 @@ const ProductDetailDescription = () => {
     <>
       <div className="flex-1">
         <LazyImage
-          src={import.meta.env.VITE_KAKAO_IMAGE_URL + image}
+          src={process.env.VITE_KAKAO_IMAGE_URL + image}
           alt={productName}
         />
       </div>

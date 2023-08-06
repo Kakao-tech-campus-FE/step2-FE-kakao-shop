@@ -34,6 +34,20 @@ const CART = {
   KAKAO_LEGAL_NOTICE:
     " (주)카카오에서 판매하는 상품 중에는 개별 판매자가 판매하는 상품이 포함되어 있습니다. 개별 판매자가 판매하는 상품에 대해 (주)카카오는 통신중개 판매업자로서 통신판매의 당사자가 아니며 상품의 주문, 배송 및 환불 등과 관련한 의무와 책임은 각 판매자에게 있습니다.",
   TO_PAY: "결제하기",
+  HOLE_AGREE_ALERT: "전체 동의를 해주세요.",
+  EMPTY_CART_ALERT: "장바구니가 비어있습니다.",
 };
 
-export { PRODUCT, CART };
+const PAYMENT = {
+  PAY_COMPLETE: "구매완료!",
+  PAY_COMPLETE_SUB: "구매가 정상적으로 완료되었습니다.",
+  ORDER_DETAIL: "주문상품 정보",
+  ORDER_PRODUCT_NAME: "상품명",
+  ORDER_NUMBER: "주문번호",
+  ORDER_OPTION: "옵션",
+  COMMON_PAY_AMOUNT: "일반 결제 금액",
+  CONTINUE_SHOPPING: "쇼핑 계속하기",
+  DIFFRENT_TYPE_OF: "외",
+};
+
+export { PRODUCT, CART, PAYMENT };
