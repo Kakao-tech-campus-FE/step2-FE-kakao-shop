@@ -45,6 +45,41 @@ const OrderTemplate = ({ data }) => {
     setSelectBoxValue(e.target.value);
   };
 
+  const handleOnClickOrder = () => {
+    if (!agreePayment || !agreePolicy) {
+      showToast("동의하지 않은 항목이 있습니다.");
+      return;
+    }
+    console.log("mutate", mutate);
+    mutate(null, {
+      onSuccess: (res) => {
+        alert("주문이 완료되었습니다.");
+        const id = res.data.response.id;
+        navigate(`/order/complete/${id}`);
+      },
+      onError: (error) => {
+        switch (error.response.status) {
+          case 500:
+            alert("서버에러가 발생하였습니다. 잠시 후 다시 시도해주세요.");
+            break;
+          case 401:
+            alert("인증이 만료되었습니다. 로그인이 필요합니다.");
+            navigate("/login");
+            break;
+          case 404:
+            alert("장바구니에 상품이 존재하지 않습니다. 상품을 추가해주세요.");
+            break;
+          case 400:
+            alert("요청이 올바르지 않습니다.");
+            break;
+          default:
+            alert("문제가 발생하였습니다. 다시 시도해주세요.");
+            break;
+        }
+      },
+    });
+  };
+
   const OrderItems = () =>
     products?.map((item) =>
       item.carts
@@ -212,50 +247,12 @@ const OrderTemplate = ({ data }) => {
           </div>
         </div>
         <button
-          onClick={() => {
-            if (!agreePayment || !agreePolicy) {
-              showToast("동의하지 않은 항목이 있습니다.");
-              return;
-            }
-            console.log("mutate", mutate);
-            mutate(null, {
-              onSuccess: (res) => {
-                alert("주문이 완료되었습니다.");
-                const id = res.data.response.id;
-                navigate(`/order/complete/${id}`);
-              },
-              onError: (error) => {
-                switch (error.response.status) {
-                  case 500:
-                    alert(
-                      "서버에러가 발생하였습니다. 잠시 후 다시 시도해주세요.",
-                    );
-                    break;
-                  case 401:
-                    alert("인증이 만료되었습니다. 로그인이 필요합니다.");
-                    navigate("/login");
-                    break;
-                  case 404:
-                    alert(
-                      "장바구니에 상품이 존재하지 않습니다. 상품을 추가해주세요.",
-                    );
-                    break;
-                  case 400:
-                    alert("요청이 올바르지 않습니다.");
-                    break;
-                  default:
-                    alert("문제가 발생하였습니다. 다시 시도해주세요.");
-                    break;
-                }
-              },
-            });
-          }}
+          onClick={handleOnClickOrder}
           className={`order-button w-full py-4 text-center text-2xl font-bold ${
             agreePayment && agreePolicy
               ? "cursor-pointer bg-kakao-yellow text-black"
               : "bg-grey-300 cursor-not-allowed bg-gray-300 text-gray-500"
-          }
-                        `}
+          }`}
         >
           결제하기
         </button>
