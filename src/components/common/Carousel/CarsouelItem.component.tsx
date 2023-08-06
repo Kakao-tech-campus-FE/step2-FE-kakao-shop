@@ -23,7 +23,7 @@ const CarouselItem: FC<CarouselItemProps> = ({ src, alt, position }) => {
     <div
       className={"absolute duration-1000 ease-in-out " + classNameByPosition()}
     >
-      <LazyImage src={src} alt={alt} />
+      <LazyImage src={process.env.VITE_BASE_URL + src} alt={alt} />
     </div>
   );
 };

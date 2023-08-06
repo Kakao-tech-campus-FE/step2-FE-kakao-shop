@@ -52,6 +52,7 @@ const OrderCheckAndPay: FC<OrderCheckAndPayProps> = ({ products }) => {
         <input
           checked={checks.hole}
           onClick={() => setChecks("hole")}
+          readOnly={true}
           type="checkbox"
           className="w-4 h-4"
           id="hole"
@@ -63,6 +64,7 @@ const OrderCheckAndPay: FC<OrderCheckAndPayProps> = ({ products }) => {
           <input
             checked={checks.condition}
             onClick={() => setChecks("condition")}
+            readOnly={true}
             type="checkbox"
             className="w-4 h-4"
             id="condition"
@@ -75,6 +77,7 @@ const OrderCheckAndPay: FC<OrderCheckAndPayProps> = ({ products }) => {
           <input
             checked={checks.thirdParty}
             onClick={() => setChecks("thirdParty")}
+            readOnly={true}
             type="checkbox"
             className="w-4 h-4"
             id="thirdParty"

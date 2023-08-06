@@ -15,7 +15,6 @@ export const getProductDetailById = async (id: number) => {
   if (isAxiosError(productDetail)) {
     if (productDetail.response?.status === 404) {
       window.location.href = "/error/404";
-      return null;
     }
   }
   return productDetail;
@@ -51,7 +50,6 @@ export const addProductToCart = async (orders: ProductOrderReq[]) => {
   if (isAxiosError(productAddResult)) {
     if (productAddResult.response?.status === 400) {
       window.location.href = "/error/400";
-      return null;
     }
   }
   return productAddResult;
@@ -85,7 +83,6 @@ export const updateCart = (orders: UpdateCardReq[]) => {
   if (isAxiosError(cartsResult)) {
     if (cartsResult.response?.status !== 200) {
       window.location.href = "/error/" + cartsResult.response?.status;
-      return null;
     }
   }
   return cartsResult;
@@ -103,7 +100,6 @@ export const payCart = () => {
   if (isAxiosError(payResult)) {
     if (payResult.response?.status !== 200) {
       window.location.href = "/error/" + payResult.response?.status;
-      return null;
     }
   }
   return payResult;

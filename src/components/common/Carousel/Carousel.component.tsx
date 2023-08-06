@@ -3,6 +3,7 @@ import CarouselItem, {
 } from "@components/common/Carousel/CarsouelItem.component";
 import { FC, useState } from "react";
 import Button from "@components/common/Button.component";
+import Image from "../Image.component";
 
 interface CarouselProps {
   carouselItems: Omit<CarouselItemProps, "position">[];
@@ -44,7 +45,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
             setItemIndex((index) => (index - 1 > 0 ? index - 1 : 0))
           }
         >
-          <img src="/icons/next.svg" alt="prev" />
+          <Image className="h-8" src="/icons/next.svg" alt="prev" />
         </Button>
         <Button
           color="none"
@@ -55,7 +56,7 @@ const Carousel: FC<CarouselProps> = ({ carouselItems }) => {
             )
           }
         >
-          <img src="/icons/next.svg" alt="next" />
+          <Image className="h-8" src="/icons/next.svg" alt="next" />
         </Button>
       </div>
     </div>

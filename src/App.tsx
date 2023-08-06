@@ -6,8 +6,11 @@ import store from "@/store";
 import { useEffect } from "react";
 import { isExpired } from "@/functions/jwt";
 import { getAuth, removeAuth } from "@/functions/auth";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {
+  const queryClient = new QueryClient();
+
   useEffect(() => {
     if (isExpired(getAuth() ?? "")) {
       removeAuth();
@@ -20,7 +23,9 @@ const App = () => {
   return (
     <ErrorBoundary>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
       </Provider>
     </ErrorBoundary>
   );

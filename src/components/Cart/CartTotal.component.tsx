@@ -25,23 +25,20 @@ const CartTotal: FC<CartTotalProps> = ({ products, isLoading, onOrder }) => {
   if (!products || isLoading) {
     return <CartTotalSkeleton />;
   }
+
+  const totalPrice = products.reduce(
+    (acc, cur) =>
+      acc +
+      cur.carts.reduce((acc, cur) => acc + cur.quantity * cur.option.price, 0),
+    0
+  );
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <div className="flex justify-between">
         <Txt typograph="h5">{CART.TOTAL_PREDICT_PRICE}</Txt>
         <Txt typograph="h5" color="primary">
-          {pointByKo(
-            products.reduce(
-              (acc, cur) =>
-                acc +
-                cur.carts.reduce(
-                  (acc, cur) => acc + cur.quantity * cur.option.price,
-                  0
-                ),
-              0
-            )
-          )}
-          {PRODUCT.WON}
+          {`${pointByKo(totalPrice)} ${PRODUCT.WON}`}
         </Txt>
       </div>
       <Button className="w-full p-4 rounded-lg" onClick={onOrder}>

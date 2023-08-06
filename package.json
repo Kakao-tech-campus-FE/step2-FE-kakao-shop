@@ -1,7 +1,7 @@
 {
-  "name": "step-2",
+  "name": "kakao-shop-clone",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.6",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,11 +12,9 @@
     "coverage": "jest run --coverage"
   },
   "dependencies": {
-    "@babel/core": "^7.22.9",
     "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.29.19",
     "axios": "^1.4.0",
-    "babel-jest": "^29.6.1",
     "classnames": "^2.3.2",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
@@ -28,6 +26,8 @@
   },
   "devDependencies": {
     "@babel/plugin-syntax-import-meta": "^7.10.4",
+    "babel-jest": "^29.6.1",
+    "@babel/core": "^7.22.9",
     "@babel/preset-env": "^7.22.9",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",

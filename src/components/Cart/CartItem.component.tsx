@@ -38,6 +38,39 @@ const CartItemSkeleton = () => (
   </>
 );
 
+interface ProductShowProps {
+  product: ProductOrder;
+  removeOrder: (cartId: number) => void;
+  updateOrder: (order: Order) => void;
+}
+
+const ProductShow: FC<ProductShowProps> = ({
+  product,
+  removeOrder,
+  updateOrder,
+}) => {
+  return (
+    <Fragment key={product.id}>
+      <Txt typograph="h6">{product.productName}</Txt>
+      <div className="border-2 rounded-md divide-y-2">
+        {product.carts.map((cart) => (
+          <ProductOptionOrderItem
+            key={cart.id}
+            item={{
+              id: cart.id,
+              optionName: cart.option.optionName,
+              price: cart.option.price,
+              quantity: cart.quantity,
+            }}
+            removeOrder={removeOrder}
+            updateOrder={updateOrder}
+          />
+        ))}
+      </div>
+    </Fragment>
+  );
+};
+
 interface CartItemProps {
   products: ProductOrder[];
   isLoading: boolean;
@@ -55,11 +88,11 @@ const CartItem: FC<CartItemProps> = ({
     return <CartItemSkeleton />;
   }
 
-  if (
-    products.every((product) =>
-      product.carts.every((cart) => cart.quantity === 0)
-    )
-  ) {
+  const isEmptyOrder = products.every((product) =>
+    product.carts.every((cart) => cart.quantity === 0)
+  );
+
+  if (isEmptyOrder) {
     return <EmptyCart />;
   }
 
@@ -67,28 +100,11 @@ const CartItem: FC<CartItemProps> = ({
     <>
       {products.map(
         (product) =>
-          product.carts.every((cart) => cart.quantity === 0) || (
-            <Fragment key={product.id}>
-              <Txt typograph="h6">{product.productName}</Txt>
-              <div className="border-2 rounded-md divide-y-2">
-                {product.carts.map(
-                  (cart) =>
-                    cart.quantity === 0 || (
-                      <ProductOptionOrderItem
-                        key={cart.id}
-                        item={{
-                          id: cart.id,
-                          optionName: cart.option.optionName,
-                          price: cart.option.price,
-                          quantity: cart.quantity,
-                        }}
-                        removeOrder={removeOrder}
-                        updateOrder={updateOrder}
-                      />
-                    )
-                )}
-              </div>
-            </Fragment>
+          isEmptyOrder || (
+            <ProductShow
+              key={product.id}
+              {...{ product, removeOrder, updateOrder }}
+            />
           )
       )}
     </>
