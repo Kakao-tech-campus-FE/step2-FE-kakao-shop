@@ -1,26 +1,9 @@
-import React from 'react'
+import React, {Suspense} from 'react'
 import Order from 'components/organisms/Order'
-import { useQuery } from 'react-query'
-import { useNavigate } from 'react-router-dom'
-import { getOrder } from 'api/order'
-
-const path = process.env.REACT_APP_PATH || "";
+import Section from 'components/atoms/Section'
+import PageTitleBox from 'components/atoms/PageTitleBox'
 
 const OrderPage = () => {
-
-  const navigate = useNavigate()
-  /** 장바구니 객체 get */ 
-  const query = useQuery(
-    ["getorder"],
-    getOrder,
-    {suspense: true,
-    onSuccess: (res) => {
-      if (res.totalPrice === 0) {
-        alert('선택된 상품이 없습니다')
-        navigate(path + '/cart')
-      }
-    }}
-  )
   
   /** 임의 주문 정보 */
   const userAddress = {
@@ -44,11 +27,15 @@ const OrderPage = () => {
   ]
 
   return (
-    <Order
-      data={query.data} 
-      userAddress={userAddress} 
-      agreeList={agreeList}
-      paymentList={payMethods} />
+    <Section>
+      <PageTitleBox title="주문하기"/>
+      <Suspense fallback={<p>loading order page...</p>}>
+        <Order
+          userAddress={userAddress} 
+          agreeList={agreeList}
+          paymentList={payMethods} />
+      </Suspense>
+    </Section>
   )
 }
 
