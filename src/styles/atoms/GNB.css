@@ -1,0 +1,18 @@
+.contents {
+  position: relative;
+  display: flex;
+  padding: 10px;
+}
+
+.contents .content {
+  padding: 10px;
+}
+
+.contents > nav {
+  position: absolute;
+  right: 10px;
+}
+
+.contents > nav span {
+  padding: 10px;
+}
