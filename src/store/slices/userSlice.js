@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getProducts } from "./ProductSlice";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { login,register } from "../../services/user";
+import { setCookie } from "../../services/user";
 
 const initialState = {
     email: null,
@@ -14,32 +15,77 @@ const userSlice = createSlice({
         setEmail: (state, action) => {
             state.email = action.payload.email;
         },
-        clearUser: (state) => {
-            state.email = null;
-            state.expirationTime = null;
-            state.isLoggedIn = false;
-          },
-          setUser: (state, action) => {
-            state.user = action.payload.user;
-        },
+        setToken: (state, action) => {
+            state.token = action.payload.token;
+    },
+        logout: (state) => {
+        state.email = null;
+        state.token = null;
+      },
+      setUserInfo: (state, action) => {
+        state.email = action.payload.email;
+        state.token = action.payload.token;
+      }
     },
     extraReducers: (builder) => {
-        builder.addCase(getProducts.pending, (state, action) => {
+        builder.addCase(loginRequest.pending, (state, action) => {
             state.loading = true;
         });
-        builder.addCase(getProducts.fulfilled, (state, action) => {
+        builder.addCase(loginRequest.fulfilled, (state, action) => {
             state.loading = false;
-            state.product = action.payload.response;
-            state.error = action.payload.error;
+            state.email=action.payload.email;
+            state.token = action.payload.token;
+            setCookie({email: action.payload.email, token: action.payload.token})
+            // localStorage.setItem("token",action.payload.token)
+            
+            
         });
-        builder.addCase(getProducts.rejected, (state, action) => {
+        builder.addCase(loginRequest.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.payload.error;
         });
+        builder.addCase(registerRequest.pending, (state, action) => {
+            state.loading = true;
+          });
+          builder.addCase(registerRequest.fulfilled, (state, action) => {
+            state.loading = false;
+            window.location.href = "/";
+            alert("회원가입이 완료되었습니다.")
+          });
+          builder.addCase(registerRequest.rejected, (state, action) => {
+            state.loading = false;
+            alert(action.error.message)
+          });
     },
 });
 
+export const loginRequest = createAsyncThunk(
+    "/login",
+    async(data)=>{
+        const {email, password}=data;
+        const response=await login({email, password}); // action.payload
 
-export const { setUser, clearUser } = userSlice.actions;
+        return{
+            email,
+            token:response.headers.authorization
+        }
+        
+    }
+);
 
+export const registerRequest = createAsyncThunk(
+    "/join",
+    async(data)=>{
+        const {email, password, username}=data;
+        const response=await register({email, password, username}); // action.payload
+        console.log(email)
+        return response.data
+        
+        
+    }
+);
+
+
+
+
+export const { logout, setEmail, setUserInfo } = userSlice.actions;
 export default userSlice.reducer;

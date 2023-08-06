@@ -2,36 +2,36 @@ import React from "react";
 import logokakao from "../../img/logoKakao.png"
 import cart from '../../img/cart.png';
 import { useSelector, useDispatch } from "react-redux";
-import { clearUser } from "../../store/slices/userSlice";
+// import { clearUser } from "../../store/slices/userSlice";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const GNB=()=>{
     //const [isLogin, setIsLogin]=useState(false);
-    const user = useSelector((state) => state.user);
+    const email = useSelector((state) => state.user.email);
     const dispatch = useDispatch();
 //state안에 isLogin을 만들어 처리
 const [isLogin, setIsLogin] = useState(false);
 
-    useEffect(()=>{
-        if(localStorage.getItem("token")!=null) setIsLogin(true);
-    const checkExpiration = () => {
-        if (user.expirationTime && user.expirationTime < new Date().getTime()) {
-          dispatch(clearUser());
-          localStorage.removeItem("user");
-        }
-      };
+    // useEffect(()=>{
+    //     if(localStorage.getItem("token")!=null) setIsLogin(true);
+    // const checkExpiration = () => {
+    //     if (user.expirationTime && user.expirationTime < new Date().getTime()) {
+    //       dispatch(clearUser());
+    //       localStorage.removeItem("user");
+    //     }
+    //   };
 
-    const interval = setInterval(checkExpiration, 1000);
-    return () => {
-        clearInterval(interval);
-      };
-    }, [user.expirationTime, isLogin]);
+    // const interval = setInterval(checkExpiration, 1000);
+    // return () => {
+    //     clearInterval(interval);
+    //   };
+    // }, [user.expirationTime, isLogin]);
 
     const handleLogout=()=>{
         localStorage.removeItem("token");
-        dispatch(clearUser);
+        // dispatch(clearUser);
         setIsLogin(false)
         alert("정상적으로 로그아웃되었습니다.");
     };
@@ -44,7 +44,7 @@ const [isLogin, setIsLogin] = useState(false);
                 </Link>
             </h1>
                 <nav>
-                    <div className="row">
+                    <div className="navigation row">
                         
                             {/* 장바구니 버튼 */}
                             <Link to="/cart">

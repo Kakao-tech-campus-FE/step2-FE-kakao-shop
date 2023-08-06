@@ -3,9 +3,12 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import { register } from "../../services/user";
-import { useState } from "react";
+import React, { useState } from "react";
 import Box from "../atoms/Box";
 import { useNavigate } from "react-router-dom";
+import { registerRequest } from "../../store/slices/userSlice";
+import { useDispatch } from "react-redux";
+
 
 const RegisterForm =() =>{
     const{value, handleOnChange}= useInput({
@@ -14,49 +17,40 @@ const RegisterForm =() =>{
         password:"",
         passwordConfirm:""
     });
-    const [error, setError] = useState(""); // 에러 메시지 상태 추가
-    const navigate=useNavigate();
+    const [error, setError] = useState("");
+  
+    const dispatch=useDispatch();
+    
+    
 
-  const registerReq = () => {
+  const handleOnClick = () => {
     const emailRegex = /^[A-Za-z0-9]+@[A-Za-z0-9]+\.[A-Za-z0-9]+$/;
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,20}$/;
 
     if (!emailRegex.test(value.email)) {
-      setError("이메일 형식을 다시 확인해주세요.");
+      alert("이메일 형식을 다시 확인해주세요.");
       return;
     }
     if (!passwordRegex.test(value.password)) {
-      setError(
+      alert(
         "비밀번호는 영문, 숫자, 특수문자를 모두 포함해야하며 8자에서 20자 사이여야 합니다."
       );
       return;
     }
     if (value.password !== value.passwordConfirm) {
-      setError("비밀번호 확인이 올바르지 않습니다.");
+      alert("비밀번호 확인이 올바르지 않습니다.");
       return;
     }
-
-    setError(""); // 에러가 없을 경우에는 빈 메시지
-
-    register({
-      username: value.username,
+    else{
+ // 에러가 없을 경우에는 빈 메시지
+dispatch(registerRequest({
       email: value.email,
-      password: value.password
-    })
-      .then(res => {
-        setError('');
-            alert('회원가입 완료!\n 로그인이 필요합니다.');
-            navigate("/login");
-        // 회원가입 성공 처리
-      })
-      .catch(error => {
-        console.log(error.request.response);
-            const errObject = JSON.parse(error.request.response);
-            setError(errObject.error.message)
-        // 회원가입 실패 처리
-      });
-  };
-
+      password: value.password,
+      username: value.username
+    }))
+    };
+        
+      };
     return (
     <Container>
         <InputGroup name="email" id="email" type="email" placeholder="이메일" label="이메일(아이디)"
@@ -77,14 +71,15 @@ const RegisterForm =() =>{
         />
         <Box>
         <span 
-        className="error"> {error}
+        className="error"> {error
+        }
         </span>
         
         <Button
-            onClick={()=>{
+            onClick={
                 //회원가입 요청
-                registerReq();
-            }}
+                handleOnClick
+            }
             >
             회원가입
         </Button>
@@ -92,5 +87,6 @@ const RegisterForm =() =>{
     
     </Container>
     );
-};
+          }
+
 export default RegisterForm;
