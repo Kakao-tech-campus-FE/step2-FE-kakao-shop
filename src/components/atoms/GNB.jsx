@@ -28,12 +28,12 @@ const GNB = () => {
             ? <span className="navbarMenu">{email}님 안녕하세요!</span> 
             : <></>} */}
             <Link className="navbarMenu logo" to={"/"}><LogoIcon /> 쇼핑하기</Link>
-            <Link className="navbarMenu" to={"/cart"}>장바구니</Link>
+            <Link className="navbarMenu cart" to={"/cart"}>장바구니</Link>
             <div className="divider"></div>
-            <Link className="navbarMenu" to={"/register"}>회원가입</Link>
+            <Link className="navbarMenu register" to={"/register"}>회원가입</Link>
             {token 
-            ? <Link className="navbarMenu" onClick={logout}>로그아웃</Link> 
-            : <Link className="navbarMenu" to={"/login"}>로그인</Link>}
+            ? <Link className="navbarMenu logout" onClick={logout}>로그아웃</Link> 
+            : <Link className="navbarMenu login" to={"/login"}>로그인</Link>}
         </div>
         </>
     );

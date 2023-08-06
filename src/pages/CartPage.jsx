@@ -1,14 +1,24 @@
 import CartList from './../components/molecules/CartList';
 import Loader from './../components/atoms/Loader';
+import Swal from 'sweetalert2';
+import { loginNeedMessage } from '../utils/constants';
 import { Suspense } from 'react';
 import { styled } from 'styled-components';
-// import { useQuery } from '@tanstack/react-query';
-// import { getCart } from '../components/services/cart';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // 장바구니 페이지
 const CartPage = () => {
-    // const { data } = useQuery(["/cart"], getCart);
     const token = localStorage.getItem("token");
+    const navigate = useNavigate();
+
+    // 장바구니 페이지에서 만약 로그인이 만료되었을 경우 로그인 페이지로 이동
+    useEffect(() => {
+        if(localStorage.getItem("token") == null) {
+            Swal.fire(loginNeedMessage);
+            navigate("/login");
+        }
+    }, [navigate])
 
     return (
         <CartPageContainer>

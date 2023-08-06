@@ -1,6 +1,5 @@
 import Container from "./../atoms/Container";
 import InputGroup from "./../molecules/InputGroup";
-import Button from "./../atoms/Button";
 import useInput from "./../../hooks/useInput";
 import Swal from 'sweetalert2'
 import { emailValidation, pwValidation, emailErrorMessage, passwordErrorMessage } from "../../utils/constants";
@@ -21,8 +20,8 @@ const LoginForm = () => {
   // const email = useSelector((state) => state.user.email);
 
   const [value, handleChange] = useInput({
-    email: "test@naver.com",
-    password: "test123!",
+    email: "",
+    password: "",
   });
 
   const handleClick = () => {
@@ -66,28 +65,30 @@ const LoginForm = () => {
 
   return (
     <LoginFormContainer>
-      <span>로그인</span>
-      <InputGroup
-        id="email"
-        type="email"
-        name="email"
-        placeholder="이메일(아이디)를 입력해주세요."
-        label="이메일"
-        value={value.email}
-        onChange={handleChange}
-      />
-      <InputGroup
-        id="password"
-        type="password"
-        name="password"
-        placeholder="********"
-        label="비밀번호"
-        value={value.password}
-        onChange={handleChange}
-      />
-      <Button onClick={handleClick}>
-        로그인
-      </Button>
+      <LoginFormContentBox>
+        <p>로그인</p>
+        <InputGroup
+          id="email"
+          type="email"
+          name="email"
+          placeholder="이메일(아이디)를 입력해주세요."
+          label="이메일"
+          value={value.email}
+          onChange={handleChange}
+        />
+        <InputGroup
+          id="password"
+          type="password"
+          name="password"
+          placeholder="********"
+          label="비밀번호"
+          value={value.password}
+          onChange={handleChange}
+        />
+        <LoginButton onClick={handleClick}>
+          로그인
+        </LoginButton>
+      </LoginFormContentBox>
     </LoginFormContainer>
   );
 };
@@ -98,8 +99,24 @@ const LoginFormContainer = styled(Container)`
   margin: 0 auto;
   width: 50%;
   border: 1px solid #ddd;
-  text-align: center;
   & > span {
     font-size: 2.2rem;
   }
+`
+
+const LoginFormContentBox = styled.div`
+  padding : 3% 30%;
+  & > p {
+    text-align: center;
+    font-size : 2.2rem;
+  }
+`
+
+const LoginButton = styled.div`
+    width: 100%;
+    margin-top : 20px;
+    padding: 8px 0 8px 0;
+    text-align: center;
+    cursor: pointer;
+    background-color : #ffe100
 `

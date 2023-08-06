@@ -40,7 +40,7 @@ footer, header, hgroup, menu, nav, section {
     margin-top: 100px;
 }
 
-.loginPage, .registerPage, .notFoundPage {
+.loginPage, .registerPage {
     margin-top: 180px;
 }
 

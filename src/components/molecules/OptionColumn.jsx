@@ -2,13 +2,12 @@ import { useState } from "react";
 import { comma } from "../../utils/comma";
 import { useMutation } from "@tanstack/react-query";
 import { addCart } from './../services/cart';
-import { cartSuccessMessage, cartFailedMessage, cartLoginNeedMessage } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
+import { styled } from "styled-components";
+import { cartSuccessMessage, cartFailedMessage, cartLoginNeedMessage, cartSuccessGoBasketMessage } from "../../utils/constants";
 import Swal from "sweetalert2";
 import OptionList from "../atoms/OptionList";
 import Counter from "../atoms/Counter";
-import Button from './../atoms/Button';
-import { useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
 
 const OptionColumn = ({ product }) => {
     /**
@@ -72,38 +71,42 @@ const OptionColumn = ({ product }) => {
                 options={product.options} 
                 onClick={handleOnClickOption} 
             />
+            <hr></hr>
             {/* 담긴 옵션을 표시할 부분 - 옵션 이름 + 가격 + 수량 + 총 가격 */}
             {/* Counter : 옵션 개수를 변경할 수 있는 기능을 제공하는 컴포넌트! */}
             {selectedOptions.map((option) => (
                 <ol key={option.optionId} className="selected-option-list">
-                    <li className="selected-option">
+                    <OptionGroupContainer>          
                         <Counter
                             initialCount={1}
                             onDecrease={(count) => handleOnChange(count, option.optionId)}
                             onIncrease={(count) => handleOnChange(count, option.optionId)}
-                        />
-                        <span className="name">{option.name} </span>
-                        <span className="quantity">{option.quantity}개 </span>
-                        <span className="price">{`${comma(option.price)} * ${option.quantity} = ${comma(option.price * option.quantity)}`}원</span>
-                    </li>
+                            />
+                        <div className="option-box">
+                            <span className="name">{option.name} | </span>
+                            <span className="quantity">{option.quantity}개 | </span>
+                            <span className="price">{`${comma(option.price)} * ${option.quantity} = ${comma(option.price * option.quantity)}`}원</span>
+                        </div>
+                    </OptionGroupContainer>
                 </ol>
-            ))}
-            <hr></hr>
+            ))}     
             <TotalListContainer>
-                <span>총 수량: {
+                <div>총 수량: {
                     comma(selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity;
                     }, 0))}개 
-                </span>
-                <br/>
-                <span>총 상품금액: {
+                </div>
+                <div>총 상품금액 :  
+                    <span>
+                    {
                     comma(selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity * cur.price;
-                    }, 0))}원 
-                </span>
+                    }, 0))}원
+                    </span>
+                </div>
             </TotalListContainer>
             <ButtonGroupContainer>
-                <Button onClick={() => {
+                <BasketButton onClick={() => {
                     // 백엔드에서 원하는 데이터만 담아서 보내주어야 함!
                     // 따라서, optionId, quantity만 골라서 mutate를 실행한다.
                     mutate(selectedOptions.map((el) => {
@@ -124,8 +127,28 @@ const OptionColumn = ({ product }) => {
                             .then(navigate("/notFoundPage"))
                         }
                     });
-                }}>장바구니 담기</Button>
-                <Button>구매</Button>
+                }}>장바구니 담기</BasketButton>
+                <PurchaseButton onClick={() => {
+                    mutate(selectedOptions.map((el) => {
+                        return {
+                            optionId: el.optionId,
+                            quantity: el.quantity,
+                        }
+                    }), {
+                        onSuccess: () => {
+                            token 
+                            ? Swal.fire(cartSuccessGoBasketMessage)
+                            .then(navigate("/cart"))
+                            : Swal.fire(cartLoginNeedMessage)
+                            .then(navigate("/login"))
+                        },
+                        onError: () => {
+                            // 적절하지 않은 값에 대해 장바구니 담기 - 에러 핸들링 처리
+                            Swal.fire(cartFailedMessage)
+                            .then(navigate("/notFoundPage"))
+                        }
+                    });
+                }} >구매</PurchaseButton>
             </ButtonGroupContainer>
         </OptionColumnContainer>
     );
@@ -137,16 +160,53 @@ const OptionColumnContainer = styled.div`
     border-left: 1px solid #ddd;
     padding-top: 100px;
     padding-left: 50px;
-    min-width: 520px;
+    min-width: 650px;
+    & > h3 { 
+        font-size : 1.4rem;
+        margin-bottom : 10px;
+    }
+    & > hr {
+        margin : 20px 0;
+    }
 `
 
 const TotalListContainer = styled.div`
-    margin-top:20px;
+    display : flex;
+    justify-content: space-between;
+    margin-bottom : 20px;
+    & > div > span {
+        color : #ff6200;
+        margin-left : 5px;
+    }
+`
+
+const OptionGroupContainer = styled.div`
+    display : flex;
+    align-items : center;
+    margin-bottom : 10px;
+    & > .option-box {
+        margin-left : 5px;
+    }
 `
 
 const ButtonGroupContainer = styled.div`
-margin-top: 20px;
-    Button {
-        margin-right: 60px;
-    }
+    display : flex;
+    justify-content: space-between;
+`
+
+const BasketButton = styled.button`
+    width : 150px;
+    height : 50px;
+    background-color : #000000;
+    color : #fff;
+    border : none;
+    cursor: pointer;
+`
+
+const PurchaseButton = styled.button`
+    width : 300px;
+    height : 50px;
+    background-color : #ffe100;
+    border : none;
+    cursor: pointer;
 `

@@ -8,7 +8,9 @@ import LoginPage from "./pages/LoginPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
+import OrderCompletePage from "./pages/OrderCompletePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Footer from './components/atoms/Footer';
 
 import './styles/App.css';
 
@@ -32,8 +34,10 @@ function App() {
                 <Route path="/product/:id" element={<ProductDetailPage/>}/>
                 <Route path="cart" element={<CartPage/>}/>
                 <Route path="order" element={<OrderPage/>}/>
+                <Route path="orders/complete/:id" element={<OrderCompletePage/>}/>
                 <Route path="/*" element={<NotFoundPage/>}/>
             </Routes>
+            <Footer/>
         </BrowserRouter>
     );
 }

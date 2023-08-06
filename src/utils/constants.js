@@ -47,14 +47,41 @@ export const cartSuccessMessage = {
     text: '다른 상품도 더 둘러보시겠어요?😄',
     confirmButtonText:'확인',
 }
+export const cartSuccessGoBasketMessage = {
+    title:'장바구니 담기 성공!',
+    text: '결제를 위해 장바구니 페이지로 바로 이동합니다!',
+    confirmButtonText:'확인',
+}
 export const cartLoginNeedMessage = {
     title:'로그인이 먼저 필요해요!',
     text: '상품을 담기 전 로그인을 먼저 해주세요!😊',
     confirmButtonText:'확인',
 }
 export const cartFailedMessage = {
+    icon:'error',
     title:'장바구니 담기 실패..😭',
     text: '무슨 문제가 있는 것 같습니다!',
+    confirmButtonText:'확인',
+}
+export const cartNoItemMessage = {
+    icon:'error',
+    title:'구매할 아이템이 없습니다!',
+    text: '구매할 아이템을 1개 이상 담아주세요😊',
+    confirmButtonText:'확인',
+}
+export const loginNeedMessage = {
+    title: '로그인이 필요한 서비스입니다!',
+    text: '로그인을 먼저 해주세요😊',
+    confirmButtonText:'확인',
+}
+export const agreeNeedMessage = {
+    title: '모든 항목에 동의해주세요!',
+    text: '모든 항목에 동의해주셔야 결제 진행이 가능합니다.',
+    confirmButtonText:'확인',
+}
+export const orderCompleteMessage = {
+    title:'주문이 완료되었습니다!',
+    text: '저희 서비스를 이용해주셔서 감사합니다! 다른 상품도 더 둘러보세요!😄',
     confirmButtonText:'확인',
 }
 

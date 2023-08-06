@@ -56,14 +56,14 @@ instance.interceptors.response.use(
         if (error.response.status === 404) {
             Swal.fire({
                 icon: 'error',
-                title: '없는 페이지입니다😅',
+                title: '아이쿠! 에러가 발생했네요😅',
                 text: error.response.data.error.message,
                 confirmButtonText: '확인',
             })
             return Promise.reject(error.response);
         }
 
-        // 401, 404 외의 다른 error
+        // 401, 404 외의 다른 error에 대한 처리 및 에러 메시지 확인 가능
         else {
             Swal.fire({
                 icon: 'error',
