@@ -12,7 +12,7 @@ const OrderPage=()=>{
     // 여기서 처리할때는 Suspense로
     return(
         <Suspense fallback={<Loader />}>
-            <OrderTemplate />
+            <OrderTemplate data={data}></OrderTemplate>
 
 
         </Suspense>
