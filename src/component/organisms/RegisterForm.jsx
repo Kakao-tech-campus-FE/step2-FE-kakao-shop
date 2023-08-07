@@ -48,7 +48,7 @@ dispatch(registerRequest({
       password: value.password,
       username: value.username
     }))
-    };
+    }
         
       };
     return (
