@@ -5,10 +5,8 @@ import Photo from '../atoms/Photo';
 const ProductInformationColumn = ({product}) => {
   const {productName, price, image} = product;
   return (
-       <div className="flex py-8 pr-8 w-[400px]">
+       <div className="flex py-8 pr-8">
                 <Photo src={staticServerUrl+ product.image} alt={product.productName} />
-            <h1>{productName}</h1>
-            <p>{price}원</p>
     </div>
   );
 }
