@@ -14,6 +14,8 @@ import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
 import { useNavigate } from "react-router-dom";
 import GetOrderPage from "./pages/GetOrderPage";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function App() {
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,23 +48,44 @@ function App() {
           {isLoading && <Loading />}
           <Routes>
             {/* 단독 레이아웃 */}
-            <Route path="/login" element={<LoginPage />}></Route>
-            <Route path="/signup" element={<RegisterPage />}></Route>
-            <Route path="/404" element={<ProductCanNotFound />}></Route>
+            <Route
+              path={staticServerUri + "/login"}
+              element={<LoginPage />}
+            ></Route>
+            <Route
+              path={staticServerUri + "/signup"}
+              element={<RegisterPage />}
+            ></Route>
+            <Route
+              path={staticServerUri + "/404"}
+              element={<ProductCanNotFound />}
+            ></Route>
 
             {/*  공통 레이아웃 : GNB, footer */}
             <Route element={<MainLayout />}>
-              <Route path="/" element={<MainPage />}></Route>
               <Route
-                path="/product/:id"
+                path={staticServerUri + "/"}
+                element={<MainPage />}
+              ></Route>
+              <Route
+                path={staticServerUri + "/product/:id"}
                 element={<ProductDetailPage />}
               ></Route>
             </Route>
             {/* 사용자 인증 되었을 때만 접근 가능  */}
             <Route element={<RequiredAuthLayout />}>
-              <Route path="/carts" element={<CartPage />}></Route>
-              <Route path="/order" element={<OrderPage />}></Route>
-              <Route path="/orders/:id" element={<GetOrderPage />}></Route>
+              <Route
+                path={staticServerUri + "/carts"}
+                element={<CartPage />}
+              ></Route>
+              <Route
+                path={staticServerUri + "/order"}
+                element={<OrderPage />}
+              ></Route>
+              <Route
+                path={staticServerUri + "/orders/:id"}
+                element={<GetOrderPage />}
+              ></Route>
             </Route>
           </Routes>
         </BrowserRouter>

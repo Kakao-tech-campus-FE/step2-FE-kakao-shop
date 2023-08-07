@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import logo from "../../imgs/logoKakao.png";
 import cart from "../../imgs/cart.png";
 import "./GNB.css";
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function GNB() {
   const email = useSelector((state) => state.user.email);
@@ -19,7 +20,7 @@ function GNB() {
     // localStorage.removeItem("access_token");
     alert("정상적으로 로그아웃 되었습니다.");
 
-    navigate("/");
+    navigate(staticServerUri + "/");
     // 새로고침
     window.location.reload();
   };
@@ -31,16 +32,38 @@ function GNB() {
   useAutoLogout();
 
   return (
-    <header className="header bg-white px-4 py-2 flex justify-between items-center fixed top-0 left-0 right-0 z-10">
-      <div className="contents flex items-center justify-between">
-        <Link to="/">
-          <img className="logo h-8" src={logo} alt="카카오 쇼핑 로고" />
-        </Link>
-        <nav className="navigation flex items-center text-base  text-gray-700">
-          <Link to="/carts" className="mr-4">
+    <header className="header px-4 py-2 justify-between flex items-center fixed top-0 left-0 right-0 z-10">
+      <div className="wrapper inner items-center justify-between">
+        <div className="elements items-center">
+          <div>
+            <Link to={staticServerUri + "/"}>
+              <img className="logo " src={logo} alt="카카오 쇼핑 로고" />
+            </Link>
+          </div>
+          <nav className="sub-menu">
+            <ul className="menu flex ">
+              <li>
+                <a href={staticServerUri + "/"}>홈</a>
+              </li>
+              <li>
+                <a href="javascript:void(0) ">브랜드데이</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">베스트</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">라이브</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)">기획전</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <nav className="navigation flex items-center text-base text-gray-700">
+          <Link to={staticServerUri + "/carts"} className="relative cart mr-4">
             <img src={cart} alt="장바구니 버튼" className="h-8" />
           </Link>
-          <span>ㅣ</span>
           {email ? (
             <div className="flex items-center">
               <span className="mr-2">{username}</span>
@@ -50,10 +73,10 @@ function GNB() {
             </div>
           ) : (
             <>
-              <Link to="/login" className="text-black mr-2">
+              <Link to={staticServerUri + "/login"} className="login  mr-2">
                 로그인
               </Link>
-              <Link to="/signup" className="text-black">
+              <Link to={staticServerUri + "/signup"} className="">
                 회원가입
               </Link>
             </>

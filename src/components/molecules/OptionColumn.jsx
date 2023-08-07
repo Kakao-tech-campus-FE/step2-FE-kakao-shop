@@ -5,6 +5,7 @@ import { comma } from "../../utils/convert";
 import { useMutation } from "react-query";
 import { addCart } from "../../services/addCart";
 import Button from "../atoms/Button";
+import "../atoms/OptionList.css";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -25,11 +26,6 @@ const OptionColumn = ({ product }) => {
     );
     // 수량증가
     if (isOptionSelected) {
-      // setSelectedOptions((prev) =>
-      //   prev.map((el) =>
-      //     el.optionId === option.id ? { ...el, quantity: el.quantity + 1 } : el
-      //   )
-      // );
       return;
     }
     // 아니면 그냥 담기
@@ -64,7 +60,7 @@ const OptionColumn = ({ product }) => {
     }, 0);
   }, [selectedOptions]);
 
-  const totalqprice = useMemo(() => {
+  const totalprice = useMemo(() => {
     return comma(
       selectedOptions.reduce((acc, cur) => {
         return acc + cur.quantity * cur.price;
@@ -72,60 +68,61 @@ const OptionColumn = ({ product }) => {
     );
   }, [selectedOptions]);
 
-  // const token = localStorage.getItem("token");
-  // if (token) {
-  //   console.log("true");
-  //   // 토큰이 존재하는 경우
-  //   // 원하는 동작을 수행하세요.
-  // } else {
-  //   console.log("false");
-  //   // 토큰이 없는 경우
-  //   // 원하는 동작을 수행하세요.
-  // }
-
   return (
-    <div className="option-column">
-      <h3 className="pb-6 text-xl font-bold">옵션 선택</h3>
-      {/* 옵션 담기 할 수 있는 영역 */}
-      <OptionList
-        options={product.options}
-        // 사용자가 선택한 옵션
-        onClick={handleOnClickOption}
-        //장바구니 담기 api
-      />
-      <hr></hr>
+    <div className="option-column p-6">
+      <div className="option-box  max-h-[210px] min-w-[350px] overflow-y-scroll ">
+        <h3 className="pb-6 text-xl font-bold">옵션 선택</h3>
+        <div class="border p-2 mb-4 border-solid border-3">
+          {/* 옵션 담기 할 수 있는 영역 */}
+          <OptionList options={product.options} onClick={handleOnClickOption} />
+        </div>
 
-      {/* 담긴 옵션 표기  */}
-      {selectedOptions.map((item) => (
-        <ol key={`selected-${item.optionId}`} className="selected-option-list">
-          <li className="selected-option">
-            <span className="name flex gap-2">{item.name}</span>
-            <span className="price">{comma(item.price)}원</span>
-            <Counter
-              value={item.quantity}
-              onIncrease={(count) => handleOnChange(count, item)}
-              onDecrease={(count) => handleOnChange(count, item)}
-            />
-          </li>
-        </ol>
-      ))}
-      <hr />
-      <div className="total-price mt-3">
-        <span>총 수량 : {totalquantity}개</span>
-        <hr className="mt-2 mb-3"></hr>
-        <span>총 상품금액 : {totalqprice}원</span>
+        {/* 담긴 옵션 표기  */}
+        {selectedOptions.map((item) => (
+          <ol
+            key={`selected-${item.optionId}`}
+            className="selected-option-list"
+          >
+            <li className="selected-option">
+              <span className="name flex gap-2">{item.name}</span>
+              <span className="price">{comma(item.price)}원</span>
+              <Counter
+                value={item.quantity}
+                onIncrease={(count) => handleOnChange(count, item)}
+                onDecrease={(count) => handleOnChange(count, item)}
+              />
+            </li>
+          </ol>
+        ))}
+      </div>
+      <div>
+        <span className="flex mt-4">
+          <p className="font-bold">배송방법</p>
+          <p className="mx-4 text-gray-400">택배배송</p>
+        </span>
+        <span className="flex mt-2">
+          <p className="font-bold">배송비</p>
+          <p className="border mx-8 min-w-[200px] text-gray-400">무료 </p>
+        </span>
+      </div>
+      <hr className="mt-2 mb-4"></hr>
+      <div className="total-price mt-4 text-lg flex justify-between">
+        <span>총 수량 {totalquantity}개</span>
+        <span>
+          총 주문금액
+          <span className="text-red-500 font-bold">{totalprice}</span>원
+        </span>
       </div>
       <div className="button-group">
         <Button
           onClick={() => {
             if (selectedOptions.length) {
+              // 선택한 옵션들을 서버로 전송하여 장바구니에 담기
               mutate(
-                selectedOptions.map((item) => {
-                  return {
-                    optionId: item.optionId,
-                    quantity: item.quantity,
-                  };
-                })
+                selectedOptions.map((item) => ({
+                  optionId: item.optionId,
+                  quantity: item.quantity,
+                }))
               );
             } else {
               alert("옵션을 선택해주세요.");
@@ -138,4 +135,5 @@ const OptionColumn = ({ product }) => {
     </div>
   );
 };
+
 export default OptionColumn;

@@ -2,9 +2,11 @@ import MainProduct from "../components/templates/MainProduct";
 
 const MainPage = () => {
   return (
-    <>
-      <MainProduct />
-    </>
+    <main>
+      <div className="wrapper clearfix">
+        <MainProduct />
+      </div>
+    </main>
   );
 };
 

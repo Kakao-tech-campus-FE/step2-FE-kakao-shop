@@ -1,18 +1,49 @@
+import React, { useEffect, useRef, useState } from "react";
 import Footer from "../components/atoms/Footer";
 import GNB from "../components/atoms/GNB";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
-function RequiredAuthLayout() {
-  const navigate = useNavigate();
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
+export const useEffectOnce = (effect) => {
+  const destroyFunc = useRef();
+  const effectCalled = useRef(false);
+  const renderAfterCalled = useRef(false);
+  const [val, setVal] = useState(0);
+
+  if (effectCalled.current) {
+    renderAfterCalled.current = true;
+  }
 
   useEffect(() => {
+    if (!effectCalled.current) {
+      destroyFunc.current = effect();
+      effectCalled.current = true;
+    }
+
+    setVal((val) => val + 1);
+
+    return () => {
+      if (!renderAfterCalled.current) {
+        return;
+      }
+      if (destroyFunc.current) {
+        destroyFunc.current();
+      }
+    };
+  }, []);
+};
+
+const RequiredAuthLayout = () => {
+  const navigate = useNavigate();
+
+  // useEffectOnce 함수를 사용하여, alert 창이 두번 뜨는 것을 방지
+  useEffectOnce(() => {
     if (localStorage.getItem("access_token") === null) {
       alert("로그인이 필요한 서비스입니다.");
-      navigate("/login");
+      navigate(staticServerUri + "/login");
     }
-  }, [navigate]);
-  // carts로 이동하고, login으로 이동하면서 alert 창이 두번 뜨는 문제
+  });
 
   return (
     <>
@@ -21,6 +52,6 @@ function RequiredAuthLayout() {
       <Footer />
     </>
   );
-}
+};
 
 export default RequiredAuthLayout;

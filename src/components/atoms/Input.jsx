@@ -1,17 +1,14 @@
 import styled from "styled-components";
 
-const StyledInput =
-  // 아래의 style이 입혀진 button 태그를 생성
-  styled.input`
-    padding: 6px 12px;
-    font-size: 1.2rem;
-    width: 95%;
-    line-height: 1.5;
-    border: 1px solid lightgray;
-    color: gray;
-    background: white;
-    word-wrap: break-word;
-  `;
+const StyledInput = styled.input`
+  padding: 10px 12px;
+  font-size: 1.4rem;
+  width: 100%;
+  line-height: 1.5;
+  border-bottom: 2px solid #c0c0c0; /* 수정: border-bottom 속성으로 underline 효과 적용 */
+  background: white;
+  word-wrap: break-word;
+`;
 const Input = ({
   error,
   id,

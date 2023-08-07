@@ -1,5 +1,5 @@
 @tailwind base;
-@tailwind components;
+
 @tailwind utilities;
 
 body {
@@ -8,12 +8,41 @@ body {
     \b9d1\c740\ace0\b515, dotum, \b3cb\c6c0, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #333;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  overflow-x: hidden;
 }
-* {
+
+a {
   text-decoration: none;
 }
 
+.inner {
+  /* inner 하위 요소들 inner을 기준으로 배치  */
+  width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  top: 0;
+}
+header > .inner {
+  height: 100%;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.wrapper {
+  max-width: 1024px;
+  width: 90%;
+  margin: 0 auto;
 }

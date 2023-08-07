@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-const StyledContainer =
-  // 아래의 style이 입혀진 div 요소를 생성
-  styled.div`
-    display: inline-block;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    width: 100%;
-    font-size: 12px;
-    vertical-align: middle;
-  `;
+const StyledContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* 뷰포트의 가로 너비 전체를 차지 */
+  min-height: 100%; /* 뷰포트의 세로 높이 전체를 차지 */
+  padding-top: 179px;
+  overflow-x: hidden;
+`;
 
 const Container = ({ children }) => {
   return (

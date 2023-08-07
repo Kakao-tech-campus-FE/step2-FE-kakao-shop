@@ -4,6 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { fetchProducts } from "../../services/product";
 import Loading from "../atoms/Loader";
+import Box from "../atoms/Box";
+import Notice from "../atoms/notice";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const MainProduct = () => {
   const bottomObserverRef = useRef(null);
@@ -56,9 +60,16 @@ const MainProduct = () => {
 
   return (
     <Container>
-      {isError && <p>{error.message}</p>}
-      {isLoading ? <Loading /> : <ProductGrid products={products} />}
-      <div ref={bottomObserverRef}></div>
+      <Notice className="notice"></Notice>
+      <div className=" mainProduct border p-4">
+        {isError && <p>{error.message}</p>}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <ProductGrid className="product-grid " products={products} />
+        )}
+        <div ref={bottomObserverRef}></div>
+      </div>
     </Container>
   );
 };

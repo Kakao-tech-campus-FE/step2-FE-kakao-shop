@@ -1,9 +1,9 @@
 import axios from "axios";
 // axios.defaults.withCredentials = true; // withCredentials 전역 설정
-
+const staticServerUri = process.env.REACT_APP_PATH || "";
 // api 요청보내고, 응답헤더로 받은 토큰을 로컬스토리지에 저장
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: staticServerUri + "/api",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",
@@ -35,7 +35,7 @@ instance.interceptors.response.use(
 
 // 로컬스토리지에 저장한 토큰을 꺼내서 , 요청헤더담아 보냄
 export const authorizationInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: staticServerUri + "/api",
   timeout: 1000,
   headers: {
     "Content-Type": "application/json",

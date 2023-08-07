@@ -1,32 +1,42 @@
 import OptionColumn from "../molecules/OptionColumn";
 import ProductInformationColumn from "../molecules/ProductInformationColumn";
-import styled from "styled-components";
+import Box from "../atoms/Box";
+import Container from "../atoms/Container";
+import { useState, useEffect } from "react";
 
-const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const ProductDetailTemplate = ({ product }) => {
+  // GNB 영역과 optionlist가 맞닿은 시점 부터 스크롤 되도록 함
+  const [scrollPosition, setScrollPosition] = useState(0);
 
-  &.column-product {
-    width: 65%;
-  }
-  &.column-option {
-    right: 13.9%;
-    position: fixed;
-  }
-`;
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
 
-const ProductDeatilTemplate = ({ product }) => {
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex justify-between py-10 items-start  h-[1000px] mb-40">
-      <Column className="column-product">
-        <ProductInformationColumn product={product} />
-      </Column>
-      <Column className="column-option mt-10 bg-white p-20 border border-gray-300 w-[520px]">
-        <OptionColumn product={product} />
-      </Column>
-    </div>
+    <Container className="flex justify-between  ">
+      <div
+        className="grid grid-cols-2 gap-4 border "
+        style={{ paddingBottom: "500px" }}
+      >
+        <div className="product-information-column relative left-40 mt-6  ">
+          <ProductInformationColumn product={product} />
+        </div>
+        <div
+          className="fixed optioncolumn right-40 border  bg-white z-20"
+          style={{ top: `${Math.max(95, 179 - scrollPosition)}px` }}
+        >
+          <OptionColumn product={product} />
+        </div>
+      </div>
+    </Container>
   );
 };
 
-export default ProductDeatilTemplate;
+export default ProductDetailTemplate;

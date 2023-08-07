@@ -1,0 +1,22 @@
+.toast-notification {
+  display: flex; /* 추가: 내부 요소를 가로 정렬하기 위해 */
+  align-items: center; /* 추가: 내부 요소를 세로 중앙 정렬하기 위해 */
+  justify-content: center; /* 추가: 내부 요소를 가로 중앙 정렬하기 위해 */
+  width: 50%;
+  height: 50px;
+  background-color: rgba(55, 50, 48, 0.916);
+  color: white;
+  position: fixed;
+  bottom: 0px; /* 토스트 알림이 아래에서 시작하도록 설정 */
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+
+  animation: slideUp 0.2s forwards; /* 애니메이션 적용 */
+}
+
+@keyframes slideUp {
+  to {
+    bottom: 20px; /* 토스트 알림이 위로 올라오는 위치 */
+  }
+}
