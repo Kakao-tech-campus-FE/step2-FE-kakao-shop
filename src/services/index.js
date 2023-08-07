@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { getCookie } from './user';
 
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
+
 export const instance = axios.create({
-    baseURL: "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
+    baseURL: staticServerUrl+ "/api",
     timeout: 1000*20,
     headers: {
         "Content-Type":"application/json"

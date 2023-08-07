@@ -9,7 +9,7 @@ import React, { useState, useEffect, Suspense} from 'react';
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
 
 const ProductDetailPage = ()=>{
     const navigate=useNavigate();

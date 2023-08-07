@@ -18,10 +18,10 @@ const LoginForm =() =>{
     const [error, setError] = useState("");
     const{value, handleOnChange}= useInput({
         email:"",
-        password:"",
+        password:""
     });
 
-	const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+	const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
 	
     // const handleOnClick = () => {     
     //     dispatch(
@@ -48,7 +48,7 @@ const LoginForm =() =>{
                   email: value.email,
                 })
               );
-              navigate(staticServerUrl + "/");
+              navigate(staticServerUrl + "/")
         })
         .catch((error)=> {
             console.log("error", error);

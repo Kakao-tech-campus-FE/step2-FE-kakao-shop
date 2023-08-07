@@ -3,7 +3,7 @@ import { getCart } from "../../services/addCart";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
 
 const OrderTemplate=({data})=>{
   const products = data?.data?.response?.products;

@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts, getProductById } from "../../services/product";
 import _ from "lodash";
 
-const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
 
 const initialState = {
     detail: null,

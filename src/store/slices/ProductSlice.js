@@ -9,7 +9,7 @@ const initialState = {
   isEnd: false,
 };
 
-const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
 
 
 const productsSlice = createSlice({

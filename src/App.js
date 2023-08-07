@@ -7,6 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App(){
+	const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
 
   
 
@@ -15,14 +16,14 @@ function App(){
     <BrowserRouter>
     <Routes>
       {/*단독레이이아웃*/}
-      <Route path={ "/login"} element={<LoginPage/>}></Route>
-      <Route path="/signup" element={<RegisterPage/>}></Route>
+      <Route path={ staticServerUrl + "/login"} element={<LoginPage/>}></Route>
+      <Route path= {staticServerUrl + "/signup"} element={<RegisterPage/>}></Route>
       {/*공통레이아웃:GNB, footer*/}
       <Route element={<MainLayout/>}>
-      <Route path="/" element={<HomePage/>}></Route>
-      <Route path="/product/:id" element={<ProductDetailPage/>}></Route>
+      <Route path={staticServerUrl + "/"} element={<HomePage/>}></Route>
+      <Route path={staticServerUrl+"/product/:id"} element={<ProductDetailPage/>}></Route>
     </Route>
-    <Route path="/cart" element={<CartPage />} />
+    <Route path={staticServerUrl + "/cart"} element={<CartPage />} />
     </Routes>
     </BrowserRouter>
   </div>

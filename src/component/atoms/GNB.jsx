@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
 
 const GNB=()=>{
     //const [isLogin, setIsLogin]=useState(false);
@@ -39,7 +39,7 @@ const [isLogin, setIsLogin] = useState(false);
     };
     return(
         <header className="header flex justify-center items-center">
-            <div className="contents flex justify-center items-center">
+            <div className="flex justify-center items-center">
             <h1 className="navigation flex justify-center items-center">
                 <Link to href="/">
                    <img src={logokakao} alt="카카오 쇼핑 로고" height={30}/>
