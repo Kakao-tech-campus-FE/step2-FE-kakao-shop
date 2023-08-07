@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login } from "../../services/user";
+import { PURGE } from "redux-persist";
 
 const initialState = {
   email: null,
@@ -26,10 +27,12 @@ const userSlice = createSlice({
       state.loading = false;
       state.email = action.payload.email;
       state.token = action.payload.token;
+      localStorage.setItem("token", action.payload.token);
     });
     builder.addCase(loginRequest.rejected, (state, action) => {
       state.loading = false;
     });
+    builder.addCase(PURGE, () => initialState);
   },
 });
 
@@ -39,10 +42,6 @@ export const loginRequest = createAsyncThunk(
     const { email, password } = data;
     const response = await login({ email, password });
 
-    if (response.status === 200) {
-      localStorage.setItem("token", response.headers.authorization);
-      localStorage.setItem("userInfo", email);
-    }
     return {
       email,
       token: response.headers.authorization,

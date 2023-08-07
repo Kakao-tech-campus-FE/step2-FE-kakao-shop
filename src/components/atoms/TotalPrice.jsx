@@ -4,9 +4,16 @@ import { comma } from "../../utils/convert";
 const Price = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 32rem;
+  width: 50rem;
   padding: 0.8rem;
-  font-weight: bold;
+  margin-bottom: 1rem;
+
+  font-size: 1.2rem;
+
+  .price {
+    color: #0044ff;
+    font-weight: bold;
+  }
 `;
 
 const TotalPrice = ({ item }) => {
@@ -24,7 +31,7 @@ const TotalPrice = ({ item }) => {
     <>
       <Price className="row">
         <div>총 주문 금액</div>
-        <div>{comma(totalPrice)}원</div>
+        <div className="price">{comma(totalPrice)}원</div>
       </Price>
     </>
   );

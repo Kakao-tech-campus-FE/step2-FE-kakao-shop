@@ -6,6 +6,19 @@ import useValidation from "../../hooks/useValidation";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginRequest } from "../../store/slices/userSlice";
+import styled from "styled-components";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+
+  #email,
+  #password {
+    width: 30rem;
+  }
+`;
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const LoginForm = () => {
   const { value, handleOnChange } = useInput({
@@ -20,54 +33,65 @@ const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    dispatch(
-      loginRequest({
-        email: value.email,
-        password: value.password,
-      })
-    )
-      .then((response) => {
-        if (response.status === 200) {
-          navigate("/");
-          alert("로그인 성공!");
-        }
-      })
-      .catch((error) => {
-        console.error("로그인 실패:", error);
-        alert("로그인에 실패했습니다.");
-      });
+    if (value.email === "" || value.password === "")
+      alert("항목을 입력해주세요.");
+    else {
+      dispatch(
+        loginRequest({
+          email: value.email,
+          password: value.password,
+        })
+      )
+        .then((action) => {
+          const response = action.payload;
+          if (response.email && response.token) {
+            navigate(staticServerUri + "/");
+            alert("로그인 성공!");
+          }
+        })
+        .catch((error) => {
+          console.error("로그인 실패:", error);
+          alert("로그인에 실패했습니다.");
+        });
+    }
   };
 
   return (
     <>
       <Form>
-        <InputGroup
-          id="email"
-          name="email"
-          type="email"
-          value={value.email}
-          placeholder="이메일"
-          onChange={(e) => {
-            handleOnChange(e);
-            handleSetEmailMsg(e);
-          }}
-          errorMsg={emailMsg}
-        />
-        <InputGroup
-          id="password"
-          name="password"
-          type="password"
-          value={value.password}
-          placeholder="비밀번호"
-          onChange={(e) => {
-            handleOnChange(e);
-            handleSetPwMsg(e);
-          }}
-          helperMsg={pwMsg}
-        />
-        <SubmitButton type="submit" onClick={handleSubmit}>
-          로그인
-        </SubmitButton>
+        <Container>
+          <InputGroup
+            id="email"
+            name="email"
+            type="email"
+            value={value.email}
+            placeholder="이메일"
+            onChange={(e) => {
+              handleOnChange(e);
+              handleSetEmailMsg(e);
+            }}
+            errorMsg={emailMsg}
+          >
+            이메일
+          </InputGroup>
+          <InputGroup
+            id="password"
+            name="password"
+            type="password"
+            value={value.password}
+            placeholder="비밀번호"
+            onChange={(e) => {
+              handleOnChange(e);
+              handleSetPwMsg(e);
+            }}
+            helperMsg={pwMsg}
+          >
+            비밀번호
+          </InputGroup>
+          <SubmitButton type="submit" onClick={handleSubmit}>
+            로그인
+          </SubmitButton>
+        </Container>
       </Form>
     </>
   );

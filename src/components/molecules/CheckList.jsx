@@ -1,42 +1,47 @@
 import styled from "styled-components";
-import { useState } from "react";
 
 const InputCheck = styled.input`
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
   appearance: none;
   outline: none;
   border: 2px solid gray;
   border-radius: 0.2rem;
   transition: background-color 250ms linear;
-
-  &:checked::before {
-    content: "";
-    position: absolute;
-    width: 0.3rem;
-    height: 0.3rem;
-    border: solid gray;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-  }
+  margin-right: 0.8rem;
+  position: relative;
 
   &:checked {
     background-color: #ffee00;
     border-color: #ffee00;
   }
+
+  &:checked::before {
+    content: "";
+    position: absolute;
+    top: 0.2rem;
+    left: 0.4rem;
+    width: 0.3rem;
+    height: 0.6rem;
+    border: solid black;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
 `;
 
-const CheckList = ({ children }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+`;
 
-  const handleChecked = () => {
-    setIsChecked(!isChecked);
-  };
-
+const CheckList = ({ htmlFor, children, ...inputProps }) => {
   return (
     <>
-      <InputCheck type="checkbox" checked={isChecked} onClick={handleChecked} />
-      <label>{children}</label>
+      <Container>
+        <InputCheck type="checkbox" {...inputProps} />
+        <label htmlFor={htmlFor}>{children}</label>
+      </Container>
     </>
   );
 };

@@ -3,94 +3,117 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import routes from "../../routes.js";
 import { useSelector } from "react-redux";
+import { persistor } from "../../index";
+import logo from "../../assets/logoKakao.png";
+import { BsCart2, BsTruck } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
 
 const GnbOrganism = styled.div`
   overflow: hidden;
   padding: 2rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  .home {
-    float: left;
+  .img {
+    display: inline-block;
   }
 
-  .cart {
-    float: right;
+  .right-header {
+    display: flex;
+    align-items: center;
+    width: 15rem;
+  }
+
+  .icons {
+    display: flex;
+    align-items: center;
+    width: 8rem;
+  }
+
+  .icon {
+    font-size: 1.6rem;
   }
 
   .login {
-    float: right;
+    margin-left: 2rem;
   }
 `;
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const Gnb = () => {
   const navigate = useNavigate();
   const email = useSelector((state) => state.user.email);
-  const isLoggedin = email === null ? false : true;
 
   const handleLoginButtonClick = () => {
     try {
-      navigate(routes.login);
+      navigate(staticServerUri + routes.login);
     } catch (error) {
       console.log("로그인 실패:", error);
     }
   };
 
+  const purge = async () => {
+    await persistor.purge();
+  };
+
   const handleLogoutButtonClick = () => {
-    window.localStorage.removeItem("userInfo");
-    window.localStorage.removeItem("token");
-    navigate(routes.home);
+    navigate(staticServerUri + routes.home);
+    localStorage.removeItem("token");
   };
 
   return (
     <>
       <GnbOrganism>
-        <LinkButton
-          className="home"
-          type="click"
-          onClick={() => navigate(routes.home)}
-          styles={{
-            margin: "1rem",
-            fontWeight: "bold",
-          }}
-        >
-          쇼핑하기
-        </LinkButton>
-        {isLoggedin ? (
-          <LinkButton
-            className="login"
-            type="click"
-            onClick={handleLogoutButtonClick}
-            styles={{
-              width: "5rem",
-              margin: "1rem",
-            }}
-          >
-            로그아웃
-          </LinkButton>
-        ) : (
-          <LinkButton
-            className="login"
-            type="click"
-            onClick={handleLoginButtonClick}
-            styles={{
-              width: "5rem",
-              margin: "1rem",
-            }}
-          >
-            로그인
-          </LinkButton>
-        )}
-
-        <LinkButton
-          className="cart"
-          type="click"
-          onClick={() => navigate(routes.cart)}
-          styles={{
-            width: "5rem",
-            margin: "1rem",
-          }}
-        >
-          장바구니
-        </LinkButton>
+        <div className="img">
+          <img
+            src={logo}
+            alt="kakao-shoping"
+            style={{ width: "100px", cursor: "pointer" }}
+            onClick={() => navigate(staticServerUri + routes.home)}
+          />
+        </div>
+        <div className="right-header">
+          <div className="icons">
+            <LinkButton className="icon">
+              <IoIosSearch />
+            </LinkButton>
+            <LinkButton className="icon">
+              <BsTruck />
+            </LinkButton>
+            <LinkButton
+              className="cart icon"
+              type="click"
+              onClick={() =>
+                email
+                  ? navigate(staticServerUri + routes.cart)
+                  : alert("로그인 후 이용 가능합니다.")
+              }
+            >
+              <BsCart2 />
+            </LinkButton>
+          </div>
+          {email ? (
+            <LinkButton
+              className="login"
+              type="click"
+              onClick={async () => {
+                await handleLogoutButtonClick();
+                await setTimeout(() => purge(), 200);
+              }}
+            >
+              로그아웃
+            </LinkButton>
+          ) : (
+            <LinkButton
+              className="login"
+              type="click"
+              onClick={handleLoginButtonClick}
+            >
+              로그인
+            </LinkButton>
+          )}
+        </div>
       </GnbOrganism>
     </>
   );

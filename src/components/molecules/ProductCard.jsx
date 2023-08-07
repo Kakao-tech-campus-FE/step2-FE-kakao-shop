@@ -11,20 +11,20 @@ const Container = styled.div`
   }
 
   p {
-    margin-top: -1rem;
     font-size: 1.2rem;
     font-weight: bold;
   }
 `;
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductCard = ({ product }) => {
-  const { id, image, productName, price } = product;
-  const imagePath = `${process.env.REACT_APP_API_URL}${image}`;
+  const { id, productName, price, image } = product;
 
   return (
     <Container>
       <Card to={`/product/${id}`}>
-        <Photo src={`${imagePath}`} alt={productName} />
+        <Photo src={`${staticServerUri}${image}`} alt={productName} />
         <h5 className="product-name">{productName}</h5>
         <p className="product-price">{comma(price)}원</p>
       </Card>

@@ -1,28 +1,24 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import userReducer from "./slices/userSlice";
 import storage from "redux-persist/lib/storage";
-import { combineReducers } from "redux";
 import { persistReducer } from "redux-persist";
+import expireInTransform from "redux-persist-transform-expire-in";
 
-// const reducers = combineReducers({
-//   user: userReducer,
-// });
+const expireIn = 24 * 60 * 60 * 1000;
 
-// const persistConfig = {
-//   key: "root",
-//   storage,
-//   whitelist: ["user"],
-// };
+const persistConfig = {
+  key: "root",
+  storage,
+  transforms: [expireInTransform(expireIn)],
+};
 
-// const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, userReducer);
 
-const store = configureStore({
+export default configureStore({
   reducer: {
-    user: userReducer,
+    user: persistedReducer,
   },
   middleware: getDefaultMiddleware({
     serializableCheck: false,
   }),
 });
-
-export default store;

@@ -537,9 +537,9 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 ✅**과제 1. 배포**
 
 ```
-- Netlify를 통해 배포를 진행합니다.
+- 카카오 배포환경을 통해 배포를 진행합니다.
 - 계정을 생성하고 자신의 레포지토리를 연결해 배포합니다.
-- 배포 레벨에서 사용될 환경 변수는 인스턴스에 적용되도록 직접 설정해줍니다.
+- 배포 레벨에서 사용될 환경 변수는 인스턴스에 적용되도록 직접 설정해줍니다.
 - 배포에 사용될 브랜치는 개발 브랜치와 꼭 분리합니다.
 ```
 
@@ -591,3 +591,45 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 
 </div>
 </details>
+
+# README.md
+
+## kakao-shop
+
+### 프로젝트 정보
+
+- 카카오톡 쇼핑하기 클론 코딩
+- 카카오 테크 캠퍼스
+- 2023.06.26~2023.08.04
+
+### 배포 주소
+
+- [배포 주소](https://user-app.krampoline.com/k301c7e959887a/)
+
+### 배포 환경
+
+- 크램폴린IDE를 활용한 DKOS 배포
+
+1. 컨테이너 생성
+2. D2Hub 이미지 빌드
+3. Kargo App 배포
+4. 외부 실행 URL 등록 및 확인
+
+### 배포 브랜치
+
+- main 브랜치에서 진행
+
+### 배포시 주의사항
+
+`const staticServerUri = process.env.REACT_APP_PATH || "";`
+다음과 같은 staticServerUri를 모든 path에 prefix로 붙여야 함.
+
+### 설치 및 실행
+
+```
+$ git clone https://github.com/baegyeong/step2-FE-kakao-shop2.git
+$ cd step2-FE-kakao-shop2
+$ npm start
+```
+
+- /src/services/index.js에서 baseURL을 `process.env.REACT_APP_API_URL` 로 변경해야 로컬에서 작동

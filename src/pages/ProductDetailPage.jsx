@@ -28,16 +28,17 @@ const ProductDetailPage = () => {
     }
 
     const requiredKeys = ["id", "productName"];
-
     const keys = Object.keys(product);
+
     for (let i = 0; i < requiredKeys.length; i++) {
       const requiredKey = requiredKeys[i];
       if (!keys.includes(requiredKey)) {
         alert(`product 객체에 ${requiredKey}가 존재하지 않습니다.`);
         return false;
       }
-      return true;
     }
+
+    return true;
   };
 
   const isValidProduct = validate();
