@@ -1,3 +1,5 @@
-const Title = ({ className, children }) => <h1 className={`title ${className}`}>{children}</h1>;
+const Title = ({ className, children }) => (
+  <h1 className={`title ${className}`}>{children}</h1>
+);
 
 export default Title;

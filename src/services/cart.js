@@ -6,13 +6,13 @@ import instance from "./api";
  * @returns {Promise<axios.AxiosResponse<any>>}
  */
 export const addCart = (payload) => {
-    return instance.post("/carts/add", payload)
-}
+  return instance.post("/carts/add", payload);
+};
 
 export const getCart = () => {
-    return instance.get("/carts")
-}
+  return instance.get("/carts");
+};
 
 export const updateCart = (payload) => {
-    return instance.post("/carts/update", payload)
-}
+  return instance.post("/carts/update", payload);
+};

@@ -1,14 +1,16 @@
-const ToggleButton = ({isToggled, setIsToggled}) => {
+const ToggleButton = ({ isToggled, setIsToggled }) => {
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
+  };
 
-    const handleToggle = () => {
-        setIsToggled(!isToggled);
-    };
-
-    return (
-        <button onClick={handleToggle} className={"toggle-button " + `${isToggled ? "active":""}`}>
-            {isToggled ? 'ON' : 'OFF'}
-        </button>
-    );
-}
+  return (
+    <button
+      onClick={handleToggle}
+      className={"toggle-button " + `${isToggled ? "active" : ""}`}
+    >
+      {isToggled ? "ON" : "OFF"}
+    </button>
+  );
+};
 
 export default ToggleButton;

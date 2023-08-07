@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
-import {BsPlusLg} from "react-icons/bs";
-import {BiMinus} from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { BsPlusLg } from "react-icons/bs";
+import { BiMinus } from "react-icons/bi";
 
-const NUMBER_REGEX = /^\d+$/
+const NUMBER_REGEX = /^\d+$/;
 /**
  *
  * @param value counter의 값
@@ -16,77 +16,91 @@ const NUMBER_REGEX = /^\d+$/
  * @constructor
  */
 const Counter = ({
-                     value,
-                     handleOnChange,
-                     className = "",
-                     underBound: lowerBound = 1,
-                     handleOnLowerBound = () => {
-                         console.log("underflow")
-                     },
-                     upperBound = 1000,
-                     handleOnUpperBound = () => {
-                         console.log("overflow")
-                     },
-                 }) => {
-
-
-    const handleOnIncrease = () => {
-        if (value >= upperBound) {
-            handleOnUpperBound()
-            return;
-        }
-        handleOnChange(value + 1);
+  value,
+  handleOnChange,
+  className = "",
+  underBound: lowerBound = 1,
+  handleOnLowerBound = () => {
+    console.log("underflow");
+  },
+  upperBound = 1000,
+  handleOnUpperBound = () => {
+    console.log("overflow");
+  },
+}) => {
+  const handleOnIncrease = () => {
+    if (value >= upperBound) {
+      handleOnUpperBound();
+      return;
     }
-    const handleOnDecrease = () => {
-        if (value <= 1) {
-            handleOnLowerBound()
-            return;
-        }
-        handleOnChange(value - 1);
+    handleOnChange(value + 1);
+  };
+  const handleOnDecrease = () => {
+    if (value <= 1) {
+      handleOnLowerBound();
+      return;
     }
+    handleOnChange(value - 1);
+  };
 
-    const [tempInput, setTempInput] = useState(value)
+  const [tempInput, setTempInput] = useState(value);
 
-    const validateInput = (e) => {
-        const input = parseInt(e.target.value);
-        if (!NUMBER_REGEX.test(e.target.value) || isNaN(input) || input < lowerBound) {
-            handleOnLowerBound()
-            setTempInput(lowerBound);
-            handleOnChange(lowerBound);
-            return;
-        }
-
-        if (input > upperBound) {
-            handleOnUpperBound()
-            setTempInput(lowerBound);
-            handleOnChange(upperBound);
-            return;
-        }
-        handleOnChange(input);
+  const validateInput = (e) => {
+    const input = parseInt(e.target.value);
+    if (
+      !NUMBER_REGEX.test(e.target.value) ||
+      isNaN(input) ||
+      input < lowerBound
+    ) {
+      handleOnLowerBound();
+      setTempInput(lowerBound);
+      handleOnChange(lowerBound);
+      return;
     }
 
-
-    useEffect(() => {
-        setTempInput(value)
-    }, [value])
-
-    const handleInput = (e) => {
-        setTempInput(e.target.value);
+    if (input > upperBound) {
+      handleOnUpperBound();
+      setTempInput(lowerBound);
+      handleOnChange(upperBound);
+      return;
     }
+    handleOnChange(input);
+  };
 
+  useEffect(() => {
+    setTempInput(value);
+  }, [value]);
 
-    return (
-        <div className={`counter w-full flex flex-row ${className}`}>
-            <button onClick={handleOnDecrease}
-                    className={"w-1/4 border border-light-gray-700 flex justify-center items-center"}><BiMinus/>
-            </button>
-            <input className={`option-counter w-2/4 text-center `} value={tempInput} onBlur={validateInput}
-                   onChange={handleInput}></input>
-            <button onClick={handleOnIncrease}
-                    className={"w-1/4 border border-light-gray-700 flex justify-center items-center"}><BsPlusLg/>
-            </button>
-        </div>
-    )
-}
+  const handleInput = (e) => {
+    setTempInput(e.target.value);
+  };
+
+  return (
+    <div className={`counter flex w-full flex-row ${className}`}>
+      <button
+        onClick={handleOnDecrease}
+        className={
+          "flex w-1/4 items-center justify-center border border-light-gray-700"
+        }
+      >
+        <BiMinus />
+      </button>
+      <input
+        className={`option-counter w-2/4 text-center `}
+        value={tempInput}
+        onBlur={validateInput}
+        onChange={handleInput}
+      ></input>
+      <button
+        onClick={handleOnIncrease}
+        className={
+          "flex w-1/4 items-center justify-center border border-light-gray-700"
+        }
+      >
+        <BsPlusLg />
+      </button>
+    </div>
+  );
+};
 
 export default Counter;

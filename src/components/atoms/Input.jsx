@@ -1,5 +1,3 @@
-import "../../styles/atoms/input.css";
-
 /**
  *
  * @param id 해당 input의 id입니다. input의 유일성을 위해 사용됩니다.
@@ -12,19 +10,24 @@ import "../../styles/atoms/input.css";
  * @constructor
  */
 const Input = ({
-                   id, type, value, placeholder, onChange, onBlur = () => {
-    }
-               }) => (
-    <input
-        id={id}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => {
-            onChange(e);
-        }}
-        onBlur={onBlur}
-        className={`input ${id}`}
-    />);
+  id,
+  type,
+  value,
+  placeholder,
+  onChange,
+  onBlur = () => {},
+}) => (
+  <input
+    id={id}
+    type={type}
+    placeholder={placeholder}
+    value={value}
+    onChange={(e) => {
+      onChange(e);
+    }}
+    onBlur={onBlur}
+    className={`input ${id} w-full border border-gray-300 p-2`}
+  />
+);
 
 export default Input;

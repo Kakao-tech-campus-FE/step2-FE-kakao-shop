@@ -1,8 +1,0 @@
-picture.card {
-
-}
-
-/*부모에 맞춰 이미지 크기를 바꾸어야 한다.*/
-picture > img {
-    width : inherit;
-}

@@ -2,9 +2,6 @@ import Label from "../atoms/Label";
 import Input from "../atoms/Input";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
-import "../../styles/molecules/inputGroup.css"
-
-// @ts-check
 
 /**
  *
@@ -21,37 +18,41 @@ import "../../styles/molecules/inputGroup.css"
  */
 
 const InputGroup = ({
-                        id,
-                        value,
-                        label,
-                        type,
-                        placeholder,
-                        onChange,
-                        errorMsg="",
-                        onBlur=()=>{}
-                    }) => {
-    return (
-        <Box className={`input-group ${id}`}>
-            <Container className="input-group-label">
-                <div>
-                    <Label htmlFor={id} className={id}>
-                        {label}
-                    </Label>
-                </div>
-                {<div className={`error-msg ${id}`}>{errorMsg}</div>}
-            </Container>
-            <div>
-                <Input
-                    id={id}
-                    type={type}
-                    value={value}
-                    placeholder={placeholder}
-                    onChange={onChange}
-                    onBlur={onBlur}
-                />
-            </div>
-        </Box>
-    );
-}
+  id,
+  value,
+  label,
+  type,
+  placeholder,
+  onChange,
+  errorMsg = "",
+  onBlur = () => {},
+}) => {
+  return (
+    <Box className={`input-group ${id}`}>
+      <Container className="input-group-label flex w-full justify-between p-1">
+        <div>
+          <Label htmlFor={id} className={`${id} `}>
+            {label}
+          </Label>
+        </div>
+        {
+          <div className={`error-msg text-sm text-red-600 ${id}`}>
+            {errorMsg}
+          </div>
+        }
+      </Container>
+      <div>
+        <Input
+          id={id}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          onBlur={onBlur}
+        />
+      </div>
+    </Box>
+  );
+};
 
 export default InputGroup;

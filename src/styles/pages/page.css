@@ -1,17 +1,6 @@
 .page {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-    /*padding-bottom: 180px;*/
-    min-height: calc(100vh - 180px);
-}
-
-.home-page-content {
-    height : 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
