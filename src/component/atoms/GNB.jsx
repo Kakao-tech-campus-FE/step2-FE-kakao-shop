@@ -41,7 +41,7 @@ const [isLogin, setIsLogin] = useState(false);
         <header className="header flex justify-center items-center">
             <div className="flex justify-center items-center">
             <h1 className="navigation flex justify-center items-center">
-                <Link to href= {staticServerUrl + "/"}>
+                <Link to= {staticServerUrl + "/"}>
                    <img src={logokakao} alt="카카오 쇼핑 로고" height={30}/>
                 </Link>
             </h1>
