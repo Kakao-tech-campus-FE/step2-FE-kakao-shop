@@ -4,8 +4,8 @@
 
 
 ## Requirements
-Node.js v18.16.1
-npm v9.5.1
+Node.js 
+npm 
 
 ## Installation
 
