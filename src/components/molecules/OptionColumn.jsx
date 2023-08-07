@@ -35,6 +35,63 @@ const OptionColumn = ({ product }) => {
       },
     ]);
   };
+  const handleOnClickCart = () => {
+    new Promise((resolve, reject) => {
+      if (getCookie("token") === null) {
+        alert("로그인이 필요한 서비스입니다.");
+        navigate("/login");
+        reject(0);
+        return;
+      }
+      checkCart(data?.data?.response);
+      resolve(1);
+    })
+      .then(() => {
+        if (selectiedOptions.length === 0) {
+          return alert("장바구니에 담을 옵션을 선택해주세요.");
+        }
+        if (modifiedOptions.length !== 0) {
+          mu2(modifiedOptions);
+        }
+        mutate(
+          selectiedOptions.map((el) => {
+            return {
+              optionId: el.optionId,
+              quantity: el.quantity,
+            };
+          }),
+          {
+            onSuccess: () => {
+              alert("장바구니에 담겼습니다.");
+              setSelectiedOptions([]);
+            },
+            onError: (e) => {
+              console.log(e);
+              alert("failed");
+            },
+          }
+        );
+      })
+      .catch(() => {
+        return;
+      });
+  };
+  const handleOnClickBuy = () => {
+    if (data?.data?.response?.products.length === 0) {
+      alert("장바구니에 담긴 상품이 없습니다.");
+    } else if (
+      !data?.data?.response?.products.reduce((arr, cur) => {
+        return (
+          arr +
+          cur.carts.reduce((acc, cur) => {
+            return acc + cur.quantity;
+          }, 0)
+        );
+      }, 0)
+    ) {
+      alert("장바구니에 담긴 상품이 없습니다.");
+    } else navigate("/cart");
+  };
   const handleOnChange = (count, optionId) => {
     if (count < 0) return;
     setSelectiedOptions((prev) => {
@@ -109,7 +166,7 @@ const OptionColumn = ({ product }) => {
 
   const { data, error, isLoading } = useQuery(`/carts`, () => inCart());
   return (
-    <div className="option-column w-full h-full mt-10 pt-10 bg-white">
+    <div className="option-column w-full h-full pt-10 bg-white">
       <h3 className="text-left text-l font-bold boarder-2 border-inherit border-black block">
         옵션 선택
       </h3>
@@ -169,56 +226,14 @@ const OptionColumn = ({ product }) => {
         {/* 장바구니 담기 버튼 위치 */}
         <Button
           className="bg-yellow-500 hover:bg-yellow-600 h-auto text-white font-bold py-2 px-1 w-2/3 mt-10 rounded cursor-pointer transition-colors duration-300"
-          onClick={() => {
-            new Promise((resolve, reject) => {
-              if (getCookie("token") === null) {
-                alert("로그인이 필요한 서비스입니다.");
-                navigate("/login");
-                reject(0);
-                return;
-              }
-              checkCart(data?.data?.response);
-              resolve(1);
-            })
-              .then(() => {
-                if (selectiedOptions.length === 0) {
-                  return alert("장바구니에 담을 옵션을 선택해주세요.");
-                }
-                if (modifiedOptions.length !== 0) {
-                  mu2(modifiedOptions);
-                }
-                mutate(
-                  selectiedOptions.map((el) => {
-                    return {
-                      optionId: el.optionId,
-                      quantity: el.quantity,
-                    };
-                  }),
-                  {
-                    onSuccess: () => {
-                      alert("장바구니에 담겼습니다.");
-                      //console.log(data);
-                    },
-                    onError: (e) => {
-                      console.log(e);
-                      alert("failed");
-                    },
-                  }
-                );
-              })
-              .catch(() => {
-                return;
-              });
-          }}
+          onClick={handleOnClickCart}
         >
           장바구니 담기
         </Button>
         {/* 톡딜가 구매 : 개발 x */}
         <Button
           className="bg-gray-500 hover:bg-yellow-600 text-white font-bold py-2 px-1 w-2/3 rounded cursor-pointer transition-colors duration-300"
-          onClick={() => {
-            navigate("/cart");
-          }}
+          onClick={handleOnClickBuy}
         >
           구매하기
         </Button>

@@ -1,15 +1,16 @@
-import { Suspense } from "react";
 import { inCart } from "../services/cart";
 import { useQuery } from "react-query";
 import Loader from "../components/atoms/Loader";
 import CartList from "../components/molecules/CartList";
 
 const CartPage = () => {
-  const { data } = useQuery("cart", () => inCart());
+  const { data, isLoading } = useQuery("cart", inCart);
+
   return (
-    <Suspense fallback={<Loader />}>
-      <CartList data={data} />
-    </Suspense>
+    <div>
+      {isLoading && <Loader />}
+      {data && <CartList data={data} />}
+    </div>
   );
 };
 export default CartPage;

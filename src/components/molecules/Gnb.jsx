@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Container from "../atoms/Container";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Button from "../atoms/Button";
 import { setLogin } from "../../store/slices/userSlice";
 import { deleteCookie, getCookie } from "../../store/cookies";
@@ -25,14 +25,20 @@ const GNB = ({ children }) => {
             onClick={() => gohome("/")}
           />
         </h1>
-        <Container className="text-base leading-6 font-sans text-gray-700 relative pt-13 pr-0 pb-13 pl-3 grid place-items-end">
-          <span className="mr-10">
+        <Container className="text-base leading-6 font-sans text-gray-700 pt-13 pr-0 pb-13 pl-3 flex justify-end">
+          <span className="block mt-3 mr-4">
             <Link to="/cart">
-              <img src={"/cart.png"} alt="장바구니 버튼" height={30} />
+              <img
+                src={"/cart.png"}
+                alt="장바구니 버튼"
+                height={30}
+                width={40}
+              />
             </Link>
           </span>
+          <span className="block text-xl mt-4 pr-4">|</span>
           <Button
-            className="text-base leading-7 font-sans text-black no-underline mb-4 pb-0 px-12 font-semibold block"
+            className="text-base leading-7 font-sans text-black no-underline font-semibold block"
             onClick={() => {
               let url = "/login";
               if (token) {

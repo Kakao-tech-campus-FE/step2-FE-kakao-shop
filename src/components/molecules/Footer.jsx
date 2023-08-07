@@ -2,11 +2,11 @@ const Footer = () => {
   return (
     <footer className="flex place-content-center border-t-2 pt-4 w-[100%] gap-10 ">
       <div className="items-center justify-center w-[150px] mt-10">
-        <span className="font-bold text-xl">카카오톡 쇼핑하기</span>
+        <span className="font-bold text-lg">카카오톡 쇼핑하기</span>
       </div>
       <div className="flex flex-col items-center justify-center w-[500px]">
         <span className="text-sm font-thin text-slate-400">
-          (주)카카오대표이사 : 홍은택주소 : 제주특별자치도 제주시 첨단로 242
+          (주)카카오대표이사 : 홍은택 주소 : 제주특별자치도 제주시 첨단로 242
         </span>
         <span className="text-sm font-thin text-slate-400">
           사업자등록번호 : 120-81-4752 1 통신판매업신고 : 제2015 - 제주아라 -

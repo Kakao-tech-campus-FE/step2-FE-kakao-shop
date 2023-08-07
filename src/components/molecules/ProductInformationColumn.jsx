@@ -9,8 +9,10 @@ const ProductInformationColumn = ({ product }) => {
         <Photo src={image} alt={productName} />
       </div>
       <div className="col pt-10">
-        <h1 className="name mt-3 ml-10 text-left">{productName}</h1>
-        <h1 className="price text-left mt-10 ml-10">{comma(price)}원</h1>
+        <h1 className="name mt-3 ml-10 text-left font-bold">{productName}</h1>
+        <h1 className="price text-left mt-10 ml-10 font-bold text-lg">
+          {comma(price)}원 ~
+        </h1>
       </div>
     </div>
   );
