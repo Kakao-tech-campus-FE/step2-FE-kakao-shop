@@ -3,12 +3,13 @@ import Button from "../atoms/Button";
 import { useCallback, useEffect, useState,useRef } from "react";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
-import CartItems from "../atoms/CartItems";
+import CartItems from "../atoms/CartItem";
 // import { comma } from "../../utils/convert";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { updateCart } from "../../services/cart";
-const staticServerUri = process.env.REACT_APP_PATH || "";
+import { useMutation } from "react-query";
+import { updateCart } from "../../services/addCart";
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const CartList = ({data}) => {
    
     const route=useNavigate();
@@ -144,7 +145,7 @@ const CartList = ({data}) => {
                 console.log(getPayload())
                 mutate(getPayload(),{
                     onSuccess:(data)=>{
-                        route(`${staticServerUri}/order`)
+                        route(`${staticServerUrl}/order`)
                     },
                     onError:(error)=>{
 
