@@ -153,12 +153,7 @@ const OptionColumn = ({product}) => {
           <img src={"/cart_white.png"} alt="장바구니 담기" className="h-15" />
         </Button>
         <div>
-          <button 
-            className="text-xl block w-full h-15 mx-4 px-10 py-5 bg-yellow-400 rounded"
-            onClick={() => {
-              Navigate('/')
-            }}
-          >구매하기</button>
+          <button className="text-xl block w-full h-15 mx-4 px-10 py-5 bg-yellow-400 rounded">구매하기</button>
         </div>
       </div>
     </div>
