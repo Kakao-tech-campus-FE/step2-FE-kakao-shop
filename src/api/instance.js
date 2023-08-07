@@ -1,7 +1,5 @@
 import axios from "axios";
 import store from "store/store";
-import { useDispatch } from "react-redux";
-import { clearUserReducer } from "reducers/loginSlice";
 import useLogout from "hooks/useLogout";
 
 const path = process.env.REACT_APP_PATH || "";
