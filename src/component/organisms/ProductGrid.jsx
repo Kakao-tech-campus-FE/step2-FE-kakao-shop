@@ -28,7 +28,7 @@ const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 //presentation components: 데이어를 단순히 표기만 하는 용도
     return(
-      <div className="product-grid">
+      <div className="inline-grid m-8 grid-cols-4 gap-8">
             {products && products.map((product)=>(
                 <ProductCard key={product.id} product={product} />
             ))}
