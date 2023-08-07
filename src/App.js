@@ -7,7 +7,7 @@ import MainLayout from "./layouts/MainLayout";
 import ProductDetailPage from "./pages/ProductDetailPage";
 
 function App(){
-	const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
 
   
 
