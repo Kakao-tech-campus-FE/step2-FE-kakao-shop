@@ -1,148 +1,142 @@
 import { useState } from "react";
 import OptionList from "../atoms/OptionList";
-import ProductSlice from "../../store/slices/ProductSlice";
-import { useMutation } from "react-query";
+// import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
-import { comma } from "../../utils/convert";
-import { addCart } from "../../services/addCart";
+import { useMutation } from "react-query";
 import Button from "../atoms/Button";
+import { addCart } from "../../services/addCart";
+// import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+// const queryClient = new QueryClient();
 
-const OptionColumn = ({ product }) => {
-  const [selectedOptions, setselectedOptions]=useState([ ]);
-  const {productName, price, image} = product;
-  const handleOnClickOption=(option)=>{
-
-    // const sampleArray= [1,2,3];
-    // const findTwo=sampleArray.find((el)=>{
-    //   return el ===2;
-    // });
-    const isOptionSelected=selectedOptions.find(
-      (el)=> el.optionId===option.id
-    );
-
-    if(isOptionSelected){
-      // setselectedOptions((prev)=>
-      // prev.map((el)->
-      // el.optionId===option.id
-      // ?{...el.}))
-      return;
-    }
-      setselectedOptions((prev)=>[
-      ...prev,
-      {
-        optionId: option.id,
-        quantity: 1,
-        price: option.price,
-        name: option.optionName
-      }
-    ])
-  }
-  const handleOnChange=(count, optionId)=>{
-    setselectedOptions((prev)=>{
-    return prev.map((el)=>{
-      if(el.optionId===optionId){
-        return{
-          ...el,
-          quantity: count,
-        };
-      }
-      return el;
-    });
-  });
-};
-//prototype.methods는 알아야한다.필수.
-//Array메서드: 
-//find, findIndex
-//map, forEach, some, every
-//reduce, 
-//splice, slice
-
-
-//장바구니 담기 api 처리
-//react-query 사용 post
-const{mutate}=useMutation({
-  mutationFn: addCart,
-});
-
-  return (
+const OptionColum = ({ product }) => {
+    const [selectedOptions, setSelectedOptions] = useState([]);
     
-    <div className="flex-none sticky top-20 pt-8 pl-8 pb-8 w-[380px] h-fit">
-      <div className="flex-none w-[430px] ml-7 mt-4">
-          <strong className="font-normal text-[26px] tracking-tight">
-            {productName}
-          </strong>
-          <p className="price">{comma(price)}원</p>
-          </div>
-      <div className="col">
+    const handleOnClickOption = (option) => {
         
-      </div>
-      <h3>옵션 선택</h3>
-      {/* // 옵션담기 할수있는영역 */}
-      <OptionList 
-        options={product.options}
-        // 사용자가 선택한 옵션
-        onClick={handleOnClickOption}
-//장바구니 담기 api = optionId, quantity
-        
-      /> 
-      <hr />
-      {/* 담긴옵션 표기 */}
-      <ol className="selected-option-list">  
-      {selectedOptions.map((option)=>{
-        return(
-          <li key={option.optionId}
-          className=" bg-yellow-100 mt-[10px] p-5">
-            <Counter
-            onIncrease={(count)=>handleOnChange(count, option.id)}
-            onDecrease={(count)=>handleOnChange(count, option.id)}
-            />
-          <span className="name">{option.name}</span>
-          <span className="price">{comma(option.price)}원</span>
-          </li>
+        const isOptionSelected = selectedOptions.find(
+            (el) => el.optionId === option.id
         );
-      })}
-      </ol>
-<hr />
-<div className="total-price">
-  <span>
-    총 수량:{""}
-    {comma(selectedOptions.reduce((acc, cur)=>{
-      //acc:이전값 cur:현재선택된 엘리먼트
-      return acc+cur.quantity;
-    }, 0)
-    )}개
-  </span>
-</div>
-
-{/* ui에서 필요한 정보 = 옵션이름, 가격,수량, 총가격 */}
-      <div className="button-group"></div>
-      {/* 장바구니 담기 */}
-      <Button
-      onClick={()=>{
-        mutate(
-          selectedOptions.map(el=>{
-          return{
-            optionId:el.id,
-            quantity:el.quantity
-          }
-        }),{
-          onSuccess:()=>{
-            alert("장바구니에 담겼습니다.")
-          },
-          onError:()=>{
-            alert("장바구니 담기에 실패했습니다.")
-          }
+        if (isOptionSelected) {
+            return
         }
-        );
-      }}
-      
->
-  주문하기
-</Button>
-    </div>
-  );
+        //prototype.methods 는 필수
+       
+        setSelectedOptions((prev) => [
+            ...prev, //그냥넣어주면 그 전에것들이 삭제되므로
+            {
+                optionId: option.id,
+                quantity: 1,
+                price: option.price,
+                name: option.optionName,
+
+            }
+        ])
+    }
+    const handleOnChange = (count, option) => {
+        setSelectedOptions((prev)=>{
+            return prev.map((el)=>{
+                if(el.optionId === option.optionId){
+                    return {
+                        ...el,
+                        quantity:count,
+                    };
+                }
+                return el
+            })
+        })
+        //df
+    }
+
+    /*장바구니 담기 api 요청*/
+    const {mutate}=useMutation({
+        mutationFn: addCart,
+    })
+    
+    // mutate({
+    //     optionId:option.id,
+    //     quantity:count,
+    // })
+    
+    //console.log(product)
+    return (
+        // <QueryClientProvider client={queryClient}>
+            <div>
+            <h3 className='font-bold text-2xl my-9'>옵션선택</h3>
+            <OptionList
+                options={product.options}
+                //사용자가 선택한 옵션
+                onClick={handleOnClickOption}
+            >
+            </OptionList>
+            <hr className="mb-4"/>
+             {/* 담긴 옵션 표기하기 */}
+                
+             {selectedOptions.map((option) =>(
+                <ol key={option.id}>
+                    <li className="flex">
+                        <Counter
+                            value={option.quantity} 
+                            //리렌더링이슈로 날려줌
+                            //근데 없애면 안나타남...
+                            onIncrease={(count) => handleOnChange(count,option)}
+                            onDecrease={(count) => handleOnChange(count, option)}
+                        >
+                        </Counter>
+                        <span>{option.name}</span>
+                        <span>{option.price}원</span>
+                       
+                    </li>
+                    </ol>
+                )
+                )} 
+           
+            <hr className="my-5"/>
+            <button
+                className="bg-transparent hover:font-semibold text-bubble-gum py-2 px-4 border rounded hover:bg-bubble-gum hover:text-white"
+                onClick={() => {
+                    console.log(selectedOptions)
+                    mutate(
+                        selectedOptions.map((el) => {
+                            return {
+                                optionId:el.optionId,
+                                quantity:el.quantity,
+                            };
+                        }),//payload
+                        {
+                            onSuccess: () => {
+                                alert('장바구니에 담김.')
+                            },
+                            onError: () => {
+                                alert('장바구니에 담기 실패.')
+                            }
+                        }
+                    );
+                }}
+            >장바구니에 담기
+            </button>
+            <button className="mx-5 bg-transparent hover:font-semibold text-bubble-gum py-2 px-4 border rounded hover:bg-bubble-gum hover:text-white">구매하기</button>
+            
+            <span className="mx-5">
+                총 수량 : {''}
+                {
+                    selectedOptions.reduce((acc, cur) => {
+                        return acc + cur.quantity;
+                    }, 0)
+                }개
+            </span>
+            <span>
+                총 상품금액 : {''}
+                {
+                  selectedOptions.reduce((acc, cur) => {
+                        return acc + cur.quantity * cur.price;
+                    }, 0)
+                }원
+            </span>
+        </div >
+        // </QueryClientProvider>
+        
+    );
 };
 
-
-export default OptionColumn;
+export default OptionColum;
