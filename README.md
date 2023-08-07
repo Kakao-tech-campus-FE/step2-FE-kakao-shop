@@ -27,17 +27,17 @@ npm run start
 
 
 ## Stacks
-### Enviroment
+#### Enviroment
 <div>
 <img src="https://img.shields.io/badge/GIT-F05032?style=for-the-badge&logo=GIT&logoColor=white">
 <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=GITHUB&logoColor=white">
 <img src="https://img.shields.io/badge/VISUAL STUDIO CODE-007ACC?style=for-the-badge&logo=VISUAL STUDIO CODE&logoColor=white">
 </div>
 
-### Config
+#### Config
 <img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
 
-### Development
+#### Development
 <div>
 <img src="https://img.shields.io/badge/JAVASCRIPT-F7DF1E?style=for-the-badge&logo=JAVASCRIPT&logoColor=white">
 <img src="https://img.shields.io/badge/REACT-61DAFB?style=for-the-badge&logo=REACT&logoColor=white">
@@ -47,13 +47,13 @@ npm run start
 <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Redux&logoColor=white">
 </div>
 
-### CSS
+#### CSS
 <div>
 <img src="https://img.shields.io/badge/tailwind-06B6D4?style=for-the-badge&logo=tailwind&logoColor=white">
 <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled components&logoColor=white">
 </div>
 
-### Test
+#### Test
 <div>
 <img src="https://img.shields.io/badge/puppeteer-40B5A4?style=for-the-badge&logo=tailwind&logoColor=white">
 <img src="https://img.shields.io/badge/jest-C21325?style=for-the-badge&logo=styled components&logoColor=white">
@@ -63,10 +63,10 @@ npm run start
 
 카카오 크램폴린 이용
 
-### 배포 브랜치
+#### 배포 브랜치
 main
 
-### 배포 환경 변수
+#### 배포 환경 변수
 링크를 사용하는 모든 react-router 컴포넌트 파일에 아래 static path를 불러와서 선언하고, 
 링크의 앞부분에 static path를 붙여준다.
 ```
@@ -75,7 +75,7 @@ const staticServerUrl = process.env.REACT_APP_PATH || '';
 // 예시
 navigate(staticServerUrl + "/login")
 ```
-### 배포 순서
+#### 배포 순서
   1. 카카오 크램폴린 컨테이너 생성
   2. main 브랜치 연결
   3. 환경 변수 설정
@@ -86,11 +86,9 @@ navigate(staticServerUrl + "/login")
 ## 주요 기능
 
 <details>
-<summary>🎈 1주차 과제</summary>
+<summary>페이지별 요구사항 및 기능</summary>
 <div>
 <br/>
-
-### 과제1 : README.md 작성
 
 - **메인 페이지**
   - 핵심 기능
@@ -206,13 +204,13 @@ navigate(staticServerUrl + "/login")
 
 ## Review
 
-### What I learned
+#### What I learned
 - 프로젝트를 진행하며 React를 거의 처음부터 배웠고, React 사용에 어느정도 익숙해졌다.
 - Atomic 컴포넌트 디자인 구조를 적용하여 여러 컴포넌트를 재사용했다.
 - apis / components / hooks 에 걸쳐 관심사를 분리하는 방법을 알게되었다.
 
 
-### drawbacks
+#### drawbacks
 - 결제 테스트 모듈을 적용하지 못했다. 
 - puppeteer 외에도 storybook, cypress, playwright 등으로 테스트 진행했으면 좋았을 듯
 - jsx 파일에 prettier를 적용하지 않음
