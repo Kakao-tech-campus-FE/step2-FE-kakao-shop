@@ -12,7 +12,7 @@ import { updateCart } from "../../services/cart";
 const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const CartList = ({ data }) => {
-  const router = useNavigate();
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
@@ -103,7 +103,7 @@ const CartList = ({ data }) => {
         onClick={() => {
           mutate(updatePayload, {
             onSuccess: (data) => {
-              router(staticServerUrl + "/order");
+              navigate(staticServerUrl + "/order");
             },
             onError: (error) => {
               alert("에러 발생");

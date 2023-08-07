@@ -23,16 +23,17 @@ const OptionColumn = ({ product }) => {
         )
       );
     }
-
-    setSelectedOptions((prev) => [
-      ...prev,
-      {
-        optionId: option.id,
-        quantity: 1,
-        price: option.price,
-        name: option.optionName,
-      },
-    ]);
+    else{
+      setSelectedOptions((prev) => [
+        ...prev,
+        {
+          optionId: option.id,
+          quantity: 1,
+          price: option.price,
+          name: option.optionName,
+        },
+      ]);
+    };
   };
 
   const handleOnchange = (count, optionId) => {
@@ -65,11 +66,11 @@ const OptionColumn = ({ product }) => {
       />
       {/* 담긴 옵션이 표기 */}
       {selectedOptions.map((option) => (
-        <ol key={option.id} className="selected-option-list">
+        <ol key={option.optionId} className="selected-option-list">
           <li className="selected-option">
             <Counter
-              onIncrease={(count) => handleOnchange(count, option.id)}
-              onDecrease={(count) => handleOnchange(count, option.id)}
+              onIncrease={(count) => handleOnchange(count, option.optionId)}
+              onDecrease={(count) => handleOnchange(count, option.optionId)}
             />
             <span className="name">{option.name}</span>
             <span className="price">{comma(option.price)}원</span>
