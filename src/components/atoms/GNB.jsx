@@ -24,13 +24,13 @@ function GNB() {
     <header className="header">
       <div className="contents">
         <Link to={staticServerUrl + "/"}>
-          <img src={staticServerUrl + "logokakao.png"} alt="장바구니 쇼핑 로고" height={30} />
+          <img src={"logokakao.png"} alt="장바구니 쇼핑 로고" height={30} />
         </Link>
         <nav>
           <div className="navigation">
             <span>
-              <Link to={staticServerUrl + "/cart"}>
-                <img src={staticServerUrl + "/cart.png"} alt="장바구니 버튼" height={30} />
+            <Link to={staticServerUrl + "/cart"}>
+                <img src={"/cart.png"} alt="장바구니 버튼" height={30} />
               </Link>
             </span>
             <span className="line">|</span>
@@ -55,14 +55,14 @@ function GNB() {
               ) : (
                 <>
                   <Link
-                    to={staticServerUrl + "/login"}
+                    to="/login"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     로그인
                   </Link>
                   <span className="line">|</span>
                   <Link
-                    to={staticServerUrl + "/signup"}
+                    to="/signup"
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     회원가입

@@ -2,7 +2,7 @@ import Container from "../atoms/Container";
 import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
-import { register } from "../../services/user";
+import { register } from "../../services/user.js";
 import { useNavigate } from "react-router-dom";
 
 const staticServerUrl = process.env.REACT_APP_PATH || "";

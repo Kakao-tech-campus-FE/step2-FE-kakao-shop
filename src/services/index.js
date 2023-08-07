@@ -5,7 +5,7 @@ const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 export const instance = axios.create({
   baseURL: staticServerUrl + "/api",
-  timeout: 5000,
+  timeout: 1000,
   headers: {
     "Content-Type": "application/json",
   },
