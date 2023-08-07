@@ -14,7 +14,8 @@ export const orderSave = () => {
  * @param {Number} orderId
  * @returns 
  */
-export const getOrderResult = (orderId = 1) => {
-    removeTokenInterceptor();
+export const getOrderResult = ({ queryKey }) => {
+    const [_, orderId] = queryKey;
+    tokenInterceptor();
     return instance.get(`/orders/${orderId}`)
 }

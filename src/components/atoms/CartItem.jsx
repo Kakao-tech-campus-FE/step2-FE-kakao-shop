@@ -5,6 +5,8 @@ import { comma } from "../../utils/convert";
 import { useState, useEffect } from "react";
 import Photo from "./Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const CartItem = ({ item, onChange }) => {
     const [isEmpty, setIsEmpty] = useState(false);
 
@@ -21,7 +23,12 @@ const CartItem = ({ item, onChange }) => {
                 <span className={styles.cart_item_image}>
                     <Photo
                         className="rounded-[4px]"
-                        src={`${process.env.REACT_APP_API_URL}images/${item.id}.jpg`}
+                        src={
+                            staticServerUri ?
+                            staticServerUri + `/images/${item.id}.jpg`
+                            :
+                            `${process.env.REACT_APP_API_URL}images/${item.id}.jpg`
+                        }
                         alt={item.productName}
                     />
                 </span>

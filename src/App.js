@@ -14,26 +14,24 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
-import Checkout from "./pages/Checkout";
 import OrderSuccessPage from "./pages/OrderSuccessPage";
 import OrderFailPage from "./pages/OrderFailPage";
 import OrderTempPage from "./pages/OrderTempPage";
+import ErrorPage from "./pages/ErrorPage";
 
-// const HomePage = lazy(() => import('./pages/HomePage'));
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function App() {
     return (
         <div className="App">
           <Suspense fallback={<Loader />}>
-            <BrowserRouter>
+            <BrowserRouter basename={staticServerUri}>
               <Routes>
                 {/* 단독 레이아웃 */}
                 <Route path="/login" element={<LoginPage />}/>
                 <Route path="/register" element={<RegisterPage />}/>
                 <Route path="/notFound" element={<NotFoundPage />} />
-                {/* <Route path="/payment" element={<Checkout />} />
-                <Route path="/payment/success" element={<OrderSuccessPage />} />
-                <Route path="/payment/fail" element={<OrderFailPage />} /> */}
+                <Route path="/error" element={<ErrorPage />} />
                 
                 {/* 공통 레이아웃 */}
                 <Route element={<MainLayout />}>

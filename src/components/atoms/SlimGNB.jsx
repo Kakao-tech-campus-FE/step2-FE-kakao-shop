@@ -7,6 +7,8 @@ import styles from "./SlimGNB.module.css";
 import logoKakao from "../../assets/logoKakao.png";
 import cart from "../../assets/cart.png";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const SlimGNB = () => {
     const token = useSelector((state) => state.user.token);
     const dispatch = useDispatch();
@@ -36,9 +38,9 @@ const SlimGNB = () => {
                     <span className={styles.partition}></span>
                     <div className={styles.user_menu}>
                         { token ? 
-                            <Link to="/" onClick={handleLogout}>로그아웃</Link>
+                            <Link to={staticServerUri + "/"} onClick={handleLogout}>로그아웃</Link>
                             :
-                            <Link className={styles.link_login} to="/login">로그인</Link>
+                            <Link className={styles.link_login} to={staticServerUri + "/login"}>로그인</Link>
                         }
                     </div>
                 </div>

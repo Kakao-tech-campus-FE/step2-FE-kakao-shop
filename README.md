@@ -83,10 +83,68 @@
 ### 디렉터리 구조
 
 └─ src
- ├─ apis
+
+ ├─ services
+
  ├─ assets
+
  ├─ components
+
  ├─ styles
+
  ├─ hooks
- ├─ dto
+
  ├─ utils
+
+ <br />
+
+ # 배포
+
+## 배포 환경 - Krampoline
+
+ - 카카오 클라우드(9rum) 자원을 제공하는 서비스
+ - 클라우드에 대한 사전 정보를 최소한으로 요구하는 교육용 서비스
+  - Container 기반
+ 
+ ## Krampoline IDE를 사용한 배포 순서
+ 1. 배포할 github branch 연결
+
+     - public으로 된 branch 가져오기
+     - Git 탭 > Pull 버튼으로 변경사항 적용
+
+<br />
+
+ 2. D2Hub 이미지 빌드
+    
+    - 배포 탭 > D2Hub 탭에서 레포지토리 생성 
+    - 생성된 레포지토리 클릭 > 빌드하기 버튼
+    - 빌드 실패 시 로그 확인
+
+<br />
+    
+ 3. Kargo App 배포
+
+    - 배포 탭 > Kargo 탭에서 앱 등록
+    - 등록된 앱 클릭하여 배포하기 버튼
+    - 외부 접속 URL 생성
+
+ ## 배포에 영향 받는 브랜치
+
+ - 현재 레포지토리의 main 브랜치
+    https://github.com/dabinchiii/step2-FE-kakao-shop
+
+ - 개발용 브랜치 : feat-LeeDabin
+
+ - 개발용 브랜치에서 작업 후, main으로 merge하여 배포
+
+ ## 배포 시 주의 사항
+ - 배포된 앱은 `https://user-app.krampoline.com/[uid]` 와 같은 base url을 갖기 때문에, static path 관련 설정이 필요
+
+    - react-router-dom, window.location.href 사용한 부분
+
+<br />
+
+ - Dockfile 잘 추가되었는지 확인
+
+  - 추후 변경 사항이 있다면 main 브랜치에 작성하여 재배포
+
