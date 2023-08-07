@@ -9,6 +9,7 @@ import React, { useState, useEffect, Suspense} from 'react';
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
 
 const ProductDetailPage = ()=>{
     const navigate=useNavigate();
@@ -17,7 +18,7 @@ const ProductDetailPage = ()=>{
         data, 
         error, 
         isLoading,
-    }= useQuery(`product/${id}`, ()=> 
+    }= useQuery(['product', id], ()=> 
     getProductById(id)); // 구분자, api 요청 함수
 
 

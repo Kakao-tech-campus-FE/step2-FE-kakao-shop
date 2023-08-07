@@ -18,6 +18,8 @@ const [updatePayload, setUpdatePayload]=useState([]);//렌더링에 관여x
 
 //const updatePayload=useRef([]);
 const initPayload=useRef([]);//렌더링에 관여하지 않는다.
+	
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
 
 const {mutate}=useMutation({
     mutationFn: updateCart,
@@ -119,7 +121,7 @@ return(
                     //장바구니 정보를 수정하는 api호출(개수 변경이 있다면)
                     mutate(updatePayload,{
                         onSuccess:(data)=>{
-                            route.push("/order")
+                            route.push(staticServerUrl + "/order")
                         },
                         onError:(error)=>{
             
