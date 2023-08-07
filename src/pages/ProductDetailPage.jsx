@@ -9,7 +9,7 @@ import React, { useState, useEffect, Suspense} from 'react';
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const ProductDetailPage = ()=>{
     const navigate=useNavigate();

@@ -19,7 +19,7 @@ const [updatePayload, setUpdatePayload]=useState([]);//렌더링에 관여x
 //const updatePayload=useRef([]);
 const initPayload=useRef([]);//렌더링에 관여하지 않는다.
 	
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const {mutate}=useMutation({
     mutationFn: updateCart,

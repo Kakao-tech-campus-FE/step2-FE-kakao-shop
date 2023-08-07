@@ -4,7 +4,7 @@ import React, { useState, useEffect} from "react";
 import Photo from "../atoms/Photo";
 import Card from "../atoms/Card";
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
     const ProductGrid = ({ product }) => {
         const [products, setData] = useState(null);

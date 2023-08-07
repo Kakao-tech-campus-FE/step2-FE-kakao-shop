@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getCookie } from './user';
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 export const instance = axios.create({
     baseURL: staticServerUrl+ "/api",

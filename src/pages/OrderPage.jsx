@@ -4,7 +4,7 @@ import { useQuery } from "react-query"
 import OrderTemplate from "../component/templates/OrderTemplate"
 import Loader from "../component/atoms/Loader"
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const OrderPage=()=>{
     const {data, error, isLoading} = useQuery(['cart'], getCart);

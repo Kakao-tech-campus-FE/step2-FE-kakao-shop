@@ -1,7 +1,7 @@
 import {comma} from '../../utils/convert';
 import Photo from '../atoms/Photo';
 
-	const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
 const ProductInformationColumn = ({product}) => {
   const {productName, price, image} = product;
   return (

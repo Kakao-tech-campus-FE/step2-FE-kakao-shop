@@ -8,7 +8,7 @@ const initialState = {
     token: null,
 };
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const userSlice = createSlice({
     name: "user",

@@ -9,7 +9,7 @@ const initialState = {
   isEnd: false,
 };
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 
 const productsSlice = createSlice({
