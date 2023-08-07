@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
+const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
 
 const GNB=()=>{
     //const [isLogin, setIsLogin]=useState(false);

@@ -21,7 +21,7 @@ const LoginForm =() =>{
         password:""
     });
 
-	const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
+	const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
 	
     // const handleOnClick = () => {     
     //     dispatch(

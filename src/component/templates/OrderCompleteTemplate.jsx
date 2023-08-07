@@ -3,7 +3,7 @@ import { comma } from "../../utils/convert";
 
 const OrderCompleteTemplate = ({ data }) => {
 	
-	const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a"
+	const staticServerUrl = "https://user-app.krampoline.com/k9d43d0d3ffc5a/"
   const orderId = data?.data?.response?.id;
   const products = data?.data?.response?.products;
   const totalPrice = data?.data?.response?.totalPrice;
