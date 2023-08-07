@@ -55,14 +55,14 @@ function GNB() {
               ) : (
                 <>
                   <Link
-                    to="/login"
+                    to={staticServerUrl + "/login"}
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     로그인
                   </Link>
                   <span className="line">|</span>
                   <Link
-                    to="/signup"
+                    to={staticServerUrl + "/signup"}
                     style={{ textDecoration: "none", color: "black" }}
                   >
                     회원가입
