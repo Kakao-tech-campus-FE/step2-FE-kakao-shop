@@ -1,5 +1,12 @@
-import OrderSection from "components/templates/OrderSection";
+import { Suspense } from "react";
+
+import Loader from "components/atoms/Loader.js";
+import OrderSection from "components/templates/OrderSection.js";
 
 export default function Order() {
-  return <OrderSection />;
+  return (
+    <Suspense fallback={<Loader />}>
+      <OrderSection />
+    </Suspense>
+  );
 }

@@ -4,12 +4,14 @@ import { useDispatch } from "react-redux";
 import { logInReq } from "apis/user.js";
 import { setEmail, setLogInTime } from "store/slices/userSlice.js";
 import { isValidLogIn } from "utils/validate.js";
-import useInput from "hooks/useInput.js";
+import { useInput } from "hooks/useInput.js";
+import { expireTime } from "utils/constants.js";
 
 import Container from "components/atoms/Container.js";
 import Button from "components/atoms/Button.js";
-import LabeledInput from "components/molecules/LabeledInput.js";
-import { expireTime } from "utils/constants";
+import Input from "components/atoms/Input.js";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 export default function LogInForm() {
   const { inputValue, handleInputChange } = useInput({
@@ -38,39 +40,53 @@ export default function LogInForm() {
           dispatch(setLogInTime({ logInTime: null }));
           window.localStorage.removeItem("token");
           alert("로그인이 만료되었습니다.");
-          window.location.href = "/";
+          window.location.href = staticServerUri + "/";
         }, expireTime);
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       .catch((err) => {
         alert(err.response.data.error.message);
       });
   };
 
+  const handleInputKeyUp = (event) => {
+    if (event.key === "Enter") handleButtonClick();
+  };
+
   return (
-    <Container>
-      <LabeledInput
+    <Container className="p-16 border">
+      <Input
+        className="block w-full mb-4 p-2 border-b-2 text-lg"
         type="text"
-        id="email"
         name="email"
         onChange={handleInputChange}
-        label="이메일"
         placeholder="이메일"
         value={inputValue.email}
       />
-      <LabeledInput
+      <Input
+        className="block w-full mb-12 p-2 border-b-2 text-lg"
         type="password"
-        id="password"
         name="password"
         onChange={handleInputChange}
-        label="비밀번호"
+        onKeyUp={handleInputKeyUp}
         placeholder="비밀번호"
         value={inputValue.password}
       />
-      <Button onClick={handleButtonClick}>로그인</Button>
       <Button
+        className="block w-full py-2 bg-yellow-300 rounded text-lg"
+        onClick={handleButtonClick}
+      >
+        로그인
+      </Button>
+      <p className="my-4 text-xs text-gray-400">
+        <span className="inline-block w-[45%] h-[1px] border-b" />
+        <span className="inline-block w-[10%]">또는</span>
+        <span className="inline-block w-[45%] h-[1px] border-b" />
+      </p>
+      <Button
+        className="block w-full py-2 bg-gray-100 rounded text-lg"
         onClick={() => {
-          navigate("/signup");
+          navigate(staticServerUri + "/signup");
         }}
       >
         회원가입

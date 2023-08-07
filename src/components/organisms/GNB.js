@@ -8,6 +8,8 @@ import ImageLink from "components/molecules/ImageLink.js";
 import logoKakao from "assets/icon/logoKakao.png";
 import cart from "assets/icon/cart.png";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export default function GNB() {
   const dispatch = useDispatch();
   const email = useSelector((state) => state.user.email);
@@ -19,28 +21,28 @@ export default function GNB() {
   };
 
   return (
-    <nav className="fixed top-0 w-full h-16 bg-white border flex items-center justify-between">
+    <nav className="fixed top-0 w-full h-16 bg-white border z-10 flex items-center justify-between">
       <ImageLink
         LinkClassName="ml-32"
-        PhotoClassName="h-8"
-        to="/"
+        ImageClassName="h-8"
+        to={staticServerUri + "/"}
         src={logoKakao}
         alt="logoKakao"
       />
       <span className="flex items-center mr-32 space-x-4">
-        <ImageLink PhotoClassName="h-8" to="/cart" src={cart} alt="cart" />
+        <ImageLink ImageClassName="h-8" to={staticServerUri + "/cart"} src={cart} alt="cart" />
         <span className="border-x w-0 h-6" />
         {email ? (
           <>
             <span className="font-bold">
               {/[^@]*/.exec(email).toString().toUpperCase()}
             </span>
-            <Link to="/" onClick={handleLinkClick}>
+            <Link to={staticServerUri + "/"} onClick={handleLinkClick}>
               로그아웃
             </Link>
           </>
         ) : (
-          <Link to="/login">로그인</Link>
+          <Link to={staticServerUri + "/login"}>로그인</Link>
         )}
       </span>
     </nav>

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
-import { convertToPrice } from "utils/convert";
+
+import { convertToPrice } from "utils/convert.js";
 
 export default function ResultInformation({ data }) {
   const email = useSelector((state) => state.user.email);
