@@ -1,10 +1,8 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React from "react";
 import { useQuery, useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 
-import Section from "components/atoms/Section";
 import SubmitButton from "components/atoms/SubmitButton";
-import PageTitleBox from "components/atoms/PageTitleBox";
 import { CartOptionBox, CartCollectionBox } from "components/atoms/cart/";
 import TotalPrice from "components/molecules/TotalPrice";
 import OptionSelected from "components/molecules/DetailPageOption/OptionSelected";
@@ -38,33 +36,18 @@ const Cart = () => {
     navigate(path + "/order");
   };
 
-  /** 모음전 별 총 수량 { 모음전_id : 모음전_총_수량 } */
-  const [productsQ, setProductsQ] = useState({});
-  /** 장바구니 내부의 총 수량 */
-  const [totalQ, setTotalQ] = useState(0);
-
-  useEffect(() => {
-    const newProductsQ = { ...productsQ };
-    let total = 0;
-
-    for (const product of query.data.products) {
-      let q = 0;
-      for (const option of product.carts) {
-        q += option.quantity;
-      }
-      newProductsQ[product.id] = q;
-      total += q;
-    }
-
-    setProductsQ((prev) => newProductsQ);
-    setTotalQ((prev) => total);
-  }, [query.data.products]);
+  const [
+    productsData, 
+    totalPrice, 
+    totalQuantity, 
+    validCollections
+  ] = query.data
 
   return (
     <>
-      {query.data.products?.map(
+      {productsData?.map(
         (collection) =>
-          productsQ[collection.id] > 0 && (
+          validCollections.has(collection.id) && (
             <CartCollectionBox id={collection.id} key={collection.productName}>
               <span className="font-bold m-2">{collection.productName}</span>
 
@@ -93,14 +76,14 @@ const Cart = () => {
           )
       )}
 
-      {totalQ === 0 && <Empty />}
+      {totalQuantity === 0 && <Empty />}
 
       <TotalPrice
-        price={!query.isFetching ? query.data.totalPrice : "-"}
-        quantity={totalQ}
+        price={!query.isFetching ? totalPrice : "-"}
+        quantity={totalQuantity}
       />
 
-      <SubmitButton onClick={submitHandler} disabled={totalQ === 0}>
+      <SubmitButton onClick={submitHandler} disabled={totalQuantity === 0}>
         주문하기
       </SubmitButton>
     </>
