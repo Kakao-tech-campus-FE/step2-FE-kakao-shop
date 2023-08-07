@@ -26,7 +26,7 @@ instance.interceptors.response.use(
   (error) => {
     const navigate = useNavigate();
     if (error.response.status === 404) {
-      navigate("/404"); // 404 페이지 경로로 이동
+      // navigate("/404"); // 404 페이지 경로로 이동
     } else if (error.response.status >= 500) {
       // 서버 에러 (500 이상의 상태 코드)
       throw new Error("Server Error");

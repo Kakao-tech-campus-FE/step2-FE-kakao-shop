@@ -1,0 +1,13 @@
+.home-container {
+  text-align: center;
+}
+
+.home-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.home-link {
+  display: block;
+  margin-bottom: 10px;
+}
