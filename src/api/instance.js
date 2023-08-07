@@ -1,11 +1,12 @@
 import axios from "axios";
 import store from "store/store";
-import { useDispatch } from "react-redux";
-import { clearUserReducer } from "reducers/loginSlice";
+import useLogout from "hooks/useLogout";
+
+const path = process.env.REACT_APP_PATH || "";
+const apiURL = !!path ? path + "/api" : process.env.REACT_APP_API_URL;
 
 const instance = axios.create({
-  baseURL:
-    "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/",
+  baseURL: apiURL,
   timeout: 3000,
   headers: {
     "Content-Type": "application/json",
@@ -15,26 +16,19 @@ const instance = axios.create({
 instance.interceptors.request.use(
   (config) => {
     const loginState = store.getState().login;
-    const urlGroup = config.url.split("/")[1];
 
-    // 토큰 필요한 요청일 때
-    if (["carts", "orders"].includes(urlGroup)) {
-      if (loginState.islogin) {
-        config.headers.Authorization = loginState.token;
-      } else {
-        alert("로그인이 필요합니다.");
-        window.location.href = "/login";
-        return Promise.resolve();
-      }
+    if (loginState.islogin) {
+      config.headers.Authorization = loginState.token;
     }
 
     if (
-      // 로그인 시간 만료
+      // 로그인 시간 만료, 토큰이 없을때
       loginState.islogin &&
-      Date.now() > loginState.loginTime + 3600 * 24 * 1000
+      (Date.now() > loginState.loginTime + 3600 * 24 * 1000 ||
+        loginState.token === "")
     ) {
-      const dispatch = useDispatch();
-      dispatch(clearUserReducer());
+      const logout = useLogout();
+      logout();
       alert("로그인 시간이 만료되었습니다.");
     }
 
@@ -47,7 +41,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    console.log(response);
     // 로그인일때만 토큰 응답 사용
     if (response.config.url === "/login") {
       return response.headers.authorization;
@@ -55,7 +48,7 @@ instance.interceptors.response.use(
     return response.data.response;
   },
   (error) => {
-    // fallback 에서 처리
+    return Promise.reject(error);
   }
 );
 

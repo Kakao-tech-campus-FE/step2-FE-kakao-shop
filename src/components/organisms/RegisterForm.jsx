@@ -8,6 +8,8 @@ import InputGroup from "components/molecules/InputGroup"
 import SubmitButton from 'components/atoms/SubmitButton';
 import useForm from 'hooks/useForm';
 
+const path = process.env.REACT_APP_PATH || "";
+
 const RegisterForm = () => {
 
   /** 현재 입력 상태 */
@@ -45,7 +47,7 @@ const RegisterForm = () => {
   const click = () => {
     postJoin(user)
       .then((response) => {
-        navigate("/")
+        navigate(path + "/")
       })
       .then(() => {
         alert("가입완료")

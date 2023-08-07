@@ -10,11 +10,14 @@ const StyledImg = styled.img`
   object-fit: cover;
 `
 
+const path = process.env.REACT_APP_PATH || "";
+const imagePath = !!path ? path : process.env.REACT_APP_IMAGE ;
 
-const Image = (props) => {
+const Image = ({image, alt}) => {
+  
   return (
     <StyledPicture>
-      <StyledImg src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${props.image}`} alt={props.alt}/>
+      <StyledImg src={`${imagePath}${image}`} alt={alt}/>
     </StyledPicture>
   )
 }

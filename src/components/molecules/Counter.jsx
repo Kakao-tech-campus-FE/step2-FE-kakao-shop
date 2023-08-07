@@ -1,35 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { RiAddFill, RiSubtractFill } from "react-icons/ri";
 
-const Counter = (props) => {
+/**
+ * 감소버튼 | 입력input | 증가버튼 으로 값을 업데이트하는 컴포넌트
+ * @param {interger} value - 받은 값
+ * @param {interger} id - 값이 속해있는 id
+ * @param {function} valueUpdateHandler - 업데이트된 값을 부모쪽으로 올려주는 함수 
+ * @returns 
+ */
+const Counter = ( {value, id, valueUpdateHandler} ) => {
 
-  const [state, setState] = useState(props.quantity)
+  const [state, setState] = useState(value)
 
+  // 외부에서 일어나는 값 업데이트를 반영 (새탭에서 항목을 추가했을 때 등)
   useEffect(()=> {
-    const number = parseInt(state)
-    if (Number.isNaN(number)) {
-      setState(prev => props.quantity)
-    }
-    else if (typeof state === 'string') {
-      setState(prev=> number)
-    }
-  }, [state])
+    setState(prev=> value)
+  }, [value])
 
-  useEffect(()=> {
-    setState(prev=> props.quantity)
-  }, [props.quantity])
+  // input 입력값 val: string 을 int로 변경, 이상한 값 입력시 서버 값으로 초기화 
+  const makeValue = (val) => {
+    let number = parseInt(val)
+    if (Number.isNaN(number) || typeof val !== 'string') {
+      number = value
+    }
+    return number
+  }
 
   const handlerOnBlur = () => {
     if (state === 0) {
-      setState(prev => props.quantity)
+      setState(prev => value)
     }
-    if (state !== props.quantity) {
-      props.changeQuantity(props.optionId, state)
+    if (state !== value) {
+      valueUpdateHandler(id, state)
     }
   }
 
-  const handlerBtn = (dx) => {
-    props.changeQuantity(props.optionId, state + dx)
+  const handlerBtnClick = (dx) => {
+    valueUpdateHandler(id, state + dx)
     setState(prev => prev + dx)
   }
 
@@ -42,17 +49,17 @@ const Counter = (props) => {
       divide-x divide-gray-500
     `}> 
 
-        <button onClick={() => handlerBtn(-1)} disabled={state <= 1}>
+        <button onClick={() => handlerBtnClick(-1)} disabled={state <= 1}>
             <RiSubtractFill className='w-3 h-3 m-auto' />
         </button>
 
         <input className='text-center' 
           value={state} 
-          onChange={event => setState(prev => event.target.value)}
+          onChange={e => setState(prev => makeValue(e.target.value))}
           onBlur={handlerOnBlur}
         />
 
-        <button onClick={() => handlerBtn(1)} >
+        <button onClick={() => handlerBtnClick(1)} >
             <RiAddFill className='w-3 h-3 m-auto' />
         </button>
     </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
-import { getOrders } from 'api/order'
+import { getOrderResult } from 'api/order'
 import Section from 'components/atoms/Section'
 import PageTitleBox from 'components/atoms/PageTitleBox'
 import OrderProducts from 'components/molecules/Order/OrderProducts'
@@ -13,11 +13,13 @@ const MyOrderPage = () => {
   const orderId = param.orderId
   
   const query = useQuery(
-    ['getOrders', orderId],
-    () => getOrders(orderId),
+    ['getOrderResult', orderId],
+    () => getOrderResult(orderId),
     { suspense: true }
   )
-
+  
+  // axios interceptor 에서 query data 가공
+  
   return (
     <Section>
       <PageTitleBox title={`주문 확인 : 주문 번호 ${orderId}`} />
@@ -27,9 +29,7 @@ const MyOrderPage = () => {
       </AccordionBox>
 
       <AccordionBox title="주문 상품 정보" initialOpen>
-        {! query.isFetching &&
-          <OrderProducts products={query.data.products} isOrderResultPage />
-        }
+        <OrderProducts data={query.data.products} isOrderResultPage />
       </AccordionBox>
 
       <AccordionBox title="결제 정보" initialOpen>

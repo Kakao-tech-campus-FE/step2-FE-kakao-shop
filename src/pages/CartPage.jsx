@@ -1,10 +1,17 @@
-import React from 'react'
-import Cart from 'components/organisms/Cart';
+import React, { Suspense } from "react";
+import Cart from "components/organisms/Cart";
+import Section from "components/atoms/Section";
+import PageTitleBox from "components/atoms/PageTitleBox";
 
 const CartPage = () => {
   return (
-      <Cart />
-  )
-}
+    <Section>
+      <PageTitleBox title="장바구니" />
+      <Suspense fallback={<p>loading cart...</p>}>
+        <Cart />
+      </Suspense>
+    </Section>
+  );
+};
 
-export default CartPage
+export default CartPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from 'react-query';
 import { useParams } from "react-router-dom";
-import getDetail from "api/getDetail"
+import { getDetail } from "api/product"
 
 import Image from "components/atoms/Image";
 import DetailOption from "components/organisms/DetailOption";

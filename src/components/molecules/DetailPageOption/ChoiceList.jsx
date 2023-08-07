@@ -17,7 +17,7 @@ const ChoiceList = ( {open, options, listOnClickHandler, titleOnClick} ) => {
 
       {!open ? null : 
         options?.map((item)=>(
-          <ChoiceBox onClick={() => listOnClickHandler(item.id)}>
+          <ChoiceBox onClick={() => listOnClickHandler(item.id)} key={item.optionName}>
             <span className='block'> {item.optionName} </span>
             <span> {strPrice(item.price)} </span>
           </ChoiceBox>

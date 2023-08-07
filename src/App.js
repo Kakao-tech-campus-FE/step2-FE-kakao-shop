@@ -18,6 +18,9 @@ import GNB from "components/organisms/GNB";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorFallback from "components/organisms/ErrorFallback";
+import PrivateRoute from "auth/PrivateRoute";
+
+const path = process.env.REACT_APP_PATH || "";
 
 function App() {
   return (
@@ -28,13 +31,19 @@ function App() {
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Suspense fallback={<Loader />}>
               <Routes>
-                <Route path="*" element={<ProductsListPage />} />
-                <Route path="/signup" element={<RegisterPage />} />
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/products/:id" element={<DetailPage />} />
-                <Route path="/carts" element={<CartPage />} />
-                <Route path="/orders" element={<OrderPage />} />
-                <Route path="/orders/:orderId" element={<MyOrderPage />} />
+                <Route path={path + "/"} element={<ProductsListPage />} />
+                <Route path={path + "/signup"} element={<RegisterPage />} />
+                <Route path={path + "/login"} element={<LoginPage />} />
+                <Route path={path + "/products/:id"} element={<DetailPage />} />
+
+                <Route element={<PrivateRoute />}>
+                  <Route path={path + "/cart"} element={<CartPage />} />
+                  <Route path={path + "/order"} element={<OrderPage />} />
+                  <Route
+                    path={path + "/order/:orderId"}
+                    element={<MyOrderPage />}
+                  />
+                </Route>
               </Routes>
             </Suspense>
           </ErrorBoundary>

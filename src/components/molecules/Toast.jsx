@@ -16,6 +16,8 @@ export const useToast = () => {
   return setToast
 }
 
+const path = process.env.REACT_APP_PATH || "";
+
 const Toast = () => {
   const dispatch = useDispatch()
   const toastState = useSelector((state) => state.toast)
@@ -28,11 +30,11 @@ const Toast = () => {
 
     return () => { clearTimeout(timer) }
 
-  }, [toastState.isOn])
+  }, [dispatch, toastState.isOn])
   
   const btnHandler = () => {
     if (toastState.moveTo !== "") {
-      navigate(toastState.moveTo)
+      navigate(path + toastState.moveTo)
     }
     dispatch(toastOffReducer())
   }

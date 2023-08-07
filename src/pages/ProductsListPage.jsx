@@ -1,39 +1,28 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { styled } from 'styled-components';
-import { useInfiniteQuery } from 'react-query';
-import getProducts from 'api/getProducts';
 import ProductsList from 'components/organisms/ProductsList';
 import ErrorFallback from "components/organisms/ErrorFallback";
 import { ProductCardSkeleton } from 'components/molecules/ProductCard';
+import Carousel from 'components/molecules/Carousel';
 import Section from 'components/atoms/Section';
-import repeat from 'utils/repeat';
 
+import useProductsListPage from 'hooks/useProductsListPage';
+import repeat from 'utils/repeat';
 
 const ProductsListPage = () => {
 
-  const { 
+  const {
     data: listData, 
-    isError, error,
+    isError, 
     fetchNextPage,
     isFetching,
-    hasNextPage,
-  } = useInfiniteQuery(
-    "products",
-    ({ pageParam = 0 }) => getProducts(pageParam),
-    {getNextPageParam: (last, allPages) => {
-      if (allPages[0].length === 0 
-        || last.length < allPages[0].length) {
-        return undefined
-      }
+    hasNextPage 
+  } = useProductsListPage()
 
-      const lastPage = parseInt((last[0].id - 1) / 9);
-      return lastPage + 1
-    }}
-  )
-    
   const [next, setNext] = useState(true)
   const targetBox = useRef(null);
 
+  
   useEffect(() => {
 
     const io = new IntersectionObserver(
@@ -56,14 +45,17 @@ const ProductsListPage = () => {
     
   }, [hasNextPage]) 
 
+
   return (
+
     <Section>
+      <Carousel/>
       <ListContainer>
-        {listData && <ProductsList obj={listData} />}
+        {listData && <ProductsList data={listData} />}
                 
         {isFetching 
           ? <>
-              {repeat(9).map((e,i) => {return <ProductCardSkeleton key={i}/>})}
+              { repeat(9).map((e,i) => <ProductCardSkeleton key={i}/>) }
             </>
           : null}
       </ListContainer>

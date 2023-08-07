@@ -8,12 +8,12 @@ import { ProductCard } from 'components/molecules/ProductCard';
  * @returns 
  */
 
-const ProductsList = (props) => {
+const ProductsList = ( { data } ) => {
 
   return (
       <>
         {
-          props.obj.pages.map(( pageData ) => (
+          data.pages.map(( pageData ) => (
             pageData?.map((item) => (
               <ProductCard 
                 link={`/products/${item.id}`}

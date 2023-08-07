@@ -15,16 +15,16 @@ import strPrice from 'utils/price';
  * @param {*} props.price - 상품 가격
  * @returns 
  */
-export const ProductCard = ( props ) => {
+export const ProductCard = ( { link, image, productName, price } ) => {
 
   return (
     <CardContainer>
-      <StyledLink to={props.link}>
+      <StyledLink to={link}>
         <ImageBox>
-          <Image image={props.image} alt={props.productName}/>
+          <Image image={image} alt={productName}/>
         </ImageBox>
-        <ItemTitle>{props.productName}</ItemTitle>
-        <ItemPrice>{strPrice(props.price)}</ItemPrice>
+        <ItemTitle>{productName}</ItemTitle>
+        <ItemPrice>{strPrice(price)}</ItemPrice>
       </StyledLink>
     </CardContainer>
   )
