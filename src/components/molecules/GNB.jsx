@@ -7,7 +7,6 @@ import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
 import { getLocalStorage, removeLocalStorageItem } from "../../utils/localStorage";
 
-
 const GNB = () => {
     const dispatch = useDispatch();
     const user = getLocalStorage("user");;
@@ -22,12 +21,28 @@ const GNB = () => {
             window.location.reload();
         };
     };
+
+    const handleLogin = () => {
+        const userFromLocalStorage = JSON.parse(localStorage.getItem("user"));
+            if(!userFromLocalStorage || !userFromLocalStorage.value) {
+                return false;
+            };
+            return true;
+    };
+
+    const handleOnCartClick = () => {
+        if (!handleLogin()) {
+            alert('로그인이 필요합니다.');
+        };
+    };
+
+
     return(
         <Head.Header>
             <Head.Container>
                 <ImgLink to="/" src={img} alt="톡 쇼핑하기" className="header-logo"/>
                     <Head.MenuUtil>
-                        <ImgLink to="/cart" src={cart} alt="장바구니 버튼" className="header-cart"/>
+                        <ImgLink to={handleLogin() ? "/cart" : "/login"} src={cart} alt="장바구니 버튼" className="header-cart" onClick={handleOnCartClick}/>
                         {user ? (
                             <LinkText text="로그아웃" to='/' className="header-login"  onClick={handleLogOut}/>
                         ) : (

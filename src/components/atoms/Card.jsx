@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Card = ({to, children, className}) => {
-    return (
-        <Link to={to} className={className}>
-            {children}
-        </Link>
-    );
+const staticServerUrl = process.env.REACT_APP_PATH || '';
+
+const Card = ({ to, children, className }) => {
+  return (
+    <Link to={staticServerUrl + to} className={className}>
+      {children}
+    </Link>
+  );
 };
 
 export default Card;
