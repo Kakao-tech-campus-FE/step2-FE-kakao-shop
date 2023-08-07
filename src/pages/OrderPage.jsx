@@ -4,8 +4,10 @@ import { useQuery } from "react-query"
 import OrderTemplate from "../component/templates/OrderTemplate"
 import Loader from "../component/atoms/Loader"
 
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+
 const OrderPage=()=>{
-    const {data, error, isLoading} = useQuery("/cart", getCart);
+    const {data, error, isLoading} = useQuery(['cart'], getCart);
 
     // 여기서 처리할때는 Suspense로
     return(

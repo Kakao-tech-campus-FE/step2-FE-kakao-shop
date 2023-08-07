@@ -9,6 +9,7 @@ const initialState = {
   isEnd: false,
 };
 
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
 
 
 const productsSlice = createSlice({
@@ -40,7 +41,7 @@ const productsSlice = createSlice({
 });
 
 export const getProducts = createAsyncThunk(
-    "products/getProducts",
+    staticServerUrl + "/api/products/getProducts",
     async (page) => {
       const response = await fetchProducts(page);
       return response.data; // action.payload

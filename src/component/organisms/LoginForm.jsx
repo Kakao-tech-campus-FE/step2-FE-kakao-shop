@@ -21,6 +21,8 @@ const LoginForm =() =>{
         password:"",
     });
 
+	const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+	
     // const handleOnClick = () => {     
     //     dispatch(
     //       loginRequest({
@@ -46,7 +48,7 @@ const LoginForm =() =>{
                   email: value.email,
                 })
               );
-              navigate("/");
+              navigate(staticServerUrl + "/");
         })
         .catch((error)=> {
             console.log("error", error);
@@ -78,7 +80,7 @@ const LoginForm =() =>{
         </Button>
         <Button
           onClick={() => {
-            navigate("/signup");
+            navigate(staticServerUrl + "/signup");
           }}
         >
           회원가입

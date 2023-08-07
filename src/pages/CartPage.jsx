@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const CartPage=()=>{
-  const { data, isLoading } = useQuery("cart", getCart);
+  const { data, isLoading } = useQuery(['cart'], getCart);
     // const [carts, setCarts] = useState([]);
 
 

@@ -3,6 +3,8 @@ import { getCart } from "../../services/addCart";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+
 const OrderTemplate=({data})=>{
   const products = data?.data?.response?.products;
   const totalPrice = data?.data?.response?.totalPrice;
@@ -59,7 +61,7 @@ const agreePolicyRef = useRef(null);
                         <div className="flex items-center gap-3 py-2" key={option.id}>
                           <img
                             className="w-[80px] h-[80px] border rounded-lg"
-                            src={`${process.env.REACT_APP_API_URL}/images/${item.id}.jpg`}
+                            src={`${staticServerUrl}/images/${item.id}.jpg`}
                             alt=""
                           />
                           <div className="product-info">
@@ -238,7 +240,7 @@ const agreePolicyRef = useRef(null);
                             "주문에 실패했습니다. 재로그인 후 다시 시도해 주십시오."
                           );
                           logOut();
-                          navigate("/login");
+                          navigate(staticServerUrl + "/login");
                           // 사용자 정보가 유실(header의 autorization)시
                           // /login 페이지로 이동
                           // 엉뚱한 상품 데이터가 들어왔을 경우 404 페이지
@@ -246,7 +248,7 @@ const agreePolicyRef = useRef(null);
                         onSuccess: (res) => {
                           const id = res.data.response.id;
                           alert("주문이 완료되었습니다.");
-                          navigate(`/order/complete/${id}`);
+                          navigate(staticServerUrl + `/order/complete/${id}`);
                         },
                       });
                     }}

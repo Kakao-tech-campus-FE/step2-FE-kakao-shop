@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+
 const GNB=()=>{
     //const [isLogin, setIsLogin]=useState(false);
     const email = useSelector((state) => state.user.email);
@@ -47,7 +49,7 @@ const [isLogin, setIsLogin] = useState(false);
                     <div className="navigation row">
                         
                             {/* 장바구니 버튼 */}
-                            <Link to="/cart">
+                            <Link to={staticServerUrl + "/cart"}>
                                 <img src={cart} alt="장바구니 버튼" height={30}/>
                                 {/* <span style={{}}>장바구니 버튼</span>
                                 <ReactIcon.Card/> */}
@@ -56,7 +58,7 @@ const [isLogin, setIsLogin] = useState(false);
                         <span>
                             {!isLogin ? (
                                 <Link
-                                to="/login"
+                                to={staticServerUrl + "/login"}
                                 onClick={handleLogout}
                                 style={{textDecortation:"none", color:"black"}}
                                 >
@@ -65,7 +67,7 @@ const [isLogin, setIsLogin] = useState(false);
                                 </Link>
                             ):(
                                 <Link
-                                to="/login"
+                                to={staticServerUrl + "/login"}
                                 style={{textDecoration:"none", color:"black"}}
                                 >
                                 </Link>

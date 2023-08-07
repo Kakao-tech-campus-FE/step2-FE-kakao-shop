@@ -4,6 +4,8 @@ import React, { useState, useEffect} from "react";
 import Photo from "../atoms/Photo";
 import Card from "../atoms/Card";
 
+const staticServerUrl = "https://user-app.krampoline.com/k070a976b7d47a"
+
     const ProductGrid = ({ product }) => {
         const [products, setData] = useState(null);
         // const [loding, setLoding] = useState(true);
@@ -11,7 +13,7 @@ import Card from "../atoms/Card";
         useEffect(() => {
           const fetchData = async () => {
             try {
-              const response = await axios.get('http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com/products');
+              const response = await axios.get(staticServerUrl + "/api/products");
               const jsonData = await response.data.response;
       
               setData(jsonData);
