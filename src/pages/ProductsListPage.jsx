@@ -3,19 +3,21 @@ import { styled } from 'styled-components';
 import ProductsList from 'components/organisms/ProductsList';
 import ErrorFallback from "components/organisms/ErrorFallback";
 import { ProductCardSkeleton } from 'components/molecules/ProductCard';
-import Section from 'components/atoms/Section';
-import repeat from 'utils/repeat';
 import Carousel from 'components/molecules/Carousel';
-import useProductsListPage from 'hooks/useProductsListPage';
+import Section from 'components/atoms/Section';
 
+import useProductsListPage from 'hooks/useProductsListPage';
+import repeat from 'utils/repeat';
 
 const ProductsListPage = () => {
 
-  const [listData, 
+  const {
+    data: listData, 
     isError, 
     fetchNextPage,
     isFetching,
-    hasNextPage] = useProductsListPage()
+    hasNextPage 
+  } = useProductsListPage()
 
   const [next, setNext] = useState(true)
   const targetBox = useRef(null);
@@ -49,7 +51,7 @@ const ProductsListPage = () => {
     <Section>
       <Carousel/>
       <ListContainer>
-        {listData && <ProductsList obj={listData} />}
+        {listData && <ProductsList data={listData} />}
                 
         {isFetching 
           ? <>

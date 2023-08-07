@@ -17,14 +17,7 @@ const useProductsListPage = () => {
       return lastPage + 1
     }}
   )
-
-  return [
-    query.data, 
-    query.isError, 
-    query.fetchNextPage,
-    query.isFetching,
-    query.hasNextPage
-  ]
+  return query
 }
 
 export default useProductsListPage
