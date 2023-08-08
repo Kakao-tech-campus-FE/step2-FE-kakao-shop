@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import { useState } from "react";
 import OptionList from "../atoms/OptionList";
 import { comma } from "../../utils/convert";
@@ -5,6 +7,37 @@ import Counter from "../atoms/Counter";
 import { useMutation } from "react-query";
 import Button from "../atoms/Button";
 import { addCart } from "../../services/cart";
+
+/*
+OptionColumn
+|_selectedOptions
+
+|_handleOnClickOption(클릭시 옵션을 set하거나 이미 선택되었으면 증가 없이 처리)
+| |_isOptionSelected
+| |_setSelectedOptions
+| |_optionId
+|_handleOnChange (수량 변경 할 때 처리)
+  |_setSelectedOptions
+  |_count
+  |_optionId
+
+  return
+  |_div
+    |_h3 (옵션 선택 글자)
+    |_div
+    | |_OptionList
+    |_hr
+    |_ol(담긴 옵션이 표기)
+    | |_li (option)
+    |   |_span(option name)
+    |   |_div
+    |     |_Counter (수량 조절)
+    |     |_span(price 원)
+    |_div (총 수량 및 상품금액)
+    | |_span(총 수량 n개)
+    | |_span(총 상품금액 n원)
+    |_Button(장바구니 버튼)
+*/
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -129,7 +162,5 @@ const OptionColumn = ({ product }) => {
     </div>
   );
 };
-
-// 구매 버튼은 아직 구현 안함, 구매 페이지를 아마 5주차쯤에 작업 한 후 추가시키기.
 
 export default OptionColumn;

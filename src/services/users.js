@@ -1,5 +1,7 @@
 import { instance } from "./index";
 
+//apis using at login, register
+
 export const register = (data) => {
   const { email, password, username } = data;
   return instance.post("/join", {
@@ -17,8 +19,7 @@ export const login = (data) => {
   });
 };
 
-export const duplicate = (data) => {
-  const email = data;
+export const duplicate = (email) => {
   return instance.post("/check", {
     email,
   });

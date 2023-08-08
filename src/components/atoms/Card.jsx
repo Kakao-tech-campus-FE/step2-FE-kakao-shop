@@ -1,4 +1,5 @@
 // card components return Link
+/*eslint-disable react/prop-types */
 
 import { Link } from "react-router-dom";
 import "../../styles/atoms/Card.css";

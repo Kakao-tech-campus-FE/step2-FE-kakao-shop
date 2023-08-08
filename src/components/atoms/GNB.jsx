@@ -2,17 +2,20 @@ import { Link } from "react-router-dom";
 import "../../styles/atoms/GNB.css";
 import { useDispatch, useSelector } from "react-redux";
 import clearUser from "../../store/slices/userSlice";
-import { Fragment, useEffect } from "react";
 
 //header bar components
-useEffect;
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 const GNB = () => {
-  const token = useSelector((state) => state.user.token); // 주로 isloggin 변수 사용 , 나중에 바꿔보기
+  const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
   const label = token ? "로그아웃" : "로그인";
-  const loginoutpath = token ? "/" : "/login";
-  const cartpath = token ? "/cart" : "/login";
+  const loginoutpath = token
+    ? staticServerUrl + "/"
+    : staticServerUrl + "/login";
+  const cartpath = token
+    ? staticServerUrl + "/cart"
+    : staticServerUrl + "/login";
 
   const handleClick = () => {
     if (token) {
@@ -23,15 +26,13 @@ const GNB = () => {
     }
   };
 
-  const LinkButton = {};
-
   return (
     <header className="header">
       <div className="contents">
         <nav className="inner_head">
           <div className="inner_wrap">
             <h1 className="tit_logo">
-              <Link className="link_logo" to="/">
+              <Link className="link_logo" to={staticServerUrl + "/"}>
                 <img
                   className="img_logo"
                   src={
@@ -47,7 +48,9 @@ const GNB = () => {
               <Link className="link_util" to={cartpath}>
                 <img
                   className="ico_cart"
-                  src={"/cart.png"}
+                  src={
+                    "https://img.freepik.com/free-icon/shopping-cart-of-checkered-design_318-50865.jpg?w=2000"
+                  }
                   alt="장바구니 버튼"
                 />
               </Link>

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { setUser, setToken, clearUser } from "../store/slices/userSlice";
 import { useDispatch } from "react-redux";
 
+
 const MainLayout = () => {
   const dispatch = useDispatch();
 
@@ -13,6 +14,7 @@ const MainLayout = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       const expirationTime = user.expirationTime;
 
+      // expirationTime이 되지 않았을 경우 새로고침 시 로그인 유지, 넘었다면 로그아웃
       if (expirationTime && Date.now() < parseInt(expirationTime, 10)) {
         dispatch(setUser(user));
         dispatch(setToken(token));

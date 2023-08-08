@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import ProductCard from "../molecules/ProductCard";
 import "../../styles/organisms/ProductGrid.css";
 

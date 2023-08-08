@@ -1,8 +1,9 @@
+/*eslint-disable react/prop-types */
 import { Card } from "react-bootstrap";
 import Box from "./Box";
 import Counter from "./Counter";
 import "../../styles/atoms/CartItem.css";
-import { comma } from "../../utils/Convert";
+import { comma } from "../../utils/convert";
 
 const CartItem = ({ item, onChange }) => {
   return (

@@ -1,7 +1,22 @@
+/*eslint-disable react/prop-types */
+
 import "../../styles/molecules/ProductInformationColumn.css";
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
+/*
+return
+|_div (product infromation column, basis-3/4)
+  |_div (basis-1/2)
+  | |_Photo
+  |_div(basis-1/2)
+    |_span(리뷰보기)
+    |_h1({productname})
+    |_div(가격 표시)
+      |_a (price 원)
+
+*/
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
@@ -11,7 +26,7 @@ const ProductInformationColumn = ({ product }) => {
       <div className="basis-1/2">
         <Photo
           className="w-full h-96 block"
-          src={import.meta.env.VITE_API_URL + image}
+          src={staticServerUrl + image}
           alt={productName}
         />
       </div>

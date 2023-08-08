@@ -1,3 +1,5 @@
+/*eslint-disable react/prop-types */
+
 import { comma } from "../../utils/convert";
 import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
@@ -5,15 +7,20 @@ import "../../styles/molecules/ProductCard.css";
 import Skeleton from "../atoms/Skeleton";
 
 // Components of each product card
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 const ProductCard = ({ product, isLoading }) => {
   return (
     <div className="card_deal">
       {/* while loading, use skeleton instead. */}
       {isLoading ? <Skeleton /> : null}
-      <Card className="link_card" to={`/product/${product.id}`}>
+      <Card
+        className="link_card"
+        to={staticServerUrl + `/product/${product.id}`}
+      >
         <Photo
           className="img_thumb"
-          src={import.meta.env.VITE_API_URL + product.image}
+          src={`${staticServerUrl}${product.image}`}
           alt={product.productName}
         />
         <div className="product_name">{product.productName}</div>
