@@ -44,16 +44,17 @@ const LoginForm = () => {
         // isLoggedIn: true,
         // isLogin: true,
         
+      }))
+      .then(() => {
+        console.log('Success!');
+        navigate('/');
+        window.location.reload(); // 페이지 리로드
       })
-    
-      ).catch((error) => alert(error))
+      .catch((error) => alert(error));
+    }; 
       
     
-    console.log('Success!');
-    navigate('/');
-    
-  };
-
+  
   
   return (
   <Container>

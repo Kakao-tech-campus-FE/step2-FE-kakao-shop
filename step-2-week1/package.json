@@ -1,6 +1,6 @@
 {
   "name": "step-2-wee1",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -49,5 +49,11 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.3.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "axios": "axios/dist/node/axios.cjs"
+    }
   }
 }
+

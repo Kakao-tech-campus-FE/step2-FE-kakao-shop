@@ -1,0 +1,28 @@
+.carousel {
+    position: relative;
+  }
+  
+  .carousel img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .carousel-button:first-child {
+    left: 10px; /* 이전 버튼은 왼쪽에 위치 */
+  }
+  
+  .carousel-button:last-child {
+    right: 10px; /* 다음 버튼은 오른쪽에 위치 */
+  }

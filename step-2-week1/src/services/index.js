@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
-  timeout: 1000,
+  timeout: process.env.REACT_APP_TIMEOUT,
   headers: {
     "Content-Type": "application/json",
     // "Authorization": `Bearer ${localStorage.getItem('token')}`,
@@ -37,6 +37,7 @@ instance.interceptors.response.use(
       const status = error.response.status;
       switch (status) {
         case 401:
+          // 장바구니에 물품이 담겨있는데 사용자 정보가 유실된 경우_ 에러캐칭
           // 로그인이 필요한 페이지로 리다이렉트
           window.location.href = "/signin";
           break;
