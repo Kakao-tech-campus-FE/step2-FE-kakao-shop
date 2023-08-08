@@ -4,16 +4,16 @@ import Button from "../common/atoms/Button";
 import useInput from "../../hooks/useInput";
 import Text from "../common/atoms/Text";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { register } from "../../apis/user";
 import useValidateInput from "../../hooks/useValidateInput";
 import Logo from "../common/atoms/Logo";
 import kakaoLogoText from "../../assets/icons/logoKakaoText.png";
+import SignUpModal from "./SignUpModal";
 
 export default function RegisterForm() {
-  const navigate = useNavigate();
   const [requestError, setRequestError] = useState("");
   const [isSamePW, setIsSamePw] = useState(false);
+  const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
   const { value, handleOnChange } = useInput({
     username: "",
     email: "",
@@ -46,11 +46,10 @@ export default function RegisterForm() {
           password: value.password,
         })
           .then(() => {
-            navigate("/"); // 메인페이지 리다이렉트
-            alert("회원가입이 완료되었습니다. 로그인 후 이용해주세요.");
+            setIsSignUpModalOpen(true);
           })
           .catch((error) => {
-            console.log("RegisterForm Error: ", error.message);
+            console.error(error.message);
             setRequestError(error.message);
           });
       }
@@ -68,13 +67,16 @@ export default function RegisterForm() {
   }, [value.password, value.passwordConfirm]);
 
   return (
-    <Container className=" flex flex-col items-center h-screen pt-[50px]">
+    <Container className=" flex h-screen flex-col items-center pt-[50px]">
+      {isSignUpModalOpen && (
+        <SignUpModal setIsSignUpModalOpen={setIsSignUpModalOpen} />
+      )}
       <Logo
         src={kakaoLogoText}
         alt={"kakaoLogoText"}
         className=" w-28 pb-10"
       ></Logo>
-      <Container className="flex flex-col p-14 w-[550px] border-[1px] border-solid border-zinc-300 gap-3">
+      <Container className="flex w-[550px] flex-col gap-3 border-[1px] border-solid border-zinc-300 p-14">
         <div>
           <InputGroup
             id="username"
@@ -90,7 +92,7 @@ export default function RegisterForm() {
             onKeyDown={handleOnKeyDown}
           />
           {!isValidValue.username && (
-            <Text className=" text-xs text-red-600 font-semibold">
+            <Text className=" text-xs font-semibold text-red-600">
               {errorMsg.username}
             </Text>
           )}
@@ -110,7 +112,7 @@ export default function RegisterForm() {
             onKeyDown={handleOnKeyDown}
           />
           {!isValidValue.email && (
-            <Text className=" text-xs text-red-600 font-semibold">
+            <Text className=" text-xs font-semibold text-red-600">
               {errorMsg.email}
             </Text>
           )}
@@ -130,12 +132,12 @@ export default function RegisterForm() {
             onKeyDown={handleOnKeyDown}
           />
           {!isValidValue.password ? (
-            <Text className=" text-xs text-red-600 font-semibold">
+            <Text className=" text-xs font-semibold text-red-600">
               {errorMsg.password}
             </Text>
           ) : (
             !isSamePW && (
-              <Text className=" text-xs text-red-600 font-semibold">
+              <Text className=" text-xs font-semibold text-red-600">
                 비밀번호가 일치하지 않습니다.
               </Text>
             )
@@ -155,23 +157,23 @@ export default function RegisterForm() {
             onKeyDown={handleOnKeyDown}
           />
           {!isValidValue.passwordConfirm ? (
-            <Text className=" text-xs text-red-600 font-semibold">
+            <Text className=" text-xs font-semibold text-red-600">
               {errorMsg.passwordConfirm}
             </Text>
           ) : (
             !isSamePW && (
-              <Text className=" text-xs text-red-600 font-semibold">
+              <Text className=" text-xs font-semibold text-red-600">
                 비밀번호가 일치하지 않습니다.
               </Text>
             )
           )}
         </div>
         {requestError && (
-          <Text className=" text-sm text-red-600 p-5 mt-3 bg-zinc-100">
+          <Text className=" mt-3 bg-zinc-100 p-5 text-sm text-red-600">
             {requestError}
           </Text>
         )}
-        <ul className="pl-3 text-xs text-zinc-500 tracking-tight pt-5">
+        <ul className="pl-3 pt-5 text-xs tracking-tight text-zinc-500">
           <li>
             비밀번호는 8~20자리의 영문, 숫자, 특수문자를 조합하여 설정해 주세요.
           </li>
@@ -183,7 +185,7 @@ export default function RegisterForm() {
         </ul>
 
         <Button
-          className={`h-10 border-hidden font-semibold text-sm rounded mt-3 cursor-pointer 
+          className={`mt-3 h-10 cursor-pointer rounded border-hidden text-sm font-semibold 
           ${
             isValidValue.username &&
             isValidValue.email &&

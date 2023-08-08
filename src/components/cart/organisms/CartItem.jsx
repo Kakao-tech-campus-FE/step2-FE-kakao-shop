@@ -5,16 +5,18 @@ import { comma } from "../../../utils/convert";
 import CartOptionItem from "../molecules/CartOptionItem";
 import Text from "../../common/atoms/Text";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function CartItem({ item, onChange }) {
   return (
     <>
       {item.carts.filter((cart) => cart.quantity > 0).length > 0 && (
-        <Box className=" bg-white mt-3 p-5 flex flex-col gap-2">
+        <Box className=" mt-3 flex flex-col gap-2 bg-white p-5">
           {/* Product Name */}
-          <Box className="border-[1px] border-solid p-5 border-zinc-300">
+          <Box className="border-[1px] border-solid border-zinc-300 p-5">
             <Card
-              className=" no-underline text-black font-semibold"
-              to={`/product/${item.id}`}
+              className=" font-semibold text-black no-underline"
+              to={staticServerUrl + `/product/${item.id}`}
             >
               {item.productName}
             </Card>
@@ -24,7 +26,7 @@ export default function CartItem({ item, onChange }) {
             <CartOptionItem key={cart.id} cart={cart} onChange={onChange} />
           ))}
           {/* 상품 금액, 주문 금액 */}
-          <Box className="border-[1px] border-solid p-3 border-zinc-300 text-sm tracking-tighter bg-zinc-100">
+          <Box className="border-[1px] border-solid border-zinc-300 bg-zinc-100 p-3 text-sm tracking-tighter">
             <Text className="flex justify-between">
               <span>
                 상품금액(
@@ -37,7 +39,7 @@ export default function CartItem({ item, onChange }) {
                 {comma(
                   item.carts.reduce((acc, cur) => {
                     return acc + cur.price;
-                  }, 0)
+                  }, 0),
                 )}
                 원
               </span>
@@ -48,7 +50,7 @@ export default function CartItem({ item, onChange }) {
                 {comma(
                   item.carts.reduce((acc, cur) => {
                     return acc + cur.price;
-                  }, 0)
+                  }, 0),
                 )}
                 원
               </span>

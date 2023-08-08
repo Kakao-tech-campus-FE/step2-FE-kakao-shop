@@ -1,10 +1,9 @@
 .carousel-container {
   display: flex;
-  height: 300px;
-  width: 100vw;
+  width: 100%;
   position: relative;
   min-width: 1280px;
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .carousel-container img {
   width: 100%;

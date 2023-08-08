@@ -12,18 +12,18 @@ export default function CartOptionItem({ cart, onChange }) {
   return (
     <>
       {cart.quantity > 0 && (
-        <Box className="border-[1px] border-solid p-3 border-zinc-300 flex flex-col gap-2">
+        <Box className="flex flex-col gap-2 border-[1px] border-solid border-zinc-300 p-3">
           <div className=" text-sm tracking-tighter">
             <span>{cart.option.optionName}</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex gap-1">
               <Button
-                className="w-10 h-8 items-center inline-flex bg-white border-[1px]  cursor-pointer border-solid border-zinc-300"
+                className="inline-flex h-8 cursor-pointer items-center border-[1px]  border-solid border-zinc-300 bg-white"
                 onClick={() => {
                   mutate([{ cartId: cart.id, quantity: 0 }], {
                     onSuccess: (data) => {
-                      console.log("CartOptionItem data", data);
+                      // console.log("CartOptionItem data", data);
                       queryClient.invalidateQueries("cart");
                     },
                     onError: (error) => {
@@ -42,17 +42,17 @@ export default function CartOptionItem({ cart, onChange }) {
                   onChange(cart.id, count, mark * cart.option.price);
                   mutate([{ cartId: cart.id, quantity: count }], {
                     onSuccess: (data) => {
-                      console.log("CartOptionItem data", data);
+                      // console.log("CartOptionItem data", data);
                       queryClient.invalidateQueries("cart");
                     },
                     onError: (error) => {
-                      console.log("CartOptionItem error", error);
+                      console.error(error.message);
                     },
                   });
                 }}
               />
             </div>
-            <span className=" font-bold tracking-tighter text-sm">
+            <span className=" text-sm font-bold tracking-tighter">
               {comma(cart.price)}원
             </span>
           </div>

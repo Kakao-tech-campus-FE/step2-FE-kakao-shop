@@ -1,7 +1,7 @@
 import React from "react";
 import OptionList from "../molecules/OptionList";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SelectedOption from "../molecules/SelectedOption";
 import { useMutation } from "react-query";
 import { addCart } from "../../../apis/cart";
@@ -13,6 +13,11 @@ import DeliveryOption from "../atoms/DeliveryOption";
 import Box from "../../common/atoms/Box";
 import { addProduct } from "../../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import LoginModal from "../../common/molecules/LoginModal";
+import Toast from "../../common/atoms/Toast";
+import { useQueryClient } from "react-query";
+
+const staticServerUrl = process.env.REACT_APP_PATH || "";
 
 export default function OptionColumn({ product }) {
   const { options, id } = product;
@@ -20,13 +25,21 @@ export default function OptionColumn({ product }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isOpenOption, setIsOpenOption] = useState(true);
+  const { mutate } = useMutation(addCart);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const isLogged = useSelector((state) => state.login.isLogged);
+  const [isOptionToastVisible, setIsOptionToastVisible] = useState(false);
+  const [isSelectToastVisible, setIsSelectToastVisible] = useState(false);
+  const [isCartToastVisible, setIsCartToastVisible] = useState(false);
+  const queryClient = useQueryClient();
 
-  /**
-   * selectedOption에 옵션을 추가하는 함수(quantity: 1)
-   */
   const handleOnClickOption = (option, index) => {
+    if (!isLogged) {
+      setIsLoginModalOpen(true);
+      return;
+    }
     if (selectedOption.find((item) => item.id === option.id)) {
-      alert("이미 선택된 옵션입니다.");
+      setIsOptionToastVisible(true);
       return;
     }
     setIsOpenOption(false);
@@ -42,12 +55,66 @@ export default function OptionColumn({ product }) {
     ]);
   };
 
-  const { mutate } = useMutation(addCart);
+  const handleOnClickCart = async (navigateCart) => {
+    if (selectedOption.length === 0) {
+      setIsSelectToastVisible(true);
+      return false;
+    }
+    mutate(
+      selectedOption.map((item) => {
+        return { optionId: item.id, quantity: item.quantity };
+      }),
+      {
+        onSuccess: () => {
+          setIsCartToastVisible(true);
+          dispatch(addProduct(id));
+          queryClient.invalidateQueries("cart");
+          setSelectedOption([]);
+          if (navigateCart) {
+            navigate(staticServerUrl + "/carts");
+          }
+        },
+        onError: (error) => {
+          console.error("Request failed:", error.message);
+        },
+      },
+    );
+  };
 
   return (
-    <div className=" w-[360px] p-8 h-fit">
-      <h3 className=" mt-0 font-bold text-base ">옵션 선택</h3>
-      <Box className="max-h-[360px] overflow-scroll w-[360px]">
+    <div className=" h-fit w-[360px] p-8">
+      {/* 모달 & 토스트 */}
+      {isLoginModalOpen && (
+        <LoginModal setIsLoginModalOpen={setIsLoginModalOpen} />
+      )}
+      <Toast
+        setIsToastVisible={setIsOptionToastVisible}
+        isToastVisible={isOptionToastVisible}
+      >
+        이미 선택한 옵션입니다.
+      </Toast>
+      <Toast
+        setIsToastVisible={setIsSelectToastVisible}
+        isToastVisible={isSelectToastVisible}
+      >
+        옵션을 먼저 선택해주세요.
+      </Toast>
+      <Toast
+        setIsToastVisible={setIsCartToastVisible}
+        isToastVisible={isCartToastVisible}
+      >
+        장바구니에 상품이 담겼습니다.
+        <Button
+          onClick={() => {
+            navigate(staticServerUrl + "/carts");
+          }}
+          className="cursor-pointer border-0 bg-black px-4 text-base text-yellow-300"
+        >
+          바로가기
+        </Button>
+      </Toast>
+      <h3 className=" mt-0 text-base font-bold ">옵션 선택</h3>
+      <Box className="max-h-[360px] w-[360px] overflow-y-auto">
         {/* 옵션 담기를 하는 영역 */}
         <OptionList
           options={options}
@@ -64,7 +131,7 @@ export default function OptionColumn({ product }) {
       {/* 배송 옵션 역역 */}
       <DeliveryOption />
       {/* 총 수량, 금액 영역 */}
-      <div className="flex justify-between w-[330px] py-7 text-lg font-bold tracking-tighter">
+      <div className="flex w-[330px] justify-between py-7 text-lg font-bold tracking-tighter">
         <span>
           총 수량{" "}
           {selectedOption.reduce((acc, cur) => {
@@ -78,7 +145,7 @@ export default function OptionColumn({ product }) {
             {comma(
               selectedOption.reduce((acc, cur) => {
                 return acc + cur.price * cur.quantity;
-              }, 0)
+              }, 0),
             )}{" "}
           </span>
           원
@@ -88,34 +155,18 @@ export default function OptionColumn({ product }) {
       {/* 버튼 영역: 장바구니 담기 버튼, 구매 버튼 */}
       <div className="flex w-[330px]">
         <Button
-          className="border-0 bg-black cursor-pointer w-16 h-16 rounded-md flex justify-center items-center"
+          className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-md border-0 bg-black"
           onClick={() => {
-            if (selectedOption.length === 0) {
-              alert("옵션을 선택해주세요.");
-              return;
-            }
-            mutate(
-              selectedOption.map((item) => {
-                return { optionId: item.id, quantity: item.quantity };
-              }),
-              {
-                onSuccess: () => {
-                  alert("장바구니에 상품이 담겼습니다.");
-                  dispatch(addProduct(id)); // 장바구니에 담긴 상품 수를 업데이트
-                  setSelectedOption([]);
-                },
-                onError: () => {
-                  alert("장바구니 담기에 실패했습니다.");
-                },
-              }
-            );
+            handleOnClickCart(false);
           }}
         >
           <Logo src={cartWhite} alt="whiteCartIcon" className=" w-12 " />
         </Button>
         <Button
-          onClick={() => navigate("/order")}
-          className="grow ml-1 rounded-md border-0 bg-[#ffe342] text-xl tracking-tighter font-bold cursor-pointer"
+          onClick={() => {
+            handleOnClickCart(true);
+          }}
+          className="ml-1 grow cursor-pointer rounded-md border-0 bg-[#ffe342] text-xl font-bold tracking-tighter"
         >
           톡딜가로 구매하기
         </Button>

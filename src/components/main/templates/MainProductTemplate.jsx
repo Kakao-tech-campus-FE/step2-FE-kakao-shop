@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Container from "../../common/atoms/Container";
-import ProductGrid from "../organism/ProductGrid";
+import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../../common/atoms/Loader";
 import useFetchProducts from "../../../hooks/useFetchProducts";
 
@@ -17,16 +17,16 @@ export default function MainProductTemplate() {
   } = useFetchProducts();
 
   useEffect(() => {
-    console.log("MainProductTemplate products", products);
+    // console.log("MainProductTemplate products", products);
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
           fetchNextPage();
         }
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
-    if (hasNextPage && !isFetchingNextPage) {
+    if (bottomObserver.current && hasNextPage) {
       io.observe(bottomObserver.current);
     }
     return () => {
@@ -36,14 +36,14 @@ export default function MainProductTemplate() {
 
   useEffect(() => {
     if (error) {
-      console.log("MainProductTemplate Error", error.message);
+      console.error(error.message);
       alert("서버에 문제가 있습니다. 잠시 후 다시 시도해주세요.");
     }
   }, [error]);
 
   if (isLoading) return <Loader />;
   return (
-    <Container className=" flex justify-center flex-col items-center ">
+    <Container className=" flex flex-col items-center justify-center ">
       {products && <ProductGrid products={products} isFetching={isFetching} />}
       <div ref={bottomObserver}></div>
     </Container>

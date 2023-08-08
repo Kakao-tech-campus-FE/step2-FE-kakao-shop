@@ -9,6 +9,8 @@ import Text from "../../common/atoms/Text";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct, removeProduct } from "../../../store/slices/cartSlice";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function CartTemplate({ data }) {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -23,6 +25,9 @@ export default function CartTemplate({ data }) {
 
   // 장바구니에 담긴 상품의 수량이 변경되면 장바구니 아이콘의 숫자를 체크
   useEffect(() => {
+    if (cartCount === 0) {
+      return;
+    }
     data?.response?.products.forEach((product) => {
       const isExist = product.carts.some((cart) => cart.quantity > 0);
       if (isExist) {
@@ -61,13 +66,21 @@ export default function CartTemplate({ data }) {
   };
 
   return (
-    <Container className=" bg-zinc-100 flex justify-center w-full min-w-[1280px] ">
+    <Container className=" flex w-full min-w-[1280px] justify-center bg-zinc-100 ">
       <Container className="w-[870px]">
-        <Text className=" bg-white text-center font-bold py-3">장바구니</Text>
+        <Text className=" bg-white py-3 text-center font-bold">장바구니</Text>
         {/* 장바구니가 비어있는 경우 */}
         {cartCount === 0 ? (
-          <Box className="flex bg-white h-[550px] mb-5 border-solid border-0 border-t-[1px] border-zinc-300 items-center justify-center font-semibold tracking-tight text-xl">
-            장바구니에 담긴 상품이 없습니다.
+          <Box className="mb-5 flex h-[550px] flex-col items-center justify-center border-0 border-t-[1px] border-solid border-zinc-300 bg-white text-xl font-semibold tracking-tight">
+            <p>장바구니에 담긴 상품이 없습니다.</p>
+            <Button
+              className="m-3 cursor-pointer border-solid border-black bg-black p-2 px-4 font-bold text-white"
+              onClick={() => {
+                navigate(staticServerUrl + "/");
+              }}
+            >
+              쇼핑하기 홈
+            </Button>
           </Box>
         ) : (
           <div>
@@ -83,17 +96,17 @@ export default function CartTemplate({ data }) {
                 );
               })}
             {/* 최하단 영역: 총 금액, 결제 버튼 */}
-            <Box className="flex justify-between bg-white mt-5 px-3 items-center h-14 font-bold">
+            <Box className="mt-5 flex h-14 items-center justify-between bg-white px-3 font-bold">
               <span>주문 예상금액</span>
               <span className=" text-blue-500">{comma(totalPrice)}원</span>
             </Box>
             <Button
-              className="w-full h-14 bg-[#feeb00] border-0 font-bold text-base mb-4 cursor-pointer"
+              className="mb-4 h-14 w-full cursor-pointer border-0 bg-[#feeb00] text-base font-bold"
               onClick={() => {
                 // 결제 프로세스
                 // 1. 장바구니에 있는 모든 항목 그대로 결제 페이지에 담김
                 // 2. 결제 페이지에서는 수량 변경X, 그대로 결제 진행만 수행
-                navigate("/order");
+                navigate(staticServerUrl + "/order");
               }}
             >
               {/* 장바구니 수량: 전역 State */}

@@ -3,11 +3,13 @@ import Card from "../../common/atoms/Card";
 import Text from "../../common/atoms/Text";
 import { comma } from "../../../utils/convert";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function OrderOptionItem({ cart, productName, id }) {
   return (
     <Card
-      className="flex flex-col border-solid border-1 border-zinc-50 no-underline text-black p-3 tracking-tight"
-      to={`/product/${id}`}
+      className="border-1 flex flex-col border-solid border-zinc-50 p-5 text-black no-underline"
+      to={staticServerUrl + `/product/${id}`}
     >
       <Text className="text-sm font-bold">{productName}</Text>
       <Text className="text-sm">

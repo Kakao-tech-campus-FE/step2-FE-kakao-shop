@@ -17,20 +17,20 @@ function Counter({ value, onChange }) {
   }, [value]);
 
   return (
-    <div className=" border-solid border-zinc-300 w-fit">
+    <div className=" w-fit border border-solid border-zinc-300">
       <Button
         onClick={handleOnDecrease}
         disabled={count === 1}
-        className=" w-7 h-7 text-xl items-center inline-flex bg-white border-0 text-zinc-600 cursor-pointer disabled:text-zinc-200"
+        className=" inline-flex h-7 w-7 cursor-pointer items-center border-0 bg-white text-xl text-zinc-600 disabled:text-zinc-200"
       >
         ─
       </Button>
-      <span className=" w-14 h-7 text-base items-center inline-flex bg-white border-solid border-0 border-x-[1px] justify-center border-zinc-300">
+      <span className=" inline-flex h-7 w-14 items-center justify-center border-0 border-x-[1px] border-solid border-zinc-300 bg-white text-base">
         {count}
       </span>
       <Button
         onClick={handleOnIncrease}
-        className=" w-7 h-7 text-xl inline-flex items-center bg-white border-0 text-zinc-600 cursor-pointer "
+        className=" inline-flex h-7 w-7 cursor-pointer items-center border-0 bg-white text-xl text-zinc-600 "
       >
         +
       </Button>

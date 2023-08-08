@@ -8,6 +8,8 @@ import cartIcon from "../../../assets/icons/cart.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function AuthNavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,22 +19,22 @@ export default function AuthNavBar() {
     if (isLogged) {
       dispatch(LogOut());
     } else {
-      navigate("/login");
+      navigate(staticServerUrl + "/login");
     }
   };
 
   return (
-    <Container className=" fixed w-full min-w-[1280px] flex items-center place-content-between border-solid px-10 border-y-1 border-x-0 border-slate-300 bg-white h-12 top-0 z-10 box-border">
-      <Link to="/">
+    <Container className=" fixed top-0 z-10 box-border flex h-12 w-full min-w-[1280px] items-center justify-between border-0 border-b border-solid border-zinc-300 bg-white px-10">
+      <Link to={staticServerUrl + "/"}>
         <Logo src={logoKakao} alt="KakaoLogo" className="w-24" />
       </Link>
       <Container className="flex items-center">
-        <Link to="/carts">
+        <Link to={staticServerUrl + "/carts"}>
           <div className=" relative ">
-            <Logo src={cartIcon} alt="cartIcon" className="w-9 mr-4" />
+            <Logo src={cartIcon} alt="cartIcon" className="mr-4 w-9" />
             {/* 로그인 중 && 장바구니에 물건이 있을 때 */}
             {isLogged && cartCount > 0 && (
-              <div className="absolute right-4 top-0 bg-red-500 text-white font-bold rounded-full text-xs w-4 text-center">
+              <div className="absolute right-4 top-0 w-4 rounded-full bg-red-500 text-center text-xs font-bold text-white">
                 {cartCount}
               </div>
             )}
@@ -40,7 +42,7 @@ export default function AuthNavBar() {
         </Link>
         <Button
           onClick={handleLoginStatus}
-          className=" cursor-pointer border-0 bg-white border-l-[1px] w-20"
+          className=" w-20 cursor-pointer border-0 border-l-[1px] bg-white"
         >
           {isLogged ? "로그아웃" : "로그인"}
         </Button>

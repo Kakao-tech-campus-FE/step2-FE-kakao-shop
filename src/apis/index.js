@@ -1,8 +1,10 @@
 import axios from "axios";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  timeout: 3000,
+  baseURL: staticServerUrl + "/api",
+  timeout: process.env.REACT_APP_API_TIMEOUT,
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },
@@ -19,11 +21,11 @@ instance.interceptors.request.use((config) => {
 
 instance.interceptors.response.use(
   (response) => {
-    console.log("Axios Interceptors Data", response);
+    // console.log("Axios Interceptors Data", response);
     return response;
   },
   (error) => {
-    console.log("Axios Interceptors Error", error);
+    // console.log("Axios Interceptors Error", error);
     // TimeoutError 발생 시 처리
     if (error.code === "ECONNABORTED") {
       console.error("요청이 시간 초과되었습니다.");
@@ -33,10 +35,10 @@ instance.interceptors.response.use(
     if (status === 401) {
       localStorage.clear();
     } else if (status === 404) {
-      window.location.href = "/404";
+      window.location.href = staticServerUrl + "/404";
     }
     throw error.response.data.error;
-  }
+  },
 );
 
 // ⭐️ axios.인터셉터

@@ -6,20 +6,22 @@ import Box from "../../common/atoms/Box";
 import Text from "../../common/atoms/Text";
 import { comma } from "../../../utils/convert";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 export default function ProductInformationColumn({ product }) {
-  const { productName, price, image } = product;
+  const { productName, price, id } = product;
   return (
-    <Container className=" w-[890px] flex pt-5 min-h-[700px] border-zinc-300 border-solid border-0 border-r-[1px] ">
+    <Container className=" flex min-h-[700px] w-[890px] border-0 border-r-[1px] border-solid border-zinc-300 pt-5 ">
       <div>
         <Photo
           className="detail-photo"
-          src={process.env.REACT_APP_API_URL + image}
+          src={staticServerUrl + `/images/${id}.jpg`}
           alt={productName}
         />
       </div>
       <Box className=" px-5 ">
-        <Title className=" text-2xl font-semibold mt-0">{productName}</Title>
-        <Text className="bg-[#ffe342] w-40 h-12 rounded-3xl flex justify-center items-center font-semibold">
+        <Title className=" mt-0 text-2xl font-semibold">{productName}</Title>
+        <Text className="flex h-12 w-40 items-center justify-center rounded-3xl bg-[#ffe342] font-semibold">
           톡딜가 {comma(price)} 원 ~
         </Text>
       </Box>
