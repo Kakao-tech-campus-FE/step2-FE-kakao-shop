@@ -1,0 +1,42 @@
+header{
+    width: cover;
+    border-bottom: 1px solid #E5E5E5;
+    background-color: #fff;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+div.contents{
+    display: flex;
+    width: 1280px;
+    margin: 0 auto;
+    height: 79px;
+    align-items: center;
+}
+
+img.logoImg{
+    display: block;
+    width: 90px;
+    height: 20px;
+}
+
+nav{
+    margin-left: 1050px;
+}
+
+div.navigation{
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+}
+
+img.cartImg{
+    margin-right: 20px;
+}
+
+.logButton{
+    font-size: 14px;
+    padding-left: 20px;
+    position: relative;
+}
