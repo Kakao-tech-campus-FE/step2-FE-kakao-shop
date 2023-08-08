@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: staticServerUri + "/api",
   timeout: 1000, // 무한대로 waiting 하지 않도록 timeout 세팅 필수
   headers: {
     "Content-Type": "application/json"

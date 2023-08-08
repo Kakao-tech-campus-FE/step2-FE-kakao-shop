@@ -41,12 +41,12 @@ function GNB() {
     <Header>
       <Container>
         <Link to={staticServerUri + "/"} className="root_page" >
-          <img src={"/logoKakao.png"} alt="카카오 쇼핑 로고" className=" h-8 mt-6"/>
+          <img src={staticServerUri + "/logoKakao.png"} alt="카카오 쇼핑 로고" className=" h-8 mt-6"/>
         </Link>
         <Nav>
               {/* 장바구니 버튼 */}
               <Link to={staticServerUri + "/cart"}>
-                <img src={"/cart.png"} alt="장바구니 버튼" className=" h-8 "/>
+                <img src={staticServerUri + "/cart.png"} alt="장바구니 버튼" className=" h-8 "/>
               </Link>
             <span className="divison">|</span>
               {/* 로그인 버튼 */}
