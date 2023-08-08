@@ -8,6 +8,8 @@ import { addCart } from "../services/cart";
 import {toast} from "react-toastify";
 import CartItem from "../atoms/CartItem";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OptionColumn = ({product}) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
 
@@ -150,7 +152,7 @@ const OptionColumn = ({product}) => {
             )
           }}
         >
-          <img src={"/cart_white.png"} alt="장바구니 담기" className="h-15" />
+          <img src={staticServerUri + "/cart_white.png"} alt="장바구니 담기" className="h-15" />
         </Button>
         <div>
           <button className="text-xl block w-full h-15 mx-4 px-10 py-5 bg-yellow-400 rounded">구매하기</button>
