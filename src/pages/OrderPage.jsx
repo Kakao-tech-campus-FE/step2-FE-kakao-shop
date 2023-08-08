@@ -6,9 +6,11 @@ import { getCart } from "../services/cart";
 
 const OrderPage = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <OrderTemplate />
-    </Suspense>
+     <div className="my-8 max-w-screen-xl">
+      <Suspense fallback={<Loader />}>
+        <OrderTemplate />
+      </Suspense>
+    </div>
   );
 };
 

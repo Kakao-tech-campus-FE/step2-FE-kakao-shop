@@ -1,19 +1,16 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// const emailReg = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-// const passwordReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*-=])(?=.*[0-9]).{8,20}$/;
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
-// AXIOS 인스턴스 선언
 export const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  timeout: 1000, // 보다 나은 사용자 경험을 위해 timeout 추가
+  baseURL: staticServerUri + "/api",
+  timeout: 5000, // 보다 나은 사용자 경험을 위해 timeout 추가
   headers: {
     "Content-Type": "application/json;charset=UTF-8",
   },
 });
 
-// 인터셉터: 요청/응답을 보내거나 받기 전에 가로채서 처리하는 역할
 instance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -28,8 +25,6 @@ instance.interceptors.request.use(
   }
 );
 
-// 응답에 대한 인터셉터 추가
-// response.use는 middleware를 의미할 가능성이 높음
 instance.interceptors.response.use(
   (response) => {
     return response;
@@ -45,7 +40,7 @@ instance.interceptors.response.use(
     } else if (errorCode >= 400 && errorCode <= 499) {
       if(errorCode === 404) {
         const navigate = useNavigate();
-        navigate('/404');
+        navigate(staticServerUri + '/404');
       }
       throw Error("400번대 상태 코드 수신: " + errorCode)
     } else {

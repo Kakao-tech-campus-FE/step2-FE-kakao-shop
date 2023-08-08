@@ -3,7 +3,7 @@ import ProductCard from "../molecules/ProductCard";
 
 const ProductGrid = ({ products, loading }) => {
   return (
-    <div className="grid grid-cols-4 gap-4 px-4 max-w-screen-lg">
+    <div className="grid grid-cols-4 gap-4 p-4 max-w-screen-lg">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} loading={loading} />
       ))}

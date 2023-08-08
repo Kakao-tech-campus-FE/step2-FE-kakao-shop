@@ -7,18 +7,30 @@ import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
 import Box from "../atoms/Box";
 import Badge from "../atoms/Badge";
+import { useNavigate } from "react-router-dom";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const OptionColumn = ({ product }) => {
-  const { productName, price } = product;
+  const { starCount, productName, price } = product;
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const navigate = useNavigate();
 
-  const handleOnClickOption = (option) => {
+  const { mutate } = useMutation({
+    mutationFn: addCart,
+  });
+
+  /**
+   * 클릭된 상품을 selectedOptions 상태에 추가
+   * @param {object} option 클릭된 옵션
+   */
+  const handleClickOption = (option) => {
+    console.log(option);
     // 동일 옵션 클릭 방지
     const isOptionSelected = selectedOptions.find(
       (el) => el.optionId === option.id
     );
 
-    // 이미 선택된 옵션이면 증가 없이 처리
     if (isOptionSelected) {
       return;
     }
@@ -34,7 +46,12 @@ const OptionColumn = ({ product }) => {
     ]);
   };
 
-  const handleOnChange = (count, optionId) => {
+  /**
+   * 선택된 옵션의 수량을 변경
+   * @param {number} count 옵션 수량
+   * @param {number} optionId 수량 변경할 옵션 아이디
+   */
+  const handleChange = (count, optionId) => {
     setSelectedOptions((prev) => {
       return prev.map((el) => {
         if (el.optionId === optionId) {
@@ -48,63 +65,90 @@ const OptionColumn = ({ product }) => {
     });
   };
 
-  const { mutate } = useMutation({
-    mutationFn: addCart,
-  });
+  /**
+   * 선택된 옵션을 삭제하여 selecedOptions 상태 업데이트
+   * @param {number} optionId 삭제할 옵션 ID
+   */
+  const handleRemove = (optionId) => {
+    setSelectedOptions(
+      selectedOptions.filter((option) => option.optionId !== optionId)
+    );
+  };
 
   return (
-    <Box className="w-[512px] m-4">
-      <h1 className="text-2xl">{productName}</h1>
-      <div className="flex justify-between my-4 items-center">
-        <div>
-          <Badge color="yellow" className="bg-black text-white">
-            {comma(price * 2)}원~
-          </Badge>
-          <Badge color="yellow" className="bg-yellow-300 ml-2 font-bold">
-            톡딜가 {comma(price)}원~
-          </Badge>
-        </div>
-        <div className="text-3xl text-blue-500">
-          50%
+    <Box className="w-[512px] m-4 flex flex-col gap-4">
+      {/* 상품 정보 */}
+      <div className="wrapper flex flex-col gap-2">
+        <div className="starCount text-blue-500">★★★★★ {starCount}점</div>
+        <h1 className="text-2xl">{productName}</h1>
+        <div className="flex justify-between items-center">
+          <div>
+            <Badge color="yellow" className="bg-black text-white">
+              {comma(price * 2)}원~
+            </Badge>
+            <Badge color="yellow" className="bg-yellow-300 ml-2 font-bold">
+              톡딜가 {comma(price)}원~
+            </Badge>
+          </div>
+          <div className="text-3xl text-blue-500">50%</div>
         </div>
       </div>
 
-      <h3 className=" text-lg font-bold">옵션 선택</h3>
-      {/* 옵션 담기를 할 수 있는 영역 */}
-      <OptionList options={product.options} onClick={handleOnClickOption} />
-      <Box>
-        <div className="shippingMethod mt-4">
-          <span className="font-bold">배송방법 </span>
-          <span>택배배송</span>
+      {/* 옵션 선택 */}
+      <div className="wrapper-option flex flex-col gap-2">
+        <h3 className=" text-lg font-bold">옵션 선택</h3>
+        <OptionList options={product.options} onClick={handleClickOption} />
+      </div>
+
+      {/* 배송 방법 */}
+      <div>
+        <div className="flex gap-4">
+          <div className="font-bold">
+            <div>배송방법</div>
+            <div>배송비</div>
+          </div>
+          <div>
+            <div>택배배송</div>
+            <div>무료배송</div>
+          </div>
         </div>
-        <div className="shippingCost">
-          <span className="font-bold">배송비</span>
-          <Box className="bg-gray-200 border border-gray-400 text-sm p-1">
-            무료배송
-          </Box>
+        <div className="text-sm text-gray-500">
+          제주 추가 3,000원, 제주 외 도서지역 추가 6,000원
         </div>
-        제주 추가 3,000원, 제주 외 도서지역 추가 6,000원
-      </Box>
-      {/* 담긴 옵션이 표시 */}
+      </div>
+
+      {/* 선택된 옵션 */}
       {selectedOptions.map((option) => (
         <ol key={option.optionId} className="selected-option-list">
-          {/* 수량 변경 기능 */}
-          <li className="bg-gray-100 my-2 p-2">
+          <li className="bg-gray-100 p-4 flex flex-col gap-2">
             <div className="flex justify-between">
               <div className="name">{option.name}</div>
+              <button
+                className="text-gray-500"
+                children="✕"
+                onClick={() => {
+                  handleRemove(option.optionId);
+                }}
+              />
+            </div>
+            <div className="flex justify-between">
+              <Counter
+                onIncrease={(count) => handleChange(count, option.optionId)}
+                onDecrease={(count) => handleChange(count, option.optionId)}
+              />
               <div className="price">
                 {comma(option.price * option.quantity)}원
               </div>
             </div>
-            <Counter
-              onIncrease={(count) => handleOnChange(count, option.optionId)}
-              onDecrease={(count) => handleOnChange(count, option.optionId)}
-            />
           </li>
         </ol>
       ))}
+
+      {/* 구분선 */}
       <hr />
-      <div className="flex justify-between my-4">
+
+      {/* 총 수량, 총 상품금액 */}
+      <div className="flex justify-between text-xl">
         <div>
           총 수량:{" "}
           {selectedOptions.reduce((acc, cur) => {
@@ -114,18 +158,35 @@ const OptionColumn = ({ product }) => {
         </div>
         <div>
           총 상품금액:{" "}
-          {comma(
-            selectedOptions.reduce((acc, cur) => {
-              return acc + cur.quantity * cur.price;
-            }, 0)
-          )}
+          <span className="font-bold text-red-500">
+            {comma(
+              selectedOptions.reduce((acc, cur) => {
+                return acc + cur.quantity * cur.price;
+              }, 0)
+            )}
+          </span>
           원
         </div>
       </div>
-      <div className="button-group">
+
+      {/* 찜, 장바구니, 구매하기 버튼 */}
+      <div className="button-group flex justify-between">
         {/* 장바구니 담기 버튼 위치 */}
         <Button
-          className="w-36 h-12 bg-gray-900 rounded-lg text-white text-sm"
+          className="w-20 h-20 bg-gray-600 rounded-lg"
+          onClick={() => {
+            alert("준비중입니다.");
+          }}
+        >
+          <img
+            className="inline"
+            src={staticServerUri + "/icons/heart.svg"}
+            alt="찜하기"
+            width={24}
+          />
+        </Button>
+        <Button
+          className="w-20 h-20 bg-gray-900 rounded-lg text-white"
           onClick={() => {
             mutate(
               selectedOptions.map((el) => {
@@ -136,6 +197,7 @@ const OptionColumn = ({ product }) => {
               }),
               {
                 onSuccess: () => {
+                  alert("장바구니에 담겼습니다.");
                 },
                 onError: (error) => {
                   alert("장바구니 담기에 실패했습니다: " + error);
@@ -144,14 +206,37 @@ const OptionColumn = ({ product }) => {
             );
           }}
         >
-          장바구니 담기
+          <img
+            className="inline"
+            src={staticServerUri + "/icons/cart.svg"}
+            alt="장바구니 담기"
+            width={24}
+          />
         </Button>
         <Button
-          className=" w-80 h-12 bg-yellow-300 rounded-lg text-sm ml-4"
+          className="w-72 h-20 bg-yellow-300 rounded-lg font-bold"
           onClick={() => {
-            alert("준비중입니다.");
+            mutate(
+              selectedOptions.map((el) => {
+                return {
+                  optionId: el.optionId,
+                  quantity: el.quantity,
+                };
+              }),
+              {
+                onSuccess: () => {
+                  navigate(staticServerUri + "/order");
+                },
+              }
+            );
           }}
         >
+          <img
+            className="inline"
+            src={staticServerUri + "/icons/talk.svg"}
+            alt="구매하기"
+            width={24}
+          />{" "}
           구매하기
         </Button>
       </div>

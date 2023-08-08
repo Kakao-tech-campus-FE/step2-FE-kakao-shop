@@ -7,6 +7,8 @@ import { useDispatch } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
 import { Link, useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const LoginForm = () => {
       })
     )
       .then((res) => {
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       .catch((error) => {
         setErrorMsg(error.toString());
@@ -33,7 +35,7 @@ const LoginForm = () => {
 
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 border p-16 grid gap-8">
-      <Link to="/">
+      <Link to={staticServerUri + "/"}>
         <img
           src="/logoKakao.svg"
           alt="카카오톡 쇼핑하기"
@@ -67,7 +69,7 @@ const LoginForm = () => {
         로그인
       </Button>
       {errorMsg && <div>{errorMsg}</div>}
-      <Link to="/signup" className="block m-auto">
+      <Link to={staticServerUri + "/signup"} className="block m-auto">
         회원가입
       </Link>
     </div>

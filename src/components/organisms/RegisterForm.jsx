@@ -7,7 +7,8 @@ import { register } from "../../services/user";
 import Title from "../atoms/Title";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-// import useInputError from "../../hooks/useInputError";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const RegisterForm = () => {
     })
       // 정상적인 로그인 시
       .then((res) => {
-        navigate("/");
+        navigate(staticServerUri + "/");
       })
       // 에러 났을 시
       .catch((error) => {
@@ -40,7 +41,7 @@ const RegisterForm = () => {
 
   return (
     <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 border p-16 grid gap-8">
-      <Link to="/">
+      <Link to={staticServerUri + "/"}>
         <img src="/logoKakao.svg" alt="카카오톡 쇼핑하기" className="w-32 block m-auto" />
       </Link>
 
