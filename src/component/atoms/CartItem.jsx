@@ -6,6 +6,7 @@ import { comma } from "../../utils/convert";
 import '../../styles/atoms/CartItem.css';
 
 /** cartList에 들어갈 cartItem들 */
+// item : 상품 정보들을 props로 넘겨줍니다
 export const CartItem = ({ item, onChange }) => {
     return ( 
         <Box className="cart-item-box">

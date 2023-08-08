@@ -2,6 +2,28 @@
 카카오 쇼핑 홈페이지를 간단하게 클론 코딩한 프로젝트 입니다.
 대략적인 기능으로는 홈화면에 상품 조회, 캐러셀 (홍보물 사진들), 로그인 로그아웃, 장바구니, 구매(PG사 결제 미포함)가 구현되어 있습니다.
 
+# 과제 수정 리드미 요청사항
+
+### 2주차
+1. 상태 관리 모듈을 사용한 로그인 상태 관리
+	- /services/index.js에 axios와 기존 제공해주신 백엔드 서버로 연결해놨었는데 현재는 배포 코드로 바뀌어 있어서 5주차 과제 확인하시면 될 것 같습니다
+2. 아톰 컴포넌트에 Props에 대한 주석
+	- CartItem.jsx 처럼 위에 item 주석 달았습니다.
+
+### 3주차
+1. 백엔드 응답 상태에 따른 에러 처리
+	- services/index.js 51번째 줄부터 처리함
+2. react-query로 비동기 처리
+	- CartPage, HomePage, OrderCompletePage, OrderPage, ProductDetailPage에 {useQuery}로써 react-query를 사용하여 데이터를 비동기 처리하였습니다.
+3. 로더
+	- src/component/atoms/Loader 파일이 실행중입니다
+
+### 4주차
+1. 상품을 찾을 수 없을때 에러캐칭
+	- /store/slices/productSlice.js에 36번째줄 builder를 추가하여 상품을 찾을 수 없을때 alert창이 뜨도록 구현함
+2. 에러캐칭에 대한 시나리오 주석 명시
+	- services/index.js에서 51번째줄부터 각 에러들에 대한 시나리오 및 주석 코드를 추가함
+
 
 # Command
 ₩₩₩ bash
