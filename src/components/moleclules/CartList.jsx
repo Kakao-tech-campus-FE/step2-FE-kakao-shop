@@ -9,6 +9,7 @@ import CheckBox from "../atoms/CheckBox";
 import { BiCart } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
 import useCheckBox from "../../hooks/useCheckBox";
+import { staticServerUri } from "../../constants/serverUri";
 
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -142,7 +143,7 @@ const CartList = ({ data }) => {
             <button
               className="mb-5 w-full bg-kakao py-4"
               onClick={() => {
-                navigate("/order");
+                navigate(staticServerUri + "/order");
               }}
             >
               <span className="font-bold">
@@ -165,7 +166,7 @@ const CartList = ({ data }) => {
               </button>
               <button
                 onClick={() => {
-                  navigate("/");
+                  navigate(staticServerUri + "/");
                 }}
                 className="mx-1 w-[100px] rounded-md bg-black py-2 text-sm text-white"
               >

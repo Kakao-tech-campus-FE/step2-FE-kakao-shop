@@ -1,3 +1,4 @@
+import { staticServerUri } from "../../constants/serverUri";
 import { comma } from "../../utils/convert";
 import Card from "../atoms/Card";
 import Photo from "../atoms/Photo";
@@ -7,7 +8,7 @@ const ProductCard = ({ product, skeleton }) => {
     <Card to={`/product/${product.id}`}>
       {!skeleton ? (
         <Photo
-          src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${product.image}`}
+          src={staticServerUri + product.image}
           alt={product.productName}
           className={
             "block aspect-[15/9] w-[100%] overflow-hidden rounded-[10px]"

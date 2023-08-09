@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { staticServerUri } from "../constants/serverUri";
 
 const NotFound = () => {
   return (
@@ -14,7 +15,7 @@ const NotFound = () => {
         검색하신 페이지의 주소가 정확한지 다시 한번 확인해 주시기 바랍니다.
       </p>
       <Link
-        to="/"
+        to={staticServerUri + "/"}
         replace={true}
         className="mt-5 rounded-3xl bg-gray-200 px-10 py-3"
       >

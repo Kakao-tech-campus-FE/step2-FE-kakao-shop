@@ -3,6 +3,7 @@ import Photo from "../atoms/Photo";
 import { comma } from "../../utils/convert";
 import { AiFillStar } from "react-icons/ai";
 import { BsTruck } from "react-icons/bs";
+import { staticServerUri } from "../../constants/serverUri";
 
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image, starCount } = product;
@@ -11,7 +12,7 @@ const ProductInformationColumn = ({ product }) => {
     <div className="flex w-auto flex-col items-center lg:w-[72%] lg:flex-row lg:items-start">
       <div>
         <Photo
-          src={`http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com${image}`}
+          src={staticServerUri + image}
           alt={productName}
           className="mt-7 block w-[100%] px-2 lg:w-[400px]"
         ></Photo>

@@ -8,6 +8,7 @@ import Box from "../atoms/Box";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginRequest } from "../../store/slices/userSlice";
+import { staticServerUri } from "../../constants/serverUri";
 
 const LoginForm = () => {
   // user 전역 상태 관련
@@ -50,7 +51,7 @@ const LoginForm = () => {
   // 로그인 상태에 따른 응답
   useEffect(() => {
     if (email !== null) {
-      navigate("/", { replace: true });
+      navigate(staticServerUri + "/", { replace: true });
       window.location.reload(false);
     }
     if (isError === true) {
@@ -94,7 +95,7 @@ const LoginForm = () => {
         <Button className={"mt-10"} onClick={loginReq} isLoading={isLoading}>
           로그인
         </Button>
-        <Link to="/signup" className="mt-5 text-xs ">
+        <Link to={staticServerUri + "/signup"} className="mt-5 text-xs ">
           회원가입
         </Link>
       </Container>

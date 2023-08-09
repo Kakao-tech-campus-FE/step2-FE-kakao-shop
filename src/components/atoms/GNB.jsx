@@ -4,6 +4,7 @@ import { setEmail } from "../../store/slices/userSlice";
 import Photo from "./Photo";
 import { useState } from "react";
 import Modal from "../moleclules/Modal";
+import { staticServerUri } from "../../constants/serverUri";
 
 const GNB = () => {
   const [modal, setModal] = useState(false);
@@ -16,18 +17,18 @@ const GNB = () => {
     <header>
       <div className="border-b border-gray-300 p-3 lg:px-10 lg:py-5">
         <div className="m-auto flex max-w-[1280px] items-center justify-between">
-          <Link to="/" replace={true}>
+          <Link to={staticServerUri + "/"} replace={true}>
             <Photo
-              src={"/logoKakao.png"}
+              src={staticServerUri + "/logoKakao.png"}
               alt="logoKakao"
               className={"w-[80px] lg:w-[100px]"}
             ></Photo>
           </Link>
           <div className="flex items-center justify-evenly">
             {email ? (
-              <Link to="/cart">
+              <Link to={staticServerUri + "/cart"}>
                 <Photo
-                  src={"/cart.png"}
+                  src={staticServerUri + "/cart.png"}
                   alt="cart"
                   className={"w-[30px] lg:w-[40px]"}
                 />
@@ -39,7 +40,7 @@ const GNB = () => {
                 }}
               >
                 <Photo
-                  src={"/cart.png"}
+                  src={staticServerUri + "/cart.png"}
                   alt="cart"
                   className={"w-[30px] lg:w-[40px]"}
                 />
@@ -50,7 +51,7 @@ const GNB = () => {
               |
             </span>
             {!email ? (
-              <Link className="text-[13px]" to="/login">
+              <Link className="text-[13px]" to={staticServerUri + "/login"}>
                 로그인
               </Link>
             ) : (
@@ -58,7 +59,7 @@ const GNB = () => {
                 className="text-[13px]"
                 onClick={() => {
                   dispatch(setEmail(null));
-                  navigate("/", { replace: true });
+                  navigate(staticServerUri + "/", { replace: true });
                   window.location.reload();
                 }}
               >
@@ -75,7 +76,7 @@ const GNB = () => {
           buttonText={"로그인"}
           secondButton={"취소"}
           onClick={() => {
-            navigate("/login");
+            navigate(staticServerUri + "/login");
           }}
           setModal={setModal}
         ></Modal>
