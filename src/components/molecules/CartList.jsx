@@ -61,7 +61,6 @@ const CartList = ({ data, isLoading }) => {
 
   const getIsCartEmpty = useCallback(() => {
     return cartItems.every((product) => {
-      console.log(product.carts);
       return product.carts.every((option) => {
         return option.quantity === 0;
       });
@@ -143,9 +142,7 @@ const CartList = ({ data, isLoading }) => {
     });
   };
 
-  return isLoading ? (
-    <Loader />
-  ) : (
+  return (
     <main className="pt-2 pb-10 bg-[#F4F4F4] bg-opacity-70">
       <Container className="w-[870px] mx-auto">
         <Box className="h-12 border rounded bg-white text-center">
@@ -175,7 +172,6 @@ const CartList = ({ data, isLoading }) => {
             {/* 상품별 장바구니 */}
             {Array.isArray(cartItems) &&
               cartItems.map((item) => {
-                console.log(data);
                 return (
                   // 모든 옵션의 수량이 0인 경우 CartItem을 렌더링하지 않도록 한다.
                   // item.price !== 0이면 수량이 0이 아닌 경우이다.

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { fetchProducts } from "../../services/api/product";
 import { useQuery } from "react-query";
 import _ from "lodash";
+import ErrorTypo from "../atoms/ErrorTypo";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -98,15 +99,11 @@ const MainProductTemplate = () => {
   //console.log("Products:", products);
 
   if (error) {
-    return (
-      <Container className="w-full px-24 py-6 m-auto">
-        <div>{error.message}</div>
-      </Container>
-    );
+    return <ErrorTypo />;
   }
 
   return (
-    <Container className="w-full px-24 py-6 m-auto">
+    <Container className="w-full px-24 py-16 m-auto">
       <ProductGrid products={products} isLoading={isLoading} />
       <div ref={bottomObserver}></div>
     </Container>

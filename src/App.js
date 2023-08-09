@@ -8,6 +8,7 @@ import "./App.css"
 import CartPage from "./pages/CartPage";
 import OrderPage from "./pages/OrderPage";
 import RequiredAuthLayout from "./layouts/RequiredAuthLayout";
+import OrderCompletePage from "./pages/OrderCompletePage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route element = {<RequiredAuthLayout />}>
           <Route exact path = "/cart" element = {<CartPage />}></Route>
           <Route exact path = "/order" element = {<OrderPage />}></Route>
+          <Route exact path = "/order/complete/:id" element = {<OrderCompletePage />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -60,6 +60,13 @@ const RegisterForm = () => {
     }
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleRequest();
+    }
+  };
+
   const [isFocus, setIsFocus] = useState([false, false, false, false]);
   const getInputGroupClass = (index) => {
     return isFocus[index]
@@ -75,7 +82,10 @@ const RegisterForm = () => {
   };
 
   return (
-    <Container className="border-neutral-300 border px-16 py-14 w-[660px] min-w-fit h-full my-10 mx-auto">
+    <Container
+      className="border-neutral-300 border px-16 py-14 w-[660px] min-w-fit h-full my-10 mx-auto"
+      onKeyDown={handleKeyDown}
+    >
       <div className="text-center font-normal text-3xl mx-auto my-10">
         가입을 시작합니다!
       </div>

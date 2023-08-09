@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-const Card = ({ to, children }) => {
+const Card = ({ to, children, className }) => {
   return (
-    <Link className="card" to={to}>
+    <Link className={`card ${className}`} to={to}>
       {children}
     </Link>
   );

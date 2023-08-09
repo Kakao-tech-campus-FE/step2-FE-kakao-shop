@@ -13,13 +13,13 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 //최상위 컴포넌트인 App을 Provider로 감싸고 store 지정
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <App />
       </QueryClientProvider>
     </Provider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

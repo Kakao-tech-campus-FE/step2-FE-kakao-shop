@@ -3,6 +3,7 @@ import Loader from "../components/atoms/Loader";
 import { useQuery } from "react-query";
 import { getProductById } from "../services/api/product";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
+import ErrorTypo from "../components/atoms/ErrorTypo";
 
 const ProductDetailPage = () => {
   // const dispatch = useDispatch(); // react-query 사용으로 disable
@@ -55,14 +56,10 @@ const ProductDetailPage = () => {
     return true;
   };
 
-  return (
-    <div>
-      {isLoading && <Loader />}
-      {error && <div>{error.message}</div>}
-      {/* 최초의 data는 아무 값이 없어 바로 참조하지 않고 ?를 이용하여 참조하여 parsing error 방지*/}
-      {validate() && <ProductDetailTemplate product={product} />}
-    </div>
-  );
+  if (isLoading) return <Loader />;
+  else if (error) return <ErrorTypo />;
+  else if (validate() === false) return <ErrorTypo />;
+  else return <ProductDetailTemplate product={product} />;
 };
 
 export default ProductDetailPage;
