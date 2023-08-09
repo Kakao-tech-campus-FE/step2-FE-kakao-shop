@@ -1,4 +1,4 @@
-import MainLayout from "../layouts/MainLayout";
+import MainProductTemplate from "../components/templates/MainProductTemplate";
 
 /**
  * 최상단 페이지 생성
@@ -6,7 +6,7 @@ import MainLayout from "../layouts/MainLayout";
  */
 const HomePage = () => {
 	return (
-        <MainLayout />
+        <MainProductTemplate />
 	)
 }
 

@@ -49,6 +49,7 @@ const LoginForm = () => {
 									password: value.password,
 								})
 							).then(
+								alert("로그인되었습니다."),
 								window.location.href = "/"
 							)
 						)

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Box from "../atoms/Box";
 import Container from "../atoms/Container";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Button from "../atoms/Button";
 import { useDispatch } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
@@ -32,9 +32,9 @@ const Gnb = () => {
     }, []);
 
     return (
-        <Container className="mb-3 border-b">
-            <Container className="px-4 mx-auto max-w-7xl"> 
-                <Container className="flex justify-between">
+        <div className="mb-3 border-b">
+            <div className="px-4 mx-auto max-w-7xl"> 
+                <div className="flex justify-between">
                     <NavLink className="flex items-center py-4" to="/">
                         <img src="/img/logoKakao.png" width="100px" alt="logo"/>
                     </NavLink>
@@ -62,9 +62,9 @@ const Gnb = () => {
                             회원가입
                         </NavLink>
                     </Box>
-                </Container>
-            </Container>
-        </Container>
+                </div>
+            </div>
+        </div>
     );
 }
 

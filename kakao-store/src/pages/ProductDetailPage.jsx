@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getProductById } from "../apis/product";
 import Loader from "../components/atoms/Loader";
 import ProductDetailTemplate from "../components/templates/ProductDetailTemplate";
-import Gnb from "../components/organisms/Gnb";
+import Error404Page from "./Error404Page";
 
 const ProductDetailPage = () => {
     const { id } = useParams(); // string
@@ -15,7 +15,7 @@ const ProductDetailPage = () => {
     const product = data?.data?.response;
 
     // typescript로 대체
-    const isVaildate = () => {
+    const isValidate = () => {
         if(!product) {
             return false;
         }
@@ -39,15 +39,12 @@ const ProductDetailPage = () => {
     }
 
     return (
-        <>
-            <Gnb />
-            <div>
-                {isLoading && <Loader />}
-                {error &&  <div>{error.message}</div> /* <Error404 /> */}
-                {/* isVaildate === false && <Error404 />  */}
-                {product && <ProductDetailTemplate product={product} />}
-            </div>
-        </>
+        <div>
+            {isLoading && <Loader />}
+            {error &&  <Error404Page />}
+            {isValidate === false && <Error404Page />  }
+            {product && <ProductDetailTemplate product={product} />}
+        </div>
     );
 }
 
