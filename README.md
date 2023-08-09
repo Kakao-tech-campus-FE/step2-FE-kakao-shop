@@ -1,193 +1,171 @@
-<details>
-<summary>Step-2.-Week-1</summary>
-<div>
-  
-## 카카오 테크 캠퍼스 2단계 - FE - 1주차 클론 과제
+# KAKAO_SHOPPING
 
-## **과제명**
-```
-1. 쇼핑몰 웹사이트 탐색을 통한 페이지 구성
-2. UI 컴포넌트의 명칭과 사용법 익히기
-```
-</br>
+> Kakao Tech Campus
+> 카카오 쇼핑 홈페이지 클론코딩 프로젝트  
+> 개발기간 : 6.26 ~ 8.04
 
-## **과제 설명**
+![메인페이지](https://github.com/YANGSEOKWOO/step2-FE-kakao-shop-2/assets/59641097/3b24dc03-bb68-440d-9bd1-f7758ff99c0e)
 
-✅**과제 1.**
-```
-쇼핑몰 웹사이트를 탐색해 어떠한 페이지 구성을 가지고 있는지 체크합니다. 
-대부분의 쇼핑몰은 다음의 페이지 구성을 가지고 있습니다.
+## 배포 주소
 
-- 메인 페이지
-- 상품 검색 결과 페이지
-- 개별 상품 상세 페이지
-- 주문 목록 페이지
-- 결제 페이지
-- 결제 완료 페이지
-- 장바구니 페이지
-- ...
+> https://user-app.krampoline.com/k58dc6edd47efa/
 
-이와 같이 위의 서비스가 동작하는데 필수적인 페이지가 무엇이 있고, 해당 페이지에서 어떠한 기능이 구현되어야 하는지 작성하세요. 
-그리고 어떠한 디렉터리 구조로 프로젝트를 진행할지 작성해주세요. (README.md 파일에 작성)
-```
+## 애플리케이션 구조
 
-```
-README.md의 예시 형식입니다. 아래를 참고해 작성해주세요. 
-각 페이지마다 핵심 기능, 기능 상세 설명, 인터페이스 요구사항이 어떤 것이 있을지 고민해서 작성해주세요.
+<img width="341" alt="image" src="https://github.com/YANGSEOKWOO/step2-FE-kakao-shop-2/assets/59641097/dd59759f-e1e0-47ac-830d-3a1183fa1004">
 
-###예시
+### 주요 기능
 
-#페이지별 구성
-1. 메인페이지
-핵심기능 : 현재 판매중인 모든 제품들을 보여주고 다른 페이지로 이동할 수 있게 한다.
+- 로그인, 회원가입 기능
+- 로더 기능
+- 상품 상세조회 기능
+- 장바구니 담기, 및 조회기능
+- 주문 결제 기능
 
-기능 상세 설명 : 전체 상품조회 API를 통해 주문이 가능한 전체 상품목록을 가져오고, 상품이미지, 상품명, 가격 정보를 사용자 화면에 출력 장바구니, 배송조회, 마이페이지로 옮길 수 있도록 한다.
+### Directory Pattern
 
-인터페이스 요구사항
-입력 -
-출력 : 전체상품출력
+#### Atomic Design Patten
 
-2. 회원가입페이지
-핵심기능 : 서비스 이용을 위한 회원가입
+│ App.js  
+│ index.js  
+│  
+├─components  
+│ ├─atoms  
+│ │ Box.jsx  
+│ │ Button.jsx  
+│ │ Card.jsx  
+│ │ CartItem.jsx  
+│ │ Container.jsx  
+│ │ ControlledCarousel.jsx  
+│ │ Counter.jsx  
+│ │ Footer.jsx  
+│ │ GNB.jsx  
+│ │ Input.jsx  
+│ │ Label.jsx  
+│ │ Loader.jsx  
+│ │ OptionItem.jsx  
+│ │ OptionList.jsx  
+│ │ Photo.jsx  
+│ │ Skeleton.jsx  
+│ │ Title.jsx  
+│ │  
+│ ├─molecules  
+│ │ CartList.jsx  
+│ │ InputGroup.jsx  
+│ │ OptionColumn.jsx  
+│ │ ProductCard.jsx  
+│ │ ProductInformationColumn.jsx  
+│ │  
+│ ├─organisms  
+│ │ LoginForm.jsx  
+│ │ ProductGrid.jsx  
+│ │ RegisterForm.jsx  
+│ │  
+│ └─templates  
+│ CompleteTemplate.jsx  
+│ MainTemplate.jsx  
+│ OrderTemplate.jsx  
+│ ProductDetailTemplate.jsx  
+│  
+├─hooks : 커스텀 훅을 모아놓은 공간  
+│ useAgree.js  
+│ useEffectOnce.js  
+│ useFetch.js  
+│ useInput.js  
+│ useValid.js  
+│
+├─layouts : GNB, Outlet, Footer 레이아웃, 로그인/아웃여부에 다른 레이아웃  
+│ MainLayout.jsx  
+│ RequiredAuthLayout.jsx  
+│  
+├─pages  
+│ CartPage.jsx : 장바구니 페이지지  
+│ ErrorPage.jsx : 404페이지  
+│ Homepage.jsx  
+│ LoginPage.jsx : 로그인페이지  
+│ NewHomePage.jsx : 메인페이지  
+│ OrderCompletePage.jsx : 주문완료 페이지  
+│ OrderPage.jsx : 주문페이지  
+│ ProductDetailPage.jsx : 개별상품페이지  
+│ RegisterPage.jsx : 회원가입 페이지  
+│  
+├─services : API를 모아놓은 폴더 : axios  
+│ cart.js : 장바구니 api  
+│ index.js  
+│ order.js  
+│ product.js  
+│ user.js  
+│  
+├─store : redux 사용  
+│ │ index.js  
+│ │  
+│ └─slices  
+│ detailSlice.js  
+│ userSlice.js  
+│  
+├─styles  
+│ ├─atoms  
+│ │  
+│ ├─organisms  
+│ │  
+│ ├─pages  
+│ │  
+│ └─templates  
+│  
+└─utils : 각종 편의함수들을 모아놓은 것  
+ convert.js
 
-기능 상세설명 : 이메일 아이디 유효성 검사 : 영문 + 숫자, 숫자 + 영문
-비밀번호 유효성 검사 : 영문, 숫자, 특수문자 포함, 공백없음 8~20자
+# Start Command
 
-인터페이스 요구사항 :
- - 아이디 비밀번호, 이메일을 입력할 수 있는 란이 있어야 한다.
- 
-3. 로그인 페이지
-
-핵심 기능 : 회원 서비스를 이용하기 위한 로그인
-
-기능 상세설명 : 이메일, 비밀번호를 입력하고 로그인을 누르면 로그인이 된다.
-
-인터페이스 요구사항 : 이메일, 비밀번호를 누를 수 있는 칸과 로그인버튼이 있어야 한다.
-
-4. 로그아웃 페이지
-
-핵심기능 : 로그아웃 및 회원서비스 종료
-
-기능 상세설명 : 메인페이지의 로그아웃버튼을 누르면 로그아웃이 된다.
-
-인터페이스 요구사항 : 로그아웃
-
-5. 개별 상품조회페이지
-
-핵심기능 : 고객이 상품에 대한 정보와 구매여부를 결정할 수 있도록 화면을 출력한다.
-
-기능 상세설명 : 전체 상품목록에서 특정상품 카드를 클릭하면 상세 상품조회와 옵션조회 API를 통해 해당 상품에 대한 상세 정보와 옵션을 가져와 화면에 출력
-
-인터페이스 요구사항 : 상품에 대한 상세정보, 리뷰, 문의를 출력한다.
-
-6. 옵션선택 페이지
-
-핵심기능 : 고객에게 선택한 상품에 대한 옵션선택을 제공한다.
-
-기능 상세설명 : 상품옵션을 선택하고, 중복선택이 불가능하다며, 수량, 색상, 배송, 찜, 장바구니를 선택할 수 있다.
-
-인터페이스 요구사항 : 색상, 옵션, 수량, 배송, 찜, 장바구니, 구매버튼을 제공한다.
-
-7. 주문하기 페이지
-
-핵심기능 : 고객이 주문할 수 있도록 결제단계로 이동
-
-기능 상세설명 : 옵션선택페이지에서 구매버튼을 누르면 이동하며, 고객이 선택한 옵션에 대한 정보를 제공하고 소비자의 정보와 구매여부를 받는다.
-
-인터페이스 요구사항 : 구매한 옵션들, 배송지, 입력, 주문상품 정보, 결제금액, 결제방법, 현금영수증, 개인정보 동의가 있어야 한다.
-
-8. 주문결과 확인
-
-핵심기능 : 주문결과 확인
-
-기능 상세설명 : 고객이 주문이 잘되어있는지 확인할 수 있고, 실패되었다면 실패이유를 출력한다.(잔액부족, 카드사정지)
-
-인터페이스 요구사항 : 결제결과를 알려줄 수 있다.
-
-9. 장바구니 확인페이지
-
-핵심기능 : 소비자가 개별상품조회페이지에서 장바구니에 담은 내역을 보여준다.
-
-기능상세설명 : 장바구니에 담았던 상품조회 API를 통해 해당 상품에 대한  정보를 가져와 화면에 출력
-
-인터페이스 요구사항 : 회원이 담았던 상품 목록들을 보여줘야한다.
-
-10. 배송확인 페이지
-
-핵심기능 : 최근 주문내역기록을 토대로 배송/발송대기 배송/발생진행, 취소/교환/발품, 구매결정
-
-기능 상세설명 : 고객이 30일 이내로 주문했던 상품API를 통해 주문이 들어간 상품에 대한 배송, 발송 정보를 출력한다.
-
-인터페이스 요구사항 : 회원이 30일이내로 주문했던 상품의 배송정보를 출력한다.
-
-#디렉터리 구조
 ```bash
-├── assets
-├── components
-├── context
-├── data
-├── features
-├── hooks
-├── lib
-├── pages
-│   ├── registerPage.js
-│   ├── loginPage.js
-│   ├── logoutPage.js
-│   ├── productPage.js
-│   ├── cartPage.js
-│   ├── orderPage.js
-│   ├── payPage.js
-│   └── validationPage.js
-├── api
-├── utils
-├── App.js
-├── index.js
-└── 
-분류 방식에는 1. 기능별로 분류, 2. 파일 유형에 의한 분류가 있다.
-제 생각으로, 간단하게 필요한 기능만 활용하여 디렉터리 구조를 이용할 때는 Page별로 나누는 게 코드의 이해가 빠를 것 같아 채택했다.
-
+git clone [웹사이트 주소]
+cd [클론한 폴더]
+npm install # 의존성 모듈 설치
+npm run build # 패키지 번들링
+npn run start # 프로젝트 실행
 ```
 
-</br>
+### 배포 방법
 
-✅**과제 2.**
+배포 플로우
+<img width="398" alt="image" src="https://github.com/YANGSEOKWOO/step2-FE-kakao-shop-2/assets/59641097/c79cf8d1-b156-46e3-8531-dc809dbf0d33">
 
-```
-프론트 개발자가 다른 프론트 개발자와 소통 및 UI 디자이너와 소통하는데 필수적인 UI 컴포넌트의 명칭과 사용법을 익힙니다.
-수업시간에 배운 컴포넌트의 명칭과 사용법 이외에 대표적인 UI 라이브러리 홈페이지를 조사해보면 수많은 컴포넌트가 어떤식으로 동작하는지 확인할 수 있습니다.
-리액트 프로젝트를 생성하고, 토스트, 브래드크럼, 캐러셀, 라디오버튼, 토글버튼, 체크리스트를 UI 라이브러리가 아닌 자신만의 방식으로 스타일링하고 상태 관리를 적용해 코드를 작성하세요.
-작성된 코드는 레퍼지토리에 업로드하여 멘토님에게 전달해주세요.
-```
+1. 크램폴린 IDE를 통해 배포
+2. 컨테이너를 생성한다.
 
-</br>
+- 스택 : React, 외부프로젝트 : Github로 main과 연결
 
-✅**과제 3.**
+3. D2hub 레퍼지토리 생성 및 이미지 빌드
+4. Kargo App을 생성(앱 등록하기) 후 배포하기
+5. 외부 접속 URL을 설정하여 DKOS 클러스터에 배포된 자신의 app 구동을 확인할 수있다.
+   배포에 영향 받는 브랜치 : main
 
-```
-각 컴포넌트를 시현해 볼 수 있는 페이지를 만드세요. 
-하나의 페이지에 모든 컴포넌트를 둬도 좋고, 각 페이지별로 분리해도 괜찮습니다.
-```
+### 배포 이후
 
-</br>
+수정사항이 발생하면, 코드 수정 => D2Hub repo 빌드 => Kargo App 배포
+로그 확인하고 싶다 => `kubectl` 명령어
 
-## **과제 상세 : 수강생들이 과제를 진행할 때, 유념해야할 것**
-```
-1. README.md 파일은 동료 개발자에게 프로젝트에 쉽게 랜딩하도록 돕는 중요한 소통 수단입니다. 
-해당 프로젝트에 대해 아무런 지식이 없는 동료들에게 설명하는 것처럼 쉽고, 간결하게 작성해주세요.
-
-2. 좋은 개발자는 디자이너, 기획자, 마케터 등 여러 포지션에 있는 분들과 소통을 잘합니다. 
-UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤니케이션 스킬이자 필요사항이니 어떤 상황에서 해당 컴포넌트를 사용하면 좋을지 고민하며 코드를 작성해보세요.
-```
-</br>
-
-## **코드리뷰 관련: PR시, 아래 내용을 포함하여 코멘트 남겨주세요.**
-**1. PR 제목과 내용을 아래와 같이 작성 해주세요.**
-
->- PR 제목 : 부산대FE_라이언_1주차 과제
-
-</br>
-
-</div>
-</details>
+## Stacks
 
 ---
+
+#### Environment
+
+<img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white"><img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+
+### Development
+
+<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
+<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
+<img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+
+### test
+
+<img src="https://img.shields.io/badge/puppeteer-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white">
+
+### 웹사이트 페이지
+
+![개별상품페이지](https://github.com/YANGSEOKWOO/step2-FE-kakao-shop-2/assets/59641097/bb8daa86-6b67-4fc1-b0e0-3364c42d5268)
+![장바구니페이지](https://github.com/YANGSEOKWOO/step2-FE-kakao-shop-2/assets/59641097/be7f5b24-6039-4c55-886a-0f5930590254)
+![구매완료페이지](https://github.com/YANGSEOKWOO/step2-FE-kakao-shop-2/assets/59641097/81fc5a8c-f8b2-4548-bdec-bb1b36c377c7)
