@@ -9,6 +9,8 @@ const LoginPage = lazy(() => import('./pages/Login'));
 const SignupPage = lazy(() => import('./pages/Signup'));
 const DetailPage = lazy(() => import('./pages/Detail'));
 const CartPage = lazy(() => import('./pages/Cart'));
+const PayPage = lazy(() => import('./pages/Pay'));
+const PaySuccessPage = lazy(() => import('./pages/PaySuccess'));
 const Page404 = lazy(() => import('./pages/Error404'));
 const Page500 = lazy(() => import('./pages/Error500'));
 const router = createBrowserRouter([
@@ -53,6 +55,22 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Spinner width={60} height={60} />}>
             <CartPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'pay',
+        element: (
+          <Suspense fallback={<Spinner width={60} height={60} />}>
+            <PayPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: 'paySuccess',
+        element: (
+          <Suspense fallback={<Spinner width={60} height={60} />}>
+            <PaySuccessPage />
           </Suspense>
         ),
       },
