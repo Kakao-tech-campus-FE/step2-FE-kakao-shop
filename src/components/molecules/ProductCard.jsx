@@ -4,6 +4,7 @@ import Photo from "../atoms/Photo";
 import ProductCardSkeleton from "../atoms/ProductCardSkeleton";
 import styled from "styled-components";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const ProductCard = ({product, loading}) => {
     return (
@@ -13,7 +14,7 @@ const ProductCard = ({product, loading}) => {
         ) : (
           <Container to={`/products/${product.id}`}>
             <ProductImage>
-              <Photo src={product.image} alt={product.productName}/>
+              <Photo src={staticServerUri + product.image} alt={product.productName}/>
             </ProductImage>
             <ProductName className="product-name">{product.productName}</ProductName>
             <ProductPrice className="product-price">{comma(product.price)}원</ProductPrice>
