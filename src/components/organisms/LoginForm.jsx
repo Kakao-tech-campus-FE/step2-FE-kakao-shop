@@ -9,6 +9,8 @@ import useInput from "../../hooks/useInput";
 import instance from "../../api";
 import { login } from "../../store/slices/authSlice";
 import AlertBox from "../molecules/AlertBox";
+import LinkButton from "../atoms/LinkButton";
+import staticServerUri from "../../utils/krampoline";
 
 /** 로그인 폼
  *
@@ -47,7 +49,7 @@ const LoginForm = () => {
     const data = await instance.post("/login", JSON.stringify(values));
     if (data.data?.success) {
       dispatch(login(data.token));
-      window.location.replace("/");
+      window.location.replace(`${staticServerUri}/`);
     } else {
       // eslint-disable-next-line no-alert
       setErrorMessage(data?.error?.message);
@@ -65,20 +67,18 @@ const LoginForm = () => {
           type="email"
           name="email"
           placeholder="이메일"
-          label="이메일"
           value={values.email}
           onChange={handleChange}
-          className="relative border-b-2 border-gray-300 mt-4 mb-3"
+          className="relative border-b-2 border-gray-300"
         />
         <InputGroup
           id="password"
           type="password"
           name="password"
           placeholder="비밀번호"
-          label="비밀번호"
           value={values.password}
           onChange={handleChange}
-          className="relative border-b-2 border-gray-300 mt-4 mb-3"
+          className="relative border-b-2 border-gray-300"
         />
         {errorMessage && (
           <AlertBox
@@ -95,6 +95,13 @@ const LoginForm = () => {
         >
           로그인
         </Button>
+        <LinkButton
+          to="/signup"
+          onClick={() => {}}
+          className="pt-[26px] text-[12px] leading-[18px]"
+        >
+          회원가입
+        </LinkButton>
       </Box>
     </Container>
   );

@@ -9,6 +9,7 @@ import CartPage from "./CartPage";
 import RequiredAuthLayout from "../layouts/RequiredAuthLayout";
 import OrderPage from "./OrderPage";
 import OrderCompletePage from "./OrderCompletePage";
+import staticServerUri from "../utils/krampoline";
 
 /** 레이아웃 라우트
  *
@@ -19,17 +20,23 @@ const LayoutRoute = () => {
     <BrowserRouter>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/product/:id" element={<ProductDetailPage />} />
+          <Route path={`${staticServerUri}/`} element={<MainPage />} />
+          <Route
+            path={`${staticServerUri}/product/:id`}
+            element={<ProductDetailPage />}
+          />
         </Route>
         <Route element={<RequiredAuthLayout />}>
-          <Route path="/cart" element={<CartPage />} />
-          <Route path="/order" element={<OrderPage />} />
-          <Route path="/orders/complete/:id" element={<OrderCompletePage />} />
+          <Route path={`${staticServerUri}/cart`} element={<CartPage />} />
+          <Route path={`${staticServerUri}/order`} element={<OrderPage />} />
+          <Route
+            path={`${staticServerUri}/orders/complete/:id`}
+            element={<OrderCompletePage />}
+          />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<RegisterPage />} />
-        <Route path="/error" element={<ErrorPage />} />
+        <Route path={`${staticServerUri}/login`} element={<LoginPage />} />
+        <Route path={`${staticServerUri}/signup`} element={<RegisterPage />} />
+        <Route path={`${staticServerUri}/error`} element={<ErrorPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

@@ -1,6 +1,7 @@
 import Photo from "../atoms/Photo";
 import Button from "../atoms/Button";
 import comma from "../../utils/convert";
+import staticServerUri from "../../utils/krampoline";
 
 /** 상품 정보 컬럼
  *
@@ -13,7 +14,7 @@ const ProductInformationColumn = ({ product }) => {
     <div className="product-information-column flex w-[920px] py-[30px] pr-[29px] border-r border-gray-300 bg-white">
       <div className="col">
         <Photo
-          src={process.env.REACT_APP_API_URL + image.substring(1, image.length)}
+          src={`${staticServerUri}/${image.substring(1, image.length)}`}
           alt={productName}
           className="product-image w-[430px] h-[430px]"
         />

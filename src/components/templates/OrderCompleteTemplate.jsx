@@ -3,6 +3,7 @@ import Container from "../atoms/Container";
 import comma from "../../utils/convert";
 import Box from "../atoms/Box";
 import Button from "../atoms/Button";
+import staticServerUri from "../../utils/krampoline";
 
 /** 주문 완료 페이지
  *
@@ -28,6 +29,15 @@ const OrderCompleteTemplate = ({ data }) => {
           <p className="text-[14px]">
             주문번호 <span className="font-semibold">{id}</span>
           </p>
+          <p className="text-[14px] pt-[3px]">
+            주문내역{" "}
+            <span className="font-bold">
+              {data?.data?.response?.products[0].productName}
+            </span>
+            {data?.data?.response?.products.length > 1 &&
+              // eslint-disable-next-line no-unsafe-optional-chaining
+              ` 외 ${data?.data?.response?.products.length - 1}건`}
+          </p>
         </Box>
         <div className="h-[12px] bg-gray-100" />
 
@@ -38,7 +48,7 @@ const OrderCompleteTemplate = ({ data }) => {
         <Button
           className="w-full p-4 text-[20px] font-bold bg-yellow-kakao text-black"
           onClick={() => {
-            window.location.replace("/");
+            window.location.replace(`${staticServerUri}/`);
           }}
         >
           쇼핑 계속하기

@@ -9,6 +9,7 @@ import CartItem from "../molecules/CartItem";
 import comma from "../../utils/convert";
 import Button from "../atoms/Button";
 import { updateCart } from "../../api/cart";
+import staticServerUri from "../../utils/krampoline";
 
 /** 장바구니 리스트
  *
@@ -147,7 +148,7 @@ const CartList = ({ data }) => {
           onClick={() => {
             mutate(updatePayload, {
               onSuccess: (data) => {
-                navigate("/order");
+                navigate(staticServerUri + "/order");
               },
               onError: (error) => {},
             });
