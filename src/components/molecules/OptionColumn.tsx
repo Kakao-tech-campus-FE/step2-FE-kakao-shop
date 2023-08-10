@@ -71,7 +71,9 @@ const OptionColumn = ({ product }: OptionColumnProps) => {
     <div className="flex-column rounded-2xl shadow-innerFlat p-[30px] w-[500px]">
       <div className="mb-10">
         <p className="text-xxl font-bold mb-5">{product.productName}</p>
-        <PriceTag price={product.price} />
+        <div className="text-xl">
+          <PriceTag>{comma(product.price)}원</PriceTag>
+        </div>
       </div>
       <div>
         <p className="font-bold">옵션 선택</p>

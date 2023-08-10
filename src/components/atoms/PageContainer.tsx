@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const PageContainer = () => {
   return (
-    <div className="flex justify-center w-full h-[2000px] mt-header pt-16">
+    <div className="flex justify-center w-full ">
       <div className="max-w-container">
         <Outlet />
       </div>

@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { checkUsername, checkEmail, checkPassword } from '@utils/validationUtils';
 import { useNavigate } from 'react-router-dom';
 import { register } from '@api/registerApi';
+import Card from '@components/atoms/Card';
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -66,37 +67,40 @@ const RegisterForm = () => {
   }, []);
 
   return (
-    <div className="flex flex-col space-y-3">
-      <InputGroup
-        inputName="username"
-        labelName="이름"
-        value={inputInfo.username}
-        helperText={usernameHT}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        inputName="email"
-        labelName="이메일"
-        value={inputInfo.email}
-        helperText={emailHT}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        inputName="password"
-        labelName="비밀번호"
-        value={inputInfo.password}
-        helperText={passwordHT}
-        onChange={handleOnChange}
-      />
-      <InputGroup
-        inputName="passwordConfirm"
-        labelName="비밀번호 확인"
-        value={inputInfo.passwordConfirm}
-        helperText={passwordConfirmHT}
-        onChange={handleOnChange}
-      />
-      <FilledButton onClick={registerReq}>제출</FilledButton>
-    </div>
+    <Card>
+      <div className="flex flex-col w-[400px] my-[50px] space-y-3">
+        <InputGroup
+          inputName="username"
+          labelName="이름"
+          value={inputInfo.username}
+          helperText={usernameHT}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          inputName="email"
+          labelName="이메일"
+          value={inputInfo.email}
+          helperText={emailHT}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          inputName="password"
+          labelName="비밀번호"
+          value={inputInfo.password}
+          helperText={passwordHT}
+          onChange={handleOnChange}
+        />
+        <InputGroup
+          inputName="passwordConfirm"
+          labelName="비밀번호 확인"
+          value={inputInfo.passwordConfirm}
+          helperText={passwordConfirmHT}
+          onChange={handleOnChange}
+        />
+        <div className="pt-5" />
+        <FilledButton onClick={registerReq}>제출</FilledButton>
+      </div>
+    </Card>
   );
 };
 

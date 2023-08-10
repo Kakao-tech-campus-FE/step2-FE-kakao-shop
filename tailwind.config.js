@@ -9,6 +9,7 @@ module.exports = {
         paragraph: '1rem',
         xl: '1.25rem',
         xxl: '2rem',
+        title: '4rem',
       },
       boxShadow: {
         innerFlat: 'inset .2rem .2rem .5rem #c8d0e7, inset -.2rem -.2rem .5rem #FFFFFF',
@@ -24,6 +25,7 @@ module.exports = {
           '-5px 5px 5px rgba(200, 208, 231, 0.5)',
           '-10px 10px 5px rgba(149, 164, 208, 0.5)',
         ],
+        Title: ['1.5px -1.5px 0px #d894ff', '3px -3px 0px rgba(200, 208, 231, 0.5)'],
       },
       borderRadius: {
         card: '50px',
@@ -31,6 +33,7 @@ module.exports = {
       colors: {
         backgroundPupple: '#f2f0f9',
         pointPupple: '#A50FFF',
+        subPupple: '#e7def7',
         lightPupple: '#fcfbfe',
         middleGray: '#979797',
         subGray: '#F0F0F0',
@@ -39,9 +42,11 @@ module.exports = {
       },
       fontFamily: {
         exo: ['"Exo 2"', 'system-ui', 'sans-serif'],
+        gasoek: ['"Gasoek One"', 'system-ui', 'sans-serif'],
       },
       spacing: {
         header: '100px',
+        footer: '100px',
       },
       maxWidth: {
         container: '1080px',
