@@ -5,6 +5,8 @@ picture.card {
 /*부모 엘리먼트 */
 picture > img {
   width: inherit;
+  border-radius: 5px;
+  margin-bottom: 30px;
 }
 
 img.card {

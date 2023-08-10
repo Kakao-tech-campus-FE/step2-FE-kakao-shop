@@ -1,12 +1,14 @@
 import { useState } from "react";
 import OptionList from "../atoms/OptionList";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation } from "react-query";
 import Counter from "../atoms/Counter";
 import { addCart } from "../../services/cart";
 import { comma } from "../../utils/convert";
+import { useNavigate } from "react-router-dom";
 import Button from "../atoms/Button";
 
 const OptionColumn = ({ product }) => {
+  const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const handleOnClickOption = (option) => {
     const isOptionSelected = selectedOptions.find(
@@ -101,6 +103,7 @@ const OptionColumn = ({ product }) => {
               {
                 onSuccess: () => {
                   alert("장바구니에 담겼습니다.");
+                  navigate("/cart");
                 },
                 onError: () => {
                   alert("장바구니에 담기 실패했습니다.");

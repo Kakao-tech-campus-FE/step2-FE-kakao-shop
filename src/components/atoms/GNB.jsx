@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setEmail } from "../../store/slices/userSlice";
 import * as paths from "../../constants/urls";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function GNB() {
   const email = useSelector((state) => state.user.email);
   const dispatch = useDispatch();
@@ -13,20 +15,24 @@ function GNB() {
     localStorage.removeItem("token");
     dispatch(setEmail(null));
     alert("정상적으로 로그아웃 되었습니다.");
-    navigate(paths.HOME_PATH);
+    navigate(staticServerUri + paths.HOME_PATH);
   };
 
   return (
-    <header className="header">
-      <div className="contents">
-        <Link to={paths.HOME_PATH}>
-          <img src={"/logoKaKao.png"} alt="logoKaKao.png" height={30} />
+    <header className="fixed top-0 left-0 p-5 bg-white border-b border-gray-300 flex items-center inner">
+      <div style={{ width: "2000px" }} className="ml-20 md:flex items-center ">
+        <Link to={staticServerUri + paths.HOME_PATH}>
+          <img
+            className="h-10 inline cursor-pointer mr-4"
+            src={"/logoKaKao.png"}
+            alt="logoKaKao.png"
+          />
         </Link>
         <nav>
           <div className="navigation">
             <span>
               {/* 장바구니 버튼 */}
-              <Link to={paths.CART_PATH}>
+              <Link to={staticServerUri + paths.CART_PATH}>
                 <img src={"/cart.png"} alt="cart.png" height={30} />
               </Link>
             </span>
@@ -35,7 +41,7 @@ function GNB() {
               {/* 로그인 버튼 */}
               {email ? (
                 <Link
-                  to={paths.LOGIN_PATH}
+                  to={staticServerUri + paths.LOGIN_PATH}
                   onClick={handleLogout}
                   style={{ textDecoration: "none", color: "black" }}
                 >
@@ -43,12 +49,22 @@ function GNB() {
                 </Link>
               ) : (
                 <Link
-                  to={paths.LOGIN_PATH}
-                  style={{ textDecoration: "none", color: "black" }}
+                  to={staticServerUri + paths.LOGIN_PATH}
+                  className="text-black text-xl hover:underline text-black-200"
                 >
                   로그인
                 </Link>
               )}
+            </span>
+            <span>|</span>
+            <span>
+              {/* 회원가입 버튼 */}
+              <Link
+                to={staticServerUri + paths.SIGNUP_PATH}
+                className="text-black text-xl hover:underline text-black-200"
+              >
+                회원가입
+              </Link>
             </span>
           </div>
         </nav>
