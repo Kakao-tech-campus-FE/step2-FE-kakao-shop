@@ -1,7 +1,7 @@
 import Container from "../atoms/Container";
-import ProductInformationColumn from "../molecules/ProductInformationColumn";
+import ProductInformationColumn from "../molecules/productInformationColumn";
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import QueryDetail from "../organisms/QueryDetail";
 
 //props drilling -> 좋은 패턴은 아님..

@@ -7,7 +7,8 @@ import ProductDetailPage from '../pages/ProductDetailPage';
 import SkeletonPage from '../components/skeleton/SkeletonPage';
 import OrderPage from '../pages/OrderPage';
 import OrderCompletePage from '../pages/OrderCompletePage'
-
+import OrderSuccessTemplate from '../pages/OrderSuccessPage';
+const staticServerUri = process.env.REACT_APP_PATH || "";
 export const RouterInfo = [
     {
         path: `${routes.home}`,
@@ -52,8 +53,8 @@ export const RouterInfo = [
         element: <OrderPage />,
         label: 'order'
     }, {
-        path: `${routes.orderComplete}`,
-        element: <OrderCompletePage/>,
-        label: 'order'
+        path: `${routes.orderSuccess}`,
+        element: <OrderSuccessTemplate/>,
+        label: 'orderComplete'
     },
 ]

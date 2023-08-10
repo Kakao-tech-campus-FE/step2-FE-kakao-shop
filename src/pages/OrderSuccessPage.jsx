@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { comma } from "../utils/convert";
+// import { comma } from "../../utils/convert";
 import { useParams } from "react-router-dom";
 import { getOrderFromId } from "../services/order";
 
-const OrderCompletePage = () => {
+const OrderSuccessTemplate = () => {
   const { id } = useParams();
-  const { data } = useQuery(['orderComplete'], () => getOrderFromId(id), {
+  const { data } = useQuery([`orders`,id], () => getOrderFromId(id), {
     suspense: true,
   });
 
@@ -32,7 +32,7 @@ const OrderCompletePage = () => {
                         <div>{option.id}</div>
                         <div>{option.optionName}</div>
                         <div>{option.quantity}</div>
-                        <div>{comma(option.price)}</div>
+                        <div>{option.price}</div>
                       </div>
                     );
                   })}
@@ -41,9 +41,9 @@ const OrderCompletePage = () => {
             );
           })}
       </div>
-      <div className="border w-96">최종 가격: {comma(orderTotalPrice)}</div>
+      <div className="border w-96">최종 가격: {orderTotalPrice}</div>
     </div>
   );
 };
 
-export default OrderCompletePage;
+export default OrderSuccessTemplate;

@@ -1,15 +1,17 @@
 import React from 'react';
 import { getCart } from '../../services/cart';
-import {useQuery,useMutation} from 'react-query';
+import {useQuery,useMutation} from '@tanstack/react-query';
 import {useNavigate} from 'react-router-dom'
-import { comma } from '../../utils/convert';
+// import { comma } from '../../utils/convert';
 import { order } from '../../services/order';
 import routes from '../../routes/routes';
 import { useState } from 'react';
 import { useRef } from 'react';
 import OptionList from '../atoms/OptionList';
-
+import Button from '../atoms/Button';
+const staticServerUri = process.env.REACT_APP_PATH || "";
 const OrderTemplate = ({ data }) => {
+    console.log(data)
 
     const [allAgree,setAllagree]=useState(false)
     const [agreePolicy,setAgreePolicy]=useState(false);
@@ -38,17 +40,19 @@ const OrderTemplate = ({ data }) => {
     }
 
 
-    const {products,totalPrice}=data?.data?.response;
+    const products=data?.data?.response?.products;
+    const totalPrice = data.data.response.totalPrice;
 
     const navigate=useNavigate();
-    const {mutation}=useMutation({
-        mutationKey:'order',
-        queryFn:order,
+    const {mutate}=useMutation({
+        mutationFn:order,
+        //queryFn:order,
     })
     const {data:Data, error }= useQuery(getCart);
 
     const OrderItems=()=>{
         let renderComponent=[];
+        console.log(products)
         if(Array.isArray(products)===false) return;
 
         products.forEach((item)=>{
@@ -60,10 +64,10 @@ const OrderTemplate = ({ data }) => {
                                 <span>{`${item.productName}-${cart.option.optionName}`}</span>
                             </div>
                             <div className='quantity'>
-                                <span>{comma(cart.quantity)}개</span>
+                                <span>{cart.quantity}개</span>
                             </div>
                             <div className='price'>
-                                <span>{comma(cart.price*cart.quantity)}원</span>
+                                <span>{cart.price*cart.quantity}원</span>
                             </div>
                         </div>
 
@@ -101,7 +105,7 @@ const OrderTemplate = ({ data }) => {
                 <OrderItems/>
                 <div className='border p-4 flex items-center justify-between'></div>
                     <h3>총 주문 금액</h3>
-                    <span className='price'>{comma(data.totalPrice)}원</span>
+                    <span className='price'>{totalPrice}원</span>
                 </div>
 
                 {/* 결제 동의 */}
@@ -131,14 +135,32 @@ const OrderTemplate = ({ data }) => {
                         ref={agreePolicyRef}
                         checked={agreePolicy}
                         onChange={handleAgreement}/>
-                        <label htmlFor='policy' className='text-sm'>개인정보 제 3자 동읜</label>
+                        <label htmlFor='policy' className='text-sm'>개인정보 제 3자 동의</label>
                         {/* 체크표시니까 굳이 검색엔진 생각할 필요없음. */}
                     </div>
                 </div>
 
             </div>
-            <button className='bg-yellow-500 w-full p-4 font-medium'>
-           { mutation.mutate(null,{
+            <Button className='bg-yellow-500 w-full p-4 font-medium'
+             onClick={() => {
+                if (!agreePayment || !agreePolicy) {
+                  alert("모든 항목에 동의가 필요합니다.");
+                  return;
+                }
+  
+                mutate(null, {
+                  onError: (err) => {
+                    // 사용자 정보가 유실된 경우 로그인 페이지로 리다이렉트
+                    alert("로그인이 필요합니다.");
+                    navigate(staticServerUri+"/login");
+                  },
+                  onSuccess: (res) => {
+                    const id = res.data.response.id;
+                    navigate(`${staticServerUri}/orders/complete/${id}`);
+                  },
+                });
+              }}> 결제하기
+           {/* { mutation.mutate(null,{
                 onError:()=>{
                     alert('주문 실패!');
                 },
@@ -147,7 +169,8 @@ const OrderTemplate = ({ data }) => {
                     alert('주문이 완료되었습니다');
                     navigate(`${routes.orderComplete}/${id}`)
                 }
-            })}</button>
+            })} */}
+            </Button>
             
         </div>
     );

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useState,useEffect } from "react";
 import { getProductById } from '../services/product';
 import { useQuery } from "@tanstack/react-query";
-import ProductInformationColumn from '../components/molecules/ProductInformationColumn';
+import ProductInformationColumn from '../components/molecules/productInformationColumn';
 import Footer from '../components/molecules/Footer';
 import Header from '../components/molecules/Header';
 import Loader from '../components/atoms/Loader';

@@ -21,10 +21,11 @@ const HeaderStyle = styled.header`
 
 const Header = () => {
     const navigate = useNavigate();
-    const [JWT, setJWT] = useState(null)
+    const [isLogin, setIsLogin] = useState(false);
     useEffect((e) => {
-        setJWT(localStorage.getItem('jwt'));
-    }, [JWT]);
+        if (localStorage.getItem('token'))
+            setIsLogin(true);
+    }, [isLogin]);
 
 
     return (
@@ -32,10 +33,10 @@ const Header = () => {
             <h1  className="text-3xl font-bold my-8 text-kakao"  onClick={() => { navigate(routes.home); }}>Kakao</h1>
             <div onClick={() => { navigate(routes.cart); }}>장바구니</div>
             <HeaderStyle>
-                {JWT ? < HeaderList name="로그아웃" slash={false}
+                {isLogin ? < HeaderList name="로그아웃" slash={false}
                     onClick={() => {
-                        localStorage.removeItem('jwt')
-                        setJWT(null)
+                        localStorage.removeItem('token')
+                        setIsLogin(false)
                     }
 
                     }></ HeaderList > : <>

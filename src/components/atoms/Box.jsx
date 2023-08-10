@@ -1,12 +1,13 @@
 import styled from "styled-components";
 
 const BoxCss = styled.div`
-    height: 6.5rem;
+    height: auto;
 
     display: flex;
     flex-direction:column;
 
     position: relative;
+    width: 20rem;
 
 `
 

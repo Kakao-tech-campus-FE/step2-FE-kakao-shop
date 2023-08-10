@@ -5,9 +5,9 @@ import SkeletonElement from "../skeleton/SkeletonElement";
 const GridCss = styled.div`
   display:grid;
   grid-template-columns: repeat(4,1fr);
-  grid-gap:6rem;
+  grid-gap:4rem;
   margin: 1rem 0;
-  width: 100%;
+  width: auto;
   max-width: inherit;
 `;
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import OptionList from "../atoms/OptionList";
-import { comma } from "../../utils/convert";
+// import { comma } from "../../utils/convert";
 import Counter from "../atoms/Counter";
-import { useMutation } from "react-query";
+import { useMutation } from "@tanstack/react-query";
 import Button from "../atoms/Button";
 import { addCart } from "../../services/cart";
 // import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -84,7 +84,7 @@ const OptionColum = ({ product }) => {
                         >
                         </Counter>
                         <span>{option.name}</span>
-                        <span>{comma(option.price)}원</span>
+                        <span>{option.price}원</span>
                        
                     </li>
                     </ol>
@@ -95,11 +95,11 @@ const OptionColum = ({ product }) => {
             <button
                 className="bg-transparent hover:font-semibold text-bubble-gum py-2 px-4 border rounded hover:bg-bubble-gum hover:text-white"
                 onClick={() => {
-                    
+                    console.log(selectedOptions)
                     mutate(
                         selectedOptions.map((el) => {
                             return {
-                                optionId:el.id,
+                                optionId:el.optionId,
                                 quantity:el.quantity,
                             };
                         }),//payload
@@ -128,9 +128,9 @@ const OptionColum = ({ product }) => {
             <span>
                 총 상품금액 : {''}
                 {
-                   comma( selectedOptions.reduce((acc, cur) => {
+                  selectedOptions.reduce((acc, cur) => {
                         return acc + cur.quantity * cur.price;
-                    }, 0))
+                    }, 0)
                 }원
             </span>
         </div >

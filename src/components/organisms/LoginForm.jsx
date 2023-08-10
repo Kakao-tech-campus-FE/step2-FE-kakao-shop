@@ -13,19 +13,20 @@ import { useState, useEffect } from "react";
 import { emailCheck, passwordCheck } from "../../services/regex";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginRequest, setEmail } from "../../store/slices/userSlice";
-
+import { login } from "../../services/user";
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 
 const LoginForm = () => {
     // reducer 함수를 호출하기 위해서는 dispatch를 호출해야한다!(규칙)
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     // redux에서 값을 가져올때는 useSelector라는 훅을 사용한다.
     // 여기에서 사용하는 state는 모든 변수를 다담고 있는 state이다.
 
     // user 안에 있는 email에 접근할 때는 다음과 같이 사용하면 된다
 
-    const email = useSelector((state) => state.user.email);
+   // const email = useSelector((state) => state.user.email);
 
     const navigate = useNavigate();
     const { valueInit, handleOnChange } = useInput(
@@ -41,7 +42,7 @@ const LoginForm = () => {
     const [whatEmail, setWhatEmail] = useState("");
     const [isPassword, setIsPassword] = useState(true);
 
-    let emails = useSelector((state) => state.user.email,);
+    
 
     useEffect((e) => {
         console.log(valueInit.email);
@@ -90,10 +91,18 @@ const LoginForm = () => {
                         }
 
                         else if (isEmail && isPassword) {
-                            dispatch(loginRequest({
+                            // dispatch(loginRequest({
+                            //     email: valueInit.email,
+                            //     password: valueInit.password,
+                            // }));
+                            login({
                                 email: valueInit.email,
                                 password: valueInit.password,
-                            }));
+                              }).then((res)=>{
+                                localStorage.setItem("token", res.headers.authorization);
+                                localStorage.setItem("email", whatEmail);
+                                window.location.href = staticServerUri+'/';
+                              })
                         }
                     }}>로그인</Button>
                 <Question para='계정이 없으신가요?' children="회원가입" onClick={() => { navigate(routes.signUp); }}></Question>
