@@ -5,7 +5,7 @@ import { Fragment } from 'react';
 import type { UserSelectOption } from 'types/product';
 
 import { Button, Photo } from '@components/atom';
-import OptionItem from '@components/page/Detail/OptionItem';
+import OptionItem from '@components/page/ProductDetail/OptionItem';
 
 type Props = {
   isOpenList: boolean;

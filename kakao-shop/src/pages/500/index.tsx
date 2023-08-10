@@ -9,7 +9,8 @@ const Error = () => {
 
   return (
     <S.Root>
-      <div>예상치 못한 에러가 발생했습니다. 잠시후 다시 시도해주세요.</div>
+      <div>예상치 못한 에러가 발생했습니다.</div>
+      <div> 잠시후 다시 시도해주세요.</div>
       <Button onClick={() => navigate('/')} css={S.ButtonStyle}>
         홈으로
       </Button>
@@ -28,6 +29,10 @@ const S = {
 
     width: 100%;
     height: 100%;
+
+    & > div:nth-of-type(2) {
+      margin-top: 4px;
+    }
   `,
 
   ButtonStyle: css`

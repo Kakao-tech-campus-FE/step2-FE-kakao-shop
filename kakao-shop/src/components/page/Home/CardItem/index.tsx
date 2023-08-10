@@ -6,15 +6,19 @@ import type { Product } from 'types/product';
 import { Photo } from '@components/atom';
 import Skeleton from '@components/atom/Skeleton';
 
+import useViewport from '@hooks/@common/useViewport';
+
 import { comma } from '@utils/comma';
 
 const CardItem = ({ id, productName, image, price }: Product) => {
+  const { isMobile } = useViewport();
+
   return (
-    <S.Root to={`/detail/${id}`}>
+    <S.Root to={`/detail/${id}`} isMobile={isMobile}>
       <Photo
         pictureClassName={S.PhotoStyle}
         imageClassName={S.ImgStyle}
-        src={`${process.env.REACT_APP_PROD_SERVER}${image}`}
+        src={`${process.env.REACT_APP_IMAGE_CDN}${image.replace('/images', '')}?w=522&h=294&f=webp&q=80`}
         alt={'이미지'}
       />
       <S.Info>
@@ -43,11 +47,13 @@ CardItem.Skeleton = function () {
 export default CardItem;
 
 const S = {
-  Root: styled(Link)`
-    display: inline-block;
-    width: 284px;
-    padding: 0 20px 50px 0;
-    vertical-align: top;
+  Root: styled(Link)<{ isMobile: boolean }>`
+    ${({ isMobile }) => css`
+      display: inline-block;
+      width: ${isMobile ? '100%' : '284px'};
+      padding: ${isMobile ? '0' : '0 20px 50px 0'};
+      vertical-align: top;
+    `}
   `,
 
   PhotoStyle: css`

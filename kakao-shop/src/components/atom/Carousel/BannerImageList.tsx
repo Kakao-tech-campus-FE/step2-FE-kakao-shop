@@ -3,12 +3,13 @@ import styled from '@emotion/styled';
 import { ReactElement, useMemo, useState } from 'react';
 
 import useCarousel from '@hooks/@common/useCarousel';
+import { IsMobile } from '@hooks/@common/useViewport';
 import useWindowDimensions from '@hooks/@common/useWindowDimentions';
 
 import BannerImageListItem from './BannerImageListItem';
-import { bannerImages } from './lib/bannerImages';
+import { bannerImages, bannerMoblieImages } from './lib/bannerImages';
 
-function BannerImageList(): ReactElement {
+function BannerImageList({ isMobile }: IsMobile): ReactElement {
   const [imageWidth, setImageWidth] = useState(getImageWidth());
   const { width } = useWindowDimensions(); //  window 사이즈가 변화할 때마다 변경되는 width 값
 
@@ -17,6 +18,9 @@ function BannerImageList(): ReactElement {
       setImageWidth(1920);
       return (width - 1920) / 2;
     } else if (width < 1920 && width > 1440) {
+      setImageWidth(width);
+      return 0;
+    } else if (width < 768) {
       setImageWidth(width);
       return 0;
     } else {
@@ -31,7 +35,7 @@ function BannerImageList(): ReactElement {
   }, [imageWidth, slideImagePadding]);
 
   const carouselOption = {
-    data: bannerImages,
+    data: isMobile ? bannerMoblieImages : bannerImages,
     slideItemWidth: slideItemWidth,
     slideCount: 1,
   };
@@ -55,8 +59,8 @@ function BannerImageList(): ReactElement {
     onMouseOut,
   } = useCarousel(carouselOption);
   return (
-    <Wrapper>
-      <BannerImageListWrapper bannerWidth={slideItemWidth}>
+    <Wrapper isMobile={isMobile}>
+      <BannerImageListWrapper bannerWidth={slideItemWidth} isMobile={isMobile}>
         <ImageListBox
           ref={slideRef}
           isAnimation={isAnimation}
@@ -84,6 +88,7 @@ function BannerImageList(): ReactElement {
                 imageItem={image}
                 imageWidth={imageWidth}
                 imagePadding={slideImagePadding}
+                isMobile={isMobile}
               />
             ))}
           </ImageList>
@@ -95,7 +100,7 @@ function BannerImageList(): ReactElement {
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
           disabled={isDisabled}>
-          <LeftChevron />
+          <LeftChevron src={`${process.env.REACT_APP_IMAGE_CDN}/next.webp`} alt="슬라이드 왼쪽 이동 화살표" />
         </ArrowButtonStyled>
 
         <ArrowButtonStyled
@@ -104,7 +109,7 @@ function BannerImageList(): ReactElement {
           onMouseEnter={() => onChangeFlowing(false)}
           onMouseLeave={() => onChangeFlowing(true)}
           disabled={isDisabled}>
-          <RightChevron />
+          <RightChevron src={`${process.env.REACT_APP_IMAGE_CDN}/next.webp`} alt="슬라이드 오른쪽 이동 화살표" />
         </ArrowButtonStyled>
       </BannerImageListWrapper>
     </Wrapper>
@@ -124,16 +129,16 @@ const getImageWidth = () => {
   else return width;
 };
 
-const Wrapper = styled.div`
-  height: 300px;
+const Wrapper = styled.div<{ isMobile: boolean }>`
+  height: ${({ isMobile }) => (isMobile ? '160px' : '300px')};
 `;
 
-const BannerImageListWrapper = styled.div<{ bannerWidth: number }>`
+const BannerImageListWrapper = styled.div<{ bannerWidth: number; isMobile: boolean }>`
   position: relative;
   margin: 0 auto;
 
   width: ${({ bannerWidth }) => bannerWidth}px;
-  height: 300px;
+  height: ${({ isMobile }) => (isMobile ? '160px' : '300px')};
 `;
 
 const ImageListBox = styled.div<{ isAnimation: boolean }>`
@@ -175,28 +180,15 @@ const ArrowButtonStyled = styled.button<IButtonDirection>`
         `}
 `;
 
-const LeftChevron = styled.span`
-  width: 9px;
+const LeftChevron = styled.img`
+  width: 18px;
   height: 18px;
-
-  background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
-    no-repeat;
-  background-size: 800px 500px;
-  background-position: -760px 0;
-
-  font-size: 0;
-  vertical-align: top;
+  filter: invert(100%) sepia(95%) saturate(21%) hue-rotate(321deg) brightness(105%) contrast(105%);
+  transform: rotate(180deg);
 `;
 
-const RightChevron = styled.span`
-  width: 9px;
+const RightChevron = styled.img`
+  width: 18px;
   height: 18px;
-
-  background: url('https://st.kakaocdn.net/commerce_ui/front-talkstore/real/20230628/140055/ico_store_pc.82c1fd4bf8ec030b.svg')
-    no-repeat;
-  background-size: 800px 500px;
-  background-position: -770px 0;
-
-  font-size: 0;
-  vertical-align: top;
+  filter: invert(100%) sepia(95%) saturate(21%) hue-rotate(321deg) brightness(105%) contrast(105%);
 `;

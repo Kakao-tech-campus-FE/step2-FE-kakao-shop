@@ -39,7 +39,7 @@ export const addCartItemAction = (payload: AddCartItemRequest[]): AddCartItemAct
 export const initialState: DetailState = {
   isLoading: false,
   error: null,
-  product: undefined,
+  product: {} as ProductDetail,
 };
 
 // Reducer
@@ -91,5 +91,5 @@ export type AddCartItemAction = {
 export type DetailState = {
   isLoading: boolean;
   error: AxiosError | null;
-  product?: ProductDetail;
+  product: ProductDetail;
 };

@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { MouseEventHandler } from 'react';
 import type { UserSelectOption } from 'types/product';
 
-import OptionList from '@components/page/Detail/OptionList';
-import SelectOptionItemList from '@components/page/Detail/SelectOptionItemList';
+import OptionList from '@components/page/ProductDetail/OptionList';
+import SelectOptionItemList from '@components/page/ProductDetail/SelectOptionItemList';
 
 type Props = {
   isOpenList: boolean;

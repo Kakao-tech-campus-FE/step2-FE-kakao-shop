@@ -16,8 +16,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["@emotion/react/types/css-prop"]
+    "types": ["@emotion/react/types/css-prop", "node"]
   },
-  "include": ["src/**/*", "./craco.config.js"],
+  "include": ["src/**/*", "./craco.config.js", "e2e"],
   "extends": "./tsconfig.paths.json"
 }

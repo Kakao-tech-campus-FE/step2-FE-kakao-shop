@@ -4,7 +4,7 @@ const CircularDependencyPlugin = require('circular-dependency-plugin');
 module.exports = {
   babel: {
     presets: [['@babel/preset-react', { runtime: 'automatic', importSource: '@emotion/react' }]],
-    plugins: ['@emotion/babel-plugin'],
+    plugins: ['@emotion/babel-plugin', 'babel-plugin-istanbul'],
   },
   webpack: {
     plugins: {

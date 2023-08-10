@@ -2,6 +2,7 @@
   "name": "kakao-shop",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/",
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -21,9 +22,12 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
     "eject": "craco eject",
-    "build-test": "cp serve.json build && yarn serve build"
+    "build-test": "cp serve.json build && yarn serve build",
+    "test": "rm -rf .nyc_output && npx playwright test",
+    "test-ui": "rm -rf .nyc_output && npx playwright test --ui",
+    "test-debug": "rm -rf .nyc_output && npx playwright test --debug",
+    "test-coverage": "npx nyc report --reporter=html"
   },
   "eslintConfig": {
     "extends": [
@@ -46,15 +50,17 @@
   "devDependencies": {
     "@craco/craco": "^7.1.0",
     "@emotion/babel-preset-css-prop": "^11.11.0",
+    "@playwright/test": "^1.36.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.37",
+    "@types/node": "^20.4.5",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@types/react-redux": "^7.1.25",
+    "babel-plugin-istanbul": "^6.1.1",
     "circular-dependency-plugin": "^5.2.2",
     "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -66,6 +72,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "msw": "^1.2.2",
+    "nyc": "^15.1.0",
     "prettier": "^2.8.8",
     "redux-devtools-extension": "^2.13.9",
     "serve": "^14.2.0",

@@ -1,9 +1,9 @@
 import { client } from '@apis/client';
+import type { AxiosResponse } from 'axios';
 import type { ProductDetail } from 'types/product';
 
 export const getProductDetailAPI = async (id: string) => {
-  const res = await client.get(`/products/${id}`);
-
+  const res: AxiosResponse<GetProductDetailResponse> = await client.get(`/products/${id}`);
   return res;
 };
 export const addCartItemAPI = async (payload: AddCartItemRequest[]) => {

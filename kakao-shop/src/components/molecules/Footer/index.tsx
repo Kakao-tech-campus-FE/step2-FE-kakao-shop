@@ -15,9 +15,6 @@ const Footer = () => {
           </span>
         </S.Link>
         <S.Link to="/" tabIndex={0}>
-          <span>운영정책</span>
-        </S.Link>
-        <S.Link to="/" tabIndex={0}>
           <span>고객센터</span>
         </S.Link>
         <S.Link to="/" tabIndex={0}>
@@ -48,7 +45,11 @@ const S = {
     border-top: 1px solid #e5e5e5;
 
     text-align: center;
-    white-space: nowrap;
+    /* white-space: nowrap; */
+
+    @media (max-width: 768px) {
+      width: 100vw;
+    }
   `,
   Strong: styled.strong`
     position: absolute;

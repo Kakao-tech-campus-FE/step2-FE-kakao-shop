@@ -1,5 +1,6 @@
 import { getProductDetailAPI, addCartItemAPI } from '@apis/Detail';
 import type { GetProductDetailResponse } from '@apis/Detail';
+import { getCartsRequestAction } from '@store/Cart/reducers';
 import {
   ADD_CART_ITEM_REQUEST,
   GET_PRODUCT_DETAIL_REQUEST,
@@ -24,6 +25,7 @@ export function* watchGetProductDetail({ payload }: GetProductDetailRequestActio
 export function* watchAddCartItem({ payload }: AddCartItemAction) {
   try {
     yield call(addCartItemAPI, payload);
+    yield put(getCartsRequestAction());
   } catch (err: unknown) {
     // const error = err as AxiosError<>;
   }

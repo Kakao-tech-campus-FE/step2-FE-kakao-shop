@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import withRouteGuard from '@hocs/withRouteGuard';
+import withRouteGuard from '@hocs/withRouteGuard/withRouteGuard';
 
 import { CustomSuspense } from '@components/atom';
 import PageLoader from '@components/molecules/PageLoader';
@@ -56,6 +56,10 @@ const S = {
       height: 12px;
 
       background-color: #f2f3f5;
+    }
+
+    @media (max-width: 768px) {
+      width: 100vw;
     }
   `,
 };

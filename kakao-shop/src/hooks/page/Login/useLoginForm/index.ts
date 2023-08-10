@@ -1,4 +1,3 @@
-import { resetHomeStateAction } from '@store/Home/reducers';
 import { signInRequestAction } from '@store/Login/reducers';
 import { FormEventHandler } from 'react';
 import { useDispatch } from 'react-redux';
@@ -22,7 +21,6 @@ const useLoginForm = () => {
     }
 
     dispatch(signInRequestAction({ email, password, navigate, setErrorMessage }));
-    dispatch(resetHomeStateAction());
   };
 
   return {
