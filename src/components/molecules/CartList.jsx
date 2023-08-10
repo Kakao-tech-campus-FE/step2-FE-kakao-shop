@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Box from "../atoms/Box";
 import CartItem from "../atoms/CartItem";
-import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
-import Button from "../atoms/Button";
 import { useNavigate } from "react-router-dom";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import { getCart, updateCart } from "../services/cart";
@@ -30,6 +28,10 @@ const CartList = () => {
     setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
 
+  useEffect(() => {
+    mutate(updatePayload);
+  },[updatePayload, mutate]);
+
   const getTotalCartCountIncludeOptions = useCallback(() => {
     let count = 0;
     cartItems.forEach((item) => {
@@ -37,9 +39,10 @@ const CartList = () => {
         count += cart.quantity;
       });
     });
-    return comma(count);
+    return count;
   }, [cartItems]);
 
+  
 
   /**
    * 옵션의 수량 변경과 가격 변경을 관리
@@ -49,7 +52,7 @@ const CartList = () => {
    */
   const handleOnChangeCount = (optionId, quantity, price) => {
     setUpdatePayload((prev) => {
-      const isExist = prev.find((item) => item.cartId === optionId)
+      const isExist = prev.find((item) => item.cartId === optionId);
       
       if (isExist) {
         return [
@@ -57,8 +60,8 @@ const CartList = () => {
           {
             cartId: optionId,
             quantity,
-          }
-        ]
+          },
+        ];
       }
       return [
         ...prev,
@@ -92,40 +95,60 @@ const CartList = () => {
         {
           cartId: optionId,
           quantity: 0,
-        }
-      ]
-    })
-  }
+        },
+      ];
+    });
+
+    setTotalPrice((prev) => prev - price);
+    setCartItems((prev) => {
+      return prev.map((item) => {
+        return {
+          ...item,
+          carts: item.carts.map((cart) => {
+            if (cart.id === optionId) {
+              return {...cart, quantity: 0};
+            }
+            return cart;
+          }),
+        };
+      });
+    });
+  };
 
   return (
-    <div className=" relative justify-center mt-24 mx-60 ">
+    <div className="justify-center mt-24 mx-60">
     <div className="cart-list bg-white pb-4">
       <Box className=" py-4 text-center border-b">
         <h1 className=" text-lg">장바구니</h1>
       </Box>
-      <Card>
+      <Box>
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
-            return (
-              <CartItem
-                key={item.id}
-                item={item}
-                onChange={handleOnChangeCount}
-                onRemove={removeItem}
-                mutate={mutate}
-              />
+            const zeroQuantity = item.carts.filter(
+              (cart) => cart.quantity !== 0
             );
+            if (zeroQuantity.length > 0) {
+              return (
+                <CartItem
+                  key={item.id}
+                  item={{...item, carts: zeroQuantity}}
+                  onChange={handleOnChangeCount}
+                  onRemove={removeItem}
+                  mutate={mutate}
+                />
+              );
+            }
           })}
-      </Card>
+      </Box>
     </div>
     <div className=" mt-10 ">
-      <Card>
-        <div className="row flex justify-between mb-4 px-4">
-          <span className="expect text-xl">주문 예상금액</span>
+      <Box>
+        <div className="flex justify-between mb-4 px-4">
+          <span className="text-xl">주문 예상금액</span>
           <div className="sum-price text-sky-600">{comma(totalPrice)}원</div>
         </div>
-      </Card>
-      <Button
+      </Box>
+      <button
         className="order-btn w-full h-10 mb-40 rounded-sm bg-yellow-300"
         onClick={() =>{
           //update cart api
@@ -137,14 +160,14 @@ const CartList = () => {
               route(staticServerUri + "/order");
             },
             onError: (error) => {
-
+              route(staticServerUri + "/error");
             },
           })
   
         }}
       >
         <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
-      </Button>
+      </button>
       </div>
     </div>
   );

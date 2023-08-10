@@ -7,7 +7,7 @@ const ProductInformationColumn = ({product}) => {
   return (
     <div className="flex pl-32">
       <div className="col">
-        <Photo src={process.env.REACT_APP_API_URL + image} alt={productName}/>
+        <Photo src={image} alt={productName}/>
       </div>
       <div className="px-6 py-2 flex-col items-center border-r">
         <h1 className="text-2xl mb-2 text-black">{productName}</h1>

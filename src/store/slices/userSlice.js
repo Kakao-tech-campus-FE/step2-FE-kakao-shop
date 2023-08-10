@@ -16,7 +16,7 @@ const userSlice = createSlice({
     setEmail : (state, action) => {
       state.email = action.payload.email;
       localStorage.setItem('email', state.email);
-      localStorage.setItem('token', action.payload.token)
+      localStorage.setItem('token', action.payload.token);
       state.loginTime = new Date().getTime();
     },
     setToken : (state, action) => {
@@ -25,6 +25,7 @@ const userSlice = createSlice({
     logout: (state) => {
       state.email = null;
       state.isLoggedIn = false;
+      state.loginTime = null;
     },
     loginTime: (state) => {
       state.loginTime = new Date().getTime();

@@ -1,7 +1,10 @@
-import { comma } from "postcss/lib/list";
+import { comma } from "../../utils/convert";
 import OptionItem from "../atoms/OptionItem";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getOrderFromId } from "../services/order";
 
 const staticServerUri=process.env.REACT_APP_PATH||"";
 
@@ -20,20 +23,30 @@ const ProductList = styled.div`
 const productItems = (products) => {
   return products.map((product) => {
     return (
-      <div className="flex flex-col gap-2 mb-4" key={product.id}>
-        <div className="font-bold text-sm">상품명</div>
+      <div className="flex flex-col gap-2 mb-4 border-b-4" key={product.id}>
+        <div className="font-bold text-sm border-b">상품명</div>
         <p className="text-lg text-gray-600">{product.productName}</p>
-        <OptionItem items={product.items} />;
+        <OptionItem items={product.items} />
       </div>
     );
   });
 };
 
 
-const OrderCompleteTemplate = ({data}) => {
+const OrderCompleteTemplate = () => {
+  const {id} = useParams();
+
+  // 완료된 결제 정보를 불러오기
+  const {data} = useQuery([`/orders/${id}`], () => getOrderFromId(id),
+  {
+    suspense: true,
+  });
+  
   const navigate = useNavigate();
 
   const example = data?.data;
+  console.log(example.response.totalPrice);
+
 
   if (!example) {
     return <></>

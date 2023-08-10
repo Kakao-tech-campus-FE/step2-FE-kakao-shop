@@ -5,8 +5,6 @@ import { comma } from "../../utils/convert";
 import { useState } from "react";
 import Button from "../atoms/Button";
 import { addCart } from "../services/cart";
-import {toast} from "react-toastify";
-import CartItem from "../atoms/CartItem";
 
 const staticServerUri = process.env.REACT_APP_PATH || "";
 
@@ -20,11 +18,6 @@ const OptionColumn = ({product}) => {
     );
 
     if (isOptionSelected) {
-      toast.error("이미 선택된 옵션입니다.", {
-        hideProgressBar: true,
-        autoClose: 2000,
-      })
-
       setSelectedOptions((prev) => 
         prev.map((el) => (el.optionId === option.id ? el: {...el}))
       );
@@ -38,9 +31,9 @@ const OptionColumn = ({product}) => {
         quantity: 1,
         price: option.price,
         name: option.optionName,
-      }
-    ])
-  }
+      },
+    ]);
+  };
   
   const handleOnChange = (count, optionId) => {
     setSelectedOptions((prev) => {
@@ -49,11 +42,12 @@ const OptionColumn = ({product}) => {
           return {
             ...el,
             quantity: count,
-          }
+          };
         }
-      })
-    })
-  }
+        return el;
+      });
+    });
+  };
 
   const handleOnRemove = (optionId) => {
     setSelectedOptions((prev) => {
@@ -64,6 +58,7 @@ const OptionColumn = ({product}) => {
             quantity: 0,
           };
         }
+        return el;
       })
       .filter((el) => el.quantity > 0);
     });

@@ -43,7 +43,8 @@ const OrderTemplate = ({data}) => {
     let renderComponent= [];
 
     products.forEach((item) => {
-      renderComponent.push(item.carts.map((cart) => {
+      const filteredCarts = item.carts.filter((cart) => cart.quantity > 0);
+      renderComponent.push(filteredCarts.map((cart) => {
         return (
           <div key={cart.id} className=" border-t-2 p-4">
             <div className="product-name font-bold">
@@ -141,7 +142,7 @@ const OrderTemplate = ({data}) => {
           </div>
           <button
             onClick={() => {
-              if (agreePayment === false || agreePolicy === false) {
+              if (!agreePayment || !agreePolicy) {
                 alert("모든 항목에 동의가 필요합니다")
                 return;
               }
