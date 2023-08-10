@@ -2,7 +2,9 @@ import { useMutation } from "react-query";
 import { comma } from "../../utils/convert";
 import { order } from "../../apis/order";
 import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const OrderTemplate = ({ data }) => {
   const totalPrice = data?.data?.response.totalPrice;
@@ -47,9 +49,8 @@ const OrderTemplate = ({ data }) => {
     mutationFn: order,
   });
 
-  const OrderItems = () => {
-    console.log(data?.data?.response.products);
-    let renderComponent = [];
+  const OrderItems = useCallback(({ data }) => {
+    const renderComponent = [];
 
     data?.data?.response.products.forEach((item) => {
       const filteredCarts = item.carts.filter((cart) => cart.quantity > 0);
@@ -73,7 +74,7 @@ const OrderTemplate = ({ data }) => {
     });
 
     return renderComponent;
-  };
+  }, []);
 
   return (
     <div className="py-20 text-black">
@@ -101,7 +102,7 @@ const OrderTemplate = ({ data }) => {
         <div className="border p-4">
           <h2>주문상품 정보</h2>
         </div>
-        <OrderItems />
+        <OrderItems data={data} />
         <div className="border p-4 flex items-center justify-between">
           <h3 className="font-bold text-xl">총 주문 금액</h3>
           <span className="price text-xl font-bold text-blue-600">
@@ -156,12 +157,13 @@ const OrderTemplate = ({ data }) => {
             }
             mutate(null, {
               onError: (error) => {
+                // 주문 시 에러 처리
                 alert("주문에 실패했습니다.");
               },
               onSuccess: (response) => {
                 const id = response?.data?.response.id;
                 alert("주문이 완료되었습니다.");
-                navigate(`/orders/complete/${id}`);
+                navigate(staticServerUri + `/orders/complete/${id}`);
               },
             });
           }}

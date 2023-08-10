@@ -2,6 +2,8 @@ import { useMutation } from "react-query";
 import { instance } from "./index";
 import { useNavigate } from "react-router-dom";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 export const useRegister = () => {
   const navigate = useNavigate();
 
@@ -13,7 +15,7 @@ export const useRegister = () => {
     {
       onSuccess: () => {
         window.alert("회원가입되었습니다 😊");
-        navigate("/");
+        navigate(staticServerUri + "/");
       },
       onError: (error) => {
         switch (error.response.status) {
@@ -27,7 +29,7 @@ export const useRegister = () => {
             window.alert("인증에 실패했습니다.");
             break;
           case 404:
-            navigate("/error");
+            navigate(staticServerUri + "/error");
             break;
           default:
             window.alert("API 호출에 실패했습니다.");

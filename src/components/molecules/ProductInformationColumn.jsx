@@ -1,13 +1,15 @@
 import { comma } from "../../utils/convert";
 import Photo from "../atoms/Photo";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
 
   return (
     <div className="flex pl-32">
       <div className="">
-        <Photo src={image} alt={productName} />
+        <Photo src={staticServerUri + `${image}`} alt={productName} />
       </div>
       <div className="px-6 py-2 flex-col items-center border-r">
         <h1 className="text-2xl mb-2 text-black">{productName}</h1>

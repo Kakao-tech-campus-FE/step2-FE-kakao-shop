@@ -1,80 +1,36 @@
-## 페이지 구성 및 각 페이지별 기능 명세
+# KAKAO_CLONE_CODING
 
-1. 메인 페이지
+(개발 브랜치)
+카카오 쇼핑하기 홈페이지 클론 코딩 프로젝트입니다.
 
-- 검색, 배송조회, 장바구니, 로그인 버튼
-- 로그인 안되어있을 경우: 장바구니, 배송조회 버튼 클릭시 경고창
-- 메인 상품 나열
-- 광고 캐러셀
+### Built With
 
-2. 로그인 페이지
+- [![React][React.js]][React-url]
+- [![TailwindCSS][TailwindCSS]][Tailwind-url]
 
-- 아이디, 비밀번호 입력 및 로그인 처리
-- 유효성 검사
+## Directory
 
-3. 검색 페이지
+- src/apis : 통신 모듈과 개별 API 함수
+- src/components : Atomic pattern으로 구성
+- src/hooks : custom hooks
+- src/utils : utils function
 
-- 검색창
-- 추천 키워드 (인기 키워드)
+## Getting Started
 
-4. 상품 검색 결과 페이지
-
-- 연관 키워드
-- 가격, 카테고리 등등 필터 적용
-- 관련 상품
-- 랭킹순, 신상품순, 가격순 정렬
-
-5. 개별 상품 상세 페이지
-
-- 상품 사진, 상품명, 브랜드명
-- 옵션 선택
-- 삼품 금액
-- 상세 정보, 리뷰, 문의
-- 해당 브랜드 인기 상품
-
-6. 장바구니 페이지
-
-- 장바구니 상품 목록
-- 체크박스
-
-7. 주문내역 페이지
-
-- 최근 6개월간 주문내역 조회
-
-8. 결제 페이지
-
-- 배송지 정보, 주문상품 정보, 결제 방식 등 입력
-- 최종 결제금액
-- 개인정보 제3자 제공 동의
-
-9. 결제 완료 페이지
-
-- 전체 주문 내역, 쇼핑 계속하기 버튼
-- 주문상품 정보
-- 결제금액
-- 배송지 정보, 요청사항 및 배송지 수정
-- 취소 및 교환/반품 안내
-
----
-
-## 디렉토리 구조
-
+```bash
+npm install # 의존성 모듈 설치
+npm run build # 패키지 번들링
+npm run start # 프로젝트 실행
 ```
-📦src
-┣ 📂api
-┣ 📂assets
-┣ 📂components
-┃ ┣ 📜Breadcrumb.jsx
-┃ ┣ 📜Carousel.jsx
-┃ ┣ 📜CheckList.jsx
-┃ ┣ 📜RadioBtn.jsx
-┃ ┣ 📜Toast.jsx
-┃ ┗ 📜Toggle.jsx
-┣ 📂hooks
-┣ 📂pages
-┣ 📂styles
-┣ 📜App.css
-┣ 📜App.js
-┣ 📜index.css
-┗ 📜index.js
-```
+
+### 크램폴린 IDE를 통해 배포
+
+1. 크램폴린 IDE로 접속한다. ()
+2. 컨테이너를 생성한다.
+3. terminal을 열고, ./start.sh를 통해 백엔드 환경을 실행한다.
+4. 또 다른 터미널을 생성해 npm start로 3000번 포트에 리액트를 실행한다.
+
+[TailwindCSS]: https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat-square&logo=Tailwind%20CSS&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/

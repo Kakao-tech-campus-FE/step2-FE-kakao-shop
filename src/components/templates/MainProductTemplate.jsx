@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, Suspense, useMemo } from "react";
-import { useInfiniteQuery, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import ProductGrid from "../organisms/ProductGrid";
 import Loader from "../atoms/Loader";
 import { fetchProducts } from "../../apis/product";

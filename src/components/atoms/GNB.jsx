@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/slices/userSlice";
 import logoKakao from "../../assets/logoKakao.png";
@@ -8,8 +8,11 @@ import cart from "../../assets/cart.png";
 
 const LOGOUT_TIMER = 30 * 60 * 1000; // 30분 후 자동 로그아웃
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 function GNB() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const email = useSelector((state) => state.user.email);
 
@@ -17,11 +20,15 @@ function GNB() {
 
   useEffect(() => {
     if (isLoggedIn) {
+      // 로그인된 상태일 경우 타이머 설정
       const timer = setTimeout(() => {
         dispatch(logout());
       }, LOGOUT_TIMER);
 
       setLogoutTimer(timer);
+    } else {
+      // 로그인된 상태가 아닐 경우 타이머 해제
+      clearTimeout(logoutTimer);
     }
 
     return () => {
@@ -29,6 +36,7 @@ function GNB() {
     };
   }, [dispatch, isLoggedIn]);
 
+  // 로그아웃 버튼 클릭시 실행
   const handleLogout = () => {
     clearTimeout(logoutTimer);
     dispatch(logout());
@@ -37,22 +45,30 @@ function GNB() {
   return (
     <Header>
       <Container>
-        <Link to="/">
+        <Link to={staticServerUri + "/"}>
           <Logo src={logoKakao} alt="카카오 쇼핑하기 로고" />
         </Link>
         <Nav>
-          <Link to="/cart">
+          <button
+            onClick={() => {
+              navigate(staticServerUri + "/search");
+            }}
+            className="text-black"
+          >
+            검색
+          </button>
+          <Link to={staticServerUri + "/cart"}>
             <img src={cart} alt="장바구니 버튼" className="h-10" />
           </Link>
           {!isLoggedIn ? (
-            <StyledLink to="/login">로그인</StyledLink>
+            <StyledLink to={staticServerUri + "/login"}>로그인</StyledLink>
           ) : (
             <>
               <span>{email}</span>
               <StyledButton onClick={handleLogout}>로그아웃</StyledButton>
             </>
           )}
-          <StyledLink to="/signup">회원가입</StyledLink>
+          <StyledLink to={staticServerUri + "/signup"}>회원가입</StyledLink>
         </Nav>
       </Container>
     </Header>

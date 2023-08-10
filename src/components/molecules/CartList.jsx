@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Box from "../atoms/Box";
 import Card from "../atoms/Card";
 import CartItem from "../atoms/CartItem";
@@ -6,6 +6,8 @@ import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import { useMutation } from "react-query";
 import { updateCart } from "../../apis/cart";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const CartList = ({ data }) => {
   const [cartItems, setCartItems] = useState([]);
@@ -155,10 +157,10 @@ const CartList = ({ data }) => {
           onClick={() => {
             mutate(updatePayload, {
               onSuccess: (data) => {
-                window.location.href = "/order";
+                window.location.href = staticServerUri + "/order";
               },
               onError: (error) => {
-                window.location.href = "/error";
+                window.location.href = staticServerUri + "/error";
               },
             });
           }}

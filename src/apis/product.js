@@ -5,6 +5,7 @@ export const fetchProducts = (page = 0) => {
 };
 
 export const getProductById = (id) => {
+  // 상품 id가 없을 경우 에러 캐칭
   if (!id) {
     throw Error("id가 필요합니다.");
   }

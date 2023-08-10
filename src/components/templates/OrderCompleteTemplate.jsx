@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { comma } from "../../utils/convert";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderCompleteTemplate = ({ data }) => {
-  console.log(data);
   const [id, setId] = useState();
   const [totalPrice, setTotalPrice] = useState(0);
   const [products, setProducts] = useState();
@@ -56,7 +57,7 @@ const OrderCompleteTemplate = ({ data }) => {
         </div>
         <button
           className="bg-yellow-300 text-black w-full p-4 font-medium"
-          onClick={() => navigate("/")}
+          onClick={() => navigate(staticServerUri + "/")}
         >
           쇼핑 계속하기
         </button>
