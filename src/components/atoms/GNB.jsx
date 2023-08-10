@@ -7,7 +7,7 @@ import styled from "styled-components";
 const staticServerUri = process.env.REACT_APP_PATH||"";
 
 function GNB() {
-  const token = useSelector((state) => state.user.token);;
+  const token = useSelector((state) => state.user.token);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -50,7 +50,7 @@ function GNB() {
               </Link>
             <span className="divison">|</span>
               {/* 로그인 버튼 */}
-              {token ? (
+              {token  ? (
                 <StyledLink
                   to={staticServerUri + "/login"}
                   onClick={handleLogout}
