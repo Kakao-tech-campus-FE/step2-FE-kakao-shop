@@ -1,0 +1,92 @@
+/* ----- 선택한 옵션 표시 영역 ----- */
+.selected-option-list {
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  /* list-style: none; */
+  padding: 4px;
+}
+
+.selected-option-item {
+  padding: 6px;
+}
+
+.selected-option-update {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---- delivery-row(배송방법, 배송비) ---- */
+.option-column .delivery-row {
+  margin: 10px 0;
+}
+
+.delivery-row .row {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.delivery-row span {
+  font-size: 14px;
+  padding: 6px;
+}
+
+.delivery-row .row-l {
+  width: 80px;
+  font-weight: 700;
+}
+
+.delivery-row .row-r {
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #f0efeff7;
+  display: block;
+}
+
+/* ---- total(총수량, 주문금액) ---- */
+.option-column .total {
+  padding: 8px;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.option-column .total-price span {
+  color: red;
+}
+
+/* ---- button-group(찜, 장바구니, 구매) ---- */
+.option-column .button-group {
+  height: 60px;
+  display: flex;
+}
+.button-group button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-group .like-btn {
+  width: 60px;
+  margin-right: 5px;
+  background-color: #555;
+  color: white;
+}
+
+.button-group .cart-btn {
+  width: 60px;
+  margin-right: 5px;
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.button-group .order-btn {
+  flex: 1;
+  background-color: #fcea26;
+  width: 150px;
+}
+
+.button-group .order-btn span {
+  font-size: 18px;
+  font-weight: 700;
+}
