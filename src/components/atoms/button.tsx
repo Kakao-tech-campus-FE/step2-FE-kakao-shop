@@ -11,13 +11,12 @@ export default function Button({
   isLoading = false,
   ...props
 }: ButtonProps) {
-  if (isLoading) {
-    return <Loader />;
-  }
-
   return (
-    <button {...props}>
-      {children}
+    <button
+      {...props}
+      disabled={isLoading || props.disabled}
+    >
+      {isLoading ? <Loader /> : children}
     </button>
   );
 }

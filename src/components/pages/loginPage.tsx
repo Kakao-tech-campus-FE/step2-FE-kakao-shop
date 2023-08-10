@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import LoginTemplate from '../templates/loginTemplate';
 import { LoginData } from '../../types/formData';
 import { loginRequest } from '../../store/slices/userSlice';
@@ -27,10 +27,15 @@ export default function LoginPage() {
   const user = useSelector((state: RootState) => state.user);
   const dispatch = useUserDispatch();
   const navigator = useNavigate();
+  const { state } = useLocation();
 
   useEffect(() => {
     if (user.isLogin) {
-      navigator('/');
+      if (state) {
+        navigator(state);
+      } else {
+        navigator('/');
+      }
     }
   }, [user.isLogin]);
 

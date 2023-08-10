@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { useGetCart, useOrder } from '../../hooks/query';
 import { LOCALSTORAGE_KEY_TOKEN } from '../../utils/common';
 import { getItemWithExpireDate } from '../../utils/localStorage';
-import Loader from '../atoms/loader';
 import OrderTemplate from '../templates/orderTemplate';
+import { removeEmptyCarts } from '../../utils/filterCartData';
 
 export default function OrderPage() {
-  const { data: cartData, isLoading } = useGetCart(getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
+  const { data: cartData } = useGetCart(getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
   const navigator = useNavigate();
 
   const { mutate: orderMutate, isLoading: isOrderLoading } = useOrder();
@@ -33,15 +33,10 @@ export default function OrderPage() {
   };
 
   return (
-    <>
-      {isLoading ? <Loader /> : null}
-      {cartData ? (
-        <OrderTemplate
-          cartData={cartData.data.response}
-          isOrderLoading={isOrderLoading}
-          handleOrder={handleOrder}
-        />
-      ) : null}
-    </>
+    <OrderTemplate
+      cartData={removeEmptyCarts(cartData?.data.response)}
+      isOrderLoading={isOrderLoading}
+      handleOrder={handleOrder}
+    />
   );
 }

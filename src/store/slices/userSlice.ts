@@ -9,8 +9,8 @@ import { LOGIN_RESPONSE_ERROR_MSG_400, LOGIN_RESPONSE_ERROR_MSG_401, LOGIN_RESPO
 interface UserSliceState {
   isLogin: boolean;
   isLoading: boolean;
-  email: null | string;
-  errorMessage: null | string;
+  email: string | null;
+  errorMessage: string | null;
 }
 
 const initialState: UserSliceState = {
@@ -71,6 +71,9 @@ const userSlice = createSlice({
     logout: (state) => {
       state.isLogin = false;
       state.email = null;
+
+      localStorage.removeItem(LOCALSTORAGE_KEY_TOKEN);
+      localStorage.removeItem(LOCALSTORAGE_KEY_USERINFO);
     },
   },
   extraReducers: (builder) => {

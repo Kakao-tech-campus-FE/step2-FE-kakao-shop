@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect, useRef, useState,
+} from 'react';
 import { useProductList } from '../../hooks/query';
 import MainProductListTemplate from '../templates/mainProductListTemplate';
-import Loader from '../atoms/loader';
 
 export default function MainProductListPage() {
   const [pageIndex, setPageIndex] = useState(0);
   const {
-    data, fetchNextPage, isInitialLoading, isFetchingNextPage, hasNextPage,
+    data, fetchNextPage, isFetchingNextPage, hasNextPage,
   } = useProductList();
   const bottomObserverRef = useRef<HTMLDivElement>(null);
 
@@ -31,14 +32,10 @@ export default function MainProductListPage() {
   }, [pageIndex]);
 
   return (
-    <>
-      {isInitialLoading
-        ? <Loader /> : null}
-      <MainProductListTemplate
-        ref={bottomObserverRef}
-        products={data?.pages.flat()}
-        isFetchingNextPage={isFetchingNextPage}
-      />
-    </>
+    <MainProductListTemplate
+      ref={bottomObserverRef}
+      products={data?.pages.flat()}
+      isFetchingNextPage={isFetchingNextPage}
+    />
   );
 }

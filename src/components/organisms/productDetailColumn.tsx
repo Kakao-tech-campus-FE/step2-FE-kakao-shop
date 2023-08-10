@@ -1,4 +1,5 @@
 import { comma } from '../../utils/comma';
+import { staticServerUri } from '../../utils/serverUri';
 import Photo from '../atoms/photo';
 import Rating from '../atoms/rating';
 
@@ -21,7 +22,7 @@ export default function ProductDetailColumn({
     <div className="flex flex-row">
       <div className="w-[30rem] rounded px-4">
         <Photo
-          src={`${new URL(image, process.env.REACT_APP_KAKAO_API_URL).toString()}`}
+          src={`${staticServerUri}${image}`}
           alt="productName"
         />
       </div>

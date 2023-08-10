@@ -11,7 +11,7 @@ export default function Rating({
   maxScore,
   currentScore,
 }: RatingProps) {
-  const renderRating = useCallback(() => {
+  const RenderRating = useCallback(() => {
     const list = [];
 
     for (let i = 1; i <= maxScore; i += 1) {
@@ -26,12 +26,10 @@ export default function Rating({
       />);
     }
 
-    return list;
+    return <div>{list}</div>;
   }, [currentScore, maxScore]);
 
   return (
-    <div>
-      {renderRating()}
-    </div>
+    <RenderRating />
   );
 }

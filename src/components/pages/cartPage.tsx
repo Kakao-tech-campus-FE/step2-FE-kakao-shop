@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { useGetCart, useUpdateCart } from '../../hooks/query';
 import { LOCALSTORAGE_KEY_TOKEN } from '../../utils/common';
 import { getItemWithExpireDate } from '../../utils/localStorage';
-import Loader from '../atoms/loader';
 import CartTemplate from '../templates/cartTemplate';
+import { removeEmptyCarts } from '../../utils/filterCartData';
 
 export default function CartPage() {
-  const { data, isLoading } = useGetCart(getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
+  const { data } = useGetCart(getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN));
   const { mutate } = useUpdateCart();
   const navigator = useNavigate();
 
@@ -17,7 +17,7 @@ export default function CartPage() {
     const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
     if (token === null) {
       alert('토큰이 만료되었습니다.');
-      navigator('/login');
+      navigator(0);
 
       return;
     }
@@ -39,14 +39,9 @@ export default function CartPage() {
   };
 
   return (
-    <>
-      {isLoading ? <Loader /> : null}
-      {data ? (
-        <CartTemplate
-          cartData={data.data.response}
-          handleOption={handleOption}
-        />
-      ) : null}
-    </>
+    <CartTemplate
+      cartData={removeEmptyCarts(data?.data.response)}
+      handleOption={handleOption}
+    />
   );
 }

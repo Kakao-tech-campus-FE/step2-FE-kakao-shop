@@ -1,3 +1,81 @@
+# 카카오톡 쇼핑하기 클론 프로젝트
+
+https://user-app.krampoline.com/kf7422ad1a6eda
+
+## 개요
+
+본 프로젝트는 카카오톡 쇼핑하기를 구현한 클론 프로젝트입니다.
+React와 TypeScript를 사용하여 개발했습니다.
+
+## 사용한 기술 스택
+<div align=center> 
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> 
+  <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"> 
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=black"> 
+  <br />
+  
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> 
+  <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white">
+  <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+  <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white">
+  <br />
+  
+  <img src="https://img.shields.io/badge/fontawesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white">
+  <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+  <br />
+
+  <img src="https://img.shields.io/badge/react router-CA4245?style=for-the-badge&logo=react router&logoColor=white">
+  <img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=react query&logoColor=white">
+</div>
+
+## 로컬에서 실행하기
+```
+해당 레포지토리 fork 후
+git clone [fork를 통해 생성된 레포지토리 주소]
+cd [프로젝트 이름]
+
+npm install
+npm start
+```
+
+## 기능
+- 회원 가입
+- 로그인 / 로그아웃
+- 전체 상품 목록 조회
+- 개별 상품 상세 조회
+- 상품 옵션 조회
+- 상품 옵션 및 수량 선택
+- 선택 옵션 장바구니에 담기
+- 장바구니 조회
+- 장바구니 목록 수량 변경
+- 장바구니에 담은 상품 주문
+- 주문 결과 확인
+
+## 배포 환경
+
+카카오 크램폴린 ide에서 배포합니다.
+
+- 크램폴린 ide 컨테이너 OS: Ubuntu 18.04 LTS
+
+## 배포 순서
+
+1. 해당 레포지토리 fork 또는 clone
+2. 크램폴린 ide에서 해당 레포지토리 연결하여 컨테이너 생성
+3. 배포 - D2Hub 탭에서 빌드
+4. 배포 - Kargo 탭에서 배포
+
+## 배포 브랜치
+
+**main** 브랜치를 통해 배포합니다.
+
+## 배포 시 주의 사항
+
+- 레포지토리 최상단 경로에 `default.conf`와 `Dockerfile`이 있는지 확인합니다.
+- 변경사항 반영 시 main 브랜치에 push 후 D2Hub 탭에서 재 빌드, Kargo 탭에서 재 배포 하여 반영합니다.
+
+## 주차 별 과제
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>
@@ -583,4 +661,3 @@ UI 컴포넌트의 명칭과 이를 구현하는 능력은 필수적인 커뮤�
 
 </div>
 </details>
-

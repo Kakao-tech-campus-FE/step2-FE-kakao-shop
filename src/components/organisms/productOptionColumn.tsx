@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icon } from '@fortawesome/fontawesome-svg-core/import.macro';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ProductOption, SelectedOption } from '../../types/product';
 import { OptionReducerAction } from '../../types/reducerAction';
 import Option from '../molecules/option';
@@ -23,55 +23,52 @@ export default function ProductOptionColumn({
   dispatch,
 }: ProductOptionColumnProps) {
   const { mutate } = useAddCart();
-  const user = useUserSelector((state) => state.user);
+  const { isLogin } = useUserSelector((state) => state.user);
   const navigator = useNavigate();
-
-  const checkLogin = () => {
-    if (!user.isLogin) {
-      const response = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
-      if (response) {
-        navigator('/login');
-      }
-
-      return false;
-    }
-
-    return true;
-  };
+  const { pathname } = useLocation();
 
   const handleAddCart = () => {
-    if (checkLogin()) {
-      if (selectedOptions.length <= 0) {
-        alert('옵션을 선택해주세요.');
+    if (!isLogin) {
+      const response = window.confirm('로그인이 필요한 서비스입니다. 로그인 하시겠습니까?');
+      if (response) {
+        navigator('/login', { state: pathname });
 
         return;
       }
 
-      const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
-
-      if (token === null) {
-        alert('토큰이 만료되었습니다.');
-        navigator(0);
-
-        return;
-      }
-
-      mutate({
-        selectedOptions: selectedOptions.map((selectedOption) => ({
-          optionId: selectedOption.id,
-          quantity: selectedOption.quantity,
-        })),
-        auth: token,
-      }, {
-        onSuccess: () => {
-          alert('장바구니에 상품을 담았습니다.');
-          dispatch({ type: 'reset' });
-        },
-        onError: () => {
-          alert('실패했습니다. 장바구니에 상품을 담지 못했습니다.');
-        },
-      });
+      return;
     }
+
+    if (selectedOptions.length <= 0) {
+      alert('옵션을 선택해주세요.');
+
+      return;
+    }
+
+    const token = getItemWithExpireDate(LOCALSTORAGE_KEY_TOKEN);
+
+    if (token === null) {
+      alert('토큰이 만료되었습니다.');
+      navigator(0);
+
+      return;
+    }
+
+    mutate({
+      selectedOptions: selectedOptions.map((selectedOption) => ({
+        optionId: selectedOption.id,
+        quantity: selectedOption.quantity,
+      })),
+      auth: token,
+    }, {
+      onSuccess: () => {
+        alert('장바구니에 상품을 담았습니다.');
+        dispatch({ type: 'reset' });
+      },
+      onError: () => {
+        alert('실패했습니다. 장바구니에 상품을 담지 못했습니다.');
+      },
+    });
   };
 
   return (
