@@ -7,11 +7,19 @@ import LoginLink from '../atoms/LoginLink';
 import { selectEmail, selectExpirationDate, logout } from '../../store/slices/userSlices';
 import Button from '../atoms/Button';
 import Container from '../atoms/Container';
+import { staticUrl } from '../../utils/convert';
 
 const GNB = () => {
   const currentEmail = useSelector(selectEmail);
   const expirationDate = useSelector(selectExpirationDate);
   const dispatch = useDispatch();
+
+  const handleChartLinkClick: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+    if (!localStorage.getItem('token')) {
+      e.preventDefault();
+      alert('로그인이 필요합니다.');
+    }
+  };
 
   const handleLogoutButtonClick = () => {
     dispatch(logout());
@@ -30,7 +38,7 @@ const GNB = () => {
       <Container className='flex items-center justify-between py-4'>
         <KaKaoShopLogo />
         <div className='flex items-center space-x-6'>
-          <Link to='cart'>
+          <Link to={staticUrl('/cart')} onClick={handleChartLinkClick}>
             <HiOutlineShoppingCart size={25} />
           </Link>
           {currentEmail ? <Button onClick={handleLogoutButtonClick}>로그아웃</Button> : <LoginLink />}

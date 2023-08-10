@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { HiOutlineShoppingCart } from 'react-icons/hi2';
+import { AxiosError } from 'axios';
 import ProductOptionList from '../molecules/ProductOptionList';
 import Button from '../atoms/Button';
 import DarkButton from '../atoms/DarkButton';
@@ -23,7 +24,20 @@ const ProductOptionColumn = ({ options }: ProductOptionColumnProps) => {
   };
 
   const handleDarkButtonClick = () => {
-    addCart(cartOptions);
+    addCart(cartOptions, {
+      onSuccess: () => {
+        alert('장바구니 담기 완료');
+      },
+      onError: (err) => {
+        if (err instanceof AxiosError) {
+          if (err.response?.status === 401) {
+            alert('계정정보 업데이트가 필요합니다. 새고고침 해주시거나 로그인되어 있는 지 확인해주세요.');
+          } else {
+            alert('장바구니 담기 실패');
+          }
+        }
+      },
+    });
   };
 
   return (

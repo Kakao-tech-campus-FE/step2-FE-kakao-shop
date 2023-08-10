@@ -9,12 +9,15 @@ import axios, { AxiosError } from 'axios';
 import './tailwind.css';
 import Router from './Router';
 import { store, persistor } from './store';
+import { staticUrl } from './utils/convert';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+const token = localStorage.getItem('token');
+axios.defaults.baseURL = staticUrl('/api');
 axios.defaults.timeout = 1000;
-axios.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem('token')}`;
+axios.defaults.headers.common.Authorization = token ? `Bearer ${token}` : null;
 
-const queryClient = new QueryClient({
+// eslint-disable-next-line import/prefer-default-export
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       suspense: true,
@@ -29,11 +32,19 @@ const queryClient = new QueryClient({
         const statusCode = error.response?.status;
         if (!statusCode) console.error('알 수 없는 에러가 발생했습니다.');
         else if (statusCode >= 300 && statusCode < 400) {
-          console.error('리다이렉션 에러가 발생했습니다.');
+          alert('리다이렉션 에러가 발생했습니다.');
+          window.location.href = staticUrl('/');
         } else if (statusCode >= 400 && statusCode < 500) {
-          console.error('클라이언트 에러가 발생했습니다.');
+          if (statusCode === 401) {
+            alert('로그인이 필요합니다.');
+            window.location.href = staticUrl('/login');
+          } else {
+            alert('클라이언트 에러가 발생했습니다.');
+          }
+          window.location.href = staticUrl('/');
         } else if (statusCode >= 500) {
-          console.error('서버 에러가 발생했습니다.');
+          alert('서버 에러가 발생했습니다.');
+          window.location.href = staticUrl('/');
         }
       }
     },
