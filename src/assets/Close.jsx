@@ -1,14 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Close() {
+function Close({ size }) {
   return (
     <img
-      width="12"
-      height="12"
-      src="https://img.icons8.com/material-two-tone/12/000000/delete-sign.png"
+      width={size}
+      height={size}
+      src="https://img.icons8.com/material-two-tone/36/000000/delete-sign.png"
       alt="delete-sign"
     />
   );
 }
+
+Close.propTypes = { size: PropTypes.number };
+Close.defaultProps = { size: 12 };
 
 export default React.memo(Close);

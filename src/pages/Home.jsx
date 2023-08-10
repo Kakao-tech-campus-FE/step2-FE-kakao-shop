@@ -1,6 +1,5 @@
 import { Suspense, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { ErrorBoundary } from "react-error-boundary";
 
 import useIntersectionObserver from "@/hooks/useIntersectionObserver.js";
 import useGetInfiniteProductsQuery from "@/hooks/useGetInfiniteProductsQuery.js";
@@ -20,19 +19,21 @@ const Styled = {
 
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 2rem;
   `,
   Loader: styled.article`
     width: 100%;
-    padding-bottom: 120px;
+    padding: 4rem 0;
 
     display: grid;
     justify-content: center;
     align-items: center;
 
-    grid-template-columns: repeat(3, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-gap: 2rem;
   `,
 };
 
@@ -44,6 +45,7 @@ function Home() {
   const { data, fetchNextPage } = useGetInfiniteProductsQuery({
     loader: loaderRef?.current,
   });
+  const { pages = [] } = data ?? {};
 
   useEffect(() => {
     const unobserve = observer.observe(loaderRef.current);
@@ -58,34 +60,33 @@ function Home() {
         slideArray={CAROUSEL.SLIDE}
         dotButton
         arrowButton
-        width="100vw"
         time={2000}
-        style={{ width: "100vw", position: "relative", left: "-5rem" }}
+        style={{
+          width: "100vw",
+          position: "relative",
+          left: "-4rem",
+        }}
       />
-      <ErrorBoundary FallbackComponent={<div>404</div>}>
-        <Suspense fallback={<Loader />}>
-          <Styled.Grid>
-            {data?.pages.map((page) =>
-              page.map((info) => (
-                <ProductInfoCard
-                  key={info.id}
-                  id={info.id}
-                  image={info.image}
-                  description={info.description}
-                  productName={info.productName}
-                  price={info.price}
-                />
-              ))
-            )}
-          </Styled.Grid>
+      <Suspense fallback={<Loader />}>
+        <Styled.Grid>
+          {pages?.map((page) =>
+            page.map((info) => (
+              <ProductInfoCard
+                key={info.id}
+                id={info.id}
+                image={info.image}
+                description={info.description}
+                productName={info.productName}
+                price={info.price}
+              />
+            ))
+          )}
 
           <Styled.Loader ref={loaderRef}>
             <ProductInfoCardLoader />
-            <ProductInfoCardLoader />
-            <ProductInfoCardLoader />
           </Styled.Loader>
-        </Suspense>
-      </ErrorBoundary>
+        </Styled.Grid>
+      </Suspense>
     </GlobalTemplate>
   );
 }

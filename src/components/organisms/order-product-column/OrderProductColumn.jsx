@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import OrderProductOption from "@/components/molecules/order-product-option/OrderProductOption.jsx";
+import PropTypes from "prop-types";
 
 const Styled = {
   Container: styled.section`
@@ -13,7 +14,13 @@ const Styled = {
   `,
 };
 
-function OrderProductColumn({ id, productName, carts, isOrderResult }) {
+function OrderProductColumn({
+  id,
+  productName,
+  carts,
+  isOrderResult,
+  optionName,
+}) {
   return (
     <Styled.Container $isOrderResult={isOrderResult}>
       {carts.map((item) => (
@@ -21,9 +28,7 @@ function OrderProductColumn({ id, productName, carts, isOrderResult }) {
           key={item.id}
           productName={productName}
           productId={id}
-          optionName={
-            isOrderResult ? item?.optionName : item?.option?.optionName
-          }
+          optionName={optionName}
           quantity={item?.quantity}
           price={item?.price}
           isOrderResult={isOrderResult}
@@ -32,5 +37,13 @@ function OrderProductColumn({ id, productName, carts, isOrderResult }) {
     </Styled.Container>
   );
 }
+
+OrderProductColumn.propTypes = {
+  carts: PropTypes.array.isRequired,
+  productName: PropTypes.string,
+  id: PropTypes.string,
+  isOrderResult: PropTypes.bool,
+  optionName: PropTypes.string,
+};
 
 export default OrderProductColumn;

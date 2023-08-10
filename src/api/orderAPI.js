@@ -1,9 +1,9 @@
 import instance from "@/api/instance.js";
 import API from "@/constants/API.js";
 
-const postOrder = async () => {
+const saveOrder = async () => {
   return instance({
-    url: API.ORDERS.POST,
+    url: API.ORDERS.SAVE,
     method: "POST",
   });
 };
@@ -15,4 +15,4 @@ const getOrderResult = async ({ orderId }) => {
   });
 };
 
-export default { postOrder, getOrderResult };
+export default { saveOrder, getOrderResult };

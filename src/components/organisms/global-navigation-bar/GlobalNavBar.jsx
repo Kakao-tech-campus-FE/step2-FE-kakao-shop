@@ -12,10 +12,13 @@ const Styled = {
   Container: styled.nav`
     position: ${({ $isStorybookMode }) => $isStorybookMode || "fixed"};
 
-    min-width: 80rem;
+    width: 100%;
     height: 4rem;
     padding: 0 calc((100vw - 80rem) / 2);
-    box-sizing: content-box;
+
+    @media screen and (max-width: 84rem) {
+      padding: 0 2rem;
+    }
 
     display: flex;
     justify-content: space-between;
@@ -69,9 +72,12 @@ function GlobalNavBar({ isStorybookMode }) {
         }}
       />
       <Styled.ButtonBox>
-        <Styled.CartButton onClick={handleCartButtonClick}>
-          <CartIcon />
-        </Styled.CartButton>
+        {accessToken && (
+          <Styled.CartButton onClick={handleCartButtonClick}>
+            <CartIcon />
+          </Styled.CartButton>
+        )}
+
         <Styled.AuthButton onClick={handleAuthButtonClick}>
           {accessToken ? "로그아웃" : "로그인"}
         </Styled.AuthButton>

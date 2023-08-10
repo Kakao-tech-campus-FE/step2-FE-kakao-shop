@@ -4,6 +4,7 @@ import cartAPI from "@/api/cartAPI.js";
 
 function useUpdateCartItemsMutation() {
   const queryClient = useQueryClient();
+
   const { mutate } = useMutation(
     [API.KEYS.UPDATE_CART_ITEMS],
     async ({ items }) => {
@@ -12,6 +13,9 @@ function useUpdateCartItemsMutation() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(API.KEYS.GET_CART_ITEMS);
+      },
+      onError: (error) => {
+        alert(error.response.data.error.message);
       },
     }
   );

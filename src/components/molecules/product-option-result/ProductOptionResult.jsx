@@ -15,6 +15,10 @@ const Styled = {
     align-items: center;
 
     border-top: ${({ theme }) => theme.border.default};
+
+    @media screen and (max-width: 768px) {
+      padding: 1rem;
+    }
   `,
   Quantity: styled.div`
     font-size: 1.1rem;
@@ -27,9 +31,13 @@ const Styled = {
   `,
 
   ButtonBox: styled.div`
+    padding-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 768px) {
+      padding: 0 1rem 1rem;
+    }
   `,
 };
 

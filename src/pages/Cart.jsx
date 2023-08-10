@@ -1,14 +1,14 @@
 import { Suspense, useEffect, useState } from "react";
+import styled from "styled-components";
+import routes from "@/constants/routes.js";
+import { useNavigate } from "react-router-dom";
 
 import GlobalTemplate from "@/components/templates/global-template/GlobalTemplate.jsx";
 import Loader from "@/components/atoms/loader/Loader.jsx";
 import useGetCartItemsQuery from "@/hooks/useGetCartItemsQuery.js";
-import styled from "styled-components";
 import CartProductColumn from "@/components/organisms/cart-product-column/CartProductColumn.jsx";
 import useUpdateCartItemsMutation from "@/hooks/useUpdateCartItemsMutation.js";
 import Button from "@/components/atoms/button/Button.jsx";
-import routes from "@/constants/routes.js";
-import { useNavigate } from "react-router-dom";
 
 const Styled = {
   Container: styled.div`
@@ -44,13 +44,15 @@ const Styled = {
 };
 
 function Cart() {
-  const { data } = useGetCartItemsQuery();
+  const { data } = useGetCartItemsQuery({ id: undefined });
+  const { products = [] } = data ?? {};
+
   const [cartOptions, setCartOptions] = useState([]);
   const { mutate } = useUpdateCartItemsMutation();
   const navigate = useNavigate();
 
   const totalPrice = data?.products
-    .map((product) =>
+    ?.map((product) =>
       product?.carts.reduce((sum, option) => sum + option.price, 0)
     )
     .reduce((sum, productPrice) => sum + productPrice, 0);
@@ -60,7 +62,7 @@ function Cart() {
   };
 
   useEffect(() => {
-    const cart = data?.products
+    const cart = products
       ?.map((product) =>
         product?.carts?.map((cart) => {
           return { cartId: cart.id, quantity: cart.quantity };
@@ -69,7 +71,7 @@ function Cart() {
       .flat();
 
     setCartOptions([...cart]);
-  }, [data]);
+  }, [products]);
 
   useEffect(() => {
     const updateCartItems = () => {
@@ -89,7 +91,7 @@ function Cart() {
       <Suspense fallback={<Loader />}>
         <Styled.Container>
           <div style={{ maxWidth: "870px", width: "100%" }}>
-            {data?.products?.map((item) => (
+            {products?.map((item) => (
               <CartProductColumn
                 key={item.id}
                 productId={item.id}
@@ -113,9 +115,10 @@ function Cart() {
                   padding: "1rem",
                   fontWeight: 600,
                 }}
+                disabled={products?.length === 0}
                 onClick={handleOrderButtonClick}
               >
-                {data?.products?.length}건 주문하기
+                {products?.length}건 주문하기
               </Button>
             </Styled.PriceBox>
           </div>

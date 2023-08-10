@@ -16,9 +16,6 @@ function useAddCartItemMutation() {
       onSuccess: () => {
         navigate(routes.cart);
       },
-      onError: (err) => {
-        console.log(err);
-      },
     }
   );
 

@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useSetAtom } from "jotai";
@@ -5,6 +6,7 @@ import { useSetAtom } from "jotai";
 import AuthTemplate from "@/components/templates/auth-template/AuthTemplate.jsx";
 import Form from "@/components/organisms/form/Form.jsx";
 import Button from "@/components/atoms/button/Button.jsx";
+import Modal from "@/components/molecules/modal/Modal.jsx";
 
 import FORM_INFO from "@/constants/FORM_INFO.js";
 import FORM_DEFAULT from "@/constants/FORM_DEFAULT.js";
@@ -34,6 +36,8 @@ const Styled = {
 function SignIn() {
   const navigate = useNavigate();
   const setAccessToken = useSetAtom(accessTokenAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const errorMessageRef = useRef("");
 
   const onSignInSubmit = async (data) => {
     try {
@@ -42,7 +46,8 @@ function SignIn() {
       localStorage.setItem("accessTokenDate", new Date().toString());
       navigate(routes.home);
     } catch (e) {
-      alert(e.response.data.error.message);
+      setIsModalOpen(true);
+      errorMessageRef.current = e.response.data.error.message;
     }
   };
 
@@ -67,6 +72,9 @@ function SignIn() {
           </span>
         </Styled.SignUsBtnContainer>
       </Form>
+      {isModalOpen && (
+        <Modal setIsOpen={setIsModalOpen}>{errorMessageRef.current}</Modal>
+      )}
     </AuthTemplate>
   );
 }

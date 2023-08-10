@@ -22,7 +22,6 @@ instance.interceptors.request.use(
       return config;
     }
 
-    // config.headers["Authorization"] = accessToken;
     config.headers["Authorization"] = accessToken.replaceAll('"', "");
     return config;
   },
@@ -43,7 +42,7 @@ instance.interceptors.response.use(
     switch (error.response.status) {
       case 401:
         window.location.href = routes.signIn;
-        break;
+        return Promise.reject(error);
       case 404:
         return Promise.reject(error);
       default:

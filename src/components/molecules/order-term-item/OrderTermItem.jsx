@@ -1,5 +1,7 @@
+import React from "react";
 import styled from "styled-components";
 import CheckBox from "@/components/atoms/check-box/CheckBox.jsx";
+import PropTypes from "prop-types";
 
 const Styled = {
   Container: styled.div`
@@ -23,4 +25,11 @@ function OrderTermItem({ isChecked, handleCheck, children, id, ...props }) {
   );
 }
 
-export default OrderTermItem;
+OrderTermItem.propTypes = {
+  isChecked: PropTypes.bool.isRequired,
+  handleCheck: PropTypes.func,
+  id: PropTypes.string || PropTypes.number,
+  children: PropTypes.node,
+};
+
+export default React.memo(OrderTermItem);
