@@ -1,10 +1,10 @@
-import { useSelector, useDispatch } from 'react-redux';
-import Container from '../atoms/Container';
-import ProductGrid from '../organisms/ProductGrid';
-import { Suspense } from 'react';
-import { useEffect, useRef, useState } from 'react';
-import { getProducts } from '../../redux/product/productSlice';
-import Loader from '../atoms/Loader';
+import { useSelector, useDispatch } from "react-redux";
+import ProductGrid from "../organisms/ProductGrid";
+import { Suspense } from "react";
+import { useEffect, useRef, useState } from "react";
+import { getProducts } from "../../redux/product/productSlice";
+import Loader from "../atoms/Loader";
+import MainContainer from "../atoms/MainContainer";
 
 const MainProductTemplate = () => {
   const [page, setPage] = useState(0);
@@ -27,7 +27,12 @@ const MainProductTemplate = () => {
   const io = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
-        if (!loading && entry.isIntersecting && bottomObserver.current && !isEnd) {
+        if (
+          !loading &&
+          entry.isIntersecting &&
+          bottomObserver.current &&
+          !isEnd
+        ) {
           setPage(page + 1);
         }
       });
@@ -46,12 +51,17 @@ const MainProductTemplate = () => {
   }, [dispatch, page]);
 
   return (
-    <Container className="whitespace-break-spaces mx-auto w-5/6">
+    <MainContainer className="whitespace-break-spaces px-12">
+      <div className="my-20">
+        <span className="text-center text-2xl font-extrabold border-solid border-0 border-b-4 border-kakao-yellow">
+          오늘의 딜
+        </span>
+      </div>
       <Suspense fallback={<Loader />}>
         <ProductGrid products={products} isLoading={loading} />
         <div ref={bottomObserver}></div>
       </Suspense>
-    </Container>
+    </MainContainer>
   );
 };
 

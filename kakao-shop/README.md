@@ -1,12 +1,13 @@
 # 카카오톡 선물하기 클론 프로젝트 - FE
 
-### Projects 💁
+## Projects 💁
 ```
 카카오톡의 선물하기 웹 사이트(gift.kakao.com)를 클론 코딩하는 프로젝트입니다.
 개인 단위로 프론트엔드 사이드의 기능을 구현합니다.
 ```
 
-### Skills 📚
+
+## Skills 📚
 <div>
 	<img src="https://img.shields.io/badge/react-61DAFB?style=flat&logo=react&logoColor=white" />
 	<img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat&logo=javascript&logoColor=white" />
@@ -19,13 +20,28 @@
 	<img src="https://img.shields.io/badge/visualstudiocode-007ACC?style=flat&logo=visualstudiocode&logoColor=white" />
 	<img src="https://img.shields.io/badge/github-181717?style=flat&logo=github&logoColor=white" />
 </div>
+<br />
 
-### Pages 📄
-| main page
-![image](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/8752f1a4-b3db-4361-b021-c0f5f21e6769)
 
-| login page
-![image](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/77f6a857-c813-48d4-866c-22f0c41f4a60)
+## How To Use 💻
+```
+# Clone this repository
+$ git clone https://github.com/qwer15948/step2-FE-kakao-shop
 
-| register page
-![image](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/884a02cd-c141-4126-9d67-d2ec632152e2)
+# Go into the repository
+$ cd kakao-shop
+
+# Install dependencies
+$ npm install
+
+# Run
+$ npm start
+```
+
+
+## Preview 📄
+![녹화_2023_08_03_10_32_16_884](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/ff9e0b90-b2db-4179-b412-36fec3e932d9)
+<br />
+![녹화_2023_08_03_10_32_49_72](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/13c5750b-24f8-4e1f-8c55-6eedb77d9efe)
+<br />
+![녹화_2023_08_03_10_33_50_784](https://github.com/qwer15948/step2-FE-kakao-shop/assets/48706964/8bcaa9fe-c7d8-4a0b-97db-67528645baae)

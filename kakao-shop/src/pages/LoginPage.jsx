@@ -1,3 +1,4 @@
+import Link from "../components/atoms/Link";
 import Photo from "../components/atoms/Photo";
 import LoginForm from "../components/organisms/LoginForm";
 
@@ -10,11 +11,13 @@ const LoginPage = () => {
   return (
     <div className="login-page">
       <div className="mt-32 mb-10">
-        <Photo
-          className="w-32 mx-auto block"
-          src="/logoKakaoText.png"
-          alt="kakao-text-logo"
-        />
+        <Link to="/">
+          <Photo
+            className="w-32 mx-auto block"
+            src="/logoKakaoText.png"
+            alt="kakao-text-logo"
+          />
+        </Link>
       </div>
       <LoginForm />
     </div>

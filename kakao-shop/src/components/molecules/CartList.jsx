@@ -1,14 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Container from '../atoms/Container';
-import CartItem from '../atoms/CartItem';
-import Button from '../atoms/Button';
-import ErrorPage from '../../pages/Error/ErrorPage';
+import { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import Container from "../atoms/Container";
+import CartItem from "../atoms/CartItem";
+import Button from "../atoms/Button";
+import ErrorPage from "../../pages/Error/ErrorPage";
 
-import { updateCart } from '../../apis/cart';
-import { comma } from '../../utils/convert';
-import { useMutation } from '@tanstack/react-query';
-import { BsCart2 } from 'react-icons/bs';
+import { updateCart } from "../../apis/cart";
+import { comma } from "../../utils/convert";
+import { useMutation } from "@tanstack/react-query";
+import { BsCart2 } from "react-icons/bs";
+import { simpleAlert } from "../../utils/swal";
 
 /**
  * 장바구니에 담긴 상품 리스트
@@ -22,10 +23,13 @@ const CartList = ({ data }) => {
   const [updatePayload, setUpdatepayload] = useState([]);
 
   // const initPayload = useRef([]);
-  const { mutate } = useMutation({ mutationFn: updateCart, refetchQueries: ['cart', 'cartNum'] });
+  const { mutate } = useMutation({
+    mutationFn: updateCart,
+    refetchQueries: ["cart", "cartNum"],
+  });
 
   useEffect(() => {
-    console.log('data', data?.data?.response?.products);
+    console.log("data", data?.data?.response?.products);
     setCartItems(data?.data?.response?.products);
     setTotalPrice(data?.data?.response?.totalPrice);
   }, [data]);
@@ -104,8 +108,28 @@ const CartList = ({ data }) => {
     navigate(0);
   };
 
+  const handleOnOrder = () => {
+    return () => {
+      mutate(updatePayload, {
+        onSuccess: () => {
+          navigate("/order");
+        },
+        onError: (error) => {
+          if (error?.response?.status === 401) {
+            // 로그인 만료된 상태에서 요청 시
+            simpleAlert(
+              "로그인이 만료되었습니다. 재로그인 후 다시 시도해주세요."
+            );
+            navigate("/login");
+          }
+          return <ErrorPage message="주문처리 중 에러가 발생했습니다." />;
+        },
+      });
+    };
+  };
+
   return (
-    <Container className="cart mx-auto max-w-4xl">
+    <Container className="cart">
       <div className="title text-center font-bold py-4 border border-solid border-gray-200 bg-white">
         <h1>장바구니</h1>
       </div>
@@ -113,10 +137,16 @@ const CartList = ({ data }) => {
         <div className="cart-empty h-full py-40 text-center bg-white">
           <BsCart2 size="50" color="gray" className="mx-auto" />
           <div className="text-lg mt-4">장바구니에 담긴 상품이 없습니다.</div>
-          <button className="mt-5 bg-gray-50 px-5 py-2 rounded-sm border mr-3" onClick={() => navigate(-1)}>
+          <button
+            className="mt-5 bg-gray-50 px-5 py-2 rounded-sm border mr-3"
+            onClick={() => navigate(-1)}
+          >
             이전 화면
           </button>
-          <button className="mt-5 bg-black text-white px-5 py-2 rounded-sm border" onClick={() => navigate('/')}>
+          <button
+            className="mt-5 bg-black text-white px-5 py-2 rounded-sm border"
+            onClick={() => navigate("/")}
+          >
             쇼핑하기 홈
           </button>
         </div>
@@ -127,27 +157,23 @@ const CartList = ({ data }) => {
             {Array.isArray(cartItems) &&
               cartItems.map((item) => {
                 if (item.carts.length === 0) return null;
-                return <CartItem key={item.id} item={item} onChange={handleOnChangeCount} onDelete={handleOnDelete} />;
+                return (
+                  <CartItem
+                    key={item.id}
+                    item={item}
+                    onChange={handleOnChangeCount}
+                    onDelete={handleOnDelete}
+                  />
+                );
               })}
           </div>
           <div className="flex justify-between font-bold text-lg bg-white p-4 mb-1 border border-solid border-gray-200">
             <span>주문 예상금액</span>
-            <span className=" text-kakao-blue text-xl">{`${comma(totalPrice)}원`} </span>
+            <span className=" text-kakao-blue text-xl">
+              {`${comma(totalPrice)}원`}{" "}
+            </span>
           </div>
-          <Button
-            color="kakao"
-            className="order-btn"
-            onClick={() => {
-              mutate(updatePayload, {
-                onSuccess: () => {
-                  navigate('/order');
-                },
-                onError: () => {
-                  return <ErrorPage message="결제처리 중 에러가 발생했습니다." />;
-                },
-              });
-            }}
-          >
+          <Button color="kakao" className="order-btn" onClick={handleOnOrder()}>
             <span>총 {getTotalCartCountIncludingOptions()}건 주문하기</span>
           </Button>
         </div>

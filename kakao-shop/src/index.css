@@ -4,11 +4,11 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, HelveticaNeue, Helvetica, Roboto, Apple SD Gothic Neo, \b9d1\c740\ace0\b515, Malgun Gothic,
-    sans-serif, ArialUnicodeMs;
+  font-family: -apple-system, HelveticaNeue, Helvetica, Roboto,
+    Apple SD Gothic Neo, \b9d1\c740\ace0\b515, Malgun Gothic, sans-serif,
+    ArialUnicodeMs;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  white-space: nowrap;
 }
 
 /* Sweetalert custom */
@@ -20,4 +20,42 @@ body {
 
 body.swal2-toast-shown .swal2-container {
   width: 480px !important;
+}
+
+div:where(.swal2-container) .swal2-html-container {
+  font-size: 1rem !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+  font-size: 1rem !important;
+  height: 2rem;
+  padding: 0 1rem;
+  background-color: #007aff !important;
+}
+
+.slick-slider .slick-arrow:before {
+  font-size: 2rem;
+  color: white;
+}
+
+.slick-slider .slick-dots button:before {
+  font-size: 0.5rem;
+}
+
+.slick-slider .slick-dots {
+  bottom: 1rem;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.slick-prev {
+  left: 1rem !important;
+}
+
+.slick-next {
+  right: 1.5rem !important;
 }
