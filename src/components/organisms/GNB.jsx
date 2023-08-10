@@ -7,8 +7,8 @@ import Navigation from '../molecules/Navigation';
 import SelectContainor from '../atoms/SelectContainor';
 import FontToLink from '../molecules/FontToLink';
 import { faMagnifyingGlass, faTruckFast, faCartShopping, faBars } from "@fortawesome/free-solid-svg-icons";
-
-function GNB({ }) {
+const staticServerUri = process.env.REACT_APP_PATH || "";
+function GNB() {
   return (
     <Containor style={{height:'20%', width:'100%', position:'relative'}}>
         <Containor style={
@@ -29,7 +29,7 @@ function GNB({ }) {
         }}>    
 
         <Box style={{paddingTop: '27px', fontSize: '2rem'}}>
-          <ImageToLink src={logoKakao} to={'/'} linkstyle={{color: '#333', fontSize:'2rem'}} 
+          <ImageToLink src={logoKakao} to={staticServerUri + '/'} linkstyle={{color: '#333', fontSize:'2rem'}} 
           imagestyle={{display: 'block', width:'95px', height:'auto', border:'0 none'}}>
           </ImageToLink>
         </Box>
@@ -49,7 +49,7 @@ function GNB({ }) {
           width: '1px',
           height: '15px',
           }}>
-            <FontToLink icon={faBars} to={'/'} linkstyle={{
+            <FontToLink icon={faBars} to={staticServerUri + '/'} linkstyle={{
               display: "block",
               height: "19px",
               padding: '31px 12px 29px',
@@ -81,7 +81,7 @@ function GNB({ }) {
           width: '1px',
           height: '22px',
         }}>
-            <FontToLink icon={faMagnifyingGlass} to={'/'} linkstyle={{
+            <FontToLink icon={faMagnifyingGlass} to={staticServerUri + '/'} linkstyle={{
               display: "block",
               position: 'relative',
               width: '28px',
@@ -98,7 +98,7 @@ function GNB({ }) {
               display: 'inline-block',
             }}
             ></FontToLink>
-            <FontToLink icon={faTruckFast} to={'/'} linkstyle={{
+            <FontToLink icon={faTruckFast} to={staticServerUri + '/'} linkstyle={{
               display: "block",
               position: 'relative',
               width: '28px',
@@ -115,7 +115,7 @@ function GNB({ }) {
               display: 'inline-block',
             }}
             ></FontToLink>
-            <FontToLink icon={faCartShopping} to={'/cart'} linkstyle={{
+            <FontToLink icon={faCartShopping} to={staticServerUri + '/cart'} linkstyle={{
               display: "block",
               position: 'relative',
               width: '28px',

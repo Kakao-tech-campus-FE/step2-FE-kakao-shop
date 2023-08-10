@@ -59,6 +59,24 @@ function OptionColumn({ product }) {
     mutationFn: addCart,
   })
 
+  function handleOnClickCart() {
+    mutate(
+      selectedOptions.map((ele)=>{
+      return{
+        optionId: ele.optionId,
+        quantity: ele.quantity,
+      }
+       }),{
+        onSuccess: () => {
+        alert("장바구니에 담겼습니다.")
+      },
+        onError: (error) => {
+          alert(error.data.error.message + '\n장바구니 담기 실패하였습니다')
+        },
+      }
+    )
+  }
+
 
 
   return (
@@ -124,23 +142,7 @@ function OptionColumn({ product }) {
         {/* 장바구니 담기 버튼 위치: 장바구니 담기만 구현 */}
         {/* 톡딜가 구현은 안함 */}
         <button>
-        <FontAwesomeIcon icon={faCartShopping} size='2x' onClick={() => {
-          mutate(
-            selectedOptions.map((ele)=>{
-            return{
-               optionId: ele.optionId,
-              quantity: ele.quantity,
-            }
-             }),{
-              onSuccess: () => {
-              alert("장바구니에 담겼습니다.")
-            },
-              onError: () => {
-              alert("장바구니 담기 실패 했습니다.")
-              },
-            }
-          )
-          }}/>
+        <FontAwesomeIcon icon={faCartShopping} size='2x' onClick={handleOnClickCart}/>
         </button>   
       </ButtonGroup>
       </div>

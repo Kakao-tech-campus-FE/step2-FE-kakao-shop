@@ -9,7 +9,6 @@ function Button({
 }) {
   return (
     <button style = {style} onClick={(e) => {
-      e.preventDefault()
       onClick()
     }} disable={disable}>
       {children}

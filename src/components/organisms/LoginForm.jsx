@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { setEmail } from '../../store/slices/userSlice'
 import { useDispatch, useSelector } from 'react-redux'
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function LoginForm() {
   const dispatch = useDispatch()
@@ -136,7 +137,7 @@ function LoginForm() {
                 email: form.email
               })
               )
-              navigate("/")
+              navigate(staticServerUri + "/")
           }).catch((error)=>{
             setValid(false)
             setErrorMsg(error.data.error.message)

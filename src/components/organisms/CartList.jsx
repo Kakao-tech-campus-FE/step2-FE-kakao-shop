@@ -8,7 +8,9 @@ import CartItem from '../molecules/CartItem'
 import { updateCart } from '../../services/cart'
 import { comma } from '../../utils/convert'
 import Button from '../atoms/Button'
+import LinkTo from '../atoms/LinkTo'
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 function CartList( {data, } ) {
   const route = useNavigate()
@@ -16,13 +18,16 @@ function CartList( {data, } ) {
   const [totalPrice, setTotalPrice] = useState(0)
   const [updataPayload, setUpdataPayload] = useState([]) // 렌더링에 관여 X
 
+
   const { mutate } = useMutation({
     mutationFn: updateCart,
   })
 
   useEffect(()=>{
+    console.log("reloading")
     setCartItems(data?.data?.response?.products)
     setTotalPrice(data?.data?.response?.totalPrice)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
   /** 
@@ -87,6 +92,38 @@ function CartList( {data, } ) {
     return count;
   }, [cartItems])
 
+  function onClickHandler() {
+      // update cart api
+      // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
+      // post method
+
+      //payload를 만드는 방법
+      // 1번째 방법
+      // 전체 장바구니 목록의 개수를 적절히 파싱해서 보내준다
+    
+      // 2번째 방법
+      // 변경된 개수만 파싱해서 페이로드로 보내주기
+      // payload 더 작게할 수 있으니까(좋음)
+
+      mutate(updataPayload, {
+        onSuccess: (data) => {
+
+        },
+        onError: (error) => {
+
+       },
+      })
+
+      // navigate to order page
+      // 주문 페이지로 이동
+
+
+      // 결제 프로세스
+      // 1. 장바구니에 있는 모든 항목 그대로 결제
+      // 2. 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
+    }
+  
+
   return (
   <div className='w-full h-full bg-neutral-100'>
      <div className='w-[840px] h-full mx-auto my-0 text-center border-solid border-2 border border-neutral-100'>
@@ -116,40 +153,13 @@ function CartList( {data, } ) {
         </div>
       </div>
 
+      <LinkTo to={staticServerUri + '/order'}>
       <div className='bg-yellow-300 py-[20px]'>
-        <Button onClick={()=>{
-          // update cart api
-          // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우에)
-          // post method
-
-          //payload를 만드는 방법
-          // 1번째 방법
-          // 전체 장바구니 목록의 개수를 적절히 파싱해서 보내준다
-        
-          // 2번째 방법
-          // 변경된 개수만 파싱해서 페이로드로 보내주기
-          // payload 더 작게할 수 있으니까(좋음)
-
-          mutate(updataPayload, {
-            onSuccess: (data) => {
-
-            },
-            onError: (error) => {
-
-           },
-          })
-
-          // navigate to order page
-          // 주문 페이지로 이동
-          route.push("/order")
-
-          // 결제 프로세스
-          // 1. 장바구니에 있는 모든 항목 그대로 결제
-          // 2. 결제 페이지에서는 수량 변경 X 그대로 결제 진행만 가능
-        }}>
+        <Button onClick={onClickHandler}>
           <span className='font-bold text-xl'>총 {getTotalCartCountIncludeOption()}건 주문하기</span>
         </Button>
       </div>
+      </LinkTo>
     </div>
   </div>
   
