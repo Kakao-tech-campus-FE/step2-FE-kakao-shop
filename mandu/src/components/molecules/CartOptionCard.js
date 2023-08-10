@@ -28,15 +28,15 @@ const CartOptionCard = ({cart}) => {
     }
 
     return (
-        <div className="bg-gray-200 mb-4 p-2">
-            <div className="flex justify-between">
+        <div className="border-2 border-gray-300 m-2 p-2">
+            <div className="option-name flex justify-between">
                 <h3>{option?.optionName}</h3>
                 <button onClick={deleteCart}>X</button>
             </div>
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
                     <button className="px-2 m-2" onClick={decreaseSelectedCount}>-</button>
-                    <p className="px-2">{quantity}</p>
+                    <p className="option-quantity px-2">{quantity}</p>
                     <button className="px-2 m-2" onClick={increaseSelectedCount}>+</button>
                 </div>
                 <p>{priceFormat(price)}</p>

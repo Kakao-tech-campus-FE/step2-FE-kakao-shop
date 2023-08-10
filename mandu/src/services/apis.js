@@ -2,13 +2,13 @@ import api from "./index";
 import {ErrorType} from "./type";
 import {checkCartValidation} from "../util/validation";
 
-const checkDuplicateEmail = async (email) => {
+export const checkDuplicateEmail = async (email) => {
     return await api.post("/check", {
         email
     });
 }
 
-const signUp = async ({email, password, username}) => {
+export const signUp = async ({email, password, username}) => {
     return await api.post("/join", {
         email,
         password,
@@ -16,14 +16,14 @@ const signUp = async ({email, password, username}) => {
     });
 }
 
-const signIn = async ({email, password}) => {
+export const signIn = async ({email, password}) => {
     return await api.post("/login", {
         email,
         password
     });
 }
 
-const getProducts = async ({pageParam = 0}) => {
+export const getProducts = async ({pageParam = 0}) => {
     const data = await api.get("/products", {
         params: {
             page: pageParam
@@ -38,7 +38,7 @@ const getProducts = async ({pageParam = 0}) => {
     return {data, nextPage: data.length !== 0 ? pageParam + 1 : undefined};
 }
 
-const getDetailProduct = async (productId) => {
+export const getDetailProduct = async (productId) => {
     const data = await api.get("/products/" + productId);
     const {id, productName, price, starCount, options} = data;
     //주요 데이터들이 존재하는지 확인
@@ -56,18 +56,24 @@ const getDetailProduct = async (productId) => {
     return data;
 }
 
-const addInCart = async (options) => {
+export const addInCart = async (options) => {
     console.log("addInCart", options)
     return await api.post("/carts/add", options);
 }
 
-const getCart = async () => {
+export const getCart = async () => {
     const data = await api.get("/carts");
     return checkCartValidation(data);
 }
 
-const updateCart = (options) => {
+export const updateCart = (options) => {
     return api.post("/carts/update", options);
 }
 
-export {checkDuplicateEmail, signUp, signIn, getProducts, getDetailProduct, addInCart, getCart, updateCart};
+export const saveOrder = async () => {
+    return await api.post("/orders/save ");
+}
+
+export const getOrders = async (id) => {
+    return await api.get("/orders/" + id);
+}

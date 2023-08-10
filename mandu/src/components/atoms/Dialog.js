@@ -1,5 +1,6 @@
 import {forwardRef} from "react";
 import {Link} from "react-router-dom";
+import {convertUrl} from "../../const";
 
 const Dialog = forwardRef(({title, subTitle, continueName, link}, ref) => {
     return (
@@ -14,7 +15,7 @@ const Dialog = forwardRef(({title, subTitle, continueName, link}, ref) => {
                         취소
                     </button>
                     <div className="bg-gray-600 w-0.5"/>
-                    <Link to={link} className="flex-grow py-1 text-gray-800 font-bold text-center">
+                    <Link to={convertUrl(link)} className="flex-grow py-1 text-gray-800 font-bold text-center">
                         {continueName}
                     </Link>
                 </div>

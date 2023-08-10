@@ -8,6 +8,7 @@ import {addInCart} from "../../services/apis";
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {convertUrl} from "../../const";
 
 const ProductInfo = ({product, showDialog}) => {
     const {productName, price, starCount, options} = product;
@@ -24,7 +25,7 @@ const ProductInfo = ({product, showDialog}) => {
             setSelectedOption([]);
         },
         onError: (error) => {
-            alert(error.response.data.message);
+            alert(error.message);
         },
     });
 
@@ -80,7 +81,7 @@ const ProductInfo = ({product, showDialog}) => {
     const onPurchase = (e) => {
         if (!userId) return alert("로그인이 필요합니다.");
         e.preventDefault();
-        navigate("/payment");
+        navigate(convertUrl("/payment"));
     }
 
     return (
@@ -92,7 +93,7 @@ const ProductInfo = ({product, showDialog}) => {
                 <h1 className="text-lg font-bold">상품 옵션 선택</h1>
                 <div className="w-full border-2 border-gray-500">
                     <div>
-                        <button className="w-full bg-gray-100 flex p-3 justify-between"
+                        <button id="option-show-btn" className="w-full bg-gray-100 flex p-3 justify-between"
                                 onClick={() => setIsOptionOpen((prev) => !prev)}>
                             <p>상품 옵션을 선택해 주세요</p>
                             <span>{isOptionOpen ? "△" : "▽"}</span>
@@ -115,6 +116,7 @@ const ProductInfo = ({product, showDialog}) => {
                     </div>
                     <div className="flex">
                         <OutlinedButton
+                            id="add-cart-btn"
                             className="mr-2"
                             onClick={onAddInCart}
                             disabled={cartAddMutation.isLoading}>

@@ -1,10 +1,11 @@
 import {Link} from "react-router-dom";
 import {priceFormat} from "../../util/Format";
+import {convertUrl} from "../../const";
 
 export const ProductCard = ({id, title, image, link, price}) => {
     return (
         <div id={id} className="w-72 ml-5 mb-7">
-            <Link to={link}>
+            <Link to={convertUrl(link)}>
                 <div className="w-full h-44 rounded-2xl overflow-hidden">
                     <img
                         loading="lazy"
