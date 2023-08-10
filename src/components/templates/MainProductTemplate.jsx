@@ -54,10 +54,10 @@ const MainProductTemplate = () => {
     };
 
     return (
-        <Container>
+        <div className='w-[90%]'>
             <ProductGrid products={product} loading={loading} />
             <div ref={bottomObserver}></div>
-        </Container>
+        </div>
     );
 };
 

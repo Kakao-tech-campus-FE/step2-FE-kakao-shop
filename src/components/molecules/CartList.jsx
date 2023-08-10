@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Container from '../atoms/Container';
 import Box from '../atoms/Box';
-import Card from '../atoms/Card';
 import Button from '../atoms/Button';
 import CartItem from '../atoms/CartItem';
 import { comma } from '../../utils/convert';
@@ -9,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import { updateCart } from '../../services/cart';
 import URL from '../../constants/URL';
+import Title from '../atoms/Title';
 
 const CartList = ({ data }) => {
     const navigate = useNavigate();
@@ -94,9 +94,9 @@ const CartList = ({ data }) => {
     return (
         <Container className="cart-list" direction="column" gap={'1rem'}>
             <div>
-                <h1>장바구니</h1>
+                <Title>장바구니</Title>
             </div>
-            <Box width="80%" direction="column" gap="1rem">
+            <Box width="80%" direction="column" gap="1rem" className="min-h-[4rem]">
                 {/* 상품별 장바구니 */}
                 {Array.isArray(cartItems) &&
                     cartItems.map((item) => {
@@ -112,19 +112,18 @@ const CartList = ({ data }) => {
                 </div>
             </Box>
             <Button
-                className="order-btn"
                 onClick={() => {
                     // 장바구니 정보를 수정하는 api 호출 (개수 변경이 있는 경우)
                     mutate(updatePayload.current, {
-                        onSuccess: (data) => {
+                        onSuccess: () => {
                             // 주문 페이지로 이동
                             navigate(URL.ORDER);
                         },
-                        onError: (error) => {},
+                        onError: () => {},
                     });
                 }}
             >
-                <span>총 {getTotalCartCountIncludeOptions()}건 주문하기</span>
+                총 {getTotalCartCountIncludeOptions()}건 주문하기
             </Button>
         </Container>
     );

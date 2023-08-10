@@ -9,7 +9,7 @@ import URL from '../../constants/URL';
 
 const SignUpForm = ({ inputInfo, defaultValue, buttonLabel }) => {
     let navigate = useNavigate();
-    const { values, handleChange, handleSubmit, errors, isLoading } = useForm({
+    const { values, handleChange, handleSubmit, errors } = useForm({
         initValue: defaultValue,
         onSubmit: (set, values) => {
             signup(values).then(() => {

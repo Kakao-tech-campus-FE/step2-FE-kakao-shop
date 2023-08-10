@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const useForm = ({ initValue, onSubmit, validate }) => {
     const [values, setValues] = useState(initValue);

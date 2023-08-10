@@ -8,52 +8,17 @@ import { styled } from 'styled-components';
  * @returns {JSX.Element} 컴포넌트 반환
  */
 
-const Button = ({ children, className = '', onClick }) => {
+const Button = ({ children, className = 'default', onClick }) => {
     return (
-        <StyledButton className={className} onClick={onClick} type="button">
+        <button className={`${style[className]}`} onClick={onClick} type="button">
             {children}
-        </StyledButton>
+        </button>
     );
 };
 
-const StyledButton = styled.button`
-    padding: ${({ theme }) => theme.padding.lg};
-    min-width: 20rem;
-    margin-top: ${({ theme }) => theme.margin.xxxl};
-    margin-bottom: ${({ theme }) => theme.margin.base};
-
-    /* Layout */
-    font-size: ${({ theme }) => theme.fontSize.base};
-
-    border: 2px solid ${({ theme }) => theme.color.green};
-    border-radius: ${({ theme }) => theme.border.rad_base};
-
-    background-color: ${({ theme }) => theme.color.green};
-    color: ${({ theme }) => theme.color.white};
-
-    &.header {
-        border-color: ${({ theme }) => theme.color.white};
-        min-width: 7rem;
-        font-size: ${({ theme }) => theme.fontSize.small};
-        background-color: ${({ theme }) => theme.color.white};
-        color: ${({ theme }) => theme.color.black};
-    }
-
-    &.header:hover {
-        border-color: ${({ theme }) => theme.color.green};
-        background-color: ${({ theme }) => theme.color.green};
-        color: ${({ theme }) => theme.color.white};
-    }
-
-    &.counter {
-        min-width: 1rem;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        margin: 0;
-        background-color: ${({ theme }) => theme.color.gray};
-        color: ${({ theme }) => theme.color.black};
-    }
-`;
+const style = {
+    default: 'p-3 min-w-[20rem] mt-3 mb-1 bg-yellow-300 hover:bg-yellow-400 m-2 rounded-lg',
+    container: 'p-2 w-2 m-2 bg-white',
+};
 
 export default Button;

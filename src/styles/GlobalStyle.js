@@ -15,19 +15,17 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
     }
 
-    body {
-        width: 100vw;
+    html, body {
+        min-width: 95vw;
         min-height: 100vh;
-        overflow-x: hidden;
-        background-color: #f8f9fa;
     }
 
     #root{
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 100vw;
-        height: 100vh;
+        width: 100%;
+        min-height: 100vh;
     }
 
     picture > img {
@@ -38,10 +36,24 @@ const GlobalStyle = createGlobalStyle`
         -webkit-appearance : none;
         -moz-appearance:none;
         appearance:none;
+        -o-appearance: none;
+    }
+
+    input[type='checkbox'] {
+        display: inline-block;
+        width: 1.25rem;
+        height: 1.25rem;
+        background: url('https://s.wemep.co.kr/ui/v2.8.307/dist/pc/css/spr/common.png') 0 -438px no-repeat;
+        vertical-align: top;
+    }
+
+    input[type='checkbox']:checked {
+        box-shadow: none;
+        background-position: -75px -438px;
     }
 
     ol, ul {
-	list-style: none;
+        list-style: none;
     }
 
     li {

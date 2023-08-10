@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { getProductById } from '../services/product';
-import Container from '../components/atoms/Container';
 import { useSetAtom } from 'jotai';
 import { productDetailAtom } from '../store/product';
 import ProductDetailTemplate from '../components/templates/ProductDetailTemplate';
@@ -9,6 +8,7 @@ import Loader from '../components/atoms/Loader';
 import Text from '../components/atoms/Text';
 import { useNavigate } from 'react-router-dom';
 import URL from '../constants/URL';
+import Page from '../components/atoms/Page';
 
 const ProductDetailPage = () => {
     const setProduct = useSetAtom(productDetailAtom);
@@ -45,11 +45,11 @@ const ProductDetailPage = () => {
     }
 
     return (
-        <Container className="page">
+        <Page className="page">
             {isLoading && <Loader />}
             {error && <Text>{error.message}</Text>}
             {validate(data) && <ProductDetailTemplate />}
-        </Container>
+        </Page>
     );
 };
 

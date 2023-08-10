@@ -5,7 +5,7 @@ import Text from '../atoms/Text';
 
 const LabelInput = ({ id, type, value, onChange, label, placeholder, required, errorMessage }) => {
     return (
-        <Container>
+        <Container direction="column" align="flex-start">
             <Label htmlFor={id}>{label}</Label>
             <Input
                 id={id}

@@ -1,8 +1,20 @@
-import { styled } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 
 /**
  * 스켈레톤 UI를 위한 스타일드 컴포넌트
  */
+
+const skeleton_gradient = keyframes`
+    0% {
+        background-color: rgba(165, 165, 165, 0.1);
+    }
+    50% {
+        background-color: rgba(165, 165, 165, 0.3);
+    }
+    100% {
+        background-color: rgba(165, 165, 165, 0.1);
+    }
+`;
 
 const SkeletonItem = styled.div`
     width: 100%;
@@ -12,18 +24,6 @@ const SkeletonItem = styled.div`
     overflow: hidden;
     border-radius: 4px;
 
-    @keyframes skeleton-gradient {
-        0% {
-            background-color: rgba(165, 165, 165, 0.1);
-        }
-        50% {
-            background-color: rgba(165, 165, 165, 0.3);
-        }
-        100% {
-            background-color: rgba(165, 165, 165, 0.1);
-        }
-    }
-
     &:before {
         content: '';
         position: absolute;
@@ -31,7 +31,7 @@ const SkeletonItem = styled.div`
         left: 0;
         width: 100%;
         height: 100%;
-        animation: skeleton-gradient 1.5s infinite ease-in-out;
+        animation: ${skeleton_gradient} 1.5s infinite ease-in-out;
     }
 `;
 

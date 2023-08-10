@@ -11,21 +11,17 @@ import { styled } from 'styled-components';
 
 const Card = ({ to, children, className = '' }) => {
     return (
-        <StyledLink className={`card ${className}`} to={to}>
+        <StyledLink className={`card border-2 rounded-sm p-5 ${className}`} to={to}>
             {children}
         </StyledLink>
     );
 };
 
 const StyledLink = styled(Link)`
-    padding: ${({ theme }) => theme.padding.lg};
     display: grid;
     grid-template-rows: 11fr 3.4fr 1fr;
     gap: 0.5rem;
     color: ${({ theme }) => theme.color.black};
-
-    border: 1.5px solid ${({ theme }) => theme.color.light_gray};
-    border-radius: ${({ theme }) => theme.border.rad_sm};
 `;
 
 export default Card;

@@ -5,6 +5,8 @@ import Container from '../atoms/Container';
 import Photo from '../atoms/Photo';
 import Text from '../atoms/Text';
 
+const staticServerUrl = process.env.REACT_APP_PATH || process.env.PUBLIC_URL;
+
 const ProductInformationColumn = () => {
     const product = useAtomValue(productDetailAtom);
     const { productName, price, image } = product;
@@ -13,7 +15,7 @@ const ProductInformationColumn = () => {
         <Container align="flex-start" gap={'1rem'} className="detail-product-info">
             <div className="col">
                 <Photo
-                    src={`${import.meta.env.VITE_APP_API_URL}${image}`}
+                    src={`${staticServerUrl}${image}`}
                     alt={productName}
                     className="productImage"
                 />
