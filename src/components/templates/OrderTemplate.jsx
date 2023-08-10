@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { getCart } from "../../services/cart";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const OrderTemplate = () => {
   const { data } = useQuery(["cart"], getCart, { suspense: true });
   const { products, totalPrice } = data?.data?.response;
@@ -28,35 +30,54 @@ const OrderTemplate = () => {
     }
   };
 
-  const { mutate } = useMutation({
+    /**
+   * 결제 실패 에러 캐칭 시나리오
+   * 실제 결제가 이루어지지 않으므로 세 가지 경우에 대해 에러를 처리한다.
+   * 1. 401 에러
+   *    로그인 정보가 없어 헤더에 authorization이 없는 경우 401 에러를 처리하여 로그인 페이지로 이동한다.
+   * 2. 404 에러
+   *    페이지를 찾을 수 없는 경우, NotFoundPage(404)로 이동한다.
+   * 3. 서버 에러 
+   *    서버 요청 실패의 경우 alert창을 띄운다.
+   */
+	
+const { mutate } = useMutation({
     mutationFn: order,
+    onError: (error) => {
+      if (error.response && error.response.status === 401) {
+        // 로그인 정보가 없어 헤더에 authorization이 없는 경우 401 에러를 처리하여 로그인 페이지로 이동한다.
+        alert("로그인 정보가 없습니다. 로그인 페이지로 이동합니다.");
+        navigate(staticServerUri + "/login");
+      } else if (error.response && error.response.status === 404) {
+        // 페이지를 찾을 수 없는 경우 404 페이지로 이동한다.
+        alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
+        navigate(staticServerUri + "/*");
+      } else {
+        // 서버 에러의 경우 alert창을 띄운다.
+        alert("주문에 실패했습니다. 다시 시도해주세요.");
+      }
+    },
   });
 
-  const OrderItems = () => {
-    let renderComponent = [];
 
-    products.forEach((item) => {
-      renderComponent.push(
-        item.carts.map((cart) => {
-          return (
-            <div key={cart.id} className="p-4 border-t">
-              <div className="product-name">
-                <span>
-                  {`${item.productName}` + ` ${cart.option.optionName}`}
-                </span>
-              </div>
-              <div className="quantity">
-                <span>{comma(cart.quantity)}개</span>
-              </div>
-              <div className="price">
-                <span>{comma(cart.price * cart.quantity)}원</span>
-              </div>
-            </div>
-          );
-        })
-      );
-    });
-    return renderComponent;
+  const OrderItems = () => {
+    return products.flatMap((item) =>
+      item.carts.map((cart) => (
+        <div key={cart.id} className="p-4 border-t">
+          <div className="product-name">
+            <span>
+              {`${item.productName} ${cart.option.optionName}`}
+            </span>
+          </div>
+          <div className="quantity">
+            <span>{comma(cart.quantity)}개</span>
+          </div>
+          <div className="price">
+            <span>{comma(cart.price * cart.quantity)}원</span>
+          </div>
+        </div>
+      ))
+    );
   };
 
   return (
@@ -144,12 +165,12 @@ const OrderTemplate = () => {
                 },
                 onSuccess: (res) => {
                   const id = res.data.response.id;
-                  navigate(`/orders/complete/${id}`);
+                  navigate(staticServerUri + "/orders/complete/" + id);
                 },
               });
             }}
             className={`w-full p-4 font-medium ${
-              agreePayment && agreePolicy ? "bg-yellow-500" : "bg-gray-300"
+              agreePayment && agreePolicy ? "bg-yellow-300" : "bg-gray-300"
             }`}
           >
             결제하기

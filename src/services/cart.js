@@ -11,6 +11,10 @@ export const addCart = (payload) => {
 
 export const getCart = () => {
   const bearerToken = JSON.parse(localStorage.getItem("user")).value;
+  if(!bearerToken) {
+    return Promise.reject("사용자 정보가 없습니다.");
+    alert("정보 없음");
+  }
   console.log(bearerToken);
   return instance.get("/carts", {
     headers: {

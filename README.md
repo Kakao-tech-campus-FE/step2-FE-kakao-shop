@@ -1,3 +1,85 @@
+# 카카오테크캠퍼스 2단계 프로젝트 > 카카오 쇼핑하기
+
+### 프로젝트 소개
+카카오 테크 캠퍼스 2단계 FE 과제 수행 프로젝트 입니다.
+
+카카오 쇼핑하기 웹사이트를 클론 코딩을 진행하였습니다.
+
+### 구현 기능
+- 회원가입
+- 로그인
+- 로그아웃
+- 전체 상품 목록 조회
+- 개별 상품 상세 조회
+- 상품 옵션 선택
+- 옵션 확인 및 수량 선택
+- 장바구니 담기
+- 장바구니 상품 목록 조회
+- 장바구니 상품 옵션 확인 및 수량 선택
+- 장바구니 상품 주문
+- 주문 상품 결제
+- 주문 결과 확인
+
+### 배포
+<hr/>
+#### 배포주소
+https://user-app.krampoline.com/k1f87aedd7787a
+
+카카오 크램폴린 IDE를 통해 배포하였습니다. 
+
+#### 배포 환경
+카카오 크램폴린 IDE를 통해 배포하였습니다. 
+
+#### 배포 순서
+- Dockerfile, default.conf 파일을 루트 디렉터리에 추가한다.
+- url path를 사용한 코드에 staticServerUri 설정을 추가한다.
+- 카카오 크램폴린 ide에 자신의 레포지토리를 연결한다.
+- D2hub를 빌드하고 Kargo를 배포한다.
+- 배포 이후 코드에 수정사항이 있는 경우 수정 후 반영하여 재빌드, 재배포한다.
+
+#### 배포에 영향 받는 브랜치
+- frontend 코드는 main 브랜치에 포함되어있다. main 브랜치를 통해 배포를 진행한다.
+
+
+<hr/>
+
+### 회고
+```
+하나의 프론트엔드 프로젝트를 처음 완성하는 것이어서 성취감을 느끼고 있습니다.
+1주차 때는 환경설정부터 작은 부분들까지 어려움을 겪었다. 에러가 생겼을 경우 에러가 난 부분이 어디인지, 무엇이 원인인지를
+찾는 것도 어려웠습니다. 이제는 아직 부족하나, 로그를 찍어가며 원인을 알아내고 해결을 해나가고 있습니다.
+코드를 작성하고 그 코드에 대해 현업 개발자에게 피드백을 받는 것은 처음이었는데 많은 도움을 받았습니다.
+그리고 처음 설계하는 부분이 가장 중요하다는 생각이 많이 들었습니다. 주차마다 주어진 과제 명세의 기능이 동작하는 것을 목표로 하다보니 
+폴더의 구조나 재사용성 등 놓치고 있는 부분이 있었습니다. 앞으로의 프로젝트에서는 설계를 명확하게 해야겠다는 생각이 든다.
+3단계 시작 전까지 멘토님이 피드백해주신 부분을 위주로 부족한 부분을 채워나갈 예정입니다.
+이번 프로젝트를 통해 한 단계 성장했다고 느끼며, 앞으로의 개발 공부도 꾸준히 나아가겠습니다!
+```
+
+### 기술 스택
+
+#### Enviroment
+<div style="display: flex; gap: 4px;">
+  <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=GITHUB&logoColor=white">
+  <img src="https://img.shields.io/badge/GIT-F05032?style=for-the-badge&logo=GIT&logoColor=white">
+  <img src="https://img.shields.io/badge/VISUAL STUDIO CODE-007ACC?style=for-the-badge&logo=VISUAL STUDIO CODE&logoColor=white">
+</div>
+
+#### Config
+<img src="https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white">
+
+#### Development
+<div style="display: flex; gap: 4px;">
+  <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/react query-FF4154?style=for-the-badge&logo=react query&logoColor=white">
+  <img src="https://img.shields.io/badge/puppeteer-40B5A4?style=for-the-badge&logo=puppeteer&logoColor=white">
+  <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+  <img src="https://img.shields.io/badge/react router-CA4245?style=for-the-badge&logo=react router&logoColor=white">
+  <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled components&logoColor=white">
+   <img src="https://img.shields.io/badge/tailwind CSS-06B6D4?style=for-the-badge&logo=tailwind CSS&logoColor=white">
+
+</div>
+
 <details>
 <summary>Step-2.-Week-1</summary>
 <div>

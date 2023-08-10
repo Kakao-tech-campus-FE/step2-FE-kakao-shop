@@ -6,7 +6,7 @@ import Button from "./Button";
 
 const CartItem = ({ item, onChange, onDelete }) => {
   return (
-    <Box className="cart-item-box border w-100 p-4">
+    <Box className="cart-item-box border w-100 p-4 ml-[100px]">
       <h5 className="font-bold mb-4">{item.productName}</h5>
       {item.carts.map((cart) => (
           cart.quantity > 0 ? (

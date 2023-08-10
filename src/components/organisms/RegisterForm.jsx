@@ -11,6 +11,8 @@ import { setLocalStorageWithExp } from "../../utils/localStorage";
 import Title from "../atoms/Title";
 import { EMAIL_REGEX, PW_REGEX } from "../../utils/regex";
 
+const staticServerUri = process.env.REACT_APP_PATH || "";
+
 const Container = styled.main`
     display: flex;
     flex-direction: column;
@@ -96,7 +98,7 @@ const RegisterForm = () => {
                     user: value.user,
                 }));
                 setLocalStorageWithExp("user", res.headers.authorization, 1000 * 60 * 60 * 24);
-                navigate("/");
+                navigate(staticServerUri + "/");
             })
             .catch((err) => {
                 console.log(err.request.response);
@@ -104,6 +106,7 @@ const RegisterForm = () => {
                 setError(errObject.error.message);
             });
     };
+
 
     const navigate = useNavigate();
     const isValid = Object.values(invalidCheck).every((value) => value === true);
@@ -167,7 +170,7 @@ const RegisterForm = () => {
                         회원가입
                     </Button>
                     <div className="text-0.8em mt-1.5em">
-                        <LinkText to="/login" text="로그인" />
+						 <LinkText to={staticServerUri + "/login"} text="로그인" />
                     </div>
                 </Box>
             </Container>

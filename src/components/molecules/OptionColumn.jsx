@@ -6,9 +6,13 @@ import Container from "../atoms/Container";
 import { useMutation } from "@tanstack/react-query";
 import Counter from "../atoms/Counter";
 import { comma } from "../../utils/convert";
+import { useNavigate } from "react-router";
+
+const staticServerUri = process.env.REACT_APP_PATH || "";
 
 const OptionColumn = ({ product }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const navigate = useNavigate();
 
   const handleOnClickOption = (option) => {
     const isOptionSelected = selectedOptions.find(
@@ -46,6 +50,21 @@ const OptionColumn = ({ product }) => {
 
   const { mutate } = useMutation({
     mutationFn: addCart,
+	onError: (error) => {
+	  console.error(error);
+      if (error.response && error.response.status === 401) {
+        // 로그인 정보가 없어 헤더에 authorization이 없는 경우 401 에러를 처리하여 로그인 페이지로 이동한다.
+        alert("로그인 정보가 없습니다. 로그인 페이지로 이동합니다.");
+        navigate(staticServerUri + "/login");
+      } else if (error.response && error.response.status === 404) {
+        // 페이지를 찾을 수 없는 경우 404 페이지로 이동한다.
+        alert("페이지를 찾을 수 없습니다. 404 페이지로 이동합니다.");
+        navigate(staticServerUri + "/*");
+	  } else {
+        // 서버 에러의 경우 alert창을 띄운다.
+        alert("주문에 실패했습니다. 다시 시도해주세요. 같은 옵션의 상품을 담으려는 경우, 장바구니에서 수량을 조정해주세요");
+      }
+    },
   });
  
   return (
@@ -115,10 +134,17 @@ const OptionColumn = ({ product }) => {
               }),
               {
                 onSuccess: () => {
-                  alert("장바구니에 담겼습니다.");
+                  navigate(staticServerUri + "/cart");
                 },
                 onError: (error) => {
-                  alert("장바구니 담기에 실패했습니다: " + error);
+                  if (localStorage.getItem("user") === null) {
+                    alert("로그인이 필요한 서비스입니다.");
+                    navigate(staticServerUri + "/login");
+                  }
+                  else{
+                    alert("장바구니 담기에 실패했습니다: " + error);
+                  }
+                  
                 },
               }
             );
