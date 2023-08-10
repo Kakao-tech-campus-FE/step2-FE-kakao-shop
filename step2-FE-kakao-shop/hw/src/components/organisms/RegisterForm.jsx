@@ -3,7 +3,7 @@ import InputGroup from "../molecules/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
 import Title from "../atoms/Title";
-import { register } from "../../services/user";
+import { register, checkEmail } from "../../services/user";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -60,6 +60,21 @@ const RegisterForm = () => {
     }
   };
 
+  const handleCheckEmail = () => {
+    checkEmail({ email: value.email })
+      .then((response) => {
+        alert("사용 가능한 이메일입니다.");
+        if (response.success) {
+          alert("사용 가능한 이메일입니다.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("동일한 이메일이 이미 존재합니다.");
+        alert("이메일 중복 체크에 실패하였습니다.");
+      });
+  };
+
   // 여기부터 리턴
   return (
     <Container>
@@ -88,6 +103,8 @@ const RegisterForm = () => {
         onChange={onChangeEmail}
       />
 
+      <button onClick={handleCheckEmail}>중복체크</button>
+
       <div>{emailMsg}</div>
 
       <InputGroup
@@ -115,6 +132,7 @@ const RegisterForm = () => {
       <div>{passwordConfirmMsg}</div>
 
       <Button
+        className="m-4 p-4 text-black font-bold text-xl bg-yellow-400"
         disabled={!validEmail || !validPassword || !validPasswordConfirm}
         onClick={() => {
           // api 회원가입 요청
@@ -129,6 +147,7 @@ const RegisterForm = () => {
         회원가입
       </Button>
       <Button
+        className="m-4 p-4 text-black font-bold text-xl bg-yellow-400"
         onClick={() => {
           navigate("/login");
         }}

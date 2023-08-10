@@ -11,7 +11,7 @@ const OrderTemplate = ({ data }) => {
   // 임시 배열
   const { products, totalPrice } = data?.data?.response;
   const navigate = useNavigate();
-  const loggedIn = useSelector((state) => state.user.isLogined);
+  const isLogined = useSelector((state) => state.user.isLogined);
   const [agreePayment, setAgreePayment] = useState(false);
   const [agreePolicy, setAgreePolicy] = useState(false);
 
@@ -36,8 +36,7 @@ const OrderTemplate = ({ data }) => {
   };
 
   const { mutate } = useMutation({
-    mutationKey: "order",
-    queryFn: () => order,
+    mutationFn: order,
   });
 
   // 목표
@@ -157,13 +156,13 @@ const OrderTemplate = ({ data }) => {
           <button
             onClick={() => {
               // 동의가 이뤄지지 않았을 경우 처리
-              if (agreePayment === false || agreePolicy === false) {
+              if (!agreePayment || !agreePolicy) {
                 alert("모든 항목에 동의가 필요합니다.");
                 return;
               }
 
               // 로그인 시간이 끝났을 경우
-              if (loggedIn === false) {
+              if (isLogined === false) {
                 alert("로그인이 만료되었습니다. 로그인페이지로 이동합니다.");
                 navigate("/login");
               }
@@ -173,16 +172,20 @@ const OrderTemplate = ({ data }) => {
               // 장바구니는 비워짐
               // 페이지 이동 -> 주문완료 페이지(리턴 받은 주문 아이디)
               // /orders/complete/:id
-              mutate(null, {
-                onError: () => {
-                  alert("주문에 실패했습니다.");
-                },
-                onSuccess: (res) => {
-                  const id = res.response.id;
-                  alert("주문이 완료되었습니다.");
-                  navigate(`/orders/complete/${id}`);
-                },
-              });
+              mutate(
+                {},
+                {
+                  onError: (err) => {
+                    console.log(err);
+                    alert("주문에 실패했습니다.");
+                  },
+                  onSuccess: (res) => {
+                    const id = res.data.response.id;
+                    alert("주문이 완료되었습니다.");
+                    navigate(`/orders/complete/${id}`);
+                  },
+                }
+              );
             }}
             className={`
               w-full p-4 font font-medium

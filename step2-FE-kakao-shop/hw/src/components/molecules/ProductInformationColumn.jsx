@@ -6,7 +6,7 @@ const ProductInformationColumn = ({ product }) => {
   const { productName, price, image } = product;
   return (
     <div className="product-information-column">
-      <div className="col">
+      <div className="w-full max-w-[300px]">
         <Photo
           src={
             "http://kakao-app-env.eba-kfsgeb74.ap-northeast-2.elasticbeanstalk.com" +
@@ -15,9 +15,9 @@ const ProductInformationColumn = ({ product }) => {
           alt={productName}
         />
       </div>
-      <div className="col">
-        <h1 className="name">{productName}</h1>
-        <p className="price">{comma(price)}원</p>
+      <div className="border">
+        <h1 className="name text-xl">{productName}</h1>
+        <p className="price text-xl">{comma(price)}원</p>
       </div>
     </div>
   );

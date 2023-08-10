@@ -7,7 +7,7 @@ import React from "react";
 import { login } from "../../services/user";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest, setEmail, logOut } from "../../store/slices/userSlice";
+import { loginRequest, logOut } from "../../store/slices/userSlice";
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -62,6 +62,7 @@ const LoginForm = () => {
         onChange={handleOnChange}
       />
       <Button
+        className="m-4 p-4 text-black font-bold text-xl bg-yellow-400"
         onClick={() => {
           // api 로그인 요청
           loginReq();
@@ -70,18 +71,12 @@ const LoginForm = () => {
         로그인
       </Button>
       <Button
+        className="m-4 p-4 text-black font-bold text-xl bg-yellow-400"
         onClick={() => {
           navigate("/signup");
         }}
       >
         회원가입
-      </Button>
-      <Button
-        onClick={() => {
-          dispatch(logOut());
-        }}
-      >
-        임시로 로컬스토리지 지우는 버튼
       </Button>
     </Container>
   );

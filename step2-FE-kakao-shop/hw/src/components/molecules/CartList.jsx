@@ -7,14 +7,16 @@ import Card from "../atoms/Card";
 import { comma } from "../../utils/convert";
 import Button from "../atoms/Button";
 import "../../styles/molecules/CartList.css";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { getCart, updateCart } from "../../services/cart";
+import { useSelector } from "react-redux";
 
 const CartList = ({ data }) => {
   const route = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [updatePayload, setUpdatePayload] = useState([]);
+  const isLogined = useSelector((state) => state.user.isLogined);
   // const updatePayload = useRef([]);
   // const initPayload = useRef([]);
 
@@ -87,10 +89,9 @@ const CartList = ({ data }) => {
   return (
     <Container className="cart-list">
       <Box>
-        <h1>장바구니</h1>
+        <h1 className="text-3xl">장바구니</h1>
       </Box>
-      <Card>
-        {/* 상품별 장바구니 */}
+      <div className="flex flex-col gap-2 mb-4">
         {Array.isArray(cartItems) &&
           cartItems.map((item) => {
             return (
@@ -101,15 +102,15 @@ const CartList = ({ data }) => {
               />
             );
           })}
-      </Card>
+      </div>
       <Card>
-        <div className="row">
-          <span className="expect">주문 예상금액</span>
-          <div className="sum-price">{comma(totalPrice)}원</div>
+        <div className="row flex flex-col gap-2 mb-4">
+          <span className="expect text-3xl">주문 예상금액</span>
+          <div className="sum-price text-2xl">{comma(totalPrice)}원</div>
         </div>
       </Card>
       <Button
-        className="order-btn"
+        className="order-btn w-full py-4 text-black font-bold text-xl bg-yellow-400"
         onClick={() => {
           // update cart
           // 장바구니 정보를 수정하는 api 호출(개수 변경이 있는 경우)

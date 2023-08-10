@@ -1,10 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { login } from "../../services/user";
+import { login } from "../../services/user";
 
 const initialState = {
   email: null,
   // 요청 보냈을 때는 true, 아닌경우: 요청X, 실패, 성공시 false
   loading: false,
+  token: null,
+  isLogined: false,
   token: null,
   isLogined: false,
 };
@@ -18,7 +21,11 @@ const userSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload.email;
       state.isLogined = true;
+      state.isLogined = true;
       localStorage.setItem("email", action.payload.email);
+    },
+    setToken: (state, action) => {
+      state.token = action.payload.token;
     },
     setToken: (state, action) => {
       state.token = action.payload.token;
@@ -26,7 +33,9 @@ const userSlice = createSlice({
     logOut: (state, action) => {
       state.email = null;
       state.isLogined = false;
+      state.isLogined = false;
       localStorage.removeItem("email");
+      localStorage.removeItem("isLogined");
       localStorage.removeItem("isLogined");
       localStorage.removeItem("token");
     },
@@ -38,10 +47,13 @@ const userSlice = createSlice({
     builder.addCase(loginRequest.fulfilled, (state, action) => {
       state.loading = false;
       state.isLogined = true;
+      state.isLogined = true;
       // createAsyncThunk한게 다 페이로드에 담김
       state.email = action.payload.email;
       state.token = action.payload.token;
+      state.token = action.payload.token;
       localStorage.setItem("email", action.payload.email);
+      localStorage.setItem("isLogined", true);
       localStorage.setItem("isLogined", true);
       localStorage.setItem("token", action.payload.token);
     });
@@ -63,7 +75,14 @@ export const loginRequest = createAsyncThunk(
   }
 );
 
-export const { setEmail, setToken, logOut } = userSlice.actions;
+export const { setToken, logOut } = userSlice.actions;
+
+export const setEmail = (payload) => {
+  return (dispatch) => {
+    dispatch(userSlice.actions.setEmail(payload));
+    localStorage.setItem("isLogined", true);
+  };
+};
 
 export const selectUser = (state) => state.user.user;
 
