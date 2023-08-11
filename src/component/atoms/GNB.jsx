@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const GNB=()=>{
     //const [isLogin, setIsLogin]=useState(false);
     const email = useSelector((state) => state.user.email);
@@ -37,9 +39,9 @@ const [isLogin, setIsLogin] = useState(false);
     };
     return(
         <header className="header flex justify-center items-center">
-            <div className="contents flex justify-center items-center">
+            <div className="flex justify-center items-center">
             <h1 className="navigation flex justify-center items-center">
-                <Link to href="/">
+                <Link to= {staticServerUrl + "/"}>
                    <img src={logokakao} alt="카카오 쇼핑 로고" height={30}/>
                 </Link>
             </h1>
@@ -47,7 +49,7 @@ const [isLogin, setIsLogin] = useState(false);
                     <div className="navigation row">
                         
                             {/* 장바구니 버튼 */}
-                            <Link to="/cart">
+                            <Link to={staticServerUrl + "/cart"}>
                                 <img src={cart} alt="장바구니 버튼" height={30}/>
                                 {/* <span style={{}}>장바구니 버튼</span>
                                 <ReactIcon.Card/> */}
@@ -56,7 +58,7 @@ const [isLogin, setIsLogin] = useState(false);
                         <span>
                             {!isLogin ? (
                                 <Link
-                                to="/login"
+                                to={staticServerUrl + "/login"}
                                 onClick={handleLogout}
                                 style={{textDecortation:"none", color:"black"}}
                                 >
@@ -65,7 +67,7 @@ const [isLogin, setIsLogin] = useState(false);
                                 </Link>
                             ):(
                                 <Link
-                                to="/login"
+                                to={staticServerUrl + "/login"}
                                 style={{textDecoration:"none", color:"black"}}
                                 >
                                 </Link>

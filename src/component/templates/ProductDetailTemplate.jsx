@@ -1,16 +1,17 @@
-import Container from "../atoms/Container"
-import ProductInformationColumn from "../molecules/ProductInformationColumn"
-import OptionColumn from "../molecules/OptionColumn"
+import Container from "../atoms/Container";
+import ProductInformationColumn from "../molecules/ProductInformationColumn";
+
+import { QueryClient, QueryClientProvider } from 'react-query';
+import QueryDetail from "../organisms/QueryDetail";
 
 
-const ProductDetailTemplate=({product})=>{
-    return(
-        <Container className=" flex-row justify-center w-full min-w-[1280px] m-auto">
-            <ProductInformationColumn product={product}/>
-            <OptionColumn product={product}/>
+const ProductDetailTemplate = ({ product }) => {
+    return (
+        <Container>
+            <ProductInformationColumn product={product} />  
+            <QueryDetail product={product}> </QueryDetail>
         </Container>
-        
-    )
-}
+    );
+};
 
 export default ProductDetailTemplate;

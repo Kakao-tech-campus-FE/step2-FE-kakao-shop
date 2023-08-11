@@ -8,6 +8,8 @@ const initialState = {
     token: null,
 };
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const userSlice = createSlice({
     name: "user",
     initialState,
@@ -48,7 +50,7 @@ const userSlice = createSlice({
           });
           builder.addCase(registerRequest.fulfilled, (state, action) => {
             state.loading = false;
-            window.location.href = "/";
+            window.location.href = staticServerUrl + "/";
             alert("회원가입이 완료되었습니다.")
           });
           builder.addCase(registerRequest.rejected, (state, action) => {
@@ -59,7 +61,7 @@ const userSlice = createSlice({
 });
 
 export const loginRequest = createAsyncThunk(
-    "/login",
+    staticServerUrl + "/api/login",
     async(data)=>{
         const {email, password}=data;
         const response=await login({email, password}); // action.payload
@@ -73,7 +75,7 @@ export const loginRequest = createAsyncThunk(
 );
 
 export const registerRequest = createAsyncThunk(
-    "/join",
+    staticServerUrl + "/api/join",
     async(data)=>{
         const {email, password, username}=data;
         const response=await register({email, password, username}); // action.payload

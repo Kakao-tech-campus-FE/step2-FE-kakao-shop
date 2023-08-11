@@ -18,9 +18,11 @@ const LoginForm =() =>{
     const [error, setError] = useState("");
     const{value, handleOnChange}= useInput({
         email:"",
-        password:"",
+        password:""
     });
 
+	const staticServerUrl = process.env.REACT_APP_PATH || "";
+	
     // const handleOnClick = () => {     
     //     dispatch(
     //       loginRequest({
@@ -46,7 +48,7 @@ const LoginForm =() =>{
                   email: value.email,
                 })
               );
-              navigate("/");
+              navigate(staticServerUrl + "/")
         })
         .catch((error)=> {
             console.log("error", error);
@@ -78,7 +80,7 @@ const LoginForm =() =>{
         </Button>
         <Button
           onClick={() => {
-            navigate("/signup");
+            navigate(staticServerUrl + "/signup");
           }}
         >
           회원가입

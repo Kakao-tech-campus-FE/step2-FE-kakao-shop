@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProducts, getProductById } from "../../services/product";
 import _ from "lodash";
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const initialState = {
     detail: null,
     loading: false,
@@ -32,7 +34,7 @@ const detailSlice= createSlice({
 });
 
 export const getDetail = createAsyncThunk(
-    "detail/getDetail",
+    staticServerUrl + "/api/detail/getDetail",
     async(id, thunkAPI)=>{
             const response = await getProductById(id);
             return response.data;

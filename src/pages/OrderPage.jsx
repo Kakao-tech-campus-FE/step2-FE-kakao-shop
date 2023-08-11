@@ -4,13 +4,15 @@ import { useQuery } from "react-query"
 import OrderTemplate from "../component/templates/OrderTemplate"
 import Loader from "../component/atoms/Loader"
 
+const staticServerUrl = process.env.REACT_APP_PATH || "";
+
 const OrderPage=()=>{
-    const {data, error, isLoading} = useQuery("/cart", getCart);
+    const {data, error, isLoading} = useQuery(['cart'], getCart);
 
     // 여기서 처리할때는 Suspense로
     return(
         <Suspense fallback={<Loader />}>
-            <OrderTemplate />
+            <OrderTemplate data={data}></OrderTemplate>
 
 
         </Suspense>
