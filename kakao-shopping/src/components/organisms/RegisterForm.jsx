@@ -1,4 +1,11 @@
 import Container from "../atoms/Container";
+import InputGroup from "../molecules/InputGroups";
+import Button from "../atoms/Button";
+import useInput from "../../hooks/useInput";
+import { register } from "../../services/api";
+import { useEffect } from "react";
+
+const RegisterForm = () => {
 import InputGroup from "../atoms/InputGroup";
 import Button from "../atoms/Button";
 import useInput from "../../hooks/useInput";
@@ -19,6 +26,8 @@ const RegisterForm = () => {
     password: "",
     passwordConfirm: "",
   });
+
+  // const [form, setForm] = useState;
 
   useEffect(() => {
     console.log(value.username);
@@ -41,12 +50,14 @@ const RegisterForm = () => {
         name="email"
         placeholder="이메일(아이디)"
         label="이메일"
+        value={value.email}
         value={value.username}
         onChange={handleOnChange}
       />
       <InputGroup
         id="password"
         type="password"
+        name="password"
         name= "password"
         placeholder="비밀번호"
         label="비밀번호"
@@ -62,6 +73,7 @@ const RegisterForm = () => {
       />
       <Button
         onClick={() => {
+          // api 회원 가입 요청
           register({
             email: value.email,
             password: value.password,
